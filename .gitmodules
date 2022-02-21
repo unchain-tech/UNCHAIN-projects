@@ -1,9 +1,0 @@
-[submodule "ETH-NFT-collection"]
-	path = ETH-NFT-collection
-	url = git@github.com:shiftbase-xyz/DevTech-Projects.git
-[submodule "ETH-NFT-game"]
-	path = ETH-NFT-game
-	url = git@github.com:shiftbase-xyz/DevTech-Projects.git
-[submodule "ETH-dApp"]
-	path = ETH-dApp
-	url = git@github.com:shiftbase-xyz/DevTech-Projects.git
