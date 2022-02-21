@@ -236,13 +236,13 @@ module.exports = {
 > ![](/public/images/ETH-NFT-game/section-1/1_5_9.png)
 >
 > 3. `Account details` から `Export Private Key` をクリックしてください。
-> ![](https://i.imgur.com/0joCdPT.png)
+> ![](/public/images/ETH-NFT-game/section-1/1_5_10.png)
 >
 > 4. Metamask のパスワードを求められるので、入力したら `Confirm` を推します。
-> ![](https://i.imgur.com/WBeVAOd.png)
+> ![](/public/images/ETH-NFT-game/section-1/1_5_11.png)
 >
 > 5. あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
-> ![](https://i.imgur.com/JcwQ2pg.png)
+> ![](/public/images/ETH-NFT-game/section-1/1_5_12.png)
 >
 > `hardhat.config.js` の `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の部分をここで取得した秘密鍵とを入れ替えます。
 
@@ -287,9 +287,9 @@ hardhat.config.js
 > トランザクションを行うためには、ブロックチェーンに「ログイン」する必要があります。
 >
 > 「ログイン」には下記の情報が必要となります。
-> - ユーザー名: 公開アドレス ![](https://i.imgur.com/eOJeNpF.png)
+> - ユーザー名: 公開アドレス ![](/public/images/ETH-NFT-game/section-1/1_5_13.png)
 > - パスワード: 秘密鍵
-> ![](https://i.imgur.com/JcwQ2pg.png)
+> ![](/public/images/ETH-NFT-game/section-1/1_5_14.png)
 >
 > ユーザー名とパスワードを使用して、AWS にログインしてプロジェクトをデプロイするのと同じです。
 
@@ -330,7 +330,7 @@ Done deploying and minting!
 
 下記のような結果が、Rinkeby Etherscan 上で確認できれば、テストネットへのデプロイは成功です🎉
 
-![無題](https://i.imgur.com/zIgjjwb.png)
+![無題](/public/images/ETH-NFT-game/section-1/1_5_15.png)
 
 **デプロイのデバッグに Rinkeby Etherscan 使うことに慣れましょう。**
 
@@ -346,11 +346,11 @@ Rinkeby Etherscan はデプロイを追跡する最も簡単な方法であり�
 - [テストネット用の OpenSea](https://testnets.opensea.io/) でも同じように確認することができますが、NFT が OpenSea に反映されるまでに時間がかかるので、Rarible で検証することをおすすめします。
 
 下記のように、あなたの NFT も Rarible で確認できたでしょうか？
-![](https://i.imgur.com/XmEs93w.png)
+![](/public/images/ETH-NFT-game/section-1/1_5_16.png)
 
 キャラクターをクリックして、右下に表示されている `Properties` を確認してみましょう。
 
-![](https://i.imgur.com/LnplUV4.png)
+![](/public/images/ETH-NFT-game/section-1/1_5_17.png)
 キャラクター の 攻撃力（ `Attack Damage` ）や HP が Rarible に反映されています。
 
 Rarible や OpenSea はキャラクター属性を適切にレンダリングしてくれます😊
@@ -372,7 +372,7 @@ Rarible や OpenSea はキャラクター属性を適切にレンダリングし
 - 「Axie Infinity」は、ポケモンのようなターン制のゲームで、他のプレイヤーと1対1で戦います。
 
 
-![無題](https://i.imgur.com/FIJmmbL.png)
+![無題](/public/images/ETH-NFT-game/section-1/1_5_18.png)
 
 [Detective Munch](https://opensea.io/assets/0xf5b0a3efb8e8e4c201e2a935f110eaaf3ffecb8d/78852) は OpenSea で見ることができます。
 
@@ -399,7 +399,7 @@ NFT の実用性は、革新的な技術です。
 
 - 例えば、大乱闘スマッシュブラザーズを想像してください。
 
-![無題](https://i.imgur.com/BTI8Qhp.png)
+![無題](/public/images/ETH-NFT-game/section-1/1_5_19.png)
 
 **ブロックチェーンの技術を使うと、プレイヤーは自分のキャラクター NFT を選び、ゲーム内に持ち込んで遊ぶことができます。**
 

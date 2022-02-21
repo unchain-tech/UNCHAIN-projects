@@ -707,7 +707,7 @@ data:application/json;base64,eyJuYW1lIjogIlpFTklHQU1FIC0tIE5GVCAjOiAxIiwgImRlc2N
 
 その文字列をブラウザのURLバーに貼り付けて、下記のような結果が表示されることを確認してください。
 
-![](https://i.imgur.com/sTouGS7.png)
+![](/public/images/ETH-NFT-game/section-1/1_4_1.png)
 
 
 これは、`MyEpicGame.sol` に追加した `tokenURI` 関数の中で、NFT キャラクターの情報が、JSON ファイル形式にフォーマットされ、さらに Base64 形式で**エンコード**された結果です。
