@@ -7,7 +7,7 @@
 
 わたしのコレクションはこのような形で表示されます。
 
-![](https://i.imgur.com/6Yvyy5I.png)
+![](/public/images/Polygon-Generative-NFT/section-2/2_4_1.png)
 
 `deploy.js` で、10個の NFT を自分用にキープしてから、3 個 NFT を Mint しました。
 
@@ -28,11 +28,11 @@
 
 アカウントが作成できたら、`My Profile` 画面に移動してください。
 
-![](https://i.imgur.com/mJoWTRG.png)
+![](/public/images/Polygon-Generative-NFT/section-2/2_4_2.png)
 
 `API Keys` タブを選択し、`+ Add` ボタンを押したら、`Create API Key` のポップアップが表示されるので、あなたの API に任意の名前をつけましょう。
 
-![](https://i.imgur.com/1BcdS7Y.png)
+![](/public/images/Polygon-Generative-NFT/section-2/2_4_3.png)
 
 次に、あなたが作成した API の横の `Edit` ボタンを選択してください。ポップアップが表示されるので、`apiKey` を取得しましょう。
 
@@ -44,7 +44,7 @@ Etherscan で verification を行うために必要なツールをインスト�
 npm install @nomiclabs/hardhat-etherscan
 ```
 
-![](https://i.imgur.com/VCfzIL1.png)
+![](/public/images/Polygon-Generative-NFT/section-2/2_4_4.png)
 
 次に、`nft-collectible` ディレクトリにある `.env` を開きます。
 
@@ -123,13 +123,13 @@ https://rinkeby.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#
 
 わたしの [URLリンク](https://rinkeby.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#code) の中身は下記のように表示されます。
 
-![](https://i.imgur.com/RDYVYjU.png)
+![](/public/images/Polygon-Generative-NFT/section-2/2_4_5.png)
 
 `Contract` タブの横に小さな緑のチェックマーク ✅ が表示されているでしょうか？
 
 ✅ は、ユーザーが Metamask を使ってし、Etherscan 自体からコントラクトの機能を呼び出せるようになったということを意味します。
 
-![](https://i.imgur.com/qV9YJJs.png)
+![](/public/images/Polygon-Generative-NFT/section-2/2_4_6.png)
 
 `Contract` タブの中の `Write Contract` を選択して以下を試してみましょう。
 

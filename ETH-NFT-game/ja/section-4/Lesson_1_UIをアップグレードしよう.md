@@ -313,7 +313,7 @@ return (
 
 上記の実装はフロントエンドに下記のように反映されます。
 
-![無題](https://i.imgur.com/o8u0X4Q.png)
+![](/public/images/ETH-NFT-game/section-4/4_1_1.png)
 
 
 🔁 `Arena` コンポーネントにローディングマークを追加する
@@ -380,7 +380,7 @@ import LoadingIndicator from '../../Components/LoadingIndicator';
 ```
 
 上記のコードを実装したら、WEBアプリを確認してみましょう。
-![](https://i.imgur.com/7w82SXO.png)
+![](/public/images/ETH-NFT-game/section-4/4_1_2.png)
 
 上記のようにローディングマークが `Arena` ページに表示されているでしょうか？✨
 
@@ -655,7 +655,7 @@ const runAttackAction = async () => {
 
 上記の実装が成功した場合、WEBアプリ上でボスを攻撃すると、下記のような攻撃ダメージが表示されます✨
 
-![](https://i.imgur.com/zZp7teK.png)
+![](/public/images/ETH-NFT-game/section-4/4_1_3.png)
 
 🙋‍♂️ 質問する
 -------------------------------------------

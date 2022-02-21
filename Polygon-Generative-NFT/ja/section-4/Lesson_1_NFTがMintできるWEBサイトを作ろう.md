@@ -42,7 +42,7 @@ npm start
 
 これは、標準的な React のテンプレートです。
 
-![](https://i.imgur.com/xhHB8td.png)
+![](/public/images/Polygon-Generative-NFT/section-4/4_1_1.png)
 
 では、フロントエンドを構築するファイルの中身を整理していきましょう。
 
@@ -117,7 +117,7 @@ ABI（または Application Binary Interface ）は、コントラクトのコ�
 
 `/nft-collectible/artifacts/contracts/NFTCollectible.sol/NFTCollectible.json` を VS Code で開き中身を確認してみましょう。
 
-![](https://i.imgur.com/cX9iUvi.png)
+![](/public/images/Polygon-Generative-NFT/section-4/4_1_2.png)
 
 `NFTCollectible.json` に記載されている全てのコードが、ABI ファイルです。
 
@@ -254,7 +254,7 @@ const contractAddress = "あなたのコントラクトアドレスを貼り付�
 
 あなたのウェブサイトは、このように表示されるはずです。
 
-![](https://i.imgur.com/09Ya31F.png)
+![](/public/images/Polygon-Generative-NFT/section-4/4_1_3.png)
 
 CSS スタイルや静的要素（画像、ヘッダー、フッター、ソーシャルメディアリンクなど）を追加して、ウェブサイトの外観を自由にカスタマイズしてください。
 
@@ -301,7 +301,7 @@ const checkWalletIsConnected = async () => {
 
 Metamask がインストールされていれば、`Wallet exists! We’re ready to go!` というメッセージが `Console` に表示されているはずです。
 
-![](https://i.imgur.com/tu53i6S.png)
+![](/public/images/Polygon-Generative-NFT/section-4/4_1_4.png)
 
 Metamask エクステンションをインストールしたからといって、アクセスしたすべての WEBサイトに Metamask が自動的に接続されるわけではありません。
 
@@ -402,13 +402,13 @@ setCurrentAccount(accounts[0]);
 
 もし、下図のように `Connected` と表示されている場合は、`Connected` の文字をクリックします。
 
-![](https://i.imgur.com/hzXLzQZ.png)
+![](/public/images/Polygon-Generative-NFT/section-4/4_1_5.png)
 
 そこで、WEBサイトとあなたのウォレットアドレスの接続を一度解除します。
 
 - `Disconnect this account` を選択してください。
 
-![](https://i.imgur.com/UoOhJDd.png)
+![](/public/images/Polygon-Generative-NFT/section-4/4_1_6.png)
 
 次にローカルサーバーにホストされているあなたのWEBサイトをリフレッシュして、`Connect Wallet` ボタンを押してください。
 
@@ -416,7 +416,7 @@ Metamask が WEBサイトとの接続を促してきますので、同意しま�
 
 下記のように、`Console` にあなたのパブリックウォレットアドレスが出力されていれば、ウォレット接続のテストは成功です。
 
-![](https://i.imgur.com/5LjpTvK.png)
+![](/public/images/Polygon-Generative-NFT/section-4/4_1_7.png)
 
 
 ウォレットが接続されたら、`Connect Wallet` ボタンを `Mint NFT` ボタンに置き換えていきましょう。
@@ -438,13 +438,13 @@ return (
 
 これで、私たちのウェブサイトはこのようになります。
 
-![](https://i.imgur.com/65JpRcT.png)
+![](/public/images/Polygon-Generative-NFT/section-4/4_1_8.png)
 
 ページを更新して、Metamask エクステンションを確認してみましょう。
 
 Metamask はまだウェブサイトに接続されていることを伝えていますが、WEBサイトにはまだConnect Wallet ボタンが表示されていることがわかります。
 
-![](https://i.imgur.com/Nx8C08n.png)
+![](/public/images/Polygon-Generative-NFT/section-4/4_1_9.png)
 
 React に慣れている人なら、なぜこのようなことが起こるのかお分かりでしょう。
 
@@ -784,7 +784,7 @@ Metamask が 0.01 ETH + ガス代 を支払うよう促すので、同意して�
 
 処理が完了したら、Metamask のポップアップとコンソール出力の両方でトランザクションが確認できます。
 
-![](https://i.imgur.com/RHgV9pB.png)
+![](/public/images/Polygon-Generative-NFT/section-4/4_1_10.png)
 
 Polygon が他のサイドチェーンと異なる最大の利点は、世界最大の NFT マーケットプレイスである OpenSea にサポートされていることです。
 
@@ -792,7 +792,7 @@ Polygon が他のサイドチェーンと異なる最大の利点は、世界最
 
 Mint された NFT がコレレクションとしてアップロードされているのがわかるでしょう。
 
-![](https://i.imgur.com/DxfErJf.png)
+![](/public/images/Polygon-Generative-NFT/section-4/4_1_11.png)
 
 🙋‍♂️ 質問する
 -------------------------------------------

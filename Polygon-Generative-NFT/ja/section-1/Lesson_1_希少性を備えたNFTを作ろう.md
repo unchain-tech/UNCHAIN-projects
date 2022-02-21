@@ -6,10 +6,10 @@
 これらのプロジェクトは、数億ドルの収益を生み出し、所有者の一部は億万長者となっています。
 
 [Cryptopunks](https://www.larvalabs.com/cryptopunks) （クリプトパンクス）
-![](https://i.imgur.com/ERhPTqc.jpg)
+![](/public/images/Polygon-Generative-NFT/section-1/1_1_1.jpeg)
 
 [Bored Ape Yacht Club](https://boredapeyachtclub.com/#/)（BAYC：ボアードエイプ・ヨットクラブ）
-![](https://i.imgur.com/CLOwGX4.jpg)
+![](/public/images/Polygon-Generative-NFT/section-1/1_1_2.jpeg)
 
 これらは、数量が限られたアバターのコレクションです。
 
@@ -90,7 +90,7 @@ Github のアカウントをお持ちの方は、[こちら](https://github.com/
 あなたの Github アカウントにフォークした `generative-nft-library` レポジトリを、あなたのローカル環境にクローンしてください。
 
 まず、下図のように、`Code` ボタンをクリックして、`SSH` を選択し、git リンクをコピーしましょう。
-![](https://i.imgur.com/wQWXafW.png)
+![](/public/images/Polygon-Generative-NFT/section-1/1_1_3.png)
 
 ターミナルで任意のディレクトリに移動し、先ほどコピーしたリンクを貼り付け、下記を実行してください。
 
@@ -100,7 +100,7 @@ git clone コピーした_github_リンク
 
 下記のように、あなたのローカル環境に、ライブラリがクローンされたことが確認できたら、次のステップに進みましょう。
 
-![](https://i.imgur.com/e8JTSdG.png)
+![](/public/images/Polygon-Generative-NFT/section-1/1_1_4.png)
 
 🐿 Scrappy Squirrels を生成する
 ----
@@ -111,11 +111,11 @@ git clone コピーした_github_リンク
 
 以下はそのサンプルです。
 
-![](https://i.imgur.com/p0GSVIR.png)
+![](/public/images/Polygon-Generative-NFT/section-1/1_1_5.png)
 
 「Scrappy Squirrels」は、下記のような PNG 画像を重ねて生成されます。
 
-![](https://i.imgur.com/ICPIusw.png)
+![](/public/images/Polygon-Generative-NFT/section-1/1_1_6.png)
 
 上図の右上から時計回りに、画像を順番に重ねていくと、中央の画像が作成されます。
 
@@ -137,7 +137,7 @@ git clone コピーした_github_リンク
 
 「Scrappy Squirrels」プロジェクトでは、下記のように 8 つの特徴カテゴリを作成します。
 
-![](https://i.imgur.com/9iXXjCT.png)
+![](/public/images/Polygon-Generative-NFT/section-1/1_1_7.png)
 
 各特徴のカテゴリごとに、特徴的な画像の数は様々です。
 
@@ -145,7 +145,7 @@ git clone コピーした_github_リンク
 
 ※ 現在のサンプルでは、簡単のため `blue_dot.png` のみが格納されています。
 
-![](https://i.imgur.com/On0m7lA.png)
+![](/public/images/Polygon-Generative-NFT/section-1/1_1_8.png)
 
 今回使用する特徴カテゴリとそれに付随する画像は、あなたのローカル環境に `git clone` した `generative-nft-library` の `asset` フォルダの中にあります。
 
@@ -187,7 +187,7 @@ CONFIG = [
 
 順番は、`assets` フォルダに格納されている特徴カテゴリフォルダの順番に起因しています。
 
-![](https://i.imgur.com/cuHe2Vj.png)
+![](/public/images/Polygon-Generative-NFT/section-1/1_1_9.png)
 
 
 **ここでの順序は非常に重要です。**
@@ -326,7 +326,7 @@ Python リストは、`rarity_weights` の重みを割り当てる最も一般�
 
 **これらの画像を `Name` で昇順（アルファベット順）にソートすると、次のようになります。**
 
-![](https://i.imgur.com/7N7OgJ1.png)
+![](/public/images/Polygon-Generative-NFT/section-1/1_1_10.png)
 
 
 次に、`config.py` の `Wristbands` に定義した `rarity_weights` を見てみましょう。
@@ -372,7 +372,7 @@ Python リストは、`rarity_weights` の重みを割り当てる最も一般�
 
 2 つ目の重みは黒（ `black.png` ）のバンド、3 つ目の重みは白のバンド（ `white.png` ）、といった具合に関連付けを行なっています。
 
-![](https://i.imgur.com/7N7OgJ1.png)
+![](/public/images/Polygon-Generative-NFT/section-1/1_1_11.png)
 
 **重みの値が大きいほど、特定の特徴がよく見られます。**
 
@@ -455,12 +455,12 @@ Task complete!
 
 `What would you like to call this edition?` で命名した `edition` は下記のように保存されています。
 
-![](https://i.imgur.com/hr2pPKZ.png)
+![](/public/images/Polygon-Generative-NFT/section-1/1_1_12.png)
 
 
 `edition` フォルダの中の `images` フォルダを開き、下記のように、ユニークな「Scrappy Squirrels」のアバターが格納されていることを確認しましょう。
 
-![](https://i.imgur.com/UOVRYiu.png)
+![](/public/images/Polygon-Generative-NFT/section-1/1_1_13.png)
 
 あなたのコレクションの中に `metadata.csv` が存在しているかと思います。
 
