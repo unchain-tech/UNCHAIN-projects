@@ -121,7 +121,7 @@ WEBアプリを更新すると、「アリーナ」コンポーネントに直�
 
 フロントエンドが下記のように表示されていれば、ここまでの実装は成功です。
 
-![](https://i.imgur.com/xYOw4tN.png)
+![](/public/images/ETH-NFT-game/section-3/3_6_1.png)
 
 😈 スマートコントラクトからボスを取得する
 ----
@@ -156,7 +156,7 @@ useEffect(() => {
 
 `Console` に下記のような結果が出力されていれば、実装は成功です。
 
-![](https://i.imgur.com/SPKM0su.png)
+![](/public/images/ETH-NFT-game/section-3/3_6_2.png)
 
 
 🙀 ボスをフロントエンドにレンダリングする
@@ -205,7 +205,7 @@ return (
 
 ローカルサーバーで、WEBアプリを開き、下記のようにボスが `Arena` にレンダリングされていることを確認してください。
 
-![](https://i.imgur.com/A6giaXE.png)
+![](/public/images/ETH-NFT-game/section-3/3_6_3.png)
 
 
 🛡 NFT キャラクターを `Arena` にレンダリングする
@@ -268,7 +268,7 @@ return (
 
 ローカルサーバーで、WEBアプリを開き、下記のようにあなたの NFT キャラクターが `Arena` にレンダリングされていることを確認してください。
 
-![](https://i.imgur.com/5kDSMjw.png)
+![](/public/images/ETH-NFT-game/section-3/3_6_4.png)
 
 ⚔ ボスとのバトルを実装する
 ---
@@ -390,7 +390,7 @@ return (
 
 3 \. 攻撃が完了すると、トランザクションハッシュ（ `attackTxn:` ）が `Console` に表示されます。
 
-![](https://i.imgur.com/I6osSTr.png)
+![](/public/images/ETH-NFT-game/section-3/3_6_5.png)
 
 ここまで、完了したら、テストは成功です。
 
@@ -495,7 +495,7 @@ setCharacterNFT((prevState) => {
 
 下記のようにボスと NFT キャラクターの HP が更新されていれば成功です。
 
-![](https://i.imgur.com/ZTPslj7.png)
+![](/public/images/ETH-NFT-game/section-3/3_6_6.png)
 
 
 🙋‍♂️ 質問する
