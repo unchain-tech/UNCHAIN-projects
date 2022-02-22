@@ -3,8 +3,6 @@
 
 あなたは、[Axie Infinity](https://axieinfinity.com/) を知っていますか？
 
-![](/public/images/ETH-NFT-game/section-0/0_2_1.png)
-
 Axie Infinity は、現在世界で最もプレイされている NFT を基盤に構築されたゲームの一つです。
 
 プレイヤーは、ゲーム内で仮想通貨を入手したり、NFTを売ったりすることで稼ぐことができます。

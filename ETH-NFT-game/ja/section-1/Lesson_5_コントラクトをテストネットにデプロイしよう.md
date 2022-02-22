@@ -369,14 +369,9 @@ Rarible や OpenSea はキャラクター属性を適切にレンダリングし
 
 世界最大のNFTゲーム「Axie Infinity」も、NFT キャラクターに属性を付与しています。
 
-- 「Axie Infinity」は、ポケモンのようなターン制のゲームで、他のプレイヤーと1対1で戦います。
+「Axie Infinity」は、ポケモンのようなターン制のゲームで、他のプレイヤーと1対1で戦います。
 
-
-![無題](/public/images/ETH-NFT-game/section-1/1_5_18.png)
-
-[Detective Munch](https://opensea.io/assets/0xf5b0a3efb8e8e4c201e2a935f110eaaf3ffecb8d/78852) は OpenSea で見ることができます。
-
-- **`Propertis` や `Levels` など、さまざまな属性をチェックしてみてください。**
+[こちら](https://opensea.io/assets/0xf5b0a3efb8e8e4c201e2a935f110eaaf3ffecb8d/78852) で Axie キャラクターの `Propertis` や `Levels` など、さまざまな属性をチェックしてみてください。
 
 これらの属性によって、NFT キャラクターはゲーム内で個性豊かな能力を発揮します。
 
@@ -395,11 +390,7 @@ Rarible や OpenSea はキャラクター属性を適切にレンダリングし
 
 NFT の実用性は、革新的な技術です。
 
-通常ゲームでは、ゲームを買ってからキャラクターを選びます。
-
-- 例えば、大乱闘スマッシュブラザーズを想像してください。
-
-![無題](/public/images/ETH-NFT-game/section-1/1_5_19.png)
+大乱闘スマッシュブラザーズのおような一般的なゲームでは、ゲームを買ってからキャラクターを選びます。
 
 **ブロックチェーンの技術を使うと、プレイヤーは自分のキャラクター NFT を選び、ゲーム内に持ち込んで遊ぶことができます。**
 
