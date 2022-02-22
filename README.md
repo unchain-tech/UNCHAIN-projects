@@ -4,7 +4,7 @@
 ![](/public/images/README/unchain-banner-1.png)
 
 
-### 🌍 **プロジェクトについて**
+### **🌍 プロジェクトについて**
 
 [UNCHAIN](https://app.shiftbase.xyz)のプロジェクトは全てオープンソース ([MITラインセンス](https://wisdommingle.com/mit-license/))で運用されています。
 
