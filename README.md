@@ -1,4 +1,4 @@
-💎 UNCHAIN developer community へようこそ！
+💎 **UNCHAIN developer community へようこそ** 😊
 ---
 
 ![](/public/images/README/unchain-banner-1.png)
