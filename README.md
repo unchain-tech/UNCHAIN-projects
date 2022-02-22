@@ -21,7 +21,7 @@ Github から直接コードを編集して直接 `pull request` を送る方法
 
 - `Fork` がら `pull request` を作成する方法は、[こちら](https://docs.github.com/ja/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)です。
 
-🐝 コードの中でバグが発生した場合
+🐝 コードの中でバグが発生した!
 ---
 
 プロジェクトの中にバグを発見した場合は、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/issues)で `Issue` を作成していただけますと幸いです。
