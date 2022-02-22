@@ -16,9 +16,9 @@
 
 まだ Github のアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
-Github のアカウントをお持ちの方は、[こちら](https://github.com/yukis4san/your-NFT-game) から、フロントエンドの基盤となるレポジトリをあなたの Github にフォークしましょう。フォークの方法は、[こちら](https://denno-sekai.com/github-fork/) を参照してください。
+Github のアカウントをお持ちの方は、[こちら](https://github.com/shiftbase-xyz/nft-game-starter-project) から、フロントエンドの基盤となるレポジトリをあなたの Github にフォークしましょう。フォークの方法は、[こちら](https://denno-sekai.com/github-fork/) を参照してください。
 
-あなたの Github アカウントにフォークした `your-NFT-game` レポジトリを、あなたのローカル環境にクローンしてください。
+あなたの Github アカウントにフォークした `nft-game-starter-project` レポジトリを、あなたのローカル環境にクローンしてください。
 
 まず、下図のように、`Code` ボタンをクリックして、`SSH` を選択し、git リンクをコピーしましょう。
 ![](/public/images/ETH-NFT-game/section-3/3_1_1.png)
@@ -29,7 +29,7 @@ Github のアカウントをお持ちの方は、[こちら](https://github.com/
 git clone コピーした_github_リンク
 ```
 
-ターミナル上で `your-NFT-game` に移動して下記を実行しましょう。
+ターミナル上で `nft-game-starter-project` に移動して下記を実行しましょう。
 
 ```bash
 npm install
@@ -46,7 +46,7 @@ npm run start
 
 上記のような形でフロントエンドが確認できれば成功です。
 
-これからフロントエンドの表示を確認したい時は、ターミナルに向かい、`your-NFT-game` ディレクトリ上で、`npm run start` を実行します。これからも必要となる作業なので、よく覚えておいてください。
+これからフロントエンドの表示を確認したい時は、ターミナルに向かい、`nft-game-starter-project` ディレクトリ上で、`npm run start` を実行します。これからも必要となる作業なので、よく覚えておいてください。
 
 🙋‍♂️ 質問する
 -------------------------------------------

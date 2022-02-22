@@ -19,7 +19,7 @@
 
 		- 「Arena Component」は、プレイヤーがボスと戦う場所です。
 
-まず、ターミナル上で `your-NFT-game/src/Components/Arena` フォルダに移動して、`index.js`という名前の新しいファイルを作成しましょう。
+まず、ターミナル上で `nft-game-starter-project/src/Components/Arena` フォルダに移動して、`index.js`という名前の新しいファイルを作成しましょう。
 
 `Arena` フォルダには `Arena.css` ファイルが含まれています。
 
@@ -27,7 +27,7 @@ WEBアプリの構築が完了したら、CSSのスタイリングを楽しん�
 
 ⚔️ `Arena` を作成する
 
-次に、`your-NFT-game/src/Components/Arena/index.js` を開き、下記のコードを貼り付けましょう。
+次に、`nft-game-starter-project/src/Components/Arena/index.js` を開き、下記のコードを貼り付けましょう。
 
 ```javascript
 import React, { useEffect, useState } from 'react';
@@ -93,7 +93,7 @@ const renderContent = () => {
 		return (
 		<div className="connect-wallet-container">
 			<img
-				src="https://i.imgur.com/TgWatRU.gif"
+				src="https://i.imgur.com/yMocj5x.png"
 				alt="Detective Pickachu"
 			/>
 			<button
@@ -335,7 +335,7 @@ const [attackState, setAttackState] = useState('');
 
 - `''` : デフォルトの状態
 
-`your-NFT-game/src/Components/Arena/Arena.css` を開いて、`attacking` や `hit` を調べてみてください。
+`nft-game-starter-project/src/Components/Arena/Arena.css` を開いて、`attacking` や `hit` を調べてみてください。
 
 - アニメーションのための CSS が設定されています✨
 

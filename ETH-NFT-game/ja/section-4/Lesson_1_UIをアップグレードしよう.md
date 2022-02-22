@@ -11,7 +11,7 @@ NFT キャラクターを Mint したり、ボスのデータを取得したり�
 
 3. `Arena` コンポーネント : 攻撃が終了するのをフロントエンドが待機している状況
 
-`your-NFT-game/src/Components` フォルダに `LoadingIndicator` コンポーネントが格納されています。
+`nft-game-starter-project/src/Components` フォルダに `LoadingIndicator` コンポーネントが格納されています。
 
 このレッスンでは、この `LoadingIndicator` コンポーネントを使っていきます。
 
@@ -116,39 +116,6 @@ if (isLoading) {
 	return <LoadingIndicator />;
 }
 ```
-<!--
-```javascript
-// App.js
-const renderContent = () => {
-  // アプリがロード中の場合は、LoadingIndicatorをレンダリングします。
-  if (isLoading) {
-    return <LoadingIndicator />;
-  }
-
-  if (!currentAccount) {
-    return (
-      <div className="connect-wallet-container">
-        <img
-            src="https://i.imgur.com/TgWatRU.gif"
-            alt="Detective Pickachu"
-        />
-        <button
-          className="cta-button connect-wallet-button"
-          onClick={connectWalletAction}
-        >
-          Connect Wallet to Get Started
-        </button>
-      </div>
-    );
-  } else if (currentAccount && !characterNFT) {
-    return <SelectCharacter setCharacterNFT={setCharacterNFT} />;
-  } else if (currentAccount && characterNFT) {
-    return (
-      <Arena characterNFT={characterNFT} setCharacterNFT={setCharacterNFT} />
-    );
-  }
-};
-``` -->
 
 この処理により、WEBアプリがコントラクトからデータを読み込んでいる間は、ローディングマークが表示されます。
 
@@ -203,7 +170,7 @@ const checkIfWalletIsConnected = async () => {
 二つ目のケース、「ユーザーが NFT キャラクターを Mint するのをフロントエンドが待機している状況」で、WEBアプリにローディングマークを表示していきましょう。
 
 
-まず、`your-NFT-game/src/Components/SelectCharacter/index.js` の先頭に、下記を追加しましょう。
+まず、`nft-game-starter-project/src/Components/SelectCharacter/index.js` の先頭に、下記を追加しましょう。
 
 ```javascript
 // SelectCharacter/index.js
@@ -287,7 +254,7 @@ return (
 
 `SelectedCharacter.css` にも下記のCSSを追加しましょう。
 
-- `your-NFT-game/src/Components/SelectCharacter` フォルダの中に `SelectedCharacter.css`が格納されています。
+- `nft-game-starter-project/src/Components/SelectCharacter` フォルダの中に `SelectedCharacter.css`が格納されています。
 
 ```javascript
 // SelectedCharacter.css
@@ -322,7 +289,7 @@ return (
 三つ目のケース、「攻撃が終了するのをフロントエンドが待機している状況」で、WEBアプリにローディングマークを表示していきましょう。
 
 
-まず、`your-NFT-game/src/Components/Arena/index.js` の先頭に、下記を追加しましょう。
+まず、`nft-game-starter-project/src/Components/Arena/index.js` の先頭に、下記を追加しましょう。
 
 ```javascript
 // Arena/index.js
@@ -363,7 +330,7 @@ import LoadingIndicator from '../../Components/LoadingIndicator';
 
 最後に、下記のCSSを、`Arena.css` ファイルに追加してください。
 
-- `your-NFT-game/src/Components/Arena` フォルダの中に `Arena.css` が格納されています。
+- `nft-game-starter-project/src/Components/Arena` フォルダの中に `Arena.css` が格納されています。
 
 ```javascript
 // Arena.css
@@ -391,7 +358,7 @@ import LoadingIndicator from '../../Components/LoadingIndicator';
 まず、下記のCSSを `Arena.css`  ファイルに追加しましょう。
 
 ```javascript
-// your-NFT-game/src/Components/Arena/Arena.css
+// nft-game-starter-project/src/Components/Arena/Arena.css
 /* Toast */
 #toast {
   visibility: hidden;
@@ -518,7 +485,7 @@ import LoadingIndicator from '../../Components/LoadingIndicator';
 }
 ```
 
-次に、`your-NFT-game/src/Components/Arena/index.js` を開き、HTML が記載されている `return();` の中身を下記のように更新しましょう。
+次に、`nft-game-starter-project/src/Components/Arena/index.js` を開き、HTML が記載されている `return();` の中身を下記のように更新しましょう。
 
 ```javascript
 return (
@@ -593,7 +560,7 @@ return (
 `Arena.css` の中に下記のような `show` クラスが存在することを確認してください。
 
 ```javascript
-// your-NFT-game/src/Components/Arena/Arena.css
+// nft-game-starter-project/src/Components/Arena/Arena.css
 #toast.show {
   visibility: visible;
   -webkit-animation: fadein 0.5s, expand 0.5s 0.5s, stay 3s 1s, shrink 0.5s 2s,

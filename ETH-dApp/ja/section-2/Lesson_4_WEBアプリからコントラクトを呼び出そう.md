@@ -209,7 +209,7 @@ const wave = async () => {
 
 今回のレッスンでは実装する機能が多いので、追加する機能3つに対してテストを行います。
 
-`App.js` を更新したら、ターミナル上で `your-first-dApp` に移動し、`npm run start` を実行してください。
+`App.js` を更新したら、ターミナル上で `dApp-starter-project` に移動し、`npm run start` を実行してください。
 
 ローカルサーバーを介して表示されているWEBアプリから右クリック → `Inspect` を選択し、`Console` の出力結果を確認してみましょう。
 
@@ -289,8 +289,8 @@ ABI ファイルの中身は、`WavePortal.json` というファイルに格納�
 
 次に、下記を実行して、ABI ファイルをWEBアプリから呼び出せるようにしましょう。
 
-1. ターミナル上で `your-first-dApp` にいることを確認する（もしくは移動する）。
-2. 下記を実行して、`your-first-dApp/src/` の中に `utils` ディレクトリを作成する。
+1. ターミナル上で `dApp-starter-project` にいることを確認する（もしくは移動する）。
+2. 下記を実行して、`dApp-starter-project/src/` の中に `utils` ディレクトリを作成する。
 > ```bash
 > mkdir src/utils
 >```
@@ -300,9 +300,9 @@ ABI ファイルの中身は、`WavePortal.json` というファイルに格納�
 >```
 4. 下記を実行して、`WavePortal.json` ファイルを VS Code で開く。
 >```bash
-> code your-first-dApp/src/utils/WavePortal.json
+> code dApp-starter-project/src/utils/WavePortal.json
 >```
-5. **先ほどコピーした `my-wave-portal/artifacts/contracts/WavePortal.sol/WavePortal.json` の中身を新しく作成した `your-first-dApp/src/utils/WavePortal.json` の中に貼り付けてください。**
+5. **先ほどコピーした `my-wave-portal/artifacts/contracts/WavePortal.sol/WavePortal.json` の中身を新しく作成した `dApp-starter-project/src/utils/WavePortal.json` の中に貼り付けてください。**
 
 ABI ファイルの準備ができたので、`App.js` にインポートしましょう。
 
@@ -528,7 +528,7 @@ const wave = async () => {
 🚀 テストを実行する
 -----------------------------
 
-ターミナル上で `your-first-dApp` に移動し、下記を実行しましょう。
+ターミナル上で `dApp-starter-project` に移動し、下記を実行しましょう。
 ```
 npm run start
 ```

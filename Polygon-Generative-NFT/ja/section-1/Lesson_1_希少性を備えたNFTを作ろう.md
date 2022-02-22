@@ -19,12 +19,12 @@
 
 今回のレッスンでは、Cryptopunk や BAYC のような希少性を備えた Generative Art の NFT コレクションを作成する方法を学びます。
 
-✍️: NFT に関する詳しい説明は、[こちら](https://github.com/yukis4san/Intro-NFT/blob/main/section-1/NFT-S1-lesson-1.md) をご覧ください。
+✍️: NFT に関する詳しい説明は、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/blob/main/ETH-NFT-collection/ja/section-1/Lesson_1_NFT%E3%81%A8%E3%81%AF%E4%BD%95%E3%81%8B%EF%BC%9F.md) をご覧ください。
 
 💻 Python と pip をインストールする
 ---
 
-Generative Art を作成するために、[こちら](https://github.com/yukis4san/generative-nft-library) のライブラリを使用します。
+Generative Art を作成するために、[こちら](https://github.com/shiftbase-xyz/generative-nft-library) のライブラリを使用します。
 
 このライブラリは Python で書かれているので、あなたのコンピュータに Python をインストールする必要があります。また、Python で使用するパッケージをインストールしてくれる pip も必要です。
 
@@ -85,7 +85,7 @@ pip install Pillow pandas progressbar2
 
 まだ Github のアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
-Github のアカウントをお持ちの方は、[こちら](https://github.com/yukis4san/generative-nft-library) から、`generative-nft-library` リポジトリをあなたの Github にフォークしましょう。
+Github のアカウントをお持ちの方は、[こちら](https://github.com/shiftbase-xyz/generative-nft-library) から、`generative-nft-library` リポジトリをあなたの Github にフォークしましょう。
 
 あなたの Github アカウントにフォークした `generative-nft-library` レポジトリを、あなたのローカル環境にクローンしてください。
 

@@ -279,9 +279,9 @@ Vercel はサーバレス機能のホスティングを提供するクラウド�
 
 Vercel に関しする詳しい説明は、[こちら](https://zenn.dev/lollipop_onl/articles/eoz-vercel-pricing-2020)をご覧ください。
 
-まず、Github の `your-first-NFT-collection` にローカルファイルをアップロードしていきます。
+まず、Github の `nft-collection-starter-project` にローカルファイルをアップロードしていきます。
 
-ターミナル上で `your-first-NFT-collection` に移動して、下記を実行しましょう。
+ターミナル上で `nft-collection-starter-project` に移動して、下記を実行しましょう。
 
 ```
 git add .
@@ -289,7 +289,7 @@ git commit -m "upload to github"
 git push
 ```
 
-次に、Github上の `your-first-NFT-collection` に、ローカル環境に存在する `your-first-NFT-collection` のファイルとディレクトリが反映されていることを確認してください。
+次に、Github上の `nft-collection-starter-project` に、ローカル環境に存在する `nft-collection-starter-project` のファイルとディレクトリが反映されていることを確認してください。
 
 Vercel のアカウントを取得したら、下記を実行しましょう。
 
@@ -297,7 +297,7 @@ Vercel のアカウントを取得したら、下記を実行しましょう。
 
 ![](/public/images/ETH-NFT-collection/section-4/4_2_7.png)
 
-2\. `Import Git Repository` で自分のGithubアカウントを接続したら、`your-first-NFT-collection` を選択し、`Import` してください。
+2\. `Import Git Repository` で自分のGithubアカウントを接続したら、`nft-collection-starter-project` を選択し、`Import` してください。
 
 ![](/public/images/ETH-NFT-collection/section-4/4_2_8.png)
 

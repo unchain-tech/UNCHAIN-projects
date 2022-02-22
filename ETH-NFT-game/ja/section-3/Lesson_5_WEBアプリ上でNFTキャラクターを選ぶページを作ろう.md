@@ -64,13 +64,13 @@ runMain();
 
 **3 \. のABIファイルを更新する。**
 
-- `epic-game/artifacts/contracts/MyEpicGame.sol/MyEpicGame.json` の中身を新しく作成する `your-NFT-game/src/utils/MyEpicGame.json` の中に貼り付ける必要があります。
+- `epic-game/artifacts/contracts/MyEpicGame.sol/MyEpicGame.json` の中身を新しく作成する `nft-game-starter-project/src/utils/MyEpicGame.json` の中に貼り付ける必要があります。
 
 
 ♻️ `index.js` を更新する
 ---
 
-`your-NFT-game/src/Components/SelectCharacter` にある `index.js` は、プログラムの中で何度も登場する変数や関数をまとめているファイルです。
+`nft-game-starter-project/src/Components/SelectCharacter` にある `index.js` は、プログラムの中で何度も登場する変数や関数をまとめているファイルです。
 
 これから、`index.js` の中身を更新していきます。
 

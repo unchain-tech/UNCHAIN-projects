@@ -7,7 +7,7 @@ WEBアプリ上で、ユーザーがイーサリアムネットワークと通�
 
 - これは、WEBサイトへの認証機能です。
 
-ターミナル上で、`your-first-dApp/src`に移動し、その中にある `App.js` を VS Code で開きましょう。
+ターミナル上で、`dApp-starter-project/src`に移動し、その中にある `App.js` を VS Code で開きましょう。
 
 下記のように、`App.js`の中身を更新します。
 - `App.js` はあなたのWEBアプリのフロントエンド機能を果たします。
@@ -57,7 +57,7 @@ export default App
 
 `window.ethereum` は、あなたのWEBサイトを訪問したユーザーが Metamask を持っているか確認し、結果を `Console log` に出力します。
 
-ターミナルで `your-first-dApp` に移動し、下記を実行してみましょう。
+ターミナルで `dApp-starter-project` に移動し、下記を実行してみましょう。
 
 ```bash
 npm run start
@@ -155,7 +155,7 @@ if (accounts.length !== 0) {
 
 ユーザーのウォレットアカウントへのアクセスが許可されている場合は、 `Found an authorized account` と `Console` に出力されます。
 
-ターミナルで再度 `your-first-dApp` に移動し、下記を実行してみましょう。
+ターミナルで再度 `dApp-starter-project` に移動し、下記を実行してみましょう。
 
 ```bash
 npm run start
@@ -326,7 +326,7 @@ const connectWallet = async () => {
 🌐 ウォレットコネクトのテストを実行する
 --------------------------------
 
-上記のコードを全て `App.js` に反映させたら、ターミナルで `your-first-dApp` に移動し、下記を実行しましょう。
+上記のコードを全て `App.js` に反映させたら、ターミナルで `dApp-starter-project` に移動し、下記を実行しましょう。
 
 ```bash
 npm run start

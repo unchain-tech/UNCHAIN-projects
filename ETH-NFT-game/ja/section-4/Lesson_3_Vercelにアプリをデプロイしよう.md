@@ -9,9 +9,9 @@ Vercel はサーバレス機能のホスティングを提供するクラウド�
 
 Vercel に関しする詳しい説明は、[こちら](https://zenn.dev/lollipop_onl/articles/eoz-vercel-pricing-2020)をご覧ください。
 
-まず、Github の `your-NFT-game` にローカルファイルをアップロードしていきます。
+まず、Github の `nft-game-starter-project` にローカルファイルをアップロードしていきます。
 
-ターミナル上で `your-NFT-game` に移動して、下記を実行しましょう。
+ターミナル上で `nft-game-starter-project` に移動して、下記を実行しましょう。
 
 ```
 git add .
@@ -19,14 +19,14 @@ git commit -m "upload to github"
 git push
 ```
 
-次に、Github上の `your-NFT-game` に、ローカル環境に存在する `your-NFT-game` のファイルとディレクトリが反映されていることを確認してください。
+次に、Github上の `nft-game-starter-project` に、ローカル環境に存在する `nft-game-starter-project` のファイルとディレクトリが反映されていることを確認してください。
 
 Vercel のアカウントを取得したら、下記を実行しましょう。
 
 1\. `Dashboard` へ進んで、`New Project` を選択してください。
 ![](/public/images/ETH-NFT-game/section-4/4_3_1.png)
 
-2\. `Import Git Repository` で自分のGithubアカウントを接続したら、`your-NFT-game` を選択し、`Import` してください。
+2\. `Import Git Repository` で自分のGithubアカウントを接続したら、`nft-game-starter-project` を選択し、`Import` してください。
 ![](/public/images/ETH-NFT-game/section-4/4_3_2.png)
 
 3\. プロジェクトを作成します。Environment Variable に下記を追加します。

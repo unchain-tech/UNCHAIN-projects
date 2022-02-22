@@ -10,7 +10,7 @@
 
 - 「サーバー」がブロックチェーンであることを除けば、Hardhat はローカルサーバーと同じです。
 
-まず、`node` / `npm` を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスしてください。
+まず、`node` / `npm` を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html) にアクセスしてください。
 `node v16` をインストールすることを推奨しています。
 
 次に、ターミナルに向かいましょう。
@@ -256,7 +256,7 @@ string public baseTokenURI;
 
 ✍️: `public` は Solidity の**アクセス修飾子**です。
 
-> Solidity のアクセス修飾子に関しては、[こちら](https://github.com/yukis4san/Intro-NFT/blob/main/section-2/NFT-S2-lesson-4.md)をご覧ください。
+> Solidity のアクセス修飾子に関しては、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/blob/main/ETH-NFT-collection/ja/section-2/Lesson_4_Solidity%E3%81%AE%E6%9B%B8%E3%81%8D%E6%96%B9%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E5%AD%A6%E3%81%BC%E3%81%86.md) をご覧ください。
 >
 > `public` を含む、他のアクセス修飾子について詳しく説明しています。
 

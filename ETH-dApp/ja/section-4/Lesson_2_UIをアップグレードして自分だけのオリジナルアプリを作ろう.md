@@ -114,9 +114,9 @@ Vercel はサーバレス機能のホスティングを提供するクラウド�
 
 Vercel に関しする詳しい説明は、[こちら](https://zenn.dev/lollipop_onl/articles/eoz-vercel-pricing-2020)をご覧ください。
 
-まず、Github の `your-first-dApp` にローカルファイルをアップロードしていきます。
+まず、Github の `dApp-starter-project` にローカルファイルをアップロードしていきます。
 
-ターミナル上で `your-first-dApp` に移動して、下記を実行しましょう。
+ターミナル上で `dApp-starter-project` に移動して、下記を実行しましょう。
 
 ```
 git add .
@@ -124,7 +124,7 @@ git commit -m "upload to github"
 git push
 ```
 
-次に、Github上の `your-first-dApp` に ローカル環境に存在する`your-first-dApp` のファイルとディレクトリが反映されていることを確認してください。
+次に、Github上の `dApp-starter-project` に ローカル環境に存在する`dApp-starter-project` のファイルとディレクトリが反映されていることを確認してください。
 
 Vercel のアカウントを取得したら、下記を実行しましょう。
 
@@ -132,7 +132,7 @@ Vercel のアカウントを取得したら、下記を実行しましょう。
 
 ![](/public/images/ETH-dApp/section-4/4_2_4.png)
 
-2\. `Import Git Repository` で自分のGithubアカウントを接続したら、`your-first-dApp` を選択し、`Import` してください。
+2\. `Import Git Repository` で自分のGithubアカウントを接続したら、`dApp-starter-project` を選択し、`Import` してください。
 
 ![](/public/images/ETH-dApp/section-4/4_2_5.png)
 

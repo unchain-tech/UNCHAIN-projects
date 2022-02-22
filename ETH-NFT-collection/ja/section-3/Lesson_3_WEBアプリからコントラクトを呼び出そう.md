@@ -160,7 +160,7 @@ return (
   }
 );
 ```
-すべての変更を `App.js` に反映させた後、ターミナルで`your-first-NFT-collection` ディレクトリに移動して下記を実行しみてください。
+すべての変更を `App.js` に反映させた後、ターミナルで`nft-collection-starter-project` ディレクトリに移動して下記を実行しみてください。
 
 ```bash
 npm run start
@@ -211,8 +211,8 @@ ABIファイルの中身は、`MyEpicNFT.json` というファイルに格納さ
 	※ VS Codeのファインダーを使って、直接 `MyEpicNFT.json` を開くことも可能です。
 
 次に、下記を実行して、ABIファイルをWEBアプリから呼び出せるようにしましょう。
-1. ターミナル上で `your-first-NFT-collection` にいることを確認する（もしくは移動する）。
-2. 下記を実行して、`your-first-NFT-collection/src/` の中に `utils` ディレクトリを作成する。
+1. ターミナル上で `nft-collection-starter-project` にいることを確認する（もしくは移動する）。
+2. 下記を実行して、`nft-collection-starter-project/src/` の中に `utils` ディレクトリを作成する。
 > ```bash
 > mkdir src/utils
 >```
@@ -222,9 +222,9 @@ ABIファイルの中身は、`MyEpicNFT.json` というファイルに格納さ
 >```
 4. 下記を実行して、`MyEpicNFT.json` ファイルを VS Code で開く。
 >```bash
-> code your-first-NFT-collection/src/utils/MyEpicNFT.json
+> code nft-collection-starter-project/src/utils/MyEpicNFT.json
 >```
-5. **先ほどコピーした `epic-nfts/artifacts/contracts/MyEpicNFT.sol/MyEpicNFT.json` の中身を新しく作成した `your-first-NFT-collection/src/utils/MyEpicNFT.json` の中に貼り付けてください。**
+5. **先ほどコピーした `epic-nfts/artifacts/contracts/MyEpicNFT.sol/MyEpicNFT.json` の中身を新しく作成した `nft-collection-starter-project/src/utils/MyEpicNFT.json` の中に貼り付けてください。**
 
 ABI ファイルの準備ができたので、`App.js` にインポートしましょう。
 
@@ -239,7 +239,7 @@ import myEpicNft from './utils/MyEpicNFT.json';
 🥳 NFT を Mint する
 ----------
 
-それでは、ターミナル上で`your-first-NFT-collection` ディレクトリに移動して下記を実行し、ローカル環境でWEBアプリをホストしてみましょう。
+それでは、ターミナル上で`nft-collection-starter-project` ディレクトリに移動して下記を実行し、ローカル環境でWEBアプリをホストしてみましょう。
 
 ```bash
 npm run start
@@ -296,7 +296,7 @@ Mined, see transaction: https://rinkeby.etherscan.io/tx/0x5a08f3e66852b5c1833f3a
 
 3 \. ABIファイルを更新する。
 
-- `epic-nfts/artifacts/contracts/MyEpicNFT.sol/MyEpicNFT.json` の中身を新しく作成する `your-first-NFT-collection/src/utils/MyEpicNFT.json` の中に貼り付ける必要があります。
+- `epic-nfts/artifacts/contracts/MyEpicNFT.sol/MyEpicNFT.json` の中身を新しく作成する `nft-collection-starter-project/src/utils/MyEpicNFT.json` の中に貼り付ける必要があります。
 
 **コントラクトを更新する際、必ずこの3つのステップを実行してください。**
 

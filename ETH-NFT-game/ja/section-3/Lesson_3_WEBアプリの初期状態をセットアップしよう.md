@@ -26,9 +26,9 @@
 🧱 `SelectCharacter` コンポーネントを作る
 ----
 
-ターミナルに向かい、`your-NFT-game/src/Components/SelectCharacter` フォルダに移動してください。
+ターミナルに向かい、`nft-game-starter-project/src/Components/SelectCharacter` フォルダに移動してください。
 
-`your-NFT-game` ディレクトリ上で下記を実行すると、スムーズに移動できます。
+`nft-game-starter-project` ディレクトリ上で下記を実行すると、スムーズに移動できます。
 
 ```bash
 cd src/Components/SelectCharacter
@@ -66,7 +66,7 @@ export default SelectCharacter;
 👁 レンダリングロジックを構築してシナリオを実装する
 ----
 
-まず、`your-NFT-game/src/App.js` ファイルを VS Code で開き、新しく作成したコンポーネントをインポートしていきましょう。
+まず、`nft-game-starter-project/src/App.js` ファイルを VS Code で開き、新しく作成したコンポーネントをインポートしていきましょう。
 
 `import './App.css';` の直下に下記を追加してください。
 
@@ -117,7 +117,7 @@ const renderContent = () => {
     return (
       <div className="connect-wallet-container">
         <img
-            src="https://i.imgur.com/TgWatRU.gif"
+            src="https://i.imgur.com/yMocj5x.png"
             alt="Detective Pickachu"
         />
         <button
@@ -173,7 +173,7 @@ return (
 	👉 WEBアプリ上に、"Connect Wallet to Get Started" ボタンを表示します。
 
 
-まず、ターミナル上で `your-NFT-game` ディレクトリに移動し、下記を実行しましょう。
+まず、ターミナル上で `nft-game-starter-project` ディレクトリに移動し、下記を実行しましょう。
 
 ```bash
 npm run start

@@ -7,7 +7,7 @@ WEBアプリ上で、ユーザーがイーサリアムネットワークと通�
 
 - これは、WEBサイトへの認証機能です。
 
-ターミナル上で、`your-NFT-game/src`に移動し、その中にある `App.js` を VS Code で開きましょう。
+ターミナル上で、`nft-game-starter-project/src`に移動し、その中にある `App.js` を VS Code で開きましょう。
 
 下記のように、`App.js`の中身を更新します。
 - `App.js` はあなたのWEBアプリのフロントエンド機能を果たします。
@@ -46,7 +46,7 @@ const App = () => {
           <p className="sub-text">プレイヤーと協力してボスを倒そう！</p>
           <div className="connect-wallet-container">
             <img
-              src="https://i.imgur.com/TgWatRU.gif"
+              src="https://i.imgur.com/yMocj5x.png"
               alt="Detective Pickachu"
             />
           </div>
@@ -73,7 +73,7 @@ export default App;
 
 `window.ethereum` は、あなたのWEBアプリに参加するユーザーが Metamask を持っているか確認し、結果を `Console log` に出力します。
 
-ターミナルで `your-NFT-game` に移動し、下記を実行してみましょう。
+ターミナルで `nft-game-starter-project` に移動し、下記を実行してみましょう。
 
 ```bash
 npm run start
@@ -150,7 +150,7 @@ const App = () => {
           <p className="sub-text">プレイヤーと協力してボスを倒そう！</p>
           <div className="connect-wallet-container">
             <img
-              src="https://i.imgur.com/TgWatRU.gif"
+              src="https://i.imgur.com/yMocj5x.png"
               alt="Detective Pickachu"
             />
           </div>
@@ -281,7 +281,7 @@ const App = () => {
           <p className="sub-text">プレイヤーと協力してボスを倒そう！</p>
           <div className="connect-wallet-container">
             <img
-              src="https://i.imgur.com/TgWatRU.gif"
+              src="https://i.imgur.com/yMocj5x.png"
               alt="Detective Pickachu"
             />
             {/*

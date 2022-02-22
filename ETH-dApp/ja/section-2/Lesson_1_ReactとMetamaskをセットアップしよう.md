@@ -8,9 +8,9 @@
 
 まだ Github のアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
-Github のアカウントをお持ちの方は、[こちら](https://github.com/yukis4san/your-first-dApp) から、フロントエンドの基盤をあなたの Github にフォークしましょう。フォークの方法は、[こちら](https://denno-sekai.com/github-fork/) を参照してください。
+Github のアカウントをお持ちの方は、[こちら](https://github.com/shiftbase-xyz/dApp-starter-project) から、フロントエンドの基盤をあなたの Github にフォークしましょう。フォークの方法は、[こちら](https://denno-sekai.com/github-fork/) を参照してください。
 
-ご自身の Github アカウントにフォークした `your-first-dApp` レポジトリをあなたのローカル環境にクローンしましょう。
+ご自身の Github アカウントにフォークした `dApp-starter-project` レポジトリをあなたのローカル環境にクローンしましょう。
 
 下図のように、`Code` ボタンをクリックした後、`SSH` を選択し、git リンクをコピーしましょう。
 
@@ -22,7 +22,7 @@ Github のアカウントをお持ちの方は、[こちら](https://github.com/
 git clone コピーした_github_リンク
 ```
 
-ターミナル上で `your-first-dApp` に移動して下記を実行しましょう。
+ターミナル上で `dApp-starter-project` に移動して下記を実行しましょう。
 
 ```bash
 npm install
@@ -40,7 +40,7 @@ npm run start
 ![](/public/images/ETH-dApp/section-2/2_1_2.png)
 
 上記のような形でフロントエンドが確認できれば成功です。
-これからフロントエンドの表示を確認する際は、`your-first-dApp` ディレクトリ上で、`npm run start` を実行します。これからも必要となる作業なので、よく覚えておいてください。
+これからフロントエンドの表示を確認する際は、`dApp-starter-project` ディレクトリ上で、`npm run start` を実行します。これからも必要となる作業なので、よく覚えておいてください。
 
 🦊 Metamask をダウンロードする
 -----------

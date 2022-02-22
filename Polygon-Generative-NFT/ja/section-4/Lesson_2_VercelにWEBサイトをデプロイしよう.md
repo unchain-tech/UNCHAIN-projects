@@ -94,8 +94,6 @@ Vercel に関しする詳しい説明は、[こちら](https://zenn.dev/lollipop
 
 リポジトリに、`nft-collectible-frontend-git` と名前をつけたら、`Create repository` ボタンを押してください。
 
-![](/public/images/Polygon-Generative-NFT/section-4/4_2_5.png)
-
 次に、ディレクトリのリンクをコピーしましょう。
 
 ![](/public/images/Polygon-Generative-NFT/section-4/4_2_6.png)
@@ -120,9 +118,7 @@ git commit -m "upload to github"
 git push
 ```
 
-次に、Github上の `nft-collectible-frontend-git` に、ローカル環境に存在する `nft-collectible-frontend-git` のファイルとディレクトリが反映されていることを確認してください。
-
-Vercel のアカウントを取得したら、下記を実行しましょう。
+次に、[Vercel](https://vercel.com/) のアカウントを取得して、下記を実行していきます。
 
 1\. `Dashboard` へ進んで、`New Project` を選択してください。
 

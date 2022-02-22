@@ -87,9 +87,9 @@ ABIファイルの中身は、`MyEpicGame.json` というファイルに格納�
 
 次に、下記を実行して、ABIファイルをWEBアプリから呼び出せるようにしましょう。
 
-1. ターミナル上で `your-NFT-game` にいることを確認する（もしくは移動する）。
+1. ターミナル上で `nft-game-starter-project` にいることを確認する（もしくは移動する）。
 
-2. 下記を実行して、`your-NFT-game/src/` の中に `utils` ディレクトリを作成する。
+2. 下記を実行して、`nft-game-starter-project/src/` の中に `utils` ディレクトリを作成する。
 > ```bash
 > mkdir src/utils
 >```
@@ -101,10 +101,10 @@ ABIファイルの中身は、`MyEpicGame.json` というファイルに格納�
 
 4. 下記を実行して、`MyEpicGame.json` ファイルを VS Code で開く。
 >```bash
-> code your-NFT-game/src/utils/MyEpicGame.json
+> code nft-game-starter-project/src/utils/MyEpicGame.json
 >```
 
-5. **先ほどコピーした `epic-game/artifacts/contracts/MyEpicGame.sol/MyEpicGame.json` の中身を新しく作成した `your-NFT-game/src/utils/MyEpicGame.json` の中に貼り付けてください。**
+5. **先ほどコピーした `epic-game/artifacts/contracts/MyEpicGame.sol/MyEpicGame.json` の中身を新しく作成した `nft-game-starter-project/src/utils/MyEpicGame.json` の中に貼り付けてください。**
 
 ABI ファイルの準備ができたので、`App.js` にインポートしましょう。
 
@@ -133,7 +133,7 @@ import myEpicGame from './utils/MyEpicGame.json';
 
 3 \. のABIファイルを更新する。
 
-- `epic-game/artifacts/contracts/MyEpicGame.sol/MyEpicGame.json` の中身を新しく作成する `your-NFT-game/src/utils/MyEpicGame.json` の中に貼り付ける必要があります。
+- `epic-game/artifacts/contracts/MyEpicGame.sol/MyEpicGame.json` の中身を新しく作成する `nft-game-starter-project/src/utils/MyEpicGame.json` の中に貼り付ける必要があります。
 
 **コントラクトを更新する際、必ずこの3つのステップを実行してください。**
 
@@ -431,7 +431,7 @@ useEffect(() => {
 ⏫ `constants.js` を更新する
 ---
 
-それでは、`your-NFT-game/src` に移動し、コントラクトアドレスを保持するために作成した `constants.js` ファイルの中身を下記のように更新しましょう。
+それでは、`nft-game-starter-project/src` に移動し、コントラクトアドレスを保持するために作成した `constants.js` ファイルの中身を下記のように更新しましょう。
 
 ```javascript
 // CONTRACT_ADDRESSに、コントラクトアドレスを保存します。
@@ -469,7 +469,7 @@ import { CONTRACT_ADDRESS, transformCharacterData } from './constants';
 
 最後に、全てのロジックが正確にWEBアプリにレンダリングされているかテストしていきましょう。
 
-ターミナルに向かい、`your-NFT-game` 上で下記を実行し、ローカルサーバーでWEBサイトを立ち上げてください。
+ターミナルに向かい、`nft-game-starter-project` 上で下記を実行し、ローカルサーバーでWEBサイトを立ち上げてください。
 
 ```
 npm run start
