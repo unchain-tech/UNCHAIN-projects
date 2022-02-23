@@ -28,11 +28,9 @@ Alchemy は、世界中のトランザクションを一元化し、マイナー
 Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押してください。
 
 ![](/public/images/ETH-dApp/section-2/2_2_1.png)
-
 次に、下記の項目を埋めていきます。下図を参考にしてください。
 
 ![](/public/images/ETH-dApp/section-2/2_2_2.png)
-
 - `NAME`: プロジェクトの名前（例: `WavePortal` ）
 - `DESCRIPTION`: プロジェクトの概要
 - `ENVIRONMENT`: `Development` を選択。
@@ -40,13 +38,10 @@ Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押して
 - `NETWORK`: `Rinkeby` を選択。
 
 それから、作成した App の `VIEW DETAILS` をクリックします。
-
 ![](/public/images/ETH-dApp/section-2/2_2_3.png)
 
 プロジェクトを開いたら、`VIEW KEY` ボタンをクリックします。
-
 ![](/public/images/ETH-dApp/section-2/2_2_4.png)
-
 ポップアップが開くので、`HTTP` のリンクをコピーしてください。
 
 これがあなたが本番環境のネットワークに接続する際に使用する `API Key` になります。
@@ -56,7 +51,7 @@ Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押して
 🐣 テストネットから始める
 ------------
 
-今回のプロジェクトでは、コスト（＝ 本物の ETH ）が発生するメインネットではなく、**テストネットにコントラクトをデプロイします。**
+今回のプロジェクトでは、コスト（＝ 本物のETH ）が発生するメインネットではなく、**テストネットにコントラクトをデプロイします。**
 
 テストネットはメインネットを模しています。
 
@@ -172,7 +167,7 @@ module.exports = {
 >
 > ![](/public/images/ETH-dApp/section-2/2_2_9.png)
 >
-> `hardhat.config.js` の `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の部分をここで取得した秘密鍵とを入れ替えます。
+> - `hardhat.config.js` の `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の部分をここで取得した秘密鍵とを入れ替えます。
 
 🙊 秘密鍵は誰にも教えてはいけません
 ------------------------
@@ -194,6 +189,7 @@ code .gitignore
 `.gitignore` に `hardhat.config.js` の行を追加します。
 
 `.gitignore` の中身が下記のようになっていれば、問題ありません。
+
 ```bash
 node_modules
 .env
@@ -261,7 +257,7 @@ Etherscan は、イーサリアムネットワーク上のトランザクショ�
 
 🙋‍♂️ 質問する
 -------------------------------------------
-ここまでの作業で何かわからないことがある場合は、Discord の `#section-2-help` sで質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#section-2-help` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨
 ```

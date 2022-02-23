@@ -8,7 +8,9 @@
 
 まだ Github のアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
-Github のアカウントをお持ちの方は、[こちら](https://github.com/shiftbase-xyz/dApp-starter-project) から、フロントエンドの基盤をあなたの Github にフォークしましょう。フォークの方法は、[こちら](https://denno-sekai.com/github-fork/) を参照してください。
+Github のアカウントをお持ちの方は、[こちら](https://github.com/shiftbase-xyz/dApp-starter-project) から、フロントエンドの基盤をあなたの Github にフォークしましょう。
+
+フォークの方法は、[こちら](https://docs.github.com/ja/get-started/quickstart/fork-a-repo) を参照してください。
 
 ご自身の Github アカウントにフォークした `dApp-starter-project` レポジトリをあなたのローカル環境にクローンしましょう。
 
@@ -30,9 +32,11 @@ npm install
 `npm` コマンドを実行することで、JavaScript ライブラリのインストールが行われます。
 
 次に、下記を実行してみましょう。
+
 ```bash
 npm run start
 ```
+
 あなたのローカル環境で、WEBサイトのフロントエンドが立ち上がりましたか？
 
 例）ローカル環境で表示されているWEBサイト
@@ -40,7 +44,8 @@ npm run start
 ![](/public/images/ETH-dApp/section-2/2_1_2.png)
 
 上記のような形でフロントエンドが確認できれば成功です。
-これからフロントエンドの表示を確認する際は、`dApp-starter-project` ディレクトリ上で、`npm run start` を実行します。これからも必要となる作業なので、よく覚えておいてください。
+
+これからフロントエンドの表示を確認する際は、`dApp-starter-project` ディレクトリ上で、`npm run start` を実行します。
 
 🦊 Metamask をダウンロードする
 -----------
@@ -55,7 +60,7 @@ npm run start
 
 ✍️: Metamask が必要な理由
 > ユーザーが、スマートコントラクトを呼び出すとき、本人のイーサリアムアドレスと秘密鍵を備えたウォレットが必要となります。
-> - これは、認証作業のようなものです。
+> これは、認証作業のようなものです。
 
 🙋‍♂️ 質問する
 -------------------------------------------

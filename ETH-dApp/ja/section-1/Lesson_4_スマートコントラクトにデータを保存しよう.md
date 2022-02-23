@@ -43,6 +43,7 @@ contract WavePortal {
 ```
 
 新しく追加されたコードの理解を深めましょう。
+
 ```javascript
 // WavePortal.sol
 uint256 totalWaves;
@@ -54,6 +55,7 @@ uint256 totalWaves;
 
 🎁 Solidity のアクセス修飾子について
 ------------------
+
 ```javascript
 // WavePortal.sol
 function wave() public {
@@ -61,6 +63,7 @@ function wave() public {
     console.log("%s has waved!", msg.sender);
 }
 ```
+
 ここで、「👋（wave）」の回数を記録する `wave()` 関数が追加されました。まず、`public`について見ていきます。
 
 これは、Solidity のアクセス修飾子の一つです。
@@ -78,7 +81,7 @@ Solidityには、4つのアクセス修飾子が存在します。
 
 4. **`external`**: `external`で定義された関数は変数は、**外部からのみ**呼び出すことができます。
 
-以下に、Solidityのアクセス修飾子とアクセス権限についてまとめています。
+以下に、Solidity のアクセス修飾子とアクセス権限についてまとめています。
 
 
 |  |  <p align = center> コントラクトの外からの呼び出し</p> | <p align = center>コントラクトの内からの呼び出し</p>| <p align = center>コントラクトの継承先からの呼び出し</p> |
@@ -105,25 +108,27 @@ function wave() public {
 `msg.sender` に入る値は、ずばり、**関数を呼び出した人（＝あなたに「👋（wave）」を送った人）のウォレットアドレス**です。
 
 これは、**ユーザー認証**のようなものです。
+
 - スマートコントラクトに含まれる関数を呼び出すには、ユーザーは有効なウォレットを接続する必要があります。
+
 - `msg.sender` では、誰が関数を呼び出したかを正確に把握し、ユーザー認証を行っています。
 
-🖋 Solidityの関数修飾子について
+🖋 Solidity の関数修飾子について
 ------------------
 
 Solidity には、関数（function）に対してのみ使用される修飾子（＝関数修飾子）が存在します。
 
-Solidity 開発では関数修飾子を意識しておかないとデータを記録する際のコスト（=ガス代）が跳ね上がってしまうので注意が必要です。
+Solidity 開発では関数修飾子を意識しておかないとデータを記録する際のコスト（＝ガス代）が跳ね上がってしまうので注意が必要です。
 
 ここでポイントとなるのは、**ブロックチェーンに値を書き込むにはガス代を払う必要があること、そしてブロックチェーンから値を参照するだけなら、ガス代を払う必要がないことです。**
 
 ここでは、主要な2つの関数修飾子を紹介します。
 
-1. **`view`**: ` view` 関数は、読み取り専用の関数であり、呼び出した後に関数の中で定義された状態変数が変更されないようにします。
+1. **`view`**: `view` 関数は、読み取り専用の関数であり、呼び出した後に関数の中で定義された状態変数が変更されないようにします。
 
 2. **`pure`**: `pure` 関数は、関数の中で定義された状態変数を読み込んだり変更したりせず、関数に渡されたパラメータや関数に存在するローカル変数のみを使用して値を返します。
 
-以下に、Solidityの関数修飾子 `pure` と `view` についてまとめています。
+以下に、Solidity の関数修飾子 `pure` と `view` についてまとめています。
 
 |  | <p align = center>関数の中で定義された状態変数をブロックチェーン上で参照する（read）</p> | <p align = center>関数の中で定義された状態変数をブロックチェーン上に書き込む（write）|
 | ----------- | ----------- |----------- |
@@ -132,8 +137,9 @@ Solidity 開発では関数修飾子を意識しておかないとデータを�
 | <p align = center> `pure`関数</p>|<p align = center>❌</p>|<p align = center>❌</p>|
 
 
+ここまでで理解して欲しいのは、`pure` や `view` 関数を使用すれば、**ガス代を削減できる**ということです。
 
-ここまでで理解して欲しいのは、`pure` や `view` 関数を使用すれば、**ガス代を削減できる**ということです。同時に、ブロックチェーン上にデータを書き込まないことで、**処理速度も向上します**。
+同時に、ブロックチェーン上にデータを書き込まないことで、**処理速度も向上します**。
 
 `WavePortal.sol` に追加された下記の関数を見ていきましょう。
 
@@ -160,12 +166,13 @@ function getTotalWaves() public view returns (uint256) {
     return totalWaves;
 }
 ```
+
 一方、`view` という関数修飾子がついた `getTotalWaves()` 関数は、ユーザーがあなたに送った「👋（wave）」の総数の参照のみを行います。
 
-✅ `run.js`を更新して関数を呼び出す
+✅ `run.js` を更新して関数を呼び出す
 ---------------------------------------
 
-次に、`run.js`を以下のように更新していきます。
+次に、`run.js` を以下のように更新していきます。
 
 ```javascript
 // run.js
@@ -203,10 +210,12 @@ runMain();
 `WavePortal.sol` の中で `public` と指定した `wave()` 関数と `getTotalWaves()` 関数は、ブロックチェーン上で呼び出すことができるようになりました。
 
 `run.js`から、それら関数を呼び出していきます。
+
 - 復習となりますが、 `run.js` はデバッグ用のテストコードです。
+
 - `run.js` は本番環境でユーザーがあなたのスマートコントラクトを呼び出すシチュエーションを想定して、コードが問題なく走るかテストするために、作られています。
 
-`public` で定義した関数はAPIのエンドポイントのようなものです。
+`public` で定義した関数は API のエンドポイントのようなものです。
 
 更新された部分を1行ずつ見ていきましょう。
 
@@ -218,8 +227,10 @@ const [owner, randomPerson] = await hre.ethers.getSigners();
 ブロックチェーンに `WavePortal` コントラクトをデプロイする際、「👋（wave）」を送る側のウォレットアドレスが必要です。
 
 `hre.ethers.getSigners()` はHardhat が提供するランダムなアドレスを生成する関数です。
+
 - ここでは、コントラクト所有者（＝あなた）のウォレットアドレスと、あなたに「👋（wave）」を送るユーザーのウォレットアドレスを Hardhat がそれぞれ生成し、`owner` と `randomPerson` という変数に格納しています。
-- `randomPerson` は、テスト環境で「👋（wave）」を送ってくるユーザーだと思ってください。（ `run.js` が実行するテストの一部です）
+
+- `randomPerson` は、テスト環境で「👋（wave）」を送ってくるユーザーだと思ってください。
 
 次に、下記のコードを見ていきましょう。
 
@@ -250,25 +261,29 @@ await waveTxn.wait();
 waveCount = await waveContract.getTotalWaves();
 ```
 
-ここでは、通常のAPIと同じように、関数を手動で呼び出しています。1行ずつ見ていきましょう。
+ここでは、通常の API と同じように、関数を手動で呼び出しています。1行ずつ見ていきましょう。
 
 ```javascript
 // run.js
 let waveCount;
 waveCount = await waveContract.getTotalWaves();
 ```
-まず、`let waveCount` でローカル変数を宣言します。次に、`waveContract.getTotalWaves()` で `WavePortal.sol` に記載された `getTotalWaves()` を呼び出し、既存の「👋（wave）」の総数を取得します。
+
+まず、`let waveCount` でローカル変数を宣言します。
+
+次に、`waveContract.getTotalWaves()` で `WavePortal.sol` に記載された `getTotalWaves()` を呼び出し、既存の「👋（wave）」の総数を取得します。
 
 ```javascript
 // run.js
 let waveTxn = await waveContract.wave();
 await waveTxn.wait();
 ```
+
 `let waveTxn = await waveContract.wave()` では、ユーザーが新しい「👋（wave）」を送ったことを承認するまで、コントラクトからの応答をフロントエンドが待機するよう設定しています。
 
 `.wave()` 関数ではブロックチェーン上の書き込みが発生するので、ガス代がかかります。よって、ユーザーは取引を確認する必要があります。
 
-Metamaskを使っていて、取引を承認するために数秒手間取った経験はありませんか？あなたが承認を行っている間、コードは次の処理に進まず、待機しています。
+Metamask を使っていて、取引を承認するために数秒手間取った経験はありませんか？あなたが承認を行っている間、コードは次の処理に進まず、待機しています。
 
 承認が終わったら、`await waveTxn.wait()` が実行され、トランザクションの結果を取得します。コードが冗長に感じるかもしれませんが、大事な処理です。
 
@@ -302,9 +317,11 @@ We have 1 total waves!
 あなたのターミナルでも同じような結果が出力されたでしょうか？
 
 この結果は、あなたがこのスマートコントラクトの `owner` であり、同時にあなた自身が自分に「👋（wave）」を送ったことを示しています。
+
 なので、`Contract deployed by` に続くアドレスと、「 `address 0x... has waved!` 」のアドレスは一致しているはずです。
 
 ここまでで実装した内容は、ほとんどのスマートコントラクトの基本になるものです。
+
 1. 関数を読み込む。
 2. 関数を書き込む。
 3. 状態変数を変更する。
@@ -314,7 +331,9 @@ We have 1 total waves!
 🤝 他のユーザーに👋（wave）を送ってもらう
 --------------------
 
-ここでは、他のユーザーがあなたに「👋（wave）」を送った場合のシミューションを行います。下記を`run.js`  に反映させて、ターミナルにどのような結果がでるかテストしてみましょう。
+ここでは、他のユーザーがあなたに「👋（wave）」を送った場合のシミューションを行います。
+
+下記を`run.js`  に反映させて、ターミナルにどのような結果がでるかテストしてみましょう。
 
 ```javascript
 // run.js
@@ -364,13 +383,16 @@ waveCount = await waveContract.getTotalWaves();
 ```
 
 このレッスンの序盤で、`run.js` の中で `randomPerson` のアドレスを取得したのを覚えていますか？
+
 - `randomPerson` には、Hardhat が取得したランダムなアドレスが格納されています。
+
 - `randomPerson` は、このシミューションのために存在していたのです。
 
 ```javascript
 // run.js
 waveTxn = await waveContract.connect(randomPerson).wave();
 ```
+
 ここでは、`.connect(randomPerson)` を用いて、他のユーザーがあなたに「👋（wave）」を送った状態をシミュレーションしています。
 
 ```javascript
@@ -378,6 +400,7 @@ waveTxn = await waveContract.connect(randomPerson).wave();
 await waveTxn.wait();
 waveCount = await waveContract.getTotalWaves();
 ```
+
 ここでは、あなたが自分自身に「👋（wave）」を送り、その承認を持ってから、`waveCount` の値を更新したように、`randomPerson` の挙動を確認してから、`waveCount` の更新（ `+1` ）を行っています。
 
 それでは、`run.js` を更新して、`scripts` ディレクトリに移動し、下記を実行してみましょう。
@@ -401,7 +424,9 @@ We have 2 total waves!
 ```
 
 `We have # total waves!` の `#` が更新されていることを確認してください。
+
 一人の目の「👋（wave）」はあなた自身なので `We have 1 total waves!` の前に表示されているアドレスは、`Contract deployed by` に続くアドレスと一致していることを確認してください。
+
 `We have 2 total waves!` に続くアドレスは、Hardhatが取得した `randomPerson` のアドレスです。
 
 下記のように `run.js` に `randomPerson` を追加すると、さらにもう一人追加して、シミュレーションを行うこともできます。

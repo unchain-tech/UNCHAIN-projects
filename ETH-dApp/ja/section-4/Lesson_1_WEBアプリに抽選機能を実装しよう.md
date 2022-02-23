@@ -90,6 +90,7 @@ contract WavePortal {
 // WavePortal.sol
 uint256 private seed;
 ```
+
 ここでは、乱数を生成するために使用する初期シード（乱数の種）を定義しています。
 
 ```javascript
@@ -378,7 +379,7 @@ mapping(address => uint256) public lastWavedAt;
 ```
 ここでは、`mapping` と呼ばれる特別なデータ構造を使用しています。
 
-Solidityの `mapping` は、他の言語におけるハッシュテーブルや辞書のような役割を果たします。
+Solidity の `mapping` は、他の言語におけるハッシュテーブルや辞書のような役割を果たします。
 
 これらは、下記のように `_Key` と `_Value` のペアの形式でデータを格納するために使用されます。
 
@@ -389,6 +390,7 @@ mapping（_Key=> _Value）public mappingName
 今回は、ユーザーのアドレス（= `_Key` = `address` ）をそのユーザーが `wave` を送信した時刻（= `_Value` = `unit256` ）に関連付けるために `mapping` を使用しました。
 
 理解を深めるために、次のコードを見ていきましょう。
+
 ```javascript
 // WavePortal.sol
 function wave(string memory _message) public {
@@ -398,6 +400,7 @@ function wave(string memory _message) public {
 		"Wait 15m"
 	);
 ```
+
 ここでは、WEBアプリ上で現在ユーザーが `wave` を送ろうとしている時刻と、そのユーザーが前回 `wave` を送った時刻を比較して、15分以上経過しているか検証しています。
 
 `lastWavedAt[msg.sender]` の初期値は `0` なので、まだ一度も `wave` を送ったことがないユーザーは、`wave` を送信することができます。
@@ -438,8 +441,11 @@ Error: VM Exception while processing transaction: reverted with reason string 'W
 あなたの WavePortal をどのように構築するかは、あなたの自由です🌈
 
 ここまでのレッスンを参考にして、下記を自由に設定してみましょう。あなただけのWEBアプリを完成させてください。
+
 - `WavePortl.sol` の `uint256 prizeAmount` を更新して、ユーザーに送る ETH の金額を再設定する
+
 - `deploy.js` の `hre.ethers.utils.parseEther("0.001")` を更新して、コントラクトに提供する資金を再設定する
+
 - `WavePortal.sol` に記載されている `15 minutes` を調整して、バッファ期間を調整する（※テストに関しては、`30 seconds` を推奨しています）
 
 🙋‍♂️ 質問する
