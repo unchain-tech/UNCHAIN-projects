@@ -1,11 +1,9 @@
 💎 **UNCHAIN Developer Community へようこそ** 🫖
 ---
 
-![](/public/images/README/unchain-banner-1.png)
+![](/public/images/README/unchain-banner.png)
 
-
-🌍 プロジェクトのアップデートについて
----
+### 🌍 **プロジェクトのアップデートについて**
 
 [UNCHAIN](https://app.shiftbase.xyz) のプロジェクトは全てオープンソース（[MITラインセンス](https://wisdommingle.com/mit-license/)）で運用されています。
 
@@ -21,8 +19,7 @@ Github から直接コードを編集して直接 `pull request` を送る方法
 
 - `Fork` がら `pull request` を作成する方法は、[こちら](https://docs.github.com/ja/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)です。
 
-🐝 コードの中にバグを発見した!
----
+### 🐝 **コードの中にバグを発見した!**
 
 プロジェクトの中にバグを発見した場合は、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/issues)で `Issue` を作成していただけますと幸いです。
 
