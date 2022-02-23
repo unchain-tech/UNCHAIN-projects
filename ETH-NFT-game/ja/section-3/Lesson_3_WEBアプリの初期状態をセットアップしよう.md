@@ -118,7 +118,7 @@ const renderContent = () => {
       <div className="connect-wallet-container">
         <img
             src="https://i.imgur.com/yMocj5x.png"
-            alt="Detective Pickachu"
+            alt="Pickachu"
         />
         <button
           className="cta-button connect-wallet-button"

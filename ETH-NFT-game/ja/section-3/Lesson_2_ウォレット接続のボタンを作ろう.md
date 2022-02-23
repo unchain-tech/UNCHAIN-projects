@@ -47,7 +47,7 @@ const App = () => {
           <div className="connect-wallet-container">
             <img
               src="https://i.imgur.com/yMocj5x.png"
-              alt="Detective Pickachu"
+              alt="Pickachu"
             />
           </div>
         </div>
@@ -151,7 +151,7 @@ const App = () => {
           <div className="connect-wallet-container">
             <img
               src="https://i.imgur.com/yMocj5x.png"
-              alt="Detective Pickachu"
+              alt="Pickachu"
             />
           </div>
         </div>
@@ -282,7 +282,7 @@ const App = () => {
           <div className="connect-wallet-container">
             <img
               src="https://i.imgur.com/yMocj5x.png"
-              alt="Detective Pickachu"
+              alt="Pickachu"
             />
             {/*
              * ウォレットコネクトを起動するために使用するボタンを設定しています。
