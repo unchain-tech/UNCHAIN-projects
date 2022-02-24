@@ -77,8 +77,7 @@ npm run start
 
 - アクセスできたら、スマートコントラクトを呼び出すことができます。
 
-これから、ユーザー自身が承認したWEBサイトにウォレットのアクセス権限を与えるコードを書いていきます。
-- これは、ユーザーのログイン機能です。
+これから、ユーザー自身が承認したWEBサイトにウォレットのアクセス権限を与えるコードを書いていきます。これは、ユーザーのログイン機能です。
 
 下記のように、`App.js` の中身を更新します。
 ```javascript
@@ -169,6 +168,7 @@ npm run start
 
 ✍️: `Console` の結果を見てわかること
 > `App.js` に記載されているコードは上から順を追って走っているので、最初に `currentAccount` の状態変数を定義したときには、中身が空であることがわかります。
+
 > ```javascript
 > // App.js
 > const [currentAccount, setCurrentAccount] = useState("");
@@ -280,6 +280,7 @@ const App = () => {
   }
 export default App
 ```
+
 ここで実装した機能は以下の二つです。
 
 **1 \. `connectWallet` メソッドを実装**
@@ -331,6 +332,7 @@ npm run start
 ```
 
 ローカルサーバーでWEBサイトを立ち上げたら、Metamask のプラグインをクリックし、あなたのウォレットアドレスの接続状況を確認しましょう。
+
 もし、下図のように `Connected` と表示されている場合は、`Connected` の文字をクリックします。
 
 ![](/public/images/ETH-dApp/section-2/2_3_5.png)

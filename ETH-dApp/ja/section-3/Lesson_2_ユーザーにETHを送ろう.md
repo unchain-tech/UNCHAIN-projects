@@ -327,10 +327,12 @@ WavePortal address:  0x550925E923Cb1734de73B3a843A21b871fe2a673
 
 
 1. ターミナル上で `my-wave-portal` にいることを確認する（もしくは移動する）。
+
 2. ターミナル上で下記を実行する。
 > ```
 > code artifacts/contracts/WavePortal.sol/WavePortal.json
 > ```
+
 3. VS Codeで `WavePortal.json` ファイルが開かれるので、中身を全てコピーしましょう。
 
 	※ VS Codeのファインダーを使って、直接 `WavePortal.json` を開くことも可能です。
@@ -341,24 +343,25 @@ WavePortal address:  0x550925E923Cb1734de73B3a843A21b871fe2a673
 
 `wave` を送ったユーザーに 0.001ETH が送られているか確認してみましょう。
 
-1 \. ターミナル上で `dApp-starter-project` に移動する
+1. ターミナル上で `dApp-starter-project` に移動する
 
-2 \. 下記を実行する
-```
-npm run start
-```
-3 \. ローカル環境でWEBアプリを開き、`wave` を送る
+2. 下記を実行する
+>```
+>npm run start
+>```
+
+3. ローカル環境でWEBアプリを開き、`wave` を送る
 
 例）このような結果がWEBアプリに反映されていること確認してください。コントラクトを新しくしたので、既存の `wave` はリセットされています。
 
-![](/public/images/ETH-dApp/section-3/3_2_2.png)
+> ![](/public/images/ETH-dApp/section-3/3_2_2.png)
 
-4 \. [Etherscan](https://rinkeby.etherscan.io/) にアクセスして、コントラクトアドレスを貼り付けてみましょう。
-
-下記のように、`Balance` が `0.0009 Ether` となっていることを確認してください。
-![](/public/images/ETH-dApp/section-3/3_2_3.png)
-
-WEBアプリで `wave` を送ったユーザーに 0.0001ETH を送ったので、残高が `0.001-0.0001=0.0009 ETH` になっています。
+4. [Etherscan](https://rinkeby.etherscan.io/) にアクセスして、コントラクトアドレスを貼り付けてみましょう。
+> 下記のように、`Balance` が `0.0009 Ether` となっていることを確認してください。
+>
+> ![](/public/images/ETH-dApp/section-3/3_2_3.png)
+>
+> WEBアプリで `wave` を送ったユーザーに 0.0001ETH を送ったので、残高が `0.001-0.0001=0.0009 ETH` になっています。
 
 🙋‍♂️ 質問する
 -------------------------------------------

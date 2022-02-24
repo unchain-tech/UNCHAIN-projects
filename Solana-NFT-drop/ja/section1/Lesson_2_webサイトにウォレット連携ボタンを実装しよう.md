@@ -108,14 +108,14 @@ export default App;
 import React, { useEffect, useState } from 'react';
 ```
 
-次に、  `checkIfWalletIsConnected` 関数のすぐ上に進み、下記のstate の宣言を追加します。
+次に、  `checkIfWalletIsConnected` 関数のすぐ上に進み、下記の `state` の宣言を追加します。
 
 ```jsx
 // State
 const [walletAddress, setWalletAddress] = useState(null);
 ```
 
-state を保持する準備ができたので、ここでいくつかコードを更新しましょう。
+`state` を保持する準備ができたので、ここでいくつかコードを更新しましょう。
 
 `App.js` を下記の通り修正してください。
 
@@ -243,7 +243,9 @@ const checkIfWalletIsConnected = async () => {
 {!walletAddress && renderNotConnectedContainer()}
 ```
 
-ここでは stateに `walletAddress` が設定されていない場合にのみ、この `render` 関数を呼び出すように指示しています。したがって、ユーザーがウォレットを接続していないことを意味するウォレットアドレスがない場合は、ウォレットを接続するためのボタンを表示します。
+ここでは` state` に `walletAddress` が設定されていない場合にのみ、この `render` 関数を呼び出すように指示しています。
+
+したがって、ユーザーがウォレットを接続していないことを意味するウォレットアドレスがない場合は、ウォレットを接続するためのボタンを表示します。
 
 😅 実際にウォレット接続する
 ----
@@ -265,7 +267,7 @@ const connectWallet = async () => {
 };
 ```
 
-ユーザーがウォレットを接続したい場合、 `solana` オブジェクトで `connect` 関数を呼び出して、ユーザーのウォレットでWEBアプリを承認を実施します。
+ユーザーがウォレットを接続したい場合、`solana` オブジェクトで `connect` 関数を呼び出して、ユーザーのウォレットでWEBアプリを承認を実施します。
 
 そうすると、ユーザーのウォレット情報(ウォレットアドレスなど)にアクセスできるようになります。
 

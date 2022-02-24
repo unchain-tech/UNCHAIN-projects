@@ -79,19 +79,22 @@ contract WavePortal {
 
 下記のコードに注目してください。
 
-```solidity
+```javascript
 // WavePortal.sol
 event NewWave(address indexed from, uint256 timestamp, string message);
 ```
 
 ここでは、`NewWave` イベントが定義されています。引数として取る値は、下記になります。
+
 - ユーザーのアドレス（ `address` ）
+
 - ユーザーが `wave` してきた時刻（ `timestamp` ）
+
 - ユーザーのメッセージ（ `message` ）
 
 次に下記のコードを見ていきましょう。
 
-```solidity
+```javascript
 // WavePortal.sol
 emit NewWave(msg.sender, block.timestamp, _message);
 ```
@@ -196,7 +199,9 @@ const onNewWave = (from, timestamp, message) => {
 上記のコードを実装することにより、フロントエンドからそれらのデータにアクセスできるようになります。
 
 2 \. `NewWave` イベントをフロントエンドが受け取ったときに `setAllWaves` を実行する。
+
 - `NewWave` イベントが `emit` された際に、上記で取得したユーザーに関する3つの情報が `allWaves` 配列に追加される。
+
 - これにより、WEBアプリのフロントエンドに反映するデータを自動で更新できるようになります。
 
 この `onNewWave` 関数は、`NewWave` のイベントリスナーの働きをしています。
@@ -217,7 +222,7 @@ if (window.ethereum) {
 }
 ```
 
-`wavePortalContract.on("NewWave", onNewWave)`により、上記で定義した`onNewWave`が呼び出されます。
+`wavePortalContract.on("NewWave", onNewWave)` により、上記で定義した `onNewWave` が呼び出されます。
 
 最後に下記のコードを見ていきましょう。
 ```javascript
@@ -609,15 +614,19 @@ export default App
 // App.js
 const [messageValue, setMessageValue] = useState("")
 ```
+
 ここでは、ユーザーのメッセージを保存するために使用する状態変数を定義しています。
 
 `useState` は初期状態を受け取り、2つの値を返します。
+
 - 現在の状態（＝ `messageValue` ）
+
 - 現在の状態を更新する関数（＝ `setMessageValue` ）
 
 それから `getAllWaves` 関数の中に下記を実装して、WEBアプリからアドレス、タイムスタンプ、メッセージを取得できるようにしています。
 
 詳しく見ていきましょう。
+
 >```javascript
 > // App.js
 >const wavesCleaned = waves.map(wave => {
@@ -689,6 +698,7 @@ const [messageValue, setMessageValue] = useState("")
 **2 \. フロントエンドにメッセージボックスを設置する**
 
 下記をフロントエンドに実装しました。
+
 ```javascript
 // App.js
 {currentAccount && (<textarea name="messageArea"
@@ -699,6 +709,7 @@ const [messageValue, setMessageValue] = useState("")
     onChange={e => setMessageValue(e.target.value)} />)
 }
 ```
+
 これは、認証済みのアドレス（＝ `currentAccount` ）が存在する場合に、テキストボックスを UI に表示する仕様になっています。これで、ユーザーは UI から直接メッセージを書き込めるようになります。
 
 **3 \. 送られてきたメッセージをフロントエンドに表示する**
@@ -725,7 +736,6 @@ const [messageValue, setMessageValue] = useState("")
 こちらが、フロントエンドの実装結果の例になります。
 
 ![](/public/images/ETH-dApp/section-3/3_1_2.png)
-
 
 🙋‍♂️ 質問する
 -------------------------------------------
