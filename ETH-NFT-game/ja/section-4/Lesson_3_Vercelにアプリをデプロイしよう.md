@@ -61,7 +61,12 @@ https://my-nft-game-nine.vercel.app/
 🎫 NFTを取得しよう！
 ----
 
-Discord の `🔥｜post-your-project` チャンネルに、Vercelのリンクを貼り付けてください！
+Discord の `🔥｜post-your-project` チャンネルに、あなたのWEBサイトが紐づいた Vercel のリンクを貼り付けてください！
+
+NFT を取得する条件は、以下のようになります。
+
+1. MVP の機能がすべて実装されている（実装 OK）
+2. WEBアプリで MVP の機能が問題なく実行される（テスト OK）
 
 NFTは現在準備中ですが、プロジェクトを完成させていただいた方には、Mint サイトのリンクをお送りします。今しばらく、お待ちください！
 

@@ -138,7 +138,7 @@ ABI（または Application Binary Interface ）は、コントラクトのコ�
 import './App.css';
 import contract from './contracts/NFTCollectible.json';
 
-const contractAddress = "0xF899DeB963208560a7c667FA78376ecaFF684b8E";
+const contractAddress = "あなたのコントラクトアドレスをこちらに貼り付けてください";
 const abi = contract.abi;
 
 function App() {
@@ -149,14 +149,14 @@ function App() {
 export default App;
 ```
 
-🍙 HTML、CSS、JSを設定する
+🛠 HTML、CSS、JSを設定する
 ----
 
 今回作成するWEBサイトは、シンプルなものになります。
 
 あるのは見出しと `Connect Wallet` ボタンだけです。
 
-ウォレットが接続されると、`Connect Wallet` ボタンが`Mint NFT` ボタンに置き換わります。
+ウォレットが接続されると、`Connect Wallet` ボタンが `Mint NFT` ボタンに置き換わります。
 
 個別のコンポーネントファイルを作成する必要はありません。
 
