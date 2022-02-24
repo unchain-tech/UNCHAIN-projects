@@ -9,8 +9,6 @@ Metaplex CLI は、Candy Machine に利用可能な、NFT を発行するため�
 
 ![無題](/public/images/Solana-NFT-mint/section2/2_2_1.png)
 
-※ **Replit** を使用している場合は、ローカルで `assets` という名前のディレクトリをどこかに作成するだけで機能します。どこに置いてもかまいません。
-
 `assets` の中には、実際の NFT のアセット（ここでは画像）と、Metaplex が設定を行う際に必要となる特定の NFT のメタデータを記述した json ファイルという、互いに関連付けられたファイルのペアがあります。
 
 ここにはいくつでも NFT をロードすることができますが、まずは3つの NFT をロードして、必要なものをすべて理解してもらいます。
@@ -91,7 +89,7 @@ Metaplex はこのデータを、あなたに代わってオンチェーンで�
 
 MP4、MP3、HTMLなどの他のファイルタイプについては、カスタムスクリプトを作成する必要があります。[こちら](https://github.com/metaplex-foundation/metaplex/issues/511) を参照してください。
 
-最後に、`INSERT_YOUR_WALLET_ADDRESS_HERE` をあなたの Phantom wallet アドレスに置き換えてください（引用符「`""`」を忘れずに）。
+最後に、`INSERT_YOUR_WALLET_ADDRESS_HERE` をあなたの Phantom wallet アドレスに置き換えてください（引用符「 `""` 」を忘れずに）。
 
 これは NFT ビューに表示され、Solana Name Service 経由で接続されている場合はtwitterハンドルにて名前解決されます。`creators` 配列には複数のcreatorを設定できます。
 

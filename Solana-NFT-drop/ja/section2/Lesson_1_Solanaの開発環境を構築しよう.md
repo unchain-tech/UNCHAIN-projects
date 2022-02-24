@@ -7,7 +7,7 @@
 
 Solana CLI を使用すると、実際の [バリデーター](https://solana.com/validators) によって実行される実際のブロックチェーンである devnet にデプロイできます。
 
-Metaplex CLI を使用すると、Metaplex のデプロイされたNFTコントラクトと通信することができます。smart-contracts-as-a-service を使用して、
+Metaplex CLI を使用すると、Metaplex のデプロイされたNFTコントラクトと通信することができます。smart-contracts-as-a-service を使用して、下記を実行していきます。
 
 1. Candy Machine を作成する
 
@@ -44,9 +44,9 @@ ts-node --version
 
 - [yarnのインストール](https://classic.yarnpkg.com/lang/en/docs/install)
 
-- [ ts-nodeのインストール](https://www.npmjs.com/package/ts-node#installation)
+- [ts-nodeのインストール](https://www.npmjs.com/package/ts-node#installation)
 
-必ず `ts-node` をグローバルにインストールしてください。
+必ず `ts-node` を**ルートディレクト**にインストールしてください。
 
 次のコマンドを使用してください：`npm install -g ts-node`
 
@@ -96,7 +96,7 @@ Keypair Path: /Users/任意のディレクトリ名/.config/solana/id.json
 Commitment: confirmed
 ```
 
-本プロジェクトは全て、Solana の devnet 上に直接構築します。これはSolana のステージング環境のようなもので、開発者は無料で使用できます。
+本プロジェクトは全て、Solana の devnet 上に直接構築します。これは Solana のステージング環境のようなもので、開発者は無料で使用できます。
 
 ☹️ Help me!
 ----
