@@ -271,8 +271,6 @@ NFT を取得する条件は、以下のようになります。
 
 2. WEBアプリで MVP の機能が問題なく実行される（テスト OK）
 
-3. [Project Completion Form](https://airtable.com/shrf1cCtTx0iQuszX) を提出してください。
-
 Discord の `🔥｜post-your-project` チャンネルに、あなたのWEBサイトをぜひシェアしてください😉🎉
 
 プロジェクトを完成させていただいた方には、NFT をお送りします。
