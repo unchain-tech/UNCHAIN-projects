@@ -98,19 +98,19 @@ contract MyEpicNFT {
 
 `contract` は、他の言語でいうところの「[class](https://wa3.i-3-i.info/word1120.html)」のようなものなのです。
 
-この `contract` を初期化すると、`contructor` が実行されて `console.log` の中身がターミナル上に表示されます。
+この `contract` を初期化すると、`constructor` が実行されて `console.log` の中身がターミナル上に表示されます。
 
 class の概念については、[ここ](https://aiacademy.jp/media/?p=131)を参照してみてください。
 
-🔩 `contructor`とは
+🔩 `constructor`とは
 -------------------------------------------
-`contructor` はオプションの関数で、`contract` の状態変数を初期化するために使用されます。これから詳しく説明していくので、`contructor` に関しては、まず以下の特徴を理解してください。
+`constructor` はオプションの関数で、`contract` の状態変数を初期化するために使用されます。これから詳しく説明していくので、`constructor` に関しては、まず以下の特徴を理解してください。
 
-- `contract` は 1 つの `contructor` しか持つことができません。
+- `contract` は 1 つの `constructor` しか持つことができません。
 
-- `contructor` は、スマートコントラクトの作成時に一度だけ実行され、`contract` の状態を初期化するために使用されます。
+- `constructor` は、スマートコントラクトの作成時に一度だけ実行され、`contract` の状態を初期化するために使用されます。
 
-- `contructor` が実行された後、コードがブロックチェーンにデプロイされます。
+- `constructor` が実行された後、コードがブロックチェーンにデプロイされます。
 
 😲 スマートコントラクトを実行する
 -------------------
