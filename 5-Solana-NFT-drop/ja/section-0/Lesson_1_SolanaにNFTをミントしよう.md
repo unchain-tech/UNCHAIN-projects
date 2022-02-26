@@ -9,6 +9,9 @@
 - [NFTに関する基礎知識](https://github.com/shiftbase-xyz/UNCHAIN-projects/blob/main/ETH-NFT-collection/ja/section-1/Lesson_1_NFT%E3%81%A8%E3%81%AF%E4%BD%95%E3%81%8B%EF%BC%9F.md)
 
 
+いま全てを理解している必要はありません。
+
+わからないことがあったらインターネットで検索したり、コミュニティで質問しながらプロジェクトを進めていきましょう！
 
 ----------------------------------
 🛠何を構築するのか？

@@ -31,13 +31,12 @@ Solidityには、4つのアクセス修飾子が存在します。
 
 以下に、Solidityのアクセス修飾子とアクセス権限についてまとめています。
 
-
-|  |  <p align = center> コントラクトの外からの呼び出し</p> | <p align = center>コントラクトの内からの呼び出し</p>| <p align = center>コントラクトの継承先からの呼び出し</p> |
+|  |  コントラクトの外からの呼び出し |コントラクトの内からの呼び出し|コントラクトの継承先からの呼び出し |
 | ----------- | ----------- |----------- |----------- |
-| <p align = center> public<br>（関数の初期設定）</p>|<p align = center> ✅</p>|<p align = center> ✅</p>|<p align = center> ✅</p>|
-|  <p align = center> private</p>|<p align = center>❌</p>|<p align = center> ✅</p>|<p align = center>❌</p>|
-|  <p align = center> internal<br>（変数の初期設定）</p>|<p align = center>❌</p>|<p align = center> ✅</p>|<p align = center> ✅</p>|
-|  <p align = center> external</p>|<p align = center> ✅</p>|<p align = center>❌</p>|<p align = center>❌</p>|
+| `public`（関数の初期設定）|✅|✅|✅|
+| `private`|❌|✅|❌|
+| `internal`（変数の初期設定）|❌|✅|✅|
+| `external`|✅|❌|❌|
 
 
 これから Solidity のアクセス修飾子は頻繁に登場するので、まずは大まかな理解ができれば大丈夫です。
@@ -73,11 +72,11 @@ Solidity 開発では関数修飾子を意識しておかないとデータを�
 
 以下に、Solidityの関数修飾子 `pure` と `view` についてまとめています。
 
-|  | <p align = center>関数の中で定義された状態変数をブロックチェーン上で参照する（read）</p> | <p align = center>関数の中で定義された状態変数をブロックチェーン上に書き込む（write）|
+|  |関数の中で定義された状態変数をブロックチェーン上で参照する（read） |関数の中で定義された状態変数をブロックチェーン上に書き込む（write）|
 | ----------- | ----------- |----------- |
-| <p align = center> 関数修飾子がついていない関数<br>（デフォルト）</p>|<p align = center>✅</p>|<p align = center>✅</p>|
-|  <p align = center> `view`関数</p>|<p align = center>✅</p>|<p align = center>❌</p>|
-| <p align = center> `pure`関数</p>|<p align = center>❌</p>|<p align = center>❌</p>|
+| 関数修飾子がついていない関数（デフォルト）|✅|✅|
+| `view` 関数|✅|❌|
+| `pure` 関数|❌|❌|
 
 
 ここまでで理解して欲しいのは、`pure` や `view` 関数を使用すれば、**ガス代を削減できる**ということです。同時に、ブロックチェーン上にデータを書き込まないことで、**処理速度も向上します**。
