@@ -384,7 +384,7 @@ Solidity の `mapping` は、他の言語におけるハッシュテーブルや
 mapping（_Key=> _Value）public mappingName
 ```
 
-今回は、ユーザーのアドレス（= `_Key` = `address` ）をそのユーザーが `wave` を送信した時刻（= `_Value` = `unit256` ）に関連付けるために `mapping` を使用しました。
+今回は、ユーザーのアドレス（= `_Key` = `address` ）をそのユーザーが `wave` を送信した時刻（= `_Value` = `uint256` ）に関連付けるために `mapping` を使用しました。
 
 理解を深めるために、次のコードを見ていきましょう。
 
