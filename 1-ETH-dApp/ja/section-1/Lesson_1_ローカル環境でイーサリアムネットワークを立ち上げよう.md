@@ -93,7 +93,7 @@ npm install --save-dev @nomiclabs/hardhat-waffle ethereum-waffle chai @nomiclabs
 
 次のように表示されます。
 
-![](/public/images/ETH-dApp/section-1/1_1_1.png)
+![](/public/images/1-ETH-dApp/section-1/1_1_1.png)
 
 ターミナル上で `my-wave-portal` に移動し、`ls` と入力してみて、下記のフォルダーとファイルが表示されていたら成功です。
 

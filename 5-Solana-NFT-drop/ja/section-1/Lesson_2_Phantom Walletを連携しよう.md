@@ -11,7 +11,7 @@
 
 「Code」ボタンをクリックして、そのリンクをコピーしてください。
 
-![](/public/images/Solana-NFT-mint/section1/1_1_1.png)
+![](/public/images/5-Solana-NFT-drop/section1/1_1_1.png)
 
 
 最後に、ターミナルに移動し、`cd` コマンドでプロジェクトが存在するディレクトリまでいき、次のコマンドを実行します。
@@ -165,7 +165,7 @@ Reactでは、   2番目のパラメーター( `[]` )が空の場合、コンポ
 
 これを実行すると、WEBアプリのコンソールに `Phantom Wallet found!` という行が表示されるはずです。
 
-![無題](/public/images/Solana-NFT-mint/section1/1_1_2.png)
+![無題](/public/images/5-Solana-NFT-drop/section1/1_1_2.png)
 
 次に、ユーザーのウォレットにアクセスすることが**許可**されているか確認する必要があります。アクセスが許可されていると、Solana プログラムの関数にアクセスできるようになります。
 

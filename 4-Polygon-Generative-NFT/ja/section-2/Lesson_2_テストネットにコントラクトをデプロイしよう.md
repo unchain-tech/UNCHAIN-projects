@@ -29,11 +29,11 @@ Alchemy は、世界中のトランザクションを一元化し、マイナー
 ------------------
 
 Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押してください。
-![](/public/images/Polygon-Generative-NFT/section-2/2_2_1.png)
+![](/public/images/4-Polygon-Generative-NFT/section-2/2_2_1.png)
 
 次に、下記の項目を埋めていきます。下図を参考にしてください。
 
-![](/public/images/Polygon-Generative-NFT/section-2/2_2_2.png)
+![](/public/images/4-Polygon-Generative-NFT/section-2/2_2_2.png)
 - `NAME`: プロジェクトの名前（例: `NFTCollectible` ）
 - `DESCRIPTION`: プロジェクトの概要
 - `ENVIRONMENT`: `Development` を選択。
@@ -42,11 +42,11 @@ Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押して
 
 それから、作成した App の `VIEW DETAILS` をクリックします。
 
-![](/public/images/Polygon-Generative-NFT/section-2/2_2_3.png)
+![](/public/images/4-Polygon-Generative-NFT/section-2/2_2_3.png)
 
 プロジェクトを開いたら、`VIEW KEY` ボタンをクリックします。
 
-![](/public/images/Polygon-Generative-NFT/section-2/2_2_4.png)
+![](/public/images/4-Polygon-Generative-NFT/section-2/2_2_4.png)
 
 ポップアップが開くので、`HTTP` のリンクをコピーしてください。
 
@@ -105,16 +105,16 @@ Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押して
 
 ✍️: Metamask で `Rinkeby Test Network` を設定する方法
 > 1 \. Metamask ウォレットのネットワークトグルを開く。
-> ![](/public/images/Polygon-Generative-NFT/section-2/2_2_5.png)
+> ![](/public/images/4-Polygon-Generative-NFT/section-2/2_2_5.png)
 
 > 2 \. `Show/hide test networks` をクリック。
-> ![](/public/images/Polygon-Generative-NFT/section-2/2_2_6.png)
+> ![](/public/images/4-Polygon-Generative-NFT/section-2/2_2_6.png)
 
 > 3 \. `Show test networks` を `ON` にする。
-> ![](/public/images/Polygon-Generative-NFT/section-2/2_2_7.png)
+> ![](/public/images/4-Polygon-Generative-NFT/section-2/2_2_7.png)
 
 > 4 \. `Rinkeby Test Network` を選択する。
-> ![](/public/images/Polygon-Generative-NFT/section-2/2_2_8.png)
+> ![](/public/images/4-Polygon-Generative-NFT/section-2/2_2_8.png)
 
 MetaMask ウォレットに `Rinkeby Test Network` が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽 ETH を取得しましょう。
 
@@ -145,15 +145,15 @@ PRIVATE_KEY = "YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY"
 
 2. \. `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の取得
 > 1. お使いのブラウザから、Metamask プラグインをクリックして、ネットワークを `Rinkeby Test Network` に変更します。
-> ![](/public/images/Polygon-Generative-NFT/section-2/2_2_9.png)
+> ![](/public/images/4-Polygon-Generative-NFT/section-2/2_2_9.png)
 > 2. それから、`Account details` を選択してください。
-> ![](/public/images/Polygon-Generative-NFT/section-2/2_2_10.png)
+> ![](/public/images/4-Polygon-Generative-NFT/section-2/2_2_10.png)
 > 3. `Account details` から `Export Private Key` をクリックしてください。
-> ![](/public/images/Polygon-Generative-NFT/section-2/2_2_11.png)
+> ![](/public/images/4-Polygon-Generative-NFT/section-2/2_2_11.png)
 > 4. Metamask のパスワードを求められるので、入力したら `Confirm` を推します。
-> ![](/public/images/Polygon-Generative-NFT/section-2/2_2_12.png)
+> ![](/public/images/4-Polygon-Generative-NFT/section-2/2_2_12.png)
 > 5. あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
-> ![](/public/images/Polygon-Generative-NFT/section-2/2_2_13.png)
+> ![](/public/images/4-Polygon-Generative-NFT/section-2/2_2_13.png)
 > `.env` の `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の部分をここで取得した秘密鍵とを入れ替えます。
 
 **✍️: スマートコントラクトをデプロイするのに秘密鍵が必要な理由**
@@ -297,7 +297,7 @@ Owner has tokens:  [
 
 下記のような結果が、Rinkeby Etherscan 上で確認できれば、テストネットへのデプロイは成功です。
 
-![](/public/images/Polygon-Generative-NFT/section-2/2_2_14.png)
+![](/public/images/4-Polygon-Generative-NFT/section-2/2_2_14.png)
 
 **デプロイのデバッグに Rinkeby Etherscan 使うことに慣れましょう。**
 

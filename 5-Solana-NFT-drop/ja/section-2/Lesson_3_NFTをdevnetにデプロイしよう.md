@@ -129,7 +129,7 @@ solana airdrop 2
 
 ※ ターミナルから `ls` を入力して、下記のようなディレクトリになっていれば大丈夫です。
 
-![無題](/public/images/Solana-NFT-mint/section2/2_3_1.png)
+![無題](/public/images/5-Solana-NFT-drop/section2/2_3_1.png)
 
 それでは下記コマンドをターミナルに入力し、NFT をアップロードしましょう。
 

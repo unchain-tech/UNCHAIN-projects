@@ -114,7 +114,7 @@ artifacts
 
 下記の画面から、CID をコピーします。
 
-![](/public/images/ETH-NFT-game/section-4/4_2_1.png)
+![](/public/images/3-ETH-NFT-game/section-4/4_2_1.png)
 
 それでは、下記の `https` アドレスに、コピーした CID を貼り付け、ブラウザで中身を見てみましょう。
 ```
@@ -130,7 +130,7 @@ https://cloudflare-ipfs.com/ipfs/あなたのCIDコードを貼り付けます
 
 下記のように、ブラウザにあなたの画像が表示されいることを確認してください。
 
-![](/public/images/ETH-NFT-game/section-4/4_2_2.png)
+![](/public/images/3-ETH-NFT-game/section-4/4_2_2.png)
 
 次に、`epic-game/scripts/run.js` を開き、 `imgur` リンクを `CID`（＝ IPFS ハッシュ）に変更していきましょう。
 

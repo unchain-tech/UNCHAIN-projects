@@ -336,7 +336,7 @@ return (
 
 それでは、WEBアプリをリフレッシュして、下記のように NFT キャラクターがフロントエンドに反映されていることを確認してください。
 
-![](/public/images/ETH-NFT-game/section-3/3_5_1.png)
+![](/public/images/3-ETH-NFT-game/section-3/3_5_1.png)
 
 
 ✨ WEBアプリから NFT キャラクター を Mint する
@@ -567,7 +567,7 @@ https://testnets.opensea.io/assets/CONTRACT_ADDRES/TOKEN_ID
 
 下記のように、オンライン上でもあなたの NFT キャラクターが表示されることを確認しましょう。
 
-![](/public/images/ETH-NFT-game/section-3/3_5_2.png)
+![](/public/images/3-ETH-NFT-game/section-3/3_5_2.png)
 
 🪄 おまけ
 ---

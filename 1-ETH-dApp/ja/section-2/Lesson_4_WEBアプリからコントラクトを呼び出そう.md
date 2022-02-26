@@ -214,7 +214,7 @@ const wave = async () => {
 ローカルサーバーを介して表示されているWEBアプリから右クリック → `Inspect` を選択し、`Console` の出力結果を確認してみましょう。
 
 下記のようなエラーが表示されていれば、テストは成功です。
-![](/public/images/ETH-dApp/section-2/2_4_1.png)
+![](/public/images/1-ETH-dApp/section-2/2_4_1.png)
 
 これから `contractAddress` と `contractABI` を設定していきます。
 
@@ -254,7 +254,7 @@ const contractAddress = "あなたの WavePortal address を貼り付けてく�
 `App.js` を更新したら、ローカルサーバーにホストされているWEBアプリから `Console` を確認してみましょう。
 
 `contractAddress` に関するエラーが消えていれば、成功です。
-![](/public/images/ETH-dApp/section-2/2_4_2.png)
+![](/public/images/1-ETH-dApp/section-2/2_4_2.png)
 
 📂 ABI ファイルを取得する
 ---------------------------
@@ -561,7 +561,7 @@ npm run start
 
 例）`Wave at Me` ボタンを2回押した際に出力された `Console` の結果
 
-![](/public/images/ETH-dApp/section-2/2_4_3.png)
+![](/public/images/1-ETH-dApp/section-2/2_4_3.png)
 
 それぞれの `Wave` がカウントされ、承認されていることが確認できたら、次のステップに進みましょう。
 

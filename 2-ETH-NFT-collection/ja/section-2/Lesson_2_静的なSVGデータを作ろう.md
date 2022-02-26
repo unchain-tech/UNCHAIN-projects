@@ -18,7 +18,7 @@ NFT としてこのデータを取得するために [こちら](https://www.uti
 `base64` でエンコードされた SVG データが出力されたら、そのデータをコピーしましょう。
 - `base64` は、データを文字列にエンコードするために使用する標準規格です。
 
-![](/public/images/ETH-NFT-collection/section-2/2_2_1.png)
+![](/public/images/2-ETH-NFT-collection/section-2/2_2_1.png)
 
 枠で囲んだ部分を、下記に貼り付けてください。
 
@@ -28,7 +28,7 @@ data:image/svg+xml;base64,ここにあなたのSVGデータを貼り付けます
 
 下図のように、使用しているブラウザで新しいタブを開いて、上記のリンクを貼り付け、実行してみましょう。
 
-![](/public/images/ETH-NFT-collection/section-2/2_2_2.png)
+![](/public/images/2-ETH-NFT-collection/section-2/2_2_2.png)
 
 SVG データがあなたのブラウザでも表示されていれば成功です。
 
@@ -80,7 +80,7 @@ data:application/json;base64,ここにあなたのJSONデータを貼り付け�
 
 あなたのブラウザで、下記のような結果が出力されていれば成功です。
 
-![](/public/images/ETH-NFT-collection/section-2/2_2_3.png)
+![](/public/images/2-ETH-NFT-collection/section-2/2_2_3.png)
 
 わたしの `base64` でエンコードした JSON ファイルは、次のようになります。
 
@@ -146,7 +146,7 @@ Minted NFT #2
 
 下記のように、あなたの SquareNFT が Rarible で確認できたでしょうか？
 
-![](/public/images/ETH-NFT-collection/section-2/2_2_4.png)
+![](/public/images/2-ETH-NFT-collection/section-2/2_2_4.png)
 
 🙋‍♂️ 質問する
 -------------------------------------------

@@ -687,7 +687,7 @@ const [messageValue, setMessageValue] = useState("")
 > 基本的な**1Gas当たりの価格**は 「**21 `Gwei`**」 で送金されます。
 >
 > ガス価格の単位として使われている「 **`wei`** 」は、イーサリアムの単位で 1ETH とのレートは下図のようになっています。
-> ![](/public/images/ETH-dApp/section-3/3_1_1.png)
+> ![](/public/images/1-ETH-dApp/section-3/3_1_1.png)
 >
 >**`G`** はギガのことで、`1Gwei = 0.000000001ETH` です。
 >
@@ -735,7 +735,7 @@ const [messageValue, setMessageValue] = useState("")
 
 こちらが、フロントエンドの実装結果の例になります。
 
-![](/public/images/ETH-dApp/section-3/3_1_2.png)
+![](/public/images/1-ETH-dApp/section-3/3_1_2.png)
 
 🙋‍♂️ 質問する
 -------------------------------------------

@@ -94,7 +94,7 @@ export default App;
 
 これで、WEBアプリに「ウォレットに接続」というグラデーションボタンが表示されます。
 
-![無題](/public/images/Solana-NFT-mint/section1/1_2_1.png)
+![無題](/public/images/5-Solana-NFT-drop/section1/1_2_1.png)
 
 **ユーザーがウォレットをWEBアプリに接続していない場合にのみ、`Connect to Wallet` ボタンが表示されます。**
 

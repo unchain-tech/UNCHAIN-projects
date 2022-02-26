@@ -27,10 +27,10 @@ Alchemy は、世界中のトランザクションを一元化し、マイナー
 ------------------
 Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押してください。
 
-![](/public/images/ETH-dApp/section-2/2_2_1.png)
+![](/public/images/1-ETH-dApp/section-2/2_2_1.png)
 次に、下記の項目を埋めていきます。下図を参考にしてください。
 
-![](/public/images/ETH-dApp/section-2/2_2_2.png)
+![](/public/images/1-ETH-dApp/section-2/2_2_2.png)
 - `NAME`: プロジェクトの名前（例: `WavePortal` ）
 - `DESCRIPTION`: プロジェクトの概要
 - `ENVIRONMENT`: `Development` を選択。
@@ -38,10 +38,10 @@ Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押して
 - `NETWORK`: `Rinkeby` を選択。
 
 それから、作成した App の `VIEW DETAILS` をクリックします。
-![](/public/images/ETH-dApp/section-2/2_2_3.png)
+![](/public/images/1-ETH-dApp/section-2/2_2_3.png)
 
 プロジェクトを開いたら、`VIEW KEY` ボタンをクリックします。
-![](/public/images/ETH-dApp/section-2/2_2_4.png)
+![](/public/images/1-ETH-dApp/section-2/2_2_4.png)
 ポップアップが開くので、`HTTP` のリンクをコピーしてください。
 
 これがあなたが本番環境のネットワークに接続する際に使用する `API Key` になります。
@@ -84,19 +84,19 @@ Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押して
 
 > 1 \. Metamask ウォレットのネットワークトグルを開く。
 >
-> ![](/public/images/ETH-dApp/section-2/2_2_13.png)
+> ![](/public/images/1-ETH-dApp/section-2/2_2_13.png)
 
 > 2 \. `Show/hide test networks` をクリック。
 >
-> ![](/public/images/ETH-dApp/section-2/2_2_14.png)
+> ![](/public/images/1-ETH-dApp/section-2/2_2_14.png)
 
 > 3 \. `Show test networks` を `ON` にする。
 >
-> ![](/public/images/ETH-dApp/section-2/2_2_15.png)
+> ![](/public/images/1-ETH-dApp/section-2/2_2_15.png)
 
 > 4 \. `Rinkeby Test Network` を選択する。
 >
->![](/public/images/ETH-dApp/section-2/2_2_16.png)
+>![](/public/images/1-ETH-dApp/section-2/2_2_16.png)
 
 MetaMask ウォレットに `Rinkeby Test Network` が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽 ETH を取得しましょう。
 
@@ -149,23 +149,23 @@ module.exports = {
 2. \. `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の取得
 > 1. お使いのブラウザから、Metamask プラグインをクリックして、ネットワークを `Rinkeby Test Network` に変更します。
 >
-> ![](/public/images/ETH-dApp/section-2/2_2_5.png)
+> ![](/public/images/1-ETH-dApp/section-2/2_2_5.png)
 >
 > 2. それから、`Account details` を選択してください。
 >
-> ![](/public/images/ETH-dApp/section-2/2_2_6.png)
+> ![](/public/images/1-ETH-dApp/section-2/2_2_6.png)
 >
 > 3. `Account details` から `Export Private Key` をクリックしてください。
 >
-> ![](/public/images/ETH-dApp/section-2/2_2_7.png)
+> ![](/public/images/1-ETH-dApp/section-2/2_2_7.png)
 >
 > 4. Metamask のパスワードを求められるので、入力したら `Confirm` を推します。
 >
-> ![](/public/images/ETH-dApp/section-2/2_2_8.png)
+> ![](/public/images/1-ETH-dApp/section-2/2_2_8.png)
 >
 > 5. あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
 >
-> ![](/public/images/ETH-dApp/section-2/2_2_9.png)
+> ![](/public/images/1-ETH-dApp/section-2/2_2_9.png)
 >
 > - `hardhat.config.js` の `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の部分をここで取得した秘密鍵とを入れ替えます。
 
@@ -214,11 +214,11 @@ hardhat.config.js
 > 「ログイン」には下記の情報が必要となります。
 > - ユーザー名: 公開アドレス
 >
-> ![](/public/images/ETH-dApp/section-2/2_2_10.png)
+> ![](/public/images/1-ETH-dApp/section-2/2_2_10.png)
 >
 > - パスワード: 秘密鍵
 >
-> ![](/public/images/ETH-dApp/section-2/2_2_11.png)
+> ![](/public/images/1-ETH-dApp/section-2/2_2_11.png)
 >
 > ユーザー名とパスワードを使用して、AWS にログインしてプロジェクトをデプロイするのと同じです。
 
@@ -245,7 +245,7 @@ WavePortal address: 0x489BdD5f9ad2D061F0bC648fd0A06e4D024A9a81
 
 例）出力されたコントラクトアドレスをコピー
 
-![](/public/images/ETH-dApp/section-2/2_2_12.png)
+![](/public/images/1-ETH-dApp/section-2/2_2_12.png)
 
 👀 Etherscanでトランザクションを確認する
 ------------------------

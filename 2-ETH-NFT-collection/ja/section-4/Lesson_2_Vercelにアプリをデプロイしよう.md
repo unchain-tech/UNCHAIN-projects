@@ -114,15 +114,15 @@ Etherscan の **コントラクトの Verification（検証）** を行いまし
 
 アカウントが作成できたら、`My Profile` 画面に移動してください。
 
-![](/public/images/ETH-NFT-collection/section-4/4_2_1.png)
+![](/public/images/2-ETH-NFT-collection/section-4/4_2_1.png)
 
 `API Keys` タブを選択し、`+ Add` ボタンを押したら、`Create API Key` のポップアップが表示されるので、あなたの API に任意の名前をつけましょう。
 
-![](/public/images/ETH-NFT-collection/section-4/4_2_2.png)
+![](/public/images/2-ETH-NFT-collection/section-4/4_2_2.png)
 
 次に、あなたが作成した API の横の `Edit` ボタンを選択してください。ポップアップが表示されるので、`apiKey` を取得しましょう。
 
-![](/public/images/ETH-NFT-collection/section-4/4_2_3.png)
+![](/public/images/2-ETH-NFT-collection/section-4/4_2_3.png)
 
 次に、ターミナルで `epic-nfts` ディレクトリに移動して、次のコマンドを実行してください。 Etherscan で verification を行うために必要なツールをインストールします。
 
@@ -211,11 +211,11 @@ module.exports = {
 
 API の名前を設定
 
-![](/public/images/ETH-NFT-collection/section-4/4_2_4.png)
+![](/public/images/2-ETH-NFT-collection/section-4/4_2_4.png)
 
 `Edit` を選択し、`apiKey` を取得します。
 
-![](/public/images/ETH-NFT-collection/section-4/4_2_5.png)
+![](/public/images/2-ETH-NFT-collection/section-4/4_2_5.png)
 
 API キーが取得できたら、`hardhat.config.js` ファイルに戻り、 `apiKey` プロパティを新しく生成されたキーに変更します。
 
@@ -242,7 +242,7 @@ https://rinkeby.etherscan.io/address/0xB3340071dc206d09170a7269331155ff1BeE64de#
 
 わたしの [URLリンク](https://rinkeby.etherscan.io/address/0xB3340071dc206d09170a7269331155ff1BeE64de#code) の中身は下記のように表示されます。
 
-![](/public/images/ETH-NFT-collection/section-4/4_2_6.png)
+![](/public/images/2-ETH-NFT-collection/section-4/4_2_6.png)
 
 これで、あなたのスマートコントラクトが世界中の誰でも見れるようになりました🚀
 
@@ -295,17 +295,17 @@ Vercel のアカウントを取得したら、下記を実行しましょう。
 
 1\. `Dashboard` へ進んで、`New Project` を選択してください。
 
-![](/public/images/ETH-NFT-collection/section-4/4_2_7.png)
+![](/public/images/2-ETH-NFT-collection/section-4/4_2_7.png)
 
 2\. `Import Git Repository` で自分のGithubアカウントを接続したら、`nft-collection-starter-project` を選択し、`Import` してください。
 
-![](/public/images/ETH-NFT-collection/section-4/4_2_8.png)
+![](/public/images/2-ETH-NFT-collection/section-4/4_2_8.png)
 
 3\. プロジェクトを作成します。Environment Variable に下記を追加します。
 
 `NAME`＝`CI`、`VALUE`＝`false`（下図参照）
 
-![](/public/images/ETH-NFT-collection/section-4/4_2_9.png)
+![](/public/images/2-ETH-NFT-collection/section-4/4_2_9.png)
 
 4\. `Deploy`ボタンを推しましょう。
 
@@ -315,7 +315,7 @@ VercelはGithubと連動しているので、Githubが更新されるたびに�
 
 基本的に `warning` は無視して問題ありません。
 
-![](/public/images/ETH-NFT-collection/section-4/4_2_10.png)
+![](/public/images/2-ETH-NFT-collection/section-4/4_2_10.png)
 
 こちらが、今回のプロジェクトで作成されるWEBアプリのデモです。
 

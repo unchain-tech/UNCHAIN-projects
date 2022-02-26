@@ -247,7 +247,7 @@ npm run start
 
 WEBアプリの `Mint NFT` ボタンを押して、下記のようなポップアップが立ち上がったら、`Confirm` を押してください。
 
-![](/public/images/ETH-NFT-collection/section-3/3_3_1.png)
+![](/public/images/2-ETH-NFT-collection/section-3/3_3_1.png)
 
 ここで請求される少量の ETH（テストネットなので実際は偽 ETH ）は、通称**ガス代**と呼ばれます。
 
@@ -279,7 +279,7 @@ Mined, see transaction: https://rinkeby.etherscan.io/tx/0x5a08f3e66852b5c1833f3a
 
 `Console` に出力された `currentAccount:` に続く、`0x..` のアドレスを Rarible のWEBサイトに貼り付けて、結果が表示されたら、`Items` タブを選択してください
 
-![](/public/images/ETH-NFT-collection/section-3/3_3_2.png)
+![](/public/images/2-ETH-NFT-collection/section-3/3_3_2.png)
 
 上図のように、あなたが Mint した NFT があなたのアドレスと紐づいていることが確認できたら、このプロジェクトはほぼ完成です。
 

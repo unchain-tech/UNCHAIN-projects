@@ -1,15 +1,20 @@
 👋 ようこそ
 -------------------
+
 このプロジェクトでは、自分でゼロから希少性を備えた Generative NFT を作成し、ブロックチェーン上で配布する方法を学びます。
 
-プロジェクトを進めるには以下の技術が必要です。<br>
+プロジェクトを進めるには以下の技術が必要です。
+
 - [Terminal操作](https://qiita.com/ryouzi/items/f9dee1540a04a0bfb9a3)
+
 - [Javascript](https://developer.mozilla.org/ja/docs/Web/JavaScript)
+
 - [React.js](https://ja.reactjs.org/)
 
 -------
 ✨ NFT Collection を作ろう
 -------------------
+
 このプロジェクトでは、オリジナル Generative NFT コレクションを作成していきます。
 
 プロジェクトは下記の 4 ステップにわかれています。

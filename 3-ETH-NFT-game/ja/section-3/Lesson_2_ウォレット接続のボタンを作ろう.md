@@ -80,9 +80,9 @@ npm run start
 ```
 
 ローカルサーバーでWEBサイトを立ち上げたら、サイトの上で右クリックを行い、`Inspect`を選択します。
-![](/public/images/ETH-NFT-game/section-3/3_2_1.png)
+![](/public/images/3-ETH-NFT-game/section-3/3_2_1.png)
 次に、`Console`を選択し、出力結果を確認してみましょう。
-![](/public/images/ETH-NFT-game/section-3/3_2_2.png)
+![](/public/images/3-ETH-NFT-game/section-3/3_2_2.png)
 `Console` に `We have the ethereum object` と表示されているでしょうか？
 - これは、`window.ethereum` が、このWEBサイトを訪問したユーザー（ここでいうあなた）が Metamask を持っていることを確認したことを示しています。
 

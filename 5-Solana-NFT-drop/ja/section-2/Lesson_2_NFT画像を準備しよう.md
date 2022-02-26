@@ -7,7 +7,7 @@ Metaplex CLI は、Candy Machine に利用可能な、NFT を発行するため�
 
 `app` が含まれているフォルダを開き、`assets` という名前の新しいディレクトリを作成します。ディレクトリ構造の一例です。
 
-![無題](/public/images/Solana-NFT-mint/section2/2_2_1.png)
+![無題](/public/images/5-Solana-NFT-drop/section2/2_2_1.png)
 
 `assets` の中には、実際の NFT のアセット（ここでは画像）と、Metaplex が設定を行う際に必要となる特定の NFT のメタデータを記述した json ファイルという、互いに関連付けられたファイルのペアがあります。
 
@@ -37,7 +37,7 @@ Metaplex CLI は、Candy Machine に利用可能な、NFT を発行するため�
 2.json
 ```
 
-![無題](/public/images/Solana-NFT-mint/section2/2_2_2.png)
+![無題](/public/images/5-Solana-NFT-drop/section2/2_2_2.png)
 
 `0.json` は `0.png` に、 `1.json` は `1.png` にというようにです。
 

@@ -86,7 +86,7 @@ OpenZeppelin には非常に多くの機能が実装されておりインポー�
 ```
 次のように表示されます。
 
-![](/public/images/ETH-NFT-collection/section-1/1_2_1.png)
+![](/public/images/2-ETH-NFT-collection/section-1/1_2_1.png)
 
 ターミナル上で `epic-nfts` に移動し、`ls` と入力してみて、下記のフォルダーとファイルが表示されていたら成功です。
 

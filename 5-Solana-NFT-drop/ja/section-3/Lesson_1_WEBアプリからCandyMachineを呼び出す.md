@@ -81,7 +81,7 @@ REACT_APP_SOLANA_RPC_HOST=https://explorer-api.devnet.solana.com
 
 今回作成するC andy Machine は Devnet 上にあるので、ウォレットも Devnet に変更する必要があります。
 
-![無題](/public/images/Solana-NFT-mint/section3/3_1_1.png)
+![無題](/public/images/5-Solana-NFT-drop/section3/3_1_1.png)
 
 🤬 NFTの変更に関する注意
 ---
@@ -292,7 +292,7 @@ return (
 
 先に進んでページを更新すると、コンソールに次のようなものが表示されます。
 
-![無題](/public/images/Solana-NFT-mint/section3/3_1_2.png)
+![無題](/public/images/5-Solana-NFT-drop/section3/3_1_2.png)
 
 Solana の devnet からデータを取得できました。
 
