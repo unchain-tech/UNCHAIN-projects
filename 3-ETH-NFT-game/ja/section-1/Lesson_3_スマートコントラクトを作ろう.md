@@ -159,7 +159,7 @@ const gameContractFactory = await hre.ethers.getContractFactory('MyEpicGame');
 
 ✍️: `const main = async ()` と `await` について
 
-> Javascript でコードを書いていると、コードの上から順に実行されなくて困ることがあります。これを同期処理に関する問題といいます。
+> Javascript でコードを書いていると、コードの上から順に実行されなくて困ることがあります。これを非同期処理に関する問題といいます。
 >
 > 解決法の一つとして、ここでは `async` / `await` を使用します。
 >

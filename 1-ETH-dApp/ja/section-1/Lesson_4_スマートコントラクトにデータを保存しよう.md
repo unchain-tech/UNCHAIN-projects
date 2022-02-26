@@ -50,7 +50,7 @@ uint256 totalWaves;
 
 自動的に `0` に初期化される `totalWaves` 変数が追加されました。この変数は「状態変数」と呼ばれ、`WavePortal` コントラクトのストレージに永続的に保存されます。
 
-* [unit256](https://www.iuec.co.jp/blockchain/uint256.html) は、非常に大きな数を扱うことができる「独自定義のクラス」を意味します。
+* [unit256](https://www.iuec.co.jp/blockchain/uint256.html) は、非常に大きな数を扱うことができる「符号無し整数のデータ型」を意味します。
 \
 ## 🎁 Solidity のアクセス修飾子について
 \
