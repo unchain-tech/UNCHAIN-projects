@@ -1,19 +1,17 @@
 👩‍💻 コントラクトを作成する
 -------------------------------------------
 
-「👋（wave）」の総数をトラッキングするスマートコントラクトを作成します。
-
-- ここで作成するスマートコントラクトは、後でユースケースに合わせて自由に変更することが可能です。
+「👋（wave）」の総数をトラッキングするスマートコントラクトを作成します。ここで作成するスマートコントラクトは、後でユースケースに合わせて自由に変更することが可能です。
 
 `contracts` ディレクトリの下に `WavePortal.sol` という名前のファイルを作成します。
 
 ターミナル上で新しくファイルを作成する場合は、下記のコマンドが役立ちます。
 
-1. `my-wave-portal` ディレクトリに移動: `cd my-wave-portal`
+1 \. `my-wave-portal` ディレクトリに移動: `cd my-wave-portal`
 
-2. `contracts` ディレクトリに移動: `cd contracts`
+2 \. `contracts` ディレクトリに移動: `cd contracts`
 
-3. `WavePortal.sol` ファイルを作成: `touch WavePortal.sol`
+3 \. `WavePortal.sol` ファイルを作成: `touch WavePortal.sol`
 
 Hardhat を使用する場合、ファイル構造は非常に重要なので、注意する必要があります。ファイル構造が下記のようになっていれば大丈夫です😊
 
@@ -59,6 +57,7 @@ contract WavePortal {
 // WavePortal.sol
 // SPDX-License-Identifier: UNLICENSED
 ```
+
 これは「SPDXライセンス識別子」と呼ばれ、ソフトウェア・ライセンスの種類が一目でわかるようにするための識別子です。
 
 詳細については、[こちら](https://www.skyarch.net/blog/?p=15940) を参照してみてください。
@@ -67,6 +66,7 @@ contract WavePortal {
 // WavePortal.sol
 pragma solidity ^0.8.4;
 ```
+
 これは、コントラクトで使用する Solidity コンパイラのバージョンです。
 
 上記のコードでは、このコントラクトを実行するときは、Solidity コンパイラのバージョン `0.8.4` のみを使用し、それ以下のものは使用しません、という宣言を行っています。
@@ -92,6 +92,7 @@ contract WavePortal {
     }
 }
 ```
+
 `contract` は、他の言語でいうところの「[class](https://wa3.i-3-i.info/word1120.html)」のようなものなのです。
 
 この `contract` を初期化すると、`contructor` が実行されて `console.log` の中身がターミナル上に表示されます。
@@ -105,11 +106,11 @@ class の概念については、[こちら](https://aiacademy.jp/media/?p=131) 
 
 これから詳しく説明していくので、`contructor` に関しては、まず以下の特徴を理解してください。
 
-- `contract` は 1 つの `contructor` しか持つことができません。
+* `contract` は 1 つの `contructor` しか持つことができません。
 
-- `contructor` は、スマートコントラクトの作成時に一度だけ実行され、`contract` の状態を初期化するために使用されます。
+* `contructor` は、スマートコントラクトの作成時に一度だけ実行され、`contract` の状態を初期化するために使用されます。
 
-- `contructor` が実行された後、コードがブロックチェーンにデプロイされます。
+* `contructor` が実行された後、コードがブロックチェーンにデプロイされます。
 
 🙋‍♂️ 質問する
 -------------------------------------------

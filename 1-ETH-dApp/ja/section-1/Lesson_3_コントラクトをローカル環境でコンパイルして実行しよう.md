@@ -86,7 +86,7 @@ Hardhat がローカルの Ethereum ネットワークを、コントラクト�
 
 つまり、コントラクトを実行するたびに、毎回ローカルサーバーを更新するかのようにブロックチェーンが新しくなります。
 
-- 常にゼロリセットとなるので、エラーのデバッグがしやすくなります。
+* 常にゼロリセットとなるので、エラーのデバッグがしやすくなります。
 
 次に下記の処理を見ていきましょう。
 
@@ -130,12 +130,14 @@ npx hardhat run run.js
 ターミナル上で `console.log` の中身とコントラクトアドレスが表示されていることを確認してください。
 
 例）ターミナル上でのアウトプット:
+
 ```
 Compiling 1 file with 0.8.4
 Solidity compilation finished successfully
 Here is my first smart cotract!
 Contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 ```
+
 上記のようなアウトプットターミナルに表示されていればテストは成功です。
 
 🎩 Hardhat Runtime Environment について
