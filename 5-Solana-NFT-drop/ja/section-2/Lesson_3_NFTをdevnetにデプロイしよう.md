@@ -1,5 +1,5 @@
-🛫 Candy Machine と NFT を devnet に接続する
-----
+## 🛫 Candy Machine と NFT を devnet に接続する
+\
 
 本プロジェクトのメインパートです。Candy Machine と NFT を devnet に持ち込みます。
 
@@ -12,9 +12,9 @@ Candy Machine v2 により、このプロセスが大幅に簡素化されまし
 2. Metaplex のコントラクトで Candy Machine を作成する
 
 3. Candy Machine を、価格、番号、開始日、その他諸々の設定を実施する
-
-🔑 Solana キーペアの設定
-----
+\
+## 🔑 Solana キーペアの設定
+\
 
 アップロードするためには、ローカルの Solana キーペアを設定する必要があります。
 
@@ -60,7 +60,7 @@ SOL なしでは Solana にデータをデプロイすることはできませ�
 
 ブロックチェーンにデータを書き込むには、コストがかかります。
 
-　現在 devnet 上にいるので、偽の SOL を自分自身に与えることができます。
+現在 devnet 上にいるので、偽の SOL を自分自身に与えることができます。
 
 下記実行します。
 
@@ -71,9 +71,9 @@ solana airdrop 2
 もう一度 `solana balance` を実行して、2 SOLと表示されるはずです。
 
 ※ 偽のSOLが不足した場合は、上記のコマンドを再度実行してください
-
-🎂 Candy Machine を構築する
----
+\
+## 🎂 Candy Machine を構築する
+\
 
 `Candy Machine` にどのような動作をさせるかを伝えるには、設定が必要です。`Candy MachineV2` はこれを簡単に行うことができます。
 
@@ -190,9 +190,9 @@ ts-node ~/metaplex/js/packages/cli/src/candy-machine-v2-cli.ts upload -e devnet 
 これにより、Candy Machine 構成が初期化されます。
 
 コレクションを公開する前にコレクションに変更を加えたい場合は、必ずこれを行ってください。
-
-✅  NFTを確認する
-----
+\
+## ✅  NFTを確認する
+\
 
 次に進む前に、下記 `verify` コマンドを実行して、NFT が実際にアップロードされたことを確認します。
 
@@ -226,17 +226,17 @@ Arweave では、ファイルの大きさに応じて、保存に必要なコス
 [電卓](https://arweavefees.com/) を使って計算することもできます。たとえば1MBを永久に保存するには、約0.0083ドルの費用がかかります。悪くないですね。
 
 「じゃあ、私のものをホストするのに誰がお金を払っているんだよ！」と疑問に思うかもしれませんが、[こちら](https://github.com/metaplex-foundation/metaplex/blob/59ab126e41e6d85b53c79ad7358964dadd12b5f4/js/packages/cli/src/helpers/upload/arweave.ts#L93 )のソースコードを見れば、今のところ Metaplex がお金を払ってくれていることがわかります。
-
-🔨 Candy Machineの構成を更新する
----
+\
+## 🔨 Candy Machineの構成を更新する
+\
 Candy Machineの構成を更新するには、`config.json` ファイルを更新して、次のコマンドを実行するだけです。
 
 ```txt
 ts-node ~/metaplex/js/packages/cli/src/candy-machine-v2-cli.ts update_candy_machine -e devnet -k ~/.config/solana/devnet.json -cp config.json
 ```
-
-😡 注意すべきエラー
-----
+\
+## 😡 注意すべきエラー
+\
 
 以下のようなエラーが発生した場合：
 
@@ -255,9 +255,9 @@ TypeError: Cannot read property 'candyMachineAddress' of undefined
 これは Candy Machine や NFT に関するデータが入った `.cache` フォルダにアクセスできないことを意味します。
 
 このエラーが発生した場合は、Candy Machine のコマンドを `.cache` フォルダと `assets` フォルダがある同じディレクトリから実行しているか確認してください。起こりがちなミスなので十分注意してください！
-
-🙋‍♂️ 質問する
--------------------------------------------
+\
+## 🙋‍♂️ 質問する
+\
 ここまでの作業で何かわからないことがある場合は、Discord の `#section-2-help` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨

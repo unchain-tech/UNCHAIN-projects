@@ -1,5 +1,5 @@
-🦉 Polygon に スマートコントラクトをデプロイする
-----
+## 🦉 Polygon に スマートコントラクトをデプロイする
+\
 
 このレッスンでは、プロジェクトを Polygon ネットワークにコントラクトをデプロイする方法を紹介します。
 
@@ -65,9 +65,9 @@ npx hardhat run scripts/run.js
 ```
 
 ターミナル上で、上記がエラーなく実行されれば、Polygon ネットワークにコントラクトをデプロイする準備は完了です。
-
-🕵️‍♂️ NFT 価格の再設定
-----
+\
+## 🕵️‍♂️ NFT 価格の再設定
+\
 
 私たちは、NFT の基本価格を 0.01 ETH に設定しました。
 
@@ -147,9 +147,9 @@ uint public constant PRICE = 0.01 ether;
 
 ⚠️: 注意
 > **Polygon ネットワークにデプロイする場合、`0.01 ether` は `0.01 MATIC` です。`0.01 ETH` ではありません。**
-
-🦊 Metamask と Hardhat に Polygon Network を追加する
----
+\
+## 🦊 Metamask と Hardhat に Polygon Network を追加する
+\
 
 Metamask ウォレットに Polygon Mainnet と Polygon Mumbai-Testnet を追加してみましょう。
 
@@ -197,9 +197,9 @@ Hardhat を使用する場合、Alchemy のカスタム RPC URL が必要です�
 // .env
 POLYGON_URL = "Alchemy Polygon URL"
 ```
-
-🚰 偽 MATIC を入手する
----
+\
+## 🚰 偽 MATIC を入手する
+\
 
 Metamask と Hardhat の両方で Polygon ネットワークの設定が完了したら、偽の MATIC を取得していきましょう。
 
@@ -222,9 +222,9 @@ Rinkeby とは異なり、これらのトークンの取得にそれほど問題
 > `2`. 仮想通貨の取引所（ Wazirx や Coinbase など）で MATIC を購入し、それを直接 Metamask に転送する。
 >
 > Polygon のようなサイドチェーンの場合、`2` の方が簡単で安く済みます。
-
-🇮🇳 Polygon テストネットにコントラクトをデプロイする
----
+\
+## 🇮🇳 Polygon テストネットにコントラクトをデプロイする
+\
 
 準備完了です。
 
@@ -286,9 +286,9 @@ Owner has tokens:  []
 
 ![](/public/images/4-Polygon-Generative-NFT/section-3/3_2_8.png)
 
-
-📝 Polygonscan を使ってコントラクトを verify（検証）する
-----
+\
+## 📝 Polygonscan を使ってコントラクトを verify（検証）する
+\
 
 最後に、Polygonscan で **コントラクトの Verification（検証）** を行い、ユーザーが Polygonscan から直接 あなたの NFT を Mint できるようにしましょう。
 
@@ -355,9 +355,9 @@ https://mumbai.polygonscan.com/address/0xF899DeB963208560a7c667FA78376ecaFF684b8
 無事コントラクトの中身が Polygonscan に表示されていたでしょうか？
 
 コントラクトが `verify` されると、誰でも Polygonscan 上で関数を呼び出して、あなたの NFT を Mint することができるようになります。
-
-🙋‍♂️ 質問する
--------------------------------------------
+\
+## 🙋‍♂️ 質問する
+\
 ここまでの作業で何かわからないことがある場合は、Discordの `#section-2-help` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨

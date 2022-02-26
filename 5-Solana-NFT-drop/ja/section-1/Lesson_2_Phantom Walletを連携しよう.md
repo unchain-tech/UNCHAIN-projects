@@ -1,5 +1,5 @@
-🤖 ローカル開発環境を設定する
- ----
+## 🤖 ローカル開発環境を設定する
+\
 
 ※ Github アカウントの初期設定がお済みでない方は、アカウント設定を行なってから先へお進みください。
 
@@ -22,9 +22,9 @@ git clone YOUR_FORKED_LINK
 
 これでローカル開発環境の準備は完了です。
 
-
-🔌 Phantom Wallet を使用してウォレット接続ボタンを作成する
-----
+\
+## 🔌 Phantom Wallet を使用してウォレット接続ボタンを作成する
+\
 
 このプロジェクトでは、[ Phantom Wallet ](https://phantom.app/)という、Solana の NFT 取扱に優れたウォレットを使用します。
 
@@ -35,9 +35,9 @@ Phantom Wallet は **Chrome**、  **Brave**、  **Firefox**、および **Edge**
 Chrome の方は[ こちら ](https://chrome.google.com/webstore/detail/phantom/bfnaelmomeimhlpmgjnjophhpkkoljpa)から Phantom Wallet をインストールすることがきます。
 
 ※ 本プロジェクトでは Brave と Chrome でのみ動作が確認できます。
-
-👻 Solana オブジェクトを設定する
-----
+\
+## 👻 Solana オブジェクトを設定する
+\
 
 ユーザーの Phantom Wallet を、作成するWEBアプリと接続する必要があります。
 
@@ -151,9 +151,9 @@ useEffect(() => {
 Reactでは、   2番目のパラメーター( `[]` )が空の場合、コンポーネントをマウント時に `useEffect` hookが1回呼び出されます。
 
 これで、私たちのWEBアプリにアクセスするとすぐに、Phantom Wallet がインストールされているかどうかを確認できます。これは **非常に重要**な機能です。
-
-🔒 ユーザーのアカウントにアクセスする
----
+\
+## 🔒 ユーザーのアカウントにアクセスする
+\
 
 一度、ブラウザでインターフェースを確認してみましょう。
 
@@ -219,9 +219,9 @@ const checkIfWalletIsConnected = async () => {
 現段階のみの問題で、`connect` メソッド内に `onlyIfTrusted：true` パラメータを追加したためです。
 
 `onlyIfTrusted` パラメータが `true` に設定された `connect` メソッドは 、ユーザーがウォレットとWEBアプリ間の接続をすでに承認している 場合にのみ実行されます。次のセクションで修正します。
-
-🙋‍♂️ 質問する
--------------------------------------------
+\
+## 🙋‍♂️ 質問する
+\
 ここまでの作業で何かわからないことがある場合は、Discord の `#section-1-help` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨

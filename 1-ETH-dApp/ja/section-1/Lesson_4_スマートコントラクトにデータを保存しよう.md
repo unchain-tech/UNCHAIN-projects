@@ -1,5 +1,5 @@
-### 📦 データを保存しよう
-
+## 📦 データを保存しよう
+\
 このレッスンでは、ユーザーがあなたに送った「👋（wave）」の数をデータとして保存する方法を学びます。
 
 ブロックチェーンは、AWS のようなクラウド上にデータを保存できるサーバーのようなものです。
@@ -51,9 +51,9 @@ uint256 totalWaves;
 自動的に `0` に初期化される `totalWaves` 変数が追加されました。この変数は「状態変数」と呼ばれ、`WavePortal` コントラクトのストレージに永続的に保存されます。
 
 * [unit256](https://www.iuec.co.jp/blockchain/uint256.html) は、非常に大きな数を扱うことができる「独自定義のクラス」を意味します。
-
-### 🎁 Solidity のアクセス修飾子について
-
+\
+## 🎁 Solidity のアクセス修飾子について
+\
 
 ```javascript
 // WavePortal.sol
@@ -91,9 +91,9 @@ Solidityには、4つのアクセス修飾子が存在します。
 
 
 これから Solidity のアクセス修飾子は頻繁に登場するので、まずは大まかな理解ができれば大丈夫です。
-
-### 🔍 `msg.sender` について
-
+\
+## 🔍 `msg.sender` について
+\
 ```javascript
 // WavePortal.sol
 function wave() public {
@@ -110,9 +110,9 @@ function wave() public {
 * スマートコントラクトに含まれる関数を呼び出すには、ユーザーは有効なウォレットを接続する必要があります。
 
 * `msg.sender` では、誰が関数を呼び出したかを正確に把握し、ユーザー認証を行っています。
-
-### 🖋 Solidity の関数修飾子について
-
+\
+## 🖋 Solidity の関数修飾子について
+\
 
 Solidity には、関数（function）に対してのみ使用される修飾子（＝関数修飾子）が存在します。
 
@@ -166,10 +166,9 @@ function getTotalWaves() public view returns (uint256) {
 ```
 
 一方、`view` という関数修飾子がついた `getTotalWaves()` 関数は、ユーザーがあなたに送った「👋（wave）」の総数の参照のみを行います。
-
-### ✅ `run.js` を更新して関数を呼び出す
-
-
+\
+## ✅ `run.js` を更新して関数を呼び出す
+\
 次に、`run.js` を以下のように更新していきます。
 
 ```javascript
@@ -291,9 +290,9 @@ waveCount = await waveContract.getTotalWaves();
 ```
 
 ここで最後に、`waveCount` をもう一度取得して、`+1` されたかどうかを確認します。
-
-### 🧙‍♀️ テストを実行しよう
-
+\
+## 🧙‍♀️ テストを実行しよう
+\
 `scripts` ディレクトリに移動し、下記を実行してみましょう。
 
 ```bash
@@ -326,9 +325,9 @@ We have 1 total waves!
 3. 状態変数を変更する。
 
 これらは、WavePortal のWEBサイトを構築する上で大切な要素です。
-
-### 🤝 他のユーザーに👋（wave）を送ってもらう
-
+\
+## 🤝 他のユーザーに👋（wave）を送ってもらう
+\
 
 ここでは、他のユーザーがあなたに「👋（wave）」を送った場合のシミューションを行います。
 
@@ -434,9 +433,9 @@ We have 2 total waves!
 // run.js
 const [owner, randomPerson1, randomPerson2] = await hre.ethers.getSigners();
 ```
-
-### 🙋‍♂️ 質問する
-
+\
+## 🙋‍♂️ 質問する
+\
 ここまでの作業で何かわからないことがある場合は、Discord の `#section-1-help` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨
