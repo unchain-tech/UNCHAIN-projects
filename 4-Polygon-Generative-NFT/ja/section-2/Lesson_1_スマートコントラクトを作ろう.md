@@ -39,7 +39,6 @@ npx hardhat
 `Create a basic sample project` を選択し、すべてに `yes` と答えましょう。
 
 ⚠️: 注意
-
 > `npx hardhat` が実行されなかった場合、以下をターミナルで実行してください。
 >
 >```bash
@@ -628,7 +627,7 @@ contract NFTCollectible is ERC721Enumerable, Ownable {
 \
 ## 🙋‍♂️ 質問する
 \
-ここまでの作業で何かわからないことがある場合は、Discord の `#section-1-help` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#section-2-help` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨
 ```

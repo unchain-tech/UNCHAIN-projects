@@ -1,5 +1,5 @@
-✨ NFT を Mint する
------
+## ✨ NFT を Mint する
+\
 
 さて、キャラクターのデータが整ったので、次は実際に NFT を Mint していきましょう。
 
@@ -278,7 +278,7 @@ _safeMint(msg.sender, newItemId);
 上記が実行されると、`newItemId` という ID の NFT キャラクターが `msg.sender`（＝フロントエンドからユーザーのアドレス）に、 Mint されます。
 
 ✍️: `msg.sender` について
-> `msg.sender` は [Solidity が提供する](https://docs.soliditylang.org/en/develop/units-and-global-variables.html#block-and-transaction-properties) 変数で、フロントエンドからコントラクトを呼び出したユーザーの **公開アドレス** を保持した変数です。
+> `msg.sender` は [Solidity が提供する](https://docs.soliditylang.org/en/develop/uints-and-global-variables.html#block-and-transaction-properties) 変数で、フロントエンドからコントラクトを呼び出したユーザーの **公開アドレス** を保持した変数です。
 >
 >**原則として、ユーザーは、コントラクトを匿名で呼び出すことはできません。**
 >

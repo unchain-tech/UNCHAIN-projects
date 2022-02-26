@@ -268,4 +268,10 @@ TypeError: Cannot read property 'candyMachineAddress' of undefined
 ```
 
 ------
-次のレッスンに進んで、WEBアプリから Candy Machine を呼び出していきましょう🎉
+おめでとうございます！セクション2は終了です！
+
+ぜひ、ターミナルの出力結果をコミュニティに投稿してください！
+
+あなたの成功をコミュニティで祝いましょう🎉
+
+次のレッスンでは、WEBアプリから Candy Machine を呼び出していきます！

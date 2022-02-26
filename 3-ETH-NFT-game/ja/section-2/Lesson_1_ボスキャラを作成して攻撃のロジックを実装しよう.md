@@ -1,5 +1,5 @@
-😈 ボスを作る
----
+## 😈 ボスを作る
+\
 
 これから、ゲーム内のボス作成していきます。
 
@@ -87,8 +87,13 @@ const gameContract = await gameContractFactory.deploy(
 
 今回のゲームでは、ポケモンのサンプル画像を使用していますが、ぜひオリジナルキャラクターを選んであなただけのゲームを作成してみてください✨
 
-👾 プレイヤーの NFT キャラクターの属性を取得する。
----
+[Imgur](https://imgur.com/) を使用して、あなたのボスをセットアップしてください！
+
+あなただけのオリジナルゲームを作りましょう✨
+
+\
+## 👾 プレイヤーの NFT キャラクターの属性を取得する。
+\
 
 これから `attackBoss` という関数を作成して、`MyEpicGame.sol` に追加していきましょう。
 
@@ -283,11 +288,11 @@ if (bigBoss.hp < player.attackDamage) {
 
 - `else` : もし、ボスの HP（ `bigBoss.hp` ）が、NFT キャラクターの攻撃力 （ `player.attackDamage` ）を上回っていたら、ボスの HP を「現在のボスの HP」から「NFT キャラクターの攻撃力」を差し引いた値に更新します。
 
-✍️: `unit` について
+✍️: `uint` について
 
-> ここで使用されている変数（`igBoss.hp` と `player.attackDamage`）は、`constructor` の中で `unit` として定義されています。
+> ここで使用されている変数（`igBoss.hp` と `player.attackDamage`）は、`constructor` の中で `uint` として定義されています。
 >
-> `unit` とは、符号なし整数を意味しており、負の値をとることはできません。
+> `uint` とは、符号なし整数を意味しており、負の値をとることはできません。
 >
 > なので、ボスの HP（ `bigBoss.hp` ）が NFT キャラクターの攻撃力 （ `player.attackDamage` ）を下回っている場合、`bigBoss.hp = 0` と直接値を更新しています。
 >
@@ -322,9 +327,9 @@ console.log("Boss attacked player. New player hp: %s\n", player.hp);
 ```
 
 ここでは、プレイヤーとボスの攻撃をターミナルに出力し、それぞれの現在の HP を表示しています。
-
-🦖 テストを実行する
-----
+\
+## 🦖 テストを実行する
+\
 
 `run.js` に下記を追加して、`attackBoss` 関数のテストをしてみましょう。
 
@@ -435,9 +440,9 @@ Boss attacked player. New player hp: 200
 これで、`attackBoss` 関数は完成です✨
 
 ゲームのロジックが完全にブロックチェーンに保存されました。
-
-🙋‍♂️ 質問する
--------------------------------------------
+\
+## 🙋‍♂️ 質問する
+\
 ここまでの作業で何かわからないことがある場合は、Discordの `#section-2-help` で質問してください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨

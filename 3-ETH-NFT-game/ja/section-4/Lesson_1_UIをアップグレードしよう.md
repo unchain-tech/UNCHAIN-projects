@@ -1,5 +1,5 @@
-💫 UIの仕上げ
----
+## 💫 UIの仕上げ
+\
 
 NFT キャラクターを Mint したり、ボスのデータを取得したりするときに、ローディングマークを UI に表示していきましょう。
 
@@ -14,9 +14,9 @@ NFT キャラクターを Mint したり、ボスのデータを取得したり�
 `nft-game-starter-project/src/Components` フォルダに `LoadingIndicator` コンポーネントが格納されています。
 
 このレッスンでは、この `LoadingIndicator` コンポーネントを使っていきます。
-
-🔁 `App.js` にローディングマークを追加する
----
+\
+## 🔁 `App.js` にローディングマークを追加する
+\
 
 一つ目のケース、「ユーザーが NFT キャラクターを持っているかフロントエンドが確認している状況」で、WEBアプリにローディングマークを表示していきましょう。
 
@@ -66,39 +66,6 @@ useEffect(() => {
 	setIsLoading(false);
 };
 ```
-<!-- ```javascript
-// App.js
-// UseEffects
-useEffect(() => {
-  // ページがロードされたら、即座にロード状態を設定するようにします。
-  setIsLoading(true);
-  checkIfWalletIsConnected();
-}, []);
-
-useEffect(() => {
-  const fetchNFTMetadata = async () => {
-    console.log('Checking for Character NFT on address:', currentAccount);
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
-    const gameContract = new ethers.Contract(
-      CONTRACT_ADDRESS,
-      myEpicGame.abi,
-      signer
-    );
-    const characterNFT = await gameContract.checkIfUserHasNFT();
-    if (characterNFT.name) {
-      console.log('User has character NFT');
-      setCharacterNFT(transformCharacterData(characterNFT));
-    }
-    // ユーザーが保持しているNFTの確認が完了したら、ロード状態を false に設定します。
-    setIsLoading(false);
-  };
-  if (currentAccount) {
-    console.log('CurrentAccount:', currentAccount);
-    fetchNFTMetadata();
-  }
-}, [currentAccount]);
-``` -->
 
 次に、`App.js` の先頭に下記を追加して、`LoadingIndicator` をインポートしてください。
 
@@ -163,9 +130,9 @@ const checkIfWalletIsConnected = async () => {
     setIsLoading(false);
 };
 ```
-
-🔁 `SelectCharacter` コンポーネントにローディングマークを追加する
----
+\
+## 🔁 `SelectCharacter` コンポーネントにローディングマークを追加する
+\
 
 二つ目のケース、「ユーザーが NFT キャラクターを Mint するのをフロントエンドが待機している状況」で、WEBアプリにローディングマークを表示していきましょう。
 
@@ -282,10 +249,9 @@ return (
 
 ![](/public/images/3-ETH-NFT-game/section-4/4_1_1.png)
 
-
-🔁 `Arena` コンポーネントにローディングマークを追加する
----
-
+\
+## 🔁 `Arena` コンポーネントにローディングマークを追加する
+\
 三つ目のケース、「攻撃が終了するのをフロントエンドが待機している状況」で、WEBアプリにローディングマークを表示していきましょう。
 
 
@@ -350,9 +316,9 @@ import LoadingIndicator from '../../Components/LoadingIndicator';
 ![](/public/images/3-ETH-NFT-game/section-4/4_1_2.png)
 
 上記のようにローディングマークが `Arena` ページに表示されているでしょうか？✨
-
-🚨 `Arena` ページに攻撃アラートを追加する
-
+\
+## 🚨 `Arena` ページに攻撃アラートを追加する
+\
 最後に、ボスに与えたダメージをフロントエンド上に表示するコードを実装していきましょう。
 
 まず、下記のCSSを `Arena.css`  ファイルに追加しましょう。
@@ -623,9 +589,9 @@ const runAttackAction = async () => {
 上記の実装が成功した場合、WEBアプリ上でボスを攻撃すると、下記のような攻撃ダメージが表示されます✨
 
 ![](/public/images/3-ETH-NFT-game/section-4/4_1_3.png)
-
-🙋‍♂️ 質問する
--------------------------------------------
+\
+## 🙋‍♂️ 質問する
+\
 ここまでの作業で何かわからないことがある場合は、Discordの `#section-4-help` で質問してください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨

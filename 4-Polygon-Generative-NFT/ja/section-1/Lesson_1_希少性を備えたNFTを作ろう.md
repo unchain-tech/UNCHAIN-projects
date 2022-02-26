@@ -1,5 +1,5 @@
-💠 希少性を備えたジェネレーティブNFTアートを作成する
----
+## 💠 希少性を備えたジェネレーティブNFTアートを作成する
+\
 
 [Cryptopunks](https://www.larvalabs.com/cryptopunks) （クリプトパンクス）や [Bored Ape Yacht Club](https://boredapeyachtclub.com/#/)（BAYC：ボアードエイプ・ヨットクラブ）などの NFT プロジェクト を知っていますか？
 
@@ -20,9 +20,9 @@
 今回のレッスンでは、Cryptopunk や BAYC のような希少性を備えた Generative Art の NFT コレクションを作成する方法を学びます。
 
 ✍️: NFT に関する詳しい説明は、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/blob/main/ETH-NFT-collection/ja/section-1/Lesson_1_NFT%E3%81%A8%E3%81%AF%E4%BD%95%E3%81%8B%EF%BC%9F.md) をご覧ください。
-
-💻 Python と pip をインストールする
----
+\
+## 💻 Python と pip をインストールする
+\
 
 Generative Art を作成するために、[こちら](https://github.com/shiftbase-xyz/generative-nft-library) のライブラリを使用します。
 
@@ -79,9 +79,9 @@ pip install Pillow pandas progressbar2
 
 - Progressbar: 画像生成の進捗状況を表示するライブラリです。
 
-
-🍽 Git レポジトリをあなたの Github にフォークする
-------------------
+\
+## 🍽 Git レポジトリをあなたの Github にフォークする
+\
 
 まだ Github のアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
@@ -102,9 +102,9 @@ git clone コピーした_github_リンク
 下記のように、あなたのローカル環境に、ライブラリがクローンされたことが確認できたら、次のステップに進みましょう。
 
 ![](/public/images/4-Polygon-Generative-NFT/section-1/1_1_4.png)
-
-🐿 Scrappy Squirrels を生成する
-----
+\
+## 🐿 Scrappy Squirrels を生成する
+\
 
 今回は、「Scrappy Squirrels」プロジェクトに使用されたデータを使って、Generative Art を生成していきます。
 
@@ -160,9 +160,9 @@ generative-nft-library
 			  |_ Head
 			  	   :
 ```
-
-🪄 `config.py` ファイルを設定する
-----
+\
+## 🪄 `config.py` ファイルを設定する
+\
 
 アバターコレクションを生成する最後のステップです。`generative-nft-library/config.py` を開き、以下の説明に従ってファイルを埋めていきましょう。
 
@@ -284,9 +284,9 @@ CONFIG = [
 
 ⚠️: 注意
 > オリジナルで特徴カテゴリや画像を設定する場合、新しいレイヤーを作成するとき（または、既存のレイヤーを置き換えるとき）は、これらの 5 つのキーがすべて定義されていることを確認しましょう。
-
-💎 特徴の希少性を設定する
----
+\
+## 💎 特徴の希少性を設定する
+\
 
 `rarity_weights` キーは下記 3 つの値を取ることができます。
 
@@ -384,9 +384,9 @@ Python リストは、`rarity_weights` の重みを割り当てる最も一般�
 この例では、「黒のバンド」は `5`、「リストバンドなし」は `100` の重みを持っています。
 
 **つまり、アバターが黒のリストバンドを持つことは、持たないことの 20 倍の希少価値があるということになります。**
-
-🍳 Generative Art を生成する
----
+\
+## 🍳 Generative Art を生成する
+\
 
 `config.py` ファイルの中身を更新したら、Generative Art を生成しましょう。
 
@@ -448,9 +448,9 @@ Task complete!
 >- 生成するアバター
 >
 > 1200 体のアバターを生成する場合は、約 30 分かかります。
-
-👀 生成されたアバターを確認する
----
+\
+## 👀 生成されたアバターを確認する
+\
 
 `generative-nft-library` に向かい、新しく作成された `output` フォルダを見ていきましょう。
 
@@ -479,9 +479,9 @@ Task complete!
 `metadata.csv` を使えば、特徴カテゴリごとに、それぞれのアバターにどんな画像が紐づいているか調べることができます。
 
 - どの特徴が一番希少性が高いか、どの特徴の組み合わせが最も多いかなど、生成されたアバターを分析する際に役立ちます。
-
-🙋‍♂️ 質問する
--------------------------------------------
+\
+## 🙋‍♂️ 質問する
+\
 ここまでの作業で何かわからないことがある場合は、Discord の `#section-1-help` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨
@@ -490,5 +490,5 @@ Task complete!
 2. エラー文をコピー&ペースト
 3. エラー画面のスクリーンショット
 ```
--------------------------------------------
+---------
 Generative Art が作成できたら、次のレッスンに進みましょう🎉

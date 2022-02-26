@@ -1,16 +1,16 @@
-🤔 NFとは何か？
-----
+## 🤔 NFとは何か？
+\
 
 NFT の概要については、[こちら](https://github.com/yukis4san/Intro-NFT/blob/main/section-1/NFT-S1-lesson-1.md) をご覧ください。
 
 一般的に NFT が何であるかが理解できたら、次のステップに進みましょう。
-
-🌱 Mint とは何か？
----
+\
+## 🌱 Mint とは何か？
+\
 NFT における「Mint（ミント）」とは、スマートコントラクトを用いて、NFT を新らしく作成・発行することを意味します。
-
-🎰 ゲームで遊べる NFT を作る
-----
+\
+## 🎰 ゲームで遊べる NFT を作る
+\
 
 このプロジェクトでは、**プレイヤーが協力して、ボスを倒すゲーム**を作成していきます。
 
@@ -44,9 +44,9 @@ NFT における「Mint（ミント）」とは、スマートコントラクト
 	- HP が 0 になると `hp: 0` と表示されます。
 
 **これは、世界で最も人気のある NFT ゲームの仕組みです。** これから、この仕組みをゼロから構築していきます！
-
-✨ NFT データをセットアップする
-----
+\
+## ✨ NFT データをセットアップする
+\
 それでは、キャラクター NFT をセットアップしていきましょう。
 
 各キャラクターに、画像、名前、HP値、攻撃ダメージ値の属性を付与していきます。
@@ -201,20 +201,21 @@ for(uint i = 0; i < characterNames.length; i += 1) {
 - 例えば、`defaultCharacters[0]` と実行するだけで、1番目のキャラクターのデフォルト属性に簡単にアクセスすることができます。
 
 - キャラクターは最初は無傷なので、`hp` ＝ `maxHp` = `characterHp[i]` となっています。
-
-⭐️ テストを実行する
------
+\
+## ⭐️ テストを実行する
+\
 
 `MyEpicGame.sol` を更新したので、テストを行っていきます。
 
 テスト用のスクリプト `run.js` を下記のように更新していきましょう。
 
 ```javascript
+// run.js
 const main = async () => {
   const gameContractFactory = await hre.ethers.getContractFactory('MyEpicGame');
   const gameContract = await gameContractFactory.deploy(
     ["FUSHIGIDANE", "HITOKAGE", "ZENIGAME"], // キャラクターの名前
-    ["https://i.imgur.com/MlLoWnD.png", // キャラクターの画像
+    ["https://i.imgur.com/MlLoWnD.png",  // キャラクターの画像
     "https://i.imgur.com/9agkvAc.png",
     "https://i.imgur.com/cftodj9.png"],
     [100, 200, 300],                    // キャラクターのHP
@@ -250,6 +251,18 @@ uint[] memory characterHp,
 uint[] memory characterAttackDmg
 ```
 
+[Imgur](https://imgur.com/) に画像をアップロードすれば、あなたの好きなキャラクターを設定することができます！
+
+ぜひ、`run.js` の中の `https://i.imgur.com/...` の画像のリンクをあなたのオリジナルの画像に差し替えてください😊
+
+```javascript
+// run.js
+["FUSHIGIDANE", "HITOKAGE", "ZENIGAME"], // キャラクターの名前
+["https://i.imgur.com/MlLoWnD.png",  // キャラクターの画像
+ "https://i.imgur.com/9agkvAc.png",
+ "https://i.imgur.com/cftodj9.png"],
+```
+
 それでは、ターミナル上で、`scripts` ディレクトリに移動して下記を実行してみましょう。
 
 ```bash
@@ -268,9 +281,9 @@ Done initializing ZENIGAME w/ HP 300, img https://i.imgur.com/cftodj9.png
 Contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 ```
 上記のようなアウトプットターミナルに表示されていればテストは成功です。
-
-🙋‍♂️ 質問する
--------------------------------------------
+\
+## 🙋‍♂️ 質問する
+\
 ここまでの作業で何かわからないことがある場合は、Discord の `#section-1-help` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨

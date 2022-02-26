@@ -321,4 +321,12 @@ Mined, see transaction: https://rinkeby.etherscan.io/tx/0x5a08f3e66852b5c1833f3a
 3. エラー画面のスクリーンショット
 ```
 ---------
-おめでとうございます！NFT を Mint できる WEBアプリはほぼ完成です。次のレッスンに進みましょう🎉
+おめでとうございます！
+
+NFT を Mint できる WEBアプリはほぼ完成です！
+
+Rarible のリンクを `#section-3-help` に貼り付けて、あなたの NFT をシェアしてください😊
+
+あなたの作った NFT がどんなものなのか気になります✨
+
+次のレッスンに進みましょう🎉

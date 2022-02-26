@@ -141,7 +141,7 @@ https://rinkeby.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#
 \
 ## 🙋‍♂️ 質問する
 \
-ここまでの作業で何かわからないことがある場合は、Discordの `#section-1-help` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの `#section-2-help` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨
 ```
@@ -151,5 +151,8 @@ https://rinkeby.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#
 ```
 
 ----
+Etherscan リンクを `#section-2-help` に投稿してください😊
+
+コミュニティであなたの成功を祝いましょう🎉
 
 コントラクトの検証が完了したら、次のレッスンに進みましょう🎉

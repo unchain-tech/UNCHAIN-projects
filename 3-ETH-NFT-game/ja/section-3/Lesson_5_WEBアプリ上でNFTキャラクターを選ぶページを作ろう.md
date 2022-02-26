@@ -1,12 +1,12 @@
-🐱 NFT キャラクターをフロントエンドに表示する
-
+## 🐱 NFT キャラクターをフロントエンドに表示する
+\
 前回のレッスンでは、WEBアプリからスマートコントラクトを呼び出すコードを実装し、 `SelectCharacter` コンポーネントを作成しました。
 
 これから、スマートコントラクトから NFT キャラクターを取得してフロントエンドに表示させていきましょう。
 
-👀 `deploy.js` を整理する
----
-
+\
+## 👀 `deploy.js` を整理する
+\
 WEBアプリの開発を進める前に、`epic-game/scripts` にある、`deploy.js` ファイルを整理しましょう。
 
 `mintCharacterNFT` や `attackBoss` 関数を排除していきます。
@@ -66,9 +66,9 @@ runMain();
 
 - `epic-game/artifacts/contracts/MyEpicGame.sol/MyEpicGame.json` の中身を新しく作成する `nft-game-starter-project/src/utils/MyEpicGame.json` の中に貼り付ける必要があります。
 
-
-♻️ `index.js` を更新する
----
+\
+## ♻️ `index.js` を更新する
+\
 
 `nft-game-starter-project/src/Components/SelectCharacter` にある `index.js` は、プログラムの中で何度も登場する変数や関数をまとめているファイルです。
 
@@ -171,9 +171,9 @@ useEffect(() => {
 ここでは `useEffect` を使って、`SelectCharacter` コンポーネントが呼び出されたら、すぐに `gameContract` を作成して、使用できるようにしています。
 
 この処理により、フロントエンドで NFT キャラクターを表示する準備が整います。
-
-😎 NFT キャラクターのデータを取得する
----
+\
+## 😎 NFT キャラクターのデータを取得する
+\
 
 NFT キャラクターのデータをスマートコントラクトから取得するために、`getCharacters` 関数を作成します。
 
@@ -249,7 +249,6 @@ transformCharacterData(characterData)
 setCharacters(characters);
 ```
 
-
 ここでは、コントラクトから取得した NFT キャラクターのデータを状態として保存しています。
 
 この処理により、NFT キャラクターのデータをフロントエンドで使い始めることができます。
@@ -267,9 +266,9 @@ if (gameContract) {
 ここでは、`gameContract` が更新されるたびに、中身が `null` でないことを確認し、`getCharacters` 関数を呼び出す処理を実装しています。
 
 この処理により、NFT キャラクターのデータが更新されるたびに、キャラクターの状態を更新て、フロントエンドに反映させることができます。
-
-⚡️ WEBアプリ上でテストを行う
-----
+\
+## ⚡️ WEBアプリ上でテストを行う
+\
 
 WEBアプリ上で、NFT キャラクターの情報が取得できているか、確認してみましょう。
 
@@ -288,9 +287,9 @@ length: 3
 ```
 
 上記のような結果が `Console` に表示されていればテストは成功です。
-
-👓 NFT キャラクター をWEBアプリにレンダリングする
-----
+\
+## 👓 NFT キャラクター をWEBアプリにレンダリングする
+\
 
 それでは、NFT キャラクターの情報をWEBアプリに反映させていきましょう。
 
@@ -338,9 +337,9 @@ return (
 
 ![](/public/images/3-ETH-NFT-game/section-3/3_5_1.png)
 
-
-✨ WEBアプリから NFT キャラクター を Mint する
-
+\
+## ✨ WEBアプリから NFT キャラクター を Mint する
+\
 これから、NFT キャラクターを Mint する `mintCharacterNFTAction` 関数を作成していきます。
 
 `index.js` を開き、`const [gameContract, setGameContract] = useState(null);` の直下に下記を追加しましょう。
@@ -371,9 +370,9 @@ const mintCharacterNFTAction = (characterId) => async () => {
 - どの NFT キャラクターを Mint するかコントラクトに伝えるために、そのキャラクターのインデックス（ `characterId` ）を引数としてとります。
 
 - `onClick = {mintCharacterNFTAction(index)}` の `index` が NFT キャラクターのインデックスです。
-
-🏓 コントラクトで `emit` された `event` をフロントエンドで受け取る
-----
+\
+## 🏓 コントラクトで `emit` された `event` をフロントエンドで受け取る
+\
 
 NFT キャラクターが Mint されたことをフロントエンドに伝える `event` をコントラクト上に作成したことを覚えてますか？
 
@@ -522,9 +521,9 @@ return () => {
 
 メモリリークを防ぐために、`gameContract.off('CharacterNFTMinted', onCharacterMint)` では、`onCharacterMint` 関数の稼働を止めています。これは、イベントリスナーを止めることを意味しています。
 
-
-🐝 Rarible で Mint した NFT キャラクターを確認する
----
+\
+## 🐝 Rarible で Mint した NFT キャラクターを確認する
+\
 
 それでは、WEBアプリから、キャラクターを一体 Mint して、[rinkeby.rarible.com](https://rinkeby.rarible.com/) に反映されるか確認していきましょう。
 
@@ -568,9 +567,9 @@ https://testnets.opensea.io/assets/CONTRACT_ADDRES/TOKEN_ID
 下記のように、オンライン上でもあなたの NFT キャラクターが表示されることを確認しましょう。
 
 ![](/public/images/3-ETH-NFT-game/section-3/3_5_2.png)
-
-🪄 おまけ
----
+\
+## 🪄 おまけ
+\
 
 ユーザーに NFT キャラクターを確認する Rarible リンクを発行しましょう。
 
@@ -581,9 +580,9 @@ https://testnets.opensea.io/assets/CONTRACT_ADDRES/TOKEN_ID
 ```javascript
 alert(`NFT キャラクーが Mint されました -- リンクはこちらです: https://rinkeby.rarible.com/token/${gameContract}:${tokenId.toNumber()}?tab=details`)
 ```
-
-🙋‍♂️ 質問する
--------------------------------------------
+\
+## 🙋‍♂️ 質問する
+\
 ここまでの作業で何かわからないことがある場合は、Discord の `#section-3-help` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨
