@@ -12,7 +12,11 @@
 
 ターミナルで、**新しい**ウィンドウを作成します。
 
+<<<<<<< HEAD
 `my-wave-portal` 、下記を実行してください。
+=======
+`my-wave-portal` ディレクトリに移動して、下記を実行してください。
+>>>>>>> 5785e7ce032571c6d5d018ab2e1d13ea1e3ce5d5
 
 ```bash
 npx hardhat node

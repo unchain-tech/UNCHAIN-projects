@@ -121,7 +121,7 @@ contracts		package.json
 
 1\. 一つ上の階層のフォルダー（ `epic-game` ）に移動: `cd ..`
 
-2\. `cd scripts` フォルダーに移動: `cd script`
+2\. `cd scripts` フォルダーに移動: `cd scripts`
 
 3\. `sample-script.js` を削除: `rm -r sample-script.js`
 
