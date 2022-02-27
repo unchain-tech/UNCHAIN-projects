@@ -420,23 +420,23 @@ const App = () => {
 
     try {
       if (ethereum) {
-      const provider = new ethers.providers.Web3Provider(ethereum);
-      const signer = provider.getSigner();
-      const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+        const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
         /* コントラクトからgetAllWavesメソッドを呼び出す */
-      const waves = await wavePortalContract.getAllWaves();
-          /* UIに必要なのは、アドレス、タイムスタンプ、メッセージだけなので、以下のように設定 */
-      const wavesCleaned = waves.map(wave => {
-        return {
-        address: wave.waver,
-        timestamp: new Date(wave.timestamp * 1000),
-        message: wave.message,
-        };
-      });
-          /* React Stateにデータを格納する */
-      setAllWaves(wavesCleaned);
+        const waves = await wavePortalContract.getAllWaves();
+        /* UIに必要なのは、アドレス、タイムスタンプ、メッセージだけなので、以下のように設定 */
+        const wavesCleaned = waves.map(wave => {
+          return {
+            address: wave.waver,
+            timestamp: new Date(wave.timestamp * 1000),
+            message: wave.message,
+          };
+        });
+        /* React Stateにデータを格納する */
+        setAllWaves(wavesCleaned);
       } else {
-      console.log("Ethereum object doesn't exist!");
+        console.log("Ethereum object doesn't exist!");
       }
     } catch (error) {
       console.log(error);
