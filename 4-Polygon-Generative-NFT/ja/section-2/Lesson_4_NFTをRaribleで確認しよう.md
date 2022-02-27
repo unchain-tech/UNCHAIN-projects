@@ -1,5 +1,4 @@
 ## 🐝 Rarible で NFT を確認する
-\
 
 コントラクトのアドレス（`Contract deployed to` に続く `0x..` ）をターミナルからコピーして、[`rinkeby.rarible.com`](https://rinkeby.rarible.com/) に貼り付け、検索してみてください。
 
@@ -12,9 +11,7 @@
 `deploy.js` で、10個の NFT を自分用にキープしてから、3 個 NFT を Mint しました。
 
 したがって、今コントラクトアドレスから表示できる NFT コレクションは、13個です。
-\
 ## 📝 Etherscan を使ってコントラクトを verify（検証）する
-\
 
 最後に、Etherscan で **コントラクトの Verification（検証）** を行いましょう。
 
@@ -138,9 +135,8 @@ https://rinkeby.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#
 - 0.03 ETH をコントラクトから自分のウォレットに転送できるはずです。
 
 - また、`mintNFTs` 関数を呼び出して数枚の NFT を Mint してみましょう。
-\
 ## 🙋‍♂️ 質問する
-\
+
 ここまでの作業で何かわからないことがある場合は、Discordの `#section-2-help` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨

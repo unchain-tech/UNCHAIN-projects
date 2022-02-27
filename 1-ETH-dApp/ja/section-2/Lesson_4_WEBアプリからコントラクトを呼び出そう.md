@@ -1,5 +1,4 @@
 ## 📒 WEBアプリからスマートコントラクトを呼び出す
-\
 
 このレッスンでは、Metamask の認証機能を使用して、WEBアプリから実際にあなたのコントラクトを呼び出す機能を実装します。
 
@@ -203,9 +202,8 @@ const wave = async () => {
 ```
 
 `onClick` プロップを `null` から `wave` に更新して、`wave()` 関数を `waveButton` に接続しています。
-\
 ## 🧪 テストを実行する
-\
+
 今回のレッスンでは実装する機能が多いので、追加する機能3つに対してテストを行います。
 
 `App.js` を更新したら、ターミナル上で `dApp-starter-project` に移動し、`npm run start` を実行してください。
@@ -216,9 +214,8 @@ const wave = async () => {
 ![](/public/images/1-ETH-dApp/section-2/2_4_1.png)
 
 これから `contractAddress` と `contractABI` を設定していきます。
-\
 ## 🏠 `contractAddress` の設定
-\
+
 Rinkeby Test Network にコントラクトをデプロイしたとき、下記がターミナルに出力されていたことを覚えてますか？
 
 ```
@@ -253,9 +250,8 @@ const contractAddress = "あなたの WavePortal address を貼り付けてく�
 
 `contractAddress` に関するエラーが消えていれば、成功です。
 ![](/public/images/1-ETH-dApp/section-2/2_4_2.png)
-\
 ## 📂 ABI ファイルを取得する
-\
+
 ABI (Application Binary Interface) はコントラクトの取り扱い説明書のようなものです。
 
 WEBアプリがコントラクトと通信するために必要な情報が、ABI ファイルに含まれています。
@@ -538,9 +534,8 @@ const wave = async () => {
 
 データを読み込むときは、そのようなことをする必要はありません。
 よって、ブロックチェーンからのデータの読み取りは無料です。
-\
 ## 🚀 テストを実行する
-\
+
 ターミナル上で `dApp-starter-project` に移動し、下記を実行しましょう。
 
 ```
@@ -560,9 +555,7 @@ npm run start
 ![](/public/images/1-ETH-dApp/section-2/2_4_3.png)
 
 それぞれの `Wave` がカウントされ、承認されていることが確認できたら、次のステップに進みましょう。
-\
 ## 🌱 Etherscan でトランザクションを確認する
-\
 
 あなたの `Console` に出力されている以下のアドレスをそれぞれコピーして、[Etherscan](https://rinkeby.etherscan.io/) に貼り付けてみましょう。
 
@@ -573,9 +566,8 @@ npm run start
 - Mined -- `0x..` ← これをコピーして Etherscan に貼り付ける
 
 	あなたのWEBアプリを介して Rinkeby Test Network 上に書き込まれた「👋（wave）」に対するトランザクションの履歴が参照できます。
-\
 ## 🙋‍♂️ 質問する
-\
+
 ここまでの作業で何かわからないことがある場合は、Discord の `#section-2-help` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨

@@ -1,5 +1,5 @@
 ## ☘️ WEBアプリから NFT を Mint する
-\
+
 前回のレッスンでは、WEBアプリを立ち上げました。
 
 **これから、WEBアプリから `MyEpicNFT.sol` コントラクトにアクセスして、NFT を発行する `makeAnEpicNFT` 関数を呼び出していきましょう。**
@@ -179,7 +179,6 @@ Search for the keywords to learn more about each error.
 これから、ABIファイルを取得して、`myEpicNft` 変数を定義していきます。
 
 ## 📂 ABIファイルを取得する
-\
 
 ABI (Application Binary Interface) はコントラクトの取り扱い説明書のようなものです。
 
@@ -234,9 +233,7 @@ import myEpicNft from './utils/MyEpicNFT.json';
 ```
 
 ここでは、先ほど取得した、ABI ファイルを含む `MyEpicNFT.json` ファイルをインポートしています。
-\
 ## 🥳 NFT を Mint する
-\
 
 それでは、ターミナル上で`nft-collection-starter-project` ディレクトリに移動して下記を実行し、ローカル環境でWEBアプリをホストしてみましょう。
 
@@ -281,10 +278,7 @@ Mined, see transaction: https://rinkeby.etherscan.io/tx/0x5a08f3e66852b5c1833f3a
 ![](/public/images/2-ETH-NFT-collection/section-3/3_3_2.png)
 
 上図のように、あなたが Mint した NFT があなたのアドレスと紐づいていることが確認できたら、このプロジェクトはほぼ完成です。
-
-\
 ## 🚨 コントラクトを再びデプロイする際の注意点
-\
 
 コントラクトの中身を更新する場合、必ず下記3つのステップを実行することを忘れないようにしましょう。
 
@@ -309,9 +303,8 @@ Mined, see transaction: https://rinkeby.etherscan.io/tx/0x5a08f3e66852b5c1833f3a
 - **つまり、コントラクトのコードを更新したい場合、すべての NFT データが失われます。**
 
 上記の点に注意しながら、コントラクトの更新を行ってください。
-\
 ## 🙋‍♂️ 質問する
-\
+
 ここまでの作業で何かわからないことがある場合は、Discordの`#section-3-help`で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨

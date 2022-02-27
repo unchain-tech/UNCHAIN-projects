@@ -1,5 +1,5 @@
 ## 🔤 SVG 画像にランダムに単語を反映させよう
-\
+
 前回のレッスンでは、NFT をオンチェーンで作成するコントラクトを実装しました。
 
 これから、3つのランダムな単語を動的に組み合わせて NFT を出力するコードを作成していきます。
@@ -122,10 +122,7 @@ contract MyEpicNFT is ERC721URIStorage {
 ```
 
 簡単にコードの内容を説明していきます。
-
-\
 ## 🏷 SVG 形式でデータを表示できるようにする
-\
 
 `baseSvg` 変数は、SVG 形式で単語を表示するために、作成されています。
 
@@ -162,9 +159,8 @@ string[] firstWords = ["Epic", "Fantastic", "Crude", "Crazy", "Hysterical", "Gra
 string[] secondWords = ["Meta", "Live", "Pop", "Cute", "Sweet", "Hot"];
 string[] thirdWords = ["Kitten", "Puppy", "Monkey", "Bird", "Panda", "Elephant"];
 ```
-\
 ## 🥴 乱数を生成して、単語をランダムに組み合わせる
-\
+
 下記のコードでは、`string[] firstWords` 配列からランダムに単語を選ぶ関数を作成しています。
 
 `pickRandomFirstWord` 関数は、NFT画像に1番目に表示される単語を選びます。
@@ -254,9 +250,8 @@ return firstWords[rand];
 Solidity は、インプットが同じであれば必ず同じ結果が出力されるように設計されているため、公式な乱数生成の処理をサポートするライブラリを提供していません。
 
 Solidity における乱数生成の方法に興味があれば、[Chainlink（英語）](https://docs.chain.link/docs/intermediates-tutorial/) のドキュメンテーションを参照してみましょう。
-\
 ## 👩‍🔬 テストしてみよう
-\
+
 乱数の生成に関して理解を深めるために、ターミナルで下記を実行して、`MyEpicNFT.sol` の中の `console.log` によって出力される結果を確認してみましょう。
 
 ```bash
@@ -294,10 +289,8 @@ An NFT w/ ID 1 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
 
 下記のような結果が表示されていればテストは成功です。
 ![](/public/images/2-ETH-NFT-collection/section-2/2_3_1.png)
-
-\
 ## 👩‍💻 メタデータを動的に生成する
-\
+
 次に、JSON ファイル（＝メタデータ）を設定する必要があります。
 
 追加でいくつか関数を作成する必要があります。
@@ -590,9 +583,8 @@ _setTokenURI(newItemId, finalTokenUri);
 ここでは、`tokenURI` を更新しています。
 
 この処理は、あなたの SVG データが組み込まれた JSON のメタデータをコントラクトと紐付けます。
-\
 ## ⭐️ 実行する
-\
+
 それでは、ターミナルに向かい、`epic-nfts` ディレクトリ上で、下記を実行しましょう。
 
 ```bash
@@ -633,9 +625,8 @@ data:application/json;base64,eyJuYW1lIjogIkdyYW5kQ3V0ZUJpcmQiLCAiZGVzY3JpcHRpb24
 
 An NFT w/ ID 1 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
 ```
-\
 ## 🛠 `finalTokenUri` の中身を確認しよう。
-\
+
 ターミナルに出力された `Token URI` の一つをコピーして、[NFT Preview](https://nftpreview.0xdev.codes/) に貼り付け、中身を確認してみましょう。
 
 NFT Preview を使用すれば、テストネットにデプロイしなくても、JSONファイルから SVG データを確認できます。
@@ -643,10 +634,8 @@ NFT Preview を使用すれば、テストネットにデプロイしなくて�
 下記のように `Token URI` が画像として確認できれば、テストは成功です。
 
 ![](/public/images/2-ETH-NFT-collection/section-2/2_3_2.png)
-
-\
 ## 🚀 Rinkeby Test Network にデプロイする
-\
+
 下記コマンドをターミナルに入力し、Rinkebyに再度デプロイしましょう。
 
 `deploy.js` を下記のように更新してください。
@@ -698,9 +687,8 @@ Minted NFT #1
 
 下記のように、あなたの SquareNFT が Rarible で確認できたでしょうか？
 ![](/public/images/2-ETH-NFT-collection/section-2/2_3_3.png)
-\
 ## 🙋‍♂️ 質問する
-\
+
 ここまでの作業で何かわからないことがある場合は、Discord の `#section-2-help` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨

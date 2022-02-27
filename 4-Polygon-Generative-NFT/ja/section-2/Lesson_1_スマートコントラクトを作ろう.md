@@ -1,5 +1,4 @@
 ## ✨ Hardhat をインストールする
-\
 
 これから、すマートコントラクトを作成して、ガス代と NFT アバターに設定した価格を支払えば、誰でも NFT コレクションが Mint できる仕組みを実装していきます。
 
@@ -108,9 +107,7 @@ contracts		package.json
 3. `sample-script.js` を削除: `rm -r sample-script.js`
 
 次に、上記の手順を参考にして `contracts` の下の `Greeter.sol` を削除してください。実際のフォルダは削除しないように注意しましょう。
-\
 ## 🖋 コントラクトを作成する
-\
 
 これから、ETH と ガス代を支払うことで、誰でも NFT を Mint できるスマートコントラクトを Solidity で作成していきます。
 
@@ -217,9 +214,7 @@ contract NFTCollectible is ERC721Enumerable, Ownable {
 `contract` は、他の言語でいうところの「[class](https://wa3.i-3-i.info/word1120.html)」のようなものなのです。
 
 class の概念については、[こちら](https://aiacademy.jp/media/?p=131) を参照してくさい。
-\
 ## 🗃 定数（ `constants` ）と変数（ `variables` ）を保存する
-\
 
 これからコントラクトに、特定の変数や定数を保存していきます。
 
@@ -295,9 +290,7 @@ constructor(string memory baseURI) ERC721("NFT Collectible", "NFTC") {
 - NFT コレクションのシンボル: `"NFTC"`
 
 * NFT コレクションの名前とシンボルは任意で変更して大丈夫です😊
-\
 ## 🎟 いくつかの NFT を無料で配布する
-\
 
 スマートコントラクトは、一度ブロックチェーン上にデプロイしてしまうと中身を変更することができません。
 
@@ -342,9 +335,7 @@ function reserveNFTs() public onlyOwner {
 >このモジュールは、コントラクトの継承によって使用されます。
 >
 >`onlyOwner` という修飾子を関数に適用することで、関数の使用をコントラクトの所有者に限定することができます。
-\
 ## 🔗 Base Token URI を設定する
-\
 
 これから、Base Token URI を効率よくコントラクトに取得して、tokenIdと紐付ける関数を実装していきます。
 
@@ -397,9 +388,7 @@ NFT の JSON メタデータは、IPFS の次のURLで入手できます： ipfs
 これを行うために、`_baseURI()` という空の関数をオーバーライドして、`baseTokenURI`を返すようにします。
 
 また、コントラクトがデプロイされた後でもコントラクトの所有者が `baseTokenURI` を変更できるように、`onlyOwner` 修飾子を記述しています。
-\
 ## 🎰 NFT を Mint する関数を実装する
-\
 
 次に、ユーザーが NFT を Mint する際に3点のチェックを実施する関数 ` mintNFTs` を実装していきます。
 
@@ -448,10 +437,7 @@ uint public constant MAX_PER_MINT = 3;
 2. ユーザーが `0` 以上、トランザクションごとに許可される NFT の最大数（ `MAX_PER_MINT` ）未満の Mint を実行しようとしていること。
 
 3. ユーザーは NFT を Mint するのに十分な ETH を送金していること。
-\
-
 ## 🌱 `_mintSingleNFT()` 関数を実装する
-\
 
 最後に、ユーザーが NFT を Mint するときに呼び出される `_mintSingleNFT()` 関数を実装していきましょう。
 
@@ -481,10 +467,7 @@ function _mintSingleNFT() private {
 各 NFT のメタデータを明示的に設定する必要はないことに注意してください。
 
 Token Base URIを設定することで、各 NFT にIPFSに格納された正しいメタデータが自動的に割り当てられるようになります。
-
-\
 ## 👀 特定のアカウントが所有する NFT について知る
-\
 
 NFT 保有者に何らかの実用性を提供する場合、各ユーザーがどの NFT を保有しているかを知れると便利です。
 
@@ -513,10 +496,7 @@ ERC721 Enumerable の `balanceOf` と `tokenOfOwnerByIndex` 関数を使用し�
 - `balanceOf` : 特定の所有者がいくつのトークンを保持しているかを示す関数。
 
 - `tokenOfOwnerByIndex` : 所有者が所有するすべての `tokenId` を取得する関数。
-\
-
 ## 🏧 残高引き出し機能を実装する
-\
 
 コントラクトに送られた ETH を引き出せないのでは、これまでの苦労が水の泡です。
 
@@ -533,9 +513,7 @@ function withdraw() public payable onlyOwner {
      require(success, "Transfer failed.");
 }
 ```
-\
 ## 👏 コントラクトの完成
-\
 
 `NFTCollectible.sol` が完成しました。
 
@@ -624,9 +602,8 @@ contract NFTCollectible is ERC721Enumerable, Ownable {
 
 }
 ```
-\
 ## 🙋‍♂️ 質問する
-\
+
 ここまでの作業で何かわからないことがある場合は、Discord の `#section-2-help` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨
