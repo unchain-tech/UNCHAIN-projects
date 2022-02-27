@@ -7,13 +7,11 @@
 
 下記のステップに沿って、Rinkeby Test Network にデプロイされたスマートコントラクトに、WEBアプリを接続させていきます。
 
-1. デプロイされた最新のコントラクトアドレスをコピーし、ウェブアプリに貼り付けます。
+1\. デプロイされた最新のコントラクトアドレスをコピーし、ウェブアプリに貼り付けます。
 
-2. 最新の ABI ファイルをコピーして、ウェブアプリのディレクトリに貼り付けます。
+2\. 最新の ABI ファイルをコピーして、ウェブアプリのディレクトリに貼り付けます。ABIとは何かについては、後ほど詳しく説明します。
 
-	- ABIとは何かについては、後ほど詳しく説明します。
-
-3. クライアント（＝フロントエンド）からスマートコントラクト（＝バックエンド）にアクセスするために、`ethers.js` をインポートします。
+3\. クライアント（＝フロントエンド）からスマートコントラクト（＝バックエンド）にアクセスするために、`ethers.js` をインポートします。
 ## 🏠 最新のスマートコントラクトアドレスを取得する
 
 あなたのスマートコントラクトのデプロイ先のアドレス（＝スマートコントラクトアドレス）を `App.js` でも使用します。
@@ -52,11 +50,11 @@ WEBアプリがコントラクトと通信するために必要な情報が、AB
 
 コントラクト一つ一つにユニークな ABI ファイルが紐づいており、その中には下記の情報が含まれています。
 
-1. そのコントラクトに使用されている関数の名前
+1\. そのコントラクトに使用されている関数の名前
 
-2. それぞれの関数にアクセスするために必要なパラメータとその型
+2\. それぞれの関数にアクセスするために必要なパラメータとその型
 
-3. 関数の実行結果に対して返るデータ型の種類
+3\. 関数の実行結果に対して返るデータ型の種類
 
 ABI ファイルは、コントラクトがコンパイルされた時に生成され、`epic-game/artifacts` ディレクトリに自動的に格納されます。
 
@@ -68,37 +66,37 @@ ABIファイルの中身は、`MyEpicGame.json` というファイルに格納�
 
 下記を実行して、ABIファイルをコピーしましょう。
 
-1. ターミナル上で `epic-game` にいることを確認する（もしくは移動する）。
+1\. ターミナル上で `epic-game` にいることを確認する（もしくは移動する）。
 
-2. ターミナル上で下記を実行する。
+2\. ターミナル上で下記を実行する。
 > ```
 > code artifacts/contracts/MyEpicGame.sol/MyEpicGame.json
 > ```
 
-3. VS Codeで `MyEpicGame.json` ファイルが開かれるので、中身を全てコピーしましょう。
+3\. VS Codeで `MyEpicGame.json` ファイルが開かれるので、中身を全てコピーしましょう。
 
 	※ VS Codeのファインダーを使って、直接 `MyEpicGame.json` を開くことも可能です。
 
 次に、下記を実行して、ABIファイルをWEBアプリから呼び出せるようにしましょう。
 
-1. ターミナル上で `nft-game-starter-project` にいることを確認する（もしくは移動する）。
+1\. ターミナル上で `nft-game-starter-project` にいることを確認する（もしくは移動する）。
 
-2. 下記を実行して、`nft-game-starter-project/src/` の中に `utils` ディレクトリを作成する。
+2\. 下記を実行して、`nft-game-starter-project/src/` の中に `utils` ディレクトリを作成する。
 > ```bash
 > mkdir src/utils
 >```
 
-3. 下記を実行して、`utils` ディレクトリに `MyEpicGame.json` ファイルを作成する。
+3\. 下記を実行して、`utils` ディレクトリに `MyEpicGame.json` ファイルを作成する。
 >```bash
 > touch src/utils/MyEpicGame.json
 >```
 
-4. 下記を実行して、`MyEpicGame.json` ファイルを VS Code で開く。
+4\. 下記を実行して、`MyEpicGame.json` ファイルを VS Code で開く。
 >```bash
 > code nft-game-starter-project/src/utils/MyEpicGame.json
 >```
 
-5. **先ほどコピーした `epic-game/artifacts/contracts/MyEpicGame.sol/MyEpicGame.json` の中身を新しく作成した `nft-game-starter-project/src/utils/MyEpicGame.json` の中に貼り付けてください。**
+5\. **先ほどコピーした `epic-game/artifacts/contracts/MyEpicGame.sol/MyEpicGame.json` の中身を新しく作成した `nft-game-starter-project/src/utils/MyEpicGame.json` の中に貼り付けてください。**
 
 ABI ファイルの準備ができたので、`App.js` にインポートしましょう。
 
@@ -117,13 +115,13 @@ import myEpicGame from './utils/MyEpicGame.json';
 
 コントラクトの中身を更新する場合、必ず下記3つのステップを実行することを忘れないようにしましょう。
 
-**1 \. 再度、コントラクトをデプロイする。**
+1\. 再度、コントラクトをデプロイする。
 
  - `npx hardhat run scripts/deploy.js --network rinkeby` を実行する必要があります。
 
-2 \. フロントエンド（ `App.js` ）の `CONTRACT_ADDRESS` を更新する。
+2\. フロントエンド（ `App.js` ）の `CONTRACT_ADDRESS` を更新する。
 
-3 \. のABIファイルを更新する。
+3\. ABIファイルを更新する。
 
 - `epic-game/artifacts/contracts/MyEpicGame.sol/MyEpicGame.json` の中身を新しく作成する `nft-game-starter-project/src/utils/MyEpicGame.json` の中に貼り付ける必要があります。
 
@@ -321,11 +319,11 @@ const gameContract = new ethers.Contract(
 
 新しいコントラクトインスタンスを作成するには、以下3つの変数を `ethers.Contract` 関数に渡す必要があります。
 
-1. `CONTRACT_ADDRESS`: コントラクトのデプロイ先のアドレス（ローカル、テストネット、またはメインネット）
+1\. `CONTRACT_ADDRESS`: コントラクトのデプロイ先のアドレス（ローカル、テストネット、またはメインネット）
 
-2. `myEpicGame.abi`: コントラクトの ABI
+2\. `myEpicGame.abi`: コントラクトの ABI
 
-3. `signer` もしくは `provider`
+3\. `signer` もしくは `provider`
 
 
 `gameContract` が設定されたら、`checkIfUserHasNFT` メソッドを呼び出すことができます。

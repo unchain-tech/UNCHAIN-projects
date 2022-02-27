@@ -2,11 +2,11 @@
 
 ここまでのレッスンで以下3つのことを行いました🎉
 
-1. WEBアプリをセットアップ行う
+1\. WEBアプリをセットアップ行う
 
-2. ウォレットへの接続機能を構築する
+2\. ウォレットへの接続機能を構築する
 
-3. Candy Machine をセットアップし、NFT をアップロードして、すべてを Devnet にデプロイする
+3\. Candy Machine をセットアップし、NFT をアップロードして、すべてを Devnet にデプロイする
 
 次は、WEBアプリから、ユーザーが実際に Candy Machine と通信できるようにします。
 
@@ -83,15 +83,15 @@ REACT_APP_SOLANA_RPC_HOST=https://explorer-api.devnet.solana.com
 
 テストに使用した NFT コレクションを変更したい場合。以前と同じ手順を踏む必要があります。
 
-1. MetaplexCLI の Candy Machine コマンドによって生成された `.cache` フォルダーを削除する
+1\. MetaplexCLI の Candy Machine コマンドによって生成された `.cache` フォルダーを削除する
 
-2. NFT ファイルを好きなように変更する
+2\. NFT ファイルを好きなように変更する
 
-3. CLI から Metaplex の `upload` コマンドを実行して、NFTをアップロードし、新しい Candy Machine を作成する
+3\. CLI から Metaplex の `upload` コマンドを実行して、NFTをアップロードし、新しい Candy Machine を作成する
 
-4. CLI から Metaplex の `verify` コマンドを実行し、NFTがアップロードされ、Candy Machine が構成されていることを確認する
+4\. CLI から Metaplex の `verify` コマンドを実行し、NFTがアップロードされ、Candy Machine が構成されていることを確認する
 
-5. `.env` ファイルを新しいアドレスで更新する
+5\. `.env` ファイルを新しいアドレスで更新する
 
 これらの手順を踏まずに変更してしまうとバグの原因になるので気をつけてください。
 ## 📞 Candy Machine と接続する

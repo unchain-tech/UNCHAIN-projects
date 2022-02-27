@@ -112,25 +112,30 @@ contracts		package.json
 ここまできたら、フォルダーの中身を整理しましょう。
 
 まず、`test` の下のファイル `sample-test.js` を削除します。
-1. `test` フォルダーに移動: `cd test`
-2. `sample-test.js` を削除: `rm -r sample-test.js`
+
+1\. `test` フォルダーに移動: `cd test`
+
+2\. `sample-test.js` を削除: `rm -r sample-test.js`
 
 また、`scripts` の下の `sample-script.js` を削除します。
-1. 一つ上の階層のフォルダー（ `epic-game` ）に移動: `cd ..`
-2. `cd scripts` フォルダーに移動: `cd script`
-3. `sample-script.js` を削除: `rm -r sample-script.js`
+
+1\. 一つ上の階層のフォルダー（ `epic-game` ）に移動: `cd ..`
+
+2\. `cd scripts` フォルダーに移動: `cd script`
+
+3\. `sample-script.js` を削除: `rm -r sample-script.js`
 
 次に、上記の手順を参考にして `contracts` の下の `Greeter.sol` を削除してください。実際のフォルダは削除しないように注意しましょう。
 ## ☀️ Hardhat の機能について
 
 Hardhat は段階的に下記を実行しています。
 
-1. **Hardhat は、スマートコントラクトを Solidity からバイトコードにコンパイルしています。**
+1\. **Hardhat は、スマートコントラクトを Solidity からバイトコードにコンパイルしています。**
 	- バイトコードとは、コンピュータが読み取れるコードの形式のことです。
 
-2. **Hardhat は、あなたのコンピューター上でテスト用の「ローカルイーサリアムネットワーク」を起動しています。**
+2\. **Hardhat は、あなたのコンピューター上でテスト用の「ローカルイーサリアムネットワーク」を起動しています。**
 
-3. **Hardhat は、コンパイルされたスマートコントラクトをローカルイーサリアムネットワークに「デプロイ」します。**
+3\. **Hardhat は、コンパイルされたスマートコントラクトをローカルイーサリアムネットワークに「デプロイ」します。**
 - ターミナルに出力されたアドレスを確認してみましょう。
 
 >```bash

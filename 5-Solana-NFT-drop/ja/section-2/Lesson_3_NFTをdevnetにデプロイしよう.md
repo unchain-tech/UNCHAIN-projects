@@ -6,11 +6,11 @@ Candy Machine v2 により、このプロセスが大幅に簡素化されまし
 
 1つのコマンドで、以下を実行できます。
 
-1. NFTを [Arweave](https://www.arweave.org) (分散型ファイルストア)にアップロードし、Candy Machine の構成を初期化する
+1\. NFTを [Arweave](https://www.arweave.org) (分散型ファイルストア)にアップロードし、Candy Machine の構成を初期化する
 
-2. Metaplex のコントラクトで Candy Machine を作成する
+2\. Metaplex のコントラクトで Candy Machine を作成する
 
-3. Candy Machine を、価格、番号、開始日、その他諸々の設定を実施する
+3\. Candy Machine を、価格、番号、開始日、その他諸々の設定を実施する
 ## 🔑 Solana キーペアの設定
 
 アップロードするためには、ローカルの Solana キーペアを設定する必要があります。

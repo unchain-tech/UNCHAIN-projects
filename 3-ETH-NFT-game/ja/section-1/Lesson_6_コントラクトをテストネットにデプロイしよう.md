@@ -70,13 +70,13 @@ Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押して
 
 今回は、以下のイベントをテストしていきます。
 
-1. トランザクションの発生を世界中のマイナーたちに知らせる
+1\. トランザクションの発生を世界中のマイナーたちに知らせる
 
-2. あるマイナーがトランザクションを発見する
+2\. あるマイナーがトランザクションを発見する
 
-3. そのマイナーがトランザクションを承認する
+3\. そのマイナーがトランザクションを承認する
 
-4. そのマイナーがトランザクションを承認したことを他のマイナーたちに知らせ、トランザクションのコピーを更新する
+4\. そのマイナーがトランザクションを承認したことを他のマイナーたちに知らせ、トランザクションのコピーを更新する
 
 このセクションでは、コードを書きながら、これらのイベントについての理解を深めていきます。
 ## 🚰 偽の ETH を取得する
@@ -213,19 +213,19 @@ module.exports = {
 > `hardhat.config.js` の `YOUR_ALCHEMY_API_URL` の部分を先ほど取得した Alchemy の URL（ `HTTP` リンク） と入れ替えます。
 
 2. \. `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の取得
-> 1. お使いのブラウザから、Metamask プラグインをクリックして、ネットワークを `Rinkeby Test Network` に変更します。
+> 1\. お使いのブラウザから、Metamask プラグインをクリックして、ネットワークを `Rinkeby Test Network` に変更します。
 > ![](/public/images/3-ETH-NFT-game/section-1/1_5_8.png)
 >
-> 2. それから、`Account details` を選択してください。
+> 2\. それから、`Account details` を選択してください。
 > ![](/public/images/3-ETH-NFT-game/section-1/1_5_9.png)
 >
-> 3. `Account details` から `Export Private Key` をクリックしてください。
+> 3\. `Account details` から `Export Private Key` をクリックしてください。
 > ![](/public/images/3-ETH-NFT-game/section-1/1_5_10.png)
 >
-> 4. Metamask のパスワードを求められるので、入力したら `Confirm` を推します。
+> 4\. Metamask のパスワードを求められるので、入力したら `Confirm` を推します。
 > ![](/public/images/3-ETH-NFT-game/section-1/1_5_11.png)
 >
-> 5. あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
+> 5\. あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
 > ![](/public/images/3-ETH-NFT-game/section-1/1_5_12.png)
 >
 > `hardhat.config.js` の `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の部分をここで取得した秘密鍵とを入れ替えます。

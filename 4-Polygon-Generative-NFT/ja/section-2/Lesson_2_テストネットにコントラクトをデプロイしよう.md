@@ -74,13 +74,13 @@ Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押して
 
 今回は、以下のイベントをテストしていきます。
 
-1. トランザクションの発生を世界中のマイナーたちに知らせる
+1\. トランザクションの発生を世界中のマイナーたちに知らせる
 
-2. あるマイナーがトランザクションを発見する
+2\. あるマイナーがトランザクションを発見する
 
-3. そのマイナーがトランザクションを承認する
+3\. そのマイナーがトランザクションを承認する
 
-4. そのマイナーがトランザクションを承認したことを他のマイナーたちに知らせ、トランザクションのコピーを更新する
+4\. そのマイナーがトランザクションを承認したことを他のマイナーたちに知らせ、トランザクションのコピーを更新する
 
 このセクションでは、コードを書きながら、これらのイベントについての理解を深めていきます。
 ## 🚰 偽の ETH を取得する
@@ -124,21 +124,30 @@ MetaMask ウォレットに `Rinkeby Test Network` が設定されたら、下�
 API_URL = "YOUR_ALCHEMY_API_URL"
 PRIVATE_KEY = "YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY"
 ```
-1. \. `YOUR_ALCHEMY_API_URL`の取得
+1\. `YOUR_ALCHEMY_API_URL`の取得
 
 > `.env` の `YOUR_ALCHEMY_API_URL` の部分を先ほど取得した Alchemy の URL（ `HTTP` リンク） と入れ替えます。
 
-2. \. `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の取得
-> 1. お使いのブラウザから、Metamask プラグインをクリックして、ネットワークを `Rinkeby Test Network` に変更します。
+2\. `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の取得
+> 1\. お使いのブラウザから、Metamask プラグインをクリックして、ネットワークを `Rinkeby Test Network` に変更します。
+>
 > ![](/public/images/4-Polygon-Generative-NFT/section-2/2_2_9.png)
-> 2. それから、`Account details` を選択してください。
+>
+> 2\. それから、`Account details` を選択してください。
 > ![](/public/images/4-Polygon-Generative-NFT/section-2/2_2_10.png)
-> 3. `Account details` から `Export Private Key` をクリックしてください。
+>
+> 3\. `Account details` から `Export Private Key` をクリックしてください。
+>
 > ![](/public/images/4-Polygon-Generative-NFT/section-2/2_2_11.png)
-> 4. Metamask のパスワードを求められるので、入力したら `Confirm` を推します。
+>
+> 4\. Metamask のパスワードを求められるので、入力したら `Confirm` を推します。
+>
 > ![](/public/images/4-Polygon-Generative-NFT/section-2/2_2_12.png)
-> 5. あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
+>
+> 5\. あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
+>
 > ![](/public/images/4-Polygon-Generative-NFT/section-2/2_2_13.png)
+>
 > `.env` の `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の部分をここで取得した秘密鍵とを入れ替えます。
 
 **✍️: スマートコントラクトをデプロイするのに秘密鍵が必要な理由**

@@ -277,11 +277,11 @@ const waveContract = await waveContractFactory.deploy({
 
 コントラクトを更新したので、下記を実行する必要があります。
 
-1. 再度コントラクトをデプロイする
+1\. 再度コントラクトをデプロイする
 
-2. フロントエンドの契約アドレスを更新する（更新するファイル: `App.js`）
+2\. フロントエンドの契約アドレスを更新する（更新するファイル: `App.js`）
 
-3. フロントエンドのABIファイルを更新する（更新するファイル: `dApp-starter-project/src/utils/WavePortal.json`）
+3\. フロントエンドのABIファイルを更新する（更新するファイル: `dApp-starter-project/src/utils/WavePortal.json`）
 
 **コントラクトを更新するたび、これらの3つのステップを実行する必要があります。**
 
@@ -317,37 +317,35 @@ WavePortal address:  0x550925E923Cb1734de73B3a843A21b871fe2a673
 3 \. 以前と同じように `artifacts` からABIファイルを取得します。下記のステップを実行してください。
 
 
-1. ターミナル上で `my-wave-portal` にいることを確認する（もしくは移動する）。
-
-2. ターミナル上で下記を実行する。
+>1\. ターミナル上で `my-wave-portal` にいることを確認する（もしくは移動する）。
+>
+>2\. ターミナル上で下記を実行する。
 > ```
 > code artifacts/contracts/WavePortal.sol/WavePortal.json
 > ```
-
-3. VS Codeで `WavePortal.json` ファイルが開かれるので、中身を全てコピーしましょう。
-
-	※ VS Codeのファインダーを使って、直接 `WavePortal.json` を開くことも可能です。
-
-4. **コピーした `my-wave-portal/artifacts/contracts/WavePortal.sol/WavePortal.json` の中身を`dApp-starter-project/src/utils/WavePortal.json` の中身と交換してください。**
+>
+>3\. VS Codeで `WavePortal.json` ファイルが開かれるので、中身を全てコピーしましょう。※ VS Codeのファインダーを使って、直接 `WavePortal.json` を開くことも可能です。
+>
+>4\. **コピーした `my-wave-portal/artifacts/contracts/WavePortal.sol/WavePortal.json` の中身を`dApp-starter-project/src/utils/WavePortal.json` の中身と交換してください。**
 
 **繰り返しますが、コントラクトを更新するたびにこれを行う必要があります。**
 
 `wave` を送ったユーザーに 0.001ETH が送られているか確認してみましょう。
 
-1. ターミナル上で `dApp-starter-project` に移動する
+1\. ターミナル上で `dApp-starter-project` に移動する
 
-2. 下記を実行する
+2\. 下記を実行する
 >```
 >npm run start
 >```
 
-3. ローカル環境でWEBアプリを開き、`wave` を送る
+3\. ローカル環境でWEBアプリを開き、`wave` を送る
 
 例）このような結果がWEBアプリに反映されていること確認してください。コントラクトを新しくしたので、既存の `wave` はリセットされています。
 
 > ![](/public/images/1-ETH-dApp/section-3/3_2_2.png)
 
-4. [Etherscan](https://rinkeby.etherscan.io/) にアクセスして、コントラクトアドレスを貼り付けてみましょう。
+4\. [Etherscan](https://rinkeby.etherscan.io/) にアクセスして、コントラクトアドレスを貼り付ける
 > 下記のように、`Balance` が `0.0009 Ether` となっていることを確認してください。
 >
 > ![](/public/images/1-ETH-dApp/section-3/3_2_3.png)

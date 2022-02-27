@@ -325,13 +325,13 @@ https://nft-minter-jl0e7c9yw-yukis4san.vercel.app/
 
 NFT を取得する条件は、以下のようになります。
 
-1 \. MVP の機能がすべて実装されている（実装 OK）
+1\. MVP の機能がすべて実装されている（実装 OK）
 
-2 \. WEBアプリで MVP の機能が問題なく実行される（テスト OK）
+2\. WEBアプリで MVP の機能が問題なく実行される（テスト OK）
 
-3 \. このページの最後にリンクされている Project Completion Form に記入する
+3\. このページの最後にリンクされている Project Completion Form に記入する
 
-4 \. Discord の `🔥｜post-your-project` チャンネルに、あなたのWEBサイトをシェアしてください😉🎉
+4\. Discord の `🔥｜post-your-project` チャンネルに、あなたのWEBサイトをシェアしてください😉🎉
 
 公開する際のフォーマットは下記の通りです。
 

@@ -8,11 +8,11 @@ Solana CLI を使用すると、実際の [バリデーター](https://solana.co
 
 Metaplex CLI を使用すると、Metaplex のデプロイされたNFTコントラクトと通信することができます。smart-contracts-as-a-service を使用して、下記を実行していきます。
 
-1. Candy Machine を作成する
+1\. Candy Machine を作成する
 
-2. NFT を Candy Machine にアップロードする
+2\. NFT を Candy Machine にアップロードする
 
-3. ユーザーが実際に Candy Machine を叩いて NFT を作成できるようにします。
+3\. ユーザーが実際に Candy Machine を叩いて NFT を作成できるようにします。
 ## 🤖 必要なツールをインストールする
 
 Candy Machine CLI と通信するには、いくつかの開発ツールをインストールする必要があります。

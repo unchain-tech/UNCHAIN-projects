@@ -4,11 +4,11 @@
 
 レッスンの最後に、次の機能を実装します。
 
-1. ユーザーは「👋（wave）」と一緒にメッセージを送信する。
+1\. ユーザーは「👋（wave）」と一緒にメッセージを送信する。
 
-2. そのデータをブロックチェーンに保存する。
+2\. そのデータをブロックチェーンに保存する。
 
-3. WEBイトにそのデータを表示する。
+3\. WEBイトにそのデータを表示する。
 
 それでは、`WavePortal.sol` を更新していきます。
 
@@ -326,11 +326,11 @@ We have 0 total waves!
 
 コントラクトを更新したので、下記を実行する必要があります。
 
-1. 再度コントラクトをデプロイする
+1\. 再度コントラクトをデプロイする
 
-2. フロントエンドの契約アドレスを更新する（更新するファイル: `App.js` ）
+2\. フロントエンドの契約アドレスを更新する（更新するファイル: `App.js` ）
 
-3. フロントエンドのABIファイルを更新する（更新するファイル: `dApp-starter-project/src/utils/WavePortal.json` ）
+3\. フロントエンドのABIファイルを更新する（更新するファイル: `dApp-starter-project/src/utils/WavePortal.json` ）
 
 **コントラクトを更新するたび、これらの3つのステップを実行する必要があります。**
 
@@ -369,16 +369,15 @@ WavePortal address: 0x... ← あなたのコントラクトアドレスをコ�
 
 **3 \. 以前と同じように `artifacts` からABIファイルを取得します。下記のステップを実行してください。**
 
-1. ターミナル上で `my-wave-portal` にいることを確認する（もしくは移動する）。
-2. ターミナル上で下記を実行する。
+>1\. ターミナル上で `my-wave-portal` にいることを確認する（もしくは移動する）。
+>
+>2\. ターミナル上で下記を実行する。
 > ```
 > code artifacts/contracts/WavePortal.sol/WavePortal.json
 > ```
-3. VS Codeで `WavePortal.json` ファイルが開かれるので、中身を全てコピーしましょう。
-
-	※ VS Codeのファインダーを使って、直接 `WavePortal.json` を開くことも可能です。
-
-4. コピーした `my-wave-portal/artifacts/contracts/WavePortal.sol/WavePortal.json` の中身を新しく作成した `dApp-starter-project/src/utils/WavePortal.json` の中に貼り付けてください。
+>3\. VS Codeで `WavePortal.json` ファイルが開かれるので、中身を全てコピーしましょう。※ VS Codeのファインダーを使って、直接 `WavePortal.json` を開くことも可能です。
+>
+>4\. コピーした `my-wave-portal/artifacts/contracts/WavePortal.sol/WavePortal.json` の中身を新しく作成した `dApp-starter-project/src/utils/WavePortal.json` の中に貼り付けてください。
 
 **繰り返しますが、コントラクトを更新するたびにこの作業を行う必要があります。**
 ## 🔌 WEBアプリにコントラクトの変更を反映させる
@@ -386,11 +385,12 @@ WavePortal address: 0x... ← あなたのコントラクトアドレスをコ�
 下記のように `App.js` を更新しましょう。
 
 新しく実装した機能は以下のつです。
-1. ユーザーは「👋（wave）」と一緒にメッセージを送信する。
 
-2. そのデータをブロックチェーンに保存する。
+1\. ユーザーは「👋（wave）」と一緒にメッセージを送信する。
 
-3. WEBイトにそのデータを表示する。
+2\. そのデータをブロックチェーンに保存する。
+
+3\. WEBイトにそのデータを表示する。
 
 ```javascript
 // App.js

@@ -4,9 +4,11 @@
 
 ターミナル上で新しくファイルを作成する場合は、下記のコマンドが役立ちます。
 
-1. `epic-nfts` ディレクトリに移動: `cd epic-nfts`
-2. `contracts` ディレクトリに移動: `cd contracts`
-3. `MyEpicNFT.sol` ファイルを作成: `touch MyEpicNFT.sol`
+1\. `epic-nfts` ディレクトリに移動: `cd epic-nfts`
+
+2\. `contracts` ディレクトリに移動: `cd contracts`
+
+3\. `MyEpicNFT.sol` ファイルを作成: `touch MyEpicNFT.sol`
 
 Hardhat を使用する場合、ファイル構造は非常に重要なので、注意する必要があります。ファイル構造が下記のようになっていれば大丈夫です😊
 ```bash
@@ -113,11 +115,11 @@ class の概念については、[ここ](https://aiacademy.jp/media/?p=131)を�
 
 スマートコントラクトを実行するためには以下の手順が必要です。
 
-1. コンパイルする。
+1\. コンパイルする。
 
-2. ローカル環境のブロックチェーンにデプロイする。
+2\. ローカル環境のブロックチェーンにデプロイする。
 
-3. `console.log`が実行される。
+3\. `console.log`が実行される。
 
 ここでは、この3つのステップを処理して、テストするプログラムを作成していきます。
 

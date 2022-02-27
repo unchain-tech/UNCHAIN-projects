@@ -75,17 +75,17 @@ emit NewEpicNFTMinted(msg.sender, newItemId);
 
 コントラクトを更新したので、下記を実行する必要があります。
 
-1. 再度コントラクトをデプロイする
+1\. 再度コントラクトをデプロイする
 
-2. フロントエンドの契約アドレスを更新する（更新するファイル: `App.js`）
+2\. フロントエンドの契約アドレスを更新する（更新するファイル: `App.js`）
 
-3. フロントエンドのABIファイルを更新する（更新するファイル: `your-first-NET-collection/src/utils/MyEpicNFT.json`）
+3\. フロントエンドのABIファイルを更新する（更新するファイル: `your-first-NET-collection/src/utils/MyEpicNFT.json`）
 
 **コントラクトを更新するたび、これらの3つのステップを実行する必要があります。**
 
 復習もかねて、丁寧に実行していきましょう。
 
-**1 \. ターミナル上で `epic-nfts` に移動します。**
+**1\. ターミナル上で `epic-nfts` に移動します。**
 
 下記を実行し、コントラクトを再度デプロイしましょう。
 ```
@@ -97,21 +97,20 @@ npx hardhat run scripts/deploy.js --network rinkeby
 Contract deployed to: 0x... ← あなたのコントラクトアドレスをコピー
 ```
 
-**2 \. コピーしたアドレスを `App.js` の  `const CONTRACT_ADDRESS = "こちら"` に貼り付けましょう。**
+**2\. コピーしたアドレスを `App.js` の  `const CONTRACT_ADDRESS = "こちら"` に貼り付けましょう。**
 
-**3 \. 以前と同じように `artifacts` からABIファイルを取得します。下記のステップを実行してください。**
+**3\. 以前と同じように `artifacts` からABIファイルを取得します。下記のステップを実行してください。**
 
+1\. ターミナル上で `epic-nfts` にいることを確認する（もしくは移動する）。
 
-1. ターミナル上で `epic-nfts` にいることを確認する（もしくは移動する）。
-2. ターミナル上で下記を実行する。
+2\. ターミナル上で下記を実行する。
 > ```
 > code artifacts/contracts/MyEpicNFT.sol/MyEpicNFT.json
 > ```
-3. VS Codeで `MyEpicNFT.json` ファイルが開かれるので、中身を全てコピーしましょう。
 
-	※ VS Codeのファインダーを使って、直接 `MyEpicNFT.json` を開くことも可能です。
+3\. VS Codeで `MyEpicNFT.json` ファイルが開かれるので、中身を全てコピーする。※ VS Codeのファインダーを使って、直接 `MyEpicNFT.json` を開くことも可能です。
 
-4. コピーした `epic-nfts/artifacts/contracts/MyEpicNFT.sol/MyEpicNFT.json` の中身を `your-first-dapp/src/utils/MyEpicNFT.json` の中身と交換してください。
+4\. コピーした `epic-nfts/artifacts/contracts/MyEpicNFT.sol/MyEpicNFT.json` の中身を `your-first-dapp/src/utils/MyEpicNFT.json` の中身と交換する。
 
 **繰り返しますが、コントラクトを更新するたびにこれを行う必要があります。**
 ## 🪄 フロントエンドを更新する
@@ -536,22 +535,25 @@ export default App;
 
 MVP を起点にWEBアプリを自分の好きなようにアップグレードしましょう。
 
-**1. ミントされたNFTの数に制限を設定する**
-- `MyEpicNFT.sol` を変更して、あらかじめ設定された数のNFTのみをミントできるようにすることをおすすめします。
-- `App.js` を更新して、WEBアプリ上で Mint カウンターを表示してみましょう。
-- 例）「これまでに作成された 4/50 NFT」
+**1\. ミントされたNFTの数に制限を設定する**
 
-**2. ユーザーが間違ったネットワーク上にいるときアラートを出す**
+`MyEpicNFT.sol` を変更して、あらかじめ設定された数のNFTのみをミントできるようにすることをおすすめします。
 
-- あなたのWEBサイトは Rinkeby Test Network で**のみ**機能します。
+`App.js` を更新して、WEBアプリ上で Mint カウンターを表示してみましょう。
 
-- ユーザーが、Rinkeby 以外のネットワークにログインしている状態で、あなたの WEBサイトに接続しようとしたら、それを知らせるアラートを出しましょう。
+例）「これまでに作成された 4/50 NFT」
 
-- `methereum.request` と `eth_accounts` と `eth_requestAccounts` というメソッドを使用して、アラートを作成することができます。
+**2\. ユーザーが間違ったネットワーク上にいるときアラートを出す**
 
-- `eth_chainId` を使って ブロックチェーンを識別する ID を取得します。
+あなたのWEBサイトは Rinkeby Test Network で**のみ**機能します。
 
-- 下記のコードを `App.js` に組み込んでみましょう。
+ユーザーが、Rinkeby 以外のネットワークにログインしている状態で、あなたの WEBサイトに接続しようとしたら、それを知らせるアラートを出しましょう。
+
+`methereum.request` と `eth_accounts` と `eth_requestAccounts` というメソッドを使用して、アラートを作成することができます。
+
+`eth_chainId` を使って ブロックチェーンを識別する ID を取得します。
+
+下記のコードを `App.js` に組み込んでみましょう。
 
 ```javascript
 let chainId = await ethereum.request({ method: 'eth_chainId' });
@@ -563,24 +565,24 @@ if (chainId !== rinkebyChainId) {
 }
 ```
 
-- 他のブロックチェーン ID は [ここ](https://docs.metamask.io/guide/ethereum-provider.html#chain-ids) で見つけることができます。
+他のブロックチェーン ID は [こちら](https://docs.metamask.io/guide/ethereum-provider.html#chain-ids) から見つけることができます。
 
 
-**3. マイニングアニメーションを作成する**
+**3\. マイニングアニメーションを作成する**
 
-- 一部のユーザーは、Mint をクリックした後、15秒以上何も起こらないと、混乱してしまう可能性があるでしょう。
+一部のユーザーは、Mint をクリックした後、15秒以上何も起こらないと、混乱してしまう可能性があるでしょう。
 
-- "Loading ..." のようなアニメーションを追加して、ユーザーに安心してもらいましょう。
+"Loading ..." のようなアニメーションを追加して、ユーザーに安心してもらいましょう。
 
-**4. あなたのコレクションWEBアプリをリンクさせる**
+**4\. あなたのコレクションWEBアプリをリンクさせる**
 
-- あなたのコレクションを見にいけるボタンをWEBアプリ上に作成して、ユーザーがいつでもあなたの NFT コレクションを見に行けるようにしましょう。
+あなたのコレクションを見にいけるボタンをWEBアプリ上に作成して、ユーザーがいつでもあなたの NFT コレクションを見に行けるようにしましょう。
 
-- なたのWEBサイトに、「Rarible でコレクションを表示」という小さなボタンを追加します。
+あなたのWEBサイトに、「Rarible でコレクションを表示」という小さなボタンを追加します。
 
-- ユーザーがそれをクリックすると、コレクションのページに行けるようにしましょう。
+ユーザーがそれをクリックすると、コレクションのページに行けるようにしましょう。
 
-- Rarible へのリンクは `App.js` にハードコーディングする必要があります。
+Rarible へのリンクは `App.js` にハードコーディングする必要があります。
 ## 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discordの`#section-4-help`で質問をしてください。

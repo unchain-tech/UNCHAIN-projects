@@ -8,11 +8,11 @@ NFT を作成するスマートコントラクトを作成します。
 
 ターミナル上で新しくファイルを作成する場合は、下記のコマンドが役立ちます。
 
-1. `epic-game` ディレクトリに移動: `cd epic-game`
+1\. `epic-game` ディレクトリに移動: `cd epic-game`
 
-2. `contracts` ディレクトリに移動: `cd contracts`
+2\. `contracts` ディレクトリに移動: `cd contracts`
 
-3. `MyEpicGame.sol` ファイルを作成: `touch MyEpicGame.sol`
+3\. `MyEpicGame.sol` ファイルを作成: `touch MyEpicGame.sol`
 
 Hardhat を使用する場合、ファイル構造は非常に重要なので、注意する必要があります。ファイル構造が下記のようになっていれば大丈夫です😊
 ```bash
@@ -101,9 +101,12 @@ class の概念については、[ここ](https://aiacademy.jp/media/?p=131)を�
 前回のレッスンでは、`MyEpicGame.sol` というスマートコントラクトを作成しました。
 
 今回のレッスンでは下記を実行します。
-1. `MyEpicGame.sol` をコンパイルします。
-2. `MyEpicGame.sol` をテスト環境（=ローカル環境）でブロックチェーン上にデプロイします。
-3. 上記が完了したら、`console.log` の中身がターミナル上に表示されます。
+
+1\. `MyEpicGame.sol` をコンパイルします。
+
+2\. `MyEpicGame.sol` をテスト環境（=ローカル環境）でブロックチェーン上にデプロイします。
+
+3\. 上記が完了したら、`console.log` の中身がターミナル上に表示されます。
 
 このプロジェクトの最終ゴールは、あなたのスマートコントラクトをブロックチェーン上にのせ、あなたのWEBアプリを介して世界中の人々がそのスマートコントラクトにアクセスできる状態を実現することです。
 

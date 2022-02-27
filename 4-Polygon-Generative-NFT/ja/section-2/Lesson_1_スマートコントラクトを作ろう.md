@@ -94,17 +94,17 @@ contracts		package.json
 
 まず、`test` の下のファイル `sample-test.js` を削除します。
 
-1. `test` フォルダーに移動: `cd test`
+1\. `test` フォルダーに移動: `cd test`
 
-2. `sample-test.js` を削除: `rm -r sample-test.js`
+2\. `sample-test.js` を削除: `rm -r sample-test.js`
 
 また、`scripts` の下の `sample-script.js` を削除します。
 
-1. 一つ上の階層のフォルダー（ `nft-collectible` ）に移動: `cd ..`
+1\. 一つ上の階層のフォルダー（ `nft-collectible` ）に移動: `cd ..`
 
-2. `cd scripts` フォルダーに移動: `cd script`
+2\. `cd scripts` フォルダーに移動: `cd script`
 
-3. `sample-script.js` を削除: `rm -r sample-script.js`
+3\. `sample-script.js` を削除: `rm -r sample-script.js`
 
 次に、上記の手順を参考にして `contracts` の下の `Greeter.sol` を削除してください。実際のフォルダは削除しないように注意しましょう。
 ## 🖋 コントラクトを作成する
@@ -117,11 +117,11 @@ contracts		package.json
 
 ターミナル上で新しくファイルを作成する場合は、下記のコマンドが役立ちます。
 
-1. `nft-collectible` ディレクトリに移動: `cd nft-collectible`
+1\. `nft-collectible` ディレクトリに移動: `cd nft-collectible`
 
-2. `contracts` ディレクトリに移動: `cd contracts`
+2\. `contracts` ディレクトリに移動: `cd contracts`
 
-3. `NFTCollectible.sol` ファイルを作成: `touch NFTCollectible.sol`
+3\. `NFTCollectible.sol` ファイルを作成: `touch NFTCollectible.sol`
 
 Hardhat を使用する場合、ファイル構造は非常に重要なので、注意する必要があります。ファイル構造が下記のようになっていれば大丈夫です😊
 ```bash
@@ -231,11 +231,11 @@ string public baseTokenURI;
 
 まず、ここでは以下の3つを定数（ `constants` ）として定義します。
 
-1. **NFT の供給量（ `MAX_SUPPLY` ）**: コレクションで Mint 可能な NFT の最大数。
+1\. **NFT の供給量（ `MAX_SUPPLY` ）**: コレクションで Mint 可能な NFT の最大数。
 
-2. **NFT の価格（ `PRICE` ）**: NFTを購入するのにユーザーが支払う ETH の額。
+2\. **NFT の価格（ `PRICE` ）**: NFTを購入するのにユーザーが支払う ETH の額。
 
-3. **1取引あたりの最大 Mint 数（ `MAX_PER_MINT` ）**: ユーザーが度に Mint できる NFT の上限限。
+3\. **1取引あたりの最大 Mint 数（ `MAX_PER_MINT` ）**: ユーザーが度に Mint できる NFT の上限限。
 
 **コントラクトがデプロイされたら、定数の中身を変更することはできません。**
 
@@ -432,11 +432,11 @@ uint public constant PRICE = 0.01 ether;
 uint public constant MAX_PER_MINT = 3;
 ```
 
-1. ユーザーが Mint を希望する NFT の数がコレクションに残っていること。
+1\. ユーザーが Mint を希望する NFT の数がコレクションに残っていること。
 
-2. ユーザーが `0` 以上、トランザクションごとに許可される NFT の最大数（ `MAX_PER_MINT` ）未満の Mint を実行しようとしていること。
+2\. ユーザーが `0` 以上、トランザクションごとに許可される NFT の最大数（ `MAX_PER_MINT` ）未満の Mint を実行しようとしていること。
 
-3. ユーザーは NFT を Mint するのに十分な ETH を送金していること。
+3\. ユーザーは NFT を Mint するのに十分な ETH を送金していること。
 ## 🌱 `_mintSingleNFT()` 関数を実装する
 
 最後に、ユーザーが NFT を Mint するときに呼び出される `_mintSingleNFT()` 関数を実装していきましょう。

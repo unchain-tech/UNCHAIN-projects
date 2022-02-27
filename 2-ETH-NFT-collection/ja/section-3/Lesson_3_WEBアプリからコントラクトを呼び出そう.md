@@ -5,7 +5,7 @@
 **これから、WEBアプリから `MyEpicNFT.sol` コントラクトにアクセスして、NFT を発行する `makeAnEpicNFT` 関数を呼び出していきましょう。**
 - 以前のレッスンで `makeAnEpicNFT` 関数は `MyEpicNFT.sol` に実装しました。
 
-1 \. まず、`App.js` の1行目に、下記のコードを追加してください。
+まず、`App.js` の1行目に、下記のコードを追加してください。
 ```javascript
 // App.js
 import { ethers } from "ethers";
@@ -13,7 +13,7 @@ import { ethers } from "ethers";
 
 ここでは、フロントエンドとコントラクトを連携させるライブラリ `ethers` をインポートしています。
 
-1. 次に、下記のコードを `App.js` の `connectWallet` 関数の下に `askContractToMintNft` 関数を追加してください。
+次に、下記のコードを `App.js` の `connectWallet` 関数の下に `askContractToMintNft` 関数を追加してください。
 
 - フロントエンドに実装する `askContractToMintNft` 関数が、コントラクトとWEBサイトを連動させ、`makeAnEpicNFT` 関数を呼び出します。
 
@@ -65,7 +65,7 @@ Contract deployed to: 0x88a0e9c2F3939598c402eccb7Ae1612e45448C04
 
 次に、追加されたコードを見ながら、新しい概念について学びましょう。
 
-1. `provider`
+1\. `provider`
 > ```javascript
 > // App.js
 > const provider = new ethers.providers.Web3Provider(ethereum);
@@ -76,7 +76,7 @@ Contract deployed to: 0x88a0e9c2F3939598c402eccb7Ae1612e45448C04
 >
 > `ethers` のライブラリにより `provider` のインスタンスを新規作成しています。
 
-2. `signer`
+2\. `signer`
 > ```javascript
 > // App.js
 >const signer = provider.getSigner();
@@ -88,21 +88,21 @@ Contract deployed to: 0x88a0e9c2F3939598c402eccb7Ae1612e45448C04
 >
 > `provider.getSigner()` は新しい `signer` インスタンスを返すので、それを使って署名付きトランザクションを送信することができます。
 
-3. コントラクトインスタンス
+3\. コントラクトインスタンス
 > ```javascript
 > // App.js
 >  const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, myEpicNft.abi, signer);
 > ```
 >
-> ここで、**コントラクトへの接続を行っています。**
+> ここでは、**コントラクトへの接続を行っています。**
 >
 >新しいコントラクトインスタンス（＝ `connectedContract` ）を作成するには、以下3つの変数を `ethers.Contract` 関数に渡す必要があります。
 >
-> 1. `CONTRACT_ADDRESS`: コントラクトのデプロイ先のアドレス（ローカル、テストネット、またはメインネット）
+> 1\. `CONTRACT_ADDRESS`: コントラクトのデプロイ先のアドレス（ローカル、テストネット、またはメインネット）
 >
-> 2. `myEpicNft.abi`: コントラクトの ABI
+> 2\. `myEpicNft.abi`: コントラクトの ABI
 >
-> 3. `signer` もしくは `provider`
+> 3\. `signer` もしくは `provider`
 >
 > コントラクトインスタンスでは、コントラクトに格納されているすべての関数を呼び出すことができます。
 >
@@ -185,9 +185,12 @@ ABI (Application Binary Interface) はコントラクトの取り扱い説明書
 WEBアプリがコントラクトと通信するために必要な情報が、ABIファイルに含まれています。
 
 コントラクト一つ一つにユニークな ABI ファイルが紐づいており、その中には下記の情報が含まれています。
-1. そのコントラクトに使用されている関数の名前
-2. それぞれの関数にアクセスするために必要なパラメータとその型
-3. 関数の実行結果に対して返るデータ型の種類
+
+1\. そのコントラクトに使用されている関数の名前
+
+2\. それぞれの関数にアクセスするために必要なパラメータとその型
+
+3\. 関数の実行結果に対して返るデータ型の種類
 
 ABI ファイルは、コントラクトがコンパイルされた時に生成され、`epic-nfts/artifacts` ディレクトリに自動的に格納されます。
 
@@ -199,30 +202,38 @@ ABIファイルの中身は、`MyEpicNFT.json` というファイルに格納さ
 
 下記を実行して、ABIファイルをコピーしましょう。
 
-1. ターミナル上で `epic-nfts` にいることを確認する（もしくは移動する）。
-2. ターミナル上で下記を実行する。
+1\. ターミナル上で `epic-nfts` にいることを確認する（もしくは移動する）。
+
+2\. ターミナル上で下記を実行する。
 > ```
 > code artifacts/contracts/MyEpicNFT.sol/MyEpicNFT.json
 > ```
-3. VS Codeで `MyEpicNFT.json` ファイルが開かれるので、中身を全てコピーしましょう。
 
-	※ VS Codeのファインダーを使って、直接 `MyEpicNFT.json` を開くことも可能です。
+3\. VS Codeで `MyEpicNFT.json` ファイルが開かれるので、中身を全てコピーしましょう。※ VS Codeのファインダーを使って、直接 `MyEpicNFT.json` を開くことも可能です。
 
 次に、下記を実行して、ABIファイルをWEBアプリから呼び出せるようにしましょう。
-1. ターミナル上で `nft-collection-starter-project` にいることを確認する（もしくは移動する）。
-2. 下記を実行して、`nft-collection-starter-project/src/` の中に `utils` ディレクトリを作成する。
+
+1\. ターミナル上で `nft-collection-starter-project` にいることを確認する（もしくは移動する）。
+
+2\. 下記を実行して、`nft-collection-starter-project/src/` の中に `utils` ディレクトリを作成する。
+
 > ```bash
 > mkdir src/utils
 >```
-3. 下記を実行して、`utils` ディレクトリに `MyEpicNFT.json` ファイルを作成する。
+
+3\. 下記を実行して、`utils` ディレクトリに `MyEpicNFT.json` ファイルを作成する。
+
 >```bash
 > touch src/utils/MyEpicNFT.json
 >```
-4. 下記を実行して、`MyEpicNFT.json` ファイルを VS Code で開く。
+
+4\. 下記を実行して、`MyEpicNFT.json` ファイルを VS Code で開く。
+
 >```bash
 > code nft-collection-starter-project/src/utils/MyEpicNFT.json
 >```
-5. **先ほどコピーした `epic-nfts/artifacts/contracts/MyEpicNFT.sol/MyEpicNFT.json` の中身を新しく作成した `nft-collection-starter-project/src/utils/MyEpicNFT.json` の中に貼り付けてください。**
+
+5\. **先ほどコピーした `epic-nfts/artifacts/contracts/MyEpicNFT.sol/MyEpicNFT.json` の中身を新しく作成した `nft-collection-starter-project/src/utils/MyEpicNFT.json` の中に貼り付けてください。**
 
 ABI ファイルの準備ができたので、`App.js` にインポートしましょう。
 
