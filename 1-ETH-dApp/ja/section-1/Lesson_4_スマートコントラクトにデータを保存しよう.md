@@ -320,7 +320,7 @@ We have 1 total waves!
 これらは、WavePortal のWEBサイトを構築する上で大切な要素です。
 ## 🤝 他のユーザーに👋（wave）を送ってもらう
 
-ここでは、他のユーザーがあなたに「👋（wave）」を送った場合のシミューションを行います。
+ここでは、他のユーザーがあなたに「👋（wave）」を送った場合のシミュレーションを行います。
 
 下記を`run.js`  に反映させて、ターミナルにどのような結果がでるかテストしてみましょう。
 
@@ -375,7 +375,7 @@ waveCount = await waveContract.getTotalWaves();
 
 * `randomPerson` には、Hardhat が取得したランダムなアドレスが格納されています。
 
-* `randomPerson` は、このシミューションのために存在していたのです。
+* `randomPerson` は、このシミュレーションのために存在していたのです。
 
 ```javascript
 // run.js
