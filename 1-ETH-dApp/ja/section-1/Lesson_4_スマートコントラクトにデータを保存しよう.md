@@ -375,7 +375,7 @@ waveCount = await waveContract.getTotalWaves();
 
 * `randomPerson` には、Hardhat が取得したランダムなアドレスが格納されています。
 
-* `randomPerson` は、このシミューションのために存在していたのです。
+* `randomPerson` は、このシミュレーションのために存在していたのです。
 
 ```javascript
 // run.js
