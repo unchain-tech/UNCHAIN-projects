@@ -109,7 +109,7 @@ contracts		package.json
 
 * 一つ上の階層のフォルダー（ `my-wave-portal` ）に移動: `cd ..`
 
-* `cd scripts` フォルダーに移動: `cd script`
+* `cd scripts` フォルダーに移動: `cd scripts`
 
 * `sample-script.js` を削除: `rm -r sample-script.js`
 

@@ -43,7 +43,7 @@ ts-node --version
 
 - [ts-nodeのインストール](https://www.npmjs.com/package/ts-node#installation)
 
-必ず `ts-node` を**ルートディレクト**にインストールしてください。
+必ず `ts-node` を**ルートディレクトリ**にインストールしてください。
 
 次のコマンドを使用してください：`npm install -g ts-node`
 
