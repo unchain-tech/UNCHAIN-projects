@@ -1,4 +1,4 @@
-### 🤔 NFとは何か？
+### 🤔 NFTとは何か？
 
 NFT の概要については、[こちら](https://github.com/yukis4san/Intro-NFT/blob/main/section-1/NFT-S1-lesson-1.md) をご覧ください。
 
