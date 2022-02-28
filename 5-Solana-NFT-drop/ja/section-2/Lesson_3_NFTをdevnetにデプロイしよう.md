@@ -115,8 +115,7 @@ solana airdrop 2
 
 今回は NFT を3つしか上げないのですが、3つ以上あげたい場合は `number` の数字を変更してください。
 
-🚀  NFT をアップロードし、Candy Machine を作成する
-----
+### 🚀  NFT をアップロードし、Candy Machine を作成する
 
 次に、Metaplex の `upload` コマンドを使用して、`Assets` ディレクトリにある NFT をアップロードし、Candy Machine を作成します。この作業は一度に行われます。
 
@@ -257,7 +256,7 @@ TypeError: Cannot read property 'candyMachineAddress' of undefined
 3. エラー画面のスクリーンショット
 ```
 
-------
+---
 おめでとうございます！セクション2は終了です！
 
 ぜひ、ターミナルの出力結果をコミュニティに投稿してください！

@@ -21,6 +21,7 @@ cd epic-nfts
 npm init -y
 npm install --save-dev hardhat
 ```
+
 ✍️: `warning` について
 > 最後のコマンドを実行して Hardhat をインストールすると、脆弱性に関するメッセージが表示される場合があります。
 >
@@ -139,5 +140,5 @@ Greeter deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 3. エラー画面のスクリーンショット
 ```
 
-------
+---
 次のレッスンに進んで、独自のNFTコントラクトの実装を開始しましょう🎉

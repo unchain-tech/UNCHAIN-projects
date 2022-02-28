@@ -65,7 +65,7 @@ Contract deployed to: 0x88a0e9c2F3939598c402eccb7Ae1612e45448C04
 
 次に、追加されたコードを見ながら、新しい概念について学びましょう。
 
-1\. `provider`
+I\. `provider`
 > ```javascript
 > // App.js
 > const provider = new ethers.providers.Web3Provider(ethereum);
@@ -76,7 +76,7 @@ Contract deployed to: 0x88a0e9c2F3939598c402eccb7Ae1612e45448C04
 >
 > `ethers` のライブラリにより `provider` のインスタンスを新規作成しています。
 
-2\. `signer`
+II\. `signer`
 > ```javascript
 > // App.js
 >const signer = provider.getSigner();
@@ -88,7 +88,7 @@ Contract deployed to: 0x88a0e9c2F3939598c402eccb7Ae1612e45448C04
 >
 > `provider.getSigner()` は新しい `signer` インスタンスを返すので、それを使って署名付きトランザクションを送信することができます。
 
-3\. コントラクトインスタンス
+III\. コントラクトインスタンス
 > ```javascript
 > // App.js
 >  const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, myEpicNft.abi, signer);
@@ -98,11 +98,11 @@ Contract deployed to: 0x88a0e9c2F3939598c402eccb7Ae1612e45448C04
 >
 >新しいコントラクトインスタンス（＝ `connectedContract` ）を作成するには、以下3つの変数を `ethers.Contract` 関数に渡す必要があります。
 >
-> 1\. `CONTRACT_ADDRESS`: コントラクトのデプロイ先のアドレス（ローカル、テストネット、またはメインネット）
+> 1. `CONTRACT_ADDRESS`: コントラクトのデプロイ先のアドレス（ローカル、テストネット、またはメインネット）
 >
-> 2\. `myEpicNft.abi`: コントラクトの ABI
+> 2. `myEpicNft.abi`: コントラクトの ABI
 >
-> 3\. `signer` もしくは `provider`
+> 3. `signer` もしくは `provider`
 >
 > コントラクトインスタンスでは、コントラクトに格納されているすべての関数を呼び出すことができます。
 >
@@ -186,11 +186,11 @@ WEBアプリがコントラクトと通信するために必要な情報が、AB
 
 コントラクト一つ一つにユニークな ABI ファイルが紐づいており、その中には下記の情報が含まれています。
 
-1\. そのコントラクトに使用されている関数の名前
+1. そのコントラクトに使用されている関数の名前
 
-2\. それぞれの関数にアクセスするために必要なパラメータとその型
+2. それぞれの関数にアクセスするために必要なパラメータとその型
 
-3\. 関数の実行結果に対して返るデータ型の種類
+3. 関数の実行結果に対して返るデータ型の種類
 
 ABI ファイルは、コントラクトがコンパイルされた時に生成され、`epic-nfts/artifacts` ディレクトリに自動的に格納されます。
 
@@ -324,7 +324,7 @@ Mined, see transaction: https://rinkeby.etherscan.io/tx/0x5a08f3e66852b5c1833f3a
 2. エラー文をコピー&ペースト
 3. エラー画面のスクリーンショット
 ```
----------
+---
 おめでとうございます！
 
 NFT を Mint できる WEBアプリはほぼ完成です！

@@ -253,8 +253,7 @@ string public baseTokenURI;
 >
 > `public` を含む、他のアクセス修飾子について詳しく説明しています。
 
-🤖 コンストラクタ（ `constructor` ）を記述する
----
+### 🤖 コンストラクタ（ `constructor` ）を記述する
 
 コンストラクタ（ `constructor` ）の呼び出して、`baseTokenURI` を設定していきます。
 
@@ -612,5 +611,5 @@ contract NFTCollectible is ERC721Enumerable, Ownable {
 2. エラー文をコピー&ペースト
 3. エラー画面のスクリーンショット
 ```
-------
+---
 コントラクトが完成したら、次のレッスンに進んでイーサリアムネットワークにデプロイしましょう🎉

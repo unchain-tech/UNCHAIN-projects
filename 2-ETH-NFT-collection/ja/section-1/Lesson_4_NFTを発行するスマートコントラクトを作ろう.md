@@ -1,6 +1,6 @@
-### 🪄 NFTを作成しよう
+### 🪄 NFT を作成しよう
 
-これから、いくつかのNFTを作成します。
+これから、いくつかの NFT を作成します。
 
 下記のように、`MyEpicNFT.sol`を更新しましょう。
 
@@ -208,15 +208,11 @@ NFT が発行された後、`_tokenIds.increment()`（＝ OpenZeppelin が提供
 ```
 
 メタデータの構造に注意してください。
-
 - `"name"`: デジタルデータの名前
-
 - `"description"`: デジタルデータの説明
-
 - `"image"`: デジタルデータへのリンク
 
 メタデータの構造が [OpenSeaの要件](https://zenn.dev/hayatoomori/articles/f26cc4637c7d66) と一致しない場合、デジタルデータは OpenSea 上で正しく表示されません。
-
 - Openseaは、`ERC721` のメタデータ規格をサポートしています。
 - 音声ファイル、動画ファイル、3Dメディアなどに対応するメタデータ構造に関しては、[OpenSeaの要件](https://zenn.dev/hayatoomori/articles/f26cc4637c7d66) を参照してください。
 
@@ -344,7 +340,6 @@ Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押して
 次に、下記の項目を埋めていきます。下図を参考にしてください。
 
 ![](/public/images/2-ETH-NFT-collection/section-1/1_4_4.png)
-
 - `NAME` : プロジェクトの名前（例: `MyEpicNFT` ）
 - `DESCRIPTION` : プロジェクトの概要（任意）
 - `ENVIRONMENT` : `Development` を選択。
@@ -373,14 +368,10 @@ Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押して
 - テストネットは偽の ETH を使用しているため、いくらでもトランザクションのテストを行えます。
 
 今回は、以下のイベントをテストしていきます。
-
-1\. トランザクションの発生を世界中のマイナーたちに知らせる
-
-2\. あるマイナーがトランザクションを発見する
-
-3\. そのマイナーがトランザクションを承認する
-
-4\. そのマイナーがトランザクションを承認したことを他のマイナーたちに知らせ、トランザクションのコピーを更新する
+1. トランザクションの発生を世界中のマイナーたちに知らせる
+2. あるマイナーがトランザクションを発見する
+3. そのマイナーがトランザクションを承認する
+4. そのマイナーがトランザクションを承認したことを他のマイナーたちに知らせ、トランザクションのコピーを更新する
 ### 🚰 偽の ETH を取得する
 
 今回は、`Rinkeby` というイーサリアム財団によって運営されているテストネットを使用します。
@@ -458,7 +449,6 @@ const main = async () => {
 `hardhat.config.js` ファイルを変更する必要があります。
 
 これは、スマートコントラクトプロジェクトのルートディレクトリにあります。
-
 - 今回は、`epic-nfts` ディレクトリの直下に `hardhat.config.js` が存在するはずです。
 
 例）`epic-nfts` で `ls` を実行した結果
@@ -487,11 +477,9 @@ module.exports = {
 次に、`YOUR_ALCHEMY_API_URL` と`YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` を取得して、`hardhat.config.js` に貼り付けましょう。
 
 1\. `YOUR_ALCHEMY_API_URL`の取得
-
 > `hardhat.config.js` の `YOUR_ALCHEMY_API_URL` の部分を先ほど取得した Alchemy の URL（ `HTTP` リンク） と入れ替えます。
 
 2\. `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の取得
->
 > 1\. お使いのブラウザから、Metamask プラグインをクリックして、ネットワークを `Rinkeby Test Network` に変更します。
 >
 > ![](/public/images/2-ETH-NFT-collection/section-1/1_4_11.png)
@@ -634,9 +622,11 @@ https://rinkeby.rarible.com/token/0x67cd3f53c20e3a6211458dd5b7465e1f9464531c:0
 2. エラー文をコピー&ペースト
 3. エラー画面のスクリーンショット
 ```
------
+---
 おめでとうございます！セクション1が終了しました！
 
-Rarible のリンクを `#section-1-help`  を貼り付けて、コミュニティにあなたの NFT をシェアしてください😊 どんな NFT なのか気になります✨
+Rarible のリンクを `#section-1-help`  を貼り付けて、コミュニティにあなたの NFT をシェアしてください😊
+
+どんな NFT なのか気になります✨
 
 オンラインであなたの NFT を確認したら、次のレッスンに進みましょう🎉

@@ -277,11 +277,11 @@ const waveContract = await waveContractFactory.deploy({
 
 コントラクトを更新したので、下記を実行する必要があります。
 
-1\. 再度コントラクトをデプロイする
+1. 再度コントラクトをデプロイする
 
-2\. フロントエンドの契約アドレスを更新する（更新するファイル: `App.js`）
+2. フロントエンドの契約アドレスを更新する（更新するファイル: `App.js`）
 
-3\. フロントエンドのABIファイルを更新する（更新するファイル: `dApp-starter-project/src/utils/WavePortal.json`）
+3. フロントエンドのABIファイルを更新する（更新するファイル: `dApp-starter-project/src/utils/WavePortal.json`）
 
 **コントラクトを更新するたび、これらの3つのステップを実行する必要があります。**
 
@@ -315,8 +315,6 @@ WavePortal address:  0x550925E923Cb1734de73B3a843A21b871fe2a673
 - コピーしたアドレスを `App.js` の `const contractAddress = "こちら"` に貼り付けましょう。
 
 3 \. 以前と同じように `artifacts` からABIファイルを取得します。下記のステップを実行してください。
-
-
 >1\. ターミナル上で `my-wave-portal` にいることを確認する（もしくは移動する）。
 >
 >2\. ターミナル上で下記を実行する。
@@ -332,20 +330,20 @@ WavePortal address:  0x550925E923Cb1734de73B3a843A21b871fe2a673
 
 `wave` を送ったユーザーに 0.001ETH が送られているか確認してみましょう。
 
-1\. ターミナル上で `dApp-starter-project` に移動する
+1\. ターミナル上で `dApp-starter-project` に移動する。
 
-2\. 下記を実行する
+2\. 下記を実行する。
 >```
 >npm run start
 >```
 
-3\. ローカル環境でWEBアプリを開き、`wave` を送る
+3\. ローカル環境でWEBアプリを開き、`wave` を送る。
 
 例）このような結果がWEBアプリに反映されていること確認してください。コントラクトを新しくしたので、既存の `wave` はリセットされています。
 
 > ![](/public/images/1-ETH-dApp/section-3/3_2_2.png)
 
-4\. [Etherscan](https://rinkeby.etherscan.io/) にアクセスして、コントラクトアドレスを貼り付ける
+4\. [Etherscan](https://rinkeby.etherscan.io/) にアクセスして、コントラクトアドレスを貼り付ける。
 > 下記のように、`Balance` が `0.0009 Ether` となっていることを確認してください。
 >
 > ![](/public/images/1-ETH-dApp/section-3/3_2_3.png)
@@ -361,7 +359,7 @@ WavePortal address:  0x550925E923Cb1734de73B3a843A21b871fe2a673
 2. エラー文をコピー&ペースト
 3. エラー画面のスクリーンショット
 ```
---------------
+---
 おめでとうございます！セクション3が終了しました！
 あなたの Etherscan のアドレスを `#section-3-help` に投稿してあなたの成功をコミュニティで祝いましょう😊
 ユーザーにETHを送れるコントラクトの実装が完了したら、次のレッスンに進みましょう🎉

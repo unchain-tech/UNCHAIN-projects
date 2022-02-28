@@ -146,7 +146,7 @@ https://rinkeby.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#
 3. エラー画面のスクリーンショット
 ```
 
-----
+---
 Etherscan リンクを `#section-2-help` に投稿してください😊
 
 コミュニティであなたの成功を祝いましょう🎉

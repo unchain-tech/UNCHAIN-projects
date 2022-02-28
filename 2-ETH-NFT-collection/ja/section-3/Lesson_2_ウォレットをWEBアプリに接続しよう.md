@@ -395,8 +395,7 @@ const renderNotConnectedContainer = () => (
 
 条件付きレンダリングについて詳しくは [こちら](https://ja.reactjs.org/docs/conditional-rendering.html) を参照してください。
 
-🌐 ウォレットコネクトのテストを実行する
---------------------------------
+### 🌐 ウォレットコネクトのテストを実行する
 
 上記のコードを全て `App.js` に反映させたら、ターミナル上で `nft-collection-starter-project` ディレクトリに移動し、下記を実行しましょう。
 
@@ -447,5 +446,5 @@ App.js:16 currentAccount:  0x3a0a49fb3cf930e599f0fa7abe554dc18bd1f135
 2. エラー文をコピー&ペースト
 3. エラー画面のスクリーンショット
 ```
-------
+---
 ウォレット接続機能が完成したら、次のレッスンに進みましょう🎉

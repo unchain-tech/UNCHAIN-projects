@@ -222,5 +222,5 @@ const checkIfWalletIsConnected = async () => {
 3. エラー画面のスクリーンショット
 ```
 
-------
+---
 次のレッスンに進んで、開発を進めましょう🎉

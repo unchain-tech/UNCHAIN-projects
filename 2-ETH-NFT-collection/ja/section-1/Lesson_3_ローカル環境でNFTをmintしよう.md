@@ -3,14 +3,12 @@
 `contracts` ディレクトリの下に `MyEpicNFT.sol` という名前のファイルを作成します。
 
 ターミナル上で新しくファイルを作成する場合は、下記のコマンドが役立ちます。
-
-1\. `epic-nfts` ディレクトリに移動: `cd epic-nfts`
-
-2\. `contracts` ディレクトリに移動: `cd contracts`
-
-3\. `MyEpicNFT.sol` ファイルを作成: `touch MyEpicNFT.sol`
+1. `epic-nfts` ディレクトリに移動: `cd epic-nfts`
+2. `contracts` ディレクトリに移動: `cd contracts`
+3. `MyEpicNFT.sol` ファイルを作成: `touch MyEpicNFT.sol`
 
 Hardhat を使用する場合、ファイル構造は非常に重要なので、注意する必要があります。ファイル構造が下記のようになっていれば大丈夫です😊
+
 ```bash
 epic-nfts
     |_ contracts
@@ -19,15 +17,13 @@ epic-nfts
 
 次に、コードエディタでプロジェクトのコードを開きます。
 
-ここでは、VS Code の使用をお勧めします。ダウンロードは[こちら](https://azure.microsoft.com/ja-jp/products/visual-studio-code/)から。
-
+ここでは、VS Code の使用をお勧めします。ダウンロードは [こちら](https://azure.microsoft.com/ja-jp/products/visual-studio-code/) から。
 - VS Code をターミナルから起動する方法は [こちら](https://maku.blog/p/f5iv9kx/) をご覧ください。今後 VS Code を起動するのが一段と楽になるので、ぜひ導入してみてください。
-
 - VS Code 用の [Solidity拡張機能](https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity) をダウンロードすることをお勧めします。この拡張機能により、構文が見やすくなります。
 
 それでは、実際にコントラクトを書いていきましょう。
 
-` MyEpicNFT.sol` のファイル内に以下のコードを記載します。
+`MyEpicNFT.sol` のファイル内に以下のコードを記載します。
 
 ```solidity
 // SPDX-License-Identifier: UNLICENSED
@@ -114,12 +110,9 @@ class の概念については、[ここ](https://aiacademy.jp/media/?p=131)を�
 ### 😲 スマートコントラクトを実行する
 
 スマートコントラクトを実行するためには以下の手順が必要です。
-
-1\. コンパイルする。
-
-2\. ローカル環境のブロックチェーンにデプロイする。
-
-3\. `console.log`が実行される。
+1. コンパイルする。
+2. ローカル環境のブロックチェーンにデプロイする。
+3. `console.log`が実行される。
 
 ここでは、この3つのステップを処理して、テストするプログラムを作成していきます。
 
@@ -168,7 +161,6 @@ const nftContractFactory = await hre.ethers.getContractFactory("MyEpicNFT");
 > `hre.ethers` は、Hardhat プラグインの仕様です。
 
 ✍️: `const main = async ()` と `await` について
-
 > Javascript でコードを書いていると、コードの上から順に実行されなくて困ることがあります。これを同期処理に関する問題といいます。
 >
 > 解決法の一つとして、ここでは `async` / `await` を使用します。
@@ -257,5 +249,5 @@ HRE は、Hardhat が用意した全ての機能を含むオブジェクト（�
 3. エラー画面のスクリーンショット
 ```
 
------
+---
 テストが終わったら、次のレッスンに進んで、NFT を Mint するためにスマートコントラクトを更新していきましょう🎉

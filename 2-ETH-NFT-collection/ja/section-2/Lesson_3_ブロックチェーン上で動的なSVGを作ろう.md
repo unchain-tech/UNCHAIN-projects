@@ -563,7 +563,7 @@ string memory json = Base64.encode(
 
 この処理によって、メタデータが**オンチェーン**に書き込まれ、コントラクトの中に組み込まれます。
 
-`name`では、`base64` でエンコードされた SVG データを追加しています。
+`name` では、`base64` でエンコードされた SVG データを追加しています。
 
 次に、下記のコードを見ていきましょう。
 
@@ -576,10 +576,12 @@ string memory finalTokenUri = string(
 ここでは、`data:application/json;base64,` の後ろに `base64` でエンコードされたメタデーたを結合させ、`finalTokenUri` 変数に格納しています。
 
 最後に、下記のコードを見ていきましょう。
+
 ```javascript
 // MyEpicNFT.sol
 _setTokenURI(newItemId, finalTokenUri);
 ```
+
 ここでは、`tokenURI` を更新しています。
 
 この処理は、あなたの SVG データが組み込まれた JSON のメタデータをコントラクトと紐付けます。
@@ -625,7 +627,7 @@ data:application/json;base64,eyJuYW1lIjogIkdyYW5kQ3V0ZUJpcmQiLCAiZGVzY3JpcHRpb24
 
 An NFT w/ ID 1 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
 ```
-### 🛠 `finalTokenUri` の中身を確認しよう。
+### 🛠 `finalTokenUri` の中身を確認しよう
 
 ターミナルに出力された `Token URI` の一つをコピーして、[NFT Preview](https://nftpreview.0xdev.codes/) に貼り付け、中身を確認してみましょう。
 
@@ -698,7 +700,7 @@ Minted NFT #1
 3. エラー画面のスクリーンショット
 ```
 
-------
+---
 おめでとうございます！セクション3はもう少しで終了です✨
 
 あなたの Rarible のリンクを `#section-2-help` に貼り付けて、コミュニティにシェアしてください😊

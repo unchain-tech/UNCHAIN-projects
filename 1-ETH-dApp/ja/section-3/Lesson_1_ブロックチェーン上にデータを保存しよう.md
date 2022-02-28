@@ -4,11 +4,11 @@
 
 レッスンの最後に、次の機能を実装します。
 
-1\. ユーザーは「👋（wave）」と一緒にメッセージを送信する。
+1. ユーザーは「👋（wave）」と一緒にメッセージを送信する。
 
-2\. そのデータをブロックチェーンに保存する。
+2. そのデータをブロックチェーンに保存する。
 
-3\. WEBサイトにそのデータを表示する。
+3. WEBサイトにそのデータを表示する。
 
 それでは、`WavePortal.sol` を更新していきます。
 
@@ -326,11 +326,11 @@ We have 0 total waves!
 
 コントラクトを更新したので、下記を実行する必要があります。
 
-1\. 再度コントラクトをデプロイする
+1. 再度コントラクトをデプロイする
 
-2\. フロントエンドの契約アドレスを更新する（更新するファイル: `App.js` ）
+2. フロントエンドの契約アドレスを更新する（更新するファイル: `App.js` ）
 
-3\. フロントエンドのABIファイルを更新する（更新するファイル: `dApp-starter-project/src/utils/WavePortal.json` ）
+3. フロントエンドのABIファイルを更新する（更新するファイル: `dApp-starter-project/src/utils/WavePortal.json` ）
 
 **コントラクトを更新するたび、これらの3つのステップを実行する必要があります。**
 
@@ -368,7 +368,6 @@ WavePortal address: 0x... ← あなたのコントラクトアドレスをコ�
 コピーしたアドレスを `App.js` の `const contractAddress = "こちら"` に貼り付けましょう。
 
 **3 \. 以前と同じように `artifacts` からABIファイルを取得します。下記のステップを実行してください。**
-
 >1\. ターミナル上で `my-wave-portal` にいることを確認する（もしくは移動する）。
 >
 >2\. ターミナル上で下記を実行する。
@@ -386,11 +385,11 @@ WavePortal address: 0x... ← あなたのコントラクトアドレスをコ�
 
 新しく実装した機能は以下のつです。
 
-1\. ユーザーは「👋（wave）」と一緒にメッセージを送信する。
+1. ユーザーは「👋（wave）」と一緒にメッセージを送信する。
 
-2\. そのデータをブロックチェーンに保存する。
+2. そのデータをブロックチェーンに保存する。
 
-3\. WEBサイトにそのデータを表示する。
+3. WEBサイトにそのデータを表示する。
 
 ```javascript
 // App.js
@@ -633,7 +632,6 @@ const [messageValue, setMessageValue] = useState("")
 >});
 >setAllWaves(wavesCleaned);
 >```
-
 >ここでは状態変数（＝ `waveCleaned` ）を宣言し、その値を初期化しています。
 >
 > それから、[mapメソッド](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/map) を使って、`wavesCleaned` 変数にデータを追加しています。
@@ -654,7 +652,6 @@ const [messageValue, setMessageValue] = useState("")
 >
 
 **⛽️: ガスリミット（`gasLimit`）の設定**
-
 > 下記を実装して、トランザクションに使用できるガス代（＝`gasLimit`）に制限を設けています。
 >
 >```javascript
@@ -741,5 +738,5 @@ const [messageValue, setMessageValue] = useState("")
 2. エラー文をコピー&ペースト
 3. エラー画面のスクリーンショット
 ```
---------------
+---
 WEBアプリの大枠が完成したら、次のレッスンに進みましょう🎉

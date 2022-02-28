@@ -150,7 +150,7 @@ const wave = async () => {
 
 追加されたコードを見ながら、新しい概念について学びましょう。
 
-1\. `provider`
+**I\. `provider`**
 > ```javascript
 > // App.js
 > const provider = new ethers.providers.Web3Provider(ethereum);
@@ -161,7 +161,7 @@ const wave = async () => {
 >
 > `ethers` のライブラリにより `provider` のインスタンスを新規作成しています。
 
-2\. `signer`
+**II\. `signer`**
 > ```javascript
 > // App.js
 >const signer = provider.getSigner();
@@ -173,7 +173,7 @@ const wave = async () => {
 >
 > `provider.getSigner()` は新しい `signer` インスタンスを返すので、それを使って署名付きトランザクションを送信することができます。
 
-3\. コントラクトインスタンス
+**III\. コントラクトインスタンス**
 > ```javascript
 > // App.js
 > const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
@@ -181,9 +181,9 @@ const wave = async () => {
 > ここで、**コントラクトへの接続を行っています。**
 >
 >コントラクトの新しいインスタンスを作成するには、以下3つの変数を `ethers.Contract` 関数に渡す必要があります。
-> 1\. コントラクトのデプロイ先のアドレス（ローカル、テストネット、またはメインネット）
-> 2\. コントラクトの ABI
-> 3\. `provider`、もしくは `signer`
+> 1. コントラクトのデプロイ先のアドレス（ローカル、テストネット、またはメインネット）
+> 2. コントラクトの ABI
+> 3. `provider`、もしくは `signer`
 >
 > コントラクトインスタンスでは、コントラクトに格納されているすべての関数を呼び出すことができます。
 >
@@ -257,12 +257,9 @@ ABI (Application Binary Interface) はコントラクトの取り扱い説明書
 WEBアプリがコントラクトと通信するために必要な情報が、ABI ファイルに含まれています。
 
 コントラクト一つ一つにユニークな ABI ファイルが紐づいており、その中には下記の情報が含まれています。
-
-1\. そのコントラクトに使用されている関数の名前
-
-2\. それぞれの関数にアクセスするために必要なパラメータとその型
-
-3\. 関数の実行結果に対して返るデータ型の種類
+1. そのコントラクトに使用されている関数の名前
+2. それぞれの関数にアクセスするために必要なパラメータとその型
+3. 関数の実行結果に対して返るデータ型の種類
 
 ABI ファイルは、コントラクトがコンパイルされた時に生成され、`artifacts` ディレクトリに自動的に格納されます。
 
@@ -274,34 +271,32 @@ ABI ファイルの中身は、`WavePortal.json` というファイルに格納�
 
 下記を実行して、ABI ファイルをコピーしましょう。
 
-1\. ターミナル上で `my-wave-portal` にいることを確認する（もしくは移動する）。
+1. ターミナル上で `my-wave-portal` にいることを確認する（もしくは移動する）。
 
-2\. ターミナル上で下記を実行する。
+2. ターミナル上で下記を実行する。
 > ```
 > code artifacts/contracts/WavePortal.sol/WavePortal.json
 > ```
 
-3\. VS Codeで `WavePortal.json` ファイルが開かれるので、中身を全てコピーしましょう。
-
-	※ VS Codeのファインダーを使って、直接 `WavePortal.json` を開くことも可能です。
+3. VS Codeで `WavePortal.json` ファイルが開かれるので、中身を全てコピーしましょう。※ VS Codeのファインダーを使って、直接 `WavePortal.json` を開くことも可能です。
 
 次に、下記を実行して、ABI ファイルをWEBアプリから呼び出せるようにしましょう。
 
-1\. ターミナル上で `dApp-starter-project` にいることを確認する（もしくは移動する）。
+1. ターミナル上で `dApp-starter-project` にいることを確認する（もしくは移動する）。
 
-2\. 下記を実行して、`dApp-starter-project/src/` の中に `utils` ディレクトリを作成する。
+2. 下記を実行して、`dApp-starter-project/src/` の中に `utils` ディレクトリを作成する。
 
 > ```bash
 > mkdir src/utils
 >```
 
-3\. 下記を実行して、`utils` ディレクトリに `WavePortal.json` ファイルを作成する。
+3. 下記を実行して、`utils` ディレクトリに `WavePortal.json` ファイルを作成する。
 
 >```bash
 > touch src/utils/WavePortal.json
 >```
 
-4\. 下記を実行して、`WavePortal.json` ファイルを VS Code で開く。
+4. 下記を実行して、`WavePortal.json` ファイルを VS Code で開く。
 
 >```bash
 > code dApp-starter-project/src/utils/WavePortal.json
@@ -561,11 +556,11 @@ npm run start
 
 - Connected: `0x..` ← これをコピーして Etherscan に貼り付ける
 
-	あなたの Rinkeby Test Network 上のトランザクションの履歴が参照できます。
+	🎉 あなたの Rinkeby Test Network 上のトランザクションの履歴が参照できます。
 
 - Mined -- `0x..` ← これをコピーして Etherscan に貼り付ける
 
-	あなたのWEBアプリを介して Rinkeby Test Network 上に書き込まれた「👋（wave）」に対するトランザクションの履歴が参照できます。
+	🎉 あなたのWEBアプリを介して Rinkeby Test Network 上に書き込まれた「👋（wave）」に対するトランザクションの履歴が参照できます。
 ### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discord の `#section-2-help` で質問をしてください。
@@ -576,6 +571,6 @@ npm run start
 2. エラー文をコピー&ペースト
 3. エラー画面のスクリーンショット
 ```
-----------
+---
 おめでとうございます！セクション2が終了しました！ `#section-2-help` にあなたの Etherscan のリンクを貼り付けて、コミュニティで進捗を祝いましょう🎉
 Etherscanでトランザクションの確認をしたら、次のレッスンに進んでください😊
