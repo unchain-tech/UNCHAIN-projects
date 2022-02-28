@@ -183,7 +183,7 @@ code .env
 
 ```
 PRIVATE_KEY = hardhad.config.jsにある秘密鍵（accounts）を貼り付ける
-STAGING_ALCHEMY_KEY = hardhad.config.jsにあるAlchemyのyURLを貼り付ける
+STAGING_ALCHEMY_KEY = hardhad.config.jsにあるAlchemyのURLを貼り付ける
 PROD_ALCHEMY_KEY = メインネットにデプロイする際に使用するAlchemyのURLを貼り付ける（今は何も貼り付ける必要はありません）
 ```
 
