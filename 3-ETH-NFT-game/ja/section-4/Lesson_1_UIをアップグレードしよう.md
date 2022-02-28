@@ -1,4 +1,4 @@
-## 💫 UIの仕上げ
+### 💫 UIの仕上げ
 
 NFT キャラクターを Mint したり、ボスのデータを取得したりするときに、ローディングマークを UI に表示していきましょう。
 
@@ -13,7 +13,7 @@ NFT キャラクターを Mint したり、ボスのデータを取得したり�
 `nft-game-starter-project/src/Components` フォルダに `LoadingIndicator` コンポーネントが格納されています。
 
 このレッスンでは、この `LoadingIndicator` コンポーネントを使っていきます。
-## 🔁 `App.js` にローディングマークを追加する
+### 🔁 `App.js` にローディングマークを追加する
 
 一つ目のケース、「ユーザーが NFT キャラクターを持っているかフロントエンドが確認している状況」で、WEBアプリにローディングマークを表示していきましょう。
 
@@ -127,7 +127,7 @@ const checkIfWalletIsConnected = async () => {
     setIsLoading(false);
 };
 ```
-## 🔁 `SelectCharacter` コンポーネントにローディングマークを追加する
+### 🔁 `SelectCharacter` コンポーネントにローディングマークを追加する
 
 二つ目のケース、「ユーザーが NFT キャラクターを Mint するのをフロントエンドが待機している状況」で、WEBアプリにローディングマークを表示していきましょう。
 
@@ -243,7 +243,7 @@ return (
 上記の実装はフロントエンドに下記のように反映されます。
 
 ![](/public/images/3-ETH-NFT-game/section-4/4_1_1.png)
-## 🔁 `Arena` コンポーネントにローディングマークを追加する
+### 🔁 `Arena` コンポーネントにローディングマークを追加する
 
 三つ目のケース、「攻撃が終了するのをフロントエンドが待機している状況」で、WEBアプリにローディングマークを表示していきましょう。
 
@@ -309,7 +309,7 @@ import LoadingIndicator from '../../Components/LoadingIndicator';
 ![](/public/images/3-ETH-NFT-game/section-4/4_1_2.png)
 
 上記のようにローディングマークが `Arena` ページに表示されているでしょうか？✨
-## 🚨 `Arena` ページに攻撃アラートを追加する
+### 🚨 `Arena` ページに攻撃アラートを追加する
 
 最後に、ボスに与えたダメージをフロントエンド上に表示するコードを実装していきましょう。
 
@@ -581,7 +581,7 @@ const runAttackAction = async () => {
 上記の実装が成功した場合、WEBアプリ上でボスを攻撃すると、下記のような攻撃ダメージが表示されます✨
 
 ![](/public/images/3-ETH-NFT-game/section-4/4_1_3.png)
-## 🙋‍♂️ 質問する
+### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discordの `#section-4-help` で質問してください。
 

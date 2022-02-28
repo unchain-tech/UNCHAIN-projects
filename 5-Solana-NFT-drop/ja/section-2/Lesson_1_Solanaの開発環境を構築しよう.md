@@ -1,4 +1,4 @@
-## 🦾 本セクションで行うこと
+### 🦾 本セクションで行うこと
 
 セクション2の目標は、ユーザーが**ウォレットを接続し、ミントをクリックして、ウォレット内のコレクションから NFT を受け取ることができるWEBアプリを作成することです。**
 
@@ -13,7 +13,7 @@ Metaplex CLI を使用すると、Metaplex のデプロイされたNFTコント�
 2\. NFT を Candy Machine にアップロードする
 
 3\. ユーザーが実際に Candy Machine を叩いて NFT を作成できるようにします。
-## 🤖 必要なツールをインストールする
+### 🤖 必要なツールをインストールする
 
 Candy Machine CLI と通信するには、いくつかの開発ツールをインストールする必要があります。
 
@@ -48,7 +48,7 @@ ts-node --version
 次のコマンドを使用してください：`npm install -g ts-node`
 
 >インストール中に EACCES 権限エラーが発生した場合は、この [リンク](https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally) をチェックしてください。
-## 🔥 Solana をインストールする
+### 🔥 Solana をインストールする
 
 [公式サイト](https://docs.solana.com/cli/install-solana-cli-tools#use-solanas-install-tool) を参考に Solana をインストールしましょう。
 
@@ -92,12 +92,12 @@ Commitment: confirmed
 ```
 
 本プロジェクトは全て、Solana の devnet 上に直接構築します。これは Solana のステージング環境のようなもので、開発者は無料で使用できます。
-## ☹️ Help me!
+### ☹️ Help me!
 
 Solana のセットアップは複雑なため、うまくいかないことがあるかもしれません。その場合は `section-2-help` にメッセージを投稿して、メンバーに助けを求めてみてください。
 
 OS情報、エラーのスクリーンショットなど、できるだけ多くの情報を伝えるとスムーズにデバッグが進みます。
-## 🤩 MetaplexCLI を使ってみる
+### 🤩 MetaplexCLI を使ってみる
 
 Solana CLI がインストールできました。次に Candy Machine を作成するために MetaplexCLI をインストールする必要があります。
 
@@ -139,7 +139,7 @@ ts-node ~/metaplex/js/packages/cli/src/candy-machine-v2-cli.ts --version
 > MacOS を使用している場合、古いバージョンの MetaplexCLI がインストールされていると問題が発生する可能性があります。
 >
 >ルートディレクトリの `metaplex` ディレクトリを必ず削除してから上記の設定を行ってください。
-## 🙋‍♂️ 質問する
+### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discord の `#section-2-help` で質問をしてください。
 

@@ -1,4 +1,4 @@
-## 📦 構造体を使用してメッセージを配列に保存する
+### 📦 構造体を使用してメッセージを配列に保存する
 
 ここまでのレッスンで、ブロックチェーンと通信できるWEBアプリを実装しました。
 
@@ -242,7 +242,7 @@ return () => {
 コンポーネントがマウントされる状態をそのままにしておくと、メモリリーク（コンピュータを動作させている内に、使用可能なメモリの容量が減っていってしまう現象）が発生する可能性があります。
 
 メモリリークを防ぐために、`wavePortalContract.off("NewWave", onNewWave)` では、`onNewWave` 関数の稼働を止めています。これは、イベントリスナーを止めることを意味しています。
-## 🧐 テストを実行する
+### 🧐 テストを実行する
 
 `WavePortal.sol` コントラクトを変更したので、`run.js` を更新し、テストを行います。
 
@@ -321,7 +321,7 @@ We have 0 total waves!
 注：「タイムスタンプ」は、「BigNumber」として出力されています。「BigNumber」については、[こちら](https://qiita.com/niharu/items/52ee466c37c701f9109b)
 を参照してください。
 
-## 🛩 もう一度デプロイする
+### 🛩 もう一度デプロイする
 
 
 コントラクトを更新したので、下記を実行する必要があります。
@@ -380,7 +380,7 @@ WavePortal address: 0x... ← あなたのコントラクトアドレスをコ�
 >4\. コピーした `my-wave-portal/artifacts/contracts/WavePortal.sol/WavePortal.json` の中身を新しく作成した `dApp-starter-project/src/utils/WavePortal.json` の中に貼り付けてください。
 
 **繰り返しますが、コントラクトを更新するたびにこの作業を行う必要があります。**
-## 🔌 WEBアプリにコントラクトの変更を反映させる
+### 🔌 WEBアプリにコントラクトの変更を反映させる
 
 下記のように `App.js` を更新しましょう。
 
@@ -731,7 +731,7 @@ const [messageValue, setMessageValue] = useState("")
 こちらが、フロントエンドの実装結果の例になります。
 
 ![](/public/images/1-ETH-dApp/section-3/3_1_2.png)
-## 🙋‍♂️ 質問する
+### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discord の `#section-3-help` で質問をしてください。
 

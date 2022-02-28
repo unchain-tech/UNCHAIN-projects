@@ -1,4 +1,4 @@
-## 🪄 NFTを作成しよう
+### 🪄 NFTを作成しよう
 
 これから、いくつかのNFTを作成します。
 
@@ -193,7 +193,7 @@ NFT が発行された後、`_tokenIds.increment()`（＝ OpenZeppelin が提供
 これにより、毎回 NFT が発行されると、異なる `tokenIds` 識別子が NFT と紐付けられます。
 
 複数のユーザーが、同じ `tokenIds` を持つことはありません。
-## 🎟 `tokenURI` を取得して、コントラクトをローカル環境で実行しよう
+### 🎟 `tokenURI` を取得して、コントラクトをローカル環境で実行しよう
 
 `tokenURI` は、**NFT データが保存されている場所**を意味します。
 
@@ -234,7 +234,7 @@ NFT が発行された後、`_tokenIds.increment()`（＝ OpenZeppelin が提供
 
 こちらは、わたしのリンクです：
 [`https://jsonkeeper.com/b/OLSM`](https://jsonkeeper.com/b/OLSM)
-## 🐱 オリジナルの画像を使用する方法
+### 🐱 オリジナルの画像を使用する方法
 
 [Imgur](imgur.com) というWEBサイトを使うと、無料で画像をオンライン上でホストすることができます。
 
@@ -245,7 +245,7 @@ NFT が発行された後、`_tokenIds.increment()`（＝ OpenZeppelin が提供
 ![](/public/images/2-ETH-NFT-collection/section-1/1_4_2.png)
 
 ぜひ自分のお気に入りの画像を使って、自分だけのメタデータを作成してみましょう。
-## 🐈 `MyEpicNFT.sol` を更新する
+### 🐈 `MyEpicNFT.sol` を更新する
 
 それでは、スマートコントラクトに向かい、下記の行を変更しましょう。
 
@@ -262,7 +262,7 @@ _setTokenURI(newItemId, "Valuable data!");
 // MyEpicNFT.sol
 _setTokenURI(newItemId, "こちらに、JSON ファイルへのリンクを貼り付けてください");
 ```
-## 🎉 NFT をローカルネットワークにデプロイしよう
+### 🎉 NFT をローカルネットワークにデプロイしよう
 
 ここから、実際に `makeAnEpicNFT()` 関数を呼び出し、スマートコントラクトが問題なくデプロイされるかテストしていきます。
 
@@ -319,12 +319,12 @@ An NFT w/ ID 1 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
 次のセクションでは、NFT を作成するすべての人がランダムで一意の NFT を取得できるようにする方法を学習していきます。
 
 それでは、テストネットに `MyEpicNFT.sol` コントラクトをデプロイしましょう。
-## 🎉 テストネットへコントラクトをデプロイする
+### 🛫 テストネットへコントラクトをデプロイする
 
 これから、テストネットにあなたのスマートコントラクトをデプロイしていきます。
 
 これが成功すると、**NFT をオンラインで表示**できるようになり、 世界中のユーザーがあなたの NFT を OpenSea から見ることができるようになります。
-## 💳 トランザクションについて
+### 💳 トランザクションについて
 
 **イーサリアムネットワーク上でブロックチェーンに新しく情報を書き込むこと**を、**トランザクション**と呼びます。
 
@@ -335,7 +335,7 @@ An NFT w/ ID 1 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
 Alchemy は、世界中のトランザクションを一元化し、マイナーの承認を促進するプラットフォームです。
 
 [こちら](https://www.alchemy.com/) から Alchemy のアカウントを作成してください。
-## 💎 Alchemyでネットワークを作成する
+### 💎 Alchemyでネットワークを作成する
 
 Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押してください。
 
@@ -364,7 +364,7 @@ Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押して
 これがあなたが本番環境のネットワークに接続する際に使用する `API Key` になります。
 
 - **`API Key` は、後で必要になるので、あなたのPC上のわかりやすいところに、メモとして残しておいてください。**
-## 🐣 テストネットとは？
+### 🐣 テストネットとは？
 
 今回のプロジェクトでは、コスト（＝ 本物の ETH ）が発生するメインネットではなく、**テストネットにコントラクトをデプロイします。**
 
@@ -381,7 +381,7 @@ Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押して
 3\. そのマイナーがトランザクションを承認する
 
 4\. そのマイナーがトランザクションを承認したことを他のマイナーたちに知らせ、トランザクションのコピーを更新する
-## 🚰 偽の ETH を取得する
+### 🚰 偽の ETH を取得する
 
 今回は、`Rinkeby` というイーサリアム財団によって運営されているテストネットを使用します。
 
@@ -410,15 +410,9 @@ Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押して
 >![](/public/images/2-ETH-NFT-collection/section-1/1_4_10.png)
 
 MetaMask ウォレットに `Rinkeby Test Network` が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽 ETH を取得しましょう。
-
-| WEBサイト|リンク| 偽ETHの取得額| 取得までにかかる時間|
-| ---------------- | ------------------------------------- | --------------- | ------------ |
-| MyCrypto         | https://app.mycrypto.com/faucet       | 0.01            | なし         |
-| Buildspace       | https://buildspace-faucet.vercel.app/ | 0.025           | 1日           |
-| Ethily           | https://ethily.io/rinkeby-faucet/     | 0.2             | 1週間           |
-| Official Rinkeby | https://faucet.rinkeby.io/            | 3 / 7.5 / 18.75 | 8時間 / 1日 / 3日 |
-| Chainlink        | https://faucets.chain.link/rinkeby    | 0.1             | なし         |
-## 🚀 `deploy.js` ファイルを作成する
+- [MyCrypto](https://app.mycrypto.com/faucet) - 0.01 ETH（その場でもらえる）
+- [Chainlink](https://faucets.chain.link/rinkeby) - 0.1 ETH（その場でもらえる）
+- [Official Rinkeby](https://faucet.rinkeby.io/) - 3 / 7.5 / 18.75 ETH ( 8 時間 / 1 日 / 3 日)z### 🚀 `deploy.js` ファイルを作成する
 
 `run.js` は、あくまでローカル環境でコードのテストを行うためのスクリプトでした。
 
@@ -459,7 +453,7 @@ const main = async () => {
   };
   runMain();
 ```
-## 📈 Rinkeby Test Network に コントラクトをデプロイしましょう
+### 📈 Rinkeby Test Network に コントラクトをデプロイしましょう
 
 `hardhat.config.js` ファイルを変更する必要があります。
 
@@ -560,7 +554,7 @@ hardhat.config.js
 > ![](/public/images/2-ETH-NFT-collection/section-1/1_4_17.png)
 >
 > ユーザー名とパスワードを使用して、AWS にログインしてプロジェクトをデプロイするのと同じです。
-## ⭐️ 実行する
+### ⭐️ 実行する
 
 構成のセットアップが完了すると、前に作成したデプロイスクリプトを使用してデプロイするように設定されます。
 
@@ -580,14 +574,14 @@ Contract deployed to: 0x8F315ec3999874A676bbC9323cE31F3d242a4bC7
 Minted NFT #1
 Minted NFT #2
 ```
-## 👀 Etherscan でトランザクションを確認する
+### 👀 Etherscan でトランザクションを確認する
 
 ターミナルに出力された `Contract deployed to` に続くアドレスを、[Etherscan](https://rinkeby.etherscan.io/) に貼り付けて、あなたのスマートコントラクトのトランザクション履歴を見てみましょう。
 
 Etherscan は、イーサリアムネットワーク上のトランザクションに関する情報を確認するのに便利なプラットフォームです。
 
 *表示されるまでに約1分かかり場合があります。*
-## 🖼 NFT をオンラインで確認しよう
+### 🖼 NFT をオンラインで確認しよう
 
 作成した NFT は、Rarible や OpenSea の TestNet サイトで確認することができます。
 
@@ -630,7 +624,7 @@ https://rinkeby.rarible.com/token/0x67cd3f53c20e3a6211458dd5b7465e1f9464531c:0
 `0` は、`tokenID` が 0番であることを意味しています。
 
 上記のリンクを共有すれば、誰でもあなたの NFT をオンライン上で見ることができます。
-## 🙋‍♂️ 質問する
+### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discord の `#section-1-help` で質問をしてください。
 

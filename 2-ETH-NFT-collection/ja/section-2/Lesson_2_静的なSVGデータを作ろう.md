@@ -1,4 +1,4 @@
-## ⚛️ SVG を作成してみよう
+### ⚛️ SVG を作成してみよう
 
 下記のブラックボックス SVG を NFT として保存していきましょう。
 
@@ -41,7 +41,7 @@ data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIH
 
 世界中のすべてのデータセンターが焼失したとしても、この `base64` でエンコードされた文字列があるため、コンピューターとブラウザーがあれば、常に SVG データを表示することができます。
 
-## ☠️ JSON メタデータを削除する
+### ☠️ JSON メタデータを削除する
 
 下記のように、前回のレッスンで作成した JSON ファイルの中にある `image` へのリンクを `base64` でエンコードされた SVG データに変更しましょう。
 
@@ -89,7 +89,7 @@ data:application/json;base64,ewogICAgIm5hbWUiOiAiRXBpY05mdENyZWF0b3IiLAogICAgImR
 ⚠️: 注意
 > エンコードとコピー&ペーストを行う際、手動によるエラーが発生する可能性が高いです。
 > エラーが発生した場合は、すべての手順をもう一度実行してください。
-## 🚀 コントラクトを変更し、デプロイしよう
+### 🚀 コントラクトを変更し、デプロイしよう
 
 それでは、`base64` でエンコードした JSON ファイルをコピーして `MyEpicNFT.sol` に追加しましょう。
 
@@ -142,7 +142,7 @@ Minted NFT #2
 下記のように、あなたの SquareNFT が Rarible で確認できたでしょうか？
 
 ![](/public/images/2-ETH-NFT-collection/section-2/2_2_4.png)
-## 🙋‍♂️ 質問する
+### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discord の `#section-2-help` で質問をしてください。
 

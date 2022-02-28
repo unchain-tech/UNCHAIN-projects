@@ -1,11 +1,11 @@
-## 🖥 本番環境の構築を行う
+### 🖥 本番環境の構築を行う
 
 ローカル環境のイーサリアムネットワークを終了します。
 
 - ターミナルを閉じれば完了です。
 
 これから、実際のブロックチェーンにコントラクトをデプロイするための環境を構築していきます。
-## 💳 トランザクション
+### 💳 トランザクション
 
 **イーサリアムネットワーク上でブロックチェーンに新しく情報を書き込むこと**を、**トランザクション**と呼びます。
 
@@ -22,7 +22,7 @@
 Alchemy は、世界中のトランザクションを一元化し、マイナーの承認を促進するプラットフォームです。
 
 [こちら](https://www.alchemy.com/) から Alchemy のアカウントを作成してください。
-## 💎 Alchemyでネットワークを作成
+### 💎 Alchemyでネットワークを作成
 
 Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押してください。
 ![](/public/images/4-Polygon-Generative-NFT/section-2/2_2_1.png)
@@ -49,7 +49,7 @@ Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押して
 これがあなたが本番環境のネットワークに接続する際に使用する `API Key` になります。
 
 - **`API Key` は、今後必要になるので、PC上のわかりやすいところに保存しておきましょう。**
-## 🦊 Metamask をダウンロードする
+### 🦊 Metamask をダウンロードする
 
 次に、イーサリアムウォレットをダウンロードしましょう。
 
@@ -62,7 +62,7 @@ Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押して
 ✍️: Metamask が必要な理由
 > ユーザーが、スマートコントラクトを呼び出すとき、本人のイーサリアムアドレスと秘密鍵を備えたウォレットが必要となります。
 > - これは、認証作業のようなものです。
-## 🐣 テストネットから始める
+### 🐣 テストネットから始める
 
 今回のプロジェクトでは、コスト（＝ 本物の ETH ）が発生するメインネットではなく、**テストネットにコントラクトをデプロイします。**
 
@@ -83,7 +83,7 @@ Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押して
 4\. そのマイナーがトランザクションを承認したことを他のマイナーたちに知らせ、トランザクションのコピーを更新する
 
 このセクションでは、コードを書きながら、これらのイベントについての理解を深めていきます。
-## 🚰 偽の ETH を取得する
+### 🚰 偽の ETH を取得する
 
 今回は、`Rinkeby` というイーサリアム財団によって運営されているテストネットを使用します。
 
@@ -105,15 +105,11 @@ Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押して
 > ![](/public/images/4-Polygon-Generative-NFT/section-2/2_2_8.png)
 
 MetaMask ウォレットに `Rinkeby Test Network` が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽 ETH を取得しましょう。
+- [MyCrypto](https://app.mycrypto.com/faucet) - 0.01 ETH（その場でもらえる）
+- [Chainlink](https://faucets.chain.link/rinkeby) - 0.1 ETH（その場でもらえる）
+- [Official Rinkeby](https://faucet.rinkeby.io/) - 3 / 7.5 / 18.75 ETH ( 8 時間 / 1 日 / 3 日)z### 🚀 `deploy.js` ファイルを作成する
 
-| WEBサイト|リンク| 偽ETHの取得額| 取得までにかかる時間|
-| ---------------- | ------------------------------------- | --------------- | ------------ |
-| MyCrypto         | https://app.mycrypto.com/faucet       | 0.01            | なし         |
-| Buildspace       | https://buildspace-faucet.vercel.app/ | 0.025           | 1日           |
-| Ethily           | https://ethily.io/rinkeby-faucet/     | 0.2             | 1週間           |
-| Official Rinkeby | https://faucet.rinkeby.io/            | 3 / 7.5 / 18.75 | 8時間 / 1日 / 3日 |
-| Chainlink        | https://faucets.chain.link/rinkeby    | 0.1             | なし         |
-## 🤫 機密情報を隠す
+### 🤫 機密情報を隠す
 
 まず、`dotenv` ライブラリを使用して、先ほど作成した `Alchemy URL` とあなたの Metamask の秘密鍵を隠していきます。
 
@@ -160,7 +156,7 @@ PRIVATE_KEY = "YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY"
 > - パスワード: Metamask の秘密鍵
 >
 > ユーザー名とパスワードを使用して、AWS にログインしてプロジェクトをデプロイするのと同じです。
-## 🗂 `hardhat.config.js` ファイルを編集する
+### 🗂 `hardhat.config.js` ファイルを編集する
 
 `hardhat.config.js` ファイルを変更する必要があります。
 
@@ -210,7 +206,7 @@ module.exports = {
 ```
 
 これで、`.env` に定義した `API_URL` と `PRIVATE_KEY` の値が呼び出され、`hardhat.config.js` が使用できるようになりました。
-## 🙊 秘密鍵は誰にも教えてはいけません
+### 🙊 秘密鍵は誰にも教えてはいけません
 
 `hardhat.config.js` を更新したら、ここで一度立ち止まりましょう。
 
@@ -223,7 +219,7 @@ module.exports = {
 > **絶対に秘密鍵を自分以外の人が見れる場所に置かないようにしましょう**。
 >
 > `.env` を設定することで、あなたの個人情報が Github に流出するのを防ぎます。
-## 🚀 Rinkeby Test Network にコントラクトをデプロイする
+### 🚀 Rinkeby Test Network にコントラクトをデプロイする
 
 `hardhat.config.js` の更新が完了したら、Rinkeby Test Network にコントラクトをデプロイしてみましょう。
 
@@ -270,7 +266,7 @@ Owner has tokens:  [
 あなたのターミナル上で、`Contract deployed to` の後に出力されたコントラクトアドレス（ `0x..` ）をコピーして、保存しておきましょう。
 
 後でフロントエンドを構築する際に必要となります。
-## 👀 Etherscanでトランザクションを確認する
+### 👀 Etherscanでトランザクションを確認する
 
 `Contract deployed to:` に続くアドレス（ `0x..` ）をコピーして、[Etherscan](https://rinkeby.etherscan.io/) に貼り付けてみましょう。
 
@@ -289,7 +285,7 @@ Owner has tokens:  [
 Rinkeby Etherscan はデプロイを追跡する最も簡単な方法であり、問題を特定するのに適しています。
 
 - Etherscan にトランザクションが表示されないということは、まだ処理中か、何か問題があったということになります。
-## 🙋‍♂️ 質問する
+### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discord の `#section-2-help` sで質問をしてください。
 

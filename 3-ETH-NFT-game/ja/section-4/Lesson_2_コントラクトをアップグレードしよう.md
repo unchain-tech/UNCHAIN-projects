@@ -1,4 +1,4 @@
-## 🙉 Github に関する注意点
+### 🙉 Github に関する注意点
 
 **Githubにコントラクト（ `epic-game` ）のコードをアップロードする際は、秘密鍵を含むハードハット構成ファイルをリポジトリにアップロードしないよう注意しましょう**
 
@@ -81,7 +81,7 @@ artifacts
 ```
 
 これで、Github にあなたの秘密鍵をアップロードせずに、Github にコントラクトのコードをアップロードすることができます。
-## 🌎 IPFS に 画像を保存する
+### 🌎 IPFS に 画像を保存する
 
 現在、NFT キャラクターとボスの画像は Imgur に保存されています。
 
@@ -221,7 +221,7 @@ string memory json = Base64.encode(
 	alt={`Character ${characterNFT.name}`}
 />
 ```
-## 🤩 WEBアプリをアップグーレドする
+### 🤩 WEBアプリをアップグーレドする
 
 これであなたのWEBアプリ完成です！
 
@@ -247,7 +247,7 @@ string memory json = Base64.encode(
 // App.js
 const TWITTER_HANDLE = 'あなたのTwitterハンドル';
 ```
-## 🙋‍♂️ 質問する
+### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discordの `#section-4-help` で質問してください。
 

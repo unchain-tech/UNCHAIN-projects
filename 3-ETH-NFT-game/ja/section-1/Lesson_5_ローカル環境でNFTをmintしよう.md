@@ -1,4 +1,4 @@
-## ✨ NFT を Mint する
+### ✨ NFT を Mint する
 
 さて、キャラクターのデータが整ったので、次は実際に NFT を Mint していきましょう。
 
@@ -173,7 +173,6 @@ mapping(uint256 => CharacterAttributes) public nftHolderAttributes;
 ここでは、NFT の ID を `CharacterAttributes` 構造体に `mapping` しています。
 
 **✍️: `mapping` について**
-
 > ここでは、`mapping` と呼ばれる特別なデータ構造を使用しています。
 >
 >Solidity の `mapping` は、他の言語におけるハッシュテーブルや辞書のような役割を果たします。
@@ -285,8 +284,7 @@ _safeMint(msg.sender, newItemId);
 >
 >- これは、コントラクトへの「サインイン」機能のようなものです。
 
-🎨 NFT のデータを更新する
----
+### 🎨 NFT のデータを更新する
 
 引き続き、`MyEpicGame.sol` の内容を見ていきます。
 
@@ -389,8 +387,7 @@ NFT を Mint した後、OpenZeppelin が提供する関数 `_tokenIds.increment
 
 この処理によって、次回 NFT をミントするユーザーには、新しい `tokenId` が付与されます。すでに Mint された `tokenId` は誰も持つことができません。
 
-😳 ローカル環境でテストを実行する
-----
+### 😳 ローカル環境でテストを実行する
 
 次は、`run.js` に、`mintCharacterNFT` 関数を呼び出す処理を追加していきます。
 
@@ -466,8 +463,7 @@ Token URI:
 
 これから、`MyEpicGame.sol` の `nftHolderAttributes` を更新して、`tokenURI` を添付していきます。
 
-⭐️ `tokenURI` をセットアップする
----
+### ⭐️ `tokenURI` をセットアップする
 
 `tokenURI` には、NFT データを **JSON** 形式で渡す必要があります。
 
@@ -713,15 +709,16 @@ data:application/json;base64,eyJuYW1lIjogIlpFTklHQU1FIC0tIE5GVCAjOiAxIiwgImRlc2N
 
 - JSON ファイルの前に `data:application/json;base64,` を付けると、上記のようなエンコード文字列になり、ブラウザで読み込めるようになります。
 
-🙋‍♂️ 質問する
--------------------------------------------
+### 🙋‍♂️ 質問する
+
 ここまでの作業で何かわからないことがある場合は、Discord の `#section-1-help` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨
+
 ```
 1\. 何をしようとしていたか
 2\. エラー文をコピー&ペースト
 3\. エラー画面のスクリーンショット
 ```
-----------------------------------
+----
 次のレッスンに進んで、テストネットにコントラクトをデプロイしていきましょう🎉

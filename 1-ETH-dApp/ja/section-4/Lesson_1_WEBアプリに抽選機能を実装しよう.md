@@ -1,4 +1,4 @@
-## 🎲 0.001ETHを送るユーザーをランダムに選ぶ
+### 🎲 0.001ETHを送るユーザーをランダムに選ぶ
 
 現在、コントラクトは全てのユーザーに 0.001ETH を送るように設定されています。
 
@@ -147,7 +147,7 @@ if (seed <= 50) {
 > ブロックチェーン上にコードは公開されているので、信頼できる乱数生成のアルゴリズムは、手動で作る必要があります。
 >
 > 乱数の生成は、一見面倒ではありますが、何百万人ものユーザーがアクセスする dApp を構築する場合は、とても重要な作業となります。
-## ☕️ テストを実行する
+### ☕️ テストを実行する
 
 下記のように、`run.js` を更新して、ユーザーにランダムにETHを送れるかテストしてみましょう。
 
@@ -275,7 +275,7 @@ Contract balance: 0.0999
 二人目のユーザーは、乱数の結果 `31` という値を取得したので、ETHを獲得しました。
 
 `Contract balance` が、0.0999ETH に更新されていることを確認してください。
-## 🚔 スパムを防ぐためのクールダウンを実装する
+### 🚔 スパムを防ぐためのクールダウンを実装する
 
 最後に、スパムを防ぐためのクールダウン機能を実装していきます。
 
@@ -411,7 +411,7 @@ lastWavedAt[msg.sender] = block.timestamp;
 ここで、ユーザーが `wave` を送った時刻がタイムスタンプとして記録されます。
 
 `mapping(address => uint256) public lastWavedAt` でユーザーのアドレスと `lastWavedAt` を紐づけているので、これで次に同じユーザーが `wave` を送ってきた時に、15分経過しているか検証することができます。
-## 🧙‍♂️ テストを実行する
+### 🧙‍♂️ テストを実行する
 
 ターミナル上で `my-wave-portal` に移動し、下記を続けて**2回**実行してみましょう。
 
@@ -425,7 +425,7 @@ Error: VM Exception while processing transaction: reverted with reason string 'W
 ```
 
 `WavePortal.sol` に記載されている `15 minutes` を `0 minutes` に変更し、`npx hardhat run scripts/run.js` をもう一度実行すると、エラーはなくなります😊
-## 🧞‍♀️ デプロイする？
+### 🧞‍♀️ デプロイする？
 
 `deploy.js` を更新する必要はないので、ここまでのデプロイは任意です。
 
@@ -438,7 +438,7 @@ Error: VM Exception while processing transaction: reverted with reason string 'W
 - `deploy.js` の `hre.ethers.utils.parseEther("0.001")` を更新して、コントラクトに提供する資金を再設定する
 
 - `WavePortal.sol` に記載されている `15 minutes` を調整して、バッファ期間を調整する（※テストに関しては、`30 seconds` を推奨しています）
-## 🙋‍♂️ 質問する
+### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discord の `#section-4-help` で質問をしてください。
 

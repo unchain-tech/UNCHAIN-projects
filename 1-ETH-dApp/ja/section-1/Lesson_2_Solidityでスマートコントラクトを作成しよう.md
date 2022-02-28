@@ -1,15 +1,13 @@
-## 👩‍💻 コントラクトを作成する
+### 👩‍💻 コントラクトを作成する
+
 「👋（wave）」の総数をトラッキングするスマートコントラクトを作成します。ここで作成するスマートコントラクトは、後でユースケースに合わせて自由に変更することが可能です。
 
 `contracts` ディレクトリの下に `WavePortal.sol` という名前のファイルを作成します。
 
 ターミナル上で新しくファイルを作成する場合は、下記のコマンドが役立ちます。
-
-1 \. `my-wave-portal` ディレクトリに移動: `cd my-wave-portal`
-
-2 \. `contracts` ディレクトリに移動: `cd contracts`
-
-3 \. `WavePortal.sol` ファイルを作成: `touch WavePortal.sol`
+1. `my-wave-portal` ディレクトリに移動: `cd my-wave-portal`
+2. `contracts` ディレクトリに移動: `cd contracts`
+3. `WavePortal.sol` ファイルを作成: `touch WavePortal.sol`
 
 Hardhat を使用する場合、ファイル構造は非常に重要なので、注意する必要があります。ファイル構造が下記のようになっていれば大丈夫です😊
 
@@ -96,18 +94,15 @@ contract WavePortal {
 この `contract` を初期化すると、`constructor` が実行されて `console.log` の中身がターミナル上に表示されます。
 
 class の概念については、[こちら](https://aiacademy.jp/media/?p=131) を参照してくさい。
-## 🔩 constructor とは
+### 🔩 constructor とは
 
 `constructor` はオプションの関数で、`contract` の状態変数を初期化するために使用されます。
 
 これから詳しく説明していくので、`constructor` に関しては、まず以下の特徴を理解してください。
-
 * `contract` は 1 つの `constructor` しか持つことができません。
-
 * `constructor` は、スマートコントラクトの作成時に一度だけ実行され、`contract` の状態を初期化するために使用されます。
-
 * `constructor` が実行された後、コードがブロックチェーンにデプロイされます。
-## 🙋‍♂️ 質問する
+### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discord の `#section-1-help` で質問をしてください。
 

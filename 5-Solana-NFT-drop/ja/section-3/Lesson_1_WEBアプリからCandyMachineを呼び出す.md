@@ -1,4 +1,4 @@
-## ☎️ WEBアプリからcandy machineを呼び出す
+### ☎️ WEBアプリからcandy machineを呼び出す
 
 ここまでのレッスンで以下3つのことを行いました🎉
 
@@ -13,7 +13,7 @@
 まずは `app/src/CandyMachine/index.js` をご覧ください。これはMetaplex のフロントエンド・ライブラリの一部です。
 
 このファイルについて詳しく説明しませんが、ぜひコードを読んでみてください。
-## 🌲  `.env` プロパティを設定する
+### 🌲  `.env` プロパティを設定する
 
 まずは `.env` プロパティを設定します。
 
@@ -79,7 +79,7 @@ REACT_APP_SOLANA_RPC_HOST=https://explorer-api.devnet.solana.com
 今回作成するC andy Machine は Devnet 上にあるので、ウォレットも Devnet に変更する必要があります。
 
 ![無題](/public/images/5-Solana-NFT-drop/section3/3_1_1.png)
-## 🤬 NFTの変更に関する注意
+### 🤬 NFTの変更に関する注意
 
 テストに使用した NFT コレクションを変更したい場合。以前と同じ手順を踏む必要があります。
 
@@ -94,7 +94,7 @@ REACT_APP_SOLANA_RPC_HOST=https://explorer-api.devnet.solana.com
 5\. `.env` ファイルを新しいアドレスで更新する
 
 これらの手順を踏まずに変更してしまうとバグの原因になるので気をつけてください。
-## 📞 Candy Machine と接続する
+### 📞 Candy Machine と接続する
 
 最初に、Candy Machine のメタデータを取得します。
 
@@ -232,7 +232,7 @@ const presale =
 ```
 
 ここで `fetch` を実行すると、 **Solana Devnet** へアクセスしてこのデータを取得します。
-## 🧠 CandyMachine コンポーネントをレンダリングする
+### 🧠 CandyMachine コンポーネントをレンダリングする
 
 `CandyMachine` コンポーネントをレンダリングしてみましょう。
 
@@ -275,7 +275,7 @@ return (
 ```
 
 `window.solana` を `CandyMachine` に渡す方法に注目してください。
-## 🍪 取得したデータをレンダリングする
+### 🍪 取得したデータをレンダリングする
 
 ページを更新するとすぐに `CandyMachine` の `useEffect` が起動するはずです。
 
@@ -402,7 +402,7 @@ return (
 現時点では、`MintNFT` ボタンをクリックしても何も起こりません。
 
 次レッスンではこのボタンのロジックを構築し、NFT を作成するように設定します。
-## 🙋‍♂️ 質問する
+### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discord の `#section-3-help` で質問をしてください。
 

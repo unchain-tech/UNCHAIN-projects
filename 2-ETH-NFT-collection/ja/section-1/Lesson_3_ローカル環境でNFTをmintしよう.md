@@ -1,4 +1,4 @@
-## 📝 スマートコントラクトを作成する
+### 📝 スマートコントラクトを作成する
 
 `contracts` ディレクトリの下に `MyEpicNFT.sol` という名前のファイルを作成します。
 
@@ -102,7 +102,7 @@ contract MyEpicNFT {
 この `contract` を初期化すると、`constructor` が実行されて `console.log` の中身がターミナル上に表示されます。
 
 class の概念については、[ここ](https://aiacademy.jp/media/?p=131)を参照してみてください。
-## 🔩 constructor とは
+### 🔩 constructor とは
 
 `constructor` はオプションの関数で、`contract` の状態変数を初期化するために使用されます。これから詳しく説明していくので、`constructor` に関しては、まず以下の特徴を理解してください。
 
@@ -111,7 +111,7 @@ class の概念については、[ここ](https://aiacademy.jp/media/?p=131)を�
 - `constructor` は、スマートコントラクトの作成時に一度だけ実行され、`contract` の状態を初期化するために使用されます。
 
 - `constructor` が実行された後、コードがブロックチェーンにデプロイされます。
-## 😲 スマートコントラクトを実行する
+### 😲 スマートコントラクトを実行する
 
 スマートコントラクトを実行するためには以下の手順が必要です。
 
@@ -211,7 +211,7 @@ console.log("Contract deployed to:", nftContract.address);
 実際のブロックチェーン上には、すでに何百万ものスマートコントラクトがデプロイされています。
 
 アドレスさえわかれば、世界中どこにいても、私たちが興味を持っているコントラクトに簡単にアクセスすることができます。
-## 💨 実行してみよう！
+### 💨 実行してみよう！
 
 では、実行してみましょう。
 
@@ -231,11 +231,11 @@ This is my NFT contract.
 Contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 ```
 上記のような結果がターミナルに出力されていれば、テストは成功です。
-## 🌱 Mint とは
+### 🌱 Mint とは
 
 NFT における「Mint（ミント）」とは、**スマートコントラクトを用いて、NFT を新らしく作成・発行すること**を意味します。
 
-## 🎩 Hardhat Runtime Environment について
+### 🎩 Hardhat Runtime Environment について
 
 `run.js` の中で、`hre.ethers` が登場します。
 
@@ -246,7 +246,7 @@ NFT における「Mint（ミント）」とは、**スマートコントラク�
 HRE は、Hardhat が用意した全ての機能を含むオブジェクト（＝コードの束）です。`hardhat` で始まるターミナルコマンドを実行するたびに、HRE にアクセスしているので、`hre` を `run.js` にインポートする必要はありません。
 
 詳しくは、[Hardhat 公式ドキュメント（英語）](https://hardhat.org/advanced/hardhat-runtime-environment.html) にて確認できます。
-## 🙋‍♂️ 質問する
+### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discord の `#section-1-help` で質問をしてください。
 

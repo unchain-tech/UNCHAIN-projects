@@ -1,4 +1,4 @@
-## 🌊 ユーザー に OpenSea/Rarible のリンクを提供する
+### 🌊 ユーザー に OpenSea/Rarible のリンクを提供する
 
 NFTが発行された後、OpenSea や Rarible でNFTへのリンクを共有できるようになります。
 
@@ -113,7 +113,7 @@ Contract deployed to: 0x... ← あなたのコントラクトアドレスをコ
 4\. コピーした `epic-nfts/artifacts/contracts/MyEpicNFT.sol/MyEpicNFT.json` の中身を `your-first-dapp/src/utils/MyEpicNFT.json` の中身と交換する。
 
 **繰り返しますが、コントラクトを更新するたびにこれを行う必要があります。**
-## 🪄 フロントエンドを更新する
+### 🪄 フロントエンドを更新する
 
 下記のように、`App.js` を更新してください。
 
@@ -531,7 +531,7 @@ const App = () => {
 
 export default App;
 ```
-## 😎 WEBアプリをアップグレードする
+### 😎 WEBアプリをアップグレードする
 
 MVP を起点にWEBアプリを自分の好きなようにアップグレードしましょう。
 
@@ -583,7 +583,7 @@ if (chainId !== rinkebyChainId) {
 ユーザーがそれをクリックすると、コレクションのページに行けるようにしましょう。
 
 Rarible へのリンクは `App.js` にハードコーディングする必要があります。
-## 🙋‍♂️ 質問する
+### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discordの`#section-4-help`で質問をしてください。
 
