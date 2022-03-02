@@ -22,6 +22,7 @@ my-wave-portal
 ここでは、VS Code の使用をお勧めします。ダウンロードは [こちら](https://azure.microsoft.com/ja-jp/products/visual-studio-code/) から。
 
 VS Code をターミナルから起動する方法は [こちら](https://maku.blog/p/f5iv9kx/) をご覧ください。
+- ターミナル上で、`code` コマンドを実行
 
 今後 VS Code を起動するのが一段と楽になるので、ぜひ導入してみてください。
 
@@ -69,7 +70,7 @@ pragma solidity ^0.8.4;
 
 コンパイラのバージョンが `hardhat.config.js` で同じであることを確認してください。
 
-もし、`hardhat.config.js` の中に記載されている Solidity のバージョンが `0.8.4` でなかった場合は、`WavePortal.sol` の中身を `hardhat.config.js` に記載されているバージョンに変更しましょう。
+もし、`` の中に記載されている Solidity のバージョンが `0.8.4` でなかった場合は、`WavePortal.sol` の中身を `hardhat.config.js` に記載されているバージョンに変更しましょう。
 
 ```javascript
 // WavePortal.sol
