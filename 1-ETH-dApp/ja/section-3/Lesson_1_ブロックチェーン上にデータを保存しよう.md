@@ -100,6 +100,8 @@ emit NewWave(msg.sender, block.timestamp, _message);
 
 次に、`App.js` の中に `getAllWaves` 関数を追加して、`NewWave` のイベントをフロントエンドで受け取れるように変更していきます。
 
+`const contractABI = abi.abi;` の直下に下記を追加しましょう。
+
 ```javascript
 // App.js
 const getAllWaves = async () => {
