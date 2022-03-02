@@ -184,7 +184,110 @@ const onNewWave = (from, timestamp, message) => {
   ]);
 };
 ```
-`onNewWave` 関数では、下記2つの動作を実行しています。
+
+`getAllWaves` 関数は、`waves` 関数とほぼ同じ仕様をしています。
+
+```javascript
+const getAllWaves = async () => {
+	const { ethereum } = window;
+
+	try {
+	  if (ethereum) {
+		const provider = new ethers.providers.Web3Provider(ethereum);
+		const signer = provider.getSigner();
+		const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
+	  /* コントラクトからgetAllWavesメソッドを呼び出す */
+		const waves = await wavePortalContract.getAllWaves();
+    /* UIに必要なのは、アドレス、タイムスタンプ、メッセージだけなので、以下のように設定 */
+		const wavesCleaned = waves.map(wave => {
+		  return {
+			address: wave.waver,
+			timestamp: new Date(wave.timestamp * 1000),
+			message: wave.message,
+		  };
+		});
+
+    /* React Stateにデータを格納する */
+		setAllWaves(wavesCleaned);
+	  } else {
+		console.log("Ethereum object doesn't exist!");
+	  }
+	} catch (error) {
+	  console.log(error);
+	}
+  };
+```
+
+まずは下記のコードを見ていきましょう。
+
+```javascript
+// App.js
+const provider = new ethers.providers.Web3Provider(ethereum);
+```
+
+ここでは、`provider` (= Metamask) を設定しています。これにより、フロントエンドが Metamask を介して、イーサリアムノードに接続できるようになります。
+
+次に、下記のコードを見ていきましょう。
+
+```javascript
+// App.js
+const signer = provider.getSigner();
+```
+
+ここでは、ユーザーのウォレットアドレス (= `signer`）を設定しています。
+
+次に、下記のコードを見ていきましょう。
+
+```javascript
+// App.js
+const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
+```
+
+ここでは、コントラクトのインスタンス（= `wavePortalContract`）を生成し、コントラクトへの接続を行なっています。
+`wave` 関数同様、コントラクトの新しいインスタンスを作成するには、以下3つの変数を `ethers.Contract` 関数に渡す必要があります。
+1. コントラクトのデプロイ先のアドレス（ローカル、テストネット、またはメインネット）
+2. コントラクトの ABI
+3. `provider`、もしくは `signer`
+
+今回は、`signer` を引数として渡しているので、`wavePortalContract` インスタンスは「読み取り」と「書き込み」の両方の機能が使えるようになります。
+
+最後に、下記のコードを見ていきましょう。
+
+```javascript
+// App.js
+const wavesCleaned = waves.map(wave => {
+  return {
+    address: wave.waver,
+    timestamp: new Date(wave.timestamp * 1000),
+    message: wave.message,
+  };
+});
+```
+
+ここでは、`.map()` メソッドを使用して `waves` 配列をループし、配列内の各項目の要素を返しています。今回返す要素は、以下になります。
+- `address` : wave したユーザーのアドレス
+- `timestamp` : wave のタイムスタンプ
+- `message` : wave と共に送信されたメッセージ
+
+
+それでは、`onNewWave` 関数を見ていきましょう。
+
+```javascript
+// App.js
+const onNewWave = (from, timestamp, message) => {
+	console.log("NewWave", from, timestamp, message);
+	setAllWaves(prevState => [
+	...prevState,
+	  {
+		  address: from,
+		  timestamp: new Date(timestamp * 1000),
+		  message: message,
+		},
+	]);
+};
+```
+
+ここでは、下記2つの動作を実行しています。
 
 1 \. コントラクト側で新しく `NewWave` イベントが `emit` された時、下記の情報を取得する。
 - `sender` のアドレス

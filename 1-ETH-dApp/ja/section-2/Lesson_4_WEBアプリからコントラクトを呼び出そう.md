@@ -155,7 +155,7 @@ const wave = async () => {
 > // App.js
 > const provider = new ethers.providers.Web3Provider(ethereum);
 > ```
->
+> ここでは、`provider` (= Metamask) を設定しています。
 > `provider` を介して、ユーザーはブロックチェーン上に存在するイーサリアムノードに接続することができます。
 > Metamask が提供するイーサリアムノードを使用して、デプロイされたコントラクトからデータを送受信するために上記の実装を行いました。
 >
