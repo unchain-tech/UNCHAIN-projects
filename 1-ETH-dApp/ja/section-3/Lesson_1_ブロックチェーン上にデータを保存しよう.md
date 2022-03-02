@@ -354,7 +354,7 @@ npx hardhat run scripts/deploy.js --network rinkeby
 ```
 Deploying contracts with account:  0x821d451FB0D9c5de6F818d700B801a29587C3dCa
 Account balance:  333733007254181125
-WavePortal address:  0x8B1D31bFBf34dBF12c73034215752261e55b443c
+Contract deployed to:  0x8B1D31bFBf34dBF12c73034215752261e55b443c
 ```
 
 **2 \. `App.js` の `contractAddress` を、ターミナルで取得した新しいコントラクトアドレスに変更します。**
@@ -362,7 +362,7 @@ WavePortal address:  0x8B1D31bFBf34dBF12c73034215752261e55b443c
 下記のように、ターミナルに出力されたコントラクトアドレス（ `0x..` ）をコピーしましょう。
 
 ```
-WavePortal address: 0x... ← あなたのコントラクトアドレスをコピー
+Contract deployed to: 0x... ← あなたのコントラクトアドレスをコピー
 ```
 
 コピーしたアドレスを `App.js` の `const contractAddress = "こちら"` に貼り付けましょう。

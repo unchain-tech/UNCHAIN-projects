@@ -26,7 +26,7 @@ const main = async () => {
   const waveContract = await waveContractFactory.deploy();
   const wavePortal = await waveContract.deployed();
 
-  console.log("Contract deployed to:", wavePortal.address);
+  console.log("WavePortal address: ", wavePortal.address);
 };
 
 const runMain = async () => {
@@ -99,7 +99,7 @@ Hardhat は実際にあなたのマシン上に「マイナー」を作成し、
 
 ```javascript
 // run.js
-console.log("Contract deployed to:", wavePortal.address);
+console.log("WavePortal address:", wavePortal.address);
 ```
 
 最後に、デプロイされると、`wavePortal.address` はデプロイされたコントラクトのアドレスを出力します。
@@ -126,8 +126,8 @@ npx hardhat run run.js
 ```
 Compiling 1 file with 0.8.4
 Solidity compilation finished successfully
-Here is my first smart cotract!
-Contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
+Here is my first smart contract!
+WavePortal address: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 ```
 
 上記のようなアウトプットターミナルに表示されていればテストは成功です。

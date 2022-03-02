@@ -192,7 +192,7 @@ Contract deployed by:  0x1A7f14FBF50acf10bCC08466743fB90384Cbd720
 あなたのターミナル上で、`Contract deployed to` の後に出力されたコントラクトアドレス（ `0x..` ）をコピーして、保存しておきましょう。後でフロントエンドを構築する際に必要となります。
 ### 👀 Etherscanでトランザクションを確認する
 
-コピーした `WavePortal address` アドレスを、[Etherscan](https://rinkeby.etherscan.io/) に貼り付けて、あなたのスマートコントラクトのトランザクション履歴を見てみましょう。
+コピーした `Contract deployed to` に続くアドレスを、[Etherscan](https://rinkeby.etherscan.io/) に貼り付けて、あなたのスマートコントラクトのトランザクション履歴を見てみましょう。
 
 Etherscan は、イーサリアムネットワーク上のトランザクションに関する情報を確認するのに便利なプラットフォームです。
 

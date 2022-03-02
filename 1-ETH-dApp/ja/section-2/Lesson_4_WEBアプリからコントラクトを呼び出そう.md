@@ -221,19 +221,19 @@ Rinkeby Test Network にコントラクトをデプロイしたとき、下記�
 ```
 Deploying contracts with account:  0x821d451FB0D9c5de6F818d700B801a29587C3dCa
 Account balance:  324443375262705541
-WavePortal address:  0x3610145E4c6C801bBf2F926DFd8FDd2cE1103493
+Contract deployed to:  0x3610145E4c6C801bBf2F926DFd8FDd2cE1103493
 ```
 
-`App.js` に `contractAddress` を設定するために、`WavePortal address` 出力結果（ `0x..` ）が必要です。
+`App.js` に `contractAddress` を設定するために、`Contract deployed to` の出力結果（ `0x..` ）が必要です。
 
-`WavePortal address` の出力結果をどこかにメモしていた場合は、このままレッスンを進めましょう。
+`Contract deployed to` に続く出力結果をどこかにメモしていた場合は、このままレッスンを進めましょう。
 
 再度この結果を出力する場合は、ターミナル上で `my-wave-portal` ディレクトリに移動し、下記を実行してください。
 ```
 npx hardhat run scripts/deploy.js --network rinkeby
 ```
 
-コントラクトのデプロイ先のアドレスを取得できたら、`App.js` に `contractAddress` という新規の変数を追加し、`WavePortal address` の出力結果（ `0x..` ）を設定していきます。
+コントラクトのデプロイ先のアドレスを取得できたら、`App.js` に `contractAddress` という新規の変数を追加し、`Contract deployed to` の出力結果（ `0x..` ）を設定していきます。
 
 `const [currentAccount, setCurrentAccount] = useState("")` の直下に`contractAddress` を作成しましょう。以下のようになります。
 
@@ -243,7 +243,7 @@ const [currentAccount, setCurrentAccount] = useState("");
 /**
  * デプロイされたコントラクトのアドレスを保持する変数を作成
  */
-const contractAddress = "あなたの WavePortal address を貼り付けてください";
+const contractAddress = "あなたの WavePortal の address を貼り付けてください";
 ```
 
 `App.js` を更新したら、ローカルサーバーにホストされているWEBアプリから `Console` を確認してみましょう。

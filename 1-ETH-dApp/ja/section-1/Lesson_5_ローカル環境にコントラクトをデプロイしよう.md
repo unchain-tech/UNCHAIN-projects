@@ -111,7 +111,7 @@ Account balance:  10000000000000000000000
 - `1ETH ＝ 1,000,000,000,000,000 wei` です。つまり、 **1 wei は 1,000 億分の 1ETH** ということになります。
 
 ```
-WavePortal address:  0x5FbDB2315678afecb367f032d93F642f64180aa3
+Contract deployed to:  0x5FbDB2315678afecb367f032d93F642f64180aa3
 ```
 
 ここには、**あなたのスマートコントラクトのデプロイ先のアドレス**が表示されています。
