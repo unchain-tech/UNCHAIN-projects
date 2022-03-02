@@ -269,7 +269,6 @@ const wavesCleaned = waves.map(wave => {
 - `timestamp` : wave のタイムスタンプ
 - `message` : wave と共に送信されたメッセージ
 
-
 それでは、`onNewWave` 関数を見ていきましょう。
 
 ```javascript
@@ -693,7 +692,7 @@ const App = () => {
 export default App
 ```
 
-上記で実装した機能を詳しく見ていきましょう。
+復習も兼ねて、上記で実装した機能を詳しく見ていきましょう。
 
 **1 \. WEBアプリからメッセージを受け取る**
 
@@ -715,7 +714,7 @@ const [messageValue, setMessageValue] = useState("")
 const [allWaves, setAllWaves] = useState([]);
 ```
 
-それから `getAllWaves` 関数の中に下記を実装して、WEBアプリからアドレス、タイムスタンプ、メッセージを取得できるようにしています。
+それから `getAllWaves` 関数の中に `wavesCleaned` 関数を実装して、WEBアプリからアドレス、タイムスタンプ、メッセージを取得できるようにしています。
 
 詳しく見ていきましょう。
 
@@ -730,9 +729,7 @@ const [allWaves, setAllWaves] = useState([]);
 >});
 >setAllWaves(wavesCleaned);
 >```
->ここでは状態変数（＝ `waveCleaned` ）を宣言し、その値を初期化しています。
->
-> それから、[mapメソッド](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/map) を使って、`wavesCleaned` 変数にデータを追加しています。
+>ここでは状態変数（＝ `waveCleaned` ）に、[mapメソッド](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/map) を使って、データを追加しています。
 >
 > `map` メソッドは、元となる配列から新しく配列を作るためのメソッドです。配列のすべての要素に対して、与えられた関数を実行し、関数で返された値で新しい配列を生成します。
 >
