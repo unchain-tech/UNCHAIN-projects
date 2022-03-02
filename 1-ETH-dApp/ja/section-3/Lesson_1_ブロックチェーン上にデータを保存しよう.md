@@ -700,19 +700,37 @@ export default App
 
 ```javascript
 // App.js
+/* ユーザーのパブリックウォレットアドレスを保存するために使用する状態変数を定義 */
+const [currentAccount, setCurrentAccount] = useState("");
+/* ユーザーのメッセージを保存するために使用する状態変数を定義 */
 const [messageValue, setMessageValue] = useState("")
-```
-ここでは、ユーザーのメッセージを保存するために使用する変数を定義しています。
-
-`useState` 関数は初期状態を受け取り、2つの値を返します。
-- 現在の状態（＝ `messageValue` ）
-- 現在の状態を更新する関数（＝ `setMessageValue` ）
-
-同様に、`useState` を使って、ユーザーが送る `wave` の情報を保存する変数を定義します。
-```javascript
 /* すべてのwavesを保存する状態変数を定義 */
 const [allWaves, setAllWaves] = useState([]);
 ```
+
+ここでは、ユーザーの情報を保存するために使用する変数と関数を定義し、初期化しています。
+
+```javascript
+// App.js
+const [currentAccount, setCurrentAccount] = useState("");
+```
+- ユーザーのパブリックウォレットを格納する変数（＝ `currentAccount` ）
+- ユーザーのパブリックウォレットを更新する関数（＝ `setCurrentAccount` ）
+
+```javascript
+// App.js
+const [messageValue, setMessageValue] = useState("")
+```
+- ユーザーのメッセージを格納する変数（＝ `messageValue` ）
+- ユーザーのメッセージを更新する関数（＝ `setMessageValue` ）
+
+
+```javascript
+//App.js
+const [allWaves, setAllWaves] = useState([]);
+```
+- 現在の waves の状態を格納する変数（＝ `allWaves` ）
+- 現在の waves の状態を更新する関数（＝ `setAllWaves` ）
 
 それから `getAllWaves` 関数の中に `wavesCleaned` 関数を実装して、WEBアプリからアドレス、タイムスタンプ、メッセージを取得できるようにしています。
 
