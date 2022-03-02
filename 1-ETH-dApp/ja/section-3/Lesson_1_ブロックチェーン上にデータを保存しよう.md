@@ -98,7 +98,7 @@ emit NewWave(msg.sender, block.timestamp, _message);
 コントラクトでイベントが `emit` されると、フロントエンド（ `App.js` ）でその情報を受け取ります。
 `NewWave` イベント が `emit` される際、フロントエンド（ `App.js` ）で使用する変数 `msg.sender`, `block.timestamp`, `_message` をフロントエンドに送信しています。
 
-次に、`App.js` の中に `getAllWaves` 関数を追加して、`NewWave` のイベントを受け取れるように変更していきます。
+次に、`App.js` の中に `getAllWaves` 関数を追加して、`NewWave` のイベントをフロントエンドで受け取れるように変更していきます。
 
 ```javascript
 // App.js
