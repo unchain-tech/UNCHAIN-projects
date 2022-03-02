@@ -215,7 +215,7 @@ const charactersTxn = await gameContract.getAllDefaultCharacters();
 
 ここでは、`gameContract` を使用して、`MyEpicGame.sol` に記載した`getAllDefaultCharacters` 関数を呼び出しています。
 
-- ✍️: `getAllDefaultCharacters` は、3体の NFT キャラクターのデフォルト情報を取得する関数です。
+> ✍️: `getAllDefaultCharacters` は、3体の NFT キャラクターのデフォルト情報を取得する関数です。
 
 次に、下記のコードを見ていきましょう。
 
@@ -229,8 +229,7 @@ transformCharacterData(characterData)
 
 ここでは、`transformCharacterData` を使用して、NFT キャラクターのデータをWEBアプリで扱えるオブジェクトに変換しています。
 
-- ✍️: `map()` の使い方
->
+>✍️: `map()` の使い方
 > `map()` は配列データに使うメソッドです。
 > `map()` メソッドを使って、配列に入っている NFT キャラクターそれぞれの属性情報（ HP など）に対して `transformCharacterData` を実行し、その結果を新しい配列（ `characters` ）として返しています。
 

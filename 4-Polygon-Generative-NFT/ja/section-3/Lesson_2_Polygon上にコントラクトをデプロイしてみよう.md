@@ -77,7 +77,7 @@ uint public constant PRICE = 0.01 ether;
 
 ですが、Polygon サイドチェーンで使用されるのは ETH ではなく、MATIC という独自の ERC20 トークンです。
 
-✍️: ERC20 トークンについて
+>✍️: ERC20 トークンについて
 > ERC20は、イーサリアムのブロックチェーンを利用したトークンに適用される仕様です。
 >
 > イーサリアムネットワーク上では、誰でもオリジナルの仮想通貨（トークン）を作ることができます。
@@ -121,8 +121,7 @@ uint public constant PRICE = 17 ether;
 Polygonでは、`10¹⁸ Wei` が `1 MATIC` です。
 
 
-✍️: `Wei` と `Gwei`
->
+>✍️: `Wei` と `Gwei`
 >イーサリアムのガス代（コスト）は、下記で決まります。
 >
 >	コスト = ガス価格（ Gas Price ） x 消費したガスの量（ Gas limit & Usage by Txn ）

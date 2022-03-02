@@ -61,7 +61,7 @@ emit NewEpicNFTMinted(msg.sender, newItemId);
 
 このコードが、`makeAnEpicNFT` 関数の最後の行になるように注意してくだい。
 
-**✍️: Solidityでは、`event` と `emit` が頻繁に使用されます。**
+> **✍️: Solidityでは、`event` と `emit` が頻繁に使用されます。**
 
 上記の実装は、`NewEpicNFTMinted` イベントが `emit` されるごとに、コントラクトに書き込まれたデータをWEBアプリのフロントエンドに反映させることを目的としています。
 

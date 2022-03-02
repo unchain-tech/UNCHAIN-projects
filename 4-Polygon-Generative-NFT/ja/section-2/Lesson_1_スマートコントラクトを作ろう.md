@@ -247,8 +247,7 @@ string public baseTokenURI;
 
 コントラクトの所有者 (またはデプロイ先) が必要に応じて Base Token URI を変更できるように、これから `baseTokenURI` のセッター関数を記述する予定です。
 
-✍️: `public` は Solidity の**アクセス修飾子**です。
-
+>✍️: `public` は Solidity の**アクセス修飾子**です。
 > Solidity のアクセス修飾子に関しては、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/blob/main/ETH-NFT-collection/ja/section-2/Lesson_4_Solidity%E3%81%AE%E6%9B%B8%E3%81%8D%E6%96%B9%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E5%AD%A6%E3%81%BC%E3%81%86.md) をご覧ください。
 >
 > `public` を含む、他のアクセス修飾子について詳しく説明しています。
@@ -326,9 +325,7 @@ function reserveNFTs() public onlyOwner {
 
 `_mintSingleNFT` 関数については、後で詳しく説明します。
 
-
-✍️: `Ownable` / `onlyOwner` について
->
+>✍️: `Ownable` / `onlyOwner` について
 >`Ownable` は、OpenZeppelin が提供するコントラクトへのアクセス制御を提供するモジュールです。
 >
 >このモジュールは、コントラクトの継承によって使用されます。

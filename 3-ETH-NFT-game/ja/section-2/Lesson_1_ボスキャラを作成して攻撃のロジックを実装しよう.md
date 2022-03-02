@@ -191,8 +191,7 @@ CharacterAttributes storage player = nftHolderAttributes[nftTokenIdOfPlayer];
 
 ここでは、`nftHolderAttributes[nftTokenIdOfPlayer]` を使ってプレイヤーの属性を取得しています。
 
-✍️: `storage` と `memory` について
-
+> ✍️: `storage` と `memory` について
 > ここでは `storage` というデータを保存する際に使用するキーワードを使っています。
 >
 > 一般的に、`storage` はブロックチェーンにデータを保存するときに使用されるキーワードです。
@@ -284,8 +283,7 @@ if (bigBoss.hp < player.attackDamage) {
 
 - `else` : もし、ボスの HP（ `bigBoss.hp` ）が、NFT キャラクターの攻撃力 （ `player.attackDamage` ）を上回っていたら、ボスの HP を「現在のボスの HP」から「NFT キャラクターの攻撃力」を差し引いた値に更新します。
 
-✍️: `uint` について
-
+> ✍️: `uint` について
 > ここで使用されている変数（`igBoss.hp` と `player.attackDamage`）は、`constructor` の中で `uint` として定義されています。
 >
 > `uint` とは、符号なし整数を意味しており、負の値をとることはできません。

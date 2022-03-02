@@ -41,7 +41,7 @@ npm init -y
 npm install --save-dev hardhat
 ```
 
-✍️: `warning` について
+> ✍️: `warning` について
 > 最後のコマンドを実行して Hardhat をインストールすると、脆弱性に関するメッセージが表示される場合があります。
 >
 > 基本的に `warning` は無視して問題ありません。

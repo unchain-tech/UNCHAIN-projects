@@ -155,12 +155,12 @@ const nftContractFactory = await hre.ethers.getContractFactory("MyEpicNFT");
 
 実際にコントラクトがコンパイルされ、コントラクトを扱うために必要なファイルが `artifacts` ディレクトリの直下に生成されます。
 
-✍️: `hre.ethers.getContractFactory` について
+> ✍️: `hre.ethers.getContractFactory` について
 > `getContractFactory` 関数は、デプロイをサポートするライブラリのアドレスと `MyEpicNFT` コントラクトの連携を行っています。
 >
 > `hre.ethers` は、Hardhat プラグインの仕様です。
 
-✍️: `const main = async ()` と `await` について
+> ✍️: `const main = async ()` と `await` について
 > Javascript でコードを書いていると、コードの上から順に実行されなくて困ることがあります。これを同期処理に関する問題といいます。
 >
 > 解決法の一つとして、ここでは `async` / `await` を使用します。

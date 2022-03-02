@@ -180,7 +180,7 @@ python3 metadata.py
 
 あなたが作成したコレクションの `edition` の名前をターミナルに入力してください。
 
-✍️: わたしの場合、`first collection` と入力します。
+>✍️: わたしの場合、`first collection` と入力します。
 
 プログラムが完了したら、`generative-nft-library/output/あなたのedition/json` フォルダに移動して中身を確認しましょう。
 

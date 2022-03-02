@@ -49,7 +49,7 @@ Fungible Token と Non-Fungible Toke（ NFT ）の違いは、主に下記の2�
 2. 購入者は、ジャック・ドーシー氏の「はじめてのツイート」データへのリンクを所有することができる
 3. 購入者が、約3億円の価値がある暗号資産を保持していることがブロックチェーン上に記録される
 
-✍️: Fungible Token と Non-fungible Token の違い
+> ✍️: Fungible Token と Non-fungible Token の違い
 > 「分割できるかどうか」も、Fungible と Non-Fungible Token の違いの一つとして認識しておきましょう。
 >
 > 今回のプロジェクトでは触れませんが、この二つのトークンの違いを知っていることは、今後 web3に関する学習を進める上で重要です。

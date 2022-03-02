@@ -63,7 +63,7 @@ Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押して
 
 フォーセットを使用する前に、あなたの MetaMask ウォレットを `Rinkeby Test Network` に設定してください。
 
-✍️: Metamask で `Rinkeby Test Network` を設定する方法
+> ✍️: Metamask で `Rinkeby Test Network` を設定する方法
 > 1 \. Metamask ウォレットのネットワークトグルを開く。
 > ![](/public/images/1-ETH-dApp/section-2/2_2_13.png)
 > 2 \. `Show/hide test networks` をクリック。
@@ -159,7 +159,7 @@ hardhat.config.js
 
 `.gitignore` に記載されているファイルやディレクトリは、Github にディレクトリをプッシュされずに、ローカル環境にのみ保存されます。
 
-**✍️: スマートコントラクトをデプロイするのに秘密鍵が必要な理由**
+> **✍️: スマートコントラクトをデプロイするのに秘密鍵が必要な理由**
 > **新しくスマートコントラクトをイーサリアムネットワーク上にデプロイすること**も、トランザクションの一つです。
 >
 > トランザクションを行うためには、ブロックチェーンに「ログイン」する必要があります。

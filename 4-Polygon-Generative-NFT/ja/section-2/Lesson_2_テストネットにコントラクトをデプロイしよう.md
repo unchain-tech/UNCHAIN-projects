@@ -59,7 +59,7 @@ Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押して
 
 すでに別のウォレットをお持ちの場合でも、今回は Metamask を使用してください。
 
-✍️: Metamask が必要な理由
+>✍️: Metamask が必要な理由
 > ユーザーが、スマートコントラクトを呼び出すとき、本人のイーサリアムアドレスと秘密鍵を備えたウォレットが必要となります。
 > - これは、認証作業のようなものです。
 ### 🐣 テストネットから始める
@@ -91,16 +91,16 @@ Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押して
 
 フォーセットを使用する前に、あなたの MetaMask ウォレットを `Rinkeby Test Network` に設定してください。
 
-✍️: Metamask で `Rinkeby Test Network` を設定する方法
+>✍️: Metamask で `Rinkeby Test Network` を設定する方法
 > 1 \. Metamask ウォレットのネットワークトグルを開く。
 > ![](/public/images/4-Polygon-Generative-NFT/section-2/2_2_5.png)
-
+>
 > 2 \. `Show/hide test networks` をクリック。
 > ![](/public/images/4-Polygon-Generative-NFT/section-2/2_2_6.png)
-
+>
 > 3 \. `Show test networks` を `ON` にする。
 > ![](/public/images/4-Polygon-Generative-NFT/section-2/2_2_7.png)
-
+>
 > 4 \. `Rinkeby Test Network` を選択する。
 > ![](/public/images/4-Polygon-Generative-NFT/section-2/2_2_8.png)
 
@@ -146,7 +146,7 @@ PRIVATE_KEY = "YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY"
 >
 > `.env` の `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の部分をここで取得した秘密鍵とを入れ替えます。
 
-**✍️: スマートコントラクトをデプロイするのに秘密鍵が必要な理由**
+>**✍️: スマートコントラクトをデプロイするのに秘密鍵が必要な理由**
 > **新しくスマートコントラクトをイーサリアムネットワーク上にデプロイすること**も、トランザクションの一つです。
 >
 > トランザクションを行うためには、ブロックチェーンに「ログイン」する必要があります。

@@ -164,7 +164,7 @@ npm run start
 
 ![](/public/images/1-ETH-dApp/section-2/2_3_4.png)
 
-✍️: `Console` の結果を見てわかること
+> ✍️: `Console` の結果を見てわかること
 > `App.js` に記載されているコードは上から順を追って走っているので、最初に `currentAccount` の状態変数を定義したときには、中身が空であることがわかります。
 
 > ```javascript

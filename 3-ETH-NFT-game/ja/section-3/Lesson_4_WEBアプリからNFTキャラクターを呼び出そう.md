@@ -218,7 +218,7 @@ const checkNetwork = async () => {
 
 スマートコントラクトで `checkIfUserHasNFT` メソッドを作成したのを覚えていますか？
 
-✍️: `checkIfUserHasNFT` メソッドの機能
+> ✍️: `checkIfUserHasNFT` メソッドの機能
 >
 >ユーザーがすでに NFT キャラクターを持っているかどうかを確認する。
 >

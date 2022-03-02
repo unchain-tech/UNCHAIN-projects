@@ -18,7 +18,7 @@
 
 今回のレッスンでは、Cryptopunk や BAYC のような希少性を備えた Generative Art の NFT コレクションを作成する方法を学びます。
 
-✍️: NFT に関する詳しい説明は、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/blob/main/ETH-NFT-collection/ja/section-1/Lesson_1_NFT%E3%81%A8%E3%81%AF%E4%BD%95%E3%81%8B%EF%BC%9F.md) をご覧ください。
+> ✍️: NFT に関する詳しい説明は、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/blob/main/ETH-NFT-collection/ja/section-1/Lesson_1_NFT%E3%81%A8%E3%81%AF%E4%BD%95%E3%81%8B%EF%BC%9F.md) をご覧ください。
 ### 💻 Python と pip をインストールする
 
 Generative Art を作成するために、[こちら](https://github.com/shiftbase-xyz/generative-nft-library) のライブラリを使用します。
@@ -365,9 +365,8 @@ Python リストは、`rarity_weights` の重みを割り当てる最も一般�
 
 **重みの値が大きいほど、特定の特徴がよく見られます。**
 
-✍️: 重みと希少性の感性は以下のようになります。
-
-	特徴画像の重みの値が大きけ ＝ その特徴を持つ画像の希少性が低い
+> ✍️: 重みと希少性の感性は以下のようになります。
+> 特徴画像の重みの値が大きけ ＝ その特徴を持つ画像の希少性が低い
 
 この例では、「黒のバンド」は `5`、「リストバンドなし」は `100` の重みを持っています。
 
