@@ -539,7 +539,7 @@ npm run start
 
 ローカルサーバー上で表示されているWEBアプリで `Inspect` を実行し、以下を試してみましょう。
 
-1 \. `Wallet Connect` をボタンを押して、sWEBアプリにあなたの Metamask のウォレットアドレスを接続する。
+1 \. `Wallet Connect` をボタンを押して、WEBアプリにあなたの Metamask のウォレットアドレスを接続する。
 
 2 \. `Wave at Me` ボタンを押して、実際にブロックチェーン上にあなたの「👋（wave）」が反映されているか確認する。
 
