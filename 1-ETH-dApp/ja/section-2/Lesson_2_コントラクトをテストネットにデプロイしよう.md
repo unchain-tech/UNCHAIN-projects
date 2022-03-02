@@ -183,16 +183,13 @@ npx hardhat run scripts/deploy.js --network rinkeby
 下記のような結果が出力されていれば成功です🎉
 
 ```bash
-Deploying contracts with account: 0x821d451FB0D9c5de6F818d700B801a29587C3dCa
-Account balance: 352858095262705541
-WavePortal address: 0x489BdD5f9ad2D061F0bC648fd0A06e4D024A9a81
+Deploying contracts with account:  0x1A7f14FBF50acf10bCC08466743fB90384Cbd720
+Account balance:  174646846389073382
+Contract deployed to:  0x04da168454AFA19Eb43D6A28b63964D8DCE8351e
+Contract deployed by:  0x1A7f14FBF50acf10bCC08466743fB90384Cbd720
 ```
 
-あなたのターミナル上で、`WavePortal address` の後に出力されたコントラクトアドレス（ `0x..` ）をコピーして、保存しておきましょう。後でフロントエンドを構築する際に必要となります。
-
-例）出力されたコントラクトアドレスをコピー
-
-![](/public/images/1-ETH-dApp/section-2/2_2_12.png)
+あなたのターミナル上で、`Contract deployed to` の後に出力されたコントラクトアドレス（ `0x..` ）をコピーして、保存しておきましょう。後でフロントエンドを構築する際に必要となります。
 ### 👀 Etherscanでトランザクションを確認する
 
 コピーした `WavePortal address` アドレスを、[Etherscan](https://rinkeby.etherscan.io/) に貼り付けて、あなたのスマートコントラクトのトランザクション履歴を見てみましょう。
