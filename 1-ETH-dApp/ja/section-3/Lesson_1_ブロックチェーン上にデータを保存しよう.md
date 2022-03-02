@@ -348,7 +348,7 @@ const main = async () => {
   const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
   const waveContract = await waveContractFactory.deploy();
   await waveContract.deployed();
-  console.log("Contract addy:", waveContract.address);
+  console.log("Contract added to:", waveContract.address);
   let waveCount;
   waveCount = await waveContract.getTotalWaves();
   console.log(waveCount.toNumber());
@@ -387,7 +387,7 @@ npx hardhat run scripts/run.js
 Compiling 1 file with 0.8.4
 Solidity compilation finished successfully
 WavePortal - Smart Contract!
-Contract addy: 0x5FbDB2315678afecb367f032d93F642f64180aa3
+Contract added to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 We have 0 total waves!
 0
 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 waved w/ message A message!
