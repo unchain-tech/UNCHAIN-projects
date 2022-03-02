@@ -171,12 +171,13 @@ hardhat.config.js
 > ![](/public/images/1-ETH-dApp/section-2/2_2_11.png)
 > ユーザー名とパスワードを使用して、AWS にログインしてプロジェクトをデプロイするのと同じです。
 
-⚠️: すでに github に `hardhat.config.js` を push してしまった！
-もしすでに github にコードを push されている場合は、ターミナル上で下記を実行してください。
+⚠️: すでに github に `hardhat.config.js` を push してしまった場合の対処法
+
+すでに github にコードを push している場合は、ターミナル上で下記を実行してください。
 ```
 git rm --cached hardhat.config.js
 ```
-これで、ローカルリポジトリの `hardhat.config.js` ファイルを残した状態で、リモートリポジトリのファイルを消しすことができます。`git push` まで行ったら、github 上に `hardhat.config.js` が存在しないことを確認してください。
+これで、ローカルリポジトリの `hardhat.config.js` ファイルを残した状態で、リモートリポジトリのファイルを消しすことができます。再度、`git push` まで行ったら、github 上に `hardhat.config.js` が存在しないことを確認してください。
 ### 🚀 Rinkeby Test Network にコントラクトをデプロイする
 
 `hardhat.config.js` の更新が完了したら、Rinkeby Test Network にコントラクトをデプロイしてみましょう。
