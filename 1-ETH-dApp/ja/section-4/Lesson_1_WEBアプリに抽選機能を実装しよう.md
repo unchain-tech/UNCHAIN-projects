@@ -439,7 +439,7 @@ Error: VM Exception while processing transaction: reverted with reason string 'W
 - `WavePortal.sol` に記載されている `15 minutes` を調整して、バッファ期間を調整する（※テストに関しては、`30 seconds` を推奨しています）
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#section-4-help` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#section-4` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨
 ```

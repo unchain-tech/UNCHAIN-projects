@@ -1,3 +1,3 @@
-## 4. Solana-NFT-Drop👻
+## 5. Solana-NFT-Drop👻
 
 Metaplex でコントラクトを Solana 上にデプロイし、React で NFT を Mint する WEB サイトを構築します。

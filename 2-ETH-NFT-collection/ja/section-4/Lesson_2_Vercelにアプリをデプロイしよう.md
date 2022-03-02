@@ -313,7 +313,7 @@ VercelはGithubと連動しているので、Githubが更新されるたびに�
 https://nft-minter-jl0e7c9yw-yukis4san.vercel.app/
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの `#section-4-help` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの `#section-4` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨
 ```

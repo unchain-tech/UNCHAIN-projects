@@ -234,7 +234,7 @@ HRE は、Hardhat が用意した全ての機能を含むオブジェクト（�
 詳しくは、[Hardhat 公式ドキュメント（英語）](https://hardhat.org/advanced/hardhat-runtime-environment.html) にて確認できます。
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#section-1-help` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#section-1` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨
 ```

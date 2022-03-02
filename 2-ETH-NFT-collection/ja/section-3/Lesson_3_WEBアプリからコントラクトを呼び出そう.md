@@ -316,7 +316,7 @@ Mined, see transaction: https://rinkeby.etherscan.io/tx/0x5a08f3e66852b5c1833f3a
 上記の点に注意しながら、コントラクトの更新を行ってください。
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの`#section-3-help`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#section-3`で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨
 ```
@@ -329,7 +329,7 @@ Mined, see transaction: https://rinkeby.etherscan.io/tx/0x5a08f3e66852b5c1833f3a
 
 NFT を Mint できる WEBアプリはほぼ完成です！
 
-Rarible のリンクを `#section-3-help` に貼り付けて、あなたの NFT をシェアしてください😊
+Rarible のリンクを `#section-3` に貼り付けて、あなたの NFT をシェアしてください😊
 
 あなたの作った NFT がどんなものなのか気になります✨
 

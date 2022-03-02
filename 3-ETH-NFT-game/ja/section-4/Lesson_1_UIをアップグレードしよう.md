@@ -583,7 +583,7 @@ const runAttackAction = async () => {
 ![](/public/images/3-ETH-NFT-game/section-4/4_1_3.png)
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの `#section-4-help` で質問してください。
+ここまでの作業で何かわからないことがある場合は、Discordの `#section-4` で質問してください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨
 ```

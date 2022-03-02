@@ -247,7 +247,7 @@ TypeError: Cannot read property 'candyMachineAddress' of undefined
 このエラーが発生した場合は、Candy Machine のコマンドを `.cache` フォルダと `assets` フォルダがある同じディレクトリから実行しているか確認してください。起こりがちなミスなので十分注意してください！
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#section-2-help` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#section-2` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨
 ```

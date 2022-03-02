@@ -137,7 +137,7 @@ https://rinkeby.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#
 - また、`mintNFTs` 関数を呼び出して数枚の NFT を Mint してみましょう。
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの `#section-2-help` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの `#section-2` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨
 ```
@@ -147,7 +147,7 @@ https://rinkeby.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#
 ```
 
 ---
-Etherscan リンクを `#section-2-help` に投稿してください😊
+Etherscan リンクを `#section-2` に投稿してください😊
 
 コミュニティであなたの成功を祝いましょう🎉
 

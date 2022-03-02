@@ -603,7 +603,7 @@ contract NFTCollectible is ERC721Enumerable, Ownable {
 ```
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#section-2-help` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#section-2` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨
 ```

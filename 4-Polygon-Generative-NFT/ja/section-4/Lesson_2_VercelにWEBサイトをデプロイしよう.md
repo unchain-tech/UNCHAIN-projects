@@ -142,7 +142,7 @@ VercelはGithubと連動しているので、Githubが更新されるたびに�
 ![](/public/images/4-Polygon-Generative-NFT/section-4/4_2_11.png)
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの `#section-3-help` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの `#section-3` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨
 ```

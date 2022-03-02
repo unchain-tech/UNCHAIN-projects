@@ -401,7 +401,7 @@ const [owner, randomPerson1, randomPerson2] = await hre.ethers.getSigners();
 ```
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#section-1-help` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#section-1` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨
 ```

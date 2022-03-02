@@ -345,7 +345,7 @@ https://mumbai.polygonscan.com/address/0xF899DeB963208560a7c667FA78376ecaFF684b8
 コントラクトが `verify` されると、誰でも Polygonscan 上で関数を呼び出して、あなたの NFT を Mint することができるようになります。
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの `#section-3-help` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの `#section-3` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨
 ```
@@ -357,7 +357,7 @@ https://mumbai.polygonscan.com/address/0xF899DeB963208560a7c667FA78376ecaFF684b8
 ---
 おめでとうございます！セクション3は終了です！
 
-ぜひ、あなたの Polygonscan リンクを `#section-3-help` に投稿してください😊
+ぜひ、あなたの Polygonscan リンクを `#section-3` に投稿してください😊
 
 コミュニティであなたの成功を祝いましょう🎉
 
