@@ -412,7 +412,7 @@ lastWavedAt[msg.sender] = block.timestamp;
 `mapping(address => uint256) public lastWavedAt` でユーザーのアドレスと `lastWavedAt` を紐づけているので、これで次に同じユーザーが `wave` を送ってきた時に、15分経過しているか検証することができます。
 ### 🧙‍♂️ テストを実行する
 
-ターミナル上で `my-wave-portal` に移動し、下記を続けて**2回**実行してみましょう。
+ターミナル上で `my-wave-portal` に移動し、下記を実行してみましょう。
 
 ```
 npx hardhat run scripts/run.js
