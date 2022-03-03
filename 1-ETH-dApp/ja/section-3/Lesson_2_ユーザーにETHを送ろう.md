@@ -231,6 +231,7 @@ Contract balance: 0.0999
 本番環境でコントラクトに資金を提供するため、下記のように `deploy.js` を更新します。
 
 ```javascript
+// deploy.js
 const main = async () => {
 	const [deployer] = await hre.ethers.getSigners();
 	const accountBalance = await deployer.getBalance();
@@ -243,6 +244,8 @@ const main = async () => {
 	const waveContract = await waveContractFactory.deploy({
 		value: hre.ethers.utils.parseEther("0.001"),
 	});
+
+  await waveContract.deployed();
 
 	console.log('WavePortal address: ', waveContract.address);
   };
@@ -273,6 +276,8 @@ const waveContract = await waveContractFactory.deploy({
 今回はテストなので、少額の 0.001ETH をコントラクトに付与しています。
 
 また、`await waveContract.deployed()` を追加して、資金を追加するまでデプロイを待機するように設定しています。
+
+※ この1行を追加すると、開発者はコントラクトがデプロイされたことを簡単に知ることができます。任意で排除しても、コードは走ります😊
 ### 🛩 もう一度デプロイする
 
 コントラクトを更新したので、下記を実行する必要があります。
