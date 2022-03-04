@@ -32,6 +32,9 @@ CSS や文章を変更したり、画像や動画を自分のWEBアプリに乗�
 まず、`App.js` の中にある下記のコードを確認します。
 ```javascript
 // App.js
+/* ABIを参照 */
+const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
+let count = await wavePortalContract.getTotalWaves();
 console.log("Retrieved total wave count...", count.toNumber());
 ```
 
@@ -57,6 +60,12 @@ console.log(
 
 ```javascript
 // App.js
+/* コントラクトに👋（wave）を書き込む */
+const waveTxn = await wavePortalContract.wave(messageValue,{gasLimit:300000})
+console.log("Mining...", waveTxn.hash);
+await waveTxn.wait();
+console.log("Mined -- ", waveTxn.hash);
+count = await wavePortalContract.getTotalWaves();
 console.log("Retrieved total wave count...", count.toNumber());
 ```
 このコードの直下に下記を追加しましょう。
