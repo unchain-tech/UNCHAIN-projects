@@ -155,9 +155,9 @@ const wave = async () => {
 > // App.js
 > const provider = new ethers.providers.Web3Provider(ethereum);
 > ```
-> ここでは、`provider` (= Metamask) を設定しています。
+> ここでは、`provider` (= MetaMask) を設定しています。
 > `provider` を介して、ユーザーはブロックチェーン上に存在するイーサリアムノードに接続することができます。
-> Metamask が提供するイーサリアムノードを使用して、デプロイされたコントラクトからデータを送受信するために上記の実装を行いました。
+> MetaMask が提供するイーサリアムノードを使用して、デプロイされたコントラクトからデータを送受信するために上記の実装を行いました。
 >
 > `ethers` のライブラリにより `provider` のインスタンスを新規作成しています。
 
@@ -539,7 +539,7 @@ npm run start
 
 ローカルサーバー上で表示されているWEBアプリで `Inspect` を実行し、以下を試してみましょう。
 
-1 \. `Wallet Connect` をボタンを押して、WEBアプリにあなたの Metamask のウォレットアドレスを接続する。
+1 \. `Wallet Connect` をボタンを押して、WEBアプリにあなたの MetaMask のウォレットアドレスを接続する。
 
 2 \. `Wave at Me` ボタンを押して、実際にブロックチェーン上にあなたの「👋（wave）」が反映されているか確認する。
 
