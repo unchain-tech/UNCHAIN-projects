@@ -45,7 +45,7 @@ npx hardhat
 注：`npm` と一緒に `yarn` をインストールしている場合、`npm ERR! could not determine executable to run` などのエラーが発生する可能性があります。
 * この場合、`yarn add hardhat` のコマンドを実行しましょう。
 
-`hardhat` がターミナル上で立ち上がったら、`Create a sample project` を選択します。
+`hardhat` がターミナル上で立ち上がったら、`Create a basic sample project` を選択します。
 * ここでは、すべてに `yes` と言ってください。
 
 サンプルプロジェクトでは、`hardhat-waffle` と `hardhat-ethers` をインストールするように求められます。
