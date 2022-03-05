@@ -39,7 +39,7 @@ function wave(string memory _message) public {
 > まず、下記で `prizeAmount` という変数を定義し、`0.0001` ETH を指定しています。
 > ```javascript
 > // WavePortal.sol
-> prizeAmount <= address(this).balance
+> uint256 prizeAmount = 0.0001 ether;
 > ```
 > そして、下記では、ユーザーに送る ETH の額が**コントラクトが持つ残高**より下回っていることを確認しています。
 >```javascript
