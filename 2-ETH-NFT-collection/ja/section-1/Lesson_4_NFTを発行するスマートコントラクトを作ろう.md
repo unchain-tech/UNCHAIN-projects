@@ -8,8 +8,8 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.4;
 // いくつかの OpenZeppelin のコントラクトをインポートします。
-import "@OpenZeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
-import "@OpenZeppelin/contracts/utils/Counters.sol";
+import "@openZeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openZeppelin/contracts/utils/Counters.sol";
 import "hardhat/console.sol";
 
 // インポートした OpenZeppelin のコントラクトを継承しています。
