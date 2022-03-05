@@ -45,7 +45,7 @@ npx hardhat
 注：`npm` と一緒に `yarn` をインストールしている場合、`npm ERR! could not determine executable to run` などのエラーが発生する可能性があります。
 * この場合、`yarn add hardhat` のコマンドを実行しましょう。
 
-`hardhat` がターミナル上で立ち上がったら、`Create a sample project` を選択します。
+`hardhat` がターミナル上で立ち上がったら、`Create a basic sample project` を選択します。
 * ここでは、すべてに `yes` と言ってください。
 
 サンプルプロジェクトでは、`hardhat-waffle` と `hardhat-ethers` をインストールするように求められます。
@@ -93,12 +93,12 @@ contracts		package.json
 
 まず、`test` の下のファイル `sample-test.js` を削除します。
 1. `test` フォルダーに移動: `cd test`
-2. `sample-test.js` を削除: `rm -r sample-test.js`
+2. `sample-test.js` を削除: `rm sample-test.js`
 
 また、`scripts` の下の `sample-script.js` を削除します。
 1. 一つ上の階層のフォルダー（ `my-wave-portal` ）に移動: `cd ..`
 2. `cd scripts` フォルダーに移動: `cd scripts`
-3. `sample-script.js` を削除: `rm -r sample-script.js`
+3. `sample-script.js` を削除: `rm sample-script.js`
 
 次に、上記の手順を参考にして `contracts` の下の `Greeter.sol` を削除してください。実際のフォルダは削除しないように注意しましょう。
 ### 🙋‍♂️ 質問する
