@@ -647,7 +647,7 @@ const App = () => {
         <div className="bio">
           イーサリアムウォレットを接続して、メッセージを作成したら、<span role="img" aria-label="hand-wave">👋</span>を送ってください<span role="img" aria-label="shine">✨</span>
         </div>
-        <br></br>
+        <br />
         {/* ウォレットコネクトのボタンを実装 */}
         {!currentAccount && (
         <button className="waveButton" onClick={connectWallet} >
