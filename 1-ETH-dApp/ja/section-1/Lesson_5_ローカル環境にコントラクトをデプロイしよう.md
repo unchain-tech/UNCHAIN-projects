@@ -30,11 +30,9 @@ npx hardhat node
 
 - `run.js` がテスト用のプログラムなら、`deploy.js` は本番用です。
 
- ターミナルを閉じるときは、以下のコマンドが使えます✍️
- - Mac: `ctrl + c`
- - Windows: `ctrl + shift + w`
-
 それでは、ターミナル上で `scripts` ディレクトリに移動して、下記を実行しましょう。
+
+もう一つターミナルウィンドウを立ち上げて、下記を実行してみましょう。
 
 ```bash
 touch deploy.js
@@ -81,8 +79,6 @@ const main = async () => {
 **新しくターミナルのウィンドウを立ち上げ**、`scripts` ディレクトリに移動しましょう。
 
 下記のコマンドを実行して、あなたのスマートコントラクトを、ローカルネットワークにデプロイします。
-
-もう一つターミナルウィンドウを立ち上げて、下記を実行してみましょう。
 
 ```bash
 npx hardhat run deploy.js --network localhost
