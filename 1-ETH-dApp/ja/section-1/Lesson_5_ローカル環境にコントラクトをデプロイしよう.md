@@ -30,6 +30,10 @@ npx hardhat node
 
 - `run.js` がテスト用のプログラムなら、`deploy.js` は本番用です。
 
+ ターミナルを閉じるときは、以下のコマンドが使えます✍️
+ - Mac: `ctrl + c`
+ - Windows: `ctrl + shift + w`
+
 それでは、ターミナル上で `scripts` ディレクトリに移動して、下記を実行しましょう。
 
 ```bash
