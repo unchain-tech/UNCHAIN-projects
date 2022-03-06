@@ -354,6 +354,10 @@ WavePortal address:  0x550925E923Cb1734de73B3a843A21b871fe2a673
 > ![](/public/images/1-ETH-dApp/section-3/3_2_3.png)
 >
 > WEBアプリで `wave` を送ったユーザーに 0.0001ETH を送ったので、残高が `0.001-0.0001=0.0009 ETH` になっています。
+
+ターミナルを閉じるときは、以下のコマンドが使えます✍️
+- Mac: `ctrl + c`
+- Windows: `ctrl + shift + w`
 ### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discord の `#section-3` で質問をしてください。

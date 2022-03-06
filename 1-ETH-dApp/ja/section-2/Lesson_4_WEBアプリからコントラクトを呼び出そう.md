@@ -550,6 +550,10 @@ npm run start
 ![](/public/images/1-ETH-dApp/section-2/2_4_3.png)
 
 それぞれの `Wave` がカウントされ、承認されていることが確認できたら、次のステップに進みましょう。
+
+ターミナルを閉じるときは、以下のコマンドが使えます✍️
+- Mac: `ctrl + c`
+- Windows: `ctrl + shift + w`
 ### 🌱 Etherscan でトランザクションを確認する
 
 あなたの `Console` に出力されている以下のアドレスをそれぞれコピーして、[Etherscan](https://rinkeby.etherscan.io/) に貼り付けてみましょう。

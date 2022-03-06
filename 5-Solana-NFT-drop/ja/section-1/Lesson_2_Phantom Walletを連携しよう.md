@@ -211,6 +211,10 @@ const checkIfWalletIsConnected = async () => {
 現段階のみの問題で、`connect` メソッド内に `onlyIfTrusted：true` パラメータを追加したためです。
 
 `onlyIfTrusted` パラメータが `true` に設定された `connect` メソッドは 、ユーザーがウォレットとWEBアプリ間の接続をすでに承認している 場合にのみ実行されます。次のセクションで修正します。
+
+ターミナルを閉じるときは、以下のコマンドが使えます✍️
+- Mac: `ctrl + c`
+- Windows: `ctrl + shift + w`
 ### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discord の `#section-1` で質問をしてください。
