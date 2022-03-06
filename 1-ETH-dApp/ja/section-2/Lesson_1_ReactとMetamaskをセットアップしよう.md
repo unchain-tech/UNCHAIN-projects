@@ -43,6 +43,10 @@ npm run start
 上記のような形でフロントエンドが確認できれば成功です。
 
 これからフロントエンドの表示を確認する際は、`dApp-starter-project` ディレクトリ上で、`npm run start` を実行します。
+
+ターミナルを閉じるときは、以下のコマンドが使えます✍️
+- Mac: `ctrl + c`
+- Windows: `ctrl + shift + w`
 ### 🦊 MetaMask をダウンロードする
 
 次に、イーサリアムウォレットをダウンロードしましょう。

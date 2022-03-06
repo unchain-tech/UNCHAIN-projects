@@ -436,6 +436,9 @@ Metamaskの承認が終わると、ウォレット接続ボタンの表示が `W
 Connected 0x3a0a49fb3cf930e599f0fa7abe554dc18bd1f135
 App.js:16 currentAccount:  0x3a0a49fb3cf930e599f0fa7abe554dc18bd1f135
 ```
+ターミナルを閉じるときは、以下のコマンドが使えます✍️
+- Mac: `ctrl + c`
+- Windows: `ctrl + shift + w`
 ### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discordの`#section-3`で質問をしてください。
