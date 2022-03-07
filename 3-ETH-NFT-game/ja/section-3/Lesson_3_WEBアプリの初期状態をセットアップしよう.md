@@ -175,7 +175,7 @@ return (
 npm run start
 ```
 
-ローカルサーバーでWEBサイトを立ち上げたら、ブラウザの Metamask のプラグインをクリックし、あなたのウォレットアドレスの接続状況を確認しましょう。
+ローカルサーバーでWEBサイトを立ち上げたら、ブラウザの MetaMask のプラグインをクリックし、あなたのウォレットアドレスの接続状況を確認しましょう。
 
 もし、下図のように `Connected` と表示されている場合は、`Connected` の文字をクリックします。
 ![](/public/images/3-ETH-NFT-game3/section-3/3_3_1.png)
@@ -199,7 +199,7 @@ npm run start
 	👉 WEBアプリ上に、`SelectCharacter` コンポーネントを表示します。
 
 
-WEBアプリ上で、`Connect Wallet to Get Started` ボタンを押すと、下記のように、Metamask のポップアップが表示されます。
+WEBアプリ上で、`Connect Wallet to Get Started` ボタンを押すと、下記のように、MetaMask のポップアップが表示されます。
 
 ![](/public/images/3-ETH-NFT-game3/section-3/3_3_4.png)
 
