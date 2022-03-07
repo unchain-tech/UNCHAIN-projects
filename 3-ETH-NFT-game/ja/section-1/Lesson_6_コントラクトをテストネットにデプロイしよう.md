@@ -3,17 +3,17 @@
 これから、実際にコントラクトをテストネットにデプロイしていきます。
 
 テストネットにデプロイすると、NFT をオンラインで見ることができるようになります。
-### 🦊 Metamask をダウンロードする
+### 🦊 MetaMask をダウンロードする
 
 次に、イーサリアムウォレットをダウンロードしましょう。
 
-このプロジェクトでは Metamask を使用します。
+このプロジェクトでは MetaMask を使用します。
 
-- [こちら](https://metamask.io/download.html) からブラウザの拡張機能をダウンロードし、Metamask ウォレットをあなたのブラウザに設定します。
+- [こちら](https://metamask.io/download.html) からブラウザの拡張機能をダウンロードし、MetaMask ウォレットをあなたのブラウザに設定します。
 
-すでに別のウォレットをお持ちの場合でも、今回は Metamask を使用してください。
+すでに別のウォレットをお持ちの場合でも、今回は MetaMask を使用してください。
 
-> ✍️: Metamask が必要な理由
+> ✍️: MetaMask が必要な理由
 > ユーザーが、スマートコントラクトを呼び出すとき、本人のイーサリアムアドレスと秘密鍵を備えたウォレットが必要となります。
 > - これは、認証作業のようなものです。
 ### 💳 トランザクション
@@ -87,8 +87,8 @@ Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押して
 
 フォーセットを使用する前に、あなたの MetaMask ウォレットを `Rinkeby Test Network` に設定してください。
 
-> ✍️: Metamask で `Rinkeby Test Network` を設定する方法
-> 1 \. Metamask ウォレットのネットワークトグルを開く。
+> ✍️: MetaMask で `Rinkeby Test Network` を設定する方法
+> 1 \. MetaMask ウォレットのネットワークトグルを開く。
 >
 >![](/public/images/3-ETH-NFT-game/section-1/1_5_5.png)
 
@@ -207,7 +207,7 @@ module.exports = {
 > `hardhat.config.js` の `YOUR_ALCHEMY_API_URL` の部分を先ほど取得した Alchemy の URL（ `HTTP` リンク） と入れ替えます。
 
 2. \. `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の取得
-> 1\. お使いのブラウザから、Metamask プラグインをクリックして、ネットワークを `Rinkeby Test Network` に変更します。
+> 1\. お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを `Rinkeby Test Network` に変更します。
 > ![](/public/images/3-ETH-NFT-game/section-1/1_5_8.png)
 >
 > 2\. それから、`Account details` を選択してください。
@@ -216,7 +216,7 @@ module.exports = {
 > 3\. `Account details` から `Export Private Key` をクリックしてください。
 > ![](/public/images/3-ETH-NFT-game/section-1/1_5_10.png)
 >
-> 4\. Metamask のパスワードを求められるので、入力したら `Confirm` を推します。
+> 4\. MetaMask のパスワードを求められるので、入力したら `Confirm` を推します。
 > ![](/public/images/3-ETH-NFT-game/section-1/1_5_11.png)
 >
 > 5\. あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。

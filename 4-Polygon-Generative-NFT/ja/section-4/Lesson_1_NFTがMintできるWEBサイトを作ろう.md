@@ -2,7 +2,7 @@
 
 これから、オリジナルのWEBサイトを構築し、ユーザーがWEBサイトから直接 NFT を Mint できる機能を実装していきます。
 
-- ユーザーが Metamask ウォレットをWEBサイトに接続できる
+- ユーザーが MetaMask ウォレットをWEBサイトに接続できる
 
 - ユーザーがコントラクト関数を呼び出し、支払いを行い、コレクションからNFTを作成できるようにする
 
@@ -253,19 +253,19 @@ CSS スタイルや静的要素（画像、ヘッダー、フッター、ソー�
 ここまでで、プロジェクトの基礎となるブロックはほぼ揃いました。こ
 
 これで、ユーザーがウォレットをウェブサイトに接続する準備が整いました。
-### 🦊 Metamask ウォレットとの接続
+### 🦊 MetaMask ウォレットとの接続
 
 ユーザーがントラクトを呼び出すためには、自分のウォレットをWEBサイトに接続する必要があります。
 
 ウォレット接続は、ユーザーが NFT を Mint し、ガス代と販売価格を支払うことを可能にします。
 
-このレッスンでは、Metamask ウォレットと Metamask API のみを使用します。
+このレッスンでは、MetaMask ウォレットと MetaMask API のみを使用します。
 
-まず、ユーザーのブラウザに、Metamask ウォレットが存在するか確認していきます。
+まず、ユーザーのブラウザに、MetaMask ウォレットが存在するか確認していきます。
 
-ユーザーは Metamask ウォレットを持っていなければ、WBサイト上で NFT を Mint することができません。
+ユーザーは MetaMask ウォレットを持っていなければ、WBサイト上で NFT を Mint することができません。
 
-Metamask ウォレットが存在するかどうかを確認するロジックを、`checkWalletIsConnected` 関数に入力しましょう。
+MetaMask ウォレットが存在するかどうかを確認するロジックを、`checkWalletIsConnected` 関数に入力しましょう。
 
 ```javascript
 // App.js
@@ -274,7 +274,7 @@ const checkWalletIsConnected = async () => {
 	const { ethereum } = window;
 
 	if (!ethereum) {
-		console.log("Make sure you have Metamask installed!");
+		console.log("Make sure you have MetaMask installed!");
 		return;
 	} else {
 		console.log("Wallet exists! We're ready to go!")
@@ -283,19 +283,19 @@ const checkWalletIsConnected = async () => {
 }
 ```
 
-なお、`App.js` がロードされる際に、Metamask の存在を確認する `useEffect` フックも定義しています。
+なお、`App.js` がロードされる際に、MetaMask の存在を確認する `useEffect` フックも定義しています。
 
 アプリの `localhost` ページで `Console` を開いてください。
 
 - ステップ: WEBページ上で右クリック → `Inspect` → `Console`
 
-Metamask がインストールされていれば、`Wallet exists! We’re ready to go!` というメッセージが `Console` に表示されているはずです。
+MetaMask がインストールされていれば、`Wallet exists! We’re ready to go!` というメッセージが `Console` に表示されているはずです。
 
 ![](/public/images/4-Polygon-Generative-NFT/section-4/4_1_4.png)
 
-Metamask エクステンションをインストールしたからといって、アクセスしたすべての WEBサイトに Metamask が自動的に接続されるわけではありません。
+MetaMask エクステンションをインストールしたからといって、アクセスしたすべての WEBサイトに MetaMask が自動的に接続されるわけではありません。
 
-Metamask がユーザーにウォレットを接続するように促す必要があるのです。
+MetaMask がユーザーにウォレットを接続するように促す必要があるのです。
 
 そこで登場するのが `Connect Wallet` 機能です。
 
@@ -303,7 +303,7 @@ Metamask がユーザーにウォレットを接続するように促す必要�
 
 このログインボタンは、ユーザーがフロントエンドを通じてブロックチェーンネットワークに接続し、コントラクトを呼び出すことを可能にします。
 
-Metamask は `window.ethereum.request` メソッドでこのプロセスシンプルに実行します。
+MetaMask は `window.ethereum.request` メソッドでこのプロセスシンプルに実行します。
 
 まず、ユーザーのウォレットアドレスを追跡するために、`App()` で `useState` フックを使って変数を定義しましょう。
 
@@ -333,7 +333,7 @@ const connectWalletHandler = async () => {
 	const { ethereum } = window;
 
 	if (!ethereum) {
-		alert("Please install Metamask!");
+		alert("Please install MetaMask!");
 	}
 
 	try {
@@ -348,20 +348,20 @@ const connectWalletHandler = async () => {
 
 `connectWalletHandler` 関数が何をするのか、簡単に説明しましょう。
 
-まず、Metamask がインストールされているかどうかをチェックします。
+まず、MetaMask がインストールされているかどうかをチェックします。
 
-インストールされていない場合は、Metamask のインストールを促すポップアップが表示されます。
+インストールされていない場合は、MetaMask のインストールを促すポップアップが表示されます。
 
 ```javascript
 // App.js
 const { ethereum } = window;
 
 if (!ethereum) {
-	alert("Please install Metamask!");
+	alert("Please install MetaMask!");
 }
 ```
 
-Metamask にユーザーのウォレット接続を促し、アドレスの取得を試みます。
+MetaMask にユーザーのウォレット接続を促し、アドレスの取得を試みます。
 
 ```javascript
 // App.js
@@ -386,7 +386,7 @@ setCurrentAccount(accounts[0]);
 ```
 ### 🌐 ウォレット接続のテストを実行する
 
-上記のコードを全て `App.js` に反映させたら、Metamask のプラグインをクリックし、あなたのウォレットアドレスの接続状況を確認しましょう。
+上記のコードを全て `App.js` に反映させたら、MetaMask のプラグインをクリックし、あなたのウォレットアドレスの接続状況を確認しましょう。
 
 もし、下図のように `Connected` と表示されている場合は、`Connected` の文字をクリックします。
 
@@ -400,7 +400,7 @@ setCurrentAccount(accounts[0]);
 
 次にローカルサーバーにホストされているあなたのWEBサイトをリフレッシュして、`Connect Wallet` ボタンを押してください。
 
-Metamask が WEBサイトとの接続を促してきますので、同意しましょう。
+MetaMask が WEBサイトとの接続を促してきますので、同意しましょう。
 
 下記のように、`Console` にあなたのパブリックウォレットアドレスが出力されていれば、ウォレット接続のテストは成功です。
 
@@ -428,9 +428,9 @@ return (
 
 ![](/public/images/4-Polygon-Generative-NFT/section-4/4_1_8.png)
 
-ページを更新して、Metamask エクステンションを確認してみましょう。
+ページを更新して、MetaMask エクステンションを確認してみましょう。
 
-Metamask はまだウェブサイトに接続されていることを伝えていますが、WEBサイトにはまだConnect Wallet ボタンが表示されていることがわかります。
+MetaMask はまだウェブサイトに接続されていることを伝えていますが、WEBサイトにはまだConnect Wallet ボタンが表示されていることがわかります。
 
 ![](/public/images/4-Polygon-Generative-NFT/section-4/4_1_9.png)
 
@@ -450,7 +450,7 @@ const checkWalletIsConnected = async () => {
 	const { ethereum } = window;
 
 	if (!ethereum) {
-		console.log("Make sure you have Metamask installed!");
+		console.log("Make sure you have MetaMask installed!");
 		return;
 	} else {
 		console.log("Wallet exists! We're ready to go!")
@@ -472,26 +472,26 @@ const checkWalletIsConnected = async () => {
 
 この関数が何をするのか、簡単に触れておきましょう。
 
-- Metamask がインストールされているかどうかをチェックし、結果をコンソールに出力します。
+- MetaMask がインストールされているかどうかをチェックし、結果をコンソールに出力します。
 
 	```javascript
 	// App.js
 	if (!ethereum) {
-		console.log("Make sure you have Metamask installed!");
+		console.log("Make sure you have MetaMask installed!");
 		return;
 	} else {
 		console.log("Wallet exists! We're ready to go!")
 	}
 	```
 
-- WEBサイトに接続中のアカウントに対して Metamask のリクエストを試みます。
+- WEBサイトに接続中のアカウントに対して MetaMask のリクエストを試みます。
 
 ```javascript
 // App.js
 const accounts = await ethereum.request({ method: 'eth_accounts' });
 ```
 
-- Metamask がすでにWEBサイトに接続されている場合は、この関数にアカウントのリストを渡して要求を出します。
+- MetaMask がすでにWEBサイトに接続されている場合は、この関数にアカウントのリストを渡して要求を出します。
 
 ```javascript
 // App.js
@@ -500,7 +500,7 @@ if (accounts.length !== 0) {
   console.log("Found an authorized account: ", account);
 ```
 
-- リストが空でない場合、`checkWalletIsConnected` 関数は Metamask から取得した最初のアカウントアドレスを選び、それを `currentAccount` に設定します。
+- リストが空でない場合、`checkWalletIsConnected` 関数は MetaMask から取得した最初のアカウントアドレスを選び、それを `currentAccount` に設定します。
 
 ```javascript
 // App.js
@@ -523,9 +523,9 @@ setCurrentAccount(account);
 
 ユーザーが `Mint NFT` ボタンをクリックすると、次のようなことが起こると予想されます。
 
-1\. Metamask は、NFT の販売価格とガス代を支払うようユーザーに促します。
+1\. MetaMask は、NFT の販売価格とガス代を支払うようユーザーに促します。
 
-2\. ユーザーが同意すると、Metamask はあなたのコントラクトから `mintNFT` 関数を呼び出します。
+2\. ユーザーが同意すると、MetaMask はあなたのコントラクトから `mintNFT` 関数を呼び出します。
 
 3\. 取引が完了すると、取引の結果（成功、もしくは失敗）をユーザーに通知します。
 
@@ -582,15 +582,15 @@ const mintNftHandler = async () => {
 
 いつものように、この関数が何をするのかに触れてみましょう。
 
-1\. Metamask から投入された `ethereum` オブジェクトにアクセスしようとします。
+1\. MetaMask から投入された `ethereum` オブジェクトにアクセスしようとします。
 
 	```javascript
 	// App.js
     const { ethereum } = window;
 	```
 
-2\. `ethereum` が存在する場合、Metamask を RPC プロバイダとして設定します。
-これは、Metamask のウォレットを使ってマイナーにリクエストを発行することを意味します。
+2\. `ethereum` が存在する場合、MetaMask を RPC プロバイダとして設定します。
+これは、MetaMask のウォレットを使ってマイナーにリクエストを発行することを意味します。
 
 	```javascript
 	// App.js
@@ -614,7 +614,7 @@ const mintNftHandler = async () => {
 	console.log("Initialize payment");
 	```
 
-5\. これで、前述のコントラクトオブジェクトを通じてコントラクト上の関数を呼び出すことができます。`mintNFT` 関数を呼び出し、Metamask に `0.01 ETH`（これは NFT に設定した価格）を送信するよう依頼します。
+5\. これで、前述のコントラクトオブジェクトを通じてコントラクト上の関数を呼び出すことができます。`mintNFT` 関数を呼び出し、MetaMask に `0.01 ETH`（これは NFT に設定した価格）を送信するよう依頼します。
 
 	```javascript
 	// App.js
@@ -664,7 +664,7 @@ function App() {
     const { ethereum } = window;
 
     if (!ethereum) {
-      console.log("Make sure you have Metamask installed!");
+      console.log("Make sure you have MetaMask installed!");
       return;
     } else {
       console.log("Wallet exists! We're ready to go!")
@@ -685,7 +685,7 @@ function App() {
     const { ethereum } = window;
 
     if (!ethereum) {
-      alert("Please install Metamask!");
+      alert("Please install MetaMask!");
     }
 
     try {
@@ -759,13 +759,13 @@ export default App;
 
 それでは、WEBサイトに向かい、ブラウザの `Console` を開き、Minining 状況をリアルタイムで確認できるようにしましょう。
 
-**Metamask のネットワークを `Polygon Testnet` にして**、`Mint NFT` ボタンをクリックします。
+**MetaMask のネットワークを `Polygon Testnet` にして**、`Mint NFT` ボタンをクリックします。
 
-Metamask が 0.01 ETH + ガス代 を支払うよう促すので、同意してください。
+MetaMask が 0.01 ETH + ガス代 を支払うよう促すので、同意してください。
 
 トランザクションの処理には約15～20秒かかります。
 
-処理が完了したら、Metamask のポップアップとコンソール出力の両方でトランザクションが確認できます。
+処理が完了したら、MetaMask のポップアップとコンソール出力の両方でトランザクションが確認できます。
 
 ![](/public/images/4-Polygon-Generative-NFT/section-4/4_1_10.png)
 

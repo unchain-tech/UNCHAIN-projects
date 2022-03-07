@@ -124,13 +124,13 @@ https://rinkeby.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#
 
 `Contract` タブの横に小さな緑のチェックマーク ✅ が表示されているでしょうか？
 
-✅ は、ユーザーが Metamask を使ってし、Etherscan 自体からコントラクトの機能を呼び出せるようになったということを意味します。
+✅ は、ユーザーが MetaMask を使ってし、Etherscan 自体からコントラクトの機能を呼び出せるようになったということを意味します。
 
 ![](/public/images/4-Polygon-Generative-NFT/section-2/2_4_6.png)
 
 `Contract` タブの中の `Write Contract` を選択して以下を試してみましょう。
 
-- コントラクトをデプロイするのに使用した Metamask アカウントに接続し、`withdraw` 関数を呼び出します。
+- コントラクトをデプロイするのに使用した MetaMask アカウントに接続し、`withdraw` 関数を呼び出します。
 
 - 0.03 ETH をコントラクトから自分のウォレットに転送できるはずです。
 
