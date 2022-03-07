@@ -69,6 +69,10 @@ UI をアップデートする際に参考になるコードが、`App.js` / `Ap
 ぜひ、あなたのWEBアプリをアップグレードして、HTML/CSS/Javascript への理解を深めましょう。
 
 web3フロントエンドのマスターに一歩近づくことができます。
+
+ターミナルを閉じるときは、以下のコマンドが使えます✍️
+- Mac: `ctrl + c`
+- Windows: `ctrl + shift + w`
 ### 🤟 Vercel に WEBサイトをデプロイする
 
 最後に、[Vercel](https://vercel.com/) にWEBサイトをホストする方法を学びます。

@@ -840,6 +840,10 @@ const [allWaves, setAllWaves] = useState([]);
 こちらが、フロントエンドの実装結果の例になります。
 
 ![](/public/images/1-ETH-dApp/section-3/3_1_2.png)
+
+ターミナルを閉じるときは、以下のコマンドが使えます✍️
+- Mac: `ctrl + c`
+- Windows: `ctrl + shift + w`
 ### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discord の `#section-3` で質問をしてください。
