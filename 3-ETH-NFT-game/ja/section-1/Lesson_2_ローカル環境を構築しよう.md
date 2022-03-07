@@ -71,7 +71,7 @@ npx hardhat
 >npm install --save-dev @nomiclabs/hardhat-waffle ethereum-waffle chai @nomiclabs/hardhat-ethers ethers
 >```
 
-`hardhat` がターミナル上で立ち上がったら、`Create a sample project` を選択します。
+`hardhat` がターミナル上で立ち上がったら、`Create a basic sample project` を選択します。
 - ここでは、すべてに `yes` と言ってください。
 
 
@@ -115,7 +115,7 @@ contracts		package.json
 
 1\. `test` フォルダーに移動: `cd test`
 
-2\. `sample-test.js` を削除: `rm -r sample-test.js`
+2\. `sample-test.js` を削除: `rm sample-test.js`
 
 また、`scripts` の下の `sample-script.js` を削除します。
 
@@ -123,7 +123,7 @@ contracts		package.json
 
 2\. `cd scripts` フォルダーに移動: `cd scripts`
 
-3\. `sample-script.js` を削除: `rm -r sample-script.js`
+3\. `sample-script.js` を削除: `rm sample-script.js`
 
 次に、上記の手順を参考にして `contracts` の下の `Greeter.sol` を削除してください。実際のフォルダは削除しないように注意しましょう。
 ### ☀️ Hardhat の機能について

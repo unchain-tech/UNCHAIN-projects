@@ -68,7 +68,7 @@ export default App;
 ```
 ### 🦊 ユーザーアカウントにアクセスできるか確認する
 
-`window.ethereum` は、あなたのWEBアプリに参加するユーザーが Metamask を持っているか確認し、結果を `Console log` に出力します。
+`window.ethereum` は、あなたのWEBアプリに参加するユーザーが MetaMask を持っているか確認し、結果を `Console log` に出力します。
 
 ターミナルで `nft-game-starter-project` に移動し、下記を実行してみましょう。
 
@@ -81,7 +81,7 @@ npm run start
 次に、`Console`を選択し、出力結果を確認してみましょう。
 ![](/public/images/3-ETH-NFT-game/section-3/3_2_2.png)
 `Console` に `We have the ethereum object` と表示されているでしょうか？
-- これは、`window.ethereum` が、このWEBサイトを訪問したユーザー（ここでいうあなた）が Metamask を持っていることを確認したことを示しています。
+- これは、`window.ethereum` が、このWEBサイトを訪問したユーザー（ここでいうあなた）が MetaMask を持っていることを確認したことを示しています。
 
 次に、WEBサイトがユーザーのウォレットにアクセスする権限があるか確認します。
 
@@ -335,7 +335,7 @@ try {
 };
 ```
 
-`eth_requestAccounts` メソッドを使用することで、Metamask からユーザーにウォレットへのアクセスを許可するよう呼びかけることができます。
+`eth_requestAccounts` メソッドを使用することで、MetaMask からユーザーにウォレットへのアクセスを許可するよう呼びかけることができます。
 
 **2 \. `Connect Wallet` ボタンの実装**
 ```javascript

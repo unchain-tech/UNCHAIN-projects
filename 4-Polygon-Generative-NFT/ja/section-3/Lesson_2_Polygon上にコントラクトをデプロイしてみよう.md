@@ -84,7 +84,7 @@ uint public constant PRICE = 0.01 ether;
 >
 > ただし、トークンの仕様（プログラミング言語など）が異なる場合、そのトークンのために独自のウォレットの開発が必要になります。
 >
-> ERC20に準拠しているトークンは、Metamask のような既存のウォレットで管理することができます。
+> ERC20に準拠しているトークンは、MetaMask のような既存のウォレットで管理することができます。
 
 
 現在（2022年2月）、ETH と MATIC を日本円に換算すると以下のようになります。
@@ -143,13 +143,13 @@ uint public constant PRICE = 0.01 ether;
 
 ⚠️: 注意
 > **Polygon ネットワークにデプロイする場合、`0.01 ether` は `0.01 MATIC` です。`0.01 ETH` ではありません。**
-### 🦊 Metamask と Hardhat に Polygon Network を追加する
+### 🦊 MetaMask と Hardhat に Polygon Network を追加する
 
-Metamask ウォレットに Polygon Mainnet と Polygon Mumbai-Testnet を追加してみましょう。
+MetaMask ウォレットに Polygon Mainnet と Polygon Mumbai-Testnet を追加してみましょう。
 
-**1 \. Polygon Mainnet を Metamask に接続する**
+**1 \. Polygon Mainnet を MetaMask に接続する**
 
-Polygon Mainnet を Metamask に追加するには、次の手順に従ってください。
+Polygon Mainnet を MetaMask に追加するには、次の手順に従ってください。
 
 まず、[Polygonscan](https://polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Polygon Network` ボタンをクリックします。
 
@@ -159,17 +159,17 @@ Polygon Mainnet を Metamask に追加するには、次の手順に従ってく
 
 ![](/public/images/4-Polygon-Generative-NFT/section-3/3_2_2.png)
 
-`Polygon Mainet` があなたの Metamask にセットアップされました。
+`Polygon Mainet` があなたの MetaMask にセットアップされました。
 
 ![](/public/images/4-Polygon-Generative-NFT/section-3/3_2_3.png)
 
-**2 \. Polygon Mumbai-Testnet を Metamask に接続する**
+**2 \. Polygon Mumbai-Testnet を MetaMask に接続する**
 
-Polygon Mumbai-Testnet を Metamask に追加するには、次の手順に従ってください。
+Polygon Mumbai-Testnet を MetaMask に追加するには、次の手順に従ってください。
 
 まず、[mumbai.polygonscan.com](https://mumbai.polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Mumbai Network` ボタンをクリックします。
 
-`Polygon Mainet` を設定した時と同じ要領で `Polygon Testnet` をあなたの Metamask に設定してください。
+`Polygon Mainet` を設定した時と同じ要領で `Polygon Testnet` をあなたの MetaMask に設定してください。
 
 Hardhat を使用する場合、Alchemy のカスタム RPC URL が必要です。
 
@@ -193,7 +193,7 @@ POLYGON_URL = "Alchemy Polygon URL"
 ```
 ### 🚰 偽 MATIC を入手する
 
-Metamask と Hardhat の両方で Polygon ネットワークの設定が完了したら、偽の MATIC を取得していきましょう。
+MetaMask と Hardhat の両方で Polygon ネットワークの設定が完了したら、偽の MATIC を取得していきましょう。
 
 [こちら](https://faucet.polygon.technology/) にアクセスして、下記のように 偽 MATIC をリクエストしてください。
 
@@ -211,7 +211,7 @@ Rinkeby とは異なり、これらのトークンの取得にそれほど問題
 >
 > `1`. イーサリアムのメインネットで MATIC を購入し、Polygon のネットワークにブリッジする。
 >
-> `2`. 仮想通貨の取引所（ Wazirx や Coinbase など）で MATIC を購入し、それを直接 Metamask に転送する。
+> `2`. 仮想通貨の取引所（ WazirX や Coinbase など）で MATIC を購入し、それを直接 MetaMask に転送する。
 >
 > Polygon のようなサイドチェーンの場合、`2` の方が簡単で安く済みます。
 ### 🇮🇳 Polygon テストネットにコントラクトをデプロイする
