@@ -395,22 +395,22 @@ NFT の JSON メタデータは、IPFS の次のURLで入手できます： ipfs
 function mintNFTs(uint _count) public payable {
      uint totalMinted = _tokenIds.current();
      require(
-	   // 1つ目のチェック
-       totalMinted.add(_count) <= MAX_SUPPLY, "Not enough NFTs!"
+	// 1つ目のチェック
+      	totalMinted.add(_count) <= MAX_SUPPLY, "Not enough NFTs!"
      );
      require(
-	   // 2つ目のチェック
-       _count > 0 && _count <= MAX_PER_MINT,
-       "Cannot mint specified number of NFTs."
+	// 2つ目のチェック
+       	_count > 0 && _count <= MAX_PER_MINT,
+       	"Cannot mint specified number of NFTs."
      );
      require(
-	   // 3つ目のチェック
-       msg.value >= PRICE.mul(_count),
-       "Not enough ether to purchase NFTs."
+	// 3つ目のチェック
+      	msg.value >= PRICE.mul(_count),
+	"Not enough ether to purchase NFTs."
      );
      for (uint i = 0; i < _count; i++) {
-		 	 // すべてのチェックが終わったら、_count 個の NFT をユーザーに Mint する
-            _mintSingleNFT();
+	　// すべてのチェックが終わったら、_count 個の NFT をユーザーに Mint する
+	 _mintSingleNFT();
      }
 }
 ```
