@@ -130,21 +130,21 @@ import { ethers } from "ethers";
 // App.js
 const wave = async () => {
 	try {
-	  // ユーザーがMetaMaskを持っているか確認
-      const { ethereum } = window;
-      if (ethereum) {
-        const provider = new ethers.providers.Web3Provider(ethereum);
-        const signer = provider.getSigner();
-        const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
-        let count = await wavePortalContract.getTotalWaves();
-        console.log("Retrieved total wave count...", count.toNumber());
+	// ユーザーがMetaMaskを持っているか確認
+      	const { ethereum } = window;
+      	if (ethereum) {
+        	const provider = new ethers.providers.Web3Provider(ethereum);
+        	const signer = provider.getSigner();
+        	const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
+        	let count = await wavePortalContract.getTotalWaves();
+        	console.log("Retrieved total wave count...", count.toNumber());
 		console.log("Signer:", signer);
-      } else {
-        console.log("Ethereum object doesn't exist!");
-      }
-    } catch (error) {
-      console.log(error)
-    }
+      	} else {
+       		console.log("Ethereum object doesn't exist!");
+      	}
+    	} catch (error) {
+      		console.log(error)
+    	}
 }
 ```
 
