@@ -513,7 +513,7 @@ const wave = async () => {
         console.log("Mined -- ", waveTxn.hash);
         count = await wavePortalContract.getTotalWaves();
         console.log("Retrieved total wave count...", count.toNumber());
-		   /*-- ここまで --*/
+	/*-- ここまで --*/
       } else {
         console.log("Ethereum object doesn't exist!");
       }
