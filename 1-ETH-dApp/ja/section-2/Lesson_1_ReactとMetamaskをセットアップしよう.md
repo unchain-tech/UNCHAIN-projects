@@ -14,10 +14,18 @@ Github のアカウントをお持ちの方は、[こちら](https://github.com/
 
 ![](/public/images/1-ETH-dApp/section-2/2_1_1.png)
 
-ターミナルで任意のディレクトリに移動し、先ほどコピーしたリンクを貼り付け、下記を実行してください。
+ターミナルで先ほど作成した `ETH-dApp` ディレクトリに移動し、先ほどコピーしたリンクを貼り付け、下記を実行してください。
 
 ```bash
 git clone コピーした_github_リンク
+```
+
+この段階で、フォルダ構造は下記のようになっているはずです。
+
+```
+ETH-dApp
+	|_ my-wave-portal
+	|_ dApp-starter-project
 ```
 
 ターミナル上で `dApp-starter-project` に移動して下記を実行しましょう。

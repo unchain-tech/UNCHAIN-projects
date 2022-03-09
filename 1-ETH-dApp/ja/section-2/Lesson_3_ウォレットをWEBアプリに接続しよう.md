@@ -63,7 +63,7 @@ npm run start
 
 ![](/public/images/1-ETH-dApp/section-2/2_3_1.png)
 
-次に、`Console`を選択し、出力結果を確認してみましょう。
+次に、`Console` を選択し、出力結果を確認してみましょう。
 
 ![](/public/images/1-ETH-dApp/section-2/2_3_2.png)
 

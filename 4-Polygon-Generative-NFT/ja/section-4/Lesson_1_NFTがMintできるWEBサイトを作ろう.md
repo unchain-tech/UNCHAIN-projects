@@ -13,7 +13,7 @@
 
 まず、React のプロジェクトを作成していきます。
 
-ターミナルを開いて、任意のディレクトリで、以下のコマンドを実行してください。
+ターミナルを開いて、`Polygon-Generative-NFT` ディレクトリに移動し、以下のコマンドを実行してください。
 
 ```
 npx create-react-app nft-collectible-frontend

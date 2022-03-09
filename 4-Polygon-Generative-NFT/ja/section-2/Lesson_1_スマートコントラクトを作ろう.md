@@ -16,7 +16,25 @@
 作業したいディレクトリに移動したら、次のコマンドを実行して、プロジェクト用の空のフォルダーを作成し、空の package.json ファイルを作成します。
 
 ```bash
-mkdir nft-collectible && cd nft-collectible && npm init -y
+mkdir Polygon-Generative-NFT
+cd Polygon-Generative-NFT
+mkdir nft-collectible
+```
+
+この段階で、フォルダ構造は下記のようになっていることを確認してください。
+
+```
+Polygon-Generative-NFT
+	|_ nft-collectible
+```
+
+`nft-collectible` の中にスマートコントラクトを構築するためのファイルを作成していきます。
+
+下記を実行しましょう。
+
+```
+cd nft-collectible
+npm init -y
 ```
 
 この処理により、`nft-collectible` フォルダ内に `package.json` という名前のファイルが作成されます。

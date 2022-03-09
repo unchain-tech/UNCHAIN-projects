@@ -35,11 +35,22 @@
 作業したいディレクトリに移動したら、次のコマンドを実行します。
 
 ```
+mkdir ETH-NFT-game
+cd ETH-NFT-game
 mkdir epic-game
 cd epic-game
 npm init -y
 npm install --save-dev hardhat
 ```
+この段階で、フォルダ構造は下記のようになっていることを確認してください。
+
+```
+ETH-NFT-game
+	|_ epic-game
+```
+
+`epic-game` の中にスマートコントラクトを構築するためのファイルを作成していきます。
+
 
 > ✍️: `warning` について
 > 最後のコマンドを実行して Hardhat をインストールすると、脆弱性に関するメッセージが表示される場合があります。

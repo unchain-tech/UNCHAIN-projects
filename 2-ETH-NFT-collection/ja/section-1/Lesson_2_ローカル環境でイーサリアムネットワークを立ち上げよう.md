@@ -16,11 +16,22 @@
 作業をはじめるディレクトリに移動したら、次のコマンドを実行します。
 
 ```bash
+mkdir ETH-NFT-collection
+cd ETH-NFT-collection
 mkdir epic-nfts
 cd epic-nfts
 npm init -y
 npm install --save-dev hardhat
 ```
+
+この段階で、フォルダ構造は下記のようになっていることを確認してください。
+
+```
+ETH-NFT-collection
+	|_ epic-nfts
+```
+
+`epic-nfts` の中にスマートコントラクトを構築するためのファイルを作成していきます。
 
 > ✍️: `warning` について
 > 最後のコマンドを実行して Hardhat をインストールすると、脆弱性に関するメッセージが表示される場合があります。

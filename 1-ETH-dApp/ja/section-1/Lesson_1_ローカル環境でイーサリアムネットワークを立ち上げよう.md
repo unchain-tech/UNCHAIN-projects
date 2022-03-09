@@ -27,11 +27,22 @@
 作業したいディレクトリに移動したら、次のコマンドを実行します。
 
 ```bash
+mkdir ETH-dApp
+cd ETH-dApp
 mkdir my-wave-portal
 cd my-wave-portal
 npm init -y
 npm install --save-dev hardhat
 ```
+
+この段階で、フォルダ構造は下記のようになっていることを確認してください。
+
+```
+ETH-dApp
+	|_ my-wave-portal
+```
+
+`my-wave-portal` の中にスマートコントラクトを構築するためのファイルを作成していきます。
 ### 👏 サンプルプロジェクトを開始する
 
 次に、Hardhat を実行します。

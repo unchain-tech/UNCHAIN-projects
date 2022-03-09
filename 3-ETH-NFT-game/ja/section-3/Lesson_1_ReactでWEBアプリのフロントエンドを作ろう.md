@@ -20,10 +20,18 @@ Github のアカウントをお持ちの方は、[こちら](https://github.com/
 まず、下図のように、`Code` ボタンをクリックして、`SSH` を選択し、git リンクをコピーしましょう。
 ![](/public/images/3-ETH-NFT-game/section-3/3_1_1.png)
 
-ターミナルで任意のディレクトリに移動し、先ほどコピーしたリンクを貼り付け、下記を実行してください。
+ターミナルで先ほど作成した `ETH-NFT-game` ディレクトリに移動し、先ほどコピーしたリンクを貼り付け、下記を実行してください。
 
 ```bash
 git clone コピーした_github_リンク
+```
+
+この段階で、フォルダ構造は下記のようになっているはずです。
+
+```
+ETH-NFT-game
+	|_ epic-game
+	|_ nft-game-starter-project
 ```
 
 ターミナル上で `nft-game-starter-project` に移動して下記を実行しましょう。
