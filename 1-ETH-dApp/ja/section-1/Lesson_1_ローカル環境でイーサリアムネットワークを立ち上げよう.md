@@ -39,7 +39,7 @@ npm install --save-dev hardhat
 
 ```
 ETH-dApp
-	|_ my-wave-portal
+　　|_ my-wave-portal
 ```
 
 `my-wave-portal` の中にスマートコントラクトを構築するためのファイルを作成していきます。
