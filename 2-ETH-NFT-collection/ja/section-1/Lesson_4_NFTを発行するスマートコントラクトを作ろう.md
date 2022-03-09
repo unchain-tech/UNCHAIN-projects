@@ -382,9 +382,9 @@ Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押して
 
 フォーセットを使用する前に、あなたの MetaMask ウォレットを `Rinkeby Test Network` に設定してください。
 
-> ✍️: Metamask で `Rinkeby Test Network` を設定する方法
+> ✍️: MetaMask で `Rinkeby Test Network` を設定する方法
 >
-> 1 \. Metamask ウォレットのネットワークトグルを開く。
+> 1 \. MetaMask ウォレットのネットワークトグルを開く。
 >
 >![](/public/images/2-ETH-NFT-collection/section-1/1_4_7.png)
 >
@@ -480,7 +480,7 @@ module.exports = {
 > `hardhat.config.js` の `YOUR_ALCHEMY_API_URL` の部分を先ほど取得した Alchemy の URL（ `HTTP` リンク） と入れ替えます。
 
 2\. `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の取得
-> 1\. お使いのブラウザから、Metamask プラグインをクリックして、ネットワークを `Rinkeby Test Network` に変更します。
+> 1\. お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを `Rinkeby Test Network` に変更します。
 >
 > ![](/public/images/2-ETH-NFT-collection/section-1/1_4_11.png)
 >
@@ -492,7 +492,7 @@ module.exports = {
 >
 > ![](/public/images/2-ETH-NFT-collection/section-1/1_4_13.png)
 >
-> 4\. Metamask のパスワードを求められるので、入力したら `Confirm` を推します。
+> 4\. MetaMask のパスワードを求められるので、入力したら `Confirm` を推します。
 >
 > ![](/public/images/2-ETH-NFT-collection/section-1/1_4_14.png)
 >

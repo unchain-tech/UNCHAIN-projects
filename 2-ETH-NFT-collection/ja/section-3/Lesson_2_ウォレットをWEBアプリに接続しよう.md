@@ -27,7 +27,7 @@ const App = () => {
     */
     const { ethereum } = window;
     if (!ethereum) {
-      console.log("Make sure you have metamask!");
+      console.log("Make sure you have MetaMask!");
       return;
     } else {
       console.log("We have the ethereum object", ethereum);
@@ -73,7 +73,7 @@ export default App;
 ```
 ### 🦊 ユーザーアカウントにアクセスできるか確認する
 
-`window.ethereum` は、あなたのWEBサイトを訪問したユーザーが Metamask を持っているか確認し、結果を `Console log` に出力します。
+`window.ethereum` は、あなたのWEBサイトを訪問したユーザーが MetaMask を持っているか確認し、結果を `Console log` に出力します。
 
 ターミナルで `nft-collection-starter-project` に移動し、下記を実行してみましょう。
 
@@ -90,7 +90,7 @@ npm run start
 ![](/public/images/2-ETH-NFT-collection/section-3/3_2_2.png)
 
 `Console` に `We have the ethereum object` と表示されているでしょうか？
-- これは、`window.ethereum` が、このWEBサイトを訪問したユーザー（ここでいうあなた）が Metamask を持っていることを確認したことを示しています。
+- これは、`window.ethereum` が、このWEBサイトを訪問したユーザー（ここでいうあなた）が MetaMask を持っていることを確認したことを示しています。
 
 次に、WEBサイトがユーザーのウォレットにアクセスする権限があるか確認します。
 
@@ -124,7 +124,7 @@ const App = () => {
   const checkIfWalletIsConnected = async () => {
     const { ethereum } = window;
     if (!ethereum) {
-        console.log("Make sure you have metamask!");
+        console.log("Make sure you have MetaMask!");
         return;
     } else {
         console.log("We have the ethereum object", ethereum);
@@ -241,7 +241,7 @@ const App = () => {
   const checkIfWalletIsConnected = async () => {
     const { ethereum } = window;
     if (!ethereum) {
-        console.log("Make sure you have metamask!");
+        console.log("Make sure you have MetaMask!");
         return;
     } else {
         console.log("We have the ethereum object", ethereum);
@@ -355,7 +355,7 @@ const connectWallet = async () => {
   }
 ```
 
-`eth_requestAccounts` メソッドを使用することで、Metamask からユーザーにウォレットへのアクセスを許可するよう呼びかけることができます。
+`eth_requestAccounts` メソッドを使用することで、MetaMask からユーザーにウォレットへのアクセスを許可するよう呼びかけることができます。
 
 
 **2 \. `renderNotConnectedContainer` メソッドを実装**
@@ -403,7 +403,7 @@ const renderNotConnectedContainer = () => (
 npm run start
 ```
 
-ローカルサーバーでWEBサイトを立ち上げたら、Metamask のプラグインをクリックし、あなたのウォレットアドレスの接続状況を確認しましょう。
+ローカルサーバーでWEBサイトを立ち上げたら、MetaMask のプラグインをクリックし、あなたのウォレットアドレスの接続状況を確認しましょう。
 もし、下図のように `Connected` と表示されている場合は、`Connected` の文字をクリックします。
 
 ![](/public/images/2-ETH-NFT-collection/section-3/3_2_3.png)
@@ -424,11 +424,11 @@ npm run start
 
 では、`Connect Wallet` ボタンを押してみましょう。
 
-下図のように Metamask からウォレット接続を求められますので、承認してください。
+下図のように MetaMask からウォレット接続を求められますので、承認してください。
 
 ![](/public/images/2-ETH-NFT-collection/section-3/3_2_6.png)
 
-Metamaskの承認が終わると、ウォレット接続ボタンの表示が `Wallet Connected` に変更されているはずです。
+MetaMaskの承認が終わると、ウォレット接続ボタンの表示が `Wallet Connected` に変更されているはずです。
 
 下記のように、`Console` にも、接続されたウォレットアドレスが、`currentAccount` として出力されていることを確認してください。
 

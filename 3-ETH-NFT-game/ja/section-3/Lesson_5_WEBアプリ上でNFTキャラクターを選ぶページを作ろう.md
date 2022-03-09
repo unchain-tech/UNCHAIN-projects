@@ -510,7 +510,7 @@ return () => {
 
 **1️⃣ NFT キャラクターを Mint する**
 
-WEBアプリ上で、`Mint` ボタンを押したら、Metamask 上で 承認作業（ `Confirm` ）を行ってください。
+WEBアプリ上で、`Mint` ボタンを押したら、MetaMask 上で 承認作業（ `Confirm` ）を行ってください。
 
 Mint が成功した後に、WEBアプリをリフレッシュすると下記のような結果が、`Console` に表示されます。
 

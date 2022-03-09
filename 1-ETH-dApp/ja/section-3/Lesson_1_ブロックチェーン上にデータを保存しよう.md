@@ -225,7 +225,7 @@ const getAllWaves = async () => {
 const provider = new ethers.providers.Web3Provider(ethereum);
 ```
 
-ここでは、`provider` (= Metamask) を設定しています。これにより、フロントエンドが Metamask を介して、イーサリアムノードに接続できるようになります。
+ここでは、`provider` (= MetaMask) を設定しています。これにより、フロントエンドが MetaMask を介して、イーサリアムノードに接続できるようになります。
 
 次に、下記のコードを見ていきましょう。
 
@@ -573,7 +573,7 @@ const App = () => {
     try {
       const { ethereum } = window;
       if (!ethereum) {
-        console.log("Make sure you have metamask!");
+        console.log("Make sure you have MetaMask!");
         return;
       } else {
         console.log("We have the ethereum object", ethereum);

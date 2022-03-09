@@ -1,6 +1,6 @@
 ### 📒 WEBアプリからスマートコントラクトを呼び出す
 
-このレッスンでは、Metamask の認証機能を使用して、WEBアプリから実際にあなたのコントラクトを呼び出す機能を実装します。
+このレッスンでは、MetaMask の認証機能を使用して、WEBアプリから実際にあなたのコントラクトを呼び出す機能を実装します。
 
 `WavePortal.sol` に実装した `getTotalWaves` 関数を覚えていますか？
 
@@ -29,7 +29,7 @@ const App = () => {
     try {
       const { ethereum } = window;
       if (!ethereum) {
-        console.log("Make sure you have metamask!");
+        console.log("Make sure you have MetaMask!");
         return;
       } else {
         console.log("We have the ethereum object", ethereum);
@@ -130,7 +130,7 @@ import { ethers } from "ethers";
 // App.js
 const wave = async () => {
 	try {
-	  // ユーザーがMetamaskを持っているか確認
+	  // ユーザーがMetaMaskを持っているか確認
       const { ethereum } = window;
       if (ethereum) {
         const provider = new ethers.providers.Web3Provider(ethereum);
@@ -337,7 +337,7 @@ const App = () => {
     try {
       const { ethereum } = window;
       if (!ethereum) {
-        console.log("Make sure you have metamask!");
+        console.log("Make sure you have MetaMask!");
         return;
       } else {
         console.log("We have the ethereum object", ethereum);

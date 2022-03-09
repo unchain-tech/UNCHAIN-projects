@@ -409,7 +409,7 @@ const App = () => {
       const { ethereum } = window;
 
       if (!ethereum) {
-          console.log("Make sure you have metamask!");
+          console.log("Make sure you have MetaMask!");
           return;
       } else {
           console.log("We have the ethereum object", ethereum);
@@ -556,7 +556,7 @@ if (chainId !== rinkebyChainId) {
 }
 ```
 
-他のブロックチェーン ID は [こちら](https://docs.metamask.io/guide/ethereum-provider.html#chain-ids) から見つけることができます。
+他のブロックチェーン ID は [こちら](https://docs.MetaMask.io/guide/ethereum-provider.html#chain-ids) から見つけることができます。
 
 
 **3\. マイニングアニメーションを作成する**

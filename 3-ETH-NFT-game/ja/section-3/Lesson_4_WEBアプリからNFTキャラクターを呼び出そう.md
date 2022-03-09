@@ -287,7 +287,7 @@ const provider = new ethers.providers.Web3Provider(window.ethereum);
 
 `provider` を介して、ユーザーはブロックチェーン上に存在するイーサリアムノードに接続することができます。
 
-Metamask が提供するイーサリアムノードを使用して、デプロイされたコントラクトからデータを送受信するために上記の実装を行いました。
+MetaMask が提供するイーサリアムノードを使用して、デプロイされたコントラクトからデータを送受信するために上記の実装を行いました。
 
 `ethers` のライブラリにより `provider` のインスタンスを新規作成しています。
 
@@ -406,7 +406,7 @@ useEffect(() => {
 ```
 
 
-`[currentAccount]` は、Metamask から取得するユーザーのパブリックウォレットアドレスです。
+`[currentAccount]` は、MetaMask から取得するユーザーのパブリックウォレットアドレスです。
 
 **`currentAccount` の値が変更されると、この `useffect` が起動されます。**
 
@@ -455,7 +455,7 @@ import { CONTRACT_ADDRESS, transformCharacterData } from './constants';
 npm run start
 ```
 
-次に、ブラウザの Metamask のプラグインをクリックし、あなたのウォレットアドレスの接続状況を確認しましょう。
+次に、ブラウザの MetaMask のプラグインをクリックし、あなたのウォレットアドレスの接続状況を確認しましょう。
 
 もし、下図のように `Connected` と表示されている場合は、`Connected` の文字をクリックします。
 ![](/public/images/3-ETH-NFT-game/section-3/3_4_1.png)

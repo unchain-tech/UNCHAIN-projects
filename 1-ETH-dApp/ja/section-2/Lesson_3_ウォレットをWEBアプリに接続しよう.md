@@ -20,7 +20,7 @@ const App = () => {
     */
     const { ethereum } = window;
     if (!ethereum) {
-      console.log("Make sure you have metamask!");
+      console.log("Make sure you have MetaMask!");
     } else {
       console.log("We have the ethereum object", ethereum);
     }
@@ -51,7 +51,7 @@ export default App
 ```
 ### 🦊 ユーザーアカウントにアクセスできるか確認する
 
-`window.ethereum` は、あなたのWEBサイトを訪問したユーザーが Metamask を持っているか確認し、結果を `Console log` に出力します。
+`window.ethereum` は、あなたのWEBサイトを訪問したユーザーが MetaMask を持っているか確認し、結果を `Console log` に出力します。
 
 ターミナルで `dApp-starter-project` に移動し、下記を実行してみましょう。
 
@@ -69,7 +69,7 @@ npm run start
 
 `Console` に `We have the ethereum object` と表示されているでしょうか？
 
-- これは、`window.ethereum` が、このWEBサイトを訪問したユーザー（ここでいうあなた）が Metamask を持っていることを確認したことを示しています。
+- これは、`window.ethereum` が、このWEBサイトを訪問したユーザー（ここでいうあなた）が MetaMask を持っていることを確認したことを示しています。
 
 次に、WEBサイトがユーザーのウォレットにアクセスする権限があるか確認します。
 
@@ -91,7 +91,7 @@ const App = () => {
     try {
       const { ethereum } = window;
       if (!ethereum) {
-        console.log("Make sure you have metamask!");
+        console.log("Make sure you have MetaMask!");
         return;
       } else {
         console.log("We have the ethereum object", ethereum);
@@ -216,7 +216,7 @@ const App = () => {
     try {
       const { ethereum } = window;
       if (!ethereum) {
-        console.log("Make sure you have metamask!");
+        console.log("Make sure you have MetaMask!");
         return;
       } else {
         console.log("We have the ethereum object", ethereum);
@@ -305,7 +305,7 @@ const connectWallet = async () => {
     }
   }
 ```
-`eth_requestAccounts` 関数を使用することで、Metamask からユーザーにウォレットへのアクセスを許可するよう呼びかけることができます。
+`eth_requestAccounts` 関数を使用することで、MetaMask からユーザーにウォレットへのアクセスを許可するよう呼びかけることができます。
 
 **2 \. ウォレットコネクトのボタンを実装**
 ```javascript
@@ -331,7 +331,7 @@ const connectWallet = async () => {
 npm run start
 ```
 
-ローカルサーバーでWEBサイトを立ち上げたら、Metamask のプラグインをクリックし、あなたのウォレットアドレスの接続状況を確認しましょう。
+ローカルサーバーでWEBサイトを立ち上げたら、MetaMask のプラグインをクリックし、あなたのウォレットアドレスの接続状況を確認しましょう。
 
 もし、下図のように `Connected` と表示されている場合は、`Connected` の文字をクリックします。
 
@@ -353,11 +353,11 @@ npm run start
 ![](/public/images/1-ETH-dApp/section-2/2_3_8.png)
 
 では、`Connect Wallet` ボタンを押してみましょう。
-下図のように Metamask からウォレット接続を求められますので、承認してください。
+下図のように MetaMask からウォレット接続を求められますので、承認してください。
 
 ![](/public/images/1-ETH-dApp/section-2/2_3_9.png)
 
-Metamask の承認が終わると、ウォレット接続ボタンの表示が `Wallet Connected` に変更されているはずです。 `Console` にも、接続されたウォレットアドレスが、`currentAccount` として出力されていることを確認してください。
+MetaMask の承認が終わると、ウォレット接続ボタンの表示が `Wallet Connected` に変更されているはずです。 `Console` にも、接続されたウォレットアドレスが、`currentAccount` として出力されていることを確認してください。
 
 ![](/public/images/1-ETH-dApp/section-2/2_3_10.png)
 ### 🙋‍♂️ 質問する

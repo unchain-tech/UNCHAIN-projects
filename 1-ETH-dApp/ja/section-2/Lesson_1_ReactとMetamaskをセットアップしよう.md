@@ -52,7 +52,7 @@ npm run start
 次に、イーサリアムウォレットをダウンロードしましょう。
 
 このプロジェクトでは MetaMask を使用します。
-- [こちら](https://metamask.io/download.html) からブラウザの拡張機能をダウンロードし、MetaMask ウォレットをあなたのブラウザに設定します。
+- [こちら](https://MetaMask.io/download.html) からブラウザの拡張機能をダウンロードし、MetaMask ウォレットをあなたのブラウザに設定します。
 
 すでに別のウォレットをお持ちの場合でも、今回は MetaMask を使用してください。
 

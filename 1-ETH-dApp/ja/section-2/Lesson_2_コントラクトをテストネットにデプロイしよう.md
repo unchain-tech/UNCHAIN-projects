@@ -63,21 +63,21 @@ Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押して
 
 フォーセットを使用する前に、あなたの MetaMask ウォレットを `Rinkeby Test Network` に設定してください。
 
-> ✍️: Metamask で `Rinkeby Test Network` を設定する方法
-> 1 \. Metamask ウォレットのネットワークトグルを開く。
+> ✍️: MetaMask で `Rinkeby Test Network` を設定する方法
+> 1 \. MetaMask ウォレットのネットワークトグルを開く。
 >
 >![](/public/images/1-ETH-dApp/section-2/2_2_13.png)
 >
 > 2 \. `Show/hide test networks` をクリック。
-> 
+>
 > ![](/public/images/1-ETH-dApp/section-2/2_2_14.png)
-> 
+>
 > 3 \. `Show test networks` を `ON` にする。
-> 
->![](/public/images/1-ETH-dApp/section-2/2_2_15.png) 
+>
+>![](/public/images/1-ETH-dApp/section-2/2_2_15.png)
 >
 > 4 \. `Rinkeby Test Network` を選択する。
-> 
+>
 >![](/public/images/1-ETH-dApp/section-2/2_2_16.png)
 
 MetaMask ウォレットに `Rinkeby Test Network` が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽 ETH を取得しましょう。
@@ -121,7 +121,7 @@ module.exports = {
 > `hardhat.config.js` の `YOUR_ALCHEMY_API_URL` の部分を先ほど取得した Alchemy の URL（ `HTTP` リンク） と入れ替えます。
 
 2\. `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の取得
->1. お使いのブラウザから、Metamask プラグインをクリックして、ネットワークを `Rinkeby Test Network` に変更します。
+>1. お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを `Rinkeby Test Network` に変更します。
 >
 >![](/public/images/1-ETH-dApp/section-2/2_2_5.png)
 >
@@ -132,15 +132,15 @@ module.exports = {
 >3. `Account details` から `Export Private Key` をクリックしてください。
 >
 >![](/public/images/1-ETH-dApp/section-2/2_2_7.png)
-> 
->4. Metamask のパスワードを求められるので、入力したら `Confirm` を推します。
+>
+>4. MetaMask のパスワードを求められるので、入力したら `Confirm` を推します。
 >
 >![](/public/images/1-ETH-dApp/section-2/2_2_8.png)
-> 
+>
 >5. あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
 >
 >![](/public/images/1-ETH-dApp/section-2/2_2_9.png)
- 
+
 > - `hardhat.config.js` の `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の部分をここで取得した秘密鍵とを入れ替えます。
 ### 🙊 秘密鍵は誰にも教えてはいけません
 
