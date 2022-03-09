@@ -65,15 +65,19 @@ Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押して
 
 > ✍️: Metamask で `Rinkeby Test Network` を設定する方法
 > 1 \. Metamask ウォレットのネットワークトグルを開く。
+>
 >![](/public/images/1-ETH-dApp/section-2/2_2_13.png)
 >
 > 2 \. `Show/hide test networks` をクリック。
+> 
 > ![](/public/images/1-ETH-dApp/section-2/2_2_14.png)
 > 
 > 3 \. `Show test networks` を `ON` にする。
+> 
 >![](/public/images/1-ETH-dApp/section-2/2_2_15.png) 
 >
 > 4 \. `Rinkeby Test Network` を選択する。
+> 
 >![](/public/images/1-ETH-dApp/section-2/2_2_16.png)
 
 MetaMask ウォレットに `Rinkeby Test Network` が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽 ETH を取得しましょう。
