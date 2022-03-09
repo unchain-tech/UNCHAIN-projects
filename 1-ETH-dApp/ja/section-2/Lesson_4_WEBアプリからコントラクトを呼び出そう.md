@@ -389,7 +389,7 @@ const App = () => {
         const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
         let count = await wavePortalContract.getTotalWaves();
         console.log("Retrieved total wave count...", count.toNumber());
-		    /*
+	/*
         * コントラクトに👋（wave）を書き込む。
         */
         const waveTxn = await wavePortalContract.wave();
