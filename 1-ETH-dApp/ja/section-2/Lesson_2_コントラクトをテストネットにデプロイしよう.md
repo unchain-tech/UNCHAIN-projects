@@ -114,21 +114,21 @@ module.exports = {
 > `hardhat.config.js` の `YOUR_ALCHEMY_API_URL` の部分を先ほど取得した Alchemy の URL（ `HTTP` リンク） と入れ替えます。
 
 2\. `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の取得
-> 1\. お使いのブラウザから、Metamask プラグインをクリックして、ネットワークを `Rinkeby Test Network` に変更します。
-> ![](/public/images/1-ETH-dApp/section-2/2_2_5.png)
-> 
-> 2\. それから、`Account details` を選択してください。
-> ![](/public/images/1-ETH-dApp/section-2/2_2_6.png)
-> 
-> 3\. `Account details` から `Export Private Key` をクリックしてください。
-> ![](/public/images/1-ETH-dApp/section-2/2_2_7.png)
-> 
-> 4\. Metamask のパスワードを求められるので、入力したら `Confirm` を推します。
-> ![](/public/images/1-ETH-dApp/section-2/2_2_8.png)
-> 
-> 5\. あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
-> ![](/public/images/1-ETH-dApp/section-2/2_2_9.png)
-> 
+1. お使いのブラウザから、Metamask プラグインをクリックして、ネットワークを `Rinkeby Test Network` に変更します。
+![](/public/images/1-ETH-dApp/section-2/2_2_5.png)
+
+2. それから、`Account details` を選択してください。
+![](/public/images/1-ETH-dApp/section-2/2_2_6.png)
+
+3. `Account details` から `Export Private Key` をクリックしてください。
+![](/public/images/1-ETH-dApp/section-2/2_2_7.png)
+ 
+4. Metamask のパスワードを求められるので、入力したら `Confirm` を推します。
+![](/public/images/1-ETH-dApp/section-2/2_2_8.png)
+ 
+5. あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
+![](/public/images/1-ETH-dApp/section-2/2_2_9.png)
+ 
 > - `hardhat.config.js` の `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の部分をここで取得した秘密鍵とを入れ替えます。
 ### 🙊 秘密鍵は誰にも教えてはいけません
 
