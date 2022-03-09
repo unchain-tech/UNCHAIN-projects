@@ -83,11 +83,11 @@ if (isLoading) {
 
 この処理により、WEBアプリがコントラクトからデータを読み込んでいる間は、ローディングマークが表示されます。
 
-次に、`checkIfWalletIsConnected` に下記のように更新して、フロントエンドがユーザーがメタマクスを持っているか確認している際に、ローディングマークを表示させましょう。
+次に、`checkIfWalletIsConnected` に下記のように更新して、フロントエンドがユーザーがMetaMaskを持っているか確認している際に、ローディングマークを表示させましょう。
 
 ```javascript
 // Actions
-// ユーザーがメタマクスを持っているか確認します。
+// ユーザーがMetaMaskを持っているか確認します。
 const checkIfWalletIsConnected = async () => {
     try {
       const { ethereum } = window;

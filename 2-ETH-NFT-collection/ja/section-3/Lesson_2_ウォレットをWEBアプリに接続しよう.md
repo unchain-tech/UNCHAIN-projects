@@ -23,7 +23,7 @@ const TOTAL_MINT_COUNT = 50;
 const App = () => {
   const checkIfWalletIsConnected = () => {
     /*
-    * ユーザーがメタマクスを持っているか確認します。
+    * ユーザーがMetaMaskを持っているか確認します。
     */
     const { ethereum } = window;
     if (!ethereum) {

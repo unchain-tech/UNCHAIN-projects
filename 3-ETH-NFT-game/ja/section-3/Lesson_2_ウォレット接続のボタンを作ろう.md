@@ -22,7 +22,7 @@ const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const App = () => {
 
-  // ユーザーがメタマクスを持っているか確認します。
+  // ユーザーがMetaMaskを持っているか確認します。
   const checkIfWalletIsConnected = () => {
       const { ethereum } = window;
       if (!ethereum) {
@@ -107,7 +107,7 @@ const App = () => {
   // ユーザーのウォレットアドレスを格納するために使用する状態変数を定義します。
   const [currentAccount, setCurrentAccount] = useState(null);
 
-  // ユーザーがメタマクスを持っているか確認します。
+  // ユーザーがMetaMaskを持っているか確認します。
   const checkIfWalletIsConnected = async () => {
     try {
       const { ethereum } = window;
@@ -217,7 +217,7 @@ const App = () => {
   // ユーザーのウォレットアドレスを格納するために使用する状態変数を定義します。
   const [currentAccount, setCurrentAccount] = useState(null);
 
-  // ユーザーがメタマクスを持っているか確認します。
+  // ユーザーがMetaMaskを持っているか確認します。
   const checkIfWalletIsConnected = async () => {
     try {
       const { ethereum } = window;
