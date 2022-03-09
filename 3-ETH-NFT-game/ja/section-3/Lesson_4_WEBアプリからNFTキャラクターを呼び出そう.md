@@ -408,9 +408,9 @@ useEffect(() => {
 
 `[currentAccount]` は、MetaMask から取得するユーザーのパブリックウォレットアドレスです。
 
-**`currentAccount` の値が変更されると、この `useffect` が起動されます。**
+**`currentAccount` の値が変更されると、この `useEffect` が起動されます。**
 
-たとえば、`currentAccount` が `null` から新しいウォレットアドレスに変更されると、`useffect` のロジックが実行されます。
+たとえば、`currentAccount` が `null` から新しいウォレットアドレスに変更されると、`useEffect` のロジックが実行されます。
 ### ⏫ `constants.js` を更新する
 
 それでは、`nft-game-starter-project/src` に移動し、コントラクトアドレスを保持するために作成した `constants.js` ファイルの中身を下記のように更新しましょう。
