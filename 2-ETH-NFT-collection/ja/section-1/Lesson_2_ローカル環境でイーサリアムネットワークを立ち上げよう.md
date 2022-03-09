@@ -65,7 +65,7 @@ npx hardhat
 npm install @openzeppelin/contracts
 ```
 
-[OpenZeppelin](https://github.com/OpenZeppelin/openzeppelin-contracts) は イーサリアムネットワーク上で安全なスマートコントラクを実装するためのフレームワークです。
+[OpenZeppelin](https://github.com/OpenZeppelin/openzeppelin-contracts) は イーサリアムネットワーク上で安全なスマートコントラクトを実装するためのフレームワークです。
 
 OpenZeppelin には非常に多くの機能が実装されておりインポートするだけで安全にその機能を使うことができます。
 ### ⭐️ 実行する
