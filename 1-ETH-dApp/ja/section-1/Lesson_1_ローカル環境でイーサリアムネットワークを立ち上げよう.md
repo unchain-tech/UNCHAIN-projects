@@ -18,9 +18,8 @@
 * Hardhat により、ローカル環境でイーサリアムネットワークを簡単に起動し、テストネットでイーサリアムを利用できるようになります。
 * 「サーバー」がブロックチェーンであることを除けば、Hardhat はローカルサーバーと同じです。
 
-まず、`node` / `npm` を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html) にアクセスしてください。
-
-`node v16` をインストールすることを推奨しています。
+まず、`node` / `npm` を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html) にアクセスし、`node v16` をインストールしてください。
+- 例として使われているバージョン `12` を `16` に変更することをお忘れなく！
 
 次に、ターミナルに向かいましょう。
 
@@ -39,7 +38,7 @@ npm install --save-dev hardhat
 
 ```
 ETH-dApp
-　　|_ my-wave-portal
+  |_ my-wave-portal
 ```
 
 `my-wave-portal` の中にスマートコントラクトを構築するためのファイルを作成していきます。
@@ -57,7 +56,7 @@ npx hardhat
 * この場合、`yarn add hardhat` のコマンドを実行しましょう。
 
 `hardhat` がターミナル上で立ち上がったら、`Create a basic sample project` を選択します。
-* ここでは、すべてに `yes` と言ってください。
+* すべての選択肢で `yes` を選んでください。
 
 サンプルプロジェクトでは、`hardhat-waffle` と `hardhat-ethers` をインストールするように求められます。
 
@@ -67,11 +66,12 @@ npx hardhat
 npm install --save-dev @nomiclabs/hardhat-waffle ethereum-waffle chai @nomiclabs/hardhat-ethers ethers
 ```
 
-最後に、`npx hardhat accounts` を実行すると、次のような文字列が出力されます。
+最後に、`npx hardhat accounts` を実行すると、次のような文字列が複数出力されます。
 
 ```
 0xa0Ee7A142d267C1f36714E4a8F75612F20a79720
 ```
+
 このアドレスは、Hardhatがブロックチェーン上のユーザーを特定するために生成するイーサリアムアドレスです。イーサリアムアドレスに関しては、あとで詳しく説明します。
 ### ⭐️ 実行する
 
