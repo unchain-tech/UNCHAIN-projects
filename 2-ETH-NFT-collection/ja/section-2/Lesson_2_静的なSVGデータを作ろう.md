@@ -110,10 +110,12 @@ _setTokenURI(newItemId, "data:application/json;base64,ewogICAgIm5hbWUiOiAiRXBpY0
 ```
 
 **2 \. トークンの名前とシンボルを変更する**
+```
   // NFT トークンの名前とそのシンボルを渡します。
   constructor() ERC721 ("SquareNFT", "SQUARE") {
     console.log("This is my NFT contract.");
   }
+  ```
 
 トークンの名前を `"SquareNFT"` に、トークンのシンボルを `"SQUARE"` に変更しましょう。
 
