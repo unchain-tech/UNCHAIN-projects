@@ -343,7 +343,7 @@ library Base64 {
 
             } {
                 i := add(i, 3)
-                let input := and(mload(add(data, i)), 0xffffff)
+                let input := and(mload(add(data, i)), 0xFFFFFF)
 
                 let out := mload(add(tablePtr, and(shr(18, input), 0x3F)))
                 out := shl(8, out)
@@ -370,10 +370,10 @@ library Base64 {
 
             switch mod(len, 3)
             case 1 {
-                mstore(sub(resultPtr, 2), shl(240, 0x3d3d))
+                mstore(sub(resultPtr, 2), shl(240, 0x3D3D))
             }
             case 2 {
-                mstore(sub(resultPtr, 1), shl(248, 0x3d))
+                mstore(sub(resultPtr, 1), shl(248, 0x3D))
             }
 
             mstore(result, encodedLen)
