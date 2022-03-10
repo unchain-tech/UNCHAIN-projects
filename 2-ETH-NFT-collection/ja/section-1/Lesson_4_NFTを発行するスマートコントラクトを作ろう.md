@@ -247,7 +247,7 @@ NFT が発行された後、`_tokenIds.increment()`（＝ OpenZeppelin が提供
 [`https://jsonkeeper.com/b/OLSM`](https://jsonkeeper.com/b/OLSM)
 ### 🐱 オリジナルの画像を使用する方法
 
-[Imgur](imgur.com) というWEBサイトを使うと、無料で画像をオンライン上でホストすることができます。
+[Imgur](https://imgur.com/) というWEBサイトを使うと、無料で画像をオンライン上でホストすることができます。
 
 メタデータの `"image"` にリンクを貼り付ける場合は、`Direct Link` を使用するようにしてください。
 
