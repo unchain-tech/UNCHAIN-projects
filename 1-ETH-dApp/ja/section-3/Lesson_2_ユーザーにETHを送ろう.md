@@ -154,7 +154,7 @@ const waveContract = await waveContractFactory.deploy({
 	value: hre.ethers.utils.parseEther("0.1"),
 });
 ```
-`hre.ethers.utils.parseEther("0.1")、` によって、コントラクトがデプロイされた際に、コントラクトに 0.1ETH の資金を提供することを宣言しています。
+`hre.ethers.utils.parseEther("0.1")、` によって、コントラクトがデプロイされた際に、コントラクトに 0.1 ETH の資金を提供することを宣言しています。
 
 ```javascript
 // run.js
@@ -162,7 +162,7 @@ let contractBalance = await hre.ethers.provider.getBalance(
 	waveContract.address
 );
 ```
-ここでは、`ethers.js` が提供している `getBalance` 関数を使って、あなたのコントラクトのアドレスを `contractBalance` に格納しています。
+ここでは、`ethers.js` が提供している `getBalance` 関数を使って、あなたのアドレスに紐づいている残高を `contractBalance` に格納しています。
 
 `ethers.js` の公式ドキュメンテーションは [こちら（英語）](https://docs.ethers.io/v5/)です。
 
