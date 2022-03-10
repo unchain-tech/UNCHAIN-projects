@@ -768,7 +768,7 @@ const [allWaves, setAllWaves] = useState([]);
 >
 >```javascript
 > // App.js
->wavePortalContract.wave(message, { gasLimit: 300000 })
+>wavePortalContract.wave(messageValue, { gasLimit: 300000 })
 >```
 > `gasLimit` は、「ガス量」の最大値（上限）を設定するためのパラメータです。
 >
@@ -833,7 +833,7 @@ const [allWaves, setAllWaves] = useState([]);
 ローカルサーバーでWEBアプリをホストして、フロントエンドを確認しながら、上記のコードがどのようにフロントエンドに反映されているのか、考察してみてください。
 
 **⭐️: ローカルサーバーの立ち上げ**
-  - ターミナル上で` dApp-starter-project` に移動
+  - ターミナル上で `dApp-starter-project` に移動
   - `npm run start` を実行
   - `localhost` でWEBアプリを参照
 
