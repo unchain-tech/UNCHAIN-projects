@@ -237,7 +237,8 @@ return firstWords[rand];
 - したがって、わたしの例では、`rand % firstWords.length` によって、`0` から `5` までの値が一つ返されます。
 
 
-⚠️: 注意
+>⚠️: 注意
+>
 > 上記のアルゴリズムは、完全なランダム性を持ちません。
 >
 > 今回乱数を使用するのは、あくまで「文字列の生成」のためなので、強固なランダム性は必要ではありません。
@@ -517,7 +518,7 @@ contract MyEpicNFT is ERC721URIStorage {
 	  console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
 
     // 次の NFT が Mint されるときのカウンターをインクリメントする。
-    _tokenIds.increment();  
+    _tokenIds.increment();
   }
 }
 ```

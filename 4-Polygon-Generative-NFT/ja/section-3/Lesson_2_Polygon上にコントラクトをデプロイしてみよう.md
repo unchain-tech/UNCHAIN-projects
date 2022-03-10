@@ -141,7 +141,8 @@ Polygonでは、`10¹⁸ Wei` が `1 MATIC` です。
 uint public constant PRICE = 0.01 ether;
 ```
 
-⚠️: 注意
+>⚠️: 注意
+>
 > **Polygon ネットワークにデプロイする場合、`0.01 ether` は `0.01 MATIC` です。`0.01 ETH` ではありません。**
 ### 🦊 MetaMask と Hardhat に Polygon Network を追加する
 

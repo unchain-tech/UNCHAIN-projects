@@ -219,7 +219,8 @@ Solidity compilation finished successfully
 Contract deployed to: 0xEC4D62E631c4FdC9c293772b3897C64A07874B06
 ```
 
-⚠️: 注意
+>⚠️: 注意
+>
 > 次のセクションで、コントラクトのアドレス（ `0x..` ）が必要なので、保存しておいてください。
 
 上記のような結果が出れば、デプロイは成功です！。

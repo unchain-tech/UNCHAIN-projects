@@ -246,7 +246,8 @@ uint[] memory characterAttackDmg
 
 [Imgur](https://imgur.com/) に画像をアップロードすれば、あなたの好きなキャラクターを設定することができます！
 
-⚠️: 注意
+>⚠️: 注意
+>
 > サンプルで使用しているポケモンの素材は、[こちら](https://myfirst.pokemon.jp/illust-lab/) から取得しています。教材としての素材なので、同じ素材を使う場合は、規約をお読みください。
 
 ぜひ、`run.js` の中の `https://i.imgur.com/...` の画像のリンクをあなたのオリジナルの画像に差し替えてください😊

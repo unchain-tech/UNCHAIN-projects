@@ -49,14 +49,17 @@ ETH-NFT-collection
 npx hardhat
 ```
 
-⚠️: 注意 #1
+> ⚠️: 注意 #1
+>
 > Windowsで Git Bash を使用してハードハットをインストールしている場合、このステップ (HH1) でエラーが発生する可能性があります。問題が発生した場合は、WindowsCMD（コマンドプロンプト）を使用して HardHat のインストールを実行してみてください。
 
-⚠️: 注意 #2
+>⚠️: 注意 #2
+>
 > `npm` と一緒に `yarn` をインストールしている場合、`npm ERR! could not determine executable to run` などのエラーが発生する可能性があります。
 > - この場合、`yarn add hardhat` のコマンドを実行しましょう。
 
-⚠️: 注意 #3
+>⚠️: 注意 #3
+>
 > `npx hardhat` が実行されなかった場合、以下をターミナルで実行してください。
 >
 >```bash

@@ -36,7 +36,8 @@ contract MyEpicNFT {
 }
 ```
 
-⚠️: 注意
+>⚠️: 注意
+>
 > 上記のコードに対して、VS Code がエラーを表示する場合があります。
 > 例えば、`import hardhat` に下線が引かれ、`don't exist` と表示される場合があります。
 >

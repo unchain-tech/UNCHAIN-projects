@@ -21,7 +21,8 @@ npx create-react-app nft-collectible-frontend
 
 インストールには2～10分ほどかかります。
 
-⚠️: 注意
+>⚠️: 注意
+>
 > インストールがうまくいかない場合、お使いの `npm node` のバージョンが古い可能性があります。
 > 下記を実行してからもう一度 `create-react-app` コマンドを実行してみてください。
 >

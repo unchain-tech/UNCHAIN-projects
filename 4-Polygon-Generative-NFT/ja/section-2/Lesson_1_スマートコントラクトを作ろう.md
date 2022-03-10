@@ -55,7 +55,8 @@ npx hardhat
 
 `Create a basic sample project` を選択し、すべてに `yes` と答えましょう。
 
-⚠️: 注意
+>⚠️: 注意
+>
 > `npx hardhat` が実行されなかった場合、以下をターミナルで実行してください。
 >
 >```bash

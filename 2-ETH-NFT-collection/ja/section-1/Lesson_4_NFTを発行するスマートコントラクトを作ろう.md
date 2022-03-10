@@ -502,7 +502,8 @@ module.exports = {
 >
 > `hardhat.config.js` の `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の部分をここで取得した秘密鍵とを入れ替えます。
 
-⚠️: 注意
+>⚠️: 注意
+>
 > `hardhat.config.js` ファイルを Github にコミットしないでください。
 >
 > `hardhat.config.js` ファイルは、あなたのウォレットの秘密鍵を保持しており、他の人が見れる場所に保存するのは、大変危険です。

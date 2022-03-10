@@ -303,7 +303,7 @@ const renderCharacters = () =>
   ));
 ```
 
-⚠️: 注意
+>⚠️: 注意
 >
 > エラー処理を円滑にするため、`onClick={mintCharacterNFTAction(index)}` はコメントアウトしたままにしてください。
 > 後で解除します。
@@ -346,7 +346,7 @@ const mintCharacterNFTAction = (characterId) => async () => {
 };
 ```
 
-⚠️: 注意
+>⚠️: 注意
 >
 > `renderCharacters` 関数の中にある `onClick = {mintCharacterNFTAction(index)}` のコメントアウトを解除してください。
 >

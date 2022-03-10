@@ -259,7 +259,8 @@ require (
 
 ボスの HP が 0 の場合、NFT キャラクターはボスをこれ以上攻撃することはできません。
 
-⚠️: 注意
+>⚠️: 注意
+>
 > VS Code を使用している場合、`"Function state mutability can be restricted to view"` という `warning` が表示されることがあります。
 >
 > ここでの `warning` は基本的に無視して大丈夫です😊

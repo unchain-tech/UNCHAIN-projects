@@ -135,7 +135,8 @@ ts-node ~/metaplex/js/packages/cli/src/candy-machine-v2-cli.ts --version
 
 `0.0.2` が表示されるはずです。これで NFT 設定を始めることができます。
 
-⚠️: 注意
+>⚠️: 注意
+>
 > MacOS を使用している場合、古いバージョンの MetaplexCLI がインストールされていると問題が発生する可能性があります。
 >
 >ルートディレクトリの `metaplex` ディレクトリを必ず削除してから上記の設定を行ってください。

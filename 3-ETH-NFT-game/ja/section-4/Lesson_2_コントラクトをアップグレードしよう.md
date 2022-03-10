@@ -118,7 +118,8 @@ artifacts
 https://cloudflare-ipfs.com/ipfs/あなたのCIDコードを貼り付けます
 ```
 
-⚠️: 注意
+>⚠️: 注意
+>
 > IPFS がすでに組み込まれている **Brave Browser** を使用している場合は、下記のリンクをブラウザに貼り付けてください。
 >
 >```
