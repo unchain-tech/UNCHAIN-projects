@@ -3,7 +3,7 @@
 
 現在、NFT に大きな問題があります。
 
-前回のレッスンで、NFTにする画像を [Imqur](imgur.com)  に保存しました。
+前回のレッスンで、NFTにする画像を [Imqur](https://imgur.com/)  に保存しました。
 
 ですが、Imqur のサーバーがダウンしてしまった場合、`image` リンクが役に立たなくなり、OpenSea や Rarible 上ではNFT は機能しなくなってしまいます。
 
