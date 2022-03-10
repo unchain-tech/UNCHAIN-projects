@@ -517,7 +517,8 @@ contract MyEpicNFT is ERC721URIStorage {
 	  console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
 
     // 次の NFT が Mint されるときのカウンターをインクリメントする。
-    _tokenIds.increment();  }
+    _tokenIds.increment();  
+  }
 }
 ```
 

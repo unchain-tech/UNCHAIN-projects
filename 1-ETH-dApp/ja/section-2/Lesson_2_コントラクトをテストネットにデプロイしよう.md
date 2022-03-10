@@ -64,6 +64,7 @@ Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押して
 フォーセットを使用する前に、あなたの MetaMask ウォレットを `Rinkeby Test Network` に設定してください。
 
 > ✍️: MetaMask で `Rinkeby Test Network` を設定する方法
+> 
 > 1 \. MetaMask ウォレットのネットワークトグルを開く。
 >
 >![](/public/images/1-ETH-dApp/section-2/2_2_13.png)

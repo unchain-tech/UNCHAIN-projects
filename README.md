@@ -24,3 +24,9 @@ Github から直接コードを編集して直接 `pull request` を送る方法
 プロジェクトの中にバグを発見した場合は、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/issues)で `Issue` を作成していただけますと幸いです。
 
 `Issue` の作成方法に関しては、[こちら](https://docs.github.com/ja/issues/tracking-your-work-with-issues/creating-an-issue)を参照してください。
+
+
+# Contributors
+<a href="https://github.com/shiftbase-xyz/UNCHAIN-projects/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=shiftbase-xyz/UNCHAIN-projects" />
+</a>
