@@ -11,7 +11,7 @@ function pickRandomFirstWord(uint256 tokenId) public view returns (string memory
 	:
 ```
 
-ここでは、1つ目の単語をランダムに選ぶ `pickRandomFirstWord` 関数を実装しました。まず、関数を就職している `public` について見ていきます。
+ここでは、1つ目の単語をランダムに選ぶ `pickRandomFirstWord` 関数を実装しました。まず、関数を修飾している `public` について見ていきます。
 
 これは、Solidity のアクセス修飾子の一つです。
 
