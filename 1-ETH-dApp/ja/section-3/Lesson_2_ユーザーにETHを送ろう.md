@@ -154,7 +154,7 @@ const waveContract = await waveContractFactory.deploy({
 	value: hre.ethers.utils.parseEther("0.1"),
 });
 ```
-`hre.ethers.utils.parseEther("0.1")、` によって、コントラクトがデプロイされた際に、コントラクトに 0.1 ETH の資金を提供することを宣言しています。
+`hre.ethers.utils.parseEther("0.1")` によって、コントラクトがデプロイされた際に、コントラクトに 0.1 ETH の資金を提供することを宣言しています。
 
 ```javascript
 // run.js
