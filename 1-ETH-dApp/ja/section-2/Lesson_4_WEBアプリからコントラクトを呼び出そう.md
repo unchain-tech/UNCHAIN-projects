@@ -72,7 +72,7 @@ const App = () => {
         const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
         let count = await wavePortalContract.getTotalWaves();
         console.log("Retrieved total wave count...", count.toNumber());
-		console.log("Signer:", signer);
+        console.log("Signer:", signer);
       } else {
         console.log("Ethereum object doesn't exist!");
       }
@@ -129,22 +129,22 @@ import { ethers } from "ethers";
 ```javascript
 // App.js
 const wave = async () => {
-	try {
-	// ユーザーがMetaMaskを持っているか確認
-      	const { ethereum } = window;
-      	if (ethereum) {
-        	const provider = new ethers.providers.Web3Provider(ethereum);
-        	const signer = provider.getSigner();
-        	const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
-        	let count = await wavePortalContract.getTotalWaves();
-        	console.log("Retrieved total wave count...", count.toNumber());
-		console.log("Signer:", signer);
-      	} else {
-       		console.log("Ethereum object doesn't exist!");
-      	}
-    	} catch (error) {
-      		console.log(error)
-    	}
+  try {
+    // ユーザーがMetaMaskを持っているか確認
+    const { ethereum } = window;
+    if (ethereum) {
+      const provider = new ethers.providers.Web3Provider(ethereum);
+      const signer = provider.getSigner();
+      const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
+      let count = await wavePortalContract.getTotalWaves();
+      console.log("Retrieved total wave count...", count.toNumber());
+      console.log("Signer:", signer);
+    } else {
+      console.log("Ethereum object doesn't exist!");
+    }
+  } catch (error) {
+    console.log(error)
+  }
 }
 ```
 
@@ -389,7 +389,7 @@ const App = () => {
         const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
         let count = await wavePortalContract.getTotalWaves();
         console.log("Retrieved total wave count...", count.toNumber());
-	/*
+        /*
         * コントラクトに👋（wave）を書き込む。
         */
         const waveTxn = await wavePortalContract.wave();
@@ -513,7 +513,7 @@ const wave = async () => {
         console.log("Mined -- ", waveTxn.hash);
         count = await wavePortalContract.getTotalWaves();
         console.log("Retrieved total wave count...", count.toNumber());
-	/*-- ここまで --*/
+        /*-- ここまで --*/
       } else {
         console.log("Ethereum object doesn't exist!");
       }

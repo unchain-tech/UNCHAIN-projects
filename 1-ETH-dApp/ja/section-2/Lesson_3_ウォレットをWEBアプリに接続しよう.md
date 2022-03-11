@@ -139,11 +139,11 @@ export default App
 /* ユーザーのウォレットへのアクセスが許可されているかどうかを確認します */
 const accounts = await ethereum.request({ method: "eth_accounts" });
 if (accounts.length !== 0) {
-	const account = accounts[0];
-	console.log("Found an authorized account:", account);
-	setCurrentAccount(account)
+  const account = accounts[0];
+  console.log("Found an authorized account:", account);
+  setCurrentAccount(account)
 } else {
-	console.log("No authorized account found")
+  console.log("No authorized account found")
 }
 ```
 `eth_accounts` は、空の配列または単一のアカウントアドレスを含む配列を返す当別なメソッドです。
@@ -183,15 +183,15 @@ npm run start
 > const accounts = await ethereum.request({ method: "eth_accounts" });
 > // もしアカウントが一つでも存在したら、以下を実行。
 > if (accounts.length !== 0) {
-> 	// accountという変数にユーザーの1つ目（=Javascriptでいう0番目）のアドレスを格納
-> 	const account = accounts[0];
->	console.log("Found an authorized account:", account);
-> 	// currentAccountにユーザーのアカウントアドレスを格納
->	setCurrentAccount(account)
->} else {
->// アカウントが存在しない場合は、エラーを出力。
->	console.log("No authorized account found")
->}
+>   // accountという変数にユーザーの1つ目（=Javascriptでいう0番目）のアドレスを格納
+>   const account = accounts[0];
+>   console.log("Found an authorized account:", account);
+>   // currentAccountにユーザーのアカウントアドレスを格納
+>   setCurrentAccount(account)
+> } else {
+>   // アカウントが存在しない場合は、エラーを出力。
+>   console.log("No authorized account found")
+> }
 > ```
 > この処理のおかげで、ユーザーがウォレットに複数のアカウントを持っている場合でも、プログラムはユーザーの1つ目のアカウントアドレスを取得することができます。
 > ウォレット接続ボタンを実装するまで `No authorized account found` のエラーが出力されますが、心配しないでください😊
@@ -289,21 +289,21 @@ export default App
 ```javascript
 // App.js
 const connectWallet = async () => {
-	try {
-		// ユーザーが認証可能なウォレットアドレスを持っているか確認
-		const { ethereum } = window;
-		if (!ethereum) {
-			alert("Get MetaMask!");
-			return;
-		}
-		// 持っている場合は、ユーザーに対してウォレットへのアクセス許可を求める。許可されれば、ユーザーの最初のウォレットアドレスを currentAccount に格納する。
-		const accounts = await ethereum.request({ method: "eth_requestAccounts" });
-		console.log("Connected: ", accounts[0]);
-		setCurrentAccount(accounts[0]);
-    } catch (error) {
-		console.log(error)
+  try {
+    // ユーザーが認証可能なウォレットアドレスを持っているか確認
+    const { ethereum } = window;
+    if (!ethereum) {
+      alert("Get MetaMask!");
+      return;
     }
+    // 持っている場合は、ユーザーに対してウォレットへのアクセス許可を求める。許可されれば、ユーザーの最初のウォレットアドレスを currentAccount に格納する。
+    const accounts = await ethereum.request({ method: "eth_requestAccounts" });
+    console.log("Connected: ", accounts[0]);
+    setCurrentAccount(accounts[0]);
+  } catch (error) {
+    console.log(error)
   }
+}
 ```
 `eth_requestAccounts` 関数を使用することで、MetaMask からユーザーにウォレットへのアクセスを許可するよう呼びかけることができます。
 
