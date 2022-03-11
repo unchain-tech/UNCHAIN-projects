@@ -175,6 +175,15 @@ const main = async () => {
   );
 
   /*
+   * コントラクトのバランスを取得し、Waveを取得した後の結果を出力
+   */
+  contractBalance = await hre.ethers.provider.getBalance(waveContract.address);
+  console.log(
+    "Contract balance:",
+    hre.ethers.utils.formatEther(contractBalance)
+  );
+
+  /*
    * 2回 waves を送るシミュレーションを行う
    */
   const waveTxn = await waveContract.wave("This is wave #1");
@@ -229,6 +238,7 @@ Contract balance: 0.1
 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 has waved!
 Random # generated: 89
 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 did not win.
+Contract balance: 0.1
 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 has waved!
 Random # generated: 31
 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 won!
