@@ -18,7 +18,7 @@
 
 ボスのデータはスマートコントラクトに保存されるだけです。
 
-次のコードを `MyEpigGame.sol` の `struct CharacterAttributes` コードブロックの直下に追加しましょう。
+次のコードを `MyEpicGame.sol` の `struct CharacterAttributes` コードブロックの直下に追加しましょう。
 
 ```javascript
 // MyEpicGame.sol
@@ -322,7 +322,8 @@ console.log("Boss attacked player. New player hp: %s\n", player.hp);
 ```
 
 ここでは、プレイヤーとボスの攻撃をターミナルに出力し、それぞれの現在の HP を表示しています。
-###s 🦖 テストを実行する
+
+### 🦖 テストを実行する
 
 `run.js` に下記を追加して、`attackBoss` 関数のテストをしてみましょう。
 
