@@ -208,8 +208,8 @@ const main = async () => {
   const gameContractFactory = await hre.ethers.getContractFactory('MyEpicGame');
   const gameContract = await gameContractFactory.deploy(
     ["FUSHIGIDANE", "HITOKAGE", "ZENIGAME"], // キャラクターの名前
-    ["https://i.imgur.com/MlLoWnD.png",  // キャラクターの画像
-    "https://i.imgur.com/9agkvAc.png",
+    ["https://i.imgur.com/IjX49Yf.png",  // キャラクターの画像
+    "https://i.imgur.com/Xid5qaC.png",
     "https://i.imgur.com/cftodj9.png"],
     [100, 200, 300],                    // キャラクターのHP
     [100, 50, 25]                       // キャラクターの攻撃力
@@ -255,8 +255,8 @@ uint[] memory characterAttackDmg
 ```javascript
 // run.js
 ["FUSHIGIDANE", "HITOKAGE", "ZENIGAME"], // キャラクターの名前
-["https://i.imgur.com/MlLoWnD.png",  // キャラクターの画像
- "https://i.imgur.com/9agkvAc.png",
+["https://i.imgur.com/IjX49Yf.png",  // キャラクターの画像
+ "https://i.imgur.com/Xid5qaC.png",
  "https://i.imgur.com/cftodj9.png"],
 ```
 
@@ -272,8 +272,8 @@ npx hardhat run run.js
 ```
 Compiling 1 file with 0.8.4
 Solidity compilation finished successfully
-Done initializing FUSHIGIDANE w/ HP 100, img https://i.imgur.com/MlLoWnD.png
-Done initializing HITOKAGE w/ HP 200, img https://i.imgur.com/9agkvAc.png
+Done initializing FUSHIGIDANE w/ HP 100, img https://i.imgur.com/IjX49Yf.png
+Done initializing HITOKAGE w/ HP 200, img https://i.imgur.com/Xid5qaC.png
 Done initializing ZENIGAME w/ HP 300, img https://i.imgur.com/cftodj9.png
 Contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 ```

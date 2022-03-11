@@ -313,7 +313,7 @@ _safeMint(msg.sender, newItemId);
 {
   characterIndex: 1,
   name: "ZENIGAME",
-  imageURI: "https://i.imgur.com/9agkvAc.png",
+  imageURI: "https://i.imgur.com/Xid5qaC.png",
   hp: 200,
   maxHp: 200,
   attackDamage: 50
@@ -330,7 +330,7 @@ HPは 200 → 150 になります。
 {
   characterIndex: 1,
   name: "ZENIGAME",
-  imageURI: "https://i.imgur.com/9agkvAc.png",
+  imageURI: "https://i.imgur.com/Xid5qaC.png",
   hp: 150, // 更新された値
   maxHp: 200,
   attackDamage: 50
@@ -466,8 +466,8 @@ npx hardhat run scripts/run.js
 ```
 Compiling 11 files with 0.8.4
 Solidity compilation finished successfully
-Done initializing FUSHIGIDANE w/ HP 100, img https://i.imgur.com/MlLoWnD.png
-Done initializing ZENIGAME w/ HP 200, img https://i.imgur.com/9agkvAc.png
+Done initializing FUSHIGIDANE w/ HP 100, img https://i.imgur.com/IjX49Yf.png
+Done initializing ZENIGAME w/ HP 200, img https://i.imgur.com/Xid5qaC.png
 Done initializing ZENIGAME w/ HP 300, img https://i.imgur.com/cftodj9.png
 Contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 Minted NFT w/ tokenId 1 and characterIndex 2
@@ -671,7 +671,7 @@ NFT の メタデータとして使用できる JSON は、下記のようなデ
 {
   "name": "ZENIGAME",
   "description": "This is an NFT that lets people play in the game Metaverse Slayer!",
-  "image": "https://i.imgur.com/9agkvAc.png",
+  "image": "https://i.imgur.com/Xid5qaC.png",
   "attributes": [
 		{ "trait_type": "Health Points", "value": 200, "max_value": 200 },
 		{ "trait_type": "Attack Damage", "value": 50 }
@@ -698,8 +698,8 @@ npx hardhat run scripts/run.js
 ```plaintext
 Compiling 2 files with 0.8.4
 Solidity compilation finished successfully
-Done initializing FUSHIGIDANE w/ HP 100, img https://i.imgur.com/MlLoWnD.png
-Done initializing HITOKAGE w/ HP 200, img https://i.imgur.com/9agkvAc.png
+Done initializing FUSHIGIDANE w/ HP 100, img https://i.imgur.com/IjX49Yf.png
+Done initializing HITOKAGE w/ HP 200, img https://i.imgur.com/Xid5qaC.png
 Done initializing ZENIGAME w/ HP 300, img https://i.imgur.com/cftodj9.png
 Contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 Minted NFT w/ tokenId 1 and characterIndex 2
