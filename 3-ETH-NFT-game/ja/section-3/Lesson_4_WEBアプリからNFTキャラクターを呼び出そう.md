@@ -230,7 +230,7 @@ const checkNetwork = async () => {
 
 	👉 WEBアプリ上に、`SelectCharacter` コンポーネントを表示します。
 
-シナリオ 2 を実装するには、WEBアプリがフロントエンドにロードされたら、すぐに `checkIfUserHasNFT` メソッドを呼び出す必要がります。
+シナリオ 2 を実装するには、WEBアプリがフロントエンドにロードされたら、すぐに `checkIfUserHasNFT` メソッドを呼び出す必要があります。
 
 上記を実装するために、`App.js` の中に、もう一つ `useEffect()` 関数を作成しましょう。
 
