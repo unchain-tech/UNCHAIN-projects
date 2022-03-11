@@ -216,7 +216,7 @@ return (
 
 `SelectCharacter.css` にも下記のCSSを追加しましょう。
 
-- `nft-game-starter-project/src/Components/SelectCharacter` フォルダの中に `SelectCharacter.css`が格納されています。
+- `nft-game-starter-project/src/Components/SelectCharacter` フォルダの中に `SelectCharacter.css` が格納されています。
 
 ```javascript
 // SelectCharacter.css
