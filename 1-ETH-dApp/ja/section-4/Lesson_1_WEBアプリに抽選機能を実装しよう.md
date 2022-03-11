@@ -164,7 +164,7 @@ const main = async () => {
   console.log("Contract deployed to: ", waveContract.address);
 
   /*
-   * コントラクトのバランスを取得（0.1ETH）であることを確認
+   * コントラクトの残高を取得（0.1ETH）であることを確認
    */
   let contractBalance = await hre.ethers.provider.getBalance(
     waveContract.address
@@ -175,7 +175,7 @@ const main = async () => {
   );
 
   /*
-   * コントラクトのバランスを取得し、Waveを取得した後の結果を出力
+   * コントラクトの残高を取得し、Waveを取得した後の結果を出力
    */
   contractBalance = await hre.ethers.provider.getBalance(waveContract.address);
   console.log(
@@ -193,11 +193,11 @@ const main = async () => {
   await waveTxn2.wait();
 
   /*
-   * コントラクトのバランスを取得し、Waveを取得した後の結果を出力
+   * コントラクトの残高を取得し、Waveを取得した後の結果を出力
    */
   contractBalance = await hre.ethers.provider.getBalance(waveContract.address);
   /*
-   *契約の残高から0.0001ETH引かれていることを確認
+   *コントラクトの残高から0.0001ETH引かれていることを確認
    */
   console.log(
     "Contract balance:",

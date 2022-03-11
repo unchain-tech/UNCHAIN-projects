@@ -107,10 +107,6 @@ import myEpicGame from './utils/MyEpicGame.json';
 ```
 
 ここでは、先ほど取得した、ABI ファイルを含む `MyEpicGame.json` ファイルをインポートしています。
-
-**注：このファイルを追加した後、返信を停止してから開始する必要がある場合があります**。時々それは新しいファイルを捕まえません!
-
-これで、Webアプリから契約を呼び出すために必要な2つのものがあります：** ABIファイルとデプロイされた契約アドレス!**
 ### 🚨 コントラクトを再びデプロイする際の注意点
 
 コントラクトの中身を更新する場合、必ず下記3つのステップを実行することを忘れないようにしましょう。
@@ -123,7 +119,7 @@ import myEpicGame from './utils/MyEpicGame.json';
 
 3\. ABIファイルを更新する。
 
-- `epic-game/artifacts/contracts/MyEpicGame.sol/MyEpicGame.json` の中身を新しく作成する `nft-game-starter-project/src/utils/MyEpicGame.json` の中に貼り付ける必要があります。
+`epic-game/artifacts/contracts/MyEpicGame.sol/MyEpicGame.json` の中身を新しく作成する `nft-game-starter-project/src/utils/MyEpicGame.json` の中に貼り付ける必要があります。
 
 **コントラクトを更新する際、必ずこの3つのステップを実行してください。**
 

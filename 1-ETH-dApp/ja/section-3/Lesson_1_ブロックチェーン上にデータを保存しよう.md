@@ -421,7 +421,7 @@ We have 0 total waves!
 
 1. 再度コントラクトをデプロイする
 
-2. フロントエンドの契約アドレスを更新する（更新するファイル: `App.js` ）
+2. フロントエンドのコントラクトアドレスを更新する（更新するファイル: `App.js` ）
 
 3. フロントエンドのABIファイルを更新する（更新するファイル: `dApp-starter-project/src/utils/WavePortal.json` ）
 

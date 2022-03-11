@@ -75,7 +75,7 @@ emit NewEpicNFTMinted(msg.sender, newItemId);
 
 1\. 再度コントラクトをデプロイする
 
-2\. フロントエンドの契約アドレスを更新する（更新するファイル: `App.js`）
+2\. フロントエンドのコントラクトアドレスを更新する（更新するファイル: `App.js`）
 
 3\. フロントエンドのABIファイルを更新する（更新するファイル: `your-first-NET-collection/src/utils/MyEpicNFT.json`）
 

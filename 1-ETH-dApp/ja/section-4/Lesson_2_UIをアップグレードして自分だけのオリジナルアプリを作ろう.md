@@ -27,7 +27,7 @@ CSS や文章を変更したり、画像や動画を自分のWEBアプリに乗�
 
 ユーザーに ETH が送金されたか確認するために、`App.js` に下記2つのコードを追加してみましょう。
 
-**1 \. コントラクトのバランスを取得**
+**1 \. コントラクトの残高を取得**
 
 まず、`App.js` の中にある下記のコードを確認します。
 
@@ -74,7 +74,7 @@ console.log("Retrieved total wave count...", count.toNumber());
 ```javascript
 // App.js
 let contractBalance_post = await provider.getBalance(wavePortalContract.address);
-/* 契約の残高が減っていることを確認 */
+/* コントラクトの残高が減っていることを確認 */
 if (contractBalance_post < contractBalance){
 	 /* 減っていたら下記を出力 */
 	console.log("User won ETH!");

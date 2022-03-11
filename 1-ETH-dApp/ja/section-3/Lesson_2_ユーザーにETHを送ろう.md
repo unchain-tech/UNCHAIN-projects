@@ -100,7 +100,7 @@ const main = async () => {
   console.log("Contract deployed to:", waveContract.address);
 
   /*
-   * コントラクトのバランスを取得（0.1ETH）であることを確認
+   * コントラクトの残高を取得（0.1ETH）であることを確認
    */
   let contractBalance = await hre.ethers.provider.getBalance(
     waveContract.address
@@ -117,11 +117,11 @@ const main = async () => {
   await waveTxn.wait();
 
   /*
-   * コントラクトのバランスを取得し、Waveを取得した後の結果を出力
+   * コントラクトの残高を取得し、Waveを取得した後の結果を出力
    */
   contractBalance = await hre.ethers.provider.getBalance(waveContract.address);
   /*
-   *契約の残高から0.0001ETH引かれていることを確認
+   *コントラクトの残高から0.0001ETH引かれていることを確認
    */
   console.log(
     "Contract balance:",
@@ -186,11 +186,11 @@ console.log(
 let waveTxn = await waveContract.wave("A message!");
 await waveTxn.wait();
 /*
-* コントラクトのバランスを取得し、Waveを取得した後の結果を出力
+* コントラクトの残高を取得し、Waveを取得した後の結果を出力
 */
 contractBalance = await hre.ethers.provider.getBalance(waveContract.address);
 /*
-*契約の残高から0.0001ETH引かれていることを確認
+*コントラクトの残高から0.0001ETH引かれていることを確認
 */
 console.log(
 	"Contract balance:",
@@ -284,7 +284,7 @@ const waveContract = await waveContractFactory.deploy({
 
 1. 再度コントラクトをデプロイする
 
-2. フロントエンドの契約アドレスを更新する（更新するファイル: `App.js`）
+2. フロントエンドのコントラクトアドレスを更新する（更新するファイル: `App.js`）
 
 3. フロントエンドのABIファイルを更新する（更新するファイル: `dApp-starter-project/src/utils/WavePortal.json`）
 
