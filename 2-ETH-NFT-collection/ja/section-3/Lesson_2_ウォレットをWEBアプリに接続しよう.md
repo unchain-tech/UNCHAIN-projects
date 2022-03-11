@@ -12,6 +12,7 @@ WEBアプリ上で、ユーザーがイーサリアムネットワークと通�
 - `App.js` はあなたのWEBアプリのフロントエンド機能を果たします。
 
 ```javascript
+// App.js
 import React, { useEffect } from "react";
 import './styles/App.css';
 import twitterLogo from './assets/twitter-logo.svg';
@@ -71,6 +72,19 @@ const App = () => {
 };
 export default App;
 ```
+新しく追加したコードを見ていきましょう。
+
+```javascript
+// App.js
+// ユーザーがMetaMaskを持っているか確認します。
+const { ethereum } = window;
+```
+
+`window.ethereum` は MetaMask が提供する API です。
+
+詳しく知りたい方は [こちら](https://zenn.dev/cauchye/articles/20211020_matsuoka_ethereum-metamask-ethers-angular#metamask%E3%81%B8%E3%81%AE%E6%8E%A5%E7%B6%9A%E3%82%92%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88%E3%81%99%E3%82%8B) を参照してみてください。
+
+公式のドキュメント [こちら](https://docs.metamask.io/guide/getting-started.html#getting-started) です。
 ### 🦊 ユーザーアカウントにアクセスできるか確認する
 
 `window.ethereum` は、あなたのWEBサイトを訪問したユーザーが MetaMask を持っているか確認し、結果を `Console log` に出力します。
