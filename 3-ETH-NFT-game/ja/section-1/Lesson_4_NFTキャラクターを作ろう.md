@@ -210,7 +210,7 @@ const main = async () => {
     ["FUSHIGIDANE", "HITOKAGE", "ZENIGAME"], // キャラクターの名前
     ["https://i.imgur.com/IjX49Yf.png",  // キャラクターの画像
     "https://i.imgur.com/Xid5qaC.png",
-    "https://i.imgur.com/cftodj9.png"],
+    "https://i.imgur.com/kW2dNCs.png"],
     [100, 200, 300],                    // キャラクターのHP
     [100, 50, 25]                       // キャラクターの攻撃力
   );
@@ -257,7 +257,7 @@ uint[] memory characterAttackDmg
 ["FUSHIGIDANE", "HITOKAGE", "ZENIGAME"], // キャラクターの名前
 ["https://i.imgur.com/IjX49Yf.png",  // キャラクターの画像
  "https://i.imgur.com/Xid5qaC.png",
- "https://i.imgur.com/cftodj9.png"],
+ "https://i.imgur.com/kW2dNCs.png"],
 ```
 
 それでは、ターミナル上で、`scripts` ディレクトリに移動して下記を実行してみましょう。
@@ -274,7 +274,7 @@ Compiling 1 file with 0.8.4
 Solidity compilation finished successfully
 Done initializing FUSHIGIDANE w/ HP 100, img https://i.imgur.com/IjX49Yf.png
 Done initializing HITOKAGE w/ HP 200, img https://i.imgur.com/Xid5qaC.png
-Done initializing ZENIGAME w/ HP 300, img https://i.imgur.com/cftodj9.png
+Done initializing ZENIGAME w/ HP 300, img https://i.imgur.com/kW2dNCs.png
 Contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 ```
 上記のようなアウトプットターミナルに表示されていればテストは成功です。

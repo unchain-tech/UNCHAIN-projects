@@ -468,7 +468,7 @@ Compiling 11 files with 0.8.4
 Solidity compilation finished successfully
 Done initializing FUSHIGIDANE w/ HP 100, img https://i.imgur.com/IjX49Yf.png
 Done initializing ZENIGAME w/ HP 200, img https://i.imgur.com/Xid5qaC.png
-Done initializing ZENIGAME w/ HP 300, img https://i.imgur.com/cftodj9.png
+Done initializing ZENIGAME w/ HP 300, img https://i.imgur.com/kW2dNCs.png
 Contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 Minted NFT w/ tokenId 1 and characterIndex 2
 Token URI:
@@ -700,7 +700,7 @@ Compiling 2 files with 0.8.4
 Solidity compilation finished successfully
 Done initializing FUSHIGIDANE w/ HP 100, img https://i.imgur.com/IjX49Yf.png
 Done initializing HITOKAGE w/ HP 200, img https://i.imgur.com/Xid5qaC.png
-Done initializing ZENIGAME w/ HP 300, img https://i.imgur.com/cftodj9.png
+Done initializing ZENIGAME w/ HP 300, img https://i.imgur.com/kW2dNCs.png
 Contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 Minted NFT w/ tokenId 1 and characterIndex 2
 Token URI: data:application/json;base64,eyJuYW1lIjogIlpFTklHQU1FIC0tIE5GVCAjOiAxIiwgImRlc2NyaXB0aW9uIjogIkJyYXZlIGFzIGEgYmxhemluZyBmaXJlLiIsICJpbWFnZSI6ICJodHRwczovL2kuaW1ndXIuY29tL2NmdG9kajkucG5nIiwgImF0dHJpYnV0ZXMiOiBbIHsgInRyYWl0X3R5cGUiOiAiSGVhbHRoIFBvaW50cyIsICJ2YWx1ZSI6IDMwMCwgIm1heF92YWx1ZSI6MzAwfSwgeyAidHJhaXRfdHlwZSI6ICJBdHRhY2sgRGFtYWdlIiwgInZhbHVlIjogMjV9IF19
