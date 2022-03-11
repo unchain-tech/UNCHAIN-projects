@@ -413,6 +413,7 @@ useEffect(() => {
 それでは、`nft-game-starter-project/src` に移動し、コントラクトアドレスを保持するために作成した `constants.js` ファイルの中身を下記のように更新しましょう。
 
 ```javascript
+// constants.js
 // CONTRACT_ADDRESSに、コントラクトアドレスを保存します。
 const CONTRACT_ADDRESS = 'YOUR_CONTRACT_ADDRESS_GOES_HERE';
 
@@ -436,12 +437,13 @@ export { CONTRACT_ADDRESS, transformCharacterData };
 次に、`App.js` に向かい、`import { ethers } from 'ethers';` の直下に下記を追加してください。
 
 ```javascript
+// App.js
 import { CONTRACT_ADDRESS, transformCharacterData } from './constants';
 ```
 
 この処理により、`constants.js` で宣言された `CONTRACT_ADDRESS` と `transformCharacterData` が `App.js` でも使えるようになります。
 
-- `constants.js` 上で `transformCharacterData` を `export` し、`App.js` 上で`import` したので、`Console` 上の `transformCharacterData` が未定義であるというエラーは解消します。
+- `constants.js` 上で `transformCharacterData` を `export` し、`App.js` 上で `import` したので、`Console` 上の `transformCharacterData` が未定義であるというエラーは解消します。
 ### ⭕️ レンダリングをテストする
 
 最後に、全てのロジックが正確にWEBアプリにレンダリングされているかテストしていきましょう。

@@ -58,7 +58,7 @@ runMain();
 
 - `npx hardhat run scripts/deploy.js --network rinkeby` を実行する必要があります。
 
-**2 \. フロントエンド（ `App.js` ）の `CONTRACT_ADDRESS` を更新する。**
+**2 \. フロントエンド（ `constants.js` ）の `CONTRACT_ADDRESS` を更新する。**
 
 **3 \. のABIファイルを更新する。**
 
