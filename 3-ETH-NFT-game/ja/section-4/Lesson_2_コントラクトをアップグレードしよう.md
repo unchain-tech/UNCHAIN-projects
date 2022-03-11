@@ -222,7 +222,7 @@ string memory json = Base64.encode(
 	alt={`Character ${characterNFT.name}`}
 />
 ```
-### 🤩 WEBアプリをアップグーレドする
+### 🤩 WEBアプリをアップグレードする
 
 これであなたのWEBアプリ完成です！
 
