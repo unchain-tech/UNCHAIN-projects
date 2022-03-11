@@ -64,9 +64,9 @@ pragma solidity ^0.8.4;
 
 これは、コントラクトで使用する Solidity コンパイラのバージョンです。
 
-上記の場合「このコントラクトを実行するときは、Solidity コンパイラのバージョン0.8.0のみを使用し、それ以下のものは使用しません。」という意味です。コ
+上記の場合「このコントラクトを実行するときは、Solidity コンパイラのバージョン0.8.4のみを使用し、それ以下のものは使用しません。」という意味です。
 
-ンパイラのバージョンが `hardhat.config.js` で同じであることを確認してください。
+コンパイラのバージョンが `hardhat.config.js` で同じであることを確認してください。
 
 もし、`hardhat.config.js` の中に記載されている Solidity のバージョンが `0.8.4` でなかった場合は、`MyEpicNFT.sol` の中身を `hardhat.config.js` に記載されているバージョンに変更しましょう。
 
@@ -162,7 +162,7 @@ const nftContractFactory = await hre.ethers.getContractFactory("MyEpicNFT");
 > `hre.ethers` は、Hardhat プラグインの仕様です。
 
 > ✍️: `const main = async ()` と `await` について
-> Javascript でコードを書いていると、コードの上から順に実行されなくて困ることがあります。これを同期処理に関する問題といいます。
+> Javascript でコードを書いていると、コードの上から順に実行されなくて困ることがあります。これを非同期処理に関する問題といいます。
 >
 > 解決法の一つとして、ここでは `async` / `await` を使用します。
 >

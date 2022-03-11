@@ -85,7 +85,7 @@ npx hardhat
 >npm install --save-dev @nomiclabs/hardhat-waffle ethereum-waffle chai @nomiclabs/hardhat-ethers ethers
 >```
 
-`hardhat` がターミナル上で立ち上がったら、`Create a sample project` を選択します。
+`hardhat` がターミナル上で立ち上がったら、`Create a basic sample project` を選択します。
 * すべての選択肢で `yes` を選んでください。
 
 
