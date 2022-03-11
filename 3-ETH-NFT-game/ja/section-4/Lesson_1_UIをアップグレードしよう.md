@@ -214,12 +214,12 @@ return (
 );
 ```
 
-`SelectedCharacter.css` にも下記のCSSを追加しましょう。
+`SelectCharacter.css` にも下記のCSSを追加しましょう。
 
-- `nft-game-starter-project/src/Components/SelectCharacter` フォルダの中に `SelectedCharacter.css`が格納されています。
+- `nft-game-starter-project/src/Components/SelectCharacter` フォルダの中に `SelectCharacter.css`が格納されています。
 
 ```javascript
-// SelectedCharacter.css
+// SelectCharacter.css
 .select-character-container .loading {
   display: flex;
   flex-direction: column;
