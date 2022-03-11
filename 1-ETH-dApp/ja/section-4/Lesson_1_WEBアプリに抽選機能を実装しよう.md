@@ -175,15 +175,6 @@ const main = async () => {
   );
 
   /*
-   * コントラクトの残高を取得し、Waveを取得した後の結果を出力
-   */
-  contractBalance = await hre.ethers.provider.getBalance(waveContract.address);
-  console.log(
-    "Contract balance:",
-    hre.ethers.utils.formatEther(contractBalance)
-  );
-
-  /*
    * 2回 waves を送るシミュレーションを行う
    */
   const waveTxn = await waveContract.wave("This is wave #1");
