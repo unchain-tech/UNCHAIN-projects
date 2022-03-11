@@ -71,6 +71,18 @@ const App = () => {
 };
 export default App;
 ```
+
+新しく追加したコードを見ていきましょう。
+```
+    /*
+    * ユーザーがMetaMaskを持っているか確認します。
+    */
+    const { ethereum } = window;
+```
+window.ethereumはmetamaskが提供するAPIです。
+詳しく知りたい方は[こちら](https://zenn.dev/cauchye/articles/20211020_matsuoka_ethereum-metamask-ethers-angular#metamask%E3%81%B8%E3%81%AE%E6%8E%A5%E7%B6%9A%E3%82%92%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88%E3%81%99%E3%82%8B)を読んでみるといいと思います。
+公式のドキュメント[こちら](https://docs.metamask.io/guide/getting-started.html#getting-started)です。
+
 ### 🦊 ユーザーアカウントにアクセスできるか確認する
 
 `window.ethereum` は、あなたのWEBサイトを訪問したユーザーが MetaMask を持っているか確認し、結果を `Console log` に出力します。
