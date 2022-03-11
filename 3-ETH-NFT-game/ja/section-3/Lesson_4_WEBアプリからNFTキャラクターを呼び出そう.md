@@ -190,7 +190,7 @@ const checkNetwork = async () => {
 >		return;
 >	}
 >
->	// ユーザーがウォレットを持っている確認します。
+>	// ユーザーがウォレットを持っているか確認します。
 >	checkIfWalletIsConnected();
 >
 >	// ウォレットアドレスに対してアクセスをリクエストしています。
@@ -202,7 +202,7 @@ const checkNetwork = async () => {
 >	console.log('Connected', accounts[0]);
 >	setCurrentAccount(accounts[0]);
 >
->	// ユーザーが Rinkeby に接続されてえいるか確認します。
+>	// ユーザーが Rinkeby に接続されているか確認します。
 >	checkNetwork();
 >
 >	} catch (error) {
