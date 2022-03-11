@@ -475,7 +475,7 @@ contract MyEpicNFT is ERC721URIStorage {
     string memory combinedWord = string(abi.encodePacked(first, second, third));
 
     // 3つの単語を連結して、<text>タグと<svg>タグで閉じます。
-    string memory finalSvg = string(abi.encodePacked(baseSvg, first, second, third, "</text></svg>"));
+    string memory finalSvg = string(abi.encodePacked(baseSvg, combinedWord, "</text></svg>"));
 
 	  // NFTに出力されるテキストをターミナルに出力します。
 	  console.log("\n----- SVG data -----");
@@ -575,7 +575,7 @@ string memory finalTokenUri = string(
 	abi.encodePacked("data:application/json;base64,", json)
 );
 ```
-ここでは、`data:application/json;base64,` の後ろに `base64` でエンコードされたメタデーたを結合させ、`finalTokenUri` 変数に格納しています。
+ここでは、`data:application/json;base64,` の後ろに `base64` でエンコードされたメタデータを結合させ、`finalTokenUri` 変数に格納しています。
 
 最後に、下記のコードを見ていきましょう。
 
