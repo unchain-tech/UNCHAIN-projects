@@ -128,7 +128,7 @@ const App = () => {
       </div>
     </div>
   );
-  }
+}
 export default App
 ```
 
@@ -279,7 +279,7 @@ const App = () => {
       </div>
     </div>
   );
-  }
+}
 export default App
 ```
 
