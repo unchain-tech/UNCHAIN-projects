@@ -250,6 +250,11 @@ contract MyEpicNFT is ERC721URIStorage {
     console.log("This is my NFT contract.");
   }
 
+  // シードを生成する関数を作成します。
+  function random(string memory input) internal pure returns (uint256) {
+      return uint256(keccak256(abi.encodePacked(input)));
+  }
+
   // 各配列からランダムに単語を選ぶ関数を3つ作成します。
   // pickRandomFirstWord関数は、最初の単語を選びます。
   function pickRandomFirstWord(uint256 tokenId) public view returns (string memory) {
@@ -278,11 +283,6 @@ contract MyEpicNFT is ERC721URIStorage {
     uint256 rand = random(string(abi.encodePacked("THIRD_WORD", Strings.toString(tokenId))));
     rand = rand % thirdWords.length;
     return thirdWords[rand];
-  }
-
-  // シードを生成する関数を作成します。
-  function random(string memory input) internal pure returns (uint256) {
-      return uint256(keccak256(abi.encodePacked(input)));
   }
 
   // ユーザーが NFT を取得するために実行する関数です。
