@@ -259,7 +259,7 @@ NFT とスマートコントラクトでできることはたくさんありま�
 
 - スマートコントラクトにロイヤリティを追加して、NFT が転売されるごとに、あなたに、一定の資金が振り込まれる仕組みを作りましょう。
 
-- 詳細については、こちらをご覧ください: [EIP-2981：NFT Royaly Standard ](https://eips.ethereum.org/EIPS/eip-2981/)
+- 詳細については、こちらをご覧ください: [EIP-2981：NFT Royaly Standard ](https://eips.ethereum.org/EIPS/eip-2981)
 ### 🤟 Vercel に WEBアプリをデプロイする
 
 最後に、[Vercel](https://vercel.com/) にWEBアプリをホストする方法を学びます。
