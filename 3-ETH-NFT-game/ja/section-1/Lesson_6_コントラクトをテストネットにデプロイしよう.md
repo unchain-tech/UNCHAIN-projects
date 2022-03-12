@@ -106,7 +106,8 @@ Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押して
 
 MetaMask ウォレットに `Rinkeby Test Network` が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽 ETH を取得しましょう。
 - [MyCrypto](https://app.mycrypto.com/faucet) - 0.01 ETH（その場でもらえる）
-- [Official Rinkeby](https://faucet.rinkeby.io/) - 3 / 7.5 / 18.75 ETH ( 8 時間 / 1 日 / 3 日)z### 🚀 `deploy.js` ファイルを作成する
+- [Official Rinkeby](https://faucet.rinkeby.io/) - 3 / 7.5 / 18.75 ETH ( 8 時間 / 1 日 / 3 日)
+### 🚀 `deploy.js` ファイルを作成する
 - [Chainlink](https://faucets.chain.link/rinkeby) - 0.1 ETH（その場でもらえる）
   * Chainlink を使うときは `Connect wallet` をクリックして MetaMask と接続する必要があります。
 ### 🚀 `deploy.js` ファイルを作成する
