@@ -34,7 +34,7 @@ async function main() {
     console.log("10 NFTs have been reserved");
 
     // 0.03 ETH を送信して3つ NFT を mint する
-    txn = await contract.mintNFTs(3, { value: utils.parseEther('0.03') });
+    txn = await contract.mintNFTs(3, { value: hre.ethers.utils.parseEther('0.03') });
     await txn.wait()
 
     // コントラクト所有者の保有するtokenIdsを取得
@@ -55,7 +55,7 @@ main()
 
 以下は、その `run.js` で実行されるテストの流れです。
 
--  NFT コレクションのメタデータを取得。**`beseTokenURI` のアドレスピックスをあなたの IPSF のアドレスに変更してください。**
+-  NFT コレクションのメタデータを取得。**`beseTokenURI` のアドレスをあなたの IPSF のアドレスに変更してください。**
     ```javascript
     // あなたのコレクションの Base Token URI を記入してください。
     const baseTokenURI = "ipfs://QmZbWNKJPAjxXuNFSEaksCJVd1M6DaKQViJBYPK2BdpDEP/";
@@ -104,7 +104,7 @@ main()
     console.log("10 NFTs have been reserved");
 
     // 2. 0.03 ETH を送信して 3 つ NFTを mint する
-    txn = await contract.mintNFTs(3, { value: utils.parseEther('0.03') });
+    txn = await contract.mintNFTs(3, { value: hre.ethers.utils.parseEther('0.03') });
     await txn.wait()
 
     // 3. コントラクト所有者の保有する tokenIds を取得

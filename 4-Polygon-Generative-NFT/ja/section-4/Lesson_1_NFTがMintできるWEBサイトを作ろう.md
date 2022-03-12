@@ -561,7 +561,7 @@ const mintNftHandler = async () => {
         const nftContract = new ethers.Contract(contractAddress, abi, signer);
 
         console.log("Initialize payment");
-        let nftTxn = await nftContract.mintNFTs(1, { value: ethers.utils.parseEther("0.01") });
+        let nftTxn = await nftContract.mintNFTs(1, { value: hre.ethers.utils.parseEther("0.01") });
 
         console.log("Mining... please wait");
         await nftTxn.wait();
@@ -619,7 +619,7 @@ const mintNftHandler = async () => {
 
 	```javascript
 	// App.js
-    let nftTxn = await nftContract.mintNFTs(1, { value: ethers.utils.parseEther("0.01") });
+    let nftTxn = await nftContract.mintNFTs(1, { value: hre.ethers.utils.parseEther("0.01") });
 	console.log("Mining... please wait");
 	```
 
@@ -708,7 +708,7 @@ function App() {
         const nftContract = new ethers.Contract(contractAddress, abi, signer);
 
         console.log("Initialize payment");
-        let nftTxn = await nftContract.mintNFTs(1, { value: ethers.utils.parseEther("0.01") });
+        let nftTxn = await nftContract.mintNFTs(1, { value: hre.ethers.utils.parseEther("0.01") });
 
         console.log("Mining... please wait");
         await nftTxn.wait();
