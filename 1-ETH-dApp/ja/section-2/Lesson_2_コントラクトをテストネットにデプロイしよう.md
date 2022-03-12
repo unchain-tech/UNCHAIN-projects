@@ -64,7 +64,7 @@ Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押して
 フォーセットを使用する前に、あなたの MetaMask ウォレットを `Rinkeby Test Network` に設定してください。
 
 > ✍️: MetaMask で `Rinkeby Test Network` を設定する方法
-> 
+>
 > 1 \. MetaMask ウォレットのネットワークトグルを開く。
 >
 >![](/public/images/1-ETH-dApp/section-2/2_2_13.png)
@@ -83,8 +83,10 @@ Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押して
 
 MetaMask ウォレットに `Rinkeby Test Network` が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽 ETH を取得しましょう。
 - [MyCrypto](https://app.mycrypto.com/faucet) - 0.01 ETH（その場でもらえる）
-- [Chainlink](https://faucets.chain.link/rinkeby) - 0.1 ETH（その場でもらえる）
 - [Official Rinkeby](https://faucet.rinkeby.io/) - 3 / 7.5 / 18.75 ETH ( 8 時間 / 1 日 / 3 日)
+- [Chainlink](https://faucets.chain.link/rinkeby) - 0.1 ETH（その場でもらえる）
+  * Chainlink を使うときは `Connect wallet` をクリックして MetaMask と接続する必要があります。
+
 ### 📈 `hardhat.config.js` ファイルを編集する
 
 `hardhat.config.js` ファイルを変更する必要があります。

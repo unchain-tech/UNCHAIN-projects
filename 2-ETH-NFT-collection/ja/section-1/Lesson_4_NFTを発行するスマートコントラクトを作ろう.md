@@ -88,7 +88,7 @@ using Counters for Counters.Counter;
 >
 >アンダーフローも同様で、0に等しい `uint8` から 1 を引くと、255 になります（ `uint` は符号なしなので、負にすることはできないからです）。
 >
-> ここでは `uint8` を使用していませんし、`uint256` が毎回 1 ずつ増加するときにオーバーフローする可能性は低いと思われますが（ `2^256` は本当に大きな数です）、将来的にDAppが予期せぬ動作をすることがないように、コントラクトに保護規定を設けることはグッとプラクティスです！👍
+> ここでは `uint8` を使用していませんし、`uint256` が毎回 1 ずつ増加するときにオーバーフローする可能性は低いと思われますが（ `2^256` は本当に大きな数です）、将来的にDAppが予期せぬ動作をすることがないように、コントラクトに保護規定を設けることはGOODプラクティスです！👍
 
 
 次に、下記のコードを見ていきましょう。
@@ -417,9 +417,9 @@ Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押して
 
 MetaMask ウォレットに `Rinkeby Test Network` が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽 ETH を取得しましょう。
 - [MyCrypto](https://app.mycrypto.com/faucet) - 0.01 ETH（その場でもらえる）
-- [Chainlink](https://faucets.chain.link/rinkeby) - 0.1 ETH（その場でもらえる）
 - [Official Rinkeby](https://faucet.rinkeby.io/) - 3 / 7.5 / 18.75 ETH ( 8 時間 / 1 日 / 3 日)
- 
+- [Chainlink](https://faucets.chain.link/rinkeby) - 0.1 ETH（その場でもらえる）
+  * Chainlink を使うときは `Connect wallet` をクリックして MetaMask と接続する必要があります。
 ### 🚀 `deploy.js` ファイルを作成する
 
 `run.js` は、あくまでローカル環境でコードのテストを行うためのスクリプトでした。
