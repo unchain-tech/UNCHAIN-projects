@@ -116,7 +116,7 @@ Vercel はサーバレス機能のホスティングを提供するクラウド�
 
 スケーリングやサーバーの監視は Vercel が行うため、開発者は Vercel へデプロイするだけでアプリケーションを公開・運用できます。
 
-Vercel に関しする詳しい説明は、[こちら](https://zenn.dev/lollipop_onl/articles/eoz-vercel-pricing-2020)をご覧ください。
+Vercel に関する詳しい説明は、[こちら](https://zenn.dev/lollipop_onl/articles/eoz-vercel-pricing-2020)をご覧ください。
 
 まず、Github の `dApp-starter-project` にローカルファイルをアップロードしていきます。
 
@@ -165,6 +165,7 @@ VercelはGithubと連動しているので、Githubが更新されるたびに�
 ぜひ CSS を駆使して、あなたのアプリを魅力的なものにしてください🪄
 ### 🙉 github に関するメモ
 
+**※今回は`dApp-starter-project`のみをアップロードするため、以下の作業は必要ありません**
 **Githubにコントラクト（ `my-wave-portal` ）のコードをアップロードする際は、秘密鍵を含むハードハット構成ファイルをリポジトリにアップロードしないよう注意しましょう**
 
 秘密鍵などのファイルを隠すために、ターミナルで `my-wave-portal` に移動して、下記を実行してください。

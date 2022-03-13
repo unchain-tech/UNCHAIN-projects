@@ -45,6 +45,11 @@ contract MyEpicNFT is ERC721URIStorage {
     console.log("This is my NFT contract.");
   }
 
+  // シードを生成する関数を作成します。
+  function random(string memory input) internal pure returns (uint256) {
+      return uint256(keccak256(abi.encodePacked(input)));
+  }
+
   // 各配列からランダムに単語を選ぶ関数を3つ作成します。
   // pickRandomFirstWord関数は、最初の単語を選びます。
   function pickRandomFirstWord(uint256 tokenId) public view returns (string memory) {
@@ -53,13 +58,13 @@ contract MyEpicNFT is ERC721URIStorage {
     uint256 rand = random(string(abi.encodePacked("FIRST_WORD", Strings.toString(tokenId))));
 
     // seed rand をターミナルに出力する。
-	console.log("rand seed: ", rand);
+	  console.log("rand seed: ", rand);
 
-	// firstWords配列の長さを基準に、rand 番目の単語を選びます。
+	  // firstWords配列の長さを基準に、rand 番目の単語を選びます。
     rand = rand % firstWords.length;
 
-	// firstWords配列から何番目の単語が選ばれるかターミナルに出力する。
-	console.log("rand first word: ", rand);
+	  // firstWords配列から何番目の単語が選ばれるかターミナルに出力する。
+	  console.log("rand first word: ", rand);
     return firstWords[rand];
   }
 
@@ -79,11 +84,6 @@ contract MyEpicNFT is ERC721URIStorage {
     uint256 rand = random(string(abi.encodePacked("THIRD_WORD", Strings.toString(tokenId))));
     rand = rand % thirdWords.length;
     return thirdWords[rand];
-  }
-
-  // シードを生成する関数を作成します。
-  function random(string memory input) internal pure returns (uint256) {
-      return uint256(keccak256(abi.encodePacked(input)));
   }
 
   // ユーザーが NFT を取得するために実行する関数です。
@@ -426,6 +426,11 @@ contract MyEpicNFT is ERC721URIStorage {
     console.log("This is my NFT contract.");
   }
 
+  // シードを生成する関数を作成します。
+  function random(string memory input) internal pure returns (uint256) {
+      return uint256(keccak256(abi.encodePacked(input)));
+  }
+
   // 各配列からランダムに単語を選ぶ関数を3つ作成します。
   // pickRandomFirstWord関数は、最初の単語を選びます。
   function pickRandomFirstWord(uint256 tokenId) public view returns (string memory) {
@@ -454,11 +459,6 @@ contract MyEpicNFT is ERC721URIStorage {
     uint256 rand = random(string(abi.encodePacked("THIRD_WORD", Strings.toString(tokenId))));
     rand = rand % thirdWords.length;
     return thirdWords[rand];
-  }
-
-  // シードを生成する関数を作成します。
-  function random(string memory input) internal pure returns (uint256) {
-      return uint256(keccak256(abi.encodePacked(input)));
   }
 
   // ユーザーが NFT を取得するために実行する関数です。

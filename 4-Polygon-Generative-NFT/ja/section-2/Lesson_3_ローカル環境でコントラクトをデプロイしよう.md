@@ -34,7 +34,7 @@ async function main() {
     console.log("10 NFTs have been reserved");
 
     // 0.03 ETH を送信して3つ NFT を mint する
-    txn = await contract.mintNFTs(3, { value: utils.parseEther('0.03') });
+    txn = await contract.mintNFTs(3, { value: hre.ethers.utils.parseEther('0.03') });
     await txn.wait()
 
     // コントラクト所有者の保有するtokenIdsを取得
@@ -55,7 +55,7 @@ main()
 
 以下は、その `run.js` で実行されるテストの流れです。
 
--  NFT コレクションのメタデータを取得。**`beseTokenURI` のアドレスピックスをあなたの IPSF のアドレスに変更してください。**
+-  NFT コレクションのメタデータを取得。**`beseTokenURI` のアドレスをあなたの IPSF のアドレスに変更してください。**
     ```javascript
     // あなたのコレクションの Base Token URI を記入してください。
     const baseTokenURI = "ipfs://QmZbWNKJPAjxXuNFSEaksCJVd1M6DaKQViJBYPK2BdpDEP/";
@@ -104,7 +104,7 @@ main()
     console.log("10 NFTs have been reserved");
 
     // 2. 0.03 ETH を送信して 3 つ NFTを mint する
-    txn = await contract.mintNFTs(3, { value: utils.parseEther('0.03') });
+    txn = await contract.mintNFTs(3, { value: hre.ethers.utils.parseEther('0.03') });
     await txn.wait()
 
     // 3. コントラクト所有者の保有する tokenIds を取得
@@ -124,7 +124,7 @@ npx hardhat run scripts/run.js
 
 ターミナルに下記のような出力結果が表示されていればテストは成功です。
 
-```
+```bash
 Contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 10 NFTs have been reserved
 Owner has tokens:  [
@@ -143,6 +143,73 @@ Owner has tokens:  [
   BigNumber { value: "12" }
 ]
 ```
+### 🚀 Rinkeby Test Network にコントラクトをデプロイする
+
+それでは、Rinkeby Test Network にコントラクトをデプロイしましょう。
+
+`nft-collectible/scripts` の中に、`deploy.js` というファイルを作成してください。
+
+その中に、`run.js` の中身を下を貼り付けましょう。
+
+>⚠️: 注意
+>
+> `run.js` はあくまでローカル環境でコントラクトのテストを実行するスクリプトです。
+>
+> 一方、`deploy.js` はテストネットやメインネットに実際にコントラクトをデプロイするときに使用するスクリプトです。
+>
+> `run.js` と `deploy.js` は分けて管理することをおすすめします。
+
+
+`deploy.js` が作成できたら、ターミナル上で `nft-collectible` ディレクトリに移動し、下記のコマンドを実行しましょう。
+
+```bash
+npx hardhat run scripts/deploy.js --network rinkeby
+```
+
+下記のような結果がターミナルに出力されていることを確認してください。
+
+```bash
+Contract deployed to: 0x97517fEEEA81d82aA637C8c3d901771155EF4bca
+10 NFTs have been reserved
+Owner has tokens:  [
+  BigNumber { value: "0" },
+  BigNumber { value: "1" },
+  BigNumber { value: "2" },
+  BigNumber { value: "3" },
+  BigNumber { value: "4" },
+  BigNumber { value: "5" },
+  BigNumber { value: "6" },
+  BigNumber { value: "7" },
+  BigNumber { value: "8" },
+  BigNumber { value: "9" },
+  BigNumber { value: "10" },
+  BigNumber { value: "11" },
+  BigNumber { value: "12" }
+]
+```
+
+あなたのターミナル上で、`Contract deployed to` の後に出力されたコントラクトアドレス（ `0x..` ）をコピーして、保存しておきましょう。
+
+後でフロントエンドを構築する際に必要となります。
+### 👀 Etherscanでトランザクションを確認する
+
+`Contract deployed to:` に続くアドレス（ `0x..` ）をコピーして、[Etherscan](https://rinkeby.etherscan.io/) に貼り付けてみましょう。
+
+あなたのスマートコントラクトのトランザクション履歴が確認できます。
+
+- Etherscan は、イーサリアムネットワーク上のトランザクションに関する情報を確認するのに便利なプラットフォームです。
+
+- *表示されるまでに約1分かかり場合があります。*
+
+下記のような結果が、Rinkeby Etherscan 上で確認できれば、テストネットへのデプロイは成功です。
+
+![](/public/images/4-Polygon-Generative-NFT/section-2/2_2_14.png)
+
+**デプロイのデバッグに Rinkeby Etherscan 使うことに慣れましょう。**
+
+Rinkeby Etherscan はデプロイを追跡する最も簡単な方法であり、問題を特定するのに適しています。
+
+- Etherscan にトランザクションが表示されないということは、まだ処理中か、何か問題があったということになります。
 ### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discord の `#section-2` で質問をしてください。

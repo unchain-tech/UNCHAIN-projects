@@ -106,9 +106,11 @@ Alchemyのアカウントを作成したら、`CREATE APP` ボタンを押して
 
 MetaMask ウォレットに `Rinkeby Test Network` が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽 ETH を取得しましょう。
 - [MyCrypto](https://app.mycrypto.com/faucet) - 0.01 ETH（その場でもらえる）
-- [Chainlink](https://faucets.chain.link/rinkeby) - 0.1 ETH（その場でもらえる）
-- [Official Rinkeby](https://faucet.rinkeby.io/) - 3 / 7.5 / 18.75 ETH ( 8 時間 / 1 日 / 3 日)z### 🚀 `deploy.js` ファイルを作成する
+- [Official Rinkeby](https://faucet.rinkeby.io/) - 3 / 7.5 / 18.75 ETH ( 8 時間 / 1 日 / 3 日)
+### 🚀 `deploy.js` ファイルを作成する
 
+- [Chainlink](https://faucets.chain.link/rinkeby) - 0.1 ETH（その場でもらえる）
+  * Chainlink を使うときは `Connect wallet` をクリックして MetaMask と接続する必要があります。
 ### 🤫 機密情報を隠す
 
 まず、`dotenv` ライブラリを使用して、先ほど作成した `Alchemy URL` とあなたの MetaMask の秘密鍵を隠していきます。
@@ -217,78 +219,9 @@ module.exports = {
 > 秘密鍵が流出してしまうと、誰でもあなたのウォレットにアクセスすることができてしまうので、とても危険です。
 >
 > **絶対に秘密鍵を自分以外の人が見れる場所に置かないようにしましょう**。
->
-> `.env` を設定することで、あなたの個人情報が Github に流出するのを防ぎます。
-### 🚀 Rinkeby Test Network にコントラクトをデプロイする
-
-`hardhat.config.js` の更新が完了したら、Rinkeby Test Network にコントラクトをデプロイしてみましょう。
-
-`nft-collectible/scripts` の中に、`deploy.js` というファイルを作成してください。
-
-その中に、`run.js` の中身を下を貼り付けましょう。
-
->⚠️: 注意
->
-> `run.js` はあくまでローカル環境でコントラクトのテストを実行するスクリプトです。
->
-> 一方、`deploy.js` はテストネットやメインネットに実際にコントラクトをデプロイするときに使用するスクリプトです。
->
-> `run.js` と `deploy.js` は分けて管理することをおすすめします。
-
-
-`deploy.js` が作成できたら、ターミナル上で `nft-collectible` ディレクトリに移動し、下記のコマンドを実行しましょう。
-
-```bash
-npx hardhat run scripts/deploy.js --network rinkeby
-```
-
-下記のような結果がターミナルに出力されていることを確認してください。
-
-```bash
-Contract deployed to: 0x97517fEEEA81d82aA637C8c3d901771155EF4bca
-10 NFTs have been reserved
-Owner has tokens:  [
-  BigNumber { value: "0" },
-  BigNumber { value: "1" },
-  BigNumber { value: "2" },
-  BigNumber { value: "3" },
-  BigNumber { value: "4" },
-  BigNumber { value: "5" },
-  BigNumber { value: "6" },
-  BigNumber { value: "7" },
-  BigNumber { value: "8" },
-  BigNumber { value: "9" },
-  BigNumber { value: "10" },
-  BigNumber { value: "11" },
-  BigNumber { value: "12" }
-]
-```
-
-あなたのターミナル上で、`Contract deployed to` の後に出力されたコントラクトアドレス（ `0x..` ）をコピーして、保存しておきましょう。
-
-後でフロントエンドを構築する際に必要となります。
-### 👀 Etherscanでトランザクションを確認する
-
-`Contract deployed to:` に続くアドレス（ `0x..` ）をコピーして、[Etherscan](https://rinkeby.etherscan.io/) に貼り付けてみましょう。
-
-あなたのスマートコントラクトのトランザクション履歴が確認できます。
-
-- Etherscan は、イーサリアムネットワーク上のトランザクションに関する情報を確認するのに便利なプラットフォームです。
-
-- *表示されるまでに約1分かかり場合があります。*
-
-下記のような結果が、Rinkeby Etherscan 上で確認できれば、テストネットへのデプロイは成功です。
-
-![](/public/images/4-Polygon-Generative-NFT/section-2/2_2_14.png)
-
-**デプロイのデバッグに Rinkeby Etherscan 使うことに慣れましょう。**
-
-Rinkeby Etherscan はデプロイを追跡する最も簡単な方法であり、問題を特定するのに適しています。
-
-- Etherscan にトランザクションが表示されないということは、まだ処理中か、何か問題があったということになります。
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#section-2` sで質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#section-2` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨
 ```
