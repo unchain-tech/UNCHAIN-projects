@@ -268,7 +268,7 @@ Vercel はサーバレス機能のホスティングを提供するクラウド�
 
 スケーリングやサーバーの監視は Vercel が行うため、開発者は Vercel へデプロイするだけでアプリケーションを公開・運用できます。
 
-Vercel に関しする詳しい説明は、[こちら](https://zenn.dev/lollipop_onl/articles/eoz-vercel-pricing-2020)をご覧ください。
+Vercel に関する詳しい説明は、[こちら](https://zenn.dev/lollipop_onl/articles/eoz-vercel-pricing-2020)をご覧ください。
 
 まず、Github の `nft-collection-starter-project` にローカルファイルをアップロードしていきます。
 

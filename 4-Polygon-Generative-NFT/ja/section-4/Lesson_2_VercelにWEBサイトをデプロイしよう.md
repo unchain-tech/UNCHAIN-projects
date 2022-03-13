@@ -52,7 +52,7 @@ ETH がいくら必要で、いくら足りないかをユーザーに知らせ�
 
 - 実際に NFT を Mint して、あなたのWEBウェブサイトとの違いを検証してみてください。
 
-- あなたの Github アカウントにこのレポジトリをフォークしましょう。
+- あなたの Github アカウントにこの[レポジトリ](https://github.com/yukis4san/nft-collectible-frontend-git)をフォークしましょう。
 
 - クローンしたレポジトリをあなたのローカル環境にダウンロードしてください。
 
@@ -81,7 +81,7 @@ Vercel はサーバレス機能のホスティングを提供するクラウド�
 
 スケーリングやサーバーの監視は Vercel が行うため、開発者は Vercel へデプロイするだけでアプリケーションを公開・運用できます。
 
-Vercel に関しする詳しい説明は、[こちら](https://zenn.dev/lollipop_onl/articles/eoz-vercel-pricing-2020)をご覧ください。
+Vercel に関する詳しい説明は、[こちら](https://zenn.dev/lollipop_onl/articles/eoz-vercel-pricing-2020)をご覧ください。
 
 まず、Github に向かい、新しいリポジトリを作成していきましょう。
 

@@ -251,7 +251,7 @@ const contractAddress = "あなたのコントラクトアドレスを貼り付�
 
 CSS スタイルや静的要素（画像、ヘッダー、フッター、ソーシャルメディアリンクなど）を追加して、ウェブサイトの外観を自由にカスタマイズしてください。
 
-ここまでで、プロジェクトの基礎となるブロックはほぼ揃いました。こ
+ここまでで、プロジェクトの基礎となるブロックはほぼ揃いました。
 
 これで、ユーザーがウォレットをウェブサイトに接続する準備が整いました。
 ### 🦊 MetaMask ウォレットとの接続
@@ -264,7 +264,7 @@ CSS スタイルや静的要素（画像、ヘッダー、フッター、ソー�
 
 まず、ユーザーのブラウザに、MetaMask ウォレットが存在するか確認していきます。
 
-ユーザーは MetaMask ウォレットを持っていなければ、WBサイト上で NFT を Mint することができません。
+ユーザーは MetaMask ウォレットを持っていなければ、WEBサイト上で NFT を Mint することができません。
 
 MetaMask ウォレットが存在するかどうかを確認するロジックを、`checkWalletIsConnected` 関数に入力しましょう。
 
@@ -561,7 +561,7 @@ const mintNftHandler = async () => {
         const nftContract = new ethers.Contract(contractAddress, abi, signer);
 
         console.log("Initialize payment");
-        let nftTxn = await nftContract.mintNFTs(1, { value: hre.ethers.utils.parseEther("0.01") });
+        let nftTxn = await nftContract.mintNFTs(1, { value: ethers.utils.parseEther("0.01") });
 
         console.log("Mining... please wait");
         await nftTxn.wait();
@@ -585,61 +585,60 @@ const mintNftHandler = async () => {
 
 1\. MetaMask から投入された `ethereum` オブジェクトにアクセスしようとします。
 
-	```javascript
-	// App.js
-    const { ethereum } = window;
-	```
+```javascript
+// App.js
+const { ethereum } = window;
+```
 
 2\. `ethereum` が存在する場合、MetaMask を RPC プロバイダとして設定します。
 これは、MetaMask のウォレットを使ってマイナーにリクエストを発行することを意味します。
 
-	```javascript
-	// App.js
-    if (ethereum) {
-        const provider = new ethers.providers.Web3Provider(ethereum);
+```javascript
+// App.js
+  if (ethereum) {
+    const provider = new ethers.providers.Web3Provider(ethereum);
 	:
-	```
+```
 
 3\. リクエストを発行するためには、ユーザーは自分の秘密鍵を使ってトランザクションに署名する必要があります。このために `signer` にアクセスします。
 
-	```javascript
-	// App.js
-    const signer = provider.getSigner();
-	```
+```javascript
+// App.js
+const signer = provider.getSigner();
+```
 
 4\. 次に、デプロイされたコントラクトのアドレス、コントラクトABI、および `signer` を使用して、`ethers` のコントラクトインスタンスを開始します。
 
-	```javascript
-	// App.js
-    const nftContract = new ethers.Contract(contractAddress, abi, signer);
-	console.log("Initialize payment");
-	```
+```javascript
+// App.js
+  const nftContract = new ethers.Contract(contractAddress, abi, signer);
+  console.log("Initialize payment");
+```
 
 5\. これで、前述のコントラクトオブジェクトを通じてコントラクト上の関数を呼び出すことができます。`mintNFT` 関数を呼び出し、MetaMask に `0.01 ETH`（これは NFT に設定した価格）を送信するよう依頼します。
 
-	```javascript
-	// App.js
-    let nftTxn = await nftContract.mintNFTs(1, { value: hre.ethers.utils.parseEther("0.01") });
+```javascript
+// App.js
+  let nftTxn = await nftContract.mintNFTs(1, { value: ethers.utils.parseEther("0.01") });
 	console.log("Mining... please wait");
-	```
+```
 
 6\. トランザクションが処理されるのを待ち、処理が完了したら、トランザクションのハッシュをコンソールに出力します。
 
-	```javascript
-	// App.js
-	await nftTxn.wait();
-
-    console.log(`Mined, see transaction: ${nftTxn.hash}`);
-	```
+```javascript
+// App.js
+await nftTxn.wait();
+console.log(`Mined, see transaction: ${nftTxn.hash}`);
+```
 
 7\. トランザクションが失敗した場合（間違った関数が呼び出された、間違ったパラメータが渡された、0.01 ETH以下が送られた、ユーザーが取引を拒否した、など）、エラーがコンソールに出力されます。
 
-	```javascript
-	// App.js
-	} catch (err) {
-      console.log(err);
-    }
-	```
+```javascript
+// App.js
+  } catch (err) {
+    console.log(err);
+  }
+```
 ### ✨ `App.js` の完成
 
 ここまででフロントエンドのコア機能の実装が終わりました。
@@ -708,7 +707,7 @@ function App() {
         const nftContract = new ethers.Contract(contractAddress, abi, signer);
 
         console.log("Initialize payment");
-        let nftTxn = await nftContract.mintNFTs(1, { value: hre.ethers.utils.parseEther("0.01") });
+        let nftTxn = await nftContract.mintNFTs(1, { value: ethers.utils.parseEther("0.01") });
 
         console.log("Mining... please wait");
         await nftTxn.wait();

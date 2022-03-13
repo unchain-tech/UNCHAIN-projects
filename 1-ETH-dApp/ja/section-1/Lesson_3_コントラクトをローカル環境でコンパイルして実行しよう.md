@@ -93,7 +93,7 @@ const wavePortal = await waveContract.deployed();
 
 Hardhat は実際にあなたのマシン上に「マイナー」を作成し、ブロックチェーンを構築してくれます。
 
- `constructor` は、コントラクトがデプロイされたときにはじめて実行されます。
+ `constructor` は、コントラクトがデプロイされるときにはじめて実行されます。
 
 最後に、下記の処理を見ていきましょう。
 
