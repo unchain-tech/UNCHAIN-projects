@@ -165,7 +165,7 @@ Done. Successful = true.
 ended at: 2022-01-06T12:04:38.862Z. time taken: 00:00:43
 ```
 
-`initialized config for a candy machine"` と記載され、キーを出力している箇所を見てください。
+`initialized config for a candy machine"` と記載されている、`public key` を出力している箇所を見てください。
 
 そのキーをコピーして Solana の [Devnet Explorer](https://explorer.solana.com/?cluster=devnet) に貼り付けると、実際にブロックチェーンにデプロイされたことが確認できます。ぜひやってみてください。
 

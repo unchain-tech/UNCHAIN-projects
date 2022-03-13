@@ -145,15 +145,27 @@ instructions.push(
 ざっくりとした説明は以上です。できる限り自分で読み解いてみてくださいね。メンバーと一緒に読み合わせするのもいいかもしれません。また、誰かがこのコードを素敵な `npm` モジュールにしてくれることを夢見ています...。
 ### ✨ NFTをミントしよう！
 
-`CandyMachine` コンポーネントで、"Mint" ボタンをクリックしたときに `mintToken` 関数を呼び出すよう設定します。`index.js` を下記の通り修正してください。
+`index.js` で `CandyMachine` を宣言したコードの直下に下記を追加しましょう。
 
 ```jsx
+// index.js
+const CandyMachine = ({ walletAddress }) => {
+  // 追加するコード
+  const [candyMachine, setCandyMachine] = useState("");
+```
+
+ここでは、`candyMachine` の状態を保持する変数と、状態を更新する関数（`setCandyMachine`）を初期化しています。
+
+次に、`CandyMachine` コンポーネントで、"Mint" ボタンをクリックしたときに `mintToken` 関数を呼び出すよう設定します。`index.js` を下記の通り修正してください。
+
+```jsx
+// index.js
 return (
-    // Only show this if machineStats is available
-    machineStats && (
+  // candyMachineが利用可能な場合のみ表示されます
+    candyMachine && (
       <div className="machine-container">
-        <p>{`Drop Date: ${machineStats.goLiveDateTimeString}`}</p>
-        <p>{`Items Minted: ${machineStats.itemsRedeemed} / ${machineStats.itemsAvailable}`}</p>
+        <p>{`Drop Date: ${candyMachine.goLiveDateTimeString}`}</p>
+        <p>{`Items Minted: ${candyMachine.itemsRedeemed} / ${candyMachine.itemsAvailable}`}</p>
         <button className="cta-button mint-button" onClick={mintToken}>
             Mint NFT
         </button>
