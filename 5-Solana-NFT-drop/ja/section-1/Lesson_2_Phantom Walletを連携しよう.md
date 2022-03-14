@@ -56,7 +56,7 @@ import './App.css';
 import twitterLogo from './assets/twitter-logo.svg';
 
 // 定数の宣言
-const TWITTER_HANDLE = '_ta_ka_sea0';
+const TWITTER_HANDLE = 'あなたのTwitterハンドル';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const App = () => {
@@ -152,6 +152,12 @@ useEffect(() => {
 Reactでは、   2番目のパラメーター( `[]` )が空の場合、コンポーネントをマウント時に `useEffect` hookが1回呼び出されます。
 
 これで、私たちのWEBアプリにアクセスするとすぐに、Phantom Wallet がインストールされているかどうかを確認できます。これは **非常に重要**な機能です。
+
+最後に、あなたのTwitterハンドルを以下に貼り付けるのをお忘れなく！
+
+```jsx
+const TWITTER_HANDLE = 'あなたのTwitterハンドル';
+```
 ### 🔒 ユーザーのアカウントにアクセスする
 
 一度、ブラウザでインターフェースを確認してみましょう。
