@@ -147,6 +147,7 @@ console.log(`Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.ha
 最後に、ユーザーが `Mint NFT` ボタンをクリックしたときに、`askContractToMintNft` 関数を呼び出すコードを見ていきましょう。
 
 ```javascript
+// App.js
 return (
   {currentAccount === ""
     ? renderNotConnectedContainer()

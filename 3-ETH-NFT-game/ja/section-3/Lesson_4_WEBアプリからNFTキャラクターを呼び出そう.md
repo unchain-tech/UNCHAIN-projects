@@ -26,7 +26,7 @@
 
 このアドレスは、さまざまなタイミングで使用する予定なので、簡単にアクセスできるようにしましょう。
 
-`epic-game/src` の中に `constants.js` ファイルを作成し、以下のコードを追加してください。
+`nft-game-starter-project/src` の中に `constants.js` ファイルを作成し、以下のコードを追加してください。
 
 ```javascript
 // constants.js
