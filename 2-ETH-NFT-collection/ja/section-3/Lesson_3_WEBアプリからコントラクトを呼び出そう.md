@@ -144,7 +144,7 @@ console.log(`Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.ha
 
 `console.log` では、取得したトランザクションの結果を、Etherscan URL として出力しています。
 
-最後に、ユーザーが `Mint NFT` ボタンをクリックしたときに、`askContractToMintNft` 関数を呼び出すコードを見ていきましょう。
+ユーザーが `Mint NFT` ボタンをクリックしたときに、`askContractToMintNft` 関数を呼び出すコードを見ていきましょう。
 
 ```javascript
 // App.js
@@ -160,6 +160,19 @@ return (
   }
 );
 ```
+
+条件付きレンダリングについて復習していきましょう。
+
+`currentAccount === ""` は、`currentAccount` にユーザーのウォレットアドレスが紐づいているかどうか判定しています。
+
+条件付きレンダリングは、下記のように実行されます。
+```javascript
+{ currentAccount === "" ? ( currentAccount にアドレスが紐づいてなければ、A を実行 ) : ( currentAccount にアドレスが紐づいれば B を実行 )}
+```
+`App.js` の場合、`A` ならばは、`renderNotConnectedContainer()` を実行し、`B` ならば、`Mint NFT` ボタンをフロントエンドに反映させています。
+
+最後に、`onClick={null}` を `onClick={askContractToMintNft}` に変更することをお忘れなく！
+
 すべての変更を `App.js` に反映させた後、ターミナルで`nft-collection-starter-project` ディレクトリに移動して下記を実行しみてください。
 
 ```bash
