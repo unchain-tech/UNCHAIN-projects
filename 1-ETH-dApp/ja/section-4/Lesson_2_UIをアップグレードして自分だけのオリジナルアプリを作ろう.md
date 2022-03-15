@@ -193,9 +193,15 @@ code .env
 そして、`.env` ファイルを下記のように更新します。
 
 ```
+<<<<<<< HEAD
 PRIVATE_KEY = hardhad.config.jsにある秘密鍵（accounts）を貼り付ける
 STAGING_ALCHEMY_KEY = hardhad.config.jsにあるAlchemyのURLを貼り付ける
 PROD_ALCHEMY_KEY = イーサリアムメインネットにデプロイする際に使用するAlchemyのURLを貼り付ける（今は何も貼り付ける必要はありません）
+=======
+PRIVATE_KEY = hardhat.config.jsにある秘密鍵（accounts）を貼り付ける
+STAGING_ALCHEMY_KEY = hardhat.config.jsにあるAlchemyのURLを貼り付ける
+PROD_ALCHEMY_KEY = メインネットにデプロイする際に使用するAlchemyのURLを貼り付ける（今は何も貼り付ける必要はありません）
+>>>>>>> d2c8e84e7a16fa2bf66fc3081135a14e97e269af
 ```
 
 `.env` を更新したら、 `hardhat.config.js` ファイルを次のように更新してください。
