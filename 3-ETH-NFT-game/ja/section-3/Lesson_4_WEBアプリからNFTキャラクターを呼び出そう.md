@@ -316,7 +316,7 @@ const gameContract = new ethers.Contract(
 
 新しいコントラクトインスタンスを作成するには、以下3つの変数を `ethers.Contract` 関数に渡す必要があります。
 
-1\. `CONTRACT_ADDRESS`: コントラクトのデプロイ先のアドレス（ローカル、テストネット、またはメインネット）
+1\. `CONTRACT_ADDRESS`: コントラクトのデプロイ先のアドレス（ローカル、テストネット、またはイーサリアムメインネット）
 
 2\. `myEpicGame.abi`: コントラクトの ABI
 

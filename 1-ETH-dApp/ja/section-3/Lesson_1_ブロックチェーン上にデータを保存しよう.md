@@ -245,7 +245,7 @@ const wavePortalContract = new ethers.Contract(contractAddress, contractABI, sig
 
 ここでは、コントラクトのインスタンス（= `wavePortalContract`）を生成し、コントラクトへの接続を行なっています。
 `wave` 関数同様、コントラクトの新しいインスタンスを作成するには、以下3つの変数を `ethers.Contract` 関数に渡す必要があります。
-1. コントラクトのデプロイ先のアドレス（ローカル、テストネット、またはメインネット）
+1. コントラクトのデプロイ先のアドレス（ローカル、テストネット、またはイーサリアムメインネット）
 2. コントラクトの ABI
 3. `provider`、もしくは `signer`
 
