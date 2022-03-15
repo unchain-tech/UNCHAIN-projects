@@ -94,7 +94,7 @@ uint public constant PRICE = 0.01 ether;
 1 MATIC  ≒  200 円
 ```
 
-したがって、ETH で表記した NFT 1 つあたりの価格（ 0.01 ETH ）を MATIC に換算すると、17 MATIC でとなります。
+したがって、ETH で表記した NFT 1 つあたりの価格（ 0.01 ETH ）を MATIC に換算すると、17 MATIC となります。
 
 この変更を反映させるために、`NFTCollectible.sol` の価格表記を下記のように更新しましょう。
 
@@ -116,7 +116,7 @@ uint public constant PRICE = 17 ether;
 
 実際に Solidity では `Wei` という単位で支払い金額を指定しています。
 
-メインネットでは、`1 ETH` は `10¹⁸ Wei` です。
+イーサリアムメインネットでは、`1 ETH` は `10¹⁸ Wei` です。
 
 Polygonでは、`10¹⁸ Wei` が `1 MATIC` です。
 
@@ -124,7 +124,7 @@ Polygonでは、`10¹⁸ Wei` が `1 MATIC` です。
 >✍️: `Wei` と `Gwei`
 >イーサリアムのガス代（コスト）は、下記で決まります。
 >
->	コスト = ガス価格（ Gas Price ） x 消費したガスの量（ Gas limit & Usage by Txn ）
+>	`コスト = ガス価格（ Gas Price ） x 消費したガスの量（ Gas limit & Usage by Txn ）`
 >
 >`Gwei` はガス価格の単位、`Wei` はイーサリアムの最小単位となります。
 
@@ -229,7 +229,6 @@ async function main() {
 	  // 注: 十分な NFT を確保するために、下記のサンプル Token URI を使用しても問題ありません。
     const baseTokenURI = "ipfs://QmZbWNKJPAjxXuNFSEaksCJVd1M6DaKQViJBYPK2BdpDEP/";
 
-
 	  // オーナー/デプロイヤーのウォレットアドレスを取得する
     const [owner] = await hre.ethers.getSigners();
 
@@ -269,7 +268,6 @@ npx hardhat run scripts/deploy.js --network mumbai
 
 ```
 Contract deployed to: 0xF899DeB963208560a7c667FA78376ecaFF684b8E
-10 NFTs have been reserved
 Owner has tokens:  []
 ```
 
