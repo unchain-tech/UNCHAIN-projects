@@ -442,7 +442,7 @@ npm run start
 
 ![](/public/images/2-ETH-NFT-collection/section-3/3_2_6.png)
 
-MetaMaskの承認が終わると、ウォレット接続ボタンの表示が `Wallet Connected` に変更されているはずです。
+MetaMask の承認が終わると、ウォレット接続ボタンの表示が `Mint NFT` に変更されているはずです。
 
 下記のように、`Console` にも、接続されたウォレットアドレスが、`currentAccount` として出力されていることを確認してください。
 

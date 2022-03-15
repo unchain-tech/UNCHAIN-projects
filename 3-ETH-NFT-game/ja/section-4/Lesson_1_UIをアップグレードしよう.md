@@ -252,7 +252,7 @@ return (
 
 ```javascript
 // Arena/index.js
-import LoadingIndicator from '../../Components/LoadingIndicator';
+import LoadingIndicator from '../LoadingIndicator';
 ```
 
 次に、`Arena/index.js` に記載されている `return();` の中身に着目し、`{boss ..}` の中身を下記のように更新してください。

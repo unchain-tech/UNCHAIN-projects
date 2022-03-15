@@ -388,8 +388,7 @@ NFT の JSON メタデータは、IPFS の次のURLで入手できます： ipfs
 
 `setBaseURI()` は、メタデータが存在する場所の Base Token URI を設定します。
 
-`setBaseURI(baseURI)` を実行すると、OpenZeppelin の実装は各 NFT no
- URIを自動的に推論します。
+`setBaseURI(baseURI)` を実行すると、OpenZeppelin の実装は各 Base Token URI を自動的に推論します。
 
 例：
 

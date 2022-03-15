@@ -91,6 +91,14 @@ OpenZeppelin には非常に多くの機能が実装されておりインポー�
 ```
 次に、以下を実行します。
 
+>⚠️: 注意 #1
+>
+> `npx hardhat compile` が実行されなかった場合、以下をターミナルで実行してください。
+>
+>```bash
+>npm install --save-dev @nomiclabs/hardhat-waffle ethereum-waffle chai @nomiclabs/hardhat-ethers ethers
+>```
+
 ```
  npx hardhat test
 ```
