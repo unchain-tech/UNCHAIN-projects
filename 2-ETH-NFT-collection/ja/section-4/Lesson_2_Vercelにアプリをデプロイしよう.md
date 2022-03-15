@@ -92,7 +92,7 @@ artifacts
 
 - NFTは、いくつかのメタデータにリンクする単なるJSONファイルであることを思い出してください💡
 
-- このJSONファイルを IPFS に配置できます。。
+- このJSONファイルを IPFS に配置できます。
 
 **NFT データを保存する一般的な方法として、多くの人が IPSF を利用しています。**
 ### 📝 Etherscan を使ってコントラクトを verify（検証）する
@@ -120,6 +120,8 @@ Etherscan の **コントラクトの Verification（検証）** を行いまし
 ![](/public/images/2-ETH-NFT-collection/section-4/4_2_3.png)
 
 次に、ターミナルで `epic-nfts` ディレクトリに移動して、次のコマンドを実行してください。 Etherscan で verification を行うために必要なツールをインストールします。
+
+⚠️：Ethereum API key は誰にも教えてはいけません！
 
 ```bash
 npm install @nomiclabs/hardhat-etherscan
@@ -150,75 +152,10 @@ networks: {
 };
 ```
 
-最後に、下記を実行して、あなたのコントラクトを verify = 世界に公開してみましょう。
+最後に、下記を実行して、あなたのコントラクトを verify して、世界に公開してみましょう。
 
 ```
 npx hardhat clean
-npx hardhat verify YOUR_CONTRACT_ADDRESS --network rinkeby
-```
-
-[ここ](https://rinkeby.etherscan.io/address/0x902ebbecafc54f7a8013a9d7954e7355309b50e6#code) は、承認済みのコントラクトがどのように表示されるかの一例です。
-
-Etherscanで **Contract** タブを選択すると、下図のような `0x608060405234801 ...` で始まる長いテキストのリストが表示されます。
-
-![画像](https://user-images.githubusercontent.com/60590919/139609052-f4bba83c-f224-44b1-be74-de8eaf31b403.png)
-
-実は、このテキストのリストは、デプロイされたコントラクトのバイトコードです。
-- バイトコードに関する詳しい説明は、[こちら](https://e-words.jp/w/%E3%83%90%E3%82%A4%E3%83%88%E3%82%B3%E3%83%BC%E3%83%89.html) をご覧ください。
-
-バイトコードは、私たち人間には読めません。
-
-幸いなことに、Etherscan には、実際のコードを直接表示する機能があります。
-
-コントラクトのソースコードを**確認して公開**するように求めるプロンプトが表示されることに注意してください。リンクをたどる場合は、コントラクト設定を手動で選択し、コードを貼り付けてソースコードを公開する必要があります。
-
-幸いなことに、hardhatはこれを行うためのよりスマートな方法を提供します。
-
-ハードハットプロジェクトに戻り、次のコマンドを実行して`@nomiclabs/hardhat-etherscan` をインストールします。
-
-```
-npm i -D @nomiclabs/hardhat-etherscan
-```
-
-次に、`hardhat.config.js` に以下を追加します。
-
-```javascript
-require("@nomiclabs/hardhat-etherscan");
-// Rest of code
-...
-module.exports = {
-  solidity: "0.8.0",
-  // Rest of the config
-  ...,
-  etherscan: {
-    // Your API key for Etherscan
-    // Obtain one at https://etherscan.io/
-    apiKey: "こちらにAPI KEYを埋め込みます",
-  }
-};
-```
-
-`etherscan` オブジェクトに `apiKey` を埋め込むため、Etherscan のアカウントを取得しましょう。
-
-アカウントをまだお持ちでない場合は、[https://etherscan.io/register](https://etherscan.io/register) にアクセスして、無料のユーザーアカウントを作成してください。
-
-その後、プロファイル設定に移動し、 [APIキー]の下に新しいAPIキーを作成しましょう。
-
-API の名前を設定
-
-![](/public/images/2-ETH-NFT-collection/section-4/4_2_4.png)
-
-`Edit` を選択し、`apiKey` を取得します。
-
-![](/public/images/2-ETH-NFT-collection/section-4/4_2_5.png)
-
-API キーが取得できたら、`hardhat.config.js` ファイルに戻り、 `apiKey` プロパティを新しく生成されたキーに変更します。
-
-**注：EtherscanAPI キーを他のユーザーと共有しないでください**
-
-私たちは約束する最後のステップに向かっています。今残っているのはコマンドを実行することだけです
-
-```
 npx hardhat verify YOUR_CONTRACT_ADDRESS --network rinkeby
 ```
 
@@ -239,7 +176,19 @@ https://rinkeby.etherscan.io/address/0xB3340071dc206d09170a7269331155ff1BeE64de#
 
 ![](/public/images/2-ETH-NFT-collection/section-4/4_2_6.png)
 
-これで、あなたのスマートコントラクトが世界中の誰でも見れるようになりました🚀
+Etherscanで **Contract** タブを選択すると、下図のような `0x608060405234801 ...` で始まる長いテキストのリストが表示されます。
+
+![](/public/images/2-ETH-NFT-collection/section-4/4_2_12.png)
+
+実は、このテキストのリストは、デプロイされたコントラクトのバイトコードです。
+- バイトコードに関する詳しい説明は、[こちら](https://e-words.jp/w/%E3%83%90%E3%82%A4%E3%83%88%E3%82%B3%E3%83%BC%E3%83%89.html) をご覧ください。
+
+`Read Contract` と `Write Contract` の2つのサブタブが追加されたことを確認してださい。これらの機能を使えば、コントラクトをオンチェーンで簡単に操作することができます。フロントエンドが無くても、コントラクトから直接関数を呼び出せるので、便利ですね😊
+
+![](/public/images/2-ETH-NFT-collection/section-4/4_2_11.png)
+
+
+おめでとうございます！これで、あなたのスマートコントラクトが世界中の誰でも見れるようになりました🚀
 
 ### 🔮 プロジェクトを拡張する
 
