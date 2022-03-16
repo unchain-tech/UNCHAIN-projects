@@ -102,19 +102,28 @@ REACT_APP_SOLANA_RPC_HOST=https://explorer-api.devnet.solana.com
 
 まず、`useEffect` をインポートし、これから設定する `getCandyMachineState` という関数を呼び出す `useEffect` を設定します。
 
+1 \. `index.js` の先頭に下記を追加します。
 ```jsx
+// index.js
 import React, { useEffect } from 'react';
+```
 
-...
+2 \. `index.js` の中にある下記のコードブロックを確認してください。
 
-const CandyMachine = ({ walletAddress }) => {
+```jsx
+// index.js
+return (
+  candyMachine && (
+    :
+```
 
-...
+上記のコードブロックの直前に、下記を追加します。
 
+```jsx
+// index.js
   useEffect(() => {
     getCandyMachineState();
   }, []);
-}
 ```
 
 `getCandyMachineState` の関数に入る前に、`getProvider` というもう1つの関数を設定する必要があります。
@@ -256,7 +265,7 @@ return (
           <p className="sub-text">NFT drop machine with fair mint</p>
           {!walletAddress && renderNotConnectedContainer()}
         </div>
-        {/ * walletAddressを確認してから、walletAddressを渡します* /}
+        {/* walletAddressを確認してから、walletAddressを渡します*/}
       {walletAddress && <CandyMachine walletAddress={window.solana} />}
         <div className="footer-container">
           <img alt="Twitter Logo" className="twitter-logo" src={twitterLogo} />
@@ -274,6 +283,17 @@ return (
 
 `window.solana` を `CandyMachine` に渡す方法に注目してください。
 ### 🍪 取得したデータをレンダリングする
+
+`index.js` で `CandyMachine` を宣言したコードの直下に下記を追加しましょう。
+
+```jsx
+// index.js
+const CandyMachine = ({ walletAddress }) => {
+  // 追加するコード
+  const [candyMachine, setCandyMachine] = useState("");
+```
+
+ここでは、`candyMachine` の状態を保持する変数と、状態を更新する関数（`setCandyMachine`）を初期化しています。
 
 ページを更新するとすぐに `CandyMachine` の `useEffect` が起動するはずです。
 
@@ -307,7 +327,7 @@ import React, { useEffect, useState } from 'react';
 ...
 
 const CandyMachine({walletAddress}) => {
-  // Add state property inside your component like this
+  // コンポーネント内にstateプロパティを追加します。
   const [candyMachine, setCandyMachine] = useState(null);
 
   ...
@@ -324,6 +344,12 @@ const CandyMachine({walletAddress}) => {
     const itemsRedeemed = candyMachine.itemsRedeemed.toNumber();
     const itemsRemaining = itemsAvailable - itemsRedeemed;
     const goLiveData = candyMachine.data.goLiveDate.toNumber();
+
+    const presale =
+    candyMachine.data.whitelistMintSettings &&
+    candyMachine.data.whitelistMintSettings.presale &&
+    (!candyMachine.data.goLiveDate ||
+    candyMachine.data.goLiveDate.toNumber() > new Date().getTime() / 1000);
 
     const goLiveDateTimeString = `${new Date(
       goLiveData * 1000

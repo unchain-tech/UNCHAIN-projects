@@ -145,18 +145,7 @@ instructions.push(
 ざっくりとした説明は以上です。できる限り自分で読み解いてみてくださいね。メンバーと一緒に読み合わせするのもいいかもしれません。また、誰かがこのコードを素敵な `npm` モジュールにしてくれることを夢見ています...。
 ### ✨ NFTをミントしよう！
 
-`index.js` で `CandyMachine` を宣言したコードの直下に下記を追加しましょう。
-
-```jsx
-// index.js
-const CandyMachine = ({ walletAddress }) => {
-  // 追加するコード
-  const [candyMachine, setCandyMachine] = useState("");
-```
-
-ここでは、`candyMachine` の状態を保持する変数と、状態を更新する関数（`setCandyMachine`）を初期化しています。
-
-次に、`CandyMachine` コンポーネントで、"Mint" ボタンをクリックしたときに `mintToken` 関数を呼び出すよう設定します。`index.js` を下記の通り修正してください。
+`CandyMachine` コンポーネントで、"Mint" ボタンをクリックしたときに `mintToken` 関数を呼び出すよう設定します。`index.js` を下記の通り修正してください。
 
 ```jsx
 // index.js
