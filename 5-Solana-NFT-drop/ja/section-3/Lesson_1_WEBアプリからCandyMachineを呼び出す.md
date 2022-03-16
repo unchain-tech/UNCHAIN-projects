@@ -102,7 +102,7 @@ REACT_APP_SOLANA_RPC_HOST=https://explorer-api.devnet.solana.com
 
 まず、`useEffect` をインポートし、これから設定する `getCandyMachineState` という関数を呼び出す `useEffect` を設定します。
 
-1 \. `index.js` の先頭に下記を追加します。
+1 \. `index.js` の先頭に下記のコードを追加します。
 ```jsx
 // index.js
 import React, { useEffect } from 'react';
@@ -117,7 +117,7 @@ return (
     :
 ```
 
-上記のコードブロックの直前に、下記を追加します。
+上記のコードブロックの直前に、下記のコードを追加します。
 
 ```jsx
 // index.js
@@ -284,7 +284,7 @@ return (
 `window.solana` を `CandyMachine` に渡す方法に注目してください。
 ### 🍪 取得したデータをレンダリングする
 
-`index.js` で `CandyMachine` を宣言したコードの直下に下記を追加しましょう。
+`index.js` で `CandyMachine` を宣言したコードの直下に下記のコードを追加しましょう。
 
 ```jsx
 // index.js
