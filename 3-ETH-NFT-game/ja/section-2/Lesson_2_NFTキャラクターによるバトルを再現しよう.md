@@ -31,7 +31,7 @@ cconst main = async () => {
 
 	console.log("Contract deployed to:", nftGame.address);
 	let txn;
-	// 3体のNFTキャラクターの中から、2番目のキャラクターを Mint しています。
+	// 3体のNFTキャラクターの中から、3番目のキャラクターを Mint しています。
 	txn = await gameContract.mintCharacterNFT(2);
 
 	// Minting が仮想マイナーにより、承認されるのを待ちます。
