@@ -151,7 +151,7 @@ instructions.push(
 // index.js
 return (
   // candyMachineが利用可能な場合のみ表示されます
-    candyMachine && candyMachine.state (
+    candyMachine && candyMachine.state && (
       <div className="machine-container">
         <p>{`Drop Date: ${candyMachine.state.goLiveDateTimeString}`}</p>
         <p>{`Items Minted: ${candyMachine.state.itemsRedeemed} / ${candyMachine.state.itemsAvailable}`}</p>

@@ -412,7 +412,7 @@ NFT を Mint した後、OpenZeppelin が提供する関数 `_tokenIds.increment
 // run.js
 // 再代入可能な変数 txn を宣言
 let txn;
-// 3体のNFTキャラクターの中から、2番目のキャラクターを Mint しています。
+// 3体のNFTキャラクターの中から、3番目のキャラクターを Mint しています。
 txn = await gameContract.mintCharacterNFT(2);
 
 // Minting が仮想マイナーにより、承認されるのを待ちます。
