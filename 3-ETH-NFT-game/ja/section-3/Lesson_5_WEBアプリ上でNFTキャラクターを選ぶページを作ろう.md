@@ -557,7 +557,7 @@ https://testnets.opensea.io/assets/CONTRACT_ADDRES/TOKEN_ID
 - `setCharacterNFT(transformCharacterData(characterNFT));` の直下に下記を追加しましょう。
 
 ```javascript
-alert(`NFT キャラクーが Mint されました -- リンクはこちらです: https://rinkeby.rarible.com/token/${gameContract}:${tokenId.toNumber()}?tab=details`)
+alert(`NFT キャラクーが Mint されました -- リンクはこちらです: https://rinkeby.rarible.com/token/${gameContract.address}:${tokenId.toNumber()}?tab=details`)
 ```
 ### 🙋‍♂️ 質問する
 
