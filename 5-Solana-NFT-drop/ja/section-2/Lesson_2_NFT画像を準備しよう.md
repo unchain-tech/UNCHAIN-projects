@@ -91,7 +91,7 @@ MP4、MP3、HTMLなどの他のファイルタイプについては、カスタ�
 
 最後に、`INSERT_YOUR_WALLET_ADDRESS_HERE` をあなたの Phantom wallet アドレスに置き換えてください（引用符「 `""` 」を忘れずに）。
 
-これは NFT ビューに表示され、Solana Name Service 経由で接続されている場合はtwitterハンドルにて名前解決されます。`creators` 配列には複数のcreatorを設定できます。
+これは NFT ビューに表示され、Solana Name Service 経由で接続されている場合は、Twitter ハンドル変わります。`creators` 配列には複数のcreatorを設定できます。
 
 `share` 属性は、各クリエイターが受け取るロイヤリティの割合を表します。本プロジェクトではあなたが唯一のクリエイターなので、ロイヤリティのすべてを得られる設定です。
 ### 🙋‍♂️ 質問する
