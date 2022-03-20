@@ -264,7 +264,7 @@ string public baseTokenURI;
 
 **Base Token URI（ `baseTokenURI` ）**: JSON ファイル（メタデータ）が格納されているフォルダの IPFS URL。
 
-コントラクトの所有者 (またはデプロイ先) が必要に応じて Base Token URI を変更できるように、これから `baseTokenURI` のセッター関数を記述する予定です。
+コントラクトの所有者 (またはデプロイ先) が必要に応じて Base Token URI を変更できるように、これから `baseTokenURI` のセッター関数を記述していきます。
 
 >✍️: `public` は Solidity の**アクセス修飾子**です。
 > Solidity のアクセス修飾子に関しては、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/blob/main/ETH-NFT-collection/ja/section-2/Lesson_4_Solidity%E3%81%AE%E6%9B%B8%E3%81%8D%E6%96%B9%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E5%AD%A6%E3%81%BC%E3%81%86.md) をご覧ください。

@@ -10,7 +10,7 @@
 // run.js
 async function main() {
 
-    // あなたのコレクションの Base Token URI を記入してください。
+    // あなたのコレクションの Base Token URI（JSON の CID）に差し替えてください
     const baseTokenURI = "ipfs://QmZbWNKJPAjxXuNFSEaksCJVd1M6DaKQViJBYPK2BdpDEP/";
 
     // オーナー/デプロイヤーのウォレットアドレスを取得する
@@ -22,7 +22,7 @@ async function main() {
     // 正しいコンストラクタ引数（baseTokenURI）でコントラクトをデプロイします。
     const contract = await contractFactory.deploy(baseTokenURI);
 
-    // このトランザクションがマイナーにs承認（mine）されるのを待つ
+    // このトランザクションがマイナーに承認（mine）されるのを待つ
     await contract.deployed();
 
     // コントラクトアドレスをターミナルに出力
@@ -57,7 +57,7 @@ main()
 
 -  NFT コレクションのメタデータを取得。**`beseTokenURI` のアドレスをあなたの IPSF のアドレスに変更してください。**
     ```javascript
-    // あなたのコレクションの Base Token URI を記入してください。
+    // あなたのコレクションの Base Token URI（JSON の CID）に差し替えてください
     const baseTokenURI = "ipfs://QmZbWNKJPAjxXuNFSEaksCJVd1M6DaKQViJBYPK2BdpDEP/";
     ```
 
@@ -81,7 +81,7 @@ main()
     // 正しいコンストラクタ引数（baseTokenURI）でコントラクトをデプロイします。
     const contract = await contractFactory.deploy(baseTokenURI);
 
-    // このトランザクションがマイナーにs承認（mine）されるのを待つ
+    // このトランザクションがマイナーに承認（mine）されるのを待つ
     await contract.deployed();
     ```
 

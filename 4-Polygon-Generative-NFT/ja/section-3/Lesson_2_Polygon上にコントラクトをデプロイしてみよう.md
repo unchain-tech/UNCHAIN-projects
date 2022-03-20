@@ -225,7 +225,7 @@ Rinkeby とは異なり、これらのトークンの取得にそれほど問題
 // deploy.js
 async function main() {
 
-    // あなたのコレクションの Base Token URI を記入してください。
+    // あなたのコレクションの Base Token URI（JSON の CID）に差し替えてください
 	  // 注: 十分な NFT を確保するために、下記のサンプル Token URI を使用しても問題ありません。
     const baseTokenURI = "ipfs://QmZbWNKJPAjxXuNFSEaksCJVd1M6DaKQViJBYPK2BdpDEP/";
 
