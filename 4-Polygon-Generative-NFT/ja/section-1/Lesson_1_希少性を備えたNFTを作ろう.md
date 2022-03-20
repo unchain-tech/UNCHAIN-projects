@@ -16,7 +16,7 @@
 
 **さまざまな特徴を画像として作成した後、コードよってそれらを組み合わせ生成する NFT のことを Generative Art NFT と呼びます。**
 
-今回のレッスンでは、Cryptopunk や BAYC のような希少性を備えた Generative Art の NFT コレクションを作成する方法を学びます。
+今回のレッスンでは、Cryptopunks や BAYC のような希少性を備えた Generative Art の NFT コレクションを作成する方法を学びます。
 
 > ✍️: NFT に関する詳しい説明は、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/blob/main/ETH-NFT-collection/ja/section-1/Lesson_1_NFT%E3%81%A8%E3%81%AF%E4%BD%95%E3%81%8B%EF%BC%9F.md) をご覧ください。
 ### 💻 Python と pip をインストールする
@@ -70,11 +70,11 @@ pip install Pillow pandas progressbar2
 
 この処理により、`generative-nft-library` ライブラリを動かすのに必要な下記 3 つの Python3 パッケージがあなたの環境にインストールされます。
 
-- Pillow: 画像処理ライブラリで、特徴的な画像を合成するのに役立ちます。
+- [Pillow](https://pillow.readthedocs.io/en/stable/): 画像処理ライブラリで、特徴的な画像を合成するのに役立ちます。
 
-- Pandas: データ解析ライブラリで、画像のメタデータの生成と保存を支援します。
+- [Pandas](https://pandas.pydata.org/): データ解析ライブラリで、画像のメタデータの生成と保存を支援します。
 
-- Progressbar: 画像生成の進捗状況を表示するライブラリです。
+- [Progressbar](https://progressbar-2.readthedocs.io/en/latest/): 画像生成の進捗状況を表示するライブラリです。
 ### 🍽 Git レポジトリをあなたの Github にフォークする
 
 まだ Github のアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
