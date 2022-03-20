@@ -39,7 +39,7 @@ const App = () => {
       if (accounts.length !== 0) {
         const account = accounts[0];
         console.log("Found an authorized account:", account);
-        setCurrentAccount(account)
+        setCurrentAccount(account);
       } else {
         console.log("No authorized account found")
       }
@@ -349,7 +349,7 @@ const App = () => {
       if (accounts.length !== 0) {
         const account = accounts[0];
         console.log("Found an authorized account:", account);
-        setCurrentAccount(account)
+        setCurrentAccount(account);
       } else {
         console.log("No authorized account found")
       }

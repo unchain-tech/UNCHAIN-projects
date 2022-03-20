@@ -101,9 +101,9 @@ const App = () => {
       if (accounts.length !== 0) {
         const account = accounts[0];
         console.log("Found an authorized account:", account);
-        setCurrentAccount(account)
+        setCurrentAccount(account);
       } else {
-        console.log("No authorized account found")
+        console.log("No authorized account found");
       }
     } catch (error) {
       console.log(error);
@@ -141,12 +141,12 @@ const accounts = await ethereum.request({ method: "eth_accounts" });
 if (accounts.length !== 0) {
   const account = accounts[0];
   console.log("Found an authorized account:", account);
-  setCurrentAccount(account)
+  setCurrentAccount(account);
 } else {
   console.log("No authorized account found")
 }
 ```
-`eth_accounts` は、空の配列または単一のアカウントアドレスを含む配列を返す当別なメソッドです。
+`eth_accounts` は、空の配列または単一のアカウントアドレスを含む配列を返す特別なメソッドです。
 
 ユーザーのウォレットアカウントへのアクセスが許可されている場合は、 `Found an authorized account` と `Console` に出力されます。
 
@@ -187,7 +187,7 @@ npm run start
 >   const account = accounts[0];
 >   console.log("Found an authorized account:", account);
 >   // currentAccountにユーザーのアカウントアドレスを格納
->   setCurrentAccount(account)
+>   setCurrentAccount(account);
 > } else {
 >   // アカウントが存在しない場合は、エラーを出力。
 >   console.log("No authorized account found")
@@ -226,7 +226,7 @@ const App = () => {
       if (accounts.length !== 0) {
         const account = accounts[0];
         console.log("Found an authorized account:", account);
-        setCurrentAccount(account)
+        setCurrentAccount(account);
       } else {
         console.log("No authorized account found")
       }
