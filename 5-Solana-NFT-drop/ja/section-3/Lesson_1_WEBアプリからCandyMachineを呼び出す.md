@@ -115,6 +115,7 @@ import React, { useEffect } from 'react';
 return (
   <div className="machine-container">
     :
+  <div className="machine-container">
 ```
 
 上記のコードブロックの直前に、下記のコードを追加します。
@@ -401,20 +402,17 @@ const CandyMachine({walletAddress}) => {
 
 ここでいくつかのデータをレンダリングできます。下記の通りUIコードをレンダリング関数に追加します。( `index.js` ファイルのほぼ最後のreturn部分を修正します！)
 
-
 ```jsx
-return (
-  // candyMachineが利用可能な場合のみ表示されます
-  candyMachine && (
+// candyMachineが利用可能な場合のみ表示されます
+return candyMachine ? (
     <div className="machine-container">
       <p>{`Drop Date: ${candyMachine.state.goLiveDateTimeString}`}</p>
       <p>{`Items Minted: ${candyMachine.state.itemsRedeemed} / ${candyMachine.state.itemsAvailable}`}</p>
       <button className="cta-button mint-button" onClick={null}>
-          Mint NFT
+        Mint NFT
       </button>
     </div>
-  )
-);
+) : null;
 ```
 
 これで、WEBアプリに適切にレンダリングされたすべてのデータが表示されます。
