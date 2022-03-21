@@ -115,7 +115,6 @@ import React, { useEffect } from 'react';
 return (
   <div className="machine-container">
     :
-  <div className="machine-container">
 ```
 
 上記のコードブロックの直前に、下記のコードを追加します。
