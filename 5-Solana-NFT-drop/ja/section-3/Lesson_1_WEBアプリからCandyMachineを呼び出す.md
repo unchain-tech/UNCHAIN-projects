@@ -113,7 +113,7 @@ import React, { useEffect } from 'react';
 ```jsx
 // index.js
 return (
-  candyMachine && (
+  <div className="machine-container">
     :
 ```
 
