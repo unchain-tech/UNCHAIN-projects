@@ -185,7 +185,7 @@ const getCandyMachineState = async () => {
   // これは後でUIで使用するので、今すぐ生成しましょう
   const goLiveDateTimeString = `${new Date(
     goLiveData * 1000
-  ).toGMTString()}`
+  ).toUTCString()}`
 
   console.log({
     itemsAvailable,
@@ -353,7 +353,7 @@ const CandyMachine({walletAddress}) => {
 
     const goLiveDateTimeString = `${new Date(
       goLiveData * 1000
-    ).toGMTString()}`
+    ).toUTCString()}`
 
     // このデータをstateに追加してレンダリングする
     setCandyMachine({
