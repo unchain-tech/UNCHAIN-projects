@@ -290,7 +290,7 @@ return (
 // index.js
 const CandyMachine = ({ walletAddress }) => {
   // 追加するコード
-  const [candyMachine, setCandyMachine] = useState("");
+  const [candyMachine, setCandyMachine] = useState(null);
 ```
 
 ここでは、`candyMachine` の状態を保持する変数と、状態を更新する関数（`setCandyMachine`）を初期化しています。
