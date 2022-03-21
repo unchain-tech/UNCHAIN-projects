@@ -170,21 +170,6 @@ useEffect(() => {
 
 下記のコードを見ていきましょう。
 
-```javascript
-// App.js
-const onNewWave = (from, timestamp, message) => {
-  console.log("NewWave", from, timestamp, message);
-  setAllWaves(prevState => [
-  ...prevState,
-  {
-    address: from,
-    timestamp: new Date(timestamp * 1000),
-    message: message,
-  },
-  ]);
-};
-```
-
 `getAllWaves` 関数は、`waves` 関数とほぼ同じ仕様をしています。
 
 ```javascript
