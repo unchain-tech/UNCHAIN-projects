@@ -285,7 +285,7 @@ if (bigBoss.hp < player.attackDamage) {
 - `else` : もし、ボスの HP（ `bigBoss.hp` ）が、NFT キャラクターの攻撃力 （ `player.attackDamage` ）を上回っていたら、ボスの HP を「現在のボスの HP」から「NFT キャラクターの攻撃力」を差し引いた値に更新します。
 
 > ✍️: `uint` について
-> ここで使用されている変数（`igBoss.hp` と `player.attackDamage`）は、`constructor` の中で `uint` として定義されています。
+> ここで使用されている変数（`bigBoss.hp` と `player.attackDamage`）は、`constructor` の中で `uint` として定義されています。
 >
 > `uint` とは、符号なし整数を意味しており、負の値をとることはできません。
 >

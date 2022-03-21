@@ -128,7 +128,7 @@ const accounts = await ethereum.request({ method: 'eth_accounts' });
 if (accounts.length !== 0) {
 	const account = accounts[0];
 	console.log("Found an authorized account:", account);
-		setCurrentAccount(account);
+	setCurrentAccount(account);
 
 	// **** イベントリスナーをここで設定 ****
 	// この時点で、ユーザーはウォレット接続が済んでいます。
@@ -142,26 +142,25 @@ if (accounts.length !== 0) {
 ```javascript
 // connectWallet メソッドを実装します。
 const connectWallet = async () => {
-try {
-	const { ethereum } = window;
+  try {
+    const { ethereum } = window;
+    if (!ethereum) {
+      alert("Get MetaMask!");
+      return;
+    }
+    // ウォレットアドレスに対してアクセスをリクエストしています。
+    const accounts = await ethereum.request({ method: "eth_requestAccounts" });
 
-	if (!ethereum) {
-	alert("Get MetaMask!");
-	return;
-	}
-	// ウォレットアドレスに対してアクセスをリクエストしています。
-	const accounts = await ethereum.request({ method: "eth_requestAccounts" });
+    console.log("Connected", accounts[0]);
 
-	console.log("Connected", accounts[0]);
+    // ウォレットアドレスを currentAccount に紐付けます。
+    setCurrentAccount(accounts[0]);
 
-	// ウォレットアドレスを currentAccount に紐付けます。
-	setCurrentAccount(accounts[0]);
-
-	// **** イベントリスナーをここで設定 ****
-	setupEventListener()
-} catch (error) {
-	console.log(error)
-}
+    // **** イベントリスナーをここで設定 ****
+    setupEventListener()
+  } catch (error) {
+    console.log(error)
+  }
 }
 ```
 
