@@ -25,7 +25,7 @@ Generative Art を作成するために、[こちら](https://github.com/shiftba
 
 このライブラリは Python で書かれているので、あなたのコンピュータに Python をインストールする必要があります。また、Python で使用するパッケージをインストールしてくれる pip も必要です。
 
-🤩: 注意
+> 🤩: 注意
 > **このレッスンを進めるのに、Python やその他のプログラミング言語を知る必要はありません。**
 
 まず、[こちら](https://and-engineer.com/articles/YcJyaRAAACMAl3BX) のウェブサイトを参考に、最新版の Python3 をダウンロードしてください。
@@ -437,7 +437,7 @@ Task complete!
 >- それぞれのカテゴリに格納する画像
 >- 生成するアバター
 >
-> 1200 体のアバターを生成する場合は、約 30 分かかります。
+> 1200 体のアバターを生成する場合は、約 30 分かかります。※ Mac のプロセッサー `2.3 GHz Quad-Core Intel Core i5` の場合。
 ### 👀 生成されたアバターを確認する
 
 `generative-nft-library` に向かい、新しく作成された `output` フォルダを見ていきましょう。
