@@ -113,9 +113,8 @@ import React, { useEffect } from 'react';
 ```jsx
 // index.js
 return (
-  candyMachine && (
-    :
   <div className="machine-container">
+    :
 ```
 
 上記のコードブロックの直前に、下記のコードを追加します。
