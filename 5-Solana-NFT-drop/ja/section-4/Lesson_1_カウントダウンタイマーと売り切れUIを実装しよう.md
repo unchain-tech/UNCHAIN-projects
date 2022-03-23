@@ -122,7 +122,7 @@ const renderDropTimer = () => {
   //もし現在の日時がドロップ日よりも前の場合、カウントダウンコンポーネントをレンダリングします
   if (currentDate < dropDate) {
     console.log('Before drop date!');
-    // ドロップ日を返します
+    // CountdownTimer コンポーネントを返します
     return <CountdownTimer dropDate={dropDate} />;
   }
 

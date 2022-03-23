@@ -20,7 +20,15 @@ const userTokenAccountAddress = (
 
 Solana ではプログラムで状態を保持しません。
 
-コントラクトで状態を保持する Ethereum とは大きく異なります。の詳細は [こちら](https://docs.solana.com/developing/programming-model/accounts) をご覧ください。
+コントラクトで状態を保持する Ethereum とは大きく異なります。詳細は [こちら](https://docs.solana.com/developing/programming-model/accounts) をご覧ください。
+
+> ✍️: `Cannot read properties of undefined` エラーが発生した場合
+>
+> 下記のコードを `const mint = web3.Keypair.generate();` の直下に追加してみてください。
+> ```
+> if (!mint || !candyMachine?.state) return;
+> ```
+> これにより `mint` や `candyMachine` が未定義の場合でも、問題なくコードが走ります。
 
 ```jsx
 const userPayingAccountAddress = candyMachine.state.tokenMint
@@ -151,7 +159,7 @@ instructions.push(
 // index.js
 return (
   // candyMachineが利用可能な場合のみ表示されます
-    candyMachine && candyMachine.state && (
+  candyMachine && candyMachine.state ? (
       <div className="machine-container">
         <p>{`Drop Date: ${candyMachine.state.goLiveDateTimeString}`}</p>
         <p>{`Items Minted: ${candyMachine.state.itemsRedeemed} / ${candyMachine.state.itemsAvailable}`}</p>
@@ -159,7 +167,7 @@ return (
             Mint NFT
         </button>
       </div>
-    )
+    ) : null;
   );
 ```
 
@@ -190,6 +198,8 @@ NFT が正常にミントすると、コンソールに次のようなものが�
 NFT を mint することができました！
 
 Phantom Wallet を開き、`[]` セクションに表示されるかどうかを確認します。
+
+Phantom Wallet の左から2つ目のタブに切り替えてみましょう👀
 
 ![無題](/public/images/5-Solana-NFT-drop/section3/3_2_4.png)
 ### 🙋‍♂️ 質問する
