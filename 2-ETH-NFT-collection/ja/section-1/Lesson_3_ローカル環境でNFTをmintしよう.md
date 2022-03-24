@@ -208,7 +208,7 @@ console.log("Contract deployed to:", nftContract.address);
 
 では、実行してみましょう。
 
-ターミナルを開いて、下記を実行してください。
+ターミナルを開いて`epic-nfts`ディレクトリへ移動し、下記を実行してください。
 
 ```bash
 npx hardhat run scripts/run.js
