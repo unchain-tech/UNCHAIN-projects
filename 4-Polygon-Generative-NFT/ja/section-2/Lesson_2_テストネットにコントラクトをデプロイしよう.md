@@ -15,7 +15,7 @@
 
 - **NFT が Mint されたという情報**をブロックチェーンに書き込む。
 
-- **NFT を 10 点、コントラウト所有者のためにキープした**情報をブロックチェーンに書き込む。
+- **NFT を 10 点、コントラクト所有者のためにキープした**情報をブロックチェーンに書き込む。
 
 トランザクションにはマイナーの承認が必要なので、Alchemy を導入します。
 
@@ -117,8 +117,8 @@ MetaMask ウォレットに `Rinkeby Test Network` が設定されたら、下�
 `.env` というファイルを `nft-collectible` ディレクトリ内に作成し、下記のように編集しましょう。
 
 ```
-API_URL = "YOUR_ALCHEMY_API_URL"
-PRIVATE_KEY = "YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY"
+API_URL="YOUR_ALCHEMY_API_URL"
+PRIVATE_KEY="YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY"
 ```
 1\. `YOUR_ALCHEMY_API_URL`の取得
 
