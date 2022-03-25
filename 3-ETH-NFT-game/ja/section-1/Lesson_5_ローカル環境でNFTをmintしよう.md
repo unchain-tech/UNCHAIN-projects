@@ -712,15 +712,12 @@ Token URI がターミナルに出力されました！
 
 例）
 ```plaintext
-data:application/json;base64,eyJuYW1lIjogIlpFTklHQU1FIC0tIE5GVCAjOiAxIiwgImRlc2NyaXB0aW9uIjogIkJyYXZlIGFzIGEgYmxhemluZyBmaXJlLiIsICJpbWFnZSI6ICJodHRwczovL2kuaW1ndXIuY29tL2NmdG9kajkucG5nIiwgImF0dHJpYnV0ZXMiOiBbIHsgInRyYWl0X3R5cGUiOiAiSGVhbHRoIFBvaW50cyIsICJ2YWx1ZSI6IDMwMCwgIm1heF92YWx1ZSI6MzAwfSwgeyAidHJhaXRfdHlwZSI6ICJBdHRhY2sgRGFtYWdlIiwgInZhbHVlIjogMjV9IF19
+data:application/json;base64 eyJuYW1lIjogIlpFTklHQU1FIC0tIE5GVC...
 ```
 
-その文字列をブラウザのURLバーに貼り付けて、下記のような結果が表示されることを確認してください。* この例は、あなたの出力結果とは異なる内容ですが、フォーマットが同じであることを確認してください。
+その文字列をブラウザのURLバーに貼り付けて、中身を確認してみましょ。
 
-![](/public/images/3-ETH-NFT-game/section-1/1_4_1.png)
-
-
-これは、`MyEpicGame.sol` に追加した `tokenURI` 関数の中で、NFT キャラクターの情報が、JSON ファイル形式にフォーマットされ、さらに Base64 形式で**エンコード**された結果です。
+ブラウザに表示されるているのは、`MyEpicGame.sol` に追加した `tokenURI` 関数の中で、NFT キャラクターの情報が、JSON ファイル形式にフォーマットされ、さらに Base64 形式で**エンコード**された結果です。
 
 - JSON ファイルの前に `data:application/json;base64,` を付けると、上記のようなエンコード文字列になり、ブラウザで読み込めるようになります。
 
