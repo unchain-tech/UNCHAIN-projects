@@ -309,7 +309,7 @@ _safeMint(msg.sender, newItemId);
 
 わたしが新しく NFT を Mint した際、わたしの NFT キャラクターには以下のようなデフォルト値が与えられます。
 
-```json
+```text
 {
   characterIndex: 1,
   name: "USOPP",
@@ -326,7 +326,7 @@ HPは 200 → 150 になります。
 
 その値を下記のように、NFT 上で変更する必要があります。
 
-```json
+```text
 {
   characterIndex: 1,
   name: "USOPP",
