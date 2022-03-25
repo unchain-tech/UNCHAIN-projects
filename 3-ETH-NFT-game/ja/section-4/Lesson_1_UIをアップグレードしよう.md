@@ -61,7 +61,7 @@ useEffect(() => {
 	}
 	// ユーザーが保持しているNFTの確認が完了したら、ロード状態を false に設定します。
 	setIsLoading(false);
-};
+}, [currentAccount]);
 ```
 
 次に、`App.js` の先頭に下記を追加して、`LoadingIndicator` をインポートしてください。
@@ -214,8 +214,8 @@ return (
 
 - `nft-game-starter-project/src/Components/SelectCharacter` フォルダの中に `SelectCharacter.css` が格納されています。
 
-```javascript
-// SelectCharacter.css
+```css
+/* SelectCharacter.css */
 .select-character-container .loading {
   display: flex;
   flex-direction: column;
@@ -287,8 +287,8 @@ import LoadingIndicator from '../LoadingIndicator';
 
 - `nft-game-starter-project/src/Components/Arena` フォルダの中に `Arena.css` が格納されています。
 
-```javascript
-// Arena.css
+```css
+/* Arena.css */
 .boss-container .loading-indicator {
   display: flex;
   justify-content: center;
@@ -310,8 +310,8 @@ import LoadingIndicator from '../LoadingIndicator';
 
 まず、下記のCSSを `Arena.css`  ファイルに追加しましょう。
 
-```javascript
-// nft-game-starter-project/src/Components/Arena/Arena.css
+```css
+/* nft-game-starter-project/src/Components/Arena/Arena.css */
 /* Toast */
 #toast {
   visibility: hidden;
@@ -512,8 +512,8 @@ return (
 
 `Arena.css` の中に下記のような `show` クラスが存在することを確認してください。
 
-```javascript
-// nft-game-starter-project/src/Components/Arena/Arena.css
+```css
+/* nft-game-starter-project/src/Components/Arena/Arena.css */
 #toast.show {
   visibility: visible;
   -webkit-animation: fadein 0.5s, expand 0.5s 0.5s, stay 3s 1s, shrink 0.5s 2s,

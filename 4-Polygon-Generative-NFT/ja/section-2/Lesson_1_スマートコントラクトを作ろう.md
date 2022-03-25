@@ -254,7 +254,7 @@ string public baseTokenURI;
 
 2\. **NFT の価格（ `PRICE` ）**: NFTを購入するのにユーザーが支払う ETH の額。
 
-3\. **1取引あたりの最大 Mint 数（ `MAX_PER_MINT` ）**: ユーザーが度に Mint できる NFT の上限限。
+3\. **1取引あたりの最大 Mint 数（ `MAX_PER_MINT` ）**: ユーザーが一度に Mint できる NFT の上限限。
 
 **コントラクトがデプロイされたら、定数の中身を変更することはできません。**
 
