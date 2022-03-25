@@ -246,9 +246,7 @@ uint[] memory characterAttackDmg
 
 [Imgur](https://imgur.com/) に画像をアップロードすれば、あなたの好きなキャラクターを設定することができます！
 
->⚠️: 注意
->
-> サンプルで使用しているワンピースの素材は、[こちら](https://www.irasutoya.com/2021/01/onepiece.html) から取得しています。
+> サンプルで使用しているワンピースの素材は、[こちら](https://www.irasutoya.com/2021/01/onepiece.html) から取得しています。※ 集英社様の許可を得て掲載しているイラストです。作品のイメージを傷つけないよう注意してご利用ください。
 
 ぜひ、`run.js` の中の `https://i.imgur.com/...` の画像のリンクをあなたのオリジナルの画像に差し替えてください😊
 
