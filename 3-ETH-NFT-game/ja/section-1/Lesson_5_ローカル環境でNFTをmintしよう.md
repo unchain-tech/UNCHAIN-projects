@@ -51,7 +51,7 @@ contract MyEpicGame is ERC721 {
     uint[] memory characterAttackDmg
   )
     // 作成するNFTの名前とそのシンボルをERC721規格に渡しています。
-    ERC721("Pokemons", "POKEMON")
+    ERC721("OnePiece", "ONEPIECE")
   {
 	// ゲームで扱う全てのキャラクターをループ処理で呼び出し、それぞれのキャラクターに付与されるデフォルト値をコントラクトに保存します。
 	// 後でNFTを作成する際に使用します。
@@ -67,7 +67,7 @@ contract MyEpicGame is ERC721 {
 
       CharacterAttributes memory character = defaultCharacters[i];
 
-      //  ハードハットのconsole.log()では、任意の順番で最大4つのパラメータを指定できます。
+    //  ハードハットのconsole.log()では、任意の順番で最大4つのパラメータを指定できます。
 	  // 使用できるパラメータの種類: uint, string, bool, address
       console.log("Done initializing %s w/ HP %s, img %s", character.name, character.hp, character.imageURI);
     }
@@ -222,10 +222,10 @@ mapping(address => uint256) public nftHolders;
 次に下記のコードを見ていきましょう。
 
 ```javascript
-ERC721("Pokemons", "POKEMON")
+ERC721("OnePiece", "ONEPIECE")
 ```
 
-ここでは、作成するNFTの名前（ `"Pokemons"` ）とそのシンボル（ `"POKEMON"` ）を ERC721 の規格に渡しています。
+ここでは、作成するNFTの名前（ `"OnePiece"` ）とそのシンボル（ `"ONEPIECE"` ）を ERC721 の規格に渡しています。
 
 NFT は Non-Fungible "Token" の略であり、Token には、必ず名前とシンボルを付与する必要があります。
 
@@ -259,7 +259,7 @@ function mintCharacterNFT(uint _characterIndex) external {
 
 `_characterIndex` はフロントエンドから送信される変数です。
 
-`_characterIndex` を `mintCharacterNFT` 関数に渡すことで、プレイヤーがどのキャラクター（例：ヒトカゲ）を欲しいか、コントラクトに伝えます。
+`_characterIndex` を `mintCharacterNFT` 関数に渡すことで、プレイヤーがどのキャラクター（例：ナミ）を欲しいか、コントラクトに伝えます。
 
 例えば、`mintCharacterNFT(1)` とすると、`defaultCharacters[1]` のデータを持つキャラクターが Mint されます。
 
@@ -312,8 +312,8 @@ _safeMint(msg.sender, newItemId);
 ```json
 {
   characterIndex: 1,
-  name: "ZENIGAME",
-  imageURI: "https://i.imgur.com/Xid5qaC.png",
+  name: "USOPP",
+  imageURI: "https://i.imgur.com/WVAaMPA.png",
   hp: 200,
   maxHp: 200,
   attackDamage: 50
@@ -329,8 +329,8 @@ HPは 200 → 150 になります。
 ```json
 {
   characterIndex: 1,
-  name: "ZENIGAME",
-  imageURI: "https://i.imgur.com/Xid5qaC.png",
+  name: "USOPP",
+  imageURI: "https://i.imgur.com/WVAaMPA.png",
   hp: 150, // 更新された値
   maxHp: 200,
   attackDamage: 50
@@ -435,7 +435,7 @@ txn = await gameContract.mintCharacterNFT(2);
 
 https://qiita.com/y-temp4/items/289686fbdde896d22b5e
 
-ここでは、`MyEpicGame.sol` から `mintCharacterNFT` 関数を呼び出して、３匹の NFT キャラクターの中から、2番目のキャラクターを Mint しています。
+ここでは、`MyEpicGame.sol` から `mintCharacterNFT` 関数を呼び出して、3体の NFT キャラクターの中から、2番目のキャラクターを Mint しています。
 
 `run.js` から `mintCharacterNFT` 関数を実行する際、Hardhat はあなたのローカル環境に設定された **デフォルトウォレット** をコントラクトに展開します。
 - したがって、`MyEpicGame.sol` 上では、Hardhat が提供したデフォルトウォレットのパブリックアドレス が `msg.sender` に格納されます。
@@ -466,9 +466,9 @@ npx hardhat run scripts/run.js
 ```
 Compiling 11 files with 0.8.4
 Solidity compilation finished successfully
-Done initializing FUSHIGIDANE w/ HP 100, img https://i.imgur.com/IjX49Yf.png
-Done initializing ZENIGAME w/ HP 200, img https://i.imgur.com/Xid5qaC.png
-Done initializing ZENIGAME w/ HP 300, img https://i.imgur.com/kW2dNCs.png
+Done initializing ZORO w/ HP 100, img https://i.imgur.com/TZEhCTX.png
+Done initializing USOPP w/ HP 200, img https://i.imgur.com/WVAaMPA.png
+Done initializing USOPP w/ HP 300, img https://i.imgur.com/pCMZeiM.png
 Contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 Minted NFT w/ tokenId 1 and characterIndex 2
 Token URI:
@@ -669,9 +669,9 @@ NFT の メタデータとして使用できる JSON は、下記のようなデ
 
 ```json
 {
-  "name": "ZENIGAME",
+  "name": "USOPP",
   "description": "This is an NFT that lets people play in the game Metaverse Slayer!",
-  "image": "https://i.imgur.com/Xid5qaC.png",
+  "image": "https://i.imgur.com/WVAaMPA.png",
   "attributes": [
 		{ "trait_type": "Health Points", "value": 200, "max_value": 200 },
 		{ "trait_type": "Attack Damage", "value": 50 }
@@ -698,9 +698,9 @@ npx hardhat run scripts/run.js
 ```plaintext
 Compiling 2 files with 0.8.4
 Solidity compilation finished successfully
-Done initializing FUSHIGIDANE w/ HP 100, img https://i.imgur.com/IjX49Yf.png
-Done initializing HITOKAGE w/ HP 200, img https://i.imgur.com/Xid5qaC.png
-Done initializing ZENIGAME w/ HP 300, img https://i.imgur.com/kW2dNCs.png
+Done initializing ZORO w/ HP 100, img https://i.imgur.com/TZEhCTX.png
+Done initializing NAMI w/ HP 200, img https://i.imgur.com/WVAaMPA.png
+Done initializing USOPP w/ HP 300, img https://i.imgur.com/pCMZeiM.png
 Contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 Minted NFT w/ tokenId 1 and characterIndex 2
 Token URI: data:application/json;base64,eyJuYW1lIjogIlpFTklHQU1FIC0tIE5GVCAjOiAxIiwgImRlc2NyaXB0aW9uIjogIkJyYXZlIGFzIGEgYmxhemluZyBmaXJlLiIsICJpbWFnZSI6ICJodHRwczovL2kuaW1ndXIuY29tL2NmdG9kajkucG5nIiwgImF0dHJpYnV0ZXMiOiBbIHsgInRyYWl0X3R5cGUiOiAiSGVhbHRoIFBvaW50cyIsICJ2YWx1ZSI6IDMwMCwgIm1heF92YWx1ZSI6MzAwfSwgeyAidHJhaXRfdHlwZSI6ICJBdHRhY2sgRGFtYWdlIiwgInZhbHVlIjogMjV9IF19
@@ -715,7 +715,7 @@ Token URI がターミナルに出力されました！
 data:application/json;base64,eyJuYW1lIjogIlpFTklHQU1FIC0tIE5GVCAjOiAxIiwgImRlc2NyaXB0aW9uIjogIkJyYXZlIGFzIGEgYmxhemluZyBmaXJlLiIsICJpbWFnZSI6ICJodHRwczovL2kuaW1ndXIuY29tL2NmdG9kajkucG5nIiwgImF0dHJpYnV0ZXMiOiBbIHsgInRyYWl0X3R5cGUiOiAiSGVhbHRoIFBvaW50cyIsICJ2YWx1ZSI6IDMwMCwgIm1heF92YWx1ZSI6MzAwfSwgeyAidHJhaXRfdHlwZSI6ICJBdHRhY2sgRGFtYWdlIiwgInZhbHVlIjogMjV9IF19
 ```
 
-その文字列をブラウザのURLバーに貼り付けて、下記のような結果が表示されることを確認してください。
+その文字列をブラウザのURLバーに貼り付けて、下記のような結果が表示されることを確認してください。* この例は、あなたの出力結果とは異なる内容ですが、フォーマットが同じであることを確認してください。
 
 ![](/public/images/3-ETH-NFT-game/section-1/1_4_1.png)
 

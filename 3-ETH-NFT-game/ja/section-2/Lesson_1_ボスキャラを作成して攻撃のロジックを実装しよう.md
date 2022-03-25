@@ -51,7 +51,7 @@ constructor(
   uint bossHp,
   uint bossAttackDamage
 )
-  ERC721("Pokemons", "POKEMON")
+  ERC721("OnePiece", "ONEPIECE")
 {
   // ボスを初期化します。ボスの情報をグローバル状態変数 "bigBoss"に保存します。
   bigBoss = BigBoss({
@@ -69,22 +69,22 @@ constructor(
 ```javascript
 // run.js, deploy.js
 const gameContract = await gameContractFactory.deploy(
- ["FUSHIGIDANE", "HITOKAGE", "ZENIGAME"], // キャラクターの名前
- ["https://i.imgur.com/IjX49Yf.png",      // キャラクターの画像
-  "https://i.imgur.com/Xid5qaC.png",
-  "https://i.imgur.com/kW2dNCs.png"],
+ ["ZORO", "NAMI", "USOPP"], // キャラクターの名前
+ ["https://i.imgur.com/TZEhCTX.png",      // キャラクターの画像
+  "https://i.imgur.com/WVAaMPA.png",
+  "https://i.imgur.com/pCMZeiM.png"],
   [100, 200, 300],
   [100, 50, 25],
-  "MYU2", // Bossの名前
-  "https://i.imgur.com/3Ikh51a.png", // Bossの画像
+  "CROCODILE", // Bossの名前
+  "https://i.imgur.com/BehawOh.png", // Bossの画像
   10000, // Bossのhp
   50 // Bossの攻撃力
 );
 ```
 
-ボスには、ミュウツーの画像を設定しました。
+ボスには、クロコダイルの画像を設定しました。
 
-今回のゲームでは、ポケモンのサンプル画像を使用していますが、ぜひオリジナルキャラクターを選んであなただけのゲームを作成してみてください✨
+今回のゲームでは、ワンピースのサンプル画像を使用していますが、ぜひオリジナルキャラクターを選んであなただけのゲームを作成してみてください✨
 
 [Imgur](https://imgur.com/) を使用して、あなたのボスをセットアップしてください！
 
@@ -355,11 +355,11 @@ await txn.wait();
 
 これは `constructor` に渡される配列の 3 番目のキャラクターです。
 
-- わたしのゲームの場合、3番目のキャラクターは「ゼニガメ」です。
+- わたしのゲームの場合、3番目のキャラクターは「ウソップ」です。
 
-- ゲーム内で「ゼニガメ」が「ミュウツー」を攻撃します。
+- ゲーム内で「ウソップ」が「クロコダイル」を攻撃します。
 
-- 「ゼニガメ」は `run.js` を起動した際に、最初に Mint されるキャラクターなので、NFT の ID ( `tokenId` ) は、自動的に `1` になります。
+- 「ウソップ」は `run.js` を起動した際に、最初に Mint されるキャラクターなので、NFT の ID ( `tokenId` ) は、自動的に `1` になります。
 
 	> ⚠️: 通常 `_tokenIds` は 0 で始まりますが、`constructor` 内で `1` にインクリメントされるため、`tokenId` は `1` から始まります。
 
@@ -386,21 +386,21 @@ npx hardhat run scripts/run.js
 下記のような結果が出力されていれば、テストは成功です。
 
 ```plaintext
-Done initializing boss MYU2 w/ HP 10000, img https://i.imgur.com/3Ikh51a.png
-Done initializing FUSHIGIDANE w/ HP 100, img https://i.imgur.com/IjX49Yf.png
-Done initializing HITOKAGE w/ HP 200, img https://i.imgur.com/Xid5qaC.png
-Done initializing ZENIGAME w/ HP 300, img https://i.imgur.com/kW2dNCs.png
+Done initializing boss CROCODILE w/ HP 10000, img https://i.imgur.com/BehawOh.png
+Done initializing ZORO w/ HP 100, img https://i.imgur.com/TZEhCTX.png
+Done initializing NAMI w/ HP 200, img https://i.imgur.com/WVAaMPA.png
+Done initializing USOPP w/ HP 300, img https://i.imgur.com/pCMZeiM.png
 Contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 Minted NFT w/ tokenId 1 and characterIndex 2
 
-Player w/ character ZENIGAME about to attack. Has 300 HP and 25 AD
-Boss MYU2 has 10000 HP and 50 AD
+Player w/ character USOPP about to attack. Has 300 HP and 25 AD
+Boss CROCODILE has 10000 HP and 50 AD
 Player attacked boss. New boss hp: 9975
 Boss attacked player. New player hp: 250
 
 
-Player w/ character ZENIGAME about to attack. Has 250 HP and 25 AD
-Boss MYU2 has 9975 HP and 50 AD
+Player w/ character USOPP about to attack. Has 250 HP and 25 AD
+Boss CROCODILE has 9975 HP and 50 AD
 Player attacked boss. New boss hp: 9950
 Boss attacked player. New player hp: 200
 
@@ -410,21 +410,21 @@ Token URI: data:application/json;base64,eyJuYW1lIjogIlpFTklHQU1FIC0tIE5GVCAjOiAx
 1 回目の攻撃の結果を詳しく見ていきましょう。
 
 ```
-Player w/ character ZENIGAME about to attack. Has 300 HP and 25 AD
-Boss MYU2 has 10000 HP and 50 AD
+Player w/ character USOPP about to attack. Has 300 HP and 25 AD
+Boss CROCODILE has 10000 HP and 50 AD
 Player attacked boss. New boss hp: 9975
 Boss attacked player. New player hp: 250
 ```
 
-ここでは、ゼニガメがミュウツーを `25` の攻撃力（ `AD` ）で攻撃して、ミュウツーの HP が `10000` から `9975` になりました。
+ここでは、ウソップがクロコダイルを `25` の攻撃力（ `AD` ）で攻撃して、クロコダイルの HP が `10000` から `9975` になりました。
 
-そして、ミュウツーはゼニガメに `50` の攻撃力（ `AD` ）で攻撃し、ゼニガメの HP は「300」から「250」に減少しました。
+そして、クロコダイルはウソップに `50` の攻撃力（ `AD` ）で攻撃し、ウソップの HP は「300」から「250」に減少しました。
 
 次に、2 回目の攻撃の結果を確認しましょう。
 
 ```
-Player w/ character ZENIGAME about to attack. Has 250 HP and 25 AD
-Boss MYU2 has 9975 HP and 50 AD
+Player w/ character USOPP about to attack. Has 250 HP and 25 AD
+Boss CROCODILE has 9975 HP and 50 AD
 Player attacked boss. New boss hp: 9950
 Boss attacked player. New player hp: 200
 ```

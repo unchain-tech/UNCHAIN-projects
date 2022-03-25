@@ -192,7 +192,7 @@ if (accounts.length !== 0) {
   	// currentAccountにユーザーのアカウントアドレスを格納
   	setCurrentAccount(account);
 } else {
-	console.log("No authorized account found")
+	console.log("No authorized account found");
 }
 ```
 

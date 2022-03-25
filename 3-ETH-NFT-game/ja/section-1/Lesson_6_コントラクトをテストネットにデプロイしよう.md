@@ -125,10 +125,10 @@ const main = async () => {
 	const gameContractFactory = await hre.ethers.getContractFactory('MyEpicGame');
 	// Hardhat がローカルの Ethereum ネットワークを、コントラクトのためだけに作成します。
 	const gameContract = await gameContractFactory.deploy(
-		["FUSHIGIDANE", "HITOKAGE", "ZENIGAME"], // キャラクターの名前
-		["https://i.imgur.com/IjX49Yf.png",      // キャラクターの画像
-		"https://i.imgur.com/Xid5qaC.png",
-		"https://i.imgur.com/kW2dNCs.png"],
+		["ZORO", "NAMI", "USOPP"], // キャラクターの名前
+		["https://i.imgur.com/TZEhCTX.png",      // キャラクターの画像
+		"https://i.imgur.com/WVAaMPA.png",
+		"https://i.imgur.com/pCMZeiM.png"],
 		[100, 200, 300],                         // キャラクターのHP
 		[100, 50, 25]                            // キャラクターの攻撃力
 	);
@@ -228,8 +228,7 @@ module.exports = {
 
 `hardhat.config.js` を更新したら、ここで一度立ち止まりましょう。
 
-**🚨: `hardhat.config.js` ファイルをあなたの秘密鍵の情報を含んだ状態で Github にコミットしてはいけません**。
-
+> **🚨: `hardhat.config.js` ファイルをあなたの秘密鍵の情報を含んだ状態で Github にコミットしてはいけません**。
 > この秘密鍵は、あなたのイーサリアムメインネットの秘密鍵と同じです。
 >
 > 秘密鍵が流出してしまうと、誰でもあなたのウォレットにアクセスすることができてしまうので、とても危険です。

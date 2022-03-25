@@ -45,7 +45,7 @@ NFT における「Mint（ミント）」とは、スマートコントラクト
 
 各キャラクターに、画像、名前、HP値、攻撃ダメージ値の属性を付与していきます。
 
-キャラクターのNFTは、決まった数（例：3人）だけ存在することになります。
+キャラクターのNFTは、決まった数（例：3体）だけ存在することになります。
 
 **各キャラクターの NFT は無制限に Mint することができます。**
 
@@ -207,10 +207,10 @@ for(uint i = 0; i < characterNames.length; i += 1) {
 const main = async () => {
   const gameContractFactory = await hre.ethers.getContractFactory('MyEpicGame');
   const gameContract = await gameContractFactory.deploy(
-    ["FUSHIGIDANE", "HITOKAGE", "ZENIGAME"], // キャラクターの名前
-    ["https://i.imgur.com/IjX49Yf.png",  // キャラクターの画像
-    "https://i.imgur.com/Xid5qaC.png",
-    "https://i.imgur.com/kW2dNCs.png"],
+    ["ZORO", "NAMI", "USOPP"], // キャラクターの名前
+    ["https://i.imgur.com/TZEhCTX.png",  // キャラクターの画像
+    "https://i.imgur.com/WVAaMPA.png",
+    "https://i.imgur.com/pCMZeiM.png"],
     [100, 200, 300],                    // キャラクターのHP
     [100, 50, 25]                       // キャラクターの攻撃力
   );
@@ -229,15 +229,15 @@ const runMain = async () => {
 runMain();
 ```
 
-ここでは、３匹のキャラクターとその基本情報を定義しています。
-- キャラクターは、ポケモンのフシギダネ、ヒトカゲ、ゼニガメを用意しました。
+ここでは、3体のキャラクターとその基本情報を定義しています。
+- キャラクターは、ワンピースのゾロ、ナミ、ウソップを用意しました。
 - 各キャラクターには、ID、名前、画像、HP、攻撃力の情報が付与されます。
 
 **上記の `gameContractFactory.deploy()` の中に格納されている情報が、`MyEpicGame.sol` の `constructor` に渡されます。**
 
 ```javascript
 // MyEpicGame.sol
-// 例：["FUSHIGIDANE", "HITOKAGE", "ZENIGAME"] = キャラクターの名前 が `characterNames` 配列に渡されます。
+// 例：["ZORO", "NAMI", "USOPP"] = キャラクターの名前 が `characterNames` 配列に渡されます。
 string[] memory characterNames,
 string[] memory characterImageURIs,
 uint[] memory characterHp,
@@ -248,16 +248,16 @@ uint[] memory characterAttackDmg
 
 >⚠️: 注意
 >
-> サンプルで使用しているポケモンの素材は、[こちら](https://myfirst.pokemon.jp/illust-lab/) から取得しています。教材としての素材なので、同じ素材を使う場合は、規約をお読みください。
+> サンプルで使用しているワンピースの素材は、[こちら](https://www.irasutoya.com/2021/01/onepiece.html) から取得しています。
 
 ぜひ、`run.js` の中の `https://i.imgur.com/...` の画像のリンクをあなたのオリジナルの画像に差し替えてください😊
 
 ```javascript
 // run.js
-["FUSHIGIDANE", "HITOKAGE", "ZENIGAME"], // キャラクターの名前
-["https://i.imgur.com/IjX49Yf.png",  // キャラクターの画像
- "https://i.imgur.com/Xid5qaC.png",
- "https://i.imgur.com/kW2dNCs.png"],
+["ZORO", "NAMI", "USOPP"], // キャラクターの名前
+["https://i.imgur.com/TZEhCTX.png",  // キャラクターの画像
+ "https://i.imgur.com/WVAaMPA.png",
+ "https://i.imgur.com/pCMZeiM.png"],
 ```
 
 それでは、ターミナル上で、`scripts` ディレクトリに移動して下記を実行してみましょう。
@@ -272,9 +272,9 @@ npx hardhat run run.js
 ```
 Compiling 1 file with 0.8.4
 Solidity compilation finished successfully
-Done initializing FUSHIGIDANE w/ HP 100, img https://i.imgur.com/IjX49Yf.png
-Done initializing HITOKAGE w/ HP 200, img https://i.imgur.com/Xid5qaC.png
-Done initializing ZENIGAME w/ HP 300, img https://i.imgur.com/kW2dNCs.png
+Done initializing ZORO w/ HP 100, img https://i.imgur.com/TZEhCTX.png
+Done initializing NAMI w/ HP 200, img https://i.imgur.com/WVAaMPA.png
+Done initializing USOPP w/ HP 300, img https://i.imgur.com/pCMZeiM.png
 Contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 ```
 上記のようなアウトプットターミナルに表示されていればテストは成功です。

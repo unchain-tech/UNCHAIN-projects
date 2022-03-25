@@ -160,8 +160,6 @@ emit AttackComplete(bigBoss.hp, player.hp);
 >
 > `event` / `emit` を使用することで、ブロックチェーン上で更新された情報が、フロントエンドに表示されるようになります。
 
-----
-
 ### ➡️ コントラクトを更新して、もう一度デプロイする
 
 これで、WEBアプリ内で使用する機能の準備ができました。
@@ -176,14 +174,14 @@ const main = async () => {
   const gameContractFactory = await hre.ethers.getContractFactory('MyEpicGame');
 
   const gameContract = await gameContractFactory.deploy(
-	["FUSHIGIDANE", "HITOKAGE", "ZENIGAME"], // キャラクターの名前
-	["https://i.imgur.com/IjX49Yf.png",      // キャラクターの画像
-	"https://i.imgur.com/Xid5qaC.png",
-	"https://i.imgur.com/kW2dNCs.png"],
+	["ZORO", "NAMI", "USOPP"], // キャラクターの名前
+	["https://i.imgur.com/TZEhCTX.png",      // キャラクターの画像
+	"https://i.imgur.com/WVAaMPA.png",
+	"https://i.imgur.com/pCMZeiM.png"],
 	[100, 200, 300],
 	[100, 50, 25],
-	"MYU2", // Bossの名前
-	"https://i.imgur.com/3Ikh51a.png", // Bossの画像
+	"CROCODILE", // Bossの名前
+	"https://i.imgur.com/BehawOh.png", // Bossの画像
 	10000, // Bossのhp
 	50 // Bossの攻撃力
   );

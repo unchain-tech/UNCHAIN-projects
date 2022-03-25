@@ -137,15 +137,15 @@ https://cloudflare-ipfs.com/ipfs/あなたのCIDコードを貼り付けます
 // Hardhat がローカルの Ethereum ネットワークを、コントラクトのためだけに作成します。
 const gameContract = await gameContractFactory.deploy(
 	// キャラクターの名前
-	["FUSHIGIDANE", "HITOKAGE", "ZENIGAME"],
+	["ZORO", "NAMI", "USOPP"],
 	// キャラクターの画像を IPFS の CID に変更
 	["QmXxR67ryeUw4xppPLbF2vJmfj1TCGgzANfiEZPzByM5CT",
 	"QmPHX1R4QgvGQrZym5dpWzzopavyNX2WZaVGYzVQQ2QcQL",
 	"QmUGjB7oQLBZdCDNJp9V9ZdjsBECjwcneRhE7bHcs9HwxG"],
 	[100, 200, 300],
 	[100, 50, 25],
-	"MYU2", // Bossの名前
-	"https://i.imgur.com/3Ikh51a.png", // Bossの画像
+	"CROCODILE", // Bossの名前
+	"https://i.imgur.com/BehawOh.png", // Bossの画像
 	10000, // Bossのhp
 	50 // Bossの攻撃力
 );
@@ -180,7 +180,7 @@ string memory json = Base64.encode(
 
 ```javascript
 {
-	"name": "ZENIGAME -- NFT #: 1",
+	"name": "USOPP -- NFT #: 1",
 	"description": "An epic NFT game.",
 	"image": "ipfs://QmUGjB7oQLBZdCDNJp9V9ZdjsBECjwcneRhE7bHcs9HwxG",
 	"attributes": [{

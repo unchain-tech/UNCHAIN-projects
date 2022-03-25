@@ -204,10 +204,6 @@ return (
           <LoadingIndicator />
           <p>Minting In Progress...</p>
         </div>
-        <img
-          src="https://i.imgur.com/JjXJ4Hf.gif"
-          alt="Minting loading indicator"
-        />
       </div>
     )}
   </div>
@@ -306,9 +302,8 @@ import LoadingIndicator from '../LoadingIndicator';
 ```
 
 上記のコードを実装したら、WEBアプリを確認してみましょう。
-![](/public/images/3-ETH-NFT-game/section-4/4_1_2.png)
 
-上記のようにローディングマークが `Arena` ページに表示されているでしょうか？✨
+ローディングマークが `Arena` ページに表示されているでしょうか？✨
 ### 🚨 `Arena` ページに攻撃アラートを追加する
 
 最後に、ボスに与えたダメージをフロントエンド上に表示するコードを実装していきましょう。
@@ -579,8 +574,6 @@ const runAttackAction = async () => {
 ここでは、`setTimeout` を使用して、攻撃メッセージを5秒間表示した後に、非表示にするロジックを追加しています。
 
 上記の実装が成功した場合、WEBアプリ上でボスを攻撃すると、下記のような攻撃ダメージが表示されます✨
-
-![](/public/images/3-ETH-NFT-game/section-4/4_1_3.png)
 ### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discordの `#section-4` で質問してください。

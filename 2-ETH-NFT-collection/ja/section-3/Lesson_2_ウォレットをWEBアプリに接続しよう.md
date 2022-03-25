@@ -156,7 +156,7 @@ const App = () => {
       console.log("Found an authorized account:", account);
       setCurrentAccount(account);
     } else {
-      console.log("No authorized account found")
+      console.log("No authorized account found");
     }
   }
   // renderNotConnectedContainer メソッドを定義します。
@@ -222,7 +222,7 @@ if (accounts.length !== 0) {
   	// currentAccountにユーザーのアカウントアドレスを格納
   	setCurrentAccount(account);
 } else {
-	console.log("No authorized account found")
+	console.log("No authorized account found");
 }
 ```
 この処理のおかげで、ユーザーがウォレットに複数のアカウントを持っている場合でも、プログラムはユーザーの1番目のアカウントアドレスを取得することができます。

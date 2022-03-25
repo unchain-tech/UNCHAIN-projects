@@ -19,14 +19,14 @@ const main = async () => {
 	const gameContractFactory = await hre.ethers.getContractFactory('MyEpicGame');
 
 	const gameContract = await gameContractFactory.deploy(
-	  ["FUSHIGIDANE", "HITOKAGE", "ZENIGAME"], // キャラクターの名前
-	  ["https://i.imgur.com/IjX49Yf.png",      // キャラクターの画像
-	  "https://i.imgur.com/Xid5qaC.png",
-	  "https://i.imgur.com/kW2dNCs.png"],
+	  ["ZORO", "NAMI", "USOPP"], // キャラクターの名前
+	  ["https://i.imgur.com/TZEhCTX.png",      // キャラクターの画像
+	  "https://i.imgur.com/WVAaMPA.png",
+	  "https://i.imgur.com/pCMZeiM.png"],
 	  [100, 200, 300],
 	  [100, 50, 25],
-	  "MYU2", // Bossの名前
-	  "https://i.imgur.com/3Ikh51a.png", // Bossの画像
+	  "CROCODILE", // Bossの名前
+	  "https://i.imgur.com/BehawOh.png", // Bossの画像
 	  10000, // Bossのhp
 	  50 // Bossの攻撃力
 	);
@@ -269,9 +269,9 @@ WEBアプリをリフレッシュして、ウォレット接続が完了した�
 ```
 charactersTxn:
 (3) [Array(6), Array(6), Array(6)]
-0: (6) [BigNumber, 'FUSHIGIDANE', 'https://i.imgur.com/IjX49Yf.png', BigNumber, BigNumber, BigNumber, characterIndex: BigNumber, name: 'FUSHIGIDANE', imageURI: 'https://i.imgur.com/IjX49Yf.png', hp: BigNumber, maxHp: BigNumber, …]
-1: (6) [BigNumber, 'HITOKAGE', 'https://i.imgur.com/Xid5qaC.png', BigNumber, BigNumber, BigNumber, characterIndex: BigNumber, name: 'HITOKAGE', imageURI: 'https://i.imgur.com/Xid5qaC.png', hp: BigNumber, maxHp: BigNumber, …]
-2: (6) [BigNumber, 'ZENIGAME', 'https://i.imgur.com/kW2dNCs.png', BigNumber, BigNumber, BigNumber, characterIndex: BigNumber, name: 'ZENIGAME', imageURI: 'https://i.imgur.com/kW2dNCs.png', hp: BigNumber, maxHp: BigNumber, …]
+0: (6) [BigNumber, 'ZORO', 'https://i.imgur.com/TZEhCTX.png', BigNumber, BigNumber, BigNumber, characterIndex: BigNumber, name: 'ZORO', imageURI: 'https://i.imgur.com/TZEhCTX.png', hp: BigNumber, maxHp: BigNumber, …]
+1: (6) [BigNumber, 'NAMI', 'https://i.imgur.com/WVAaMPA.png', BigNumber, BigNumber, BigNumber, characterIndex: BigNumber, name: 'NAMI', imageURI: 'https://i.imgur.com/WVAaMPA.png', hp: BigNumber, maxHp: BigNumber, …]
+2: (6) [BigNumber, 'USOPP', 'https://i.imgur.com/pCMZeiM.png', BigNumber, BigNumber, BigNumber, characterIndex: BigNumber, name: 'USOPP', imageURI: 'https://i.imgur.com/pCMZeiM.png', hp: BigNumber, maxHp: BigNumber, …]
 length: 3
 [[Prototype]]: Array(0)
 ```

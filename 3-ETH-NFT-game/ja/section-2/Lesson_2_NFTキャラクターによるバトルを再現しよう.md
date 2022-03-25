@@ -14,14 +14,14 @@ cconst main = async () => {
 	const gameContractFactory = await hre.ethers.getContractFactory('MyEpicGame');
 	// Hardhat がローカルの Ethereum ネットワークを、コントラクトのためだけに作成します。
 	const gameContract = await gameContractFactory.deploy(
-		["FUSHIGIDANE", "HITOKAGE", "ZENIGAME"], // キャラクターの名前
-		["https://i.imgur.com/IjX49Yf.png",      // キャラクターの画像
-		 "https://i.imgur.com/Xid5qaC.png",
-		 "https://i.imgur.com/kW2dNCs.png"],
+		["ZORO", "NAMI", "USOPP"], // キャラクターの名前
+		["https://i.imgur.com/TZEhCTX.png",      // キャラクターの画像
+		 "https://i.imgur.com/WVAaMPA.png",
+		 "https://i.imgur.com/pCMZeiM.png"],
 		 [100, 200, 300],
 		 [100, 50, 25],
-		 "MYU2", // Bossの名前
-		 "https://i.imgur.com/3Ikh51a.png", // Bossの画像
+		 "CROCODILE", // Bossの名前
+		 "https://i.imgur.com/BehawOh.png", // Bossの画像
 		 10000, // Bossのhp
 		 50 // Bossの攻撃力
 	);
@@ -74,9 +74,9 @@ Done!
 
 数分待つと、OpenSea や Rarible などのサイトに NFT キャラクターと更新された HP が表示されるはずです。
 
-`deploy.js` では、「ゼニガメ」の NFT を 1 体作り、「ゼニガメ」に「ミュウツー」を 2 回攻撃させました。
+`deploy.js` では、「ウソップ」の NFT を 1 体作り、「ウソップ」に「クロコダイル」を 2 回攻撃させました。
 
-ゼニガメの HP は **300** から始まっているので、ミュウツーを 2 回攻撃した場合、ゼニガメの HP は 200 になるはずです。
+ウソップの HP は **300** から始まっているので、クロコダイルを 2 回攻撃した場合、ウソップの HP は 200 になるはずです。
 
 [rinkeby.rarible.com](https://rinkeby.rarible.com/) にコントラクトのアドレスを貼り付け、あなたの NFT キャラクターの属性情報が更新されたか確認してみてください。
 

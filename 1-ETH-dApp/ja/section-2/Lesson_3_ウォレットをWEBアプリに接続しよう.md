@@ -143,7 +143,7 @@ if (accounts.length !== 0) {
   console.log("Found an authorized account:", account);
   setCurrentAccount(account);
 } else {
-  console.log("No authorized account found")
+  console.log("No authorized account found");
 }
 ```
 `eth_accounts` は、空の配列または単一のアカウントアドレスを含む配列を返す特別なメソッドです。
@@ -190,7 +190,7 @@ npm run start
 >   setCurrentAccount(account);
 > } else {
 >   // アカウントが存在しない場合は、エラーを出力。
->   console.log("No authorized account found")
+>   console.log("No authorized account found");
 > }
 > ```
 > この処理のおかげで、ユーザーがウォレットに複数のアカウントを持っている場合でも、プログラムはユーザーの1つ目のアカウントアドレスを取得することができます。
@@ -228,7 +228,7 @@ const App = () => {
         console.log("Found an authorized account:", account);
         setCurrentAccount(account);
       } else {
-        console.log("No authorized account found")
+        console.log("No authorized account found");
       }
     } catch (error) {
       console.log(error);

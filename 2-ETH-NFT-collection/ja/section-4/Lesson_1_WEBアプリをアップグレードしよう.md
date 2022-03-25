@@ -108,7 +108,7 @@ Contract deployed to: 0x... ← あなたのコントラクトアドレスをコ
 
 3\. VS Codeで `MyEpicNFT.json` ファイルが開かれるので、中身を全てコピーする。※ VS Codeのファインダーを使って、直接 `MyEpicNFT.json` を開くことも可能です。
 
-4\. コピーした `epic-nfts/artifacts/contracts/MyEpicNFT.sol/MyEpicNFT.json` の中身を `your-first-dapp/src/utils/MyEpicNFT.json` の中身と交換する。
+4\. コピーした `epic-nfts/artifacts/contracts/MyEpicNFT.sol/MyEpicNFT.json` の中身を `your-first-NFT-collection/src/utils/MyEpicNFT.json` の中身と交換する。
 
 **繰り返しますが、コントラクトを更新するたびにこれを行う必要があります。**
 ### 🪄 フロントエンドを更新する
@@ -134,7 +134,7 @@ if (accounts.length !== 0) {
 	// この時点で、ユーザーはウォレット接続が済んでいます。
 	setupEventListener()
 } else {
-	console.log("No authorized account found")
+	console.log("No authorized account found");
 }
 ```
 
