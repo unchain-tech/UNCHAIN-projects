@@ -7,7 +7,7 @@
 `deploy.js` を下記のように更新していきましょう。
 
 ```javascript
-cconst main = async () => {
+const main = async () => {
 	// これにより、`MyEpicGame` コントラクトがコンパイルされます。
     // コントラクトがコンパイルされたら、コントラクトを扱うために必要なファイルが
 	// `artifacts` ディレクトリの直下に生成されます。
