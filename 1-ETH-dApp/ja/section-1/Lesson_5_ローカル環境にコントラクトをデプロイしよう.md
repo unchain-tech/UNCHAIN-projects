@@ -76,12 +76,10 @@ runMain();
 コードの中身は、`run.js` とほぼ同じです。
 ### 🎉 デプロイする
 
-**新しくターミナルのウィンドウを立ち上げ**、`scripts` ディレクトリに移動しましょう。
-
-下記のコマンドを実行して、あなたのスマートコントラクトを、ローカルネットワークにデプロイします。
+**新しくターミナルのウィンドウを立ち上げ**、ターミナル上で `ETH-dApp/my-wave-portal` に移動したら、下記のコマンドを実行しましょう。あなたのスマートコントラクトを、ローカルネットワークにデプロイします。
 
 ```bash
-npx hardhat run deploy.js --network localhost
+npx hardhat run scripts/deploy.js --network localhost
 ```
 下記のような出力結果がターミナルに表示されたでしょうか？
 

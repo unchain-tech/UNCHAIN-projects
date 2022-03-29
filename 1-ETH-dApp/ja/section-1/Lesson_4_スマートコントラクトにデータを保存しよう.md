@@ -266,10 +266,10 @@ waveCount = await waveContract.getTotalWaves();
 ここで最後に、`waveCount` をもう一度取得して、`+1` されたかどうかを確認します。
 ### 🧙‍♀️ テストを実行しよう
 
-`scripts` ディレクトリに移動し、下記を実行してみましょう。
+`my-wave-portal` ディレクトリに移動し、下記を実行してみましょう。
 
 ```bash
-npx hardhat run run.js
+npx hardhat run scripts/run.js
 ```
 
 例）ターミナルの出力結果
