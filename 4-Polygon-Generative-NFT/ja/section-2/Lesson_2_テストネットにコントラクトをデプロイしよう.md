@@ -113,15 +113,15 @@ MetaMask ウォレットに `Rinkeby Test Network` が設定されたら、下�
 
 まず、`dotenv` ライブラリを使用して、先ほど作成した `Alchemy URL` とあなたの MetaMask の秘密鍵を隠していきます。
 
-
 `.env` というファイルを `nft-collectible` ディレクトリ内に作成し、下記のように編集しましょう。
 
 ```
 API_URL="YOUR_ALCHEMY_API_URL"
 PRIVATE_KEY="YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY"
 ```
-1\. `YOUR_ALCHEMY_API_URL`の取得
+※ ターミナルで `ls` を押すと（コマンドプロンプトでは `dir` ）、隠しファイルを確認することができます。
 
+1\. `YOUR_ALCHEMY_API_URL`の取得
 > `.env` の `YOUR_ALCHEMY_API_URL` の部分を先ほど取得した Alchemy の URL（ `HTTP` リンク） と入れ替えます。
 
 2\. `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の取得
