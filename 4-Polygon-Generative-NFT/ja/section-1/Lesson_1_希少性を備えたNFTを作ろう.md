@@ -18,7 +18,7 @@
 
 今回のレッスンでは、Cryptopunks や BAYC のような希少性を備えた Generative Art の NFT コレクションを作成する方法を学びます。
 
-✍️: NFT に関する詳しい説明は、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/blob/main/2-ETH-NFT-collection/ja/section-1/Lesson_1_NFT%E3%81%A8%E3%81%AF%E4%BD%95%E3%81%8B%EF%BC%9F.md)) をご覧ください。
+✍️: NFT に関する詳しい説明は、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/blob/main/2-ETH-NFT-collection/ja/section-1/Lesson_1_NFT%E3%81%A8%E3%81%AF%E4%BD%95%E3%81%8B%EF%BC%9F.md) をご覧ください。
 ### 💻 Python と pip をインストールする
 
 Generative Art を作成するために、[こちら](https://github.com/shiftbase-xyz/generative-nft-library) のライブラリを使用します。

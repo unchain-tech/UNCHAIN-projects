@@ -429,13 +429,13 @@ console.log("Token URI:", returnedTokenUri);
 // run.js
 // 再代入可能な変数 txn を宣言
 let txn;
-// 3体のNFTキャラクターの中から、2番目のキャラクターを Mint しています。
+// 3体のNFTキャラクターの中から、3番目のキャラクターを Mint しています。
 txn = await gameContract.mintCharacterNFT(2);
 ```
 
 https://qiita.com/y-temp4/items/289686fbdde896d22b5e
 
-ここでは、`MyEpicGame.sol` から `mintCharacterNFT` 関数を呼び出して、3体の NFT キャラクターの中から、2番目のキャラクターを Mint しています。
+ここでは、`MyEpicGame.sol` から `mintCharacterNFT` 関数を呼び出して、3体の NFT キャラクターの中から、3番目のキャラクターを Mint しています。
 
 `run.js` から `mintCharacterNFT` 関数を実行する際、Hardhat はあなたのローカル環境に設定された **デフォルトウォレット** をコントラクトに展開します。
 - したがって、`MyEpicGame.sol` 上では、Hardhat が提供したデフォルトウォレットのパブリックアドレス が `msg.sender` に格納されます。
