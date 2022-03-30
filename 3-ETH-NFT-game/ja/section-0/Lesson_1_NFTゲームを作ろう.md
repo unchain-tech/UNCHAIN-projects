@@ -7,8 +7,8 @@
 - [Javascript](https://developer.mozilla.org/ja/docs/Web/JavaScript)
 - [React.js](https://ja.reactjs.org/)
 
+※ 開発初心者の方は、まず `ETH-dApp` のプロジェクトから始めることをおすすめします☺️
 いま全てを理解している必要はありません。
-
 わからないことがあったらインターネットで検索したり、コミュニティで質問しながらプロジェクトを進めていきましょう！
 ### ✨ NFT Game を作ろう
 

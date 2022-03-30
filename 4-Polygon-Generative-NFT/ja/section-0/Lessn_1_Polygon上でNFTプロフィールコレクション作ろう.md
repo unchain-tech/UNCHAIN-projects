@@ -5,13 +5,12 @@
 プロジェクトを進めるには以下の技術が必要です。
 
 - [Terminal操作](https://qiita.com/ryouzi/items/f9dee1540a04a0bfb9a3)
-
 - [Javascript](https://developer.mozilla.org/ja/docs/Web/JavaScript)
-
 - [React.js](https://ja.reactjs.org/)
 
-いま全てを理解している必要はありません。
+※ 開発初心者の方は、まず `ETH-dApp` のプロジェクトから始めることをおすすめします☺️
 
+いま全てを理解している必要はありません。
 わからないことがあったらインターネットで検索したり、コミュニティで質問しながらプロジェクトを進めていきましょう！
 ### ✨ NFT Collection を作ろう
 
