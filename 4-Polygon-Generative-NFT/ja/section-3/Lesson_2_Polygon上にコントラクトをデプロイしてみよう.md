@@ -270,7 +270,7 @@ Contract deployed to: 0xF899DeB963208560a7c667FA78376ecaFF684b8E
 Owner has tokens:  []
 ```
 
-次に、[mumbai.polygonscan.com](https://mumbai.polygonscan.com/) に向かい、コントラクトアドレス（ `Contract deployed to` に続く `0x..` ）を検索して、コントラクトがデプロイされ、NFT が Mint されたことを確認しましょう。
+次に、[mumbai.polygonscan.com](https://mumbai.polygonscan.com/) に向かい、コントラクトアドレス（ `Contract deployed to` に続く `0x..` ）を検索して、コントラクトがデプロイされたことを確認しましょう。
 
 ![](/public/images/4-Polygon-Generative-NFT/section-3/3_2_8.png)
 ### 📝 Polygonscan を使ってコントラクトを verify（検証）する

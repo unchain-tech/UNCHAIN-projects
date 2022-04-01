@@ -13,7 +13,7 @@
 
 次に、ターミナルに向かいましょう。
 
-作業したいディレクトリに移動したら、次のコマンドを実行して、プロジェクト用の空のフォルダーを作成し、空の package.json ファイルを作成します。
+作業したいディレクトリに移動したら、次のコマンドを実行して、プロジェクト用の空のフォルダーを作成し、空のディレクトリを作成します。
 
 ```bash
 mkdir Polygon-Generative-NFT
@@ -275,8 +275,7 @@ string public baseTokenURI;
 
 コンストラクタ（ `constructor` ）の呼び出して、`baseTokenURI` を設定していきます。
 
-🔩: `constructor`とは
-
+> 🔩: `constructor`とは
 > `constructor` はオプションの関数で、`contract` の状態変数を初期化するために使用されます。これから詳しく説明していくので、`constructor` に関しては、まず以下の特徴を理解してください。
 >
 >- `contract` は 1 つの `constructor` しか持つことができません。
