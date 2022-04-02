@@ -2,5 +2,13 @@
   "name": "UNCHAIN-projects",
   "version": "1.0.0",
   "main": "README.md",
-  "repository": "https://github.com/shiftbase-xyz/UNCHAIN-projects.git"
+  "repository": "https://github.com/shiftbase-xyz/UNCHAIN-projects.git",
+  "devDependencies": {
+    "textlint": "^12.1.1",
+    "textlint-rule-preset-ja-spacing": "^2.2.0",
+    "textlint-rule-preset-ja-technical-writing": "^7.0.0",
+    "textlint-rule-preset-japanese": "^7.0.0",
+    "textlint-rule-prh": "^5.3.0",
+    "textlint-rule-spellcheck-tech-word": "^5.0.0"
+  }
 }
