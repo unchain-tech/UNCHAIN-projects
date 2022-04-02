@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "main": "README.md",
   "repository": "https://github.com/shiftbase-xyz/UNCHAIN-projects.git",
+  "scripts": {
+    "textlint:check": "textlint docs/**/*.md",
+    "textlint:fix": "textlint --fix docs/**/*.md"
+  },
   "devDependencies": {
     "textlint": "^12.1.1",
     "textlint-rule-preset-ja-spacing": "^2.2.0",

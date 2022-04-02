@@ -1,0 +1,7 @@
+version: 1
+
+rules:
+  - expected: 残高
+    pattern:
+      - バランス
+      - Balance
