@@ -769,6 +769,16 @@ MetaMask が 0.01 ETH + ガス代 を支払うよう促すので、同意して�
 
 ![](/public/images/4-Polygon-Generative-NFT/section-4/4_1_10.png)
 
+
+> ⚠️: 2022年4月1日より、Mint ボタンすると下記のようなエラーが発生しています。
+> ```
+> MetaMask - RPC Error: Internal JSON-RPC error.
+> {code: -32603, message: 'Internal JSON-RPC error.', data: {…}}
+> code: -32603
+> ```
+> このエラーに関しては、2022年4月1日以前には問題なく動いていた同プロジェクトにも発生しているので、対応を模索しています。
+> あなたのプロジェクトで、このエラーが発生した場合、引き続き次のステップに進んでください。
+
 Polygon が他のサイドチェーンと異なる最大の利点は、世界最大の NFT マーケットプレイスである OpenSea にサポートされていることです。
 
 [testnets.opensea.io](https://testnets.opensea.io/) にアクセスし、あなたのコントラクトアドレスを検索してください。
