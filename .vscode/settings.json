@@ -35,6 +35,7 @@
     "struct",
     "Sysvar",
     "textlint",
+    "textlintignore",
     "typechain",
     "USOPP",
     "yukis",
