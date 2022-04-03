@@ -222,7 +222,7 @@ Candy Machine と通信するためには、**`IDL` と `Program` オブジェ�
 
 Solana 上にあるほかのプログラムと同じように、Candy Machine を操作できます。
 
-Program オブジェクトを作成したら、Candy Machine の ID に基づてメタデータを取得します。
+Program オブジェクトを作成したら、Candy Machine の ID にもとづいてメタデータを取得します。
 
 この行では、Candy Machine のプログラムの fetch メソッドを呼び出し、`itemsAvailable`, `itemsRedeemed`, `itemsRemaining`, `goLiveDate` を返しています。
 
