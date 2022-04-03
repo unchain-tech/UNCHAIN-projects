@@ -36,6 +36,7 @@
     "Sysvar",
     "textlint",
     "textlintignore",
+    "textlintrc",
     "typechain",
     "USOPP",
     "yukis",
