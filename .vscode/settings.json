@@ -1,5 +1,44 @@
 {
-    "cSpell.words": [
-        "textlint"
-    ]
+  "cSpell.words": [
+    "Arweave",
+    "Axie",
+    "BAYC",
+    "Blockhashes",
+    "buildspace",
+    "Chainlink",
+    "Cryptopunks",
+    "Devnet",
+    "Devos",
+    "Filecoin",
+    "Imgur",
+    "IPSF",
+    "joshi",
+    "Keypair",
+    "Metaplex",
+    "Metaverse",
+    "methereum",
+    "mkdir",
+    "mload",
+    "mstore",
+    "NAMI",
+    "nomiclabs",
+    "ONEPIECE",
+    "outfile",
+    "Pikachu",
+    "Polygonscan",
+    "presale",
+    "Pubkey",
+    "publickey",
+    "Rarible",
+    "readdir",
+    "scandir",
+    "struct",
+    "Sysvar",
+    "textlint",
+    "typechain",
+    "USOPP",
+    "yukis",
+    "Zepplin",
+    "ZORO"
+  ]
 }
