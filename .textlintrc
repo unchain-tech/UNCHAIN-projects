@@ -1,0 +1,29 @@
+{
+  "rules": {
+    "preset-ja-spacing": {
+      "ja-space-between-half-and-full-width": {
+        "space": "always",
+        "exceptPunctuation": true
+      }
+    },
+    "preset-ja-technical-writing": {
+      "no-exclamation-question-mark": {
+        "allowFullWidthExclamation": true,
+        "allowFullWidthQuestion": true
+      },
+      "no-doubled-joshi": {
+        "strict": false,
+        "allow": [
+          "か"
+        ]
+      }
+    },
+    "spellcheck-tech-word": true,
+    "prh": {
+      "rulePaths": [
+        "node_modules/prh/prh-rules/media/WEB+DB_PRESS.yml",
+        "prh.yml"
+      ]
+    }
+  }
+}
