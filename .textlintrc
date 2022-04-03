@@ -5,6 +5,7 @@
       "allow": [
         "チェーン",
         "一つ一つ",
+        "もとづ",
         "/\\d{4}-\\d{2}-\\d{2}/",
         "/===IGNORE===[\\s\\S]*?===/IGNORE===/m"
       ]
@@ -44,6 +45,7 @@
     },
     "prh": {
       "rulePaths": [
+        "node_modules/prh/prh-rules/media/WEB+DB_PRESS.yml",
         "./prh.yml"
       ]
     }
