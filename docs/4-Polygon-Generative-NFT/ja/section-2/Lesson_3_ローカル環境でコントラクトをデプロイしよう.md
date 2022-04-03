@@ -9,108 +9,110 @@
 ```javascript
 // run.js
 async function main() {
+  // あなたのコレクションの Base Token URI（JSON の CID）に差し替えてください
+  const baseTokenURI = "ipfs://QmZbWNKJPAjxXuNFSEaksCJVd1M6DaKQViJBYPK2BdpDEP/";
 
-    // あなたのコレクションの Base Token URI（JSON の CID）に差し替えてください
-    const baseTokenURI = "ipfs://QmZbWNKJPAjxXuNFSEaksCJVd1M6DaKQViJBYPK2BdpDEP/";
+  // オーナー/デプロイヤーのウォレットアドレスを取得する
+  const [owner] = await hre.ethers.getSigners();
 
-    // オーナー/デプロイヤーのウォレットアドレスを取得する
-    const [owner] = await hre.ethers.getSigners();
+  // デプロイしたいコントラクトを取得
+  const contractFactory = await hre.ethers.getContractFactory("NFTCollectible");
 
-    // デプロイしたいコントラクトを取得
-    const contractFactory = await hre.ethers.getContractFactory("NFTCollectible");
+  // 正しいコンストラクタ引数（baseTokenURI）でコントラクトをデプロイします。
+  const contract = await contractFactory.deploy(baseTokenURI);
 
-    // 正しいコンストラクタ引数（baseTokenURI）でコントラクトをデプロイします。
-    const contract = await contractFactory.deploy(baseTokenURI);
+  // このトランザクションがマイナーに承認（mine）されるのを待つ
+  await contract.deployed();
 
-    // このトランザクションがマイナーに承認（mine）されるのを待つ
-    await contract.deployed();
+  // コントラクトアドレスをターミナルに出力
+  console.log("Contract deployed to:", contract.address);
 
-    // コントラクトアドレスをターミナルに出力
-    console.log("Contract deployed to:", contract.address);
+  // NFTを 10 点、コントラウト所有者のためにキープする
+  let txn = await contract.reserveNFTs();
+  await txn.wait();
+  console.log("10 NFTs have been reserved");
 
-    // NFTを 10 点、コントラウト所有者のためにキープする
-    let txn = await contract.reserveNFTs();
-    await txn.wait();
-    console.log("10 NFTs have been reserved");
+  // 0.03 ETH を送信して3つ NFT を mint する
+  txn = await contract.mintNFTs(3, {
+    value: hre.ethers.utils.parseEther("0.03"),
+  });
+  await txn.wait();
 
-    // 0.03 ETH を送信して3つ NFT を mint する
-    txn = await contract.mintNFTs(3, { value: hre.ethers.utils.parseEther('0.03') });
-    await txn.wait()
-
-    // コントラクト所有者の保有するtokenIdsを取得
-    let tokens = await contract.tokensOfOwner(owner.address)
-    console.log("Owner has tokens: ", tokens);
-
+  // コントラクト所有者の保有するtokenIdsを取得
+  let tokens = await contract.tokensOfOwner(owner.address);
+  console.log("Owner has tokens: ", tokens);
 }
 
 main()
-    .then(() => process.exit(0))
-    .catch((error) => {
-        console.error(error);
-        process.exit(1);
-    });
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
 ```
 
-`run.js` は、`ethers.js` ライブラリを利用してコントラクトをデプロイし、デプロイ後にコントラクトの関数を呼び出す Javascript コードです。
+`run.js` は、`ethers.js` ライブラリを利用してコントラクトをデプロイし、デプロイ後にコントラクトの関数を呼び出す JavaScript コードです。
 
 以下は、その `run.js` で実行されるテストの流れです。
 
--  NFT コレクションのメタデータを取得。**`beseTokenURI` のアドレスをあなたの IPSF のアドレスに変更してください。**
-    ```javascript
-    // あなたのコレクションの Base Token URI（JSON の CID）に差し替えてください
-    const baseTokenURI = "ipfs://QmZbWNKJPAjxXuNFSEaksCJVd1M6DaKQViJBYPK2BdpDEP/";
-    ```
+- NFT コレクションのメタデータを取得。**`beseTokenURI` のアドレスをあなたの IPSF のアドレスに変更してください。**
+
+  ```javascript
+  // あなたのコレクションの Base Token URI（JSON の CID）に差し替えてください
+  const baseTokenURI = "ipfs://QmZbWNKJPAjxXuNFSEaksCJVd1M6DaKQViJBYPK2BdpDEP/";
+  ```
 
 - コントラクトの所有者（あなた）のアドレスを取得。
 
-    ```javascript
-    // オーナー/デプロイヤーのウォレットアドレスを取得する
-    const [owner] = await hre.ethers.getSigners();
-    ```
+  ```javascript
+  // オーナー/デプロイヤーのウォレットアドレスを取得する
+  const [owner] = await hre.ethers.getSigners();
+  ```
 
 - デプロイしたいコントラクトを取得。
 
-    ```javascript
-    // デプロイしたいコントラクトを取得
-    const contractFactory = await hre.ethers.getContractFactory("NFTCollectible");
-    ```
+  ```javascript
+  // デプロイしたいコントラクトを取得
+  const contractFactory = await hre.ethers.getContractFactory("NFTCollectible");
+  ```
 
 - コントラクトをデプロイするためのリクエストを送り、マイナーがこのリクエストを選んでブロックチェーンに追加するのを待つ（トランザクションの承認待ち）。
 
-    ```javascript
-    // 正しいコンストラクタ引数（baseTokenURI）でコントラクトをデプロイします。
-    const contract = await contractFactory.deploy(baseTokenURI);
+  ```javascript
+  // 正しいコンストラクタ引数（baseTokenURI）でコントラクトをデプロイします。
+  const contract = await contractFactory.deploy(baseTokenURI);
 
-    // このトランザクションがマイナーに承認（mine）されるのを待つ
-    await contract.deployed();
-    ```
+  // このトランザクションがマイナーに承認（mine）されるのを待つ
+  await contract.deployed();
+  ```
 
-- トランザクションが承認（ mine ）されると、コントラクトのアドレスが取得される。
+- トランザクションが承認（mine）されると、コントラクトのアドレスが取得される。
 
-    ```javascript
-    // コントラクトアドレスをターミナルに出力
-    console.log("Contract deployed to:", contract.address);
-    ```
+  ```javascript
+  // コントラクトアドレスをターミナルに出力
+  console.log("Contract deployed to:", contract.address);
+  ```
 
 その後、コントラクトの `public` 関数を呼び出します。
 
-- 10 NFTを予約し、コントラクトに 0.03 ETHを送信して、3 NFTを Mint し、所有する NFT をチェックします。
+- 10 NFT を予約し、コントラクトに 0.03 ETH を送信して、3 NFT を Mint し、所有する NFT をチェックします。
 
+  ```javascript
+  // 1. NFTを 10 点、コントラウト所有者のためにキープする
+  let txn = await contract.reserveNFTs();
+  await txn.wait();
+  console.log("10 NFTs have been reserved");
 
-    ```javascript
-    // 1. NFTを 10 点、コントラウト所有者のためにキープする
-    let txn = await contract.reserveNFTs();
-    await txn.wait();
-    console.log("10 NFTs have been reserved");
+  // 2. 0.03 ETH を送信して 3 つ NFTを mint する
+  txn = await contract.mintNFTs(3, {
+    value: hre.ethers.utils.parseEther("0.03"),
+  });
+  await txn.wait();
 
-    // 2. 0.03 ETH を送信して 3 つ NFTを mint する
-    txn = await contract.mintNFTs(3, { value: hre.ethers.utils.parseEther('0.03') });
-    await txn.wait()
-
-    // 3. コントラクト所有者の保有する tokenIds を取得
-    let tokens = await contract.tokensOfOwner(owner.address)
-    console.log("Owner has tokens: ", tokens);
-    ```
+  // 3. コントラクト所有者の保有する tokenIds を取得
+  let tokens = await contract.tokensOfOwner(owner.address);
+  console.log("Owner has tokens: ", tokens);
+  ```
 
 - ブロックチェーンにデータを書き込んでいるため、`reserveNFTs` と `mintNFTs` の呼び出しにはガス代が必要です。
 
@@ -143,6 +145,7 @@ Owner has tokens:  [
   BigNumber { value: "12" }
 ]
 ```
+
 ### 🚀 Rinkeby Test Network にコントラクトをデプロイする
 
 それでは、Rinkeby Test Network にコントラクトをデプロイしましょう。
@@ -151,14 +154,13 @@ Owner has tokens:  [
 
 その中に、`run.js` の中身を下を貼り付けましょう。
 
->⚠️: 注意
+> ⚠️: 注意
 >
 > `run.js` はあくまでローカル環境でコントラクトのテストを実行するスクリプトです。
 >
 > 一方、`deploy.js` はテストネットやイーサリアムメインネットに実際にコントラクトをデプロイするときに使用するスクリプトです。
 >
 > `run.js` と `deploy.js` は分けて管理することをおすすめします。
-
 
 `deploy.js` が作成できたら、ターミナル上で `nft-collectible` ディレクトリに移動し、下記のコマンドを実行しましょう。
 
@@ -188,18 +190,19 @@ Owner has tokens:  [
 ]
 ```
 
-あなたのターミナル上で、`Contract deployed to` の後に出力されたコントラクトアドレス（ `0x..` ）をコピーして、保存しておきましょう。
+あなたのターミナル上で、`Contract deployed to` の後に出力されたコントラクトアドレス（`0x..`）をコピーして、保存しておきましょう。
 
 後でフロントエンドを構築する際に必要となります。
-### 👀 Etherscanでトランザクションを確認する
 
-`Contract deployed to:` に続くアドレス（ `0x..` ）をコピーして、[Etherscan](https://rinkeby.etherscan.io/) に貼り付けてみましょう。
+### 👀 Etherscan でトランザクションを確認する
+
+`Contract deployed to:` に続くアドレス（`0x..`）をコピーして、[Etherscan](https://rinkeby.etherscan.io/) に貼り付けてみましょう。
 
 あなたのスマートコントラクトのトランザクション履歴が確認できます。
 
 - Etherscan は、イーサリアムネットワーク上のトランザクションに関する情報を確認するのに便利なプラットフォームです。
 
-- *表示されるまでに約1分かかり場合があります。*
+- _表示されるまでに約 1 分かかり場合があります。_
 
 下記のような結果が、Rinkeby Etherscan 上で確認できれば、テストネットへのデプロイは成功です。
 
@@ -210,16 +213,20 @@ Owner has tokens:  [
 Rinkeby Etherscan はデプロイを追跡する最も簡単な方法であり、問題を特定するのに適しています。
 
 - Etherscan にトランザクションが表示されないということは、まだ処理中か、何か問題があったということになります。
+
 ### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discord の `#section-2` で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+
 ```
 1. 質問が関連しているセクション番号とレッスン番号
 2. 何をしようとしていたか
 3. エラー文をコピー&ペースト
 4. エラー画面のスクリーンショット
 ```
+
 ---
-テストが完了したら、次のレッスンに進んでコントラクトをテストネットにデプロイしましょう🎉
+
+テストが完了したら、次のレッスンに進んでコントラクトをテストネットにデプロイしましょう 🎉

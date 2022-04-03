@@ -1,4 +1,4 @@
-### 💫 UIの仕上げ
+### 💫 UI の仕上げ
 
 NFT キャラクターを Mint したり、ボスのデータを取得したりするときに、ローディングマークを UI に表示していきましょう。
 
@@ -13,9 +13,10 @@ NFT キャラクターを Mint したり、ボスのデータを取得したり�
 `nft-game-starter-project/src/Components` フォルダに `LoadingIndicator` コンポーネントが格納されています。
 
 このレッスンでは、この `LoadingIndicator` コンポーネントを使っていきます。
+
 ### 🔁 `App.js` にローディングマークを追加する
 
-一つ目のケース、「ユーザーが NFT キャラクターを持っているかフロントエンドが確認している状況」で、WEBアプリにローディングマークを表示していきましょう。
+1 つ目のケース、「ユーザーが NFT キャラクターを持っているかフロントエンドが確認している状況」で、Web アプリケーションにローディングマークを表示していきましょう。
 
 まず、`App.js` を開き、`const [characterNFT, setCharacterNFT] = useState(null);` の直下に下記を追加しましょう。
 
@@ -27,7 +28,7 @@ const [isLoading, setIsLoading] = useState(false);
 
 次に、コントラクトから `checkIfUserHasNFT` 関数を呼び出すなど、非同期操作を実行している際に、ロード状態を設定する実装を行います。
 
-`setIsLoading(true);` を、下記二つの `useEffects` に追加しましょう。
+`setIsLoading(true);` を、下記 2 つの `useEffects` に追加しましょう。
 
 ```javascript
 // App.js
@@ -68,7 +69,7 @@ useEffect(() => {
 
 ```javascript
 // App.js
-import LoadingIndicator from './Components/LoadingIndicator';
+import LoadingIndicator from "./Components/LoadingIndicator";
 ```
 
 次に、`renderContent` 関数の先頭に、下記を追加しましょう。
@@ -77,66 +78,62 @@ import LoadingIndicator from './Components/LoadingIndicator';
 // App.js
 // アプリがロード中の場合は、LoadingIndicatorをレンダリングします。
 if (isLoading) {
-	return <LoadingIndicator />;
+  return <LoadingIndicator />;
 }
 ```
 
-この処理により、WEBアプリがコントラクトからデータを読み込んでいる間は、ローディングマークが表示されます。
+この処理により、Web アプリケーションがコントラクトからデータを読み込んでいる間は、ローディングマークが表示されます。
 
-次に、`checkIfWalletIsConnected` に下記のように更新して、フロントエンドがユーザーがMetaMaskを持っているか確認している際に、ローディングマークを表示させましょう。
+次に、`checkIfWalletIsConnected` に下記のように更新して、フロントエンドがユーザーが MetaMask を持っているか確認している際に、ローディングマークを表示させましょう。
 
 ```javascript
 // Actions
 // ユーザーがMetaMaskを持っているか確認します。
 const checkIfWalletIsConnected = async () => {
-    try {
-      const { ethereum } = window;
-      if (!ethereum) {
-        console.log('Make sure you have MetaMask!');
+  try {
+    const { ethereum } = window;
+    if (!ethereum) {
+      console.log("Make sure you have MetaMask!");
 
-        // 次の行でreturnを使用するため、ここでisLoadingを設定します。
-        setIsLoading(false);
-        return;
+      // 次の行でreturnを使用するため、ここでisLoadingを設定します。
+      setIsLoading(false);
+      return;
+    } else {
+      console.log("We have the ethereum object", ethereum);
 
+      // accountsにWEBサイトを訪れたユーザーのウォレットアカウントを格納します。
+      // （複数持っている場合も加味、よって account's' と変数を定義している）
+      const accounts = await ethereum.request({ method: "eth_accounts" });
+
+      // もしアカウントが一つでも存在したら、以下を実行。
+      if (accounts.length !== 0) {
+        // accountという変数にユーザーの1つ目（=Javascriptでいう0番目）のアドレスを格納
+        const account = accounts[0];
+        console.log("Found an authorized account:", account);
+
+        // currentAccountにユーザーのアカウントアドレスを格納
+        setCurrentAccount(account);
       } else {
-
-        console.log('We have the ethereum object', ethereum);
-
-        // accountsにWEBサイトを訪れたユーザーのウォレットアカウントを格納します。
-        // （複数持っている場合も加味、よって account's' と変数を定義している）
-        const accounts = await ethereum.request({ method: 'eth_accounts' });
-
-        // もしアカウントが一つでも存在したら、以下を実行。
-        if (accounts.length !== 0) {
-
-          // accountという変数にユーザーの1つ目（=Javascriptでいう0番目）のアドレスを格納
-          const account = accounts[0];
-          console.log('Found an authorized account:', account);
-
-          // currentAccountにユーザーのアカウントアドレスを格納
-          setCurrentAccount(account);
-        } else {
-          console.log('No authorized account found');
-        }
-
+        console.log("No authorized account found");
       }
-    } catch (error) {
-      console.log(error);
     }
-    //すべての関数ロジックの後に、state プロパティを解放します。
-    setIsLoading(false);
+  } catch (error) {
+    console.log(error);
+  }
+  //すべての関数ロジックの後に、state プロパティを解放します。
+  setIsLoading(false);
 };
 ```
+
 ### 🔁 `SelectCharacter` コンポーネントにローディングマークを追加する
 
-二つ目のケース、「ユーザーが NFT キャラクターを Mint するのをフロントエンドが待機している状況」で、WEBアプリにローディングマークを表示していきましょう。
-
+2 つ目のケース、「ユーザーが NFT キャラクターを Mint するのをフロントエンドが待機している状況」で、Web アプリケーションにローディングマークを表示していきましょう。
 
 まず、`nft-game-starter-project/src/Components/SelectCharacter/index.js` の先頭に、下記を追加しましょう。
 
 ```javascript
 // SelectCharacter/index.js
-import LoadingIndicator from '../../Components/LoadingIndicator';
+import LoadingIndicator from "../../Components/LoadingIndicator";
 ```
 
 次に、`SelectCharacter/index.js` の中に記載された `const [gameContract, setGameContract] = useState(null);` の直下に、`const [mintingCharacter, setMintingCharacter] = useState(false);` を追加しましょう。
@@ -157,7 +154,7 @@ const [mintingCharacter, setMintingCharacter] = useState(false);
 
 ここでは、`App.js` で `isLoading` を初期化した時と同様に、 NFT の Minting 状態を保存する `mintingCharacter` という状態変数を初期化しています。
 
-次に、`mintCharacterNFTAction` の中に、`setMintingCharacter` を3つ設置していきます。
+次に、`mintCharacterNFTAction` の中に、`setMintingCharacter` を 3 つ設置していきます。
 
 - 下記を参考にしてください。
 
@@ -165,23 +162,23 @@ const [mintingCharacter, setMintingCharacter] = useState(false);
 // SelectCharacter/index.js
 // NFT を Mint します。
 const mintCharacterNFTAction = (characterId) => async () => {
-	try {
-		if (gameContract) {
-		// Mint が開始されたら、ローディングマークを表示する。
-		setMintingCharacter(true);
+  try {
+    if (gameContract) {
+      // Mint が開始されたら、ローディングマークを表示する。
+      setMintingCharacter(true);
 
-		console.log('Minting character in progress...');
-		const mintTxn = await gameContract.mintCharacterNFT(characterId);
-		await mintTxn.wait();
-		console.log('mintTxn:', mintTxn);
-		// Mint が終了したら、ローディングマークを消す。
-		setMintingCharacter(false);
-		}
-	} catch (error) {
-		console.warn('MintCharacterAction Error:', error);
-		// エラーが発生した場合も、ローディングマークを消す。
-		setMintingCharacter(false);
-	}
+      console.log("Minting character in progress...");
+      const mintTxn = await gameContract.mintCharacterNFT(characterId);
+      await mintTxn.wait();
+      console.log("mintTxn:", mintTxn);
+      // Mint が終了したら、ローディングマークを消す。
+      setMintingCharacter(false);
+    }
+  } catch (error) {
+    console.warn("MintCharacterAction Error:", error);
+    // エラーが発生した場合も、ローディングマークを消す。
+    setMintingCharacter(false);
+  }
 };
 ```
 
@@ -193,7 +190,7 @@ const mintCharacterNFTAction = (characterId) => async () => {
 // SelectCharacter/index.js
 return (
   <div className="select-character-container">
-	<h2>⏬ 一緒に戦う NFT キャラクターを選択 ⏬</h2>
+    <h2>⏬ 一緒に戦う NFT キャラクターを選択 ⏬</h2>
     {characters.length > 0 && (
       <div className="character-grid">{renderCharacters()}</div>
     )}
@@ -210,7 +207,7 @@ return (
 );
 ```
 
-`SelectCharacter.css` にも下記のCSSを追加しましょう。
+`SelectCharacter.css` にも下記の CSS を追加しましょう。
 
 - `nft-game-starter-project/src/Components/SelectCharacter` フォルダの中に `SelectCharacter.css` が格納されています。
 
@@ -239,24 +236,25 @@ return (
 上記の実装はフロントエンドに下記のように反映されます。
 
 ![](/public/images/3-ETH-NFT-game/section-4/4_1_1.png)
+
 ### 🔁 `Arena` コンポーネントにローディングマークを追加する
 
-三つ目のケース、「攻撃が終了するのをフロントエンドが待機している状況」で、WEBアプリにローディングマークを表示していきましょう。
-
+3 つ目のケース、「攻撃が終了するのをフロントエンドが待機している状況」で、Web アプリケーションにローディングマークを表示していきましょう。
 
 まず、`nft-game-starter-project/src/Components/Arena/index.js` の先頭に、下記を追加しましょう。
 
 ```javascript
 // Arena/index.js
-import LoadingIndicator from '../LoadingIndicator';
+import LoadingIndicator from "../LoadingIndicator";
 ```
 
 次に、`Arena/index.js` に記載されている `return();` の中身に着目し、`{boss ..}` の中身を下記のように更新してください。
 
 ```javascript
-  {boss && (
+{
+  boss && (
     <div className="boss-container">
-	  {/* attackState 追加します */}
+      {/* attackState 追加します */}
       <div className={`boss-content  ${attackState}`}>
         <h2>🔥 {boss.name} 🔥</h2>
         <div className="image-content">
@@ -273,17 +271,18 @@ import LoadingIndicator from '../LoadingIndicator';
         </button>
       </div>
       {/* Attack ボタンの下にローディングマークを追加します*/}
-      {attackState === 'attacking' && (
+      {attackState === "attacking" && (
         <div className="loading-indicator">
           <LoadingIndicator />
           <p>Attacking ⚔️</p>
         </div>
       )}
     </div>
-  )}
+  );
+}
 ```
 
-最後に、下記のCSSを、`Arena.css` ファイルに追加してください。
+最後に、下記の CSS を、`Arena.css` ファイルに追加してください。
 
 - `nft-game-starter-project/src/Components/Arena` フォルダの中に `Arena.css` が格納されています。
 
@@ -301,14 +300,15 @@ import LoadingIndicator from '../LoadingIndicator';
 }
 ```
 
-上記のコードを実装したら、WEBアプリを確認してみましょう。
+上記のコードを実装したら、Web アプリケーションを確認してみましょう。
 
-ローディングマークが `Arena` ページに表示されているでしょうか？✨
+ローディングマークが `Arena` ページに表示されているでしょうか？　 ✨
+
 ### 🚨 `Arena` ページに攻撃アラートを追加する
 
 最後に、ボスに与えたダメージをフロントエンド上に表示するコードを実装していきましょう。
 
-まず、下記のCSSを `Arena.css`  ファイルに追加しましょう。
+まず、下記の CSS を `Arena.css` ファイルに追加しましょう。
 
 ```css
 /* nft-game-starter-project/src/Components/Arena/Arena.css */
@@ -445,7 +445,7 @@ return (
   <div className="arena-container">
     {/* 攻撃ダメージの通知を追加します */}
     {boss && characterNFT && (
-      <div id="toast" className={showToast ? 'show' : ''}>
+      <div id="toast" className={showToast ? "show" : ""}>
         <div id="desc">{`💥 ${boss.name} was hit for ${characterNFT.attackDamage}!`}</div>
       </div>
     )}
@@ -467,8 +467,8 @@ return (
             {`💥 Attack ${boss.name}`}
           </button>
         </div>
-		{/* Attack ボタンの下にローディングマークを追加します*/}
-        {attackState === 'attacking' && (
+        {/* Attack ボタンの下にローディングマークを追加します*/}
+        {attackState === "attacking" && (
           <div className="loading-indicator">
             <LoadingIndicator />
             <p>Attacking ⚔️</p>
@@ -476,7 +476,7 @@ return (
         )}
       </div>
     )}
-	{/* NFT キャラクター をレンダリングします*/}
+    {/* NFT キャラクター をレンダリングします*/}
     {characterNFT && (
       <div className="players-container">
         <div className="player-container">
@@ -541,49 +541,52 @@ const [showToast, setShowToast] = useState(false);
 // Arena/index.js
 const runAttackAction = async () => {
   try {
-	// コントラクトが呼び出されたことを確認します。
-	if (gameContract) {
-	  // attackState の状態を attacking に設定します。
-	  setAttackState('attacking');
-	  console.log('Attacking boss...');
+    // コントラクトが呼び出されたことを確認します。
+    if (gameContract) {
+      // attackState の状態を attacking に設定します。
+      setAttackState("attacking");
+      console.log("Attacking boss...");
 
-	  // NFT キャラクターがボスを攻撃します。
-	  const attackTxn = await gameContract.attackBoss();
+      // NFT キャラクターがボスを攻撃します。
+      const attackTxn = await gameContract.attackBoss();
 
-	  // トランザクションがマイニングされるまで待ちます。
-	  await attackTxn.wait();
-	  console.log('attackTxn:', attackTxn);
+      // トランザクションがマイニングされるまで待ちます。
+      await attackTxn.wait();
+      console.log("attackTxn:", attackTxn);
 
-	  // attackState の状態を hit に設定します。
-	  setAttackState('hit');
+      // attackState の状態を hit に設定します。
+      setAttackState("hit");
 
       // 攻撃ダメージの表示をtrueに設定し（表示）、5秒後にfalseに設定する（非表示）
       setShowToast(true);
       setTimeout(() => {
         setShowToast(false);
       }, 5000);
-
     }
   } catch (error) {
-    console.error('Error attacking boss:', error);
-    setAttackState('');
+    console.error("Error attacking boss:", error);
+    setAttackState("");
   }
 };
 ```
 
-ここでは、`setTimeout` を使用して、攻撃メッセージを5秒間表示した後に、非表示にするロジックを追加しています。
+ここでは、`setTimeout` を使用して、攻撃メッセージを 5 秒間表示した後に、非表示にするロジックを追加しています。
 
-上記の実装が成功した場合、WEBアプリ上でボスを攻撃すると、下記のような攻撃ダメージが表示されます✨
+上記の実装が成功した場合、Web アプリケーション上でボスを攻撃すると、下記のような攻撃ダメージが表示されます ✨
+
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの `#section-4` で質問してください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#section-4` で質問してください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+
 ```
 1. 質問が関連しているセクション番号とレッスン番号
 2. 何をしようとしていたか
 3. エラー文をコピー&ペースト
 4. エラー画面のスクリーンショット
 ```
+
 ---
-次のレッスンに進んで、WEBアプリを Vercel にデプロイしましょう🎉
+
+次のレッスンに進んで、Web アプリケーションを Vercel にデプロイしましょう 🎉
