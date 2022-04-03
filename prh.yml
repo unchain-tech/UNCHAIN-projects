@@ -8,6 +8,7 @@ rules:
   - expected: チェーン
     pattern: チェイン
   - expected: Web3
+  - expected: dApps
   - expected: キャラクター
     pattern: /キャラクタ(?!ー)/
     specs:
