@@ -34,7 +34,7 @@
     sentence-splitter "^3.0.11"
     textlint-rule-helper "2.0.1"
 
-"@textlint/ast-node-types@^12.1.1":
+"@textlint/ast-node-types@^12.0.0", "@textlint/ast-node-types@^12.1.1":
   version "12.1.1"
   resolved "https://registry.yarnpkg.com/@textlint/ast-node-types/-/ast-node-types-12.1.1.tgz#189cdc932a50b9dd14b6829848408c22bb72f976"
   integrity sha512-5/XK9S1177UYetOY6407o1RDuNVndaYfuzsZwhmo52V367s4ZuUD2064WhbmCd6TPyKD4dVr2zoWjfNDfzUZQg==
@@ -79,6 +79,11 @@
     strip-ansi "^6.0.1"
     text-table "^0.2.0"
     try-resolve "^1.0.1"
+
+"@textlint/get-config-base-dir@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@textlint/get-config-base-dir/-/get-config-base-dir-2.0.0.tgz#3d0e862e1dd67cf8286ca52f8bd911e10dca2941"
+  integrity sha512-J3cG1pl2llYD4ZaZMe0qVgVaHT8RvT+/SW1FHQ8HRceNalMM9O0Y8iIgtl4GGOx4vMghoIPKFVLASw8P8bJ3ZA==
 
 "@textlint/kernel@^12.1.1":
   version "12.1.1"
@@ -291,6 +296,11 @@ argparse@^1.0.7:
   integrity sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg==
   dependencies:
     sprintf-js "~1.0.2"
+
+argparse@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/argparse/-/argparse-2.0.1.tgz#246f50f3ca78a3240f6c997e8a9bd1eac49e4b38"
+  integrity sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==
 
 array.prototype.find@^2.0.3:
   version "2.1.2"
@@ -990,6 +1000,13 @@ js-yaml@^3.12.0, js-yaml@^3.14.1, js-yaml@^3.9.1:
   dependencies:
     argparse "^1.0.7"
     esprima "^4.0.0"
+
+js-yaml@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-4.1.0.tgz#c1fb65f8f5017901cdd2c951864ba18458a10602"
+  integrity sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==
+  dependencies:
+    argparse "^2.0.1"
 
 json-parse-better-errors@^1.0.1:
   version "1.0.2"
@@ -1873,6 +1890,21 @@ text-table@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=
+
+textlint-filter-rule-allowlist@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/textlint-filter-rule-allowlist/-/textlint-filter-rule-allowlist-4.0.0.tgz#44b62a3bf7f0586daeca6d14c2c6332b164cc6af"
+  integrity sha512-rOlWr12sff9ZS8mOtRACPB3l1yK0oW21Owz8XsTAgFWmRhOnBbCKw8tKMDm6EtQHO92SOfyJmT4nowxiJ85Qiw==
+  dependencies:
+    "@textlint/ast-node-types" "^12.0.0"
+    "@textlint/get-config-base-dir" "^2.0.0"
+    "@textlint/regexp-string-matcher" "^1.1.0"
+    js-yaml "^4.1.0"
+
+textlint-filter-rule-comments@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/textlint-filter-rule-comments/-/textlint-filter-rule-comments-1.2.2.tgz#3a72c494994e068e0e4aaad0f24ea7cfe338503a"
+  integrity sha1-OnLElJlOBo4OSqrQ8k6nz+M4UDo=
 
 textlint-rule-helper@2.0.1:
   version "2.0.1"

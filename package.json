@@ -9,6 +9,9 @@
   },
   "devDependencies": {
     "textlint": "^12.1.1",
+    "textlint-filter-rule-allowlist": "^4.0.0",
+    "textlint-filter-rule-comments": "^1.2.2",
+    "textlint-rule-ja-no-mixed-period": "^2.1.1",
     "textlint-rule-preset-ja-spacing": "^2.2.0",
     "textlint-rule-preset-ja-technical-writing": "^7.0.0",
     "textlint-rule-preset-japanese": "^7.0.0",
