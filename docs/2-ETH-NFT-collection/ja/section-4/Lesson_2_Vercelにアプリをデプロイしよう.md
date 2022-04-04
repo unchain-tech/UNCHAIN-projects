@@ -1,6 +1,6 @@
-### 🙉 Githubに 関する注意点
+### 🙉 GitHub に 関する注意点
 
-**Githubにコントラクト（ `epic-nfts` ）のコードをアップロードする際は、秘密鍵を含むハードハット構成ファイルをリポジトリにアップロードしないよう注意しましょう。**
+**GitHub にコントラクト（ `epic-nfts`）のコードをアップロードする際は、秘密鍵を含むハードハット構成ファイルをリポジトリにアップロードしないよう注意しましょう。**
 
 秘密鍵などのファイルを隠すために、ターミナルで `epic-nfts` に移動して、下記を実行してください。
 
@@ -19,14 +19,16 @@ npm install --save dotenv
 操作されては困るファイルについては、このように「不可視」の属性を持たせて、一般の人が触れられないようにします。
 
 ターミナル上で `epic-nfts` ディレクトリにいることを確認し、下記を実行しましょう。VS Code から `.env` ファイルを開きます。
+
 ```
 code .env
 ```
+
 そして、`.env` ファイルを下記のように更新します。
 
 ```
-PRIVATE_KEY = hardhad.config.jsにある秘密鍵（accounts）を貼り付ける
-STAGING_ALCHEMY_KEY = hardhad.config.js内にあるAlchemyのyURLを貼り付ける
+PRIVATE_KEY = hardhat.config.jsにある秘密鍵（accounts）を貼り付ける
+STAGING_ALCHEMY_KEY = hardhat.config.js内にあるAlchemyのyURLを貼り付ける
 PROD_ALCHEMY_KEY = イーサリアムメインネットにデプロイする際に使用するAlchemyのURLを貼り付ける（今は何も貼り付ける必要はありません）
 ```
 
@@ -60,6 +62,7 @@ module.exports = {
   },
 };
 ```
+
 最後に ` .gitignore` に `.env` が含まれていることを確認しましょう。
 
 `cat .gitignore` をターミナル上で実行します。
@@ -78,7 +81,8 @@ cache
 artifacts
 ```
 
-これで、Github にあなたの秘密鍵をアップロードせずに、Github にコントラクトのコードをアップロードすることができます。
+これで、GitHub にあなたの秘密鍵をアップロードせずに、GitHub にコントラクトのコードをアップロードできます。
+
 ### 🌎 IPFS について
 
 [IPFS](https://docs.ipfs.io/concepts/what-is-ipfs/) は誰にも所有されていない分散型データストレージシステムです。
@@ -90,18 +94,19 @@ artifacts
 
 [Pinata](https://www.pinata.cloud/) というサービスを使用すると、簡単に画像や動画を NFT にできます。
 
-- NFTは、いくつかのメタデータにリンクする単なるJSONファイルであることを思い出してください💡
+- NFT は、いくつかのメタデータにリンクする単なる JSON ファイルであることを思い出してください 💡
 
-- このJSONファイルを IPFS に配置できます。
+- この JSON ファイルを IPFS に配置できます。
 
 **NFT データを保存する一般的な方法として、多くの人が IPSF を利用しています。**
+
 ### 📝 Etherscan を使ってコントラクトを verify（検証）する
 
 Etherscan の **コントラクトの Verification（検証）** を行いましょう。
 
-この機能を使えば、あなたの Solidity プログラムを世界中の人に公開することができます。
+この機能を使えば、あなたの Solidity プログラムを世界中の人に公開できます。
 
-また、あなたも他の人の書いたコードを読むことができます。
+また、あなたもほかの人の書いたコードを読むことができます。
 
 まず、Etherscan のアカウントを取得して、`apiKey` を取得しましょう。
 
@@ -139,16 +144,16 @@ npm install @nomiclabs/hardhat-etherscan
 require("@nomiclabs/hardhat-etherscan");
 
 module.exports = {
-solidity: '0.8.4',
-etherscan: {
-apiKey: "Your_Etherscan_apiKey",
-},
-networks: {
-	rinkeby: {
-	url: 'Your_Alchemy_API_Key',
-	accounts: ['Your_Private_Key'],
-	},
-},
+  solidity: "0.8.4",
+  etherscan: {
+    apiKey: "Your_Etherscan_apiKey",
+  },
+  networks: {
+    rinkeby: {
+      url: "Your_Alchemy_API_Key",
+      accounts: ["Your_Private_Key"],
+    },
+  },
 };
 ```
 
@@ -170,56 +175,57 @@ Successfully verified contract MyEpicNFT on Etherscan.
 https://rinkeby.etherscan.io/address/0xB3340071dc206d09170a7269331155ff1BeE64de#code
 ```
 
-出力された URLリンク をブラウザに貼り付け、中身を確認してみましょう。
+出力された URL リンクをブラウザに貼り付け、中身を確認してみましょう。
 
-わたしの [URLリンク](https://rinkeby.etherscan.io/address/0xB3340071dc206d09170a7269331155ff1BeE64de#code) の中身は下記のように表示されます。
+私の [URL リンク](https://rinkeby.etherscan.io/address/0xB3340071dc206d09170a7269331155ff1BeE64de#code) の中身は下記のように表示されます。
 
 ![](/public/images/2-ETH-NFT-collection/section-4/4_2_6.png)
 
-Etherscanで **Contract** タブを選択すると、下図のような `0x608060405234801 ...` で始まる長いテキストのリストが表示されます。
+Etherscan で **Contract** タブを選択すると、下図のような `0x608060405234801 ...` で始まる長いテキストのリストが表示されます。
 
 ![](/public/images/2-ETH-NFT-collection/section-4/4_2_12.png)
 
 実は、このテキストのリストは、デプロイされたコントラクトのバイトコードです。
+
 - バイトコードに関する詳しい説明は、[こちら](https://e-words.jp/w/%E3%83%90%E3%82%A4%E3%83%88%E3%82%B3%E3%83%BC%E3%83%89.html) をご覧ください。
 
-`Read Contract` と `Write Contract` の2つのサブタブが追加されたことを確認してださい。これらの機能を使えば、コントラクトをオンチェーンで簡単に操作することができます。フロントエンドが無くても、コントラクトから直接関数を呼び出せるので、便利ですね😊
+`Read Contract` と `Write Contract` の 2 つのサブタブが追加されたことを確認してださい。これらの機能を使えば、コントラクトをオンチェーンで簡単に操作できます。フロントエンドがなくても、コントラクトから直接関数を呼び出せるので、便利ですね 😊
 
 ![](/public/images/2-ETH-NFT-collection/section-4/4_2_11.png)
 
-
-おめでとうございます！これで、あなたのスマートコントラクトが世界中の誰でも見れるようになりました🚀
+おめでとうございます！　これで、あなたのスマートコントラクトが世界中の誰でも見られるようになりました 🚀
 
 ### 🔮 プロジェクトを拡張する
 
-このプロジェクトで学んだことは、web3 への旅の始まりに過ぎません。
+このプロジェクトで学んだことは、Web3 への旅の始まりに過ぎません。
 
-NFT とスマートコントラクトでできることはたくさんあります。
+NFT とスマートコントラクトできることはたくさんあります。
 
 あなたのプロジェクトに拡張性を与えるインサイトをいくつか共有します。
 
-**🧞‍♂️: NFTを販売する**
+**🧞‍♂️: NFT を販売する**
 
-- NFT をユーザーが Mint する際に、あなたに ETH を支払う仕組みを実装しましょう。
+- NFT をユーザーが Mint する際に、あなたに ETH を支払うしくみを実装しましょう。
 
-- コントラクトに `payable` を追加したり、`require` を使用すれば、ユーザーが NFT を購入する際の最小金額を設定することができます。
+- コントラクトに `payable` を追加したり、`require` を使用すれば、ユーザーが NFT を購入する際の最小金額を設定できます。
 
 **🍁: ロイヤリティを追加する**
 
-- スマートコントラクトにロイヤリティを追加して、NFT が転売されるごとに、あなたに、一定の資金が振り込まれる仕組みを作りましょう。
+- スマートコントラクトにロイヤリティを追加して、NFT が転売されるごとに、あなたに、一定の資金が振り込まれるしくみを作りましょう。
 
-- 詳細については、こちらをご覧ください: [EIP-2981：NFT Royaly Standard ](https://eips.ethereum.org/EIPS/eip-2981)
-### 🤟 Vercel に WEBアプリをデプロイする
+- 詳細については、こちらをご覧ください: [EIP-2981：NFT Royally Standard ](https://eips.ethereum.org/EIPS/eip-2981)
 
-最後に、[Vercel](https://vercel.com/) にWEBアプリをホストする方法を学びます。
+### 🤟 Vercel に Web アプリケーションをデプロイする
+
+最後に、[Vercel](https://vercel.com/) に Web アプリケーションをホストする方法を学びます。
 
 Vercel はサーバレス機能のホスティングを提供するクラウドプラットフォームです。
 
-スケーリングやサーバーの監視は Vercel が行うため、開発者は Vercel へデプロイするだけでアプリケーションを公開・運用できます。
+スケーリングやサーバの監視は Vercel が行うため、開発者は Vercel へデプロイするだけでアプリケーションを公開・運用できます。
 
 Vercel に関する詳しい説明は、[こちら](https://zenn.dev/lollipop_onl/articles/eoz-vercel-pricing-2020)をご覧ください。
 
-まず、Github の `nft-collection-starter-project` にローカルファイルをアップロードしていきます。
+まず、GitHub の `nft-collection-starter-project` にローカルファイルをアップロードしていきます。
 
 ターミナル上で `nft-collection-starter-project` に移動して、下記を実行しましょう。
 
@@ -229,7 +235,7 @@ git commit -m "upload to github"
 git push
 ```
 
-次に、Github上の `nft-collection-starter-project` に、ローカル環境に存在する `nft-collection-starter-project` のファイルとディレクトリが反映されていることを確認してください。
+次に、GitHub 上の `nft-collection-starter-project` に、ローカル環境に存在する `nft-collection-starter-project` のファイルとディレクトリが反映されていることを確認してください。
 
 Vercel のアカウントを取得したら、下記を実行しましょう。
 
@@ -237,7 +243,7 @@ Vercel のアカウントを取得したら、下記を実行しましょう。
 
 ![](/public/images/2-ETH-NFT-collection/section-4/4_2_7.png)
 
-2\. `Import Git Repository` で自分のGithubアカウントを接続したら、`nft-collection-starter-project` を選択し、`Import` してください。
+2\. `Import Git Repository` で自分の GitHub アカウントを接続したら、`nft-collection-starter-project` を選択し、`Import` してください。
 
 ![](/public/images/2-ETH-NFT-collection/section-4/4_2_8.png)
 
@@ -249,7 +255,7 @@ Vercel のアカウントを取得したら、下記を実行しましょう。
 
 4\. `Deploy`ボタンを推しましょう。
 
-VercelはGithubと連動しているので、Githubが更新されるたびに自動でデプロイを行ってくれます。
+Vercel は GitHub と連動しているので、GitHub が更新されるたびに自動でデプロイを行ってくれます。
 
 下記のように、`Building` ログが出力されます。
 
@@ -257,39 +263,43 @@ VercelはGithubと連動しているので、Githubが更新されるたびに�
 
 ![](/public/images/2-ETH-NFT-collection/section-4/4_2_10.png)
 
-こちらが、今回のプロジェクトで作成されるWEBアプリのデモです。
+こちらが、今回のプロジェクトで作成される Web アプリケーションのデモです。
 
 https://nft-minter-jl0e7c9yw-yukis4san.vercel.app/
+
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの `#section-4` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#section-4` で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+
 ```
 1. 質問が関連しているセクション番号とレッスン番号
 2. 何をしようとしていたか
 3. エラー文をコピー&ペースト
 4. エラー画面のスクリーンショット
 ```
-### 🎫 NFTを取得しよう！
+
+### 🎫 NFT を取得しよう！
 
 NFT を取得する条件は、以下のようになります。
 
 1. MVP の機能がすべて実装されている（実装 OK）
 
-2. WEBアプリで MVP の機能が問題なく実行される（テスト OK）
+2. Web アプリケーションで MVP の機能が問題なく実行される（テスト OK）
 
 3. このページの最後にリンクされている Project Completion Form に記入する
 
-4. Discord の `🔥｜post-your-project` チャンネルに、あなたのWEBサイトをシェアしてください😉🎉 Discord に投稿する際に、追加実装した機能とその概要も教えていただけると幸いです！
+4. Discord の `🔥｜post-your-project` チャンネルに、あなたの Web サイトをシェアしてください 😉🎉 Discord に投稿する際に、追加実装した機能とその概要も教えていただけると幸いです！
 
-プロジェクトを完成させていただいた方には、NFT をお送りします。※ 現在準備中なので、今しばらくお待ちください！
+プロジェクトを完成させていただいた方には、NFT をお送りします。※ 現在準備中ですので、今しばらくお待ちください！
+
 ### 🎉 おつかれさまでした！
 
 あなたのオリジナルの NFT Collection が完成しました。
 
-あなたは、コントラクトをデプロイし、NFT が Mint できるWEBアプリを立ち上げました。
+あなたは、コントラクトをデプロイし、NFT が Mint できる Web アプリケーションを立ち上げました。
 
-これらは、分散型WEBアプリがより一般的になる社会の中で、世界を変える2つの重要なスキルです。
+これらは、分散型 Web アプリケーションがより一般的になる社会の中で、世界を変える 2 つの重要なスキルです。
 
-これからもweb3への旅をあなたが続けてくれることを願っています🚀
+これからも Web3 への旅をあなたが続けてくれることを願っています 🚀

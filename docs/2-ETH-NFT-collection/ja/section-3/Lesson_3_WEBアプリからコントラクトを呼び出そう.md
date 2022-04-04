@@ -1,11 +1,13 @@
-### ☘️ WEBアプリから NFT を Mint する
+### ☘️ Web アプリケーションから NFT を Mint する
 
-前回のレッスンでは、WEBアプリを立ち上げました。
+前回のレッスンでは、Web アプリケーションを立ち上げました。
 
-**これから、WEBアプリから `MyEpicNFT.sol` コントラクトにアクセスして、NFT を発行する `makeAnEpicNFT` 関数を呼び出していきましょう。**
+**これから、Web アプリケーションから `MyEpicNFT.sol` コントラクトにアクセスして、NFT を発行する `makeAnEpicNFT` 関数を呼び出していきましょう。**
+
 - 以前のレッスンで `makeAnEpicNFT` 関数は `MyEpicNFT.sol` に実装しました。
 
-まず、`App.js` の1行目に、下記のコードを追加してください。
+まず、`App.js` の 1 行目に、下記のコードを追加してください。
+
 ```javascript
 // App.js
 import { ethers } from "ethers";
@@ -15,39 +17,48 @@ import { ethers } from "ethers";
 
 次に、下記のコードを `App.js` の `connectWallet` 関数の下に `askContractToMintNft` 関数を追加してください。
 
-- フロントエンドに実装する `askContractToMintNft` 関数が、コントラクトとWEBサイトを連動させ、`makeAnEpicNFT` 関数を呼び出します。
+- フロントエンドに実装する `askContractToMintNft` 関数が、コントラクトと Web サイトを連動させ、`makeAnEpicNFT` 関数を呼び出します。
 
 ```javascript
 // App.js
 const askContractToMintNft = async () => {
-  const CONTRACT_ADDRESS = "ここに Rinkbey Test Network にデプロイしたコントラクトのアドレスを貼り付けてください";
+  const CONTRACT_ADDRESS =
+    "ここに Rinkeby Test Network にデプロイしたコントラクトのアドレスを貼り付けてください";
   try {
     const { ethereum } = window;
     if (ethereum) {
       const provider = new ethers.providers.Web3Provider(ethereum);
       const signer = provider.getSigner();
-      const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, myEpicNft.abi, signer);
-      console.log("Going to pop wallet now to pay gas...")
+      const connectedContract = new ethers.Contract(
+        CONTRACT_ADDRESS,
+        myEpicNft.abi,
+        signer
+      );
+      console.log("Going to pop wallet now to pay gas...");
       let nftTxn = await connectedContract.makeAnEpicNFT();
-      console.log("Mining...please wait.")
+      console.log("Mining...please wait.");
       await nftTxn.wait();
 
-      console.log(`Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`);
+      console.log(
+        `Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`
+      );
     } else {
       console.log("Ethereum object doesn't exist!");
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 ```
 
-1行ずつ、コードを見ていきましょう。
+1 行ずつ、コードを見ていきましょう。
 
 ```javascript
 // App.js
-const CONTRACT_ADDRESS = "ここに Rinkbey Test Network にデプロイしたコントラクトのアドレスを貼り付けてください";
+const CONTRACT_ADDRESS =
+  "ここに Rinkeby Test Network にデプロイしたコントラクトのアドレスを貼り付けてください";
 ```
+
 ここでは、コントラクトのアドレスを `CONTRACT_ADDRESS` に格納しています。
 
 **`epic-nfts` ディレクトリ上で、もう一度下記を実行し、コントラクトのアドレスを取得してください。**
@@ -57,6 +68,7 @@ npx hardhat run scripts/deploy.js --network rinkeby
 ```
 
 貼り付けるアドレスの例は、以下のようになります。
+
 ```
 Contract deployed to: 0x88a0e9c2F3939598c402eccb7Ae1612e45448C04
 ```
@@ -66,6 +78,7 @@ Contract deployed to: 0x88a0e9c2F3939598c402eccb7Ae1612e45448C04
 次に、追加されたコードを見ながら、新しい概念について学びましょう。
 
 I\. `provider`
+
 > ```javascript
 > // App.js
 > const provider = new ethers.providers.Web3Provider(ethereum);
@@ -77,26 +90,32 @@ I\. `provider`
 > `ethers` のライブラリにより `provider` のインスタンスを新規作成しています。
 
 II\. `signer`
+
 > ```javascript
 > // App.js
->const signer = provider.getSigner();
->```
+> const signer = provider.getSigner();
+> ```
 >
 > `signer` は、ユーザーのウォレットアドレスを抽象化したものです。
 >
-> `provider` を作成し、`provider.getSigner()` を呼び出すだけで、、ユーザーはウォレットアドレスを使用してトランザクションに署名し、そのデータをイーサリアムネットワークに送信することができます。
+> `provider` を作成し、`provider.getSigner()` を呼び出すだけで、ユーザーはウォレットアドレスを使用してトランザクションに署名し、そのデータをイーサリアムネットワークに送信することができます。
 >
 > `provider.getSigner()` は新しい `signer` インスタンスを返すので、それを使って署名付きトランザクションを送信することができます。
 
 III\. コントラクトインスタンス
+
 > ```javascript
 > // App.js
->  const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, myEpicNft.abi, signer);
+> const connectedContract = new ethers.Contract(
+>   CONTRACT_ADDRESS,
+>   myEpicNft.abi,
+>   signer
+> );
 > ```
 >
 > ここでは、**コントラクトへの接続を行っています。**
 >
->新しいコントラクトインスタンス（＝ `connectedContract` ）を作成するには、以下3つの変数を `ethers.Contract` 関数に渡す必要があります。
+> 新しいコントラクトインスタンス（＝ `connectedContract` ）を作成するには、以下 3 つの変数を `ethers.Contract` 関数に渡す必要があります。
 >
 > 1. `CONTRACT_ADDRESS`: コントラクトのデプロイ先のアドレス（ローカル、テストネット、またはイーサリアムメインネット）
 >
@@ -110,13 +129,13 @@ III\. コントラクトインスタンス
 >
 > 一方、`signer` を渡すと、そのインスタンスは**読み取りと書き込みの両方の機能を実行できるようになります**。
 >
-> ※ ABIについてはこのレッスンの終盤にて詳しく説明します。
+> ※ ABI についてはこのレッスンの終盤にて詳しく説明します。
 
 次に、下記のコードを見ていきましょう。
 
 ```javascript
 // App.js
-console.log("Going to pop wallet now to pay gas...")
+console.log("Going to pop wallet now to pay gas...");
 ```
 
 ここでは、`ethers.Contract` でコントラクトとの接続を行った後、承認が開始されることを通知しています。
@@ -126,10 +145,10 @@ console.log("Going to pop wallet now to pay gas...")
 ```javascript
 // App.js
 let nftTxn = await connectedContract.makeAnEpicNFT();
-console.log("Mining...please wait.")
+console.log("Mining...please wait.");
 ```
 
-ここでは、`makeAnEpicNFT` 関数をコントラクトから呼び出し、`await` を使用して、NFT の発行が承認（＝マイニング）されるまで、処理を止めています。
+ここでは、`makeAnEpicNFT` 関数をコントラクトから呼び出し、`await` を使用して、NFT の発行が承認（＝マイニング）されるまで、処理をやめています。
 
 `console.log` では、 NFT を発行するためのトランザクションが「承認中」であることを通知しています。
 
@@ -137,7 +156,9 @@ console.log("Mining...please wait.")
 
 ```javascript
 await nftTxn.wait();
-console.log(`Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`);
+console.log(
+  `Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`
+);
 ```
 
 承認が終わったら、`await nftTxn.wait()` が実行され、トランザクションの結果を取得します。コードが冗長に感じるかもしれませんが、大事な処理です。
@@ -166,10 +187,12 @@ return (
 `currentAccount === ""` は、`currentAccount` にユーザーのウォレットアドレスが紐づいているかどうか判定しています。
 
 条件付きレンダリングは、下記のように実行されます。
+
 ```javascript
 { currentAccount === "" ? ( currentAccount にアドレスが紐づいてなければ、A を実行 ) : ( currentAccount にアドレスが紐づいれば B を実行 )}
 ```
-`App.js` の場合、`A` ならばは、`renderNotConnectedContainer()` を実行し、`B` ならば、`Mint NFT` ボタンをフロントエンドに反映させています。
+
+`App.js` の場合、`A` 並ばは、`renderNotConnectedContainer()` を実行し、`B` ならば、`Mint NFT` ボタンをフロントエンドに反映させています。
 
 最後に、`onClick={null}` を `onClick={askContractToMintNft}` に変更することをお忘れなく！
 
@@ -179,7 +202,7 @@ return (
 npm run start
 ```
 
-ローカルサーバーで、WEBサイトが立ち上がり、下記のようなエラーがターミナルに出力されていれば、ここまでの実装は成功です。
+ローカルサーバで、Web サイトが立ち上がり、下記のようなエラーがターミナルに出力されていれば、ここまでの実装は成功です。
 
 ```plaintext
 Failed to compile.
@@ -190,15 +213,15 @@ src/App.js
 Search for the keywords to learn more about each error.
 ```
 
-これから、ABIファイルを取得して、`myEpicNft` 変数を定義していきます。
+これから、ABI ファイルを取得して、`myEpicNft` 変数を定義していきます。
 
-### 📂 ABIファイルを取得する
+### 📂 ABI ファイルを取得する
 
 ABI (Application Binary Interface) はコントラクトの取り扱い説明書のようなものです。
 
-WEBアプリがコントラクトと通信するために必要な情報が、ABIファイルに含まれています。
+Web アプリケーションがコントラクトと通信するために必要な情報が、ABI ファイルに含まれています。
 
-コントラクト一つ一つにユニークな ABI ファイルが紐づいており、その中には下記の情報が含まれています。
+コントラクト 1 つ 1 つにユニークな ABI ファイルが紐づいており、その中には下記の情報が含まれています。
 
 1. そのコントラクトに使用されている関数の名前
 
@@ -212,20 +235,21 @@ ABI ファイルは、コントラクトがコンパイルされた時に生成�
 
 `artifacts` ディレクトリの存在を確認してください。
 
-ABIファイルの中身は、`MyEpicNFT.json` というファイルに格納されいます。
+ABI ファイルの中身は、`MyEpicNFT.json` というファイルに格納されいます。
 
-下記を実行して、ABIファイルをコピーしましょう。
+下記を実行して、ABI ファイルをコピーしましょう。
 
 1\. ターミナル上で `epic-nfts` にいることを確認する（もしくは移動する）。
 
 2\. ターミナル上で下記を実行する。
+
 > ```
 > code artifacts/contracts/MyEpicNFT.sol/MyEpicNFT.json
 > ```
 
-3\. VS Codeで `MyEpicNFT.json` ファイルが開かれるので、中身を全てコピーしましょう。※ VS Codeのファインダーを使って、直接 `MyEpicNFT.json` を開くことも可能です。
+3\. VS Code で `MyEpicNFT.json` ファイルが開かれるので、中身をすべてコピーしましょう。※ VS Code のファインダーを使って、直接 `MyEpicNFT.json` を開くことも可能です。
 
-次に、下記を実行して、ABIファイルをWEBアプリから呼び出せるようにしましょう。
+次に、下記を実行して、ABI ファイルを Web アプリケーションから呼び出せるようにしましょう。
 
 1\. ターミナル上で `nft-collection-starter-project` にいることを確認する（もしくは移動する）。
 
@@ -233,58 +257,60 @@ ABIファイルの中身は、`MyEpicNFT.json` というファイルに格納さ
 
 > ```bash
 > mkdir src/utils
->```
+> ```
 
 3\. 下記を実行して、`utils` ディレクトリに `MyEpicNFT.json` ファイルを作成する。
 
->```bash
+> ```bash
 > touch src/utils/MyEpicNFT.json
->```
+> ```
 
 4\. 下記を実行して、`MyEpicNFT.json` ファイルを VS Code で開く。
 
->```bash
+> ```bash
 > code nft-collection-starter-project/src/utils/MyEpicNFT.json
->```
+> ```
 
 5\. **先ほどコピーした `epic-nfts/artifacts/contracts/MyEpicNFT.sol/MyEpicNFT.json` の中身を新しく作成した `nft-collection-starter-project/src/utils/MyEpicNFT.json` の中に貼り付けてください。**
 
 ABI ファイルの準備ができたので、`App.js` にインポートしましょう。
 
-下記を `App.js` の1行目に追加しましょう。
+下記を `App.js` の 1 行目に追加しましょう。
 
 ```javascript
-import myEpicNft from './utils/MyEpicNFT.json';
+import myEpicNft from "./utils/MyEpicNFT.json";
 ```
 
 ここでは、先ほど取得した、ABI ファイルを含む `MyEpicNFT.json` ファイルをインポートしています。
+
 ### 🥳 NFT を Mint する
 
-それでは、ターミナル上で`nft-collection-starter-project` ディレクトリに移動して下記を実行し、ローカル環境でWEBアプリをホストしてみましょう。
+それでは、ターミナル上で`nft-collection-starter-project` ディレクトリに移動して下記を実行し、ローカル環境で Web アプリケーションをホストしてみましょう。
 
 ```bash
 npm run start
 ```
 
-WEBアプリの `Mint NFT` ボタンを押して、下記のようなポップアップが立ち上がったら、`Confirm` を押してください。
+Web アプリケーションの `Mint NFT` ボタンを押して、下記のようなポップアップが立ち上がったら、`Confirm` を押してください。
 
 ![](/public/images/2-ETH-NFT-collection/section-3/3_3_1.png)
 
-ここで請求される少量の ETH（テストネットなので実際は偽 ETH ）は、通称**ガス代**と呼ばれます。
+ここで請求される少量の ETH（テストネットなので実際は偽 ETH）は、通称**ガス代**と呼ばれます。
 
-- ブロックチェーンは、AWS のようなクラウド上にデータを保存できるサーバーのようなものです。
+- ブロックチェーンは、AWS のようなクラウド上にデータを保存できるサーバのようなものです。
 
 - しかし、誰もそのデータを所有していません。
 
-- 世界中に、ブロックチェーン上にデータを保存する作業を行う「マイナー」と呼ばれる人々が存在します。この作業に対して、わたしたちは代金を支払います。
+- 世界中に、ブロックチェーン上にデータを保存する作業する「マイナー」と呼ばれる人々が存在します。この作業に対して、私たちは代金を支払います。
 
 - その代金が、**ガス代**です。
 
-- イーサリアムのブロックチェーン上にデータを書き込む際、わたしたちは代金として `$ETH` を「マイナー」に支払う必要があります。
+- イーサリアムのブロックチェーン上にデータを書き込む際、私たちは代金として `$ETH` を「マイナー」に支払う必要があります。
 
-WEBアプリ上で `Inspect` を選択して、`Console` を確認してみましょう。
+Web アプリケーション上で `Inspect` を選択して、`Console` を確認してみましょう。
 
 下記のような結果が出力されていれば、あなたの NFT は正常に Mint されています。
+
 ```
 Found an authorized account: 0x3a0a49fb3cf930e599f0fa7abe554dc18bd1f135
 currentAccount:  0x3a0a49fb3cf930e599f0fa7abe554dc18bd1f135
@@ -294,30 +320,32 @@ Mined, see transaction: https://rinkeby.etherscan.io/tx/0x5a08f3e66852b5c1833f3a
 ```
 
 `Console` に出力された `https://rinkeby.etherscan.io/...` のアドレスをクリックしてみましょう。
+
 - あなたの Rinkeby Test Network 上のトランザクションの履歴が参照できます。
 
 次に、[rinkeby.rarible.com](https://rinkeby.rarible.com/) にアクセスして、Mint した NFT があなたの Rinkeby Test Network のアドレスに紐づいているか確認してみましょう。
 
-`Console` に出力された `currentAccount:` に続く、`0x..` のアドレスを Rarible のWEBサイトに貼り付けて、結果が表示されたら、`Items` タブを選択してください
+`Console` に出力された `currentAccount:` に続く、`0x..` のアドレスを Rarible の Web サイトに貼り付けて、結果が表示されたら、`Items` タブを選択してください
 
 ![](/public/images/2-ETH-NFT-collection/section-3/3_3_2.png)
 
 上図のように、あなたが Mint した NFT があなたのアドレスと紐づいていることが確認できたら、このプロジェクトはほぼ完成です。
+
 ### 🚨 コントラクトを再びデプロイする際の注意点
 
-コントラクトの中身を更新する場合、必ず下記3つのステップを実行することを忘れないようにしましょう。
+コントラクトの中身を更新する場合、必ず下記 3 つのステップを実行することを忘れないようにしましょう。
 
 **1 \. 再度、コントラクトをデプロイする。**
 
- - `npx hardhat run scripts/deploy.js --network rinkeby` を実行する必要があります。
+- `npx hardhat run scripts/deploy.js --network rinkeby` を実行する必要があります。
 
-2 \. フロントエンド（ `App.js` ）の `CONTRACT_ADDRESS` を更新する。
+2 \. フロントエンド（`App.js`）の `CONTRACT_ADDRESS` を更新する。
 
-3 \. ABIファイルを更新する。
+3 \. ABI ファイルを更新する。
 
 - `epic-nfts/artifacts/contracts/MyEpicNFT.sol/MyEpicNFT.json` の中身を新しく作成する `nft-collection-starter-project/src/utils/MyEpicNFT.json` の中に貼り付ける必要があります。
 
-**コントラクトを更新する際、必ずこの3つのステップを実行してください。**
+**コントラクトを更新する際、必ずこの 3 つのステップを実行してください。**
 
 - 一度デプロイされたスマートコントラクトを変更することはできません。
 
@@ -328,24 +356,28 @@ Mined, see transaction: https://rinkeby.etherscan.io/tx/0x5a08f3e66852b5c1833f3a
 - **つまり、コントラクトのコードを更新したい場合、すべての NFT データが失われます。**
 
 上記の点に注意しながら、コントラクトの更新を行ってください。
+
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの`#section-3`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の`#section-3`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+
 ```
 1. 質問が関連しているセクション番号とレッスン番号
 2. 何をしようとしていたか
 3. エラー文をコピー&ペースト
 4. エラー画面のスクリーンショット
 ```
+
 ---
+
 おめでとうございます！
 
-NFT を Mint できる WEBアプリはほぼ完成です！
+NFT を Mint できる Web アプリケーションはほぼ完成です！
 
-Rarible のリンクを `#section-3` に貼り付けて、あなたの NFT をシェアしてください😊
+Rarible のリンクを `#section-3` に貼り付けて、あなたの NFT をシェアしてください 😊
 
-あなたの作った NFT がどんなものなのか気になります✨
+あなたの作った NFT がどんなものなのか気になります ✨
 
-次のレッスンに進みましょう🎉
+次のレッスンに進みましょう 🎉

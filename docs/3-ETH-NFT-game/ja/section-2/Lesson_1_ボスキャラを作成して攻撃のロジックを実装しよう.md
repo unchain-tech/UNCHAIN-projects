@@ -4,15 +4,15 @@
 
 このゲームのゴールは、**ボスを攻撃して、ボスの HP を 0 にすることです。**
 
-- ボスのHPは多く、ボスを攻撃するたびに反撃されるので、NFT キャラクターの HP は減ってしまいます。
+- ボスの HP は多く、ボスを攻撃するたびに反撃されるので、NFT キャラクターの HP は減ってしまいます。
 
-- NFT キャラクターの HP が 0 になると、ボスを攻撃することができなくなり、ゲームオーバーとなります。
+- NFT キャラクターの HP が 0 になると、ボスを攻撃できなくなり、ゲームオーバーとなります。
 
-- したがって、ボスを攻撃するためには他のプレイヤーが必要です。
+- したがって、ボスを攻撃するためにはほかのプレイヤーが必要です。
 
 - まず、ボスのデータを格納するための構造体を作り、キャラクターと同じようにデータを初期化しましょう。
 
-- ボスは、名前、画像、攻撃力、HPを持っています。
+- ボスは、名前、画像、攻撃力、HP を持っています。
 
 **ボスは NFT ではありません。**
 
@@ -69,10 +69,12 @@ constructor(
 ```javascript
 // run.js, deploy.js
 const gameContract = await gameContractFactory.deploy(
- ["ZORO", "NAMI", "USOPP"], // キャラクターの名前
- ["https://i.imgur.com/TZEhCTX.png",      // キャラクターの画像
-  "https://i.imgur.com/WVAaMPA.png",
-  "https://i.imgur.com/pCMZeiM.png"],
+  ["ZORO", "NAMI", "USOPP"], // キャラクターの名前
+  [
+    "https://i.imgur.com/TZEhCTX.png", // キャラクターの画像
+    "https://i.imgur.com/WVAaMPA.png",
+    "https://i.imgur.com/pCMZeiM.png",
+  ],
   [100, 200, 300],
   [100, 50, 25],
   "CROCODILE", // Bossの名前
@@ -84,16 +86,18 @@ const gameContract = await gameContractFactory.deploy(
 
 ボスには、クロコダイルの画像を設定しました。
 
-今回のゲームでは、ワンピースのサンプル画像を使用していますが、ぜひオリジナルキャラクターを選んであなただけのゲームを作成してみてください✨
+今回のゲームでは、ワンピースのサンプル画像を使用していますが、ぜひオリジナルキャラクターを選んであなただけのゲームを作成してみてください ✨
 
 [Imgur](https://imgur.com/) を使用して、あなたのボスをセットアップしてください！
 
-あなただけのオリジナルゲームを作りましょう✨
+あなただけのオリジナルゲームを作りましょう ✨
+
 ### 👾 プレイヤーの NFT キャラクターの属性を取得する。
 
 これから `attackBoss` という関数を作成して、`MyEpicGame.sol` に追加していきましょう。
 
 - `mintCharacterNFT` 関数のコードブロック直下に下記を追加してください。
+
 ```javascript
 // MyEpicGame.sol
 function attackBoss() public {
@@ -134,15 +138,16 @@ function attackBoss() public {
 }
 ```
 
-追加したコードを、5つの段階に分けて見ていきましょう。
+追加したコードを、5 つの段階に分けて見ていきましょう。
 
-**1️⃣ \. プレイヤーのNFTの状態を取得する**
+**1️⃣ \. プレイヤーの NFT の状態を取得する**
 
 まず、**プレイヤーの NFT キャラクターの状態を取得していきます。**
 
 プレイヤーの NFT キャラクターの状態に関するデータは `nftHolderAttributes` に格納されています。
 
 以前記述した下記のコードを覚えているでしょうか？
+
 ```javascript
 // MyEpicGame.sol
 
@@ -156,7 +161,7 @@ uint256 newItemId = _tokenIds.current();
 nftHolders[msg.sender] = newItemId;
 ```
 
-これらの処理により、`nftHolders` から ユーザーの `tokenId` を取得することができるようになりました。
+これらの処理により、`nftHolders` からユーザーの `tokenId` を取得できるようになりました。
 
 下記のコードブロックでは、`nftHolders` を使用しています。詳しく見ていきましょう。
 
@@ -180,7 +185,7 @@ uint256 nftTokenIdOfPlayer = nftHolders[msg.sender];
 
 ここでは、`nftHolders[msg.sender]` を使って、プレイヤーが所有する NFT の `tokenId` を取得し、`nftTokenIdOfPlayer` に格納しています。
 
-例えば、コレクションの 3 番目の NFT を Mint した場合、`nftHolders[msg.sender]` は `3` となります!
+たとえば、コレクションの 3 番目の NFT を Mint した場合、`nftHolders[msg.sender]` は `3` となります!
 
 次に、下記のコードを見ていきましょう。
 
@@ -202,7 +207,7 @@ CharacterAttributes storage player = nftHolderAttributes[nftTokenIdOfPlayer];
 >
 > これに対して、もし `storage` の代わりに `memory` を使用すると、関数のスコープ内に変数のローカルコピーが作成されます。
 >
->  `memory` を使用すれば、`player.hp = 0` とした場合でも、それは関数の中だけのことであり、ブロックチェーン上のデータが更新されることはありません。
+> `memory` を使用すれば、`player.hp = 0` とした場合でも、それは関数の中だけのことであり、ブロックチェーン上のデータが更新されることはありません。
 >
 > `storage` と `memory` に関する詳しい説明は、[こちら](https://tomokazu-kozuma.com/what-is-storage-and-memory-in-solidity/) を参照してください。
 
@@ -210,15 +215,24 @@ CharacterAttributes storage player = nftHolderAttributes[nftTokenIdOfPlayer];
 
 ```javascript
 // MyEpicGame.sol
-console.log("\nPlayer w/ character %s about to attack. Has %s HP and %s AD", player.name, player.hp, player.attackDamage);
-console.log("Boss %s has %s HP and %s AD", bigBoss.name, bigBoss.hp, bigBoss.attackDamage);
+console.log(
+  "\nPlayer w/ character %s about to attack. Has %s HP and %s AD",
+  player.name,
+  player.hp,
+  player.attackDamage
+);
+console.log(
+  "Boss %s has %s HP and %s AD",
+  bigBoss.name,
+  bigBoss.hp,
+  bigBoss.attackDamage
+);
 ```
 
 ここでは、下記をターミナルに出力しています。
 
-- 攻撃を開始する NFT キャラクターの名前（ `player.name` ）、HP値（ `player.hp` ）、攻撃力（ `player.attackDamage` ）をターミナルに出力しています。
-- ボスの名前（ `bigBoss.name` ）、HP値（ `bigBoss.hp` ）、攻撃力（ `bigBoss.attackDamage` ）をターミナルに出力しています。
-
+- 攻撃を開始する NFT キャラクターの名前（`player.name`）、HP 値（`player.hp`）、攻撃力（`player.attackDamage`）をターミナルに出力しています。
+- ボスの名前（`bigBoss.name`）、HP 値（`bigBoss.hp`）、攻撃力（`bigBoss.attackDamage`）をターミナルに出力しています。
 
 **2️⃣ \. プレイヤーの HP が 0 以上であることを確認する**
 
@@ -227,11 +241,9 @@ console.log("Boss %s has %s HP and %s AD", bigBoss.name, bigBoss.hp, bigBoss.att
 ```javascript
 // MyEpicGame.sol
 // 2. プレイヤーのHPが0以上であることを確認する。
-require (
-	player.hp > 0,
-	"Error: character must have HP to attack boss."
-);
+require(player.hp > 0, "Error: character must have HP to attack boss.");
 ```
+
 ここでは、`require` 関数を使用して、`player.hp > 0` であることを確認しています。
 
 NFT キャラクターの HP が 0 である場合は、攻撃できません。
@@ -245,25 +257,23 @@ require(
 	、処理実行前のコントラクトの状態に戻す
 );
 ```
+
 **3️⃣ \. ボスの HP が 0 以上であることを確認する**
 
 ステップ 2 と同じように、**ボスの HP も 0 以上であることを確認していきます。**
 
 ```javascript
 // 3. ボスのHPが0以上であることを確認する。
-require (
-	bigBoss.hp > 0,
-	"Error: boss must have HP to attack boss."
-);
+require(bigBoss.hp > 0, "Error: boss must have HP to attack boss.");
 ```
 
 ボスの HP が 0 の場合、NFT キャラクターはボスをこれ以上攻撃することはできません。
 
->⚠️: 注意
+> ⚠️: 注意
 >
 > VS Code を使用している場合、`"Function state mutability can be restricted to view"` という `warning` が表示されることがあります。
 >
-> ここでの `warning` は基本的に無視して大丈夫です😊
+> ここでの `warning` は基本的に無視して大丈夫です 😊
 
 **4️⃣ \. プレイヤーがボスを攻撃できるようにする**
 
@@ -273,16 +283,17 @@ require (
 // MyEpicGame.sol
 // 4. プレイヤーがボスを攻撃できるようにする。
 if (bigBoss.hp < player.attackDamage) {
-	bigBoss.hp = 0;
+  bigBoss.hp = 0;
 } else {
-	bigBoss.hp = bigBoss.hp - player.attackDamage;
+  bigBoss.hp = bigBoss.hp - player.attackDamage;
 }
 ```
+
 `if` / `else` 文のロジックは、下記のようになります。
 
-- `if` : もし、ボスの HP（ `bigBoss.hp` ）が NFT キャラクターの攻撃力 （ `player.attackDamage` ）を下回っていたら、ボスの HP を `0` に設定します。
+- `if` : もし、ボスの HP（`bigBoss.hp`）が NFT キャラクターの攻撃力（`player.attackDamage`）を下回っていたら、ボスの HP を `0` に設定します。
 
-- `else` : もし、ボスの HP（ `bigBoss.hp` ）が、NFT キャラクターの攻撃力 （ `player.attackDamage` ）を上回っていたら、ボスの HP を「現在のボスの HP」から「NFT キャラクターの攻撃力」を差し引いた値に更新します。
+- `else` : もし、ボスの HP（`bigBoss.hp`）が、NFT キャラクターの攻撃力（`player.attackDamage`）を上回っていたら、ボスの HP を「現在のボスの HP」から「NFT キャラクターの攻撃力」を差し引いた値に更新します。
 
 > ✍️: `uint` について
 > ここで使用されている変数（`bigBoss.hp` と `player.attackDamage`）は、`constructor` の中で `uint` として定義されています。
@@ -304,9 +315,9 @@ if (bigBoss.hp < player.attackDamage) {
 // MyEpicGame.sol
 // 5. ボスがプレイヤーを攻撃できるようにする。
 if (player.hp < bigBoss.attackDamage) {
-	player.hp = 0;
+  player.hp = 0;
 } else {
-	player.hp = player.hp - bigBoss.attackDamage;
+  player.hp = player.hp - bigBoss.attackDamage;
 }
 ```
 
@@ -327,7 +338,7 @@ console.log("Boss attacked player. New player hp: %s\n", player.hp);
 
 `run.js` に下記を追加して、`attackBoss` 関数のテストをしてみましょう。
 
-- `attackBoss` 関数のコードブロックを2回 `txn = await gameContract.mintCharacterNFT(2)` の直下に追加します。
+- `attackBoss` 関数のコードブロックを 2 回 `txn = await gameContract.mintCharacterNFT(2)` の直下に追加します。
 
 ```javascript
 // run.js
@@ -351,17 +362,18 @@ await txn.wait();
 txn = await gameContract.mintCharacterNFT(2);
 await txn.wait();
 ```
+
 ここではまず、インデックス `2` のキャラクターを作成しています。
 
 これは `constructor` に渡される配列の 3 番目のキャラクターです。
 
-- わたしのゲームの場合、3番目のキャラクターは「ウソップ」です。
+- 私のゲームの場合、3 番目のキャラクターは「ウソップ」です。
 
 - ゲーム内で「ウソップ」が「クロコダイル」を攻撃します。
 
-- 「ウソップ」は `run.js` を起動した際に、最初に Mint されるキャラクターなので、NFT の ID ( `tokenId` ) は、自動的に `1` になります。
+- 「ウソップ」は `run.js` を起動した際に、最初に Mint されるキャラクターですので、NFT の ID ( `tokenId` ) は、自動的に `1` になります。
 
-	> ⚠️: 通常 `_tokenIds` は 0 で始まりますが、`constructor` 内で `1` にインクリメントされるため、`tokenId` は `1` から始まります。
+  > ⚠️: 通常 `_tokenIds` は 0 で始まりますが、`constructor` 内で `1` にインクリメントされるため、`tokenId` は `1` から始まります。
 
 次に、下記のコードを見ていきましょう。
 
@@ -375,7 +387,8 @@ await txn.wait();
 txn = await gameContract.attackBoss();
 await txn.wait();
 ```
-ここでは、`attackBoss()` を2回実行しています。
+
+ここでは、`attackBoss()` を 2 回実行しています。
 
 それでは、`epic-game` ディレクトリ上で、下記を実行し、テストを行いましょう。
 
@@ -416,9 +429,9 @@ Player attacked boss. New boss hp: 9975
 Boss attacked player. New player hp: 250
 ```
 
-ここでは、ウソップがクロコダイルを `25` の攻撃力（ `AD` ）で攻撃して、クロコダイルの HP が `10000` から `9975` になりました。
+ここでは、ウソップがクロコダイルを `25` の攻撃力（`AD`）で攻撃して、クロコダイルの HP が `10000` から `9975` になりました。
 
-そして、クロコダイルはウソップに `50` の攻撃力（ `AD` ）で攻撃し、ウソップの HP は「300」から「250」に減少しました。
+そして、クロコダイルはウソップに `50` の攻撃力（`AD`）で攻撃し、ウソップの HP は「300」から「250」に減少しました。
 
 次に、2 回目の攻撃の結果を確認しましょう。
 
@@ -429,21 +442,25 @@ Player attacked boss. New boss hp: 9950
 Boss attacked player. New player hp: 200
 ```
 
-2回目の攻撃では、キャラクターとボスの両方に更新された HP 値が使用されているのがわかります。
+2 回目の攻撃では、キャラクターとボスの両方に更新された HP 値が使用されているのがわかります。
 
-これで、`attackBoss` 関数は完成です✨
+これで、`attackBoss` 関数は完成です ✨
 
 ゲームのロジックが完全にブロックチェーンに保存されました。
+
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの `#section-2` で質問してください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#section-2` で質問してください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+
 ```
 1. 質問が関連しているセクション番号とレッスン番号
 2. 何をしようとしていたか
 3. エラー文をコピー&ペースト
 4. エラー画面のスクリーンショット
 ```
+
 ---
-次のレッスンに進んで、テストネットに更新したコントラクトをデプロイしましょう🎉
+
+次のレッスンに進んで、テストネットに更新したコントラクトをデプロイしましょう 🎉

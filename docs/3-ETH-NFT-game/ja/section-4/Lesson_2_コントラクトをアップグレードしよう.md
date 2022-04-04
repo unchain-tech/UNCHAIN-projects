@@ -1,6 +1,6 @@
-### 🙉 Github に関する注意点
+### 🙉 GitHub に関する注意点
 
-**Githubにコントラクト（ `epic-game` ）のコードをアップロードする際は、秘密鍵を含むハードハット構成ファイルをリポジトリにアップロードしないよう注意しましょう**
+**GitHub にコントラクト（ `epic-game`）のコードをアップロードする際は、秘密鍵を含むハードハット構成ファイルをリポジトリにアップロードしないよう注意しましょう**
 
 秘密鍵などのファイルを隠すために、ターミナルで `epic-game` に移動して、下記を実行してください。
 
@@ -27,8 +27,8 @@ code .env
 そして、`.env` ファイルを下記のように更新します。
 
 ```
-PRIVATE_KEY = hardhad.config.jsにある秘密鍵（accounts）を貼り付ける
-STAGING_ALCHEMY_KEY = hardhad.config.js内にあるAlchemyのyURLを貼り付ける
+PRIVATE_KEY = hardhat.config.jsにある秘密鍵（accounts）を貼り付ける
+STAGING_ALCHEMY_KEY = hardhat.config.js内にあるAlchemyのyURLを貼り付ける
 PROD_ALCHEMY_KEY = イーサリアムメインネットにデプロイする際に使用するAlchemyのURLを貼り付ける（今は何も貼り付ける必要はありません）
 ```
 
@@ -68,6 +68,7 @@ module.exports = {
 `cat .gitignore` をターミナル上で実行します。
 
 下記のような結果が表示されていれば成功です。
+
 ```
 node_modules
 .env
@@ -80,12 +81,13 @@ cache
 artifacts
 ```
 
-これで、Github にあなたの秘密鍵をアップロードせずに、Github にコントラクトのコードをアップロードすることができます。
+これで、GitHub にあなたの秘密鍵をアップロードせずに、GitHub にコントラクトのコードをアップロードできます。
+
 ### 🌎 IPFS に 画像を保存する
 
 現在、NFT キャラクターとボスの画像は Imgur に保存されています。
 
-しかし、Imgar のサーバーがダウンしたり、終了してしまうと、それらの画像は永久に失われてしまうでしょう。
+しかし、Imgur のサーバがダウンしたり、終了してしまうと、それらの画像は永久に失われてしまうでしょう。
 
 このようなケースを避けるために、[IPSF](https://docs.ipfs.io/concepts/what-is-ipfs/) に画像を保存する方法を紹介します。
 
@@ -99,9 +101,9 @@ artifacts
 
 [Pinata](https://www.pinata.cloud/) というサービスを使用すると、簡単に画像や動画を NFT にできます。
 
-- NFTは、いくつかのメタデータにリンクする単なるJSONファイルであることを思い出してください💡
+- NFT は、いくつかのメタデータにリンクする単なる JSON ファイルであることを思い出してください 💡
 
-- このJSONファイルを IPFS に配置できます。
+- この JSON ファイルを IPFS に配置できます。
 
 [Pinata](https://www.pinata.cloud/) に向かい、アカウントを作成して、UI からキャラクターの画像ファイルをアップロードしてみましょう。
 
@@ -114,17 +116,18 @@ artifacts
 ![](/public/images/3-ETH-NFT-game/section-4/4_2_1.png)
 
 それでは、下記の `https` アドレスに、コピーした CID を貼り付け、ブラウザで中身を見てみましょう。
+
 ```
 https://cloudflare-ipfs.com/ipfs/あなたのCIDコードを貼り付けます
 ```
 
->⚠️: 注意
+> ⚠️: 注意
 >
 > IPFS がすでに組み込まれている **Brave Browser** を使用している場合は、下記のリンクをブラウザに貼り付けてください。
 >
->```
->ipfs://あなたのCIDコードを貼り付けます
->```
+> ```
+> ipfs://あなたのCIDコードを貼り付けます
+> ```
 
 下記のように、ブラウザにあなたの画像が表示されいることを確認してください。
 
@@ -136,18 +139,20 @@ https://cloudflare-ipfs.com/ipfs/あなたのCIDコードを貼り付けます
 // run.js
 // Hardhat がローカルの Ethereum ネットワークを、コントラクトのためだけに作成します。
 const gameContract = await gameContractFactory.deploy(
-	// キャラクターの名前
-	["ZORO", "NAMI", "USOPP"],
-	// キャラクターの画像を IPFS の CID に変更
-	["QmXxR67ryeUw4xppPLbF2vJmfj1TCGgzANfiEZPzByM5CT",
-	"QmPHX1R4QgvGQrZym5dpWzzopavyNX2WZaVGYzVQQ2QcQL",
-	"QmUGjB7oQLBZdCDNJp9V9ZdjsBECjwcneRhE7bHcs9HwxG"],
-	[100, 200, 300],
-	[100, 50, 25],
-	"CROCODILE", // Bossの名前
-	"https://i.imgur.com/BehawOh.png", // Bossの画像
-	10000, // Bossのhp
-	50 // Bossの攻撃力
+  // キャラクターの名前
+  ["ZORO", "NAMI", "USOPP"],
+  // キャラクターの画像を IPFS の CID に変更
+  [
+    "QmXxR67ryeUw4xppPLbF2vJmfj1TCGgzANfiEZPzByM5CT",
+    "QmPHX1R4QgvGQrZym5dpWzzopavyNX2WZaVGYzVQQ2QcQL",
+    "QmUGjB7oQLBZdCDNJp9V9ZdjsBECjwcneRhE7bHcs9HwxG",
+  ],
+  [100, 200, 300],
+  [100, 50, 25],
+  "CROCODILE", // Bossの名前
+  "https://i.imgur.com/BehawOh.png", // Bossの画像
+  10000, // Bossのhp
+  50 // Bossの攻撃力
 );
 ```
 
@@ -207,10 +212,7 @@ string memory json = Base64.encode(
 
 ```javascript
 // Arena/index.js
-<img
-	src={characterNFT.imageURI}
-	alt={`Character ${characterNFT.name}`}
-/>
+<img src={characterNFT.imageURI} alt={`Character ${characterNFT.name}`} />
 ```
 
 上記のコードを下記に更新してください。
@@ -218,15 +220,16 @@ string memory json = Base64.encode(
 ```javascript
 // Arena/index.js
 <img
-	src={`https://cloudflare-ipfs.com/ipfs/${characterNFT.imageURI}`}
-	alt={`Character ${characterNFT.name}`}
+  src={`https://cloudflare-ipfs.com/ipfs/${characterNFT.imageURI}`}
+  alt={`Character ${characterNFT.name}`}
 />
 ```
-### 🤩 WEBアプリをアップグレードする
 
-これであなたのWEBアプリ完成です！
+### 🤩 Web アプリケーションをアップグレードする
 
-ここからは、WEBアプリを好きにアップグレードしていきましょう。
+これであなたの Web アプリケーション完成です！
+
+ここからは、Web アプリケーションを好きにアップグレードしていきましょう。
 
 **🐸: ゲーム内に複数のプレイヤーを表示する**
 
@@ -236,28 +239,32 @@ string memory json = Base64.encode(
 
 - コントラクトを変更するために必要なすべての情報と、マルチプレイヤーを実現するための基盤はすでにあなたの手の中にあります。
 
-- コントラクトに、`getAllPlayers` 関数を作成し、それをWEBアプリから呼び出してみましょう。
+- コントラクトに、`getAllPlayers` 関数を作成し、それを Web アプリケーションから呼び出してみましょう。
 
 - データをレンダリングする方法もあなたにお任せします。
 
-**🐣: Twitter アカウントをWEBアプリに連携する**
+**🐣: Twitter アカウントを Web アプリケーションに連携する**
 
 `App.js` の下記をあなたの Twitter ハンドルに更新しましょう。
 
 ```javascript
 // App.js
-const TWITTER_HANDLE = 'あなたのTwitterハンドル';
+const TWITTER_HANDLE = "あなたのTwitterハンドル";
 ```
+
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの `#section-4` で質問してください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#section-4` で質問してください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+
 ```
 1. 質問が関連しているセクション番号とレッスン番号
 2. 何をしようとしていたか
 3. エラー文をコピー&ペースト
 4. エラー画面のスクリーンショット
 ```
+
 ---
-次のレッスンに進んで、プロジェクトの最後に IPSF に画像をアップロードしていきましょう🎉
+
+次のレッスンに進んで、プロジェクトの最後に IPSF に画像をアップロードしていきましょう 🎉

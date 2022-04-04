@@ -4,26 +4,27 @@
 
 Candy Machine v2 により、このプロセスが大幅に簡素化されました。
 
-1つのコマンドで、以下を実行できます。
+1 つのコマンドで、以下を実行できます。
 
-1\. NFTを [Arweave](https://www.arweave.org) (分散型ファイルストア)にアップロードし、Candy Machine の構成を初期化する
+1\. NFT を [Arweave](https://www.arweave.org) (分散型ファイルストア)にアップロードし、Candy Machine の構成を初期化する
 
 2\. Metaplex のコントラクトで Candy Machine を作成する
 
-3\. Candy Machine を、価格、番号、開始日、その他諸々の設定を実施する
+3\. Candy Machine を、価格、番号、開始日、そのほか諸々の設定を実施する
+
 ### 🔑 Solana キーペアの設定
 
 アップロードするためには、ローカルの Solana キーペアを設定する必要があります。
 
-※ 過去にこの作業を行ったことがある場合は、引き続き以下の手順に従ってください。
+※ 過去にこの作業したことがある場合は、引き続き以下の手順に従ってください。
 
 NFT を Solana にアップロードするためには、コマンドラインで作業するための「ローカルウォレット」が必要になります。
 
-ウォレットは基本的に公開鍵と秘密鍵の「キーペア」であり、ウォレットがなければ Solana と通信することはできません。
+ウォレットは基本的に公開鍵と秘密鍵の「キーペア」であり、ウォレットがなければ Solana と通信できません。
 
-これは以下のコマンドを実行することで可能です。
+これは以下のコマンドを実行できます。
 
-※パスフレーズの入力を求められたら、Enter キーを押して空にしておくといいでしょう。
+※パスフレーズの入力を求められたら、Enter キーを押して空にしておくとよいでしょう。
 
 ```txt
 solana-keygen new --outfile ~/.config/solana/devnet.json
@@ -53,7 +54,7 @@ solana balance
 
 `0SOL` と出力されます。
 
-SOL なしでは Solana にデータをデプロイすることはできません。
+SOL なしでは Solana にデータをデプロイできません。
 
 ブロックチェーンにデータを書き込むには、コストがかかります。
 
@@ -65,37 +66,38 @@ SOL なしでは Solana にデータをデプロイすることはできませ�
 solana airdrop 2
 ```
 
-もう一度 `solana balance` を実行して、2 SOLと表示されるはずです。
+もう一度 `solana balance` を実行して、2 SOL と表示されるはずです。
 
-※ 偽のSOLが不足した場合は、上記のコマンドを再度実行してください
+※ 偽の SOL が不足した場合は、上記のコマンドを再度実行してください
+
 ### 🎂 Candy Machine を構築する
 
 `Candy Machine` にどのような動作をさせるかを伝えるには、設定が必要です。`Candy MachineV2` はこれを簡単に行うことができます。
 
-プロジェクトのルートフォルダ（ `assets` フォルダと同じ場所）に `config.json` というファイルを作成し、以下の内容を追加します。
+プロジェクトのルートフォルダ（`assets` フォルダと同じ場所）に `config.json` というファイルを作成し、以下の内容を追加します。
 
 ```json
 {
-    "price": 0.1,
-    "number": 3,
-    "gatekeeper": null,
-    "solTreasuryAccount": "<YOUR WALLET ADDRESS>",
-    "splTokenAccount": null,
-    "splToken": null,
-    "goLiveDate": "05 Jan 2021 00:00:00 GMT",
-    "endSettings": null,
-    "whitelistMintSettings": null,
-    "hiddenSettings": null,
-    "storage": "arweave",
-    "ipfsInfuraProjectId": null,
-    "ipfsInfuraSecret": null,
-    "awsS3Bucket": null,
-    "noRetainAuthority": false,
-    "noMutable": false
+  "price": 0.1,
+  "number": 3,
+  "gatekeeper": null,
+  "solTreasuryAccount": "<YOUR WALLET ADDRESS>",
+  "splTokenAccount": null,
+  "splToken": null,
+  "goLiveDate": "05 Jan 2021 00:00:00 GMT",
+  "endSettings": null,
+  "whitelistMintSettings": null,
+  "hiddenSettings": null,
+  "storage": "arweave",
+  "ipfsInfuraProjectId": null,
+  "ipfsInfuraSecret": null,
+  "awsS3Bucket": null,
+  "noRetainAuthority": false,
+  "noMutable": false
 }
 ```
 
-最初は少し難しいと思うかもしれませんが、必要なのはこのうち5つだけです。残りのものは今のところ無視します。それでは必要な項目を見ていきましょう。
+最初は少し難しいかもしれませんが、必要なのはこのうち 5 つだけです。残りのものは今のところ無視します。それでは必要な項目を見ていきましょう。
 
 - `price`：各 NFT の価格
 
@@ -111,15 +113,15 @@ solana airdrop 2
 
 `solTreasuryAccount` にはあなたの Fantom Wallet のアドレスを入力しましょう。
 
-余談ですが、devnet には最大10個の NFT をデプロイできます。
+余談ですが、devnet には最大 10 個の NFT をデプロイできます。
 
-今回は NFT を3つしか上げないのですが、3つ以上あげたい場合は `number` の数字を変更してください。
+今回は NFT を 3 つしか上げないのですが、3 つ以上あげたい場合は `number` の数字を変更してください。
 
-### 🚀  NFT をアップロードし、Candy Machine を作成する
+### 🚀 NFT をアップロードし、Candy Machine を作成する
 
 次に、Metaplex の `upload` コマンドを使用して、`Assets` ディレクトリにある NFT をアップロードし、Candy Machine を作成します。この作業は一度に行われます。
 
-このコマンドは `assets` ディレクトリの1つ上の階層から実行する必要があります。
+このコマンドは `assets` ディレクトリの 1 つ上の階層から実行する必要があります。
 
 ※ ターミナルから `ls` を入力して、下記のようなディレクトリになっていれば大丈夫です。
 
@@ -138,12 +140,11 @@ ts-node ~/metaplex/js/packages/cli/src/candy-machine-v2-cli.ts upload -e devnet 
 
 - `assets` フォルダ内のすべての NFT ペアを取得する
 
--  Arweave に NFT をアップロードする
+- Arweave に NFT をアップロードする
 
 - これらの NFT へのポインタを保持する Candy Machine の config を初期化する
 
 - その config を Solana の devnet に保存
-
 
 このコマンドが実行されると、現在どの NFT がアップロードされているか、ターミナルに何らかの出力が表示されるはずです。
 
@@ -171,7 +172,7 @@ ended at: 2022-01-06T12:04:38.862Z. time taken: 00:00:43
 
 将来的に必要になるので、このアドレスを手元に置いておきましょう。
 
-ここで、NFTを変更して再度 `upload` を実行しても、実際には新しいものはアップロードされないことに気づくでしょう。
+ここで、NFT を変更して再度 `upload` を実行しても、実際には新しいものはアップロードされないことに気付くでしょう。
 
 ```txt
 ts-node ~/metaplex/js/packages/cli/src/candy-machine-v2-cli.ts upload -e devnet -k ~/.config/solana/devnet.json -cp config.json ./assets
@@ -184,7 +185,8 @@ ts-node ~/metaplex/js/packages/cli/src/candy-machine-v2-cli.ts upload -e devnet 
 これにより、Candy Machine 構成が初期化されます。
 
 コレクションを公開する前にコレクションに変更を加えたい場合は、必ずこれを行ってください。
-### ✅  NFTを確認する
+
+### ✅ NFT を確認する
 
 次に進む前に、下記 `verify` コマンドを実行して、NFT が実際にアップロードされたことを確認します。
 
@@ -201,31 +203,32 @@ uploaded (3) out of (3)
 ready to deploy!
 ```
 
-`/.cache/devnet-temp.json` ファイルを見ると、3つの Arweave リンクがあります。これらは NFT の格納先です。
+`/.cache/devnet-temp.json` ファイルを見ると、3 つの Arweave リンクがあります。これらは NFT の格納先です。
 
-Arweave リンクの1つをコピーしてブラウザに貼り付け、NFT のメタデータを確認してください。
+Arweave リンクの 1 つをコピーしてブラウザに貼り付け、NFT のメタデータを確認してください。
 
 Arweave はデータを**永続的に**保存します。
 
 これは、IPFS / Filecoin の世界とは大きく異なります。
 
-IPFS/ Filecoin では、ファイルを保持することを決定したノードに基づいてデータがピアツーピアで保存されます。
+IPFS / Filecoin では、ファイルを保持することを決定したノードにもとづいてデータがピアツーピアで保存されます。
 
 Arweave は一度支払うと、**永久に**保存します。
 
 Arweave では、ファイルの大きさに応じて、保存に必要なコストを見積もる[ アルゴリズム ](https://arwiki.wiki/#/en/storage-endowment#toc_Transaction_Pricing)を作成し、これを利用しています。
 
-[電卓](https://arweavefees.com/) を使って計算することもできます。たとえば1MBを永久に保存するには、約0.0083ドルの費用がかかります。悪くないですね。
+[電卓](https://arweavefees.com/) を使って計算もできます。たとえば 1MB を永久に保存するには、約 0.0083 ドルの費用がかかります。悪くないですね。
 
-「じゃあ、私のものをホストするのに誰がお金を払っているんだよ！」と疑問に思うかもしれませんが、[こちら](https://github.com/metaplex-foundation/metaplex/blob/59ab126e41e6d85b53c79ad7358964dadd12b5f4/js/packages/cli/src/helpers/upload/arweave.ts#L93 )のソースコードを見れば、今のところ Metaplex がお金を払ってくれていることがわかります。
+「じゃあ、私のものをホストするのに誰がお金を払っているんだよ！」と疑問に思うかもしれませんが、[こちら](https://github.com/metaplex-foundation/metaplex/blob/59ab126e41e6d85b53c79ad7358964dadd12b5f4/js/packages/cli/src/helpers/upload/arweave.ts#L93)のソースコードを見れば、今のところ Metaplex がお金を払ってくれていることがわかります。
 
-### 🔨 Candy Machineの構成を更新する
+### 🔨 Candy Machine の構成を更新する
 
-Candy Machineの構成を更新するには、`config.json` ファイルを更新して、次のコマンドを実行するだけです。
+Candy Machine の構成を更新するには、`config.json` ファイルを更新して、次のコマンドを実行するだけです。
 
 ```txt
 ts-node ~/metaplex/js/packages/cli/src/candy-machine-v2-cli.ts update_candy_machine -e devnet -k ~/.config/solana/devnet.json -cp config.json
 ```
+
 ### 😡 注意すべきエラー
 
 以下のようなエラーが発生した場合：
@@ -245,11 +248,13 @@ TypeError: Cannot read property 'candyMachineAddress' of undefined
 これは Candy Machine や NFT に関するデータが入った `.cache` フォルダにアクセスできないことを意味します。
 
 このエラーが発生した場合は、Candy Machine のコマンドを `.cache` フォルダと `assets` フォルダがある同じディレクトリから実行しているか確認してください。起こりがちなミスなので十分注意してください！
+
 ### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discord の `#section-2` で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+
 ```
 1. 質問が関連しているセクション番号とレッスン番号
 2. 何をしようとしていたか
@@ -258,10 +263,11 @@ TypeError: Cannot read property 'candyMachineAddress' of undefined
 ```
 
 ---
-おめでとうございます！セクション2は終了です！
+
+おめでとうございます！　セクション 2 は終了です！
 
 ぜひ、ターミナルの出力結果をコミュニティに投稿してください！
 
-あなたの成功をコミュニティで祝いましょう🎉
+あなたの成功をコミュニティで祝いましょう 🎉
 
-次のレッスンでは、WEBアプリから Candy Machine を呼び出していきます！
+次のレッスンでは、Web アプリケーションから Candy Machine を呼び出していきます！

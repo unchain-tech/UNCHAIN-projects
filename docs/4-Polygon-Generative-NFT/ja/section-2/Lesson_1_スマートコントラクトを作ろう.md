@@ -1,12 +1,12 @@
 ### ✨ Hardhat をインストールする
 
-これから、スマートコントラクトを作成して、ガス代と NFT の価格を支払えば、誰でも NFT コレクションが Mint できる仕組みを実装していきます。
+これから、スマートコントラクトを作成して、ガス代と NFT の価格を支払えば、誰でも NFT コレクションが Mint できるしくみを実装していきます。
 
-スマートコントラクトを素早くコンパイルし、ローカル環境でテストするために、**Hardhat** というツールを使用します。
+スマートコントラクトをすばやくコンパイルし、ローカル環境でテストするために、**Hardhat** というツールを使用します。
 
-- Hardhat により、ローカル環境でイーサリアムネットワークを簡単に起動し、テストネットでイーサリアムを利用できるようになります。
+- Hardhat により、ローカル環境でイーサリアムネットワークを簡単に起動し、テストネットでイーサリアムを利用できます。
 
-- 「サーバー」がブロックチェーンであることを除けば、Hardhat はローカルサーバーと同じです。
+- 「サーバ」がブロックチェーンであることを除けば、Hardhat はローカルサーバと同じです。
 
 まず、`node` / `npm` を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html) にアクセスしてください。
 `node v16` をインストールすることを推奨しています。
@@ -55,13 +55,13 @@ npx hardhat
 
 `Create a basic sample project` を選択し、すべてに `yes` と答えましょう。
 
->⚠️: 注意
+> ⚠️: 注意
 >
 > `npx hardhat` が実行されなかった場合、以下をターミナルで実行してください。
 >
->```bash
->npm install --save-dev @nomiclabs/hardhat-waffle ethereum-waffle chai @nomiclabs/hardhat-ethers ethers
->```
+> ```bash
+> npm install --save-dev @nomiclabs/hardhat-waffle ethereum-waffle chai @nomiclabs/hardhat-ethers ethers
+> ```
 >
 > その後、もう一度 `npx hardhat` を実行しましょう。
 
@@ -88,9 +88,9 @@ Greeter deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 npm install @openzeppelin/contracts
 ```
 
-これにより、ERC 721 コントラクト（ NFT の標準規格）と、OpenZeppelin が提供するヘルパー・ライブラリにアクセスできるようになります。
+これにより、ERC 721 コントラクト（NFT の標準規格）と、OpenZeppelin が提供するヘルパー・ライブラリにアクセスできます。
 
-GitHub などのウェブサイトでプロジェクトのコードを公開する場合、秘密鍵、Etherscan API キー、Alchemy URL などの機密情報をローカル環境にのみ保存し、非公開にする必要があります。
+GitHub などの Web サイトでプロジェクトのコードを公開する場合、秘密鍵、Etherscan API キー、Alchemy URL などの機密情報をローカル環境にのみ保存し、非公開にする必要があります。
 
 上記を実装する下準備として、下記を実行し、dotenv という別のライブラリをインストールしましょう。
 
@@ -119,18 +119,19 @@ contracts		package.json
 
 また、`scripts` の下の `sample-script.js` を削除します。
 
-1\. 一つ上の階層のフォルダー（ `nft-collectible` ）に移動: `cd ..`
+1\. 1 つ上の階層のフォルダー（`nft-collectible`）に移動: `cd ..`
 
 2\. `cd scripts` フォルダーに移動: `cd scripts`
 
 3\. `sample-script.js` を削除: `rm sample-script.js`
 
 次に、上記の手順を参考にして `contracts` の下の `Greeter.sol` を削除してください。実際のフォルダは削除しないように注意しましょう。
+
 ### 🖋 コントラクトを作成する
 
-これから、ETH と ガス代を支払うことで、誰でも NFT を Mint できるスマートコントラクトを Solidity で作成していきます。
+これから、ETH とガス代を支払うことで、誰でも NFT を Mint できるスマートコントラクトを Solidity で作成していきます。
 
-- ここで作成するスマートコントラクトは、後でユースケースに合わせて自由に変更することが可能です。
+- ここで作成するスマートコントラクトは、後でユースケースに合わせて自由に変更できます。
 
 `contracts` ディレクトリの下に `NFTCollectible.sol` という名前のファイルを作成します。
 
@@ -142,7 +143,8 @@ contracts		package.json
 
 3\. `NFTCollectible.sol` ファイルを作成: `touch NFTCollectible.sol`
 
-Hardhat を使用する場合、ファイル構造は非常に重要なので、注意する必要があります。ファイル構造が下記のようになっていれば大丈夫です😊
+Hardhat を使用する場合、ファイル構造は非常に重要ですので、注意する必要があります。ファイル構造が下記のようになっていれば大丈夫です 😊
+
 ```bash
 nft-collectible
     |_ contracts
@@ -155,7 +157,7 @@ nft-collectible
 
 VS Code をターミナルから起動する方法は[こちら](https://maku.blog/p/f5iv9kx/)をご覧ください。今後 VS Code を起動するのが一段と楽になるので、ぜひ導入してみてください。
 
-コーディングのサポートツールとして、VS Code 上で Solidity の拡張機能をダウンロードすることをおすすめします。ダウンロードは [こちら](https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity) から。
+コーディングのサポートツールとして、VS Code 上で Solidity の拡張機能をダウンロードすることをお勧めします。ダウンロードは [こちら](https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity) から。
 
 それでは、これから `NFTCollectible.sol` の中身の作成していきます。`NFTCollectible.sol` を VS Code で開き、下記を入力します。
 
@@ -186,13 +188,15 @@ contract NFTCollectible is ERC721Enumerable, Ownable {
 // NFTCollectible.sol
 // SPDX-License-Identifier: UNLICENSED
 ```
-これは「SPDXライセンス識別子」と呼ばれ、ソフトウェア・ライセンスの種類が一目でわかるようにするための識別子です。
+
+これは「SPDX ライセンス識別子」と呼ばれ、ソフトウェア・ライセンスの種類が一目でわかるようにするための識別子です。
 
 ```javascript
 // NFTCollectible.sol
 pragma solidity ^0.8.4;
 ```
-これは、コントラクトで使用する Solidity コンパイラのバージョンです。上記の場合「このコントラクトを実行するときは、Solidity コンパイラのバージョン0.8.4のみを使用し、それ以下のものは使用しません。」という意味です。コンパイラのバージョンが `hardhat.config.js` で同じであることを確認してください。
+
+これは、コントラクトで使用する Solidity コンパイラのバージョンです。上記の場合「このコントラクトを実行するときは、Solidity コンパイラのバージョン 0.8.4 のみを使用し、それ以下のものは使用しません」という意味です。コンパイラのバージョンが `hardhat.config.js` で同じであることを確認してください。
 
 もし、`hardhat.config.js` の中に記載されている Solidity のバージョンが `0.8.4` でなかった場合は、`NFTCollectible.sol` の中身を `hardhat.config.js` に記載されているバージョンに変更しましょう。
 
@@ -226,14 +230,15 @@ contract NFTCollectible is ERC721Enumerable, Ownable {
 
 - ERC721 Enumerable コントラクトには、NFT コレクションを扱うときに便利ないくつかのヘルパー関数が搭載されています。
 
-- Ownable コントラクトでは、コントラクトの特定の側面に管理者権限を追加することができます。
+- Ownable コントラクトでは、コントラクトの特定の側面に管理者権限を追加できます。
 
-上記に加えて、OpenZeppelin の SafeMath ライブラリと Counters ライブラリを使用して、符号なし整数演算（オーバーフローを防止）とトークン ID の安全に処理を行なっていきます。
+上記に加えて、OpenZeppelin の SafeMath ライブラリと Counters ライブラリを使用して、符号なし整数演算（オーバーフローを防止）とトークン ID の安全に処理を行っていきます。
 
-`contract` は、他の言語でいうところの「[class](https://wa3.i-3-i.info/word1120.html)」のようなものなのです。
+`contract` は、ほかの言語でいうところの「[class](https://wa3.i-3-i.info/word1120.html)」のようなものなのです。
 
 class の概念については、[こちら](https://aiacademy.jp/media/?p=131) を参照してくさい。
-### 🗃 定数（ `constants` ）と変数（ `variables` ）を保存する
+
+### 🗃 定数（ `constants`）と変数（ `variables`）を保存する
 
 これからコントラクトに、特定の変数や定数を保存していきます。
 
@@ -248,41 +253,41 @@ uint public constant MAX_PER_MINT = 3;
 string public baseTokenURI;
 ```
 
-まず、ここでは以下の3つを定数（ `constants` ）として定義します。
+まず、ここでは以下の 3 つを定数（`constants`）として定義します。
 
-1\. **NFT の供給量（ `MAX_SUPPLY` ）**: コレクションで Mint 可能な NFT の最大数。
+1\. **NFT の供給量（ `MAX_SUPPLY`）**: コレクションで Mint 可能な NFT の最大数。
 
-2\. **NFT の価格（ `PRICE` ）**: NFTを購入するのにユーザーが支払う ETH の額。
+2\. **NFT の価格（ `PRICE`）**: NFT を購入するのにユーザーが支払う ETH の額。
 
-3\. **1取引あたりの最大 Mint 数（ `MAX_PER_MINT` ）**: ユーザーが一度に Mint できる NFT の上限限。
+3\. **1 取引あたりの最大 Mint 数（ `MAX_PER_MINT`）**: ユーザーが一度に Mint できる NFT の上限限。
 
 **コントラクトがデプロイされたら、定数の中身を変更することはできません。**
 
-* これらコンスタントが取る値（ `30`、`0.01 ether` など）は、自由に変更できます。
+- これらコンスタントが取る値（`30`、`0.01 ether` など）は、自由に変更できます。
 
 それから、下記を変数として定義します。
 
-**Base Token URI（ `baseTokenURI` ）**: JSON ファイル（メタデータ）が格納されているフォルダの IPFS URL。
+**Base Token URI（ `baseTokenURI`）**: JSON ファイル（メタデータ）が格納されているフォルダの IPFS URL。
 
-コントラクトの所有者 (またはデプロイ先) が必要に応じて Base Token URI を変更できるように、これから `baseTokenURI` のセッター関数を記述していきます。
+コントラクトの所有者 (またはデプロイ先) が必要に応じて Base Token URI を変更できるように、これから `baseTokenURI` のセッタ関数を記述していきます。
 
->✍️: `public` は Solidity の**アクセス修飾子**です。
+> ✍️: `public` は Solidity の**アクセス修飾子**です。
 > Solidity のアクセス修飾子に関しては、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/blob/main/ETH-NFT-collection/ja/section-2/Lesson_4_Solidity%E3%81%AE%E6%9B%B8%E3%81%8D%E6%96%B9%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E5%AD%A6%E3%81%BC%E3%81%86.md) をご覧ください。
 >
 > `public` を含む、他のアクセス修飾子について詳しく説明しています。
 
-### 🤖 コンストラクタ（ `constructor` ）を記述する
+### 🤖 コンストラクタ（ `constructor`）を記述する
 
-コンストラクタ（ `constructor` ）の呼び出して、`baseTokenURI` を設定していきます。
+コンストラクタ（`constructor`）の呼び出して、`baseTokenURI` を設定していきます。
 
 > 🔩: `constructor`とは
 > `constructor` はオプションの関数で、`contract` の状態変数を初期化するために使用されます。これから詳しく説明していくので、`constructor` に関しては、まず以下の特徴を理解してください。
 >
->- `contract` は 1 つの `constructor` しか持つことができません。
+> - `contract` は 1 つの `constructor` しか持つことができません。
 >
->- `constructor` は、スマートコントラクトの作成時に一度だけ実行され、`contract` の状態を初期化するために使用されます。
+> - `constructor` は、スマートコントラクトの作成時に一度だけ実行され、`contract` の状態を初期化するために使用されます。
 >
->- `constructor` が実行された後、コードがブロックチェーンにデプロイされます。
+> - `constructor` が実行された後、コードがブロックチェーンにデプロイされます。
 
 `NFTCollectible.sol` の中の `string public baseTokenURI;` の直下に以下のコードを追加しましょう。
 
@@ -293,26 +298,27 @@ constructor(string memory baseURI) ERC721("NFT Collectible", "NFTC") {
 }
 ```
 
-`setBaseURI(baseURI);` は、メタデータが存在する場所の Base Token URIを設定します。
+`setBaseURI(baseURI);` は、メタデータが存在する場所の Base Token URI を設定します。
 
 この処理により、個々の NFT に対して手動で Base Token URI を設定する作業が軽減されます。
 
 - `setBaseURI` 関数については、後で詳しく説明します。
 
-また、`ERC721("NFT Collectible", "NFTC")` では、**親**コンストラクタ（ `ERC721` ）を呼び出して、NFT コレクションの名前とシンボルを設定します。
+また、`ERC721("NFT Collectible", "NFTC")` では、**親**コンストラクタ（`ERC721`）を呼び出して、NFT コレクションの名前とシンボルを設定します。
 
 - NFT コレクションの名前: `"NFT Collectible"`
 
 - NFT コレクションのシンボル: `"NFTC"`
 
-* NFT コレクションの名前とシンボルは任意で変更して大丈夫です😊
+* NFT コレクションの名前とシンボルは任意で変更して大丈夫です 😊
+
 ### 🎟 いくつかの NFT を無料で配布する
 
-スマートコントラクトは、一度ブロックチェーン上にデプロイしてしまうと中身を変更することができません。
+スマートコントラクトは、一度ブロックチェーン上にデプロイしてしまうと中身を変更できません。
 
-したがって、すべての NFT を有料にすると、自分自身や友達、イベントの景品として無料で NFT を配布することができなくなってしまいます。
+したがって、すべての NFT を有料にすると、自分自身や友達、イベントの景品として無料で NFT を配布できなくなってしまいます。
 
-なので今から、ある一定数（この場合は 10 個）の NFT をキープしておいて、ユーザーが無料で Mint できる関数（ `reserveNFTs` ）をコントラクトに実装していきます。
+なので今から、ある一定数（この場合は 10 個）の NFT をキープしておいて、ユーザーが無料で Mint できる関数（`reserveNFTs`）をコントラクトに実装していきます。
 
 下記を、`constructor` のコードブロック直下に追加しましょう。
 
@@ -329,7 +335,7 @@ function reserveNFTs() public onlyOwner {
 }
 ```
 
-`reserveNFTs` 数を呼び出すユーザーは、ガス代だけ払えばいいので、`onlyOwner`とマークして、コントラクトの所有者だけが呼び出せるようにします。
+`reserveNFTs` 数を呼び出すユーザーは、ガス代だけ払えばよいので、`onlyOwner`とマークして、コントラクトの所有者だけが呼び出せるようにします。
 
 `tokenIds.current()` を呼び出して、これまでに Mint された NFT の総数を確認します。
 
@@ -337,25 +343,26 @@ function reserveNFTs() public onlyOwner {
 
 次に、`require` を使って、キープできる NFT（＝ 10 個）がコレクションに残っているかどうかを確認します。
 
-- `totalMinted.add(10) < MAX_SUPPLY` は、現在 Mint されようとしている `tokenId` に `+10` した数が、`MAX_SUPPLY` （この場合は `30` ）を超えていないかチェックしています。
+- `totalMinted.add(10) < MAX_SUPPLY` は、現在 Mint されようとしている `tokenId` に `+10` した数が、`MAX_SUPPLY`（この場合は `30`）を超えていないかチェックしています。
 
-キープできる NFT がコレクションに残っていた場合、`_mintSingleNFT` を 10 回呼び出して 10 個のNFT を Mint します。
+キープできる NFT がコレクションに残っていた場合、`_mintSingleNFT` を 10 回呼び出して 10 個の NFT を Mint します。
 
 `_mintSingleNFT` 関数については、後で詳しく説明します。
 
->✍️: `Ownable` / `onlyOwner` について
->`Ownable` は、OpenZeppelin が提供するコントラクトへのアクセス制御を提供するモジュールです。
+> ✍️: `Ownable` / `onlyOwner` について
+> `Ownable` は、OpenZeppelin が提供するコントラクトへのアクセス制御を提供するモジュールです。
 >
->このモジュールは、コントラクトの継承によって使用されます。
+> このモジュールは、コントラクトの継承によって使用されます。
 >
->`onlyOwner` という修飾子を関数に適用することで、関数の使用をコントラクトの所有者に限定することができます。
+> `onlyOwner` という修飾子を関数に適用することで、関数の使用をコントラクトの所有者に限定することができます。
+
 ### 🔗 Base Token URI を設定する
 
-これから、Base Token URI を効率よくコントラクトに取得して、tokenIdと紐付ける関数を実装していきます。
+これから、Base Token URI を効率よくコントラクトに取得して、tokenId と紐付ける関数を実装していきます。
 
 前回のレッスンで IPFS で保存した JSON ファイルを覚えていますか？
 
-`#0` 番目の NFT コレクションのメタデータは、下記のエンドポイントを持つサーバーでホストされています。
+`#0` 番目の NFT コレクションのメタデータは、下記のエンドポイントを持つサーバでホストされています。
 
 ```
 https://gateway.pinata.cloud/ipfs/QmSvw119ALMN9SkP89Xj37jvqJik8jZrSjU5c1vgBhkhz8/0
@@ -383,7 +390,8 @@ function setBaseURI(string memory _baseTokenURI) public onlyOwner {
      baseTokenURI = _baseTokenURI;
 }
 ```
-NFT の JSON メタデータは、IPFS の次のURLで入手できます： ipfs://QmZbWNKJPAjxXuNFSEaksCJVd1M6DaKQViJBYPK2BdpDEP/
+
+NFT の JSON メタデータは、IPFS の次の URL で入手できます： ipfs://QmZbWNKJPAjxXuNFSEaksCJVd1M6DaKQViJBYPK2BdpDEP/
 
 `setBaseURI()` は、メタデータが存在する場所の Base Token URI を設定します。
 
@@ -395,15 +403,15 @@ NFT の JSON メタデータは、IPFS の次のURLで入手できます： ipfs
 
 - tokenId = `2` のメタデータは `ipfs://QmZbWNKJPAjxXuNFSEaksCJVd1M6DaKQViJBYPK2BdpDEP/2`
 
-
 しかし、`setBaseURI()` を実行する前に、コントラクトの最初で定義した `baseTokenURI` 変数が、コントラクトが使用すべき Token Base URI であることを明示する必要があります。
 
 これを行うために、`_baseURI()` という空の関数をオーバーライドして、`baseTokenURI`を返すようにします。
 
 また、コントラクトがデプロイされた後でもコントラクトの所有者が `baseTokenURI` を変更できるように、`onlyOwner` 修飾子を記述しています。
+
 ### 🎰 NFT を Mint する関数を実装する
 
-次に、ユーザーが NFT を Mint する際に3点のチェックを実施する関数 ` mintNFTs` を実装していきます。
+次に、ユーザーが NFT を Mint する際に 3 点のチェックを実施する関数 ` mintNFTs` を実装していきます。
 
 下記を `setBaseURI` 関数のコードブロック直下に追加しましょう。
 
@@ -447,9 +455,10 @@ uint public constant MAX_PER_MINT = 3;
 
 1\. ユーザーが Mint を希望する NFT の数がコレクションに残っていること。
 
-2\. ユーザーが `0` 以上、トランザクションごとに許可される NFT の最大数（ `MAX_PER_MINT` ）未満の Mint を実行しようとしていること。
+2\. ユーザーが `0` 以上、トランザクションごとに許可される NFT の最大数（`MAX_PER_MINT`）未満の Mint を実行しようとしていること。
 
 3\. ユーザーは NFT を Mint するのに十分な ETH を送金していること。
+
 ### 🌱 `_mintSingleNFT()` 関数を実装する
 
 最後に、ユーザーが NFT を Mint するときに呼び出される `_mintSingleNFT()` 関数を実装していきましょう。
@@ -469,17 +478,18 @@ function _mintSingleNFT() private {
 
 次に、`_safeMint(msg.sender, newTokenID);` で、OpenZeppelin ですでに定義されている `_safeMint()` 関数を使用して、ユーザー（関数を呼び出したアドレス）に NFT ID を割り当てます。
 
-最後に、`_tokenIds.increment();` で、tokenId のカウンターを +1 しています。
+最後に、`_tokenIds.increment();` で、tokenId のカウンタを +1 しています。
 
 `_mintSingleNFT` 関数が初めて呼び出されたとき、`newTokenID` は `0` であり、関数を呼び出したユーザーに、`tokenId` 0 番が与えられます。
 
-- Mint が完了したら、カウンターが 1 にインクリメントされます。
+- Mint が完了したら、カウンタが 1 にインクリメントされます。
 
 次にこの関数が呼ばれたとき、`_newTokenID` の値は `1` になります。
 
 各 NFT のメタデータを明示的に設定する必要はないことに注意してください。
 
-Token Base URIを設定することで、各 NFT にIPFSに格納された正しいメタデータが自動的に割り当てられるようになります。
+Token Base URI を設定することで、各 NFT に IPFS に格納された正しいメタデータが自動的に割り当てられます。
+
 ### 👀 特定のアカウントが所有する NFT について知る
 
 NFT 保有者に何らかの実用性を提供する場合、各ユーザーがどの NFT を保有しているかを知れると便利です。
@@ -509,6 +519,7 @@ ERC721 Enumerable の `balanceOf` と `tokenOfOwnerByIndex` 関数を使用し�
 - `balanceOf` : 特定の所有者がいくつのトークンを保持しているかを示す関数。
 
 - `tokenOfOwnerByIndex` : 所有者が所有するすべての `tokenId` を取得する関数。
+
 ### 🏧 残高引き出し機能を実装する
 
 コントラクトに送られた ETH を引き出せないのでは、これまでの苦労が水の泡です。
@@ -526,6 +537,7 @@ function withdraw() public payable onlyOwner {
      require(success, "Transfer failed.");
 }
 ```
+
 ### 👏 コントラクトの完成
 
 `NFTCollectible.sol` が完成しました。
@@ -615,16 +627,20 @@ contract NFTCollectible is ERC721Enumerable, Ownable {
 
 }
 ```
+
 ### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discord の `#section-2` で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+
 ```
 1. 質問が関連しているセクション番号とレッスン番号
 2. 何をしようとしていたか
 3. エラー文をコピー&ペースト
 4. エラー画面のスクリーンショット
 ```
+
 ---
-コントラクトが完成したら、次のレッスンに進んでイーサリアムネットワークにデプロイしましょう🎉
+
+コントラクトが完成したら、次のレッスンに進んでイーサリアムネットワークにデプロイしましょう 🎉

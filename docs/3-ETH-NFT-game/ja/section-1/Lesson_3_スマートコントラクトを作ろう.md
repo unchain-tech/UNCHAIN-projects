@@ -2,7 +2,7 @@
 
 NFT を作成するスマートコントラクトを作成します。
 
-- ここで作成するスマートコントラクトは、後でユースケースに合わせて自由に変更することが可能です。
+- ここで作成するスマートコントラクトは、後でユースケースに合わせて自由に変更できます。
 
 `contracts` ディレクトリの下に `MyEpicGame.sol` という名前のファイルを作成します。
 
@@ -14,7 +14,8 @@ NFT を作成するスマートコントラクトを作成します。
 
 3\. `MyEpicGame.sol` ファイルを作成: `touch MyEpicGame.sol`
 
-Hardhat を使用する場合、ファイル構造は非常に重要なので、注意する必要があります。ファイル構造が下記のようになっていれば大丈夫です😊
+Hardhat を使用する場合、ファイル構造は非常に重要ですので、注意する必要があります。ファイル構造が下記のようになっていれば大丈夫です 😊
+
 ```bash
 epic-game
     |_ contracts
@@ -43,7 +44,7 @@ contract MyEpicGame {
 }
 ```
 
-コーディングのサポートツールとして、VS Code 上で Solidity の拡張機能をダウンロードすることをおすすめします。ダウンロードは [こちら](https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity) から。
+コーディングのサポートツールとして、VS Code 上で Solidity の拡張機能をダウンロードすることをお勧めします。ダウンロードは [こちら](https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity) から。
 
 一行ずつコードを見ていきましょう。
 
@@ -52,7 +53,7 @@ contract MyEpicGame {
 // SPDX-License-Identifier: UNLICENSED
 ```
 
-これは「SPDXライセンス識別子」と呼ばれ、ソフトウェア・ライセンスの種類が一目でわかるようにするための識別子です。
+これは「SPDX ライセンス識別子」と呼ばれ、ソフトウェア・ライセンスの種類が一目でわかるようにするための識別子です。
 
 詳細については、[ここ](https://www.skyarch.net/blog/?p=15940)を参照してみてください。
 
@@ -61,10 +62,9 @@ contract MyEpicGame {
 pragma solidity ^0.8.4;
 ```
 
-これは、コントラクトで使用する Solidity コンパイラのバージョンです。上記の場合「このコントラクトを実行するときは、Solidity コンパイラのバージョン0.8.4のみを使用し、それ以下のものは使用しません。」という意味です。コンパイラのバージョンが `hardhat.config.js` で同じであることを確認してください。
+これは、コントラクトで使用する Solidity コンパイラのバージョンです。上記の場合「このコントラクトを実行するときは、Solidity コンパイラのバージョン 0.8.4 のみを使用し、それ以下のものは使用しません」という意味です。コンパイラのバージョンが `hardhat.config.js` で同じであることを確認してください。
 
 もし、`hardhat.config.js` の中に記載されている Solidity のバージョンが `0.8.4` でなかった場合は、`MyEpicGame.sol` の中身を `hardhat.config.js` に記載されているバージョンに変更しましょう。
-
 
 ```javascript
 // MyEpicGame.sol
@@ -81,7 +81,8 @@ contract MyEpicGame {
     }
 }
 ```
-`contract` は、他の言語でいうところの「[class](https://wa3.i-3-i.info/word1120.html)」のようなものなのです。
+
+`contract` は、ほかの言語でいうところの「[class](https://wa3.i-3-i.info/word1120.html)」のようなものなのです。
 
 この `contract` を初期化すると、`constructor` が実行されて `console.log` の中身がターミナル上に表示されます。
 
@@ -96,6 +97,7 @@ class の概念については、[ここ](https://aiacademy.jp/media/?p=131)を�
 - `constructor` は、スマートコントラクトの作成時に一度だけ実行され、`contract` の状態を初期化するために使用されます。
 
 - `constructor` が実行された後、コードがブロックチェーンにデプロイされます。
+
 ### 🔥 スマートコントラクトをテスト環境で実行しよう
 
 前回のレッスンでは、`MyEpicGame.sol` というスマートコントラクトを作成しました。
@@ -108,9 +110,10 @@ class の概念については、[ここ](https://aiacademy.jp/media/?p=131)を�
 
 3\. 上記が完了したら、`console.log` の中身がターミナル上に表示されます。
 
-このプロジェクトの最終ゴールは、あなたのスマートコントラクトをブロックチェーン上にのせ、あなたのWEBアプリを介して世界中の人々がそのスマートコントラクトにアクセスできる状態を実現することです。
+このプロジェクトの最終ゴールは、あなたのスマートコントラクトをブロックチェーン上にのせ、あなたの Web アプリケーションを介して世界中の人々がそのスマートコントラクトにアクセスできる状態を実現することです。
 
 まずは、上記の作業をテスト環境で行います。
+
 ### 📝 コントラクトを実行するためのプログラムを作成する
 
 `scripts` ディレクトリに移動し、`run.js` という名前のファイルを作成してください。
@@ -122,7 +125,7 @@ class の概念については、[ここ](https://aiacademy.jp/media/?p=131)を�
 ```javascript
 // run.js
 const main = async () => {
-  const gameContractFactory = await hre.ethers.getContractFactory('MyEpicGame');
+  const gameContractFactory = await hre.ethers.getContractFactory("MyEpicGame");
   const gameContract = await gameContractFactory.deploy();
   const nftGame = await gameContract.deployed();
 
@@ -140,12 +143,13 @@ const runMain = async () => {
 runMain();
 ```
 
-それでは、1行ずつコードの理解を深めましょう。
+それでは、1 行ずつコードの理解を深めましょう。
 
 ```javascript
 // run.js
-const gameContractFactory = await hre.ethers.getContractFactory('MyEpicGame');
+const gameContractFactory = await hre.ethers.getContractFactory("MyEpicGame");
 ```
+
 これにより、`MyEpicGame` コントラクトがコンパイルされます。
 コントラクトがコンパイルされたら、コントラクトを扱うために必要なファイルが `artifacts` ディレクトリの直下に生成されます。
 
@@ -172,7 +176,8 @@ const gameContract = await gameContractFactory.deploy();
 
 Hardhat がローカルの Ethereum ネットワークを、コントラクトのためだけに作成します。
 そして、スクリプトの実行が完了した後、そのローカル・ネットワークを破棄します。
-つまり、コントラクトを実行するたびに、毎回ローカルサーバーを更新するかのようにブロックチェーンが新しくなります。
+つまり、コントラクトを実行するたびに、毎回ローカルサーバを更新するかのようにブロックチェーンが新しくなります。
+
 - 常にゼロリセットとなるので、エラーのデバッグがしやすくなります。
 
 次に下記の処理を見ていきましょう。
@@ -196,11 +201,12 @@ console.log("Contract deployed to:", gameContract.address);
 
 このアドレスから、ブロックチェーン上でコントラクトを見つけることができますが、今回はローカルのイーサリアムネットワーク（＝ブロックチェーン）に実装しているため、世界中の人がアクセスできるわけでありません。
 
-一方、イーサリアムメインネット上のブロックチェーンにデプロイしていれば、世界中の誰でもコントラクトにアクセスすることができるようになります。
+一方、イーサリアムメインネット上のブロックチェーンにデプロイしていれば、世界中の誰でもコントラクトにアクセスできます。
 
 実際のブロックチェーン上には、すでに何百万ものスマートコントラクトがデプロイされています。
 
-アドレスさえわかれば、世界中どこにいても、私たちが興味を持っているコントラクトに簡単にアクセスすることができます。
+アドレスさえわかれば、世界中どこにいても、私たちが興味を持っているコントラクトに簡単にアクセスできます。
+
 ### 🪄 実行してみよう
 
 ターミナル上で、`scripts` ディレクトリに移動して下記を実行してみましょう。
@@ -212,6 +218,7 @@ npx hardhat run run.js
 ターミナル上で `console.log` の中身とコントラクトアドレスが表示されていることを確認してください。
 
 例）ターミナル上でのアウトプット:
+
 ```
 Compiling 1 file with 0.8.4
 Solidity compilation finished successfully
@@ -220,27 +227,32 @@ Contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 ```
 
 上記のようなアウトプットターミナルに表示されていればテストは成功です。
+
 ### 🎩 Hardhat Runtime Environment について
 
 `run.js` の中で、`hre.ethers` が登場します。
 
 しかし、`hre` はどこにもインポートされていません。それはなぜでしょうか？
 
-それは、ずばり、Hardhat が Hardhat Runtime Environment（HRE） を呼び出しているからです。
+それは、ずばり、Hardhat が Hardhat Runtime Environment（HRE）を呼び出しているからです。
 
-HRE は、Hardhat が用意した全ての機能を含むオブジェクト（＝コードの束）です。`hardhat` で始まるターミナルコマンドを実行するたびに、HRE にアクセスしているので、`hre` を `run.js` にインポートする必要はありません。
+HRE は、Hardhat が用意したすべての機能を含むオブジェクト（＝コードの束）です。`hardhat` で始まるターミナルコマンドを実行するたびに、HRE にアクセスしているので、`hre` を `run.js` にインポートする必要はありません。
 
 詳しくは、[Hardhat 公式ドキュメント（英語）](https://hardhat.org/advanced/hardhat-runtime-environment.html) にて確認できます。
+
 ### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discord の `#section-1` で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+
 ```
 1. 質問が関連しているセクション番号とレッスン番号
 2. 何をしようとしていたか
 3. エラー文をコピー&ペースト
 4. エラー画面のスクリーンショット
 ```
+
 ---
-ターミナル上に `console.log` の中身とコントラクトアドレスを出力できたら、次のレッスンに進んでください🎉
+
+ターミナル上に `console.log` の中身とコントラクトアドレスを出力できたら、次のレッスンに進んでください 🎉

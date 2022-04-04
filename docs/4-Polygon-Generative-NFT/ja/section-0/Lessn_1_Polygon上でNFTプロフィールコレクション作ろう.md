@@ -4,19 +4,20 @@
 
 プロジェクトを進めるには以下の技術が必要です。
 
-- [Terminal操作](https://qiita.com/ryouzi/items/f9dee1540a04a0bfb9a3)
+- [Terminal 操作](https://qiita.com/ryouzi/items/f9dee1540a04a0bfb9a3)
 - [Javascript](https://developer.mozilla.org/ja/docs/Web/JavaScript)
 - [React.js](https://ja.reactjs.org/)
 
-※ 開発初心者の方は、まず `ETH-dApp` のプロジェクトから始めることをおすすめします☺️
+※ 開発初心者の方は、まず `ETH-dApp` のプロジェクトから始めることをお勧めします ☺️
 
-いま全てを理解している必要はありません。
+いますべてを理解している必要はありません。
 わからないことがあったらインターネットで検索したり、コミュニティで質問しながらプロジェクトを進めていきましょう！
+
 ### ✨ NFT Collection を作ろう
 
 このプロジェクトでは、オリジナル Generative NFT コレクションを作成していきます。
 
-プロジェクトは下記の 4 ステップにわかれています。
+プロジェクトは下記の 4 ステップに分かれています。
 
 1\. Generative NFT を作成する。
 
@@ -24,53 +25,57 @@
 
 3\. 作成したスマートコントラクトをブロックチェーンにデプロイする。
 
-4\. コレクションから NFT を簡単に Mint できるWEBアプリを構築する。
+4\. コレクションから NFT を簡単に Mint できる Web アプリケーションを構築する。
 
-上記ができるようになると、NFT を OpenSea などのプラットフォームで販売することができるようになります！
+上記ができるようになると、NFT を OpenSea などのプラットフォームで販売できます！
 
 NFT は**オン・チェーン**にデプロイされます。
+
 - オン・チェーンにデプロイされるとは、「NFT のデータはすべてブロックチェーン上に記載される」という意味です。
-### 🥫 スマートコントラクトとはなにか？
 
-スマートコントラクトとは、**ブロックチェーン上でコントラクトを自動的に実行する仕組み**のことです。
+### 🥫 スマートコントラクトとは何か？
 
-よく例えられるのは、自動販売機です。自動販売機には、「100円が投下され、ボタンが押されたら、飲み物を落とす」というプログラムが搭載されており、「店員さんがお金を受け取って、飲み物を渡す」というプロセスを必要としません。
+スマートコントラクトとは、**ブロックチェーン上でコントラクトを自動的に実行するしくみ**のことです。
 
-この仲介者を省き、自動的にプログラムが実行される点こそ、スマートコントラクトが、「スマート」と呼ばれる理由です。
+よくたとえられるのは、自動販売機です。自動販売機には「100 円が投下され、ボタンが押されたら、飲み物を落とす」というプログラムが搭載されており、「店員さんがお金を受け取って飲み物を渡す」というプロセスを必要としません。
 
-実際には、スマートコントラクトの仕組みは、イーサリアムネットワーク上のすべてのコンピュータに複製され処理されるプログラムにより成り立っています。
+人の介在を省き、自動的にプログラムが実行される点こそ、スマートコントラクトが、「スマート」と呼ばれる理由です。
 
-イーサリアムの汎用性により、その上にアプリケーション（＝ dApp ）を構築することができます。
+実際には、スマートコントラクトのしくみは、イーサリアムネットワーク上のすべてのコンピュータに複製され処理されるプログラムにより成り立っています。
 
-今回構築するWEBアプリも decentralized Application / dApp（＝分散型アプリケーション）の一つです。
+イーサリアムの汎用性により、そのうえにアプリケーション（＝ dApp）を構築できます。
+
+今回構築する Web アプリケーションも decentralized Application / dApp（＝分散型アプリケーション）の 1 つです。
 
 ### 🌍 プロジェクトをアップグレードする
 
-[UNCHAIN](https://app.shiftbase.xyz) のプロジェクトは全てオープンソース（[MITライセンス](https://wisdommingle.com/mit-license/)）で運用されています。
+[UNCHAIN](https://app.shiftbase.xyz) のプロジェクトはすべてオープンソース（[MIT ライセンス](https://wisdommingle.com/mit-license/)）で運用されています。
 
 プロジェクトに参加していて、「こうすればもっと分かりやすいのに！」「これは間違っている！」と思ったら、ぜひ `pull request` を送ってください。
 
-Github から直接コードを編集して直接 `pull request` を送る方法は、[こちら](https://docs.github.com/ja/repositories/working-with-files/managing-files/editing-files#editing-files-in-another-users-repository)を参照してください。
+GitHub から直接コードを編集して直接 `pull request` を送る方法は、[こちら](https://docs.github.com/ja/repositories/working-with-files/managing-files/editing-files#editing-files-in-another-users-repository)を参照してください。
 
-どんなリクエストでも大歓迎です🎉
+どんなリクエストでも大歓迎です 🎉
 
-また、プロジェクトを自分の Github アカウントに `Fork` して、中身を編集してから `pull request` を送ることもできます。
+また、プロジェクトを自分の GitHub アカウントに `Fork` して、中身を編集してから `pull request` を送ることもできます。
+
 - プロジェクトを `Fork` する方法は、[こちら](https://docs.github.com/ja/get-started/quickstart/fork-a-repo) を参照してください。
 - `Fork` から `pull request` を作成する方法は、[こちら](https://docs.github.com/ja/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) です。
 
 ### ⚡️ `Issue` を作成する
 
-`pull request` 送るほどでもないけど、提案を残したい！と思ったら、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/issues) に `Issue` を作成してみましょう。
+`pull request` 送るほどでもないけど、提案を残したい！　と思ったら、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/issues) に `Issue` を作成してみましょう。
 
 `Issue` の作成方法に関しては、[こちら](https://docs.github.com/ja/issues/tracking-your-work-with-issues/creating-an-issue)を参照してください。
 
 `pull request` や `issue` の作成は、実際にチームで開発を行う際に重要な作業になるので、ぜひトライしてみてください。
 
-UNCHAINのプロジェクトをみんなでより良いものにしていきましょう✨
+UNCHAIN のプロジェクトをみんなでより良いものにしていきましょう ✨
+
 ### 🙋‍♂️ 質問する
 
-ここまでで何かわからないことがある場合は、Discord の `#section-1` で質問をしてください。
-
+ここまで何かわからないことがある場合は、Discord の `#section-1` で質問をしてください。
 
 ---
-次のレッスンに進んで、Generative NFT を作成していきましょう🚀
+
+次のレッスンに進んで、Generative NFT を作成していきましょう 🚀

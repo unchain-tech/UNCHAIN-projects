@@ -1,14 +1,15 @@
-### 🪄 WEBサイトを構築する
+### 🪄 Web サイトを構築する
 
-これから、オリジナルのWEBサイトを構築し、ユーザーがWEBサイトから直接 NFT を Mint できる機能を実装していきます。
+これから、オリジナルの Web サイトを構築し、ユーザーが Web サイトから直接 NFT を Mint できる機能を実装していきます。
 
-- ユーザーが MetaMask ウォレットをWEBサイトに接続できる
+- ユーザーが MetaMask ウォレットを Web サイトに接続できる
 
-- ユーザーがコントラクト関数を呼び出し、支払いを行い、コレクションからNFTを作成できるようにする
+- ユーザーがコントラクト関数を呼び出し、支払いを行い、コレクションから NFT を作成できるようにする
 
 このレッスンを終了すると、React で構築された dApp が完成します。
 
 また、汎用的な dApp のフロントエンドを構築するために必要な基礎知識も習得できます。
+
 ### 🛠 プロジェクトをセットアップする
 
 まず、React のプロジェクトを作成していきます。
@@ -19,9 +20,9 @@
 npx create-react-app nft-collectible-frontend
 ```
 
-インストールには2～10分ほどかかります。
+インストールには 2 ～ 10 分ほどかかります。
 
->⚠️: 注意
+> ⚠️: 注意
 >
 > インストールがうまくいかない場合、お使いの `npm node` のバージョンが古い可能性があります。
 > 下記を実行してからもう一度 `create-react-app` コマンドを実行してみてください。
@@ -29,7 +30,8 @@ npx create-react-app nft-collectible-frontend
 > ```
 > npm install npm --global # Upgrade npm to the latest version
 > ```
-インストールが完了したら、ターミナルで以下を実行して、すべてがうまくいっていることを確認してください。
+>
+> インストールが完了したら、ターミナルで以下を実行して、すべてがうまくいっていることを確認してください。
 
 ```
 cd nft-collectible-frontend
@@ -80,11 +82,9 @@ npm start
 
 ```javascript
 // App.js
-import './App.css';
+import "./App.css";
 function App() {
-    return (
-        <h1>Hello World</h1>
-    );
+  return <h1>Hello World</h1>;
 }
 export default App;
 ```
@@ -93,20 +93,21 @@ export default App;
 
 ただし、このファイル自体は削除しないでください。
 
-後で、このデモプロジェクトに使用する基本的なCSSスタイルを提供します。
+後で、このデモプロジェクトに使用する基本的な CSS スタイルを提供します。
 
 `localhost://3000` に戻ると、`Hello World` という画面が表示されるはずです。
 
 これで、React プロジェクトのセットアップが完了しました。
-### 📂 コントラクトのABIとアドレスを取得する
+
+### 📂 コントラクトの ABI とアドレスを取得する
 
 フロントエンドがスマートコントラクトに接続し、通信できるようにするためには、コントラクトの ABI とアドレスが必要です。
 
-ABI（または Application Binary Interface ）は、コントラクトのコンパイル時に自動的に生成される JSON ファイルです。
+ABI（または Application Binary Interface）は、コントラクトのコンパイル時に自動的に生成される JSON ファイルです。
 
 デプロイ先のブロックチェーンは、スマートコントラクトをバイトコードの形で保存しています。
 
-その上で、関数を呼び出し、正しいパラメータを渡し、戻り値を解析するためには、関数とコントラクトに関する詳細（名前、引数、型など）をフロントエンドに指定する必要があります。
+そのうえで関数を呼び出し、正しいパラメータを渡し戻り値を解析するためには、関数とコントラクトに関する詳細（名前、引数、型など）をフロントエンドに指定する必要があります。
 
 これがまさに ABI ファイルの役割です。
 
@@ -114,7 +115,7 @@ ABI（または Application Binary Interface ）は、コントラクトのコ�
 
 ![](/public/images/4-Polygon-Generative-NFT/section-4/4_1_2.png)
 
-`NFTCollectible.json` に記載されている全てのコードが、ABI ファイルです。
+`NFTCollectible.json` に記載されているすべてのコードが、ABI ファイルです。
 
 まず、JSON ファイルを React プロジェクトにコピーする必要があります。
 
@@ -122,7 +123,7 @@ ABI（または Application Binary Interface ）は、コントラクトのコ�
 
 次に、前回のレッスンで Polygon テストネットにデプロイしたスマートコントラクトのアドレスを取得してください。
 
-前回のレッスンでわたしが使用したコントラクトのアドレスは `0xF899DeB963208560a7c667FA78376ecaFF684b8E` です。
+前回のレッスンで私が使用したコントラクトのアドレスは `0xF899DeB963208560a7c667FA78376ecaFF684b8E` です。
 
 このレッスンでも、このコントラクトを使用していきます。
 
@@ -130,22 +131,22 @@ ABI（または Application Binary Interface ）は、コントラクトのコ�
 
 ```javascript
 // App.js
-import './App.css';
-import contract from './contracts/NFTCollectible.json';
+import "./App.css";
+import contract from "./contracts/NFTCollectible.json";
 
-const contractAddress = "あなたのコントラクトアドレスをこちらに貼り付けてください";
+const contractAddress =
+  "あなたのコントラクトアドレスをこちらに貼り付けてください";
 const abi = contract.abi;
 
 function App() {
-    return (
-        <h1>Hello World</h1>
-    );
+  return <h1>Hello World</h1>;
 }
 export default App;
 ```
-### 🛠 HTML、CSS、JSを設定する
 
-今回作成するWEBサイトは、シンプルなものになります。
+### 🛠 HTML、CSS、JS を設定する
+
+今回作成する Web サイトは、シンプルなものになります。
 
 あるのは見出しと `Connect Wallet` ボタンだけです。
 
@@ -159,49 +160,49 @@ export default App;
 
 ```javascript
 // App.js
-import { useEffect } from 'react';
-import './App.css';
-import contract from './contracts/NFTCollectible.json';
+import { useEffect } from "react";
+import "./App.css";
+import contract from "./contracts/NFTCollectible.json";
 
 const contractAddress = "あなたのコントラクトアドレスを貼り付けましょう";
 const abi = contract.abi;
 
 function App() {
+  const checkWalletIsConnected = () => {};
 
-  const checkWalletIsConnected = () => { }
+  const connectWalletHandler = () => {};
 
-  const connectWalletHandler = () => { }
-
-  const mintNftHandler = () => { }
+  const mintNftHandler = () => {};
 
   const connectWalletButton = () => {
     return (
-      <button onClick={connectWalletHandler} className='cta-button connect-wallet-button'>
+      <button
+        onClick={connectWalletHandler}
+        className="cta-button connect-wallet-button"
+      >
         Connect Wallet
       </button>
-    )
-  }
+    );
+  };
 
   const mintNftButton = () => {
     return (
-      <button onClick={mintNftHandler} className='cta-button mint-nft-button'>
+      <button onClick={mintNftHandler} className="cta-button mint-nft-button">
         Mint NFT
       </button>
-    )
-  }
+    );
+  };
 
   useEffect(() => {
     checkWalletIsConnected();
-  }, [])
+  }, []);
 
   return (
-    <div className='main-app'>
+    <div className="main-app">
       <h1>Scrappy Squirrels Tutorial</h1>
-      <div>
-        {connectWalletButton()}
-      </div>
+      <div>{connectWalletButton()}</div>
     </div>
-  )
+  );
 }
 
 export default App;
@@ -215,7 +216,7 @@ const contractAddress = "あなたのコントラクトアドレスを貼り付�
 
 現時点では、関数をいくつか定義していることに注意してください。後で、その目的を説明し、ロジックを組み込んでいく予定です。
 
-また、WEBアプリのために、CSS も用意しました。
+また、Web アプリケーションのために、CSS も用意しました。
 
 以下を `App.css` ファイルにコピーしてください。
 
@@ -245,18 +246,19 @@ const contractAddress = "あなたのコントラクトアドレスを貼り付�
 }
 ```
 
-あなたのウェブサイトは、このように表示されるはずです。
+あなたの Web サイトは、このように表示されるはずです。
 
 ![](/public/images/4-Polygon-Generative-NFT/section-4/4_1_3.png)
 
-CSS スタイルや静的要素（画像、ヘッダー、フッター、ソーシャルメディアリンクなど）を追加して、ウェブサイトの外観を自由にカスタマイズしてください。
+CSS スタイルや静的要素（画像、ヘッダ、フッタ、ソーシャルメディアリンクなど）を追加して、Web サイトの外観を自由にカスタマイズしてください。
 
-ここまでで、プロジェクトの基礎となるブロックはほぼ揃いました。
+ここまで、プロジェクトの基礎となるブロックはほぼそろいました。
 
-これで、ユーザーがウォレットをウェブサイトに接続する準備が整いました。
+これで、ユーザーがウォレットを Web サイトに接続する準備が整いました。
+
 ### 🦊 MetaMask ウォレットとの接続
 
-ユーザーがントラクトを呼び出すためには、自分のウォレットをWEBサイトに接続する必要があります。
+ユーザーがントラクトを呼び出すためには、自分のウォレットを Web サイトに接続する必要があります。
 
 ウォレット接続は、ユーザーが NFT を Mint し、ガス代と販売価格を支払うことを可能にします。
 
@@ -264,43 +266,41 @@ CSS スタイルや静的要素（画像、ヘッダー、フッター、ソー�
 
 まず、ユーザーのブラウザに、MetaMask ウォレットが存在するか確認していきます。
 
-ユーザーは MetaMask ウォレットを持っていなければ、WEBサイト上で NFT を Mint することができません。
+ユーザーは MetaMask ウォレットを持っていなければ、Web サイト上で NFT を Mint できません。
 
 MetaMask ウォレットが存在するかどうかを確認するロジックを、`checkWalletIsConnected` 関数に入力しましょう。
 
 ```javascript
 // App.js
 const checkWalletIsConnected = async () => {
+  const { ethereum } = window;
 
-	const { ethereum } = window;
-
-	if (!ethereum) {
-		console.log("Make sure you have MetaMask installed!");
-		return;
-	} else {
-		console.log("Wallet exists! We're ready to go!")
-	}
-
-}
+  if (!ethereum) {
+    console.log("Make sure you have MetaMask installed!");
+    return;
+  } else {
+    console.log("Wallet exists! We're ready to go!");
+  }
+};
 ```
 
 なお、`App.js` がロードされる際に、MetaMask の存在を確認する `useEffect` フックも定義しています。
 
-アプリの `localhost` ページで `Console` を開いてください。
+アプリケーションの `localhost` ページで `Console` を開いてください。
 
-- ステップ: WEBページ上で右クリック → `Inspect` → `Console`
+- ステップ: Web ページ上で右クリック → `Inspect` → `Console`
 
 MetaMask がインストールされていれば、`Wallet exists! We’re ready to go!` というメッセージが `Console` に表示されているはずです。
 
 ![](/public/images/4-Polygon-Generative-NFT/section-4/4_1_4.png)
 
-MetaMask エクステンションをインストールしたからといって、アクセスしたすべての WEBサイトに MetaMask が自動的に接続されるわけではありません。
+MetaMask エクステンションをインストールしたからといって、アクセスしたすべての Web サイトに MetaMask が自動的に接続されるわけではありません。
 
 MetaMask がユーザーにウォレットを接続するように促す必要があるのです。
 
 そこで登場するのが `Connect Wallet` 機能です。
 
-これは web3 のログインボタンに相当します。
+これは Web3 のログインボタンに相当します。
 
 このログインボタンは、ユーザーがフロントエンドを通じてブロックチェーンネットワークに接続し、コントラクトを呼び出すことを可能にします。
 
@@ -308,11 +308,11 @@ MetaMask は `window.ethereum.request` メソッドでこのプロセスシン�
 
 まず、ユーザーのウォレットアドレスを追跡するために、`App()` で `useState` フックを使って変数を定義しましょう。
 
-まず、React から `useState` をインポートするために、`App.js` ファイルの1行目 `import from 'react'` の中身を下記のように更新してください。
+まず、React から `useState` をインポートするために、`App.js` ファイルの 1 行目 `import from 'react'` の中身を下記のように更新してください。
 
 ```javascript
 // App.js
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 ```
 
 それから、下記を `checkWalletIsConnected` 関数の真上に追加してください。
@@ -320,6 +320,7 @@ import { useEffect, useState } from 'react';
 ```javascript
 const [currentAccount, setCurrentAccount] = useState(null);
 ```
+
 `currentAccount` には、ユーザーの公開ウォレットアドレスが格納されます。
 
 `setCurrentAccount` は、`currentAccount` の状態を更新する関数です。
@@ -331,20 +332,20 @@ const [currentAccount, setCurrentAccount] = useState(null);
 ```javascript
 // App.js
 const connectWalletHandler = async () => {
-	const { ethereum } = window;
+  const { ethereum } = window;
 
-	if (!ethereum) {
-		alert("Please install MetaMask!");
-	}
+  if (!ethereum) {
+    alert("Please install MetaMask!");
+  }
 
-	try {
-		const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-		console.log("Found an account! Address: ", accounts[0]);
-		setCurrentAccount(accounts[0]);
-	} catch (err) {
-		console.log(err)
-	}
-}
+  try {
+    const accounts = await ethereum.request({ method: "eth_requestAccounts" });
+    console.log("Found an account! Address: ", accounts[0]);
+    setCurrentAccount(accounts[0]);
+  } catch (err) {
+    console.log(err);
+  }
+};
 ```
 
 `connectWalletHandler` 関数が何をするのか、簡単に説明しましょう。
@@ -358,7 +359,7 @@ const connectWalletHandler = async () => {
 const { ethereum } = window;
 
 if (!ethereum) {
-	alert("Please install MetaMask!");
+  alert("Please install MetaMask!");
 }
 ```
 
@@ -366,11 +367,11 @@ MetaMask にユーザーのウォレット接続を促し、アドレスの取�
 
 ```javascript
 // App.js
-const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+const accounts = await ethereum.request({ method: "eth_requestAccounts" });
 console.log("Found an account! Address: ", accounts[0]);
 ```
 
-ユーザーがWEBサイトとの接続に同意すると、最初に利用可能なウォレットアドレスを取得し、それを`currentAccount` 変数の値として設定します。
+ユーザーが Web サイトとの接続に同意すると、最初に利用可能なウォレットアドレスを取得し、それを`currentAccount` 変数の値として設定します。
 
 ```javascript
 // App.js
@@ -385,28 +386,28 @@ setCurrentAccount(accounts[0]);
 	console.log(err)
 }
 ```
+
 ### 🌐 ウォレット接続のテストを実行する
 
-上記のコードを全て `App.js` に反映させたら、MetaMask のプラグインをクリックし、あなたのウォレットアドレスの接続状況を確認しましょう。
+上記のコードをすべて `App.js` に反映させたら、MetaMask のプラグインをクリックし、あなたのウォレットアドレスの接続状況を確認しましょう。
 
 もし、下図のように `Connected` と表示されている場合は、`Connected` の文字をクリックします。
 
 ![](/public/images/4-Polygon-Generative-NFT/section-4/4_1_5.png)
 
-そこで、WEBサイトとあなたのウォレットアドレスの接続を一度解除します。
+そこで、Web サイトとあなたのウォレットアドレスの接続を一度解除します。
 
 - `Disconnect this account` を選択してください。
 
 ![](/public/images/4-Polygon-Generative-NFT/section-4/4_1_6.png)
 
-次にローカルサーバーにホストされているあなたのWEBサイトをリフレッシュして、`Connect Wallet` ボタンを押してください。
+次にローカルサーバにホストされているあなたの Web サイトをリフレッシュして、`Connect Wallet` ボタンを押してください。
 
-MetaMask が WEBサイトとの接続を促してきますので、同意しましょう。
+MetaMask が Web サイトとの接続を促してきますので、同意しましょう。
 
 下記のように、`Console` にあなたのパブリックウォレットアドレスが出力されていれば、ウォレット接続のテストは成功です。
 
 ![](/public/images/4-Polygon-Generative-NFT/section-4/4_1_7.png)
-
 
 ウォレットが接続されたら、`Connect Wallet` ボタンを `Mint NFT` ボタンに置き換えていきましょう。
 
@@ -416,22 +417,20 @@ MetaMask が WEBサイトとの接続を促してきますので、同意しま�
 
 ```javascript
 return (
-    <div className='main-app'>
-      <h1>Scrappy Squirrels Tutorial</h1>
-      <div>
-        {currentAccount ? mintNftButton() : connectWalletButton()}
-      </div>
-    </div>
-)
+  <div className="main-app">
+    <h1>Scrappy Squirrels Tutorial</h1>
+    <div>{currentAccount ? mintNftButton() : connectWalletButton()}</div>
+  </div>
+);
 ```
 
-これで、私たちのウェブサイトはこのようになります。
+これで、私たちの Web サイトはこのようになります。
 
 ![](/public/images/4-Polygon-Generative-NFT/section-4/4_1_8.png)
 
 ページを更新して、MetaMask エクステンションを確認してみましょう。
 
-MetaMask はまだウェブサイトに接続されていることを伝えていますが、WEBサイトにはまだConnect Wallet ボタンが表示されていることがわかります。
+MetaMask はまだ Web サイトに接続されていることを伝えていますが、Web サイトにはまだ Connect Wallet ボタンが表示されていることがわかります。
 
 ![](/public/images/4-Polygon-Generative-NFT/section-4/4_1_9.png)
 
@@ -439,60 +438,60 @@ React に慣れている人なら、なぜこのようなことが起こるの�
 
 結局のところ、`connectWallet` 関数の中だけで `setCurrentAccount` を設定しているのです。
 
-実際には、`App.js` がロードされるたびに（つまり更新するたびに）、ユーザーのウォレットがWEBサイトに接続されているか確認する必要があります。
+実際には、`App.js` がロードされるたびに（つまり更新するたびに）、ユーザーのウォレットが Web サイトに接続されているか確認する必要があります。
 
-そこで、`checkWalletIsConnected`  関数を拡張して、WEBサイトがロードされると同時にアカウントをチェックし、ウォレットがすでに接続されている場合は `currentAccount` を設定するようにしましょう。
+そこで、`checkWalletIsConnected` 関数を拡張して、Web サイトがロードされると同時にアカウントをチェックし、ウォレットがすでに接続されている場合は `currentAccount` を設定するようにしましょう。
 
 下記のように、`checkWalletIsConnected` 関数を更新してください。
 
 ```javascript
 // App.js
 const checkWalletIsConnected = async () => {
-	const { ethereum } = window;
+  const { ethereum } = window;
 
-	if (!ethereum) {
-		console.log("Make sure you have MetaMask installed!");
-		return;
-	} else {
-		console.log("Wallet exists! We're ready to go!")
-	}
+  if (!ethereum) {
+    console.log("Make sure you have MetaMask installed!");
+    return;
+  } else {
+    console.log("Wallet exists! We're ready to go!");
+  }
 
-	const accounts = await ethereum.request({ method: 'eth_accounts' });
+  const accounts = await ethereum.request({ method: "eth_accounts" });
 
-	if (accounts.length !== 0) {
-		const account = accounts[0];
-		console.log("Found an authorized account: ", account);
-		setCurrentAccount(account);
-	} else {
-		console.log("No authorized account found");
-	}
-}
+  if (accounts.length !== 0) {
+    const account = accounts[0];
+    console.log("Found an authorized account: ", account);
+    setCurrentAccount(account);
+  } else {
+    console.log("No authorized account found");
+  }
+};
 ```
 
-この `checkWalletIsConnected` 関数は、[非同期](https://zenn.dev/tentel/articles/8146043d1101b5ea873d)（ `async` ）です。
+この `checkWalletIsConnected` 関数は、[非同期](https://zenn.dev/tentel/articles/8146043d1101b5ea873d)（`async`）です。
 
 この関数が何をするのか、簡単に触れておきましょう。
 
 - MetaMask がインストールされているかどうかをチェックし、結果をコンソールに出力します。
 
-	```javascript
-	// App.js
-	if (!ethereum) {
-		console.log("Make sure you have MetaMask installed!");
-		return;
-	} else {
-		console.log("Wallet exists! We're ready to go!")
-	}
-	```
+  ```javascript
+  // App.js
+  if (!ethereum) {
+    console.log("Make sure you have MetaMask installed!");
+    return;
+  } else {
+    console.log("Wallet exists! We're ready to go!");
+  }
+  ```
 
-- WEBサイトに接続中のアカウントに対して MetaMask のリクエストを試みます。
+- Web サイトに接続中のアカウントに対して MetaMask のリクエストを試みます。
 
 ```javascript
 // App.js
-const accounts = await ethereum.request({ method: 'eth_accounts' });
+const accounts = await ethereum.request({ method: "eth_accounts" });
 ```
 
-- MetaMask がすでにWEBサイトに接続されている場合は、この関数にアカウントのリストを渡して要求を出します。
+- MetaMask がすでに Web サイトに接続されている場合は、この関数にアカウントのリストを渡して要求を出します。
 
 ```javascript
 // App.js
@@ -517,10 +516,11 @@ setCurrentAccount(account);
 }
 ```
 
-`checkWalletIsConnected` 関数を更新してから、ページをリフレッシュすると、WEBサイトには `Mint NFT` ボタンが表示されているはずです。
-### 🐻 WEB サイトから NFT を Mint する
+`checkWalletIsConnected` 関数を更新してから、ページをリフレッシュすると、Web サイトには `Mint NFT` ボタンが表示されているはずです。
 
-それでは、WEBサイトの中核となる機能を実装していきましょう。
+### 🐻 Web サイトから NFT を Mint する
+
+それでは、Web サイトの中核となる機能を実装していきましょう。
 
 ユーザーが `Mint NFT` ボタンをクリックすると、次のようなことが起こると予想されます。
 
@@ -544,7 +544,7 @@ npm install ethers
 
 ```javascript
 // App.js
-import { ethers } from 'ethers';
+import { ethers } from "ethers";
 ```
 
 最後に、下記のように `mintNftHandler` 関数を更新しましょう。
@@ -552,34 +552,33 @@ import { ethers } from 'ethers';
 ```javascript
 // App.js
 const mintNftHandler = async () => {
-    try {
-      const { ethereum } = window;
+  try {
+    const { ethereum } = window;
 
-      if (ethereum) {
-        const provider = new ethers.providers.Web3Provider(ethereum);
-        const signer = provider.getSigner();
-        const nftContract = new ethers.Contract(contractAddress, abi, signer);
+    if (ethereum) {
+      const provider = new ethers.providers.Web3Provider(ethereum);
+      const signer = provider.getSigner();
+      const nftContract = new ethers.Contract(contractAddress, abi, signer);
 
-        console.log("Initialize payment");
-        let nftTxn = await nftContract.mintNFTs(1, { value: ethers.utils.parseEther("0.01") });
+      console.log("Initialize payment");
+      let nftTxn = await nftContract.mintNFTs(1, {
+        value: ethers.utils.parseEther("0.01"),
+      });
 
-        console.log("Mining... please wait");
-        await nftTxn.wait();
+      console.log("Mining... please wait");
+      await nftTxn.wait();
 
-        console.log(`Mined, see transaction: ${nftTxn.hash}`);
-
-      } else {
-        console.log("Ethereum object does not exist");
-      }
-
-    } catch (err) {
-      console.log(err);
+      console.log(`Mined, see transaction: ${nftTxn.hash}`);
+    } else {
+      console.log("Ethereum object does not exist");
     }
-}
+  } catch (err) {
+    console.log(err);
+  }
+};
 ```
 
-この `mintNftHandler` 関数は、[非同期](https://zenn.dev/tentel/articles/8146043d1101b5ea873d)（ `async` ）です。
-
+この `mintNftHandler` 関数は、[非同期](https://zenn.dev/tentel/articles/8146043d1101b5ea873d)（`async`）です。
 
 いつものように、この関数が何をするのかに触れてみましょう。
 
@@ -607,20 +606,22 @@ const { ethereum } = window;
 const signer = provider.getSigner();
 ```
 
-4\. 次に、デプロイされたコントラクトのアドレス、コントラクトABI、および `signer` を使用して、`ethers` のコントラクトインスタンスを開始します。
+4\. 次に、デプロイされたコントラクトのアドレス、コントラクト ABI、および `signer` を使用して、`ethers` のコントラクトインスタンスを開始します。
 
 ```javascript
 // App.js
-  const nftContract = new ethers.Contract(contractAddress, abi, signer);
-  console.log("Initialize payment");
+const nftContract = new ethers.Contract(contractAddress, abi, signer);
+console.log("Initialize payment");
 ```
 
 5\. これで、前述のコントラクトオブジェクトを通じてコントラクト上の関数を呼び出すことができます。`mintNFT` 関数を呼び出し、MetaMask に `0.01 ETH`（これは NFT に設定した価格）を送信するよう依頼します。
 
 ```javascript
 // App.js
-  let nftTxn = await nftContract.mintNFTs(1, { value: ethers.utils.parseEther("0.01") });
-	console.log("Mining... please wait");
+let nftTxn = await nftContract.mintNFTs(1, {
+  value: ethers.utils.parseEther("0.01"),
+});
+console.log("Mining... please wait");
 ```
 
 6\. トランザクションが処理されるのを待ち、処理が完了したら、トランザクションのハッシュをコンソールに出力します。
@@ -631,7 +632,11 @@ await nftTxn.wait();
 console.log(`Mined, see transaction: ${nftTxn.hash}`);
 ```
 
-7\. トランザクションが失敗した場合（間違った関数が呼び出された、間違ったパラメータが渡された、0.01 ETH以下が送られた、ユーザーが取引を拒否した、など）、エラーがコンソールに出力されます。
+<!-- textlint-disable -->
+
+7\. トランザクションが失敗した場合（間違った関数が呼び出された、間違ったパラメータが渡された、0.01 ETH 以下が送られた、ユーザーが取引を拒否した、など）、エラーがコンソールに出力されます。
+
+<!-- textlint-enable -->
 
 ```javascript
 // App.js
@@ -639,25 +644,25 @@ console.log(`Mined, see transaction: ${nftTxn.hash}`);
     console.log(err);
   }
 ```
+
 ### ✨ `App.js` の完成
 
-ここまででフロントエンドのコア機能の実装が終わりました。
+ここまでフロントエンドのコア機能の実装が終わりました。
 
 `App.js` の最終盤はこちらです。
 
 ```javascript
 // App.js
 
-import { useEffect, useState } from 'react';
-import './App.css';
-import contract from './contracts/NFTCollectible.json';
-import { ethers } from 'ethers';
+import { useEffect, useState } from "react";
+import "./App.css";
+import contract from "./contracts/NFTCollectible.json";
+import { ethers } from "ethers";
 
 const contractAddress = "0x7aDBc3497BE70a903c5b17BEf184782dD0A7eFAa";
 const abi = contract.abi;
 
 function App() {
-
   const [currentAccount, setCurrentAccount] = useState(null);
 
   const checkWalletIsConnected = async () => {
@@ -667,10 +672,10 @@ function App() {
       console.log("Make sure you have MetaMask installed!");
       return;
     } else {
-      console.log("Wallet exists! We're ready to go!")
+      console.log("Wallet exists! We're ready to go!");
     }
 
-    const accounts = await ethereum.request({ method: 'eth_accounts' });
+    const accounts = await ethereum.request({ method: "eth_accounts" });
 
     if (accounts.length !== 0) {
       const account = accounts[0];
@@ -679,7 +684,7 @@ function App() {
     } else {
       console.log("No authorized account found");
     }
-  }
+  };
 
   const connectWalletHandler = async () => {
     const { ethereum } = window;
@@ -689,13 +694,15 @@ function App() {
     }
 
     try {
-      const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+      const accounts = await ethereum.request({
+        method: "eth_requestAccounts",
+      });
       console.log("Found an account! Address: ", accounts[0]);
       setCurrentAccount(accounts[0]);
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  }
+  };
 
   const mintNftHandler = async () => {
     try {
@@ -707,79 +714,80 @@ function App() {
         const nftContract = new ethers.Contract(contractAddress, abi, signer);
 
         console.log("Initialize payment");
-        let nftTxn = await nftContract.mintNFTs(1, { value: ethers.utils.parseEther("0.01") });
+        let nftTxn = await nftContract.mintNFTs(1, {
+          value: ethers.utils.parseEther("0.01"),
+        });
 
         console.log("Mining... please wait");
         await nftTxn.wait();
 
         console.log(`Mined, see transaction: ${nftTxn.hash}`);
-
       } else {
         console.log("Ethereum object does not exist");
       }
-
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   const connectWalletButton = () => {
     return (
-      <button onClick={connectWalletHandler} className='cta-button connect-wallet-button'>
+      <button
+        onClick={connectWalletHandler}
+        className="cta-button connect-wallet-button"
+      >
         Connect Wallet
       </button>
-    )
-  }
+    );
+  };
 
   const mintNftButton = () => {
     return (
-      <button onClick={mintNftHandler} className='cta-button mint-nft-button'>
+      <button onClick={mintNftHandler} className="cta-button mint-nft-button">
         Mint NFT
       </button>
-    )
-  }
+    );
+  };
 
   useEffect(() => {
     checkWalletIsConnected();
-  }, [])
+  }, []);
 
   return (
-    <div className='main-app'>
+    <div className="main-app">
       <h1>Scrappy Squirrels Tutorial</h1>
-      <div>
-        {currentAccount ? mintNftButton() : connectWalletButton()}
-      </div>
+      <div>{currentAccount ? mintNftButton() : connectWalletButton()}</div>
     </div>
-  )
+  );
 }
 
 export default App;
-
 ```
 
-それでは、WEBサイトに向かい、ブラウザの `Console` を開き、Minining 状況をリアルタイムで確認できるようにしましょう。
+それでは、Web サイトに向かい、ブラウザの `Console` を開き、Mining 状況をリアルタイムで確認できるようにしましょう。
 
 **MetaMask のネットワークを `Polygon Testnet` にして**、`Mint NFT` ボタンをクリックします。
 
-MetaMask が 0.01 ETH + ガス代 を支払うよう促すので、同意してください。
+MetaMask が 0.01 ETH + ガス代を支払うよう促すので、同意してください。
 
-トランザクションの処理には約15～20秒かかります。
+トランザクションの処理には約 15 ～ 20 秒かかります。
 
 処理が完了したら、MetaMask のポップアップとコンソール出力の両方でトランザクションが確認できます。
 
 ![](/public/images/4-Polygon-Generative-NFT/section-4/4_1_10.png)
 
-
-> ⚠️: 2022年4月1日より、Mint ボタンすると下記のようなエラーが発生しています。
+> ⚠️: 2022 年 4 月 1 日より、Mint ボタンすると下記のようなエラーが発生しています。
+>
 > ```
 > MetaMask - RPC Error: Internal JSON-RPC error.
 > {code: -32603, message: 'Internal JSON-RPC error.', data: {…}}
 > code: -32603
 > ```
-> このエラーに関しては、2022年4月1日以前には問題なく動いていた同プロジェクトにも発生しているので、対応を模索しています。
+>
+> このエラーに関しては、2022 年 4 月 1 日以前には問題なく動いていた同プロジェクトにも発生しているので、対応を模索しています。
 > あなたのプロジェクトで、このエラーが発生した場合、引き続き次のステップに進んでください。
 
-Polygon が他のサイドチェーンと異なる最大の利点は、世界最大の NFT マーケットプレイスである OpenSea にサポートされていることです。
+Polygon がほかのサイドチェーンと異なる最大の利点は、世界最大の NFT マーケットプレイスである OpenSea にサポートされていることです。
 
 [testnets.opensea.io](https://testnets.opensea.io/) にアクセスし、あなたのコントラクトアドレスを検索してください。
 
@@ -789,20 +797,23 @@ Mint された NFT がコレレクションとしてアップロードされて�
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの `#section-4` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#section-4` で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+
 ```
 1. 質問が関連しているセクション番号とレッスン番号
 2. 何をしようとしていたか
 3. エラー文をコピー&ペースト
 4. エラー画面のスクリーンショット
 ```
+
 ---
-おめでとうございます！あなたの NFT コレクションが Mint されました！
 
-あなたの OpenSea のリンクを `#section-4` に投稿してください😊
+おめでとうございます！　あなたの NFT コレクションが Mint されました！
 
-あなたの成功をコミュニティで祝いましょう🎉
+あなたの OpenSea のリンクを `#section-4` に投稿してください 😊
 
-次のレッスンでは、Vercel でWEBサイトをホストします！
+あなたの成功をコミュニティで祝いましょう 🎉
+
+次のレッスンでは、Vercel で Web サイトをホストします！

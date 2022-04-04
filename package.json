@@ -1,14 +1,23 @@
 {
-  "name": "UNCHAIN-projects",
+  "name": "unchain-projects",
   "version": "1.0.0",
   "main": "README.md",
   "repository": "https://github.com/shiftbase-xyz/UNCHAIN-projects.git",
   "scripts": {
-    "textlint:check": "textlint docs/**/*.md",
-    "textlint:fix": "textlint --fix docs/**/*.md"
+    "textlint:check": "textlint docs/**/*.md --cache --ignore-path .textlintignore",
+    "textlint:fix": "textlint --fix docs/**/*.md --cache --ignore-path .textlintignore",
+    "prepare": "simple-git-hooks"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
   },
   "devDependencies": {
+    "lint-staged": "^12.3.7",
+    "simple-git-hooks": "^2.7.0",
     "textlint": "^12.1.1",
+    "textlint-filter-rule-allowlist": "^4.0.0",
+    "textlint-filter-rule-comments": "^1.2.2",
+    "textlint-rule-ja-no-mixed-period": "^2.1.1",
     "textlint-rule-preset-ja-spacing": "^2.2.0",
     "textlint-rule-preset-ja-technical-writing": "^7.0.0",
     "textlint-rule-preset-japanese": "^7.0.0",

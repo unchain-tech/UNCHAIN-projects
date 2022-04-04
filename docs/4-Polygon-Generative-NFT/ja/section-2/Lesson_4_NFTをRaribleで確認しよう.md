@@ -1,23 +1,24 @@
 ### 🐝 Rarible で NFT を確認する
 
-コントラクトのアドレス（`Contract deployed to` に続く `0x..` ）をターミナルからコピーして、[`rinkeby.rarible.com`](https://rinkeby.rarible.com/) に貼り付け、検索してみてください。
+コントラクトのアドレス（`Contract deployed to` に続く `0x..`）をターミナルからコピーして、[`rinkeby.rarible.com`](https://rinkeby.rarible.com/) に貼り付け、検索してみてください。
 
-- [テストネット用の OpenSea](https://testnets.opensea.io/) でも同じように確認することができますが、NFT が OpenSea に反映されるまでに時間がかかるので、Rarible で検証することをおすすめします。
+- [テストネット用の OpenSea](https://testnets.opensea.io/) でも同じように確認できますが、NFT が OpenSea に反映されるまでに時間がかかるので、Rarible で検証することをお勧めします。
 
-わたしのコレクションはこのような形で表示されます。
+私のコレクションはこのような形で表示されます。
 
 ![](/public/images/4-Polygon-Generative-NFT/section-2/2_4_1.png)
 
-`deploy.js` で、10個の NFT を自分用にキープしてから、3 個 NFT を Mint しました。
+`deploy.js` で、10 個の NFT を自分用にキープしてから、3 個 NFT を Mint しました。
 
-したがって、今コントラクトアドレスから表示できる NFT コレクションは、13個です。
+したがって、今コントラクトアドレスから表示できる NFT コレクションは、13 個です。
+
 ### 📝 Etherscan を使ってコントラクトを verify（検証）する
 
 最後に、Etherscan で **コントラクトの Verification（検証）** を行いましょう。
 
-この機能を使えば、あなたの Solidity プログラムを世界中の人に公開することができます。
+この機能を使えば、あなたの Solidity プログラムを世界中の人に公開できます。
 
-また、あなたも他の人の書いたコードを読むことができます。
+また、あなたもほかの人の書いたコードを読むことができます。
 
 まず、Etherscan のアカウントを取得して、API Key を取得しましょう。
 
@@ -57,7 +58,7 @@ ETHERSCAN_API = "YOUR ETHERSCAN apiKey HERE"
 // hardhat.config.js
 require("@nomiclabs/hardhat-waffle");
 require("@nomiclabs/hardhat-etherscan");
-require('dotenv').config();
+require("dotenv").config();
 
 const { API_URL, PRIVATE_KEY, ETHERSCAN_API } = process.env;
 
@@ -75,12 +76,12 @@ module.exports = {
   networks: {
     rinkeby: {
       url: API_URL,
-      accounts: [PRIVATE_KEY]
-    }
+      accounts: [PRIVATE_KEY],
+    },
   },
   etherscan: {
-    apiKey: ETHERSCAN_API
-  }
+    apiKey: ETHERSCAN_API,
+  },
 };
 ```
 
@@ -93,12 +94,12 @@ npx hardhat clean
 
 npx hardhat verify --network rinkeby DEPLOYED_CONTRACT_ADDRESS "BASE_TOKEN_URI"
 ```
+
 - `DEPLOYED_CONTRACT_ADDRESS` はあなたのコントラクトアドレスです。
 
 - `"BASE_TOKEN_URI"` は、`deploy.js` に記載されているものと同一である必要があります。
 
-
-わたしのコマンドは下記のようになります。
+私のコマンドは下記のようになります。
 
 ```
 npx hardhat verify --network rinkeby 0x94E614a7D82d9dD24CBED7607a40eBE4243491dF "ipfs://QmSvw119ALMN9SkP89Xj37jvqJik8jZrSjU5c1vgBhkhz8/"
@@ -118,7 +119,7 @@ https://rinkeby.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#
 
 出力された `rinkeby.etherscan.io` の URL にアクセスしてみましょう。
 
-わたしの [URLリンク](https://rinkeby.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#code) の中身は下記のように表示されます。
+私の [URL リンク](https://rinkeby.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#code) の中身は下記のように表示されます。
 
 ![](/public/images/4-Polygon-Generative-NFT/section-2/2_4_5.png)
 
@@ -135,11 +136,13 @@ https://rinkeby.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#
 - 0.03 ETH をコントラクトから自分のウォレットに転送できるはずです。
 
 - また、`mintNFTs` 関数を呼び出して数枚の NFT を Mint してみましょう。
+
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの `#section-2` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#section-2` で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+
 ```
 1. 質問が関連しているセクション番号とレッスン番号
 2. 何をしようとしていたか
@@ -148,8 +151,9 @@ https://rinkeby.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#
 ```
 
 ---
-Etherscan リンクを `#section-2` に投稿してください😊
 
-コミュニティであなたの成功を祝いましょう🎉
+Etherscan リンクを `#section-2` に投稿してください 😊
 
-コントラクトの検証が完了したら、次のレッスンに進みましょう🎉
+コミュニティであなたの成功を祝いましょう 🎉
+
+コントラクトの検証が完了したら、次のレッスンに進みましょう 🎉
