@@ -1,10 +1,10 @@
-### 🍽 フロントエンドのファイルをあなたの GitHub にフォークする。
+### 🍽 フロントエンドのファイルをあなたの GitHub にフォークする
 
 このセクションでは、Web サイトの構築を通して、フロントエンドがスマートコントラクトとどのように関連するのか学びます。
 
 まだ GitHub のアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
-GitHub のアカウントをお持ちの方は、[こちら](https://github.com/shiftbase-xyz/dApp-starter-project) から、フロントエンドの基盤をあなたの GitHub にフォークしましょう。
+GitHub のアカウントをお持ちの方は、[こちら](https://github.com/shiftbase-xyz/dApp-starter-project) から、フロントエンドの基盤 `dApp-starter-project ` をあなたの GitHub にフォークしましょう。
 
 フォークの方法は、[こちら](https://docs.github.com/ja/get-started/quickstart/fork-a-repo) を参照してください。
 
@@ -37,8 +37,8 @@ git clone コピーした_github_リンク
 
 ```
 ETH-dApp
-	|_ my-wave-portal
-	|_ dApp-starter-project
+   |_ my-wave-portal
+   |_ dApp-starter-project
 ```
 
 ターミナル上で `dApp-starter-project` に移動して下記を実行しましょう。
