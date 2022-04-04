@@ -1,13 +1,13 @@
-### 💠 希少性を備えたジェネレーティブNFTアートを作成する
+### 💠 希少性を備えたジェネレーティブ NFT アートを作成する
 
-[Cryptopunks](https://www.larvalabs.com/cryptopunks) （クリプトパンクス）や [Bored Ape Yacht Club](https://boredapeyachtclub.com/#/)（BAYC：ボアードエイプ・ヨットクラブ）などの NFT プロジェクト を知っていますか？
+[Cryptopunks](https://www.larvalabs.com/cryptopunks)（クリプトパンクス）や [Bored Ape Yacht Club](https://boredapeyachtclub.com/#/)（BAYC：ボアードエイプ・ヨットクラブ）などの NFT プロジェクトを知っていますか？
 
 これらのプロジェクトは、数億ドルの収益を生み出し、所有者の一部は億万長者となっています。
 
-[Cryptopunks](https://www.larvalabs.com/cryptopunks) （クリプトパンクス）
+[Cryptopunks](https://www.larvalabs.com/cryptopunks)（クリプトパンクス）。
 ![](/public/images/4-Polygon-Generative-NFT/section-1/1_1_1.jpeg)
 
-[Bored Ape Yacht Club](https://boredapeyachtclub.com/#/)（BAYC：ボアードエイプ・ヨットクラブ）
+[Bored Ape Yacht Club](https://boredapeyachtclub.com/#/)（BAYC：ボアードエイプ・ヨットクラブ）。
 ![](/public/images/4-Polygon-Generative-NFT/section-1/1_1_2.jpeg)
 
 これらは、数量が限られたアバターのコレクションです。
@@ -19,6 +19,7 @@
 今回のレッスンでは、Cryptopunks や BAYC のような希少性を備えた Generative Art の NFT コレクションを作成する方法を学びます。
 
 ✍️: NFT に関する詳しい説明は、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/blob/main/2-ETH-NFT-collection/ja/section-1/Lesson_1_NFT%E3%81%A8%E3%81%AF%E4%BD%95%E3%81%8B%EF%BC%9F.md) をご覧ください。
+
 ### 💻 Python と pip をインストールする
 
 Generative Art を作成するために、[こちら](https://github.com/shiftbase-xyz/generative-nft-library) のライブラリを使用します。
@@ -28,13 +29,13 @@ Generative Art を作成するために、[こちら](https://github.com/shiftba
 > 🤩: 注意
 > **このレッスンを進めるのに、Python やその他のプログラミング言語を知る必要はありません。**
 
-まず、[こちら](https://and-engineer.com/articles/YcJyaRAAACMAl3BX) のウェブサイトを参考に、最新版の Python3 をダウンロードしてください。
+まず、[こちら](https://and-engineer.com/articles/YcJyaRAAACMAl3BX) の Web サイトを参考に、最新版の Python3 をダウンロードしてください。
 
 ダウンロードが完了したら、ターミナルで下記を行して、Python3 のバージョンを確認してください。
 
 ```javascript
 // Python のバージョンを確認
-python3 -V
+python3 - V;
 ```
 
 下記のようにターミナルに出力されていれば、Python のダウンロードは成功です。
@@ -42,6 +43,7 @@ python3 -V
 ```
 Python 3.10.2
 ```
+
 - 最新のバージョンでない場合は、`warning` が表示されるので、指示に従って、Python3 を最新版に更新しましょう。
 
 次に、ターミナルで下記を行して、pip のバージョンを確認してください。
@@ -60,6 +62,7 @@ certifi    2021.10.8
 pip        22.0.3
 setuptools 58.1.0
 ```
+
 - 最新のバージョンでない場合は、`warning` が表示されるので、指示に従って、pip を最新版に更新しましょう。
 
 次に、ターミナルで下記を実行して、Generative Art を生成する際に使用するライブラリをインストールしてください。
@@ -75,15 +78,16 @@ pip install Pillow pandas progressbar2
 - [Pandas](https://pandas.pydata.org/): データ解析ライブラリで、画像のメタデータの生成と保存を支援します。
 
 - [Progressbar](https://progressbar-2.readthedocs.io/en/latest/): 画像生成の進捗状況を表示するライブラリです。
-### 🍽 Git レポジトリをあなたの Github にフォークする
 
-まだ Github のアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
+### 🍽 Git リポジトリをあなたの GitHub にフォークする
 
-Github のアカウントをお持ちの方は、[こちら](https://github.com/shiftbase-xyz/generative-nft-library) から、`generative-nft-library` リポジトリをあなたの Github にフォークしましょう。
+まだ GitHub のアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
-あなたの Github アカウントにフォークした `generative-nft-library` レポジトリを、あなたのローカル環境にクローンしてください。
+GitHub のアカウントをお持ちの方は、[こちら](https://github.com/shiftbase-xyz/generative-nft-library) から、`generative-nft-library` リポジトリをあなたの GitHub にフォークしましょう。
 
-まず、下図のように、`Code` ボタンをクリックして、`SSH` を選択し、git リンクをコピーしましょう。
+あなたの GitHub アカウントにフォークした `generative-nft-library` リポジトリを、あなたのローカル環境にクローンしてください。
+
+まず、下図のように `Code` ボタンをクリックして、`SSH` を選択し、Git リンクをコピーしましょう。
 
 ![](/public/images/4-Polygon-Generative-NFT/section-1/1_1_3.png)
 
@@ -96,6 +100,7 @@ git clone コピーした_github_リンク
 下記のように、あなたのローカル環境に、ライブラリがクローンされたことが確認できたら、次のステップに進みましょう。
 
 ![](/public/images/4-Polygon-Generative-NFT/section-1/1_1_4.png)
+
 ### 🐿 Scrappy Squirrels を生成する
 
 今回は、「Scrappy Squirrels」プロジェクトに使用されたデータを使って、Generative Art を生成していきます。
@@ -120,9 +125,9 @@ git clone コピーした_github_リンク
 
 - 正しいアバターを作るには、右上から時計回りに特徴画像を重ねる必要があります。
 
-- 特徴画像は、他の特徴画像とうまく重なるように描かれている必要があります。
+- 特徴画像は、ほかの特徴画像とうまく重なるように描かれている必要があります。
 
-- どの特徴も同じカテゴリの他の特徴と入れ替えることができます（例えば、青い服を赤い服と入れ替える）。したがって、各カテゴリの特徴が10個ずつあれば、理論的には1億匹の異なるアバターを作り出すことができます。
+- どの特徴も同じカテゴリのほかの特徴と入れ替えることができます（たとえば、青い服を赤い服と入れ替える）。したがって、各カテゴリの特徴が 10 個ずつあれば、理論的には 1 億匹の異なるアバターを作り出すことができます。
 
 オリジナルで画像を作成する場合、さまざまな特徴カテゴリを作成し、それに付随する画像を複数作成します。
 
@@ -132,9 +137,9 @@ git clone コピーした_github_リンク
 
 ![](/public/images/4-Polygon-Generative-NFT/section-1/1_1_7.png)
 
-各特徴のカテゴリごとに、特徴的な画像の数は様々です。
+各特徴のカテゴリごとに、特徴的な画像の数挟まざまです。
 
-例えば、特徴のカテゴリ「Shirt（シャツ）」には下記のように、複数の種類の画像を格納することができます。
+たとえば、特徴のカテゴリ「Shirt（シャツ）」には下記のように、複数の種類の画像を格納できます。
 
 ※ 現在のサンプルでは、簡単のため `blue_dot.png` のみが格納されています。
 
@@ -152,6 +157,7 @@ generative-nft-library
 			  |_ Head
 			  	   :
 ```
+
 ### 🪄 `config.py` ファイルを設定する
 
 アバターコレクションを生成する最後のステップです。`generative-nft-library/config.py` を開き、以下の説明に従ってファイルを埋めていきましょう。
@@ -180,73 +186,72 @@ CONFIG = [
 
 ![](/public/images/4-Polygon-Generative-NFT/section-1/1_1_9.png)
 
-
 **ここでの順序は非常に重要です。**
 
 それでは、以下のように、`config.py` を新しく設定していきましょう。
 
 ```javascript
 CONFIG = [
-    {
-        'id': 1,
-        'name': 'background',
-        'directory': 'Background',
-        'required': True,
-        'rarity_weights': None,
-    },
-    {
-        'id': 2,
-        'name': 'body',
-        'directory': 'Body',
-        'required': True,
-        'rarity_weights': None
-    },
-    {
-        'id': 3,
-        'name': 'eyes',
-        'directory': 'Expressions',
-        'required': True,
-        'rarity_weights': None
-    },
-    {
-        'id': 4,
-        'name': 'head_gear',
-        'directory': 'Head Gear',
-        'required': False,
-        'rarity_weights': 'random'
-    },
-    {
-        'id': 5,
-        'name': 'clothes',
-        'directory': 'Shirt',
-        'required': False,
-        'rarity_weights': None
-    },
-    {
-        'id': 6,
-        'name': 'held_item',
-        'directory': 'Misc',
-        'required': True,
-        'rarity_weights': None,
-    },
-    {
-        'id': 7,
-        'name': 'hands',
-        'directory': 'Hands',
-        'required': True,
-        'rarity_weights': None,
-    },
-    {
-        'id': 8,
-        'name': 'wristband',
-        'directory': 'Wristband',
-        'required': False,
-        'rarity_weights': [100, 5, 5, 5, 15, 5, 1]
-    },
-]
+  {
+    id: 1,
+    name: "background",
+    directory: "Background",
+    required: True,
+    rarity_weights: None,
+  },
+  {
+    id: 2,
+    name: "body",
+    directory: "Body",
+    required: True,
+    rarity_weights: None,
+  },
+  {
+    id: 3,
+    name: "eyes",
+    directory: "Expressions",
+    required: True,
+    rarity_weights: None,
+  },
+  {
+    id: 4,
+    name: "head_gear",
+    directory: "Head Gear",
+    required: False,
+    rarity_weights: "random",
+  },
+  {
+    id: 5,
+    name: "clothes",
+    directory: "Shirt",
+    required: False,
+    rarity_weights: None,
+  },
+  {
+    id: 6,
+    name: "held_item",
+    directory: "Misc",
+    required: True,
+    rarity_weights: None,
+  },
+  {
+    id: 7,
+    name: "hands",
+    directory: "Hands",
+    required: True,
+    rarity_weights: None,
+  },
+  {
+    id: 8,
+    name: "wristband",
+    directory: "Wristband",
+    required: False,
+    rarity_weights: [100, 5, 5, 5, 15, 5, 1],
+  },
+];
 ```
 
-各特徴カテゴリ（例: `Background` ）は `{}` でカプセル化された Python の `dictionary`として記載されています。
+各特徴カテゴリ（例: `Background`）は `{}` でカプセル化された Python の `dictionary`として記載されています。
 
 ここでは、特性カテゴリ `dictionary` を `CONFIG` リストで順番に定義しています。
 
@@ -256,8 +261,7 @@ CONFIG = [
 
 各キーについて詳しく見ていきましょう。
 
-
-- `id` : 重ねる画像レイヤーを識別する番号です。例えば、`Background` が 1 番目に重ねる特性カテゴリ（＝レイヤー）であれば、`id` は `1`となります。 **なお、レイヤーは `assets` フォルダに格納されている特徴カテゴリの並び順に沿って定義されるる必要があります。**
+- `id` : 重ねる画像レイヤを識別する番号です。たとえば、`Background` が 1 番目に重ねる特性カテゴリ（＝レイヤ）であれば、`id` は `1`となります。 **なお、レイヤは `assets` フォルダに格納されている特徴カテゴリの並び順に沿って定義されるる必要があります。**
 
 - `name` : 特性カテゴリの名前です。任意の名前を付けることができます。メタデータに表示されます。`directory` の名前と一致される必要はありません。
 
@@ -265,48 +269,49 @@ CONFIG = [
 
 - `required` : 任意の特徴カテゴリがすべての画像に必要である場合は `True` 、そうでない場合は、`False` を設定します。
 
-	特定の特徴カテゴリ（ `Background`、`Body`、など）はすべてのアバターに表示する必要があるので、`True` と設定しています。
+  特定の特徴カテゴリ（`Background`、`Body`、など）はすべてのアバターに表示する必要があるので、`True` と設定しています。
 
-	その他のカテゴリ（`Head Gear`、`Wristband`、など）はオプションなので、`False` と設置しています。**1番目のレイヤーの `required` の値を `True` に設定することを強くお勧めします。**
+  そのほかのカテゴリ（`Head Gear`、`Wristband`、など）はオプションですので、`False` と設置しています。**1 番目のレイヤの `required` の値を `True` に設定することを強くお勧めします。**
 
 - `rarity_weights`: 任意の特徴カテゴリがどの程度「希少」であるかを決定します。後に詳しく説明していきます。
 
 > ⚠️: 注意
 >
 > オリジナルで特徴カテゴリや画像を設定する場合、新しいレイヤーを作成するとき（または、既存のレイヤーを置き換えるとき）は、これらの 5 つのキーがすべて定義されていることを確認しましょう。
+
 ### 💎 特徴の希少性を設定する
 
 `rarity_weights` キーは下記 3 つの値を取ることができます。
 
 - `None`、`'random'`、Python リスト
 
-それぞれの値を一つずつ見ていきましょう。
+それぞれの値を 1 つずつ見ていきましょう。
 
 1 \. **`None`**
 
 - `rarity_weights` の値を `None` に設定すると、**各特徴に等しい重みが割り当てられます。**
 
-- したがって、8 つの特徴カテゴリが存在する場合、`required` を `True`、`rarity_weights` を `None` とした特徴カテゴリはおよそ全体の 12.5% のアバターに現れることになります。
+- したがって、8 つの特徴カテゴリが存在する場合、`required` を `True`、`rarity_weights` を `None` とした特徴カテゴリはおよそ全体の 12.5％ のアバターに現れることになります。
 
-		100 (%) / 8 （特徴カテゴリ）= 12.5 (特徴カテゴリの反映率)
+      100 (%) / 8 （特徴カテゴリ）= 12.5 (特徴カテゴリの反映率)
 
-- `required` が `False` の場合、その特定の特徴を全く得られない可能性も等しくなります。
+- `required` が `False` の場合、その特定の特徴をまったく得られない可能性も等しくなります。
 
-- 先ほどのケースで、`required` を `False`、`rarity_weights` を `None` とした特徴カテゴリはおよそ 11.1 %のアバターに出現することになります。
+- 先ほどのケースで、`required` を `False`、`rarity_weights` を `None` とした特徴カテゴリはおよそ 11.1 ％のアバターに出現することになります。
 
-- さらに 11.1% のアバターには、その特徴が全くないことになります。
+- さらに 11.1％ のアバターには、その特徴がまったくないことになります。
 
 2 \.**`'random'`**
 
-`rarity_weights` に `'random'`（ `''` は必須）を設定すると、**各特徴カテゴリにランダムに重みが付けられます。**
+`rarity_weights` に `'random'`（`''` は必須）を設定すると、**各特徴カテゴリにランダムに重みが付けられます。**
 
 **この機能は使用しないことを強くお勧めします。**
 
->⚠️: 注意
+> ⚠️: 注意
 >
->ここでは、ライブラリの仕様として `'random'` が存在することだけ紹介しています。
+> ここでは、ライブラリの仕様として `'random'` が存在することだけ紹介しています。
 >
->`config.py` では、ライブラリの動作を確認するために、特徴カテゴリー `Head Gear` に `'random'` を設定しています。
+> `config.py` では、ライブラリの動作を確認するために、特徴カテゴリー `Head Gear` に `'random'` を設定しています。
 
 3 \. **Python リスト**
 
@@ -317,7 +322,6 @@ Python リストは、`rarity_weights` の重みを割り当てる最も一般�
 **これらの画像を `Name` で昇順（アルファベット順）にソートすると、次のようになります。**
 
 ![](/public/images/4-Polygon-Generative-NFT/section-1/1_1_10.png)
-
 
 次に、`config.py` の `Wristbands` に定義した `rarity_weights` を見てみましょう。
 
@@ -331,12 +335,13 @@ Python リストは、`rarity_weights` の重みを割り当てる最も一般�
 },
 ```
 
-`'rarity_weights'` に設定されているリスト `[100, .., , 1]` では、各数値（＝重み）が、特徴カテゴリー `Wristband` の中の画像に昇順で割り当てられています。
+`'rarity_weights'` に設定されているリスト `[100, .., , 1]` では、各数値（＝重み）が、特徴カテゴリ `Wristband` の中の画像に昇順で割り当てられています。
 
-`required` が `True` の場合、重みの数は、特徴カテゴリー `Wristband` の画像の数と同じする必要があります。
+`required` が `True` の場合、重みの数は、特徴カテゴリ `Wristband` の画像の数と同じする必要があります。
 
 > ✍️: `required` が `True` の場合
 > 特徴カテゴリー `Wristband` の画像の数は 6 枚なので、
+>
 > ```
 > 'rarity_weights': [リストの中には 6 つの重みが設定される]
 > ```
@@ -347,19 +352,19 @@ Python リストは、`rarity_weights` の重みを割り当てる最も一般�
 
 ✍️: 要約
 
->リストバンドが必須であれば（ `'required': True` ）、リスト内に 6 個の重みを定義し、必須でなければ（ `'required': False` ）、7 個の重みを定義することになります。
+> リストバンドが必須であれば（ `'required': True` ）、リスト内に 6 個の重みを定義し、必須でなければ（ `'required': False` ）、7 個の重みを定義することになります。
 
-今回の例では、`Wristband` は、`'required': False` と設定されているので、**この特徴カテゴリーは最終的に画像を生成する際、必須で表示される必要はありません。**
+今回の例では、`Wristband` は、`'required': False` と設定されているので、**この特徴カテゴリは最終的に画像を生成する際、必須で表示される必要はありません。**
 
-よって、下記のように、7 個の重み（ 6 種類のリストバンド ＋ 1 ）を設定しました。
+よって、下記のように、7 個の重み（6 種類のリストバンド ＋ 1）を設定しました。
 
 ```
 'rarity_weights': [100, 5, 5, 5, 15, 5, 1]
 ```
 
-最初の重み（ `100` ）は、リストバンドをつけない場合の重みになります。
+最初の重み（`100`）は、リストバンドをつけない場合の重みになります。
 
-2 つ目の重みは黒（ `black.png` ）のバンド、3 つ目の重みは白のバンド（ `dark-green.png` ）、といった具合に関連付けを行なっています。
+2 つ目の重みは黒（`black.png`）のバンド、3 つ目の重みは白のバンド（`dark-green.png`）、といった具合に関連付けを行っています。
 
 ![](/public/images/4-Polygon-Generative-NFT/section-1/1_1_11.png)
 
@@ -371,6 +376,7 @@ Python リストは、`rarity_weights` の重みを割り当てる最も一般�
 この例では、「黒のバンド」は `5`、「リストバンドなし」は `100` の重みを持っています。
 
 **つまり、アバターが黒のリストバンドを持つことは、持たないことの 20 倍の希少価値があるということになります。**
+
 ### 🍳 Generative Art を生成する
 
 `config.py` ファイルの中身を更新したら、Generative Art を生成しましょう。
@@ -391,7 +397,7 @@ python3 nft.py
 
 最終的には、ユニークなアバターのみを `output` フォルダに格納します。
 
-以下のステップでプログラムが実行されるので、ターミナルに表示される指示に従いながら、アバターの生成を行なってください。
+以下のステップでプログラムが実行されるので、ターミナルに表示される指示に従いながら、アバターの生成を行ってください。
 
 - まず、`nft.py` が `config.py` が有効かどうかをチェックします。
 
@@ -399,7 +405,7 @@ python3 nft.py
 
 - 次に、作成したいアバターの数を入力します。
 
-- 作成したいアバターの数より20％大きい数を入力すると、重複を排除した後でも十分余るのでおすすめです。
+- 作成したいアバターの数より 20％大きい数を入力すると、重複を排除した後でも十分余るのでお勧めです。
 
 - コレクションに任意の名前をつけます。これにより、アバターの生成プロセスが開始されます。
 
@@ -423,19 +429,20 @@ Saving metadata...
 Task complete!
 ```
 
-ここでは、まず、100 体のアバターを生成することをターミナルに入力し、最終的に30 体のユニークなアバターを取得しています。
+ここでは、まず、100 体のアバターを生成することをターミナルに入力し、最終的に 30 体のユニークなアバターを取得しています。
 
 70 体のアバターは重複していたため、排除されました。
 
->⚠️: 注意
+> ⚠️: 注意
 >
 > 下記のいずれかの数が増えるほど、画像生成プログラムの処理時間が長くなります。
 >
->- 特徴カテゴリの
->- それぞれのカテゴリに格納する画像
->- 生成するアバター
+> - 特徴カテゴリの
+> - それぞれのカテゴリに格納する画像
+> - 生成するアバター
 >
 > 1200 体のアバターを生成する場合は、約 30 分かかります。※ Mac のプロセッサー `2.3 GHz Quad-Core Intel Core i5` の場合。
+
 ### 👀 生成されたアバターを確認する
 
 `generative-nft-library` に向かい、新しく作成された `output` フォルダを見ていきましょう。
@@ -444,14 +451,13 @@ Task complete!
 
 ![](/public/images/4-Polygon-Generative-NFT/section-1/1_1_12.png)
 
-
 `edition` フォルダの中の `images` フォルダを開き、下記のように、ユニークな「Scrappy Squirrels」のアバターが格納されていることを確認しましょう。
 
 ![](/public/images/4-Polygon-Generative-NFT/section-1/1_1_13.png)
 
 あなたのコレクションの中に `metadata.csv` が存在しているかと思います。
 
-このCSVファイルは、下記のようになっています。
+この CSV ファイルは、下記のようになっています。
 
 ```
 	,background	,body	,eyes		,head_gear, ...
@@ -465,16 +471,20 @@ Task complete!
 `metadata.csv` を使えば、特徴カテゴリごとに、それぞれのアバターにどんな画像が紐づいているか調べることができます。
 
 - どの特徴が一番希少性が高いか、どの特徴の組み合わせが最も多いかなど、生成されたアバターを分析する際に役立ちます。
+
 ### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discord の `#section-1` で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+
 ```
 1. 質問が関連しているセクション番号とレッスン番号
 2. 何をしようとしていたか
 3. エラー文をコピー&ペースト
 4. エラー画面のスクリーンショット
 ```
+
 ---
-Generative Art が作成できたら、次のレッスンに進みましょう🎉
+
+Generative Art が作成できたら、次のレッスンに進みましょう 🎉

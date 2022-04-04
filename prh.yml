@@ -5,3 +5,12 @@ rules:
     pattern:
       - バランス
       - Balance
+  - expected: チェーン
+    pattern: チェイン
+  - expected: Web3
+  - expected: dApps
+  - expected: キャラクター
+    pattern: /キャラクタ(?!ー)/
+    specs:
+      - from: キャラクタ
+        to: キャラクター

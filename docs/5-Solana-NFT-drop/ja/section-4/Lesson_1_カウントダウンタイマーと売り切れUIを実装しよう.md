@@ -31,7 +31,7 @@
 ts-node ~/metaplex/js/packages/cli/src/candy-machine-v2-cli.ts update_candy_machine -e devnet  -k ~/.config/solana/devnet.json -cp config.json
 ```
 
-いずれかの時点で次のようなエラーが発生した場合:
+いずれかの時点で次のようなエラーが発生した場合は以下のように対応してください。
 
 ```txt
 /Users/任意のフォルダ名/metaplex/js/packages/cli/src/candy-machine-v2-cli.ts:53
@@ -53,23 +53,23 @@ TypeError: Cannot read property 'candyMachineAddress' of undefined
 
 - 現在の日付が、設定したドロップ日より以前の場合にのみ表示される
 
-- 1秒ごとにカウントダウンする「カウントダウン」スタイルのタイマーを実装
+- 1 秒ごとにカウントダウンする「カウントダウン」スタイルのタイマーを実装
 
-webアプリのコードをクリーンに保つために、タイマーの状態とロジックを処理する別のコンポーネントを作成します。
+Web アプリケーションのコードをクリーンに保つため、タイマーの状態とロジックを処理する別のコンポーネントを作成します。
 
-`src/CountdownTimer` フォルダを既に作成してあります。
+`src/CountdownTimer` フォルダをすでに作成してあります。
 
 ( `CountdownTimer` 直下には `CountdownTimer.css` しかないはずです)
 
 そこに `index.js` ファイルを作成し、次のコードを追加します。
 
 ```jsx
-import React, { useEffect, useState } from 'react';
-import './CountdownTimer.css';
+import React, { useEffect, useState } from "react";
+import "./CountdownTimer.css";
 
 const CountdownTimer = ({ dropDate }) => {
   // State
-  const [timerString, setTimerString] = useState('');
+  const [timerString, setTimerString] = useState("");
 
   return (
     <div className="timer-container">
@@ -82,17 +82,17 @@ const CountdownTimer = ({ dropDate }) => {
 export default CountdownTimer;
 ```
 
-ここでは、いくつかの状態を保持するシンプルなReactコンポーネントを設定し、`dropDate` を取り込みます。
+ここでは、いくつかの状態を保持するシンプルな React コンポーネントを設定し、`dropDate` を取り込みます。
 
-先に進む前に、`app/src/CandyMachine/index.js` に移動して、このコンポーネントをインポートしましょう。
+先へ進む前に、`app/src/CandyMachine/index.js` に移動して、このコンポーネントをインポートしましょう。
 
 ```jsx
-import React, { useEffect, useState } from 'react';
-import { Connection, PublicKey } from '@solana/web3.js';
-import { Program, Provider, web3 } from '@project-serum/anchor';
-import { MintLayout, TOKEN_PROGRAM_ID, Token } from '@solana/spl-token';
-import { sendTransactions } from './connection';
-import './CandyMachine.css';
+import React, { useEffect, useState } from "react";
+import { Connection, PublicKey } from "@solana/web3.js";
+import { Program, Provider, web3 } from "@project-serum/anchor";
+import { MintLayout, TOKEN_PROGRAM_ID, Token } from "@solana/spl-token";
+import { sendTransactions } from "./connection";
+import "./CandyMachine.css";
 import {
   candyMachineProgram,
   TOKEN_METADATA_PROGRAM_ID,
@@ -100,10 +100,10 @@ import {
   getAtaForMint,
   getNetworkExpire,
   getNetworkToken,
-  CIVIC
-} from './helpers';
+  CIVIC,
+} from "./helpers";
 // 追加
-import CountdownTimer from '../CountdownTimer';
+import CountdownTimer from "../CountdownTimer";
 ```
 
 カウントダウンタイマーをいつ表示するかを処理するロジックを実装します。
@@ -121,7 +121,7 @@ const renderDropTimer = () => {
 
   //もし現在の日時がドロップ日よりも前の場合、カウントダウンコンポーネントをレンダリングします
   if (currentDate < dropDate) {
-    console.log('Before drop date!');
+    console.log("Before drop date!");
     // CountdownTimer コンポーネントを返します
     return <CountdownTimer dropDate={dropDate} />;
   }
@@ -136,10 +136,7 @@ return (
       {/* コンポーネントの最初に下記追加します */}
       {renderDropTimer()}
       <p>{`Items Minted: ${candyMachine.state.itemsRedeemed} / ${candyMachine.state.itemsAvailable}`}</p>
-      <button
-        className="cta-button mint-button"
-        onClick={mintToken}
-      >
+      <button className="cta-button mint-button" onClick={mintToken}>
         Mint NFT
       </button>
     </div>
@@ -152,12 +149,12 @@ return (
 
 ページを更新して、UI が反映されているか確認しましょう。
 
-`CountdownTimer` コンポーネントに戻って、残りのロジック設定を取得できます。タイマーのカウントダウンをリアルタイムで確認したいと思います。
+`CountdownTimer` コンポーネントに戻って、残りのロジック設定を取得できます。タイマーのカウントダウンをリアルタイムで確認しましょう。
 
 ```jsx
 // useEffectはコンポーネントのロード時に実行されます。
 useEffect(() => {
-  console.log('Setting interval...');
+  console.log("Setting interval...");
 
   // setIntervalを使用して、このコードの一部を1秒ごとに実行します。
   const interval = setInterval(() => {
@@ -177,7 +174,7 @@ useEffect(() => {
 
     // distanceが0になったらドロップタイムが来たことを示します
     if (distance < 0) {
-      console.log('Clearing interval...');
+      console.log("Clearing interval...");
       clearInterval(interval);
     }
   }, 1000);
@@ -196,11 +193,12 @@ useEffect(() => {
 シンプルなカウントダウンタイマーを実装しました。
 
 ![無題](/public/images/5-Solana-NFT-drop/section4/4_1_1.png)
+
 ### 📭「売り切れ」状態を構築する
 
-全ての NFT をミントしきった際、「Sold Out」を表示する機能を実装します。
+すべての NFT をミントしきった際、「Sold Out」を表示する機能を実装します。
 
-これは、`candyMachine.state` プロパティの `itemsRedeemed` と `itemsAvailable` の2つのプロパティをチェックすることで実装が可能になります。
+これは、`candyMachine.state` プロパティの `itemsRedeemed` と `itemsAvailable` の 2 つのプロパティをチェックすることで実装が可能になります。
 
 加えて、ミントするアイテムがあり、NFT ドロップ日に達した場合にのみ、ミントボタンを表示するようにします。
 
@@ -208,21 +206,20 @@ useEffect(() => {
 
 ```jsx
 return (
-  candyMachine && candyMachine.state && (
+  candyMachine &&
+  candyMachine.state && (
     <div className="machine-container">
       {renderDropTimer()}
       <p>{`Items Minted: ${candyMachine.state.itemsRedeemed} / ${candyMachine.state.itemsAvailable}`}</p>
-        {/* プロパティが等しいかチェックします */}
-        {candyMachine.state.itemsRedeemed === candyMachine.state.itemsAvailable ? (
-          <p className="sub-text">Sold Out 🙊</p>
-        ) : (
-          <button
-            className="cta-button mint-button"
-            onClick={mintToken}
-          >
-            Mint NFT
-          </button>
-        )}
+      {/* プロパティが等しいかチェックします */}
+      {candyMachine.state.itemsRedeemed ===
+      candyMachine.state.itemsAvailable ? (
+        <p className="sub-text">Sold Out 🙊</p>
+      ) : (
+        <button className="cta-button mint-button" onClick={mintToken}>
+          Mint NFT
+        </button>
+      )}
     </div>
   )
 );
@@ -231,11 +228,13 @@ return (
 実装完了です。
 
 ![無題](/public/images/5-Solana-NFT-drop/section4/4_1_2.png)
+
 ### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discord の `#section-4` で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+
 ```
 1. 質問が関連しているセクション番号とレッスン番号
 2. 何をしようとしていたか
@@ -244,4 +243,5 @@ return (
 ```
 
 ---
-次のレッスンに進んで、他の機能をWEBアプリを完成させましょう🎉
+
+次のレッスンに進んで、ほかの機能を Web アプリケーションを完成させましょう 🎉

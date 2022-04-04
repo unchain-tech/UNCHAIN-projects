@@ -1,5 +1,18 @@
 {
+  "filters": {
+    "comments": true,
+    "allowlist": {
+      "allow": [
+        "チェーン",
+        "一つ一つ",
+        "もとづ",
+        "/\\d{4}-\\d{2}-\\d{2}/",
+        "/===IGNORE===[\\s\\S]*?===/IGNORE===/m"
+      ]
+    }
+  },
   "rules": {
+    "spellcheck-tech-word": true,
     "preset-ja-spacing": {
       "ja-space-between-half-and-full-width": {
         "space": "always",
@@ -7,22 +20,32 @@
       }
     },
     "preset-ja-technical-writing": {
+      "ja-no-mixed-period": false,
+      "ja-no-weak-phrase": false,
+      "ja-no-redundant-expression": false,
       "no-exclamation-question-mark": {
+        "allowHalfWidthExclamation": true,
         "allowFullWidthExclamation": true,
+        "allowHalfWidthQuestion": true,
         "allowFullWidthQuestion": true
+      },
+      "sentence-length": {
+        "max": 200
       },
       "no-doubled-joshi": {
         "strict": false,
         "allow": [
-          "か"
+          "か",
+          "に",
+          "が",
+          "と",
+          "も"
         ]
       }
     },
-    "spellcheck-tech-word": true,
     "prh": {
       "rulePaths": [
-        "node_modules/prh/prh-rules/media/WEB+DB_PRESS.yml",
-        "prh.yml"
+        "./prh.yml"
       ]
     }
   }
