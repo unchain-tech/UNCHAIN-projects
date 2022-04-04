@@ -146,11 +146,11 @@ uint public constant PRICE = 0.01 ether;
 
 ### 🦊 MetaMask と Hardhat に Polygon Network を追加する
 
-MetaMask ウォレットに Polygon Mainnet と Polygon Mumbai-Testnet を追加してみましょう。
+MetaMask ウォレットに Matic Mainnet と Polygon Mumbai-Testnet を追加してみましょう。
 
-**1 \. Polygon Mainnet を MetaMask に接続する**
+**1 \. Matic Mainnet を MetaMask に接続する**
 
-Polygon Mainnet を MetaMask に追加するには、次の手順に従ってください。
+Matic Mainnet を MetaMask に追加するには、次の手順に従ってください。
 
 まず、[Polygonscan](https://polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Polygon Network` ボタンをクリックします。
 
@@ -160,7 +160,7 @@ Polygon Mainnet を MetaMask に追加するには、次の手順に従ってく
 
 ![](/public/images/4-Polygon-Generative-NFT/section-3/3_2_2.png)
 
-`Polygon Mainnet` があなたの MetaMask にセットアップされました。
+`Matic Mainnet` があなたの MetaMask にセットアップされました。
 
 ![](/public/images/4-Polygon-Generative-NFT/section-3/3_2_3.png)
 
@@ -170,7 +170,7 @@ Polygon Mumbai-Testnet を MetaMask に追加するには、次の手順に従�
 
 まず、[mumbai.polygonscan.com](https://mumbai.polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Mumbai Network` ボタンをクリックします。
 
-`Polygon Mainnet` を設定した時と同じ要領で `Polygon Testnet` をあなたの MetaMask に設定してください。
+`Matic Mainnet` を設定した時と同じ要領で `Polygon Testnet` をあなたの MetaMask に設定してください。
 
 Hardhat を使用する場合、Alchemy のカスタム RPC URL が必要です。
 

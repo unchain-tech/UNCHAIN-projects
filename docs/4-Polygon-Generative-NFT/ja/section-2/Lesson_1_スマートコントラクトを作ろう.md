@@ -431,11 +431,11 @@ function mintNFTs(uint _count) public payable {
      require(
 	// 3つ目のチェック
       	msg.value >= PRICE.mul(_count),
-	"Not enough ether to purchase NFTs."
+	    "Not enough ether to purchase NFTs."
      );
      for (uint i = 0; i < _count; i++) {
 	　// すべてのチェックが終わったら、_count 個の NFT をユーザーに Mint する
-	 _mintSingleNFT();
+	    _mintSingleNFT();
      }
 }
 ```
