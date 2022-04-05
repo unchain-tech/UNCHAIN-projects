@@ -115,10 +115,10 @@ console.log("WavePortal address:", wavePortal.address);
 
 ### 🪄 実行してみよう
 
-ターミナル上で、`scripts` ディレクトリに移動して下記を実行してみましょう。
+ターミナル上で、下記を実行してみましょう。
 
 ```bash
-npx hardhat run run.js
+npx hardhat run scripts/run.js
 ```
 
 ターミナル上で `console.log` の中身とコントラクトアドレスが表示されていることを確認してください。

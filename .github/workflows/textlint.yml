@@ -4,14 +4,30 @@ jobs:
   textlint:
     name: runner / textlint
     runs-on: ubuntu-latest
+    env:
+      LEVEL: error
+      FLAGS: docs/**.md
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
         with:
-          submodules: true
-      - name: textlint-github-pr-review
-        uses: tsuyoshicho/action-textlint@v3
+          node-version: "12"
+      - name: Restore dependencies
+        uses: actions/cache@v2
         with:
-          github_token: ${{ secrets.github_token }}
-          reporter: github-pr-review
-          level: error
-          textlint_flags: "docs/**"
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Install dependencies
+        run: |
+          yarn install --frozen-lockfile
+      - name: Setup reviewdog
+        uses: reviewdog/action-setup@v1
+        with:
+          reviewdog_version: latest
+      - name: Check and Review
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $(npm bin)/textlint -f checkstyle "${FLAGS:-'.'}" | reviewdog -f=checkstyle -name=check -reporter=github-pr-review -reporter=github-pr-check -level="${LEVEL}"
