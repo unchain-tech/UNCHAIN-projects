@@ -360,7 +360,7 @@ const App = () => {
   /**
    * デプロイされたコントラクトのアドレスを保持する変数を作成
    */
-  const contractAddress = "0x3610145E4c6C801bBf2F926DFd8FDd2cE1103493";
+  const contractAddress = "あなたのコントラクトアドレスを貼り付けてください";
   /**
    * ABIの内容を参照する変数を作成
    */
@@ -497,6 +497,13 @@ const App = () => {
   );
 };
 export default App;
+```
+
+コントラクトアドレスをご自身のものに更新するのをお忘れなく!
+
+```javascript
+// App.js
+const contractAddress = "あなたのコントラクトアドレスを貼り付けてください";
 ```
 
 新しく実装されいる機能は下記の 3 つです。
