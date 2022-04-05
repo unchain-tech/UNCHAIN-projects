@@ -279,7 +279,7 @@ waveCount = await waveContract.getTotalWaves();
 `my-wave-portal` ディレクトリに移動し、下記を実行してみましょう。
 
 ```bash
-hardhat run scripts/run.js
+npx hardhat run scripts/run.js
 ```
 
 例）ターミナルの出力結果
