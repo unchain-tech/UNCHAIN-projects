@@ -1,6 +1,9 @@
-textlint:
-  name: runner / textlint
-  runs-on: ubuntu-latest
+name: textlint
+on: [pull_request]
+jobs:
+  textlint:
+    name: runner / textlint
+    runs-on: ubuntu-latest
   env:
     LEVEL: error
     FLAGS: docs/**.md
