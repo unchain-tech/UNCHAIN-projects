@@ -85,7 +85,7 @@ event NewWave(address indexed from, uint256 timestamp, string message);
 
 ここでは、`NewWave` イベントが定義されています。引数として取る値は、下記になります。
 
-- ユーザーのアドレス（`address`）
+- ユーザーのアドレス（`from`）
 - ユーザーが `wave` してきた時刻（`timestamp`）
 - ユーザーのメッセージ（`message`）
 
