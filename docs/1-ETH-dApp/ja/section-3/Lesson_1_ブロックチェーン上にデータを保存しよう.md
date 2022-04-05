@@ -232,7 +232,7 @@ const provider = new ethers.providers.Web3Provider(ethereum);
 const signer = provider.getSigner();
 ```
 
-ここでは、ユーザーのウォレットアドレス (= `signer`)を設定しています。
+ここでは、ユーザーのウォレットアドレス (= `signer`)を取得しています。
 
 次に、下記のコードを見ていきましょう。
 
