@@ -85,7 +85,7 @@ event NewWave(address indexed from, uint256 timestamp, string message);
 
 ここでは、`NewWave` イベントが定義されています。引数として取る値は、下記になります。
 
-- ユーザーのアドレス（`address`）
+- ユーザーのアドレス（`from`）
 - ユーザーが `wave` してきた時刻（`timestamp`）
 - ユーザーのメッセージ（`message`）
 
@@ -105,6 +105,9 @@ emit NewWave(msg.sender, block.timestamp, _message);
 
 ```javascript
 // App.js
+/* すべてのwavesを保存する状態変数を定義 */
+const [allWaves, setAllWaves] = useState([]);
+  
 const getAllWaves = async () => {
   const { ethereum } = window;
 
@@ -232,7 +235,7 @@ const provider = new ethers.providers.Web3Provider(ethereum);
 const signer = provider.getSigner();
 ```
 
-ここでは、ユーザーのウォレットアドレス (= `signer`)を設定しています。
+ここでは、ユーザーのウォレットアドレス (= `signer`)を取得しています。
 
 次に、下記のコードを見ていきましょう。
 
