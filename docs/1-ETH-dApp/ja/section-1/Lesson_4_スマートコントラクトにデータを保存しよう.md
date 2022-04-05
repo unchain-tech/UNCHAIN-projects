@@ -380,10 +380,10 @@ waveCount = await waveContract.getTotalWaves();
 
 ここでは、あなたが自分自身に「👋（wave）」を送り、その承認を持ってから　`waveCount` の値を更新したように、`randomPerson` の挙動を確認してから `waveCount` の更新（`+1`）を行っています。
 
-それでは、`run.js` を更新して、`scripts` ディレクトリに移動し、下記を実行してみましょう。
+それでは、`run.js` を更新して、下記を実行してみましょう。
 
 ```bash
-npx hardhat run run.js
+npx hardhat run scripts/run.js
 ```
 
 下記のような結果がターミナルに出力されれば成功です。
