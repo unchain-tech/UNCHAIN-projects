@@ -226,7 +226,7 @@ const getAllWaves = async () => {
 const provider = new ethers.providers.Web3Provider(ethereum);
 ```
 
-ここでは、`provider` (= MetaMask) を設定しています。これにより、フロントエンドが MetaMask を介して、イーサリアムノードに接続できます。
+ここでは、`provider` (= MetaMask) を取得しています。これにより、フロントエンドが MetaMask を介して、イーサリアムノードに接続できます。
 
 次に、下記のコードを見ていきましょう。
 
@@ -332,6 +332,10 @@ if (window.ethereum) {
 
 `wavePortalContract.on("NewWave", onNewWave)` により、上記で定義した `onNewWave` が呼び出されます。
 
+`wavePortalContract.on("NewWave", onNewWave)` により、フロントエンドは、`NewWave` イベントがコントラクトから発信されたときに、情報を受け取ります。これにより、情報がフロントエンドに反映されます。
+
+このことを、**コンポーネント（情報）がマウント（フロントエンドに反映）される**と言います。
+
 最後に下記のコードを見ていきましょう。
 
 ```javascript
@@ -344,10 +348,6 @@ if (window.ethereum) {
   };
 }, []);
 ```
-
-`wavePortalContract.on("NewWave", onNewWave)` により、フロントエンドは、`NewWave` イベントがコントラクトから発信されたときに、情報を受け取ります。これにより、情報がフロントエンドに反映されます。
-
-このことを、**コンポーネント（情報）がマウント（フロントエンドに反映）される**と言います。
 
 コンポーネントがマウントされる状態をそのままにしておくと、メモリリーク（コンピュータを動作させている内に、使用可能なメモリの容量が減っていってしまう現象）が発生する可能性があります。
 
@@ -524,7 +524,7 @@ const App = () => {
   const [allWaves, setAllWaves] = useState([]);
   console.log("currentAccount: ", currentAccount);
   /* デプロイされたコントラクトのアドレスを保持する変数を作成 */
-  const contractAddress = "0x8B1D31bFBf34dBF12c73034215752261e55b443c";
+  const contractAddress = "あたらしいコントラクトアドレス";
   /* コントラクトからすべてのwavesを取得するメソッドを作成 */
   /* ABIの内容を参照する変数を作成 */
   const contractABI = abi.abi;
@@ -578,6 +578,7 @@ const App = () => {
         },
       ]);
     };
+    
     /* NewWaveイベントがコントラクトから発信されたときに、情報をを受け取ります */
     if (window.ethereum) {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -598,7 +599,7 @@ const App = () => {
     };
   }, []);
 
-  /* window.ethereumにアクセスできることを確認 */
+  /* window.ethereumにアクセスできることを確認する関数を実装 */
   const checkIfWalletIsConnected = async () => {
     try {
       const { ethereum } = window;
@@ -671,7 +672,7 @@ const App = () => {
     }
   };
 
-  /* WEBページがロードされたときに下記の関数を実行 */
+  /* WEBページがロードされたときにcheckIfWalletIsConnected()を実行 */
   useEffect(() => {
     checkIfWalletIsConnected();
   }, []);
@@ -749,6 +750,8 @@ const App = () => {
 };
 export default App;
 ```
+
+** `contractAddress = '新しいコントラクトアドレス'` を、ターミナルで取得した新しいコントラクトアドレスに変更するのをお忘れなく。**
 
 復習も兼ねて、上記で実装した機能を詳しく見ていきましょう。
 
