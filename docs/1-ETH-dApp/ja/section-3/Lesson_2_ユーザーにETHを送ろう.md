@@ -49,9 +49,10 @@ function wave(string memory _message) public {
 >
 > ```javascript
 > // WavePortal.sol
-> require(prizeAmount <=
->   address(this)
->     .balance, "Trying to withdraw more money than the contract has.");
+> require(
+> 	prizeAmount <= address(this).balance, 
+>	"Trying to withdraw more money than the contract has."
+> );
 > ```
 >
 > `address(this).balance` は**コントラクトが持つの資金の残高**を示しています。
