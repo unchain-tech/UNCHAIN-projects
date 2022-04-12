@@ -10,7 +10,7 @@
 
 `WavePortal.sol` の `wave` 関数を下記のように更新していきます。
 
-```javascript
+```solidity
 // WavePortal.sol
 function wave(string memory _message) public {
 	totalWaves += 1;
@@ -40,18 +40,19 @@ function wave(string memory _message) public {
 
 > まず、下記で `prizeAmount` という変数を定義し、`0.0001` ETH を指定しています。
 >
-> ```javascript
+> ```solidity
 > // WavePortal.sol
 > uint256 prizeAmount = 0.0001 ether;
 > ```
 >
 > そして、下記では、ユーザーに送る ETH の額が**コントラクトが持つ残高**より下回っていることを確認しています。
 >
-> ```javascript
+> ```solidity
 > // WavePortal.sol
-> require(prizeAmount <=
->   address(this)
->     .balance, "Trying to withdraw more money than the contract has.");
+> require(
+> 	prizeAmount <= address(this).balance, 
+> 	"Trying to withdraw more money than the contract has."
+> );
 > ```
 >
 > `address(this).balance` は**コントラクトが持つの資金の残高**を示しています。
@@ -63,14 +64,14 @@ function wave(string memory _message) public {
 >
 > 下記のコードはユーザーに送金を行うために実装されています。
 >
-> ```javascript
+> ```solidity
 > // WavePortal.sol
 > (bool success, ) = (msg.sender).call{value：prizeAmount}("")
 > ```
 >
 > 下記のコードは、トランザクション（＝送金）が成功したことを確認しています。
 >
-> ```javascript
+> ```solidity
 > // WavePortal.sol
 > require(success, "Failed to withdraw money from contract.");
 > ```
@@ -79,7 +80,7 @@ function wave(string memory _message) public {
 
 次に、`WavePortal.sol` の `constructor` を下記のように変更します。
 
-```javascript
+```solidity
 // WavePortal.sol
 constructor() payable {
   console.log("We have been constructed!");
@@ -102,7 +103,7 @@ constructor() payable {
 const main = async () => {
   const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
   /*
-   * デプロイする際0.1ETHをコントラクトに提供する
+   * 0.1ETHをコントラクトに提供してデプロイする
    */
   const waveContract = await waveContractFactory.deploy({
     value: hre.ethers.utils.parseEther("0.1"),
@@ -111,7 +112,7 @@ const main = async () => {
   console.log("Contract deployed to:", waveContract.address);
 
   /*
-   * コントラクトの残高を取得（0.1ETH）であることを確認
+   * コントラクトの残高を取得し、結果を出力（0.1ETHであることを確認）
    */
   let contractBalance = await hre.ethers.provider.getBalance(
     waveContract.address
@@ -122,18 +123,15 @@ const main = async () => {
   );
 
   /*
-   * Waveを取得
+   * Waveし、トランザクションが完了するまで待機
    */
   let waveTxn = await waveContract.wave("A message!");
   await waveTxn.wait();
 
   /*
-   * コントラクトの残高を取得し、Waveを取得した後の結果を出力
+   * Waveした後のコントラクトの残高を取得し、結果を出力（0.0001ETH引かれていることを確認）
    */
   contractBalance = await hre.ethers.provider.getBalance(waveContract.address);
-  /*
-   *コントラクトの残高から0.0001ETH引かれていることを確認
-   */
   console.log(
     "Contract balance:",
     hre.ethers.utils.formatEther(contractBalance)
@@ -176,7 +174,7 @@ let contractBalance = await hre.ethers.provider.getBalance(
 );
 ```
 
-ここでは、`ethers.js` が提供している `getBalance` 関数を使って、あなたのアドレスに紐づいている残高を `contractBalance` に格納しています。
+ここでは、`ethers.js` が提供している `getBalance` 関数を使って、コントラクトのアドレスに紐づいている残高を `contractBalance` に格納しています。
 
 `ethers.js` の公式ドキュメントは [こちら（英語）](https://docs.ethers.io/v5/)です。
 
@@ -187,28 +185,25 @@ let contractBalance = await hre.ethers.provider.getBalance(
 console.log("Contract balance:", hre.ethers.utils.formatEther(contractBalance));
 ```
 
-ここでは、`hre.ethers.utils.formatEther(contractBalance)` を実行して、コントラクトに 0.1ETH の残高があるか確認しています。
+ここでは、`hre.ethers.utils.formatEther(contractBalance)` を使用してwei単位の残高をETH単位に変換たうえで出力し、コントラクトに 0.1ETH の残高があるか確認しています。
 
-**3 \. `wave` を取得したあとのコントラクトの残高を確認する**
+**3 \. `wave` したあとのコントラクトの残高を確認する**
 
 ```javascript
 // run.js
 /*
- * Waveを取得
+ * Wave
  */
 let waveTxn = await waveContract.wave("A message!");
 await waveTxn.wait();
 /*
- * コントラクトの残高を取得し、Waveを取得した後の結果を出力
+ * Waveした後のコントラクトの残高を取得し、結果を出力（0.0001ETH引かれていることを確認）
  */
 contractBalance = await hre.ethers.provider.getBalance(waveContract.address);
-/*
- *コントラクトの残高から0.0001ETH引かれていることを確認
- */
 console.log("Contract balance:", hre.ethers.utils.formatEther(contractBalance));
 ```
 
-ここでは、`0.0001 ETH` がコントラクトの資金から差し引かれているか、`wave` が呼ばれた後に確認しています。
+ここでは、`wave` が呼ばれた後に `0.0001 ETH` がコントラクトの資金から差し引かれるか、確認しています。
 
 ### ⭐️ テストを実行する
 
@@ -286,7 +281,7 @@ const waveContract = await waveContractFactory.deploy({
 });
 ```
 
-`value: hre.ethers.utils.parseEther("0.001")` で、コントラクトに資金提供を行ています。
+`value: hre.ethers.utils.parseEther("0.001")` で、コントラクトに資金提供を行っています。
 
 今回はテストですので、少額の 0.001ETH をコントラクトに付与しています。
 
@@ -350,7 +345,7 @@ WavePortal address:  0x550925E923Cb1734de73B3a843A21b871fe2a673
 >
 > 3\. VS Code で `WavePortal.json` ファイルが開かれるので、中身を全てコピーしましょう。※ VS Code のファインダーを使って、直接 `WavePortal.json` を開くことも可能です。
 >
-> 4\. **コピーした `my-wave-portal/artifacts/contracts/WavePortal.sol/WavePortal.json` の中身を`dApp-starter-project/src/utils/WavePortal.json` の中身と交換してください。**
+> 4\. **コピーした `my-wave-portal/artifacts/contracts/WavePortal.sol/WavePortal.json` の中身で `dApp-starter-project/src/utils/WavePortal.json` の中身を上書きしてください。**
 
 **繰り返しますが、コントラクトを更新するたびにこれを行う必要があります。**
 
