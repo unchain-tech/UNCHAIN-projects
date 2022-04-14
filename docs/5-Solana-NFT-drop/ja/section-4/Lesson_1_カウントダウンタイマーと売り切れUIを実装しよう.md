@@ -131,7 +131,7 @@ const renderDropTimer = () => {
 };
 
 return (
-  candyMachine.state && (
+  candyMachine && (
     <div className="machine-container">
       {/* コンポーネントの最初に下記追加します */}
       {renderDropTimer()}
