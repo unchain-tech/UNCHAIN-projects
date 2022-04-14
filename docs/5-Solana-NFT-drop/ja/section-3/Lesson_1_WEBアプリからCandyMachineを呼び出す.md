@@ -415,7 +415,7 @@ return candyMachine ? (
       Mint NFT
     </button>
   </div>
-) : null;
+) : null
 ```
 
 これで、Web アプリケーションに適切にレンダリングされたすべてのデータが表示されます。

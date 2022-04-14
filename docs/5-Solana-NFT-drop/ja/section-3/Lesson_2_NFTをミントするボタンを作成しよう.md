@@ -175,7 +175,7 @@ return (
             Mint NFT
         </button>
       </div>
-    ) : null;
+    ) : null
   );
 ```
 
