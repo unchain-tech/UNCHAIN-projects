@@ -105,7 +105,7 @@ const renderContent = () => {
   } else if (currentAccount && !characterNFT) {
     return <SelectCharacter setCharacterNFT={setCharacterNFT} />;
     // シナリオ3.
-    // ーザーはWEBアプリにログインしており、かつ NFT キャラクターを持っている場合、
+    // ユーザーはWEBアプリにログインしており、かつ NFT キャラクターを持っている場合、
     // Area でボスと戦います。
   } else if (currentAccount && characterNFT) {
     return <Arena characterNFT={characterNFT} />;
