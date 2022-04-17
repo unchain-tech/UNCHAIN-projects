@@ -7,7 +7,7 @@
 - [Terminal 操作](https://qiita.com/ryouzi/items/f9dee1540a04a0bfb9a3)
 - [Javascript](https://developer.mozilla.org/ja/docs/Web/JavaScript)
 - [React.js](https://ja.reactjs.org/)
-- [NFT に関する基礎知識](https://github.com/shiftbase-xyz/UNCHAIN-projects/blob/main/2-ETH-NFT-collection/ja/section-1/Lesson_1_NFT%E3%81%A8%E3%81%AF%E4%BD%95%E3%81%8B%EF%BC%9F.md)
+- [NFT に関する基礎知識](https://github.com/shiftbase-xyz/UNCHAIN-projects/blob/main/docs/2-ETH-NFT-collection/ja/section-1/Lesson_1_NFT%E3%81%A8%E3%81%AF%E4%BD%95%E3%81%8B%EF%BC%9F.md)
 
 ※ 開発初心者の方は、まず `ETH-dApp` のプロジェクトから始めることをお勧めします ☺️
 いますべてを理解している必要はありません。
