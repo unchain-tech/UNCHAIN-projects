@@ -96,7 +96,7 @@ contract WavePortal {
 
 この `contract` を初期化すると、`constructor` が実行されて `console.log` の中身がターミナル上に表示されます。
 
-class の概念については、[こちら](https://aiacademy.jp/media/?p=131) を参照してくさい。
+class の概念については、[こちら](https://aiacademy.jp/media/?p=131) を参照してください。
 
 ### 🔩 constructor とは
 
