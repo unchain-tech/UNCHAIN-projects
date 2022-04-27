@@ -60,7 +60,7 @@ useEffect(() => {
 	} else {
 		console.log('No character NFT found');
 	}
-	// ユーザーが保持しているNFTの確認が完了したら、ロード状態を false に設定します。
+	// ユーザーが保持している NFT の確認が完了したら、ロード状態を false に設定します。
 	setIsLoading(false);
 }, [currentAccount]);
 ```
@@ -76,7 +76,7 @@ import LoadingIndicator from "./Components/LoadingIndicator";
 
 ```javascript
 // App.js
-// アプリがロード中の場合は、LoadingIndicatorをレンダリングします。
+// アプリがロード中の場合は、LoadingIndicator をレンダリングします。
 if (isLoading) {
   return <LoadingIndicator />;
 }
@@ -86,32 +86,33 @@ if (isLoading) {
 
 次に、`checkIfWalletIsConnected` に下記のように更新して、フロントエンドがユーザーが MetaMask を持っているか確認している際に、ローディングマークを表示させましょう。
 
+
 ```javascript
-// Actions
-// ユーザーがMetaMaskを持っているか確認します。
+// App.js
+// ユーザーが MetaMask を持っているか確認します。
 const checkIfWalletIsConnected = async () => {
   try {
     const { ethereum } = window;
     if (!ethereum) {
       console.log("Make sure you have MetaMask!");
 
-      // 次の行でreturnを使用するため、ここでisLoadingを設定します。
+      // 次の行で return を使用するため、ここで isLoading を設定します。
       setIsLoading(false);
       return;
     } else {
       console.log("We have the ethereum object", ethereum);
 
-      // accountsにWEBサイトを訪れたユーザーのウォレットアカウントを格納します。
+      // accounts にWEBサイトを訪れたユーザーのウォレットアカウントを格納します。
       // （複数持っている場合も加味、よって account's' と変数を定義している）
       const accounts = await ethereum.request({ method: "eth_accounts" });
 
       // もしアカウントが一つでも存在したら、以下を実行。
       if (accounts.length !== 0) {
-        // accountという変数にユーザーの1つ目（=Javascriptでいう0番目）のアドレスを格納
+        // account という変数にユーザーの1つ目（= Javascript でいう0番目）のアドレスを格納
         const account = accounts[0];
         console.log("Found an authorized account:", account);
 
-        // currentAccountにユーザーのアカウントアドレスを格納
+        // currentAccount にユーザーのアカウントアドレスを格納
         setCurrentAccount(account);
       } else {
         console.log("No authorized account found");
@@ -124,6 +125,8 @@ const checkIfWalletIsConnected = async () => {
   setIsLoading(false);
 };
 ```
+
+ウォレットの接続を解除すると、ローディングマークが表示されるはずです。ウォレット接続ボタンが表示されるように、`isLoading` 状態のプロパティを解放する（=`false`にする）必要があります。
 
 ### 🔁 `SelectCharacter` コンポーネントにローディングマークを追加する
 
@@ -557,7 +560,7 @@ const runAttackAction = async () => {
       // attackState の状態を hit に設定します。
       setAttackState("hit");
 
-      // 攻撃ダメージの表示をtrueに設定し（表示）、5秒後にfalseに設定する（非表示）
+      // 攻撃ダメージの表示を true に設定し（表示）、5秒後に false に設定する（非表示）
       setShowToast(true);
       setTimeout(() => {
         setShowToast(false);
@@ -572,7 +575,7 @@ const runAttackAction = async () => {
 
 ここでは、`setTimeout` を使用して、攻撃メッセージを 5 秒間表示した後に、非表示にするロジックを追加しています。
 
-上記の実装が成功した場合、Web アプリケーション上でボスを攻撃すると、下記のような攻撃ダメージが表示されます ✨
+上記の実装が成功した場合、Web アプリケーション上でボスを攻撃すると、攻撃ダメージがフロントエンドに表示されます。
 
 ### 🙋‍♂️ 質問する
 
