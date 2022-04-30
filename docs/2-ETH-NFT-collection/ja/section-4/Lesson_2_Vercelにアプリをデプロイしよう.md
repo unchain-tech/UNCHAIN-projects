@@ -37,7 +37,6 @@ PROD_ALCHEMY_KEY = イーサリアムメインネットにデプロイする際�
 ```javascript
 PRIVATE_KEY = 0x...
 STAGING_ALCHEMY_KEY = https://...
-PROD_ALCHEMY_KEY = ""
 ```
 
 `.env` を更新したら、 `hardhat.config.js` ファイルを次のように更新してください。
@@ -52,11 +51,6 @@ module.exports = {
   networks: {
     rinkeby: {
       url: process.env.STAGING_ALCHEMY_KEY,
-      accounts: [process.env.PRIVATE_KEY],
-    },
-    mainnet: {
-      chainId: 1,
-      url: process.env.PROD_ALCHEMY_KEY,
       accounts: [process.env.PRIVATE_KEY],
     },
   },
@@ -132,31 +126,38 @@ Etherscan の **コントラクトの Verification（検証）** を行いまし
 npm install @nomiclabs/hardhat-etherscan
 ```
 
+まず、`.env` ファイルを開き、先ほど Etherscan から取得した `apiKey` を `Your_Etherscan_apiKey` に貼り付けてください。
+
+```javascript
+PRIVATE_KEY = 0x...
+STAGING_ALCHEMY_KEY = https://...
+ETHERSCAN_APIKEY = Your_Etherscan_apiKey
+```
+
 そして、`epic-nfts/hardhat.config.js` を編集していきます。
 
-先ほど Etherscan から取得した `apiKey` を `Your_Etherscan_apiKey` に貼り付けてください。
 
 `require("@nomiclabs/hardhat-etherscan");` を含むのも忘れないようにしましょう。
 
 ```javascript
 // hardhat.config.js
-
 require("@nomiclabs/hardhat-etherscan");
+require("@nomiclabs/hardhat-waffle");
+require("dotenv").config();
 
 module.exports = {
   solidity: "0.8.4",
   etherscan: {
-    apiKey: "Your_Etherscan_apiKey",
+    apiKey: process.env.ETHERSCAN_APIKEY
   },
   networks: {
     rinkeby: {
-      url: "Your_Alchemy_API_Key",
-      accounts: ["Your_Private_Key"],
+      url: process.env.STAGING_ALCHEMY_KEY,
+      accounts: [process.env.PRIVATE_KEY],
     },
   },
 };
 ```
-
 最後に、下記を実行して、あなたのコントラクトを verify して、世界に公開してみましょう。
 
 ```
