@@ -219,7 +219,7 @@ hardhat.config.js
 git rm --cached hardhat.config.js
 ```
 
-これで、ローカルリポジトリの `hardhat.config.js` ファイルを残した状態で、リモートリポジトリのファイルを消しすことができます。再度、`git push` まで行ったら、GitHub 上に `hardhat.config.js` が存在しないことを確認してください。
+これで、ローカルリポジトリの `hardhat.config.js` ファイルを残した状態で、リモートリポジトリのファイルを消すことができます。再度、`git push` まで行ったら、GitHub 上に `hardhat.config.js` が存在しないことを確認してください。
 
 ### 🚀 Rinkeby Test Network にコントラクトをデプロイする
 
