@@ -25,6 +25,9 @@ Alchemy は、世界中のトランザクションを一元化し、マイナー
 
 Alchemy のアカウントを作成したら、`CREATE APP` ボタンを押してください。
 
+![](/public/images/1-ETH-dApp/section-2/2_2_17.png)
+Ecosystem 選択欄が出てきた場合は `Ethereum` を選択しましょう。
+
 ![](/public/images/1-ETH-dApp/section-2/2_2_1.png)
 次に、下記の項目を埋めていきます。下図を参考にしてください。
 
@@ -98,6 +101,8 @@ MetaMask ウォレットに `Rinkeby Test Network` が設定されたら、下�
 - [Official Rinkeby](https://faucet.rinkeby.io/) - 3 / 7.5 / 18.75 ETH ( 8 時間 / 1 日 / 3 日)
 - [Chainlink](https://faucets.chain.link/rinkeby) - 0.1 ETH（その場でもらえる）
   - Chainlink を使うときは `Connect wallet` をクリックして MetaMask と接続する必要があります。
+
+※ 2022/05/04 現在、 `Rinkeby Test Network` は Deprecated になっています。この時、代わりに `Gorelity Test Network` を選択しても問題ありません。この場合、`Rinkeby Test Network` の部分を全て `Gorelity Test Network` と読み替えてもらえれば同様に動作します。
 
 ### 📈 `hardhat.config.js` ファイルを編集する
 
