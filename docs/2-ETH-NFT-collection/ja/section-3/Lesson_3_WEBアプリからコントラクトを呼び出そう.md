@@ -324,11 +324,7 @@ Console に出力された `https://rinkeby.etherscan.io/...` のアドレスを
 
 次に、[rinkeby.rarible.com](https://rinkeby.rarible.com/) にアクセスして、Mint した NFT があなたの Rinkeby Test Network のアドレスに紐づいているか確認してみましょう。
 
-Console に出力された `currentAccount:` に続く、`0x..` のアドレスを Rarible の Web サイトに貼り付けて、結果が表示されたら、`Items` タブを選択してください
-
-![](/public/images/2-ETH-NFT-collection/section-3/3_3_2.png)
-
-上図のように、あなたが Mint した NFT があなたのアドレスと紐づいていることが確認できたら、このプロジェクトはほぼ完成です。
+Console に出力された `currentAccount:` に続く、`0x..` のアドレスを Rarible の Web サイトに貼り付けて、結果が表示されたら、`Users` タブを選択してください。それから、ご自身のアカウントを開いて、NFT を確認してみましょう。
 
 ### 🚨 コントラクトを再びデプロイする際の注意点
 
