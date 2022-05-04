@@ -159,7 +159,7 @@ useEffect(() => {
     ]);
   };
 
-  /* NewWaveイベントがコントラクトから発信されたときに、情報をを受け取ります */
+  /* NewWaveイベントがコントラクトから発信されたときに、情報を受け取ります */
   if (window.ethereum) {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
