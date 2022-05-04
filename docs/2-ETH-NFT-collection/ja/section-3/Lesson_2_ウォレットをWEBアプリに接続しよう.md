@@ -397,7 +397,7 @@ const renderNotConnectedContainer = () => (
 **3 \. `renderNotConnectedContainer` メソッドを使った条件付きレンダリング**
 
 ```javascript
-// App.s
+// App.js
 {
   /*条件付きレンダリングを追加しました。*/
 }
@@ -465,7 +465,7 @@ MetaMask の承認が終わると、ウォレット接続ボタンの表示が `
 
 ```
 Connected 0x3a0a49fb3cf930e599f0fa7abe554dc18bd1f135
-App.js:16 currentAccount:  0x3a0a49fb3cf930e599f0fa7abe554dc18bd1f135
+currentAccount:  0x3a0a49fb3cf930e599f0fa7abe554dc18bd1f135
 ```
 
 ターミナルを閉じるときは、以下のコマンドが使えます ✍️
