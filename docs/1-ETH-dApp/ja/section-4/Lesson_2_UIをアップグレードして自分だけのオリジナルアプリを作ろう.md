@@ -53,7 +53,7 @@ let contractBalance = await provider.getBalance(wavePortalContract.address);
 console.log("Contract balance:", ethers.utils.formatEther(contractBalance));
 ```
 
-これにより、コントラクトの現在の資金額が `Console` に出力されます。
+これにより、コントラクトの現在の資金額が Console に出力されます。
 
 **2 \. ユーザーが ETH を獲得したか検証**
 
@@ -94,7 +94,7 @@ console.log(
 
 ユーザーに ETH が送金されたか確認するために、ローカル環境で Web アプリケーションを開いて `wave` を送ってみましょう。
 
-Web アプリケーションを `Inspect` して、下記のような結果が `Console` に出力されているか確認しましょう。
+Web アプリケーションを `Inspect` して、下記のような結果が Console に出力されているか確認しましょう。
 
 ![](/public/images/1-ETH-dApp/section-4/4_2_1.png)
 

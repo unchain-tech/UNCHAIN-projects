@@ -286,11 +286,11 @@ const checkWalletIsConnected = async () => {
 
 なお、`App.js` がロードされる際に、MetaMask の存在を確認する `useEffect` フックも定義しています。
 
-アプリケーションの `localhost` ページで `Console` を開いてください。
+アプリケーションの `localhost` ページで Console を開いてください。
 
 - ステップ: Web ページ上で右クリック → `Inspect` → `Console`
 
-MetaMask がインストールされていれば、`Wallet exists! We’re ready to go!` というメッセージが `Console` に表示されているはずです。
+MetaMask がインストールされていれば、`Wallet exists! We’re ready to go!` というメッセージが Console に表示されているはずです。
 
 ![](/public/images/4-Polygon-Generative-NFT/section-4/4_1_4.png)
 
@@ -405,7 +405,7 @@ setCurrentAccount(accounts[0]);
 
 MetaMask が Web サイトとの接続を促してきますので、同意しましょう。
 
-下記のように、`Console` にあなたのパブリックウォレットアドレスが出力されていれば、ウォレット接続のテストは成功です。
+下記のように、Console にあなたのパブリックウォレットアドレスが出力されていれば、ウォレット接続のテストは成功です。
 
 ![](/public/images/4-Polygon-Generative-NFT/section-4/4_1_7.png)
 
@@ -764,7 +764,7 @@ function App() {
 export default App;
 ```
 
-それでは、Web サイトに向かい、ブラウザの `Console` を開き、Mining 状況をリアルタイムで確認できるようにしましょう。
+それでは、Web サイトに向かい、ブラウザの Console を開き、Mining 状況をリアルタイムで確認できるようにしましょう。
 
 **MetaMask のネットワークを `Polygon Testnet` にして**、`Mint NFT` ボタンをクリックします。
 

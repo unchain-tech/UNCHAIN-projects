@@ -307,7 +307,7 @@ Web アプリケーションの `Mint NFT` ボタンを押して、下記のよ�
 
 - イーサリアムのブロックチェーン上にデータを書き込む際、私たちは代金として `$ETH` を「マイナー」に支払う必要があります。
 
-Web アプリケーション上で `Inspect` を選択して、`Console` を確認してみましょう。
+Web アプリケーション上で `Inspect` を選択して、Console を確認してみましょう。
 
 下記のような結果が出力されていれば、あなたの NFT は正常に Mint されています。
 
@@ -318,14 +318,13 @@ Going to pop wallet now to pay gas...
 Mining...please wait.
 Mined, see transaction: https://rinkeby.etherscan.io/tx/0x5a08f3e66852b5c1833f3a20fc292816bc2ec5a25eee1e8c83c3755000aa773a
 ```
-
-`Console` に出力された `https://rinkeby.etherscan.io/...` のアドレスをクリックしてみましょう。
+Console に出力された `https://rinkeby.etherscan.io/...` のアドレスをクリックしてみましょう。
 
 - あなたの Rinkeby Test Network 上のトランザクションの履歴が参照できます。
 
 次に、[rinkeby.rarible.com](https://rinkeby.rarible.com/) にアクセスして、Mint した NFT があなたの Rinkeby Test Network のアドレスに紐づいているか確認してみましょう。
 
-`Console` に出力された `currentAccount:` に続く、`0x..` のアドレスを Rarible の Web サイトに貼り付けて、結果が表示されたら、`Items` タブを選択してください
+Console に出力された `currentAccount:` に続く、`0x..` のアドレスを Rarible の Web サイトに貼り付けて、結果が表示されたら、`Items` タブを選択してください
 
 ![](/public/images/2-ETH-NFT-collection/section-3/3_3_2.png)
 

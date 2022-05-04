@@ -203,11 +203,11 @@ Web アプリケーション上で、`Connect Wallet to Get Started` ボタン�
 下記のような画面が Web アプリケーションに表示されていることを確認してください。
 ![](/public/images/3-ETH-NFT-game3/section-3/3_3_5.png)
 
-さらに、Web アプリケーション上で右クリックを行い、`Inspect` をクリックしたら、`Console` に向かいましょう。
+さらに、Web アプリケーション上で右クリックを行い、`Inspect` をクリックしたら、Console に向かいましょう。
 
 ![](/public/images/3-ETH-NFT-game/section-3/3_3_6.png)
 
-`Console` に下記のような結果が表示されていたら、シナリオ 2 のテストは成功です。
+Console に下記のような結果が表示されていたら、シナリオ 2 のテストは成功です。
 
 ```
 Connected 0x3a0a49fb3cf930e599f0fa7abe554dc18bd1f135

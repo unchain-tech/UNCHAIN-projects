@@ -78,7 +78,8 @@ npm run start
 ![](/public/images/3-ETH-NFT-game/section-3/3_2_1.png)
 次に、`Console`を選択し、出力結果を確認してみましょう。
 ![](/public/images/3-ETH-NFT-game/section-3/3_2_2.png)
-`Console` に `We have the ethereum object` と表示されているでしょうか？
+
+Console に `We have the ethereum object` と表示されているでしょうか？
 
 - これは、`window.ethereum` が、この Web サイトを訪問したユーザー（ここでいうあなた）が MetaMask を持っていることを確認したことを示しています。
 

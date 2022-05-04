@@ -104,7 +104,7 @@ npm run start
 
 ![](/public/images/2-ETH-NFT-collection/section-3/3_2_2.png)
 
-`Console` に `We have the ethereum object` と表示されているでしょうか？
+Console に `We have the ethereum object` と表示されているでしょうか？
 
 - これは、`window.ethereum` が、この Web サイトを訪問したユーザー（ここでいうあなた）が MetaMask を持っていることを確認したことを示しています。
 
@@ -449,7 +449,7 @@ npm run start
 
 - ウォレット接続用のボタンが、`Connect Wallet` と表示されていれば成功です。
 
-次に、右クリック → `Inspect` を選択し、`Console` を立ち上げましょう。下図のように、`No authorized account found` と出力されていれば成功です。
+次に、右クリック → `Inspect` を選択し、Console を立ち上げましょう。下図のように、`No authorized account found` と出力されていれば成功です。
 
 ![](/public/images/2-ETH-NFT-collection/section-3/3_2_5.png)
 
@@ -461,7 +461,7 @@ npm run start
 
 MetaMask の承認が終わると、ウォレット接続ボタンの表示が `Mint NFT` に変更されているはずです。
 
-下記のように、`Console` にも、接続されたウォレットアドレスが、`currentAccount` として出力されていることを確認してください。
+下記のように、Console にも、接続されたウォレットアドレスが、`currentAccount` として出力されていることを確認してください。
 
 ```
 Connected 0x3a0a49fb3cf930e599f0fa7abe554dc18bd1f135

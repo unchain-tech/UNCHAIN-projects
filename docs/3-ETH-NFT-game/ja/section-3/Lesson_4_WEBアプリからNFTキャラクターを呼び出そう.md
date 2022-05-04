@@ -281,7 +281,7 @@ useEffect(() => {
 
 > ⚠️: 注意
 >
-> ブラウザ上の `Console` に `transformCharacterData` が未定義であるというエラーが発生していても、すぐに解決していくので、このまま進んでください。
+> ブラウザ上の Console に `transformCharacterData` が未定義であるというエラーが発生していても、すぐに解決していくので、このまま進んでください。
 
 追加されたコードを見ながら、新しい概念について学びましょう。
 
@@ -450,7 +450,7 @@ import { CONTRACT_ADDRESS, transformCharacterData } from "./constants";
 
 この処理により、`constants.js` で宣言された `CONTRACT_ADDRESS` と `transformCharacterData` が `App.js` でも使えます。
 
-- `constants.js` 上で `transformCharacterData` を `export` し、`App.js` 上で `import` したので、`Console` 上の `transformCharacterData` が未定義であるというエラーは解消します。
+- `constants.js` 上で `transformCharacterData` を `export` し、`App.js` 上で `import` したので、Console 上の `transformCharacterData` が未定義であるというエラーは解消します。
 
 ### ⭕️ レンダリングをテストする
 
@@ -479,11 +479,11 @@ npm run start
 
 次に、`Connect Wallet to Get Started` ボタンを押して、ウォレットを接続しましょう。
 
-さらに、Web アプリケーション上で右クリックを行い、`Inspect` をクリックしたら、`Console` に向かいましょう。
+さらに、Web アプリケーション上で右クリックを行い、`Inspect` をクリックしたら、Console に向かいましょう。
 
 ![](/public/images/3-ETH-NFT-game/section-3/3_4_4.png)
 
-`Console` に下記のアウトプットが表示されていることを確認してください。
+Console に下記のアウトプットが表示されていることを確認してください。
 
 ```
 No character NFT found

@@ -75,11 +75,11 @@ npm run start
 
 ![](/public/images/1-ETH-dApp/section-2/2_3_1.png)
 
-次に、`Console` を選択し、出力結果を確認してみましょう。
+次に、Console を選択し、出力結果を確認してみましょう。
 
 ![](/public/images/1-ETH-dApp/section-2/2_3_2.png)
 
-`Console` に `We have the ethereum object` と表示されているでしょうか？
+Console に `We have the ethereum object` と表示されているでしょうか？
 
 - これは、`window.ethereum` が、この Web サイトを訪問したユーザー（ここでいうあなた）が MetaMask を持っていることを確認したことを示しています。
 
@@ -172,7 +172,7 @@ if (accounts.length !== 0) {
 
 `eth_accounts` は、空の配列または単一のアカウントアドレスを含む配列を返す特別なメソッドです。
 
-ユーザーのウォレットアカウントへのアクセスが許可されている場合は、 `Found an authorized account` と `Console` に出力されます。
+ユーザーのウォレットアカウントへのアクセスが許可されている場合は、 `Found an authorized account` と Console に出力されます。
 
 ターミナルで再度 `dApp-starter-project` に移動し、下記を実行してみましょう。
 
@@ -184,11 +184,11 @@ npm run start
 
 ![](/public/images/1-ETH-dApp/section-2/2_3_3.png)
 
-次に、`Console` を選択し、出力結果を確認してみましょう。
+次に、 Console を選択し、出力結果を確認してみましょう。
 
 ![](/public/images/1-ETH-dApp/section-2/2_3_4.png)
 
-> ✍️: `Console` の結果を見てわかること
+> ✍️:  Console の結果を見てわかること
 > `App.js` に記載されているコードは上から順を追って走っているので、最初に `currentAccount` の状態変数を定義したときには、中身が空であることがわかります。
 
 > ```javascript
@@ -397,7 +397,7 @@ npm run start
 
 ![](/public/images/1-ETH-dApp/section-2/2_3_7.png)
 
-次に、右クリック → `Inspect` を選択し、`Console` を立ち上げましょう。下図のように、`No authorized account found` と出力されていれば成功です。
+次に、右クリック → `Inspect` を選択し、Console を立ち上げましょう。下図のように、`No authorized account found` と出力されていれば成功です。
 
 ![](/public/images/1-ETH-dApp/section-2/2_3_8.png)
 
@@ -406,7 +406,7 @@ npm run start
 
 ![](/public/images/1-ETH-dApp/section-2/2_3_9.png)
 
-MetaMask の承認が終わると、ウォレット接続ボタンの表示が `Wallet Connected` に変更されているはずです。 `Console` にも、接続されたウォレットアドレスが、`currentAccount` として出力されていることを確認してください。
+MetaMask の承認が終わると、ウォレット接続ボタンの表示が `Wallet Connected` に変更されているはずです。Console にも、接続されたウォレットアドレスが、`currentAccount` として出力されていることを確認してください。
 
 ![](/public/images/1-ETH-dApp/section-2/2_3_10.png)
 

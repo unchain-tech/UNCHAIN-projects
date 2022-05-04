@@ -239,7 +239,7 @@ const wave = async () => {
 
 `App.js` を更新したら、ターミナル上で `dApp-starter-project` に移動し、`npm run start` を実行してください。
 
-ローカルサーバを介して表示されている Web アプリケーションから右クリック → `Inspect` を選択し、`Console` の出力結果を確認してみましょう。
+ローカルサーバを介して表示されている Web アプリケーションから右クリック → `Inspect` を選択し、Console の出力結果を確認してみましょう。
 
 下記のようなエラーが表示されていれば、テストは成功です。
 ![](/public/images/1-ETH-dApp/section-2/2_4_1.png)
@@ -279,7 +279,7 @@ const [currentAccount, setCurrentAccount] = useState("");
 const contractAddress = "あなたの WavePortal の address を貼り付けてください";
 ```
 
-`App.js` を更新したら、ローカルサーバにホストされている Web アプリケーションから `Console` を確認してみましょう。
+`App.js` を更新したら、ローカルサーバにホストされている Web アプリケーションから Console を確認してみましょう。
 
 `contractAddress` に関するエラーが消えていれば、成功です。
 ![](/public/images/1-ETH-dApp/section-2/2_4_2.png)
@@ -612,9 +612,9 @@ npm run start
 
 2 \. `Wave at Me` ボタンを押して、実際にブロックチェーン上にあなたの「👋（wave）」が反映されているか確認する。
 
-いつものようにローカルサーバにホストされている Web アプリケーションを `Inspect` し、`Console` を確認しましょう。
+いつものようにローカルサーバにホストされている Web アプリケーションを `Inspect` し、Console を確認しましょう。
 
-例）`Wave at Me` ボタンを 2 回押した際に出力された `Console` の結果。
+例）`Wave at Me` ボタンを 2 回押した際に出力された  Console の結果。
 
 ![](/public/images/1-ETH-dApp/section-2/2_4_3.png)
 
@@ -627,7 +627,7 @@ npm run start
 
 ### 🌱 Etherscan でトランザクションを確認する
 
-あなたの `Console` に出力されている以下のアドレスをそれぞれコピーして、[Etherscan](https://rinkeby.etherscan.io/) に貼り付けてみましょう。
+あなたの Console に出力されている以下のアドレスをそれぞれコピーして、[Etherscan](https://rinkeby.etherscan.io/) に貼り付けてみましょう。
 
 - Connected: `0x..` ← これをコピーして Etherscan に貼り付ける
 
