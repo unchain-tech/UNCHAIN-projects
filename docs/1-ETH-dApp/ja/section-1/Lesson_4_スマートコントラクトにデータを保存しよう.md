@@ -206,7 +206,7 @@ const [owner, randomPerson] = await hre.ethers.getSigners();
 
 ブロックチェーンに `WavePortal` コントラクトをデプロイする際、「👋（wave）」を送る側のウォレットアドレスが必要です。
 
-`hre.ethers.getSigners()` は Hardhat が提供するランダムなアドレスを生成する関数です。
+`hre.ethers.getSigners()` は Hardhat が用意した任意のアドレスを提供する関数です。
 
 - ここでは、コントラクト所有者（＝あなた）のウォレットアドレスと、あなたに「👋（wave）」を送るユーザーのウォレットアドレスを Hardhat がそれぞれ生成し、`owner` と `randomPerson` という変数に格納しています。
 
