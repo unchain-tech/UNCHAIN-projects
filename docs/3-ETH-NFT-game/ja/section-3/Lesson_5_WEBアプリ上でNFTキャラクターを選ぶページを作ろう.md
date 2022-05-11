@@ -174,7 +174,31 @@ NFT キャラクターのデータをスマートコントラクトから取得�
 
 `gameContract` を使用する準備ができたら、すぐに `getCharacters` 関数を呼び出したいので、ここでも `useEffect` を使用していきます。
 
-それでは、`SelectCharacter` の中に記載した `useEffect` 関数の直下に、下記を追加していきましょう。
+それでは、`SelectCharacter` の中に記載した `useEffect` 関数を確認しましょう。
+
+
+```javascript
+// index.js
+useEffect(() => {
+	const { ethereum } = window;
+
+	if (ethereum) {
+	  const provider = new ethers.providers.Web3Provider(ethereum);
+	  const signer = provider.getSigner();
+	  const gameContract = new ethers.Contract(
+		CONTRACT_ADDRESS,
+		myEpicGame.abi,
+		signer
+	  );
+	  // gameContract の状態を更新します。
+	  setGameContract(gameContract);
+	} else {
+	  console.log('Ethereum object not found');
+	}
+  	}, []);
+```
+
+この関数の直下に、下記を追加していきましょう。
 
 ```javascript
 // index.js
