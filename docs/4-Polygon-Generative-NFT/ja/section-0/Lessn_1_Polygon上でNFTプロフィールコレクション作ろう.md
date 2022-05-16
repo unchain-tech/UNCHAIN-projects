@@ -61,6 +61,8 @@ GitHub から直接コードを編集して直接 `pull request` を送る方法
 
 - プロジェクトを `Fork` する方法は、[こちら](https://docs.github.com/ja/get-started/quickstart/fork-a-repo) を参照してください。
 - `Fork` から `pull request` を作成する方法は、[こちら](https://docs.github.com/ja/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) です。
+-
+**👋 `UNCHAIN-projects` に `pull request` を送る! ⏩ [UNCHAIN の GitHub](https://github.com/shiftbase-xyz/UNCHAIN-projects) にアクセス!**
 
 ### ⚡️ `Issue` を作成する
 
