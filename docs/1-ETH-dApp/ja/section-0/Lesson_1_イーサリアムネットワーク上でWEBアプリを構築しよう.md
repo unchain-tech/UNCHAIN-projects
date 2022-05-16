@@ -84,7 +84,8 @@ Solidity でバックエンドを実装し、React でフロントエンドを�
 GitHub から直接コードを編集して直接 `pull request` を送る方法は、[こちら](https://docs.github.com/ja/repositories/working-with-files/managing-files/editing-files#editing-files-in-another-users-repository)を参照してください。
 
 どんなリクエストでも大歓迎です 🎉
-`UNCHAIN-projects` に `pull request` を送る場合は、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects) から👋
+
+**👋 `UNCHAIN-projects` に `pull request` を送る場合は、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects) から!**
 
 また、プロジェクトを自分の GitHub アカウントに `Fork` して、中身を編集してから `pull request` を送ることもできます。
 
