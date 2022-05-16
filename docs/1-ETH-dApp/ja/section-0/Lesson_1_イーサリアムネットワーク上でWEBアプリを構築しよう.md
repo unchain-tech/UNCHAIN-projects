@@ -85,7 +85,7 @@ GitHub から直接コードを編集して直接 `pull request` を送る方法
 
 どんなリクエストでも大歓迎です 🎉
 
-**👋 `UNCHAIN-projects` に `pull request` を送る場合は、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects) から!**
+**👋 `UNCHAIN-projects` に `pull request` を送られる方は、[UNCHAIN の GitHub](https://github.com/shiftbase-xyz/UNCHAIN-projects) にアクセスしてください!**
 
 また、プロジェクトを自分の GitHub アカウントに `Fork` して、中身を編集してから `pull request` を送ることもできます。
 
