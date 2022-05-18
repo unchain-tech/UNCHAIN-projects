@@ -35,7 +35,7 @@ Vercel のアカウントを取得したら、下記を実行しましょう。
 1\. `Dashboard` へ進んで、`New Project` を選択してください。
 ![](/public/images/8-Ganache-Yield-Farm/section-4/12_4_1.png)
 
-2\. `Import Git Repository` で自分の GitHub アカウントを接続したら、`nft-game-starter-project` を選択し、`Import` してください。
+2\. `Import Git Repository` で自分の GitHub アカウントを接続したら、`yield-farm-starter-project` を選択し、`Import` してください。
 ![](/public/images/8-Ganache-Yield-Farm/section-4/12_4_2.png)
 
 3\. プロジェクトを作成します。Environment Variable に下記を追加します。
@@ -52,10 +52,6 @@ Vercel は GitHub と連動しているので、GitHub が更新されるたび�
 基本的に `warning` は無視して問題ありません。
 
 ![](/public/images/8-Ganache-Yield-Farm/section-4/12_4_4.png)
-
-こちらが、今回のプロジェクトで作成される Web アプリケーションのデモです。
-
-https://my-nft-game-nine.vercel.app/
 
 ### 🙋‍♂️ 質問する
 
