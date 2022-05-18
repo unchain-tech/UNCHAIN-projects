@@ -286,8 +286,6 @@ TextButton buildButton(String text, Function onPressed) {
 
 ここでは、`showTodoBottomSheet` と `buildButton` という2つの関数を作成しています。
 
-
-
 それでは、詳しく見ていきましょう。
 
 ```dart
@@ -451,5 +449,6 @@ class MyApp extends StatelessWidget {
 ```
 
 ---
+あなたの UI をスクリーンショットして Discord の `#section-2` に投稿してましょう!
 
 次のセクションに進んで、スマートコントラクトを Mumbai testnet に公開しましょう 🎉

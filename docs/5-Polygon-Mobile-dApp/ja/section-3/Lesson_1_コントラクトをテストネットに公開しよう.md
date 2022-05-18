@@ -193,5 +193,6 @@ npx truffle migrate --network matic --reset
 ```
 
 ---
+あなたのコントラクトアドレスのリンクを Discord の `#section-3` に投稿してください!
 
 次のセクションに進んで、動作状況をGifに収めるを開始しましょう 🎉
