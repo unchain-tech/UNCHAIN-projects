@@ -182,7 +182,7 @@ let baseAccount = Keypair.generate();
 const programID = new PublicKey(idl.metadata.address);
 
 // ネットワークをDevnetに設定します。
-const network = clusterApiUrl('Devnet');
+const network = clusterApiUrl('devnet');
 
 // トランザクションが完了したときに通知方法を制御します。
 const opts = {
