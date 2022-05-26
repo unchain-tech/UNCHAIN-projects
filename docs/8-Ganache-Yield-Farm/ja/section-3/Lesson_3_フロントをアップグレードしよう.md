@@ -83,7 +83,7 @@ class App extends Component {
       // stakingBalance をストリング型に変更する
       this.setState({stakingBalance: tokenFarmBalance.toString()})
       // ユーザーの stakingBalance をフロントエンドの Console に出力する
-      console.log(stakingBalance.toString())
+      console.log(tokenFarmBalance.toString())
     }else{
       window.alert('TokenFarm contract not deployed to detected network.')
     }
@@ -237,7 +237,7 @@ if(tokenFarmData){
   // stakingBalance をストリング型に変更する
   this.setState({stakingBalance: tokenFarmBalance.toString()})
   // ユーザーの stakingBalance をフロントエンドの Console に出力する
-  console.log(stakingBalance.toString())
+  console.log(tokenFarmBalance.toString())
 }else{
   window.alert('TokenFarm contract not deployed to detected network.')
 }

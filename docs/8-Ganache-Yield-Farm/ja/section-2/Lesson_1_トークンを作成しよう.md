@@ -143,7 +143,7 @@ await daiToken.transfer(accounts[1], '100000000000000000000')
 pragma solidity ^0.5.0;
 
 import "./DappToken.sol";
-import "./DaiToken.sol";
+import "./MockDaiToken.sol";
 
 contract TokenFarm{
     string public name = "Dapp Token Farm";
@@ -161,7 +161,7 @@ contract TokenFarm{
 
 ```javascript
 import "./DappToken.sol";
-import "./DaiToken.sol";
+import "./MockDaiToken.sol";
 ```
 
 次にそれらを `constructor` で呼び出します。
