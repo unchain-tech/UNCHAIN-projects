@@ -228,7 +228,7 @@ const wave = async () => {
 **3 \. wave ボタンに wave 関数を連動させる**
 
 ```html
-// App.js <button className="waveButton" onClick="{wave}">Wave at Me</button>
+// App.js <button className="waveButton" onClick={wave}>Wave at Me</button>
 ```
 
 `onClick` プロップを `null` から `wave` に更新して、`wave()` 関数を `waveButton` に接続しています。
@@ -273,7 +273,7 @@ npx hardhat run scripts/deploy.js --network rinkeby
 ```javascript
 // App.js
 const [currentAccount, setCurrentAccount] = useState("");
-/**{}
+/*
  * デプロイされたコントラクトのアドレスを保持する変数を作成
  */
 const contractAddress = "あなたの WavePortal の address を貼り付けてください";
@@ -357,11 +357,11 @@ const App = () => {
    */
   const [currentAccount, setCurrentAccount] = useState("");
   console.log("currentAccount: ", currentAccount);
-  /**
+  /*
    * デプロイされたコントラクトのアドレスを保持する変数を作成
    */
   const contractAddress = "あなたのコントラクトアドレスを貼り付けてください";
-  /**
+  /*
    * ABIの内容を参照する変数を作成
    */
   const contractABI = abi.abi;
@@ -608,7 +608,7 @@ npm run start
 
 ローカルサーバ上で表示されている Web アプリケーションで `Inspect` を実行し、以下を試してみましょう。
 
-1 \. `Wallet Connect` をボタンを押して、Web アプリケーションにあなたの MetaMask のウォレットアドレスを接続する。
+1 \. `Connect Wallet` をボタンを押して、Web アプリケーションにあなたの MetaMask のウォレットアドレスを接続する。
 
 2 \. `Wave at Me` ボタンを押して、実際にブロックチェーン上にあなたの「👋（wave）」が反映されているか確認する。
 
