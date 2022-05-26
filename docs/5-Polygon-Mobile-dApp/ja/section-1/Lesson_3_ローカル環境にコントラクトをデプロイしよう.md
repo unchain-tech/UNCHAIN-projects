@@ -118,7 +118,25 @@ module.exports = {
 ```
 下のようにターミナルに表示されていれば成功です。
 
-![](/public/images/5-Polygon-Mobile-dApp/section-1/1_3_01.png)
+```
+Compiling your contracts...
+===========================
+Everything is up to date, there is nothing to compile.
+Something went wrong while attempting to connect to the network at http://localhost:7545/. Check your network configuration.
+
+Could not connect to your Ethereum client with the following parameters:
+    - host       > localhost
+    - port       > 7545
+    - network_id > *
+Please check that your Ethereum client:
+    - is running
+    - is accepting RPC connections (i.e., "--rpc" or "--http" option is used in geth)
+    - is accessible over the network
+    - is properly configured in your Truffle configuration file (truffle-config.js)
+
+Truffle v5.5.14 (core: 5.5.14)
+Node v16.13.1
+```
 
 ローカルネットワークへのコンパイルとデプロイの作業は以上で完了です。
 次は、Flutterアプリケーションへ接続していきましょう。
