@@ -80,9 +80,9 @@ class App extends Component {
       this.setState({tokenFarm})
       // tokenFarm 内にステーキングされている Dai トークンの残高を取得する
       let tokenFarmBalance = await tokenFarm.methods.stakingBalance(this.state.account).call()
-      // stakingBalance をストリング型に変更する
+      // tokenFarmBalance をストリング型に変更する
       this.setState({stakingBalance: tokenFarmBalance.toString()})
-      // ユーザーの stakingBalance をフロントエンドの Console に出力する
+      // ユーザーの tokenFarmBalance をフロントエンドの Console に出力する
       console.log(tokenFarmBalance.toString())
     }else{
       window.alert('TokenFarm contract not deployed to detected network.')
@@ -234,9 +234,9 @@ if(tokenFarmData){
   this.setState({tokenFarm})
   // tokenFarm 内にステーキングされている Dai トークンの残高を取得する
   let tokenFarmBalance = await tokenFarm.methods.stakingBalance(this.state.account).call()
-  // stakingBalance をストリング型に変更する
+  // tokenFarmBalance をストリング型に変更する
   this.setState({stakingBalance: tokenFarmBalance.toString()})
-  // ユーザーの stakingBalance をフロントエンドの Console に出力する
+  // ユーザーの tokenFarmBalance をフロントエンドの Console に出力する
   console.log(tokenFarmBalance.toString())
 }else{
   window.alert('TokenFarm contract not deployed to detected network.')
