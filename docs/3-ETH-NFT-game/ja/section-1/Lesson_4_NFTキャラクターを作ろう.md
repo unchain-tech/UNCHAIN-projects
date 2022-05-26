@@ -1,6 +1,6 @@
 ### 🤔 NFT とは何か？
 
-NFT の概要については、[こちら](https://github.com/yukis4san/Intro-NFT/blob/main/section-1/NFT-S1-lesson-1.md) をご覧ください。
+NFT の概要については、[こちら]([https://github.com/yukis4san/Intro-NFT/blob/main/section-1/NFT-S1-lesson-1.md](https://github.com/shiftbase-xyz/UNCHAIN-projects/blob/main/docs/2-ETH-NFT-collection/ja/section-1/Lesson_1_NFT%E3%81%A8%E3%81%AF%E4%BD%95%E3%81%8B%EF%BC%9F.md) をご覧ください。
 
 一般的に NFT が何であるかが理解できたら、次のステップに進みましょう。
 
