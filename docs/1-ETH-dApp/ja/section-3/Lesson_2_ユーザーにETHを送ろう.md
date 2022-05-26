@@ -50,7 +50,7 @@ function wave(string memory _message) public {
 > ```solidity
 > // WavePortal.sol
 > require(
-> 	prizeAmount <= address(this).balance, 
+> 	prizeAmount <= address(this).balance,
 > 	"Trying to withdraw more money than the contract has."
 > );
 > ```
@@ -283,7 +283,7 @@ const waveContract = await waveContractFactory.deploy({
 
 `value: hre.ethers.utils.parseEther("0.001")` で、コントラクトに資金提供を行っています。
 
-今回はテストですので、少額の 0.001ETH をコントラクトに付与しています。
+今回はテストですので、少額の 0.0001ETH をコントラクトに付与しています。
 
 また、`await waveContract.deployed()` を追加して、資金を追加するまでデプロイを待機するように設定しています。
 

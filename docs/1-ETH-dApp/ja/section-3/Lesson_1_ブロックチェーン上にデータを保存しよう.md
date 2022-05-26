@@ -107,7 +107,7 @@ emit NewWave(msg.sender, block.timestamp, _message);
 // App.js
 /* すべてのwavesを保存する状態変数を定義 */
 const [allWaves, setAllWaves] = useState([]);
-  
+
 const getAllWaves = async () => {
   const { ethereum } = window;
 
@@ -428,8 +428,7 @@ We have 0 total waves!
 ]
 ```
 
-注：「タイムスタンプ」は、「BigNumber」として出力されています。「BigNumber」については、[こちら](https://qiita.com/niharu/items/52ee466c37c701f9109b)
-を参照してください。
+注：「タイムスタンプ」は、「BigNumber」として出力されています。「BigNumber」については、[こちら](https://qiita.com/niharu/items/52ee466c37c701f9109b)を参照してください。
 
 ### 🛩 もう一度デプロイする
 
@@ -578,7 +577,7 @@ const App = () => {
         },
       ]);
     };
-    
+
     /* NewWaveイベントがコントラクトから発信されたときに、情報をを受け取ります */
     if (window.ethereum) {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
