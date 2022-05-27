@@ -10,7 +10,7 @@
 
     👉 WEBアプリ上に、`SelectCharacter` コンポーネントを表示します。
 
-これから、ボスとのバトルフィールド「`Arina`」を作成し、シナリオ 3 を実装していきます。
+これから、ボスとのバトルフィールド「`Arena`」を作成し、シナリオ 3 を実装していきます。
 
 🔥 **シナリオ 3. ユーザーは Web アプリケーションにログインしており、かつ NFT キャラクターを持っている場合**
 
@@ -106,7 +106,7 @@ const renderContent = () => {
     return <SelectCharacter setCharacterNFT={setCharacterNFT} />;
     // シナリオ3.
     // ユーザーはWEBアプリにログインしており、かつ NFT キャラクターを持っている場合、
-    // Area でボスと戦います。
+    // Arena でボスと戦います。
   } else if (currentAccount && characterNFT) {
     return <Arena characterNFT={characterNFT} />;
   }
@@ -121,7 +121,7 @@ Web アプリケーションを更新すると、「アリーナ」コンポー�
 
 ### 😈 スマートコントラクトからボスを取得する
 
-それでは、`Area` コンポーネントに、ボスのデータを取得していきましょう。
+それでは、`Arena` コンポーネントに、ボスのデータを取得していきましょう。
 
 - `SelectCharacter` コンポーネントで、NFT キャラクターのデータを取得した方法と同じ要領で進めていきます。
 
