@@ -98,7 +98,7 @@ Solana では、アカウントのデータ読み込みは無料でできます�
 ※ `INSERT_YOUR_PHANTOM_PUBLIC_ADDRESS_HERE` に先ほどコピーした Phantom Wallet のアドレスを入れて実行してください。
 
 ```bash
-solana airdrop 2 INSERT_YOUR_PHANTOM_PUBLIC_ADDRESS_HERE --url Devnet
+solana airdrop 2 INSERT_YOUR_PHANTOM_PUBLIC_ADDRESS_HERE --url devnet
 ```
 
 Phantom Wallet を確認し、Devnet で 2 SOL が入っていることを確認できれば完了です。
