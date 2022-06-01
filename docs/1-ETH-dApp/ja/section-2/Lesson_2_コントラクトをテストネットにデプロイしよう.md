@@ -102,7 +102,7 @@ MetaMask ウォレットに `Rinkeby Test Network` が設定されたら、下�
 - [Chainlink](https://faucets.chain.link/rinkeby) - 0.1 ETH（その場でもらえる）
   - Chainlink を使うときは `Connect wallet` をクリックして MetaMask と接続する必要があります。
 
-※ 2022/05/04 現在、 `Rinkeby Test Network` は Deprecated になっています。この時、代わりに `Gorelity Test Network` を選択しても問題ありません。この場合、`Rinkeby Test Network` の部分を全て `Gorelity Test Network` と読み替えてもらえれば同様に動作します。
+※ 2022/05/04 現在、 `Rinkeby Test Network` は Deprecated になっています。この時、代わりに `Goerli Test Network` を選択しても問題ありません。この場合、`Rinkeby Test Network` の部分を全て `Goerli Test Network` と読み替えてもらえれば同様に動作します。
 
 ### 📈 `hardhat.config.js` ファイルを編集する
 
