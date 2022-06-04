@@ -111,7 +111,7 @@ Contract deployed to: 0x... ← あなたのコントラクトアドレスをコ
 
 3\. VS Code で `MyEpicNFT.json` ファイルが開かれるので、中身をすべてコピーする。※ VS Code のファインダーを使って、直接 `MyEpicNFT.json` を開くことも可能です。
 
-4\. コピーした `epic-nfts/artifacts/contracts/MyEpicNFT.sol/MyEpicNFT.json` の中身を `your-first-NFT-collection/src/utils/MyEpicNFT.json` の中身と交換する。
+4\. コピーした `epic-nfts/artifacts/contracts/MyEpicNFT.sol/MyEpicNFT.json` の中身を `nft-collection-starter-project/src/utils/MyEpicNFT.json` の中身と交換する。
 
 **繰り返しますが、コントラクトを更新するたびにこれを行う必要があります。**
 
