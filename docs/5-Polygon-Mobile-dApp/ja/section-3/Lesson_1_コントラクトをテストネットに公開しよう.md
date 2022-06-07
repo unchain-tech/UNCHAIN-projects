@@ -169,9 +169,84 @@ npx truffle migrate --network matic
 npx truffle migrate --network matic --reset
 ```
 
-下記のような結果になれば成功です。
+上記でもエラーが起きた方は、`truffle-config.js`ファイルを以下のように変更してください。
+
+```js
+//truffle-config.js
+const HDWalletProvider = require("@truffle/hdwallet-provider");
+require("dotenv").config();
+const fs = require("fs");
+const mnemonic = fs.readFileSync(".secret").toString().trim();
+
+module.exports = {
+  networks: {
+    development: {
+      host: "127.0.0.1", // Localhost (default: none)
+      port: 8545, // Standard Ethereum port (default: none)
+      network_id: "*", // Any network (default: none)
+    },
+    matic: {
+      provider: () =>
+        new HDWalletProvider(
+          mnemonic,
+          process.env.ALCHEMY_API_KEY
+        ),
+      network_id: 80001,
+      confirmations: 2,
+      timeoutBlocks: 200,
+      skipDryRun: true,
+    },
+  },
+
+  // Set default mocha options here, use special reporters etc.
+  mocha: {
+    // timeout: 100000
+  },
+
+  // Configure your compilers
+  compilers: {
+    solc: {},
+  },
+  plugins: ["truffle-plugin-verify"],
+  api_keys: {
+    polygonscan: "POLYGONSCANS' API KEY",
+  },
+};
+```
+
+上記の `polygonscan: "POLYGONSCANS' API KEY",` の `"POLYGONSCANS' API KEY"` の部分を、[polygonscan.com](https://polygonscan.com/)で作成した `API key` に設定します。
+
+手順は下記のとおりです。
+
+まず、先ほどのリンクからログインして、`API-KEYs` を選択し、`My API KEYs` の隣にある `Add` をクリックします。
 
 ![](/public/images/5-Polygon-Mobile-dApp/section-3/3_1_07.png)
+
+次に、下の画像で黒塗りしている部分の上の段をコピーして、`POLYGONSCANS' API KEY` の部分に貼り付けてください。gitにあげることもあるかもしれないので、`.env` ファイルに保存することを推奨します。
+
+![](/public/images/5-Polygon-Mobile-dApp/section-3/3_1_08.jpg)
+
+以上が完了したら、`todo-dApp-contract` 上でターミナルを開き、以下のコマンドを実行してください。
+
+```bash
+truffle migrate --network matic
+```
+
+上記のコマンドでエラーになった方は、以下を実行してください。
+
+```bash
+npx truffle migrate --network matic
+```
+
+エラーが起きた方は、下記をお試しください。
+
+```bash
+npx truffle migrate --network matic --reset
+```
+
+下記のような結果になれば成功です。
+
+![](/public/images/5-Polygon-Mobile-dApp/section-3/3_1_09.png)
 
 [mumbai.polygonscan.com](https://mumbai.polygonscan.com/) に向かい、`contract address` を貼り付けて、デプロイできているか確認してみましょう。
 

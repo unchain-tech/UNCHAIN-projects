@@ -88,7 +88,7 @@ truffle migrate
 npx truffle migrate
 ```
 
-こちらでもエラーが出た場合は、`truffle-config.js` ファイルを下記に変更して、もう一度上記の操作を行ってください。
+こちらでもエラーが出た場合は、`truffle-config.js` ファイルを下記に変更して、もう一度上記のコマンドを実行してください。
 
 ```js
 //truffle-config.js
@@ -116,6 +116,32 @@ module.exports = {
   },
 };
 ```
+
+上記でもエラーになった場合は、`truffle-config.js` ファイルを下記に変更して、もう一度上記のコマンドを実行してください。
+
+```js
+//truffle-config.js
+const HDWalletProvider = require("@truffle/hdwallet-provider");
+const fs = require("fs");
+const mnemonic = fs.readFileSync(".secret").toString().trim();
+
+module.exports = {
+  networks: {
+    development: {
+      host: "127.0.0.1", // Localhost (default: none)
+      port: 8545, // Standard Ethereum port (default: none)
+      network_id: "*", // Any network (default: none)
+    },
+  },
+
+  // コンパイラの設定
+  compilers: {
+    solc: {},
+  },
+  plugins: ["truffle-plugin-verify"],
+};
+```
+
 下のようにターミナルに表示されていれば成功です。
 
 ![](/public/images/5-Polygon-Mobile-dApp/section-1/1_3_02.png)
