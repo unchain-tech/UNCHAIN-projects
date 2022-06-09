@@ -257,7 +257,7 @@ Phantom Wallet が Web アプリケーションに接続されていた場合、
 ```jsx
 // App.js
 
-{!walletAddress && renderNotConnectedContainer();}
+{!walletAddress && renderNotConnectedContainer()}
 ```
 
 ここでは `state` に `walletAddress` が設定されていない場合のみ、`renderNotConnectedContainer` 関数を呼び出すように記述しています。
