@@ -27,7 +27,7 @@ async function main() {
   // コントラクトアドレスをターミナルに出力
   console.log("Contract deployed to:", contract.address);
 
-  // NFTを 10 点、コントラウト所有者のためにキープする
+  // NFTを 10 点、コントラクト所有者のためにキープする
   let txn = await contract.reserveNFTs();
   await txn.wait();
   console.log("10 NFTs have been reserved");
@@ -98,7 +98,7 @@ main()
 - 10 NFT を予約し、コントラクトに 0.03 ETH を送信して、3 NFT を Mint し、所有する NFT をチェックします。
 
   ```javascript
-  // 1. NFTを 10 点、コントラウト所有者のためにキープする
+  // 1. NFTを 10 点、コントラクト所有者のためにキープする
   let txn = await contract.reserveNFTs();
   await txn.wait();
   console.log("10 NFTs have been reserved");
