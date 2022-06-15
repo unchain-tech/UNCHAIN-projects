@@ -133,6 +133,15 @@ yarn install --cwd ~/metaplex/js/ --network-timeout 600000
 
 Yarn 側で設定されているデフォルトのタイムアウトが低すぎるため、この時間が経過するとネットワークの問題だと判断されてしまうためです。
 
+> ⚠️: 注意
+>
+>  M1チップ搭載のMacOSで環境構築を行う場合には、下記モジュールをインストールしていないとエラーになる可能性があります。
+>  
+>そんな時は、下記コマンドを打ってから再度インストールを試してみてください。
+```txt
+brew install pkg-config cairo pango libpng jpeg giflib librsvg
+```
+
 先に進む前に、次のコマンドを実行して `version` を確認しましょう。
 
 ```txt
