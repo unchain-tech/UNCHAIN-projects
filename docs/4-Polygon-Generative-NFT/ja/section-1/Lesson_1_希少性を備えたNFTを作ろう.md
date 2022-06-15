@@ -364,7 +364,7 @@ Python リストは、`rarity_weights` の重みを割り当てる最も一般�
 
 最初の重み（`100`）は、リストバンドをつけない場合の重みになります。
 
-2 つ目の重みは黒（`black.png`）のバンド、3 つ目の重みは白のバンド（`gray.png`）、といった具合に関連付けを行っています。
+2 つ目の重みは黒（`black.png`）のバンド、3 つ目の重みは白のバンド（`dark-green.png`）、といった具合に関連付けを行っています。
 
 ![](/public/images/4-Polygon-Generative-NFT/section-1/1_1_11.png)
 
