@@ -518,7 +518,7 @@ ERC721 Enumerable の `balanceOf` と `tokenOfOwnerByIndex` 関数を使用し�
 
 - `balanceOf` : 特定の所有者がいくつのトークンを保持しているかを示す関数。
 
-- `tokenOfOwnerByIndex` : 所有者が所有するすべての `tokenId` を取得する関数。
+- `tokenOfOwnerByIndex` : 所有者が `index` 番目に所有する `tokenId` を取得する関数。
 
 ### 🏧 残高引き出し機能を実装する
 
