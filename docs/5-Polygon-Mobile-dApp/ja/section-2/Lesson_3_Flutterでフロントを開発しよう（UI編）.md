@@ -259,9 +259,9 @@ showTodoBottomSheet(BuildContext context, {Task? task}) {
 }
 
 //ボタンの具体的なデザインを設定する。
-TextButton buildButton(String text, Function onPressed) {
+TextButton buildButton(String text, void Function()? onPressed) {
   return TextButton(
-    onPressed: onPressed(),
+    onPressed: onPressed,
     child: Container(
       child: Center(
         child: Text(
@@ -369,9 +369,9 @@ showTodoBottomSheet(BuildContext context, {Task? task}) {
 
 ```dart
 //TodoBottomSheet.dart
-TextButton buildButton(String text, Function onPressed) {
+TextButton buildButton(String text, void Function()? onPressed) {
   return TextButton(
-    onPressed: onPressed(),
+    onPressed: onPressed,
     child: Container(
       child: Center(
         child: Text(
