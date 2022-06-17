@@ -110,7 +110,7 @@ require(`chai`)
 ```
 
 今回テストに使用する `chai` は、truffle が提供するテスト用のライブラリです。
-- `yield-farm-starter-project/package.json` の中に、使用する `chai` のバージョンが記載されています。
+- `yield-farm-starter-project/package.json` の中に、使用する `chai` のバージョンが記載さいます。
 - テストには、`chai` だけでなく、`mocha` という　truffle に含まれている JavaScript 用のテストフレームワークを使用します。
 - `chai` について詳しく知りたい方は、[こちら](https://www.chaijs.com/)の公式ドキュメントをご覧ください🫖
 - `mocha` について詳しく知りたい方は、[こちら](https://mochajs.org/)の公式ドキュメントをご覧ください☕️
@@ -209,7 +209,7 @@ describe('Mock DAI deployment', async () => {
 })
 ```
 
-テスト1は、DaiToken コントラクトがネットワークに正常にデプロイされたかどうかをテストています。
+テスト1は、DaiToken コントラクトがネットワークに正常にデプロイされたかどうかをテストしています。
 
 テスト1が成功した場合、テスト1は デプロイされたコントラクトが "Mock DAI Token" という名前を持っていることを示します。
 
