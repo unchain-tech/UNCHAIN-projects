@@ -34,6 +34,6 @@ Github から直接コードを編集して直接 `pull request` を送る方法
 
 # Contributors
 
-<a href="https://github.com/shiftbase-xyz/UNCHAIN-projects/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=shiftbase-xyz/UNCHAIN-projects" />
+<a href="https://github.com/unchain-dev/UNCHAIN-projects/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=unchain-dev/UNCHAIN-projects" />
 </a>
