@@ -115,7 +115,7 @@ function attackBoss() public {
 	// 3. ボスのHPが0以上であることを確認する。
 	require (
 		bigBoss.hp > 0,
-		"Error: boss must have HP to attack boss."
+		"Error: boss must have HP to attack characters."
 	);
 
 	// 4. プレイヤーがボスを攻撃できるようにする。
