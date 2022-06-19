@@ -55,16 +55,16 @@ class App extends Component {
   // loadWeb3(): ユーザーが Metamask アカウントを持っているか確認する関数
   async loadWeb3() {
     // ユーザーが Metamask のアカウントを持っていた場合は、アドレスを取得
-    if (window.etheruem) {
-      window.web3 = new Web3(window.etheruem)
-      await window.etheruem.enable()
+    if (window.ethereum) {
+      window.web3 = new Web3(window.ethereum)
+      await window.ethereum.enable()
     }
     else if (window.web3) {
       window.web3 = new Web3(window.web3.currentProvider)
     }
     // ユーザーが Metamask のアカウントを持っていなかった場合は、エラーを返す
     else {
-      window.alert('Non etheruem browser detected. You should consider trying to install metamask')
+      window.alert('Non ethereum browser detected. You should consider trying to install metamask')
     }
 
     this.setState({ loading: false})
