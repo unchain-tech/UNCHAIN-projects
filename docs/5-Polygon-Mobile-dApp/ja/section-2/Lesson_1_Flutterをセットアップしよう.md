@@ -52,12 +52,16 @@ Flutterのパッケージについて詳しき知りたい方は、[こちら](h
 
 ※この操作は、コンパイルしてデプロイするたびに行う必要があります。
 
-では、`TodoContract.json` ファイルを認識してもらうために、`todo_dapp_front` フォルダ直下の `pubspec.yaml` ファイルを開いて、下記をファイルの１番下に追加してください。
+では、`TodoContract.json` ファイルを認識してもらうために、`todo_dapp_front` フォルダ直下の `pubspec.yaml` ファイルを開いて、ファイルの１番下を下記の様にしてください。  
+※ pubspec.yamlでは、インデントが大きな意味を持ちますので必ず下の様にしてください！
 
 ```yaml
 //pubspec.yaml
-assets:
-  - smartcontract/TodoContract.json
+# The following section is specific to Flutter.
+flutter:
+  uses-material-design: true
+  assets:
+    - smartcontract/TodoContract.json
 ```
 
 最後に、必要ないので、`test` フォルダ内の `widget_test.dart` ファイルは削除してください。
