@@ -5,7 +5,7 @@
 下記のように、`MyEpicNFT.sol`を更新しましょう。
 
 ```javascript
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 // いくつかの OpenZeppelin のコントラクトをインポートします。
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
