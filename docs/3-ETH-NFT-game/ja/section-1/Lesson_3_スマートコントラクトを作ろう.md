@@ -31,7 +31,7 @@ VS Code をターミナルから起動する方法は[こちら](https://maku.bl
 それでは、これから `MyEpicGame.sol` の中身の作成していきます。`MyEpicGame.sol` を VS Code で開き、下記を入力します。
 
 ```javascript
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.4;
 
@@ -50,7 +50,7 @@ contract MyEpicGame {
 
 ```javascript
 // MyEpicGame.sol
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: MIT
 ```
 
 これは「SPDX ライセンス識別子」と呼ばれ、ソフトウェア・ライセンスの種類が一目でわかるようにするための識別子です。

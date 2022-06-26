@@ -7,7 +7,7 @@
 下記のように、`MyEpicNFT.sol` を更新していきましょう。
 
 ```javascript
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.4;
 
@@ -394,7 +394,7 @@ library Base64 {
 `MyEpicNFT.sol` も下記のように更新しましょう。
 
 ```javascript
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: MIT
 
 pragma solidity 0.8.4;
 

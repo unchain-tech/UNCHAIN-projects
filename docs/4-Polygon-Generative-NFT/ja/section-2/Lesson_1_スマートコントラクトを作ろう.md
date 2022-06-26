@@ -186,7 +186,7 @@ contract NFTCollectible is ERC721Enumerable, Ownable {
 
 ```javascript
 // NFTCollectible.sol
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: MIT
 ```
 
 これは「SPDX ライセンス識別子」と呼ばれ、ソフトウェア・ライセンスの種類が一目でわかるようにするための識別子です。

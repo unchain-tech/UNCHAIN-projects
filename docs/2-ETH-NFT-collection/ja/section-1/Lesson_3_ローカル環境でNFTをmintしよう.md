@@ -28,7 +28,7 @@ epic-nfts
 `MyEpicNFT.sol` のファイル内に以下のコードを記載します。
 
 ```solidity
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 import "hardhat/console.sol";
 contract MyEpicNFT {
@@ -51,7 +51,7 @@ contract MyEpicNFT {
 さて、行ごとにコードをみていきましょう。
 
 ```solidity
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: MIT
 ```
 
 これは「SPDX ライセンス識別子」と呼ばれます。
