@@ -1,4 +1,4 @@
-## ETH-dApp
+## ETH dApp
 
 #### `#BEGINNER🥚` `#Ethereum` 
 

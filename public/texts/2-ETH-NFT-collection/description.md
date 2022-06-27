@@ -1,4 +1,4 @@
-## ETH-NFT-Collection
+## ETH NFT Collection
 
 #### `#INTERMEDIATE🐥` `#Ethereum` 
 
