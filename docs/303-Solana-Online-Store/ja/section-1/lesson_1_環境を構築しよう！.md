@@ -23,7 +23,7 @@ Chrome の方は[こちら](https://chrome.google.com/webstore/detail/phantom/bf
 
 - 「設定」→「ネットワークの変更」→「Devnet」から変更できます。
 
-![phantom wallet settings](/public/images/303-Solana-Online-Store/ja/section-1/1_1_1.png)
+![phantom wallet settings](/public/images/303-Solana-Online-Store/section-1/1_1_1.png)
 
 ※ 本プロジェクトでは Brave と Chrome でのみ動作が確認できます。
 
@@ -40,7 +40,7 @@ Chrome の方は[こちら](https://chrome.google.com/webstore/detail/phantom/bf
 
 `Code` ボタンをクリックして、コピーしたリポジトリのリンクをコピーしてください。
 
-![github code button](/public/images/303-Solana-Online-Store/ja/section-1/1_1_2.png)
+![github code button](/public/images/303-Solana-Online-Store/section-1/1_1_2.png)
 
 最後に、ターミナルで `cd` コマンドを実行してプロジェクトが存在するディレクトリまで移動し、次のコマンドを実行します。
 
@@ -73,7 +73,7 @@ git clone YOUR_FORKED_LINK
 
 ※自動的に Web アプリケーションが立ち上がらない場合は、ブラウザに `http://localhost:3000` と入力して Web アプリケーションを確認しましょう！
 
-![stater project](/public/images/303-Solana-Online-Store/ja/section-1/1_1_3.png)
+![stater project](/public/images/303-Solana-Online-Store/section-1/1_1_3.png)
 
 
 ### 🙋‍♂️ 質問する

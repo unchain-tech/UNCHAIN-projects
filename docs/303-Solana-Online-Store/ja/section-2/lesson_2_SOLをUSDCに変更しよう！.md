@@ -8,7 +8,7 @@ USDC のトランザクションは SOL のトランザクションと非常に�
 
 ウォレットを接続して、「Network selection」から「DEVNET」を選択し、「Address for airdrop」に自分のアドレスを入れ、「USDC airdrop」の`GET USDC` ボタンを押すと USDC が Airdrop されます。
 
-![USDC TOKEN FAUCET](/public/images/303-Solana-Online-Store/ja/section-2/2_2_1.jpg)
+![USDC TOKEN FAUCET](/public/images/303-Solana-Online-Store/section-2/2_2_1.jpg)
 
 USDC を手に入れたら、`pages/api` フォルダ内の `createTransaction.js` を以下のとおり更新します。
 
