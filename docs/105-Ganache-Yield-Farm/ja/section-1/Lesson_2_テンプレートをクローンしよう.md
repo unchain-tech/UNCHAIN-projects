@@ -67,8 +67,8 @@ npm install
 
 下のGanacheの画像の `NETWORK ID` と書いてある部分の４桁の数字を`truffle.config.js` の `network_id` というところに打ち込んでください。
 
-![](/public/images/401-Ganache-Yield-Farm/section-1/12_1_2.png)
-![](/public/images/401-Ganache-Yield-Farm/section-1/12_1_3.png)
+![](/public/images/105-Ganache-Yield-Farm/section-1/12_1_2.png)
+![](/public/images/105-Ganache-Yield-Farm/section-1/12_1_3.png)
 
 これで Ganache のネットワークを使ってテストができるようになりました!
 

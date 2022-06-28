@@ -33,7 +33,7 @@ module.exports = {
 
 下の図からわかるように、Ganache は localhost 上で、`host: "127.0.0.1"` と `port: 7545`で実行されていることがわかります。
 
-![](/public/images/401-Ganache-Yield-Farm/section-1/12_1_2.png)
+![](/public/images/105-Ganache-Yield-Farm/section-1/12_1_2.png)
 
 `truffle-config.js` にはそれらの情報が記載されています。
 

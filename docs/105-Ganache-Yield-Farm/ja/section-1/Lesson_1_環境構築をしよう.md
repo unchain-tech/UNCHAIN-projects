@@ -43,7 +43,7 @@ Ganache は自分用のイーサリアム上のブロックチェーンを生成
 
 インストールして `Quick Start` ボタンを押して下のような画面が出れば成功です!
 
-![](/public/images/401-Ganache-Yield-Farm/section-1/12_1_1.png)
+![](/public/images/105-Ganache-Yield-Farm/section-1/12_1_1.png)
 
 ご覧の通り、10個のアカウントをブロックチェーンのテストを行う際に、無料でご利用いただけます。
 
