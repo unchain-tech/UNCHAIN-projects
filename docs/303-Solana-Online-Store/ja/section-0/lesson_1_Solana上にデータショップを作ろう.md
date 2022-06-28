@@ -6,7 +6,7 @@
 
 - [Terminal 操作](https://qiita.com/ryouzi/items/f9dee1540a04a0bfb9a3)
 - [Javascript](https://developer.mozilla.org/ja/docs/Web/JavaScript)
-- [React.js](https://ja.reactjs.org/)
+- [Next.js](https://nextjs.org/docs)
 
 いますべてを理解している必要はありません。
 
