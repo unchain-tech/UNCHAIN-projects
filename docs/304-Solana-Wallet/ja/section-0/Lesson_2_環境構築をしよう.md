@@ -1,4 +1,4 @@
-### 環境構築をしていこう
+### 🛠 環境構築をしていこう
 
 まずはアプリの雛形であるソースコードをもとに、ローカル環境を作成します。
 
@@ -45,7 +45,7 @@ npm run dev
 - Mac: `ctrl + c`
 - Windows: `ctrl + shift + w`
 
-### 雛形のソースコードについて
+### 🎁 雛形のソースコードについて
 
 雛形ではすでに [`@solana/web3.js`](https://solana-labs.github.io/solana-web3.js/index.html) というライブラリがインストールされるようになっています。 これは `Javascript` で書かれたライブラリで、 `Solana` のプログラムと対話するプログラムを書くのに役立ちます。
 

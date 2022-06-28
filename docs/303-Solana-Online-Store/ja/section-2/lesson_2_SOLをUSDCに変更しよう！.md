@@ -12,7 +12,7 @@ USDC のトランザクションは SOL のトランザクションと非常に�
 
 USDC を手に入れたら、`pages/api` フォルダ内の `createTransaction.js` を以下のとおり更新します。
 
-**※ コピー&ペーストした後、`sellerAddress` の値を自分のウォレットアドレスに変更するのを忘れないでください！**
+**※ コピー&ペーストした後、`sellerAddress` の値を自分のウォレットアドレスに変更するのを忘れないでください!**
 
 ```jsx
 // createTransaction.js
@@ -25,7 +25,7 @@ import products from "./products.json";
 
 // devネット上のUSDCトークンのアドレスを設定します。
 const usdcAddress = new PublicKey("Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr");
-// このウォレットアドレスを書き換えましょう！
+// このウォレットアドレスを書き換えましょう!
 const sellerAddress = "あなたのウォレットアドレス";
 const sellerPublicKey = new PublicKey(sellerAddress);
 
@@ -155,7 +155,7 @@ Solana アカウントをホテル、各トークンのアカウントをホテ�
 
 アドレス B から、所定の金額がアドレス A に送金されていることが分かるはずです。（初期設定では金額が 0.09 USDC となっているので、分かりやすいように 10.00 USDC に変更して試してみてください。）
 
-以上で、USDC での支払いの準備が整いました！
+以上で、USDC での支払いの準備が整いました!
 
 
 ### 🙋‍♂️ 質問する
@@ -173,4 +173,4 @@ Solana アカウントをホテル、各トークンのアカウントをホテ�
 
 ---
 
-次のレッスンでは、注文情報の保存機能を実装します！
+次のレッスンでは、注文情報の保存機能を実装します!

@@ -120,7 +120,7 @@ Etherscan の **コントラクトの Verification（検証）** を行いまし
 
 次に、ターミナルで `epic-nfts` ディレクトリに移動して、次のコマンドを実行してください。 Etherscan で verification を行うために必要なツールをインストールします。
 
-⚠️：Ethereum API key は誰にも教えてはいけません！
+⚠️：Ethereum API key は誰にも教えてはいけません!
 
 ```bash
 npm install @nomiclabs/hardhat-etherscan
@@ -194,7 +194,7 @@ Etherscan で **Contract** タブを選択すると、下図のような `0x6080
 
 ![](/public/images/102-ETH-NFT-Collection/section-4/4_2_11.png)
 
-おめでとうございます！　これで、あなたのスマートコントラクトが世界中の誰でも見られるようになりました 🚀
+おめでとうございます!　これで、あなたのスマートコントラクトが世界中の誰でも見られるようになりました 🚀
 
 ### 🔮 プロジェクトを拡張する
 
@@ -281,7 +281,7 @@ https://nft-minter-jl0e7c9yw-yukis4san.vercel.app/
 4. エラー画面のスクリーンショット
 ```
 
-### 🎫 NFT を取得しよう！
+### 🎫 NFT を取得しよう!
 
 NFT を取得する条件は、以下のようになります。
 
@@ -291,11 +291,11 @@ NFT を取得する条件は、以下のようになります。
 
 3. このページの最後にリンクされている Project Completion Form に記入する
 
-4. Discord の `🔥｜post-your-project` チャンネルに、あなたの Web サイトをシェアしてください 😉🎉 Discord に投稿する際に、追加実装した機能とその概要も教えていただけると幸いです！
+4. Discord の `🔥｜post-your-project` チャンネルに、あなたの Web サイトをシェアしてください 😉🎉 Discord に投稿する際に、追加実装した機能とその概要も教えていただけると幸いです!
 
 プロジェクトを完成させていただいた方には、NFT をお送りします。
 
-### 🎉 おつかれさまでした！
+### 🎉 おつかれさまでした!
 
 あなたのオリジナルの NFT Collection が完成しました。
 

@@ -219,7 +219,7 @@ Rinkeby とは異なり、これらのトークンの取得にそれほど問題
 
 ### 🇮🇳 Polygon テストネットにコントラクトをデプロイする
 
-準備完了です！
+準備完了です!
 
 `nft-collectible/scripts` に向かい、`deploy.js` を下記のように更新してください。
 
@@ -358,7 +358,7 @@ https://mumbai.polygonscan.com/address/0xF899DeB963208560a7c667FA78376ecaFF684b8
 
 ---
 
-おめでとうございます！　セクション 3 は終了です！
+おめでとうございます!　セクション 3 は終了です!
 
 ぜひ、あなたの Polygonscan リンクを `#section-3` に投稿してください 😊
 

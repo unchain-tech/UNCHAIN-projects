@@ -73,7 +73,7 @@ Metaplex はこのデータを、あなたに代わってオンチェーンで�
 
 上記と同様に、`1.json`、`2.json`にも貼り付けましょう。
 
-"name"、 "image" 、"uri"、 "address" を変更することをお忘れなく！
+"name"、 "image" 、"uri"、 "address" を変更することをお忘れなく!
 
 さて、ここからはクリエイティブな作業が必要になります。
 
@@ -98,7 +98,7 @@ MP4、MP3、HTML などのほかのファイルタイプについては、カス
 🌟: Solana Name Service を利用する場合
 
 - ウォレットアドレスと Twitter ハンドルを紐づけることができます。
-- `INSERT_YOUR_WALLET_ADDRESS_HERE` に Twitter ハンドルを代入しましょう。※ Twitter ハンドルとウォレットアドレスを紐づけるのには 0.01 SOL ほどかかります！
+- `INSERT_YOUR_WALLET_ADDRESS_HERE` に Twitter ハンドルを代入しましょう。※ Twitter ハンドルとウォレットアドレスを紐づけるのには 0.01 SOL ほどかかります!
 
 `share` 属性は、各クリエイターが受け取るロイヤリティの割合を表します。本プロジェクトではあなたが唯一のクリエイターですので、ロイヤリティのすべてを得られる設定です。
 

@@ -42,7 +42,7 @@ const App = () => {
       <div className="container">
         <div className="header-container">
           <p className="header gradient-text">⚡️ METAVERSE GAME ⚡️</p>
-          <p className="sub-text">プレイヤーと協力してボスを倒そう！</p>
+          <p className="sub-text">プレイヤーと協力してボスを倒そう!</p>
           <div className="connect-wallet-container">
             <img src="https://i.imgur.com/yMocj5x.png" alt="Pikachu" />
           </div>
@@ -143,7 +143,7 @@ const App = () => {
       <div className="container">
         <div className="header-container">
           <p className="header gradient-text">⚡️ METAVERSE GAME ⚡️</p>
-          <p className="sub-text">プレイヤーと協力してボスを倒そう！</p>
+          <p className="sub-text">プレイヤーと協力してボスを倒そう!</p>
           <div className="connect-wallet-container">
             <img src="https://i.imgur.com/yMocj5x.png" alt="Pikachu" />
           </div>
@@ -270,7 +270,7 @@ const App = () => {
       <div className="container">
         <div className="header-container">
           <p className="header gradient-text">⚡️ METAVERSE GAME ⚡️</p>
-          <p className="sub-text">プレイヤーと協力してボスを倒そう！</p>
+          <p className="sub-text">プレイヤーと協力してボスを倒そう!</p>
           <div className="connect-wallet-container">
             <img src="https://i.imgur.com/yMocj5x.png" alt="Pikachu" />
             {/*

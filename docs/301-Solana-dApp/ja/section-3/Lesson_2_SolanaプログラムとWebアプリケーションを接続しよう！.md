@@ -346,7 +346,7 @@ const renderConnectedContainer = () => {
 
 ### 🥳 テストする
 
-さあ、テストしましょう！
+さあ、テストしましょう!
 
 ブラウザページを更新してウォレットを接続すると、[Do One-Time Initialization For GIF Program Account]ボタンが表示されます。
 
@@ -380,4 +380,4 @@ const renderConnectedContainer = () => {
 
 ---
 
-次のレッスンで、Web アプリケーションを完成させます！
+次のレッスンで、Web アプリケーションを完成させます!

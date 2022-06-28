@@ -181,7 +181,7 @@ anchor test
 ```
 
 
-**ここまで無事に完了しました！**
+**ここまで無事に完了しました!**
 
 出力された `Your transaction signature` は `startStuffOff` 関数が正常に呼び出されたことを意味します。
 
@@ -213,4 +213,4 @@ anchor test
 
 ---
 
-次のレッスンでは、Solana プログラムに GIF カウンターを実装します！
+次のレッスンでは、Solana プログラムに GIF カウンターを実装します!

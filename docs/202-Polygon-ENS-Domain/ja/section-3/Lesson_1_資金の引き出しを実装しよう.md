@@ -1,6 +1,8 @@
+### 🛠 資金を引き出す機能を実装する
+
 前回まででスマートコントラクトをデプロイし、ユーザーがドメインを作成できるようにするReactベースのWebアプリケーションを作成してきました。
 
-これでかの有名な？Bored Ape(退屈な猿)を購入し、ミームを1日中Twitterに投稿することもできます。
+これでかの有名な Bored Ape を購入し、ミームを 1 日中 Twitter に投稿することもできます。
 
 しかしまだできないことがあります。
 
@@ -8,13 +10,13 @@
 
 では、人々がドメインに支払ってくれたトークンにどのようにアクセスできるでしょうか？
 
-### 👻関数修飾子と撤回関数
+### 👻 関数修飾子と撤回関数
 
 その機能を追加するためにコントラクト（つまりバックエンド側です）を修正していきましょう。
 
 `Domains.sol`の下の部分に以下を追加します。
 
-```solidity
+```javascript
 modifier onlyOwner() {
   require(isOwner());
   _;
@@ -26,10 +28,10 @@ function isOwner() public view returns (bool) {
 
 function withdraw() public onlyOwner {
   uint amount = address(this).balance;
-  
+
   (bool success, ) = msg.sender.call{value: amount}("");
   require(success, "Failed to withdraw Matic");
-} 
+}
 ```
 
 現在、エラーが発生している可能性があります。
@@ -48,15 +50,13 @@ function withdraw() public onlyOwner {
 
 `_;`を記載することで、その後の処理を続行するという意味になります。
 
-<br/>
-
 `withdraw()`関数に関しては、コントラクトの残高を取得し、それをリクエスター（関数を実行するためには所有者である必要があります）に送信することだけです。 これは資金を引き出すのに簡単な手法です。 `msg.sender.call {value：amount}(" ")`は、送金するための書き方です。 構文は少し奇妙ですが `amount`を渡す方法に注目してください。 `require(success`は、トランザクションが成功したことが想定されるところです。 成功しない場合は、トランザクションをエラーとして認識し、`"Failed to withdraw Matic"`と表示します。
 
-### 🤠コントラクトオーナーの設定
+### 🤠 コントラクトオーナーの設定
 
 厄介な`owner`エラーを修正するには、コントラクトの先頭にグローバルな`owner`変数を作成し、次のようにコンストラクターに設定するだけです。
 
-```solidity
+```javascript
 address payable public owner;
 
 constructor(string memory _tld) ERC721 ("Ninja Name Service", "NNS") payable {
@@ -71,7 +71,7 @@ constructor(string memory _tld) ERC721 ("Ninja Name Service", "NNS") payable {
 これでコントラクトにある資金を引き出すことができます。
 
 
-### 🏦テストしてみましょう
+### 🏦 テストしてみましょう
 
 `run.js`スクリプトを設定します。
 
@@ -107,7 +107,7 @@ const main = async () => {
   // オーナーなら引き出せるでしょう。
   txn = await domainContract.connect(owner).withdraw();
   await txn.wait();
-  
+
   // contract と owner の残高を確認します。
   const contractBalance = await hre.ethers.provider.getBalance(domainContract.address);
   ownerBalance = await hre.ethers.provider.getBalance(owner.address);
@@ -132,7 +132,7 @@ runMain();
 このスクリプトを`npx hardhat run scripts/run.js`で実行すると、盗み取ろうとしたことがブロックされてcatch errorが作用したことがわかると思います。
 
 ```
-% npx hardhat run scripts/run.js                    
+% npx hardhat run scripts/run.js
 Compiled 1 Solidity file successfully
 ninja name service deployed
 Contract owner: 0x---------
@@ -165,4 +165,4 @@ Balance of owner after withdrawal: 9999.982788363651247088
 ```
 
 ---
-お疲れ様でした。一休みしてからでも次のレッスンに進みましょう！！
+お疲れ様でした!! 一休みしてからでも次のレッスンに進みましょう🚀

@@ -219,7 +219,7 @@ Arweave では、ファイルの大きさに応じて、保存に必要なコス
 
 [電卓](https://arweavefees.com/) を使って計算もできます。たとえば 1MB を永久に保存するには、約 0.0083 ドルの費用がかかります。悪くないですね。
 
-「じゃあ、私のものをホストするのに誰がお金を払っているんだよ！」と疑問に思うかもしれませんが、[こちら](https://github.com/metaplex-foundation/metaplex/blob/59ab126e41e6d85b53c79ad7358964dadd12b5f4/js/packages/cli/src/helpers/upload/arweave.ts#L93)のソースコードを見れば、今のところ Metaplex がお金を払ってくれていることがわかります。
+「じゃあ、私のものをホストするのに誰がお金を払っているんだよ!」と疑問に思うかもしれませんが、[こちら](https://github.com/metaplex-foundation/metaplex/blob/59ab126e41e6d85b53c79ad7358964dadd12b5f4/js/packages/cli/src/helpers/upload/arweave.ts#L93)のソースコードを見れば、今のところ Metaplex がお金を払ってくれていることがわかります。
 
 ### 🔨 Candy Machine の構成を更新する
 
@@ -247,7 +247,7 @@ TypeError: Cannot read property 'candyMachineAddress' of undefined
 
 これは Candy Machine や NFT に関するデータが入った `.cache` フォルダにアクセスできないことを意味します。
 
-このエラーが発生した場合は、Candy Machine のコマンドを `.cache` フォルダと `assets` フォルダがある同じディレクトリから実行しているか確認してください。起こりがちなミスなので十分注意してください！
+このエラーが発生した場合は、Candy Machine のコマンドを `.cache` フォルダと `assets` フォルダがある同じディレクトリから実行しているか確認してください。起こりがちなミスなので十分注意してください!
 
 ### 🙋‍♂️ 質問する
 
@@ -264,10 +264,10 @@ TypeError: Cannot read property 'candyMachineAddress' of undefined
 
 ---
 
-おめでとうございます！　セクション 2 は終了です！
+おめでとうございます!　セクション 2 は終了です!
 
-ぜひ、ターミナルの出力結果をコミュニティに投稿してください！
+ぜひ、ターミナルの出力結果をコミュニティに投稿してください!
 
 あなたの成功をコミュニティで祝いましょう 🎉
 
-次のレッスンでは、Web アプリケーションから Candy Machine を呼び出していきます！
+次のレッスンでは、Web アプリケーションから Candy Machine を呼び出していきます!

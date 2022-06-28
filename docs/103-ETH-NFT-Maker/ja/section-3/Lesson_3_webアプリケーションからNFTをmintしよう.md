@@ -221,12 +221,12 @@ import Web3Mint from "../../utils/Web3Mint.json";
 ここでは、先ほど取得した、ABI ファイルを含む `Web3Mint.json` ファイルをインポートしています。
 
 
-### Web3.storageを使用する
+### 🛠 `Web3.storage`を使用する
 
 これで、NFTをMintする準備はほとんど終わりましたが、まだ足りないものがありますね。
-そうです！受け取った画像をIPFSにアップロードしてCIDを返してもらう機能が足りませんね。
+そうです!受け取った画像をIPFSにアップロードしてCIDを返してもらう機能が足りませんね。
 
-まずは、`Web3.storage`のライブラリをインストールしましょう！このライブラリを使うことでsection2で手作業で行ったIPFSに画像をアップロードする作業をコードで実装できるようになります。
+まずは、`Web3.storage`のライブラリをインストールしましょう!このライブラリを使うことでsection2で手作業で行ったIPFSに画像をアップロードする作業をコードで実装できるようになります。
 
 ```
 npm install web3.storage
@@ -270,7 +270,7 @@ const imageToNFT = async (e) => {
       </Button>
 ```
 
-`imageToNFT`関数について解説していきます！
+`imageToNFT`関数について解説していきます!
 ```javascript
 const imageToNFT = async (e) => {
         const client = new Web3Storage({ token: API_KEY })
@@ -405,9 +405,9 @@ Console に出力された `currentAccount:` に続く、`0x..` のアドレス�
 
 ---
 
-おめでとうございます！
+おめでとうございます!
 
-NFT を Mint できる Web アプリケーションはほぼ完成です！
+NFT を Mint できる Web アプリケーションはほぼ完成です!
 
 Rarible のリンクを `#section-3` に貼り付けて、あなたの NFT をシェアしてください 😊
 

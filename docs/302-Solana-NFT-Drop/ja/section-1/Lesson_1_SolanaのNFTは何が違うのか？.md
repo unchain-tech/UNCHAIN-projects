@@ -4,7 +4,7 @@
 
 Metaplex を使用することで、Solana 上で簡単に NFT を発行できます。
 
-Ethereum と比較してみましょう！
+Ethereum と比較してみましょう!
 
 Ethereum では、NFT を作成するために、以下を実行します。
 

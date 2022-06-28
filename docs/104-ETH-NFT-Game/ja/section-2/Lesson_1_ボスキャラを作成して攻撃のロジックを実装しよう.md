@@ -88,7 +88,7 @@ const gameContract = await gameContractFactory.deploy(
 
 今回のゲームでは、ワンピースのサンプル画像を使用していますが、ぜひオリジナルキャラクターを選んであなただけのゲームを作成してみてください ✨
 
-[Imgur](https://imgur.com/) を使用して、あなたのボスをセットアップしてください！
+[Imgur](https://imgur.com/) を使用して、あなたのボスをセットアップしてください!
 
 あなただけのオリジナルゲームを作りましょう ✨
 

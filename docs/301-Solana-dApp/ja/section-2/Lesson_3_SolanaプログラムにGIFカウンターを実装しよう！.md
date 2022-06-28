@@ -1,6 +1,6 @@
 今のところ、作成したプログラムでは何も起こりません。
 
-データを保存するための変更を加えていきましょう！
+データを保存するための変更を加えていきましょう!
 
 今回作成する Web アプリケーションは、誰でも GIF を投稿することができます。
 
@@ -147,7 +147,7 @@ const main = async() => {
   anchor.setProvider(provider);
 
   const program = anchor.workspace.Myepicproject;
-	
+
   // プログラムが使用するアカウントのキーペアを作成します。
   const baseAccount = anchor.web3.Keypair.generate();
 
@@ -226,7 +226,7 @@ pub mod myepicproject {
     base_account.total_gifs = 0;
     Ok(())
   }
-  
+
 	// アカウントを参照し、total_gifsをインクリメントします。
   pub fn add_gif(ctx: Context<AddGif>) -> Result <()> {
     let base_account = &mut ctx.accounts.base_account;
@@ -316,14 +316,14 @@ const main = async() => {
 
   let account = await program.account.baseAccount.fetch(baseAccount.publicKey);
   console.log('👀 GIF Count', account.totalGifs.toString())
-	
+
   // add_gif関数を呼び出します。
   await program.rpc.addGif({
     accounts: {
       baseAccount: baseAccount.publicKey,
     },
   });
-  
+
   // もう一度アカウントを取得してtotal_gifsを確認します。
   account = await program.account.baseAccount.fetch(baseAccount.publicKey);
   console.log('👀 GIF Count', account.totalGifs.toString())
@@ -383,4 +383,4 @@ anchor test
 
 ---
 
-次のレッスンでは、Solana プログラムに GIF データの連携部分を実装します！
+次のレッスンでは、Solana プログラムに GIF データの連携部分を実装します!

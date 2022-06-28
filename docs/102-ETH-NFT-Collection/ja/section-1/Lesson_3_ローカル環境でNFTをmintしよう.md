@@ -27,7 +27,7 @@ epic-nfts
 
 `MyEpicNFT.sol` のファイル内に以下のコードを記載します。
 
-```solidity
+```javascript
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 import "hardhat/console.sol";
@@ -50,7 +50,7 @@ contract MyEpicNFT {
 
 さて、行ごとにコードをみていきましょう。
 
-```solidity
+```javascript
 // SPDX-License-Identifier: MIT
 ```
 
@@ -209,7 +209,7 @@ console.log("Contract deployed to:", nftContract.address);
 
 アドレスさえわかれば、世界中どこにいても、私たちが興味を持っているコントラクトに簡単にアクセスできます。
 
-### 💨 実行してみよう！
+### 💨 実行してみよう!
 
 では、実行してみましょう。
 
@@ -219,7 +219,7 @@ console.log("Contract deployed to:", nftContract.address);
 npx hardhat run scripts/run.js
 ```
 
-コントラクト内から`console.log`が実行され、さらにコントラクトのアドレスがプリントアウトされるのが確認できるはずです！
+コントラクト内から`console.log`が実行され、さらにコントラクトのアドレスがプリントアウトされるのが確認できるはずです!
 
 以下、出力結果のサンプルです。
 

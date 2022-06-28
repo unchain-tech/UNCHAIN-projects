@@ -10,7 +10,7 @@
 
 ※ 開発初心者の方は、まず `ETH-dApp` のプロジェクトから始めることをお勧めします ☺️
 いますべてを理解している必要はありません。
-わからないことがあったらインターネットで検索したり、コミュニティで質問しながらプロジェクトを進めていきましょう！
+わからないことがあったらインターネットで検索したり、コミュニティで質問しながらプロジェクトを進めていきましょう!
 
 ### ✨ NFT Collection を作ろう
 
@@ -22,7 +22,7 @@
 2. 作成したスマートコントラクトをブロックチェーンにデプロイする。
 3. コレクションから NFT を簡単に Mint できる Web アプリケーションを構築する。
 
-上記ができるようになると、NFT を OpenSea などのプラットフォームで販売できます！
+上記ができるようになると、NFT を OpenSea などのプラットフォームで販売できます!
 
 NFT は**オン・チェーン**にデプロイされます。
 
@@ -78,7 +78,7 @@ dApps は、イーサリアムのプログラミング言語である Solidity �
 
 [UNCHAIN](https://app.shiftbase.xyz) のプロジェクトはすべてオープンソース（[MIT ライセンス](https://wisdommingle.com/mit-license/)）で運用されています。
 
-プロジェクトに参加していて、「こうすればもっと分かりやすいのに！」「これは間違っている！」と思ったら、ぜひ `pull request` を送ってください。
+プロジェクトに参加していて、「こうすればもっと分かりやすいのに!」「これは間違っている!」と思ったら、ぜひ `pull request` を送ってください。
 
 GitHub から直接コードを編集して直接 `pull request` を送る方法は、[こちら](https://docs.github.com/ja/repositories/working-with-files/managing-files/editing-files#editing-files-in-another-users-repository)を参照してください。
 
@@ -93,7 +93,7 @@ GitHub から直接コードを編集して直接 `pull request` を送る方法
 
 ### ⚡️ `Issue` を作成する
 
-`pull request` 送るほどでもないけど、提案を残したい！　と思ったら、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/issues) に `Issue` を作成してみましょう。
+`pull request` 送るほどでもないけど、提案を残したい!　と思ったら、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/issues) に `Issue` を作成してみましょう。
 
 `Issue` の作成方法に関しては、[こちら](https://docs.github.com/ja/issues/tracking-your-work-with-issues/creating-an-issue)を参照してください。
 

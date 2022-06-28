@@ -10,7 +10,7 @@
 ※ 開発初心者の方は、まず `ETH-dApp` のプロジェクトから始めることをお勧めします ☺️
 
 いますべてを理解している必要はありません。
-わからないことがあったらインターネットで検索したり、コミュニティで質問しながらプロジェクトを進めていきましょう！
+わからないことがあったらインターネットで検索したり、コミュニティで質問しながらプロジェクトを進めていきましょう!
 
 ### ✨ NFT-Makerをつくろう
 
@@ -22,14 +22,15 @@
 2. IPFSの設定を行い、IPFSにデータを保存する方法を学ぶ。
 3. 画像を選択するUIを作り、スマートコントラクトを組み込む。
 
-### NFTのコアとはなにか
+### 🔥 NFTのコアとはなにか
 
 NFTを作るにあたって開発者に意識してほしい点があります。
 それは、NFTはあくまで識別子(unique identifier)である点です。
 NFTには、多くの要素(例えば画像)をつけることができ、ついそちらに目がいきがちになってしまうのですが、あくまでそれは、識別子に紐付けられたデータなのです。
-ここを意識しながら、開発をすると、理解度がぜんぜん違うと思うので、ぜひそれを意識しながらこれからのsectionを見ていってください！
+ここを意識しながら、開発をすると、理解度がぜんぜん違うと思うので、ぜひそれを意識しながらこれからのsectionを見ていってください!
 
-### このプロジェクトの構成
+### 📝 このプロジェクトの構成
+
 このプロジェクトでは、改めてNFTとは何なのかを基礎としておさらいし、その後に、ipfsを使ったNFTを発行し、最後に、そのスマートコントラクトをフロントからたたけるようにします。
 そのため、section1では、project2「ETH-NFT-Collection」のsection1と同じ題材で、NFTについて書いています。ここは、説明が必要だなと思うものだけを抜粋したり、加筆したりしているので、project2いけてるなと思う方は、ここは実装せずに、読むだけでも大丈夫です。
 
@@ -37,7 +38,7 @@ NFTには、多くの要素(例えば画像)をつけることができ、つい
 
 [UNCHAIN](https://app.shiftbase.xyz) のプロジェクトはすべてオープンソース（[MIT ライセンス](https://wisdommingle.com/mit-license/))で運用されています。
 
-プロジェクトに参加していて、「こうすればもっと分かりやすいのに！」「これは間違っている！」と思ったら、ぜひ `pull request` を送ってください。
+プロジェクトに参加していて、「こうすればもっと分かりやすいのに!」「これは間違っている!」と思ったら、ぜひ `pull request` を送ってください。
 
 GitHub から直接コードを編集して直接 `pull request` を送る方法は、[こちら](https://docs.github.com/ja/repositories/working-with-files/managing-files/editing-files#editing-files-in-another-users-repository)を参照してください。
 
@@ -52,7 +53,7 @@ GitHub から直接コードを編集して直接 `pull request` を送る方法
 
 ### ⚡️ `Issue` を作成する
 
-`pull request` 送るほどでもないけど、提案を残したい！と思ったら、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/issues) に `Issue` を作成してみましょう。
+`pull request` 送るほどでもないけど、提案を残したい!と思ったら、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/issues) に `Issue` を作成してみましょう。
 
 `Issue` の作成方法に関しては、[こちら](https://docs.github.com/ja/issues/tracking-your-work-with-issues/creating-an-issue)を参照してください。
 

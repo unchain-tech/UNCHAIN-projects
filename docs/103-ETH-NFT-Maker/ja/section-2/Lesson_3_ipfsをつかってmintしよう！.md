@@ -16,7 +16,7 @@ contract Web3Mint is ERC721{
         string name;
         string imageURL;
     }
-    
+
     NftAttributes[] Web3Nfts;
 
     using Counters for Counters.Counter;
@@ -28,7 +28,7 @@ contract Web3Mint is ERC721{
     }
 
     // ユーザーが NFT を取得するために実行する関数です。
-    
+
     function mintIpfsNFT(string memory name,string memory imageURI) public{
         uint256 newItemId = _tokenIds.current();
         _safeMint(msg.sender,newItemId);
@@ -69,7 +69,7 @@ import "./libraries/Base64.sol";
 ```
 tokenURIには、NFTデータをJSON形式で渡さなければいけません。
 Base64のやり方は、[project3](https://unchain-portal.netlify.app/projects/3-ETH-NFT-game/section-1-Lesson-5)のやり方を参考にしています。
-なぜ、Base64で渡す必要があるのかを調べてみてください！
+なぜ、Base64で渡す必要があるのかを調べてみてください!
 
 `libraries`ディレクトリの下に`Base64.sol`ファイルを作成して、下記のコードを貼り付けてください
 ```javascript
@@ -155,7 +155,7 @@ struct NftAttributes{
         string name;
         string imageURL;
     }
-    
+
     NftAttributes[] Web3Nfts;
 ```
 最初に書いていたNFTのデータを保存するための配列がこれです。
@@ -240,7 +240,7 @@ describe("Web3Mint",  () => {
       console.log(await mintContract.tokenURI(0))
       console.log(await mintContract.tokenURI(1))
 
-      
+
     });
   });
 ```
@@ -254,7 +254,7 @@ const { expect } = require("chai");
 このようにchaiを読み込む必要はないのですが、スマートコントラクトのテストを行う上で、必ずexpectを使う機会は来るはずなので興味のある方は調べてみてください。
 
 今回このテストでは、mintIpfsNFT関数でしっかりとNFTを発行し、tokenURIの返り値が期待通りになっているかを確かめます。
-変数nftNameには好きな名前を、ipfsCIDには先程つくったIpfsのCIDを入れてみましょう！
+変数nftNameには好きな名前を、ipfsCIDには先程つくったIpfsのCIDを入れてみましょう!
 
 ここまでの作業ができたら`npx hardhat test`をしてみましょう
 ```
@@ -264,7 +264,7 @@ An NFT w/ ID 0 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
 An NFT w/ ID 1 has been minted to 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
 data:application/json;base64,eyJuYW1lIjogInBva2VyIC0tIE5GVCAjOiAwIiwgImRlc2NyaXB0aW9uIjogIkFuIGVwaWMgTkZUIiwgImltYWdlIjogImlwZnM6Ly9iYWZrcmVpZXZ4c3N1Y25ldGU0dnB0aGgza2x5bGt2MmN0bGwyc2syaWIyNGp2Z296eWc2MnpkdG0yeSJ9
 data:application/json;base64,eyJuYW1lIjogInBva2VyIC0tIE5GVCAjOiAxIiwgImRlc2NyaXB0aW9uIjogIkFuIGVwaWMgTkZUIiwgImltYWdlIjogImlwZnM6Ly9iYWZrcmVpZXZ4c3N1Y25ldGU0dnB0aGgza2x5bGt2MmN0bGwyc2syaWIyNGp2Z296eWc2MnpkdG0yeSJ9
-    ✔ Should return the nft 
+    ✔ Should return the nft
 ```
 このようなログが表示されるはずです。
 ```
@@ -276,7 +276,7 @@ data:application/json;base64,eyJuYW1lIjogInBva2VyIC0tIE5GVCAjOiAwIiwgImRlc2NyaXB
 ```
 このように表示されていたら成功です。imageのipfsがしっかりと画像を表示させられているかも確認してみてください。
 
-**brave**ブラウザでは、`ipfs://bafkreievxssucnete4vpthh3klylkv2ctll2sk2ib24jvgozyg62zdtm2y`のままブラウザに貼れば表示され、他のブラウザの場合は`https:// ipfs.io/ipfs/自分のCID`のようにして、画像を確認してみましょう！
+**brave**ブラウザでは、`ipfs://bafkreievxssucnete4vpthh3klylkv2ctll2sk2ib24jvgozyg62zdtm2y`のままブラウザに貼れば表示され、他のブラウザの場合は`https:// ipfs.io/ipfs/自分のCID`のようにして、画像を確認してみましょう!
 
 
 最終確認としてrun.jsでも確認してみましょう。
@@ -307,7 +307,7 @@ const main = async () => {
       process.exit(1);
     }
   };
-  
+
   runMain();
 ```
 mintIpfsNft関数とtokenURI関数がしっかりとできているかを確認しましょう。
@@ -354,4 +354,4 @@ const main = async () => {
 4. エラー画面のスクリーンショット
 ```
 
-おめでとうございます！Lesson2は終了です。あなたのIPFSにあげた画像をコミュニティで共有してみましょう！
+おめでとうございます!Lesson2は終了です。あなたのIPFSにあげた画像をコミュニティで共有してみましょう!

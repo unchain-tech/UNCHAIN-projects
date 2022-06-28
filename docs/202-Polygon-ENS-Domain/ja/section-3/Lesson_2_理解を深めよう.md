@@ -1,13 +1,14 @@
-### 🦴すべてのドメインを取得
+### 🦴 すべてのドメインを取得
 
 現在、アプリは確実に形になってきていますね。 コントラクトをさらに改善し、フロントエンド用に最適化するためにできることはまだあります。たとえば、既にミントされたドメインを取得する非常に簡単な方法があります。すべてのドメインを確認できます。
 
 重要なのは、スマートコントラクトからこのデータを簡単に返すことができることです。
-ブロックチェーン上の読み取りトランザクションは無料です🤑 だから、ガス代を払うことを心配する必要はありません！
+ブロックチェーン上の読み取りトランザクションは無料です🤑
+よって、ガス代を払うことを心配する必要はありません!
 
-このロジックを見て、これを行う方法を確認してください。
+以下のロジックを見て、上記を行う方法を確認してください。
 
-```solidity
+```javascript
 // コントラクトの最初に付け加えてください（他のマッピングに続けて）。
 mapping (uint => string) public names;
 
@@ -30,7 +31,7 @@ function getAllNames() public view returns (string[] memory) {
 
 これを`register`関数の最後の`_tokenIds.increment()`の直前に追加します。
 
-```solidity
+```javascript
 names[newRecordId] = name;
 ```
 
@@ -38,28 +39,18 @@ names[newRecordId] = name;
 
 次のSectionでこの関数を実際に使用します。
 
-<br/>
-
 ---
 
-さて、ここまで Section-3 ではコントラクトを変更しています。
+さて、Section-3 ではコントラクトを変更しています。
 
 何をしなければならないかおわかりでしょうか。
 
-復習です。
+復習です🔥
 
-Section-2 Lesson-3を参照くださいね。
-
-忘れがちです。
+Section-2 の Lesson-3 を参照くださいね👋
 
 ---
-
-<br/>
-
-
-
-
-### 💔コントラクトのドメインの有効性を確認
+### 💔 コントラクトのドメインの有効性を確認
 
 さて、おそらく「誰かが**長い**ドメインを作成しようとするとどうなりますか？ 👎」と考えられた方もいると思います。
 
@@ -69,7 +60,7 @@ Section-2 Lesson-3を参照くださいね。
 
 下のように加えてみましょう。
 
-```solidity
+```javascript
 function valid(string calldata name) public pure returns(bool) {
   return StringUtils.strlen(name) >= 3 && StringUtils.strlen(name) <= 10;
 }
@@ -79,22 +70,19 @@ Reactアプリで行っていたようにコントラクト側でドメイン名
 
 無効な名前の場合は、`false`を返す必要があります。
 
-### 🤬カスタムエラー
+### 🤬 カスタムエラー
 
 Solidityの最近のバージョンで追加された機能ですがカスタムエラーメッセージを使用できます。 これらは、エラーメッセージ文字列を繰り返す必要がないため、非常に便利です。デプロイ時にガスも節約できます。
 
 この機能を使用するためにコントラクトのどこかに追加してください。
 
-```solidity
+```javascript
 error Unauthorized();
 error AlreadyRegistered();
 error InvalidName(string name);
 ```
 
-<br>
-
-
-```solidity
+```javascript
 function setRecord(string calldata name, string calldata record) public {
   if (msg.sender != domains[name]) revert Unauthorized();
   records[name] = record;
@@ -108,9 +96,9 @@ function register(string calldata name) public payable {
 }
 ```
 
-できました。
+できました!
 
-試しに長い文字列を登録しようとしたところ下のようなエラーが出ました。
+試しに長い文字列を登録してみてください!以下のようなエラーが出力されるでしょうか？
 (deploy.jsを元にした試行用のファイルを作成して使用した結果です。)
 
 ```
@@ -136,4 +124,6 @@ Error: VM Exception while processing transaction: reverted with custom error 'In
 ```
 
 ---
-お疲れ様でした。一休みしてからでも次のセクションに進みましょう！！
+お疲れ様でした!! ターミナルに出力されたエラー文を Discord の `section-3` にシェアしてみましょう!
+
+テストは重要な作業なので、コミュニティのメンバーと確認し合いながら作業を進めましょう✨

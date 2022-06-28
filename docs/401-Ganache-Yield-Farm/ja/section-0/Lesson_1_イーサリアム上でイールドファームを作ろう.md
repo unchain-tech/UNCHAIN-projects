@@ -1,4 +1,4 @@
-### 👋 Yield Farm Project へようこそ！
+### 👋 Yield Farm Project へようこそ!
 
 Yield Farm Project では、イーサリアムネットワーク上にスマートコントラクトを実装して、トークンを配布できる独自の Web アプリケーションを構築します。
 
@@ -16,7 +16,7 @@ Solidity でバックエンドを実装し、React でフロントエンドを�
 - [React.js](https://ja.reactjs.org/)
 
 いますべてを理解している必要はありません。
-わからないことがあったらインターネットで検索したり、コミュニティで質問しながらプロジェクトを進めていきましょう！
+わからないことがあったらインターネットで検索したり、コミュニティで質問しながらプロジェクトを進めていきましょう!
 開発初心者の方は、まず ETH-DAPP プロジェクトから始めることをお勧めします☺️
 ### 🛠 何を構築するのか？
 
@@ -70,7 +70,7 @@ Dapp Token Farm では、以下の機能を実装します。
 
 動画URLについては、それぞれのレッスンに対応した時間からスタートするようにURLを設定しており、それぞれのレッスンの最初に貼っています（ただしこのレッスンに関してはわかりやすいようにこの文章の下に貼っています）。
 
-もし動画を参考にしてもエラーが解決しない場合はdiscordで気軽に質問してください！
+もし動画を参考にしてもエラーが解決しない場合はdiscordで気軽に質問してください!
 ###  🖥 このレッスンの参考動画URL
 
 今回のプロジェクトは、Dapp University という有名なブロックチェーンの Tutorial をベースに作成されています。
@@ -91,7 +91,7 @@ dApps は、イーサリアムのプログラミング言語である Solidity �
 
 [UNCHAIN](https://app.shiftbase.xyz) のプロジェクトはすべてオープンソース（[MIT ライセンス](https://wisdommingle.com/mit-license/)）で運用されています。
 
-プロジェクトに参加していて、「こうすればもっと分かりやすいのに！」「これは間違っている！」と思ったら、ぜひ `pull request` を送ってください。
+プロジェクトに参加していて、「こうすればもっと分かりやすいのに!」「これは間違っている!」と思ったら、ぜひ `pull request` を送ってください。
 
 GitHub から直接コードを編集して直接 `pull request` を送る方法は、[こちら](https://docs.github.com/ja/repositories/working-with-files/managing-files/editing-files#editing-files-in-another-users-repository)を参照してください。
 
@@ -106,7 +106,7 @@ GitHub から直接コードを編集して直接 `pull request` を送る方法
 
 ### ⚡️ `Issue` を作成する
 
-`pull request` 送るほどでもないけど、提案を残したい！　と思ったら、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/issues) に `Issue` を作成してみましょう。
+`pull request` 送るほどでもないけど、提案を残したい!　と思ったら、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/issues) に `Issue` を作成してみましょう。
 
 `Issue` の作成方法に関しては、[こちら](https://docs.github.com/ja/issues/tracking-your-work-with-issues/creating-an-issue)を参照してください。
 

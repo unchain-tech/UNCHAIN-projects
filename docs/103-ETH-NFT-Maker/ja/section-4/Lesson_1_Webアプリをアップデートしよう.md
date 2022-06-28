@@ -22,7 +22,7 @@ contract Web3Mint is ERC721{
         string name;
         string imageURL;
     }
-    
+
     using Counters for Counters.Counter;
     // tokenIdはNFTの一意な識別子で、0, 1, 2, .. N のように付与されます。
     Counters.Counter private _tokenIds;
@@ -32,14 +32,14 @@ contract Web3Mint is ERC721{
     mapping(uint256 => NftAttributes) public nftHolderAttributes;
     mapping(address => uint256) public nftHolder;
 
-    
+
 
     constructor() ERC721("NFT","nft"){
         console.log("This is my NFT contract.");
     }
 
     // ユーザーが NFT を取得するために実行する関数です。
-    
+
     function mintIpfsNFT(string memory name,string memory imageURI) public{
         uint256 newItemId = _tokenIds.current();
         _safeMint(msg.sender,newItemId);
@@ -229,7 +229,7 @@ MVP を起点に Web アプリケーションを自分の好きなようにア�
 **1\. ミントされた NFT の数に制限を設定する**
 
 - `Web3Mint.sol` を変更して、あらかじめ設定された数の NFT のみをミントできるようにすることをお勧めします。
-- `NftUploader.jsx` を更新して、Web アプリケーション上で Mint カウンタを表示してみましょう！（例、「これまでに作成された 4/50 NFT」）
+- `NftUploader.jsx` を更新して、Web アプリケーション上で Mint カウンタを表示してみましょう!（例、「これまでに作成された 4/50 NFT」）
 
 **2\. ユーザーが間違ったネットワーク上にいるときアラートを出す**
 

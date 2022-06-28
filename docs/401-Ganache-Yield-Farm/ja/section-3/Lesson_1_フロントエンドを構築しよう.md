@@ -62,7 +62,7 @@ Metamask の `Private Key` 入力欄にコピーした Private key を貼り付�
 ![](/public/images/401-Ganache-Yield-Farm/section-1/12_3_6.png)
 
 自分が使用している Metamask のアカウントが黄色くハイライトされていることがわかります。
-自分が使用しているアカウントの下にある `Connect` を押せばフロントエンドとMetamaskの接続が完了します！
+自分が使用しているアカウントの下にある `Connect` を押せばフロントエンドとMetamaskの接続が完了します!
 
 ![](/public/images/401-Ganache-Yield-Farm/section-1/12_3_7.png)
 

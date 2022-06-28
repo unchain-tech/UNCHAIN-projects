@@ -169,7 +169,7 @@ using Counters for Counters.Counter;
 >
 > アンダーフローも同様で、0 に等しい `uint8` から 1 を引くと、255 になります（ `uint` は符号なしなので、負にすることはできないからです）。
 >
-> ここでは `uint8` を使用していませんし、`uint256` が毎回 1 ずつ増加するときにオーバーフローする可能性は低いと思われますが（ `2^256` は本当に大きな数です）、将来的に DApp が予期せぬ動作をすることがないように、コントラクトに保護規定を設けることはグッとプラクティスです！👍
+> ここでは `uint8` を使用していませんし、`uint256` が毎回 1 ずつ増加するときにオーバーフローする可能性は低いと思われますが（ `2^256` は本当に大きな数です）、将来的に DApp が予期せぬ動作をすることがないように、コントラクトに保護規定を設けることはグッとプラクティスです!👍
 
 次に、下記のコードを見ていきましょう。
 
@@ -732,7 +732,7 @@ Minted NFT w/ tokenId 1 and characterIndex 2
 Token URI: data:application/json;base64,eyJuYW1lIjogIlpFTklHQU1FIC0tIE5GVCAjOiAxIiwgImRlc2NyaXB0aW9uIjogIkJyYXZlIGFzIGEgYmxhemluZyBmaXJlLiIsICJpbWFnZSI6ICJodHRwczovL2kuaW1ndXIuY29tL2NmdG9kajkucG5nIiwgImF0dHJpYnV0ZXMiOiBbIHsgInRyYWl0X3R5cGUiOiAiSGVhbHRoIFBvaW50cyIsICJ2YWx1ZSI6IDMwMCwgIm1heF92YWx1ZSI6MzAwfSwgeyAidHJhaXRfdHlwZSI6ICJBdHRhY2sgRGFtYWdlIiwgInZhbHVlIjogMjV9IF19
 ```
 
-Token URI がターミナルに出力されました！
+Token URI がターミナルに出力されました!
 
 `Token URI:` の後に続く文字列全体をコピーしてください。
 

@@ -8,13 +8,13 @@
 トランザクションが処理されたら、ファイルをユーザーに送信するためのダウンロードボタンを表示しましょう。
 
 
-### 💥 SOL トークンを送信する 
+### 💥 SOL トークンを送信する
 
 ブロックチェーンのトランザクションには多くの構成要素がありますが、まずは USDC の代わりに SOL を送るところから始めていきます。
 
 まず、`api` フォルダ内に `createTransaction.js` ファイルを作成して以下のコードを貼り付けてください。
 
-**※ `sellerAddress` にあなたのウォレットアドレスを設定してください！**
+**※ `sellerAddress` にあなたのウォレットアドレスを設定してください!**
 
 ```jsx
 // createTransaction.js
@@ -61,7 +61,7 @@ const createTransaction = async (req, res) => {
         message: "Item not found. please check item ID",
       });
     }
-    
+
     // 価格を適切な形式に変換します。
     const bigAmount = BigNumber(itemPrice);
     const buyerPublicKey = new PublicKey(buyer);
@@ -71,7 +71,7 @@ const createTransaction = async (req, res) => {
 
     // 各ブロックを識別するblockhashはblockのIDのようなものです。
     const { blockhash } = await connection.getLatestBlockhash("finalized");
-    
+
     // トランザクションには直近のブロックIDと料金支払者の公開鍵の2つが必要です。
     const tx = new Transaction({
       recentBlockhash: blockhash,
@@ -82,20 +82,20 @@ const createTransaction = async (req, res) => {
     const transferInstruction = SystemProgram.transfer({
       fromPubkey: buyerPublicKey,
       // LamportsはSOLの最小単位で、EthereumにおけるGweiにあたります。
-      lamports: bigAmount.multipliedBy(LAMPORTS_PER_SOL).toNumber(), 
+      lamports: bigAmount.multipliedBy(LAMPORTS_PER_SOL).toNumber(),
       toPubkey: sellerPublicKey,
     });
 
     // トランザクションにさらに命令を追加します。
     transferInstruction.keys.push({
       // あとでOrderIdを使用してこのトランザクションを検索します。
-      pubkey: new PublicKey(orderID), 
+      pubkey: new PublicKey(orderID),
       isSigner: false,
       isWritable: false,
     });
 
     tx.add(transferInstruction);
-  
+
     // トランザクションのフォーマットを設定します。
     const serializedTransaction = tx.serialize({
       requireAllSignatures: false,
@@ -146,7 +146,7 @@ export default function Buy({ itemID }) {
 
   const [paid, setPaid] = useState(null);
   const [loading, setLoading] = useState(false); // 上記全てのロード状態を設定します。
-  
+
   // useMemoは依存関係が変更された場合にのみ値を計算するReactフックです。
   const order = useMemo(
     () => ({
@@ -168,11 +168,11 @@ export default function Buy({ itemID }) {
       body: JSON.stringify(order),
     });
     const txData = await txResponse.json();
-    
+
     // トランザクションオブジェクトを作成します。
     const tx = Transaction.from(Buffer.from(txData.transaction, "base64"));
     console.log("Tx data is", tx);
-    
+
     try {
       // ネットワークにトランザクションを送信します。
       const txHash = await sendTransaction(tx, connection);
@@ -242,7 +242,7 @@ export default function Product({ product }) {
 
         <div className={styles.product_action}>
           <div className={styles.product_price}>{price} USDC</div>
-            {/* IPFSコンポーネントをBuyコンポーネントに置き換えます。 */} 
+            {/* IPFSコンポーネントをBuyコンポーネントに置き換えます。 */}
             <Buy itemID={id} />
         </div>
       </div>

@@ -2,8 +2,6 @@
 
 ここから、ネームサービスの中身を作成していきましょう。
 
-<br/>
-
 ### 💽ドメインデータをブロックチェーンに保存する
 
 
@@ -51,8 +49,6 @@ contract Domains {
 
 ここでは`register`関数を実行すると、ドメインに関連するデータが永続的に保存されます。
 
-<br/>
-
 また、ここでは`msg.sender`を使用しています。
 
 これは、関数を呼び出した人のウォレットアドレスです。
@@ -81,7 +77,7 @@ contract Domains {
 
 - `returns(string)` コントラクトは呼び出されたときに文字列変数を返します。
 
-### **✅run.jsを更新する**
+### ✅ run.jsを更新する
 
 `run.js`でテストを行うため変更を加えましょう。
 
@@ -101,7 +97,7 @@ const main = async () => {
   await domainContract.deployed();
   console.log("Contract deployed to:", domainContract.address);
   console.log("Contract deployed by:", owner.address);
-  
+
   const txn = await domainContract.register("doom");
   await txn.wait();
 
@@ -124,7 +120,7 @@ runMain();
 
 
 
-### **🤔 動作を確認しよう**
+### 🤔 動作を確認しよう
 
 順番に見ていきましょう。
 
@@ -136,7 +132,6 @@ const [owner, randomPerson] = await hre.ethers.getSigners();
 
 ここではコントラクトオーナーのウォレットアドレスを取得し、さらにランダムなウォレットアドレスを取得して`randomPerson`としました。これはあとで解説します。
 
-<br/>
 コントラクトをデプロイした人のアドレスを出力します。
 
 ```jsx
@@ -198,8 +193,6 @@ ENSを使用すると、前に示したように、さまざまなものを保�
 
 今回は文字列(string)で行います。更新されたコントラクトは次のようになります。
 
-<br/>
-
 `Domains.sol`を変更します。
 
 ```javascript
@@ -210,7 +203,7 @@ import "hardhat/console.sol";
 
 contract Domains {
   mapping(string => address) public domains;
-  
+
   // stringとstringを紐付けた新しいmappingです。
   mapping(string => string) public records;
 
@@ -252,9 +245,6 @@ contract Domains {
 require文の括弧の中の条件が満たされない場合、トランザクションは**元に戻されます**。
 
 これは、ブロックチェーンデータが変更されないことを意味します。
-
-<br/>
-
 
 順番に見ていきましょう。
 
@@ -312,8 +302,6 @@ const runMain = async () => {
 runMain();
 ```
 
-<br/>
-
 スクリプトを実行します。
 
 ```
@@ -330,7 +318,7 @@ Contract deployed by: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
 Owner of domain doom: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
 ```
 
-### **🤝 オーナー以外で確認する**
+### 🤝 オーナー以外で確認する
 
 ちょっとしたテストをしましょう。
 
@@ -373,8 +361,6 @@ runMain();
 
 ```
 
-<br/>
-
 スクリプトを実行します。
 
 ```
@@ -382,7 +368,7 @@ npx hardhat run scripts/run.js
 ```
 
 
-**次のスクリプトの箇所でエラーが発生します** 
+**次のスクリプトの箇所でエラーが発生します**
 
 ```jsx
 txn = await domainContract.connect(randomPerson).setRecord("doom", "Haha my domain now!");

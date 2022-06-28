@@ -1,6 +1,6 @@
 ### 👀 ロード時に購入済かどうかを確認する
 
-それでは、`order.json` の「データベース」を上手く利用して、ストアに購入機能を実装していきましょう！
+それでは、`order.json` の「データベース」を上手く利用して、ストアに購入機能を実装していきましょう!
 
 これを行うためのフローは `api.js` で使用した `addOrder` とよく似ています。
 
@@ -216,7 +216,7 @@ export default async function handler(req, res) {
     }
 
     const product = products.find((p) => p.id === itemID);
-    
+
     if (product) {
       const { hash, filename } = product;
       return res.status(200).send({ hash, filename });
@@ -391,7 +391,7 @@ export default function Buy({ itemID }) {
 }
 ```
 
-おめでとうございます！
+おめでとうございます!
 
 これで購入ボタンと商品データ、注文情報などをすべてリンクさせることができました🤣🤣🤣
 
@@ -411,12 +411,12 @@ export default function Buy({ itemID }) {
 
 ---
 
-おめでとうございます！
+おめでとうございます!
 
-セクション 2 は終了です！
+セクション 2 は終了です!
 
-ぜひ、Web アプリケーションの商品購入時のローディング画面をコミュニティに投稿してください！
+ぜひ、Web アプリケーションの商品購入時のローディング画面をコミュニティに投稿してください!
 
 あなたの成功をコミュニティで祝いましょう 🎉
 
-次のセクションでは、商品の追加を行っていきます！
+次のセクションでは、商品の追加を行っていきます!

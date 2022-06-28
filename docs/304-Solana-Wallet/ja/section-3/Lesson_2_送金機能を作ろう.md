@@ -16,7 +16,7 @@
 
 ブロックチェーンの送金もかなり似ています。ネットワークがその取引を有効であると確認し、対応する残高を変更できるように、取引に署名する方法が必要です。署名は送信者を認証し、受信者に対してはメッセージが漏洩していないことを証明します。
 
-これらの構成要素を念頭に置いて、送金機能をつくっていきましょう！
+これらの構成要素を念頭に置いて、送金機能をつくっていきましょう!
 
 ### 導入
 
@@ -76,7 +76,7 @@ console.log(transaction);
 
 それぞれを調査することもできますが、手始めとして有望だと思われる `instructions` プロパティを調べてみましょう。
 
-ドキュメントには直感的な進め方が書かれていないのが残念ですが、[`SystemProgram`](https://solana-labs.github.io/solana-web3.js/classes/SystemProgram.html) という便利そうなクラスに `transfer` メソッドがあり、 **「ある口座から別の口座にlamportsを移す取引命令を生成する」** と書かれています。これはまさに今必要としているメソッドのようですね！
+ドキュメントには直感的な進め方が書かれていないのが残念ですが、[`SystemProgram`](https://solana-labs.github.io/solana-web3.js/classes/SystemProgram.html) という便利そうなクラスに `transfer` メソッドがあり、 **「ある口座から別の口座にlamportsを移す取引命令を生成する」** と書かれています。これはまさに今必要としているメソッドのようですね!
 
 ![](/public/images/304-Solana-Wallet/3_2_2.png)
 
@@ -94,7 +94,7 @@ console.log(transaction);
 
 ![](/public/images/304-Solana-Wallet/3_2_5.png)
 
-これは私たちが取引に使いたいデータと一致していますね！
+これは私たちが取引に使いたいデータと一致していますね!
 
 ですので、 `instructions` は次のように組み立てることができます。
 
@@ -115,7 +115,7 @@ const instructions = SystemProgram.transfer({
 transaction.add(instructions);
 ```
 
-あるいは、ちょっとしたリファクタリングで、 `instructions` を作成した後に `Transaction` をインスタンス化し、すぐに追加することもできますね！
+あるいは、ちょっとしたリファクタリングで、 `instructions` を作成した後に `Transaction` をインスタンス化し、すぐに追加することもできますね!
 
 ```javascript
 const transaction = new Transaction().add(instructions);
@@ -160,7 +160,7 @@ await refreshBalance();
 
 ### 送金機能を完成させよう
 
-以上を踏まえて、 送金機能を完成させていきましょう！
+以上を踏まえて、 送金機能を完成させていきましょう!
 
 まず、必要な関数やクラスをインポートします。
 
@@ -218,7 +218,7 @@ const handleTransfer = async (e) => {
 ```
 
 そして、受信者アドレスを入力するフォームと、送金ボタンをレンダリングします。
-ついでに、実際のトランザクションをあとで確認できるように、送金完了したら `Solana Explorer` へのリンクを表示してあげると良さそうです！
+ついでに、実際のトランザクションをあとで確認できるように、送金完了したら `Solana Explorer` へのリンクを表示してあげると良さそうです!
 
 ```javascript
 <div>
@@ -241,7 +241,7 @@ const handleTransfer = async (e) => {
       </form>
       {transactionSig && (
         <>
-          <span className="text-red-600">送金が完了しました！</span>
+          <span className="text-red-600">送金が完了しました!</span>
           <a
             href={`https://explorer.solana.com/tx/${transactionSig}?cluster=${NETWORK}`}
             className="border-double border-b-4 border-b-indigo-600"
@@ -258,13 +258,13 @@ const handleTransfer = async (e) => {
 
 ### ✅ 動作確認
 
-おめでとうございます！これで送金機能が完成しました。
+おめでとうございます!これで送金機能が完成しました。
 
 実際に送金して、相手のウォレットの残高が増えているかを確認してください。
 
 自分ひとりで二つのウォレットを同時に作成＆表示したい場合は、もう１つターミナルを立ち上げて `npm run dev` を実行します。
 
-そうすると、別のポートでアプリケーションが起動されますので、そちらでウォレットの作成をし、アドレスをコピーして１つ目のウォレットから送金を試してみる方法がおすすめです！
+そうすると、別のポートでアプリケーションが起動されますので、そちらでウォレットの作成をし、アドレスをコピーして１つ目のウォレットから送金を試してみる方法がおすすめです!
 
 ※今回の実装では、送金するSOLは `1 SOL` で固定となっていますが、送金する際にガス代と呼ばれる手数料が必要になるため、残高がちょうど `1 SOL` だと、送金が失敗します。そういったエラーが発生することも確かめつつ、残高を `2 SOL` などにしてから送金を試してみてくださいね🥭
 
@@ -358,7 +358,7 @@ const handleTransfer = async (e) => {
 +            </form>
 +            {transactionSig && (
 +              <>
-+                <span className="text-red-600">送金が完了しました！</span>
++                <span className="text-red-600">送金が完了しました!</span>
 +                <a
 +                  href={`https://explorer.solana.com/tx/${transactionSig}?cluster=${NETWORK}`}
 +                  className="border-double border-b-4 border-b-indigo-600"

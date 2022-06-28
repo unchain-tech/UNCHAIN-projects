@@ -117,7 +117,7 @@ const App = () => {
       <img src="https://media.giphy.com/media/FWAcpJsFT9mvrv0e7a/giphy.gif" alt="anya" />
       <div className="button-container">
         <WalletMultiButton className="cta-button connect-wallet-button" />
-      </div>    
+      </div>
     </div>
   );
 
@@ -155,7 +155,7 @@ export default App;
 
 これで、ウォレットを接続することができるようになりました。
 
-※ Twitter ハンドルを忘れずに更新してくださいね！
+※ Twitter ハンドルを忘れずに更新してくださいね!
 
 ```jsx
 const TWITTER_HANDLE = "あなたのTwitterハンドル";
@@ -179,4 +179,4 @@ const TWITTER_HANDLE = "あなたのTwitterハンドル";
 
 ---
 
-次のレッスンでは、商品を用意してダウンロード機能を実装していきます！
+次のレッスンでは、商品を用意してダウンロード機能を実装していきます!

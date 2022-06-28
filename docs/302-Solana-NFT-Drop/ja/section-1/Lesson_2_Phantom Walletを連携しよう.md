@@ -155,7 +155,7 @@ React では、 2 番目のパラメータ( `[]` )が空の場合、コンポー
 
 これで、私たちの Web アプリケーションにアクセスするとすぐに、Phantom Wallet がインストールされているかどうかを確認できます。これは **非常に重要**な機能です。
 
-最後に、あなたの Twitter ハンドルを以下に貼り付けるのをお忘れなく！
+最後に、あなたの Twitter ハンドルを以下に貼り付けるのをお忘れなく!
 
 ```jsx
 const TWITTER_HANDLE = "あなたのTwitterハンドル";
@@ -215,7 +215,7 @@ const checkIfWalletIsConnected = async () => {
 
 別の接続ポップアップを表示せずに、すぐにデータを pull します。詳細は [fantom の公式ドキュメント](https://docs.phantom.app/integrating/establishing-a-connection#eagerly-connecting)をご覧ください。
 
-以上です！
+以上です!
 
 現時点では、コンソールのログに `Phantom wallet found!` と表示されるだけです。
 

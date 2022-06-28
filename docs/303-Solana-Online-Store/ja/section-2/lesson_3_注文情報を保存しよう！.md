@@ -29,7 +29,7 @@ export default function Buy({ itemID }) {
   const orderID = useMemo(() => Keypair.generate().publicKey, []); // 注文を識別するために使用される公開鍵を用意します。
 
 
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState(STATUS.Initial); // トランザクションステータス追跡用のstateを定義します。
 
 
@@ -66,7 +66,7 @@ export default function Buy({ itemID }) {
       setLoading(false);
     }
   };
-  
+
   useEffect(() => {
     // トランザクションが確認されたかどうかを確認します。
     if (status === STATUS.Submitted) {
@@ -134,7 +134,7 @@ export default function Buy({ itemID }) {
           // ブロックチェーン上でorderIDを探します。
           const result = await findReference(connection, orderID);
           console.log("Finding tx reference", result.confirmationStatus);
-          
+
           // トランザクションがconfirmedまたはfinalizedした場合、支払いは成功となります。
           if (result.confirmationStatus === "confirmed" || result.confirmationStatus === "finalized") {
             clearInterval(interval);
@@ -442,4 +442,4 @@ export default function Buy({ itemID }) {
 
 ---
 
-次のレッスンでは、購入機能を実装していきます！
+次のレッスンでは、購入機能を実装していきます!

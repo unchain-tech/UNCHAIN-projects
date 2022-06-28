@@ -70,7 +70,7 @@ npm install
 ![](/public/images/401-Ganache-Yield-Farm/section-1/12_1_2.png)
 ![](/public/images/401-Ganache-Yield-Farm/section-1/12_1_3.png)
 
-これで Ganache のネットワークを使ってテストができるようになりました！
+これで Ganache のネットワークを使ってテストができるようになりました!
 
 ### 👀 `contracts` フォルダの中身の確認する
 
@@ -280,4 +280,4 @@ function transferFrom(address _from, address _to, uint256 _value) public returns
 ```
 
 ---
-テンプレートのクローン成功おめでとうございます！次はいよいよコーディングをしていきましょう！
+テンプレートのクローン成功おめでとうございます!次はいよいよコーディングをしていきましょう!

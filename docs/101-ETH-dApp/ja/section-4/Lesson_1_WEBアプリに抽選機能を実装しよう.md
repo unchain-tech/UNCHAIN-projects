@@ -386,7 +386,7 @@ Solidity の `mapping` は、ほかの言語におけるハッシュテーブル
 
 これらは、下記のように `_Key` と `_Value` のペアの形式でデータを格納するために使用されます。
 
-```solidity
+```javascript
 mapping（_Key=> _Value）public mappingName
 ```
 

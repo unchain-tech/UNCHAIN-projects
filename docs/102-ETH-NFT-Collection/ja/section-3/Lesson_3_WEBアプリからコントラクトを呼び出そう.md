@@ -194,7 +194,7 @@ return (
 
 `App.js` の場合、`A` 並ばは、`renderNotConnectedContainer()` を実行し、`B` ならば、`Mint NFT` ボタンをフロントエンドに反映させています。
 
-最後に、`onClick={null}` を `onClick={askContractToMintNft}` に変更することをお忘れなく！
+最後に、`onClick={null}` を `onClick={askContractToMintNft}` に変更することをお忘れなく!
 
 すべての変更を `App.js` に反映させた後、ターミナルで`nft-collection-starter-project` ディレクトリに移動して下記を実行しみてください。
 
@@ -367,9 +367,9 @@ Console に出力された `currentAccount:` に続く、`0x..` のアドレス�
 
 ---
 
-おめでとうございます！
+おめでとうございます!
 
-NFT を Mint できる Web アプリケーションはほぼ完成です！
+NFT を Mint できる Web アプリケーションはほぼ完成です!
 
 Rarible のリンクを `#section-3` に貼り付けて、あなたの NFT をシェアしてください 😊
 

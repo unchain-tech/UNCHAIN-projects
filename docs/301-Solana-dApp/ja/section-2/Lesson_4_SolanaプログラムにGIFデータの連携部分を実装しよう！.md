@@ -37,7 +37,7 @@ pub mod myepicproject {
       gif_link: gif_link.to_string(),
       user_address: *user.to_account_info().key,
     };
-		
+
 	// gif_listにitemを追加します。
     base_account.gif_list.push(item);
     base_account.total_gifs += 1;
@@ -145,7 +145,7 @@ const main = async() => {
       user: provider.wallet.publicKey,
     },
   });
-  
+
   // アカウントを呼び出します。
   account = await program.account.baseAccount.fetch(baseAccount.publicKey);
   console.log('👀 GIF Count', account.totalGifs.toString())
@@ -212,12 +212,12 @@ anchor test
 
 ---
 
-おめでとうございます！
+おめでとうございます!
 
-セクション 2 は終了です！
+セクション 2 は終了です!
 
-ぜひ、ターミナルの出力結果をコミュニティに投稿してください！
+ぜひ、ターミナルの出力結果をコミュニティに投稿してください!
 
 あなたの成功をコミュニティで祝いましょう 🎉
 
-次のレッスンでは、作成した Solana プログラムを Devnet にデプロイします！
+次のレッスンでは、作成した Solana プログラムを Devnet にデプロイします!

@@ -55,7 +55,7 @@ await connection.confirmTransaction(confirmation, "confirmed");
 await refreshBalance();
 ```
 
-最後に、 `Airdrop` ボタンをレンダリングしましょう！
+最後に、 `Airdrop` ボタンをレンダリングしましょう!
 
 ```javascript
 <div>
@@ -73,9 +73,9 @@ await refreshBalance();
 
 ### ✅ 動作確認
 
-おめでとうございます！これでエアドロップの機能が完成しました。
+おめでとうございます!これでエアドロップの機能が完成しました。
 
-実際に `Airdrop` ボタンを押下して、残高が増えていれば成功です！
+実際に `Airdrop` ボタンを押下して、残高が増えていれば成功です!
 
 ### 📝 このセクションで追加したコード
 

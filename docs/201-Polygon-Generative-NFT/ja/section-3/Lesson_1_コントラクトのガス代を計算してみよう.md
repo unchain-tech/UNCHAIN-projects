@@ -148,7 +148,7 @@ NFT を 0.01 ETH で販売した場合、ユーザーは追加で実際の NFT �
 
 **イーサリアムメインネットの価格（4 万円）と比べると、だいぶコストが削減できます。**
 
-[こちら](https://nomics.com/markets/matic-polygon/eth-ethereum) で、`MATIC` の値を `￥` で表現できるので、試してみてください！
+[こちら](https://nomics.com/markets/matic-polygon/eth-ethereum) で、`MATIC` の値を `￥` で表現できるので、試してみてください!
 
 ### 🔮 Polygon の有用性
 
