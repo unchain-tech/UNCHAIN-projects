@@ -1,5 +1,5 @@
 ## Polygon ENS Domain
 
-#### `#ADVANCED🐔` `#Polygon` 
+#### `#INTERMEDIATE` `#Polygon` 
 
 👉 Solidity と React を使って、ユーザーがオリジナルドメインを取得できる WEB サービスを構築します。
