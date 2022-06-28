@@ -7,11 +7,11 @@
 - [Terminal 操作](https://qiita.com/ryouzi/items/f9dee1540a04a0bfb9a3)
 - [Javascript](https://developer.mozilla.org/ja/docs/Web/JavaScript)
 - [Next.js](https://nextjs.org/docs)
+- [React](https://reactjs.org/docs/getting-started.html)
 
 いますべてを理解している必要はありません。
 
 わからないことがあったらインターネットで検索したり、コミュニティで質問しながらプロジェクトを進めていきましょう!
-
 
 ### 🛠 何を構築するのか？
 
