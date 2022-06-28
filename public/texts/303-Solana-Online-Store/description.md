@@ -1,5 +1,5 @@
 ## Solana Online Store
 
-#### `#INTERMEDIATE` `#Solana` 
+#### `#INTERMEDIATE` `#Solana`
 
-👉 Solidity と Next.js を使用い、ユーザーが任意のデジタル データを売買できる WEB アプリを構築します。
+👉 Solidity と Next.js を使用し、ユーザーが任意のデジタル データを売買できる WEB アプリを構築します。
