@@ -77,7 +77,7 @@ Base64 のやり方は、[project3](https://unchain-portal.netlify.app/projects/
 
 なぜ、Base64 で渡す必要があるのかを調べてみてください!
 
-`libraries`ディレクトリの下に`Base64.sol`ファイルを作成して、下記のコードを貼り付けてください
+`libraries` ディレクトリの下に `Base64.sol` ファイルを作成して、下記のコードを貼り付けてください
 
 ```solidity
 // Base64.sol
@@ -175,6 +175,7 @@ struct NftAttributes{
 次は mintIpfsNFT 関数です。
 
 ```solidity
+// Base64.sol
 function mintIpfsNFT(string memory name,string memory imageURI) public{
         uint256 newItemId = _tokenIds.current();
         _safeMint(msg.sender,newItemId);
@@ -187,18 +188,20 @@ function mintIpfsNFT(string memory name,string memory imageURI) public{
     }
 ```
 
-先程のコードから setTokenURI 関数が消え、代わりに下記のコードが追加されています。
+先程のコードから `setTokenURI` 関数が消え、代わりに下記のコードが追加されています。
 
 ```solidity
+// Base64.sol
 Web3Nfts.push(NftAttributes({
             name: name,
             imageURL: imageURI
         }));
 ```
-mintIpfsNFT関数が引数で、NFTにしたいもののデータを受け取り、ここで配列に加えます。tokenIdの値と、配列の番号は同じになっています。
+`mintIpfsNFT` 関数が引数で、NFTにしたいもののデータを受け取り、ここで配列に加えます。`tokenId` の値と、配列の番号は同じになっています。
 
-次はtokenURI関数です。
+次は `tokenURI` 関数です。
 ```solidity
+// Base64.sol
 function tokenURI(uint256 _tokenId) public override view returns(string memory){
     string memory json = Base64.encode(
         bytes(
@@ -220,12 +223,12 @@ function tokenURI(uint256 _tokenId) public override view returns(string memory){
     return output;
     }
 ```
-opensea などの NFT マーケットサービスは、この tokenURI 関数のデータをみています。
+opensea などの NFT マーケットサービスは、この `tokenURI` 関数のデータをみています。
 詳しく知りたい方は [こちら](https://docs.opensea.io/docs/metadata-standards#implementing-token-uri) をごらんください。
 
 >For OpenSea to pull in off-chain metadata for ERC721 and ERC1155 assets, your contract will need to return a URI where we can find the metadata. > To find this URI, we use the tokenURI method in ERC721 and the uri method in ERC1155
 
-`tokenURI` 関数は ERC721 から override している関数で、外部からでも `_tokenId` をいれれば return を返してくれる関数でないといけないので、引数などから NFT のメタデータを送ることはできません。なので、tokenId だけを与えられて、NFT の metadata を返せるようにしなければならないです。
+`tokenURI` 関数は ERC721 から override している関数で、外部からでも `_tokenId` をいれれば return を返してくれる関数でないといけないので、引数などから NFT のメタデータを送ることはできません。なので、`tokenId` だけを与えられて、NFT の metadata を返せるようにしなければならないです。
 そこで、配列を使おうという発想になっています。
 
 次は、このコードがしっかりと動いているか確認するためにテストコードを書いてみましょう。
@@ -272,7 +275,7 @@ const { expect } = require("chai");
 ```
 このように `chai` を読み込む必要はないのですが、スマートコントラクトのテストを行う上で、必ず `expect` を使う機会は来るはずなので興味のある方は調べてみてください。
 
-今回このテストでは、`mintIpfsNFT` 関数でしっかりとNFTを発行し、tokenURIの返り値が期待通りになっているかを確かめます。
+今回このテストでは、`mintIpfsNFT` 関数でしっかりとNFTを発行し、`tokenURI` の返り値が期待通りになっているかを確かめます。
 
 変数 `nftName` には好きな名前を、`ipfsCID` には先程つくった `IpfsCID` を入れてみましょう!
 

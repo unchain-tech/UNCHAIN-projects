@@ -7,6 +7,7 @@
 下記のように、`MyEpicNFT.sol` を更新していきましょう。
 
 ```solidity
+// MyEpicNFT.sol
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.4;
@@ -137,6 +138,7 @@ string baseSvg = "<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='x
 下記では、`baseSvg` 変数の中身と、`"</text></svg>"`で、3 つの単語（`first`、`second`、`third` 変数に格納された値）を閉じて文字列（`string`）として連結しています。
 
 ```solidity
+// MyEpicNFT.sol
 string memory finalSvg = string(abi.encodePacked(baseSvg, first, second, third, "</text></svg>"));
 ```
 
@@ -313,6 +315,7 @@ epic-nfts
 `libraries` ディレクトリに `Base64.sol` という名前のファイルを作成し、下記のコードを貼り付けてください。
 
 ```solidity
+// Base64.sol
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.4;
@@ -394,6 +397,7 @@ library Base64 {
 `MyEpicNFT.sol` も下記のように更新しましょう。
 
 ```solidity
+// MyEpicNFT.sol
 // SPDX-License-Identifier: MIT
 
 pragma solidity 0.8.4;

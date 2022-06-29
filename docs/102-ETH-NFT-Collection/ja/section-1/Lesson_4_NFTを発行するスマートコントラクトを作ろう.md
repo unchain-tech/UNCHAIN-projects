@@ -5,6 +5,7 @@
 下記のように、`MyEpicNFT.sol`を更新しましょう。
 
 ```solidity
+// MyEpicNFT.sol
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 // いくつかの OpenZeppelin のコントラクトをインポートします。

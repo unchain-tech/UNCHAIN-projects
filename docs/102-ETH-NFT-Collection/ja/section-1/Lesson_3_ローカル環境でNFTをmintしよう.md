@@ -28,6 +28,7 @@ epic-nfts
 `MyEpicNFT.sol` のファイル内に以下のコードを記載します。
 
 ```solidity
+// MyEpicNFT.sol
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 import "hardhat/console.sol";
@@ -51,6 +52,7 @@ contract MyEpicNFT {
 さて、行ごとにコードをみていきましょう。
 
 ```solidity
+// MyEpicNFT.sol
 // SPDX-License-Identifier: MIT
 ```
 

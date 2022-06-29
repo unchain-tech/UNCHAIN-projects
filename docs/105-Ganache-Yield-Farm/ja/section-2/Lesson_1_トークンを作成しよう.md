@@ -138,7 +138,7 @@ await daiToken.transfer(accounts[1], '100000000000000000000')
 
 `TokenFarm` コントラクトで `Dai` トークンと `Dapp` トークンが使えるようにするために `TokenFarm.sol` を次のように更新しましょう。
 
-```javascript
+```solidity
 // TokenFarm.sol
 pragma solidity ^0.5.0;
 
@@ -159,7 +159,8 @@ contract TokenFarm{
 
 まず `DappToken` と `DaiToken` をインポートすることで `DappToken` と `DaiToken` を使えるようにします。
 
-```javascript
+```solidity
+// TokenFarm.sol
 import "./DappToken.sol";
 import "./MockDaiToken.sol";
 ```
@@ -170,7 +171,7 @@ import "./MockDaiToken.sol";
 
 DaiToken と DappToken はネットワークにすでにデプロイされていると仮定しているので、あとは　TokenFarm　のコントラクトが作成されるたびに DaiToken と DappToken のコントラクトアドレスを取得し、`constructor` に渡すだけです。
 
-```javascript
+```solidity
 // TokenFarm.sol
 constructor(DappToken _dappToken, DaiToken _daiToken) public {
         dappToken = _dappToken;
@@ -268,7 +269,7 @@ truffle(development)> balance.toString()
 まず、`src/contracts/DaiToken.sol` を見て、以下のコードを確認しましょう:
 
 
-```javascript
+```solidity
 // DaiToken.sol
 
 mapping(address => unit256) public balanceOf

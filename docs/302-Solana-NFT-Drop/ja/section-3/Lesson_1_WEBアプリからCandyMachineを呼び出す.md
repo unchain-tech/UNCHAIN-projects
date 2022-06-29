@@ -142,6 +142,7 @@ useEffect(() => {
 下記の通り `useEffect` 関数の上に `getProvider` を追加します。
 
 ```jsx
+// index.js
 const getProvider = () => {
   const rpcHost = process.env.REACT_APP_SOLANA_RPC_HOST;
   // connectionオブジェクトを作成
@@ -163,6 +164,7 @@ const getProvider = () => {
 `getProvider` の下のどこかに作成します。外観は次のとおりです。
 
 ```jsx
+// index.js
 // getCandyMachineStateを非同期の関数として宣言する。
 const getCandyMachineState = async () => {
   const provider = getProvider();
@@ -206,6 +208,7 @@ const getCandyMachineState = async () => {
 詳細を確認していきましょう。
 
 ```jsx
+// index.js
 //デプロイされたCandy Machineプログラムに関するメタデータを取得します
 const idl = await Program.fetchIdl(candyMachineProgram, provider);
 //呼び出すことができるプログラムを作成します
@@ -227,6 +230,7 @@ Program オブジェクトを作成したら、Candy Machine の ID にもとづ
 この行では、Candy Machine のプログラムの fetch メソッドを呼び出し、`itemsAvailable`, `itemsRedeemed`, `itemsRemaining`, `goLiveDate` を返しています。
 
 ```jsx
+// index.js
 //Candy Machineからメタデータを取得します
 const candyMachine = await program.account.candyMachine.fetch(
   process.env.REACT_APP_CANDY_MACHINE_ID
@@ -254,6 +258,7 @@ const presale =
 `app/src/App.js` に移動し、`CandyMachine` をインポートします。
 
 ```jsx
+// App.js
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import twitterLogo from "./assets/twitter-logo.svg";
@@ -263,6 +268,7 @@ import CandyMachine from "./CandyMachine";
 下記の通り、ユーザーのウォレットアドレスが state にあれば、`CandyMachine` をレンダリングするよう記載してください。
 
 ```jsx
+// App.js
 return (
   <div className="App">
     <div className="container">
@@ -313,6 +319,7 @@ Solana の devnet からデータを取得できました。
 ※` goLiveDateTimeString` は異なって見える場合があります。mint したユーザーのローカルタイムゾーンでデータをレンダリングする場合は、`index.js` ファイルより、`getCandyMachineState` の ` goLiveDateTimeString` を下記のように変更します。
 
 ```jsx
+// index.js
 const goLiveDateTimeString = `${new Date(
   goLiveData * 1000
 ).toLocaleDateString()} @ ${new Date(goLiveData * 1000).toLocaleTimeString()}`;
@@ -325,6 +332,7 @@ Web アプリケーションにアクセスすると、すでにレンダリン�
 先に進み、 `app / src / CandyMachine / index.js` の `CandyMachine` コンポーネントに `useState` をインポートしてから、次のコードを追加します。
 
 ```jsx
+// index.js
 // useStateをインポートする
 import React, { useEffect, useState } from 'react';
 
@@ -406,6 +414,7 @@ const CandyMachine({walletAddress}) => {
 ここでいくつかのデータをレンダリングできます。下記の通り UI コードをレンダリング関数に追加します。( `index.js` ファイルのほぼ最後の return 部分を修正します!　)
 
 ```jsx
+// index.js
 // candyMachineが利用可能な場合のみ表示されます
 return candyMachine ? (
   <div className="machine-container">

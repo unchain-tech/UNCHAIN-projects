@@ -405,7 +405,7 @@ NFT の JSON メタデータは、IPFS の次の URL で入手できます： ip
 
 しかし、`setBaseURI()` を実行する前に、コントラクトの最初で定義した `baseTokenURI` 変数が、コントラクトが使用すべき Token Base URI であることを明示する必要があります。
 
-これを行うために、`_baseURI()` という空の関数をオーバーライドして、`baseTokenURI`を返すようにします。
+これを行うために、`_baseURI()` という空の関数をオーバーライドして、`baseTokenURI` を返すようにします。
 
 また、コントラクトがデプロイされた後でもコントラクトの所有者が `baseTokenURI` を変更できるように、`onlyOwner` 修飾子を記述しています。
 

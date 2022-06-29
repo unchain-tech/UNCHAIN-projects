@@ -7,6 +7,7 @@ Web3 の世界では、ウォレット接続ボタンは「サインアップ/�
 `App.js` ファイルを下記の通り変更してください。
 
 ```jsx
+// App.js
 import React, { useEffect } from "react";
 import "./App.css";
 import twitterLogo from "./assets/twitter-logo.svg";
@@ -103,12 +104,14 @@ export default App;
 まずは下記のように `useState` をコンポーネントにインポートする必要があります。
 
 ```jsx
+// App.js
 import React, { useEffect, useState } from "react";
 ```
 
 次に、 `checkIfWalletIsConnected` 関数のすぐ上に進み、下記の `state` の宣言を追加します。
 
 ```jsx
+// App.js
 // State
 const [walletAddress, setWalletAddress] = useState(null);
 ```
@@ -118,6 +121,7 @@ const [walletAddress, setWalletAddress] = useState(null);
 `App.js` を下記の通り修正してください。
 
 ```jsx
+// App.js
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import twitterLogo from "./assets/twitter-logo.svg";
@@ -205,6 +209,7 @@ export default App;
 簡単に修正点を確認しましょう。
 
 ```jsx
+// App.js
 const checkIfWalletIsConnected = async () => {
   try {
     const { solana } = window;
@@ -237,6 +242,7 @@ const checkIfWalletIsConnected = async () => {
 これで、後で使用できるように状態に保存してみましょう。
 
 ```jsx
+// App.js
 {
   /* ウォレットアドレスを持っていない場合にのみ表示する条件を追加する */
 }
@@ -257,6 +263,7 @@ const checkIfWalletIsConnected = async () => {
 `App.js` の `connectWallet` 関数を下記の通り修正しましょう。
 
 ```jsx
+// App.js
 const connectWallet = async () => {
   const { solana } = window;
 

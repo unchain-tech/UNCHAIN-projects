@@ -37,6 +37,7 @@ VS Code をターミナルから起動する方法は [こちら](https://maku.b
 `WavePortal.sol` を VS Code で開き、下記を入力します。
 
 ```solidity
+// WavePortal.sol
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.4;

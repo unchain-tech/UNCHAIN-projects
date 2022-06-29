@@ -105,7 +105,7 @@ ERC-20標準規格を使用することで、トークンは以下のユース�
 
 まず、`DappToken.sol` の4-10行目に注目してください。
 
-```javascript
+```solidity
 // DappToken.sol
 // トークン名を格納
 string  public name = "DApp Token";
@@ -126,7 +126,7 @@ uint8   public decimals = 18;
 ここでは、`DappToken.sol` で使用する変数を定義し、値を格納しています。
 
 次に、25行目を見ていきましょう。
-```javascript
+```solidity
 // DappToken.sol
 mapping(address => uint256) public balanceOf;
 ```
@@ -141,7 +141,7 @@ mapping(address => uint256) public balanceOf;
 
 次に、`transfer` 関数（ `DappToken.sol` の31-38行）を見ていきましょう。
 
-```javascript
+```solidity
 // DappToken.sol
 // ユーザーがトークンを別のアカウントに送信できるようにする機能を実装
 function transfer(address _to, uint256 _value) public returns (bool success) {
@@ -162,7 +162,7 @@ function transfer(address _to, uint256 _value) public returns (bool success) {
 
 `Transfer` イベントを発生させるために、`DappToken.sol` の12-16行目に以下の `event` が定義されています。
 
-```javascript
+```solidity
 // DappToken.sol
 event Transfer(
    address indexed _from,
@@ -183,13 +183,15 @@ event Transfer(
 
 まず、`allowance` マッピング（ `DappToken.sol` の26行目）に着目してください。
 
-```javascript
+```solidity
+DappToken.sol
 mapping(address => mapping(address => uint256)) public allowance;
 ```
 
 `allowance` マッピングはネストされたマッピングの形をとっていますが、至って簡単なコンセプトです。以下を見ていきましょう。
 
-```javascript
+```solidity
+DappToken.sol
 mapping(address => mapping(address => uint256)) public allowance;
           (1)                (2)        (3)
 ```
@@ -204,7 +206,7 @@ mapping(address => mapping(address => uint256)) public allowance;
 
 次に、`approve` 関数（`DappToken.sol` の41-45行目）を見ていきましょう。
 
-```javascript
+```solidity
 // DappToken.sol
 // 別のアカウントがトークンを使用できるようにする機能を実装
 function approve(address _spender, uint256 _value) public returns (bool success) {
@@ -217,7 +219,7 @@ function approve(address _spender, uint256 _value) public returns (bool success)
 
 次に、26行目で定義した `allowance` マッピングが `approve` 関数の中で呼び出されていることを確認しましょう。
 
-```javascript
+```solidity
 // DappToken.sol
 allowance[msg.sender][_spender] = _value;
 ```
@@ -226,7 +228,7 @@ allowance[msg.sender][_spender] = _value;
 
 最後に、`Approval` イベントを発生させていることに着目してください。
 
-```javascript
+```solidity
 // DappToken.sol
 emit Approval(msg.sender, _spender, _value);
 ```
@@ -235,7 +237,7 @@ emit Approval(msg.sender, _spender, _value);
 
 `Approval` イベントを発生させるために、`DappToken.sol` の18-22行目に以下の `event` が定義されていることを確認してください。
 
-```javascript
+```solidity
 // DappToken.sol
 event Approval(
    address indexed _owner,
@@ -248,7 +250,7 @@ event Approval(
 
 最後に、`DappToken.sol` の47-56行目に記載されている `transferFrom` 関数を見ていきましょう。
 
-```javascript
+```solidity
 // DappToken.sol
 // 別のアカウントからトークンを転送できるようにする
 function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {

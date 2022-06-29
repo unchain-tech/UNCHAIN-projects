@@ -15,6 +15,7 @@
 それでは、「👋（wave）」を保存するために、`WavePortal.sol` を更新していきましょう。
 
 ```solidity
+// WavePortal.sol
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.4;

@@ -10,7 +10,7 @@
 
 それでは早速 `TokenFarm.sol` をしたのように更新していきましょう!
 
-```javascript
+```solidity
 // TokenFarm.sol
 pragma solidity ^0.5.0;
 
