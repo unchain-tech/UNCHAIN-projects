@@ -7,6 +7,7 @@
 これを防ぐために、これから下記の機能を `WavePortal.sol` に実装していきます。
 
 ```solidity
+// WavePortal.sol
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.4;
@@ -291,6 +292,7 @@ Contract balance: 0.0999
 それでは、下記のように `WavePortal.sol` を更新しましょう。
 
 ```solidity
+// WavePortal.sol
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.4;

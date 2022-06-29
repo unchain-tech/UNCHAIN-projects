@@ -4,10 +4,11 @@
 
 これから、いくつかの NFT を作成します。
 
-下記のように、`Web3Mint.sol`を更新しましょう。
-まずは、NFTの仕組みをわかりやすくみるためにERC721URIStorageとそれのfunctionである_setTokenURIをを使ってNFTを作成しますが、これはあとで変更します。
+下記のように、`Web3Mint.sol` を更新しましょう。
+まずは、NFT の仕組みをわかりやすくみるために `ERC721URIStorage` とそれのfunction である `_setTokenURI` をを使って NFT を作成しますが、これはあとで変更します。
 
 ```solidity
+// Web3Mint.sol
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.4;
 // いくつかの OpenZeppelin のコントラクトをインポートします。
@@ -49,30 +50,39 @@ contract Web3Mint is ERC721URIStorage {
 	:
 ```
 ここでは、`ERC721URIStorage`を継承しています。
-なぜ、`ERC721`ではなく`ERC721URIStorage`を継承しているのかと疑問に思った方もいるかもしれないですが、これはいきなりtokenURI関数で解説するよりも、setTokenURIで解説したほうがわかりやすいだろうという考えです。今はわからなくても大丈夫なので、そうなんだと受け流してください。
+
+なぜ、`ERC721` ではなく `ERC721URIStorage` を継承しているのかと疑問に思った方もいるかもしれないですが、これはいきなり `tokenURI` 関数で解説するよりも、`setTokenURI` で解説したほうがわかりやすいだろうという考えです。
+
+今はわからなくても大丈夫なので、そうなんだと受け流してください。
+
 次に、下記のコードを見ていきましょう。
+
 ```solidity
 // Web3Mint.sol
 using Counters for Counters.Counter;
 ```
 `using Counters for Counters.Counter` は OpenZeppelin が `_tokenIds` を追跡するために提供するライブラリを呼び出しています。
+
 using A for B は、Bという型で定義したものがAというメンバー関数を使うことができることになるものです。詳しくは[公式](https://docs.soliditylang.org/en/v0.8.13/contracts.html?highlight=using#using-for)を読んでみてください。
 
-ここではCounters.Counterで定義した_tokenIdsが、_tokenIds.current()、_tokenIds.increment()のようにCountersのfunctionを使えるようになっています。
+ここでは `Counters.Counter` で定義した `_tokenIds` が、`_tokenIds.current()、_tokenIds.increment()` のように `Counters` の function を使えるようになっています。
 
 これにより、トラッキングの際に起こりうるオーバーフローを防ぎます。
-uint256のNFTをオーバーフローさせるのに必要なETHはとんでもない額になるので、おそらくオーバーフローはしないのですが、対策をしていくのは大事なことだと思います。
+uint256 の NFT をオーバーフローさせるのに必要な ETH はとんでもない額になるので、おそらくオーバーフローはしないのですが、対策をしていくのは大事なことだと思います。
 
 次に、下記のコードを見ていきましょう。
 ```solidity
 // Web3Mint.sol
 Counters.Counter private _tokenIds;
 ```
+
 ここでは、`private _tokenIds` を宣言して、`_tokenIds` を初期化しています。
 - `_tokenIds` の初期値は 0 です。
-tokenId は NFT の一意な識別子で、0, 1, 2, .. N のように付与されます。
+- 
+`tokenId` は NFT の一意な識別子で、0, 1, 2, .. N のように付与されます。
 これが初めから強調してきた、NFTの本体と言ってもいい識別子になるので、これに注意してコードを書いていきましょう!
 次に、下記のコードを見ていきましょう。
+
 ```solidity
 // Web3Mint.sol
 constructor() ERC721 ("TanyaNFT", "TANYA") {
@@ -81,7 +91,9 @@ constructor() ERC721 ("TanyaNFT", "TANYA") {
 ```
 `ERC721` モジュールを使用した `constructor` を定義しています。
 ここでは任意の NFT トークンの名前とシンボルを引数として渡しています。
-node_modulesの中にあるERC721.solを見ればわかるのですが、継承したcontractのconstructorが引数を持っていたらこのように引数を渡してあげます。
+
+node_modules の中にある `ERC721.sol` を見ればわかるのですが、継承した contract の `constructor` が引数を持っていたらこのように引数を渡してあげます。
+
 - `TanyaNFT`: NFT トークンの名前
 - `TANYA`: NFT トークンのそのシンボル
 
@@ -107,11 +119,15 @@ uint256 newItemId = _tokenIds.current();
 ```
 `_tokenIds` について理解を深めましょう。
 Project2でも同じような解説が乗っていたと思いますが、これは重要なのでもう一度説明します。ピカソの例を思い出してください。
+
 彼は、自分の NFT コレクションに、`Sketch ＃1` から `Sketch ＃100` までのユニークな識別子を付与していました。
+
 ここでは、ピカソがしたように、`_tokenIds` を使用して NFT に対して一意の識別子を付与し、トラッキングできるようにしています。
+
 `_tokenIds` は単なる数字です。
 したがって、 `makeAnEpicNFT` 関数が初めて呼び出されたとき、 `newItemId` は 0 になります。
 - `Counters.Counter private _tokenIds` により初期化されているため、`newItemId` は 0 です。
+
 もう一度実行すると、`newItemId` は 1 になり、以下同様に続きます。
 `_tokenIds` は**状態変数**です。つまり、変更すると、値はコントラクトに直接保存されます。
 
@@ -121,8 +137,11 @@ Project2でも同じような解説が乗っていたと思いますが、これ
 // Web3Mint.sol
 _safeMint(msg.sender, newItemId);
 ```
-ここでは、コントラクトを呼び出したユーザー（＝ `msg.sender`）のアドレスに、ID（= `newItemId`）の付与された NFT を Mint しています。ざっくりと解説した、NFTの識別子をmint先のユーザーと結びつける行為ですね。
+ここでは、コントラクトを呼び出したユーザー（＝ `msg.sender`）のアドレスに、ID（= `newItemId`）の付与された NFT を Mint しています。
+
+ざっくりと解説した、NFT の識別子を mint 先のユーザーと結びつける行為ですね。
 `msg.sender` は Solidity が提供している変数であり、あなたのスマートコントラクトを呼び出したユーザーのパブリックアドレスを取得するために使用されます。
+
 これは、**ユーザーのパブリックアドレスを取得するための安全な方法**です。
 - ユーザーはパブリックアドレスを使用して、コントラクトを呼び出す必要があります。
 - これは、「サインイン」のような認証機能の役割を果たします。
@@ -136,7 +155,7 @@ _setTokenURI(newItemId, "Valuable data!");
 これにより、NFT の一意の識別子と、その一意の識別子に関連付けられたデータが紐付けられます。
 - NFT を価値あるものにするのは、文字通り「NFT の一意の識別子」と「実際のデータ」を紐付ける必要があります。
 今は、`Valuable data!` という文字列が、「実際のデータ」として設定されていますが、これは後で変更します。
-- `Valuable data!` は、`ERC721`の基準に準拠していません。
+- `Valuable data!` は、`ERC721` の基準に準拠していません。
 - `Valuable data!` と入れ替わる `tokenURI` についてこれから学んでいきます。
 
 
@@ -166,23 +185,35 @@ NFT が発行された後、`_tokenIds.increment()`（＝ OpenZeppelin が提供
 メタデータの構造が [OpenSea の要件](https://zenn.dev/hayatoomori/articles/f26cc4637c7d66) と一致しない場合、デジタルデータは OpenSea 上で正しく表示されません。
 - Opensea は、`ERC721` のメタデータ規格をサポートしています。
 - 音声ファイル、動画ファイル、3D メディアなどに対応するメタデータ構造に関しては、[OpenSea の要件](https://zenn.dev/hayatoomori/articles/f26cc4637c7d66) を参照してください。
+- 
 上記の `Tanya` の JSON メタデータをコピーして、 [ここ](https://jsonkeeper.com/)の Web サイトに貼り付けてください。
+
 この Web サイトは、JSON データをホストするのに便利です。
+
 このレッスンでは、NFT データを保持するために使用します。
+
 下図のように、Web サイトにメタデータを貼り付けて、`Save` ボタンをクリックすると、JSON ファイルへのリンクが表示されます。
+
 ![](/public/images/103-ETH-NFT-Maker/section1/1-4-1.png)
+
 枠で囲んだ部分をコピーして、ブラウザに貼り付け、メタデータがリンクとして保存されていることを確認しましょう。
+
 こちらは、私のリンクです：
 [`https://jsonkeeper.com/b/OLSM`](https://jsonkeeper.com/b/OLSM)
 
 ### 🐱 オリジナルの画像を使用する方法
+
 [Imgur](https://imgur.com/) という Web サイトを使うと、無料で画像をオンライン上でホストできます。
+
 メタデータの `"image"` にリンクを貼り付ける場合は、`Direct Link` を使用するようにしてください。
+
 下記に Imgur で画像をアップロードした際に選択する `Direct Link` の取得方法を示します。
+
 ![](/public/images/103-ETH-NFT-Maker/section1/1-4-2.png)
 ぜひ自分のお気に入りの画像を使って、自分だけのメタデータを作成してみましょう。
 
 ### 🐈 `Web3Mint.sol` を更新する
+
 それでは、スマートコントラクトに向かい、下記の行を変更しましょう。
 ```solidity
 // Web3Mint.sol
@@ -190,6 +221,7 @@ _setTokenURI(newItemId, "Valuable data!");
 ```
 先ほど取得した JSON ファイルへのリンクこそ、`tokenURI`（＝ **NFT データが保存されている場所**）です。
 そのリンクを下記に貼り付けましょう。
+
 ```solidity
 // Web3Mint.sol
 _setTokenURI(

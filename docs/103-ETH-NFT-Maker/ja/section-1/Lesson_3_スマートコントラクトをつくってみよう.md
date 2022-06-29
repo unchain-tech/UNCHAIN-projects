@@ -28,6 +28,7 @@ ipfs-nfts
 `Web3Mint.sol` のファイル内に以下のコードを記載します。
 
 ```solidity
+// Web3Mint.sol
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.4;
 import "hardhat/console.sol";
@@ -50,6 +51,7 @@ contract Web3Mint {
 さて、行ごとにコードをみていきましょう。
 
 ```solidity
+// Web3Mint.sol
 // SPDX-License-Identifier: UNLICENSED
 ```
 
