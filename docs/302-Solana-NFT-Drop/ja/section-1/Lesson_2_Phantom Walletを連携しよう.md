@@ -53,6 +53,7 @@ Phantom Wallet 拡張機能がインストールされている場合は、`wind
 `App.js` を下記の通り変更します。
 
 ```jsx
+// App.js
 import React, { useEffect } from "react";
 import "./App.css";
 import twitterLogo from "./assets/twitter-logo.svg";
@@ -120,6 +121,7 @@ export default App;
 `App.js` を分解して説明します。
 
 ```jsx
+// App.js
 const checkIfWalletIsConnected = async () => {
   try {
     const { solana } = window;
@@ -140,6 +142,7 @@ const checkIfWalletIsConnected = async () => {
 `solana` オブジェクトが存在しているか、またそれが Phantom Wallet であるかどうかを確認しています。
 
 ```jsx
+// App.js
 useEffect(() => {
   const onLoad = async () => {
     await checkIfWalletIsConnected();
@@ -158,6 +161,7 @@ React では、 2 番目のパラメータ( `[]` )が空の場合、コンポー
 最後に、あなたの Twitter ハンドルを以下に貼り付けるのをお忘れなく!
 
 ```jsx
+// App.js
 const TWITTER_HANDLE = "あなたのTwitterハンドル";
 ```
 
@@ -186,6 +190,7 @@ Web アプリケーションで最初に行う必要があるのは、ユーザ�
 ここで `checkIfWalletIsConnected` 関数にもう 1 行追加する必要があります。以下のコードを修正してください。
 
 ```jsx
+// App.js
 const checkIfWalletIsConnected = async () => {
   try {
     const { solana } = window;

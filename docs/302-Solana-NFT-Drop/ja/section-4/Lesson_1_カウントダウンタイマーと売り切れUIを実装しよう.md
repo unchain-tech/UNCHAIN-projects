@@ -64,6 +64,7 @@ Web アプリケーションのコードをクリーンに保つため、タイ�
 そこに `index.js` ファイルを作成し、次のコードを追加します。
 
 ```jsx
+// CountdownTimer/index.js
 import React, { useEffect, useState } from "react";
 import "./CountdownTimer.css";
 
@@ -87,6 +88,7 @@ export default CountdownTimer;
 先へ進む前に、`app/src/CandyMachine/index.js` に移動して、このコンポーネントをインポートしましょう。
 
 ```jsx
+// CandyMachine/index.js
 import React, { useEffect, useState } from "react";
 import { Connection, PublicKey } from "@solana/web3.js";
 import { Program, Provider, web3 } from "@project-serum/anchor";
@@ -113,6 +115,7 @@ import CountdownTimer from "../CountdownTimer";
 `app/src/CandyMachine/index.js` の下部にコードを記述しましょう。
 
 ```jsx
+// CandyMachine/index.js
 // レンダリング関数を作成します
 const renderDropTimer = () => {
   // JavaScriptのDateオブジェクトで現在の日付とDropDateを取得します
@@ -152,6 +155,7 @@ return (
 `CountdownTimer` コンポーネントに戻って、残りのロジック設定を取得できます。タイマーのカウントダウンをリアルタイムで確認しましょう。
 
 ```jsx
+// CandyMachine/index.js
 // useEffectはコンポーネントのロード時に実行されます。
 useEffect(() => {
   console.log("Setting interval...");

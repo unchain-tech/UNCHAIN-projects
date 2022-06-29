@@ -18,6 +18,7 @@
 `truffle-config.js` の 4-11 行目に注目してください。
 
 ```javascript
+// truffle-config.js
 module.exports = {
   networks: {
     development: {
@@ -55,7 +56,7 @@ touch src/contracts/TokenFarm.sol
 
 `TokenFarm.sol` を以下のように更新していきます。
 
-```javascript
+```solidity
 // TokenFarm.sol
 pragma solidity ^0.5.0;
 
