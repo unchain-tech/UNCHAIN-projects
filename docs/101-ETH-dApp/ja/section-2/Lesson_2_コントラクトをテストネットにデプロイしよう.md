@@ -157,7 +157,7 @@ module.exports = {
 >
 > ![](/public/images/101-ETH-dApp/section-2/2_2_7.png)
 >
-> 4.  MetaMask のパスワードを求められるので、入力したら `Confirm` を推します。
+> 4.  MetaMask のパスワードを求められるので、入力したら `Confirm` を押します。
 >
 > ![](/public/images/101-ETH-dApp/section-2/2_2_8.png)
 >
