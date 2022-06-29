@@ -525,7 +525,7 @@ _safeMint(msg.sender, newRecordId);
 _setTokenURI(newRecordId, finalTokenUri);
 ```
 
-`finalTokenUri`をコンソールに出力するコンソールログを追加しました。 `data：application / json; base64`の 1 つを取得し、それをブラウザのアドレスバーに入力すると、すべての JSON メタデータが表示されます。
+`finalTokenUri` をコンソールに出力するコンソールログを追加しました。 `data：application / json; base64` の 1 つを取得し、それをブラウザのアドレスバーに入力すると、すべての JSON メタデータが表示されます。
 
 ### 🥸 NFT ドメインをローカルで作成する
 
@@ -553,7 +553,7 @@ Contract balance: 0.1
 
 ![https://i.imgur.com/nOpI3oD.png](https://i.imgur.com/nOpI3oD.png)
 
-`tokenURI`をコピーしてブラウザのアドレスに入力すると、JSON オブジェクトが表示されます。 別のタブで JSON オブジェクト内の image の部分のみを貼り付けると、NFT 画像が取得されます。
+`tokenURI` をコピーしてブラウザのアドレスに入力すると、JSON オブジェクトが表示されます。 別のタブで JSON オブジェクト内の image の部分のみを貼り付けると、NFT 画像が取得されます。
 
 ブラウザのアドレスに下の様に入力すると JSON オブジェクトを表示できます。
 
