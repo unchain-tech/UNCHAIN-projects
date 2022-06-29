@@ -6,7 +6,7 @@
 
 [UNCHAIN](https://app.shiftbase.xyz) のプロジェクトは全てオープンソース（[MIT ライセンス](https://wisdommingle.com/mit-license/)）で運用されています。
 
-プロジェクトに参加していて、「こうすればもっと分かりやすいのに！」「これは間違っている！」と思ったら、直接 `pull request` を送ってくださると幸いです ✨
+プロジェクトに参加していて、「こうすればもっと分かりやすいのに!」「これは間違っている!」と思ったら、直接 `pull request` を送ってくださると幸いです ✨
 
 Github から直接コードを編集して直接 `pull request` を送る方法は、[こちら](https://docs.github.com/ja/repositories/working-with-files/managing-files/editing-files#editing-files-in-another-users-repository)を参照してください。
 
