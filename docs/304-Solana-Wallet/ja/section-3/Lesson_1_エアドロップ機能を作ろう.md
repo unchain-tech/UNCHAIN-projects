@@ -28,7 +28,7 @@ console.log(connection);
 ![](/public/images/304-Solana-Wallet/3_1_1.png)
 
 ```javascript
-const confirmation = await connection.requestAirdrop(publicKey, LAMPORTS_PER_SOL);
+const confirmation = await connection.requestAirdrop(account.publicKey, LAMPORTS_PER_SOL);
 ```
 
 上記のように `requestAirdrop` メソッドを呼び出すと、`1 SOL` をエアドロップすることができます。 `LAMPORTS_PER_SOL = 1SOL` になるからです。
@@ -85,7 +85,7 @@ await refreshBalance();
 +      const connection = new Connection(clusterApiUrl(NETWORK), "confirmed");
 +      const publicKey = account.publicKey;
 +
-+      const confirmation = await connection.requestAirdrop(publicKey, LAMPORTS_PER_SOL);
++      const confirmation = await connection.requestAirdrop(account.publicKey, LAMPORTS_PER_SOL);
 +      await connection.confirmTransaction(confirmation, "confirmed");
 +      await refreshBalance();
 +    } catch (error) {
