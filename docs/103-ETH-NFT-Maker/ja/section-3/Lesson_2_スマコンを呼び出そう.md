@@ -119,6 +119,7 @@ Console に `We have the ethereum object` と表示されているでしょう�
 以下の通り、`NftUploader.jsx` を修正してください。
 
 ```javascript
+// NftUploader.jsx
 import { Button } from "@mui/material";
 import React from "react";
 import { useEffect, useState } from 'react'
@@ -228,6 +229,7 @@ if (accounts.length !== 0) {
 下記の通り `NftUploader.jsx` を更新していきましょう。
 
 ```javascript
+// NftUploader.jsx
 import { Button } from "@mui/material";
 import React from "react";
 import { useEffect, useState } from 'react'

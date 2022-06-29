@@ -7,7 +7,7 @@
 下記のように、`Web3Mint.sol`を更新しましょう。
 まずは、NFTの仕組みをわかりやすくみるためにERC721URIStorageとそれのfunctionである_setTokenURIをを使ってNFTを作成しますが、これはあとで変更します。
 
-```javascript
+```solidity
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.4;
 // いくつかの OpenZeppelin のコントラクトをインポートします。
@@ -43,7 +43,7 @@ contract Web3Mint is ERC721URIStorage {
 
 1 行ずつコードを見ていきたいですが、ほとんどは[Project2-section1-lesson4](https://unchain-portal.netlify.app/projects/102-ETH-NFT-Collection/section-1-Lesson-4)で解説されているので、今回はポイントに絞って解説したいと思います。解説されていなくてわからない方はぜひ一度戻ってみることをおすすめします。
 
-```javascript
+```solidity
 // Web3Mint.sol
 contract Web3Mint is ERC721URIStorage {
 	:
@@ -51,7 +51,7 @@ contract Web3Mint is ERC721URIStorage {
 ここでは、`ERC721URIStorage`を継承しています。
 なぜ、`ERC721`ではなく`ERC721URIStorage`を継承しているのかと疑問に思った方もいるかもしれないですが、これはいきなりtokenURI関数で解説するよりも、setTokenURIで解説したほうがわかりやすいだろうという考えです。今はわからなくても大丈夫なので、そうなんだと受け流してください。
 次に、下記のコードを見ていきましょう。
-```javascript
+```solidity
 // Web3Mint.sol
 using Counters for Counters.Counter;
 ```
@@ -64,7 +64,7 @@ using A for B は、Bという型で定義したものがAというメンバー�
 uint256のNFTをオーバーフローさせるのに必要なETHはとんでもない額になるので、おそらくオーバーフローはしないのですが、対策をしていくのは大事なことだと思います。
 
 次に、下記のコードを見ていきましょう。
-```javascript
+```solidity
 // Web3Mint.sol
 Counters.Counter private _tokenIds;
 ```
@@ -73,7 +73,7 @@ Counters.Counter private _tokenIds;
 tokenId は NFT の一意な識別子で、0, 1, 2, .. N のように付与されます。
 これが初めから強調してきた、NFTの本体と言ってもいい識別子になるので、これに注意してコードを書いていきましょう!
 次に、下記のコードを見ていきましょう。
-```javascript
+```solidity
 // Web3Mint.sol
 constructor() ERC721 ("TanyaNFT", "TANYA") {
     console.log("This is my NFT contract.");
@@ -86,7 +86,7 @@ node_modulesの中にあるERC721.solを見ればわかるのですが、継承�
 - `TANYA`: NFT トークンのそのシンボル
 
 次に、下記の `makeAnEpicNFT` 関数を段階的に見ていきましょう。
-```javascript
+```solidity
 // Web3Mint.sol
 // ユーザーが NFT を取得するために実行する関数です。
 function makeAnEpicNFT() public {
@@ -101,7 +101,7 @@ function makeAnEpicNFT() public {
 }
 ```
 まず、下記のコードを見ていきます。
-```javascript
+```solidity
 // Web3Mint.sol
 uint256 newItemId = _tokenIds.current();
 ```
@@ -117,7 +117,7 @@ Project2でも同じような解説が乗っていたと思いますが、これ
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```solidity
 // Web3Mint.sol
 _safeMint(msg.sender, newItemId);
 ```
@@ -129,7 +129,7 @@ _safeMint(msg.sender, newItemId);
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```solidity
 // Web3Mint.sol
 _setTokenURI(newItemId, "Valuable data!");
 ```
@@ -141,7 +141,7 @@ _setTokenURI(newItemId, "Valuable data!");
 
 
 最後に、下記のコードを見ていきましょう。
-```javascript
+```solidity
 // Web3Mint.sol
 _tokenIds.increment();
 ```
@@ -184,13 +184,13 @@ NFT が発行された後、`_tokenIds.increment()`（＝ OpenZeppelin が提供
 
 ### 🐈 `Web3Mint.sol` を更新する
 それでは、スマートコントラクトに向かい、下記の行を変更しましょう。
-```javascript
+```solidity
 // Web3Mint.sol
 _setTokenURI(newItemId, "Valuable data!");
 ```
 先ほど取得した JSON ファイルへのリンクこそ、`tokenURI`（＝ **NFT データが保存されている場所**）です。
 そのリンクを下記に貼り付けましょう。
-```javascript
+```solidity
 // Web3Mint.sol
 _setTokenURI(
   newItemId,
@@ -200,6 +200,7 @@ _setTokenURI(
 ### 🎉 NFT をローカルネットワークにデプロイしよう
 ここから、実際に `makeAnEpicNFT()` 関数を呼び出し、スマートコントラクトが問題なくデプロイされるかテストしていきます。
 テスト用のプログラム `run.js` ファイルを下記のように変更しましょう。
+
 ```javascript
 // run.js
 const main = async () => {
@@ -321,10 +322,15 @@ MetaMask ウォレットに `Rinkeby Test Network` が設定されたら、下�
   - Chainlink を使うときは `Connect wallet` をクリックして MetaMask と接続する必要があります。
 
 ### 🚀 `deploy.js` ファイルを作成する
+
 `run.js` は、あくまでローカル環境でコードのテストを行うためのスクリプトでした。
+
 テストネットにコントラクトをデプロイするために、`scripts` フォルダの下に `deploy.js` という名前のファイルを作成しましょう。
+
 下記のように、`deploy.js` スクリプトを更新しましょう。
+
 ```javascript
+// deploy.js
 const main = async () => {
   // コントラクトがコンパイルします
   // コントラクトを扱うために必要なファイルが `artifacts` ディレクトリの直下に生成されます。
@@ -371,7 +377,9 @@ contracts			test
 hardhat.config.js
 ```
 下記のように、`hardhat.config.js` の中身を更新します。
+
 ```javascript
+// hardhat.config.js
 require("@nomiclabs/hardhat-waffle");
 module.exports = {
   solidity: "0.8.4",

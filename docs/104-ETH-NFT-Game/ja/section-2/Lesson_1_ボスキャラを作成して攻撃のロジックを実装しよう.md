@@ -20,7 +20,7 @@
 
 次のコードを `MyEpicGame.sol` の `struct CharacterAttributes` コードブロックの直下に追加しましょう。
 
-```javascript
+```solidity
 // MyEpicGame.sol
 struct BigBoss {
   string name;
@@ -38,7 +38,7 @@ BigBoss public bigBoss;
 
 - `constructor` の中身に下記を追加していきます。
 
-```javascript
+```solidity
 // MyEpicGame.sol
 constructor(
   string[] memory characterNames,
@@ -98,7 +98,7 @@ const gameContract = await gameContractFactory.deploy(
 
 - `mintCharacterNFT` 関数のコードブロック直下に下記を追加してください。
 
-```javascript
+```solidity
 // MyEpicGame.sol
 function attackBoss() public {
 	// 1. プレイヤーのNFTの状態を取得します。
@@ -148,7 +148,7 @@ function attackBoss() public {
 
 以前記述した下記のコードを覚えているでしょうか？
 
-```javascript
+```solidity
 // MyEpicGame.sol
 
 // ユーザーのアドレスと NFT の tokenId を紐づける mapping を作成しています。
@@ -165,7 +165,7 @@ nftHolders[msg.sender] = newItemId;
 
 下記のコードブロックでは、`nftHolders` を使用しています。詳しく見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicGame.sol
 function attackBoss() public {
   // 1. プレイヤーのNFTの状態を取得します。
@@ -178,7 +178,7 @@ function attackBoss() public {
 
 まず、下記のコードに注目してください。
 
-```javascript
+```solidity
 // MyEpicGame.sol
 uint256 nftTokenIdOfPlayer = nftHolders[msg.sender];
 ```
@@ -189,7 +189,7 @@ uint256 nftTokenIdOfPlayer = nftHolders[msg.sender];
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicGame.sol
 CharacterAttributes storage player = nftHolderAttributes[nftTokenIdOfPlayer];
 ```
@@ -213,7 +213,7 @@ CharacterAttributes storage player = nftHolderAttributes[nftTokenIdOfPlayer];
 
 最後に、下記のコードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicGame.sol
 console.log(
   "\nPlayer w/ character %s about to attack. Has %s HP and %s AD",
@@ -238,7 +238,7 @@ console.log(
 
 次に、**プレイヤーの HP が 0 以上であることを確認していきます。**
 
-```javascript
+```solidity
 // MyEpicGame.sol
 // 2. プレイヤーのHPが0以上であることを確認する。
 require(player.hp > 0, "Error: character must have HP to attack boss.");
@@ -262,7 +262,8 @@ require(
 
 ステップ 2 と同じように、**ボスの HP も 0 以上であることを確認していきます。**
 
-```javascript
+```solidity
+// MyEpicGame.sol
 // 3. ボスのHPが0以上であることを確認する。
 require(bigBoss.hp > 0, "Error: boss must have HP to attack boss.");
 ```
@@ -279,7 +280,7 @@ require(bigBoss.hp > 0, "Error: boss must have HP to attack boss.");
 
 次に、**プレイヤーがボスを攻撃するターンを実装していきます。**
 
-```javascript
+```solidity
 // MyEpicGame.sol
 // 4. プレイヤーがボスを攻撃できるようにする。
 if (bigBoss.hp < player.attackDamage) {
@@ -311,7 +312,7 @@ if (bigBoss.hp < player.attackDamage) {
 
 **5️⃣ \. ボスがプレイヤーを攻撃できるようにする**
 
-```javascript
+```solidity
 // MyEpicGame.sol
 // 5. ボスがプレイヤーを攻撃できるようにする。
 if (player.hp < bigBoss.attackDamage) {
@@ -325,7 +326,8 @@ if (player.hp < bigBoss.attackDamage) {
 
 最後に、下記のコードを見ていきましょう。
 
-```javascript
+```solidity
+// MyEpicGame.sol
 // プレイヤーの攻撃をターミナルに出力する。
 console.log("Player attacked boss. New boss hp: %s", bigBoss.hp);
 // ボスの攻撃をターミナルに出力する。

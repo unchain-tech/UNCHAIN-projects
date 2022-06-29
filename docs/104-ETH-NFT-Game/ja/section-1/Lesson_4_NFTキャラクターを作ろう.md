@@ -66,7 +66,7 @@ NFT における「Mint（ミント）」とは、スマートコントラクト
 
 それでは、`MyEpicGame.sol` を以下のように更新しましょう。
 
-```javascript
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 import "hardhat/console.sol";
@@ -117,7 +117,7 @@ contract MyEpicGame {
 
 それでは、一行ずつコードの理解を深めましょう。
 
-```javascript
+```solidity
 // MyEpicGame.sol
 struct CharacterAttributes {
   uint characterIndex;
@@ -133,7 +133,7 @@ struct CharacterAttributes {
 
 `CharacterAttributes` には、下記の属性情報が格納されます。
 
-```javascript
+```solidity
 uint characterIndex; // キャラクターID（1番、2番.. N番）
 string name; // キャラクターの名前
 string imageURI; // キャラクターの画像情報
@@ -144,7 +144,7 @@ uint attackDamage; // キャラクターの攻撃力
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicGame.sol
 CharacterAttributes[] defaultCharacters;
 ```
@@ -155,7 +155,7 @@ CharacterAttributes[] defaultCharacters;
 
 次に下記のコードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicGame.sol
 constructor(
 	string[] memory characterNames,
@@ -175,7 +175,7 @@ constructor(
 
 最後に、次のコードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicGame.sol
 for(uint i = 0; i < characterNames.length; i += 1) {
 	defaultCharacters.push(CharacterAttributes({
@@ -243,7 +243,7 @@ runMain();
 
 **上記の `gameContractFactory.deploy()` の中に格納されている情報が、`MyEpicGame.sol` の `constructor` に渡されます。**
 
-```javascript
+```solidity
 // MyEpicGame.sol
 // 例：["ZORO", "NAMI", "USOPP"] = キャラクターの名前 が `characterNames` 配列に渡されます。
 string[] memory characterNames,

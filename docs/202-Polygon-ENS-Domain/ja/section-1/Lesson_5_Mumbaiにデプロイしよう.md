@@ -120,7 +120,8 @@ MetaMask と Hardhat の両方で Polygon ネットワークの設定が完了�
 
 `run.js`とは別でファイルを作成します。`scripts`フォルダの下に`deploy.js`という名前のファイルを作成します。`console.log`ステートメントが多いことを除けば、`run.js`ファイルと非常によく似ています。
 
-```jsx
+```javascript
+// deploy.js
 const main = async () => {
   const domainContractFactory = await hre.ethers.getContractFactory("Domains");
   const domainContract = await domainContractFactory.deploy("ninja");
@@ -128,7 +129,7 @@ const main = async () => {
 
   console.log("Contract deployed to:", domainContract.address);
 
-  // domainはぜひ変えてみてください。OpenSeaでbananaばかり見たくありませんので。。。
+  // domainをオリジナルにしましょう！
   let txn = await domainContract.register("banana", {
     value: hre.ethers.utils.parseEther("0.1"),
   });
@@ -167,7 +168,8 @@ runMain();
 
 `hardhat.config.js`ファイルを編集します。 これは、スマートコントラクトプロジェクトのルートディレクトリにあります。 ここでは、使用しているネットワークと秘密鍵を追加します。
 
-```jsx
+```javascript
+// hardhat.config.js
 require("@nomiclabs/hardhat-waffle");
 
 module.exports = {

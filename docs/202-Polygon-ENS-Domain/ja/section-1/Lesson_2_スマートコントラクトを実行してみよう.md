@@ -40,7 +40,8 @@ VS Code をターミナルから起動する方法は [こちら](https://maku.b
 
 `Domains.sol` を VS Code で開き、下記を入力します。
 
-```javascript
+```solidity
+// Domains.sol
 // SPDX-License-Identifier: UNLICENSED
 
 pragma solidity ^0.8.4;
@@ -55,7 +56,8 @@ contract Domains {
 ```
 コードを詳しくみていきましょう。
 
-```javascript
+```solidity
+// Domains.sol
 // SPDX-License-Identifier: UNLICENSED
 ```
 
@@ -63,7 +65,8 @@ contract Domains {
 
 詳細については、[こちら](https://www.skyarch.net/blog/?p=15940) を参照してみてください。
 
-```javascript
+```solidity
+// Domains.sol
 pragma solidity ^0.8.4;
 ```
 
@@ -75,7 +78,8 @@ pragma solidity ^0.8.4;
 
 もし記載されている Solidity のバージョンが`0.8.4` でなかった場合は、`Domains.sol`の中身を`hardhat.config.js` に記載されているバージョンに変更しましょう。
 
-```javascript
+```solidity
+// Domains.sol
 import "hardhat/console.sol";
 ```
 コントラクトを実行する際、コンソールログをターミナルに出力するために Hardhat の `console.sol` のファイルをインポートしています。
@@ -83,7 +87,8 @@ import "hardhat/console.sol";
 これは、今後スマートコントラクトのデバッグが発生した場合に、とても役立つツールです。
 
 
-```javascript
+```solidity
+// Domains.sol
 contract Domains{
     constructor() {
         console.log("THIS IS MY DOMAIN CONTRACT. NICE.");
@@ -128,7 +133,8 @@ class の概念については、[こちら](https://aiacademy.jp/media/?p=131) 
 
 `run.js` の中身に、以下を記入しましょう。
 
-```jsx
+```javascript
+// run.js
 const main = async () => {
   const domainContractFactory = await hre.ethers.getContractFactory('Domains');
   const domainContract = await domainContractFactory.deploy();
@@ -151,7 +157,8 @@ runMain();
 
 それでは、1 行ずつコードの理解を深めましょう。
 
-```jsx
+```javascript
+// run.js
 const domainContractFactory = await hre.ethers.getContractFactory('Domains');
 ```
 
@@ -175,7 +182,8 @@ const domainContractFactory = await hre.ethers.getContractFactory('Domains');
 
 次に、下記の処理を見ていきましょう。
 
-```jsx
+```javascript
+// run.js
 const domainContract = await domainContractFactory.deploy();
 ```
 
@@ -189,7 +197,8 @@ Hardhat がローカルの Ethereum ネットワークを、コントラクト�
 
 次に下記の処理を見ていきましょう。
 
-```jsx
+```javascript
+// run.js
 await domainContract.deployed();
 ```
 
@@ -199,7 +208,8 @@ Hardhat は実際にあなたのマシン上に「マイナー」を作成し、
 
 `constructor` は、スマートコントラクトがデプロイされるときに初めて実行されます。
 
-```jsx
+```javascript
+// run.js
 console.log("Contract deployed to:", domainContract.address);
 ```
 

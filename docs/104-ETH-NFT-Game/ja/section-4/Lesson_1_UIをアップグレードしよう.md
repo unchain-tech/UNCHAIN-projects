@@ -254,6 +254,7 @@ import LoadingIndicator from "../LoadingIndicator";
 次に、`Arena/index.js` に記載されている `return();` の中身に着目し、`{boss ..}` の中身を下記のように更新してください。
 
 ```javascript
+// Arena/index.js
 {
   boss && (
     <div className="boss-container">
@@ -444,6 +445,7 @@ import LoadingIndicator from "../LoadingIndicator";
 次に、`nft-game-starter-project/src/Components/Arena/index.js` を開き、HTML が記載されている `return();` の中身を下記のように更新しましょう。
 
 ```javascript
+// Arena/index.js
 return (
   <div className="arena-container">
     {/* 攻撃ダメージの通知を追加します */}

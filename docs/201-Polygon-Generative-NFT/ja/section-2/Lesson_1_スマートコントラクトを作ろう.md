@@ -161,7 +161,7 @@ VS Code をターミナルから起動する方法は[こちら](https://maku.bl
 
 それでは、これから `NFTCollectible.sol` の中身の作成していきます。`NFTCollectible.sol` を VS Code で開き、下記を入力します。
 
-```javascript
+```solidity
 // NFTCollectible.sol
 //SPDX-License-Identifier: MIT
 
@@ -184,14 +184,14 @@ contract NFTCollectible is ERC721Enumerable, Ownable {
 
 コードを詳しくみていきましょう。
 
-```javascript
+```solidity
 // NFTCollectible.sol
 // SPDX-License-Identifier: MIT
 ```
 
 これは「SPDX ライセンス識別子」と呼ばれ、ソフトウェア・ライセンスの種類が一目でわかるようにするための識別子です。
 
-```javascript
+```solidity
 // NFTCollectible.sol
 pragma solidity ^0.8.4;
 ```
@@ -200,19 +200,19 @@ pragma solidity ^0.8.4;
 
 もし、`hardhat.config.js` の中に記載されている Solidity のバージョンが `0.8.4` でなかった場合は、`NFTCollectible.sol` の中身を `hardhat.config.js` に記載されているバージョンに変更しましょう。
 
-```javascript
+```solidity
 // NFTCollectible.sol
 import "hardhat/console.sol";
 ```
 
 コントラクトを実行する際、コンソールログをターミナルに出力するために Hardhat の `console.sol` のファイルをインポートしています。これは、今後スマートコントラクトのデバッグが発生した場合に、とても役立つツールです。
 
-```javascript
+```solidity
 // NFTCollectible.sol
 import "hardhat/console.sol";
 ```
 
-```javascript
+```solidity
 // NFTCollectible.sol
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
@@ -244,7 +244,7 @@ class の概念については、[こちら](https://aiacademy.jp/media/?p=131) 
 
 `NFTCollectible.sol` の中の `Counters.Counter private _tokenIds;` の直下に以下のコードを追加しましょう。
 
-```javascript
+```solidity
 // NFTCollectible.sol
 uint public constant MAX_SUPPLY = 30;
 uint public constant PRICE = 0.01 ether;
@@ -291,7 +291,7 @@ string public baseTokenURI;
 
 `NFTCollectible.sol` の中の `string public baseTokenURI;` の直下に以下のコードを追加しましょう。
 
-```javascript
+```solidity
 // NFTCollectible.sol
 constructor(string memory baseURI) ERC721("NFT Collectible", "NFTC") {
      setBaseURI(baseURI);
@@ -322,7 +322,7 @@ constructor(string memory baseURI) ERC721("NFT Collectible", "NFTC") {
 
 下記を、`constructor` のコードブロック直下に追加しましょう。
 
-```javascript
+```solidity
 // NFTCollectible.sol
 function reserveNFTs() public onlyOwner {
      uint totalMinted = _tokenIds.current();
@@ -376,7 +376,7 @@ https://gateway.pinata.cloud/ipfs/QmSvw119ALMN9SkP89Xj37jvqJik8jZrSjU5c1vgBhkhz8
 
 上記を踏まえ、下記を `reserveNFTs` のコードブロック直下に追加しましょう。
 
-```javascript
+```solidity
 // NFTCollectible.sol
 function _baseURI() internal
                     view
@@ -415,7 +415,7 @@ NFT の JSON メタデータは、IPFS の次の URL で入手できます： ip
 
 下記を `setBaseURI` 関数のコードブロック直下に追加しましょう。
 
-```javascript
+```solidity
 // NFTCollectible.sol
 function mintNFTs(uint _count) public payable {
      uint totalMinted = _tokenIds.current();
@@ -446,7 +446,7 @@ function mintNFTs(uint _count) public payable {
 
 下記を参考に、Mint が実行される前に以下 3 点のチェックを行います。
 
-```javascript
+```solidity
 // NFTCollectible.sol
 uint public constant MAX_SUPPLY = 30;
 uint public constant PRICE = 0.01 ether;
@@ -465,7 +465,7 @@ uint public constant MAX_PER_MINT = 3;
 
 下記を `mintNFTs` 関数のコードブロック直下に追加しましょう。
 
-```javascript
+```solidity
 // NFTCollectible.sol
 function _mintSingleNFT() private {
       uint newTokenID = _tokenIds.current();
@@ -498,7 +498,7 @@ NFT 保有者に何らかの実用性を提供する場合、各ユーザーが�
 
 下記を `_mintSingleNFT` 関数のコードブロック直下に追加しましょう。
 
-```javascript
+```solidity
 // NFTCollectible.sol
 function tokensOfOwner(address _owner)
          external
@@ -528,7 +528,7 @@ ERC721 Enumerable の `balanceOf` と `tokenOfOwnerByIndex` 関数を使用し�
 
 - `onlyOwner` 修飾子をつけていきます。
 
-```javascript
+```solidity
 // NFTCollectible.sol
 function withdraw() public payable onlyOwner {
      uint balance = address(this).balance;
@@ -544,7 +544,7 @@ function withdraw() public payable onlyOwner {
 
 下記が最終的なコードです。
 
-```javascript
+```solidity
 // NTCollectible.sol
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;

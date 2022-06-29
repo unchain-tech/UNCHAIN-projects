@@ -155,6 +155,7 @@ console.log("Mining...please wait.");
 次に、下記のコードを見ていきましょう。
 
 ```javascript
+// App.js
 await nftTxn.wait();
 console.log(
   `Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`
@@ -278,6 +279,7 @@ ABI ファイルの準備ができたので、`App.js` にインポートしま�
 下記を `App.js` の 1 行目に追加しましょう。
 
 ```javascript
+// App.js
 import myEpicNft from "./utils/MyEpicNFT.json";
 ```
 

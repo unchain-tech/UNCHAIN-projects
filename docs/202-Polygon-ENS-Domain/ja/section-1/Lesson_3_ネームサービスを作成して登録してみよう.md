@@ -13,7 +13,8 @@
 
 `Domains.sol`に向かいます。
 
-```javascript
+```solidity
+// Domains.sol
 // SPDX-License-Identifier: UNLICENSED
 
 pragma solidity ^0.8.4;
@@ -90,6 +91,7 @@ APIに詳しい方ならパブリックなAPIのエンドポイントのよう�
 では具体的にテストしたいと思います。
 
 ```javascript
+// run.js
 const main = async () => {
   const [owner, randomPerson] = await hre.ethers.getSigners();
   const domainContractFactory = await hre.ethers.getContractFactory('Domains');
@@ -124,7 +126,8 @@ runMain();
 
 順番に見ていきましょう。
 
-```jsx
+```javascript
+// run.js
 const [owner, randomPerson] = await hre.ethers.getSigners();
 ```
 
@@ -134,13 +137,15 @@ const [owner, randomPerson] = await hre.ethers.getSigners();
 
 コントラクトをデプロイした人のアドレスを出力します。
 
-```jsx
+```javascript
+// run.js
 console.log("Contract deployed by:", owner.address);
 ```
 
 最後にこれを追加しています。
 
-```jsx
+```javascript
+// run.js
 const txn = await domainContract.register("doom");
 await txn.wait();
 
@@ -195,7 +200,8 @@ ENSを使用すると、前に示したように、さまざまなものを保�
 
 `Domains.sol`を変更します。
 
-```javascript
+```solidity
+// Domains.sol
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.4;
 
@@ -248,7 +254,8 @@ require文の括弧の中の条件が満たされない場合、トランザク�
 
 順番に見ていきましょう。
 
-```jsx
+```solidity
+// Domains.sol
 require(domains[name] == address(0));
 ```
 
@@ -260,7 +267,8 @@ Solidityではアドレスマッピングが初期化されると、その中の
 したがって、ドメインが登録されていない場合は、ゼロアドレスを指します。
 
 
-```jsx
+```solidity
+// Domains.sol
 require(domains[name] == msg.sender);
 ```
 
@@ -271,7 +279,8 @@ require(domains[name] == msg.sender);
 では`run.js`を以下のように変更してみましょう。
 
 
-```jsx
+```javascript
+// run.js
 const main = async () => {
   // 1つ目のアドレスは呼び出す人、2つ目のアドレスはランダムです。
   const [owner, randomPerson] = await hre.ethers.getSigners();
@@ -326,7 +335,8 @@ Owner of domain doom: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
 
 `run.js`に数行付け加えました。
 
-```jsx
+```javascript
+// run.js
 const main = async () => {
   // 1つ目のアドレスは呼び出す人、2つ目のアドレスはランダムです。
   const [owner, randomPerson] = await hre.ethers.getSigners();
@@ -370,7 +380,8 @@ npx hardhat run scripts/run.js
 
 **次のスクリプトの箇所でエラーが発生します**
 
-```jsx
+```javascript
+// run.js
 txn = await domainContract.connect(randomPerson).setRecord("doom", "Haha my domain now!");
 await txn.wait();
 ```

@@ -12,7 +12,7 @@
 
 それでは、`WavePortal.sol` を更新していきます。
 
-```javascript
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 import "hardhat/console.sol";
@@ -78,7 +78,7 @@ contract WavePortal {
 
 下記のコードに注目してください。
 
-```javascript
+```solidity
 // WavePortal.sol
 event NewWave(address indexed from, uint256 timestamp, string message);
 ```
@@ -91,7 +91,7 @@ event NewWave(address indexed from, uint256 timestamp, string message);
 
 次に下記のコードを見ていきましょう。
 
-```javascript
+```solidity
 // WavePortal.sol
 emit NewWave(msg.sender, block.timestamp, _message);
 ```
@@ -185,6 +185,7 @@ useEffect(() => {
 `getAllWaves` 関数は、`waves` 関数とほぼ同じ仕様をしています。
 
 ```javascript
+// App.js
 const getAllWaves = async () => {
   const { ethereum } = window;
 
@@ -316,6 +317,7 @@ const onNewWave = (from, timestamp, message) => {
 次に、下記のコードを見ていきましょう。
 
 ```javascript
+// App.js
 if (window.ethereum) {
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();

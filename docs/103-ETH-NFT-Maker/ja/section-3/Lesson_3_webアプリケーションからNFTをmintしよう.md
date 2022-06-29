@@ -126,6 +126,7 @@ console.log("Mining...please wait.");
 次に、下記のコードを見ていきましょう。
 
 ```javascript
+// NftUploader.jsx
 await nftTxn.wait();
 console.log(
   `Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`
@@ -215,6 +216,7 @@ ABI ファイルの準備ができたので、`NftUploader.jsx` にインポー�
 下記を `NftUploader.jsx` の 1 行目に追加しましょう。
 
 ```javascript
+// NftUploader.jsx
 import Web3Mint from "../../utils/Web3Mint.json";
 ```
 
@@ -233,14 +235,18 @@ npm install web3.storage
 ```
 
 そして`NftUploader.jsx`の冒頭に一行を加えましょう。
-```
+
+```javascript
+// NftUploader.jsx
 import { Web3Storage } from 'web3.storage'
 ```
 
-では、このWeb3Storageを使った関数を実装していきましょう。
-`NftUploader.jsx`に`imageToNFT`関数を実装しましょう。
+では、この `Web3Storage` を使った関数を実装していきましょう。
+
+`NftUploader.jsx` に `imageToNFT` 関数を実装しましょう。
 
 ```javascript
+// NftUploader.jsx
 const imageToNFT = async (e) => {
         const client = new Web3Storage({ token: API_KEY })
         const image = e.target
@@ -259,8 +265,10 @@ const imageToNFT = async (e) => {
     }
 ```
 
-この関数は画像を受け取るinputタグのonClickプロパティに実装します。これでinputが画像を受け取るたびにNFTが発行されることになります。変更する箇所が二箇所あるので、注意してください。
+この関数は画像を受け取る `input` タグの `onClick` プロパティに実装します。これで `input` が画像を受け取るたびに NFT が発行されることになります。変更する箇所が二箇所あるので、注意してください。
+
 ```javascript
+// NftUploader.jsx
 <input className="imageUploadInput" multiple name="imageURL" type="file" accept=".jpg , .jpeg , .png" onChange={imageToNFT}/>
       </div>
       <p>または</p>
@@ -270,42 +278,53 @@ const imageToNFT = async (e) => {
       </Button>
 ```
 
-`imageToNFT`関数について解説していきます!
+`imageToNFT` 関数について解説していきます!
+
 ```javascript
+// NftUploader.jsx
 const imageToNFT = async (e) => {
         const client = new Web3Storage({ token: API_KEY })
         const image = e.target
         console.log(image)
 ```
-ここでは、inputから受け取った画像をeで受け取って、画像のオブジェクトをe.targetでimageに代入しています。
-eという合成イベントについては、[公式の説明](https://ja.reactjs.org/docs/events.html)や[こちら](https://react.keicode.com/basics/synthetic-events.php)が役に立つと思います。
+ここでは、`input` から受け取った画像をeで受け取って、画像のオブジェクトを `e.target` で `image` に代入しています。
 
-そしてWeb3Storageにアップロードするために、APIを取得する必要があります。
-web3.storageのアカウント画面に行き、create a tokenのボタンを押してください。
+`e` という合成イベントについては、[公式の説明](https://ja.reactjs.org/docs/events.html)や[こちら](https://react.keicode.com/basics/synthetic-events.php)が役に立つと思います。
+
+そして `Web3Storage` にアップロードするために、API を取得する必要があります。
+
+`web3.storage` のアカウント画面に行き、`create a token` のボタンを押してください。
 
 ![](/public/images/103-ETH-NFT-Maker/section3/3-3-1.png)
 
-すると、Name your tokenという記入画面があると思うので、そこに好きな名前をいれてapi_keyを作りましょう。
-名前を入れてenterを押すと、しばらくまって下の画面にkeyがでてくるはずなので、それをコピーしましょう
+すると、`Name your token` という記入画面があると思うので、そこに好きな名前をいれて `api_key` を作りましょう。
 
-`NftUploader.jsx`に戻って、API_KEYを定義しましょう。
+名前を入れて enter を押すと、しばらくまって下の画面にkeyがでてくるはずなので、それをコピーしましょう
+
+`NftUploader.jsx` に戻って、API_KEYを定義しましょう。
+
 ```javascript
+// NftUploader.jsx
 const API_KEY ="あなたのKEYをいれてください"
 ```
 
 
 次は、下記のコードを解説します。
 ```javascript
+// NftUploader.jsx
 const rootCid = await client.put(image.files, {
             name: 'experiment',
             maxRetries: 3
         })
 ```
-ここで、画像をIPFSで保存しています。画像のデータと、名前などを設定しています。さらに返り値のCIDがrootCidに代入されています。
+ここで、画像を IPFS で保存しています。画像のデータと、名前などを設定しています。さらに返り値の `CID` が `rootCid` に代入されています。
+
 詳しく知りたい方は、[公式doc](https://web3.storage/docs/reference/js-client-library/)を参考にしてみてください。
 
 次は、下記のコードを解説します。
+
 ```javascript
+// NftUploader.jsx
         const res = await client.get(rootCid) // Web3Response
         const files = await res.files() // Web3File[]
         for (const file of files) {
@@ -313,9 +332,11 @@ const rootCid = await client.put(image.files, {
           askContractToMintNft(file.cid)
         }
 ```
+
 先程の返り値をつかって、今度は保存したファイルのデータを取りに行っています。
-この`file.cid`が送った画像のIPFSになります。気になる方は、console.logで出たものをブラウザに表示させてみてください。
-そのfile.cidを引数にして、`askContractToMintNft`関数を使いましょう。
+
+この `file.cid` が送った画像のIPFSになります。気になる方は、console.log で出たものをブラウザに表示させてみてください。
+そのfile.cidを引数にして、`askContractToMintNft` 関数を使いましょう。
 これで、mintするための準備はすべて整ったはずです。
 
 

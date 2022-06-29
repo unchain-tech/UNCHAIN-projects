@@ -4,7 +4,7 @@
 
 下記のように、`MyEpicNFT.sol`を更新しましょう。
 
-```javascript
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 // いくつかの OpenZeppelin のコントラクトをインポートします。
@@ -50,7 +50,7 @@ contract MyEpicNFT is ERC721URIStorage {
 
 1 行ずつコードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicNFT.sol
 contract MyEpicNFT is ERC721URIStorage {
 	:
@@ -68,7 +68,7 @@ NFT のモジュールは `ERC721` として知られています。
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicNFT.sol
 using Counters for Counters.Counter;
 ```
@@ -95,7 +95,7 @@ using Counters for Counters.Counter;
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicNFT.sol
 Counters.Counter private _tokenIds;
 ```
@@ -108,7 +108,7 @@ tokenId は NFT の一意な識別子で、0, 1, 2, .. N のように付与さ�
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicNFT.sol
 constructor() ERC721 ("TanyaNFT", "TANYA") {
     console.log("This is my NFT contract.");
@@ -124,7 +124,7 @@ constructor() ERC721 ("TanyaNFT", "TANYA") {
 
 次に、下記の `makeAnEpicNFT` 関数を段階的に見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicNFT.sol
 // ユーザーが NFT を取得するために実行する関数です。
 function makeAnEpicNFT() public {
@@ -141,7 +141,7 @@ function makeAnEpicNFT() public {
 
 まず、下記のコードを見ていきます。
 
-```javascript
+```solidity
 // MyEpicNFT.sol
 uint256 newItemId = _tokenIds.current();
 ```
@@ -166,7 +166,7 @@ uint256 newItemId = _tokenIds.current();
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicNFT.sol
 _safeMint(msg.sender, newItemId);
 ```
@@ -182,7 +182,7 @@ _safeMint(msg.sender, newItemId);
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicNFT.sol
 _setTokenURI(newItemId, "Valuable data!");
 ```
@@ -206,7 +206,7 @@ console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
 
 最後に、下記のコードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicNFT.sol
 _tokenIds.increment();
 ```
@@ -273,7 +273,7 @@ NFT が発行された後、`_tokenIds.increment()`（＝ OpenZeppelin が提供
 
 それでは、スマートコントラクトに向かい、下記の行を変更しましょう。
 
-```javascript
+```solidity
 // MyEpicNFT.sol
 _setTokenURI(newItemId, "Valuable data!");
 ```
@@ -282,7 +282,7 @@ _setTokenURI(newItemId, "Valuable data!");
 
 そのリンクを下記に貼り付けましょう。
 
-```javascript
+```solidity
 // MyEpicNFT.sol
 _setTokenURI(
   newItemId,
@@ -458,6 +458,7 @@ MetaMask ウォレットに `Rinkeby Test Network` が設定されたら、下�
 下記のように、`deploy.js` スクリプトを更新しましょう。
 
 ```javascript
+// deploy.js
 const main = async () => {
   // コントラクトがコンパイルします
   // コントラクトを扱うために必要なファイルが `artifacts` ディレクトリの直下に生成されます。
@@ -512,6 +513,7 @@ hardhat.config.js
 下記のように、`hardhat.config.js` の中身を更新します。
 
 ```javascript
+// hardhat.config.js
 require("@nomiclabs/hardhat-waffle");
 module.exports = {
   solidity: "0.8.4",

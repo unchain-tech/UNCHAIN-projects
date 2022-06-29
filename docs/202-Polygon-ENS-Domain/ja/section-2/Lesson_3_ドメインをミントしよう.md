@@ -4,7 +4,8 @@
 
 まず、ユーザーのドメイン名と保存するデータを取得する必要があるので、それを実行しましょう。
 
-```jsx
+```javascript
+// App.js
 import React, { useEffect, useState } from "react";
 import "./styles/App.css";
 import twitterLogo from "./assets/twitter-logo.svg";
@@ -163,7 +164,8 @@ export default App;
 
 これらの新しい追加について、より焦点を絞って見てみましょう。
 
-```jsx
+```javascript
+// App.js
 // トップレベルドメイン(tld)を定義します。
 const tld = '.ninja';
 
@@ -207,7 +209,8 @@ return (
 
 以前にドメインを NFT として作成するコントラクトに作成した`register`関数を覚えていますか？ 次は Web アプリからこの関数を呼び出す必要があります。 先に進み、`checkIfWalletIsConnected`関数の下に次の関数を追加します。
 
-```jsx
+```javascript
+// App.js
 const mintDomain = async () => {
   // ドメインがnullのときrunしません。
   if (!domain) {
@@ -267,7 +270,8 @@ const mintDomain = async () => {
 
 これにより、いくつかのエラーが出ますが心配しないでください。これから修正します。 コードを少し見てみましょう。
 
-```jsx
+```javascript
+// App.js
 const provider = new ethers.providers.Web3Provider(ethereum);
 const signer = provider.getSigner();
 ```
@@ -280,7 +284,8 @@ const signer = provider.getSigner();
 
 [こちら](https://docs.ethers.io/v5/api/signer/#signers)は if 文内の`signer`を説明するリンクです。ご参考ください。
 
-```jsx
+```javascript
+// App.js
 const contract = new ethers.Contract(CONTRACT_ADDRESS, contractAbi.abi, signer);
 ```
 
@@ -292,7 +297,8 @@ const contract = new ethers.Contract(CONTRACT_ADDRESS, contractAbi.abi, signer);
 
 忘れたり紛失したりしても心配はいりません。コントラクトを再デプロイして新しいコントラクトアドレスを取得してください。
 
-```jsx
+```javascript
+// App.js
 console.log("Going to pop wallet now to pay gas...");
 let tx = await contract.register(domain, {
   value: ethers.utils.parseEther(price),
@@ -331,7 +337,8 @@ if (receipt.status === 1) {
 
 他は同じままです。
 
-```jsx
+```javascript
+// App.js
 const renderInputForm = () => {
   return (
     <div className="form-container">
@@ -395,7 +402,8 @@ ABI ファイルの内容を新しいファイルに貼り付けます。
 
 次のようになります。
 
-```jsx
+```javascript
+// App.js
 import contractAbi from "./utils/contractABI.json";
 ```
 

@@ -6,7 +6,7 @@
 
 下記のように、`MyEpicNFT.sol` を更新していきましょう。
 
-```javascript
+```solidity
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.4;
@@ -127,7 +127,7 @@ contract MyEpicNFT is ERC721URIStorage {
 
 `baseSvg` 変数は、SVG 形式で単語を表示するために、作成されています。
 
-```javascript
+```solidity
 // MyEpicNFT.sol
 string baseSvg = "<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='xMinYMin meet' viewBox='0 0 350 350'><style>.base { fill: white; font-family: serif; font-size: 24px; }</style><rect width='100%' height='100%' fill='black' /><text x='50%' y='50%' class='base' dominant-baseline='middle' text-anchor='middle'>";
 ```
@@ -136,7 +136,7 @@ string baseSvg = "<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='x
 
 下記では、`baseSvg` 変数の中身と、`"</text></svg>"`で、3 つの単語（`first`、`second`、`third` 変数に格納された値）を閉じて文字列（`string`）として連結しています。
 
-```javascripts
+```solidity
 string memory finalSvg = string(abi.encodePacked(baseSvg, first, second, third, "</text></svg>"));
 ```
 
@@ -144,7 +144,7 @@ string memory finalSvg = string(abi.encodePacked(baseSvg, first, second, third, 
 
 ### 📝 ランダムに組み合わされる単語を設定する
 
-```javascript
+```solidity
 // MyEpicNFT.sol
 string[] firstWords = ["YOUR_WORD", "YOUR_WORD", "YOUR_WORD", "YOUR_WORD", "YOUR_WORD", "YOUR_WORD"];
 string[] secondWords = ["YOUR_WORD", "YOUR_WORD", "YOUR_WORD", "YOUR_WORD", "YOUR_WORD", "YOUR_WORD"];
@@ -169,7 +169,7 @@ string[] thirdWords = ["Kitten", "Puppy", "Monkey", "Bird", "Panda", "Elephant"]
 
 `pickRandomFirstWord` 関数は、NFT 画像に 1 番目に表示される単語を選びます。
 
-```javascript
+```solidity
 // MyEpicNFT.sol
 function pickRandomFirstWord(uint256 tokenId) public view returns (string memory)
 {
@@ -196,7 +196,7 @@ function pickRandomFirstWord(uint256 tokenId) public view returns (string memory
 
 下記のコードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicNFT.sol
 uint256 rand = random(string(abi.encodePacked("FIRST_WORD", Strings.toString(tokenId))));
 ```
@@ -213,7 +213,7 @@ uint256 rand = random(string(abi.encodePacked("FIRST_WORD", Strings.toString(tok
 
 次に、次のコードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicNFT.sol
 rand = rand % firstWords.length;
 return firstWords[rand];
@@ -312,7 +312,7 @@ epic-nfts
 
 `libraries` ディレクトリに `Base64.sol` という名前のファイルを作成し、下記のコードを貼り付けてください。
 
-```javascript
+```solidity
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.4;
@@ -393,7 +393,7 @@ library Base64 {
 
 `MyEpicNFT.sol` も下記のように更新しましょう。
 
-```javascript
+```solidity
 // SPDX-License-Identifier: MIT
 
 pragma solidity 0.8.4;
@@ -530,7 +530,7 @@ contract MyEpicNFT is ERC721URIStorage {
 
 追加したコードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicNFT.sol
 import { Base64 } from "./libraries/Base64.sol";
 ```
@@ -539,7 +539,7 @@ import { Base64 } from "./libraries/Base64.sol";
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicNFT.sol
 string memory combinedWord = string(abi.encodePacked(first, second, third));
 ```
@@ -548,7 +548,7 @@ string memory combinedWord = string(abi.encodePacked(first, second, third));
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicNFT.sol
 // JSONファイルを所定の位置に取得し、base64としてエンコードします。
 string memory json = Base64.encode(
@@ -576,7 +576,7 @@ string memory json = Base64.encode(
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicNFT.sol
 string memory finalTokenUri = string(
 	abi.encodePacked("data:application/json;base64,", json)
@@ -587,7 +587,7 @@ string memory finalTokenUri = string(
 
 最後に、下記のコードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicNFT.sol
 _setTokenURI(newItemId, finalTokenUri);
 ```
@@ -658,6 +658,7 @@ NFT Preview を使用すれば、テストネットにデプロイしなくて�
 - 変更点は、2 つ目の NFT 発行を削除しているだけです。
 
 ```javascript
+// deploy.js
 const main = async () => {
   // コントラクトがコンパイルします
   // コントラクトを扱うために必要なファイルが `artifacts` ディレクトリの直下に生成されます。

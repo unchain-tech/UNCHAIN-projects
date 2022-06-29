@@ -326,6 +326,7 @@ Python リストは、`rarity_weights` の重みを割り当てる最も一般�
 次に、`config.py` の `Wristbands` に定義した `rarity_weights` を見てみましょう。
 
 ```javascript
+// config.py
 {
 	'id': 8,
 	'name': 'wristband',

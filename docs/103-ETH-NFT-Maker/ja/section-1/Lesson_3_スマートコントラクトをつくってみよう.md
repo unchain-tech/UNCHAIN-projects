@@ -27,7 +27,7 @@ ipfs-nfts
 
 `Web3Mint.sol` のファイル内に以下のコードを記載します。
 
-```javascript
+```solidity
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.4;
 import "hardhat/console.sol";
@@ -49,7 +49,7 @@ contract Web3Mint {
 > 無視して問題ありません。
 さて、行ごとにコードをみていきましょう。
 
-```javascript
+```solidity
 // SPDX-License-Identifier: UNLICENSED
 ```
 
@@ -57,7 +57,7 @@ contract Web3Mint {
 
 詳細については、[ここ](https://www.skyarch.net/blog/?p=15940)を参照してみてください。
 
-```javascript
+```solidity
 // Web3Mint.sol
 pragma solidity ^0.8.4;
 ```
@@ -70,7 +70,7 @@ pragma solidity ^0.8.4;
 
 もし、`hardhat.config.js` の中に記載されている Solidity のバージョンが `0.8.4` でなかった場合は、`Web3Mint.sol` の中身を `hardhat.config.js` に記載されているバージョンに変更しましょう。
 
-```javascript
+```solidity
 // Web3Mint.sol
 import "hardhat/console.sol";
 ```
@@ -85,7 +85,7 @@ Hardhat のおかげで、コントラクトでコンソールログを実行で
 
 よって、Hardhat はローカル環境でコントラクトのデプロイを行えるため、ブロックチェーン上にアップロードする前に簡単にデバッグができる便利なツールといえます。
 
-```javascript
+```solidity
 // Web3Mint.sol
 contract Web3Mint {
     constructor() {

@@ -58,6 +58,7 @@ main()
 - NFT コレクションのメタデータを取得。**`beseTokenURI` のアドレスをあなたの IPSF のアドレスに変更してください。**
 
   ```javascript
+  // run.js
   // あなたのコレクションの Base Token URI（JSON の CID）に差し替えてください
   const baseTokenURI = "ipfs://QmZbWNKJPAjxXuNFSEaksCJVd1M6DaKQViJBYPK2BdpDEP/";
   ```
@@ -65,6 +66,7 @@ main()
 - コントラクトの所有者（あなた）のアドレスを取得。
 
   ```javascript
+  // run.js
   // オーナー/デプロイヤーのウォレットアドレスを取得する
   const [owner] = await hre.ethers.getSigners();
   ```
@@ -72,6 +74,7 @@ main()
 - デプロイしたいコントラクトを取得。
 
   ```javascript
+  // run.js
   // デプロイしたいコントラクトを取得
   const contractFactory = await hre.ethers.getContractFactory("NFTCollectible");
   ```
@@ -79,6 +82,7 @@ main()
 - コントラクトをデプロイするためのリクエストを送り、マイナーがこのリクエストを選んでブロックチェーンに追加するのを待つ（トランザクションの承認待ち）。
 
   ```javascript
+  // run.js
   // 正しいコンストラクタ引数（baseTokenURI）でコントラクトをデプロイします。
   const contract = await contractFactory.deploy(baseTokenURI);
 
@@ -89,6 +93,7 @@ main()
 - トランザクションが承認（mine）されると、コントラクトのアドレスが取得される。
 
   ```javascript
+  // run.js
   // コントラクトアドレスをターミナルに出力
   console.log("Contract deployed to:", contract.address);
   ```
@@ -98,6 +103,7 @@ main()
 - 10 NFT を予約し、コントラクトに 0.03 ETH を送信して、3 NFT を Mint し、所有する NFT をチェックします。
 
   ```javascript
+  // run.js
   // 1. NFTを 10 点、コントラクト所有者のためにキープする
   let txn = await contract.reserveNFTs();
   await txn.wait();

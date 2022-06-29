@@ -4,7 +4,7 @@
 
 下記のように、`MyEpicGame.sol` を更新してください。
 
-```javascript
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
@@ -108,7 +108,7 @@ contract MyEpicGame is ERC721 {
 
 一行ずつ、更新されたコードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicGame.sol
 // NFT発行のコントラクト ERC721.sol をインポートします。
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
@@ -124,7 +124,7 @@ OpenZeppelin は、NFT の標準規格を実装し、そのうえに独自のロ
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicGame.sol
 contract MyEpicGame is ERC721 {
 	:
@@ -146,7 +146,7 @@ contract MyEpicGame is ERC721 {
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicGame.sol
 using Counters for Counters.Counter;
 ```
@@ -173,7 +173,7 @@ using Counters for Counters.Counter;
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```solidity
 Counters.Counter private _tokenIds;
 ```
 
@@ -185,7 +185,7 @@ tokenId は NFT の一意な識別子で、0, 1, 2, .. N のように付与さ�
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicGame.sol
 mapping(uint256 => CharacterAttributes) public nftHolderAttributes;
 ```
@@ -203,7 +203,7 @@ mapping(uint256 => CharacterAttributes) public nftHolderAttributes;
 >
 > 例：
 >
-> ```javascript
+> ```solidity
 > mapping（_Key=> _Value）public mappingName
 > ```
 
@@ -217,7 +217,7 @@ mapping(uint256 => CharacterAttributes) public nftHolderAttributes;
 
 同じように `mapping` を使用している下記のコードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicGame.sol
 mapping(address => uint256) public nftHolders;
 ```
@@ -231,7 +231,7 @@ mapping(address => uint256) public nftHolders;
 
 次に下記のコードを見ていきましょう。
 
-```javascript
+```solidity
 ERC721("OnePiece", "ONEPIECE");
 ```
 
@@ -246,7 +246,7 @@ NFT は Non-Fungible "Token" の略であり、Token には、必ず名前とシ
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicGame.sol
 _tokenIds.increment();
 ```
@@ -261,7 +261,7 @@ Solidity において、すべての数は `0` から始まるため、`_tokenId
 
 次に、`mintCharacterNFT` 関数の中身を見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicGame.sol
 function mintCharacterNFT(uint _characterIndex) external {
 :
@@ -277,7 +277,7 @@ function mintCharacterNFT(uint _characterIndex) external {
 
 次に下記のコードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicGame.sol
 uint256 newItemId = _tokenIds.current();
 ```
@@ -298,7 +298,7 @@ NFT の一意な識別子を追跡するために `_tokenIds` を使用してい
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicGame.sol
 _safeMint(msg.sender, newItemId);
 ```
@@ -360,7 +360,7 @@ HP は 200 → 150 になります。
 
 それでは、下記のコードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicGame.sol
 nftHolderAttributes[newItemId] = CharacterAttributes({
   characterIndex: _characterIndex,
@@ -384,7 +384,7 @@ nftHolderAttributes[newItemId] = CharacterAttributes({
 
 > ✍️: `mapping` を覚えていますか？
 >
-> ```javascript
+> ```solidity
 > // MyEpicGame.sol
 > mapping(uint256 => CharacterAttributes) public nftHolderAttributes
 > ```
@@ -397,7 +397,7 @@ NFT のメタデータは変更できないと思われがちですが、そん�
 
 次に、下記の処理を見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicNFT.sol
 nftHolders[msg.sender] = newItemId;
 ```
@@ -414,7 +414,7 @@ nftHolders[msg.sender] = newItemId;
 
 最後に、下記のコードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicNFT.sol
 _tokenIds.increment();
 ```
@@ -516,7 +516,7 @@ epic-game
 
 `libraries` ディレクトリに `Base64.sol` という名前のファイルを作成し、下記のコードを貼り付けてください。
 
-```javascript
+```solidity
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.4;
@@ -599,7 +599,7 @@ library Base64 {
 
 下記のコードを、`MyEpicGame.sol` の先頭付近（ライブラリをインポートしているコードブロックの近く）に、追加してください。
 
-```javascript
+```solidity
 // MyEpicGame.sol
 // Base64.sol からヘルパー関数をインポートする。
 import "./libraries/Base64.sol";
@@ -609,7 +609,7 @@ import "./libraries/Base64.sol";
 
 - `mintCharacterNFT` 関数の下に、下記の関数を追加してください。
 
-```javascript
+```solidity
 // MyEpicGame.sol
 // nftHolderAttributes を更新して、tokenURI を添付する関数を作成
 function tokenURI(uint256 _tokenId) public view override returns (string memory) {
@@ -643,7 +643,7 @@ function tokenURI(uint256 _tokenId) public view override returns (string memory)
 
 コードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicGame.sol
   // nftHolderAttributes を更新して、tokenURI を添付する関数を作成
 function tokenURI(uint256 _tokenId) public view override returns (string memory) {
@@ -658,7 +658,7 @@ CharacterAttributes memory charAttributes = nftHolderAttributes[_tokenId];
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicGame.sol
 string memory strHp = Strings.toString(charAttributes.hp);
 string memory strMaxHp = Strings.toString(charAttributes.maxHp);
@@ -669,7 +669,7 @@ string memory strAttackDamage = Strings.toString(charAttributes.attackDamage);
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicGame.sol
 string memory json = Base64.encode(
   // abi.encodePacked で文字列を結合します。
@@ -706,7 +706,7 @@ NFT のメタデータとして使用できる JSON は、下記のようなデ�
 
 最後に、下記のコードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicGame.sol
 abi.encodePacked("data:application/json;base64,", json);
 ```

@@ -4,7 +4,7 @@
 
 `WavePortal.sol` に実装した `getTotalWaves` 関数を覚えていますか？
 
-```javascript
+```solidity
 // WavePortal.sol
   function getTotalWaves() public view returns (uint256) {
       console.log("We have %d total waves!", totalWaves);
@@ -345,6 +345,7 @@ ABI ファイルの準備ができたので、`App.js` にインポートしま�
 下記のように `App.js` を更新します。
 
 ```javascript
+// App.js
 import React, { useEffect, useState } from "react";
 import "./App.css";
 /* ethers 変数を使えるようにする*/
@@ -525,7 +526,7 @@ const contractABI = abi.abi;
 ABI の参照先を確認しましょう。`wave` 関数の中に実装されています。
 
 ```javascript
-// App.jss
+// App.js
 const wave = async () => {
   try {
     const { ethereum } = window;

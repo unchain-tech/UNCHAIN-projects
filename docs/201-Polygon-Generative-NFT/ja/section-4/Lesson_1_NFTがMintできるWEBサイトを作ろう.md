@@ -50,7 +50,7 @@ npm start
 
 下記に、今回のプロジェクトのために用意したテンプレートを紹介します。
 
-```javascript
+```html
 // index.html
 <!DOCTYPE html>
 <html lang="en">
@@ -211,6 +211,7 @@ export default App;
 `App.js` の 5 行目であなたのコントラクトアドレスを設定してください。
 
 ```javascript
+// App.js
 const contractAddress = "あなたのコントラクトアドレスを貼り付けましょう";
 ```
 
@@ -220,7 +221,7 @@ const contractAddress = "あなたのコントラクトアドレスを貼り付�
 
 以下を `App.css` ファイルにコピーしてください。
 
-```javascript
+```css
 // App.css
 .main-app {
     text-align: center;
@@ -318,6 +319,7 @@ import { useEffect, useState } from "react";
 それから、下記を `checkWalletIsConnected` 関数の真上に追加してください。
 
 ```javascript
+// App.js
 const [currentAccount, setCurrentAccount] = useState(null);
 ```
 
@@ -416,6 +418,7 @@ MetaMask が Web サイトとの接続を促してきますので、同意しま
 `return ()` の中身を下記のように変更してください。
 
 ```javascript
+// App.js
 return (
   <div className="main-app">
     <h1>Scrappy Squirrels Tutorial</h1>

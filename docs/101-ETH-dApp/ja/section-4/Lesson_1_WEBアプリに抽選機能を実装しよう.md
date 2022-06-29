@@ -6,7 +6,7 @@
 
 これを防ぐために、これから下記の機能を `WavePortal.sol` に実装していきます。
 
-```javascript
+```solidity
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.4;
@@ -85,14 +85,14 @@ contract WavePortal {
 
 コードを見ていきましょう。
 
-```javascript
+```solidity
 // WavePortal.sol
 uint256 private seed;
 ```
 
 ここでは、乱数を生成するために使用する初期シード（乱数の種）を定義しています。
 
-```javascript
+```solidity
 // WavePortal.sol
 constructor() payable {
 	console.log("We have been constructed!");
@@ -113,7 +113,7 @@ constructor() payable {
 
 次に下記のコードを確認しましょう。
 
-```javascript
+```solidity
 // WavePortal.sol
 function wave(string memory _message) public {
 	totalWaves += 1;
@@ -132,7 +132,7 @@ function wave(string memory _message) public {
 
 最後に下記のコードを見ていきましょう。
 
-```javascript
+```solidity
 // WavePortal.sol
 if (seed <= 50) {
 	console.log("%s won!", msg.sender);
@@ -290,7 +290,7 @@ Contract balance: 0.0999
 
 それでは、下記のように `WavePortal.sol` を更新しましょう。
 
-```javascript
+```solidity
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.4;
@@ -375,7 +375,7 @@ contract WavePortal {
 
 新しく追加したコードを見ていきましょう。
 
-```javascript
+```solidity
 // WavePortal.sol
 mapping(address => uint256) public lastWavedAt;
 ```
@@ -394,7 +394,7 @@ mapping（_Key=> _Value）public mappingName
 
 理解を深めるために、次のコードを見ていきましょう。
 
-```javascript
+```solidity
 // WavePortal.sol
 function wave(string memory _message) public {
 	/* 現在ユーザーがwaveを送信している時刻と、前回waveを送信した時刻が15分以上離れていることを確認。*/
@@ -412,7 +412,7 @@ function wave(string memory _message) public {
 
 最後に、下記のコードを確認してください。
 
-```javascript
+```solidity
 // WavePortal.sol
 lastWavedAt[msg.sender] = block.timestamp;
 ```

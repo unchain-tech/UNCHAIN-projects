@@ -69,7 +69,7 @@ npx hardhat run scripts/run.js
 
 私たちは、NFT の基本価格を 0.01 ETH に設定しました。
 
-```javascript
+```solidity
 // NFTCollectible.sol
 uint public constant PRICE = 0.01 ether;
 ```
@@ -98,7 +98,7 @@ uint public constant PRICE = 0.01 ether;
 
 この変更を反映させるために、`NFTCollectible.sol` の価格表記を下記のように更新しましょう。
 
-```javascript
+```solidity
 // NFTCollectible.sol
 uint public constant PRICE = 17 ether;
 ```
@@ -135,7 +135,7 @@ Polygon では、`10¹⁸ Wei` が `1 MATIC` です。
 
 **下記のように、`NFTCollectible.sol` の価格をもう一度書き換えてください。**
 
-```javascript
+```solidity
 // NFTCollectible.sol
 uint public constant PRICE = 0.01 ether;
 ```

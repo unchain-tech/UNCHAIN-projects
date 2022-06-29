@@ -4,7 +4,7 @@
 
 下記のコードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicNFT.sol
 // pickRandomFirstWord関数は、最初の単語を選びます。
 function pickRandomFirstWord(uint256 tokenId) public view returns (string memory) {
@@ -36,7 +36,7 @@ Solidity には、4 つのアクセス修飾子が存在します。
 
 ### 🔍 `msg.sender` について
 
-```javascript
+```solidity
 // MyEpicNFT.sol
 _safeMint(msg.sender, newItemId);
 ```

@@ -17,6 +17,7 @@ npm install --save dotenv
 `hardhat.config.js`を変更します。
 
 ```javascript
+// hardhat.config.js
 require('@nomiclabs/hardhat-waffle');
 require('dotenv').config();
 

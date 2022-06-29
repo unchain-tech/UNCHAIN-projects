@@ -19,7 +19,8 @@ _当レッスンは、もし各自の学習状況により以前のプロジェ�
 
 **注意：メタマスクのチェーン選択で自分の本来の目的のブロックチェーン以外のチェーンを選択している状態でも`ethereum`オブジェクトはインジェクトされます。後でそれも実感できるでしょう。**
 
-```jsx
+```javascript
+// App.js
 import React, { useEffect } from "react";
 import "./styles/App.css";
 import twitterLogo from "./assets/twitter-logo.svg";
@@ -111,7 +112,8 @@ MetaMask は、私たちが許可するウェブサイトにのみ権限を与�
 
 変更したものについてコメントを付します。
 
-```jsx
+```javascript
+// App.js
 // useStateを追加でインポートしています。
 import React, { useEffect, useState } from "react";
 import "./styles/App.css";
@@ -203,7 +205,8 @@ export default App;
 
 Web3 の世界では、ウォレットの接続はいわばユーザーの「ログイン」ボタンです。 MetaMask にリクエストを送信して、ユーザーのウォレットへの読み取り専用アクセスを許可します。
 
-```jsx
+```javascript
+// App.js
 import React, { useEffect, useState } from "react";
 import "./styles/App.css";
 import twitterLogo from "./assets/twitter-logo.svg";

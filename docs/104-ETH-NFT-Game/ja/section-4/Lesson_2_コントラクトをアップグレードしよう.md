@@ -35,6 +35,7 @@ PROD_ALCHEMY_KEY = イーサリアムメインネットにデプロイする際�
 私の `.env` は、下記のようになります。
 
 ```javascript
+// .env
 PRIVATE_KEY = 0x...
 STAGING_ALCHEMY_KEY = https://...
 PROD_ALCHEMY_KEY = ""
@@ -160,7 +161,8 @@ const gameContract = await gameContractFactory.deploy(
 
 - `Base64.encode` の中身を更新してください。
 
-```javascript
+```solidity
+// MyEpicGame.sol
 string memory json = Base64.encode(
       bytes(
         string(
@@ -183,7 +185,7 @@ string memory json = Base64.encode(
 
 コントラクトを再度デプロイした後、最終的なメタデータは下記のような形になります。
 
-```javascript
+```solidity
 {
 	"name": "USOPP -- NFT #: 1",
 	"description": "An epic NFT game.",

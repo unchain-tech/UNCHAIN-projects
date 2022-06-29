@@ -14,7 +14,7 @@
 
 それでは、「👋（wave）」を保存するために、`WavePortal.sol` を更新していきましょう。
 
-```javascript
+```solidity
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.4;
@@ -43,7 +43,7 @@ contract WavePortal {
 
 新しく追加されたコードの理解を深めましょう。
 
-```javascript
+```solidity
 // WavePortal.sol
 uint256 totalWaves;
 ```
@@ -54,7 +54,7 @@ uint256 totalWaves;
 
 ### 🎁 Solidity のアクセス修飾子について
 
-```javascript
+```solidity
 // WavePortal.sol
 function wave() public {
     totalWaves += 1;
@@ -86,7 +86,7 @@ Solidity には、4 つのアクセス修飾子が存在します。
 
 ### 🔍 `msg.sender` について
 
-```javascript
+```solidity
 // WavePortal.sol
 function wave() public {
     totalWaves += 1;
@@ -126,7 +126,7 @@ Solidity 開発では関数修飾子を意識しておかないとデータを�
 
 `WavePortal.sol` に追加された下記の関数を見ていきましょう。
 
-```javascript
+```solidity
 // WavePortal.sol
 function wave() public {
     totalWaves += 1;
@@ -141,7 +141,7 @@ function wave() public {
 
 それでは、下記のコードも見ていきましょう。
 
-```javascript
+```solidity
 // WavePortal.sol
 function getTotalWaves() public view returns (uint256) {
     console.log("We have %d total waves!", totalWaves);

@@ -30,7 +30,7 @@ VS Code をターミナルから起動する方法は[こちら](https://maku.bl
 
 それでは、これから `MyEpicGame.sol` の中身の作成していきます。`MyEpicGame.sol` を VS Code で開き、下記を入力します。
 
-```javascript
+```solidity
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.4;
@@ -48,7 +48,7 @@ contract MyEpicGame {
 
 一行ずつコードを見ていきましょう。
 
-```javascript
+```solidity
 // MyEpicGame.sol
 // SPDX-License-Identifier: MIT
 ```
@@ -57,7 +57,7 @@ contract MyEpicGame {
 
 詳細については、[ここ](https://www.skyarch.net/blog/?p=15940)を参照してみてください。
 
-```javascript
+```solidity
 // MyEpicGame.sol
 pragma solidity ^0.8.4;
 ```
@@ -66,14 +66,14 @@ pragma solidity ^0.8.4;
 
 もし、`hardhat.config.js` の中に記載されている Solidity のバージョンが `0.8.4` でなかった場合は、`MyEpicGame.sol` の中身を `hardhat.config.js` に記載されているバージョンに変更しましょう。
 
-```javascript
+```solidity
 // MyEpicGame.sol
 import "hardhat/console.sol";
 ```
 
 コントラクトを実行する際、コンソールログをターミナルに出力するために Hardhat の`console.sol` のファイルをインポートしています。これは、今後スマートコントラクトのデバッグが発生した場合に、とても役立つツールです。
 
-```javascript
+```solidity
 // MyEpicGame.sol
 contract MyEpicGame {
     constructor() {

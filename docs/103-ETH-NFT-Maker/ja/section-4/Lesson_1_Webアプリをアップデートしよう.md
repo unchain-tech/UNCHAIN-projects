@@ -6,7 +6,7 @@
 
 **`Web3Mint.sol` はこちら:**
 
-```javascript
+```solidity
 // Web3Mint.sol
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.4;
@@ -73,6 +73,7 @@ contract Web3Mint is ERC721{
 }
 ```
 **`NftUploader.jsx` はこちら:**
+
 ```javascript
 // NftUploader.jsx
 import { ethers } from "ethers";
@@ -241,6 +242,7 @@ MVP を起点に Web アプリケーションを自分の好きなようにア�
 下記のコードを `NftUploader.jsx` に組み込んでみましょう。
 
 ```javascript
+// NftUploader.jsx
 let chainId = await ethereum.request({ method: "eth_chainId" });
 console.log("Connected to chain " + chainId);
 // 0x4 は　Rinkeby の ID です。

@@ -13,6 +13,7 @@ Web アプリケーション上で、ユーザーがイーサリアムネット�
 - `App.js` はあなたの Web アプリケーションのフロントエンド機能を果たします。
 
 ```javascript
+// App.js
 import React, { useEffect, useState } from "react";
 import twitterLogo from "./assets/twitter-logo.svg";
 import "./App.css";
@@ -94,6 +95,7 @@ Console に `We have the ethereum object` と表示されているでしょう�
 以下のコードを確認してください。
 
 ```javascript
+// App.js
 import React, { useEffect, useState } from "react";
 import twitterLogo from "./assets/twitter-logo.svg";
 import "./App.css";
@@ -202,6 +204,7 @@ if (accounts.length !== 0) {
 下記の通り `App.js` を更新していきましょう。
 
 ```javascript
+// App.js
 import React, { useEffect, useState } from "react";
 import twitterLogo from "./assets/twitter-logo.svg";
 import "./App.css";

@@ -119,6 +119,7 @@ Console に `We have the ethereum object` と表示されているでしょう�
 以下の通り、`App.js` を修正してください。
 
 ```javascript
+// App.js
 // useEffect と useState 関数を React.js からインポートしています。
 import React, { useEffect, useState } from "react";
 import "./styles/App.css";
@@ -238,6 +239,7 @@ if (accounts.length !== 0) {
 下記の通り `App.js` を更新していきましょう。
 
 ```javascript
+// App.js
 // useEffect と useState 関数を React.js からインポートしています。
 import React, { useEffect, useState } from "react";
 import "./styles/App.css";

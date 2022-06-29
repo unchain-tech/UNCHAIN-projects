@@ -35,6 +35,7 @@ PROD_ALCHEMY_KEY = イーサリアムメインネットにデプロイする際�
 私の `.env` は、下記のようになります。
 
 ```javascript
+// .env
 PRIVATE_KEY = 0x...
 STAGING_ALCHEMY_KEY = https://...
 ```
@@ -129,6 +130,7 @@ npm install @nomiclabs/hardhat-etherscan
 まず、`.env` ファイルを開き、先ほど Etherscan から取得した `apiKey` を `Your_Etherscan_apiKey` に貼り付けてください。
 
 ```javascript
+// .env
 PRIVATE_KEY = 0x...
 STAGING_ALCHEMY_KEY = https://...
 ETHERSCAN_APIKEY = Your_Etherscan_apiKey

@@ -40,6 +40,7 @@ export { CONTRACT_ADDRESS };
 次に、`App.js`ファイルに戻り、ファイルの先頭に下記をインポートして、`constants.js` にアクセスできるようにしましょう。
 
 ```javascript
+// App.js
 import { CONTRACT_ADDRESS } from "./constants";
 ```
 
@@ -108,6 +109,7 @@ ABI ファイルの準備ができたので、`App.js` にインポートしま�
 下記を `App.js` の 1 行目に追加しましょう。
 
 ```javascript
+// App.js
 import myEpicGame from "./utils/MyEpicGame.json";
 ```
 
@@ -148,6 +150,7 @@ import myEpicGame from "./utils/MyEpicGame.json";
 - `import { CONTRACT_ADDRESS } from './constants'` の直下に下記を追加しましょう。
 
 ```javascript
+// App.js
 import { ethers } from "ethers";
 ```
 
@@ -160,6 +163,7 @@ import { ethers } from "ethers";
 `checkNetwork` 関数を `const [characterNFT, setCharacterNFT] = useState(null);` の直下に追加してください。
 
 ```javascript
+// App.js
 // ユーザーがRinkeby Network に接続されているか確認します。
 // '4' は Rinkeby のネットワークコードです。
 const checkNetwork = async () => {
@@ -341,7 +345,7 @@ const txn = await gameContract.checkIfUserHasNFT();
 
 `MyEpicGame.sol` に記載されている `checkIfUserHasNFT()` メソッドは、下記のような内容になります。
 
-```javascript
+```solidity
 // MyEpicGame.sol
 
 // ユーザーがすでに NFT キャラクターを持っているかどうかを確認します。

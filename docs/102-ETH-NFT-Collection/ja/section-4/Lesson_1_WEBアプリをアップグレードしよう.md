@@ -45,7 +45,7 @@ const CONTRACT_ADDRESS = "0x.."; ← こちら
 
 `string[] thirdWords` が定義されているコードの直下に、下記のコードを追加してください。
 
-```javascript
+```solidity
 // MyEpicNFT.sol
 event NewEpicNFTMinted(address sender, uint256 tokenId);
 ```
@@ -54,7 +54,7 @@ event NewEpicNFTMinted(address sender, uint256 tokenId);
 
 `makeAnEpicNFT` 関数の一番下に、下記のコードを追加しましょう。
 
-```javascript
+```solidity
 // MyEpicNFT.sol
 emit NewEpicNFTMinted(msg.sender, newItemId);
 ```
@@ -146,6 +146,7 @@ if (accounts.length !== 0) {
 2 つ目のイベントリスナを設定。
 
 ```javascript
+// App.js
 // connectWallet メソッドを実装します。
 const connectWallet = async () => {
   try {
@@ -173,6 +174,7 @@ const connectWallet = async () => {
 次に、`connectWallet` 関数の直下に、下記の `setupEventListener` 関数を追加してください。
 
 ```javascript
+// App.js
 // setupEventListener 関数を定義します。
 // MyEpicNFT.sol の中で event が　emit された時に、
 // 情報を受け取ります。
@@ -219,7 +221,7 @@ const setupEventListener = async () => {
 
 **`MyEpicNFT.sol` はこちら:**
 
-```javascript
+```solidity
 // MyEpicNFT.sol
 // SPDX-License-Identifier: MIT
 
@@ -579,6 +581,7 @@ MVP を起点に Web アプリケーションを自分の好きなようにア�
 下記のコードを `App.js` に組み込んでみましょう。
 
 ```javascript
+// App.js
 let chainId = await ethereum.request({ method: "eth_chainId" });
 console.log("Connected to chain " + chainId);
 // 0x4 は　Rinkeby の ID です。

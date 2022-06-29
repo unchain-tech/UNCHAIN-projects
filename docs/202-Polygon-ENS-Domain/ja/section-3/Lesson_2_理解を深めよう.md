@@ -8,7 +8,8 @@
 
 以下のロジックを見て、上記を行う方法を確認してください。
 
-```javascript
+```solidity
+// Domains.sol
 // コントラクトの最初に付け加えてください（他のマッピングに続けて）。
 mapping (uint => string) public names;
 
@@ -31,7 +32,8 @@ function getAllNames() public view returns (string[] memory) {
 
 これを`register`関数の最後の`_tokenIds.increment()`の直前に追加します。
 
-```javascript
+```solidity
+// Domains.sol
 names[newRecordId] = name;
 ```
 
@@ -60,7 +62,8 @@ Section-2 の Lesson-3 を参照くださいね👋
 
 下のように加えてみましょう。
 
-```javascript
+```solidity
+// Domains.sol
 function valid(string calldata name) public pure returns(bool) {
   return StringUtils.strlen(name) >= 3 && StringUtils.strlen(name) <= 10;
 }
@@ -76,13 +79,15 @@ Solidityの最近のバージョンで追加された機能ですがカスタム
 
 この機能を使用するためにコントラクトのどこかに追加してください。
 
-```javascript
+```solidity
+// Domains.sol
 error Unauthorized();
 error AlreadyRegistered();
 error InvalidName(string name);
 ```
 
-```javascript
+```solidity
+// Domains.sol
 function setRecord(string calldata name, string calldata record) public {
   if (msg.sender != domains[name]) revert Unauthorized();
   records[name] = record;

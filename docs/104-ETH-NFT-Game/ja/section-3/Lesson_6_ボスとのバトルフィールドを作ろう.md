@@ -24,11 +24,12 @@
 
 Web アプリケーションの構築が完了したら、CSS のスタイリングを楽しんでください ✨
 
-⚔️ `Arena` を作成する
+### 🏰 `Arena` を作成する
 
 次に、`nft-game-starter-project/src/Components/Arena/index.js` を開き、下記のコードを貼り付けましょう。
 
 ```javascript
+// index.js
 import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import { CONTRACT_ADDRESS, transformCharacterData } from "../../constants";
@@ -84,6 +85,7 @@ import Arena from "./Components/Arena";
 次に、`renderContent` 関数を下記のように更新しましょう。
 
 ```javascript
+// Arena/App.js
 // レンダリングメソッド
 const renderContent = () => {
   // シナリオ1.
@@ -203,6 +205,7 @@ return (
 `Arena/index.js` の `return();` の中身を下記のように更新しましょう。
 
 ```javascript
+// Arena/index.js
 return (
   <div className="arena-container">
     {/* ボスをレンダリングします */}
@@ -306,7 +309,7 @@ const runAttackAction = async () => {
 **1 \. `const [boss, setBoss] = useState(null);` の直下に、下記を追加。**
 
 ```javascript
-// Arena/Index.js
+// Arena/index.js
 // 攻撃の状態を保存する変数を初期化します。
 const [attackState, setAttackState] = useState("");
 ```
@@ -334,6 +337,7 @@ const [attackState, setAttackState] = useState("");
 - `{boss ..}` の中身を下記のように更新しましょう。
 
 ```javascript
+// Arena/index.js
 return (
   <div className="arena-container">
     {/* ボスをレンダリングします */}

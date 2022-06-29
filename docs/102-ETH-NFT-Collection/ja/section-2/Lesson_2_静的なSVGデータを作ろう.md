@@ -117,7 +117,7 @@ data:application/json;base64,ewogICAgIm5hbWUiOiAiRXBpY05mdENyZWF0b3IiLAogICAgImR
 
 **1 \. `base64` でエンコードした JSON ファイルを貼り付ける**
 
-```javascript
+```solidity
 // MyEpicNFT.sol
 _setTokenURI(
   newItemId,
@@ -127,7 +127,7 @@ _setTokenURI(
 
 私のコードは、次のようになります。
 
-```javascript
+```solidity
 // MyEpicNFT.sol
 _setTokenURI(
   newItemId,

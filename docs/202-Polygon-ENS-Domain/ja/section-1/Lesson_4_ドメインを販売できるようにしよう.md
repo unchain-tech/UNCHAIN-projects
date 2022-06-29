@@ -1,3 +1,5 @@
+### 🏠 ドメインを販売する
+
 スマートコントラクトができてきました。
 
 ただし、現在はマッピングを提供しているだけです。
@@ -18,7 +20,8 @@
 
 `Domains.sol` を変更します。
 
-```javascript
+```solidity
+// Domains.sol
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.4;
 
@@ -73,7 +76,8 @@ _注：_ `getAddress`、` setRecord` _、および_ `getRecord` _関数は引き
 
 `register`に`payable`を追加しました。
 
-```javasctipt
+```solidity
+// Domains.sol
 uint _price = price(name);
 require(msg.value >= _price, "Not enough Matic paid");
 ```
@@ -98,7 +102,8 @@ require(msg.value >= _price, "Not enough Matic paid");
 
 MATIC トークンには小数点以下 18 桁があるため、価格の最後に `* 10**18`を付ける必要があります。
 
-```javascript
+```solidity
+// Domains.sol
 function price(string calldata name) public pure returns(uint) {
   uint len = StringUtils.strlen(name);
   require(len > 0);
@@ -131,7 +136,8 @@ _注：**Mumbai などテストネットでは価格を下げてミントしま�
 
 `run.js`に向かい、次のように更新しましょう。
 
-```jsx
+```javascript
+// run.js
 const main = async () => {
   const domainContractFactory = await hre.ethers.getContractFactory("Domains");
   // "ninja"をデプロイ時にconstructorに渡します。
@@ -226,9 +232,10 @@ OpenSea に ENS ドメインを所有している場合、実際には次のよ�
 
 最後には**新しく登録したドメインを取得して、そこから NFT を作成し**します。
 
-コードを下のように変更します。`register`関数が特に大きく変更されています。あとでまた説明しますね。
+`Domains.sol` のコードを以下のように変更します。`register`関数が特に大きく変更されています。あとでまた説明しますね。
 
-```jsx
+```solidity
+// Domains.sol
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.4;
 
@@ -310,7 +317,8 @@ contract Domains is ERC721URIStorage {
 
 _注：引き続き `price`、` getAddress`、`setRecord`および`getRecord`関数は必要です。変更されていないため、ここでは省略していますが消さないでください。_
 
-```jsx
+```solidity
+// Domains.sol
 // 最初にOpenZeppelinライブラリをインポートします.
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
@@ -333,7 +341,8 @@ OpenZeppelin は、NFT の標準を実装していて、それをベースに独
 
 `Base64`に関しては、外部ライブラリの関数で、NFT イメージに使用される SVG とそのメタデータの JSON を Solidity の`Base64`に変換するのに役立ちます。 ライブラリフォルダ`libraries`に`Base64.sol`という名前のファイルを作成し、[ここ](https://gist.github.com/farzaa/f13f5d9bda13af68cc96b54851345832)からコードをコピーして貼り付けます。
 
-```jsx
+```solidity
+// Domains.sol
 using Counters for Counters.Counter;
 Counters.Counter private _tokenIds;
 ```
@@ -344,7 +353,8 @@ Counters.Counter private _tokenIds;
 
 したがって、最初に `register`を呼び出すと、`newRecordId`は 0 になります。再度実行すると、 `newRecordId`は 1 になり、以下同様に続きます。 `_tokenIds`は**状態変数**であることに注意してください。これは、変更されると、値がコントラクトに直接保存されることを意味します。
 
-```jsx
+```solidity
+// Domains.sol
 constructor(string memory _tld) payable ERC721("Ninja Name Service", "NNS") {
   tld = _tld;
   console.log("%s name service deployed", _tld);
@@ -428,14 +438,15 @@ SVG は**多くの場合**カスタマイズできます。SVG をアニメー�
 
 SVG をカスタマイズしてみても面白いでしょう。興味がある方は、アニメーション化された SVG を試すこともいいでしょう 👀
 
-```jsx
+```javascript
   string svgPartOne = '<svg xmlns="http://www.w3.org/2000/svg" width="270" height="270" fill="none"><path fill="url(#B)" d="M0 0h270v270H0z"/><defs><filter id="A" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse" height="270" width="270"><feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity=".225" width="200%" height="200%"/></filter></defs><path d="M72.863 42.949c-.668-.387-1.426-.59-2.197-.59s-1.529.204-2.197.59l-10.081 6.032-6.85 3.934-10.081 6.032c-.668.387-1.426.59-2.197.59s-1.529-.204-2.197-.59l-8.013-4.721a4.52 4.52 0 0 1-1.589-1.616c-.384-.665-.594-1.418-.608-2.187v-9.31c-.013-.775.185-1.538.572-2.208a4.25 4.25 0 0 1 1.625-1.595l7.884-4.59c.668-.387 1.426-.59 2.197-.59s1.529.204 2.197.59l7.884 4.59a4.52 4.52 0 0 1 1.589 1.616c.384.665.594 1.418.608 2.187v6.032l6.85-4.065v-6.032c.013-.775-.185-1.538-.572-2.208a4.25 4.25 0 0 0-1.625-1.595L41.456 24.59c-.668-.387-1.426-.59-2.197-.59s-1.529.204-2.197.59l-14.864 8.655a4.25 4.25 0 0 0-1.625 1.595c-.387.67-.585 1.434-.572 2.208v17.441c-.013.775.185 1.538.572 2.208a4.25 4.25 0 0 0 1.625 1.595l14.864 8.655c.668.387 1.426.59 2.197.59s1.529-.204 2.197-.59l10.081-5.901 6.85-4.065 10.081-5.901c.668-.387 1.426-.59 2.197-.59s1.529.204 2.197.59l7.884 4.59a4.52 4.52 0 0 1 1.589 1.616c.384.665.594 1.418.608 2.187v9.311c.013.775-.185 1.538-.572 2.208a4.25 4.25 0 0 1-1.625 1.595l-7.884 4.721c-.668.387-1.426.59-2.197.59s-1.529-.204-2.197-.59l-7.884-4.59a4.52 4.52 0 0 1-1.589-1.616c-.385-.665-.594-1.418-.608-2.187v-6.032l-6.85 4.065v6.032c-.013.775.185 1.538.572 2.208a4.25 4.25 0 0 0 1.625 1.595l14.864 8.655c.668.387 1.426.59 2.197.59s1.529-.204 2.197-.59l14.864-8.655c.657-.394 1.204-.95 1.589-1.616s.594-1.418.609-2.187V55.538c.013-.775-.185-1.538-.572-2.208a4.25 4.25 0 0 0-1.625-1.595l-14.993-8.786z" fill="#fff"/><defs><linearGradient id="B" x1="0" y1="0" x2="270" y2="270" gradientUnits="userSpaceOnUse"><stop stop-color="#cb5eee"/><stop offset="1" stop-color="#0cd7e4" stop-opacity=".99"/></linearGradient></defs><text x="32.5" y="231" font-size="27" fill="#fff" filter="url(#A)" font-family="Plus Jakarta Sans,DejaVu Sans,Noto Color Emoji,Apple Color Emoji,sans-serif" font-weight="bold">';
   string svgPartTwo = '</text></svg>';
 ```
 
 ここで行っているのは、ドメインに基づいて SVG を作成することだけです。 SVG を 2 つに分割し、その間にドメインを配置します。
 
-```jsx
+```solidity
+// Domains.sol
 string memory _name = string(abi.encodePacked(name, ".", tld));
 string memory finalSvg = string(abi.encodePacked(svgPartOne, _name, svgPartTwo));
 ```
@@ -448,7 +459,8 @@ Solidity の文字列が特殊だと言ったのを覚えていますでしょ�
 
 代わりに、`encodePacked`関数を使用して、一連の文字列をバイトに変換してから結合する必要があります。
 
-```jsx
+```solidity
+// Domains.sol
 string(abi.encodePacked(svgPartOne, _name, svgPartTwo));
 ```
 
@@ -456,7 +468,8 @@ string(abi.encodePacked(svgPartOne, _name, svgPartTwo));
 
 ドメインのアセットができたので、`register`関数を詳しく見て、メタデータがどのように構築されているかを確認しましょう。
 
-```jsx
+```solidity
+// Domains.sol
 function register(string calldata name) public payable {
   require(domains[name] == address(0));
 
@@ -503,7 +516,8 @@ function register(string calldata name) public payable {
 
 `_tokenIds`について知っておく必要があるのは、NFT の一意のトークン番号にアクセスして設定できるオブジェクトであるということだけです。 各 NFT には一意の`id`があり、それは NFT を確認するのに役立ちます。 以下の 2 つの行は、実際に NFT を作成する行です。
 
-```jsx
+```solidity
+// Domains.sol
 // newRecordId にNFTをミントします。
 _safeMint(msg.sender, newRecordId);
 

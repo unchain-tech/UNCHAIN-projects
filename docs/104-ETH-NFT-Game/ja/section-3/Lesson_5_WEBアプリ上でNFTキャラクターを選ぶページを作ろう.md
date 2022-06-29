@@ -313,6 +313,7 @@ length: 3
 - 2 つ目に作成した、`useEffect` 関数の直下に、下記を貼り付けてください。
 
 ```javascript
+// index.js
 // NFT キャラクターをフロントエンドにレンダリングするメソッドです。
 const renderCharacters = () =>
   characters.map((character, index) => (
@@ -338,6 +339,7 @@ const renderCharacters = () =>
 次に、`index.js` の中の `return();` の中身を下記のように更新してください。
 
 ```javascript
+// index.js
 return (
   <div className="select-character-container">
     <h2>⏬ 一緒に戦う NFT キャラクターを選択 ⏬</h2>
@@ -360,6 +362,7 @@ return (
 `index.js` を開き、`const [gameContract, setGameContract] = useState(null);` の直下に下記を追加しましょう。
 
 ```javascript
+// index.js
 // NFT キャラクターを Mint します。
 const mintCharacterNFTAction = (characterId) => async () => {
   try {
@@ -467,7 +470,7 @@ const onCharacterMint = async (sender, tokenId, characterIndex) => {
 
 下記は、`MyEpicGame.sol` に記載した NFT キャラクターが Mint された `event` をフロントエンドに知らせる（`emit`）コードです。
 
-> ```javascript
+> ```solidity
 > // MyEpicGame.sol
 > // ユーザーが NFT を Mint したこと示すイベント
 > event CharacterNFTMinted(address sender, uint256 tokenId, uint256 characterIndex);
@@ -587,6 +590,7 @@ https://testnets.opensea.io/assets/CONTRACT_ADDRES/TOKEN_ID
 - `setCharacterNFT(transformCharacterData(characterNFT));` の直下に下記を追加しましょう。
 
 ```javascript
+// index.js
 alert(
   `NFT キャラクーが Mint されました -- リンクはこちらです: https://rinkeby.rarible.com/token/${
     gameContract.address
