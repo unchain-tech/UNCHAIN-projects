@@ -44,7 +44,7 @@ export default function Buy({ itemID }) {
 
   const processTransaction = async () => {
     setLoading(true);
-    const txResponse = await fetch("../api/createTransaction", {
+    const txResponse = await fetch("../pages/api/createTransaction", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
