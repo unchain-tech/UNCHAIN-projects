@@ -45,7 +45,7 @@ const App = () => {
           <p className="header gradient-text">⚡️ METAVERSE GAME ⚡️</p>
           <p className="sub-text">プレイヤーと協力してボスを倒そう!</p>
           <div className="connect-wallet-container">
-            <img src="https://i.imgur.com/yMocj5x.png" alt="Pikachu" />
+            <img src="https://i.imgur.com/TXBQ4cC.png" alt="LUFFY" />
           </div>
         </div>
         <div className="footer-container">
@@ -147,7 +147,7 @@ const App = () => {
           <p className="header gradient-text">⚡️ METAVERSE GAME ⚡️</p>
           <p className="sub-text">プレイヤーと協力してボスを倒そう!</p>
           <div className="connect-wallet-container">
-            <img src="https://i.imgur.com/yMocj5x.png" alt="Pikachu" />
+            <img src="https://i.imgur.com/TXBQ4cC.png" alt="LUFFY" />
           </div>
         </div>
         <div className="footer-container">
@@ -275,7 +275,7 @@ const App = () => {
           <p className="header gradient-text">⚡️ METAVERSE GAME ⚡️</p>
           <p className="sub-text">プレイヤーと協力してボスを倒そう!</p>
           <div className="connect-wallet-container">
-            <img src="https://i.imgur.com/yMocj5x.png" alt="Pikachu" />
+            <img src="https://i.imgur.com/TXBQ4cC.png" alt="LUFFY" />
             {/*
              * ウォレットコネクトを起動するために使用するボタンを設定しています。
              * メソッドを呼び出すために onClick イベントを追加することを忘れないでください。
