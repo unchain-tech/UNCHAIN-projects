@@ -160,7 +160,7 @@ export default function Buy({ itemID }) {
   // サーバーからトランザクションオブジェクトを取得します。
   const processTransaction = async () => {
     setLoading(true);
-    const txResponse = await fetch("../pages/api/createTransaction", {
+    const txResponse = await fetch("../api/createTransaction", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
