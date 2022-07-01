@@ -42,9 +42,9 @@ dependencies:
 
 Flutterのパッケージについて詳しき知りたい方は、[こちら](https://pub.dev/)から検索してみてください。
 
-次に、前のセクションでコンパイルした、ブロックチェーンに接続するための `TodoContract.json` ファイルを `todo-dapp-front` の中に持ってきます。
+次に、前のセクションでコンパイルした、ブロックチェーンに接続するための `TodoContract.json` ファイルを `todo_dapp_front` の中に持ってきます。
 
-`todo-dapp-front` フォルダ直下に、`smartcontract` フォルダを作成してください。
+`todo_dapp_front` フォルダ直下に、`smartcontract` フォルダを作成してください。
 
 その `smartcontract` フォルダの直下に、`TodoContract.json` ファイルを作成してください。
 
