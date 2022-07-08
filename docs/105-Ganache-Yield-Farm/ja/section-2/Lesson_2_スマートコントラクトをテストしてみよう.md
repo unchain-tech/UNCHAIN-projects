@@ -111,7 +111,7 @@ require(`chai`)
 
 今回テストに使用する `chai` は、truffle が提供するテスト用のライブラリです。
 - `yield-farm-starter-project/package.json` の中に、使用する `chai` のバージョンが記載されています。
-- テストには、`chai` だけでなく、`mocha` とい　truffle に含まれている JavaScript 用のテストフレームワークを使用します。
+- テストには、`chai` だけでなく、`mocha` という　truffle に含まれている JavaScript 用のテストフレームワークを使用します。
 - `chai` について詳しく知りたい方は、[こちら](https://www.chaijs.com/)の公式ドキュメントをご覧ください🫖
 - `mocha` について詳しく知りたい方は、[こちら](https://mochajs.org/)の公式ドキュメントをご覧ください☕️
 
