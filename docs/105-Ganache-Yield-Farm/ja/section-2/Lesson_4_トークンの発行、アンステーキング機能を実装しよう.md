@@ -146,7 +146,7 @@ contract('TokenFarm', ([owner, investor]) => {
     })
 
     describe('Farming tokens', async () => {
-        it('rewords investors for staking mDai tokens', async () => {
+        it('rewards investors for staking mDai tokens', async () => {
             let result
 
             // テスト5. ステーキングの前に投資家の残高を確認する
@@ -227,7 +227,7 @@ Contract: TokenFarm
       ✓ has a name
       ✓ contract has tokens (38ms)
     Farming tokens
-      ✓ rewords investors for staking mDai tokens (947ms)
+      ✓ rewards investors for staking mDai tokens (947ms)
 
 
   5 passing (2s)
