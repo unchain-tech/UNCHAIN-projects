@@ -101,7 +101,7 @@ ERC-20標準規格を使用することで、トークンは以下のユース�
 
 `DappToken.sol` と `MockDaiToken.sol` に記述されている機能はほぼ同じです。
 
-簡単のために、ERC-20規格に準拠した機能を理解するために、`DappToken.sol` の内容を見てみましょう。
+ERC-20規格に準拠した機能を理解するために、`DappToken.sol` の内容を見てみましょう。
 
 まず、`DappToken.sol` の4-10行目に注目してください。
 
@@ -114,7 +114,6 @@ string  public symbol = "DAPP";
 // 存在するトークンの総供給量を格納
 // 1 million tokensを供給
 uint256 public totalSupply = 1000000000000000000000000;
-uint8   public decimals = 18;
 ```
 
 ここでは、`DappToken.sol` で使用する変数を定義し、値を格納しています。
