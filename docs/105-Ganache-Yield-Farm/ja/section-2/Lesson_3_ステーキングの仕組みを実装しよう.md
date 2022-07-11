@@ -22,7 +22,7 @@ contract TokenFarm{
     // 7. これまでにステーキングを行ったすべてのアドレスを追跡する配列を作成
     address[] public stakers;
 
-    //4.投資家のアドレスと彼らのステーキングしたトークンの量を紐づける mapping を作成
+    // 4.投資家のアドレスと彼らのステーキングしたトークンの量を紐づける mapping を作成
     mapping (address => uint) public stakingBalance;
 
     // 6. 投資家のアドレスをもとに彼らがステーキングを行ったか否かを紐づける mapping を作成
@@ -35,7 +35,7 @@ contract TokenFarm{
         dappToken = _dappToken;
         daiToken = _daiToken;
     }
-    //1.ステーキング機能を作成する
+    // 1.ステーキング機能を作成する
     function stakeTokens(uint _amount) public {
         // 2. ステーキングされるトークンが0以上あることを確認
         require(_amount > 0, "amount can't be 0");
@@ -62,7 +62,7 @@ contract TokenFarm{
 
 ```solidity
 // TokenFarm.sol
-//1.ステーキング機能を作成する
+// 1.ステーキング機能を作成する
 function stakeTokens(uint _amount) public {
 ：
 }
@@ -78,7 +78,7 @@ function stakeTokens(uint _amount) public {
 
 ```solidity
 // TokenFarm.sol
-// 1.ステーキング機能を作成する
+// 1. ステーキング機能を作成する
 function stakeTokens(uint _amount) public {
     // 2. ステーキングされるトークンが0以上あることを確認
     require(_amount > 0, "amount can't be 0");
@@ -107,7 +107,7 @@ function stakeTokens(uint _amount) public {
 
 ```solidity
 // TokenFarm.sol
-//4.投資家のアドレスと彼らのステーキングしたトークンの量を紐づける mapping を作成
+// 4.投資家のアドレスと彼らのステーキングしたトークンの量を紐づける mapping を作成
 mapping (address => uint) public stakingBalance;
 ```
 
@@ -197,19 +197,19 @@ contract('TokenFarm', ([owner, investor]) => {
     let daiToken, dappToken, tokenFarm
 
     before(async () =>{
-        //コントラクトを読み込む
+        // コントラクトを読み込む
         daiToken = await DaiToken.new()
         dappToken = await DappToken.new()
         tokenFarm = await TokenFarm.new(dappToken.address, daiToken.address)
 
-        //全てのDappトークンをファームに移動する(1 million)
+        // 全てのDappトークンをファームに移動する(1 million)
         await dappToken.transfer(tokenFarm.address, tokens('1000000'));
 
         await daiToken.transfer(investor, tokens('100'), {from: owner})
     })
 
     describe('Mock DAI deployment', async () => {
-        //テスト1
+        // テスト1
         it('has a name', async () => {
             const name = await daiToken.name()
             assert.equal(name, 'Mock DAI Token')
@@ -238,7 +238,7 @@ contract('TokenFarm', ([owner, investor]) => {
     })
     // ----- 追加するテストコード ------ //
     describe('Farming tokens', async () => {
-        it('rewords investors for staking mDai tokens', async () => {
+        it('rewards investors for staking mDai tokens', async () => {
             let result
             // テスト5. ステーキングの前に投資家の残高を確認する
             result = await daiToken.balanceOf(investor)
@@ -297,7 +297,7 @@ Contract: TokenFarm
       ✓ has a name (40ms)
       ✓ contract has tokens (51ms)
     Farming tokens
-      ✓ rewords investors for staking mDai tokens (467ms)
+      ✓ rewards investors for staking mDai tokens (467ms)
 
 
   5 passing (1s)

@@ -112,8 +112,8 @@ string  public name = "DApp Token";
 // 暗号通貨交換用のトークンシンボルを格納
 string  public symbol = "DAPP";
 // 存在するトークンの総供給量を格納
-uint256 public totalSupply = 1000000000000000000000000; // 1 million tokensを供給
-uint8   public decimals = 18;
+// 1 million tokensを供給
+uint256 public totalSupply = 1000000000000000000000000;
 ```
 
 ここでは、`DappToken.sol` で使用する変数を定義し、値を格納しています。
@@ -165,7 +165,7 @@ event Transfer(
 ```
 `Transfer` イベントには以下の変数が必要になります。
 - `_from`: トークンを送る人のアドレス
-- `_to`: トークンが送るられる人のアドレス
+- `_to`: トークンが送られる人のアドレス
 - `_value`: 送られるトークンの金額
 
 トークンがピアツーピアで転送されるときは、必ず `Transfer` イベントを発生させる必要があります。新しいトークンを作成する際には、 `_from` アドレスを `0x0` に設定して、 `Transfer` イベントを発生させるようにします。

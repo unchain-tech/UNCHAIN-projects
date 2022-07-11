@@ -85,13 +85,11 @@ const daiToken = await DaiToken.deployed()
 
 // Dapp トークンをデプロイする
 await deployer.deploy(DappToken)
-const dappToken = await
-DappToken.deployed()
+const dappToken = await DappToken.deployed()
 
 // dappToken と daiToken のアドレスを引数に、Token Farm をデプロイする
 await deployer.deploy(TokenFarm, dappToken.address, daiToken.address)
-const tokenFarm = await
-TokenFarm.deployed()
+const tokenFarm = await TokenFarm.deployed()
 ```
 
 これらのコードが実行されると、3つのスマートコントラクトがブロックチェーン上にデプロイされます!
