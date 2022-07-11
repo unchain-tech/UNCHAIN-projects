@@ -142,7 +142,7 @@ npm install -g mocha
 
 ### ⚓️ Anchor をインストールする
 
-Solana プログラムを作成する前に、Solana 用のフレームワーク[Anchor](https://project-serum.github.io/anchor/) をインストールしましょう。
+Solana プログラムを作成する前に、Solana 用のフレームワーク[Anchor](https://hackmd.io/@ironaddicteddog/solana-anchor-escrow)をインストールしましょう。
 
 Anchor は Solana のために作られた Hardhat のようなものです。
 
