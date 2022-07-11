@@ -29,11 +29,6 @@ contract Web3Mint is ERC721{
 
     NftAttributes[] Web3Nfts;
 
-    mapping(uint256 => NftAttributes) public nftHolderAttributes;
-    mapping(address => uint256) public nftHolder;
-
-
-
     constructor() ERC721("NFT","nft"){
         console.log("This is my NFT contract.");
     }
