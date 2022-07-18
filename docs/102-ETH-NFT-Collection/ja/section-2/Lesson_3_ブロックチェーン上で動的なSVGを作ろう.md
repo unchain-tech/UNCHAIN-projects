@@ -10,7 +10,7 @@
 // MyEpicNFT.sol
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.9;
 
 // いくつかの OpenZeppelin のコントラクトをインポートします。
 import "@openzeppelin/contracts/utils/Strings.sol";
@@ -269,7 +269,7 @@ npx hardhat run scripts/run.js
 下記のような結果がターミナルに出力されていれば成功です。
 
 ```plaintext
-Compiling 1 file with 0.8.4
+Compiling 1 file with 0.8.9
 Solidity compilation finished successfully
 This is my NFT contract.
 Contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
@@ -318,7 +318,7 @@ epic-nfts
 // Base64.sol
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.9;
 
 /// [MIT License]
 /// @title Base64
@@ -400,7 +400,7 @@ library Base64 {
 // MyEpicNFT.sol
 // SPDX-License-Identifier: MIT
 
-pragma solidity 0.8.4;
+pragma solidity 0.8.9;
 
 // いくつかの OpenZeppelin のコントラクトをインポートします。
 import "@openzeppelin/contracts/utils/Strings.sol";
@@ -611,7 +611,7 @@ npx hardhat run scripts/run.js
 ターミナルに下記のような結果が出力されていることを確認しましょう。
 
 ```plaintext
-Compiling 1 file with 0.8.4
+Compiling 1 file with 0.8.9
 Solidity compilation finished successfully
 This is my NFT contract!
 Contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3

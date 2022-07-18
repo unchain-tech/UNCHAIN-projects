@@ -25,7 +25,7 @@ POLYGON_URL = ""
 
 ```javascript
 // hardhat.config.js
-require("@nomiclabs/hardhat-waffle");
+require("@nomicfoundation/hardhat-toolbox");
 require("@nomiclabs/hardhat-etherscan");
 require("dotenv").config();
 
@@ -40,7 +40,7 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 });
 
 module.exports = {
-  solidity: "0.8.4",
+  solidity: "0.8.9",
   networks: {
     rinkeby: {
       url: API_URL,
@@ -325,9 +325,9 @@ npx hardhat verify --network mumbai 0xF899DeB963208560a7c667FA78376ecaFF684b8E "
 下記のような結果がターミナルに出力されていることを確認してください。
 
 ```
-Compiling 15 files with 0.8.4
+Compiling 15 files with 0.8.9
 Solidity compilation finished successfully
-Compiling 1 file with 0.8.4
+Compiling 1 file with 0.8.9
 Successfully submitted source code for contract
 contracts/NFTCollectible.sol:NFTCollectible at 0xF899DeB963208560a7c667FA78376ecaFF684b8E
 for verification on the block explorer. Waiting for verification result...

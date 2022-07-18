@@ -65,16 +65,18 @@ NPM から何かをインストールするたびに、インストールして�
 npx hardhat
 ```
 
-“Create a basic sample project” オプションを選択します。 すべてに yes で答えてください。
+`hardhat` がターミナル上で立ち上がったら、`Create a JavaScript project` を選択します。
 
-サンプルプロジェクトでは、`hardhat-waffle`と`hardhat-ethers`をインストールするように求められます。
+- プロジェクトのルートディレクトリを設定し、`.gitignore` を追加する選択肢で `yes` を選んでください。
+
+サンプルプロジェクトでは、`hardhat-toolbox` をインストールするように求められます。
 
 これらは後で使用する他のツールです。
 
 自動的に実行されなかった場合に備えてインストールしておきます。
 
 ```bash
-npm install --save-dev @nomiclabs/hardhat-waffle ethereum-waffle chai @nomiclabs/hardhat-ethers ethers
+npm install --save-dev @nomicfoundation/hardhat-toolbox
 ```
 
 また、安全なスマートコントラクトを開発するために多く使用されている別のライブラリである**OpenZeppelin**をインストールします。
@@ -86,14 +88,6 @@ npm install --save-dev @nomiclabs/hardhat-waffle ethereum-waffle chai @nomiclabs
 ```bash
 npm install @openzeppelin/contracts
 ```
-
-最後に、 `npx hardhat accounts`を実行すると、次のような文字列が**複数**出力されます。
-
-`0xa0Ee7A142d267C1f36714E4a8F75612F20a79720`
-
-これは、Hardhat がブロックチェーン上の実際のユーザーをシミュレートするために生成する Ethereum アドレスです。
-
-プロジェクトの後半で、ドメインを作成するユーザーをシミュレートするときに使います。
 
 ### 🌟 実行しましょう
 
@@ -113,7 +107,7 @@ npx hardhat test
 
 次のような画面が表示されるはずです。
 
-![https://i.imgur.com/rjPvls0.png](https://i.imgur.com/rjPvls0.png)
+![](/public/images/202-Polygon-ENS-Domain/section-1/1_1_1.png)
 
 少しディレクトリを整理しましょう。
 
@@ -125,11 +119,15 @@ VSCode が使いやすいかと思います。
 
 VSCode などテキストエディタの左に表示されるフォルダ一覧で以下を実行しましょう。
 
-1. `test`の下にあるファイル`sample-test.js`を削除します。
+ここまできたら、フォルダーの中身を整理しましょう。
 
-2. また、`scripts`の下の`sample-script.js`を削除します。
+まず、`test` の下のファイル `Lock.js` を削除します。
 
-3. 次に、`contracts`の下にある`Greeter.sol`を削除します。
+1. `test` フォルダーに移動: `cd test`
+
+2. `Lock.js` を削除: `rm Lock.js`
+
+次に、上記の手順を参考にして `contracts` の下の `Lock.sol` を削除してください。
 
 なお、**実際のフォルダは削除しない**でください。
 

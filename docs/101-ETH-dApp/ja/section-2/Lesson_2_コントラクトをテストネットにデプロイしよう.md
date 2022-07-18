@@ -120,16 +120,17 @@ README.md			package-lock.json
 artifacts			package.json
 cache				scripts
 contracts			test
-hardhat.config.js
+hardhat.config.js node_modules
+.gitignore
 ```
 
 `hardhat.config.js` を VS Code で開いて、中身を編集していきます。
 
 ```javascript
 // hardhat.config.js
-require("@nomiclabs/hardhat-waffle");
+require("@nomicfoundation/hardhat-toolbox");
 module.exports = {
-  solidity: "0.8.4",
+  solidity: "0.8.9",
   networks: {
     rinkeby: {
       url: "YOUR_ALCHEMY_API_URL",
@@ -195,6 +196,7 @@ node_modules
 coverage
 coverage.json
 typechain
+typechain-types
 
 #Hardhat files
 cache

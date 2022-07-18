@@ -56,7 +56,7 @@ ETHERSCAN_API = "YOUR ETHERSCAN apiKey HERE"
 
 ```javascript
 // hardhat.config.js
-require("@nomiclabs/hardhat-waffle");
+require("@nomicfoundation/hardhat-toolbox");
 require("@nomiclabs/hardhat-etherscan");
 require("dotenv").config();
 
@@ -71,7 +71,7 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 });
 
 module.exports = {
-  solidity: "0.8.4",
+  solidity: "0.8.9",
   defaultNetwork: "rinkeby",
   networks: {
     rinkeby: {
@@ -108,7 +108,7 @@ npx hardhat verify --network rinkeby 0x94E614a7D82d9dD24CBED7607a40eBE4243491dF 
 ターミナルに、下記のような結果が表示されていることを確認してください。
 
 ```
-Compiling 1 file with 0.8.4
+Compiling 1 file with 0.8.9
 Successfully submitted source code for contract
 contracts/NFTCollectible.sol:NFTCollectible at 0x94E614a7D82d9dD24CBED7607a40eBE4243491dF
 for verification on the block explorer. Waiting for verification result...

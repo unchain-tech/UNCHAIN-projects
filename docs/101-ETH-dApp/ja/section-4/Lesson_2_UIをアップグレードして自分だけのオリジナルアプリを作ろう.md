@@ -210,11 +210,11 @@ PROD_ALCHEMY_KEY = メインネットにデプロイする際に使用するAlch
 
 ```javascript
 // hardhat.config.js
-require("@nomiclabs/hardhat-waffle");
+require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
 
 module.exports = {
-  solidity: "0.8.4",
+  solidity: "0.8.9",
   networks: {
     rinkeby: {
       url: process.env.STAGING_ALCHEMY_KEY,

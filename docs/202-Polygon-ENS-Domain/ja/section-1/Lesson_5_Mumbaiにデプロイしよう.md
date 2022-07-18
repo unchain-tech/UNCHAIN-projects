@@ -118,7 +118,7 @@ MetaMask と Hardhat の両方で Polygon ネットワークの設定が完了�
 
 覚えているかと思いますが、以前のレッスンでローカルブロックチェーンにデプロイするため `run.js`ファイルを作成し、そのファイルでいくつかの関数を実行してテストしました。 ムンバイのテストネットにデプロイする場合、テストネットにデプロイ用の別のファイルを作成する必要があります。
 
-`run.js`とは別でファイルを作成します。`scripts`フォルダの下に`deploy.js`という名前のファイルを作成します。`console.log`ステートメントが多いことを除けば、`run.js`ファイルと非常によく似ています。
+`run.js`とは別でファイルを作成します。`scripts` ディレクトリの中にある `deploy.js` を以下のとおり更新します。`console.log`ステートメントが多いことを除けば、`run.js`ファイルと非常によく似ています。
 
 ```javascript
 // deploy.js
@@ -170,10 +170,10 @@ runMain();
 
 ```javascript
 // hardhat.config.js
-require("@nomiclabs/hardhat-waffle");
+require("@nomicfoundation/hardhat-toolbox");
 
 module.exports = {
-  solidity: "0.8.4",
+  solidity: "0.8.9",
   networks: {
     mumbai: {
       url: "YOUR_ALCHEMY_MUMBAI_URL",

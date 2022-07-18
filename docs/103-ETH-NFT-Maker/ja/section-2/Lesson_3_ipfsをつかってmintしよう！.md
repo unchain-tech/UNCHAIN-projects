@@ -7,7 +7,7 @@ IPFS に写真をアップロードできたところで、その写真を使っ
 ```solidity
 // Web3Mint.sol
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.9;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
 //OpenZeppelinが提供するヘルパー機能をインポートします。
@@ -83,7 +83,7 @@ Base64 のやり方は、[project3](https://unchain-portal.netlify.app/projects/
 // Base64.sol
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.9;
 
 /// [MIT License]
 /// @title Base64

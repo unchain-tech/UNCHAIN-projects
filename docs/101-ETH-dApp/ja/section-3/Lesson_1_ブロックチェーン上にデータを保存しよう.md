@@ -14,7 +14,7 @@
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.9;
 import "hardhat/console.sol";
 contract WavePortal {
     uint256 totalWaves;
@@ -402,7 +402,7 @@ npx hardhat run scripts/run.js
 下記のような結果がターミナルに表示されていればテストは成功です。
 
 ```bash
-Compiling 1 file with 0.8.4
+Compiling 1 file with 0.8.9
 Solidity compilation finished successfully
 WavePortal - Smart Contract!
 Contract added to: 0x5FbDB2315678afecb367f032d93F642f64180aa3

@@ -45,11 +45,11 @@ PROD_ALCHEMY_KEY = ""
 
 ```javascript
 // hardhat.config.js
-require("@nomiclabs/hardhat-waffle");
+require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
 
 module.exports = {
-  solidity: "0.8.4",
+  solidity: "0.8.9",
   networks: {
     rinkeby: {
       url: process.env.STAGING_ALCHEMY_KEY,
@@ -76,6 +76,7 @@ node_modules
 coverage
 coverage.json
 typechain
+typechain-types
 
 #Hardhat files
 cache

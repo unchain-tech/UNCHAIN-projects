@@ -221,7 +221,7 @@ npx hardhat run scripts/deploy.js --network rinkeby
 下記のような結果がターミナルに出力されたことを確認してください。
 
 ```
-Compiling 1 file with 0.8.4
+Compiling 1 file with 0.8.9
 Solidity compilation finished successfully
 Contract deployed to: 0xEC4D62E631c4FdC9c293772b3897C64A07874B06
 ```
