@@ -44,7 +44,7 @@ VS Code をターミナルから起動する方法は [こちら](https://maku.b
 // Domains.sol
 // SPDX-License-Identifier: UNLICENSED
 
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.9;
 
 import "hardhat/console.sol";
 
@@ -67,16 +67,16 @@ contract Domains {
 
 ```solidity
 // Domains.sol
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.9;
 ```
 
 これは、コントラクトで使用する Solidity コンパイラのバージョンです。
 
-上記のコードでは、このコントラクトを実行するときは Solidity コンパイラのバージョン `0.8.4` のみを使用しそれ以下のものは使用しません、という宣言をしています。
+上記のコードでは、このコントラクトを実行するときは Solidity コンパイラのバージョン `0.8.9` のみを使用しそれ以下のものは使用しません、という宣言をしています。
 
 コンパイラのバージョンが `hardhat.config.js` で同じであることを確認してください。
 
-もし記載されている Solidity のバージョンが`0.8.4` でなかった場合は、`Domains.sol`の中身を`hardhat.config.js` に記載されているバージョンに変更しましょう。
+もし記載されている Solidity のバージョンが`0.8.9` でなかった場合は、`Domains.sol`の中身を`hardhat.config.js` に記載されているバージョンに変更しましょう。
 
 ```solidity
 // Domains.sol

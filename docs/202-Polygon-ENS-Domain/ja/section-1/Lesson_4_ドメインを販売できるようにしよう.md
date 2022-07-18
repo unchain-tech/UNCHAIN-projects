@@ -23,7 +23,7 @@
 ```solidity
 // Domains.sol
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.9;
 
 // インポートを忘れずに。
 import { StringUtils } from "./libraries/StringUtils.sol";
@@ -237,7 +237,7 @@ OpenSea に ENS ドメインを所有している場合、実際には次のよ�
 ```solidity
 // Domains.sol
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.9;
 
 // 最初にOpenZeppelinライブラリをインポートします.
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";

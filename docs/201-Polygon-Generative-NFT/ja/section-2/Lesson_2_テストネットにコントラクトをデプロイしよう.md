@@ -180,7 +180,7 @@ hardhat.config.js
 ```javascript
 // hardhat.config.js
 
-require("@nomiclabs/hardhat-waffle");
+require("@nomicfoundation/hardhat-toolbox");
 require('dotenv').config();
 
 const { API_URL, PRIVATE_KEY } = process.env;
@@ -194,7 +194,7 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 });
 
 module.exports = {
-  solidity: "0.8.4",
+  solidity: "0.8.9",
   defaultNetwork: "rinkeby",
   networks: {
     rinkeby: {

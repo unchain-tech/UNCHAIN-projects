@@ -64,12 +64,12 @@ npx hardhat
 > `npx hardhat` が実行されなかった場合、以下をターミナルで実行してください。
 >
 > ```bash
-> npm install --save-dev @nomiclabs/hardhat-waffle ethereum-waffle chai @nomiclabs/hardhat-ethers ethers
+> npm install --save-dev @nomicfoundation/hardhat-toolbox
 > ```
 
-`hardhat` がターミナル上で立ち上がったら、`Create a basic sample project` を選択します。
+`hardhat` がターミナル上で立ち上がったら、`Create a JavaScript project` を選択します。
 
-- すべての選択肢で `yes` を選んでください。
+- プロジェクトのルートディレクトリを設定し、`.gitignore` を追加する選択肢で `yes` を選んでください。
 
 次に、安全なスマートコントラクトを開発するために使用されるライブラリ **OpenZeppelin** をインストールします。
 
@@ -98,7 +98,7 @@ npx hardhat compile
 > `npx hardhat compile` が実行されなかった場合、以下をターミナルで実行してください。
 >
 > ```bash
-> npm install --save-dev @nomiclabs/hardhat-waffle ethereum-waffle chai @nomiclabs/hardhat-ethers ethers
+> npm install --save-dev @nomicfoundation/hardhat-toolbox
 > ```
 
 ```
@@ -107,34 +107,27 @@ npx hardhat test
 
 次のように表示されます。
 
-![](/public/images/102-ETH-NFT-Collection/section-1/1_2_1.png)
+![](/public/images/102-ETH-NFT-Collection/section-1/1_2_2.png)
 
 ターミナル上で `epic-nfts` に移動し、`ls` と入力してみて、下記のフォルダーとファイルが表示されていたら成功です。
 
 ```
 README.md		hardhat.config.js	scripts
 artifacts		node_modules		test
-cache			package-lock.json
+cache			package-lock.json .gitignore
 contracts		package.json
 ```
 
 ここまできたら、フォルダーの中身を整理しましょう。
 
-まず、`test` の下のファイル `sample-test.js` を削除します。
+まず、`test` の下のファイル `Lock.js` を削除します。
 
-> 1\. `test` フォルダーに移動: `cd test`
->
-> 2\. `sample-test.js` を削除: `rm sample-test.js`
+1. `test` フォルダーに移動: `cd test`
 
-また、`scripts` の下の `sample-script.js` を削除します。
+2. `Lock.js` を削除: `rm Lock.js`
 
-> 1\. 一つ上の階層のフォルダー（ `epic-nfts` ）に移動: `cd ..`
->
-> 2\. `cd scripts` フォルダーに移動: `cd scripts`
->
-> 3\. `sample-script.js` を削除: `rm sample-script.js`
+次に、上記の手順を参考にして `contracts` の下の `Lock.sol` を削除してください。実際のフォルダは削除しないように注意しましょう。
 
-次に、上記の手順を参考にして `contracts` の下の `Greeter.sol` を削除してください。実際のフォルダは削除しないように注意しましょう。
 
 ### ☀️ Hardhat の機能について
 

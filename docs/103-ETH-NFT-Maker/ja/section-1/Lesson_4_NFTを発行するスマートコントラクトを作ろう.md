@@ -10,7 +10,7 @@
 ```solidity
 // Web3Mint.sol
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.9;
 // いくつかの OpenZeppelin のコントラクトをインポートします。
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
@@ -267,7 +267,7 @@ npx hardhat run scripts/run.js
 エラーが発生した場合は、`pwd` を実行して、 `ipfs-nfts` ディレクトリにいることを確認して、もう一度上記のコードを実行してみてください。
 下記のような結果が、ターミナルに出力されれば、テストは成功です。
 ```
-Compiling 1 file with 0.8.4
+Compiling 1 file with 0.8.9
 Solidity compilation finished successfully
 This is my NFT contract.
 Contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
@@ -357,9 +357,7 @@ MetaMask ウォレットに `Rinkeby Test Network` が設定されたら、下�
 
 `run.js` は、あくまでローカル環境でコードのテストを行うためのスクリプトでした。
 
-テストネットにコントラクトをデプロイするために、`scripts` フォルダの下に `deploy.js` という名前のファイルを作成しましょう。
-
-下記のように、`deploy.js` スクリプトを更新しましょう。
+テストネットにコントラクトをデプロイするために、`scripts` ディレクトリの中にある `deploy.js` を以下のとおり更新します。
 
 ```javascript
 // deploy.js
@@ -412,9 +410,9 @@ hardhat.config.js
 
 ```javascript
 // hardhat.config.js
-require("@nomiclabs/hardhat-waffle");
+require("@nomicfoundation/hardhat-toolbox");
 module.exports = {
-  solidity: "0.8.4",
+  solidity: "0.8.9",
   networks: {
     rinkeby: {
       url: "YOUR_ALCHEMY_API_URL",
@@ -465,6 +463,8 @@ node_modules
 coverage
 coverage.json
 typechain
+typechain-types
+
 #Hardhat files
 cache
 artifacts

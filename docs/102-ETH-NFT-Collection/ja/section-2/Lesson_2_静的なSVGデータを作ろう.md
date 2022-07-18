@@ -157,7 +157,7 @@ npx hardhat run scripts/deploy.js --network rinkeby
 ターミナルに下記のような結果が表示されていたら、デプロイ成功です。
 
 ```
-Compiling 1 file with 0.8.4
+Compiling 1 file with 0.8.9
 Solidity compilation finished successfully
 Contract deployed to: 0xFDCA9fED387344A6a11c3022bCa0669964c237Db
 Minted NFT #1

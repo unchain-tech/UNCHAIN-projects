@@ -126,10 +126,9 @@ npx hardhat run scripts/run.js
 例）ターミナル上でのアウトプット:
 
 ```
-Compiling 1 file with 0.8.4
-Solidity compilation finished successfully
+Compiled 1 Solidity file successfully
 Here is my first smart contract!
-WavePortal address: 0x5FbDB2315678afecb367f032d93F642f64180aa3
+WavePortal address:  0x5FbDB2315678afecb367f032d93F642f64180aa3
 ```
 
 上記のようなアウトプットターミナルに表示されていればテストは成功です。

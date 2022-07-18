@@ -6,7 +6,7 @@
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.9;
 
 // NFT発行のコントラクト ERC721.sol をインポートします。
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
@@ -486,7 +486,7 @@ npx hardhat run scripts/run.js
 下記のような結果がターミナルに出力されていれば、テストは成功です。
 
 ```
-Compiling 11 files with 0.8.4
+Compiling 11 files with 0.8.9
 Solidity compilation finished successfully
 Done initializing ZORO w/ HP 100, img https://i.imgur.com/TZEhCTX.png
 Done initializing USOPP w/ HP 200, img https://i.imgur.com/WVAaMPA.png
@@ -519,7 +519,7 @@ epic-game
 ```solidity
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.9;
 
 /// [MIT License]
 /// @title Base64
@@ -722,7 +722,7 @@ npx hardhat run scripts/run.js
 下記のような結果がターミナルに出力されていれば、テストは成功です。
 
 ```plaintext
-Compiling 2 files with 0.8.4
+Compiling 2 files with 0.8.9
 Solidity compilation finished successfully
 Done initializing ZORO w/ HP 100, img https://i.imgur.com/TZEhCTX.png
 Done initializing NAMI w/ HP 200, img https://i.imgur.com/WVAaMPA.png

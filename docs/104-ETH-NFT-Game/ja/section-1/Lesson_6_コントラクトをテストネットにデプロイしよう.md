@@ -123,7 +123,7 @@ MetaMask ウォレットに `Rinkeby Test Network` が設定されたら、下�
 
 今までは、ローカル環境でスマートコントラクトのテストを行う際に、`run.js` スクリプトを使用してきました。
 
-`epic-game/scripts` ディレクトリに、`deploy.js` を作成して、下記のコードを貼り付けましょう。
+`epic-game/scripts` ディレクトリに、`scripts` ディレクトリの中にある `deploy.js` を以下のとおり更新します。
 
 内容は、既存の `run.js` に、`mintCharacterNFT` 関数の呼び出しを追加しただけです。
 
@@ -205,9 +205,9 @@ hardhat.config.js
 
 ```javascript
 // hardhat.config.js
-require("@nomiclabs/hardhat-waffle");
+require("@nomicfoundation/hardhat-toolbox");
 module.exports = {
-  solidity: "0.8.4",
+  solidity: "0.8.9",
   networks: {
     rinkeby: {
       url: "YOUR_ALCHEMY_API_URL",
@@ -266,6 +266,7 @@ node_modules
 coverage
 coverage.json
 typechain
+typechain-types
 
 #Hardhat files
 cache

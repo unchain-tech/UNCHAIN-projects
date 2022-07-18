@@ -53,14 +53,16 @@ npm install --save-dev hardhat
 npx hardhat
 ```
 
-`Create a basic sample project` を選択し、すべてに `yes` と答えましょう。
+`hardhat` がターミナル上で立ち上がったら、`Create a JavaScript project` を選択します。
+
+- プロジェクトのルートディレクトリを設定し、`.gitignore` を追加する選択肢で `yes` を選んでください。
 
 > ⚠️: 注意
 >
 > `npx hardhat` が実行されなかった場合、以下をターミナルで実行してください。
 >
 > ```bash
-> npm install --save-dev @nomiclabs/hardhat-waffle ethereum-waffle chai @nomiclabs/hardhat-ethers ethers
+> npm install --save-dev @nomicfoundation/hardhat-toolbox
 > ```
 >
 > その後、もう一度 `npx hardhat` を実行しましょう。
@@ -74,7 +76,7 @@ npx hardhat run scripts/sample-script.js
 すべてがうまくいけば、次のような出力が表示されるはずです。
 
 ```
-Compiling 2 files with 0.8.4
+Compiling 2 files with 0.8.9
 Solidity compilation finished successfully
 Deploying a Greeter with greeting: Hello, Hardhat!
 Greeter deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
@@ -105,27 +107,19 @@ npm install dotenv
 ```
 README.md		hardhat.config.js	scripts
 artifacts		node_modules		test
-cache			package-lock.json
+cache			package-lock.json .gitignore
 contracts		package.json
 ```
 
 ここまできたら、フォルダーの中身を整理しましょう。
 
-まず、`test` の下のファイル `sample-test.js` を削除します。
+まず、`test` の下のファイル `Lock.js` を削除します。
 
-1\. `test` フォルダーに移動: `cd test`
+1. `test` フォルダーに移動: `cd test`
 
-2\. `sample-test.js` を削除: `rm sample-test.js`
+2. `Lock.js` を削除: `rm Lock.js`
 
-また、`scripts` の下の `sample-script.js` を削除します。
-
-1\. 1 つ上の階層のフォルダー（`nft-collectible`）に移動: `cd ..`
-
-2\. `cd scripts` フォルダーに移動: `cd scripts`
-
-3\. `sample-script.js` を削除: `rm sample-script.js`
-
-次に、上記の手順を参考にして `contracts` の下の `Greeter.sol` を削除してください。実際のフォルダは削除しないように注意しましょう。
+次に、上記の手順を参考にして `contracts` の下の `Lock.sol` を削除してください。実際のフォルダは削除しないように注意しましょう。
 
 ### 🖋 コントラクトを作成する
 
@@ -165,7 +159,7 @@ VS Code をターミナルから起動する方法は[こちら](https://maku.bl
 // NFTCollectible.sol
 //SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.9;
 
 import "hardhat/console.sol";
 
@@ -193,12 +187,12 @@ contract NFTCollectible is ERC721Enumerable, Ownable {
 
 ```solidity
 // NFTCollectible.sol
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.9;
 ```
 
-これは、コントラクトで使用する Solidity コンパイラのバージョンです。上記の場合「このコントラクトを実行するときは、Solidity コンパイラのバージョン 0.8.4 のみを使用し、それ以下のものは使用しません」という意味です。コンパイラのバージョンが `hardhat.config.js` で同じであることを確認してください。
+これは、コントラクトで使用する Solidity コンパイラのバージョンです。上記の場合「このコントラクトを実行するときは、Solidity コンパイラのバージョン 0.8.9 のみを使用し、それ以下のものは使用しません」という意味です。コンパイラのバージョンが `hardhat.config.js` で同じであることを確認してください。
 
-もし、`hardhat.config.js` の中に記載されている Solidity のバージョンが `0.8.4` でなかった場合は、`NFTCollectible.sol` の中身を `hardhat.config.js` に記載されているバージョンに変更しましょう。
+もし、`hardhat.config.js` の中に記載されている Solidity のバージョンが `0.8.9` でなかった場合は、`NFTCollectible.sol` の中身を `hardhat.config.js` に記載されているバージョンに変更しましょう。
 
 ```solidity
 // NFTCollectible.sol
@@ -547,7 +541,7 @@ function withdraw() public payable onlyOwner {
 ```solidity
 // NTCollectible.sol
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.9;
 
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";

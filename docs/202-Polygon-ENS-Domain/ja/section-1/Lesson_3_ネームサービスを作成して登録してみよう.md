@@ -17,7 +17,7 @@
 // Domains.sol
 // SPDX-License-Identifier: UNLICENSED
 
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.9;
 
 import "hardhat/console.sol";
 
@@ -203,7 +203,7 @@ ENSを使用すると、前に示したように、さまざまなものを保�
 ```solidity
 // Domains.sol
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.9;
 
 import "hardhat/console.sol";
 

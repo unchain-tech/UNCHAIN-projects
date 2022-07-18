@@ -24,27 +24,11 @@ npx hardhat node
 
 このローカルネットワークで、スマートコントラクトをデプロイしていきます。
 
-`scripts` ディレクトリの中に、 `deploy.js` というファイルを作成します。
+`scripts` ディレクトリの中にある `deploy.js` を以下のとおり更新します。
 
 - `deploy.js` は、今後あなたの構築するフロントエンドと、あなたのスマートコントラクト（`WavePortal.sol`）を結び付ける役割を果たします。
 
 - `run.js` がテスト用のプログラムなら、`deploy.js` は本番用です。
-
-それでは、ターミナル上で `scripts` ディレクトリに移動して、下記を実行しましょう。
-
-もう 1 つターミナルウィンドウを立ち上げて、下記を実行してみましょう。
-
-```bash
-touch deploy.js
-```
-
-`deploy.js` ファイルが `scripts` の中に作成されます。
-
-`ls` を実行して、`scripts` ディレクトリに入っているファイルをターミナル上に出力しましょう。
-
-ターミナル上で `deploy.js`が作成されていることを確認してください。
-
-それでは、`deploy.js` を下記のように更新していきましょう。
 
 ```javascript
 // deploy.js
@@ -86,7 +70,7 @@ npx hardhat run scripts/deploy.js --network localhost
 下記のような出力結果がターミナルに表示されたでしょうか？
 
 ```
-Deploying contracts with account:  0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+Deploying contracts with account: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
 Account balance:  10000000000000000000000
 Contract deployed to:  0x5FbDB2315678afecb367f032d93F642f64180aa3
 Contract deployed by:  0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266

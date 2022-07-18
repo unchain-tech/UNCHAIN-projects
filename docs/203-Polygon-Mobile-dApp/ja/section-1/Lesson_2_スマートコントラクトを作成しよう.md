@@ -19,7 +19,7 @@
 ```js
 // TodoContract.sol
 // SPDX-License-Identifier: GPL-3.0
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.9;
 
 contract TodoContract {
     uint256 public taskCount = 0;
@@ -56,7 +56,7 @@ contract TodoContract {
 
 ```js
 // TodoContract.sol
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.9;
 ```
 
 これは、コントラクトで使用する Solidity コンパイラのバージョンです。
