@@ -80,7 +80,7 @@ let contractBalance_post = await provider.getBalance(
   wavePortalContract.address
 );
 /* コントラクトの残高が減っていることを確認 */
-if (contractBalance_post < contractBalance) {
+if (contractBalance_post.lt(contractBalance)) {
   /* 減っていたら下記を出力 */
   console.log("User won ETH!");
 } else {
