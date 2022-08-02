@@ -7,7 +7,7 @@
 
 `src/contracts` フォルダを参照してください。
 
-1. DaiToken.sol
+1. MockDaiToken.sol
    - 偽のDaiトークンを作成するコントラクト
 2. DappToken.sol
    - 投資家が私たちのプロジェクトで獲得できるコミュニティトークン Dapp を作成するコントラクト
@@ -28,7 +28,7 @@
 // 2_deploy_contracts.js
 const TokenFarm = artifacts.require(`TokenFarm`)
 const DappToken = artifacts.require(`DappToken`)
-const DaiToken = artifacts.require(`DaiToken`)
+const DaiToken = artifacts.require(`MockDaiToken`)
 
 module.exports = async function(deployer, newtwork, accounts) {
 
@@ -57,10 +57,10 @@ module.exports = async function(deployer, newtwork, accounts) {
 // 2_deploy_contracts.js
 const TokenFarm = artifacts.require(`TokenFarm`)
 const DappToken = artifacts.require(`DappToken`)
-const DaiToken = artifacts.require(`DaiToken`)
+const DaiToken = artifacts.require(`MockDaiToken`)
 ```
 
-ここでは`TokenFarm`, `DappToken`, `DaiToken`の3つのコントラクトとやりとりをするよとtruffleに伝えています。
+ここでは`TokenFarm`, `DappToken`, `MockDaiToken`の3つのコントラクトとやりとりをするよとtruffleに伝えています。
 
 次に、`function()` の引数として、`network` と `accounts` を追加していきましょう。
 
@@ -155,7 +155,7 @@ contract TokenFarm{
 }
 ```
 
-まず `DappToken` と `DaiToken` をインポートすることで `DappToken` と `DaiToken` を使えるようにします。
+まず `DappToken` と `MockDaiToken` をインポートすることで `DappToken` と `DaiToken` を使えるようにします。
 
 ```solidity
 // TokenFarm.sol
@@ -264,11 +264,11 @@ truffle(development)> balance.toString()
 
 ここで、何を実行したのかを解説します。
 
-まず、`src/contracts/DaiToken.sol` を見て、以下のコードを確認しましょう:
+まず、`src/contracts/MockDaiToken.sol` を見て、以下のコードを確認しましょう:
 
 
 ```solidity
-// DaiToken.sol
+// MockDaiToken.sol
 
 mapping(address => unit256) public balanceOf
 ```
