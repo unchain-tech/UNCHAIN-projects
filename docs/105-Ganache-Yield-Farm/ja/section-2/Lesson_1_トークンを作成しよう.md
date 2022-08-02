@@ -28,7 +28,7 @@
 // 2_deploy_contracts.js
 const TokenFarm = artifacts.require(`TokenFarm`)
 const DappToken = artifacts.require(`DappToken`)
-const DaiToken = artifacts.require(`MockDaiToken`)
+const DaiToken = artifacts.require(`DaiToken`)
 
 module.exports = async function(deployer, newtwork, accounts) {
 
@@ -57,7 +57,7 @@ module.exports = async function(deployer, newtwork, accounts) {
 // 2_deploy_contracts.js
 const TokenFarm = artifacts.require(`TokenFarm`)
 const DappToken = artifacts.require(`DappToken`)
-const DaiToken = artifacts.require(`MockDaiToken`)
+const DaiToken = artifacts.require(`DaiToken`)
 ```
 
 ここでは`TokenFarm`, `DappToken`, `MockDaiToken`の3つのコントラクトとやりとりをするよとtruffleに伝えています。
