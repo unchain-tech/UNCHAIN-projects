@@ -90,8 +90,8 @@ function stakeTokens(uint _amount) public {
 
 ここで最も重要になるのが、`transferFrom()` 関数です。
 
-`daiToken` のもととなるスマートコントラクト `DaiToken.sol` は他のERC-20トークンと同じように `transferFrom()` 関数を保持しています。
-- `transferFrom()` 関数の中身が気になる人は、`DaiToken.sol` の中に定義されている `transferFrom()` を見てみてください!
+`daiToken` のもととなるスマートコントラクト `MockDaiToken.sol` は他のERC-20トークンと同じように `transferFrom()` 関数を保持しています。
+- `transferFrom()` 関数の中身が気になる人は、`MockDaiToken.sol` の中に定義されている `transferFrom()` を見てみてください!
 
 `transferFrom()` を使用すると、投資家に代わってコントラクト自体（`TokenFarm.sol`）が、実際に資金を移動させることができるようになります。
 - `msg.sender` は Solidity 内部の特別な変数です。`msg` またはメッセージは Solidity 内のグローバル変数で、関数が呼び出されるたびに送信されるメッセージに対応します。`sender` は関数を呼び出した人を意味します。
