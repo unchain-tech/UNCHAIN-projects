@@ -89,7 +89,7 @@ class TodoListModel extends ChangeNotifier {
 ```
 
 Ganache の `_rpcUrl` と `_wsUrl` をローカル環境用に設定しています。
-* Android向けにEmulatorを使ってDebugビルドをする場合は_rpcUrlをhttp://10.0.2.2:7545に変更する必要があります
+* Android向けにEmulatorを使ってDebugビルドをする場合は_rpcUrlを `http://10.0.2.2:7545` に変更する必要があります
 > また、開発マシンのアドレス 127.0.0.1 は、エミュレータ固有のループバック インターフェースと一致することになります。開発マシンのループバック インターフェース（マシン上の別名 127.0.0.1）で実行されているサービスにアクセスする場合は、代わりに特殊アドレス 10.0.2.2 を使用する必要があります。
 (参照: https://developer.android.com/studio/run/emulator-networking)
 
