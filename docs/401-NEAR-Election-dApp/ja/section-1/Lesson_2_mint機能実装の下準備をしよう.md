@@ -60,57 +60,54 @@ pub enum StorageKey {
     VotedVoterList,
 }
 
-+ // 以下を追加してください
-#[near_bindgen]
-impl Contract {
-    // function for initialization(new_default_meta)
-    #[init]
-    pub fn new(owner_id: AccountId, metadata: NFTContractMetadata) -> Self {
-        let this = Self {
-            owner_id,
-            tokens_per_owner: LookupMap::new(StorageKey::TokensPerOwner.try_to_vec().unwrap()),
-            tokens_per_kind: LookupMap::new(StorageKey::TokensPerKind.try_to_vec().unwrap()),
-            tokens_by_id: LookupMap::new(StorageKey::TokensById.try_to_vec().unwrap()),
-            token_metadata_by_id: UnorderedMap::new(
-                StorageKey::TokenMetadataById.try_to_vec().unwrap(),
-            ),
-            metadata: LazyOption::new(
-                StorageKey::NFTContractMetadata.try_to_vec().unwrap(),
-                Some(&metadata),
-            ),
-            token_id_counter: 0,
-            likes_per_candidate: LookupMap::new(
-                StorageKey::LikesPerCandidate.try_to_vec().unwrap(),
-            ),
-            added_voter_list: LookupMap::new(StorageKey::AddedVoterList.try_to_vec().unwrap()),
-            voted_voter_list: LookupMap::new(StorageKey::VotedVoterList.try_to_vec().unwrap()),
-            is_election_closed: false,
-        };
-
-        this
-    }
-
-    // initialization function
-    #[init]
-    pub fn new_default_meta(owner_id: AccountId) -> Self {
-        Self::new(
-            owner_id,
-            NFTContractMetadata {
-                spec: "nft-1.0.0".to_string(),
-                name: "Near Vote Contract".to_string(),
-                reference: "This contract is design for fair election!".to_string(),
-            },
-        )
-    }
-}
-
++ #[near_bindgen]
++ impl Contract {
++     // function for initialization(new_default_meta)
++     #[init]
++     pub fn new(owner_id: AccountId, metadata: NFTContractMetadata) -> Self {
++         let this = Self {
++             owner_id,
++             tokens_per_owner: LookupMap::new(StorageKey::TokensPerOwner.try_to_vec().unwrap()),
++             tokens_per_kind: LookupMap::new(StorageKey::TokensPerKind.try_to_vec().unwrap()),
++             tokens_by_id: LookupMap::new(StorageKey::TokensById.try_to_vec().unwrap()),
++             token_metadata_by_id: UnorderedMap::new(
++                 StorageKey::TokenMetadataById.try_to_vec().unwrap(),
++             ),
++             metadata: LazyOption::new(
++                 StorageKey::NFTContractMetadata.try_to_vec().unwrap(),
++                 Some(&metadata),
++             ),
++             token_id_counter: 0,
++             likes_per_candidate: LookupMap::new(
++                 StorageKey::LikesPerCandidate.try_to_vec().unwrap(),
++             ),
++             added_voter_list: LookupMap::new(StorageKey::AddedVoterList.try_to_vec().unwrap()),
++             voted_voter_list: LookupMap::new(StorageKey::VotedVoterList.try_to_vec().unwrap()),
++             is_election_closed: false,
++         };
++         this
++     }
++
++     // initialization function
++     #[init]
++     pub fn new_default_meta(owner_id: AccountId) -> Self {
++         Self::new(
++             owner_id,
++             NFTContractMetadata {
++                 spec: "nft-1.0.0".to_string(),
++                 name: "Near Vote Contract".to_string(),
++                 reference: "This contract is design for fair election!".to_string(),
++             },
++         )
++     }
++ }
 ```
 
 はじめの`#[near_bindgen]`は near のチェーンで有効な構造体、関数を宣言できるようにするためのものです。
 
 次の`impl Contract`についてですが、これは`Contract`という構造体に`{}`内のメソッドを持たせるということを意味しています。
 
-```bash
+```rust
 #[near_bindgen]
 impl Contract
 ```
@@ -123,9 +120,9 @@ impl Contract
 
 そして`->Self`というのは`Contract`という構造体自身を返すということです。これはコントラクト自体のインスタンスを関数内で生成して、それを返り値として返すということです。
 
-```bash
- #[init]
-    pub fn new(owner_id: AccountId, metadata: NFTContractMetadata) -> Self {
+```rust
+#[init]
+pub fn new(owner_id: AccountId, metadata: NFTContractMetadata) -> Self {
 ```
 
 中身ではそれぞれの変数の初期化をしています。
@@ -139,31 +136,31 @@ impl Contract
 
 最後の this というのはここで宣言した this という変数を返り値とすることを示しています。rust では`return`を明示的に使わなくても、最後に返したい値を`;`なしで記述すれば暗黙的に返り値なんだと解釈してくれます。
 
-```bash
+```rust
 {
-        let this = Self {
-            owner_id,
-            tokens_per_owner: LookupMap::new(StorageKey::TokensPerOwner.try_to_vec().unwrap()),
-            tokens_per_kind: LookupMap::new(StorageKey::TokensPerKind.try_to_vec().unwrap()),
-            tokens_by_id: LookupMap::new(StorageKey::TokensById.try_to_vec().unwrap()),
-            token_metadata_by_id: UnorderedMap::new(
-                StorageKey::TokenMetadataById.try_to_vec().unwrap(),
-            ),
-            metadata: LazyOption::new(
-                StorageKey::NFTContractMetadata.try_to_vec().unwrap(),
-                Some(&metadata),
-            ),
-            token_id_counter: 0,
-            likes_per_candidate: LookupMap::new(
-                StorageKey::LikesPerCandidate.try_to_vec().unwrap(),
-            ),
-            added_voter_list: LookupMap::new(StorageKey::AddedVoterList.try_to_vec().unwrap()),
-            voted_voter_list: LookupMap::new(StorageKey::VotedVoterList.try_to_vec().unwrap()),
-            is_election_closed: false,
-        };
+    let this = Self {
+        owner_id,
+        tokens_per_owner: LookupMap::new(StorageKey::TokensPerOwner.try_to_vec().unwrap()),
+        tokens_per_kind: LookupMap::new(StorageKey::TokensPerKind.try_to_vec().unwrap()),
+        tokens_by_id: LookupMap::new(StorageKey::TokensById.try_to_vec().unwrap()),
+        token_metadata_by_id: UnorderedMap::new(
+            StorageKey::TokenMetadataById.try_to_vec().unwrap(),
+        ),
+        metadata: LazyOption::new(
+            StorageKey::NFTContractMetadata.try_to_vec().unwrap(),
+            Some(&metadata),
+        ),
+        token_id_counter: 0,
+        likes_per_candidate: LookupMap::new(
+            StorageKey::LikesPerCandidate.try_to_vec().unwrap(),
+        ),
+        added_voter_list: LookupMap::new(StorageKey::AddedVoterList.try_to_vec().unwrap()),
+        voted_voter_list: LookupMap::new(StorageKey::VotedVoterList.try_to_vec().unwrap()),
+        is_election_closed: false,
+    };
 
-        this
-    }
+    this
+}
 ```
 
 次の`new_default_meta関数`はコントラクトのオーナーの Wallet Id を引数として受け取ります。`Self::new`というのは`Self`つまりこのコントラクト自体がもつ`new`という関数を呼び出していることを表しています。
@@ -178,18 +175,18 @@ impl Contract
 
 ただ、ここでどの変数にも`to_string()`というメソッドが適用されていることに疑問を抱いた方が多いと思います。その解説については[こちら](https://colorfulcompany.com/rust/str-and-string)をご覧ください。
 
-```bash
+```rust
 #[init]
-    pub fn new_default_meta(owner_id: AccountId) -> Self {
-        Self::new(
-            owner_id,
-            NFTContractMetadata {
-                spec: "nft-1.0.0".to_string(),
-                name: "Near Vote Contract".to_string(),
-                description: "This contract is design for fair election!".to_string(),
-            },
-        )
-    }
+pub fn new_default_meta(owner_id: AccountId) -> Self {
+    Self::new(
+        owner_id,
+        NFTContractMetadata {
+            spec: "nft-1.0.0".to_string(),
+            name: "Near Vote Contract".to_string(),
+            description: "This contract is design for fair election!".to_string(),
+        },
+    )
+}
 ```
 
 これでコントラクトの初期化機能の実装は完了しました。次のレッスンでは NFT を mint,transfer 機能を実装しましょう。
@@ -203,95 +200,94 @@ impl Contract
 [mint.rs]
 
 ```diff
-+ // 以下を追加してください
-use crate::*;
-
-#[near_bindgen]
-impl Contract {
-    #[payable]
-
-    //mint token
-    pub fn nft_mint(&mut self, mut metadata: TokenMetadata, receiver_id: AccountId) {
-        // set token id
-        assert!(
-            !(&self.is_election_closed),
-            "You can add candidate or voter because this election has been closed!"
-        );
-        metadata.token_id = Some(self.token_id_counter);
-        let initial_storage_usage = env::storage_usage();
-        let receiver_id_clone = receiver_id.clone();
-        let token = TokenOwner {
-            owner_id: receiver_id,
-        };
-        let token_id = self.token_id_counter;
-        let token_kind = metadata.token_kind.clone();
-
-        assert!(
-            self.tokens_by_id
-                .insert(&self.token_id_counter, &token)
-                .is_none(),
-            "Token already exists"
-        );
-
-        // add info(key: receiver_id, value: token metadata ) to map
-        self.token_metadata_by_id
-            .insert(&self.token_id_counter, &metadata);
-
-        // add info(key: receiver id, value: token id ) to map
-        self.internal_add_token_to_owner(&token.owner_id, &token_id);
-
-        // add info(key: token id, value: token kind ) to map
-        self.internal_add_token_to_kind_map(&token_id, token_kind);
-
-        // add data(key: token id, value: number of likes)
-        self.likes_per_candidate
-            .insert(&self.token_id_counter, &(0 as Likes));
-
-        // add info(key: receiver id, value: token id ) to map(-> this list is for check voter get vote ticket)
-        self.added_voter_list
-            .insert(&receiver_id_clone, &self.token_id_counter);
-
-        // increment token id counter
-        self.token_id_count();
-
-        // calculate storage user used
-        let required_storage_in_bytes = env::storage_usage() - initial_storage_usage;
-
-        // refund unused payment deposit
-        refund_deposit(required_storage_in_bytes);
-    }
-
-    // count token id
-    pub fn token_id_count(&mut self) {
-        self.token_id_counter = self.token_id_counter + 1;
-    }
-
-    // get next token id
-    pub fn show_token_id_counter(&self) -> u128 {
-        self.token_id_counter
-    }
-}
++ use crate::*;
++ 
++ #[near_bindgen]
++ impl Contract {
++     #[payable]
++ 
++     //mint token
++     pub fn nft_mint(&mut self, mut metadata: TokenMetadata, receiver_id: AccountId) {
++         // set token id
++         assert!(
++             !(&self.is_election_closed),
++             "You can add candidate or voter because this election has been closed!"
++         );
++         metadata.token_id = Some(self.token_id_counter);
++         let initial_storage_usage = env::storage_usage();
++         let receiver_id_clone = receiver_id.clone();
++         let token = TokenOwner {
++             owner_id: receiver_id,
++         };
++         let token_id = self.token_id_counter;
++         let token_kind = metadata.token_kind.clone();
++ 
++         assert!(
++             self.tokens_by_id
++                 .insert(&self.token_id_counter, &token)
++                 .is_none(),
++             "Token already exists"
++         );
++ 
++         // add info(key: receiver_id, value: token metadata ) to map
++         self.token_metadata_by_id
++             .insert(&self.token_id_counter, &metadata);
++ 
++         // add info(key: receiver id, value: token id ) to map
++         self.internal_add_token_to_owner(&token.owner_id, &token_id);
++ 
++         // add info(key: token id, value: token kind ) to map
++         self.internal_add_token_to_kind_map(&token_id, token_kind);
++ 
++         // add data(key: token id, value: number of likes)
++         self.likes_per_candidate
++             .insert(&self.token_id_counter, &(0 as Likes));
++ 
++         // add info(key: receiver id, value: token id ) to map(-> this list is for check voter get vote ticket)
++         self.added_voter_list
++             .insert(&receiver_id_clone, &self.token_id_counter);
++ 
++         // increment token id counter
++         self.token_id_count();
++ 
++         // calculate storage user used
++         let required_storage_in_bytes = env::storage_usage() - initial_storage_usage;
++ 
++         // refund unused payment deposit
++         refund_deposit(required_storage_in_bytes);
++     }
++ 
++     // count token id
++     pub fn token_id_count(&mut self) {
++         self.token_id_counter = self.token_id_counter + 1;
++     }
++ 
++     // get next token id
++     pub fn show_token_id_counter(&self) -> u128 {
++         self.token_id_counter
++     }
++ }
 ```
 
 次に`nft_mint`という関数について説明します。この関数では引数として NFT の情報、受け取るユーザーの Wallet Id をもらいます。
 
 初めの`#[payable]`は token を授受できるようにするための注釈です。
 
-```bash
-    #[payable]
+```rust
+#[payable]
 
-    //mint token
-    pub fn nft_mint(&mut self, mut metadata: TokenMetadata, receiver_id: AccountId)
+//mint token
+pub fn nft_mint(&mut self, mut metadata: TokenMetadata, receiver_id: AccountId)
 ```
 
 関数の中身としてはまずコントラクトの`is_election_closed`という変数が`false`である、つまりまだ投票が終了していないことを確認して、もししまっている(true)のときはもう投票できないというメッセージをコンソールに出力します。
 
-```bash
-        // set token id
-        assert!(
-            !(&self.is_election_closed),
-            "You can add candidate or voter because this election has been closed!"
-        );
+```rust
+// set token id
+assert!(
+    !(&self.is_election_closed),
+    "You can add candidate or voter because this election has been closed!"
+);
 ```
 
 次の部分では`metadata`という引数のあるプロパティを更新します。最終的にこの値は NFT のメタデータとしてコントラクトに格納されることになります。この metadata のうちの`token_id`というプロパティを更新します。
@@ -300,7 +296,7 @@ impl Contract {
 
 Option 型というのは値があれば`Some(値)`となり、値が存在しない場合は`None`となるものです。これで値が存在しないストレージにアクセスするというバグがなくなるのです。詳しくは[こちら](https://doc.rust-lang.org/std/option/)をご覧ください。
 
-```bash
+```rust
 metadata.token_id = Some(self.token_id_counter);
 ```
 
@@ -316,32 +312,31 @@ metadata.token_id = Some(self.token_id_counter);
 
 `token_kind`には引数として受け取った`metadata`に格納されている`token_kind`というプロパティが入れられます。
 
-```bash
-        let initial_storage_usage = env::storage_usage();
-        let receiver_id_clone = receiver_id.clone();
-        let token = TokenOwner {
-            owner_id: receiver_id,
-        };
-        let token_id = self.token_id_counter;
-        let token_kind = metadata.token_kind.clone();
+```rust
+let initial_storage_usage = env::storage_usage();
+let receiver_id_clone = receiver_id.clone();
+let token = TokenOwner {
+    owner_id: receiver_id,
+};
+let token_id = self.token_id_counter;
+let token_kind = metadata.token_kind.clone();
 ```
 
 次の`assert!()`というメソッドでは mint するユーザーが所有する NFT の内、これから mint する NFT の token の id を持つものが含まれていないかを確認しています。これは二重に mint することを防いでいます。
 
-```bash
+```rust
 assert!(
-            self.tokens_by_id
-                .insert(&self.token_id_counter, &token)
-                .is_none(),
-            "Token already exists"
-        );
+    self.tokens_by_id
+        .insert(&self.token_id_counter, &token)
+        .is_none(),
+    "Token already exists"
+);
 ```
 
 次の部分では token の id と NFT の metadata を紐づけるためのマップである`token_metadata_by_id`にデータを格納しています。
 
-```bash
-self.token_metadata_by_id
-            .insert(&self.token_id_counter, &metadata);
+```rust
+self.token_metadata_by_id.insert(&self.token_id_counter, &metadata);
 ```
 
 この二つの関数は internal.rs で定義する関数です。
@@ -350,40 +345,38 @@ self.token_metadata_by_id
 
 次の`internal_add_token_to_kind_map`は token の id とその種類(候補者の NFT か投票券の NFT か)を紐づける map である`tokens_per_kind`にそれぞれの値を格納する関数です。
 
-```bash
+```rust
 self.internal_add_token_to_owner(&token.owner_id, &token_id);
-        self.internal_add_token_to_kind_map(&token_id, token_kind);
+self.internal_add_token_to_kind_map(&token_id, token_kind);
 ```
 
 ここでは候補者の token の id とその得票数を紐づける map である`likes_per_candidate`にそれぞれの値を格納しています。
 
-```bash
-self.likes_per_candidate
-            .insert(&self.token_id_counter, &(0 as Likes));
+```rust
+self.likes_per_candidate.insert(&self.token_id_counter, &(0 as Likes));
 ```
 
 ここでは投票者とその token の id を紐づけるためのベクターにそれぞれの値を格納しています。
 
-```bash
-self.added_voter_list
-            .insert(&receiver_id_clone, &self.token_id_counter);
+```rust
+self.added_voter_list.insert(&receiver_id_clone, &self.token_id_counter);
 ```
 
 これは次の部分で記述する関数を呼び出しており、次に mint される NFT のために token の id をインクリメント(1 大きくすること)しています。
 
-```bash
+```rust
 self.token_id_count();
 ```
 
 この変数は今のコントラクトが占有しているストレージの領域から mint 前に占有していた領域を引くことで mint によって占有されたストレージの領域を導き出しています。
 
-```bash
+```rust
 let required_storage_in_bytes = env::storage_usage() - initial_storage_usage;
 ```
 
 この関数は`internal.rs`ファイルで宣言する関数で、ユーザーが mint 時に deposit してくれた NEAR(暗号通貨)に対して多すぎた場合に返金する関数です。
 
-```bash
+```rust
 refund_deposit(required_storage_in_bytes);
 ```
 

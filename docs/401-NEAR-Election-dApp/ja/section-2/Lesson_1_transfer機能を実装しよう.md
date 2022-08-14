@@ -11,9 +11,7 @@ use crate::*;
 
 pub trait NonFungibleTokenCore {
     fn nft_token(&self, token_id: TokenId) -> Option<JsonToken>;
-+   // こちらを追加してください
-    fn nft_transfer(&mut self, receiver_id: AccountId, token_id: TokenId,);
-+   // ここまで
++   fn nft_transfer(&mut self, receiver_id: AccountId, token_id: TokenId,);
 }
 
 #[near_bindgen]
@@ -31,19 +29,18 @@ impl NonFungibleTokenCore for Contract {
         }
     }
 
-+   // 以下を追加してください
-    #[payable]
-    // transfer token
-    fn nft_transfer(&mut self, receiver_id: AccountId, token_id: TokenId,) {
-        assert!(
-            !(&self.is_election_closed),
-            "You can no longer vote because it's been closed!"
-        );
-        assert_one_yocto();
-        let sender_id = env::predecessor_account_id();
-
-        self.internal_transfer(&sender_id, &receiver_id, &token_id);
-    }
++   #[payable]
++   // transfer token
++   fn nft_transfer(&mut self, receiver_id: AccountId, token_id: TokenId,) {
++       assert!(
++           !(&self.is_election_closed),
++           "You can no longer vote because it's been closed!"
++       );
++       assert_one_yocto();
++       let sender_id = env::predecessor_account_id();
++
++       self.internal_transfer(&sender_id, &receiver_id, &token_id);
++   }
 }
 
 ```
@@ -85,16 +82,14 @@ pub(crate) fn hash_account_id(account_id: &AccountId) -> CryptoHash {
     hash
 }
 
-+ //　こちらを追加してください
-// confirm caller attached one yoctoNEAR
-pub(crate) fn assert_one_yocto() {
-    assert_eq!(
-        env::attached_deposit(),
-        1,
-        "Requires attached deposit of exactly 1 yoctoNEAR",
-    )
-}
-+ //ここまで
++ // confirm caller attached one yoctoNEAR
++ pub(crate) fn assert_one_yocto() {
++   assert_eq!(
++        env::attached_deposit(),
++        1,
++        "Requires attached deposit of exactly 1 yoctoNEAR",
++    )
++ }
 
 pub(crate) fn refund_deposit(storage_used: u64) {
     let required_cost = env::storage_byte_cost() * Balance::from(storage_used);
@@ -155,57 +150,57 @@ impl Contract {
         tokens_set.insert(&token_id);
         self.tokens_per_kind.insert(&token_kind_clone, &tokens_set);
     }
-+   // 以下を追加してください
-    pub(crate) fn internal_remove_token_from_owner(
-        &mut self,
-        account_id: &AccountId,
-        token_id: &TokenId,
-    ) {
-        let mut tokens_set = self
-            .tokens_per_owner
-            .get(account_id)
-            //if there is no set of tokens for the owner, we panic with the following message:
-            .expect("Token should be owned by the sender");
 
-        tokens_set.remove(token_id);
-
-        if tokens_set.is_empty() {
-            self.tokens_per_owner.remove(account_id);
-        } else {
-            self.tokens_per_owner.insert(account_id, &tokens_set);
-        }
-    }
-
-    // transfer token
-    pub(crate) fn internal_transfer(
-        &mut self,
-        sender_id: &AccountId,
-        receiver_id: &AccountId,
-        token_id: &TokenId,
-    ) -> TokenOwner {
-        let token = self.tokens_by_id.get(token_id).expect("No token");
-
-        if sender_id != &token.owner_id {
-            env::panic_str("Unauthorized");
-        }
-
-        assert_ne!(
-            &token.owner_id, receiver_id,
-            "The token owner and the receiver should be different"
-        );
-
-        self.internal_remove_token_from_owner(&token.owner_id, token_id);
-
-        self.internal_add_token_to_owner(receiver_id, token_id);
-
-        let new_token = TokenOwner {
-            owner_id: receiver_id.clone(),
-        };
-
-        self.tokens_by_id.insert(token_id, &new_token);
-        token
-    }
-}
++   pub(crate) fn internal_remove_token_from_owner(
++       &mut self,
++       account_id: &AccountId,
++       token_id: &TokenId,
++   ) {
++       let mut tokens_set = self
++           .tokens_per_owner
++           .get(account_id)
++           //if there is no set of tokens for the owner, we panic with the following message:
++           .expect("Token should be owned by the sender");
++
++       tokens_set.remove(token_id);
++
++       if tokens_set.is_empty() {
++           self.tokens_per_owner.remove(account_id);
++       } else {
++           self.tokens_per_owner.insert(account_id, &tokens_set);
++       }
++   }
++
++   // transfer token
++   pub(crate) fn internal_transfer(
++       &mut self,
++       sender_id: &AccountId,
++       receiver_id: &AccountId,
++       token_id: &TokenId,
++   ) -> TokenOwner {
++       let token = self.tokens_by_id.get(token_id).expect("No token");
++
++       if sender_id != &token.owner_id {
++           env::panic_str("Unauthorized");
++       }
++
++       assert_ne!(
++           &token.owner_id, receiver_id,
++           "The token owner and the receiver should be different"
++       );
++
++       self.internal_remove_token_from_owner(&token.owner_id, token_id);
++
++       self.internal_add_token_to_owner(receiver_id, token_id);
++
++       let new_token = TokenOwner {
++           owner_id: receiver_id.clone(),
++       };
++
++       self.tokens_by_id.insert(token_id, &new_token);
++       token
++   }
++}
 
 ```
 
@@ -359,7 +354,7 @@ near call $NFT_CONTRACT_ID nft_transfer '{"receiver_id": "NEW_WALLET_ID", "token
 ```
 
 成功していれば下のように新しい wallet で見ることができます。
-![](/public/images/401-NEAR-Election-dApp/2_1_1.png)
+![](/public/images/401-NEAR-Election-dApp/section-2/2_1_1.png)
 
 ### 🙋‍♂️ 質問する
 

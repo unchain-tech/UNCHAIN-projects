@@ -104,7 +104,7 @@ tree -L 2 -F
 
 末尾が`/`となっているものはディレクトリ、それ以外はファイルであることを示しています
 
-```bash
+```
 near-election-dapp/
 ├── near-election-dapp-contract/
 │   ├── Cargo.toml
@@ -137,7 +137,7 @@ yarn dev
 
 背景は時間帯によって変化するような CSS が適用されているため、白くなっている可能性がありますが問題はありません。
 
-![](/public/images/401-NEAR-Election-dApp/0_2_1.png)
+![](/public/images/401-NEAR-Election-dApp/section-0/0_2_1.png)
 
 もし、`command not found: yarn`とエラーが出てしまった方は、以下の記事を参考にしてみてください。
 https://asapoon.com/error/2795/command-not-found-yarn/
@@ -158,17 +158,16 @@ npm install -D tailwindcss postcss &&  npx tailwindcss init
 [global.css]
 
 ```diff
-+ //こちらを一番上に追加してください
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
++ @tailwind base;
++ @tailwind components;
++ @tailwind utilities;
 ```
 
 次に生成された`tailwind.config.js`というファイルの中身を下のように書き換えてください。
 
 [tailwind.config.js]
 
-```bash
+```javascript
 module.exports = {
   content: [
     "./frontend/**/*.{js,jsx,ts,tsx}",
@@ -184,7 +183,7 @@ module.exports = {
 
 [.postcssrc]
 
-```bash
+```
 {
   "plugins": {
     "tailwindcss": {},
@@ -202,12 +201,12 @@ module.exports = {
 
 [App.js]
 
-```bash
+```javascript
 <p className="text-red-600">
 ```
 
 下のように一部分が赤字に変わっていれば成功です！
-![](/public/images/401-NEAR-Election-dApp/0_2_2.png)
+![](/public/images/401-NEAR-Election-dApp/section-0/0_2_2.png)
 
 では最後に、コントラクトのディレクトリ（ここでは near-election-dapp-frontend）内にある `contract` というディレクトリは削除してください。
 
@@ -244,8 +243,8 @@ near-election-dapp/
 Rust、Tailwind で開発を行うときにエラーや候補を表示してくれる機能があるととても便利です！
 
 なので vscode を使っている方はぜひ下の二つの拡張機能を入れることをおすすめします。
-![](/public/images/401-NEAR-Election-dApp/0_2_3.png)
-![](/public/images/401-NEAR-Election-dApp/0_2_4.png)
+![](/public/images/401-NEAR-Election-dApp/section-0/0_2_3.png)
+![](/public/images/401-NEAR-Election-dApp/section-0/0_2_4.png)
 
 ### 🙋‍♂️ 質問する
 
@@ -264,7 +263,7 @@ Rust、Tailwind で開発を行うときにエラーや候補を表示してく�
 
 おめでとうございます！
 
-セクション 1 は終了です！
+セクション 0 は終了です！
 
 次のセクションではいよいよコントラクトの作成に移ります。
 

@@ -30,7 +30,7 @@ touch FILE_NAME
 ```
 
 ② 下のようにワークスペース上でファイルを作るディレクトリを右クリックしてファイル名を記入
-![](/public/images/401-NEAR-Election-dApp/1_1_1.png)
+![](/public/images/401-NEAR-Election-dApp/section-1/1_1_1.png)
 
 個人的には ② の方が楽なのでこちらの方法でやることが多いです。このどちらかの方法を用いてコントラクトのディレクトリ(ここでは`near-election-dapp-contract`)に以下のようなファイル構造を作成してみましょう。
 
@@ -77,8 +77,8 @@ Lesson1 では 1. の情報の格納を実装していきます！
 
 [Cargo.toml]
 
-```diff
-+ //　以下のように書き換えてください
+```
+//　以下のように書き換えてください
 [package]
 name = "near-election-dapp-contract"
 version = "0.1.0"
@@ -108,8 +108,8 @@ overflow-checks = true
 
 [lib.rs]
 
-```diff
-+ //　以下のように書き換えてください
+```rust
+//　以下のように書き換えてください
 use near_sdk::borsh::{self, BorshDeserialize, BorshSerialize};
 use near_sdk::collections::{LazyOption, LookupMap, UnorderedMap, UnorderedSet};
 use near_sdk::json_types::U128;
@@ -136,7 +136,7 @@ pub use vote::*;
 
 最初の部分では Cargo.toml ファイルで追加した near-sdk の中で今回使う部分を宣言しています。
 
-```bash
+```rust
 use near_sdk::borsh::{self, BorshDeserialize, BorshSerialize};
 use near_sdk::collections::{LazyOption, LookupMap, UnorderedMap, UnorderedSet};
 use near_sdk::json_types::U128;
@@ -146,7 +146,7 @@ use near_sdk::{env, near_bindgen, AccountId, Balance, CryptoHash, PanicOnDefault
 
 次の部分ではこのプロジェクト内で作成したファイルを取り込んで使えるようにしています。(拡張子である`.rs`は除いて書くのがルールです。)
 
-```bash
+```rust
 mod confirm;
 mod enumeration;
 mod internal;
@@ -161,7 +161,7 @@ mod nft_core;
 
 最後の部分では取り込んだファイルの内容を lib.rs で使えるようにしています。
 
-```bash
+```rust
 pub use crate::enumeration::*;
 use crate::internal::*;
 pub use crate::metadata::*;
@@ -186,8 +186,8 @@ pub use vote::*;
 
 [metadata.rs]
 
-```diff
-+ // 以下を追加してください
+```rust
+// 以下を追加してください
 use crate::*;
 pub type TokenId = u128;
 pub type CandidateName = String;
@@ -210,7 +210,7 @@ pub struct NFTContractMetadata {
 
 下の部分ではクレートルートである`lib.rs`の中の全てのものを使うことができることが宣言されています。また、`pub type`で特定の文字列が型を表すようにしています。
 
-```bash
+```rust
 use crate::*;
 pub type TokenId = u128;
 pub type CandidateName = String;
@@ -224,7 +224,7 @@ pub type Likes = f32;
 
 そのあとに続く`BorshDeserialize, ...`などが提供するトレイトを`NFTContractMetadata`という構造体が使えるようになるということです。
 
-```bash
+```rust
 #[derive(BorshSerialize, BorshDeserialize, Serialize, Deserialize, Clone)]
 #[serde(crate = "near_sdk::serde")]
 ```
@@ -247,7 +247,7 @@ pub type Likes = f32;
 
 また、String や u128 という型については[こちら](https://zenn.dev/mebiusbox/books/22d4c1ed9b0003/viewer/fb866b)を、`Option`という型については[こちら](https://zenn.dev/mebiusbox/books/22d4c1ed9b0003/viewer/0d7a68)をご覧ください。
 
-```bash
+```rust
 pub struct NFTContractMetadata {
     pub spec: String,
     pub name: String,
@@ -260,7 +260,6 @@ pub struct NFTContractMetadata {
 [metadata.rs]
 
 ```diff
-
 use crate::*;
 pub type TokenId = u128;
 pub type CandidateName = String;
@@ -277,33 +276,32 @@ pub struct NFTContractMetadata {
     pub reference: String,
 }
 
-+ //　以下を追加してください
-#[derive(BorshDeserialize, BorshSerialize, Serialize, Deserialize)]
-#[serde(crate = "near_sdk::serde")]
-pub struct TokenMetadata {
-    pub title: Option<String>,
-    pub description: Option<String>,
-    pub media: String,
-    pub media_CID: String,
-    pub candidate_name: Option<String>,
-    pub candidate_manifest: Option<String>,
-    pub token_kind: String,
-    pub token_id: Option<u128>,
-}
-
-#[derive(BorshDeserialize, BorshSerialize)]
-pub struct TokenOwner {
-    pub owner_id: AccountId,
-}
-
-#[derive(Serialize, Deserialize)]
-#[serde(crate = "near_sdk::serde")]
-
-// metadata of type of Json
-pub struct JsonToken {
-    pub owner_id: AccountId,
-    pub metadata: TokenMetadata,
-}
++ #[derive(BorshDeserialize, BorshSerialize, Serialize, Deserialize)]
++ #[serde(crate = "near_sdk::serde")]
++ pub struct TokenMetadata {
++     pub title: Option<String>,
++     pub description: Option<String>,
++     pub media: String,
++     pub media_CID: String,
++     pub candidate_name: Option<String>,
++     pub candidate_manifest: Option<String>,
++     pub token_kind: String,
++     pub token_id: Option<u128>,
++ }
++
++ #[derive(BorshDeserialize, BorshSerialize)]
++ pub struct TokenOwner {
++     pub owner_id: AccountId,
++ }
++
++ #[derive(Serialize, Deserialize)]
++ #[serde(crate = "near_sdk::serde")]
++
++ // metadata of type of Json
++ pub struct JsonToken {
++     pub owner_id: AccountId,
++     pub metadata: TokenMetadata,
++ }
 ```
 
 `TokenMetadata`という構造体について注意しておかなければいけないことを説明します。構造体の中で宣言されている名前についてです。
@@ -364,19 +362,17 @@ pub struct JsonToken {
     pub metadata: TokenMetadata,
 }
 
-+ // 以下を追加してください
-pub trait NFTTokenMetadata {
-    fn nft_metadata(&self) -> NFTContractMetadata;
-}
++ pub trait NFTTokenMetadata {
++     fn nft_metadata(&self) -> NFTContractMetadata;
++ }
 
-// view function for contract info
-#[near_bindgen]
-impl NFTTokenMetadata for Contract {
-    fn nft_metadata(&self) -> NFTContractMetadata {
-        self.metadata.get().unwrap()
-    }
-}
-
++ // view function for contract info
++ #[near_bindgen]
++ impl NFTTokenMetadata for Contract {
++     fn nft_metadata(&self) -> NFTContractMetadata {
++         self.metadata.get().unwrap()
++     }
++ }
 ```
 
 ここでは`NFTTokenMetadata`という構造体で使うことができる関数を追加しました。内容としてはコントラクトに格納されている NFT のメタデータを見ることができるというものです。
@@ -408,38 +404,37 @@ pub use crate::mint::*;
 pub use crate::nft_core::*;
 pub use vote::*;
 
-+ //　以下を追加してください
-#[near_bindgen]
-#[derive(BorshDeserialize, BorshSerialize, PanicOnDefault)]
-pub struct Contract {
-    // contract state value
-    pub owner_id: AccountId,
-    pub tokens_per_owner: LookupMap<AccountId, UnorderedSet<TokenId>>,
-    pub tokens_per_kind: LookupMap<TokenKind, UnorderedSet<TokenId>>,
-    pub tokens_by_id: LookupMap<TokenId, TokenOwner>,
-    pub token_metadata_by_id: UnorderedMap<TokenId, TokenMetadata>,
-    pub metadata: LazyOption<NFTContractMetadata>,
-    pub token_id_counter: u128,
-    pub likes_per_candidate: LookupMap<TokenId, Likes>,
-    pub added_voter_list: LookupMap<ReceiverId, TokenId>,
-    pub voted_voter_list: LookupMap<ReceiverId, u128>,
-    pub is_election_closed: bool,
-}
++ #[near_bindgen]
++ #[derive(BorshDeserialize, BorshSerialize, PanicOnDefault)]
++ pub struct Contract {
++     // contract state value
++     pub owner_id: AccountId,
++     pub tokens_per_owner: LookupMap<AccountId, UnorderedSet<TokenId>>,
++     pub tokens_per_kind: LookupMap<TokenKind, UnorderedSet<TokenId>>,
++     pub tokens_by_id: LookupMap<TokenId, TokenOwner>,
++     pub token_metadata_by_id: UnorderedMap<TokenId, TokenMetadata>,
++     pub metadata: LazyOption<NFTContractMetadata>,
++     pub token_id_counter: u128,
++     pub likes_per_candidate: LookupMap<TokenId, Likes>,
++     pub added_voter_list: LookupMap<ReceiverId, TokenId>,
++     pub voted_voter_list: LookupMap<ReceiverId, u128>,
++     pub is_election_closed: bool,
++ }
 
-#[derive(BorshSerialize)]
-pub enum StorageKey {
-    TokensPerOwner,
-    TokensPerKind,
-    TokensPerOwnerInner { account_id_hash: CryptoHash },
-    TokensPerKindInner { token_kind: TokenKind },
-    TokensById,
-    TokenMetadataById,
-    TokensPerTypeInner { token_type_hash: CryptoHash },
-    NFTContractMetadata,
-    LikesPerCandidate,
-    AddedVoterList,
-    VotedVoterList,
-}
++ #[derive(BorshSerialize)]
++ pub enum StorageKey {
++     TokensPerOwner,
++     TokensPerKind,
++     TokensPerOwnerInner { account_id_hash: CryptoHash },
++     TokensPerKindInner { token_kind: TokenKind },
++     TokensById,
++     TokenMetadataById,
++     TokensPerTypeInner { token_type_hash: CryptoHash },
++     NFTContractMetadata,
++     LikesPerCandidate,
++     AddedVoterList,
++     VotedVoterList,
++ }
 ```
 
 追加したものを上から順番に説明していきましょう。まず`#[near_bindgen]`は near のチェーン上で使えるようにするためのものです。
@@ -463,7 +458,7 @@ pub enum StorageKey {
 - `voted_voter_list`: ユーザーの Wallet Id が key となって、0 か 1 の値が返されます。`added_voter_list`と違って token の Id が返ってこないのはフロントでの実装上必要がないからです。ここで説明してもピンとこないかもしれないのでフロントでの実装時に説明します。
 - `is_election_closed`: この選挙が終わっているかどうかを bool 型で格納します。この管理はコントラクトを deploy した人のみができるようにする必要があります。
 
-```bash
+```rust
 #[near_bindgen]
 #[derive(BorshDeserialize, BorshSerialize, PanicOnDefault)]
 pub struct Contract {
@@ -486,7 +481,7 @@ pub struct Contract {
 
 詳しくは[こちら](https://www.near-sdk.io/contract-structure/nesting)をご覧ください。
 
-```bash
+```rust
 #[derive(BorshSerialize)]
 pub enum StorageKey {
     TokensPerOwner,

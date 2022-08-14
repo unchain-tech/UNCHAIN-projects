@@ -114,124 +114,124 @@ impl Contract {
         )
     }
 }
-+ //以下を追加してください
-#[cfg(all(test, not(target_arch = "wasm32")))]
-mod tests {
-    use near_sdk::test_utils::{accounts, VMContextBuilder};
-    use near_sdk::testing_env;
-    use std::collections::HashMap;
 
-    use super::*;
-
-    const MINT_STORAGE_COST: u128 = 100000000000000000000000;
-
-    fn get_context(predecessor_account_id: AccountId) -> VMContextBuilder {
-        let mut builder = VMContextBuilder::new();
-        builder
-            .current_account_id(accounts(0))
-            .signer_account_id(predecessor_account_id.clone())
-            .predecessor_account_id(predecessor_account_id);
-        builder
-    }
-
-    #[test]
-    fn mint_test() {
-        let mut context = get_context(accounts(1));
-        testing_env!(context.build());
-        let mut contract = Contract::new_default_meta(accounts(1).into());
-        testing_env!(context
-            .storage_usage(env::storage_usage())
-            .attached_deposit(MINT_STORAGE_COST)
-            .predecessor_account_id(accounts(1))
-            .build());
-
-        assert_eq!(contract.owner_id, accounts(1));
-
-        contract.nft_mint(
-            TokenMetadata {
-                title: None,
-                description: None,
-                media: "https...".to_string(),
-                media_CID: "Qeo...".to_string(),
-                candidate_name: None,
-                candidate_manifest: None,
-                token_kind: "candidate".to_string(),
-                token_id: None,
-            },
-            accounts(1),
-        );
-
-        assert_eq!(u128::from(contract.nft_total_supply()), 1);
-
-        let nft_info = contract.nft_tokens(None, None);
-        assert_eq!(nft_info[0].metadata.media, "https...".to_string());
-        assert_eq!(u128::from(contract.nft_supply_for_owner(accounts(1))), 1);
-        assert_eq!(
-            nft_info[0].owner_id,
-            contract.nft_tokens_for_owner(accounts(1), None, None)[0].owner_id
-        );
-        assert_eq!(
-            nft_info[0].owner_id,
-            contract.nft_tokens_for_kind("candidate".to_string(), None, None)[0].owner_id
-        );
-    }
-
-    #[test]
-    fn vote_closed_test() {
-        let mut context = get_context(accounts(1));
-        testing_env!(context.build());
-        let mut contract = Contract::new_default_meta(accounts(1).into());
-        testing_env!(context
-            .storage_usage(env::storage_usage())
-            .attached_deposit(MINT_STORAGE_COST)
-            .predecessor_account_id(accounts(1))
-            .build());
-        assert_eq!(contract.is_election_closed, false);
-
-        contract.close_election();
-        assert_eq!(contract.is_election_closed, true);
-
-        contract.reopen_election();
-        assert_eq!(contract.is_election_closed, false);
-    }
-
-    #[test]
-    fn transfer_test() {
-        let mut context = get_context(accounts(1));
-        testing_env!(context.build());
-        let mut contract = Contract::new_default_meta(accounts(1).into());
-        testing_env!(context
-            .storage_usage(env::storage_usage())
-            .attached_deposit(MINT_STORAGE_COST)
-            .predecessor_account_id(accounts(1))
-            .build());
-
-        contract.nft_mint(
-            TokenMetadata {
-                title: None,
-                description: None,
-                media: "https...".to_string(),
-                media_CID: "Qeo...".to_string(),
-                candidate_name: None,
-                candidate_manifest: None,
-                token_kind: "candidate".to_string(),
-                token_id: None,
-            },
-            accounts(1),
-        );
-
-        testing_env!(context
-            .storage_usage(env::storage_usage())
-            .attached_deposit(1)
-            .predecessor_account_id(accounts(1))
-            .build());
-
-        contract.nft_transfer(accounts(2), 0);
-
-        let nft_info = contract.nft_tokens(None, None);
-        assert_eq!(nft_info[0].owner_id, accounts(2));
-    }
-}
++ #[cfg(all(test, not(target_arch = "wasm32")))]
++ mod tests {
++     use near_sdk::test_utils::{accounts, VMContextBuilder};
++     use near_sdk::testing_env;
++     use std::collections::HashMap;
++
++     use super::*;
++
++     const MINT_STORAGE_COST: u128 = 100000000000000000000000;
++
++     fn get_context(predecessor_account_id: AccountId) -> VMContextBuilder {
++         let mut builder = VMContextBuilder::new();
++         builder
++             .current_account_id(accounts(0))
++             .signer_account_id(predecessor_account_id.clone())
++             .predecessor_account_id(predecessor_account_id);
++         builder
++     }
++
++     #[test]
++     fn mint_test() {
++         let mut context = get_context(accounts(1));
++         testing_env!(context.build());
++         let mut contract = Contract::new_default_meta(accounts(1).into());
++         testing_env!(context
++             .storage_usage(env::storage_usage())
++             .attached_deposit(MINT_STORAGE_COST)
++             .predecessor_account_id(accounts(1))
++             .build());
++
++         assert_eq!(contract.owner_id, accounts(1));
++
++         contract.nft_mint(
++             TokenMetadata {
++                 title: None,
++                 description: None,
++                 media: "https...".to_string(),
++                 media_CID: "Qeo...".to_string(),
++                 candidate_name: None,
++                 candidate_manifest: None,
++                 token_kind: "candidate".to_string(),
++                 token_id: None,
++             },
++             accounts(1),
++         );
++
++         assert_eq!(u128::from(contract.nft_total_supply()), 1);
++
++         let nft_info = contract.nft_tokens(None, None);
++         assert_eq!(nft_info[0].metadata.media, "https...".to_string());
++         assert_eq!(u128::from(contract.nft_supply_for_owner(accounts(1))), 1);
++         assert_eq!(
++             nft_info[0].owner_id,
++             contract.nft_tokens_for_owner(accounts(1), None, None)[0].owner_id
++         );
++         assert_eq!(
++             nft_info[0].owner_id,
++             contract.nft_tokens_for_kind("candidate".to_string(), None, None)[0].owner_id
++         );
++    }
++
++     #[test]
++     fn vote_closed_test() {
++         let mut context = get_context(accounts(1));
++         testing_env!(context.build());
++         let mut contract = Contract::new_default_meta(accounts(1).into());
++         testing_env!(context
++             .storage_usage(env::storage_usage())
++             .attached_deposit(MINT_STORAGE_COST)
++             .predecessor_account_id(accounts(1))
++             .build());
++         assert_eq!(contract.is_election_closed, false);
++
++         contract.close_election();
++         assert_eq!(contract.is_election_closed, true);
++
++         contract.reopen_election();
++         assert_eq!(contract.is_election_closed, false);
++     }
++
++     #[test]
++     fn transfer_test() {
++         let mut context = get_context(accounts(1));
++         testing_env!(context.build());
++         let mut contract = Contract::new_default_meta(accounts(1).into());
++         testing_env!(context
++             .storage_usage(env::storage_usage())
++             .attached_deposit(MINT_STORAGE_COST)
++             .predecessor_account_id(accounts(1))
++             .build());
++
++         contract.nft_mint(
++             TokenMetadata {
++                 title: None,
++                 description: None,
++                 media: "https...".to_string(),
++                 media_CID: "Qeo...".to_string(),
++                 candidate_name: None,
++                 candidate_manifest: None,
++                 token_kind: "candidate".to_string(),
++                 token_id: None,
++             },
++             accounts(1),
++         );
++
++         testing_env!(context
++             .storage_usage(env::storage_usage())
++             .attached_deposit(1)
++             .predecessor_account_id(accounts(1))
++             .build());
++
++         contract.nft_transfer(accounts(2), 0);
++
++         let nft_info = contract.nft_tokens(None, None);
++         assert_eq!(nft_info[0].owner_id, accounts(2));
++     }
++ }
 
 ```
 
@@ -239,7 +239,7 @@ mod tests {
 
 まず最初に宣言している`get_context関数`というのはテストをしているのではなく、テストをするための仮想的なチェーン（Virtual Machine）をビルドするためのものです。
 
-```bash
+```rust
 fn get_context(predecessor_account_id: AccountId) -> VMContextBuilder {
         let mut builder = VMContextBuilder::new();
         builder
@@ -258,7 +258,7 @@ fn get_context(predecessor_account_id: AccountId) -> VMContextBuilder {
 
 NFT の全ての情報を確認するのは面倒なので NFT の中の情報の一部がきちんと一致しているかをテストしています。
 
-```bash
+```rust
 #[test]
     fn mint_test() {
         let mut context = get_context(accounts(1));
@@ -304,7 +304,7 @@ NFT の全ての情報を確認するのは面倒なので NFT の中の情報�
 
 この部分によって NEAR を deposit しています。これはストレージを確保するためのもので、`mint, transfer`のために必要になります。
 
-```bash
+```rust
 testing_env!(context
             .storage_usage(env::storage_usage())
             .attached_deposit(MINT_STORAGE_COST)
@@ -314,7 +314,7 @@ testing_env!(context
 
 次の`vote_closed_test関数`では投票を終了することにまつわる関数がうまく動いているかを確認しています。
 
-```bash
+```rust
 fn vote_closed_test() {
         let mut context = get_context(accounts(1));
         testing_env!(context.build());
@@ -336,7 +336,7 @@ fn vote_closed_test() {
 
 最後の`transfer_test関数`では NFT の transfer 機能がうまく動いているのか、つまりきちんと NFT の所有者が移譲されているかを確認しています。
 
-```bash
+```rust
 fn transfer_test() {
         let mut context = get_context(accounts(1));
         testing_env!(context.build());
@@ -420,7 +420,7 @@ near call $NFT_CONTRACT_ID nft_mint '{"metadata": {"title": "Rob Stark(candidate
 ```
 
 これによって下のように新しく作成した wallet に候補者の NFT が mint されているはずです。
-![](/public/images/401-NEAR-Election-dApp/2_3_1.png)
+![](/public/images/401-NEAR-Election-dApp/section-2/2_3_1.png)
 
 まずは下のコマンドをターミナルで実行させることで mint した NFT の値を確認してみましょう！
 
@@ -526,7 +526,7 @@ near call $NFT_CONTRACT_ID nft_mint '{"metadata": {"title": "Jenny Lind(candidat
 
 投票が再開されているので mint が成功して下のようになっているはずです。
 
-![](/public/images/401-NEAR-Election-dApp/2_3_2.png)
+![](/public/images/401-NEAR-Election-dApp/section-2/2_3_2.png)
 
 ### 🙋‍♂️ 質問する
 

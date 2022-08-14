@@ -13,19 +13,19 @@
 
 `cross.png`
 
-![](/public/images/401-NEAR-Election-dApp/3_1_1.png)
+![](/public/images/401-NEAR-Election-dApp/section-3/3_1_1.png)
 
 `like_icon.png`
 
-![](/public/images/401-NEAR-Election-dApp/3_1_2.png)
+![](/public/images/401-NEAR-Election-dApp/section-3/3_1_2.png)
 
 `top_img.avif`
 
-![](/public/images/401-NEAR-Election-dApp/3_1_3.avif)
+![](/public/images/401-NEAR-Election-dApp/section-3/3_1_3.avif)
 
 `unchain_logo.png`
 
-![](/public/images/401-NEAR-Election-dApp/3_1_4.png)
+![](/public/images/401-NEAR-Election-dApp/section-3/3_1_4.png)
 
 最終的に以下のようなファイル構造になっていれば OK です！
 
@@ -80,8 +80,8 @@ CONTRACT_NAME=YOUR_WALLET_ID
 
 [utils.js]
 
-```diff
-+ // 以下のように書き換えてください
+```javascript
+// 以下のように書き換えてください
 import { connect, Contract, keyStores, WalletConnection } from 'near-api-js'
 import getConfig from './config'
 const BN = require("bn.js");
@@ -217,7 +217,7 @@ export async function reopen_election() {
 
 `viewMethods`は返り値を得るだけの関数で、`changeMethods`はコントラクトに格納されているデータを書き換える関数が入ります。
 
-```bash
+```javascript
 contractName, {
     viewMethods: ['nft_metadata', 'nft_tokens_for_kind', 'nft_return_candidate_likes', 'check_voter_has_been_added', 'check_voter_has_voted', 'if_election_closed'],
 
@@ -229,7 +229,7 @@ contractName, {
 
 そうすることで関数を使用する時に混乱することがなくなります！
 
-```bash
+```javascript
 export async function new_default_meta() {
   await window.contract.new_default_meta(
     { owner_id: window.accountId }
@@ -328,7 +328,7 @@ export async function reopen_election() {
 
 いくつか下のような値がついていますが、これらは上がガス代、下はコントラクトに deposit する NEAR の値を示しています。
 
-```bash
+```javascript
     300000000000000,
     new BN("1000000000000000000000000")
 ```
@@ -339,8 +339,8 @@ export async function reopen_election() {
 
 [App.js]
 
-```diff
-+ // 以下のように書き換えてください
+```javascript
+// 以下のように書き換えてください
 import 'regenerator-runtime/runtime'
 import React from 'react'
 
@@ -417,7 +417,7 @@ export default function App() {
 
 一番下の部分では`login, logout`という関数をコントラクトからインポートしています。
 
-```bash
+```javascript
 import 'regenerator-runtime/runtime'
 import React from 'react'
 
@@ -441,7 +441,7 @@ import { login, logout } from './assets/js/near/utils'
 
 この部分の最後のところのボタンは押すとサインインの関数が走るようになっています。
 
-```bash
+```javascript
 if (!window.walletConnection.isSignedIn()) {
     return (
       // sign in screen
@@ -466,7 +466,7 @@ if (!window.walletConnection.isSignedIn()) {
 
 最後の`<AppRouter />`がボディの部分の UI となり、URL によって画面が遷移するようになっています。
 
-```bash
+```javascript
 return (
     // home screen
     <div className="bg-white min-h-screen">
@@ -509,8 +509,8 @@ return (
 
 [AppRouter.js]
 
-```diff
-+ // 以下を追加してください
+```javascript
+// 以下を追加してください
 import React from "react";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
@@ -546,8 +546,8 @@ pages にある`home.js, candidate.js, voter.js`を下のように編集しま�
 
 [home.js]
 
-```diff
-+ // 以下のように書き換えてください
+```javascript
+// 以下のように書き換えてください
 import React from "react";
 
 const Home = () => {
@@ -563,8 +563,8 @@ export default Home;
 
 [candidate.js]
 
-```diff
-+ // 以下のように書き換えてください
+```javascript
+// 以下のように書き換えてください
 import React from "react";
 
 const Candidate = () => {
@@ -580,8 +580,8 @@ export default Candidate;
 
 [voter.js]
 
-```diff
-+ // 以下のように書き換えてください
+```javascript
+// 以下のように書き換えてください
 import React from "react";
 
 const Voter = () => {
@@ -599,8 +599,8 @@ export default Voter;
 
 [global.css]
 
-```diff
-+ // 以下のように書き換えてください
+```css
+// 以下のように書き換えてください
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -648,12 +648,10 @@ html {
   "version": "1.0.0",
   "license": "(MIT AND Apache-2.0)",
 
-+  //　以下の`script`の部分を書き換えてください
-  "scripts": {
-    "start": "env-cmd -f ./neardev/dev-account.env parcel frontend/index.html --open",
-    "dev": "nodemon --watch contract -e ts --exec \"npm run start\""
-  },
-+ //　ここまで
++ "scripts": {
++   "start": "env-cmd -f ./neardev/dev-account.env parcel frontend/index.html --open",
++   "dev": "nodemon --watch contract -e ts --exec \"npm run start\""
++ },
   "devDependencies": {
     "@babel/core": "~7.18.2",
     "@babel/preset-env": "~7.18.2",
@@ -704,9 +702,9 @@ html {
 yarn dev
 ```
 
-![](/public/images/401-NEAR-Election-dApp/3_1_5.png)
-![](/public/images/401-NEAR-Election-dApp/3_1_6.png)
-![](/public/images/401-NEAR-Election-dApp/3_1_7.png)
+![](/public/images/401-NEAR-Election-dApp/section-3/3_1_5.png)
+![](/public/images/401-NEAR-Election-dApp/section-3/3_1_6.png)
+![](/public/images/401-NEAR-Election-dApp/section-3/3_1_7.png)
 
 このように画面がきちんと遷移していれば成功です！
 

@@ -23,7 +23,7 @@ use near_sdk::ext_contract;
 pub trait NonFungibleTokenCore {
     fn nft_transfer(&mut self, receiver_id: AccountId, token_id: TokenId);
     fn nft_token(&self, token_id: TokenId) -> Option<JsonToken>;
-    fn nft_add_likes_to_candidate(&mut self, token_id: TokenId);
++   fn nft_add_likes_to_candidate(&mut self, token_id: TokenId);
 }
 #[ext_contract(ext_non_fungible_token_receiver)]
 trait NonFungibleTokenReceiver {
@@ -64,20 +64,19 @@ impl NonFungibleTokenCore for Contract {
         }
     }
 
-    fn nft_add_likes_to_candidate(&mut self, token_id: TokenId) {
-        if self.likes_per_candidate.get(&token_id).is_some() {
-            let mut likes = self.likes_per_candidate.get(&token_id);
-            likes.replace(likes.unwrap() + 1 as Likes);
-            self.likes_per_candidate.insert(&token_id, &likes.unwrap());
-        }
-    }
++   fn nft_add_likes_to_candidate(&mut self, token_id: TokenId) {
++       if self.likes_per_candidate.get(&token_id).is_some() {
++           let mut likes = self.likes_per_candidate.get(&token_id);
++           likes.replace(likes.unwrap() + 1 as Likes);
++           self.likes_per_candidate.insert(&token_id, &likes.unwrap());
++       }
++   }
 }
-
 ```
 
 まず最初の追加部分では`NonFungibleTokenCore`というトレイトの中に`nft_add_likes_to_candidate`という関数があることを宣言しています。
 
-```bash
+```rust
 fn nft_add_likes_to_candidate(&mut self, token_id: TokenId);
 ```
 
@@ -87,7 +86,7 @@ fn nft_add_likes_to_candidate(&mut self, token_id: TokenId);
 
 シンプルですね。
 
-```bash
+```rust
 fn nft_add_likes_to_candidate(&mut self, token_id: TokenId) {
         if self.likes_per_candidate.get(&token_id).is_some() {
             let mut likes = self.likes_per_candidate.get(&token_id);
@@ -155,28 +154,27 @@ impl Contract {
             .collect()
     }
 
-+   //　以下を追加してください
-    pub fn nft_tokens_for_kind(
-        &self,
-        token_kind: TokenKind,
-        from_index: Option<U128>,
-        limit: Option<u64>,
-    ) -> Vec<JsonToken> {
-        let tokens_for_kind_set = self.tokens_per_kind.get(&token_kind);
-        let tokens = if let Some(tokens_for_kind_set) = tokens_for_kind_set {
-            tokens_for_kind_set
-        } else {
-            return vec![];
-        };
-
-        let start = u128::from(from_index.unwrap_or(U128(0)));
-        tokens
-            .iter()
-            .skip(start as usize)
-            .take(limit.unwrap_or(50) as usize)
-            .map(|token_id| self.nft_token(token_id.clone()).unwrap())
-            .collect()
-    }
++   pub fn nft_tokens_for_kind(
++       &self,
++       token_kind: TokenKind,
++       from_index: Option<U128>,
++       limit: Option<u64>,
++   ) -> Vec<JsonToken> {
++       let tokens_for_kind_set = self.tokens_per_kind.get(&token_kind);
++       let tokens = if let Some(tokens_for_kind_set) = tokens_for_kind_set {
++           tokens_for_kind_set
++       } else {
++           return vec![];
++       };
++
++       let start = u128::from(from_index.unwrap_or(U128(0)));
++       tokens
++           .iter()
++           .skip(start as usize)
++           .take(limit.unwrap_or(50) as usize)
++           .map(|token_id| self.nft_token(token_id.clone()).unwrap())
++           .collect()
++   }
 }
 
 ```
@@ -187,7 +185,7 @@ impl Contract {
 
 この関数は主に候補者の一覧をフロントで表示するときに使うのですが、もし投票券をもらったのに投票できないだとかすでにもらっているのか確認したいとうい場合には mint した投票券一覧を取得できます！
 
-```bash
+```rust
 pub fn nft_tokens_for_kind(
         &self,
         token_kind: TokenKind,
@@ -216,63 +214,62 @@ pub fn nft_tokens_for_kind(
 [vote.rs]
 
 ```diff
-+ // 以下を追加してください
-use crate::*;
-
-#[near_bindgen]
-impl Contract {
-    // check if election is closed
-    pub fn if_election_closed(&self) -> bool {
-        self.is_election_closed
-    }
-
-    // close election
-    pub fn close_election(&mut self) {
-        self.is_election_closed = true;
-    }
-
-    // reopen election
-    pub fn reopen_election(&mut self) {
-        self.is_election_closed = false;
-    }
-    // get number of likes of specified candidate
-    pub fn nft_return_candidate_likes(&self, token_id: TokenId) -> Likes {
-        if self.tokens_by_id.get(&token_id).is_some() {
-            self.likes_per_candidate.get(&token_id).unwrap()
-        } else {
-            0 as Likes
-        }
-    }
-
-    // add info(key: receiver id, value: number ) to map(-> this list is for check voter has already voted)
-    pub fn voter_voted(&mut self, voter_id: AccountId) {
-        self.voted_voter_list.insert(&voter_id, &(0 as u128));
-    }
-
-    // check if voter id is in added-list
-    pub fn check_voter_has_been_added(&self, voter_id: AccountId) -> TokenId {
-        if self.added_voter_list.get(&voter_id).is_some() {
-            return self.added_voter_list.get(&voter_id).unwrap();
-        } else {
-            0
-        }
-    }
-
-    // check if voter id is in voted-list
-    pub fn check_voter_has_voted(&self, voter_id: AccountId) -> bool {
-        if self.voted_voter_list.get(&voter_id).is_some() {
-            return true;
-        } else {
-            false
-        }
-    }
-}
++ use crate::*;
++
++ #[near_bindgen]
++ impl Contract {
++    // check if election is closed
++    pub fn if_election_closed(&self) -> bool {
++        self.is_election_closed
++    }
++
++    // close election
++    pub fn close_election(&mut self) {
++        self.is_election_closed = true;
++    }
++
++    // reopen election
++    pub fn reopen_election(&mut self) {
++        self.is_election_closed = false;
++    }
++    // get number of likes of specified candidate
++    pub fn nft_return_candidate_likes(&self, token_id: TokenId) -> Likes {
++        if self.tokens_by_id.get(&token_id).is_some() {
++            self.likes_per_candidate.get(&token_id).unwrap()
++        } else {
++            0 as Likes
++        }
++    }
++
++    // add info(key: receiver id, value: number ) to map(-> this list is for check voter has already voted)
++    pub fn voter_voted(&mut self, voter_id: AccountId) {
++        self.voted_voter_list.insert(&voter_id, &(0 as u128));
++    }
++
++    // check if voter id is in added-list
++    pub fn check_voter_has_been_added(&self, voter_id: AccountId) -> TokenId {
++        if self.added_voter_list.get(&voter_id).is_some() {
++            return self.added_voter_list.get(&voter_id).unwrap();
++        } else {
++            0
++        }
++    }
++
++    // check if voter id is in voted-list
++    pub fn check_voter_has_voted(&self, voter_id: AccountId) -> bool {
++        if self.voted_voter_list.get(&voter_id).is_some() {
++            return true;
++        } else {
++            false
++        }
++    }
++ }
 
 ```
 
 最初の関数はすでに投票が締め切られているかを確認するものです。
 
-```bash
+```rust
 pub fn if_election_closed(&self) -> bool {
         self.is_election_closed
     }
@@ -280,7 +277,7 @@ pub fn if_election_closed(&self) -> bool {
 
 次の関数では投票を締め切ったことを示す変数`is_election_closed`を`true`にして投票を締め切った状態にします。
 
-```bash
+```rust
 pub fn close_election(&mut self) {
         self.is_election_closed = true;
     }
@@ -288,7 +285,7 @@ pub fn close_election(&mut self) {
 
 この関数では投票を締め切ったことを示す変数`is_election_closed`を逆に`false`にして投票を再開することができます。
 
-```bash
+```rust
 pub fn reopen_election(&mut self) {
         self.is_election_closed = false;
     }
@@ -296,7 +293,7 @@ pub fn reopen_election(&mut self) {
 
 この関数ではそれぞれの候補者の得票数を個別に呼び出すことができます。
 
-```bash
+```rust
 pub fn nft_return_candidate_likes(&self, token_id: TokenId) -> Likes {
         if self.tokens_by_id.get(&token_id).is_some() {
             self.likes_per_candidate.get(&token_id).unwrap()
@@ -308,7 +305,7 @@ pub fn nft_return_candidate_likes(&self, token_id: TokenId) -> Likes {
 
 この関数は投票が行われた際に、投票を行ったとしてベクターに追加されます。
 
-```bash
+```rust
 pub fn voter_voted(&mut self, voter_id: AccountId) {
         self.voted_voter_list.insert(&voter_id, &(0 as u128));
     }
@@ -318,7 +315,7 @@ pub fn voter_voted(&mut self, voter_id: AccountId) {
 
 `is_some()`というメソッドは null ではないかという判別をしてくれるものです。
 
-```bash
+```rust
 pub fn check_voter_has_been_added(&self, voter_id: AccountId) -> TokenId {
         if self.added_voter_list.get(&voter_id).is_some() {
             return self.added_voter_list.get(&voter_id).unwrap();
@@ -337,7 +334,7 @@ pub fn check_voter_has_been_added(&self, voter_id: AccountId) -> TokenId {
 
 を区別して、フロントで返すメッセージを変えるためです。
 
-```bash
+```rust
 pub fn check_voter_has_voted(&self, voter_id: AccountId) -> bool {
         if self.voted_voter_list.get(&voter_id).is_some() {
             return true;

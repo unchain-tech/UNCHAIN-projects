@@ -7,76 +7,73 @@ internal.rs に移動して下のコードを追加しましょう
 [internal.rs]
 
 ```diff
-+ // 以下を追加してください
-use crate::*;
-use near_sdk::CryptoHash;
++ use crate::*;
++ use near_sdk::CryptoHash;
++ 
++ pub(crate) fn hash_account_id(account_id: &AccountId) -> CryptoHash {
++     let mut hash = CryptoHash::default();
++     hash.copy_from_slice(&env::sha256(account_id.as_bytes()));
++     hash
++ }
++ 
++ pub(crate) fn refund_deposit(storage_used: u64) {
++     let required_cost = env::storage_byte_cost() * Balance::from(storage_used);
++     let attached_deposit = env::attached_deposit();
++ 
++     assert!(
++         required_cost <= attached_deposit,
++         "Must attach {} yoctoNear to cover storage",
++         required_cost,
++     );
++ 
++     let refund = attached_deposit - required_cost;
++ 
++     if refund > 1 {
++         Promise::new(env::predecessor_account_id()).transfer(refund);
++     }
++ }
 
-pub(crate) fn hash_account_id(account_id: &AccountId) -> CryptoHash {
-    let mut hash = CryptoHash::default();
-    hash.copy_from_slice(&env::sha256(account_id.as_bytes()));
-    hash
-}
-
-pub(crate) fn refund_deposit(storage_used: u64) {
-    let required_cost = env::storage_byte_cost() * Balance::from(storage_used);
-    let attached_deposit = env::attached_deposit();
-
-    assert!(
-        required_cost <= attached_deposit,
-        "Must attach {} yoctoNear to cover storage",
-        required_cost,
-    );
-
-    let refund = attached_deposit - required_cost;
-
-    if refund > 1 {
-        Promise::new(env::predecessor_account_id()).transfer(refund);
-    }
-}
-
-impl Contract {
-    pub(crate) fn internal_add_token_to_owner(
-        &mut self,
-        account_id: &AccountId,
-        token_id: &TokenId,
-    ) {
-        let mut tokens_set = self.tokens_per_owner.get(account_id).unwrap_or_else(|| {
-            UnorderedSet::new(
-                StorageKey::TokensPerOwnerInner {
-                    account_id_hash: hash_account_id(&account_id),
-                }
-                .try_to_vec()
-                .unwrap(),
-            )
-        });
-
-        tokens_set.insert(token_id);
-        self.tokens_per_owner.insert(account_id, &tokens_set);
-    }
-
-    pub(crate) fn internal_add_token_to_kind_map(
-        &mut self,
-        token_id: &TokenId,
-        token_kind: TokenKind,
-    ) {
-        let token_kind_clone = token_kind.clone();
-        let mut tokens_set = self
-            .tokens_per_kind
-            .get(&token_kind_clone)
-            .unwrap_or_else(|| {
-                UnorderedSet::new(
-                    StorageKey::TokensPerKindInner {
-                        token_kind: token_kind,
-                    }
-                    .try_to_vec()
-                    .unwrap(),
-                )
-            });
-
-        tokens_set.insert(&token_id);
-        self.tokens_per_kind.insert(&token_kind_clone, &tokens_set);
-    }
-}
++ impl Contract {
++     pub(crate) fn internal_add_token_to_owner(
++         &mut self,
++         account_id: &AccountId,
++         token_id: &TokenId,
++     ) {
++         let mut tokens_set = self.tokens_per_owner.get(account_id).unwrap_or_else(|| {
++             UnorderedSet::new(
++                 StorageKey::TokensPerOwnerInner {
++                     account_id_hash: hash_account_id(&account_id),
++                 }
++                 .try_to_vec()
++                 .unwrap(),
++             )
++         });
++         tokens_set.insert(token_id);
++         self.tokens_per_owner.insert(account_id, &tokens_set);
++     }
++ 
++     pub(crate) fn internal_add_token_to_kind_map(
++         &mut self,
++         token_id: &TokenId,
++         token_kind: TokenKind,
++     ) {
++         let token_kind_clone = token_kind.clone();
++         let mut tokens_set = self
++             .tokens_per_kind
++             .get(&token_kind_clone)
++             .unwrap_or_else(|| {
++                 UnorderedSet::new(
++                     StorageKey::TokensPerKindInner {
++                         token_kind: token_kind,
++                     }
++                     .try_to_vec()
++                     .unwrap(),
++                 )
++             });
++         tokens_set.insert(&token_id);
++         self.tokens_per_kind.insert(&token_kind_clone, &tokens_set);
++     }
++ }
 
 ```
 
@@ -84,7 +81,7 @@ impl Contract {
 
 `CryptoHash`は 32bytes のハッシュ値の型のことです。こちらでアカウントをハッシュ化します。
 
-```bash
+```rust
 use near_sdk::CryptoHash;
 ```
 
@@ -92,7 +89,7 @@ use near_sdk::CryptoHash;
 
 ここで使われている`pub(crate)`とは、このファイル内だけで使用できる関数であることを示しています。
 
-```bash
+```rust
 pub(crate) fn hash_account_id(account_id: &AccountId) -> CryptoHash {
     let mut hash = CryptoHash::default();
 
@@ -107,7 +104,7 @@ pub(crate) fn hash_account_id(account_id: &AccountId) -> CryptoHash {
 
 最後に`refund`という変数に返金するべき NEAR の量を代入してユーザーに transfer して返金します。ここで使われている Promise とは非同期処理を行うもので、その中の`predecessor_account_id`とはユーザーのアカウントのことを表しています。
 
-```bash
+```rust
 pub(crate) fn refund_deposit(storage_used: u64) {
     let required_cost = env::storage_byte_cost() * Balance::from(storage_used);
     let attached_deposit = env::attached_deposit();
@@ -138,52 +135,51 @@ pub(crate) fn refund_deposit(storage_used: u64) {
 
 最後に`tokens_per_owner`に引数である`account_id`に紐付いた`token_set`の map を追加する。
 
-```bash
+```rust
 pub(crate) fn internal_add_token_to_owner(
-        &mut self,
-        account_id: &AccountId,
-        token_id: &TokenId,
-    ) {
-        let mut tokens_set = self.tokens_per_owner.get(account_id).unwrap_or_else(|| {
+    &mut self,
+    account_id: &AccountId,
+    token_id: &TokenId,
+) {
+    let mut tokens_set = self.tokens_per_owner.get(account_id).unwrap_or_else(|| {
+        UnorderedSet::new(
+            StorageKey::TokensPerOwnerInner {
+                account_id_hash: hash_account_id(&account_id),
+            }
+            .try_to_vec()
+            .unwrap(),
+        )
+    });
+    tokens_set.insert(token_id);
+    self.tokens_per_owner.insert(account_id, &tokens_set);
+}
+```
+
+この関数で行われていることは`internal_add_token_to_owner`関数で行われていることと同じで、token の id とその token の種類が紐づいているということだけが違うだけなので説明は割愛します。
+
+```rust
+pub(crate) fn internal_add_token_to_kind_map(
+    &mut self,
+    token_id: &TokenId,
+    token_kind: TokenKind,
+) {
+    let token_kind_clone = token_kind.clone();
+    let mut tokens_set = self
+        .tokens_per_kind
+        .get(&token_kind_clone)
+        .unwrap_or_else(|| {
             UnorderedSet::new(
-                StorageKey::TokensPerOwnerInner {
-                    account_id_hash: hash_account_id(&account_id),
+                StorageKey::TokensPerKindInner {
+                    token_kind: token_kind,
                 }
                 .try_to_vec()
                 .unwrap(),
             )
         });
 
-        tokens_set.insert(token_id);
-        self.tokens_per_owner.insert(account_id, &tokens_set);
-    }
-```
-
-この関数で行われていることは`internal_add_token_to_owner`関数で行われていることと同じで、token の id とその token の種類が紐づいているということだけが違うだけなので説明は割愛します。
-
-```bash
-pub(crate) fn internal_add_token_to_kind_map(
-        &mut self,
-        token_id: &TokenId,
-        token_kind: TokenKind,
-    ) {
-        let token_kind_clone = token_kind.clone();
-        let mut tokens_set = self
-            .tokens_per_kind
-            .get(&token_kind_clone)
-            .unwrap_or_else(|| {
-                UnorderedSet::new(
-                    StorageKey::TokensPerKindInner {
-                        token_kind: token_kind,
-                    }
-                    .try_to_vec()
-                    .unwrap(),
-                )
-            });
-
-        tokens_set.insert(&token_id);
-        self.tokens_per_kind.insert(&token_kind_clone, &tokens_set);
-    }
+    tokens_set.insert(&token_id);
+    self.tokens_per_kind.insert(&token_kind_clone, &tokens_set);
+}
 ```
 
 ### 🙋‍♂️ 質問する

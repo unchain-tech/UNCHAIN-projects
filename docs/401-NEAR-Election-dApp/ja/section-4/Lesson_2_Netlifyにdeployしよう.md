@@ -25,22 +25,21 @@ netlify login
 [netlify.toml]
 
 ```diff
-+ //以下を追加してください
-[[redirects]]
-  from = "/*"
-  to = "/"
-  status = 200
++ [[redirects]]
++   from = "/*"
++   to = "/"
++   status = 200
 ```
 
 最後にnear-election-dapp-frontendディレクトリにいることを確認し netlify にコードをデプロイするために下のコマンドを実行しましょう。
 
-```diff
+```bash
 netlify deploy --prod
 ```
 
 この時、コマンドを実行するにはいくつかターミナルで入力する必要があります。
 
-まず、すでに`Netlifty`に存在するプロジェクトを更新するのか、新しいプロジェクトとして deploy するのかを聞かれます。ここでは後者を選択してください。
+まず、すでに`Netlify`に存在するプロジェクトを更新するのか、新しいプロジェクトとして deploy するのかを聞かれます。ここでは後者を選択してください。
 
 ```bash
 ? What would you like to do?
@@ -88,7 +87,7 @@ Website URL:       https://near-election-dapp.netlify.app
 ここで`Website URL: `URL をコピーして自分が使用しているブラウザに貼り付けてみましょう。
 
 成功すれば以下のようにブラウザ上で自分の作成した dApp が使えるようになるはずです！
-![](/public/images/401-NEAR-Election-dApp/4_2_1.png)
+![](/public/images/401-NEAR-Election-dApp/section-4/4_2_1.png)
 
 ぜひデプロイされた Web アプリケーションを自分の目で確認してみてください！！
 

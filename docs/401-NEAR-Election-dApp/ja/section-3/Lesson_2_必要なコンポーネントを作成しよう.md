@@ -8,8 +8,8 @@
 
 [candidate_card.js]
 
-```diff
-+ // 以下のように追加してください
+```javascript
+// 以下のように追加してください
 import React from "react";
 import { IpfsImage } from 'react-ipfs-image';
 
@@ -34,20 +34,20 @@ export default CandidateCard;
 
 このインポートによって IPFS という分散化した画像保存の技術によって保存された画像をすばやく読み込むことができるようになります。
 
-```bash
+```javascript
 import { IpfsImage } from 'react-ipfs-image';
 ```
 
 `return`以下で下のようなそれぞれの候補者のカードの UI を示しています。
 
-![](/public/images/401-NEAR-Election-dApp/3_2_1.png)
+![](/public/images/401-NEAR-Election-dApp/section-3/3_2_1.png)
 
 次に`components/input_form.js`に移動して下のコードを追加しましょう。
 
 [input_form.js]
 
-```diff
-+ // 以下のように追加してください
+```javascript
+// 以下のように追加してください
 import React from "react";
 
 // template input component
@@ -71,20 +71,20 @@ export default Input;
 
 ここで`preventDefault()`としているのは、デフォルトでの Enter キーを押した時に自動的に送信されることを防ぐためで
 
-```bash
+```javascript
 <form className="w-3/5" onSubmit={e => { e.preventDefault(); }}>
 ```
 
 以上のように編集することで下のような入力フォームができます。
 
-![](/public/images/401-NEAR-Election-dApp/3_2_2.png)
+![](/public/images/401-NEAR-Election-dApp/section-3/3_2_2.png)
 
 最後に`components/title.js`で title コンポーネントを作成しましょう！
 
 [title.js]
 
-```diff
-+ // 以下のように追加してください
+```javascript
+// 以下のように追加してください
 import React from "react";
 
 // template title component
@@ -101,7 +101,7 @@ export default Title;
 ```
 
 これによって`Add Candidate画面, Add Voter画面`のタイトルが下のようになります。
-![](/public/images/401-NEAR-Election-dApp/3_2_3.png)
+![](/public/images/401-NEAR-Election-dApp/section-3/3_2_3.png)
 
 ### 🙋‍♂️ 質問する
 

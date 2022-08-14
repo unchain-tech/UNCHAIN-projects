@@ -5,34 +5,32 @@
 [nft_core.rs]
 
 ```diff
-+ // 以下のコードを追加して下さい
-use crate::*;
-
-pub trait NonFungibleTokenCore {
-    fn nft_token(&self, token_id: TokenId) -> Option<JsonToken>;
-}
-
-#[near_bindgen]
-impl NonFungibleTokenCore for Contract {
-    // get specified token info
-    fn nft_token(&self, token_id: TokenId) -> Option<JsonToken> {
-        if let Some(token) = self.tokens_by_id.get(&token_id) {
-            let metadata = self.token_metadata_by_id.get(&token_id).unwrap();
-            Some(JsonToken {
-                owner_id: token.owner_id,
-                metadata,
-            })
-        } else {
-            None
-        }
-    }
-}
-
++ use crate::*;
++ 
++ pub trait NonFungibleTokenCore {
++     fn nft_token(&self, token_id: TokenId) -> Option<JsonToken>;
++ }
++ 
++ #[near_bindgen]
++ impl NonFungibleTokenCore for Contract {
++     // get specified token info
++     fn nft_token(&self, token_id: TokenId) -> Option<JsonToken> {
++         if let Some(token) = self.tokens_by_id.get(&token_id) {
++             let metadata = self.token_metadata_by_id.get(&token_id).unwrap();
++             Some(JsonToken {
++                 owner_id: token.owner_id,
++                 metadata,
++             })
++         } else {
++             None
++         }
++     }
++ }
 ```
 
 ひとつずつ見ていきましょう。まずは`NonFungibleTokenCore`というトレイトに`nft_token`という関数があることを宣言する。ここでは引き数と返り値だけで大丈夫です。
 
-```bash
+```rust
 pub trait NonFungibleTokenCore {
     fn nft_token(&self, token_id: TokenId) -> Option<JsonToken>;
 }
@@ -40,7 +38,7 @@ pub trait NonFungibleTokenCore {
 
 次の部分では`nft_token関数`の中身を記述します。ここでは引数である token の id に対して metadata が存在するのかを確かめて、ある場合はそれを返すという処理をしています。
 
-```bash
+```rust
 #[near_bindgen]
 impl NonFungibleTokenCore for Contract {
     // get specified token info
@@ -63,105 +61,102 @@ impl NonFungibleTokenCore for Contract {
 [enumeration.rs]
 
 ```diff
-+ // 以下を追加してください
-use crate::*;
-
-#[near_bindgen]
-impl Contract {
-    pub fn nft_total_supply(&self) -> U128 {
-        U128(self.token_metadata_by_id.len() as u128)
-    }
-
-    pub fn nft_tokens(&self, from_index: Option<U128>, limit: Option<u64>) -> Vec<JsonToken> {
-        let start = u128::from(from_index.unwrap_or(U128(0)));
-        self.token_metadata_by_id
-            .keys()
-            .skip(start as usize)
-            .take(limit.unwrap_or(50) as usize)
-            .map(|token_id| self.nft_token(token_id.clone()).unwrap())
-            .collect()
-    }
-
-    // get number of tokens for specified owner
-    pub fn nft_supply_for_owner(&self, account_id: AccountId) -> U128 {
-        let tokens_for_kind_set = self.tokens_per_owner.get(&account_id);
-        if let Some(tokens_for_kind_set) = tokens_for_kind_set {
-            U128(tokens_for_kind_set.len() as u128)
-        } else {
-            U128(0)
-        }
-    }
-
-    pub fn nft_tokens_for_owner(
-        &self,
-        account_id: AccountId,
-        from_index: Option<U128>,
-        limit: Option<u64>,
-    ) -> Vec<JsonToken> {
-        let tokens_for_owner_set = self.tokens_per_owner.get(&account_id);
-        let tokens = if let Some(tokens_for_owner_set) = tokens_for_owner_set {
-            tokens_for_owner_set
-        } else {
-            return vec![];
-        };
-
-        let start = u128::from(from_index.unwrap_or(U128(0)));
-        tokens
-            .iter()
-            .skip(start as usize)
-            .take(limit.unwrap_or(50) as usize)
-            .map(|token_id| self.nft_token(token_id.clone()).unwrap())
-            .collect()
-    }
-}
-
-
++ use crate::*;
++ 
++ #[near_bindgen]
++ impl Contract {
++     pub fn nft_total_supply(&self) -> U128 {
++         U128(self.token_metadata_by_id.len() as u128)
++     }
++ 
++     pub fn nft_tokens(&self, from_index: Option<U128>, limit: Option<u64>) -> Vec<JsonToken> {
++         let start = u128::from(from_index.unwrap_or(U128(0)));
++         self.token_metadata_by_id
++             .keys()
++             .skip(start as usize)
++             .take(limit.unwrap_or(50) as usize)
++             .map(|token_id| self.nft_token(token_id.clone()).unwrap())
++             .collect()
++     }
++ 
++     // get number of tokens for specified owner
++     pub fn nft_supply_for_owner(&self, account_id: AccountId) -> U128 {
++         let tokens_for_kind_set = self.tokens_per_owner.get(&account_id);
++         if let Some(tokens_for_kind_set) = tokens_for_kind_set {
++             U128(tokens_for_kind_set.len() as u128)
++         } else {
++             U128(0)
++         }
++     }
++ 
++     pub fn nft_tokens_for_owner(
++         &self,
++         account_id: AccountId,
++         from_index: Option<U128>,
++         limit: Option<u64>,
++     ) -> Vec<JsonToken> {
++         let tokens_for_owner_set = self.tokens_per_owner.get(&account_id);
++         let tokens = if let Some(tokens_for_owner_set) = tokens_for_owner_set {
++             tokens_for_owner_set
++         } else {
++             return vec![];
++         };
++ 
++         let start = u128::from(from_index.unwrap_or(U128(0)));
++         tokens
++             .iter()
++             .skip(start as usize)
++             .take(limit.unwrap_or(50) as usize)
++             .map(|token_id| self.nft_token(token_id.clone()).unwrap())
++             .collect()
++     }
++ }
 ```
 
 最初の`nft_total_supply関数`ではコントラクトに保存されている NFT の数を取得できます。
 
 次の`nft_tokens`ではコントラクトに保管されている全ての NFT の metadata が得られます。
 
-```bash
+```rust
 pub fn nft_total_supply(&self) -> U128 {
-        U128(self.token_metadata_by_id.len() as u128)
-    }
+    U128(self.token_metadata_by_id.len() as u128)
+}
 
-    pub fn nft_tokens(&self, from_index: Option<U128>, limit: Option<u64>) -> Vec<JsonToken> {
-        let start = u128::from(from_index.unwrap_or(U128(0)));
-        self.token_metadata_by_id
-            .keys()
-            .skip(start as usize)
-            .take(limit.unwrap_or(50) as usize)
-            .map(|token_id| self.nft_token(token_id.clone()).unwrap())
-            .collect()
-    }
+pub fn nft_tokens(&self, from_index: Option<U128>, limit: Option<u64>) -> Vec<JsonToken> {
+    let start = u128::from(from_index.unwrap_or(U128(0)));
+    self.token_metadata_by_id
+        .keys()
+        .skip(start as usize)
+        .take(limit.unwrap_or(50) as usize)
+        .map(|token_id| self.nft_token(token_id.clone()).unwrap())
+        .collect()
+}
 ```
 
 この関数では特定の所有者が持つ NFT の数を取得できます。これは wallet 上での表示にも関わってくるので書き漏れのないように特に気をつけてください。
 
-```bash
+```rust
 pub fn nft_supply_for_owner(&self, account_id: AccountId) -> U128 {
-        let tokens_for_kind_set = self.tokens_per_owner.get(&account_id);
-        if let Some(tokens_for_kind_set) = tokens_for_kind_set {
-            U128(tokens_for_kind_set.len() as u128)
-        } else {
-            U128(0)
-        }
+    let tokens_for_kind_set = self.tokens_per_owner.get(&account_id);
+    if let Some(tokens_for_kind_set) = tokens_for_kind_set {
+        U128(tokens_for_kind_set.len() as u128)
+    } else {
+        U128(0)
     }
+}
 ```
 
 引数としてはユーザーの Wallet Id をとります。`from_index、limit` は対象のユーザーがたくさん NFT を持っているときに NFT のリストのどこからどこまでを取得するかを指定するために用意されています。
 
 返り値として metadata と owner の id が入っている`JsonToken`型のベクターが返ってきます。
 
-```bash
+```rust
 pub fn nft_tokens_for_owner(
-        &self,
-        account_id: AccountId,
-        from_index: Option<U128>,
-        limit: Option<u64>,
-    )-> Vec<JsonToken>
+    &self,
+    account_id: AccountId,
+    from_index: Option<U128>,
+    limit: Option<u64>,
+)-> Vec<JsonToken>
 ```
 
 内容としてはまず所有者の token の id から token の id がリスト化されたベクターをとってきます。
@@ -170,28 +165,28 @@ pub fn nft_tokens_for_owner(
 
 最後に先ほど作成した`nft_token関数`を利用して token の metadata とその所有者を紐づけた情報を返します。
 
-```bash
-    pub fn nft_tokens_for_owner(
-        &self,
-        account_id: AccountId,
-        from_index: Option<U128>,
-        limit: Option<u64>,
-    ) -> Vec<JsonToken> {
-        let tokens_for_owner_set = self.tokens_per_owner.get(&account_id);
-        let tokens = if let Some(tokens_for_owner_set) = tokens_for_owner_set {
-            tokens_for_owner_set
-        } else {
-            return vec![];
-        };
+```rust
+pub fn nft_tokens_for_owner(
+    &self,
+    account_id: AccountId,
+    from_index: Option<U128>,
+    limit: Option<u64>,
+) -> Vec<JsonToken> {
+    let tokens_for_owner_set = self.tokens_per_owner.get(&account_id);
+    let tokens = if let Some(tokens_for_owner_set) = tokens_for_owner_set {
+        tokens_for_owner_set
+    } else {
+        return vec![];
+    };
 
-        let start = u128::from(from_index.unwrap_or(U128(0)));
-        tokens
-            .iter()
-            .skip(start as usize)
-            .take(limit.unwrap_or(50) as usize)
-            .map(|token_id| self.nft_token(token_id.clone()).unwrap())
-            .collect()
-    }
+    let start = u128::from(from_index.unwrap_or(U128(0)));
+    tokens
+        .iter()
+        .skip(start as usize)
+        .take(limit.unwrap_or(50) as usize)
+        .map(|token_id| self.nft_token(token_id.clone()).unwrap())
+        .collect()
+}
 ```
 
 これでやっと mint 機能とそれを wallet とターミナル上で確認できるようになったので次は実際にコントラクトを deploy して、mint してみましょう！
@@ -244,7 +239,7 @@ near call $NFT_CONTRACT_ID nft_mint '{"metadata": {"title": "Vote Ticket", "desc
 ```
 
 これによって投票券の NFT を mint できました！先ほど作成した Wallet の`Collectibles`を確認してみましょう！下のような NFT が mint できているはずです。
-![](/public/images/401-NEAR-Election-dApp/1_1_2.png)
+![](/public/images/401-NEAR-Election-dApp/section-1/1_4_1.png)
 
 ### 🙋‍♂️ 質問する
 
