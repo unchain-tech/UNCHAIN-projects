@@ -150,7 +150,7 @@ near call contract.hotel_booking.testnet change_status_to_available '{"room_id":
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#section-2` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#near-booking-dapp` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
 
@@ -165,7 +165,7 @@ near call contract.hotel_booking.testnet change_status_to_available '{"room_id":
 
 おめでとうございます！予約機能がきちんと実装できていることが確認できました ✨
 
-ターミナルに出力されたアウトプットを `#section-2` に投稿して、あなたの成功をコミュニティで祝いましょう 🎉
+ターミナルに出力されたアウトプットを `#near-booking-dapp` に投稿して、あなたの成功をコミュニティで祝いましょう 🎉
 
 次のセクションからはいよいよフロントエンドでスマートコントラクトとの接続+UI の作成を行なっていきます。
 

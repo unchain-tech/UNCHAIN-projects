@@ -139,7 +139,7 @@ https://rinkeby.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#section-2` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#polygon-generative-nft` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
 
@@ -152,7 +152,7 @@ https://rinkeby.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#
 
 ---
 
-Etherscan リンクを `#section-2` に投稿してください 😊
+Etherscan リンクを `#polygon-generative-nft` に投稿してください 😊
 
 コミュニティであなたの成功を祝いましょう 🎉
 

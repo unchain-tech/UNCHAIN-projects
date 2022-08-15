@@ -549,7 +549,7 @@ near call $NFT_CONTRACT_ID nft_mint '{"metadata": {"title": "Jenny Lind(candidat
 
 セクション 2 は終了です。
 
-投票が再開され、mint が成功しているフロントエンドのスクリーンショットを `#section-2` に投稿してください 😊
+投票が再開され、mint が成功しているフロントエンドのスクリーンショットを `#near-election-dapp` に投稿してください 😊
 
 あなたの成功をコミュニティで祝いましょう 🎉
 

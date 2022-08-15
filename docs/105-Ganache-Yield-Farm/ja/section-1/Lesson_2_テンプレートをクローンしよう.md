@@ -263,7 +263,7 @@ function transferFrom(address _from, address _to, uint256 _value) public returns
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#section-1` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#eth-yield-farm` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
 

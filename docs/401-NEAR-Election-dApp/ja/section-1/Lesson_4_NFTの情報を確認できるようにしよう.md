@@ -243,7 +243,7 @@ near call $NFT_CONTRACT_ID nft_mint '{"metadata": {"title": "Vote Ticket", "desc
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#section-1` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#near-election-dapp` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
 
@@ -260,7 +260,7 @@ near call $NFT_CONTRACT_ID nft_mint '{"metadata": {"title": "Vote Ticket", "desc
 
 セクション 1 は終了です！
 
-ぜひ、mint した投票権 NFT が表示されている Wallet 画面のスクリーンショットを `#section-1` に投稿してください 😊
+ぜひ、mint した投票権 NFT が表示されている Wallet 画面のスクリーンショットを `#near-election-dapp` に投稿してください 😊
 
 あなたの成功をコミュニティで祝いましょう 🎉
 

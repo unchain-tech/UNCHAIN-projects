@@ -117,7 +117,7 @@ Error: VM Exception while processing transaction: reverted with custom error 'In
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#section-3` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#polygon-ens-domain` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
 
@@ -129,6 +129,6 @@ Error: VM Exception while processing transaction: reverted with custom error 'In
 ```
 
 ---
-お疲れ様でした!! ターミナルに出力されたエラー文を Discord の `section-3` にシェアしてみましょう!
+お疲れ様でした!! ターミナルに出力されたエラー文を Discord の `polygon-ens-domain` にシェアしてみましょう!
 
 テストは重要な作業なので、コミュニティのメンバーと確認し合いながら作業を進めましょう✨
