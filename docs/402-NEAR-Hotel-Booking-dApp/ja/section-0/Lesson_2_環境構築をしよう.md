@@ -57,7 +57,7 @@ NEAR が提供するパッケージで、プロジェクトの雛形を作成し
 プロジェクトを作成する任意の作業ディレクトリに移動し、以下のコマンドを実行します。
 
 ```bash
-npx create-near-app --frontend=react --contract=rust --tests rust near-hotel-booking-dapp
+npx create-near-app --frontend=react --contract=rust --tests=rust --install near-hotel-booking-dapp
 ```
 
 指定したオプションはこちらです。
@@ -76,21 +76,19 @@ success Saved lockfile.
 ✨  Done in 74.22s.
 
 Success! Created near-hotel-booking-dapp
-Inside that directory, you can run several commands:
+   with a smart contract in Rust and a frontend template in React.js.
+🦀 If you are new to Rust please visit https://www.rust-lang.org 
 
-  yarn dev
-    Starts the development server. Both contract and client-side code will
-    auto-reload once you change source files.
-
-  yarn test
-    Starts the test runner.
-
-We suggest that you begin by typing:
-
-    cd near-hotel-booking-dapp
-    yarn dev
-
-Happy hacking!
+  Your next steps:
+   - Navigate to your project:
+         cd near-hotel-booking-dapp
+   Then:
+   - Test your contract in NEAR SandBox:
+         npm test
+   - Deploy your contract to NEAR TestNet with a temporary dev account:
+         npm run deploy
+   - Start your frontend:
+         npm start
 ```
 
 作成されたプロジェクトのファイル構成を確認します。
@@ -108,21 +106,20 @@ near-hotel-booking-dapp/
 ├── .gitignore
 ├── .gitpod.yml
 ├── README.md
-├── ava.config.cjs
 ├── contract/
 ├── frontend/
 ├── integration-tests/
-├── neardev/
 ├── node_modules/
-├── out/
+├── package-lock.json
 ├── package.json
-└── yarn.lock
 ```
 
 それでは、プロジェクトのディレクトリへ移動し実際に起動してみましょう。
 
 ```bash
-cd near-hotel-booking-dapp && yarn dev
+cd near-hotel-booking-dapp
+npm run deploy
+npm start
 ```
 
 あらかじめ用意されているスマートコントラクトがコンパイル・デプロイされ、Web アプリケーションが起動されます。

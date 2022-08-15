@@ -20,7 +20,7 @@ import {
   get_rooms_registered_by_owner,
   exists,
   add_room_to_owner,
-} from "../near/utils";
+} from "../../../near-api";
 
 const ManageRooms = () => {
   const [registeredRooms, setRegisteredRooms] = useState([]);

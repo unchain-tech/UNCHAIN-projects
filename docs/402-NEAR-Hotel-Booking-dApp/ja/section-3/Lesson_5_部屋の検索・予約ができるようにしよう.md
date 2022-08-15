@@ -86,7 +86,7 @@ import Row from "react-bootstrap/Row";
 import Room from "../components/Room";
 import FormDate from "../components/FormDate";
 
-import { get_available_rooms, book_room } from "../near/utils";
+import { get_available_rooms, book_room } from "../../../near-api";
 
 const Search = () => {
   // URLから検索する日付を取得する
