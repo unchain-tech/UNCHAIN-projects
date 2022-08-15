@@ -6,13 +6,13 @@
 
 以下のコードで、`GuestBookedList.js`を更新しましょう。
 
-`frontend/asserts/js/pages/GuestBookedList画面.js`
+`frontend/asserts/js/pages/GuestBookedList.js`
 
 ```js
 import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 
-import { get_booking_info_for_guest } from "../near/utils";
+import { get_booking_info_for_guest } from "../../../near-api";
 
 const GuestBookedList = () => {
   // 予約した部屋のデータを設定する
@@ -114,7 +114,7 @@ import {
   is_available,
   change_status_to_available,
   change_status_to_stay,
-} from "../near/utils";
+} from "../../../near-api";
 
 const ManageBookings = () => {
   // 予約データを設定する

@@ -2,36 +2,9 @@
 
 ここからはフロントエンドの作成になりますが、まずは、前回のセクションまでで完成したスマートスマートコントラクトをデプロイしているアカウント ID が使用されるようにします。
 
-`near-hotel-booking-dapp/package.json`の中で、アプリケーションを起動する際のコマンドを編集します。
+`near-hotel-booking-dapp/contract/neardev/dev-account.env`内の`CONTRACT_NAME`を書き換えます。
 
-`near-hotel-booking-dapp/package.json`
-
-```diff
-{
-  "name": "hotel-booking-dapp",
-  "version": "1.0.0",
-  "license": "(MIT AND Apache-2.0)",
-  "scripts": {
-    "build": "npm run build:contract && npm run build:web",
-      "build:contract": "cd contract && rustup target add wasm32-unknown-unknown && cargo build --all --target wasm32-unknown-unknown --release && cp ./target/wasm32-unknown-unknown/release/hotel_booking.wasm ../out/main.wasm",
-      "build:web": "parcel build frontend/index.html --public-url ./",
-    "deploy": "npm run build:contract && near dev-deploy",
--    "start": "npm run deploy && echo The app is starting! It will automatically open in your browser when ready && env-cmd -f ./neardev/dev-account.env parcel frontend/index.html --open",
-+    "start": "echo The app is starting! It will automatically open in your browser when ready && env-cmd -f ./neardev/dev-account.env parcel frontend/index.html --open",
-    "dev": "nodemon --watch contract -e ts --exec \"npm run start\"",
-    "test": "npm run build:contract && npm run test:unit && npm run test:integration",
-      "test:unit": "cd contract && cargo test",
-      "test:integration": "npm run test:integration:ts && npm run test:integration:rs",
-        "test:integration:ts": "cd integration-tests/ts && npm run test",
-        "test:integration:rs": "cd integration-tests/rs && cargo run --example integration-tests"
-  },
-  ...
-}
-```
-
-続いて、`near-hotel-booking-dapp/neardev/dev-account.env`内の`CONTRACT_NAME`を書き換えます。
-
-`near-hotel-booking-dapp/neardev/dev-account.env`
+`near-hotel-booking-dapp/contract/neardev/dev-account.env`
 
 ```
 CONTRACT_NAME=YOUR_CONNTRACT_ID
@@ -45,9 +18,9 @@ CONTRACT_NAME=contract.hotel_booking.testnet
 
 ### 🔌 スマートコントラクトとの接続を実装しよう
 
-`frontend/assets/js/near/utils.js`に、NEAR Wallet のデータやスマートコントラクトのメソッドを設定するための実装を行います。以下のように書き換えてください
+`frontend/near-api.js`に、NEAR Wallet のデータやスマートコントラクトのメソッドを設定するための実装を行います。以下のように書き換えてください
 
-`frontend/assets/js/near/utils.js`
+`frontend/near-api.js`
 
 ```javascript
 import { connect, Contract, keyStores, WalletConnection } from "near-api-js";
@@ -55,7 +28,7 @@ import {
   formatNearAmount,
   parseNearAmount,
 } from "near-api-js/lib/utils/format";
-import getConfig from "./config";
+import getConfig from "./near-config";
 
 // トランザクション実行時に使用するGASの上限を設定
 const GAS = 100000000000000;
@@ -361,6 +334,15 @@ await window.contract.book_room(
   GAS,
   price
 );
+```
+
+また、`frontend/near-config.js`を以下のように書き換えてください
+
+`frontend/near-config.js`
+
+```diff
+- export function getConfig(env) {
++ export default function getConfig(env) {
 ```
 
 これで、スマートコントラクトのメソッドを呼び出す準備ができました。
