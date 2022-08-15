@@ -750,7 +750,7 @@ data:application/json;base64 eyJuYW1lIjogIlpFTklHQU1FIC0tIE5GVC...
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#section-1` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#eth-nft-game` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
 

@@ -678,7 +678,7 @@ https://rinkeby.rarible.com/token/0x67cd3f53c20e3a6211458dd5b7465e1f9464531c:0
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#section-1` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#eth-nft-collection` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
 
@@ -693,7 +693,7 @@ https://rinkeby.rarible.com/token/0x67cd3f53c20e3a6211458dd5b7465e1f9464531c:0
 
 おめでとうございます!　セクション 1 が終了しました!
 
-Rarible のリンクを `#section-1` を貼り付けて、コミュニティにあなたの NFT をシェアしてください 😊
+Rarible のリンクを `#eth-nft-collection` に貼り付けて、コミュニティにあなたの NFT をシェアしてください 😊
 
 どんな NFT なのか気になります ✨
 

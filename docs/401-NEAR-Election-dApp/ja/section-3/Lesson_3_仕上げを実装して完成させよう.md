@@ -759,7 +759,7 @@ yarn dev
 ```
 
 下のように表示されていたら成功です！
-section-2 でコントラクト内から`nft_add_likes_to_candidate関数`を走らせたのでどれか一つの候補者の得票数が`1`になっているはずです。
+section-2でコントラクト内から`nft_add_likes_to_candidate関数`を走らせたのでどれか一つの候補者の得票数が`1`になっているはずです。
 ![](/public/images/401-NEAR-Election-dApp/section-3/3_3_1.png)
 ![](/public/images/401-NEAR-Election-dApp/section-3/3_3_2.png)
 ![](/public/images/401-NEAR-Election-dApp/section-3/3_3_3.png)
@@ -767,7 +767,7 @@ section-2 でコントラクト内から`nft_add_likes_to_candidate関数`を走
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#section-3` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#near-election-dapp` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
 
@@ -780,8 +780,8 @@ section-2 でコントラクト内から`nft_add_likes_to_candidate関数`を走
 
 これでコントラクト、フロントエンドは完成してアプリとして完成しました！
 
-投票により、得票数が 1 になっているフロントエンドのスクリーンショットを `#section-3` に投稿してください 😊
+投票により、得票数が 1 になっているフロントエンドのスクリーンショットを `#near-election-dapp` に投稿してください 😊
 
 あなたの成功をコミュニティで祝いましょう 🎉
 
-では最後の section-4 でどのように機能しているのかを確認し、netlify に上げてあなたのアプリを公開しましょう！
+では最後のsection-4でどのように機能しているのかを確認し、netlifyにdeployしてあなたのアプリを公開しましょう！
