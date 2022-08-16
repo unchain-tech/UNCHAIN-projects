@@ -26,33 +26,19 @@ NEAR ブロックチェーン には 2 種類のメソッドがあります。
 
 ここからは、先頭の`/`が意味するディレクトリはプロジェクトの**ルートディレクトリ**(`/near-hotel-booking-dapp`)であるとします。
 
-1. `/package.json`を編集
 
-```diff
-{
-- "name": "greeter",
-+ "name": "hotel-booking-dapp",
-  "version": "1.0.0",
-  "license": "(MIT AND Apache-2.0)",
-  "scripts": {
-    "build": "npm run build:contract && npm run build:web",
--      "build:contract": "cd contract && rustup target add wasm32-unknown-unknown && cargo build --all --target wasm32-unknown-unknown --release && cp ./target/wasm32-unknown-unknown/release/greeter.wasm ../out/main.wasm",
-+      "build:contract": "cd contract && rustup target add wasm32-unknown-unknown && cargo build --all --target wasm32-unknown-unknown --release && cp ./target/wasm32-unknown-unknown/release/hotel_booking.wasm ../out/main.wasm",
-...
-```
-
-2. `/contract/Cargo.toml`を編集
+1. `/contract/Cargo.toml`を編集
 
 ```diff
 [package]
-- name = "greeter"
+- name = "hello_near"
 + name = "hotel_booking"
 ```
 
 編集後、スマートコントラクトが問題なくコンパイル・デプロイされるかを確認します。
 
 ```bash
-yarn deploy
+npm run deploy
 ```
 
 問題がなければ、以下のように表示されます。

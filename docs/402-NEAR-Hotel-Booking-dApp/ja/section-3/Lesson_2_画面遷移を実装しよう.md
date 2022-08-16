@@ -124,7 +124,7 @@ return 文の中で、ナビゲーションバーを実装する`<NavBar />`を�
 次に、ナビゲーションバーを実装します。
 以下のコードを`frontend/asserts/js/components/NavBar.js`に追加してください。
 
-`frontend/asserts/js/components/NavBar.js`
+`frontend/assets/js/components/NavBar.js`
 
 ```javascript
 import React, { useEffect, useState } from "react";
@@ -265,7 +265,7 @@ return の中では、表示するナビゲーションバーの設定をして�
 
 最後に、画面遷移が確認できるよう遷移先のページを簡単に実装します。
 
-`frontend/asserts/js/pages/GuestBookedList.js`
+`frontend/assets/js/pages/GuestBookedList.js`
 
 ```javascript
 import React from "react";
@@ -297,7 +297,7 @@ const Home = () => {
 export default Home;
 ```
 
-`frontend/asserts/js/pages/ManageBookings.js`
+`frontend/assets/js/pages/ManageBookings.js`
 
 ```js
 import React from "react";
@@ -313,7 +313,7 @@ const ManageBookings = () => {
 export default ManageBookings;
 ```
 
-`frontend/asserts/js/pages/ManageRooms.js`
+`frontend/assets/js/pages/ManageRooms.js`
 
 ```js
 import React from "react";
@@ -329,7 +329,7 @@ const ManageRooms = () => {
 export default ManageRooms;
 ```
 
-`frontend/asserts/js/pages/Search.js`
+`frontend/assets/js/pages/Search.js`
 
 ```js
 import React from "react";
