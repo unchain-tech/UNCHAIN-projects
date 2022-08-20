@@ -156,9 +156,7 @@ Owner has tokens:  [
 
 それでは、Rinkeby Test Network にコントラクトをデプロイしましょう。
 
-`nft-collectible/scripts` の中ににある `deploy.js` を以下のとおり更新します。
-
-その中に、`run.js` の中身を下を貼り付けましょう。
+`nft-collectible/scripts` の中にある `deploy.js` に、`run.js` の中身と同じにしてください。
 
 > ⚠️: 注意
 >
