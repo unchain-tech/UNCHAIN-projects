@@ -70,16 +70,14 @@ npx hardhat
 サンプルプロジェクトが正しくインストールされたことを確認するため、下記のコマンドを実行してください。
 
 ```
-npx hardhat run scripts/sample-script.js
+npx hardhat run scripts/deploy.js
 ```
 
 すべてがうまくいけば、次のような出力が表示されるはずです。
 
 ```
-Compiling 2 files with 0.8.9
-Solidity compilation finished successfully
-Deploying a Greeter with greeting: Hello, Hardhat!
-Greeter deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
+Compiled 2 Solidity files successfully
+Lock with 1 ETH and unlock timestamp 1692501171 deployed to 0x5FbDB2315678afecb367f032d93F642f64180aa3
 ```
 
 これで hardhat の開発環境は無事構築できました。
