@@ -160,6 +160,7 @@ library Base64 {
 次は、下記のコードを解説します。
 
 ```solidity
+// Web3Mint.sol
 struct NftAttributes{
         string name;
         string imageURL;
