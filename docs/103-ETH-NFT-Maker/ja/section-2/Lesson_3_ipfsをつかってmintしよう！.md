@@ -160,6 +160,7 @@ library Base64 {
 次は、下記のコードを解説します。
 
 ```solidity
+// Web3Mint.sol
 struct NftAttributes{
         string name;
         string imageURL;
@@ -175,7 +176,7 @@ struct NftAttributes{
 次は mintIpfsNFT 関数です。
 
 ```solidity
-// Base64.sol
+// Web3Mint.sol
 function mintIpfsNFT(string memory name,string memory imageURI) public{
         uint256 newItemId = _tokenIds.current();
         _safeMint(msg.sender,newItemId);
@@ -191,7 +192,7 @@ function mintIpfsNFT(string memory name,string memory imageURI) public{
 先程のコードから `setTokenURI` 関数が消え、代わりに下記のコードが追加されています。
 
 ```solidity
-// Base64.sol
+// Web3Mint.sol
 Web3Nfts.push(NftAttributes({
             name: name,
             imageURL: imageURI
@@ -201,7 +202,7 @@ Web3Nfts.push(NftAttributes({
 
 次は `tokenURI` 関数です。
 ```solidity
-// Base64.sol
+// Web3Mint.sol
 function tokenURI(uint256 _tokenId) public override view returns(string memory){
     string memory json = Base64.encode(
         bytes(
@@ -299,7 +300,7 @@ data:application/json;base64,eyJuYW1lIjogInBva2VyIC0tIE5GVCAjOiAwIiwgImRlc2NyaXB
 ```
 このように表示されていたら成功です。imageのipfsがしっかりと画像を表示させられているかも確認してみてください。
 
-**brave**ブラウザでは、`ipfs://bafkreievxssucnete4vpthh3klylkv2ctll2sk2ib24jvgozyg62zdtm2y`のままブラウザに貼れば表示され、他のブラウザの場合は`https:// ipfs.io/ipfs/自分のCID`のようにして、画像を確認してみましょう!
+**brave**ブラウザでは、`ipfs://bafkreievxssucnete4vpthh3klylkv2ctll2sk2ib24jvgozyg62zdtm2y`のままブラウザに貼れば表示され、他のブラウザの場合は`https://ipfs.io/ipfs/自分のCID`のようにして、画像を確認してみましょう!
 
 
 最終確認として `run.js` でも確認してみましょう。
