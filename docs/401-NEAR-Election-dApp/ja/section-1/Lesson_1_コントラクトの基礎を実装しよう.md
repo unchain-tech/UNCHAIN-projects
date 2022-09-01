@@ -43,7 +43,7 @@ touch FILE_NAME
   ├── src/
 + │   ├── vote.rs
 + │   ├── enumeration.rs
-+ │   ├── inernal.rs
++ │   ├── internal.rs
   │   ├── lib.rs
 + │   ├── metadata.rs
 + │   ├── mint.rs
