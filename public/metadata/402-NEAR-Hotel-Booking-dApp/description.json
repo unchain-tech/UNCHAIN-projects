@@ -1,0 +1,6 @@
+{
+    "title": "NEAR Hotel Booking Service",
+    "difficulty": "intermediate",
+    "chain": "NEAR",
+    "description": "👉 Rust と React を使って、ユーザーが宿泊施設を予約できる WEB サービスを構築します。"
+}
