@@ -1,6 +1,9 @@
 {
+    "project_id": 302,
     "title": "Solana NFT Drop",
     "difficulty": "intermediate",
     "chain": "Solana",
-    "description": "👉 Metaplex でコントラクトを Solana 上にデプロイし、React で NFT を Mint する WEB サイトを構築します。"
+    "description": "👉 Metaplex でコントラクトを Solana 上にデプロイし、React で NFT を Mint する WEB サイトを構築します。",
+    "total_sections": 4,
+    "total_lessons": 10
 }

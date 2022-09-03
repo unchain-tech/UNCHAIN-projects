@@ -1,6 +1,9 @@
 {
+    "project_id": 104,
     "title": "ETH NFT Game",
     "difficulty": "advanced",
     "chain": "Ethereum",
-    "description": "👉 Solidity で HP や攻撃力を付与した NFT キャラクターを作成し、React で対戦ゲームアプリを構築します。"
+    "description": "👉 Solidity で HP や攻撃力を付与した NFT キャラクターを作成し、React で対戦ゲームアプリを構築します。",
+    "total_sections": 4,
+    "total_lessons": 18
 }
