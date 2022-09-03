@@ -122,7 +122,7 @@ $ near view sub.$ID ft_balance_of '{"account_id": "ft_receiver.testnet"}'
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#section-1` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-dapp` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
 
@@ -137,6 +137,6 @@ $ near view sub.$ID ft_balance_of '{"account_id": "ft_receiver.testnet"}'
 
 おめでとうございます！  
 このセクションでの作業はここで終了です。  
-トークンの転送結果を `#section-1` に投稿して、あなたの成功をコミュニティで祝いましょう 🎉  
+トークンの転送結果を `#near-sharing-dapp` に投稿して、あなたの成功をコミュニティで祝いましょう 🎉  
 最後にコントラクトのコードを少しだけ覗きに行きます！  
 次のレッスンに進みましょう！

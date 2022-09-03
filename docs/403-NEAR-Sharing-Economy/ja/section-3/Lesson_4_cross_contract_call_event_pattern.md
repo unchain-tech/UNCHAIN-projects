@@ -293,7 +293,7 @@ $ cd integration-tests/rs && cargo run --example integration-tests
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#section-3` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-dapp` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
 
@@ -310,5 +310,5 @@ $ cd integration-tests/rs && cargo run --example integration-tests
 
 おめでとうございます！  
 コントラクトの機能を全て実装し, 結合テストを実行することができました！  
-テスト結果を `#section-3` に投稿して、あなたの成功をコミュニティで祝いましょう 🎉  
+テスト結果を `#near-sharing-dapp` に投稿して、あなたの成功をコミュニティで祝いましょう 🎉  
 次のレッスンではさらに機能を増やしていきます！
