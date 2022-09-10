@@ -85,7 +85,7 @@ import Arena from "./Components/Arena";
 次に、`renderContent` 関数を下記のように更新しましょう。
 
 ```javascript
-// Arena/App.js
+// App.js
 // レンダリングメソッド
 const renderContent = () => {
   // シナリオ1.
