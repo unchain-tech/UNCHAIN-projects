@@ -221,26 +221,26 @@ if (!window.accountId) {
 
 では、動作確認をします。`Section2`で部屋を追加したアカウント ID で NEAR Wallet に接続します。接続後、ナビゲーションバーから`ManageRooms画面`に移動します。
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-3/3_4_1.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_4_1.png)
 
 アカウントが追加した部屋のデータが表示されているでしょう。
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-3/3_4_2.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_4_2.png)
 
 **POST**ボタンを押してみましょう。前回のレッスンで作成した、入力フォームが表示されるでしょう。
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-3/3_4_3.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_4_3.png)
 
 部屋を追加してみましょう。部屋のデータを入力後、**Save room**ボタンを押します。
 以下のように、追加した部屋のデータが表示されたら成功です！
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-3/3_4_4.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_4_4.png)
 
 最後に、NEAR Wallet の接続を解除してみましょう。ナビゲーションバーのメニュー**Disconnect**から実行できます。
 
 以下のように、メッセージのみが表示されるでしょう。
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-3/3_4_5.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_4_5.png)
 
 これで、オーナーが部屋の追加・確認ができるようになりました！
 

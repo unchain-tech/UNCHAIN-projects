@@ -861,7 +861,7 @@ const [allWaves, setAllWaves] = useState([]);
 > 基本的な**1Gas 当たりの価格**は 「**21 `Gwei`**」 で送金されます。
 >
 > ガス価格の単位として使われている「 **`wei`** 」は、イーサリアムの単位で 1ETH とのレートは下図のようになっています。
-> ![](/public/images/101-ETH-dApp/section-3/3_1_1.png)
+> ![](/public/images/ETH-dApp/section-3/3_1_1.png)
 >
 > **`G`** はギガのことで、`1Gwei = 0.000000001ETH` です。
 >
@@ -928,7 +928,7 @@ const [allWaves, setAllWaves] = useState([]);
 
 こちらが、フロントエンドの実装結果の例になります。
 
-![](/public/images/101-ETH-dApp/section-3/3_1_2.png)
+![](/public/images/ETH-dApp/section-3/3_1_2.png)
 
 ターミナルを閉じるときは、以下のコマンドが使えます ✍️
 

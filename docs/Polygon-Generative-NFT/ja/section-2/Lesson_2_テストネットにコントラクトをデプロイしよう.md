@@ -25,11 +25,11 @@ Alchemy は、世界中のトランザクションを一元化し、マイナー
 ### 💎 Alchemyでネットワークを作成
 
 Alchemy のアカウントを作成したら、`CREATE APP` ボタンを押してください。
-![](/public/images/201-Polygon-Generative-NFT/section-2/2_2_1.png)
+![](/public/images/Polygon-Generative-NFT/section-2/2_2_1.png)
 
 次に、下記の項目を埋めていきます。下図を参考にしてください。
 
-![](/public/images/201-Polygon-Generative-NFT/section-2/2_2_2.png)
+![](/public/images/Polygon-Generative-NFT/section-2/2_2_2.png)
 - `NAME`: プロジェクトの名前（例: `NFTCollectible`）
 - `DESCRIPTION`: プロジェクトの概要
 - `ENVIRONMENT`: `Development` を選択。
@@ -38,11 +38,11 @@ Alchemy のアカウントを作成したら、`CREATE APP` ボタンを押し�
 
 それから、作成した App の `VIEW DETAILS` をクリックします。
 
-![](/public/images/201-Polygon-Generative-NFT/section-2/2_2_3.png)
+![](/public/images/Polygon-Generative-NFT/section-2/2_2_3.png)
 
 プロジェクトを開いたら、`VIEW KEY` ボタンをクリックします。
 
-![](/public/images/201-Polygon-Generative-NFT/section-2/2_2_4.png)
+![](/public/images/Polygon-Generative-NFT/section-2/2_2_4.png)
 
 ポップアップが開くので、`HTTP` のリンクをコピーしてください。
 
@@ -93,16 +93,16 @@ Alchemy のアカウントを作成したら、`CREATE APP` ボタンを押し�
 
 >✍️: MetaMask で `Rinkeby Test Network` を設定する方法
 > 1 \. MetaMask ウォレットのネットワークトグルを開く。
-> ![](/public/images/201-Polygon-Generative-NFT/section-2/2_2_5.png)
+> ![](/public/images/Polygon-Generative-NFT/section-2/2_2_5.png)
 >
 > 2 \. `Show/hide test networks` をクリック。
-> ![](/public/images/201-Polygon-Generative-NFT/section-2/2_2_6.png)
+> ![](/public/images/Polygon-Generative-NFT/section-2/2_2_6.png)
 >
 > 3 \. `Show test networks` を `ON` にする。
-> ![](/public/images/201-Polygon-Generative-NFT/section-2/2_2_7.png)
+> ![](/public/images/Polygon-Generative-NFT/section-2/2_2_7.png)
 >
 > 4 \. `Rinkeby Test Network` を選択する。
-> ![](/public/images/201-Polygon-Generative-NFT/section-2/2_2_8.png)
+> ![](/public/images/Polygon-Generative-NFT/section-2/2_2_8.png)
 
 MetaMask ウォレットに `Rinkeby Test Network` が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽 ETH を取得しましょう。
 - [MyCrypto](https://app.mycrypto.com/faucet) - 0.01 ETH（その場でもらえる）
@@ -127,22 +127,22 @@ PRIVATE_KEY="YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY"
 2\. `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の取得
 > 1\. お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを `Rinkeby Test Network` に変更します。
 >
-> ![](/public/images/201-Polygon-Generative-NFT/section-2/2_2_9.png)
+> ![](/public/images/Polygon-Generative-NFT/section-2/2_2_9.png)
 >
 > 2\. それから、`Account details` を選択してください。
-> ![](/public/images/201-Polygon-Generative-NFT/section-2/2_2_10.png)
+> ![](/public/images/Polygon-Generative-NFT/section-2/2_2_10.png)
 >
 > 3\. `Account details` から `Export Private Key` をクリックしてください。
 >
-> ![](/public/images/201-Polygon-Generative-NFT/section-2/2_2_11.png)
+> ![](/public/images/Polygon-Generative-NFT/section-2/2_2_11.png)
 >
 > 4\. MetaMask のパスワードを求められるので、入力したら `Confirm` を推します。
 >
-> ![](/public/images/201-Polygon-Generative-NFT/section-2/2_2_12.png)
+> ![](/public/images/Polygon-Generative-NFT/section-2/2_2_12.png)
 >
 > 5\. あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
 >
-> ![](/public/images/201-Polygon-Generative-NFT/section-2/2_2_13.png)
+> ![](/public/images/Polygon-Generative-NFT/section-2/2_2_13.png)
 >
 > `.env` の `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の部分をここで取得した秘密鍵とを入れ替えます。
 

@@ -20,7 +20,7 @@ npm run start
 ```
 
 以下のような画面がフロントエンドに表示されているでしょうか？
-![](/public/images/105-Ganache-Yield-Farm/section-1/12_3_1.png)
+![](/public/images/Ganache-Yield-Farm/section-1/12_3_1.png)
 
 ### 🦊 Ganache と Metamask を接続する
 
@@ -28,21 +28,21 @@ npm run start
 
 まず、MetaMask を開き、ネットワークが Ganache であることを確認したら、右上のアカウントボタンを押してアカウントの情報を見れるようにします。
 
-![](/public/images/105-Ganache-Yield-Farm/section-1/12_3_2.png)
+![](/public/images/Ganache-Yield-Farm/section-1/12_3_2.png)
 
 次に `Import Account` と書いてあるボタンを押して Ganache のアカウントをインポートしていきます。
 
-![](/public/images/105-Ganache-Yield-Farm/section-1/12_3_3.png)
+![](/public/images/Ganache-Yield-Farm/section-1/12_3_3.png)
 
 `Import Account` を選択すると、`Private Key` を入力するよう求められます。
 
-![](/public/images/105-Ganache-Yield-Farm/section-1/12_3_4.png)
+![](/public/images/Ganache-Yield-Farm/section-1/12_3_4.png)
 
 そこで Ganache に向かい、`100mDai` トークンを送金したアカウント(ここまで手順通りにコーディングした場合 Ganache 画面の上から2番目のアカウント)の Private key をコピーしましょう。
 
 Metamask の `Private Key` 入力欄にコピーした Private key を貼り付け、Import ボタンを押してください。
 
-![](/public/images/105-Ganache-Yield-Farm/section-1/12_3_5.png)
+![](/public/images/Ganache-Yield-Farm/section-1/12_3_5.png)
 
 このプロセスにより、Ganache のアカウントが Metamask にインポートされます。
 
@@ -59,12 +59,12 @@ Metamask の `Private Key` 入力欄にコピーした Private key を貼り付�
 
 `Not connected` と書いてある部分をクリックして、接続画面へ進んでください。
 
-![](/public/images/105-Ganache-Yield-Farm/section-1/12_3_6.png)
+![](/public/images/Ganache-Yield-Farm/section-1/12_3_6.png)
 
 自分が使用している Metamask のアカウントが黄色くハイライトされていることがわかります。
 自分が使用しているアカウントの下にある `Connect` を押せばフロントエンドとMetamaskの接続が完了します!
 
-![](/public/images/105-Ganache-Yield-Farm/section-1/12_3_7.png)
+![](/public/images/Ganache-Yield-Farm/section-1/12_3_7.png)
 
 ### 🙋‍♂️ 質問する
 

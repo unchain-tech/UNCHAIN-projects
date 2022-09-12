@@ -20,7 +20,7 @@
 
 以下は作成する Web アプリケーションのイメージです。
 
-![web application](/public/images/301-Solana-dApp/section-0/0_1_1.jpg)
+![web application](/public/images/Solana-dApp/section-0/0_1_1.jpg)
 
 本プロジェクトは以下の 3 つのステップに分かれています。
 

@@ -6,28 +6,28 @@
 
 ### 🥮 `dappプロジェクト`を作成しよう
 
-`create-near-app`という`npm`パッケージを利用して, ベースとなる`dappプロジェクト`を作成することができます。  
-あなたの作業したいディレクトリへ移動して以下のコマンドを実行しましょう！  
-(フロントエンド作成に `react`, コントラクト作成 に `rust` を使用することを明示してます。)  
+`create-near-app`という`npm`パッケージを利用して, ベースとなる`dappプロジェクト`を作成することができます。
+あなたの作業したいディレクトリへ移動して以下のコマンドを実行しましょう！
+(フロントエンド作成に `react`, コントラクト作成 に `rust` を使用することを明示してます。)
 プロジェクト名はお好きな名前で良いですが, ここでは`near_bike_share_dapp`として進めていきます 🚀
 
 ```
 $ npx create-near-app@3.1.0 --frontend=react --contract=rust near_bike_share_dapp
 ```
 
-実行後, 必要なパッケージのインストール許可を求められるので enter を押します。  
+実行後, 必要なパッケージのインストール許可を求められるので enter を押します。
 成功すると以下のような表示がされます。
-![](/public/images/403-NEAR-Sharing-Economy/section-2/2_1_1.png)
+![](/public/images/NEAR-Sharing-Economy/section-2/2_1_1.png)
 
 作成したレポジトリへ移動し, `yarn dev`を実行しましょう！
 
-> `yarn`をお持ちでない方は`npm run dev`で進めるか, 
-> 
+> `yarn`をお持ちでない方は`npm run dev`で進めるか,
+>
 > ```
 > $ npm install -g yarn
 > ```
-> 
-> で`yarn`を取得後再実行してください。  
+>
+> で`yarn`を取得後再実行してください。
 > 実行環境のバージョンは以下です。
 >
 > ```
@@ -42,14 +42,14 @@ $ yarn dev
 
 しばらく待つとあなたのローカル環境で、Web サイトのフロントエンドが立ち上がりましたか？
 
-ローカル環境で表示されている Web サイト。  
-![](/public/images/403-NEAR-Sharing-Economy/section-2/2_1_2.png)
+ローカル環境で表示されている Web サイト。
+![](/public/images/NEAR-Sharing-Economy/section-2/2_1_2.png)
 
-サインインボタンを押して, 既存のアカウントでサインインしてみましょう。  
-![](/public/images/403-NEAR-Sharing-Economy/section-2/2_1_3.png)
+サインインボタンを押して, 既存のアカウントでサインインしてみましょう。
+![](/public/images/NEAR-Sharing-Economy/section-2/2_1_3.png)
 
-接続完了したらこのようなサイトが表示されるはずです。  
-![](/public/images/403-NEAR-Sharing-Economy/section-2/2_1_4.png)
+接続完了したらこのようなサイトが表示されるはずです。
+![](/public/images/NEAR-Sharing-Economy/section-2/2_1_4.png)
 
 上記のような形でフロントエンドが確認できれば成功です。
 
@@ -58,7 +58,7 @@ $ yarn dev
 - Mac: `ctrl + c`
 - Windows: `ctrl + shift + w`
 
-最後に作成した`near_bike_share_dapp`のフォルダ構成を確認しましょう。  
+最後に作成した`near_bike_share_dapp`のフォルダ構成を確認しましょう。
 ディレクトリには末尾に`/`をつけて表示しています。
 
 ```
@@ -76,7 +76,7 @@ near_bike_share_dapp/
 └── yarn.lock
 ```
 
-`frontend`と`contract`ディレクトリが見えるでしょうか。  
+`frontend`と`contract`ディレクトリが見えるでしょうか。
 それぞれフロントエンドを構成するコードのファイル, コントラクトを構成するコードのファイルが入っています。
 
 ### 🙋‍♂️ 質問する

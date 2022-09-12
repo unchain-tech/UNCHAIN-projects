@@ -174,7 +174,7 @@ class TodoList extends StatelessWidget {
 
 下の画像のようなUIになります。
 
-![](/public/images/203-Polygon-Mobile-dApp/section-2/2_3_01.png)
+![](/public/images/Polygon-Mobile-dApp/section-2/2_3_01.png)
 
 以上で、2.`TodoList.dart` ファイルの中身は完成しました。
 
@@ -400,7 +400,7 @@ TextButton buildButton(String text, void Function()? onPressed) {
 
 下の画像のようなUIになります。
 
-![](/public/images/203-Polygon-Mobile-dApp/section-2/2_3_02.png)
+![](/public/images/Polygon-Mobile-dApp/section-2/2_3_02.png)
 
 以上で、3.`TodoBottomSheet.dart` ファイルの中身は完成しました。
 

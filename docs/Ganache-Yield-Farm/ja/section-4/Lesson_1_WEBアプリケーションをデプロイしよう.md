@@ -33,15 +33,15 @@ git push
 Vercel のアカウントを取得したら、下記を実行しましょう。
 
 1\. `Dashboard` へ進んで、`New Project` を選択してください。
-![](/public/images/105-Ganache-Yield-Farm/section-4/12_4_1.png)
+![](/public/images/Ganache-Yield-Farm/section-4/12_4_1.png)
 
 2\. `Import Git Repository` で自分の GitHub アカウントを接続したら、`yield-farm-starter-project` を選択し、`Import` してください。
-![](/public/images/105-Ganache-Yield-Farm/section-4/12_4_2.png)
+![](/public/images/Ganache-Yield-Farm/section-4/12_4_2.png)
 
 3\. プロジェクトを作成します。Environment Variable に下記を追加します。
 
 `NAME`＝`CI`、`VALUE`＝`false`（下図参照）。
-![](/public/images/105-Ganache-Yield-Farm/section-4/12_4_3.png)
+![](/public/images/Ganache-Yield-Farm/section-4/12_4_3.png)
 
 4\. `Deploy`ボタンを押しましょう。
 
@@ -51,7 +51,7 @@ Vercel は GitHub と連動しているので、GitHub が更新されるたび�
 
 基本的に `warning` は無視して問題ありません。
 
-![](/public/images/105-Ganache-Yield-Farm/section-4/12_4_4.png)
+![](/public/images/Ganache-Yield-Farm/section-4/12_4_4.png)
 
 ### 🙋‍♂️ 質問する
 

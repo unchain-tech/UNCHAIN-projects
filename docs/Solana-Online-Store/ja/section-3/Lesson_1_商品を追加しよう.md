@@ -288,7 +288,7 @@ export default function handler(req, res){
 
 ※値段の欄には数字だけを入れるよう、注意してください。
 
-![Create Product](/public/images/303-Solana-Online-Store/section-3/3_1_1.jpg)
+![Create Product](/public/images/Solana-Online-Store/section-3/3_1_1.jpg)
 
 
 ### 🙋‍♂️ 質問する

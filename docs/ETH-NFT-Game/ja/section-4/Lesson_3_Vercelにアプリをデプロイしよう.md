@@ -23,15 +23,15 @@ git push
 Vercel のアカウントを取得したら、下記を実行しましょう。
 
 1\. `Dashboard` へ進んで、`New Project` を選択してください。
-![](/public/images/104-ETH-NFT-Game/section-4/4_3_1.png)
+![](/public/images/ETH-NFT-Game/section-4/4_3_1.png)
 
 2\. `Import Git Repository` で自分の GitHub アカウントを接続したら、`nft-game-starter-project` を選択し、`Import` してください。
-![](/public/images/104-ETH-NFT-Game/section-4/4_3_2.png)
+![](/public/images/ETH-NFT-Game/section-4/4_3_2.png)
 
 3\. プロジェクトを作成します。Environment Variable に下記を追加します。
 
 `NAME`＝`CI`、`VALUE`＝`false`（下図参照）。
-![](/public/images/104-ETH-NFT-Game/section-4/4_3_3.png)
+![](/public/images/ETH-NFT-Game/section-4/4_3_3.png)
 
 4\. `Deploy`ボタンを推しましょう。
 
@@ -39,7 +39,7 @@ Vercel は GitHub と連動しているので、GitHub が更新されるたび�
 
 下記のように、`Building` ログが出力されます。
 基本的に `warning` は無視して問題ありません。
-![](/public/images/104-ETH-NFT-Game/section-4/4_3_4.png)
+![](/public/images/ETH-NFT-Game/section-4/4_3_4.png)
 
 こちらが、今回のプロジェクトで作成される Web アプリケーションのデモです。
 

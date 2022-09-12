@@ -1,11 +1,11 @@
 ### ⚔️ `cross contract call`を実装しよう
 
-これまでのレッスンの中で  
-アカウントが他のアカウントに ft を転送するには `ftコントラクト`のメソッドを呼び出せばよいことがわかりました。  
-そして本プロジェクトではいくつか必要な機能がまだ残っています。  
-そのうちの１つが  
-**`bikeコントラクト`からバイクの点検をしてくれたユーザへ報酬として ft を支払う**  
-という機能です。  
+これまでのレッスンの中で
+アカウントが他のアカウントに ft を転送するには `ftコントラクト`のメソッドを呼び出せばよいことがわかりました。
+そして本プロジェクトではいくつか必要な機能がまだ残っています。
+そのうちの１つが
+**`bikeコントラクト`からバイクの点検をしてくれたユーザへ報酬として ft を支払う**
+という機能です。
 この場合の処理の流れを整理します。
 
 1. バイクを点検中のユーザがバイクの返却を`bikeコントラクト`に申請する。
@@ -18,9 +18,9 @@
 2. `bikeコントラクト`が`ftコントラクト`の ft 転送メソッドを呼ぶ。
 3. **ft の転送が成功していれば**`bikeコントラクト`の返却処理を進める。
 
-`cross contract call` と`callback`関数という機能を使用してこの機能を実装します。  
-`cross contract call` はあるコントラクトから別のコントラクトのメソッドを呼び出す仕組みです。  
-`callback`関数は`cross contract call`の結果に対応した処理を際に使用します。  
+`cross contract call` と`callback`関数という機能を使用してこの機能を実装します。
+`cross contract call` はあるコントラクトから別のコントラクトのメソッドを呼び出す仕組みです。
+`callback`関数は`cross contract call`の結果に対応した処理を際に使用します。
 まずはコントラクト内に下記のコードを追加してください！
 
 ```rs
@@ -125,12 +125,12 @@ impl Contract {
 // ...
 ```
 
-変更点を見ていきましょう。  
-`cross contract call`を使用するには, 呼び出す外部コントラクトのメソッドをトレイトで定義しておきます。  
-今回は ft コントラクトの`ft_transfer`メソッドを呼び出すので[ドキュメント](https://nomicon.io/Standards/Tokens/FungibleToken/Core#reference-level-explanation)や[ソースコード](https://github.com/near-examples/FT)を参考に`ft_transfer`のプロトタイプ宣言をここで記述します。  
-トレイトの注釈には`#[ext_contract(ext_ft)]`をつけます。  
-`ext_ft`は後でメソッド呼び出しに使用する略称で任意の名前です。  
-また`FungibleToken`も任意の名前です。  
+変更点を見ていきましょう。
+`cross contract call`を使用するには, 呼び出す外部コントラクトのメソッドをトレイトで定義しておきます。
+今回は ft コントラクトの`ft_transfer`メソッドを呼び出すので[ドキュメント](https://nomicon.io/Standards/Tokens/FungibleToken/Core#reference-level-explanation)や[ソースコード](https://github.com/near-examples/FT)を参考に`ft_transfer`のプロトタイプ宣言をここで記述します。
+トレイトの注釈には`#[ext_contract(ext_ft)]`をつけます。
+`ext_ft`は後でメソッド呼び出しに使用する略称で任意の名前です。
+また`FungibleToken`も任意の名前です。
 文法に関して詳しくは[こちら](https://www.near-sdk.io/cross-contract/callbacks)を参照してください。
 
 ```rs
@@ -193,15 +193,15 @@ impl Contract {
 ```
 
 `return_inspected_bike`関数は`cross contract call`によって ft を receiver_id へ送信,
-その後の処理を`callback`関数で行っています。  
-`cross contract call`を実行するためには先ほど定義した`ext_ft`を使用して外部メソッドの呼び出しを行います。  
+その後の処理を`callback`関数で行っています。
+`cross contract call`を実行するためには先ほど定義した`ext_ft`を使用して外部メソッドの呼び出しを行います。
 そして`then`で, 外部コントラクトのメソッド呼び出し後に実行するアクションとして`callback`関数を待機させます。
 
-> `cross contract call`の裏で起きていることについて  
-> コントラクト A での`cross contract call`の呼び出しを受け付けたランタイム(コントラクトを実行するレイヤ)は,  
-> `callback`関数のアクションを待機させつつ, 外部コントラクト B のメソッドを呼び出すことを[receipt](https://nomicon.io/RuntimeSpec/Receipts)を通して次のブロックに知らせます。  
-> 次のブロックでは`receipt`により(コントラクト B を含んだシャードにて)メソッドが実行されます。  
-> そしてその実行結果はまた`receipt`を通して次のブロックへ伝えられます。  
+> `cross contract call`の裏で起きていることについて
+> コントラクト A での`cross contract call`の呼び出しを受け付けたランタイム(コントラクトを実行するレイヤ)は,
+> `callback`関数のアクションを待機させつつ, 外部コントラクト B のメソッドを呼び出すことを[receipt](https://nomicon.io/RuntimeSpec/Receipts)を通して次のブロックに知らせます。
+> 次のブロックでは`receipt`により(コントラクト B を含んだシャードにて)メソッドが実行されます。
+> そしてその実行結果はまた`receipt`を通して次のブロックへ伝えられます。
 > 次のブロックでは(コントラクト A を含んだシャードにて)待機されていた`callback`関数の実行が行われます。
 
 文法に関して詳しくは[こちら](https://www.near-sdk.io/cross-contract/callbacks)を参照してください。
@@ -210,8 +210,8 @@ impl Contract {
 
 ### 💁 コントラクトをアップデートしよう
 
-ここで, コントラクトを少しアップデートします。  
-今までコントラクトの初期化には`default`関数を使用していました。  
+ここで, コントラクトを少しアップデートします。
+今までコントラクトの初期化には`default`関数を使用していました。
 コード内該当箇所。
 
 ```rs
@@ -234,9 +234,9 @@ impl Default for Contract {
 }
 ```
 
-ですが, 初期値を引数で渡したい時もあります。  
-その時は`#[init]`の注釈をつけたメソッドをストラクトに定義することで可能です。  
-用意していた`Default`の実装を削除し, 以下のようなメソッドを追加します。  
+ですが, 初期値を引数で渡したい時もあります。
+その時は`#[init]`の注釈をつけたメソッドをストラクトに定義することで可能です。
+用意していた`Default`の実装を削除し, 以下のようなメソッドを追加します。
 (`PanicOnDefault`は`Default`の実装をしないことを明記するものです)
 
 ```rs
@@ -565,14 +565,14 @@ mod tests {
 }
 ```
 
-init 関数と共にコントラクトをデプロイする際はオプションをつけて指定することができます。  
+init 関数と共にコントラクトをデプロイする際はオプションをつけて指定することができます。
 その時の構文は以下のようになります。
 
 ```
 $ near deploy [contractID] --wasmFile [wasm file path] --initFunction '[func name]'  --initArgs '{"arg_name": "arg_value"}'
 ```
 
-また, ft をやり取りする機能を`bikeコントラクト`に搭載したので, `bikeコントラクト`はアプリ起動前に ft をある程度持っている必要があります。  
+また, ft をやり取りする機能を`bikeコントラクト`に搭載したので, `bikeコントラクト`はアプリ起動前に ft をある程度持っている必要があります。
 以上を踏まえて`near_bike_share_dapp`内の`package.json`を編集します。
 `package.json`の以下
 
@@ -594,21 +594,21 @@ $ near deploy [contractID] --wasmFile [wasm file path] --initFunction '[func nam
   "start": "npm run reset && npm run deploy && npm run init && env-cmd -f ./neardev/dev-account.env parcel frontend/index.html --open",
 ```
 
-> `near dev-deploy`コマンドは開発用に任意のアカウントを作成しそこにデプロイします。  
-> そのためデプロイ用のアカウントを作る手間が省けます。  
+> `near dev-deploy`コマンドは開発用に任意のアカウントを作成しそこにデプロイします。
+> そのためデプロイ用のアカウントを作る手間が省けます。
 > そして作成されたアカウントの名前は`./neardev/dev-account.env`ファイル内に記載されます。
 
 変更点について
 
 - `deploy`: init 関数の実行を追加
-- `reset` : 既存の開発アカウントを削除  
+- `reset` : 既存の開発アカウントを削除
   init 関数を 2 度実行しようとするとパニックを起こすので, 毎度新しいアカウントを作るようにするために使用します。
-- `init` : `bikeコントラクト`に 100ft を用意(`FT_OWNER`から`CONTRACT_NAME`に ft を転送)  
-  `FT_CONTRACT`を`ftコントラクト`のデプロイされているアカウント名に変更してください。  
+- `init` : `bikeコントラクト`に 100ft を用意(`FT_OWNER`から`CONTRACT_NAME`に ft を転送)
+  `FT_CONTRACT`を`ftコントラクト`のデプロイされているアカウント名に変更してください。
   `FT_OWNER`を ft の owner_id に指定したアカウントに変更してください。
 - `start` : reset -> deploy -> init -> parcel の順番に実行
 
-それでは最後に動作確認を行います。  
+それでは最後に動作確認を行います。
 `near_bike_share_dapp`内で下記を実行しましょう。
 
 ユニットテスト(`lib.rs`内に書いたファイル)を実行し確認しましょう。
@@ -626,10 +626,10 @@ $ yarn dev
 適当なユーザでサインインしてから, バイクの点検によって ft が支払われているかを確かめましょう。
 
 点検前
-![](/public/images/403-NEAR-Sharing-Economy/section-3/3_2_1.png)
+![](/public/images/NEAR-Sharing-Economy/section-3/3_2_1.png)
 
 点検後
-![](/public/images/403-NEAR-Sharing-Economy/section-3/3_2_2.png)
+![](/public/images/NEAR-Sharing-Economy/section-3/3_2_2.png)
 
 ### 🙋‍♂️ 質問する
 
@@ -648,6 +648,6 @@ $ yarn dev
 
 ---
 
-おめでとうございます！  
-`cross contract call`を実装してその挙動を確認できました 🎉  
+おめでとうございます！
+`cross contract call`を実装してその挙動を確認できました 🎉
 次のレッスンではテストを実装します！

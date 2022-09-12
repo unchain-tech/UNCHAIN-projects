@@ -12,7 +12,7 @@ GitHub のアカウントをお持ちの方は、[こちら](https://github.com/
 
 下図のように、`Code` ボタンをクリックした後、`SSH` を選択し、Git リンクをコピーしましょう。
 
-![](/public/images/101-ETH-dApp/section-2/2_1_1.png)
+![](/public/images/ETH-dApp/section-2/2_1_1.png)
 
 > ✍️: SSH の設定を行う
 >
@@ -59,7 +59,7 @@ npm run start
 
 例）ローカル環境で表示されている Web サイト
 
-![](/public/images/101-ETH-dApp/section-2/2_1_2.png)
+![](/public/images/ETH-dApp/section-2/2_1_2.png)
 
 上記のような形でフロントエンドが確認できれば成功です。
 

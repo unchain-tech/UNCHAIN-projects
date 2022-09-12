@@ -175,18 +175,18 @@ npm run start
 ローカルサーバで Web サイトを立ち上げたら、ブラウザの MetaMask のプラグインをクリックし、あなたのウォレットアドレスの接続状況を確認しましょう。
 
 もし、下図のように `Connected` と表示されている場合は、`Connected` の文字をクリックします。
-![](/public/images/104-ETH-NFT-Game3/section-3/3_3_1.png)
+![](/public/images/ETH-NFT-Game3/section-3/3_3_1.png)
 
 そこで、Web サイトとあなたのウォレットアドレスの接続を一度解除します。
 
 - `Disconnect this account` を選択してください。
 
-![](/public/images/104-ETH-NFT-Game3/section-3/3_3_2.png)
+![](/public/images/ETH-NFT-Game3/section-3/3_3_2.png)
 
 ページをリフレッシュして、Web アプリケーションがどのように表示されるか見てみましょう。
 
 下記のように、`Connect Wallet to Get Started` ボタンが画面の中央に表示されていれば、シナリオ 1 のテストは成功です。
-![](/public/images/104-ETH-NFT-Game3/section-3/3_3_3.png)
+![](/public/images/ETH-NFT-Game3/section-3/3_3_3.png)
 
 次に、シナリオ 2 をテストしていきます。
 
@@ -196,16 +196,16 @@ npm run start
 
 Web アプリケーション上で、`Connect Wallet to Get Started` ボタンを押すと、下記のように、MetaMask のポップアップが表示されます。
 
-![](/public/images/104-ETH-NFT-Game3/section-3/3_3_4.png)
+![](/public/images/ETH-NFT-Game3/section-3/3_3_4.png)
 
 `Next` ボタン、`Confirm` ボタンを押して、ログイン作業を行いましょう。
 
 下記のような画面が Web アプリケーションに表示されていることを確認してください。
-![](/public/images/104-ETH-NFT-Game3/section-3/3_3_5.png)
+![](/public/images/ETH-NFT-Game3/section-3/3_3_5.png)
 
 さらに、Web アプリケーション上で右クリックを行い、`Inspect` をクリックしたら、Console に向かいましょう。
 
-![](/public/images/104-ETH-NFT-Game/section-3/3_3_6.png)
+![](/public/images/ETH-NFT-Game/section-3/3_3_6.png)
 
 Console に下記のような結果が表示されていたら、シナリオ 2 のテストは成功です。
 

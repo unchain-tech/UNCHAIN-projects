@@ -40,7 +40,7 @@ import { IpfsImage } from 'react-ipfs-image';
 
 `return`以下で下のようなそれぞれの候補者のカードの UI を示しています。
 
-![](/public/images/401-NEAR-Election-dApp/section-3/3_2_1.png)
+![](/public/images/NEAR-Election-dApp/section-3/3_2_1.png)
 
 次に`components/input_form.js`に移動して下のコードを追加しましょう。
 
@@ -77,7 +77,7 @@ export default Input;
 
 以上のように編集することで下のような入力フォームができます。
 
-![](/public/images/401-NEAR-Election-dApp/section-3/3_2_2.png)
+![](/public/images/NEAR-Election-dApp/section-3/3_2_2.png)
 
 最後に`components/title.js`で title コンポーネントを作成しましょう！
 
@@ -101,7 +101,7 @@ export default Title;
 ```
 
 これによって`Add Candidate画面, Add Voter画面`のタイトルが下のようになります。
-![](/public/images/401-NEAR-Election-dApp/section-3/3_2_3.png)
+![](/public/images/NEAR-Election-dApp/section-3/3_2_3.png)
 
 ### 🙋‍♂️ 質問する
 

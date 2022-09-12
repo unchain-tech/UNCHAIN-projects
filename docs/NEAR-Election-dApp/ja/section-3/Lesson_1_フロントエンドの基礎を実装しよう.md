@@ -13,19 +13,19 @@
 
 `cross.png`
 
-![](/public/images/401-NEAR-Election-dApp/section-3/3_1_1.png)
+![](/public/images/NEAR-Election-dApp/section-3/3_1_1.png)
 
 `like_icon.png`
 
-![](/public/images/401-NEAR-Election-dApp/section-3/3_1_2.png)
+![](/public/images/NEAR-Election-dApp/section-3/3_1_2.png)
 
 `top_img.avif`
 
-![](/public/images/401-NEAR-Election-dApp/section-3/3_1_3.avif)
+![](/public/images/NEAR-Election-dApp/section-3/3_1_3.avif)
 
 `unchain_logo.png`
 
-![](/public/images/401-NEAR-Election-dApp/section-3/3_1_4.png)
+![](/public/images/NEAR-Election-dApp/section-3/3_1_4.png)
 
 最終的に以下のようなファイル構造になっていれば OK です！
 
@@ -702,9 +702,9 @@ html {
 yarn dev
 ```
 
-![](/public/images/401-NEAR-Election-dApp/section-3/3_1_5.png)
-![](/public/images/401-NEAR-Election-dApp/section-3/3_1_6.png)
-![](/public/images/401-NEAR-Election-dApp/section-3/3_1_7.png)
+![](/public/images/NEAR-Election-dApp/section-3/3_1_5.png)
+![](/public/images/NEAR-Election-dApp/section-3/3_1_6.png)
+![](/public/images/NEAR-Election-dApp/section-3/3_1_7.png)
 
 このように画面がきちんと遷移していれば成功です！
 

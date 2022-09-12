@@ -251,7 +251,7 @@ NFT が発行された後、`_tokenIds.increment()`（＝ OpenZeppelin が提供
 
 下図のように、Web サイトにメタデータを貼り付けて、`Save` ボタンをクリックすると、JSON ファイルへのリンクが表示されます。
 
-![](/public/images/102-ETH-NFT-Collection/section-1/1_4_1.png)
+![](/public/images/ETH-NFT-Collection/section-1/1_4_1.png)
 
 枠で囲んだ部分をコピーして、ブラウザに貼り付け、メタデータがリンクとして保存されていることを確認しましょう。
 
@@ -266,7 +266,7 @@ NFT が発行された後、`_tokenIds.increment()`（＝ OpenZeppelin が提供
 
 下記に Imgur で画像をアップロードした際に選択する `Direct Link` の取得方法を示します。
 
-![](/public/images/102-ETH-NFT-Collection/section-1/1_4_2.png)
+![](/public/images/ETH-NFT-Collection/section-1/1_4_2.png)
 
 ぜひ自分のお気に入りの画像を使って、自分だけのメタデータを作成してみましょう。
 
@@ -372,11 +372,11 @@ Alchemy は、世界中のトランザクションを一元化し、マイナー
 
 Alchemy のアカウントを作成したら、`CREATE APP` ボタンを押してください。
 
-![](/public/images/102-ETH-NFT-Collection/section-1/1_4_3.png)
+![](/public/images/ETH-NFT-Collection/section-1/1_4_3.png)
 
 次に、下記の項目を埋めていきます。下図を参考にしてください。
 
-![](/public/images/102-ETH-NFT-Collection/section-1/1_4_4.png)
+![](/public/images/ETH-NFT-Collection/section-1/1_4_4.png)
 
 - `NAME` : プロジェクトの名前（例: `MyEpicNFT`）
 - `DESCRIPTION` : プロジェクトの概要（任意）
@@ -386,11 +386,11 @@ Alchemy のアカウントを作成したら、`CREATE APP` ボタンを押し�
 
 それから、作成した App の `VIEW DETAILS` をクリックします。
 
-![](/public/images/102-ETH-NFT-Collection/section-1/1_4_5.png)
+![](/public/images/ETH-NFT-Collection/section-1/1_4_5.png)
 
 プロジェクトを開いたら、`VIEW KEY` ボタンをクリックします。
 
-![](/public/images/102-ETH-NFT-Collection/section-1/1_4_6.png)
+![](/public/images/ETH-NFT-Collection/section-1/1_4_6.png)
 
 ポップアップが開くので、`HTTP` のリンクをコピーしてください。
 
@@ -428,19 +428,19 @@ Alchemy のアカウントを作成したら、`CREATE APP` ボタンを押し�
 >
 > 1 \. MetaMask ウォレットのネットワークトグルを開く。
 >
-> ![](/public/images/102-ETH-NFT-Collection/section-1/1_4_7.png)
+> ![](/public/images/ETH-NFT-Collection/section-1/1_4_7.png)
 >
 > 2 \. `Show/hide test networks` をクリック。
 >
-> ![](/public/images/102-ETH-NFT-Collection/section-1/1_4_8.png)
+> ![](/public/images/ETH-NFT-Collection/section-1/1_4_8.png)
 >
 > 3 \. `Show test networks` を `ON` にする。
 >
-> ![](/public/images/102-ETH-NFT-Collection/section-1/1_4_9.png)
+> ![](/public/images/ETH-NFT-Collection/section-1/1_4_9.png)
 >
 > 4 \. `Rinkeby Test Network` を選択する。
 >
-> ![](/public/images/102-ETH-NFT-Collection/section-1/1_4_10.png)
+> ![](/public/images/ETH-NFT-Collection/section-1/1_4_10.png)
 
 MetaMask ウォレットに `Rinkeby Test Network` が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽 ETH を取得しましょう。
 
@@ -535,23 +535,23 @@ module.exports = {
 
 > 1\. お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを `Rinkeby Test Network` に変更します。
 >
-> ![](/public/images/102-ETH-NFT-Collection/section-1/1_4_11.png)
+> ![](/public/images/ETH-NFT-Collection/section-1/1_4_11.png)
 >
 > 2\. それから、`Account details` を選択してください。
 >
-> ![](/public/images/102-ETH-NFT-Collection/section-1/1_4_12.png)
+> ![](/public/images/ETH-NFT-Collection/section-1/1_4_12.png)
 >
 > 3\. `Account details` から `Export Private Key` をクリックしてください。
 >
-> ![](/public/images/102-ETH-NFT-Collection/section-1/1_4_13.png)
+> ![](/public/images/ETH-NFT-Collection/section-1/1_4_13.png)
 >
 > 4\. MetaMask のパスワードを求められるので、入力したら `Confirm` を推します。
 >
-> ![](/public/images/102-ETH-NFT-Collection/section-1/1_4_14.png)
+> ![](/public/images/ETH-NFT-Collection/section-1/1_4_14.png)
 >
 > 5\. あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
 >
-> ![](/public/images/102-ETH-NFT-Collection/section-1/1_4_15.png)
+> ![](/public/images/ETH-NFT-Collection/section-1/1_4_15.png)
 >
 > `hardhat.config.js` の `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の部分をここで取得した秘密鍵とを入れ替えます。
 
@@ -594,10 +594,10 @@ hardhat.config.js
 > 「ログイン」には下記の情報が必要となります。
 >
 > - ユーザー名: 公開アドレス
->   ![](/public/images/102-ETH-NFT-Collection/section-1/1_4_16.png)
+>   ![](/public/images/ETH-NFT-Collection/section-1/1_4_16.png)
 >
 > - パスワード: 秘密鍵
->   ![](/public/images/102-ETH-NFT-Collection/section-1/1_4_17.png)
+>   ![](/public/images/ETH-NFT-Collection/section-1/1_4_17.png)
 >
 > ユーザー名とパスワードを使用して、AWS にログインしてプロジェクトをデプロイするのと同じです。
 
@@ -650,15 +650,15 @@ _表示されるまでに約 1 分かかり場合があります。_
 
 ターミナルに出力された `Contract deployed to` に続くアドレスを検索してみましょう。
 
-![](/public/images/102-ETH-NFT-Collection/section-1/1_4_18.png)
+![](/public/images/ETH-NFT-Collection/section-1/1_4_18.png)
 
 `TanyaNFT` をクリックしてみましょう。
 
-![](/public/images/102-ETH-NFT-Collection/section-1/1_4_19.png)
+![](/public/images/ETH-NFT-Collection/section-1/1_4_19.png)
 
 コレクションが Rarible に表示されているのを確認してください。
 
-![](/public/images/102-ETH-NFT-Collection/section-1/1_4_20.png)
+![](/public/images/ETH-NFT-Collection/section-1/1_4_20.png)
 
 私が作成した Tanya コレクションの `tokenID` 0 番のリンクは[こちら](https://rinkeby.rarible.com/token/0x67cd3f53c20e3a6211458dd5b7465e1f9464531c:0)になります。
 

@@ -81,7 +81,7 @@ export async function ft_transfer_call(index, amount) {
 変更点は以下の 2 点です。
 
 - コントラクト側で用意した`amount_to_use_bike`を使用できるように関数用意。
-- バイクの使用のインタフェースを`bikeコントラクト`の`use_bike`メソッドから,  
+- バイクの使用のインタフェースを`bikeコントラクト`の`use_bike`メソッドから,
   `ftコントラクト`の`ft_transfer_call`に変更しました。
 
 続いて`frontend/App.js`で追加した関数を利用するよう変更します。
@@ -128,14 +128,14 @@ export default function App() {
   const useBikeThenUpdateInfo = async (index) => {
     console.log("Use bike");
     setRenderingState(RenderingStates.TRANSACTION);
-  
+
     try {
       await use_bike(index);
     } catch (e) {
       alert(e);
     }
     await updateBikeInfo(index);
-  
+
     setRenderingState(RenderingStates.HOME);
   };
   */
@@ -217,13 +217,13 @@ $ yarn dev
 ブラウザでアプリが立ち上がれば挙動を確認しましょう！
 
 バイクを使用する前のユーザ(自分)の残高を確認します。
-![](/public/images/403-NEAR-Sharing-Economy/section-4/4_1_1.png)
+![](/public/images/NEAR-Sharing-Economy/section-4/4_1_1.png)
 
 バイク使用後のユーザ(自分)の残高を確認します。(30ft 引かれています！　)
-![](/public/images/403-NEAR-Sharing-Economy/section-4/4_1_2.png)
+![](/public/images/NEAR-Sharing-Economy/section-4/4_1_2.png)
 
 残高が足りない状態でバイクの使用を試みます。(アラートが出ます！　)
-![](/public/images/403-NEAR-Sharing-Economy/section-4/4_1_3.png)
+![](/public/images/NEAR-Sharing-Economy/section-4/4_1_3.png)
 
 ブラウザ上で`Console`を開き, ログの最後に表示された URL(コントラクトアカウント ID に関する URL)をブラウザに貼り付けてトランザクション履歴などを確認しましょう！
 
@@ -244,5 +244,5 @@ $ yarn dev
 
 ---
 
-おめでとうございます！  
+おめでとうございます！
 先ほどブラウザに貼り付けた URL(コントラクトアカウント ID に関する URL) を `#near-sharing-dapp` に投稿して、あなたの成功をコミュニティで祝いましょう 🎉

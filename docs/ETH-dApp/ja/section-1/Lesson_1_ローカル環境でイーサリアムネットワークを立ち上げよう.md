@@ -92,7 +92,7 @@ npm install --save-dev @nomicfoundation/hardhat-toolbox
 
 次のように表示されます。
 
-![](/public/images/101-ETH-dApp/section-1/1_1_2.png)
+![](/public/images/ETH-dApp/section-1/1_1_2.png)
 
 ターミナル上で `my-wave-portal` に移動し、`ls` と入力してみて、下記のフォルダーとファイルが表示されていたら成功です。
 

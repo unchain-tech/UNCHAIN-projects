@@ -19,7 +19,7 @@ $ near call sub.$ID new '{"owner_id": "'$ID'", "total_supply": "1000000000000000
 ```
 
 実行結果
-![](/public/images/403-NEAR-Sharing-Economy/section-1/1_3_1.png)
+![](/public/images/NEAR-Sharing-Economy/section-1/1_3_1.png)
 
 `near cli`でコントラクトのメソッドを呼ぶ場合はこのような構文になっています。
 
@@ -27,8 +27,8 @@ $ near call sub.$ID new '{"owner_id": "'$ID'", "total_supply": "1000000000000000
 near call (or view) [コントラクトのデプロイされたアカウント名] [メソッド名] [メソッドの引数(json形式)]
 ```
 
-つまり, 先ほどのコマンドでは, `sub.ft_account.testnet` のコントラクト(`ftコントラクト`)の  
-`new` メソッドを引数とともに呼び出していました。  
+つまり, 先ほどのコマンドでは, `sub.ft_account.testnet` のコントラクト(`ftコントラクト`)の
+`new` メソッドを引数とともに呼び出していました。
 引数では
 
 ```
@@ -37,23 +37,23 @@ total_supply: 発行する総量
 metadata: ftに関するメタデータ
 ```
 
-を指定していました。  
+を指定していました。
 メタデータの中身は発行する ft のシンボルなどを指定していました。(詳しくは[こちら](https://nomicon.io/Standards/Tokens/FungibleToken/Metadata#reference-level-explanation)を参照してください)
 
 また, `--accountId`によってどのアカウントから `new`メソッドを呼び出すかを指定していました。
 
-`new`メソッドの呼び出しを終えたら, [testnet wallet](https://wallet.testnet.near.org/)から  
+`new`メソッドの呼び出しを終えたら, [testnet wallet](https://wallet.testnet.near.org/)から
 owner_id で指定したアカウントに ft が発行されていることを確認しましょう！
-![](/public/images/403-NEAR-Sharing-Economy/section-1/1_3_2.png)
+![](/public/images/NEAR-Sharing-Economy/section-1/1_3_2.png)
 
 ### 🎈 コントラクトのメソッドについて
 
-ブロックチェーン上にデプロイされたスマートコントラクトにはメソッド(関数)が用意されています。  
-コントラクトのメソッドを呼び出すことでそのコントラクトの機能を使えるということです。  
-メソッドには大きく分けて 2 種類あります。  
-コントラクトの情報を読み取るのみのメソッドと情報を書き換えるメソッドです。  
-読み取るのみのメソッドを `viewメソッド`, 書き換えるメソッドを `changeメソッド`と呼ぶことにしましょう。  
-以下に各メソッドの特徴を整理します。  
+ブロックチェーン上にデプロイされたスマートコントラクトにはメソッド(関数)が用意されています。
+コントラクトのメソッドを呼び出すことでそのコントラクトの機能を使えるということです。
+メソッドには大きく分けて 2 種類あります。
+コントラクトの情報を読み取るのみのメソッドと情報を書き換えるメソッドです。
+読み取るのみのメソッドを `viewメソッド`, 書き換えるメソッドを `changeメソッド`と呼ぶことにしましょう。
+以下に各メソッドの特徴を整理します。
 **`viewメソッド`**
 
 - 呼び出しに手数料(ガス代)がかからない
@@ -69,8 +69,8 @@ owner_id で指定したアカウントに ft が発行されていることを�
 ### 🚢 トークンを転送しよう
 
 トークンを転送するために [testnet wallet](https://wallet.testnet.near.org/) から(好きな名前で)他のアカウントを作成しましょう。
-![](/public/images/403-NEAR-Sharing-Economy/section-1/1_3_3.png)
-ここでは`ft_receiver.testnet`というアカウントを作成しました。  
+![](/public/images/NEAR-Sharing-Economy/section-1/1_3_3.png)
+ここでは`ft_receiver.testnet`というアカウントを作成しました。
 コマンドラインから操作できるように`near-cli`で作成したアカウントにログインしましょう。
 
 ```
@@ -85,21 +85,21 @@ $ near call sub.$ID storage_deposit '' --accountId ft_receiver.testnet --amount 
 ```
 
 実行結果
-![](/public/images/403-NEAR-Sharing-Economy/section-1/1_3_4.png)
+![](/public/images/NEAR-Sharing-Economy/section-1/1_3_4.png)
 
 このアカウントの登録作業は`ftコントラクト`が[NEP-145](https://nomicon.io/Standards/StorageManagement)という規約(ルール)に則ったストレージマネジメントを採用していることが所以です。
 
-> ストレージマネージメント  
-> NEAR は[ストレージステーキング](https://docs.near.org/concepts/storage/storage-staking)という仕組みを採用しており、  
-> コントラクトのアカウントはブロックチェーン上で使用するすべてのストレージをカバーするのに十分な残高(NEAR)を持っていなければなりません。  
-> `ftコントラクト`では ft のやり取りをするアカウントが増えるほど, アカウント情報を保存するために使用するストレージが増えてゆきます。  
-> そのため長期的に増えてゆくストレージコストをユーザアカウントに払ってもらおうというのがここでいうストレージマネージメントで,  
+> ストレージマネージメント
+> NEAR は[ストレージステーキング](https://docs.near.org/concepts/storage/storage-staking)という仕組みを採用しており、
+> コントラクトのアカウントはブロックチェーン上で使用するすべてのストレージをカバーするのに十分な残高(NEAR)を持っていなければなりません。
+> `ftコントラクト`では ft のやり取りをするアカウントが増えるほど, アカウント情報を保存するために使用するストレージが増えてゆきます。
+> そのため長期的に増えてゆくストレージコストをユーザアカウントに払ってもらおうというのがここでいうストレージマネージメントで,
 > そのルールをまとめたのが`NEP-145`です。
 
-先ほど実行した`storage_deposit`というメソッドは`ftコントラクト`に`NEP-145`に則って実装されているもので,  
+先ほど実行した`storage_deposit`というメソッドは`ftコントラクト`に`NEP-145`に則って実装されているもので,
 `ft_receiver.testnet`は`0.00125NEAR`を支払い登録を行いました。
 
-それではトークンの転送を行います！  
+それではトークンの転送を行います！
 コマンドラインで以下を実行します。
 
 ```
@@ -107,7 +107,7 @@ $ near call sub.$ID ft_transfer '{"receiver_id": "ft_receiver.testnet", "amount"
 ```
 
 実行結果(結果に表示される URL をブラウザに貼り付けるとトランザクションの内容が見られます)
-![](/public/images/403-NEAR-Sharing-Economy/section-1/1_3_5.png)
+![](/public/images/NEAR-Sharing-Economy/section-1/1_3_5.png)
 
 結果を[testnet wallet](https://wallet.testnet.near.org/)で確認することもできますが, `viewメソッド`の`ft_balance_of`を使用して`ft_receiver.testnet`の残高を確認してみましょう。
 
@@ -116,7 +116,7 @@ $ near view sub.$ID ft_balance_of '{"account_id": "ft_receiver.testnet"}'
 ```
 
 実行結果
-![](/public/images/403-NEAR-Sharing-Economy/section-1/1_3_6.png)
+![](/public/images/NEAR-Sharing-Economy/section-1/1_3_6.png)
 
 トークンの転送が完了しました 🎉
 
@@ -135,8 +135,8 @@ $ near view sub.$ID ft_balance_of '{"account_id": "ft_receiver.testnet"}'
 
 ---
 
-おめでとうございます！  
-このセクションでの作業はここで終了です。  
-トークンの転送結果を `#near-sharing-dapp` に投稿して、あなたの成功をコミュニティで祝いましょう 🎉  
-最後にコントラクトのコードを少しだけ覗きに行きます！  
+おめでとうございます！
+このセクションでの作業はここで終了です。
+トークンの転送結果を `#near-sharing-dapp` に投稿して、あなたの成功をコミュニティで祝いましょう 🎉
+最後にコントラクトのコードを少しだけ覗きに行きます！
 次のレッスンに進みましょう！

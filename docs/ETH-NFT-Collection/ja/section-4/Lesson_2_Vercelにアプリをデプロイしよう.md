@@ -110,15 +110,15 @@ Etherscan の **コントラクトの Verification（検証）** を行いまし
 
 アカウントが作成できたら、`My Profile` 画面に移動してください。
 
-![](/public/images/102-ETH-NFT-Collection/section-4/4_2_1.png)
+![](/public/images/ETH-NFT-Collection/section-4/4_2_1.png)
 
 `API Keys` タブを選択し、`+ Add` ボタンを押したら、`Create API Key` のポップアップが表示されるので、あなたの API に任意の名前をつけましょう。
 
-![](/public/images/102-ETH-NFT-Collection/section-4/4_2_2.png)
+![](/public/images/ETH-NFT-Collection/section-4/4_2_2.png)
 
 次に、あなたが作成した API の横の `Edit` ボタンを選択してください。ポップアップが表示されるので、`apiKey` を取得しましょう。
 
-![](/public/images/102-ETH-NFT-Collection/section-4/4_2_3.png)
+![](/public/images/ETH-NFT-Collection/section-4/4_2_3.png)
 
 次に、ターミナルで `epic-nfts` ディレクトリに移動して、次のコマンドを実行してください。 Etherscan で verification を行うために必要なツールをインストールします。
 
@@ -183,11 +183,11 @@ https://rinkeby.etherscan.io/address/0xB3340071dc206d09170a7269331155ff1BeE64de#
 
 私の [URL リンク](https://rinkeby.etherscan.io/address/0xB3340071dc206d09170a7269331155ff1BeE64de#code) の中身は下記のように表示されます。
 
-![](/public/images/102-ETH-NFT-Collection/section-4/4_2_6.png)
+![](/public/images/ETH-NFT-Collection/section-4/4_2_6.png)
 
 Etherscan で **Contract** タブを選択すると、下図のような `0x608060405234801 ...` で始まる長いテキストのリストが表示されます。
 
-![](/public/images/102-ETH-NFT-Collection/section-4/4_2_12.png)
+![](/public/images/ETH-NFT-Collection/section-4/4_2_12.png)
 
 実は、このテキストのリストは、デプロイされたコントラクトのバイトコードです。
 
@@ -195,7 +195,7 @@ Etherscan で **Contract** タブを選択すると、下図のような `0x6080
 
 `Read Contract` と `Write Contract` の 2 つのサブタブが追加されたことを確認してださい。これらの機能を使えば、コントラクトをオンチェーンで簡単に操作できます。フロントエンドがなくても、コントラクトから直接関数を呼び出せるので、便利ですね 😊
 
-![](/public/images/102-ETH-NFT-Collection/section-4/4_2_11.png)
+![](/public/images/ETH-NFT-Collection/section-4/4_2_11.png)
 
 おめでとうございます!　これで、あなたのスマートコントラクトが世界中の誰でも見られるようになりました 🚀
 
@@ -245,17 +245,17 @@ Vercel のアカウントを取得したら、下記を実行しましょう。
 
 1\. `Dashboard` へ進んで、`New Project` を選択してください。
 
-![](/public/images/102-ETH-NFT-Collection/section-4/4_2_7.png)
+![](/public/images/ETH-NFT-Collection/section-4/4_2_7.png)
 
 2\. `Import Git Repository` で自分の GitHub アカウントを接続したら、`nft-collection-starter-project` を選択し、`Import` してください。
 
-![](/public/images/102-ETH-NFT-Collection/section-4/4_2_8.png)
+![](/public/images/ETH-NFT-Collection/section-4/4_2_8.png)
 
 3\. プロジェクトを作成します。Environment Variable に下記を追加します。
 
 `NAME`＝`CI`、`VALUE`＝`false`（下図参照）
 
-![](/public/images/102-ETH-NFT-Collection/section-4/4_2_9.png)
+![](/public/images/ETH-NFT-Collection/section-4/4_2_9.png)
 
 4\. `Deploy`ボタンを推しましょう。
 
@@ -265,7 +265,7 @@ Vercel は GitHub と連動しているので、GitHub が更新されるたび�
 
 基本的に `warning` は無視して問題ありません。
 
-![](/public/images/102-ETH-NFT-Collection/section-4/4_2_10.png)
+![](/public/images/ETH-NFT-Collection/section-4/4_2_10.png)
 
 こちらが、今回のプロジェクトで作成される Web アプリケーションのデモです。
 

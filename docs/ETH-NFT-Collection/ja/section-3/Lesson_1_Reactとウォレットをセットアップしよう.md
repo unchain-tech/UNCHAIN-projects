@@ -20,7 +20,7 @@ GitHub のアカウントをお持ちの方は、[こちら](https://github.com/
 
 まず、下図のように、`Code` ボタンをクリックして `SSH` を選択し、Git リンクをコピーしましょう。
 
-![](/public/images/102-ETH-NFT-Collection/section-3/3_1_1.png)
+![](/public/images/ETH-NFT-Collection/section-3/3_1_1.png)
 
 ターミナルで先ほど作成した `ETH-NFT-collection` ディレクトリに移動し、先ほどコピーしたリンクを貼り付け、下記を実行してください。
 
@@ -54,7 +54,7 @@ npm run start
 
 例）ローカル環境で表示されている Web サイト
 
-![](/public/images/102-ETH-NFT-Collection/section-3/3_1_2.png)
+![](/public/images/ETH-NFT-Collection/section-3/3_1_2.png)
 
 上記のような形でフロントエンドが確認できれば成功です。
 

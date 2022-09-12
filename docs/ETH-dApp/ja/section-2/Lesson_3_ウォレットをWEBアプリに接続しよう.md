@@ -73,11 +73,11 @@ npm run start
 
 ローカルサーバで Web サイトを立ち上げたら、サイトの上で右クリックを行い、`Inspect` を選択します。
 
-![](/public/images/101-ETH-dApp/section-2/2_3_1.png)
+![](/public/images/ETH-dApp/section-2/2_3_1.png)
 
 次に、Console を選択し、出力結果を確認してみましょう。
 
-![](/public/images/101-ETH-dApp/section-2/2_3_2.png)
+![](/public/images/ETH-dApp/section-2/2_3_2.png)
 
 Console に `We have the ethereum object` と表示されているでしょうか？
 
@@ -182,11 +182,11 @@ npm run start
 
 ローカルサーバで Web サイトを立ち上げたら、サイトの上で右クリックを行い、`Inspect` を選択します。
 
-![](/public/images/101-ETH-dApp/section-2/2_3_3.png)
+![](/public/images/ETH-dApp/section-2/2_3_3.png)
 
 次に、 Console を選択し、出力結果を確認してみましょう。
 
-![](/public/images/101-ETH-dApp/section-2/2_3_4.png)
+![](/public/images/ETH-dApp/section-2/2_3_4.png)
 
 > ✍️:  Console の結果を見てわかること
 > `App.js` に記載されているコードは上から順を追って走っているので、最初に `currentAccount` の状態変数を定義したときには、中身が空であることがわかります。
@@ -383,32 +383,32 @@ npm run start
 
 もし、下図のように `Connected` と表示されている場合は、`Connected` の文字をクリックします。
 
-![](/public/images/101-ETH-dApp/section-2/2_3_5.png)
+![](/public/images/ETH-dApp/section-2/2_3_5.png)
 
 そこで、Web サイトとあなたのウォレットアドレスの接続を一度解除します。
 
 - `Disconnect this account` を選択してください。
 
-![](/public/images/101-ETH-dApp/section-2/2_3_6.png)
+![](/public/images/ETH-dApp/section-2/2_3_6.png)
 
 次にローカルサーバにホストされているあなたの Web サイトをリフレッシュしてボタンの表示を確認してください。
 
 - ウォレット接続用のボタンが、`Connect Wallet` と表示されていれば成功です。
 
-![](/public/images/101-ETH-dApp/section-2/2_3_7.png)
+![](/public/images/ETH-dApp/section-2/2_3_7.png)
 
 次に、右クリック → `Inspect` を選択し、Console を立ち上げましょう。下図のように、`No authorized account found` と出力されていれば成功です。
 
-![](/public/images/101-ETH-dApp/section-2/2_3_8.png)
+![](/public/images/ETH-dApp/section-2/2_3_8.png)
 
 では、`Connect Wallet` ボタンを押してみましょう。
 下図のように MetaMask からウォレット接続を求められますので、承認してください。
 
-![](/public/images/101-ETH-dApp/section-2/2_3_9.png)
+![](/public/images/ETH-dApp/section-2/2_3_9.png)
 
 MetaMask の承認が終わると、ウォレット接続ボタンの表示が `Wallet Connected` に変更されているはずです。Console にも、接続されたウォレットアドレスが、`currentAccount` として出力されていることを確認してください。
 
-![](/public/images/101-ETH-dApp/section-2/2_3_10.png)
+![](/public/images/ETH-dApp/section-2/2_3_10.png)
 
 ### 🙋‍♂️ 質問する
 
