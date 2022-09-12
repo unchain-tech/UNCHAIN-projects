@@ -85,7 +85,7 @@ import Arena from "./Components/Arena";
 次に、`renderContent` 関数を下記のように更新しましょう。
 
 ```javascript
-// Arena/App.js
+// App.js
 // レンダリングメソッド
 const renderContent = () => {
   // シナリオ1.
@@ -470,7 +470,7 @@ setCharacterNFT((prevState) => {
 
 ここでは、下記が行われています。
 
-上記のように `prevState` を使用すると、変数の以前の状態にアクセス照して、値を変更できます。
+上記のように `prevState` を使用すると、変数の以前の状態にアクセス・参照して、値を変更できます。
 
 ここでは、以下の処理が行われています。
 
