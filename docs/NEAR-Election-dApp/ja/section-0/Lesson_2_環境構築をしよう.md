@@ -148,7 +148,7 @@ https://asapoon.com/error/2795/command-not-found-yarn/
 
 まずは下のコマンドをターミナルで実行することで Tailwind のインストールと config ファイルの生成をします。
 
-注意点として、このコマンドをターミナルで実行するのは先ほど作成したフロントエンドのディレクトリである`near-election-dapp-frontend`です（名前を変えた方はその名前）。
+注意点として、このコマンドをターミナルで実行するのは先ほど作成したフロントエンドのディレクトリである`near-election-dapp-frontend`（名前を変えた方はその名前）にある`frontend`ディレクトリです。
 
 ```bash
 npm install -D tailwindcss postcss &&  npx tailwindcss init
@@ -198,7 +198,13 @@ module.exports = {
 
 まず near-election-dapp-frontend/frontend/App.js の 58 行目を下のようにかえます。
 
-次にターミナル上で`near-election-dapp-frontend`に移動して、`yarn dev`を実行してみましょう！
+次にターミナル上で`near-election-dapp-frontend`に移動して、
+```bash
+yarn build:web
+yarn start
+```
+
+を実行してみましょう！
 
 [App.js]
 
