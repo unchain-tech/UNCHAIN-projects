@@ -83,10 +83,9 @@ cargo new near-election-dapp-contract --lib
 次にフロントエンドのセッティングもしていきます。`near-election-dapp`ディレクトリにいることを確認して以下のコードを実行しましょう。
 
 ```bash
-npx create-near-app --frontend=react --contract=rust near-election-dapp-frontend
+npx create-near-app near-election-dapp-frontend --contract rust --frontend react --t
+ests js
 ```
-
-コードを入力すると、2回ほどYes、Noを問われると思うので、全てYesを選択するで大丈夫です。
 
 これによってコントラクトとフロントの接続をすでにコーディングしてくれている状態のプロジェクトを作成してくれます。
 
@@ -130,7 +129,9 @@ https://dot-blog.jp/news/homebrew-how-to-install/
 ここで`near-election-dapp-frontend`へ移って下のコマンドをターミナルで実行すると、あらかじめ用意されているコントラクトのコンパイルとデプロイがされた後にフロントエンドが起動されます！
 
 ```bash
-yarn dev
+yarn build
+yarn deploy
+yarn start
 ```
 
 その結果下のようになっているはずです。
