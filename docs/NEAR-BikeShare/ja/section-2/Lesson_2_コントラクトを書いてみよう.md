@@ -343,7 +343,7 @@ $ cargo test
 
 テストが成功すれば以下のような表示がされます。
 
-![](/public/images/403-NEAR-Sharing-Economy/section-2/2_2_1.png)
+![](/public/images/NEAR-BikeShare/section-2/2_2_1.png)
 
 ### 🙋‍♂️ 質問する
 
