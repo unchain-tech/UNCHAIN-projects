@@ -289,7 +289,8 @@ $ cd integration-tests/rs && cargo run --example integration-tests
 ```
 
 テストが成功すれば以下のような出力がされます！
-![](/public/images/403-NEAR-Sharing-Economy/section-3/3_4_1.png)
+
+![](/public/images/NEAR-BikeShare/section-3/3_4_1.png)
 
 ### 🙋‍♂️ 質問する
 

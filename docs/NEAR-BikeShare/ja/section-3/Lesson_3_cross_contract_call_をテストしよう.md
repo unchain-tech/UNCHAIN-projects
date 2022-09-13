@@ -332,13 +332,17 @@ tasks:
    > ```
 3. `git pod`でレポジトリを開く  
    [git pod](https://gitpod.io/workspaces)へアクセスし, `git hub`と連携します。  
-   リポジトリを選択します。  
-   ![](/public/images/403-NEAR-Sharing-Economy/section-3/3_3_1.png)  
-   ![](/public/images/403-NEAR-Sharing-Economy/section-3/3_3_2.png)
+   リポジトリを選択します。
+
+   ![](/public/images/NEAR-BikeShare/section-3/3_3_1.png)
+
+   ![](/public/images/NEAR-BikeShare/section-3/3_3_2.png)
+
    レポジトリの連携が完了すると`git pod`上でターミナルが立ち上がり,  
    `.gitpod.yml`内に記載したコマンドが実行されます。  
-   コマンド実行終了後は以下のような画面となります。  
-   ![](/public/images/403-NEAR-Sharing-Economy/section-3/3_3_3.png)
+   コマンド実行終了後は以下のような画面となります。
+
+   ![](/public/images/NEAR-BikeShare/section-3/3_3_3.png)
 
 それではローカルまたは`git pod`上のターミナルで  
 以下のコマンドを実行しましょう( `near_bike_share_dapp`直下で実行してください)。
@@ -348,7 +352,8 @@ $ cd integration-tests/rs && cargo run --example integration-tests
 ```
 
 テストが成功すれば以下のような出力がされます！
-![](/public/images/403-NEAR-Sharing-Economy/section-3/3_3_4.png)
+
+![](/public/images/NEAR-BikeShare/section-3/3_3_4.png)
 
 ### 🙋‍♂️ 質問する
 

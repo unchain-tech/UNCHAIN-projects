@@ -3,8 +3,9 @@
 これまで `bikeコントラクト` は`dev-account`にデプロイしていましたが,  
 自分の作成したアカウントにデプロイしましょう。  
 [testnet wallet](https://wallet.testnet.near.org/)から新しいアカウントを作成します。  
-ここでは`bike_account.testnet`としました。  
-![](/public/images/403-NEAR-Sharing-Economy/section-4/4_2_1.png)
+ここでは`bike_account.testnet`としました。
+
+![](/public/images/NEAR-BikeShare/section-4/4_2_1.png)
 
 新アカウントにログインしましょう。
 
@@ -12,7 +13,7 @@
 $ near login
 ```
 
-![](/public/images/403-NEAR-Sharing-Economy/section-4/4_2_2.png)
+![](/public/images/NEAR-BikeShare/section-4/4_2_2.png)
 
 それではターミナルからデプロイまでの一連の流れを実行しましょう！  
 前回までのレッスンでコンパイル済みの`out/main.wasm`が存在することが前提です。  
@@ -66,7 +67,8 @@ $ npx parcel frontend/index.html
 ```
 
 実行結果
-![](/public/images/403-NEAR-Sharing-Economy/section-4/4_2_3.png)
+
+![](/public/images/NEAR-BikeShare/section-4/4_2_3.png)
 
 上記のような表示がされたら`ctrl + c`で抜けましょう。  
 `./dist`ディレクトリにコンパイルされたソースコードが出力されています。
@@ -143,7 +145,8 @@ Website URL:       https://near-bikeshare-dapp.netlify.app
 ```
 
 `Website URL:`欄にある URL をブラウザに貼り付けてアプリを確認しましょう！
-![](/public/images/403-NEAR-Sharing-Economy/section-4/4_2_4.png)
+
+![](/public/images/NEAR-BikeShare/section-4/4_2_4.png)
 
 ### ⭐ 好きな機能を追加しよう
 

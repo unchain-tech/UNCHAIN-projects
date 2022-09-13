@@ -59,7 +59,8 @@ NEAR の特徴は以下のようなものが挙げられます。
   - バイクを点検すると ft を報酬として受け取ることができます
 
 完成した`バイクシェアdapp`は以下のような見た目になります
-![](/public/images/403-NEAR-Sharing-Economy/section-0/0_1_1.png)
+
+![](/public/images/NEAR-BikeShare/section-0/0_1_1.png)
 
 ### 🌍 プロジェクトをアップグレードする
 

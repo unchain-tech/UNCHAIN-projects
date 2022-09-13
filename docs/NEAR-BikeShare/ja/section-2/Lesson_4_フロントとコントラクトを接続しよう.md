@@ -30,7 +30,7 @@ frontend
 また, `img`ディレクトリには使用する画像を追加します。
 
 初めに以下の画像をダウンロードし,`bike.png`という名前で`frontend/assets/img/`内に保存してください。  
-![](/public/images/403-NEAR-Sharing-Economy/section-2/2_4_4.png)
+![](/public/images/NEAR-BikeShare/section-2/2_4_4.png)
 
 次に`frontend/assets/css/global.css`を以下に示すコードで書き換えてください。  
 今回のプロジェクトに合わせた `css` を記述しています。
@@ -919,19 +919,22 @@ $ yarn dev
 
 ブラウザ以下のような画面が表示されれば成功です！
 
-サインインしていない場合  
-![](/public/images/403-NEAR-Sharing-Economy/section-2/2_4_5.png)
+サインインしていない場合
 
-サインイン後  
-![](/public/images/403-NEAR-Sharing-Economy/section-2/2_4_1.png)  
+![](/public/images/NEAR-BikeShare/section-2/2_4_5.png)
+
+サインイン後
+
+![](/public/images/NEAR-BikeShare/section-2/2_4_1.png)  
 `use`, `inspect`, `return`ボタンを押してみて挙動を確かめましょう。
 
 サイトの上で右クリックを行い、`Inspect` を選択 -> `Console`を選択し出力結果を確認してみましょう。
 
-![](/public/images/403-NEAR-Sharing-Economy/section-2/2_4_2.png)
+![](/public/images/NEAR-BikeShare/section-2/2_4_2.png)
 
-アプリの挙動を確かめた後`Console`の出力に URL が 2 つ表示されています。  
-![](/public/images/403-NEAR-Sharing-Economy/section-2/2_4_3.png)
+アプリの挙動を確かめた後`Console`の出力に URL が 2 つ表示されています。
+
+![](/public/images/NEAR-BikeShare/section-2/2_4_3.png)
 
 それぞれユーザのアカウント情報, コントラクトのアカウント情報を検索することができます。  
 クリックして参照してみましょう, トランザクションの履歴などが確認できます。
