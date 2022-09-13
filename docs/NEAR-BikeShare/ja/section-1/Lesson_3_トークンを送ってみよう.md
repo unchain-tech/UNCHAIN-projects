@@ -44,6 +44,7 @@ metadata: ftに関するメタデータ
 
 `new`メソッドの呼び出しを終えたら, [testnet wallet](https://wallet.testnet.near.org/)から  
 owner_id で指定したアカウントに ft が発行されていることを確認しましょう！
+
 ![](/public/images/403-NEAR-Sharing-Economy/section-1/1_3_2.png)
 
 ### 🎈 コントラクトのメソッドについて
@@ -69,7 +70,9 @@ owner_id で指定したアカウントに ft が発行されていることを�
 ### 🚢 トークンを転送しよう
 
 トークンを転送するために [testnet wallet](https://wallet.testnet.near.org/) から(好きな名前で)他のアカウントを作成しましょう。
+
 ![](/public/images/403-NEAR-Sharing-Economy/section-1/1_3_3.png)
+
 ここでは`ft_receiver.testnet`というアカウントを作成しました。  
 コマンドラインから操作できるように`near-cli`で作成したアカウントにログインしましょう。
 

@@ -50,17 +50,21 @@ $ rustup target add wasm32-unknown-unknown
 [こちら](https://wallet.testnet.near.org/)から NEAR のテストネットアカウントを作成してください。
 
 Create Account を選択します。
+
 ![](/public/images/403-NEAR-Sharing-Economy/section-0/0_2_1.png)
 
 自由なアカウント名をつけてください。  
 ここで作成するアカウントは次項の `ftコントラクト`に利用するので ft にちなんだアカウント名にするのも良いかもしれません。  
-ここでは`ft_account.testnet`として進めます。  
+ここでは`ft_account.testnet`として進めます。
+
 ![](/public/images/403-NEAR-Sharing-Economy/section-0/0_2_2.png)
 
 Secure Passphrase を選択(Ledger Hardware Wallet でも構いません 🙆‍♂️)してパスフレーズをどこかに保存しておきましょう！
+
 ![](/public/images/403-NEAR-Sharing-Economy/section-0/0_2_3.png)
 
 Passphrase の確認が取れたらアカウント作成の完了です! 以下のような画面に移ります。
+
 ![](/public/images/403-NEAR-Sharing-Economy/section-0/0_2_4.png)
 
 **`near-cli`のインストール**

@@ -217,12 +217,15 @@ $ yarn dev
 ブラウザでアプリが立ち上がれば挙動を確認しましょう！
 
 バイクを使用する前のユーザ(自分)の残高を確認します。
+
 ![](/public/images/403-NEAR-Sharing-Economy/section-4/4_1_1.png)
 
 バイク使用後のユーザ(自分)の残高を確認します。(30ft 引かれています！　)
+
 ![](/public/images/403-NEAR-Sharing-Economy/section-4/4_1_2.png)
 
 残高が足りない状態でバイクの使用を試みます。(アラートが出ます！　)
+
 ![](/public/images/403-NEAR-Sharing-Economy/section-4/4_1_3.png)
 
 ブラウザ上で`Console`を開き, ログの最後に表示された URL(コントラクトアカウント ID に関する URL)をブラウザに貼り付けてトランザクション履歴などを確認しましょう！
