@@ -231,7 +231,6 @@ near-election-dapp/
 └── near-election-dapp-frontend/
     ├── README.md
     ├── ava.config.cjs
-    ├── contract/
     ├── dist/
     ├── frontend/
     ├── integration-tests/
