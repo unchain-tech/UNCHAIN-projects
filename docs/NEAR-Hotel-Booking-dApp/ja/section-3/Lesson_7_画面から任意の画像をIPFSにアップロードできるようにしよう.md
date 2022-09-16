@@ -1,17 +1,17 @@
 ### 🦄 画面から任意の画像をIPFSにアップロードできるようにしよう (credit: [mashharuki](https://github.com/mashharuki))
 
-このレッスンでは、任意の画像データをIPFSにアップロードする画面を開発します。  
+このレッスンでは、任意の画像データをIPFSにアップロードする画面を開発します。
 
 🖼 IPFSについては、[ETH-NFT-MakerのSection2-Lesson1](https://unchain-portal.netlify.app/projects/103-ETH-NFT-Maker/section-2-Lesson-1)で解説しているのでそちらをご覧ください！
 
 IPFSへのファイルアップロードについては、デスクトップアプリをダウンロードして、手動でも行うことができるのですが、もし画面からボタンを押すだけでアップロードすることができたら使いやすくて便利ですよね！このレッスンではそのための画面を作成していきます！
 
-今回は、IPFSにアクセスするためのAPIを提供している[Pinata](https://www.pinata.cloud/)を利用します！  
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-4/4_7_1.png)
+今回は、IPFSにアクセスするためのAPIを提供している[Pinata](https://www.pinata.cloud/)を利用します！
+![](/public/images/NEAR-Hotel-Booking-dApp/section-4/4_7_1.png)
 もしアカウントを作成していない場合は、[Pinata](https://www.pinata.cloud/)にアクセスしてアカウントを作成してください！
-  
-アカウントを作成したらいよいよ開発に移ります！  
-まずは、開発に必要なモジュールを追加でインストールしましょう！  
+
+アカウントを作成したらいよいよ開発に移ります！
+まずは、開発に必要なモジュールを追加でインストールしましょう！
 ※コマンドは`frontend`配下で実行してください！
 
 ```bash
@@ -25,7 +25,7 @@ npm i axios form-data
 ### form-dataとは
 API等を利用してデータを送信したい場合に、ファイルデータなどの情報を格納したオブジェクトを用意する必要がありますがその際によく利用されるJavaScriptライブラリとなります。今回は画像データを送信する際に使用します。
 
-では、Uoload画面用のコンポーネントファイルを追加していきましょう！  
+では、Uoload画面用のコンポーネントファイルを追加していきましょう！
 まずは、下記のディレクトリ構造に従ってファイルを追加してください！
 
 ```diff
@@ -39,15 +39,15 @@ frontend/
 + │     │  ├─ UploadButton.js
   │     ├─ near/
   │     └─ pages/
-+ │　　　　　├─ Upload.js 
++ │　　　　　├─ Upload.js
   ├─ App.js
   ├─ index.html
   └─ index.js
-``` 
+```
 
 ### 🔑APIクレデンシャル情報を取得しよう
 
-さて、コンポーネントを作成していきたいのですがもう一点事前に準備が必要なことがあります！  
+さて、コンポーネントを作成していきたいのですがもう一点事前に準備が必要なことがあります！
 
 今回はPinataのAPIを利用するのですが、その際認証情報が必要となります！その情報を取得して`dev-account.env`ファイルに登録する必要があるのでまずはこの認証情報を取得しましょう！
 
@@ -63,35 +63,35 @@ frontend/
 
 事前にアカウントを作成して[https://www.pinata.cloud/](https://www.pinata.cloud/)にアクセスしましょう！
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-4/4_7_1.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-4/4_7_1.png)
 
 #### 2. APIクレデンシャル情報を作成する。
 
-次にAPI用のクレデンシャル情報を作成しましょう！  
+次にAPI用のクレデンシャル情報を作成しましょう！
 ログイン後のページの右上のメニューボタンから「API Keys」を選択してクリックします！
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-4/4_7_2.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-4/4_7_2.png)
 
-次に表示される画面でAPIのクレデンシャル情報を作成できます。  
+次に表示される画面でAPIのクレデンシャル情報を作成できます。
 左上の「+ New Key」ボタンをクリックしましょう！
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-4/4_7_3.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-4/4_7_3.png)
 
-うまくいけば下のような画面が表示されるはずなので必要事項を入力しましょう。  
+うまくいけば下のような画面が表示されるはずなので必要事項を入力しましょう。
 特に制限がなければ全てONにて最後に名前を決めましょう！
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-4/4_7_4.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-4/4_7_4.png)
 
-クレデンシャル情報の作成に成功したら下記の様な画面が出てくるはずです！  
+クレデンシャル情報の作成に成功したら下記の様な画面が出てくるはずです！
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-4/4_7_5.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-4/4_7_5.png)
 
-おめでとうございます！ これでPinataのAPIを利用するためのクレデンシャル情報を作成することができました！  
+おめでとうございます！ これでPinataのAPIを利用するためのクレデンシャル情報を作成することができました！
 
 #### 3. クレデンシャル情報をコピー＆ペーストする
 
-次に利用するのはここで表示されているAPI KeyとAPI Secretなのでこの2つをコピーしてしまいましょう！  
-<strong>ここで注意点なのですが、この情報は一度しか表示されないため閉じてしまった場合は作り直す必要があるので忘れずにコピーしてください！</strong>  
+次に利用するのはここで表示されているAPI KeyとAPI Secretなのでこの2つをコピーしてしまいましょう！
+<strong>ここで注意点なのですが、この情報は一度しか表示されないため閉じてしまった場合は作り直す必要があるので忘れずにコピーしてください！</strong>
 
 コピーした情報は、`frontend/neardev/dev-account.env`ファイルに貼り付けます。
 
@@ -105,7 +105,7 @@ PINATA_API_Secret=<YOUR_API_SECRET>
 
 ### 🔘ファイルをアップロードするフォームとボタンを実装しよう
 
-次に、ファイルをアップロードするためのフォームとボタンのコンポーネントを作成しましょう！  
+次に、ファイルをアップロードするためのフォームとボタンのコンポーネントを作成しましょう！
 
 新しく追加した`UploadButton.js`に以下のコードを追加してください！！
 
@@ -117,7 +117,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import axios from 'axios';
 import FormData from 'form-data';
 
-// APIにアクセスするためのベースとなるURL 
+// APIにアクセスするためのベースとなるURL
 const baseAPIUrl = "https://api.pinata.cloud";
 
 // dev-account.envファイルから読み込む環境変数
@@ -129,7 +129,7 @@ const {
 /**
  * UploadButton コンポーネント
  */
-const UploadButton = () => { 
+const UploadButton = () => {
     // ファイル名を格納するステート変数
     const [ fileName, setFileName ] = useState('select a file');
     // ファイル本体のデータを格納するステート変数
@@ -147,7 +147,7 @@ const UploadButton = () => {
 
     /**
      * PinataのAPIを利用してIPFSに画像をアップロードするメソッド
-     * @param {*} event 
+     * @param {*} event
      */
     const pintaUploadFile = async (event) => {
         // FormDataオブジェクトを生成
@@ -163,9 +163,9 @@ const UploadButton = () => {
             // POSTメソッドでデータを送信する
             const res = await axios.post(
                 // APIのURL
-                baseAPIUrl + '/pinning/pinFileToIPFS', 
+                baseAPIUrl + '/pinning/pinFileToIPFS',
                 // リクエストパラメータ
-                postData , 
+                postData ,
                 // ヘッダー情報
                 {
                     headers: {
@@ -173,7 +173,7 @@ const UploadButton = () => {
                         'pinata_api_key': `${PINATA_API_Key}`,
                         'pinata_secret_api_key': `${PINATA_API_Secret}`,
                         'Content-Type': `multipart/form-data; boundary=${postData}`,
-                    },  
+                    },
                 });
             console.log(res);
             // CIDを取得
@@ -198,17 +198,17 @@ const UploadButton = () => {
             ):(
                 <>
                     {/* Formコンポーネント */}
-                    <Form.Group 
-                        controlId="formFile" 
-                        className="mb-3" 
+                    <Form.Group
+                        controlId="formFile"
+                        className="mb-3"
                         onChange={(e) => saveFile(e)}
                     >
                         <Form.Label>Please drop or select</Form.Label>
                         <Form.Control type="file" />
                     </Form.Group>
                     {/* Buttonコンポーネント */}
-                    <Button 
-                        onClick={(e) => pintaUploadFile(e)} 
+                    <Button
+                        onClick={(e) => pintaUploadFile(e)}
                         variant='info'
                     >
                         Upload Image
@@ -224,7 +224,7 @@ export default UploadButton;
 
 下記のようなフォームとボタンが表示される様になります！
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-4/4_7_6.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-4/4_7_6.png)
 
 追加した内容を見ていきましょう！
 
@@ -238,7 +238,7 @@ const {
 } = process.env;
 ```
 
-フォームとボタンの作成、画像アップロード中に表示するスピナーについては全てReact Bootstrapのものを使用しました。`pendingFlg`というステート変数によって画面表示を切り替えるようにしています!  
+フォームとボタンの作成、画像アップロード中に表示するスピナーについては全てReact Bootstrapのものを使用しました。`pendingFlg`というステート変数によって画面表示を切り替えるようにしています!
 
 ボタンの色などはお好みで変更できるので自分の一番お気に入りの色に変えてみてください！`variant='info'`の部分をsuccessに変えると緑色になります！
 
@@ -252,17 +252,17 @@ const {
             ):(
                 <>
                     {/* Formコンポーネント */}
-                    <Form.Group 
-                        controlId="formFile" 
-                        className="mb-3" 
+                    <Form.Group
+                        controlId="formFile"
+                        className="mb-3"
                         onChange={(e) => saveFile(e)}
                     >
                         <Form.Label>Please drop or select</Form.Label>
                         <Form.Control type="file" />
                     </Form.Group>
                     {/* Buttonコンポーネント */}
-                    <Button 
-                        onClick={(e) => pintaUploadFile(e)} 
+                    <Button
+                        onClick={(e) => pintaUploadFile(e)}
                         variant='info'
                     >
                         Upload Image
@@ -279,7 +279,7 @@ const {
 ```js
 /**
      * PinataのAPIを利用してIPFSに画像をアップロードするメソッド
-     * @param {*} event 
+     * @param {*} event
      */
     const pintaUploadFile = async (event) => {
         // FormDataオブジェクトを生成
@@ -295,9 +295,9 @@ const {
             // POSTメソッドでデータを送信する
             const res = await axios.post(
                 // APIのURL
-                baseAPIUrl + '/pinning/pinFileToIPFS', 
+                baseAPIUrl + '/pinning/pinFileToIPFS',
                 // リクエストパラメータ
-                postData , 
+                postData ,
                 // ヘッダー情報
                 {
                     headers: {
@@ -305,7 +305,7 @@ const {
                         'pinata_api_key': `${PINATA_API_Key}`,
                         'pinata_secret_api_key': `${PINATA_API_Secret}`,
                         'Content-Type': `multipart/form-data; boundary=${postData}`,
-                    },  
+                    },
                 });
             console.log(res);
             // CIDを取得
@@ -321,9 +321,9 @@ const {
     }
 ```
 
-このメソッドは、[PinataのAPI公式ドキュメント](https://docs.pinata.cloud/pinata-api/pinning/pin-file-or-directory)を参考にして作成しました。  
+このメソッドは、[PinataのAPI公式ドキュメント](https://docs.pinata.cloud/pinata-api/pinning/pin-file-or-directory)を参考にして作成しました。
 
-呼び出すAPIエンドポイントの情報、フォームデータ、ヘッダー情報を定義して、最後に`axios`ライブラリの`post`メソッドを利用してAPI機能を実行する様になっています！  
+呼び出すAPIエンドポイントの情報、フォームデータ、ヘッダー情報を定義して、最後に`axios`ライブラリの`post`メソッドを利用してAPI機能を実行する様になっています！
 
 そして成功した場合には、画面上にアップロードした画像の`CID`を表示する様にしています！
 
@@ -361,15 +361,15 @@ export default Upload;
 これでUpload画面が実装できました！✨
 画面は次の様に表示されます！✨
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-4/4_7_8.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-4/4_7_8.png)
 
 ### 画面遷移の機能を拡張しよう
 
-さてUpload画面用のコンポーネントは作成しましたが、完成まであと一歩です！  
+さてUpload画面用のコンポーネントは作成しましたが、完成まであと一歩です！
 
-今のままではUpload画面に遷移できないので`NavBar`コンポーネントに設定を追加してあげる必要があります。  
+今のままではUpload画面に遷移できないので`NavBar`コンポーネントに設定を追加してあげる必要があります。
 
-設定は、`App.js`と`NavBar.js`の2ヶ所を変更するだけです！  
+設定は、`App.js`と`NavBar.js`の2ヶ所を変更するだけです！
 
 まずは、`NavBar.js`から修正します！次のように修正してください。
 
@@ -475,7 +475,7 @@ export default NavBar;
 
 ```
 
-次に`App.js`を修正しましょう！  
+次に`App.js`を修正しましょう！
 importの部分と `Routes`コンポーネントを次の様に修正してください。
 
 ```diff
@@ -507,7 +507,7 @@ const App = () => {
 export default App;
 ```
 
-これで修正は完了です！お疲れ様でした！！  🚀🚀🚀🚀🚀🚀  
+これで修正は完了です！お疲れ様でした！！  🚀🚀🚀🚀🚀🚀
 これで画面から好きな画像をIPFSにアップロードできる様になりました！このアプリで使用してみたい画像があったらぜひこの機能を利用して画像をアップロードし、ホテルの部屋を追加してみてください!!
 
 ### 🙋‍♂️ 質問する

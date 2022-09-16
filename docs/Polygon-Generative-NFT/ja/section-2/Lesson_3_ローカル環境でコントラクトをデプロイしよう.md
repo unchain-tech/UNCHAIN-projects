@@ -210,7 +210,7 @@ Owner has tokens:  [
 
 下記のような結果が、Rinkeby Etherscan 上で確認できれば、テストネットへのデプロイは成功です。
 
-![](/public/images/201-Polygon-Generative-NFT/section-2/2_2_14.png)
+![](/public/images/Polygon-Generative-NFT/section-2/2_2_14.png)
 
 **デプロイのデバッグに Rinkeby Etherscan 使うことに慣れましょう。**
 

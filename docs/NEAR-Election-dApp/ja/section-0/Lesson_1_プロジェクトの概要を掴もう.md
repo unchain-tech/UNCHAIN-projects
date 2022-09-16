@@ -36,10 +36,10 @@ NEAR はブロックチェーンの一つで、Ethereum に取って替わると
 - 投票結果の開示
 
 完成した`投票dApp`は以下のような見た目になります💪
-![](/public/images/401-NEAR-Election-dApp/section-0/0_1_1.png)
-![](/public/images/401-NEAR-Election-dApp/section-0/0_1_2.png)
-![](/public/images/401-NEAR-Election-dApp/section-0/0_1_3.png)
-![](/public/images/401-NEAR-Election-dApp/section-0/0_1_4.png)
+![](/public/images/NEAR-Election-dApp/section-0/0_1_1.png)
+![](/public/images/NEAR-Election-dApp/section-0/0_1_2.png)
+![](/public/images/NEAR-Election-dApp/section-0/0_1_3.png)
+![](/public/images/NEAR-Election-dApp/section-0/0_1_4.png)
 
 ### 🌍 プロジェクトをアップグレードする
 

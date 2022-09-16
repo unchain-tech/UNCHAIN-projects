@@ -30,17 +30,17 @@ Rinkeby にデプロイされたコントラクトの Etherscan ページに移�
 
 - `Create: NFTCollectible` と表記されているのコントラクトを確認してください。
 
-![](/public/images/201-Polygon-Generative-NFT/section-3/3_1_1.png)
+![](/public/images/Polygon-Generative-NFT/section-3/3_1_1.png)
 
 次に、コントラクトの作成に関連付けられている `Txn Hash` ハッシュをクリックしてください。
 
 トランザクションページに進んだら、`Click to see More` をクリックしましょう。
 
-![](/public/images/201-Polygon-Generative-NFT/section-3/3_1_2.png)
+![](/public/images/Polygon-Generative-NFT/section-3/3_1_2.png)
 
 `Gas limit & Usage by Txn` を確認してください。
 
-![](/public/images/201-Polygon-Generative-NFT/section-3/3_1_3.png)
+![](/public/images/Polygon-Generative-NFT/section-3/3_1_3.png)
 
 `Gas limit & Usage by Txn` の値は、コントラクトのデプロイに使用されたガスの量です。
 
@@ -68,7 +68,7 @@ Rinkeby にデプロイされたコントラクトの Etherscan ページに移�
 
 これは、私がコントラクトをデプロイした際の ETH のガス価格です。
 
-![](/public/images/201-Polygon-Generative-NFT/section-3/3_1_4.png)
+![](/public/images/Polygon-Generative-NFT/section-3/3_1_4.png)
 
 上図からわかるように、**イーサリアムメインネットのガス価格は 約 40 Gwei であり、Rinkeby で消費されたガス価格よりも大幅に高くなっています。**
 
@@ -96,7 +96,7 @@ Rinkeby にデプロイされたコントラクトの Etherscan ページに移�
 
 もう一度、あなたのコントラクトアドレスを Etherscan で呼び出し、`Mint NFTs` と書かれているトランザクションの中身を見ていきましょう。
 
-![](/public/images/201-Polygon-Generative-NFT/section-3/3_1_5.png)
+![](/public/images/Polygon-Generative-NFT/section-3/3_1_5.png)
 
 イーサリアムメインネット上で私のコントラクトから NFT を 1 つ Mint する際のコストの計算式は以下になります。
 
@@ -126,7 +126,7 @@ NFT を 0.01 ETH で販売した場合、ユーザーは追加で実際の NFT �
 
 2022 年 2 月現在、ガス料金は 3 Gwei 程度です。
 
-![](/public/images/201-Polygon-Generative-NFT/section-3/3_1_6.png)
+![](/public/images/Polygon-Generative-NFT/section-3/3_1_6.png)
 
 これをベースに、Polygon のサイドチェーンでコントラクトをデプロイするコストを計算してみましょう。
 

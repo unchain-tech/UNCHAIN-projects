@@ -10,8 +10,8 @@
 
 配布先に使う　wallet id を入力欄に入れて add　　ボタンを押してください。下のようなメッセージが返ってきていれば OK です！
 
-![](/public/images/401-NEAR-Election-dApp/section-4/4_1_1.png)
-![](/public/images/401-NEAR-Election-dApp/section-4/4_1_2.png)
+![](/public/images/NEAR-Election-dApp/section-4/4_1_1.png)
+![](/public/images/NEAR-Election-dApp/section-4/4_1_2.png)
 
 次に候補者を追加してみましょう。
 
@@ -21,9 +21,9 @@
 
 候補者の NFT の mint ができたら`Home画面`に移ってみましょう。
 下のように追加した候補者の情報が追加されていれば成功です！
-![](/public/images/401-NEAR-Election-dApp/section-4/4_1_3.png)
-![](/public/images/401-NEAR-Election-dApp/section-4/4_1_4.png)
-![](/public/images/401-NEAR-Election-dApp/section-4/4_1_5.png)
+![](/public/images/NEAR-Election-dApp/section-4/4_1_3.png)
+![](/public/images/NEAR-Election-dApp/section-4/4_1_4.png)
+![](/public/images/NEAR-Election-dApp/section-4/4_1_5.png)
 
 では次に投票をしてみましょう。
 
@@ -35,7 +35,7 @@
 
 `Add Voter画面`へ移り先ほどと同じように別の wallet の id を入力欄に入れて`Addボタン`を押してみてください。下のようなメッセージが返ってきていれば成功です。
 
-![](/public/images/401-NEAR-Election-dApp/section-4/4_1_6.png)
+![](/public/images/NEAR-Election-dApp/section-4/4_1_6.png)
 
 では`Home画面`に移動して実際に投票をしてみましょう。
 
@@ -43,11 +43,11 @@
 
 下のように得票数が変化していれば成功です！
 
-![](/public/images/401-NEAR-Election-dApp/section-4/4_1_7.png)
+![](/public/images/NEAR-Election-dApp/section-4/4_1_7.png)
 
 また、もう一度`Voteボタン`を押してみましょう。次のようにすでに投票していることがメッセージで来ていたら成功です！
 
-![](/public/images/401-NEAR-Election-dApp/section-4/4_1_8.png)
+![](/public/images/NEAR-Election-dApp/section-4/4_1_8.png)
 
 ### 🙋‍♂️ 質問する
 

@@ -38,11 +38,11 @@ Alchemy は、世界中のトランザクションを一元化し、マイナー
 
 Alchemy のアカウントを作成したら、`CREATE APP` ボタンを押してください。
 
-![](/public/images/104-ETH-NFT-Game/section-1/1_5_1.png)
+![](/public/images/ETH-NFT-Game/section-1/1_5_1.png)
 
 次に、下記の項目を埋めていきます。下図を参考にしてください。
 
-![](/public/images/104-ETH-NFT-Game/section-1/1_5_2.png)
+![](/public/images/ETH-NFT-Game/section-1/1_5_2.png)
 
 - `NAME`: プロジェクトの名前（例: `MyEpicGame`）
 - `DESCRIPTION`: プロジェクトの概要
@@ -52,11 +52,11 @@ Alchemy のアカウントを作成したら、`CREATE APP` ボタンを押し�
 
 それから、作成した App の `VIEW DETAILS` をクリックします。
 
-![](/public/images/104-ETH-NFT-Game/section-1/1_5_3.png)
+![](/public/images/ETH-NFT-Game/section-1/1_5_3.png)
 
 プロジェクトを開いたら、`VIEW KEY` ボタンをクリックします。
 
-![](/public/images/104-ETH-NFT-Game/section-1/1_5_4.png)
+![](/public/images/ETH-NFT-Game/section-1/1_5_4.png)
 
 ポップアップが開くので、`HTTP` のリンクをコピーしてください。
 
@@ -97,19 +97,19 @@ Alchemy のアカウントを作成したら、`CREATE APP` ボタンを押し�
 > ✍️: MetaMask で `Rinkeby Test Network` を設定する方法
 > 1 \. MetaMask ウォレットのネットワークトグルを開く。
 >
-> ![](/public/images/104-ETH-NFT-Game/section-1/1_5_5.png)
+> ![](/public/images/ETH-NFT-Game/section-1/1_5_5.png)
 
 > 2 \. `Show/hide test networks` をクリック。
 >
-> ![](/public/images/104-ETH-NFT-Game/section-1/1_5_6.png)
+> ![](/public/images/ETH-NFT-Game/section-1/1_5_6.png)
 
 > 3 \. `Show test networks` を `ON` にする。
 >
-> ![](/public/images/104-ETH-NFT-Game/section-1/1_5_7.png)
+> ![](/public/images/ETH-NFT-Game/section-1/1_5_7.png)
 
 > 4 \. `Rinkeby Test Network` を選択する。
 >
-> ![](/public/images/104-ETH-NFT-Game/section-1/1_5_8.png)
+> ![](/public/images/ETH-NFT-Game/section-1/1_5_8.png)
 
 MetaMask ウォレットに `Rinkeby Test Network` が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽 ETH を取得しましょう。
 
@@ -223,19 +223,19 @@ module.exports = {
 
 2. \. `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の取得
    > 1\. お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを `Rinkeby Test Network` に変更します。
-   > ![](/public/images/104-ETH-NFT-Game/section-1/1_5_8.png)
+   > ![](/public/images/ETH-NFT-Game/section-1/1_5_8.png)
    >
    > 2\. それから、`Account details` を選択してください。
-   > ![](/public/images/104-ETH-NFT-Game/section-1/1_5_9.png)
+   > ![](/public/images/ETH-NFT-Game/section-1/1_5_9.png)
    >
    > 3\. `Account details` から `Export Private Key` をクリックしてください。
-   > ![](/public/images/104-ETH-NFT-Game/section-1/1_5_10.png)
+   > ![](/public/images/ETH-NFT-Game/section-1/1_5_10.png)
    >
    > 4\. MetaMask のパスワードを求められるので、入力したら `Confirm` を推します。
-   > ![](/public/images/104-ETH-NFT-Game/section-1/1_5_11.png)
+   > ![](/public/images/ETH-NFT-Game/section-1/1_5_11.png)
    >
    > 5\. あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
-   > ![](/public/images/104-ETH-NFT-Game/section-1/1_5_12.png)
+   > ![](/public/images/ETH-NFT-Game/section-1/1_5_12.png)
    >
    > `hardhat.config.js` の `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の部分をここで取得した秘密鍵とを入れ替えます。
 
@@ -282,9 +282,9 @@ hardhat.config.js
 >
 > 「ログイン」には下記の情報が必要となります。
 >
-> - ユーザー名: 公開アドレス ![](/public/images/104-ETH-NFT-Game/section-1/1_5_13.png)
+> - ユーザー名: 公開アドレス ![](/public/images/ETH-NFT-Game/section-1/1_5_13.png)
 > - パスワード: 秘密鍵
->   ![](/public/images/104-ETH-NFT-Game/section-1/1_5_14.png)
+>   ![](/public/images/ETH-NFT-Game/section-1/1_5_14.png)
 >
 > ユーザー名とパスワードを使用して、AWS にログインしてプロジェクトをデプロイするのと同じです。
 
@@ -324,7 +324,7 @@ Done deploying and minting!
 
 下記のような結果が、Rinkeby Etherscan 上で確認できれば、テストネットへのデプロイは成功です 🎉
 
-![無題](/public/images/104-ETH-NFT-Game/section-1/1_5_15.png)
+![無題](/public/images/ETH-NFT-Game/section-1/1_5_15.png)
 
 **デプロイのデバッグに Rinkeby Etherscan 使うことに慣れましょう。**
 
@@ -339,11 +339,11 @@ Rinkeby Etherscan はデプロイを追跡する最も簡単な方法であり�
 - [テストネット用の OpenSea](https://testnets.opensea.io/) でも同じように確認できますが、NFT が OpenSea に反映されるまでに時間がかかるので、Rarible で検証することをお勧めします。
 
 下記のように、あなたの NFT も Rarible で確認できたでしょうか？
-![](/public/images/104-ETH-NFT-Game/section-1/1_5_16.png)
+![](/public/images/ETH-NFT-Game/section-1/1_5_16.png)
 
 キャラクターをクリックして、右下に表示されている `Properties` を確認してみましょう。
 
-![](/public/images/104-ETH-NFT-Game/section-1/1_5_17.png)
+![](/public/images/ETH-NFT-Game/section-1/1_5_17.png)
 キャラクターの攻撃力（`Attack Damage`）や HP が Rarible に反映されています。
 
 Rarible や OpenSea はキャラクター属性を適切にレンダリングしてくれます 😊

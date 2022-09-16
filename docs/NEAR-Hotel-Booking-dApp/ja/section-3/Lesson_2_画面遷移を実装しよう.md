@@ -249,11 +249,11 @@ return の中では、表示するナビゲーションバーの設定をして�
 
 接続されていない時
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-3/3_2_1.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_2_1.png)
 
 接続されている時
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-3/3_2_2.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_2_2.png)
 
 画面への遷移はメニューをクリックした時に実行されます。`navigate()`の中に遷移したいパスを設定します。設定するパスは、`App.js`内で`path=`に指定したものになります。
 
@@ -357,13 +357,13 @@ yarn dev
 
 最初に`Home`が表示されます。
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-3/3_2_3.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_2_3.png)
 右上のボタンから、NEAR Wallet に接続してみましょう。アカウントは任意のもので大丈夫です。
 
 ナビゲーションバーの表示が変わったら、メニューから画面遷移を確認してみましょう！
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-3/3_2_4.png)
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-3/3_2_5.png)
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-3/3_2_6.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_2_4.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_2_5.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_2_6.png)
 
 このように画面がきちんと遷移していれば成功です！
 

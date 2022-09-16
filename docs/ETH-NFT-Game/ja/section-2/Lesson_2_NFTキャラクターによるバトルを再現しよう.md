@@ -90,7 +90,7 @@ https://rinkeby.rarible.com/token/INSERT_DEPLOY_CONTRACT_ADDRESS_HERE:INSERT_TOK
 ```
 
 Rarible で NFT を確認したら、`Refresh Metadata` をクリックしてみてください。
-![](/public/images/104-ETH-NFT-Game/section-2/2_2_1.png)
+![](/public/images/ETH-NFT-Game/section-2/2_2_1.png)
 
 `Health Points` が `200` に更新されていれば、成功です。
 

@@ -420,7 +420,7 @@ near call $NFT_CONTRACT_ID nft_mint '{"metadata": {"title": "Rob Stark(candidate
 ```
 
 これによって下のように新しく作成した wallet に候補者の NFT が mint されているはずです。
-![](/public/images/401-NEAR-Election-dApp/section-2/2_3_1.png)
+![](/public/images/NEAR-Election-dApp/section-2/2_3_1.png)
 
 まずは下のコマンドをターミナルで実行させることで mint した NFT の値を確認してみましょう！
 
@@ -526,7 +526,7 @@ near call $NFT_CONTRACT_ID nft_mint '{"metadata": {"title": "Jenny Lind(candidat
 
 投票が再開されているので mint が成功して下のようになっているはずです。
 
-![](/public/images/401-NEAR-Election-dApp/section-2/2_3_2.png)
+![](/public/images/NEAR-Election-dApp/section-2/2_3_2.png)
 
 ### 🙋‍♂️ 質問する
 

@@ -107,7 +107,7 @@ npx hardhat test
 
 次のような画面が表示されるはずです。
 
-![](/public/images/202-Polygon-ENS-Domain/section-1/1_1_1.png)
+![](/public/images/Polygon-ENS-Domain/section-1/1_1_1.png)
 
 少しディレクトリを整理しましょう。
 

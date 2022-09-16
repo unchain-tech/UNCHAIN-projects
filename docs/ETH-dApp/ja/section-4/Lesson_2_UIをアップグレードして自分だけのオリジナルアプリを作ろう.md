@@ -96,7 +96,7 @@ console.log(
 
 Web アプリケーションを `Inspect` して、下記のような結果が Console に出力されているか確認しましょう。
 
-![](/public/images/101-ETH-dApp/section-4/4_2_1.png)
+![](/public/images/ETH-dApp/section-4/4_2_1.png)
 
 ここでは、ユーザーが ETH を獲得したこと、コントラクトの資金が `0.000996` から `0.000995` に減少したことがわかります。
 
@@ -107,10 +107,10 @@ Rinkeby Etherscan にコントラクトのアドレスを貼り付けて、発�
 それでは、上記で実行した最新のトランザクションを見ていきましょう。
 
 下図のように、確認したい `Txn Hash` を選択します。
-![](/public/images/101-ETH-dApp/section-4/4_2_2.png)
+![](/public/images/ETH-dApp/section-4/4_2_2.png)
 
 トランザクションの情報が、確認できます。
-![](/public/images/101-ETH-dApp/section-4/4_2_3.png)
+![](/public/images/ETH-dApp/section-4/4_2_3.png)
 枠で囲った部分に、先程のトランザクションの結果が表示されています。
 
 少額の ETH をコントラクトアドレスからユーザーアドレスに転送したことがわかります。
@@ -141,11 +141,11 @@ Vercel のアカウントを取得したら、下記を実行しましょう。
 
 1\. `Dashboard` へ進んで、`New Project` を選択してください。
 
-![](/public/images/101-ETH-dApp/section-4/4_2_4.png)
+![](/public/images/ETH-dApp/section-4/4_2_4.png)
 
 2\. `Import Git Repository` で自分の GitHub アカウントを接続したら、`dApp-starter-project` を選択し、`Import` してください。
 
-![](/public/images/101-ETH-dApp/section-4/4_2_5.png)
+![](/public/images/ETH-dApp/section-4/4_2_5.png)
 
 3\. プロジェクトを作成します。
 
@@ -154,7 +154,7 @@ Vercel のアカウントを取得したら、下記を実行しましょう。
 - `NAME`＝`CI`
 - `VALUE`＝`false`（下図参照）
 
-![](/public/images/101-ETH-dApp/section-4/4_2_6.png)
+![](/public/images/ETH-dApp/section-4/4_2_6.png)
 
 4\. `Deploy`ボタンを推しましょう。
 
@@ -163,7 +163,7 @@ Vercel は GitHub と連動しているので、GitHub が更新されるたび�
 下記のように、`Building` ログが出力されます。
 基本的に `warning` は無視して問題ありません。
 
-![](/public/images/101-ETH-dApp/section-4/4_2_7.png)
+![](/public/images/ETH-dApp/section-4/4_2_7.png)
 
 こちらが、今回のプロジェクトで作成される Web アプリケーションのデモは、[こちら](https://my-wave-portal2-nine.vercel.app/) です。
 

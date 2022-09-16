@@ -80,7 +80,7 @@ Vercel に関する説明は、[こちら](https://zenn.dev/lollipop_onl/article
 
 注：Vercelでは、環境変数 `CI=false`を追加する必要があります。 これにより、`warning`が原因でビルドが失敗しないようになります。
 
-![](/public/images/202-Polygon-ENS-Domain/section-4/4_3_1.png)
+![](/public/images/Polygon-ENS-Domain/section-4/4_3_1.png)
 
 
 設定を入力したら`deploy`ボタンを押してください。
@@ -99,7 +99,7 @@ Vercel に関する説明は、[こちら](https://zenn.dev/lollipop_onl/article
 これで、ドメインサービスについてはもう習熟されています🎉
 
 
-![](/public/images/202-Polygon-ENS-Domain/section-4/4_3_2.png)
+![](/public/images/Polygon-ENS-Domain/section-4/4_3_2.png)
 
 
 ### 🎉 おつかれさまでした!

@@ -89,11 +89,11 @@ const getGuestBookedRooms = async () => {
 
 ナビゲーションバーのメニューから宿泊者の予約確認画面へ移動します。
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-3/3_6_1.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_6_1.png)
 
 以下のように、予約データが表示されていたら完成です！
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-3/3_6_2.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_6_2.png)
 
 ### 🔖 オーナーが予約の管理をできるようにしよう
 
@@ -298,14 +298,14 @@ return 文では、ステータスに応じてボタンの実装を変更して�
 
 例えば、このようになるでしょう。
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-3/3_6_3.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_6_3.png)
 
 続いて、オーナーのアカウント ID を接続して、`ManageBookings画面`を表示してみましょう。ナビゲーションバーのメニューからオーナーの予約管理画面へ移動します。
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-3/3_6_4.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_6_4.png)
 
 このように、予約が二つ表示されていたら OK です！
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-3/3_6_5.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_6_5.png)
 
 ### 🌴 チェックイン・チェックアウトを実行してみよう
 
@@ -313,19 +313,19 @@ return 文では、ステータスに応じてボタンの実装を変更して�
 
 まずはチェックインを実行してみます。
 片方の**Check In**ボタンを押してみましょう。ボタンが`Check Out`に変更されることを確認します。
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-3/3_6_6.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_6_6.png)
 
 ここで、`ManageRooms画面`に移動します。オーナーがチェックインの操作をしたことで、利用状況が`Stay`になったことを確認します。
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-3/3_6_7.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_6_7.png)
 
 次に、`ManageBookings画面`に戻りアラートの確認します。もう片方の**Check In**ボタンを押してみましょう。このようにアラートが表示されたら OK です！
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-3/3_6_8.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_6_8.png)
 
 最後に、チェックアウトを実行してみます。
 **Check Out**ボタンを押すと、予約管理画面からデータが消えることを確認します。
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-3/3_6_9.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_6_9.png)
 
 `ManageBookings画面`に移動し、部屋の利用状況が`Available`に戻っていること、さらに宿泊者でログインをし直して`GuestBookedList画面`から予約データが消えていることを確認できたら OK です！
 

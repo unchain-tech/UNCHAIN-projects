@@ -154,15 +154,15 @@ Matic Mainnet を MetaMask に追加するには、次の手順に従ってく�
 
 まず、[Polygonscan](https://polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Polygon Network` ボタンをクリックします。
 
-![](/public/images/201-Polygon-Generative-NFT/section-3/3_2_1.png)
+![](/public/images/Polygon-Generative-NFT/section-3/3_2_1.png)
 
 下記のようなポップアップが立ち上がったら、`Switch Network` をクリックしましょう。
 
-![](/public/images/201-Polygon-Generative-NFT/section-3/3_2_2.png)
+![](/public/images/Polygon-Generative-NFT/section-3/3_2_2.png)
 
 `Matic Mainnet` があなたの MetaMask にセットアップされました。
 
-![](/public/images/201-Polygon-Generative-NFT/section-3/3_2_3.png)
+![](/public/images/Polygon-Generative-NFT/section-3/3_2_3.png)
 
 **2 \. Polygon Mumbai-Testnet を MetaMask に接続する**
 
@@ -176,15 +176,15 @@ Hardhat を使用する場合、Alchemy のカスタム RPC URL が必要です�
 
 [alchemy.com](https://www.alchemy.com/) に再度ログインして、`Create App` を選択し、下記のように設定してください。
 
-![](/public/images/201-Polygon-Generative-NFT/section-3/3_2_4.png)
+![](/public/images/Polygon-Generative-NFT/section-3/3_2_4.png)
 
 次に、下図のように、新しく作成した `Polygon NFT` アプリケーションの `VIEW DETAILS` をクリックしましょう。
 
-![](/public/images/201-Polygon-Generative-NFT/section-3/3_2_5.png)
+![](/public/images/Polygon-Generative-NFT/section-3/3_2_5.png)
 
 次に、アプリケーションの `VIEW KEY` をクリックし、`HTTP` URL をコピーしてください。
 
-![](/public/images/201-Polygon-Generative-NFT/section-3/3_2_6.png)
+![](/public/images/Polygon-Generative-NFT/section-3/3_2_6.png)
 
 それでは、`nft-collectible/.env` ファイルを開き、コピーした `HTTP` URL を下記の `Alchemy Polygon URL` の部分に貼り付けていきます。
 
@@ -199,7 +199,7 @@ MetaMask と Hardhat の両方で Polygon ネットワークの設定が完了�
 
 [こちら](https://faucet.polygon.technology/) にアクセスして、下記のように偽 MATIC をリクエストしてください。
 
-![](/public/images/201-Polygon-Generative-NFT/section-3/3_2_7.png)
+![](/public/images/Polygon-Generative-NFT/section-3/3_2_7.png)
 
 Rinkeby とは異なり、これらのトークンの取得にそれほど問題はないはずです。
 
@@ -274,7 +274,7 @@ Owner has tokens:  []
 
 次に、[mumbai.polygonscan.com](https://mumbai.polygonscan.com/) に向かい、コントラクトアドレス（`Contract deployed to` に続く `0x..`）を検索して、コントラクトがデプロイされたことを確認しましょう。
 
-![](/public/images/201-Polygon-Generative-NFT/section-3/3_2_8.png)
+![](/public/images/Polygon-Generative-NFT/section-3/3_2_8.png)
 
 ### 📝 Polygonscan を使ってコントラクトを verify（検証）する
 
@@ -284,16 +284,16 @@ Owner has tokens:  []
 
 次に、API の作成に進みます。下図のように、`API-Keys` のタブを選択し、`+ Add` ボタンを押してください。
 
-![](/public/images/201-Polygon-Generative-NFT/section-3/3_2_9.png)
+![](/public/images/Polygon-Generative-NFT/section-3/3_2_9.png)
 
 ポップアップが開くので、API に任意の名前をつけて、保存しましょう。
 
 API を作成したら、その API の `Edit` ボタンをクリックしてください。
-![](/public/images/201-Polygon-Generative-NFT/section-3/3_2_10.png)
+![](/public/images/Polygon-Generative-NFT/section-3/3_2_10.png)
 
 下記の画面に遷移するので、`Polygon-API-Key` をコピーしましょう。
 
-![](/public/images/201-Polygon-Generative-NFT/section-3/3_2_11.png)
+![](/public/images/Polygon-Generative-NFT/section-3/3_2_11.png)
 
 最後にもう一度 `nft-collectible/.env` ファイルを開き、下記にコピーした `Polygon-API-Key` の値を貼り付けます。
 

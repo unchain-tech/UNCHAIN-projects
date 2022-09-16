@@ -37,12 +37,12 @@ export default Home;
 
 確認のため、`Home`画面を表示してみましょう。
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-3/3_5_1.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_5_1.png)
 
 試しに、日付を入力して`Search`ボタンを押してみましょう。
 `Search画面`に遷移ができれば`Home画面`は完成です！
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-3/3_5_2.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_5_2.png)
 
 ここで、`Search`画面への遷移を設定した部分を振り返ります。
 
@@ -197,11 +197,11 @@ useEffect(() => {
 
 NEAR Wallet に接続していない時
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-3/3_5_3.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_5_3.png)
 
 NEAR Wallet に接続している時
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-3/3_5_4.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_5_4.png)
 
 ### 💰 トークンの転送を確認しよう
 
@@ -209,28 +209,28 @@ NEAR Wallet に接続している時
 
 トークン転送を承認後、Web アプリケーションに戻ると予約した部屋が消えているでしょう。
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-3/3_5_5.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_5_5.png)
 
 ナビゲーションバーのメニューから、`NEAR Explorer`へ移動します。
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-3/3_5_6.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_5_6.png)
 
 トランザクション一覧から、先ほど実行された`book_room`メソッドのトランザクションを確認してみます。
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-3/3_5_7.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_5_7.png)
 
 ハッシュ値のリンクから詳細を開き、Transaction Execution Plan の項目を見ると、オーナーへ宿泊料が転送されていたら OK です。
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-3/3_5_8.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_5_8.png)
 
 最後に、オーナーの Wallet を確認します。先ほど確認した項目に`Receiver ID:`があります。オーナーのアカウント ID をクリックしましょう。オーナーアカウントのトランザクションページが表示されるので、`Ⓝ BALANCE PROFILE`欄のリンクから アカウントページ に移動します。
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-3/3_5_9.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_5_9.png)
 
 `Wallet`のページを表示し、右下の`Recent activity`で宿泊料を受け取っていたら確認完了です！
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-3/3_5_10.png)
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-3/3_5_11.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_5_10.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_5_11.png)
 
 これで部屋の検索・予約ができるようになりました！
 

@@ -271,7 +271,7 @@ const editRecord = (name) => {
 
 複数ミントされている場合、画面は次のようなものになります。
 
-![](/public/images/202-Polygon-ENS-Domain/section-4/4_1_4.png)
+![](/public/images/Polygon-ENS-Domain/section-4/4_1_4.png)
 
 いい感じですね。
 
@@ -280,7 +280,7 @@ const editRecord = (name) => {
 
 所有する各ドメインのレコードを編集できます。
 
-![](/public/images/202-Polygon-ENS-Domain/section-4/4_1_5.png)
+![](/public/images/Polygon-ENS-Domain/section-4/4_1_5.png)
 
 更新しようとするとトランザクションが発生します。
 

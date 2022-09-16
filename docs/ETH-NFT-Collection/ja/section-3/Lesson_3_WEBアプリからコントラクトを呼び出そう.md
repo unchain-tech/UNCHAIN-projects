@@ -295,7 +295,7 @@ npm run start
 
 Web アプリケーションの `Mint NFT` ボタンを押して、下記のようなポップアップが立ち上がったら、`Confirm` を押してください。
 
-![](/public/images/102-ETH-NFT-Collection/section-3/3_3_1.png)
+![](/public/images/ETH-NFT-Collection/section-3/3_3_1.png)
 
 ここで請求される少量の ETH（テストネットなので実際は偽 ETH）は、通称**ガス代**と呼ばれます。
 

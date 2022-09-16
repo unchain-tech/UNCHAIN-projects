@@ -16,7 +16,7 @@ IPFS に保存されたデータは一定期間内にアクセスがないと消
 
 ※アップロードするためには `+ Upload` ボタンを押下して進めます。
 
-![pinata](/public/images/303-Solana-Online-Store/section-1/1_3_1.png)
+![pinata](/public/images/Solana-Online-Store/section-1/1_3_1.png)
 
 つづいて、アップロードした画像の「 CID （コンテンツ ID ）」の欄に記載された ID ハッシュをコピーしておきましょう。
 

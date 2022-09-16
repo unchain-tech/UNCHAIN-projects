@@ -10,7 +10,7 @@
 
 「Code」ボタンをクリックして、そのリンクをコピーしてください。
 
-![](/public/images/302-Solana-NFT-Drop/section1/1_1_1.png)
+![](/public/images/Solana-NFT-Drop/section1/1_1_1.png)
 
 最後に、ターミナルに移動し、`cd` コマンドでプロジェクトが存在するディレクトリまでいき、次のコマンドを実行します。
 
@@ -36,7 +36,7 @@ Phantom Wallet のネットワークを Devnet に変更してください。
 
 今回作成する Candy Machine は Devnet 上にあるので、ウォレットも Devnet に変更する必要があります。
 
-![無題](/public/images/302-Solana-NFT-Drop/section3/3_1_1.png)
+![無題](/public/images/Solana-NFT-Drop/section3/3_1_1.png)
 
 ※ 本プロジェクトでは Brave と Chrome でのみ動作が確認できます。
 
@@ -177,7 +177,7 @@ const TWITTER_HANDLE = "あなたのTwitterハンドル";
 
 これを実行すると、Web アプリケーションのコンソールに `Phantom Wallet found!` という行が表示されるはずです。
 
-![無題](/public/images/302-Solana-NFT-Drop/section1/1_1_2.png)
+![無題](/public/images/Solana-NFT-Drop/section1/1_1_2.png)
 
 次に、ユーザーのウォレットにアクセスすることが**許可**されているか確認する必要があります。アクセスが許可されていると、Solana プログラムの関数にアクセスできます。
 

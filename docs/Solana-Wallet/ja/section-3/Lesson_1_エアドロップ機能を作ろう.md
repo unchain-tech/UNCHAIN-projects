@@ -25,7 +25,7 @@ console.log(connection);
 
 驚いたことに、`Connection` クラスには `requestAirdrop` メソッドがあり、これは期待できそうです。これは2つのプロパティを受け取ります。 `to: PublicKey` と `lamports: number` です。
 
-![](/public/images/304-Solana-Wallet/3_1_1.png)
+![](/public/images/Solana-Wallet/3_1_1.png)
 
 ```javascript
 const confirmation = await connection.requestAirdrop(account.publicKey, LAMPORTS_PER_SOL);
@@ -41,7 +41,7 @@ const confirmation = await connection.requestAirdrop(account.publicKey, LAMPORTS
 
 このことを念頭に置いて、残高を更新する前にエアドロップが確認されるのを待つ必要があります。もう一度ドキュメントを検索すると、`Connection` クラスに `confirmTransaction` メソッドがあり、確認署名とコミットメントを受け取り、トランザクションがネットワークによって確認されると解決するプロミスを返していることがわかります。
 
-![](/public/images/304-Solana-Wallet/3_1_2.png)
+![](/public/images/Solana-Wallet/3_1_2.png)
 
 ドキュメント通りに `confirmTransaction` メソッドを呼び出しましょう。
 
