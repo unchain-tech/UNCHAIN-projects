@@ -67,14 +67,14 @@ npm install
 
 下のGanacheの画像の `NETWORK ID` と書いてある部分の４桁の数字を`truffle.config.js` の `network_id` というところに打ち込んでください。
 
-![](/public/images/Ganache-Yield-Farm/section-1/12_1_2.png)
-![](/public/images/Ganache-Yield-Farm/section-1/12_1_3.png)
+![](/public/images/ETH-Yield-Farm/section-1/1_2_1.png)
+![](/public/images/ETH-Yield-Farm/section-1/1_2_2.png)
 
 これで Ganache のネットワークを使ってテストができるようになりました!
 
 ### 👀 `contracts` フォルダの中身の確認する
 
-次に `scr/contracts` にあるスマートコントラクトのコードが書かれているファイルの確認を行いましょう。
+次に `src/contracts` にあるスマートコントラクトのコードが書かれているファイルの確認を行いましょう。
 
 このファイルには `MockDaiToken.sol` と `DappToken.sol` が含まれています。
 
