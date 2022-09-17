@@ -927,6 +927,7 @@ $ yarn dev
 サインイン後
 
 ![](/public/images/NEAR-BikeShare/section-2/2_4_1.png)
+
 `use`, `inspect`, `return`ボタンを押してみて挙動を確かめましょう。
 
 サイトの上で右クリックを行い、`Inspect` を選択 -> `Console`を選択し出力結果を確認してみましょう。
