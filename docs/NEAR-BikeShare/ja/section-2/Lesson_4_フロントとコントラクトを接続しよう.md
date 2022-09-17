@@ -30,6 +30,7 @@ frontend
 また, `img`ディレクトリには使用する画像を追加します。
 
 初めに以下の画像をダウンロードし,`bike.png`という名前で`frontend/assets/img/`内に保存してください。
+
 ![](/public/images/NEAR-BikeShare/section-2/2_4_4.png)
 
 次に`frontend/assets/css/global.css`を以下に示すコードで書き換えてください。
