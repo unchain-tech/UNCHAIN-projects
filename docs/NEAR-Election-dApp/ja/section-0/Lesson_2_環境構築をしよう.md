@@ -196,7 +196,7 @@ module.exports = {
 
 これで tailwind の設定は完了したのできちんと機能しているか確認してみましょう。
 
-まず near-election-dapp-frontend/frontend/ui-components.js の 17 行目を下のようにかえます。
+まず near-election-dapp-frontend/frontend/App.js の 58 行目を下のようにかえます。
 
 次にターミナル上で`near-election-dapp-frontend`に移動して、
 ```bash
