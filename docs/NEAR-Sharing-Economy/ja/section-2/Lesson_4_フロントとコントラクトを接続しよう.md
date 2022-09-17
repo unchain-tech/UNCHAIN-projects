@@ -30,7 +30,7 @@ frontend
 また, `img`ディレクトリには使用する画像を追加します。
 
 初めに以下の画像をダウンロードし,`bike.png`という名前で`frontend/assets/img/`内に保存してください。
-![](/public/images/NEAR-Sharing-Economy/section-2/2_4_4.png)
+![](/public/images/NEAR-BikeShare/section-2/2_4_4.png)
 
 次に`frontend/assets/css/global.css`を以下に示すコードで書き換えてください。
 今回のプロジェクトに合わせた `css` を記述しています。
@@ -920,25 +920,25 @@ $ yarn dev
 ブラウザ以下のような画面が表示されれば成功です！
 
 サインインしていない場合
-![](/public/images/NEAR-Sharing-Economy/section-2/2_4_5.png)
+![](/public/images/NEAR-BikeShare/section-2/2_4_5.png)
 
 サインイン後
-![](/public/images/NEAR-Sharing-Economy/section-2/2_4_1.png)
+![](/public/images/NEAR-BikeShare/section-2/2_4_1.png)
 `use`, `inspect`, `return`ボタンを押してみて挙動を確かめましょう。
 
 サイトの上で右クリックを行い、`Inspect` を選択 -> `Console`を選択し出力結果を確認してみましょう。
 
-![](/public/images/NEAR-Sharing-Economy/section-2/2_4_2.png)
+![](/public/images/NEAR-BikeShare/section-2/2_4_2.png)
 
 アプリの挙動を確かめた後`Console`の出力に URL が 2 つ表示されています。
-![](/public/images/NEAR-Sharing-Economy/section-2/2_4_3.png)
+![](/public/images/NEAR-BikeShare/section-2/2_4_3.png)
 
 それぞれユーザのアカウント情報, コントラクトのアカウント情報を検索することができます。
 クリックして参照してみましょう, トランザクションの履歴などが確認できます。
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-economy` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
 
@@ -955,5 +955,5 @@ $ yarn dev
 
 おめでとうございます！
 アプリの基盤を作ることができました！
-先ほど確認した URL(`Console` に最後に表示されたコントラクトアカウント ID に関する URL)を `#near-sharing-dapp` に投稿して、あなたの成功をコミュニティで祝いましょう 🎉
+先ほど確認した URL(`Console` に最後に表示されたコントラクトアカウント ID に関する URL)を `#near-sharing-economy` に投稿して、あなたの成功をコミュニティで祝いましょう 🎉
 次のレッスンでは `ftコントラクト`を連携していきます！

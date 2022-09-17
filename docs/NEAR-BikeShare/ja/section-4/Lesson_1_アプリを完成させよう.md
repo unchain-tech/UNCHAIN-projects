@@ -81,7 +81,7 @@ export async function ft_transfer_call(index, amount) {
 変更点は以下の 2 点です。
 
 - コントラクト側で用意した`amount_to_use_bike`を使用できるように関数用意。
-- バイクの使用のインタフェースを`bikeコントラクト`の`use_bike`メソッドから,  
+- バイクの使用のインタフェースを`bikeコントラクト`の`use_bike`メソッドから,
   `ftコントラクト`の`ft_transfer_call`に変更しました。
 
 続いて`frontend/App.js`で追加した関数を利用するよう変更します。
@@ -128,14 +128,14 @@ export default function App() {
   const useBikeThenUpdateInfo = async (index) => {
     console.log("Use bike");
     setRenderingState(RenderingStates.TRANSACTION);
-  
+
     try {
       await use_bike(index);
     } catch (e) {
       alert(e);
     }
     await updateBikeInfo(index);
-  
+
     setRenderingState(RenderingStates.HOME);
   };
   */
@@ -232,7 +232,7 @@ $ yarn dev
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-economy` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
 
@@ -247,5 +247,5 @@ $ yarn dev
 
 ---
 
-おめでとうございます！  
-先ほどブラウザに貼り付けた URL(コントラクトアカウント ID に関する URL) を `#near-sharing-dapp` に投稿して、あなたの成功をコミュニティで祝いましょう 🎉
+おめでとうございます！
+先ほどブラウザに貼り付けた URL(コントラクトアカウント ID に関する URL) を `#near-sharing-economy` に投稿して、あなたの成功をコミュニティで祝いましょう 🎉

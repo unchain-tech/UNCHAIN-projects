@@ -17,7 +17,7 @@ $ npx create-near-app@3.1.0 --frontend=react --contract=rust near_bike_share_dap
 
 実行後, 必要なパッケージのインストール許可を求められるので enter を押します。
 成功すると以下のような表示がされます。
-![](/public/images/NEAR-Sharing-Economy/section-2/2_1_1.png)
+![](/public/images/NEAR-BikeShare/section-2/2_1_1.png)
 
 作成したレポジトリへ移動し, `yarn dev`を実行しましょう！
 
@@ -43,13 +43,13 @@ $ yarn dev
 しばらく待つとあなたのローカル環境で、Web サイトのフロントエンドが立ち上がりましたか？
 
 ローカル環境で表示されている Web サイト。
-![](/public/images/NEAR-Sharing-Economy/section-2/2_1_2.png)
+![](/public/images/NEAR-BikeShare/section-2/2_1_2.png)
 
 サインインボタンを押して, 既存のアカウントでサインインしてみましょう。
-![](/public/images/NEAR-Sharing-Economy/section-2/2_1_3.png)
+![](/public/images/NEAR-BikeShare/section-2/2_1_3.png)
 
 接続完了したらこのようなサイトが表示されるはずです。
-![](/public/images/NEAR-Sharing-Economy/section-2/2_1_4.png)
+![](/public/images/NEAR-BikeShare/section-2/2_1_4.png)
 
 上記のような形でフロントエンドが確認できれば成功です。
 

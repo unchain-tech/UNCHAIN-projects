@@ -1,8 +1,8 @@
 ### 🚲 `bikeコントラクト`を自分のアカウントにデプロイしよう
 
-これまで `bikeコントラクト` は`dev-account`にデプロイしていましたが,  
-自分の作成したアカウントにデプロイしましょう。  
-[testnet wallet](https://wallet.testnet.near.org/)から新しいアカウントを作成します。  
+これまで `bikeコントラクト` は`dev-account`にデプロイしていましたが,
+自分の作成したアカウントにデプロイしましょう。
+[testnet wallet](https://wallet.testnet.near.org/)から新しいアカウントを作成します。
 ここでは`bike_account.testnet`としました。
 
 ![](/public/images/NEAR-BikeShare/section-4/4_2_1.png)
@@ -15,8 +15,8 @@ $ near login
 
 ![](/public/images/NEAR-BikeShare/section-4/4_2_2.png)
 
-それではターミナルからデプロイまでの一連の流れを実行しましょう！  
-前回までのレッスンでコンパイル済みの`out/main.wasm`が存在することが前提です。  
+それではターミナルからデプロイまでの一連の流れを実行しましょう！
+前回までのレッスンでコンパイル済みの`out/main.wasm`が存在することが前提です。
 ※ `near_bike_share_dapp` 直下で実行してください。
 
 ```
@@ -31,9 +31,9 @@ $ near deploy sub.$ID --wasmFile out/main.wasm  --initFunction 'new' --initArgs 
 Done deploying and initializing sub.bike_account.testnet
 ```
 
-次に`bikeコントラクト`のアカウントに ft を転送します。  
-`package.js`に記載した`init`スクリプトと同じことを実行していきますが,  
-コントラクト名のみ正しいものに使用するよう気をつけてください。  
+次に`bikeコントラクト`のアカウントに ft を転送します。
+`package.js`に記載した`init`スクリプトと同じことを実行していきますが,
+コントラクト名のみ正しいものに使用するよう気をつけてください。
 環境変数用意
 
 ```
@@ -59,7 +59,7 @@ const CONTRACT_NAME = process.env.CONTRACT_NAME || "sub.bike_account.testnet";
 // ...
 ```
 
-[parcel](https://parceljs.org/docs/)で web アプリをビルドします。  
+[parcel](https://parceljs.org/docs/)で web アプリをビルドします。
 ※ `near_bike_share_dapp`のルートディレクトリで実行してください。
 
 ```
@@ -70,16 +70,16 @@ $ npx parcel frontend/index.html
 
 ![](/public/images/NEAR-BikeShare/section-4/4_2_3.png)
 
-上記のような表示がされたら`ctrl + c`で抜けましょう。  
+上記のような表示がされたら`ctrl + c`で抜けましょう。
 `./dist`ディレクトリにコンパイルされたソースコードが出力されています。
 
 ### 🦋 netlify に deploy しよう
 
 最後にあなたが作成したアプリをホストしましょう！
 
-ここでは[Netlify](https://www.netlify.com/)を用いてデプロイします。  
-`Netlify` は静的サイトのホスティングを提供する web サービスです。  
-Netlify のアカウントをお持ちでない方は、上記のリンクにアクセスして、アカウントを作成してください。  
+ここでは[Netlify](https://www.netlify.com/)を用いてデプロイします。
+`Netlify` は静的サイトのホスティングを提供する web サービスです。
+Netlify のアカウントをお持ちでない方は、上記のリンクにアクセスして、アカウントを作成してください。
 その際`team name`などはご自由にご記入ください！
 
 次に netlify をローカルで実行するために以下のコマンドを実行してください。
@@ -150,7 +150,7 @@ Website URL:       https://near-bikeshare-dapp.netlify.app
 
 ### ⭐ 好きな機能を追加しよう
 
-ご自身の好きなように, またより良いと思うようにアプリをアップデートしましょう！  
+ご自身の好きなように, またより良いと思うようにアプリをアップデートしましょう！
 機能追加の例
 
 - フロントエンドの変更
@@ -160,7 +160,7 @@ Website URL:       https://near-bikeshare-dapp.netlify.app
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-economy` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
 
@@ -189,7 +189,7 @@ NFT を取得する条件は、以下のようになります。
 
 これでバイクシェア dapp を作成することができました！
 
-このアプリが  
+このアプリが
 あなたのこれからの Web3 での活動に少しでも糧となれば幸いです ✨
 
 これからも Web3 への旅を一緒に楽しみましょう 🚀

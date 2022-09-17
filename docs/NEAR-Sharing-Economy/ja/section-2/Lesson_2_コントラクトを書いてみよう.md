@@ -342,11 +342,11 @@ $ cargo test
 ```
 
 テストが成功すれば以下のような表示がされます。
-![](/public/images/NEAR-Sharing-Economy/section-2/2_2_1.png)
+![](/public/images/NEAR-BikeShare/section-2/2_2_1.png)
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-economy` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
 

@@ -1,10 +1,10 @@
 ### 🧪 結合テストの書き方を知ろう
 
-`cross contract call`のテストはユニットテストでは難しいため,  
-別のファイルに統合テストとして用意します。  
+`cross contract call`のテストはユニットテストでは難しいため,
+別のファイルに統合テストとして用意します。
 `near_bike_share_dapp` 直下の `integration-tests`ディレクトリ内を編集していきます。
 
-結合テストを記述するために`integration-tests`内に`rs`という`Rust`プロジェクトを作成します。  
+結合テストを記述するために`integration-tests`内に`rs`という`Rust`プロジェクトを作成します。
 既に`integration-tests`内に`rs`ディレクトリが存在する場合は削除しましょう。
 
 ```
@@ -36,7 +36,7 @@ $ touch .gitignore
 $ mv src/main.rs src/tests.rs
 ```
 
-フォルダ構成は以下のようになります。  
+フォルダ構成は以下のようになります。
 (`rs`ディレクトリに関連したもののみ表示しています)。
 
 ```
@@ -238,11 +238,11 @@ async fn test_transfer_ft_to_user_inspected_bike(
 }
 ```
 
-統合テストでは[workspaces](https://github.com/near/workspaces-rs)というライブラリを使用してテスト環境を使用することができます。  
+統合テストでは[workspaces](https://github.com/near/workspaces-rs)というライブラリを使用してテスト環境を使用することができます。
 簡単に流れを見ていきましょう。
 
-**コントラクトオブジェクトの用意**  
-`main`関数内に注目すると, テストで使用するコントラクトオブジェクトをそれぞれ用意しています。  
+**コントラクトオブジェクトの用意**
+`main`関数内に注目すると, テストで使用するコントラクトオブジェクトをそれぞれ用意しています。
 コントラクトオブジェクトは wasm ファイル, または既にデプロイされているコントラクトから取得することができます。
 今回は 2 通りで行っています。
 
@@ -286,28 +286,28 @@ async fn pull_contract(worker: &Worker<Sandbox>) -> anyhow::Result<Contract> {
 // ...
 ```
 
-その他`main`関数内でセットアップをした後, 実際のテストは`test_transfer_ft_to_user_inspected_bike`関数内で定義しています。  
+その他`main`関数内でセットアップをした後, 実際のテストは`test_transfer_ft_to_user_inspected_bike`関数内で定義しています。
 テスト自体は簡単で, ユーザがバイクを点検・返却のアクションの中でしっかり ft を報酬として受け取れているかを確認しています。
 
-> `U128`という型について  
-> フロントエンドとのデータのやり取りの部分でよく出てくる型です。  
-> javascript の数字は `2^53-1` よりも大きくできません。  
-> そして ft の量を扱うときには Rust 側で`u128`型を使うことが一般的です。(yoctoNEAR が存在するので)  
-> つまり`u128`型を返却するメソッドをフロントエンド側から呼び出した時,  
-> JSON から javascript へのデシリアライズの際に精度が落ちる可能性があります。  
-> そこで`U128`を使用すると`u128`型を 10 進文字列としてシリアライズします。  
-> `U128` を入力とする関数は、呼び出し側が数値を文字列で指定する必要があることを意味し、  
-> `near-sdk-rs` はそれを `U128` 型にキャストし、Rust のネイティブ `u128` をラップします。  
+> `U128`という型について
+> フロントエンドとのデータのやり取りの部分でよく出てくる型です。
+> javascript の数字は `2^53-1` よりも大きくできません。
+> そして ft の量を扱うときには Rust 側で`u128`型を使うことが一般的です。(yoctoNEAR が存在するので)
+> つまり`u128`型を返却するメソッドをフロントエンド側から呼び出した時,
+> JSON から javascript へのデシリアライズの際に精度が落ちる可能性があります。
+> そこで`U128`を使用すると`u128`型を 10 進文字列としてシリアライズします。
+> `U128` を入力とする関数は、呼び出し側が数値を文字列で指定する必要があることを意味し、
+> `near-sdk-rs` はそれを `U128` 型にキャストし、Rust のネイティブ `u128` をラップします。
 > 基礎となる `u128` は`.0`を語尾につけることで取り出すことができます。
 
 それではテストの実行部分へ移ります。
 
-`m1 mac`を使用している方(その他にも環境を合わせたい方)は注意が必要です。  
-新しいバージョンのライブラリは `m1 mac` に対応していないので  
-[git pod](https://gitpod.io/workspaces)というクラウド上で開発ができるサービスを利用します。  
+`m1 mac`を使用している方(その他にも環境を合わせたい方)は注意が必要です。
+新しいバージョンのライブラリは `m1 mac` に対応していないので
+[git pod](https://gitpod.io/workspaces)というクラウド上で開発ができるサービスを利用します。
 `git pod`を使用するにあたって次のステップを踏んでください。
 
-1. `near_bike_share_dapp`直下にある`.gitpod.yml`ファイル(無ければ作成してください)を以下の内容で上書きしてください。  
+1. `near_bike_share_dapp`直下にある`.gitpod.yml`ファイル(無ければ作成してください)を以下の内容で上書きしてください。
    `.gitpod.yml`
 
 ```
@@ -317,9 +317,9 @@ tasks:
 ```
 
 2. `near_bike_share_dapp`をレポジトリとして`git hub`上にアップロードしてください。
-   > `git hub` へのアップロードの仕方  
-   > [新しいレポジトリを作成](https://docs.github.com/ja/get-started/quickstart/create-a-repo)した後,  
-   > 手順に従いターミナルからアップロードを済ませます。  
+   > `git hub` へのアップロードの仕方
+   > [新しいレポジトリを作成](https://docs.github.com/ja/get-started/quickstart/create-a-repo)した後,
+   > 手順に従いターミナルからアップロードを済ませます。
    > 以下ターミナルで実行するコマンドの参考です。(`near_bike_share_dapp`直下で実行してください)
    >
    > ```
@@ -330,21 +330,21 @@ tasks:
    > $ git remote add origin [作成したレポジトリの SSH URL]
    > $ git push -u origin main
    > ```
-3. `git pod`でレポジトリを開く  
-   [git pod](https://gitpod.io/workspaces)へアクセスし, `git hub`と連携します。  
+3. `git pod`でレポジトリを開く
+   [git pod](https://gitpod.io/workspaces)へアクセスし, `git hub`と連携します。
    リポジトリを選択します。
 
    ![](/public/images/NEAR-BikeShare/section-3/3_3_1.png)
 
    ![](/public/images/NEAR-BikeShare/section-3/3_3_2.png)
 
-   レポジトリの連携が完了すると`git pod`上でターミナルが立ち上がり,  
-   `.gitpod.yml`内に記載したコマンドが実行されます。  
+   レポジトリの連携が完了すると`git pod`上でターミナルが立ち上がり,
+   `.gitpod.yml`内に記載したコマンドが実行されます。
    コマンド実行終了後は以下のような画面となります。
 
    ![](/public/images/NEAR-BikeShare/section-3/3_3_3.png)
 
-それではローカルまたは`git pod`上のターミナルで  
+それではローカルまたは`git pod`上のターミナルで
 以下のコマンドを実行しましょう( `near_bike_share_dapp`直下で実行してください)。
 
 ```
@@ -357,7 +357,7 @@ $ cd integration-tests/rs && cargo run --example integration-tests
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-economy` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
 
@@ -372,6 +372,6 @@ $ cd integration-tests/rs && cargo run --example integration-tests
 
 ---
 
-おめでとうございます！  
-ユニットテストに加え統合テストも実装することができました！  
+おめでとうございます！
+ユニットテストに加え統合テストも実装することができました！
 次のレッスンでは最後の機能を実装していきます！

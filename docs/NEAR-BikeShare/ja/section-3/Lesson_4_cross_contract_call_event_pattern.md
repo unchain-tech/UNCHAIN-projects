@@ -2,7 +2,7 @@
 
 まだ実装していない残りの機能は以下です！
 
-**バイクを使用するためにユーザがコントラクトへ ft を支払う**  
+**バイクを使用するためにユーザがコントラクトへ ft を支払う**
  処理の流れを整理します。
 
 1. ユーザがバイクを使用するために`bikeコントラクト`へ ft を送信する。
@@ -13,24 +13,24 @@
 
 1. ユーザが`ftコントラクト`の ft 転送メソッドを呼ぶ。
 2. `ftコントラクト`が`bikeコントラクト`へ ft の転送をするメソッドを実行。
-3. ft 転送のメソッドをトリガーに,  
+3. ft 転送のメソッドをトリガーに,
    `bikeコントラクト`は受信した ft の確認, バイクの使用手続きをするメソッドを実行。
 
-あるコントラクトのメソッドの実行が, 他のコントラクトのメソッドの実行に繋がるような機能を  
-`cross contract call`の`event pattern`で実装することができます。  
-2 つのコントラクトにそのように動作するメソッドをあらかじめ用意しておくのです。  
-例えば`ftコントラクト`には`ft_transfer_call`というメソッドが存在します。  
-このメソッドは ft の転送を行いますが, 同時に ft の転送をする相手のアカウントに  
-`ft_on_transfer`というメソッドを実装したコントラクトがあることを期待します。  
-そして ft の転送と共に`ft_on_transfer`の実行を`cross contract call`で行います。  
+あるコントラクトのメソッドの実行が, 他のコントラクトのメソッドの実行に繋がるような機能を
+`cross contract call`の`event pattern`で実装することができます。
+2 つのコントラクトにそのように動作するメソッドをあらかじめ用意しておくのです。
+例えば`ftコントラクト`には`ft_transfer_call`というメソッドが存在します。
+このメソッドは ft の転送を行いますが, 同時に ft の転送をする相手のアカウントに
+`ft_on_transfer`というメソッドを実装したコントラクトがあることを期待します。
+そして ft の転送と共に`ft_on_transfer`の実行を`cross contract call`で行います。
 つまり先ほどの処理フローはこのように書き換えることができます。
 
 1. ユーザが`ftコントラクト`の `ft_transfer_call` メソッドを呼ぶ。
 2. `ftコントラクト`が`bikeコントラクト`へ `ft_transfer_call` メソッドを実行。
 3. `bikeコントラクト`は`ft_on_transfer`にて ft の確認, バイクの使用手続きを進めます。
 
-`ft_transfer_call`について詳しくは[こちら](https://nomicon.io/Standards/Tokens/FungibleToken/Core)をご覧ください。  
-それでは`bikeコントラクト`に`ft_on_transfer`を実装しましょう！  
+`ft_transfer_call`について詳しくは[こちら](https://nomicon.io/Standards/Tokens/FungibleToken/Core)をご覧ください。
+それでは`bikeコントラクト`に`ft_on_transfer`を実装しましょう！
 `src/lib.rs`内をこのように書き換えてください！
 
 ```rs
@@ -122,22 +122,22 @@ impl Contract {
 
 主な変更点は以下です。
 
-- `AMOUNT_TO_USE_BIKE`という定数を用意。  
+- `AMOUNT_TO_USE_BIKE`という定数を用意。
   フロント側からその値を取得できるように`amount_to_use_bike`メソッドを実装。
 - `ft_on_transfer`を実装し, `use_bike`はそのヘルパー関数として編集。
 
-`ft_on_transfer`のプロトタイプ宣言を[ドキュメント](https://nomicon.io/Standards/Tokens/FungibleToken/Core#reference-level-explanation)や[ソースコード](https://github.dev/near-examples/FT)を参考に実装しています。  
+`ft_on_transfer`のプロトタイプ宣言を[ドキュメント](https://nomicon.io/Standards/Tokens/FungibleToken/Core#reference-level-explanation)や[ソースコード](https://github.dev/near-examples/FT)を参考に実装しています。
 `ft_on_transfer`の引数について整理しましょう。
 
 - `sender_id`: `ft_transfer_call`を呼び出した(つまりユーザの)アカウント ID
 - `amount` : ft の量
 - `msg` : 何かを伝えるためのメッセージ, オプション
 
-`msg`は`ft_transfer_call`によって実行したい関数が複数存在する場合にどれを実行するのかを指定するなど用途は自由です。  
-今回は実行する関数が`use_bike`と決まっているので,  
+`msg`は`ft_transfer_call`によって実行したい関数が複数存在する場合にどれを実行するのかを指定するなど用途は自由です。
+今回は実行する関数が`use_bike`と決まっているので,
 `msg`を`use_bike`に渡すバイクの index 番号の指定に使用することにします。
 
-`ft_on_transfer`の実装ができたのでテストを書きましょう！  
+`ft_on_transfer`の実装ができたのでテストを書きましょう！
 `integration-tests/rs/src/tests.rs`内に以下のコードを追加しましょう！
 
 ```rs
@@ -278,10 +278,10 @@ async fn test_transfer_call_to_use_bike(
 //ファイル終端
 ```
 
-`main`関数の中では新しいテストに使用するアカウントオブジェクト`alice`の作成を追加しています。  
+`main`関数の中では新しいテストに使用するアカウントオブジェクト`alice`の作成を追加しています。
 `test_transfer_call_to_use_bike`に今レッスンで実装した内容を確認する新しいテストを実装しております。
 
-それでは`near_bike_share_dapp`内で以下の 2 つを実行しましょう。  
+それでは`near_bike_share_dapp`内で以下の 2 つを実行しましょう。
 (`m1 mac`の方, または環境を揃えたい方は`git pod`上で実行しましょう。)
 
 ```
@@ -294,7 +294,7 @@ $ cd integration-tests/rs && cargo run --example integration-tests
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-economy` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
 
@@ -309,7 +309,7 @@ $ cd integration-tests/rs && cargo run --example integration-tests
 
 ---
 
-おめでとうございます！  
-コントラクトの機能を全て実装し, 結合テストを実行することができました！  
-テスト結果を `#near-sharing-dapp` に投稿して、あなたの成功をコミュニティで祝いましょう 🎉  
+おめでとうございます！
+コントラクトの機能を全て実装し, 結合テストを実行することができました！
+テスト結果を `#near-sharing-economy` に投稿して、あなたの成功をコミュニティで祝いましょう 🎉
 次のレッスンではさらに機能を増やしていきます！

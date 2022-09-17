@@ -217,19 +217,19 @@ $ yarn dev
 ブラウザでアプリが立ち上がれば挙動を確認しましょう！
 
 バイクを使用する前のユーザ(自分)の残高を確認します。
-![](/public/images/NEAR-Sharing-Economy/section-4/4_1_1.png)
+![](/public/images/NEAR-BikeShare/section-4/4_1_1.png)
 
 バイク使用後のユーザ(自分)の残高を確認します。(30ft 引かれています！　)
-![](/public/images/NEAR-Sharing-Economy/section-4/4_1_2.png)
+![](/public/images/NEAR-BikeShare/section-4/4_1_2.png)
 
 残高が足りない状態でバイクの使用を試みます。(アラートが出ます！　)
-![](/public/images/NEAR-Sharing-Economy/section-4/4_1_3.png)
+![](/public/images/NEAR-BikeShare/section-4/4_1_3.png)
 
 ブラウザ上で`Console`を開き, ログの最後に表示された URL(コントラクトアカウント ID に関する URL)をブラウザに貼り付けてトランザクション履歴などを確認しましょう！
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-economy` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
 
@@ -245,4 +245,4 @@ $ yarn dev
 ---
 
 おめでとうございます！
-先ほどブラウザに貼り付けた URL(コントラクトアカウント ID に関する URL) を `#near-sharing-dapp` に投稿して、あなたの成功をコミュニティで祝いましょう 🎉
+先ほどブラウザに貼り付けた URL(コントラクトアカウント ID に関する URL) を `#near-sharing-economy` に投稿して、あなたの成功をコミュニティで祝いましょう 🎉

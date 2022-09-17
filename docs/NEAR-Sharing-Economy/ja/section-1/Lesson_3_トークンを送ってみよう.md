@@ -19,7 +19,7 @@ $ near call sub.$ID new '{"owner_id": "'$ID'", "total_supply": "1000000000000000
 ```
 
 実行結果
-![](/public/images/NEAR-Sharing-Economy/section-1/1_3_1.png)
+![](/public/images/NEAR-BikeShare/section-1/1_3_1.png)
 
 `near cli`でコントラクトのメソッドを呼ぶ場合はこのような構文になっています。
 
@@ -44,7 +44,7 @@ metadata: ftに関するメタデータ
 
 `new`メソッドの呼び出しを終えたら, [testnet wallet](https://wallet.testnet.near.org/)から
 owner_id で指定したアカウントに ft が発行されていることを確認しましょう！
-![](/public/images/NEAR-Sharing-Economy/section-1/1_3_2.png)
+![](/public/images/NEAR-BikeShare/section-1/1_3_2.png)
 
 ### 🎈 コントラクトのメソッドについて
 
@@ -69,7 +69,7 @@ owner_id で指定したアカウントに ft が発行されていることを�
 ### 🚢 トークンを転送しよう
 
 トークンを転送するために [testnet wallet](https://wallet.testnet.near.org/) から(好きな名前で)他のアカウントを作成しましょう。
-![](/public/images/NEAR-Sharing-Economy/section-1/1_3_3.png)
+![](/public/images/NEAR-BikeShare/section-1/1_3_3.png)
 ここでは`ft_receiver.testnet`というアカウントを作成しました。
 コマンドラインから操作できるように`near-cli`で作成したアカウントにログインしましょう。
 
@@ -85,7 +85,7 @@ $ near call sub.$ID storage_deposit '' --accountId ft_receiver.testnet --amount 
 ```
 
 実行結果
-![](/public/images/NEAR-Sharing-Economy/section-1/1_3_4.png)
+![](/public/images/NEAR-BikeShare/section-1/1_3_4.png)
 
 このアカウントの登録作業は`ftコントラクト`が[NEP-145](https://nomicon.io/Standards/StorageManagement)という規約(ルール)に則ったストレージマネジメントを採用していることが所以です。
 
@@ -107,7 +107,7 @@ $ near call sub.$ID ft_transfer '{"receiver_id": "ft_receiver.testnet", "amount"
 ```
 
 実行結果(結果に表示される URL をブラウザに貼り付けるとトランザクションの内容が見られます)
-![](/public/images/NEAR-Sharing-Economy/section-1/1_3_5.png)
+![](/public/images/NEAR-BikeShare/section-1/1_3_5.png)
 
 結果を[testnet wallet](https://wallet.testnet.near.org/)で確認することもできますが, `viewメソッド`の`ft_balance_of`を使用して`ft_receiver.testnet`の残高を確認してみましょう。
 
@@ -116,13 +116,13 @@ $ near view sub.$ID ft_balance_of '{"account_id": "ft_receiver.testnet"}'
 ```
 
 実行結果
-![](/public/images/NEAR-Sharing-Economy/section-1/1_3_6.png)
+![](/public/images/NEAR-BikeShare/section-1/1_3_6.png)
 
 トークンの転送が完了しました 🎉
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-economy` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
 
@@ -137,6 +137,6 @@ $ near view sub.$ID ft_balance_of '{"account_id": "ft_receiver.testnet"}'
 
 おめでとうございます！
 このセクションでの作業はここで終了です。
-トークンの転送結果を `#near-sharing-dapp` に投稿して、あなたの成功をコミュニティで祝いましょう 🎉
+トークンの転送結果を `#near-sharing-economy` に投稿して、あなたの成功をコミュニティで祝いましょう 🎉
 最後にコントラクトのコードを少しだけ覗きに行きます！
 次のレッスンに進みましょう！
