@@ -83,7 +83,7 @@ cargo new near-election-dapp-contract --lib
 次にフロントエンドのセッティングもしていきます。`near-election-dapp`ディレクトリにいることを確認して以下のコードを実行しましょう。
 
 ```bash
-npx create-near-app --frontend=react --contract=rust near-election-dapp-frontend
+npx create-near-app@3.1.0 --frontend=react --contract=rust near-election-dapp-frontend
 ```
 
 コードを入力すると、2回ほどYes、Noを問われると思うので、全てYesを選択するで大丈夫です。
@@ -210,7 +210,7 @@ module.exports = {
 
 では最後に、コントラクトのディレクトリ（ここでは near-election-dapp-frontend）内にある `contract` というディレクトリは削除してください。
 
-先ほど`npx create-near-app --frontend=react --contract=rust near-election-dapp-frontend`を実行させることによってコントラクトも同時に作られましたが、一からスマートコントラクトを作る練習ということでフロントとコントラクトを別々に作っており、ややこしくなる可能性があるのでこの作業を行います。
+先ほど`npx create-near-app@3.1.0 --frontend=react --contract=rust near-election-dapp-frontend`を実行させることによってコントラクトも同時に作られましたが、一からスマートコントラクトを作る練習ということでフロントとコントラクトを別々に作っており、ややこしくなる可能性があるのでこの作業を行います。
 
 最終的なファイル構造は以下のようになっていれば OK です
 
@@ -224,7 +224,6 @@ near-election-dapp/
 └── near-election-dapp-frontend/
     ├── README.md
     ├── ava.config.cjs
-    ├── contract/
     ├── dist/
     ├── frontend/
     ├── integration-tests/
