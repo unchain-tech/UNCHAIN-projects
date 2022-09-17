@@ -404,17 +404,17 @@ npm run start
 ```
 
 するとしたのような画面が出てくるはずです。
-![](/public/images/Ganache-Yield-Farm/section-1/12_3_9.png)
+![](/public/images/ETH-Yield-Farm/section-3/3_3_1.png)
 
 ここで入力欄に100以下の数字を打ち込んで `STAKE!` ボタンを押してみてください。
 
 その後下の画像のように MetaMask の画面が2回出てくるのでその二つを承認します。
-![](/public/images/Ganache-Yield-Farm/section-1/12_3_10.png)
-![](/public/images/Ganache-Yield-Farm/section-1/12_3_11.png)
+![](/public/images/ETH-Yield-Farm/section-3/3_3_2.png)
+![](/public/images/ETH-Yield-Farm/section-3/3_3_3.png)
 
 最後にページをリロードしたら、下の画像のように Staking Balance が増えて、Balance が減っているはずです。
 
-![](/public/images/Ganache-Yield-Farm/section-1/12_3_12.png)
+![](/public/images/ETH-Yield-Farm/section-3/3_3_4.png)
 
 これでステーキングが成功しました🎉
 
@@ -441,7 +441,7 @@ Tokens issued!
 では最後に `Dapp Token Farm` の画面に移ってみましょう。
 下のように報酬として `Reward Balance` が `Staking Balance` と同じ数になっているはずです。
 
-![](/public/images/Ganache-Yield-Farm/section-1/12_3_13.png)
+![](/public/images/ETH-Yield-Farm/section-3/3_3_5.png)
 
 また、`unstake` 機能もステーキング機能同様に `UN-STAKE...` ボタンを押せば実行できるので試してみてください!
 

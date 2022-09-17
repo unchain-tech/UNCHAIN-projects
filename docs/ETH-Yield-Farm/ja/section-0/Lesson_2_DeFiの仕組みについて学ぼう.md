@@ -21,7 +21,7 @@ DeFiサービスには、以下のようなものがあります。
 
 ピアツーピアのビジネス取引を促進するために、ユーザーはdAppsを利用しますが、そのほとんどはイーサリアムネットワーク上で見つけることができます。
 
-![](/public/images/Ganache-Yield-Farm/section-1/12_2_1.png)
+![](/public/images/ETH-Yield-Farm/section-0/0_2_1.png)
 画像: [Mapping out Ethereum's DeFi
 ](https://www.theblockresearch.com/mapping-out-ethereums-defi-15376)
 
