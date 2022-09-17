@@ -74,7 +74,7 @@ npm install
 
 ### 👀 `contracts` フォルダの中身の確認する
 
-次に `scr/contracts` にあるスマートコントラクトのコードが書かれているファイルの確認を行いましょう。
+次に `src/contracts` にあるスマートコントラクトのコードが書かれているファイルの確認を行いましょう。
 
 このファイルには `MockDaiToken.sol` と `DappToken.sol` が含まれています。
 
