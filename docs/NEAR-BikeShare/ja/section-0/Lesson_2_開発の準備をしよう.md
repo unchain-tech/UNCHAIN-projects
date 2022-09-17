@@ -8,10 +8,10 @@
 - `near cli` のインストール
 - `near cli` でアカウントの操作
 
-**`node`/`npm`の取得**  
-`node`/`npm`をお持ちでない方は[こちら](https://hardhat.org/tutorial/setting-up-the-environment#installing-node.js)にアクセスし、node v16 をインストールしてください。  
-(例として使われているバージョンを 16 に変更することをお忘れなく!)。  
-今回はこちらのバージョンで進めていきます。  
+**`node`/`npm`の取得**
+`node`/`npm`をお持ちでない方は[こちら](https://hardhat.org/tutorial/setting-up-the-environment#installing-node.js)にアクセスし、node v16 をインストールしてください。
+(例として使われているバージョンを 16 に変更することをお忘れなく!)。
+今回はこちらのバージョンで進めていきます。
 この先バージョンによる違いによりエラーに遭遇する場合があるので参考にしてください。
 
 ```
@@ -30,7 +30,7 @@ $ npm -v
 $ curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
 ```
 
-このコマンドはスクリプトをダウンロードし、rustup(rust を管理するツール)のインストールを開始し、Rust の最新の安定版をインストールします。  
+このコマンドはスクリプトをダウンロードし、rustup(rust を管理するツール)のインストールを開始し、Rust の最新の安定版をインストールします。
 成功していれば下のようなメッセージが表示されているでしょう。
 
 ```
@@ -39,22 +39,22 @@ Rust is installed now. Great!
 
 Windows を使用している方や失敗した方は[こちら](https://doc.rust-jp.rs/book-ja/ch01-01-installation.html)を参考にしてください。
 
-次に [WebAssembly(Wasm)](https://webassembly.org/) 形式でコンパイルするための toolchain(Rust ではツールまたはその集まりを toolchain と総称しています)を追加しましょう！  
+次に [WebAssembly(Wasm)](https://webassembly.org/) 形式でコンパイルするための toolchain(Rust ではツールまたはその集まりを toolchain と総称しています)を追加しましょう！
 ※ スマートコントラクトは Rust から Wasm へコンパイルした後 NEAR 上にデプロイします。
 
 ```
 $ rustup target add wasm32-unknown-unknown
 ```
 
-**NEAR アカウント作成**  
+**NEAR アカウント作成**
 [こちら](https://wallet.testnet.near.org/)から NEAR のテストネットアカウントを作成してください。
 
 Create Account を選択します。
 
 ![](/public/images/NEAR-BikeShare/section-0/0_2_1.png)
 
-自由なアカウント名をつけてください。  
-ここで作成するアカウントは次項の `ftコントラクト`に利用するので ft にちなんだアカウント名にするのも良いかもしれません。  
+自由なアカウント名をつけてください。
+ここで作成するアカウントは次項の `ftコントラクト`に利用するので ft にちなんだアカウント名にするのも良いかもしれません。
 ここでは`ft_account.testnet`として進めます。
 
 ![](/public/images/NEAR-BikeShare/section-0/0_2_2.png)
@@ -86,8 +86,8 @@ Commands:
 :
 ```
 
-**`near cli` でアカウントの操作**  
-cli を利用してコマンドラインからアカウントにログインしてみましょう！  
+**`near cli` でアカウントの操作**
+cli を利用してコマンドラインからアカウントにログインしてみましょう！
 以下のコマンドを実行するとログイン画面がブラウザで開きます。
 
 ```
@@ -95,12 +95,12 @@ $ near login
 ```
 
 ![](/public/images/NEAR-BikeShare/section-0/0_2_5.png)
-アカウントへのアクセス許可を確認し, 接続へ進むとログインが成功します。  
+アカウントへのアクセス許可を確認し, 接続へ進むとログインが成功します。
 ここではアカウントへのフルアクセスを許可したので, アカウントの作成や削除, アカウントによるコントラクトの呼び出しなどあらゆる操作をコマンドラインから実行できるようになります。
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-economy` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
 

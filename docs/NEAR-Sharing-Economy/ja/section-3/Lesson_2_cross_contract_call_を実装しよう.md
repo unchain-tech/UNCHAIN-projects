@@ -626,14 +626,14 @@ $ yarn dev
 適当なユーザでサインインしてから, バイクの点検によって ft が支払われているかを確かめましょう。
 
 点検前
-![](/public/images/NEAR-Sharing-Economy/section-3/3_2_1.png)
+![](/public/images/NEAR-BikeShare/section-3/3_2_1.png)
 
 点検後
-![](/public/images/NEAR-Sharing-Economy/section-3/3_2_2.png)
+![](/public/images/NEAR-BikeShare/section-3/3_2_2.png)
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-economy` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
 

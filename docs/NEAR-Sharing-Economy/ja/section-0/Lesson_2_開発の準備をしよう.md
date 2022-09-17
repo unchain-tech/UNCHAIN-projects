@@ -50,18 +50,18 @@ $ rustup target add wasm32-unknown-unknown
 [こちら](https://wallet.testnet.near.org/)から NEAR のテストネットアカウントを作成してください。
 
 Create Account を選択します。
-![](/public/images/NEAR-Sharing-Economy/section-0/0_2_1.png)
+![](/public/images/NEAR-BikeShare/section-0/0_2_1.png)
 
 自由なアカウント名をつけてください。
 ここで作成するアカウントは次項の `ftコントラクト`に利用するので ft にちなんだアカウント名にするのも良いかもしれません。
 ここでは`ft_account.testnet`として進めます。
-![](/public/images/NEAR-Sharing-Economy/section-0/0_2_2.png)
+![](/public/images/NEAR-BikeShare/section-0/0_2_2.png)
 
 Secure Passphrase を選択(Ledger Hardware Wallet でも構いません 🙆‍♂️)してパスフレーズをどこかに保存しておきましょう！
-![](/public/images/NEAR-Sharing-Economy/section-0/0_2_3.png)
+![](/public/images/NEAR-BikeShare/section-0/0_2_3.png)
 
 Passphrase の確認が取れたらアカウント作成の完了です! 以下のような画面に移ります。
-![](/public/images/NEAR-Sharing-Economy/section-0/0_2_4.png)
+![](/public/images/NEAR-BikeShare/section-0/0_2_4.png)
 
 **`near-cli`のインストール**
 
@@ -90,13 +90,13 @@ cli を利用してコマンドラインからアカウントにログインし�
 $ near login
 ```
 
-![](/public/images/NEAR-Sharing-Economy/section-0/0_2_5.png)
+![](/public/images/NEAR-BikeShare/section-0/0_2_5.png)
 アカウントへのアクセス許可を確認し, 接続へ進むとログインが成功します。
 ここではアカウントへのフルアクセスを許可したので, アカウントの作成や削除, アカウントによるコントラクトの呼び出しなどあらゆる操作をコマンドラインから実行できるようになります。
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-economy` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
 

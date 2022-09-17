@@ -14,7 +14,7 @@ GitHub のアカウントをお持ちの方は、[こちら](https://github.com/
 
 下図のように、`Code` ボタンをクリックした後、`SSH` を選択し、Git リンクをコピーしましょう。
 
-![](/public/images/NEAR-Sharing-Economy/section-1/1_1_1.png)
+![](/public/images/NEAR-BikeShare/section-1/1_1_1.png)
 
 > ✍️: SSH の設定を行う
 >
@@ -80,7 +80,7 @@ ft ディレクトリはコントラクトに関わるものが入っていま�
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-economy` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
 
