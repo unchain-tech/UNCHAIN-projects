@@ -83,7 +83,7 @@ cargo new near-election-dapp-contract --lib
 次にフロントエンドのセッティングもしていきます。`near-election-dapp`ディレクトリにいることを確認して以下のコードを実行しましょう。
 
 ```bash
-npx create-near-app --frontend=react --contract=rust near-election-dapp-frontend
+npx create-near-app@3.1.0 --frontend=react --contract=rust near-election-dapp-frontend
 ```
 
 コードを入力すると、2回ほどYes、Noを問われると思うので、全てYesを選択するで大丈夫です。
