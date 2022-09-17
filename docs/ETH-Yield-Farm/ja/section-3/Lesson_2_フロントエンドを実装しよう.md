@@ -162,7 +162,7 @@ constructor(props) {
 
 以下のような画像が出てくれば、フロントエンドの更新は成功です!
 
-![](/public/images/Ganache-Yield-Farm/section-1/12_3_8.png)
+![](/public/images/ETH-Yield-Farm/section-3/3_2_1.png)
 
 もしフロントエンドに変更が反映されていなかったら、ページをリフレッシュしてみたり、ターミナルで `^C` を入力してもう一度 `npm run start` を実行してみてください。
 
