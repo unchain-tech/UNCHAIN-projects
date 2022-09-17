@@ -77,7 +77,7 @@ success Saved lockfile.
 
 Success! Created near-hotel-booking-dapp
    with a smart contract in Rust and a frontend template in React.js.
-🦀 If you are new to Rust please visit https://www.rust-lang.org 
+🦀 If you are new to Rust please visit https://www.rust-lang.org
 
   Your next steps:
    - Navigate to your project:
@@ -124,7 +124,7 @@ npm start
 
 あらかじめ用意されているスマートコントラクトがコンパイル・デプロイされ、Web アプリケーションが起動されます。
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/0_2_2.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/0_2_2.png)
 
 動作確認ができたので、これで環境構築＋新規プロジェクトの雛形作成は完了です！
 

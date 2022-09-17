@@ -40,15 +40,15 @@ NEAR はブロックチェーンの一つで、Ethereum に取って替わると
 
 以下は作成する Web アプリケーションのイメージです。
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-0/0_1_1.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-0/0_1_1.png)
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-0/0_1_2.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-0/0_1_2.png)
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-0/0_1_3.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-0/0_1_3.png)
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-0/0_1_4.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-0/0_1_4.png)
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-0/0_1_5.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-0/0_1_5.png)
 
 本プロジェクトは以下のステップに分かれています。
 // TODO: ステップを記載

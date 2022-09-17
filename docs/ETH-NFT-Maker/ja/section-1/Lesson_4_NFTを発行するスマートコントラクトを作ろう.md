@@ -78,7 +78,7 @@ Counters.Counter private _tokenIds;
 
 ここでは、`private _tokenIds` を宣言して、`_tokenIds` を初期化しています。
 - `_tokenIds` の初期値は 0 です。
-- 
+-
 `tokenId` は NFT の一意な識別子で、0, 1, 2, .. N のように付与されます。
 これが初めから強調してきた、NFTの本体と言ってもいい識別子になるので、これに注意してコードを書いていきましょう!
 次に、下記のコードを見ていきましょう。
@@ -185,7 +185,7 @@ NFT が発行された後、`_tokenIds.increment()`（＝ OpenZeppelin が提供
 メタデータの構造が [OpenSea の要件](https://zenn.dev/hayatoomori/articles/f26cc4637c7d66) と一致しない場合、デジタルデータは OpenSea 上で正しく表示されません。
 - Opensea は、`ERC721` のメタデータ規格をサポートしています。
 - 音声ファイル、動画ファイル、3D メディアなどに対応するメタデータ構造に関しては、[OpenSea の要件](https://zenn.dev/hayatoomori/articles/f26cc4637c7d66) を参照してください。
-- 
+-
 上記の `Tanya` の JSON メタデータをコピーして、 [ここ](https://jsonkeeper.com/)の Web サイトに貼り付けてください。
 
 この Web サイトは、JSON データをホストするのに便利です。
@@ -194,7 +194,7 @@ NFT が発行された後、`_tokenIds.increment()`（＝ OpenZeppelin が提供
 
 下図のように、Web サイトにメタデータを貼り付けて、`Save` ボタンをクリックすると、JSON ファイルへのリンクが表示されます。
 
-![](/public/images/103-ETH-NFT-Maker/section1/1-4-1.png)
+![](/public/images/ETH-NFT-Maker/section1/1-4-1.png)
 
 枠で囲んだ部分をコピーして、ブラウザに貼り付け、メタデータがリンクとして保存されていることを確認しましょう。
 
@@ -209,7 +209,7 @@ NFT が発行された後、`_tokenIds.increment()`（＝ OpenZeppelin が提供
 
 下記に Imgur で画像をアップロードした際に選択する `Direct Link` の取得方法を示します。
 
-![](/public/images/103-ETH-NFT-Maker/section1/1-4-2.png)
+![](/public/images/ETH-NFT-Maker/section1/1-4-2.png)
 ぜひ自分のお気に入りの画像を使って、自分だけのメタデータを作成してみましょう。
 
 ### 🐈 `Web3Mint.sol` を更新する
@@ -298,17 +298,17 @@ Alchemy は、世界中のトランザクションを一元化し、マイナー
 
 ### 💎 Alchemy でネットワークを作成する
 Alchemy のアカウントを作成したら、`CREATE APP` ボタンを押してください。
-![](/public/images/103-ETH-NFT-Maker/section1/1-4-3.png)
+![](/public/images/ETH-NFT-Maker/section1/1-4-3.png)
 次に、下記の項目を埋めていきます。下図を参考にしてください。
-![](/public/images/103-ETH-NFT-Maker/section1/1-4-4.png)
+![](/public/images/ETH-NFT-Maker/section1/1-4-4.png)
 - `NAME` : プロジェクトの名前（例: `Web3NFT`）
 - `DESCRIPTION` : プロジェクトの概要（任意）
 - `CHAIN` : `Ethereum` を選択。
 - `NETWORK` : `Rinkeby` を選択。
 それから、作成した App の `VIEW DETAILS` をクリックします。
-![](/public/images/103-ETH-NFT-Maker/section1/1-4-5.png)
+![](/public/images/ETH-NFT-Maker/section1/1-4-5.png)
 プロジェクトを開いたら、`VIEW KEY` ボタンをクリックします。
-![](/public/images/103-ETH-NFT-Maker/section1/1-4-6.png)
+![](/public/images/ETH-NFT-Maker/section1/1-4-6.png)
 ポップアップが開くので、`HTTP` のリンクをコピーしてください。
 これがあなたが本番環境のネットワークに接続する際に使用する `API Key` になります。
 - **`API Key` は、後で必要になるので、あなたの PC 上のわかりやすいところに、メモとして残しておいてください。**
@@ -333,19 +333,19 @@ Alchemy のアカウントを作成したら、`CREATE APP` ボタンを押し�
 >
 > 1 \. MetaMask ウォレットのネットワークトグルを開く。
 >
-> ![](/public/images/103-ETH-NFT-Maker/section1/1_4_7.png)
+> ![](/public/images/ETH-NFT-Maker/section1/1_4_7.png)
 >
 > 2 \. `Show/hide test networks` をクリック。
 >
-> ![](/public/images/103-ETH-NFT-Maker/section1/1_4_8.png)
+> ![](/public/images/ETH-NFT-Maker/section1/1_4_8.png)
 >
 > 3 \. `Show test networks` を `ON` にする。
 >
-> ![](/public/images/103-ETH-NFT-Maker/section1/1_4_9.png)
+> ![](/public/images/ETH-NFT-Maker/section1/1_4_9.png)
 >
 > 4 \. `Rinkeby Test Network` を選択する。
 >
-> ![](/public/images/103-ETH-NFT-Maker/section1/1_4_10.png)
+> ![](/public/images/ETH-NFT-Maker/section1/1_4_10.png)
 MetaMask ウォレットに `Rinkeby Test Network` が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽 ETH を取得しましょう。
 - [Alchemy](https://docs.alchemy.com/alchemy/guides/choosing-a-network#rinkeby) - 0.1 ETH（その場でもらえる）
 - [MyCrypto](https://app.mycrypto.com/faucet) - 0.01 ETH（その場でもらえる）
@@ -427,23 +427,23 @@ module.exports = {
 2\. `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の取得
 > 1\. お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを `Rinkeby Test Network` に変更します。
 >
-> ![](/public/images/103-ETH-NFT-Maker/section1/1_4_11.png)
+> ![](/public/images/ETH-NFT-Maker/section1/1_4_11.png)
 >
 > 2\. それから、`Account details` を選択してください。
 >
-> ![](/public/images/103-ETH-NFT-Maker/section1/1_4_12.png)
+> ![](/public/images/ETH-NFT-Maker/section1/1_4_12.png)
 >
 > 3\. `Account details` から `Export Private Key` をクリックしてください。
 >
-> ![](/public/images/103-ETH-NFT-Maker/section1/1_4_13.png)
+> ![](/public/images/ETH-NFT-Maker/section1/1_4_13.png)
 >
 > 4\. MetaMask のパスワードを求められるので、入力したら `Confirm` を推します。
 >
-> ![](/public/images/103-ETH-NFT-Maker/section1/1_4_14.png)
+> ![](/public/images/ETH-NFT-Maker/section1/1_4_14.png)
 >
 > 5\. あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
 >
-> ![](/public/images/103-ETH-NFT-Maker/section1/1_4_15.png)
+> ![](/public/images/ETH-NFT-Maker/section1/1_4_15.png)
 >
 > `hardhat.config.js` の `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の部分をここで取得した秘密鍵とを入れ替えます。
 > ⚠️: 注意
@@ -478,10 +478,10 @@ hardhat.config.js
 > 「ログイン」には下記の情報が必要となります。
 >
 > - ユーザー名: 公開アドレス
->   ![](/public/images/103-ETH-NFT-Maker/section1/1_4_16.png)
+>   ![](/public/images/ETH-NFT-Maker/section1/1_4_16.png)
 >
 > - パスワード: 秘密鍵
->   ![](/public/images/103-ETH-NFT-Maker/section1/1_4_17.png)
+>   ![](/public/images/ETH-NFT-Maker/section1/1_4_17.png)
 >
 > ユーザー名とパスワードを使用して、AWS にログインしてプロジェクトをデプロイするのと同じです。
 
@@ -514,11 +514,11 @@ _表示されるまでに約 1 分かかる場合があります。_
 **🐝: Rarible で NFT を確認する方法**
 [`rinkeby.rarible.com`](https://rinkeby.rarible.com/) にアクセスしてください。
 ターミナルに出力された `Contract deployed to` に続くアドレスを検索してみましょう。
-![](/public/images/103-ETH-NFT-Maker/section1/1_4_18.png)
+![](/public/images/ETH-NFT-Maker/section1/1_4_18.png)
 `TanyaNFT` をクリックしてみましょう。
-![](/public/images/103-ETH-NFT-Maker/section1/1_4_19.png)
+![](/public/images/ETH-NFT-Maker/section1/1_4_19.png)
 コレクションが Rarible に表示されているのを確認してください。
-![](/public/images/103-ETH-NFT-Maker/section1/1_4_20.png)
+![](/public/images/ETH-NFT-Maker/section1/1_4_20.png)
 私が作成した Tanya コレクションの `tokenID` 0 番のリンクは[こちら](https://rinkeby.rarible.com/token/0x67cd3f53c20e3a6211458dd5b7465e1f9464531c:0)になります。
 リンクの内容は以下のようになります。
 ```

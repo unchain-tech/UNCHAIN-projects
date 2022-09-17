@@ -27,11 +27,11 @@ Alchemy は、世界中のトランザクションを一元化し、マイナー
 **_なお Alchemy の Dadhboard がなかなか開けないなどの不調がごくまれに起こる場合があります。その場合は 1 日程度時間を置いてから作業すると回復します。この場合、こちらで何かをすることはできません。ひと休みですね。_**
 
 Alchemy のアカウントを作成したら、Dashboard の`CREATE APP` ボタンを押してください。
-![](/public/images/202-Polygon-ENS-Domain/section-1/1_5_1.png)
+![](/public/images/Polygon-ENS-Domain/section-1/1_5_1.png)
 
 次に、下記の項目を埋めていきます。下図を参考にしてください。
 
-![](/public/images/202-Polygon-ENS-Domain/section-1/1_5_2.png)
+![](/public/images/Polygon-ENS-Domain/section-1/1_5_2.png)
 
 - `NAME`: プロジェクトの名前（例: `CoolDomains`）
 - `DESCRIPTION`: プロジェクトの概要（例：`ENS on Polygon`）
@@ -40,7 +40,7 @@ Alchemy のアカウントを作成したら、Dashboard の`CREATE APP` ボタ�
 
 それから、作成した App の `VIEW DETAILS` をクリックします。
 
-![](/public/images/202-Polygon-ENS-Domain/section-1/1_5_3.png)
+![](/public/images/Polygon-ENS-Domain/section-1/1_5_3.png)
 
 プロジェクトを開いたら、`VIEW KEY` ボタンをクリックします。
 
@@ -66,15 +66,15 @@ Matic Mainnet を MetaMask に追加するには、次の手順に従ってく�
 
 まず、[Polygonscan](https://polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Polygon Network` ボタンをクリックします。
 
-![](/public/images/202-Polygon-ENS-Domain/section-1/1_5_4.png)
+![](/public/images/Polygon-ENS-Domain/section-1/1_5_4.png)
 
 下記のようなポップアップが立ち上がったら、`Switch Network` をクリックしましょう。
 
-![](/public/images/202-Polygon-ENS-Domain/section-1/1_5_5.png)
+![](/public/images/Polygon-ENS-Domain/section-1/1_5_5.png)
 
 `Matic Mainnet` があなたの MetaMask にセットアップされました。
 
-![](/public/images/202-Polygon-ENS-Domain/section-1/1_5_6.png)
+![](/public/images/Polygon-ENS-Domain/section-1/1_5_6.png)
 
 **2 \. Polygon Mumbai-Testnet を MetaMask に接続する**
 
@@ -90,7 +90,7 @@ MetaMask と Hardhat の両方で Polygon ネットワークの設定が完了�
 
 [こちら](https://faucet.polygon.technology/) にアクセスして、下記のように偽 MATIC をリクエストしてください。
 
-![](/public/images/202-Polygon-ENS-Domain/section-1/1_5_7.png)
+![](/public/images/Polygon-ENS-Domain/section-1/1_5_7.png)
 
 1 回のリクエストでは少量ですので、数回リクエストして、1 MATIC 程度 入手しましょう。
 
@@ -244,7 +244,7 @@ RPCについては検索してみてください。
 
 すべてが問題なく機能した場合は、コントラクトに基づいて実行されたいくつかのトランザクションを確認できるはずです。
 
-![](/public/images/202-Polygon-ENS-Domain/section-1/1_5_8.png)
+![](/public/images/Polygon-ENS-Domain/section-1/1_5_8.png)
 
 Polygonscan の使用に慣れると便利です。これは、問題が発生した場合にデプロイを追跡して問題を解決する最も簡単なツールです。 Polygonscan に表示されない場合は、まだ処理中であるか、問題が発生したことを意味します。
 
@@ -257,7 +257,7 @@ Polygonscan の使用に慣れると便利です。これは、問題が発生�
 
 - [テストネット用の OpenSea](https://testnets.opensea.io/) でも同じように確認できますが、NFT が OpenSea に反映されるまでに時間がかかるので、Rarible で検証することをお勧めします。
 
-![](/public/images/202-Polygon-ENS-Domain/section-1/1_5_9.png)
+![](/public/images/Polygon-ENS-Domain/section-1/1_5_9.png)
 
 独自のドメインコントラクトを作成し、**ドメインを作成できました!**
 
@@ -265,7 +265,7 @@ Polygonscan の使用に慣れると便利です。これは、問題が発生�
 
 数分待っても NFT が Rarible に表示されない場合は、[testnets.dev](http://testnets.dev)というサイトにアクセスしてください。 上部のテストネット選択で Matic Mumbai を選択し、コントラクトアドレスを入力して、トークン ID を 0 に設定します。 これで実際のブロックチェーンであなたのドメインを見ることができます。
 
-![](/public/images/202-Polygon-ENS-Domain/section-1/1_5_10.png)
+![](/public/images/Polygon-ENS-Domain/section-1/1_5_10.png)
 
 ### 🙋‍♂️ 質問する
 

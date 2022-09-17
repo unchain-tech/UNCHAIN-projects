@@ -137,7 +137,7 @@ yarn dev
 
 背景は時間帯によって変化するような CSS が適用されているため、白くなっている可能性がありますが問題はありません。
 
-![](/public/images/401-NEAR-Election-dApp/section-0/0_2_1.png)
+![](/public/images/NEAR-Election-dApp/section-0/0_2_1.png)
 
 もし、`command not found: yarn`とエラーが出てしまった方は、以下の記事を参考にしてみてください。
 https://asapoon.com/error/2795/command-not-found-yarn/
@@ -206,7 +206,7 @@ module.exports = {
 ```
 
 下のように一部分が赤字に変わっていれば成功です！
-![](/public/images/401-NEAR-Election-dApp/section-0/0_2_2.png)
+![](/public/images/NEAR-Election-dApp/section-0/0_2_2.png)
 
 では最後に、コントラクトのディレクトリ（ここでは near-election-dapp-frontend）内にある `contract` というディレクトリは削除してください。
 
@@ -243,8 +243,8 @@ near-election-dapp/
 Rust、Tailwind で開発を行うときにエラーや候補を表示してくれる機能があるととても便利です！
 
 なので vscode を使っている方はぜひ下の二つの拡張機能を入れることをおすすめします。
-![](/public/images/401-NEAR-Election-dApp/section-0/0_2_3.png)
-![](/public/images/401-NEAR-Election-dApp/section-0/0_2_4.png)
+![](/public/images/NEAR-Election-dApp/section-0/0_2_3.png)
+![](/public/images/NEAR-Election-dApp/section-0/0_2_4.png)
 
 ### 🙋‍♂️ 質問する
 

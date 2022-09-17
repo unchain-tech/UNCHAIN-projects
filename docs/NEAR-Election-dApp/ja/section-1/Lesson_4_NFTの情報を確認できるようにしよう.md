@@ -6,11 +6,11 @@
 
 ```diff
 + use crate::*;
-+ 
++
 + pub trait NonFungibleTokenCore {
 +     fn nft_token(&self, token_id: TokenId) -> Option<JsonToken>;
 + }
-+ 
++
 + #[near_bindgen]
 + impl NonFungibleTokenCore for Contract {
 +     // get specified token info
@@ -62,13 +62,13 @@ impl NonFungibleTokenCore for Contract {
 
 ```diff
 + use crate::*;
-+ 
++
 + #[near_bindgen]
 + impl Contract {
 +     pub fn nft_total_supply(&self) -> U128 {
 +         U128(self.token_metadata_by_id.len() as u128)
 +     }
-+ 
++
 +     pub fn nft_tokens(&self, from_index: Option<U128>, limit: Option<u64>) -> Vec<JsonToken> {
 +         let start = u128::from(from_index.unwrap_or(U128(0)));
 +         self.token_metadata_by_id
@@ -78,7 +78,7 @@ impl NonFungibleTokenCore for Contract {
 +             .map(|token_id| self.nft_token(token_id.clone()).unwrap())
 +             .collect()
 +     }
-+ 
++
 +     // get number of tokens for specified owner
 +     pub fn nft_supply_for_owner(&self, account_id: AccountId) -> U128 {
 +         let tokens_for_kind_set = self.tokens_per_owner.get(&account_id);
@@ -88,7 +88,7 @@ impl NonFungibleTokenCore for Contract {
 +             U128(0)
 +         }
 +     }
-+ 
++
 +     pub fn nft_tokens_for_owner(
 +         &self,
 +         account_id: AccountId,
@@ -101,7 +101,7 @@ impl NonFungibleTokenCore for Contract {
 +         } else {
 +             return vec![];
 +         };
-+ 
++
 +         let start = u128::from(from_index.unwrap_or(U128(0)));
 +         tokens
 +             .iter()
@@ -239,7 +239,7 @@ near call $NFT_CONTRACT_ID nft_mint '{"metadata": {"title": "Vote Ticket", "desc
 ```
 
 これによって投票券の NFT を mint できました！先ほど作成した Wallet の`Collectibles`を確認してみましょう！下のような NFT が mint できているはずです。
-![](/public/images/401-NEAR-Election-dApp/section-1/1_4_1.png)
+![](/public/images/NEAR-Election-dApp/section-1/1_4_1.png)
 
 ### 🙋‍♂️ 質問する
 

@@ -53,7 +53,7 @@ npm start
 
 例）ローカル環境で表示されている Web サイト
 
-![](/public/images/103-ETH-NFT-Maker/section3/3-1-1.png)
+![](/public/images/ETH-NFT-Maker/section3/3-1-1.png)
 
 上記のような形でフロントエンドが確認できれば成功です。
 

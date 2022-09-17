@@ -100,7 +100,7 @@ export default App;
 
 ページを好みに合わせてカスタマイズしてみてください。[GIF の参考サイト](https://giphy.com/)です。
 
-![](/public/images/202-Polygon-ENS-Domain/section-2/2_2_1.png)
+![](/public/images/Polygon-ENS-Domain/section-2/2_2_1.png)
 
 ### 🔒 ユーザーのウォレットにアクセス可能か確認する
 

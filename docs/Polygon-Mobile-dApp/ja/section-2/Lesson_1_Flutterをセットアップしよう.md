@@ -20,7 +20,7 @@ Flutterでは、プロジェクトの名前に`-`や大文字を入れること�
 
 この段階で、フォルダ構造は下記のようになっていることを確認してください。
 
-![](/public/images/203-Polygon-Mobile-dApp/section-2/2_1_01.png)
+![](/public/images/Polygon-Mobile-dApp/section-2/2_1_01.png)
 
 ### ✨ Flutterプロジェクトのセットアップをする。
 

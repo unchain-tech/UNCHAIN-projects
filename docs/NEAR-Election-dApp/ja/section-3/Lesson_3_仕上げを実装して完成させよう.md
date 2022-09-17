@@ -203,15 +203,15 @@ const addCandidate = async () => {
 // 以下のように書き換えましょう
 import React, { useEffect, useState } from "react";
 import {
-    nft_transfer, 
-    nft_add_likes_to_candidate, 
+    nft_transfer,
+    nft_add_likes_to_candidate,
     nft_tokens_for_kind,
-    nft_return_candidate_likes, 
-    check_voter_has_been_added, 
+    nft_return_candidate_likes,
+    check_voter_has_been_added,
     check_voter_has_voted,
-    voter_voted, 
-    close_election, 
-    if_election_closed, 
+    voter_voted,
+    close_election,
+    if_election_closed,
     reopen_election
 } from '../js/near/utils'
 import CandidateCard from "../components/candidate_card";
@@ -280,10 +280,10 @@ const Home = () => {
             // format data for rendering
             candidateCardList.push(
                 <div className="items-center">
-                    <CandidateCard 
-                        CID={candidateInfoList[i].metadata.media_CID} 
-                        name={candidateInfoList[i].metadata.candidate_name} 
-                        manifest={candidateInfoList[i].metadata.candidate_manifest} 
+                    <CandidateCard
+                        CID={candidateInfoList[i].metadata.media_CID}
+                        name={candidateInfoList[i].metadata.candidate_name}
+                        manifest={candidateInfoList[i].metadata.candidate_manifest}
                     />
                     <div className="center text-xl items-center">
                         <img src={LikeIcon} className="object-cover h-5 w-5 mr-2" />
@@ -309,10 +309,10 @@ const Home = () => {
                 candidateCardList.push(
                     <div className="items-center">
                         <div className="text-2xl shadow-rose-600 center font-semibold text-red-700">Won!</div>
-                        <CandidateCard 
-                            CID={candidateInfoList[i].metadata.media_CID} 
-                            name={candidateInfoList[i].metadata.candidate_name} 
-                            manifest={candidateInfoList[i].metadata.candidate_manifest} 
+                        <CandidateCard
+                            CID={candidateInfoList[i].metadata.media_CID}
+                            name={candidateInfoList[i].metadata.candidate_name}
+                            manifest={candidateInfoList[i].metadata.candidate_manifest}
                         />
                         <div className="center text-xl items-center">
                             <img src={LikeIcon} className="object-cover h-5 w-5 mr-2" />
@@ -326,10 +326,10 @@ const Home = () => {
                 candidateCardList.push(
                     <div className="items-center opacity-20">
                         <div className="pt-7"></div>
-                        <CandidateCard 
-                            CID={candidateInfoList[i].metadata.media_CID} 
-                            name={candidateInfoList[i].metadata.candidate_name} 
-                            manifest={candidateInfoList[i].metadata.candidate_manifest} 
+                        <CandidateCard
+                            CID={candidateInfoList[i].metadata.media_CID}
+                            name={candidateInfoList[i].metadata.candidate_name}
+                            manifest={candidateInfoList[i].metadata.candidate_manifest}
                         />
                         <div className="center text-xl items-center">
                             <img src={LikeIcon} className="object-cover h-5 w-5 mr-2" />
@@ -446,14 +446,14 @@ export default Home;
 
 ```javascript
 import {
-    nft_transfer, 
-    nft_add_likes_to_candidate, 
+    nft_transfer,
+    nft_add_likes_to_candidate,
     nft_tokens_for_kind,
-    nft_return_candidate_likes, 
-    check_voter_has_been_added, 
+    nft_return_candidate_likes,
+    check_voter_has_been_added,
     check_voter_has_voted,
-    voter_voted, close_election, 
-    if_election_closed, 
+    voter_voted, close_election,
+    if_election_closed,
     reopen_election
 } from '../js/near/utils'
 ```
@@ -560,10 +560,10 @@ const cardsInCaseOpen = () => {
         // format data for rendering
         candidateCardList.push(
             <div className="items-center">
-                <CandidateCard 
-                    CID={candidateInfoList[i].metadata.media_CID} 
-                    name={candidateInfoList[i].metadata.candidate_name} 
-                    manifest={candidateInfoList[i].metadata.candidate_manifest} 
+                <CandidateCard
+                    CID={candidateInfoList[i].metadata.media_CID}
+                    name={candidateInfoList[i].metadata.candidate_name}
+                    manifest={candidateInfoList[i].metadata.candidate_manifest}
                 />
                 <div className="center text-xl items-center">
                     <img src={LikeIcon} className="object-cover h-5 w-5 mr-2" />
@@ -760,10 +760,10 @@ yarn dev
 
 下のように表示されていたら成功です！
 section-2でコントラクト内から`nft_add_likes_to_candidate関数`を走らせたのでどれか一つの候補者の得票数が`1`になっているはずです。
-![](/public/images/401-NEAR-Election-dApp/section-3/3_3_1.png)
-![](/public/images/401-NEAR-Election-dApp/section-3/3_3_2.png)
-![](/public/images/401-NEAR-Election-dApp/section-3/3_3_3.png)
-![](/public/images/401-NEAR-Election-dApp/section-3/3_3_4.png)
+![](/public/images/NEAR-Election-dApp/section-3/3_3_1.png)
+![](/public/images/NEAR-Election-dApp/section-3/3_3_2.png)
+![](/public/images/NEAR-Election-dApp/section-3/3_3_3.png)
+![](/public/images/NEAR-Election-dApp/section-3/3_3_4.png)
 
 ### 🙋‍♂️ 質問する
 

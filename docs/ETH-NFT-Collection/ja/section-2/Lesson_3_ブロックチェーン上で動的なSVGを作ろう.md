@@ -294,7 +294,7 @@ An NFT w/ ID 1 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
 ターミナルに出力された SVG の 1 つをコピーして、[ここ](https://www.svgviewer.dev/)に貼り付け、中身を確認してみましょう。
 
 下記のような結果が表示されていればテストは成功です。
-![](/public/images/102-ETH-NFT-Collection/section-2/2_3_1.png)
+![](/public/images/ETH-NFT-Collection/section-2/2_3_1.png)
 
 ### 👩‍💻 メタデータを動的に生成する
 
@@ -651,7 +651,7 @@ NFT Preview を使用すれば、テストネットにデプロイしなくて�
 
 下記のように `Token URI` が画像として確認できれば、テストは成功です。
 
-![](/public/images/102-ETH-NFT-Collection/section-2/2_3_2.png)
+![](/public/images/ETH-NFT-Collection/section-2/2_3_2.png)
 
 ### 🚀 Rinkeby Test Network にデプロイする
 
@@ -707,7 +707,7 @@ Minted NFT #1
 - [テストネット用の OpenSea](https://testnets.opensea.io/) でも同じように確認できますが、NFT が OpenSea に反映されるまでに時間がかかるので、Rarible で検証することをお勧めします。
 
 下記のように、あなたの SquareNFT が Rarible で確認できたでしょうか？
-![](/public/images/102-ETH-NFT-Collection/section-2/2_3_3.png)
+![](/public/images/ETH-NFT-Collection/section-2/2_3_3.png)
 
 ### 🙋‍♂️ 質問する
 
