@@ -108,3 +108,7 @@ UNCHAIN のプロジェクトをみんなでより良いものにしていきま
 ---
 
 次のレッスンに進んで、Mobile dApp について学びましょう 🚀
+
+---
+
+Documentation created by [RATDOTLweb3](https://github.com/RATDOTLweb3) (UNCHAIN discord ID: Kyotaro#3990)

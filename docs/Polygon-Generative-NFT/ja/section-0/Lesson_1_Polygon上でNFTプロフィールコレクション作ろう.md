@@ -81,3 +81,7 @@ UNCHAIN のプロジェクトをみんなでより良いものにしていきま
 ---
 
 次のレッスンに進んで、Generative NFT を作成していきましょう 🚀
+
+---
+
+Documentation created by [yukis4san](https://github.com/yukis4san) (UNCHAIN discord ID: yshimura#7617)

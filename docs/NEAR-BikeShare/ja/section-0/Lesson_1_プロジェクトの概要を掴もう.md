@@ -107,3 +107,7 @@ UNCHAIN のプロジェクトをみんなでより良いものにしていきま
 ---
 
 次のレッスンでは開発の準備から進めていきます！
+
+---
+
+Documentation created by [ryojiroakiyama](https://github.com/ryojiroakiyama) (UNCHAIN discord ID: rakiyama#8051)

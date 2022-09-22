@@ -88,3 +88,7 @@ UNCHAIN のプロジェクトをみんなでより良いものにしていきま
 次のレッスンで環境構築を行い、そこからは上でに挙げたような機能をスマートコントラクトに実装していきます！
 
 楽しんでいきましょう！
+
+---
+
+Documentation created by [honganji](https://github.com/honganji) (UNCHAIN discord ID: Tonny#5693)
