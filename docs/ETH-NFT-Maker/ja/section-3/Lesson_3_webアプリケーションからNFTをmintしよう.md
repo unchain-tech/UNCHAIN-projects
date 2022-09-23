@@ -29,7 +29,7 @@ npm install --save ethers
 // NftUploader.jsx
 const askContractToMintNft = async (ipfs) => {
   const CONTRACT_ADDRESS =
-    "ここに Rinkeby Test Network にデプロイしたコントラクトのアドレスを貼り付けてください";
+    "ここに Goerli Test Network にデプロイしたコントラクトのアドレスを貼り付けてください";
   try {
     const { ethereum } = window;
     if (ethereum) {
@@ -45,7 +45,7 @@ const askContractToMintNft = async (ipfs) => {
       console.log("Mining...please wait.");
       await nftTxn.wait();
       console.log(
-        `Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`
+        `Mined, see transaction: https://goerli.etherscan.io/tx/${nftTxn.hash}`
       );
     } else {
       console.log("Ethereum object doesn't exist!");
@@ -61,7 +61,7 @@ const askContractToMintNft = async (ipfs) => {
 ```javascript
 // NftUploader.jsx
 const CONTRACT_ADDRESS =
-  "ここに Rinkeby Test Network にデプロイしたコントラクトのアドレスを貼り付けてください";
+  "ここに Goerli Test Network にデプロイしたコントラクトのアドレスを貼り付けてください";
 ```
 
 ここでは、コントラクトのアドレスを `CONTRACT_ADDRESS` に格納しています。
@@ -69,7 +69,7 @@ const CONTRACT_ADDRESS =
 **`ipfs-nfts` ディレクトリ上で、もう一度下記を実行し、コントラクトのアドレスを取得してください。**
 
 ```bash
-npx hardhat run scripts/deploy.js --network rinkeby
+npx hardhat run scripts/deploy.js --network goerli
 ```
 
 貼り付けるアドレスの例は、以下のようになります。
@@ -129,7 +129,7 @@ console.log("Mining...please wait.");
 // NftUploader.jsx
 await nftTxn.wait();
 console.log(
-  `Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`
+  `Mined, see transaction: https://goerli.etherscan.io/tx/${nftTxn.hash}`
 );
 ```
 
@@ -372,16 +372,16 @@ Web アプリケーション上で `Inspect` を選択して、Console を確認
 file.cid: bafkreifhw5rc2vbtpupbdughvz35niquk6bjx6uh6gilyflkh7ao76rwlm
 Going to pop wallet now to pay gas...
 Mining...please wait.
-Mined, see transaction: https://rinkeby.etherscan.io/tx/0x5fbe47b7c0fd658f5866d10c70bfa4616d7f26f438dcade022cbff930400f175
+Mined, see transaction: https://goerli.etherscan.io/tx/0x5fbe47b7c0fd658f5866d10c70bfa4616d7f26f438dcade022cbff930400f175
 ```
-Console に出力された `https://rinkeby.etherscan.io/...` のアドレスをクリックしてみましょう。
+Console に出力された `https://goerli.etherscan.io/...` のアドレスをクリックしてみましょう。
 
-- あなたの Rinkeby Test Network 上のトランザクションの履歴が参照できます。
+- あなたの Goerli Test Network 上のトランザクションの履歴が参照できます。
 
-次に、[rinkeby.rarible.com](https://rinkeby.rarible.com/) にアクセスして、Mint した NFT があなたの Rinkeby Test Network のアドレスに紐づいているか確認してみましょう。
+次に、[テストネット用の OpenSea](https://testnets.opensea.io/)  にアクセスして、Mint した NFT があなたの Goerli Test Network のアドレスに紐づいているか確認してみましょう。
 
 
-Console に出力された `currentAccount:` に続く、`0x..` のアドレスを Rarible の Web サイトに貼り付けて、結果が表示されたら、`Users` タブを選択してください。それから、ご自身のアカウントを開いて、NFT を確認してみましょう。
+Console に出力された `currentAccount:` に続く、`0x..` のアドレスを OpenSea の Web サイトに貼り付けて、結果が表示されたら、画面右上の `Profile` メニューを選択してください。それから、ご自身のアカウントを開いて、NFT を確認してみましょう。
 
 [opensea](https://testnets.opensea.io/)にコントラクトアドレスを入れて、調べるほうがもしかしたら早いかもしれないので、そちらも調べてみましょう。
 
@@ -391,7 +391,7 @@ Console に出力された `currentAccount:` に続く、`0x..` のアドレス�
 
 **1 \. 再度、コントラクトをデプロイする。**
 
-- `npx hardhat run scripts/deploy.js --network rinkeby` を実行する必要があります。
+- `npx hardhat run scripts/deploy.js --network goerli` を実行する必要があります。
 
 2 \. フロントエンド（`App.js`）の `CONTRACT_ADDRESS` を更新する。
 
@@ -430,7 +430,7 @@ Console に出力された `currentAccount:` に続く、`0x..` のアドレス�
 
 NFT を Mint できる Web アプリケーションはほぼ完成です!
 
-Rarible のリンクを `#eth-nft-maker` に貼り付けて、あなたの NFT をシェアしてください 😊
+OpenSea のリンクを `#eth-nft-maker` に貼り付けて、あなたの NFT をシェアしてください 😊
 
 あなたの作った NFT がどんなものなのか気になります ✨
 

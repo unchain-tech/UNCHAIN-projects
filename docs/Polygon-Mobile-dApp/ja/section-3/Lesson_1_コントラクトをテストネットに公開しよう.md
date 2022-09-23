@@ -34,7 +34,7 @@ MetaMask で Polygon ネットワークの設定が完了したら、偽の MATI
 
 ![](/public/images/Polygon-Mobile-dApp/section-3/3_1_04.png)
 
-Rinkeby とは異なり、これらのトークンの取得にそれほど問題はないはずです。
+Goerli とは異なり、これらのトークンの取得にそれほど問題はないはずです。
 
 1 回のリクエストで 0.5 MATIC（偽）が手に入るので、2 回リクエストして、1 MATIC 入手しましょう。
 
