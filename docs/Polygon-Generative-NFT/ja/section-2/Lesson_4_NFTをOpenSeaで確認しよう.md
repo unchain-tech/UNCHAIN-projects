@@ -1,10 +1,8 @@
-### 🐝 Rarible で NFT を確認する
+### 🐝 OpenSea で NFT を確認する
 
-コントラクトのアドレス（`Contract deployed to` に続く `0x..`）をターミナルからコピーして、[`rinkeby.rarible.com`](https://rinkeby.rarible.com/) に貼り付け、検索してみてください。
+コントラクトのアドレス（`Contract deployed to` に続く `0x..`）をターミナルからコピーして、[テストネット用の OpenSea](https://testnets.opensea.io/) に貼り付け、検索してみてください。
 
-- [テストネット用の OpenSea](https://testnets.opensea.io/) でも同じように確認できますが、NFT が OpenSea に反映されるまでに時間がかかるので、Rarible で検証することをお勧めします。
-
-私のコレクションはこのような形で表示されます。
+私のコレクションはこのような形で表示されます。（画像は学習コンテンツ制作時に使用していた Rarible rinkeby testnet のものを使用しています。）
 
 ![](/public/images/Polygon-Generative-NFT/section-2/2_4_1.png)
 
@@ -72,9 +70,9 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 
 module.exports = {
   solidity: "0.8.9",
-  defaultNetwork: "rinkeby",
+  defaultNetwork: "goerli",
   networks: {
-    rinkeby: {
+    goerli: {
       url: API_URL,
       accounts: [PRIVATE_KEY],
     },
@@ -92,7 +90,7 @@ module.exports = {
 ```bash
 npx hardhat clean
 
-npx hardhat verify --network rinkeby DEPLOYED_CONTRACT_ADDRESS "BASE_TOKEN_URI"
+npx hardhat verify --network goerli DEPLOYED_CONTRACT_ADDRESS "BASE_TOKEN_URI"
 ```
 
 - `DEPLOYED_CONTRACT_ADDRESS` はあなたのコントラクトアドレスです。
@@ -102,7 +100,7 @@ npx hardhat verify --network rinkeby DEPLOYED_CONTRACT_ADDRESS "BASE_TOKEN_URI"
 私のコマンドは下記のようになります。
 
 ```
-npx hardhat verify --network rinkeby 0x94E614a7D82d9dD24CBED7607a40eBE4243491dF "ipfs://QmSvw119ALMN9SkP89Xj37jvqJik8jZrSjU5c1vgBhkhz8/"
+npx hardhat verify --network goerli 0x94E614a7D82d9dD24CBED7607a40eBE4243491dF "ipfs://QmSvw119ALMN9SkP89Xj37jvqJik8jZrSjU5c1vgBhkhz8/"
 ```
 
 ターミナルに、下記のような結果が表示されていることを確認してください。
@@ -114,12 +112,12 @@ contracts/NFTCollectible.sol:NFTCollectible at 0x94E614a7D82d9dD24CBED7607a40eBE
 for verification on the block explorer. Waiting for verification result...
 
 Successfully verified contract NFTCollectible on Etherscan.
-https://rinkeby.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#code
+https://goerli.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#code
 ```
 
-出力された `rinkeby.etherscan.io` の URL にアクセスしてみましょう。
+出力された `goerli.etherscan.io` の URL にアクセスしてみましょう。
 
-私の [URL リンク](https://rinkeby.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#code) の中身は下記のように表示されます。
+私の [URL リンク](https://goerli.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#code) の中身は下記のように表示されます。
 
 ![](/public/images/Polygon-Generative-NFT/section-2/2_4_5.png)
 

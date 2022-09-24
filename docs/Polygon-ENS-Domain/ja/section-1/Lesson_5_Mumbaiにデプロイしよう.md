@@ -250,12 +250,10 @@ Polygonscan の使用に慣れると便利です。これは、問題が発生�
 
 エラーがなければ、**コントラクトをデプロイできました!**
 
-### 🐝 Rarible で NFT を確認する
+### 🐝 OpenSea で NFT を確認する
 
-コントラクトアドレス（`Contract deployed to` に続く `0x..`）をターミナルからコピーして、[`rinkeby.rarible.com`](https://rinkeby.rarible.com/) に貼り付け、検索してみてください。
+コントラクトアドレス（`Contract deployed to` に続く `0x..`）をターミナルからコピーして、[テストネット用の OpenSea](https://testnets.opensea.io/) に貼り付け、検索してみてください。
 **コントラクトアドレスはご自身のターミナルに表示されているものを使用してください。**
-
-- [テストネット用の OpenSea](https://testnets.opensea.io/) でも同じように確認できますが、NFT が OpenSea に反映されるまでに時間がかかるので、Rarible で検証することをお勧めします。
 
 ![](/public/images/Polygon-ENS-Domain/section-1/1_5_9.png)
 
@@ -263,7 +261,7 @@ Polygonscan の使用に慣れると便利です。これは、問題が発生�
 
 ### 🙀 NFT が 表示されない場合
 
-数分待っても NFT が Rarible に表示されない場合は、[testnets.dev](http://testnets.dev)というサイトにアクセスしてください。 上部のテストネット選択で Matic Mumbai を選択し、コントラクトアドレスを入力して、トークン ID を 0 に設定します。 これで実際のブロックチェーンであなたのドメインを見ることができます。
+数分待っても NFT が OpenSea に表示されない場合は、[testnets.dev](http://testnets.dev)というサイトにアクセスしてください。 上部のテストネット選択で Matic Mumbai を選択し、コントラクトアドレスを入力して、トークン ID を 0 に設定します。 これで実際のブロックチェーンであなたのドメインを見ることができます。
 
 ![](/public/images/Polygon-ENS-Domain/section-1/1_5_10.png)
 

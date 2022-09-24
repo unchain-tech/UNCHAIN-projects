@@ -117,3 +117,7 @@ UNCHAIN のプロジェクトをみんなでより良いものにしていきま
 ---
 
 次のレッスンに進んで DeFi と Yield Farming について学びましょう🎉
+
+---
+
+Documentation created by [honganji](https://github.com/honganji) (UNCHAIN discord ID: Tonny#5693)

@@ -93,4 +93,12 @@ GitHub から直接コードを編集して直接 `pull request` を送る方法
 UNCHAIN のプロジェクトをみんなでより良いものにしていきましょう ✨
 
 ---
+
 それでは次のレッスンに進みましょう!
+
+---
+
+Attribution: This learning content is licensed under [Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/) © 2022 buildspace. 
+Sharelike: Translations and modifications to markdown documents.
+
+Documentation created by [teruj](https://github.com/teruj) (UNCHAIN discord ID: takotaro#8346)
