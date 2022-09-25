@@ -101,9 +101,9 @@ Ganache の `_rpcUrl` と `_wsUrl` をローカル環境用に設定していま
 
 Ganacheから任意のアカウントの秘密鍵を設定する（Ganache UIで鍵アイコンをクリックすると取得できますので貼り付けてください）。下記参考。
 
-![](/public/images/Polygon-Mobile-dApp/section-2/2_2_01.jpg)
+![](/public/images/Polygon-Mobile-dApp/section-2/2_2_1.jpg)
 
-![](/public/images/Polygon-Mobile-dApp/section-2/2_2_02.png)
+![](/public/images/Polygon-Mobile-dApp/section-2/2_2_2.png)
 
 
 次に、`TodoListModel` クラス内の `ContractFunction? _toggleComplete;` の直下に下記を追加してください。

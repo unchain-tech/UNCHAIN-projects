@@ -194,7 +194,7 @@ NFT が発行された後、`_tokenIds.increment()`（＝ OpenZeppelin が提供
 
 下図のように、Web サイトにメタデータを貼り付けて、`Save` ボタンをクリックすると、JSON ファイルへのリンクが表示されます。
 
-![](/public/images/ETH-NFT-Maker/section1/1_4_1.png)
+![](/public/images/ETH-NFT-Maker/section-1/1_4_1.png)
 
 枠で囲んだ部分をコピーして、ブラウザに貼り付け、メタデータがリンクとして保存されていることを確認しましょう。
 
@@ -209,7 +209,7 @@ NFT が発行された後、`_tokenIds.increment()`（＝ OpenZeppelin が提供
 
 下記に Imgur で画像をアップロードした際に選択する `Direct Link` の取得方法を示します。
 
-![](/public/images/ETH-NFT-Maker/section1/1_4_2.png)
+![](/public/images/ETH-NFT-Maker/section-1/1_4_2.png)
 ぜひ自分のお気に入りの画像を使って、自分だけのメタデータを作成してみましょう。
 
 ### 🐈 `Web3Mint.sol` を更新する
@@ -298,17 +298,17 @@ Alchemy は、世界中のトランザクションを一元化し、マイナー
 
 ### 💎 Alchemy でネットワークを作成する
 Alchemy のアカウントを作成したら、`CREATE APP` ボタンを押してください。
-![](/public/images/ETH-NFT-Maker/section1/1_4_3.png)
+![](/public/images/ETH-NFT-Maker/section-1/1_4_3.png)
 次に、下記の項目を埋めていきます。下図を参考にしてください。
-![](/public/images/ETH-NFT-Maker/section1/1_4_4.png)
+![](/public/images/ETH-NFT-Maker/section-1/1_4_4.png)
 - `NAME` : プロジェクトの名前（例: `Web3NFT`）
 - `DESCRIPTION` : プロジェクトの概要（任意）
 - `CHAIN` : `Ethereum` を選択。
 - `NETWORK` : `Goerli` を選択。
 それから、作成した App の `VIEW DETAILS` をクリックします。
-![](/public/images/ETH-NFT-Maker/section1/1_4_5.png)
+![](/public/images/ETH-NFT-Maker/section-1/1_4_5.png)
 プロジェクトを開いたら、`VIEW KEY` ボタンをクリックします。
-![](/public/images/ETH-NFT-Maker/section1/1_4_6.png)
+![](/public/images/ETH-NFT-Maker/section-1/1_4_6.png)
 ポップアップが開くので、`HTTP` のリンクをコピーしてください。
 これがあなたが本番環境のネットワークに接続する際に使用する `API Key` になります。
 - **`API Key` は、後で必要になるので、あなたの PC 上のわかりやすいところに、メモとして残しておいてください。**
@@ -333,19 +333,19 @@ Alchemy のアカウントを作成したら、`CREATE APP` ボタンを押し�
 >
 > 1 \. MetaMask ウォレットのネットワークトグルを開く。
 >
-> ![](/public/images/ETH-NFT-Maker/section1/1_4_7.png)
+> ![](/public/images/ETH-NFT-Maker/section-1/1_4_7.png)
 >
 > 2 \. `Show/hide test networks` をクリック。
 >
-> ![](/public/images/ETH-NFT-Maker/section1/1_4_8.png)
+> ![](/public/images/ETH-NFT-Maker/section-1/1_4_8.png)
 >
 > 3 \. `Show test networks` を `ON` にする。
 >
-> ![](/public/images/ETH-NFT-Maker/section1/1_4_9.png)
+> ![](/public/images/ETH-NFT-Maker/section-1/1_4_9.png)
 >
 > 4 \. `Goerli Test Network` を選択する。
 >
-> ![](/public/images/ETH-NFT-Maker/section1/1_4_10.png)
+> ![](/public/images/ETH-NFT-Maker/section-1/1_4_10.png)
 MetaMask ウォレットに `Goerli Test Network` が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽 ETH を取得しましょう。
 - [Alchemy](https://goerlifaucet.com/) - 0.25 Goerli ETH （24 時間に 1 度もらうことができる）
   - ウォレットアドレスを入力して `Send Me ETH` ボタンを押下するとその場でもらえます。
@@ -427,23 +427,23 @@ module.exports = {
 2\. `YOUR_PRIVATE_GOERLI_ACCOUNT_KEY` の取得
 > 1\. お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを `Goerli Test Network` に変更します。
 >
-> ![](/public/images/ETH-NFT-Maker/section1/1_4_11.png)
+> ![](/public/images/ETH-NFT-Maker/section-1/1_4_11.png)
 >
 > 2\. それから、`Account details` を選択してください。
 >
-> ![](/public/images/ETH-NFT-Maker/section1/1_4_12.png)
+> ![](/public/images/ETH-NFT-Maker/section-1/1_4_12.png)
 >
 > 3\. `Account details` から `Export Private Key` をクリックしてください。
 >
-> ![](/public/images/ETH-NFT-Maker/section1/1_4_13.png)
+> ![](/public/images/ETH-NFT-Maker/section-1/1_4_13.png)
 >
 > 4\. MetaMask のパスワードを求められるので、入力したら `Confirm` を推します。
 >
-> ![](/public/images/ETH-NFT-Maker/section1/1_4_14.png)
+> ![](/public/images/ETH-NFT-Maker/section-1/1_4_14.png)
 >
 > 5\. あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
 >
-> ![](/public/images/ETH-NFT-Maker/section1/1_4_15.png)
+> ![](/public/images/ETH-NFT-Maker/section-1/1_4_15.png)
 >
 > `hardhat.config.js` の `YOUR_PRIVATE_GOERLI_ACCOUNT_KEY` の部分をここで取得した秘密鍵とを入れ替えます。
 > ⚠️: 注意
@@ -478,10 +478,10 @@ hardhat.config.js
 > 「ログイン」には下記の情報が必要となります。
 >
 > - ユーザー名: 公開アドレス
->   ![](/public/images/ETH-NFT-Maker/section1/1_4_16.png)
+>   ![](/public/images/ETH-NFT-Maker/section-1/1_4_16.png)
 >
 > - パスワード: 秘密鍵
->   ![](/public/images/ETH-NFT-Maker/section1/1_4_17.png)
+>   ![](/public/images/ETH-NFT-Maker/section-1/1_4_17.png)
 >
 > ユーザー名とパスワードを使用して、AWS にログインしてプロジェクトをデプロイするのと同じです。
 

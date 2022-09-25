@@ -34,7 +34,7 @@ npm run dev
 
 **ローカル環境で表示されている Web サイト**
 
-![](/public/images/Solana-Wallet/0_2_1.png)
+![](/public/images/Solana-Wallet/section-0/0_2_1.png)
 
 上記のような形でフロントエンドが確認できれば成功です。
 
