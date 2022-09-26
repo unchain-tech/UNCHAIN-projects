@@ -38,7 +38,7 @@
 すでに `MetaMask` や `Phantom` といったウォレットを使ったことがある方にとっては、内部の仕組みや動きを知ることができ、ウォレットに対する知識がより深まると思います。
 
 - レッスン完了後の画面イメージ
-![](/public/images/Solana-Wallet/0_1_1.png)
+![](/public/images/Solana-Wallet/section-0/0_1_1.png)
 
 ### 🌍 プロジェクトをアップグレードする
 
