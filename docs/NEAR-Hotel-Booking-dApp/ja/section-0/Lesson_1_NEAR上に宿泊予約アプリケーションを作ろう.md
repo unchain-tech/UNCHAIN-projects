@@ -105,3 +105,7 @@ UNCHAIN のプロジェクトをみんなでより良いものにしていきま
 ---
 
 次のレッスンに進み、環境構築から始めていきましょう 🎉
+
+---
+
+Documentation created by [yk-saito](https://github.com/yk-saito) (UNCHAIN discord ID: ysaito#8278)

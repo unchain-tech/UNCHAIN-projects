@@ -49,7 +49,7 @@ require("dotenv").config();
 module.exports = {
   solidity: "0.8.9",
   networks: {
-    rinkeby: {
+    goerli: {
       url: process.env.STAGING_ALCHEMY_KEY,
       accounts: [process.env.PRIVATE_KEY],
     },
@@ -126,17 +126,17 @@ Vercel のアカウントを取得したら、下記を実行しましょう。
 
 1\. `Dashboard` へ進んで、`New Project` を選択してください。
 
-![](/public/images/ETH-NFT-Maker/section4/4-2-1.png)
+![](/public/images/ETH-NFT-Maker/section-4/4_2_1.png)
 
 2\. `Import Git Repository` で自分の GitHub アカウントを接続したら、`nft-maker-starter-project` を選択し、`Import` してください。
 
-![](/public/images/ETH-NFT-Maker/section4/4-2-2.png)
+![](/public/images/ETH-NFT-Maker/section-4/4_2_2.png)
 
 3\. プロジェクトを作成します。Environment Variable に下記を追加します。
 
 `NAME`＝`CI`、`VALUE`＝`false`（下図参照）
 
-![](/public/images/ETH-NFT-Maker/section4/4-2-3.png)
+![](/public/images/ETH-NFT-Maker/section-4/4_2_3.png)
 
 4\. `Deploy`ボタンを推しましょう。
 
@@ -146,7 +146,7 @@ Vercel は GitHub と連動しているので、GitHub が更新されるたび�
 
 基本的に `warning` は無視して問題ありません。
 
-![](/public/images/ETH-NFT-Maker/section4/4-2-4.png)
+![](/public/images/ETH-NFT-Maker/section-4/4_2_4.png)
 
 
 ### 🙋‍♂️ 質問する

@@ -8,15 +8,15 @@ Matic Mainnet を MetaMask に追加するには、次の手順に従ってく�
 
 まず、[Polygonscan](https://polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Polygon Network` ボタンをクリックします。
 
-![](/public/images/Polygon-Mobile-dApp/section-3/3_1_01.png)
+![](/public/images/Polygon-Mobile-dApp/section-3/3_1_1.png)
 
 下記のようなポップアップが立ち上がったら、`Switch Network` をクリックしましょう。
 
-![](/public/images/Polygon-Mobile-dApp/section-3/3_1_02.png)
+![](/public/images/Polygon-Mobile-dApp/section-3/3_1_2.png)
 
 `Matic Mainnet` があなたの MetaMask にセットアップされました。
 
-![](/public/images/Polygon-Mobile-dApp/section-3/3_1_03.png)
+![](/public/images/Polygon-Mobile-dApp/section-3/3_1_3.png)
 
 **2 \. Polygon Mumbai-Testnet を MetaMask に接続する**
 
@@ -32,9 +32,9 @@ MetaMask で Polygon ネットワークの設定が完了したら、偽の MATI
 
 [こちら](https://faucet.polygon.technology/) にアクセスして、下記のように偽 MATIC をリクエストしてください。
 
-![](/public/images/Polygon-Mobile-dApp/section-3/3_1_04.png)
+![](/public/images/Polygon-Mobile-dApp/section-3/3_1_4.png)
 
-Rinkeby とは異なり、これらのトークンの取得にそれほど問題はないはずです。
+Goerli とは異なり、これらのトークンの取得にそれほど問題はないはずです。
 
 1 回のリクエストで 0.5 MATIC（偽）が手に入るので、2 回リクエストして、1 MATIC 入手しましょう。
 
@@ -121,11 +121,11 @@ module.exports = {
 
 まず、先ほどのリンクからログインして、`Create App` を選択し、下記のように設定してください。
 
-![](/public/images/Polygon-Mobile-dApp/section-3/3_1_05.png)
+![](/public/images/Polygon-Mobile-dApp/section-3/3_1_5.png)
 
 下の画像で示す部分をクリックすると、`HTTP`を確認できます。
 
-![](/public/images/Polygon-Mobile-dApp/section-3/3_1_06.jpg)
+![](/public/images/Polygon-Mobile-dApp/section-3/3_1_6.jpg)
 
 次に下記のコマンドを`todo-dApp-contract`フォルダ上でターミナルを開いて実行してください。
 
@@ -171,7 +171,7 @@ npx truffle migrate --network matic --reset
 
 下記のような結果になれば成功です。
 
-![](/public/images/Polygon-Mobile-dApp/section-3/3_1_07.png)
+![](/public/images/Polygon-Mobile-dApp/section-3/3_1_7.png)
 
 [mumbai.polygonscan.com](https://mumbai.polygonscan.com/) に向かい、`contract address` を貼り付けて、デプロイできているか確認してみましょう。
 

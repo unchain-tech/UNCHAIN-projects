@@ -35,9 +35,8 @@ Ecosystem 選択欄が出てきた場合は `Ethereum` を選択しましょう�
 
 - `NAME`: プロジェクトの名前（例: `WavePortal`）
 - `DESCRIPTION`: プロジェクトの概要
-- `ENVIRONMENT`: `Development` を選択。
-- `CHAIN`: `Ethereum` を選択。
-- `NETWORK`: `Rinkeby` を選択。
+- `CHAIN`: `Ethereum` を選択
+- `NETWORK`: `Goerli` を選択
 
 それから、作成した App の `VIEW DETAILS` をクリックします。
 ![](/public/images/ETH-dApp/section-2/2_2_3.png)
@@ -70,13 +69,13 @@ Ecosystem 選択欄が出てきた場合は `Ethereum` を選択しましょう�
 
 ### 🚰 Testnet ETH を取得する
 
-今回は、`Rinkeby` というイーサリアム財団によって運営されているテストネットを使用します。
+今回は、`Goerli` というイーサリアム財団によって運営されているテストネットを使用します。
 
-`Rinkeby` にコントラクトをデプロイし、コードのテストを行うために、偽の ETH を取得しましょう。ユーザーが偽の ETH を取得するために用意されたインフラは、「フォーセット（＝蛇口）」と呼ばれています。
+`Goerli` にコントラクトをデプロイし、コードのテストを行うために、偽の ETH を取得しましょう。ユーザーが偽の ETH を取得するために用意されたインフラは、「フォーセット（＝蛇口）」と呼ばれています。
 
-フォーセットを使用する前に、あなたの MetaMask ウォレットを `Rinkeby Test Network` に設定してください。
+フォーセットを使用する前に、あなたの MetaMask ウォレットを `Goerli Test Network` に設定してください。
 
-> ✍️: MetaMask で `Rinkeby Test Network` を設定する方法
+> ✍️: MetaMask で `Goerli Test Network` を設定する方法
 >
 > 1 \. MetaMask ウォレットのネットワークトグルを開く。
 >
@@ -90,19 +89,18 @@ Ecosystem 選択欄が出てきた場合は `Ethereum` を選択しましょう�
 >
 > ![](/public/images/ETH-dApp/section-2/2_2_15.png)
 >
-> 4 \. `Rinkeby Test Network` を選択する。
+> 4 \. `Goerli Test Network` を選択する。
 >
 > ![](/public/images/ETH-dApp/section-2/2_2_16.png)
 
-MetaMask ウォレットに `Rinkeby Test Network` が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽 ETH を取得しましょう。
+MetaMask ウォレットに `Goerli Test Network` が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽 ETH を取得しましょう。
 
-- [Alchemy](https://docs.alchemy.com/alchemy/guides/choosing-a-network#rinkeby) - 0.1 ETH（その場でもらえる）
-- [MyCrypto](https://app.mycrypto.com/faucet) - 0.01 ETH（その場でもらえる）
-- [Official Rinkeby](https://faucet.rinkeby.io/) - 3 / 7.5 / 18.75 ETH ( 8 時間 / 1 日 / 3 日)
-- [Chainlink](https://faucets.chain.link/rinkeby) - 0.1 ETH（その場でもらえる）
-  - Chainlink を使うときは `Connect wallet` をクリックして MetaMask と接続する必要があります。
+- [Alchemy](https://goerlifaucet.com/) - 0.25 Goerli ETH （24 時間に 1 度もらうことができる）
+  - ウォレットアドレスを入力して `Send Me ETH` ボタンを押下するとその場でもらえます。
+- [Chainlink](https://faucets.chain.link/) - 0.1 Goerli ETH（その場でもらえる）
+  - `Connect wallet` をクリックして MetaMask と接続する必要があります。
+  - Twitter アカウントを連携する必要があります。
 
-※ 2022/05/04 現在、 `Rinkeby Test Network` は Deprecated になっています。この時、代わりに `Goerli Test Network` を選択しても問題ありません。この場合、`Rinkeby Test Network` の部分を全て `Goerli Test Network` と読み替えてもらえれば同様に動作します。
 
 ### 📈 `hardhat.config.js` ファイルを編集する
 
@@ -132,9 +130,9 @@ require("@nomicfoundation/hardhat-toolbox");
 module.exports = {
   solidity: "0.8.9",
   networks: {
-    rinkeby: {
+    goerli: {
       url: "YOUR_ALCHEMY_API_URL",
-      accounts: ["YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY"],
+      accounts: ["YOUR_PRIVATE_GOERLI_ACCOUNT_KEY"],
     },
   },
 };
@@ -144,9 +142,9 @@ module.exports = {
 
 > `hardhat.config.js` の `YOUR_ALCHEMY_API_URL` の部分を先ほど取得した Alchemy の URL（ `HTTP` リンク） と入れ替えます。
 
-2\. `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の取得
+2\. `YOUR_PRIVATE_GOERLI_ACCOUNT_KEY` の取得
 
-> 1.  お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを `Rinkeby Test Network` に変更します。
+> 1.  お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを `Goerli Test Network` に変更します。
 >
 > ![](/public/images/ETH-dApp/section-2/2_2_5.png)
 >
@@ -166,7 +164,7 @@ module.exports = {
 >
 > ![](/public/images/ETH-dApp/section-2/2_2_9.png)
 
-> - `hardhat.config.js` の `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の部分をここで取得した秘密鍵とを入れ替えます。
+> - `hardhat.config.js` の `YOUR_PRIVATE_GOERLI_ACCOUNT_KEY` の部分をここで取得した秘密鍵とを入れ替えます。
 
 ### 🙊 秘密鍵は誰にも教えてはいけません
 
@@ -228,14 +226,14 @@ git rm --cached hardhat.config.js
 
 これで、ローカルリポジトリの `hardhat.config.js` ファイルを残した状態で、リモートリポジトリのファイルを消すことができます。再度、`git push` まで行ったら、GitHub 上に `hardhat.config.js` が存在しないことを確認してください。
 
-### 🚀 Rinkeby Test Network にコントラクトをデプロイする
+### 🚀 Goerli Test Network にコントラクトをデプロイする
 
-`hardhat.config.js` の更新が完了したら、Rinkeby Test Network にコントラクトをデプロイしてみましょう。
+`hardhat.config.js` の更新が完了したら、Goerli Test Network にコントラクトをデプロイしてみましょう。
 
 ターミナル上で `my-wave-portal` ディレクトリに移動し、下記のコマンドを実行しましょう。
 
 ```bash
-npx hardhat run scripts/deploy.js --network rinkeby
+npx hardhat run scripts/deploy.js --network goerli
 ```
 
 下記のような結果が出力されていれば成功です 🎉
@@ -251,7 +249,7 @@ Contract deployed by:  0x1A7f14FBF50acf10bCC08466743fB90384Cbd720
 
 ### 👀 Etherscan でトランザクションを確認する
 
-コピーした `Contract deployed to` に続くアドレスを、[Etherscan](https://rinkeby.etherscan.io/) に貼り付けて、あなたのスマートコントラクトのトランザクション履歴を見てみましょう。
+コピーした `Contract deployed to` に続くアドレスを、[Etherscan](https://goerli.etherscan.io/) に貼り付けて、あなたのスマートコントラクトのトランザクション履歴を見てみましょう。
 
 Etherscan は、イーサリアムネットワーク上のトランザクションに関する情報を確認するのに便利なプラットフォームです。
 
@@ -272,4 +270,4 @@ _表示されるまでに約 1 分程度かかる場合があります。_
 
 ---
 
-Rinkeby Test Network にスマートコントラクトをデプロイしたら、次のレッスンに進みましょう 🎉
+Goerli Test Network にスマートコントラクトをデプロイしたら、次のレッスンに進みましょう 🎉

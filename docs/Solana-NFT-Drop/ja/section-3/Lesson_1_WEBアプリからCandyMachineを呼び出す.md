@@ -80,7 +80,7 @@ REACT_APP_SOLANA_RPC_HOST=https://explorer-api.devnet.solana.com
 
 - 「設定」→「ネットワークの変更」→「Devnet」から変更できます。
 
-![無題](/public/images/Solana-NFT-Drop/section3/3_1_1.png)
+![無題](/public/images/Solana-NFT-Drop/section-3/3_1_1.png)
 
 ### 🤬 NFT の変更に関する注意
 
@@ -312,7 +312,7 @@ const CandyMachine = ({ walletAddress }) => {
 
 先に進んでページを更新すると、コンソールに次のようなものが表示されます。
 
-![無題](/public/images/Solana-NFT-Drop/section3/3_1_2.png)
+![無題](/public/images/Solana-NFT-Drop/section-3/3_1_2.png)
 
 Solana の devnet からデータを取得できました。
 

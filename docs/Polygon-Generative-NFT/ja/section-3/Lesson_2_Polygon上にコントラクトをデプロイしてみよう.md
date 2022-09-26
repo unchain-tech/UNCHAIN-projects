@@ -42,7 +42,7 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 module.exports = {
   solidity: "0.8.9",
   networks: {
-    rinkeby: {
+    goerli: {
       url: API_URL,
       accounts: [PRIVATE_KEY],
     },
@@ -201,7 +201,7 @@ MetaMask と Hardhat の両方で Polygon ネットワークの設定が完了�
 
 ![](/public/images/Polygon-Generative-NFT/section-3/3_2_7.png)
 
-Rinkeby とは異なり、これらのトークンの取得にそれほど問題はないはずです。
+Goerli とは異なり、これらのトークンの取得にそれほど問題はないはずです。
 
 1 回のリクエストで 0.5 MATIC（偽）が手に入るので、2 回リクエストして、1 MATIC 入手しましょう。
 

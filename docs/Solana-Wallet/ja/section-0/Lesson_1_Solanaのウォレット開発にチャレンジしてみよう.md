@@ -68,3 +68,7 @@ UNCHAIN のプロジェクトをみんなでより良いものにしていきま
 ---
 
 次のレッスンに進んでプログラミングの環境構築しましょう 🎉
+
+---
+
+Documentation created by [mango55555go](https://github.com/mango55555go) (UNCHAIN discord ID: mango55555go#6826)
