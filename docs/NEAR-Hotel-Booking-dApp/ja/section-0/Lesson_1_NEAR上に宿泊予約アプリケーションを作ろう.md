@@ -40,18 +40,40 @@ NEAR はブロックチェーンの一つで、Ethereum に取って替わると
 
 以下は作成する Web アプリケーションのイメージです。
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-0/0_1_1.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-0/0_1_1.png)
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-0/0_1_2.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-0/0_1_2.png)
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-0/0_1_3.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-0/0_1_3.png)
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-0/0_1_4.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-0/0_1_4.png)
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-0/0_1_5.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-0/0_1_5.png)
 
 本プロジェクトは以下のステップに分かれています。
-// TODO: ステップを記載
+
+1 \. **環境構築を行います。**
+
+- NEAR で開発を行うためのツールをインストールします。
+- プロジェクトの雛形となるフォルダを作成します。
+
+2 \. **スマートコントラクトを作成します。**
+
+- 始めに、部屋のデータを登録・取得するためのロジックを実装します。
+- 次に、予約機能のためのロジックを実装します。
+- それぞれ実装後にテストを行い、スマートコントラクトの動作確認を行います。
+
+3 \. **フロントエンドを作成し、アプリケーションを完成させます。**
+
+- スマートコントラクトとフロントエンドの接続部分を実装します。
+- アプリケーションの基礎となる画面遷移、コンポーネントを実装します。
+- オーナーに操作してもらう機能・ページを実装し、部屋の登録・確認ができるようにします。
+- 宿泊者に操作してもらう機能・ページを実装し、日付による部屋の検索・予約ができるようにします。
+- 最後に、任意の画像を **IPFS** にアップロードできる機能を追加します。
+
+## 4 \. **アプリケーションを公開します。**
+
+- **Netlify** というサービスにホストし、完成したアプリケーションを公開しましょう 🎉
 
 ### 🌍 プロジェクトをアップグレードする
 
@@ -83,3 +105,7 @@ UNCHAIN のプロジェクトをみんなでより良いものにしていきま
 ---
 
 次のレッスンに進み、環境構築から始めていきましょう 🎉
+
+---
+
+Documentation created by [yk-saito](https://github.com/yk-saito) (UNCHAIN discord ID: ysaito#8278)

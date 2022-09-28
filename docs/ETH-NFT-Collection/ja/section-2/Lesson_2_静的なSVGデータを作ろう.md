@@ -36,7 +36,7 @@ NFT としてこのデータを取得するために [こちら](https://www.uti
 
 - `base64` は、データを文字列にエンコードするために使用する標準規格です。
 
-![](/public/images/102-ETH-NFT-Collection/section-2/2_2_1.png)
+![](/public/images/ETH-NFT-Collection/section-2/2_2_1.png)
 
 枠で囲んだ部分を、下記に貼り付けてください。
 
@@ -46,7 +46,7 @@ data:image/svg+xml;base64,ここにあなたのSVGデータを貼り付けます
 
 下図のように、使用しているブラウザで新しいタブを開いて、上記のリンクを貼り付け、実行してみましょう。
 
-![](/public/images/102-ETH-NFT-Collection/section-2/2_2_2.png)
+![](/public/images/ETH-NFT-Collection/section-2/2_2_2.png)
 
 SVG データがあなたのブラウザでも表示されていれば成功です。
 
@@ -96,7 +96,7 @@ data:application/json;base64,ここにあなたのJSONデータを貼り付け�
 
 あなたのブラウザで、下記のような結果が出力されていれば成功です。
 
-![](/public/images/102-ETH-NFT-Collection/section-2/2_2_3.png)
+![](/public/images/ETH-NFT-Collection/section-2/2_2_3.png)
 
 私の `base64` でエンコードした JSON ファイルは、次のようになります。
 
@@ -151,7 +151,7 @@ _setTokenURI(
 - 実行する際は、ターミナル上で `epic-nfts` ディレクトリにいることを確認してください。
 
 ```bash
-npx hardhat run scripts/deploy.js --network rinkeby
+npx hardhat run scripts/deploy.js --network goerli
 ```
 
 ターミナルに下記のような結果が表示されていたら、デプロイ成功です。
@@ -164,13 +164,11 @@ Minted NFT #1
 Minted NFT #2
 ```
 
-最後に、コントラクトのアドレス（`Contract deployed to` に続く `0x..`）をターミナルからコピーして、[`rinkeby.rarible.com`](https://rinkeby.rarible.com/) に貼り付け、検索してみてください。
+最後に、コントラクトのアドレス（`Contract deployed to` に続く `0x..`）をターミナルからコピーして、[テストネット用の OpenSea](https://testnets.opensea.io/) に貼り付け、検索してみてください。
 
-- [テストネット用の OpenSea](https://testnets.opensea.io/) でも同じように確認できますが、NF が OpenSea に反映されるまでに時間がかかるので、Rarible で検証することをお勧めします。
+下記のように、あなたの SquareNFT が OpenSea で確認できたでしょうか？
 
-下記のように、あなたの SquareNFT が Rarible で確認できたでしょうか？
-
-![](/public/images/102-ETH-NFT-Collection/section-2/2_2_4.png)
+![](/public/images/ETH-NFT-Collection/section-2/2_2_4.png)
 
 ### 🙋‍♂️ 質問する
 

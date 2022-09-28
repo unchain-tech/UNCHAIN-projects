@@ -4,7 +4,7 @@
 
 これからは、スマートコントラクトを Web アプリケーションから呼び出す機能を実装していきます。
 
-下記のステップに沿って、Rinkeby Test Network にデプロイされたスマートコントラクトに、Web アプリケーションを接続させていきます。
+下記のステップに沿って、Goerli Test Network にデプロイされたスマートコントラクトに、Web アプリケーションを接続させていきます。
 
 1\. デプロイされた最新のコントラクトアドレスをコピーし、Web アプリケーションに貼り付けます。
 
@@ -121,7 +121,7 @@ import myEpicGame from "./utils/MyEpicGame.json";
 
 1\. 再度、コントラクトをデプロイする。
 
-- `npx hardhat run scripts/deploy.js --network rinkeby` を実行する必要があります。
+- `npx hardhat run scripts/deploy.js --network goerli` を実行する必要があります。
 
 2\. フロントエンド（`App.js`）の `CONTRACT_ADDRESS` を更新する。
 
@@ -158,20 +158,20 @@ import { ethers } from "ethers";
 
 ### 🌐 ネットワークを確認する
 
-次に、ユーザーが Rinkeby Test Network に接続しているか確認し、そうでない場合は、フロントエンド上でアラートを出す関数を実装していきます。
+次に、ユーザーが Goerli Test Network に接続しているか確認し、そうでない場合は、フロントエンド上でアラートを出す関数を実装していきます。
 
 `checkNetwork` 関数を `const [characterNFT, setCharacterNFT] = useState(null);` の直下に追加してください。
 
 ```javascript
 // App.js
-// ユーザーがRinkeby Network に接続されているか確認します。
-// '4' は Rinkeby のネットワークコードです。
+// ユーザーがGoerli Network に接続されているか確認します。
+// '5' は Goerli のネットワークコードです。
 const checkNetwork = async () => {
   try {
-    if (window.ethereum.networkVersion !== "4") {
-      alert("Rinkeby Test Network に接続してください!");
+    if (window.ethereum.networkVersion !== "5") {
+      alert("Goerli Test Network に接続してください!");
     } else {
-      console.log("Rinkeby に接続されています.");
+      console.log("Goerli に接続されています.");
     }
   } catch (error) {
     console.log(error);
@@ -181,9 +181,9 @@ const checkNetwork = async () => {
 
 `window.ethereum.networkVersion` では、ユーザーがどのイーサリアムネットワークを使用しているか確認しています。
 
-イーサリアムネットワークには異なるチェーン ID が付与されており、Rinkeby チェーンの ID は `4` です。
+イーサリアムネットワークには異なるチェーン ID が付与されており、Goerli チェーンの ID は `5` です。
 
-したがって、ユーザーが Rinkeby Test Network に接続されてないことを Web アプリケーションが検知したら、「Rinkeby Test Network に接続してください!」というアラートがフロントエンドに表示されます。
+したがって、ユーザーが Goerli Test Network に接続されてないことを Web アプリケーションが検知したら、「Goerli Test Network に接続してください!」というアラートがフロントエンドに表示されます。
 
 次に、`App.js` を下記のように変更していきましょう。
 
@@ -214,7 +214,7 @@ const checkNetwork = async () => {
 >     console.log("Connected", accounts[0]);
 >     setCurrentAccount(accounts[0]);
 >
->     // ユーザーが Rinkeby に接続されているか確認します。
+>     // ユーザーが Goerli に接続されているか確認します。
 >     checkNetwork();
 >   } catch (error) {
 >     console.log(error);
@@ -469,23 +469,23 @@ npm run start
 次に、ブラウザの MetaMask のプラグインをクリックし、あなたのウォレットアドレスの接続状況を確認しましょう。
 
 もし、下図のように `Connected` と表示されている場合は、`Connected` の文字をクリックします。
-![](/public/images/104-ETH-NFT-Game/section-3/3_4_1.png)
+![](/public/images/ETH-NFT-Game/section-3/3_4_1.png)
 
 そこで、Web サイトとあなたのウォレットアドレスの接続を一度解除します。
 
 - `Disconnect this account` を選択してください。
 
-![](/public/images/104-ETH-NFT-Game/section-3/3_4_2.png)
+![](/public/images/ETH-NFT-Game/section-3/3_4_2.png)
 
 ページをリフレッシュして、下記のように、`Connect Wallet to Get Started` ボタンが画面の中央に表示されていることを確認してください。
 
-![](/public/images/104-ETH-NFT-Game/section-3/3_4_3.png)
+![](/public/images/ETH-NFT-Game/section-3/3_4_3.png)
 
 次に、`Connect Wallet to Get Started` ボタンを押して、ウォレットを接続しましょう。
 
 さらに、Web アプリケーション上で右クリックを行い、`Inspect` をクリックしたら、Console に向かいましょう。
 
-![](/public/images/104-ETH-NFT-Game/section-3/3_4_4.png)
+![](/public/images/ETH-NFT-Game/section-3/3_4_4.png)
 
 Console に下記のアウトプットが表示されていることを確認してください。
 

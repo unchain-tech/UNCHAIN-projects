@@ -16,7 +16,7 @@ npx truffle compile
 
 下のようにターミナルに表示されていれば成功です。
 
-![](/public/images/203-Polygon-Mobile-dApp/section-1/1_3_01.png)
+![](/public/images/Polygon-Mobile-dApp/section-1/1_3_1.png)
 
 ブロックチェーンにコントラクトを移行します。`migrations` ディレクトリに移動し、`2_todo_contract_migration.js` というファイルを新規作成し、以下のコードを追加してください。
 
@@ -118,7 +118,7 @@ module.exports = {
 ```
 下のようにターミナルに表示されていれば成功です。
 
-![](/public/images/203-Polygon-Mobile-dApp/section-1/1_3_02.png)
+![](/public/images/Polygon-Mobile-dApp/section-1/1_3_2.png)
 
 ローカルネットワークへのコンパイルとデプロイの作業は以上で完了です。
 次は、Flutterアプリケーションへ接続していきましょう。

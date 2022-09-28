@@ -10,7 +10,7 @@
 
 `Code` ボタンをクリックして、コピーしたリポジトリのリンクをコピーしてください。
 
-![github code button](/public/images/301-Solana-dApp/section-1/1_1_1.png)
+![github code button](/public/images/Solana-dApp/section-1/1_1_1.png)
 
 最後に、ターミナルで `cd` コマンドを実行してプロジェクトが存在するディレクトリまで移動し、次のコマンドを実行します。
 
@@ -39,7 +39,7 @@ Chrome の方は[こちら](https://chrome.google.com/webstore/detail/phantom/bf
 
 - 「設定」→「ネットワークの変更」→「Devnet」から変更できます。
 
-![phantom wallet settings](/public/images/301-Solana-dApp/section-1/1_1_2.png)
+![phantom wallet settings](/public/images/Solana-dApp/section-1/1_1_2.png)
 
 ※ 本プロジェクトでは Brave と Chrome でのみ動作が確認できます。
 
@@ -181,7 +181,7 @@ const TWITTER_HANDLE = "あなたのTwitterハンドル";
 
 ※ コンソールを表示するには、ブラウザ上で `右クリック` -> `検証` -> `コンソール` を開きます。
 
-![browser console](/public/images/301-Solana-dApp/section-1/1_1_3.png)
+![browser console](/public/images/Solana-dApp/section-1/1_1_3.png)
 
 次に、Web アプリケーションがユーザーの Phantom Wallet にアクセスすることが **許可** されているかどうかを確認します。
 

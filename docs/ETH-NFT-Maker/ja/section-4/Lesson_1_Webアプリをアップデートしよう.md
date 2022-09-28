@@ -147,7 +147,7 @@ const NftUploader = () => {
         console.log("Mining...please wait.");
         await nftTxn.wait();
         console.log(
-          `Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`
+          `Mined, see transaction: https://goerli.etherscan.io/tx/${nftTxn.hash}`
         );
       } else {
         console.log("Ethereum object doesn't exist!");
@@ -229,8 +229,8 @@ MVP を起点に Web アプリケーションを自分の好きなようにア�
 
 **2\. ユーザーが間違ったネットワーク上にいるときアラートを出す**
 
-- あなたの Web サイトは Rinkeby Test Network で**のみ**機能します。
-- ユーザーが、Rinkeby 以外のネットワークにログインしている状態で、あなたの Web サイトに接続しようとしたら、それを知らせるアラートを出しましょう。
+- あなたの Web サイトは Goerli Test Network で**のみ**機能します。
+- ユーザーが、Goerli 以外のネットワークにログインしている状態で、あなたの Web サイトに接続しようとしたら、それを知らせるアラートを出しましょう。
 - `ethereum.request` と `eth_accounts` と `eth_requestAccounts` というメソッドを使用して、アラートを作成できます。
 - `eth_chainId` を使ってブロックチェーンを識別する ID を取得します。
 
@@ -240,10 +240,10 @@ MVP を起点に Web アプリケーションを自分の好きなようにア�
 // NftUploader.jsx
 let chainId = await ethereum.request({ method: "eth_chainId" });
 console.log("Connected to chain " + chainId);
-// 0x4 は　Rinkeby の ID です。
-const rinkebyChainId = "0x4";
-if (chainId !== rinkebyChainId) {
-  alert("You are not connected to the Rinkeby Test Network!");
+// 0x5 は Goerli の ID です。
+const goerliChainId = "0x5";
+if (chainId !== goerliChainId) {
+  alert("You are not connected to the Goerli Test Network!");
 }
 ```
 
@@ -257,9 +257,9 @@ if (chainId !== rinkebyChainId) {
 **4\. あなたのコレクション Web アプリケーションをリンクさせる**
 
 - あなたのコレクションを見にいけるボタンを Web アプリケーション上に作成して、ユーザーがいつでもあなたの NFT コレクションを見に行けるようにしましょう。
-- あなたの Web サイトに、「Rarible でコレクションを表示」という小さなボタンを追加します。
+- あなたの Web サイトに、「OpenSea でコレクションを表示」という小さなボタンを追加します。
 - ユーザーがそれをクリックすると、コレクションのページに行けるようにしましょう。
-- Rarible へのリンクは `NftUploader.jsx` にハードコーディングする必要があります。
+- OpenSea へのリンクは `NftUploader.jsx` にハードコーディングする必要があります。
 
 ### 🙋‍♂️ 質問する
 

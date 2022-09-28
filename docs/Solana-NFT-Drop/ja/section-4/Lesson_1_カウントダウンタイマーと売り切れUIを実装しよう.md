@@ -196,7 +196,7 @@ useEffect(() => {
 
 シンプルなカウントダウンタイマーを実装しました。
 
-![無題](/public/images/302-Solana-NFT-Drop/section4/4_1_1.png)
+![無題](/public/images/Solana-NFT-Drop/section-4/4_1_1.png)
 
 ### 📭「売り切れ」状態を構築する
 
@@ -231,7 +231,7 @@ return (
 
 実装完了です。
 
-![無題](/public/images/302-Solana-NFT-Drop/section4/4_1_2.png)
+![無題](/public/images/Solana-NFT-Drop/section-4/4_1_2.png)
 
 ### 🙋‍♂️ 質問する
 

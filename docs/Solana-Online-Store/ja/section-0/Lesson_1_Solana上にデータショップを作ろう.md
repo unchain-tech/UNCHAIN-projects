@@ -19,7 +19,7 @@
 
 以下は作成する Web アプリケーションのイメージです。
 
-![web application](/public/images/303-Solana-Online-Store/section-0/0_1_1.jpg)
+![web application](/public/images/Solana-Online-Store/section-0/0_1_1.jpg)
 
 本プロジェクトは以下の 3 つのステップに分かれています。
 
@@ -61,3 +61,10 @@ UNCHAIN のプロジェクトをみんなでより良いものにしていきま
 ---
 
 次のセクションに進み、環境構築から始めていきましょう🎉
+
+---
+
+Attribution: This learning content is licensed under [Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/) © 2022 buildspace. 
+Sharelike: Translations and modifications to markdown documents.
+
+Documentation created by [empire-uts](https://github.com/empire-uts) (UNCHAIN discord ID: kii#6246)

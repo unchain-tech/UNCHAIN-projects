@@ -12,7 +12,7 @@
 
 OpenSea のように、ユーザーが間違ったネットワークに接続している場合、警告を出す機能を実装してみてはどうでしょうか？
 
-![](/public/images/201-Polygon-Generative-NFT/section-4/4_2_1.png)
+![](/public/images/Polygon-Generative-NFT/section-4/4_2_1.png)
 
 また、ユーザーが間違ったネットワークに接続しているときに、`Mint NFT` ボタンを見えなくする機能も有効な手段でしょう。
 
@@ -50,7 +50,7 @@ ETH がいくら必要で、いくら足りないかをユーザーに知らせ�
 
 アップグレードされた UX はこのようになります。
 
-![](/public/images/201-Polygon-Generative-NFT/section-4/4_2_2.png)
+![](/public/images/Polygon-Generative-NFT/section-4/4_2_2.png)
 
 [こちら](https://nft-collectible-demoo.vercel.app/) の Web サイトは、UX のアップグレードの大部分を実装しています。
 
@@ -68,7 +68,7 @@ ETH がいくら必要で、いくら足りないかをユーザーに知らせ�
 
 UI をアップデートする際に参考になるコードが、`App.js` / `App.cs` / `Header.js` / `Footer.js` に隠されています ✨
 
-![](/public/images/201-Polygon-Generative-NFT/section-4/4_2_3.png)
+![](/public/images/Polygon-Generative-NFT/section-4/4_2_3.png)
 
 ぜひ、あなたの Web アプリケーションをアップグレードして、HTML/CSS/JavaScript への理解を深めましょう。
 
@@ -93,13 +93,13 @@ Vercel に関する詳しい説明は、[こちら](https://zenn.dev/lollipop_on
 
 `Your repositories` ページを開き、`New` ボタンを押してください。
 
-![](/public/images/201-Polygon-Generative-NFT/section-4/4_2_4.png)
+![](/public/images/Polygon-Generative-NFT/section-4/4_2_4.png)
 
 リポジトリに、`nft-collectible-frontend-git` と名前を付け足ら、`Create repository` ボタンを押してください。
 
 次に、ディレクトリのリンクをコピーしましょう。
 
-![](/public/images/201-Polygon-Generative-NFT/section-4/4_2_6.png)
+![](/public/images/Polygon-Generative-NFT/section-4/4_2_6.png)
 
 ターミナルに向かい、任意のディレクトリに移動し、コピーしたリンクを下記に貼り付け絵、実行しましょう。
 
@@ -125,17 +125,17 @@ git push
 
 1\. `Dashboard` へ進んで、`New Project` を選択してください。
 
-![](/public/images/201-Polygon-Generative-NFT/section-4/4_2_7.png)
+![](/public/images/Polygon-Generative-NFT/section-4/4_2_7.png)
 
 2\. `Import Git Repository` で自分の GitHub アカウントを接続したら、`nft-collectible-frontend-git` を選択し、`Import` してください。
 
-![](/public/images/201-Polygon-Generative-NFT/section-4/4_2_8.png)
+![](/public/images/Polygon-Generative-NFT/section-4/4_2_8.png)
 
 3\. プロジェクトを作成します。Environment Variable に下記を追加します。
 
 `NAME`＝`CI`、`VALUE`＝`false`（下図参照）
 
-![](/public/images/201-Polygon-Generative-NFT/section-4/4_2_9.png)
+![](/public/images/Polygon-Generative-NFT/section-4/4_2_9.png)
 
 4\. `Deploy`ボタンを推しましょう。
 
@@ -145,11 +145,11 @@ Vercel は GitHub と連動しているので、GitHub が更新されるたび�
 
 基本的に `warning` は無視して問題ありません。
 
-![](/public/images/201-Polygon-Generative-NFT/section-4/4_2_10.png)
+![](/public/images/Polygon-Generative-NFT/section-4/4_2_10.png)
 
 デプロイが完了したら、自分の Web サイトに向かい、NFT を Mint してみましょう。
 
-![](/public/images/201-Polygon-Generative-NFT/section-4/4_2_11.png)
+![](/public/images/Polygon-Generative-NFT/section-4/4_2_11.png)
 
 ### 🙋‍♂️ 質問する
 

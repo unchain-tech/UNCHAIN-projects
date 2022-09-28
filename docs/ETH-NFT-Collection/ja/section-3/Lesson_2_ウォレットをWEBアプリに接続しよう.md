@@ -98,11 +98,11 @@ npm run start
 
 ローカルサーバで Web サイトを立ち上げたら、サイトの上で右クリックを行い、`Inspect`を選択します。
 
-![](/public/images/102-ETH-NFT-Collection/section-3/3_2_1.png)
+![](/public/images/ETH-NFT-Collection/section-3/3_2_1.png)
 
 次に、`Console`を選択し、出力結果を確認してみましょう。
 
-![](/public/images/102-ETH-NFT-Collection/section-3/3_2_2.png)
+![](/public/images/ETH-NFT-Collection/section-3/3_2_2.png)
 
 Console に `We have the ethereum object` と表示されているでしょうか？
 
@@ -439,13 +439,13 @@ npm run start
 ローカルサーバで Web サイトを立ち上げたら、MetaMask のプラグインをクリックし、あなたのウォレットアドレスの接続状況を確認しましょう。
 もし、下図のように `Connected` と表示されている場合は、`Connected` の文字をクリックします。
 
-![](/public/images/102-ETH-NFT-Collection/section-3/3_2_3.png)
+![](/public/images/ETH-NFT-Collection/section-3/3_2_3.png)
 
 そこで、Web サイトとあなたのウォレットアドレスの接続を一度解除します。
 
 - `Disconnect this account` を選択してください。
 
-![](/public/images/102-ETH-NFT-Collection/section-3/3_2_4.png)
+![](/public/images/ETH-NFT-Collection/section-3/3_2_4.png)
 
 次にローカルサーバにホストされているあなたの Web サイトをリフレッシュしてボタンの表示を確認してください。
 
@@ -453,13 +453,13 @@ npm run start
 
 次に、右クリック → `Inspect` を選択し、Console を立ち上げましょう。下図のように、`No authorized account found` と出力されていれば成功です。
 
-![](/public/images/102-ETH-NFT-Collection/section-3/3_2_5.png)
+![](/public/images/ETH-NFT-Collection/section-3/3_2_5.png)
 
 では、`Connect Wallet` ボタンを押してみましょう。
 
 下図のように MetaMask からウォレット接続を求められますので、承認してください。
 
-![](/public/images/102-ETH-NFT-Collection/section-3/3_2_6.png)
+![](/public/images/ETH-NFT-Collection/section-3/3_2_6.png)
 
 MetaMask の承認が終わると、ウォレット接続ボタンの表示が `Mint NFT` に変更されているはずです。
 

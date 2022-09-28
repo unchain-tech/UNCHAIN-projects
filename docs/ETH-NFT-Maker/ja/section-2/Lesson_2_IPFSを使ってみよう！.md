@@ -4,30 +4,30 @@
 IPFSを作ったProtocol labsがIPFSを簡単に利用するために作ったWeb3Storageというサービスを利用します。
 [こちら](https://web3.storage/)にアクセスしてください。
 
-![](/public/images/103-ETH-NFT-Maker/section2/2-2-1.png)
+![](/public/images/ETH-NFT-Maker/section-2/2_2_1.png)
 
 sign inを押してください。
 
-![](/public/images/103-ETH-NFT-Maker/section2/2-2-2.png)
+![](/public/images/ETH-NFT-Maker/section-2/2_2_2.png)
 
 どちらかの方法でsign upをしてください。
 sign upすると次のような画面が出てくると思います。
 
-![](/public/images/103-ETH-NFT-Maker/section2/2-2-3.png)
+![](/public/images/ETH-NFT-Maker/section-2/2_2_3.png)
 
 upload fileを押してください。
 
-![](/public/images/103-ETH-NFT-Maker/section2/2-2-4.png)
+![](/public/images/ETH-NFT-Maker/section-2/2_2_4.png)
 
 自分の好きな画像をIPFSにアップロードしてみましょう!
 アップロードが完了したら、先程の画面に戻り、下にスクロールしましょう。
 
-![](/public/images/103-ETH-NFT-Maker/section2/2-2-5.png)
+![](/public/images/ETH-NFT-Maker/section-2/2_2_5.png)
 
 Fileという場所に自分のアップロードしたファイルを見つけることができると思います。
 CIDを押してください。すると、下記のような画面に切り替わるはずです。
 
-![](/public/images/103-ETH-NFT-Maker/section2/2-2-6.png)
+![](/public/images/ETH-NFT-Maker/section-2/2_2_6.png)
 
 そこで、さらに自分の上げた写真をクリックすると、先程アップロードした写真が見れるはずです。
 

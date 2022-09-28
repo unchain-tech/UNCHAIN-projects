@@ -294,7 +294,7 @@ An NFT w/ ID 1 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
 ターミナルに出力された SVG の 1 つをコピーして、[ここ](https://www.svgviewer.dev/)に貼り付け、中身を確認してみましょう。
 
 下記のような結果が表示されていればテストは成功です。
-![](/public/images/102-ETH-NFT-Collection/section-2/2_3_1.png)
+![](/public/images/ETH-NFT-Collection/section-2/2_3_1.png)
 
 ### 👩‍💻 メタデータを動的に生成する
 
@@ -651,11 +651,11 @@ NFT Preview を使用すれば、テストネットにデプロイしなくて�
 
 下記のように `Token URI` が画像として確認できれば、テストは成功です。
 
-![](/public/images/102-ETH-NFT-Collection/section-2/2_3_2.png)
+![](/public/images/ETH-NFT-Collection/section-2/2_3_2.png)
 
-### 🚀 Rinkeby Test Network にデプロイする
+### 🚀 Goerli Test Network にデプロイする
 
-下記コマンドをターミナルに入力し、Rinkeby に再度デプロイしましょう。
+下記コマンドをターミナルに入力し、Goerli に再度デプロイしましょう。
 
 `deploy.js` を下記のように更新してください。
 
@@ -692,7 +692,7 @@ runMain();
 ```
 
 ```bash
-npx hardhat run scripts/deploy.js --network rinkeby
+npx hardhat run scripts/deploy.js --network goerli
 ```
 
 下記のような結果がターミナルに表示されていれば、テストネットへのデプロイは成功です。
@@ -702,12 +702,10 @@ Contract deployed to: 0x2bE00D9524E37A432B695A033912709ecEb64Cfa
 Minted NFT #1
 ```
 
-最後に、コントラクトのアドレス（`Contract deployed to` に続く `0x..`）をターミナルからコピーして、[`rinkeby.rarible.com`](https://rinkeby.rarible.com/) に貼り付け、検索してみてください。
+最後に、コントラクトのアドレス（`Contract deployed to` に続く `0x..`）をターミナルからコピーして、[テストネット用の OpenSea](https://testnets.opensea.io/) に貼り付け、検索してみてください。
 
-- [テストネット用の OpenSea](https://testnets.opensea.io/) でも同じように確認できますが、NFT が OpenSea に反映されるまでに時間がかかるので、Rarible で検証することをお勧めします。
-
-下記のように、あなたの SquareNFT が Rarible で確認できたでしょうか？
-![](/public/images/102-ETH-NFT-Collection/section-2/2_3_3.png)
+下記のように、あなたの SquareNFT が OpenSea で確認できたでしょうか？
+![](/public/images/ETH-NFT-Collection/section-2/2_3_3.png)
 
 ### 🙋‍♂️ 質問する
 
@@ -726,7 +724,7 @@ Minted NFT #1
 
 おめでとうございます!　セクション 3 はもう少しで終了です ✨
 
-あなたの Rarible のリンクを `#eth-nft-collection` に貼り付けて、コミュニティにシェアしてください 😊
+あなたの OpenSea のリンクを `#eth-nft-collection` に貼り付けて、コミュニティにシェアしてください 😊
 
 どんな NFT を作ったのか気になります 🔥
 

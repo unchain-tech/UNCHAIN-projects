@@ -69,3 +69,7 @@ UNCHAIN のプロジェクトをみんなでより良いものにしていきま
 ---
 
 次のレッスンに進んで、NFT について学びましょう 🚀
+
+---
+
+Documentation created by [totokazu](https://github.com/totokazu) (UNCHAIN discord ID: totokazu#4878)

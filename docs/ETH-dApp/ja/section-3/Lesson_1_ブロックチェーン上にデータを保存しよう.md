@@ -458,7 +458,7 @@ We have 0 total waves!
 **1 \. ターミナル上で `my-wave-portal` に移動し、下記を実行し、コントラクトを再度デプロイする。**
 
 ```
-npx hardhat run scripts/deploy.js --network rinkeby
+npx hardhat run scripts/deploy.js --network goerli
 ```
 
 ターミナルに下記のような出力結果が表示されていれば、デプロイは成功です。
@@ -861,7 +861,7 @@ const [allWaves, setAllWaves] = useState([]);
 > 基本的な**1Gas 当たりの価格**は 「**21 `Gwei`**」 で送金されます。
 >
 > ガス価格の単位として使われている「 **`wei`** 」は、イーサリアムの単位で 1ETH とのレートは下図のようになっています。
-> ![](/public/images/101-ETH-dApp/section-3/3_1_1.png)
+> ![](/public/images/ETH-dApp/section-3/3_1_1.png)
 >
 > **`G`** はギガのことで、`1Gwei = 0.000000001ETH` です。
 >
@@ -928,7 +928,7 @@ const [allWaves, setAllWaves] = useState([]);
 
 こちらが、フロントエンドの実装結果の例になります。
 
-![](/public/images/101-ETH-dApp/section-3/3_1_2.png)
+![](/public/images/ETH-dApp/section-3/3_1_2.png)
 
 ターミナルを閉じるときは、以下のコマンドが使えます ✍️
 

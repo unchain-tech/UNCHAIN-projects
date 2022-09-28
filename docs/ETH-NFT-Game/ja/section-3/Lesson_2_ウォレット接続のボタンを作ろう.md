@@ -76,9 +76,9 @@ npm run start
 ```
 
 ローカルサーバで Web サイトを立ち上げたら、サイトの上で右クリックを行い、`Inspect`を選択します。
-![](/public/images/104-ETH-NFT-Game/section-3/3_2_1.png)
+![](/public/images/ETH-NFT-Game/section-3/3_2_1.png)
 次に、`Console`を選択し、出力結果を確認してみましょう。
-![](/public/images/104-ETH-NFT-Game/section-3/3_2_2.png)
+![](/public/images/ETH-NFT-Game/section-3/3_2_2.png)
 
 Console に `We have the ethereum object` と表示されているでしょうか？
 

@@ -6,7 +6,7 @@
 
 まず、あなたの Web アプリケーションで「👋（wave）」を送ってくれた人に「0.0001ETH（≒$0.30）」を提供するスクリプトを作成していきます。
 
-引き続き、Rinkeby Test Network 上にコントラクトをデプロイするので、ユーザーに送るのは偽の ETH になります。
+引き続き、Goerli Test Network 上にコントラクトをデプロイするので、ユーザーに送るのは偽の ETH になります。
 
 `WavePortal.sol` の `wave` 関数を下記のように更新していきます。
 
@@ -308,7 +308,7 @@ const waveContract = await waveContractFactory.deploy({
 下記を実行し、コントラクトを再度デプロイしましょう。
 
 ```
-npx hardhat run scripts/deploy.js --network rinkeby
+npx hardhat run scripts/deploy.js --network goerli
 ```
 
 ターミナルに下記のような出力結果が表示されていれば、デプロイは成功です。
@@ -319,11 +319,11 @@ Account balance:  321305319740326556
 WavePortal address:  0x550925E923Cb1734de73B3a843A21b871fe2a673
 ```
 
-[Etherscan](https://rinkeby.etherscan.io/) にアクセスして、コントラクトアドレスを貼り付けてみましょう。
+[Etherscan](https://goerli.etherscan.io/) にアクセスして、コントラクトアドレスを貼り付けてみましょう。
 
 下記のように、`Balance` が `0.001 Ether` となっていることを確認してください。
 
-![](/public/images/101-ETH-dApp/section-3/3_2_1.png)
+![](/public/images/ETH-dApp/section-3/3_2_1.png)
 
 これで、テストネットにコントラクトがデプロイされました 🎉
 
@@ -363,13 +363,13 @@ WavePortal address:  0x550925E923Cb1734de73B3a843A21b871fe2a673
 
 例）このような結果が Web アプリケーションに反映されていること確認してください。コントラクトを新しくしたので、既存の `wave` はリセットされています。
 
-> ![](/public/images/101-ETH-dApp/section-3/3_2_2.png)
+> ![](/public/images/ETH-dApp/section-3/3_2_2.png)
 
-4\. [Etherscan](https://rinkeby.etherscan.io/) にアクセスして、コントラクトアドレスを貼り付ける。
+4\. [Etherscan](https://goerli.etherscan.io/) にアクセスして、コントラクトアドレスを貼り付ける。
 
 > 下記のように、`Balance` が `0.0009 Ether` となっていることを確認してください。
 >
-> ![](/public/images/101-ETH-dApp/section-3/3_2_3.png)
+> ![](/public/images/ETH-dApp/section-3/3_2_3.png)
 >
 > WEB アプリで `wave` を送ったユーザーに 0.0001ETH を送ったので、残高が `0.001-0.0001=0.0009 ETH` になっています。
 

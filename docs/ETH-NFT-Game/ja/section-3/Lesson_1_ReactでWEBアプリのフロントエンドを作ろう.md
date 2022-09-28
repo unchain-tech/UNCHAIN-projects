@@ -19,7 +19,7 @@ GitHub のアカウントをお持ちの方は、[こちら](https://github.com/
 あなたの GitHub アカウントにフォークした `nft-game-starter-project` リポジトリを、あなたのローカル環境にクローンしてください。
 
 まず、下図のように `Code` ボタンをクリックして、`SSH` を選択し、Git リンクをコピーしましょう。
-![](/public/images/104-ETH-NFT-Game/section-3/3_1_1.png)
+![](/public/images/ETH-NFT-Game/section-3/3_1_1.png)
 
 ターミナルで先ほど作成した `ETH-NFT-game` ディレクトリに移動し、先ほどコピーしたリンクを貼り付け、下記を実行してください。
 
@@ -50,7 +50,7 @@ npm run start
 ```
 
 あなたのローカル環境で、Web サイトのフロントエンドが立ち上がりましたか？
-![](/public/images/104-ETH-NFT-Game/section-3/3_1_2.png)
+![](/public/images/ETH-NFT-Game/section-3/3_1_2.png)
 
 上記のような形でフロントエンドが確認できれば成功です。
 

@@ -25,24 +25,23 @@ Alchemy は、世界中のトランザクションを一元化し、マイナー
 ### 💎 Alchemyでネットワークを作成
 
 Alchemy のアカウントを作成したら、`CREATE APP` ボタンを押してください。
-![](/public/images/201-Polygon-Generative-NFT/section-2/2_2_1.png)
+![](/public/images/Polygon-Generative-NFT/section-2/2_2_1.png)
 
 次に、下記の項目を埋めていきます。下図を参考にしてください。
 
-![](/public/images/201-Polygon-Generative-NFT/section-2/2_2_2.png)
+![](/public/images/Polygon-Generative-NFT/section-2/2_2_2.png)
 - `NAME`: プロジェクトの名前（例: `NFTCollectible`）
 - `DESCRIPTION`: プロジェクトの概要
-- `ENVIRONMENT`: `Development` を選択。
 - `CHAIN`: `Ethereum` を選択。
-- `NETWORK`: `Rinkeby` を選択。
+- `NETWORK`: `Goerli` を選択。
 
 それから、作成した App の `VIEW DETAILS` をクリックします。
 
-![](/public/images/201-Polygon-Generative-NFT/section-2/2_2_3.png)
+![](/public/images/Polygon-Generative-NFT/section-2/2_2_3.png)
 
 プロジェクトを開いたら、`VIEW KEY` ボタンをクリックします。
 
-![](/public/images/201-Polygon-Generative-NFT/section-2/2_2_4.png)
+![](/public/images/Polygon-Generative-NFT/section-2/2_2_4.png)
 
 ポップアップが開くので、`HTTP` のリンクをコピーしてください。
 
@@ -85,30 +84,32 @@ Alchemy のアカウントを作成したら、`CREATE APP` ボタンを押し�
 このセクションでは、コードを書きながら、これらのイベントについての理解を深めていきます。
 ### 🚰 偽の ETH を取得する
 
-今回は、`Rinkeby` というイーサリアム財団によって運営されているテストネットを使用します。
+今回は、`Goerli` というイーサリアム財団によって運営されているテストネットを使用します。
 
-`Rinkeby` にコントラクトをデプロイし、コードのテストを行うために、偽の ETH を取得しましょう。ユーザーが偽の ETH を取得するために用意されたインフラは、「フォーセット（＝蛇口）」と呼ばれています。
+`Goerli` にコントラクトをデプロイし、コードのテストを行うために、偽の ETH を取得しましょう。ユーザーが偽の ETH を取得するために用意されたインフラは、「フォーセット（＝蛇口）」と呼ばれています。
 
-フォーセットを使用する前に、あなたの MetaMask ウォレットを `Rinkeby Test Network` に設定してください。
+フォーセットを使用する前に、あなたの MetaMask ウォレットを `Goerli Test Network` に設定してください。
 
->✍️: MetaMask で `Rinkeby Test Network` を設定する方法
+>✍️: MetaMask で `Goerli Test Network` を設定する方法
 > 1 \. MetaMask ウォレットのネットワークトグルを開く。
-> ![](/public/images/201-Polygon-Generative-NFT/section-2/2_2_5.png)
+> ![](/public/images/Polygon-Generative-NFT/section-2/2_2_5.png)
 >
 > 2 \. `Show/hide test networks` をクリック。
-> ![](/public/images/201-Polygon-Generative-NFT/section-2/2_2_6.png)
+> ![](/public/images/Polygon-Generative-NFT/section-2/2_2_6.png)
 >
 > 3 \. `Show test networks` を `ON` にする。
-> ![](/public/images/201-Polygon-Generative-NFT/section-2/2_2_7.png)
+> ![](/public/images/Polygon-Generative-NFT/section-2/2_2_7.png)
 >
-> 4 \. `Rinkeby Test Network` を選択する。
-> ![](/public/images/201-Polygon-Generative-NFT/section-2/2_2_8.png)
+> 4 \. `Goerli Test Network` を選択する。
+> ![](/public/images/Polygon-Generative-NFT/section-2/2_2_8.png)
 
-MetaMask ウォレットに `Rinkeby Test Network` が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽 ETH を取得しましょう。
-- [MyCrypto](https://app.mycrypto.com/faucet) - 0.01 ETH（その場でもらえる）
-- [Official Rinkeby](https://faucet.rinkeby.io/) - 3 / 7.5 / 18.75 ETH ( 8 時間 / 1 日 / 3 日)
-- [Chainlink](https://faucets.chain.link/rinkeby) - 0.1 ETH（その場でもらえる）
-  * Chainlink を使うときは `Connect wallet` をクリックして MetaMask と接続する必要があります。
+MetaMask ウォレットに `Goerli Test Network` が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽 ETH を取得しましょう。
+- [Alchemy](https://goerlifaucet.com/) - 0.25 Goerli ETH （24 時間に 1 度もらうことができる）
+  - ウォレットアドレスを入力して `Send Me ETH` ボタンを押下するとその場でもらえます。
+- [Chainlink](https://faucets.chain.link/) - 0.1 Goerli ETH（その場でもらえる）
+  - `Connect wallet` をクリックして MetaMask と接続する必要があります。
+  - Twitter アカウントを連携する必要があります。
+
 ### 🤫 機密情報を隠す
 
 まず、`dotenv` ライブラリを使用して、先ほど作成した `Alchemy URL` とあなたの MetaMask の秘密鍵を隠していきます。
@@ -117,34 +118,34 @@ MetaMask ウォレットに `Rinkeby Test Network` が設定されたら、下�
 
 ```
 API_URL="YOUR_ALCHEMY_API_URL"
-PRIVATE_KEY="YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY"
+PRIVATE_KEY="YOUR_PRIVATE_GOERLI_ACCOUNT_KEY"
 ```
 ※ ターミナルで `ls` を押すと（コマンドプロンプトでは `dir`）、隠しファイルを確認できます。
 
 1\. `YOUR_ALCHEMY_API_URL`の取得
 > `.env` の `YOUR_ALCHEMY_API_URL` の部分を先ほど取得した Alchemy の URL（ `HTTP` リンク） と入れ替えます。
 
-2\. `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の取得
-> 1\. お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを `Rinkeby Test Network` に変更します。
+2\. `YOUR_PRIVATE_GOERLI_ACCOUNT_KEY` の取得
+> 1\. お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを `Goerli Test Network` に変更します。
 >
-> ![](/public/images/201-Polygon-Generative-NFT/section-2/2_2_9.png)
+> ![](/public/images/Polygon-Generative-NFT/section-2/2_2_9.png)
 >
 > 2\. それから、`Account details` を選択してください。
-> ![](/public/images/201-Polygon-Generative-NFT/section-2/2_2_10.png)
+> ![](/public/images/Polygon-Generative-NFT/section-2/2_2_10.png)
 >
 > 3\. `Account details` から `Export Private Key` をクリックしてください。
 >
-> ![](/public/images/201-Polygon-Generative-NFT/section-2/2_2_11.png)
+> ![](/public/images/Polygon-Generative-NFT/section-2/2_2_11.png)
 >
 > 4\. MetaMask のパスワードを求められるので、入力したら `Confirm` を推します。
 >
-> ![](/public/images/201-Polygon-Generative-NFT/section-2/2_2_12.png)
+> ![](/public/images/Polygon-Generative-NFT/section-2/2_2_12.png)
 >
 > 5\. あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
 >
-> ![](/public/images/201-Polygon-Generative-NFT/section-2/2_2_13.png)
+> ![](/public/images/Polygon-Generative-NFT/section-2/2_2_13.png)
 >
-> `.env` の `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の部分をここで取得した秘密鍵とを入れ替えます。
+> `.env` の `YOUR_PRIVATE_GOERLI_ACCOUNT_KEY` の部分をここで取得した秘密鍵とを入れ替えます。
 
 >**✍️: スマートコントラクトをデプロイするのに秘密鍵が必要な理由**
 > **新しくスマートコントラクトをイーサリアムネットワーク上にデプロイすること**も、トランザクションの一つです。
@@ -195,9 +196,9 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 
 module.exports = {
   solidity: "0.8.9",
-  defaultNetwork: "rinkeby",
+  defaultNetwork: "goerli",
   networks: {
-    rinkeby: {
+    goerli: {
       url: API_URL,
       accounts: [PRIVATE_KEY]
     }
@@ -229,4 +230,4 @@ module.exports = {
 4. エラー画面のスクリーンショット
 ```
 ---
-Rinkeby Test Network へのデプロイが完了したら、次のレッスンに進みましょう🎉
+Goerli Test Network へのデプロイが完了したら、次のレッスンに進みましょう🎉

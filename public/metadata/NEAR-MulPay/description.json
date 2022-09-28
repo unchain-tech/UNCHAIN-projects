@@ -1,0 +1,9 @@
+{
+    "project_id": 404,
+    "title": "NEAR MulPay",
+    "difficulty": "advanced",
+    "chain": "NEAR",
+    "description": "👉 Solidity / Flutter / Dart を使用し、Swap 機能を搭載したモバイル送金 dApp を構築します。",
+    "total_sections": 3,
+    "total_lessons": 10
+}

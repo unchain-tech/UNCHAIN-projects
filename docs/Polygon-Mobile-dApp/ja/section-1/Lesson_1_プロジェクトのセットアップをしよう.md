@@ -44,7 +44,7 @@ npm install -g truffle@5.4.29
 
 この段階で、フォルダ構造は下記のようになっていることを確認してください。
 
-![](/public/images/203-Polygon-Mobile-dApp/section-1/1_1_01.png)
+![](/public/images/Polygon-Mobile-dApp/section-1/1_1_1.png)
 
 ### ✨ Ganache をインストールする
 

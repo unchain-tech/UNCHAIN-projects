@@ -107,7 +107,7 @@ npx hardhat test
 
 次のように表示されます。
 
-![](/public/images/102-ETH-NFT-Collection/section-1/1_2_2.png)
+![](/public/images/ETH-NFT-Collection/section-1/1_2_2.png)
 
 ターミナル上で `epic-nfts` に移動し、`ls` と入力してみて、下記のフォルダーとファイルが表示されていたら成功です。
 

@@ -9,10 +9,10 @@
 このセクションであなたは以下のことを行います 🛫
 
 - `ftコントラクト`をフロントエンドに接続して `ftコントラクト`のメソッドも利用可能にする。
-- `ftコントラクト`と `bikeコントラクト`を接続する。  
+- `ftコントラクト`と `bikeコントラクト`を接続する。
   これを行うことでバイクの使用や点検にトークンのやり取りを組み込むことができます。
 
-それでは `ftコントラクト`を接続するために  
+それでは `ftコントラクト`を接続するために
 再び`near_bike_share_dapp` の中にある`frontend`ディレクトリの中身を変更していきます。
 以降のセクションでは, 今回作成したオリジナル ft のことを ft と便宜上呼ぶことにします。
 
@@ -94,8 +94,8 @@ function getConfig(env) {
 module.exports = getConfig;
 ```
 
-変更点は, `FT_CONTRACT_NAME`を追加しています。  
-`"sub.ft_account.testnet"`の部分はあなたが `ftコントラクト`をデプロイした先のアカウント ID を入力してください。  
+変更点は, `FT_CONTRACT_NAME`を追加しています。
+`"sub.ft_account.testnet"`の部分はあなたが `ftコントラクト`をデプロイした先のアカウント ID を入力してください。
 また`getConfig`が返却するオブジェクトに`ftContractName`フィールドを追加しています。
 
 次に`frontend/assets/js/near/utils.js`を次のように変更します。
@@ -188,9 +188,9 @@ export async function ft_transfer(receiver_id, amount) {
 //ファイル終端
 ```
 
-`window`変数に`ftContract`を追加し, `ftコントラクト`上のメソッドをいくつか呼び出すようにしています。  
-各メソッドの意味はコード内コメントにて記載しています。  
-詳しくは[こちら](https://nomicon.io/Standards/Tokens/FungibleToken/Core)と[こちら](https://nomicon.io/Standards/StorageManagement)を参照してください。  
+`window`変数に`ftContract`を追加し, `ftコントラクト`上のメソッドをいくつか呼び出すようにしています。
+各メソッドの意味はコード内コメントにて記載しています。
+詳しくは[こちら](https://nomicon.io/Standards/Tokens/FungibleToken/Core)と[こちら](https://nomicon.io/Standards/StorageManagement)を参照してください。
 ここに注目しましょう。
 
 ```js
@@ -207,16 +207,16 @@ export async function storage_deposit() {
 メソッド呼び出し後, ガス量の制限とデポジットの付与を上記のような形でつけることができます。
 
 - ガス量の制限
-  メソッド呼び出しにガス量が[デフォルト値](https://github.com/near/near-api-js/blob/336bdf51311b75d86f5080d7918848ae7d774b72/src/account.ts#L35)を超えるような場合は明示的にガス量の制限を加えます。  
+  メソッド呼び出しにガス量が[デフォルト値](https://github.com/near/near-api-js/blob/336bdf51311b75d86f5080d7918848ae7d774b72/src/account.ts#L35)を超えるような場合は明示的にガス量の制限を加えます。
   ガス代はガス量とガス料金を掛け合わせたものです。詳しくは[こちら](https://docs.near.org/concepts/basics/transactions/gas#how-do-i-buy-gas)をご覧ください。
 - デポジット
-  コントラクトに支払う料金をここで指定します。  
-  トークンの転送などのメソッド呼び出しに`"1"`を指定する場合がありますが, これはセキュリティ上の理由です。  
-  デポジットの支払いは最小単位の`"1"`であっても[フルアクセスキー](https://docs.near.org/concepts/basics/accounts/access-keys)を持つアカウントによるサインを求めます。  
-  資産価値のあるトークンの転送などの重要なメソッド呼び出しは, フルアクセスキーを持たないアカウントによる呼び出しを防ぐためにこのようなことをしています。  
+  コントラクトに支払う料金をここで指定します。
+  トークンの転送などのメソッド呼び出しに`"1"`を指定する場合がありますが, これはセキュリティ上の理由です。
+  デポジットの支払いは最小単位の`"1"`であっても[フルアクセスキー](https://docs.near.org/concepts/basics/accounts/access-keys)を持つアカウントによるサインを求めます。
+  資産価値のあるトークンの転送などの重要なメソッド呼び出しは, フルアクセスキーを持たないアカウントによる呼び出しを防ぐためにこのようなことをしています。
   詳しくは[こちら](https://docs.near.org/tutorials/nfts/core#transfer-call-function)をご覧ください。
 
-それでは`frontend/App.js`で各メソッドを利用するコードを書きましょう！  
+それでは`frontend/App.js`で各メソッドを利用するコードを書きましょう！
 `import`を追加しましょう。
 
 ```js
@@ -323,7 +323,7 @@ const prepareBalanceInfo = async (account_id) => {
 };
 ```
 
-追加した関数群を使用するように各レンダリング用の関数を変更します。  
+追加した関数群を使用するように各レンダリング用の関数を変更します。
 基本的にはボタンと関数を`onClick`で連携させています。
 
 ```js
@@ -456,7 +456,7 @@ const transferFt = () => {
 };
 ```
 
-`ftコントラクト`の接続を完了したので,  
+`ftコントラクト`の接続を完了したので,
 `near_bike_share_dapp`直下で以下のコマンドを実行してみましょう！
 
 ```
@@ -467,22 +467,22 @@ $ yarn dev
 
 ![](/public/images/NEAR-BikeShare/section-3/3_1_1.png)
 
-また, 一度サインアウト(※ft をたくさん持っているアカウントで `Unregister` を押さないように気をつけてください。)し,  
-新たに作成したアカウントでサインインすると,  
-`ftコントラクト`に未登録なので登録画面が表示されます。  
+また, 一度サインアウト(※ft をたくさん持っているアカウントで `Unregister` を押さないように気をつけてください。)し,
+新たに作成したアカウントでサインインすると,
+`ftコントラクト`に未登録なので登録画面が表示されます。
 ここでは[testnet wallet](https://wallet.testnet.near.org/)を利用して, `new_ft_user.testnet`という新規アカウントを作成しました。
 
 サインインを行います。
 
 ![](/public/images/NEAR-BikeShare/section-3/3_1_2.png)
 
-その後アカウント登録画面になります。  
+その後アカウント登録画面になります。
 登録します。
 
 ![](/public/images/NEAR-BikeShare/section-3/3_1_3.png)
 
-再びサインアウトし, `ft_account.testnet`(ft の`owner id`, ft をたくさん持っていればどんなアカウントでも良いです)で入り直します。  
-`ft_account.testnet` から `new_ft_user.testnet` へ ft の送信を行ってみます。  
+再びサインアウトし, `ft_account.testnet`(ft の`owner id`, ft をたくさん持っていればどんなアカウントでも良いです)で入り直します。
+`ft_account.testnet` から `new_ft_user.testnet` へ ft の送信を行ってみます。
 事前に`new_ft_user.testnet`の残高を調べると 0ft です。
 
 ![](/public/images/NEAR-BikeShare/section-3/3_1_4.png)
@@ -497,7 +497,7 @@ $ yarn dev
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-economy` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
 
@@ -510,5 +510,5 @@ $ yarn dev
 
 ---
 
-`ftコントラクト`の接続と実行ができました 🎉  
+`ftコントラクト`の接続と実行ができました 🎉
 次のレッスンでは `ftコントラクト`と `bikeコントラクト`を連携させます！

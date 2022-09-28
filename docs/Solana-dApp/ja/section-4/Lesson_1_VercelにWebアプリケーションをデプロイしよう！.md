@@ -95,11 +95,11 @@ git push
 
 1\. Vercel のダッシュボードから、`New Project` をクリックしてください。
 
-![new project](/public/images/301-Solana-dApp/section-4/4_1_1.png)
+![new project](/public/images/Solana-dApp/section-4/4_1_1.png)
 
 2\. `Import Git Repository` で自分の GitHub アカウントを接続したら、Web アプリケーションのリポジトリを `Import` してください。
 
-![Import](/public/images/301-Solana-dApp/section-4/4_1_2.png)
+![Import](/public/images/Solana-dApp/section-4/4_1_2.png)
 
 3\. プロジェクトの設定では、**FRAMEWORK PRESET** に `Create React App`、**ROOT DIRECTORY** に `app` を入力してください。
 
@@ -107,9 +107,9 @@ git push
 
 5\. **Environment Variables** に `.env` で設定した環境変数（ NAME: SOLANA_NETWORK 、 VALUE: devnet ）を直接入力してください。（ GitHub には `.env` ファイルを保存していないため、`Vercel` に直接記載する必要があります。）
 
-![Environment Variables1](/public/images/301-Solana-dApp/section-4/4_1_3.png)
+![Environment Variables1](/public/images/Solana-dApp/section-4/4_1_3.png)
 
-![Environment Variables2](/public/images/301-Solana-dApp/section-4/4_1_4.png)
+![Environment Variables2](/public/images/Solana-dApp/section-4/4_1_4.png)
 
 6\. [Deploy]ボタンを押してデプロイします。（ Vercel は GitHub と連動しているので、GitHub が更新されるたびに自動でデプロイを行ってくれます。）
 

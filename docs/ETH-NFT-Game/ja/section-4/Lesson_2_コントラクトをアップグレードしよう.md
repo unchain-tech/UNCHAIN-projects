@@ -51,7 +51,7 @@ require("dotenv").config();
 module.exports = {
   solidity: "0.8.9",
   networks: {
-    rinkeby: {
+    goerli: {
       url: process.env.STAGING_ALCHEMY_KEY,
       accounts: [process.env.PRIVATE_KEY],
     },
@@ -115,7 +115,7 @@ artifacts
 
 下記の画面から、CID をコピーします。
 
-![](/public/images/104-ETH-NFT-Game/section-4/4_2_1.png)
+![](/public/images/ETH-NFT-Game/section-4/4_2_1.png)
 
 それでは、下記の `https` アドレスに、コピーした CID を貼り付け、ブラウザで中身を見てみましょう。
 
@@ -133,7 +133,7 @@ https://cloudflare-ipfs.com/ipfs/あなたのCIDコードを貼り付けます
 
 下記のように、ブラウザにあなたの画像が表示されいることを確認してください。
 
-![](/public/images/104-ETH-NFT-Game/section-4/4_2_2.png)
+![](/public/images/ETH-NFT-Game/section-4/4_2_2.png)
 
 次に、`epic-game/scripts/run.js` を開き、 `imgur` リンクを `CID`（＝ IPFS ハッシュ）に変更していきましょう。
 

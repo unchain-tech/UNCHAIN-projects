@@ -686,9 +686,9 @@ string memory json = Base64.encode(
 );
 ```
 
-ここでは、OpenSea や Rarible が採用している NFT のメタデータのデータ構造に沿って、JSON をフォーマットしています。
+ここでは、OpenSea などの NFT マーケットプレイスが採用している NFT のメタデータのデータ構造に沿って、JSON をフォーマットしています。
 
-- OpenSea や Rarible で扱える JSON のデータ構造に関しては、[こちら](https://zenn.dev/hayatoomori/articles/f26cc4637c7d66) をご覧ください。
+- OpenSea などの NFT マーケットプレイスで扱える JSON のデータ構造に関しては、[こちら](https://zenn.dev/hayatoomori/articles/f26cc4637c7d66) をご覧ください。
 
 NFT のメタデータとして使用できる JSON は、下記のようなデータ構造になります。
 

@@ -56,3 +56,10 @@ UNCHAIN のプロジェクトをみんなでより良いものにしていきま
 ---
 
 次のレッスンに進んでプログラミングの環境構築を行いましょう 🎉
+
+---
+
+Attribution: This learning content is licensed under [Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/) © 2022 buildspace. 
+Sharelike: Translations and modifications to markdown documents.
+
+Documentation created by [kentatakase](https://github.com/kentatakase) (UNCHAIN discord ID: ktakase#1475)

@@ -83,7 +83,7 @@ export default FormDate;
 
 このようなフォームとボタンが実装されます。
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-3/3_3_1.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_3_1.png)
 
 追加した内容を見ていきましょう。
 
@@ -256,7 +256,7 @@ export default AddRoom;
 
 このようなフォームが実装されます。
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-3/3_3_2.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_3_2.png)
 
 追加した内容を見ていきましょう。
 
@@ -397,7 +397,7 @@ export default Room;
 
 このようなレイアウトになります。
 
-![](/public/images/402-NEAR-Hotel-Booking-dApp/section-3/3_3_3.png)
+![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_3_3.png)
 
 React Bootstrap の[Row](https://react-bootstrap.netlify.app/layout/grid/#row-props)、[Col](https://react-bootstrap.netlify.app/layout/grid/#col-props)、[Image](https://react-bootstrap.netlify.app/components/images/#rb-docs-content)を使用しています。
 

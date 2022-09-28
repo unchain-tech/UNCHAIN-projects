@@ -1,6 +1,6 @@
 ### 🛫 ローカル環境でコントラクトをデプロイする
 
-ローカル環境で、Rinkeby テストネットワークにコントラクトをデプロイするための準備をしましょう。
+ローカル環境で、Goerli テストネットワークにコントラクトをデプロイするための準備をしましょう。
 
 `nft-collectible/scripts` ディレクトリに移動し、`run.js` という名前のファイルを作成してください。
 
@@ -152,9 +152,9 @@ Owner has tokens:  [
 ]
 ```
 
-### 🚀 Rinkeby Test Network にコントラクトをデプロイする
+### 🚀 Goerli Test Network にコントラクトをデプロイする
 
-それでは、Rinkeby Test Network にコントラクトをデプロイしましょう。
+それでは、Goerli Test Network にコントラクトをデプロイしましょう。
 
 `nft-collectible/scripts` の中にある `deploy.js` に、`run.js` の中身と同じにしてください。
 
@@ -169,7 +169,7 @@ Owner has tokens:  [
 `deploy.js` が作成できたら、ターミナル上で `nft-collectible` ディレクトリに移動し、下記のコマンドを実行しましょう。
 
 ```bash
-npx hardhat run scripts/deploy.js --network rinkeby
+npx hardhat run scripts/deploy.js --network goerli
 ```
 
 下記のような結果がターミナルに出力されていることを確認してください。
@@ -200,7 +200,7 @@ Owner has tokens:  [
 
 ### 👀 Etherscan でトランザクションを確認する
 
-`Contract deployed to:` に続くアドレス（`0x..`）をコピーして、[Etherscan](https://rinkeby.etherscan.io/) に貼り付けてみましょう。
+`Contract deployed to:` に続くアドレス（`0x..`）をコピーして、[Etherscan](https://goerli.etherscan.io/) に貼り付けてみましょう。
 
 あなたのスマートコントラクトのトランザクション履歴が確認できます。
 
@@ -208,13 +208,13 @@ Owner has tokens:  [
 
 - _表示されるまでに約 1 分かかり場合があります。_
 
-下記のような結果が、Rinkeby Etherscan 上で確認できれば、テストネットへのデプロイは成功です。
+下記のような結果が、Goerli Etherscan 上で確認できれば、テストネットへのデプロイは成功です。
 
-![](/public/images/201-Polygon-Generative-NFT/section-2/2_2_14.png)
+![](/public/images/Polygon-Generative-NFT/section-2/2_2_14.png)
 
-**デプロイのデバッグに Rinkeby Etherscan 使うことに慣れましょう。**
+**デプロイのデバッグに Goerli Etherscan 使うことに慣れましょう。**
 
-Rinkeby Etherscan はデプロイを追跡する最も簡単な方法であり、問題を特定するのに適しています。
+Goerli Etherscan はデプロイを追跡する最も簡単な方法であり、問題を特定するのに適しています。
 
 - Etherscan にトランザクションが表示されないということは、まだ処理中か、何か問題があったということになります。
 

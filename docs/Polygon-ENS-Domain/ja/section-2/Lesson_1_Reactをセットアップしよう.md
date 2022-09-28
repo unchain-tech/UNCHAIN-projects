@@ -31,7 +31,7 @@ npm start
 
 `localhost:3000`がブラウザ上で開き次のような画面が表示されます。
 
-![](/public/images/202-Polygon-ENS-Domain/section-2/2_1_1.png)
+![](/public/images/Polygon-ENS-Domain/section-2/2_1_1.png)
 
 まだアプリは空の状態です。
 

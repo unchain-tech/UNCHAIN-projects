@@ -117,7 +117,7 @@ OpenZeppelin に関しては、後で詳しく説明します。
 
 次のように表示されます。
 
-![](/public/images/104-ETH-NFT-Game/section-1/1_1_2.png)
+![](/public/images/ETH-NFT-Game/section-1/1_1_2.png)
 
 ターミナル上で `epic-game` に移動し、`ls` と入力してみて、下記のフォルダーとファイルが表示されていたら成功です。
 

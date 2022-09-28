@@ -1,6 +1,6 @@
 ### 👀 コントラクの中身を覗いてみましょう
 
-最後にコントラクトに何が書かれているのかと簡単に見ていきたいと思います。  
+最後にコントラクトに何が書かれているのかと簡単に見ていきたいと思います。
 詳細に関しては次のセクションから触れてゆくので, ここでわからないことは次のセクションを終えた後に改めて理解しに戻りましょう。
 
 NEAR のコントラクトを書く上で, Rust の基本的なコードはこのようになります。
@@ -17,10 +17,10 @@ impl struct_name {
 }
 ```
 
-`pub struct`という構文でストラクト(構造体)を用意し, その中にコントラクト内で扱う値を保持します。  
+`pub struct`という構文でストラクト(構造体)を用意し, その中にコントラクト内で扱う値を保持します。
 `impl`という構文でストラクトに関するメソッドを定義してゆきます。
 
-それでは実際の中身を見ます。  
+それでは実際の中身を見ます。
 お気に入りのコードエディタ(お持ちでない方は VSCode をインストールしましょう)でプロジェクトのディレクトリを開きます。
 そして`ft/src/lib.rs`を開きます。
 コードを上から見てゆくと, ストラクトの定義が途中に見つけられます。
@@ -36,8 +36,8 @@ pub struct Contract {
 }
 ```
 
-ストラクトの中にはトークンやメタデータに関するオブジェクトが定義されているのがわかります。  
-次にこのような実装が見つけられるはずです。  
+ストラクトの中にはトークンやメタデータに関するオブジェクトが定義されているのがわかります。
+次にこのような実装が見つけられるはずです。
 ※ コード内で省略する部分に関しては`// ...`で表しています。
 
 ```rust
@@ -74,10 +74,10 @@ impl Contract {
 }
 ```
 
-ここではトークンの発行時に使用した`new`メソッドが実装されていることがわかります。  
+ここではトークンの発行時に使用した`new`メソッドが実装されていることがわかります。
 引数に`owner_id`, `total_supply`, `metadata`をとっています。
 
-それでは, 前レッスンで呼び出していた`ft_transfer`や`storage_deposit`メソッドはどこで実装されているのでしょう。  
+それでは, 前レッスンで呼び出していた`ft_transfer`や`storage_deposit`メソッドはどこで実装されているのでしょう。
 答えはコード内のこの部分です。
 
 ```rust
@@ -91,21 +91,21 @@ near_contract_standards::impl_fungible_token_storage!(Contract, token, on_accoun
 // ...
 ```
 
-短いですね。  
+短いですね。
 NEAR が用意したライブラリ(`near_contract_standards`)を使用しています。
 
 - `impl_fungible_token_core`
-  [NEP-141](https://nomicon.io/Standards/Tokens/FungibleToken/Core#reference-level-explanation)(fungible token の規約)に則ったメソッドをストラクトに実装します。  
+  [NEP-141](https://nomicon.io/Standards/Tokens/FungibleToken/Core#reference-level-explanation)(fungible token の規約)に則ったメソッドをストラクトに実装します。
   例えば`ft_transfer`, `ft_balance_of`メソッドなどです。
-- `impl_fungible_token_storage`  
-  [NEP-145](https://nomicon.io/Standards/StorageManagement)(ストレージマネジメントの規約)に則ったメソッドをストラクトに実装します。  
+- `impl_fungible_token_storage`
+  [NEP-145](https://nomicon.io/Standards/StorageManagement)(ストレージマネジメントの規約)に則ったメソッドをストラクトに実装します。
   例えば`storage_deposit`メソッドなどです。
 
 ざっくりとでしたが`ftコントラクト`の中で何が記述されているのかを見ることができました。
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-economy` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
 
@@ -118,7 +118,7 @@ NEAR が用意したライブラリ(`near_contract_standards`)を使用してい
 
 ---
 
-おめでとうございます！  
-セクション 1 は終了です！  
-ここまででも初めて触れる概念が多く大変だったのではないでしょうか！  
+おめでとうございます！
+セクション 1 は終了です！
+ここまででも初めて触れる概念が多く大変だったのではないでしょうか！
 次のセクションからはコントラクトを実際に書いていくのでより実践的な内容になります 🔥
