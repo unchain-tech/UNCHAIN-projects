@@ -48,18 +48,18 @@ Vercel のアカウントを取得したら,下記を実行しましょう。
 
 1\. `Dashboard` へ進んで,`New Project` を選択してください。
 
-![](/public/images/AVAX-msg/section-4/4_1_1.png)
+![](/public/images/AVAX-messenger/section-4/4_1_1.png)
 
 2\. `Import Git Repository` で自分の GitHub アカウントを接続したら,`messenger-client(あなたのレポジトリの名前)` を選択し,`Import` してください。
 
-![](/public/images/AVAX-msg/section-4/4_1_2.png)
+![](/public/images/AVAX-messenger/section-4/4_1_2.png)
 
 3\. プロジェクトを作成します。
 
 デフォルトの設定で良いはずですが,  
 もし`FRAME WORK PRESET`が`Next.js`になっていない場合は`Next.js`を選択してください。
 
-![](/public/images/AVAX-msg/section-4/4_1_3.png)
+![](/public/images/AVAX-messenger/section-4/4_1_3.png)
 
 4\. `Deploy`ボタンをクリックしましょう。
 
@@ -68,7 +68,7 @@ Vercel は GitHub と連動しているので,GitHub が更新されるたびに
 しばらくしてビルドが完了すると  
 下記のように, メッセージとホーム画面が出力されます。
 
-![](/public/images/AVAX-msg/section-4/4_1_4.png)
+![](/public/images/AVAX-messenger/section-4/4_1_4.png)
 
 ホーム画面の表示部分はリンクになっているので, クリックするとあなたの作成した dapp がブラウザで確認できます 🎉
 

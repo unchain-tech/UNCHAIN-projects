@@ -14,7 +14,7 @@ MetaMask を設定できたら, Avalanche のテストネットワークを追�
 
 MetaMask の上部のネットワークタブを開き, `Add Network`をクリックします。
 
-![](/public/images/AVAX-msg/section-2/2_3_2.png)
+![](/public/images/AVAX-messenger/section-2/2_3_2.png)
 
 開いた設定ページ内で以下の情報を入力して保存をクリックしましょう。
 
@@ -26,11 +26,11 @@ Symbol: AVAX
 Explorer: https://testnet.snowtrace.io/
 ```
 
-![](/public/images/AVAX-msg/section-2/2_3_3.png)
+![](/public/images/AVAX-messenger/section-2/2_3_3.png)
 
 登録が成功したら Avalanche のテストネットである`Avalanche Fuji C-Chain`が選択できるはずです。
 
-![](/public/images/AVAX-msg/section-2/2_3_4.png)
+![](/public/images/AVAX-messenger/section-2/2_3_4.png)
 
 ### 🚰 `Faucet` を利用して `AVAX` をもらう
 
@@ -431,18 +431,18 @@ npm run dev
 
 ウォレットを接続していない状態では以下のような画面が表示されるはずです。
 
-![](/public/images/AVAX-msg/section-2/2_3_1.png)
+![](/public/images/AVAX-messenger/section-2/2_3_1.png)
 
 `Connect Wallet`ボタンをクリックし, MetaMask を接続してください。  
 ⚠️ ネットワークに`Fuji`を選択した状態で行ってください。
 
 下図のように MetaMask からウォレット接続を求められますので,承認してください。
 
-![](/public/images/AVAX-msg/section-2/2_3_5.png)
+![](/public/images/AVAX-messenger/section-2/2_3_5.png)
 
 MetaMask の承認が終わると, 画面が切り替わり, 画面上部にあなたの接続しているウォレットのアドレスが表示されます。
 
-![](/public/images/AVAX-msg/section-2/2_3_6.png)
+![](/public/images/AVAX-messenger/section-2/2_3_6.png)
 
 ### 🌔 参考リンク
 

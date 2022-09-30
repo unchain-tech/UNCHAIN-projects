@@ -302,7 +302,7 @@ messagesAtAddress[_receiver].push(
 
 以下に, Solidity のアクセス修飾子とアクセス権限についてまとめています。
 
-![](/public/images/AVAX-msg/section-1/1_3_2.png)
+![](/public/images/AVAX-messenger/section-1/1_3_2.png)
 
 📡 関数の状態に関連する修飾子
 
@@ -315,7 +315,7 @@ Solidity 開発ではこれらの修飾子を意識しておかないとデー�
 
 以下に, Solidity の関数修飾子 `pure` と `view` についてまとめています。
 
-![](/public/images/AVAX-msg/section-1/1_3_3.png)
+![](/public/images/AVAX-messenger/section-1/1_3_3.png)
 
 ここで重要なのは, `pure` や `view` 関数を使用すれば, **ガス代を削減できる**ということです。
 
@@ -531,7 +531,7 @@ $ npx hardhat test
 
 以下のような表示がされたらテスト成功です！
 
-![](/public/images/AVAX-msg/section-1/1_3_1.png)
+![](/public/images/AVAX-messenger/section-1/1_3_1.png)
 
 ### 🙋‍♂️ 質問する
 

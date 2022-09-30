@@ -245,7 +245,7 @@ $ npx hardhat test
 
 以下のような表示がされたらテスト成功です！
 
-![](/public/images/AVAX-msg/section-3/3_1_1.png)
+![](/public/images/AVAX-messenger/section-3/3_1_1.png)
 
 ### 💠 コントラクトに管理者機能を設けましょう
 
@@ -464,7 +464,7 @@ $ npx hardhat test
 
 以下のような表示がされたらテスト成功です！
 
-![](/public/images/AVAX-msg/section-3/3_1_2.png)
+![](/public/images/AVAX-messenger/section-3/3_1_2.png)
 
 ### 🛫 デプロイ スクリプトを変更する
 

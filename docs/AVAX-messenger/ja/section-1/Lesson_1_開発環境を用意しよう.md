@@ -119,7 +119,7 @@ $ npx hardhat test
 
 次のように表示されたら成功です！ 🎉
 
-![](/public/images/AVAX-msg/section-1/1_1_1.png)
+![](/public/images/AVAX-messenger/section-1/1_1_1.png)
 
 ここまできたら,フォルダーの中身を整理しましょう。
 

@@ -228,7 +228,7 @@ $ npx hardhat test
 
 以下のような表示がされたらテスト成功です！
 
-![](/public/images/AVAX-msg/section-1/1_5_1.png)
+![](/public/images/AVAX-messenger/section-1/1_5_1.png)
 
 ### 🙋‍♂️ 質問する
 

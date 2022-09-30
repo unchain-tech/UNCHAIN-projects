@@ -79,7 +79,7 @@ $ npm run dev
 
 例）ローカル環境で表示されている Web サイト
 
-![](/public/images/AVAX-msg/section-2/2_1_1.png)
+![](/public/images/AVAX-messenger/section-2/2_1_1.png)
 
 上記のような形でフロントエンドが確認できれば成功です。
 
