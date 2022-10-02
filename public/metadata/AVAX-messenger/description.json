@@ -1,0 +1,9 @@
+{
+    "project_id": 501,
+    "title": "AVAX-messenger",
+    "difficulty": "beginner",
+    "chain": "Avalanche",
+    "description": "👉 Solidity と React を使って, テキストメッセージとAVAXトークンをやり取りできる Web アプリを構築します。",
+    "total_sections": 4,
+    "total_lessons": 13
+}
