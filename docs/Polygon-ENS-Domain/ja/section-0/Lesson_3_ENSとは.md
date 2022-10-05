@@ -34,7 +34,7 @@ ENS の最大の問題は取引手数料です。 名前を登録するには、
 
 昼食何十食分とか計算してしまいますよね。
 
-![https://i.imgur.com/AX7Z9cW.png](https://i.imgur.com/AX7Z9cW.png)
+![](/public/images/Polygon-ENS-Domain/section-0/0_3_1.png)
 
 また、大きな問題は、チェーン上でデータを更新したり、ウォレットを変更したりするときは、これもガス代の時価によりますが、3000円からそれ以上を支払う必要があるということです。 合計したら何回分おいしいものが食べられるのでしょうか？
 
@@ -50,7 +50,7 @@ ENS を使用すると、登録したネームにたくさんの独自データ�
 
 &ensp;[<u>ENS の例 ( cryptonerdtokyo.eth )</u>](https://app.ens.domains/name/cryptonerdtokyo.eth/details)
 
-![https://i.imgur.com/PVFhcDZ.png](https://i.imgur.com/PVFhcDZ.png)
+![](/public/images/Polygon-ENS-Domain/section-0/0_3_2.png)
 
 いろいろなサービスのユーザー名、メールアドレス、ウェブサイト、さらにはNFTアバターなどが設定されています。
 
