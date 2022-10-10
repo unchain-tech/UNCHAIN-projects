@@ -191,7 +191,7 @@ runMain();
 
 さあ、`run.js`スクリプトを実行しましょう。 これを行うと、次のような結果が表示されます。
 
-![https://i.imgur.com/nLCRCKl.png](https://i.imgur.com/nLCRCKl.png)
+![](/public/images/Polygon-ENS-Domain/section-1/1_4_1.png)
 
 **やりました!** シンプルなコントラクトコードだけで、ENS の基本的なアクションを実行できるようになりました。
 
@@ -203,7 +203,7 @@ runMain();
 
 OpenSea に ENS ドメインを所有している場合、実際には次のようなものが表示されます。
 
-![https://i.imgur.com/fs9TVN5.png](https://i.imgur.com/fs9TVN5.png)
+![](/public/images/Polygon-ENS-Domain/section-1/1_4_2.png)
 
 もしかしたら、なぜ私たちは自分のドメインを NFT にする必要があるのだろうと考えるかもしれません。
 
@@ -434,7 +434,7 @@ SVG は**多くの場合**カスタマイズできます。SVG をアニメー�
 
 最終的な NFT は以下のようなものになりました。
 
-![https://i.imgur.com/epYuKfc.png](https://i.imgur.com/epYuKfc.png)
+![](/public/images/Polygon-ENS-Domain/section-1/1_4_3.png)
 
 SVG をカスタマイズしてみても面白いでしょう。興味がある方は、アニメーション化された SVG を試すこともいいでしょう 👀
 
@@ -551,7 +551,7 @@ Contract balance: 0.1
 
 `npx hardhat run scripts/run.js`を実行します。 大きな違いは、コンソールの出力です。 私の外観です（このスクリーンショットの URI は短縮してあります）：
 
-![https://i.imgur.com/nOpI3oD.png](https://i.imgur.com/nOpI3oD.png)
+![](/public/images/Polygon-ENS-Domain/section-1/1_4_4.png)
 
 `tokenURI` をコピーしてブラウザのアドレスに入力すると、JSON オブジェクトが表示されます。 別のタブで JSON オブジェクト内の image の部分のみを貼り付けると、NFT 画像が取得されます。
 
@@ -569,7 +569,7 @@ data:image/svg+xml;base64,[ここにデコードしたいimageの部分のデー
 
 ※image の部分の長い文字の羅列データの後、末尾に"length":"xx"などが付いているとうまく動作しませんのでこの部分は省いてください。
 
-![https://i.imgur.com/UDQC0Wn.png](https://i.imgur.com/UDQC0Wn.png)
+![](/public/images/Polygon-ENS-Domain/section-1/1_4_5.png)
 
 さぁ、ドメインサービスを作成することができましたね!
 

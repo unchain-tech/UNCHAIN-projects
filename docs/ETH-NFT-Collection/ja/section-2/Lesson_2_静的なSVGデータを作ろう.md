@@ -151,7 +151,7 @@ _setTokenURI(
 - 実行する際は、ターミナル上で `epic-nfts` ディレクトリにいることを確認してください。
 
 ```bash
-npx hardhat run scripts/deploy.js --network rinkeby
+npx hardhat run scripts/deploy.js --network goerli
 ```
 
 ターミナルに下記のような結果が表示されていたら、デプロイ成功です。
@@ -164,11 +164,9 @@ Minted NFT #1
 Minted NFT #2
 ```
 
-最後に、コントラクトのアドレス（`Contract deployed to` に続く `0x..`）をターミナルからコピーして、[`rinkeby.rarible.com`](https://rinkeby.rarible.com/) に貼り付け、検索してみてください。
+最後に、コントラクトのアドレス（`Contract deployed to` に続く `0x..`）をターミナルからコピーして、[テストネット用の OpenSea](https://testnets.opensea.io/) に貼り付け、検索してみてください。
 
-- [テストネット用の OpenSea](https://testnets.opensea.io/) でも同じように確認できますが、NF が OpenSea に反映されるまでに時間がかかるので、Rarible で検証することをお勧めします。
-
-下記のように、あなたの SquareNFT が Rarible で確認できたでしょうか？
+下記のように、あなたの SquareNFT が OpenSea で確認できたでしょうか？
 
 ![](/public/images/ETH-NFT-Collection/section-2/2_2_4.png)
 

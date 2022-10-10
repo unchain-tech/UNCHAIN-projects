@@ -378,9 +378,8 @@ Alchemy のアカウントを作成したら、`CREATE APP` ボタンを押し�
 
 - `NAME` : プロジェクトの名前（例: `MyEpicNFT`）
 - `DESCRIPTION` : プロジェクトの概要（任意）
-- `ENVIRONMENT` : `Development` を選択。
-- `CHAIN` : `Ethereum` を選択。
-- `NETWORK` : `Rinkeby` を選択。
+- `CHAIN` : `Ethereum` を選択
+- `NETWORK` : `Goerli` を選択
 
 それから、作成した App の `VIEW DETAILS` をクリックします。
 
@@ -414,15 +413,15 @@ Alchemy のアカウントを作成したら、`CREATE APP` ボタンを押し�
 
 ### 🚰 偽の ETH を取得する
 
-今回は、`Rinkeby` というイーサリアム財団によって運営されているテストネットを使用します。
+今回は、`Goerli` というイーサリアム財団によって運営されているテストネットを使用します。
 
-`Rinkeby` にコントラクトをデプロイし、コードのテストを行うために、偽の ETH を取得しましょう。
+`Goerli` にコントラクトをデプロイし、コードのテストを行うために、偽の ETH を取得しましょう。
 
 ユーザーが偽の ETH を取得するために用意されたインフラは、「フォーセット（＝蛇口）」と呼ばれています。
 
-フォーセットを使用する前に、あなたの MetaMask ウォレットを `Rinkeby Test Network` に設定してください。
+フォーセットを使用する前に、あなたの MetaMask ウォレットを `Goerli Test Network` に設定してください。
 
-> ✍️: MetaMask で `Rinkeby Test Network` を設定する方法
+> ✍️: MetaMask で `Goerli Test Network` を設定する方法
 >
 > 1 \. MetaMask ウォレットのネットワークトグルを開く。
 >
@@ -436,17 +435,18 @@ Alchemy のアカウントを作成したら、`CREATE APP` ボタンを押し�
 >
 > ![](/public/images/ETH-NFT-Collection/section-1/1_4_9.png)
 >
-> 4 \. `Rinkeby Test Network` を選択する。
+> 4 \. `Goerli Test Network` を選択する。
 >
 > ![](/public/images/ETH-NFT-Collection/section-1/1_4_10.png)
 
-MetaMask ウォレットに `Rinkeby Test Network` が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽 ETH を取得しましょう。
+MetaMask ウォレットに `Goerli Test Network` が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽 ETH を取得しましょう。
 
-- [Alchemy](https://docs.alchemy.com/alchemy/guides/choosing-a-network#rinkeby) - 0.1 ETH（その場でもらえる）
-- [MyCrypto](https://app.mycrypto.com/faucet) - 0.01 ETH（その場でもらえる）
-- [Official Rinkeby](https://faucet.rinkeby.io/) - 3 / 7.5 / 18.75 ETH ( 8 時間 / 1 日 / 3 日)
-- [Chainlink](https://faucets.chain.link/rinkeby) - 0.1 ETH（その場でもらえる）
-  - Chainlink を使うときは `Connect wallet` をクリックして MetaMask と接続する必要があります。
+- [Alchemy](https://goerlifaucet.com/) - 0.25 Goerli ETH （24 時間に 1 度もらうことができる）
+  - ウォレットアドレスを入力して `Send Me ETH` ボタンを押下するとその場でもらえます。
+- [Chainlink](https://faucets.chain.link/) - 0.1 Goerli ETH（その場でもらえる）
+  - `Connect wallet` をクリックして MetaMask と接続する必要があります。
+  - Twitter アカウントを連携する必要があります。
+
 
 ### 🚀 `deploy.js` ファイルを作成する
 
@@ -489,7 +489,7 @@ const runMain = async () => {
 runMain();
 ```
 
-### 📈 Rinkeby Test Network に コントラクトをデプロイしましょう
+### 📈 Goerli Test Network に コントラクトをデプロイしましょう
 
 `hardhat.config.js` ファイルを変更する必要があります。
 
@@ -515,23 +515,23 @@ require("@nomicfoundation/hardhat-toolbox");
 module.exports = {
   solidity: "0.8.9",
   networks: {
-    rinkeby: {
+    goerli: {
       url: "YOUR_ALCHEMY_API_URL",
-      accounts: ["YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY"],
+      accounts: ["YOUR_PRIVATE_GOERLI_ACCOUNT_KEY"],
     },
   },
 };
 ```
 
-次に、`YOUR_ALCHEMY_API_URL` と`YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` を取得して、`hardhat.config.js` に貼り付けましょう。
+次に、`YOUR_ALCHEMY_API_URL` と`YOUR_PRIVATE_GOERLI_ACCOUNT_KEY` を取得して、`hardhat.config.js` に貼り付けましょう。
 
 1\. `YOUR_ALCHEMY_API_URL`の取得
 
 > `hardhat.config.js` の `YOUR_ALCHEMY_API_URL` の部分を先ほど取得した Alchemy の URL（ `HTTP` リンク） と入れ替えます。
 
-2\. `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の取得
+2\. `YOUR_PRIVATE_GOERLI_ACCOUNT_KEY` の取得
 
-> 1\. お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを `Rinkeby Test Network` に変更します。
+> 1\. お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを `Goerli Test Network` に変更します。
 >
 > ![](/public/images/ETH-NFT-Collection/section-1/1_4_11.png)
 >
@@ -551,7 +551,7 @@ module.exports = {
 >
 > ![](/public/images/ETH-NFT-Collection/section-1/1_4_15.png)
 >
-> `hardhat.config.js` の `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の部分をここで取得した秘密鍵とを入れ替えます。
+> `hardhat.config.js` の `YOUR_PRIVATE_GOERLI_ACCOUNT_KEY` の部分をここで取得した秘密鍵とを入れ替えます。
 
 > ⚠️: 注意
 >
@@ -606,7 +606,7 @@ hardhat.config.js
 `epic-nfts` のルートディレクトリからこのコマンドを実行します 。
 
 ```bash
-npx hardhat run scripts/deploy.js --network rinkeby
+npx hardhat run scripts/deploy.js --network goerli
 ```
 
 `deploy.js` を実行すると、実際に NFT を作成します。
@@ -622,7 +622,7 @@ Minted NFT #2
 
 ### 👀 Etherscan でトランザクションを確認する
 
-ターミナルに出力された `Contract deployed to` に続くアドレスを、[Etherscan](https://rinkeby.etherscan.io/) に貼り付けて、あなたのスマートコントラクトのトランザクション履歴を見てみましょう。
+ターミナルに出力された `Contract deployed to` に続くアドレスを、[Etherscan](https://goerli.etherscan.io/) に貼り付けて、あなたのスマートコントラクトのトランザクション履歴を見てみましょう。
 
 Etherscan は、イーサリアムネットワーク上のトランザクションに関する情報を確認するのに便利なプラットフォームです。
 
@@ -630,9 +630,7 @@ _表示されるまでに約 1 分かかり場合があります。_
 
 ### 🖼 NFT をオンラインで確認しよう
 
-作成した NFT は、Rarible や OpenSea の TestNet サイトで確認できます。
-
-**🌊: OpenSea で NFT を確認する方法**
+作成した NFT は、OpenSea の TestNet サイトで確認できます。
 
 [testnets.opensea.io](https://testnets.opensea.io/) にアクセスしてください。
 
@@ -640,13 +638,9 @@ _表示されるまでに約 1 分かかり場合があります。_
 
 **`Enter` をクリックしないように注意してください。検索でコレクションが表示されたら、コレクション自体をクリックしてください** 。
 
-⚠️: OpenSea で NFT を確認するのに時間が掛かる場合があります。5 分以上経ってもコレクションが表示されない場合は、Rarible を使いましょう 😇
+⚠️: OpenSea で NFT を確認するのに時間が掛かる場合があります。
 
-**🐝: Rarible で NFT を確認する方法**
-
-[`rinkeby.rarible.com`](https://rinkeby.rarible.com/) にアクセスしてください。
-
-ターミナルに出力された `Contract deployed to` に続くアドレスを検索してみましょう。
+続いて、ターミナルに出力された `Contract deployed to` に続くアドレスを検索してみましょう。
 
 ![](/public/images/ETH-NFT-Collection/section-1/1_4_18.png)
 
@@ -654,16 +648,16 @@ _表示されるまでに約 1 分かかり場合があります。_
 
 ![](/public/images/ETH-NFT-Collection/section-1/1_4_19.png)
 
-コレクションが Rarible に表示されているのを確認してください。
+コレクションが OpenSea に表示されているのを確認してください。
 
 ![](/public/images/ETH-NFT-Collection/section-1/1_4_20.png)
 
-私が作成した Tanya コレクションの `tokenID` 0 番のリンクは[こちら](https://rinkeby.rarible.com/token/0x67cd3f53c20e3a6211458dd5b7465e1f9464531c:0)になります。
+私が作成した Tanya コレクションの `tokenID` 0 番のリンクは[こちら](https://testnets.opensea.io/ja/assets/rinkeby/0x67cd3f53c20e3a6211458dd5b7465e1f9464531c/0)になります。（リンク先は、学習コンテンツ制作時に使用した Rinkeby になっていますが、Rinkeby の箇所が Goerli でも同様に表示されます。）
 
 リンクの内容は以下のようになります。
 
 ```
-https://rinkeby.rarible.com/token/0x67cd3f53c20e3a6211458dd5b7465e1f9464531c:0
+https://testnets.opensea.io/ja/assets/rinkeby/0x67cd3f53c20e3a6211458dd5b7465e1f9464531c/0
 ```
 
 中身を見ていきましょう。
@@ -691,7 +685,7 @@ https://rinkeby.rarible.com/token/0x67cd3f53c20e3a6211458dd5b7465e1f9464531c:0
 
 おめでとうございます!　セクション 1 が終了しました!
 
-Rarible のリンクを `#eth-nft-collection` に貼り付けて、コミュニティにあなたの NFT をシェアしてください 😊
+OpenSea のリンクを `#eth-nft-collection` に貼り付けて、コミュニティにあなたの NFT をシェアしてください 😊
 
 どんな NFT なのか気になります ✨
 

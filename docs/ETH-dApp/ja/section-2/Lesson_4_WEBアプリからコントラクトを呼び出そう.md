@@ -248,7 +248,7 @@ const wave = async () => {
 
 ### 🏠 `contractAddress` の設定
 
-Rinkeby Test Network にコントラクトをデプロイしたとき、下記がターミナルに出力されていたことを覚えてますか？
+Goerli Test Network にコントラクトをデプロイしたとき、下記がターミナルに出力されていたことを覚えてますか？
 
 ```
 Deploying contracts with account:  0x821d451FB0D9c5de6F818d700B801a29587C3dCa
@@ -263,7 +263,7 @@ Contract deployed to:  0x3610145E4c6C801bBf2F926DFd8FDd2cE1103493
 再度この結果を出力する場合は、ターミナル上で `my-wave-portal` ディレクトリに移動し、下記を実行してください。
 
 ```
-npx hardhat run scripts/deploy.js --network rinkeby
+npx hardhat run scripts/deploy.js --network goerli
 ```
 
 コントラクトのデプロイ先のアドレスを取得できたら、`App.js` に `contractAddress` という新規の変数を追加しましょう。`Contract deployed to` の出力結果（`0x..`）を設定していきます。
@@ -628,15 +628,15 @@ npm run start
 
 ### 🌱 Etherscan でトランザクションを確認する
 
-あなたの Console に出力されている以下のアドレスをそれぞれコピーして、[Etherscan](https://rinkeby.etherscan.io/) に貼り付けてみましょう。
+あなたの Console に出力されている以下のアドレスをそれぞれコピーして、[Etherscan](https://goerli.etherscan.io/) に貼り付けてみましょう。
 
 - Connected: `0x..` ← これをコピーして Etherscan に貼り付ける
 
-  🎉 あなたの Rinkeby Test Network 上のトランザクションの履歴が参照できます。
+  🎉 あなたの Goerli Test Network 上のトランザクションの履歴が参照できます。
 
 - Mined -- `0x..` ← これをコピーして Etherscan に貼り付ける
 
-  🎉 あなたの Web アプリケーションを介して Rinkeby Test Network 上に書き込まれた「👋（wave）」に対するトランザクションの履歴が参照できます。
+  🎉 あなたの Web アプリケーションを介して Goerli Test Network 上に書き込まれた「👋（wave）」に対するトランザクションの履歴が参照できます。
 
 ### 🙋‍♂️ 質問する
 

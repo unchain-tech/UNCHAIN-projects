@@ -59,7 +59,7 @@ runMain();
 
 **1 \. 再度、コントラクトをデプロイする。**
 
-- `npx hardhat run scripts/deploy.js --network rinkeby` を実行する必要があります。
+- `npx hardhat run scripts/deploy.js --network goerli` を実行する必要があります。
 
 **2 \. フロントエンド（ `constants.js`）の `CONTRACT_ADDRESS` を更新する。**
 
@@ -537,9 +537,9 @@ return () => {
 
 メモリリークを防ぐために、`gameContract.off('CharacterNFTMinted', onCharacterMint)` では、`onCharacterMint` 関数の稼働をやめています。これは、イベントリスナをやめることを意味しています。
 
-### 🐝 Rarible で Mint した NFT キャラクターを確認する
+### 🐝 OpenSea で Mint した NFT キャラクターを確認する
 
-それでは、Web アプリケーションから、キャラクターをいったい Mint して、[rinkeby.rarible.com](https://rinkeby.rarible.com/) に反映されるか確認していきましょう。
+それでは、Web アプリケーションから、キャラクターをいったい Mint して、[テストネット用の OpenSea](https://testnets.opensea.io/) に反映されるか確認していきましょう。
 
 **1️⃣ NFT キャラクターを Mint する**
 
@@ -557,33 +557,23 @@ User has character NFT
 
 このような結果が表示されているということは、あなたのウォレットアドレスに NFT キャラクターが存在していることになります。
 
-**2️⃣ Rarible で NFT キャラクターを確認する**
+**2️⃣ OpenSea で NFT キャラクターを確認する**
 
-[rinkeby.rarible.com](https://rinkeby.rarible.com/) で、NFT キャラクターを参照してみましょう。
+[テストネット用の OpenSea](https://testnets.opensea.io/) で、NFT キャラクターを参照してみましょう。
 
 あなたの `CONTACT_ADDRESS` と `TOKEN_ID` を取得して、下記のアドレスを更新したら、ブラウザに貼り付けてみてください。
-
-```
-https://rinkeby.rarible.com/token/CONTRACT_ADDRES:TOKEN_ID?table=details
-```
-
-下記は、Rarible のリンクのサンプルになります。
-
-[https://rinkeby.rarible.com/token/0xec4d62e631c4fdc9c293772b3897c64a07874b06:1?tab=details](https://rinkeby.rarible.com/token/0xec4d62e631c4fdc9c293772b3897c64a07874b06:1?tab=details)
-
-OpenSea で NFT キャラクターを確認したい場合は、下記のリンクフォーマットを使用してください。
 
 ```
 https://testnets.opensea.io/assets/CONTRACT_ADDRES/TOKEN_ID
 ```
 
-下記のように、オンライン上でもあなたの NFT キャラクターが表示されることを確認しましょう。
+下記のように、オンライン上でもあなたの NFT キャラクターが表示されることを確認しましょう。（画像は学習コンテンツ制作時に利用した Rarible rinkeby testnet のものになります。）
 
 ![](/public/images/ETH-NFT-Game/section-3/3_5_2.png)
 
 ### 🪄 おまけ
 
-ユーザーに NFT キャラクターを確認する Rarible リンクを発行しましょう。
+ユーザーに NFT キャラクターを確認する OpenSea リンクを発行しましょう。
 
 `index.js` を開いて、`onCharacterMint` 関数の中身を変更します。
 
@@ -592,7 +582,7 @@ https://testnets.opensea.io/assets/CONTRACT_ADDRES/TOKEN_ID
 ```javascript
 // index.js
 alert(
-  `NFT キャラクーが Mint されました -- リンクはこちらです: https://rinkeby.rarible.com/token/${
+  `NFT キャラクーが Mint されました -- リンクはこちらです: https://testnets.opensea.io/assets/${
     gameContract.address
   }:${tokenId.toNumber()}?tab=details`
 );

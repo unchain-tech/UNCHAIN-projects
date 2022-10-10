@@ -18,7 +18,7 @@
 $ npx create-near-app@3.1.0 --frontend=react --contract=rust near_bike_share_dapp
 ```
 
-実行後, 必要なパッケージのインストール許可を求められるので enter を押します。  
+実行後, 必要なパッケージのインストール許可を求められるので enter を押します。
 成功すると以下のような表示がされます。
 
 ![](/public/images/NEAR-BikeShare/section-2/2_1_1.png)
@@ -31,7 +31,7 @@ $ npx create-near-app@3.1.0 --frontend=react --contract=rust near_bike_share_dap
 > $ npm install -g yarn
 > ```
 >
-> で`yarn`を取得後再実行してください。  
+> で`yarn`を取得後再実行してください。
 > 実行環境のバージョンは以下です。
 >
 > ```
@@ -65,7 +65,7 @@ $ yarn dev
 - Mac: `ctrl + c`
 - Windows: `ctrl + shift + w`
 
-最後に作成した`near_bike_share_dapp`のフォルダ構成を確認しましょう。  
+最後に作成した`near_bike_share_dapp`のフォルダ構成を確認しましょう。
 ディレクトリには末尾に`/`をつけて表示しています。
 
 ```
@@ -83,12 +83,12 @@ near_bike_share_dapp/
 └── yarn.lock
 ```
 
-`frontend`と`contract`ディレクトリが見えるでしょうか。  
+`frontend`と`contract`ディレクトリが見えるでしょうか。
 それぞれフロントエンドを構成するコードのファイル, コントラクトを構成するコードのファイルが入っています。
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-economy` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
 

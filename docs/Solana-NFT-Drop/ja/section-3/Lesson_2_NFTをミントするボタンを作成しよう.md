@@ -183,7 +183,7 @@ return (
 
 まず、Phantom Wallet のパブリックアドレスを取得します。
 
-![無題](/public/images/Solana-NFT-Drop/section3/3_2_1.png)
+![無題](/public/images/Solana-NFT-Drop/section-3/3_2_1.png)
 
 次に、Devnet でトークンを得るためにターミナルで次のコマンドを実行します。
 
@@ -193,7 +193,7 @@ solana airdrop 2 INSERT_YOUR_PHANTOM_WALLET_ADDRESS
 
 `Mint NFT` をクリックすると、次のようなポップアップが表示されます。
 
-![無題](/public/images/Solana-NFT-Drop/section3/3_2_2.png)
+![無題](/public/images/Solana-NFT-Drop/section-3/3_2_2.png)
 
 [承認]をクリックして取引手数料を支払うと、キャンディーマシンに NFT を作成するように指示されます。
 
@@ -201,7 +201,7 @@ solana airdrop 2 INSERT_YOUR_PHANTOM_WALLET_ADDRESS
 
 NFT が正常にミントすると、コンソールに次のようなものが表示されます。
 
-![無題](/public/images/Solana-NFT-Drop/section3/3_2_3.png)
+![無題](/public/images/Solana-NFT-Drop/section-3/3_2_3.png)
 
 NFT を mint できました!
 
@@ -209,7 +209,7 @@ Phantom Wallet を開き、`[]` セクションに表示されるかどうかを
 
 Phantom Wallet の左から 2 つ目のタブに切り替えてみましょう 👀
 
-![無題](/public/images/Solana-NFT-Drop/section3/3_2_4.png)
+![無題](/public/images/Solana-NFT-Drop/section-3/3_2_4.png)
 
 ### 🙋‍♂️ 質問する
 

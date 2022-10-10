@@ -1,6 +1,6 @@
 ### 🛠️ フロントエンドとコントラクトを接続しよう
 
-前レッスンではバイクを管理するコントラクトを作成しました 🌟  
+前レッスンではバイクを管理するコントラクトを作成しました 🌟
 このレッスンではフロントエンドを本プロジェクト用に編集し, コントラクトと接続してみましょう！
 
 `near_bike_share_dapp` の中にある`frontend`ディレクトリの中身を変更します。
@@ -26,13 +26,14 @@ frontend
 └── index.js
 ```
 
-注目するのは`App.js`, `global.css`, `config.js`, `utils.js`, ファイルです。  
+注目するのは`App.js`, `global.css`, `config.js`, `utils.js`, ファイルです。
 また, `img`ディレクトリには使用する画像を追加します。
 
-初めに以下の画像をダウンロードし,`bike.png`という名前で`frontend/assets/img/`内に保存してください。  
+初めに以下の画像をダウンロードし,`bike.png`という名前で`frontend/assets/img/`内に保存してください。
+
 ![](/public/images/NEAR-BikeShare/section-2/2_4_4.png)
 
-次に`frontend/assets/css/global.css`を以下に示すコードで書き換えてください。  
+次に`frontend/assets/css/global.css`を以下に示すコードで書き換えてください。
 今回のプロジェクトに合わせた `css` を記述しています。
 
 ```css
@@ -246,8 +247,8 @@ function getConfig(env) {
 
 このファイルはコントラクトとの接続に必要な設定をオブジェクトとして返却する`getConfig`関数を記述しています。
 
-さらに接続するコントラクト(のデプロイしているアカウント名)の指定を`CONTRACT_NAME`で行っています。  
-プロセスの環境変数として`CONTRACT_NAME`を設定(後に行います)するか, `new-awesome-project`を適切なアカウント名に変更します。  
+さらに接続するコントラクト(のデプロイしているアカウント名)の指定を`CONTRACT_NAME`で行っています。
+プロセスの環境変数として`CONTRACT_NAME`を設定(後に行います)するか, `new-awesome-project`を適切なアカウント名に変更します。
 このファイルは編集せずに先に進みましょう。
 
 次は`utils.js`ファイルを見ていきます。
@@ -268,10 +269,10 @@ export async function initContract() {
 // コントラクトAPI の実装 ...
 ```
 
-`near-api-js` というライブラリを `import` してコントラクトとの接続に使用します。  
-`near-api-js` の使い方に関しては[こちら](https://docs.near.org/develop/integrate/frontend)を参照してください。  
-また, `config.js` ファイルから `import` した `getConfig` 関数を使用して設定を取得しています。  
-その後に `initContract` 関数でコントラクトとの接続を初期化,  
+`near-api-js` というライブラリを `import` してコントラクトとの接続に使用します。
+`near-api-js` の使い方に関しては[こちら](https://docs.near.org/develop/integrate/frontend)を参照してください。
+また, `config.js` ファイルから `import` した `getConfig` 関数を使用して設定を取得しています。
+その後に `initContract` 関数でコントラクトとの接続を初期化,
 さらにその後に`コントラクトAPI`(コントラクトの機能を使用するための関数) の実装が続いています。
 
 `initContract` 関数内の以下の部分に注目しましょう。
@@ -287,9 +288,9 @@ window.contract = await new Contract(
 );
 ```
 
-`window` 変数に新しいコントラクト情報を格納しています。  
-もともとコントラクトとして存在した`greeter`コントラクトの情報が記述されています。  
-`view メソッド`に`get_greeting`,`change メソッド`に`set_greeting` がある状態です。  
+`window` 変数に新しいコントラクト情報を格納しています。
+もともとコントラクトとして存在した`greeter`コントラクトの情報が記述されています。
+`view メソッド`に`get_greeting`,`change メソッド`に`set_greeting` がある状態です。
 これをあなたが作ったメソッド名に変更しましょう！
 
 ```js
@@ -887,14 +888,14 @@ export default function App() {
 }
 ```
 
-少し長いので読むのが大変かと思いますが,  
+少し長いので読むのが大変かと思いますが,
 Web サイトがブラウザ上で起動してからの`App.js`内の処理フローをここで簡単に整理します。
 
 - 起動時, `useEffect`内で定義した`allBikeInfo`と`renderingState`の初期化が実行されます。
 - 次にファイル下部にある`switch`文が実行されます。
 - `renderingState`が`RenderingStates.SIGN_IN`の場合はサインイン画面を表示します。
 - `renderingState`が`RenderingStates.HOME`の場合はホーム画面を表示します。
-- ホーム画面の表示(`hoem`関数)では`bikeContents`関数が実行されます。  
+- ホーム画面の表示(`hoem`関数)では`bikeContents`関数が実行されます。
   `allBikeInfo`と共にユーザが利用できるボタンをリスト表示します。
 
 最後に `package.json` 内,`build:contract`スクリプトを以下のように変更します。
@@ -925,7 +926,8 @@ $ yarn dev
 
 サインイン後
 
-![](/public/images/NEAR-BikeShare/section-2/2_4_1.png)  
+![](/public/images/NEAR-BikeShare/section-2/2_4_1.png)
+
 `use`, `inspect`, `return`ボタンを押してみて挙動を確かめましょう。
 
 サイトの上で右クリックを行い、`Inspect` を選択 -> `Console`を選択し出力結果を確認してみましょう。
@@ -936,12 +938,12 @@ $ yarn dev
 
 ![](/public/images/NEAR-BikeShare/section-2/2_4_3.png)
 
-それぞれユーザのアカウント情報, コントラクトのアカウント情報を検索することができます。  
+それぞれユーザのアカウント情報, コントラクトのアカウント情報を検索することができます。
 クリックして参照してみましょう, トランザクションの履歴などが確認できます。
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-economy` で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
 
@@ -956,7 +958,7 @@ $ yarn dev
 
 ---
 
-おめでとうございます！  
+おめでとうございます！
 アプリの基盤を作ることができました！
-先ほど確認した URL(`Console` に最後に表示されたコントラクトアカウント ID に関する URL)を `#near-sharing-dapp` に投稿して、あなたの成功をコミュニティで祝いましょう 🎉
+先ほど確認した URL(`Console` に最後に表示されたコントラクトアカウント ID に関する URL)を `#near-sharing-economy` に投稿して、あなたの成功をコミュニティで祝いましょう 🎉
 次のレッスンでは `ftコントラクト`を連携していきます！

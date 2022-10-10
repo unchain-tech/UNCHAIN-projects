@@ -1,0 +1,9 @@
+{
+    "project_id": 601,
+    "title": "ICP Static Site",
+    "difficulty": "beginner",
+    "chain": "ICP",
+    "description": "👉 ICP と Svelte を使って、ICP ネットワーク上にポートフォリオサイトを構築します。",
+    "total_sections": 4,
+    "total_lessons": 11
+}
