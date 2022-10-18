@@ -575,7 +575,7 @@ export default function SendMessagePage() {
 
 ```tsx
 import { BigNumber } from "ethers";
-import MessageCard from "../../components/card/Message";
+import MessageCard from "../../components/card/MessageCard";
 import Layout from "../../components/layout/Layout";
 import { Message } from "../../hooks/useMessengerContract";
 
