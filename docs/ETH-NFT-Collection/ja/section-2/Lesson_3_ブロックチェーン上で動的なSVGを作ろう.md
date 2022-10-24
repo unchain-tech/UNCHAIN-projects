@@ -59,13 +59,13 @@ contract MyEpicNFT is ERC721URIStorage {
     uint256 rand = random(string(abi.encodePacked("FIRST_WORD", Strings.toString(tokenId))));
 
     // seed rand をターミナルに出力する。
-	  console.log("rand seed: ", rand);
+    console.log("rand seed: ", rand);
 
-	  // firstWords配列の長さを基準に、rand 番目の単語を選びます。
+    // firstWords配列の長さを基準に、rand 番目の単語を選びます。
     rand = rand % firstWords.length;
 
-	  // firstWords配列から何番目の単語が選ばれるかターミナルに出力する。
-	  console.log("rand first word: ", rand);
+    // firstWords配列から何番目の単語が選ばれるかターミナルに出力する。
+    console.log("rand first word: ", rand);
     return firstWords[rand];
   }
 
