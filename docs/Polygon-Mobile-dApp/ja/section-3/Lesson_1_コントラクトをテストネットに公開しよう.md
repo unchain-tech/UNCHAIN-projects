@@ -53,7 +53,7 @@ Goerli とは異なり、これらのトークンの取得にそれほど問題�
 
 ### ✨ スマートコントラクトを Mumbai testnet に公開する
 
-`Truffle-config.js` にテストネットのプロバイダの詳細を追加することで、Polygon Mumbai testnetにスマートコントラクトを公開していきます。
+`Truffle-config.js` にテストネットのプロバイダの詳細を追加することで、Polygon Mumbai testnet にスマートコントラクトを公開していきます。
 
 まず、 `todo-dApp-contract` ディレクトリに `.secret` ファイルを作成し、そのファイルに metamask の秘密のリカバリフレーズを貼り付けてください。
 
@@ -115,7 +115,7 @@ module.exports = {
 };
 ```
 
-上記の `providerOrUrl: process.env.ALCHEMY_API_KEY,` の `process.env.ALCHEMY_API_KEY` の部分を、[alchemy.com](https://www.alchemy.com/)で作成したPolygon用のデプロイ先の `API key` に設定します。
+上記の `providerOrUrl: process.env.ALCHEMY_API_KEY,` の `process.env.ALCHEMY_API_KEY` の部分を、[alchemy.com](https://www.alchemy.com/)で作成した Polygon 用のデプロイ先の `API key` に設定します。
 
 手順は下記のとおりです。
 
@@ -151,7 +151,7 @@ package-lock.json
 .env
 ```
 
-以上が完了したら、`todo-dApp-contract` 上でターミナルを開き、以下のコマンドを実行し、Polygon testnet上にスマートコントラクトをデプロイします。
+以上が完了したら、`todo-dApp-contract` 上でターミナルを開き、以下のコマンドを実行し、Polygon testnet 上にスマートコントラクトをデプロイします。
 
 ```bash
 truffle migrate --network matic
@@ -177,7 +177,7 @@ npx truffle migrate --network matic --reset
 
 確認できたら、デプロイの作業は終わりです。
 
-今回のプロジェクトでは、残念ながらテストネット上のスマートコントラクトとフロント側との接続は行いません。webアプリでは拡張機能でmetamaskとの連携が容易に実装できますが、mobileだとそうはいかないようだからです。
+今回のプロジェクトでは、残念ながらテストネット上のスマートコントラクトとフロント側との接続は行いません。web アプリでは拡張機能で metamask との連携が容易に実装できますが、mobile だとそうはいかないようだからです。
 
 ### 🙋‍♂️ 質問する
 
@@ -195,4 +195,4 @@ npx truffle migrate --network matic --reset
 ---
 あなたのコントラクトアドレスのリンクを Discord の `#polygon-mobile-dapp` に投稿してください!
 
-次のセクションに進んで、動作状況をGifに収めるを開始しましょう 🎉
+次のセクションに進んで、動作状況を Gif に収めるを開始しましょう 🎉

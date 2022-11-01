@@ -143,7 +143,7 @@ Alchemy のアカウントを作成したら、`CREATE APP` ボタンを押し�
 
 MetaMask ウォレットに `Goerli Test Network` が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽 ETH を取得しましょう。
 
-- [Alchemy](https://goerlifaucet.com/) - 0.25 Goerli ETH （24 時間に 1 度もらうことができる）
+- [Alchemy](https://goerlifaucet.com/) - 0.25 Goerli ETH（24 時間に 1 度もらうことができる）
   - ウォレットアドレスを入力して `Send Me ETH` ボタンを押下するとその場でもらえます。
 - [Chainlink](https://faucets.chain.link/) - 0.1 Goerli ETH（その場でもらえる）
   - `Connect wallet` をクリックして MetaMask と接続する必要があります。

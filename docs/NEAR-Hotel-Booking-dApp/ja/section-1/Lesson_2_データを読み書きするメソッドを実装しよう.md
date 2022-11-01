@@ -35,7 +35,7 @@ impl Default for Contract
 ```
 
 関数の中では、`rooms_per_owner`と`rooms_by_id`のインスタンスを`new()`で生成しています。
-// TODO: new の引数について説明を入れる（違い）
+// TODO: new の引数について説明を入れる（違い）。
 `LookupMap`は`new()`に`b"m"`を引数に渡します。これは、`new()`が`LookupMap`のインスタンスを生成する際に、キーの一意なプレフィックスを設置するためです。`b"..."`は、バイト文字列リテラルを生成する`Rust`のキーワードです。
 
 ```rust
@@ -142,7 +142,7 @@ pub fn add_room_to_owner(
 
 `add_room_to_owner`メソッドは、部屋のデータを受け取り、そのデータを保存します。このメソッドは戻り値がありません。
 
-メソッドの中を確認します。まずは受け取ったデータをもとに三つの変数を生成します。
+メソッドの中を確認します。まずは受け取ったデータをもとに 3 つの変数を生成します。
 
 ```rust
 // 関数をコールしたアカウントIDを取得
@@ -168,7 +168,7 @@ let new_room = Room {
 1. `owner_id` : 部屋のオーナーの ID。
    - `env`はスマートコントラクトで利用可能なライブラリです。ここでは`env`が実装する`signer_account_id()`というメソッドを使用して、関数を呼び出したアカウント ID を取得しています。
 2. `room_id` : 各部屋に割り当てる一意な ID。
-   - `owner_id`と`name`を繋げたデータを ID とします。（例: `owner.testnet101`）
+   - `owner_id`と`name`を繋げたデータを ID とします（例: `owner.testnet101`）
 3. `new_room` : データをひとまとめに持つ`Room`構造体。
 
 次に、生成した変数を`Contract`構造体が持つ 2 つのデータ構造に保存します。どちらもマップなので、`insert()`というメソッドで[key, value]をセットにして保存します。
@@ -311,7 +311,7 @@ pub fn get_rooms_registered_by_owner(&self, owner_id: AccountId) -> Vec<Register
         match self.rooms_per_owner.get(&owner_id) {
 ```
 
-部屋が登録されていたら`Some`に入り、部屋を一つずつ処理していきます。
+部屋が登録されていたら`Some`に入り、部屋を 1 つずつ処理していきます。
 
 ```rust
             // オーナーが部屋のデータを保存していた時

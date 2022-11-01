@@ -2,7 +2,7 @@
 
 コントラクトのアドレス（`Contract deployed to` に続く `0x..`）をターミナルからコピーして、[テストネット用の OpenSea](https://testnets.opensea.io/) に貼り付け、検索してみてください。
 
-私のコレクションはこのような形で表示されます。（画像は学習コンテンツ制作時に使用していた Rarible rinkeby testnet のものを使用しています。）
+私のコレクションはこのような形で表示されます（画像は学習コンテンツ制作時に使用していた Rarible rinkeby testnet のものを使用しています）。
 
 ![](/public/images/Polygon-Generative-NFT/section-2/2_4_1.png)
 

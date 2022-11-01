@@ -1,6 +1,6 @@
 ### 🤖 ウォレットプロバイダーを設定する
 
-今回接続するウォレットは [Phantom Wallet](https://phantom.app/) ですが、Solana ウォレットならどれでも使用できるはずです。（ただし、他のウォレットではテストしていません。）
+今回接続するウォレットは [Phantom Wallet](https://phantom.app/) ですが、Solana ウォレットならどれでも使用できるはずです（ただし、他のウォレットではテストしていません）。
 
 この Web アプリケーションを作成するにあたり、一番始めにやるべきことはウォレットを接続することです。
 
@@ -67,7 +67,7 @@ export default App;
 
 次は[@solana/wallet-adapter](https://solana-labs.github.io/wallet-adapter/) の `wallet-adapter-network` です。
 
-これは、利用可能なネットワーク（mainnet-beta 、testnet、devnet）を略記した[オブジェクトを記述した配列](https://github.com/solana-labs/wallet-adapter/blob/469edb5dd45231d397751b0268c86dffd6ed730a/packages/core/base/src/types.ts)です。（詳細はリンク先を参照）
+これは、利用可能なネットワーク（mainnet-beta 、testnet、devnet）を略記した[オブジェクトを記述した配列](https://github.com/solana-labs/wallet-adapter/blob/469edb5dd45231d397751b0268c86dffd6ed730a/packages/core/base/src/types.ts)です（詳細はリンク先を参照）
 
 次の `WalletModalProvider` はユーザーのウォレット選択を捗らせる素晴らしい React コンポーネントです。
 

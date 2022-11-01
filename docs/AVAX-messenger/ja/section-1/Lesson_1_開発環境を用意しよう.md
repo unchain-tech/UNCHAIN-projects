@@ -117,7 +117,7 @@ $ npx hardhat compile
 $ npx hardhat test
 ```
 
-次のように表示されたら成功です！ 🎉
+次のように表示されたら成功です！　🎉
 
 ![](/public/images/AVAX-messenger/section-1/1_1_1.png)
 

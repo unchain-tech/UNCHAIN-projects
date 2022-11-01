@@ -6,7 +6,7 @@
 
 IPFS は InterPlanetary File System の略で、データを分散的に保存してくれる分散型ストレージです。
 
-IPFS に保存されたデータは一定期間内にアクセスがないと消えてしまう可能性があるので、ユーザーは定期的にストレージにアクセス（[ピン](https://docs.ipfs.io/how-to/pin-files/)）する必要があります。 （今回のチュートリアルでは実施しません。）
+IPFS に保存されたデータは一定期間内にアクセスがないと消えてしまう可能性があるので、ユーザーは定期的にストレージにアクセス（[ピン](https://docs.ipfs.io/how-to/pin-files/)）する必要があります（今回のチュートリアルでは実施しません）。
 
 ※IPFS の詳細については [ここ](https://decrypt.co/resources/how-to-use-ipfs-the-backbone-of-web3) を参照してみてください。
 
@@ -18,7 +18,7 @@ IPFS に保存されたデータは一定期間内にアクセスがないと消
 
 ![pinata](/public/images/Solana-Online-Store/section-1/1_3_1.png)
 
-つづいて、アップロードした画像の「 CID （コンテンツ ID ）」の欄に記載された ID ハッシュをコピーしておきましょう。
+つづいて、アップロードした画像の「CID（コンテンツ ID）」の欄に記載された ID ハッシュをコピーしておきましょう。
 
 CID は IPFS 上でコンテンツにアクセスするためのアドレスで、以下のようなリンクを作成してアクセスすることができます。
 
@@ -70,7 +70,7 @@ export default IPFSDownload;
 
 `pages` ディレクトリに `api` フォルダを追加し、その中に `products.json` ファイルを作成して以下のコードを貼り付けてください。
 
-この `products.json` ファイルは商品のモックデータベースです。（サンプルの `image_url` は非常に長いですが気にせず進めてください。）
+この `products.json` ファイルは商品のモックデータベースです（サンプルの `image_url` は非常に長いですが気にせず進めてください）。
 
 `name` 及び `hash` フィールドには、 Pinata へアップロードしたファイルの名前及び生成された CID を入れておきましょう。
 

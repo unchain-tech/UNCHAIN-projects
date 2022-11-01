@@ -6,7 +6,7 @@
 
 - 「サーバ」がブロックチェーンであることを除けば、Truffle はローカルサーバと同じです。
 
-まず、`node` / `npm` を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスしてください。(Hardhatのためのサイトですが気にしないでください)
+まず、`node` / `npm` を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスしてください。(Hardhat のためのサイトですが気にしないでください)
 
 `node v16` をインストールすることを推奨しています。
 
@@ -36,11 +36,11 @@ npm install -g truffle@5.4.29
 
 - `contracts` : すべてのスマートコントラクトは、このディレクトリに格納されます。
 
-- `migrations` : スマートコントラクトとしてデプロイするTruffleが使用するすべてのスクリプトは、このディレクトリに格納されます。
+- `migrations` : スマートコントラクトとしてデプロイする Truffle が使用するすべてのスクリプトは、このディレクトリに格納されます。
 
 - `test` : スマートコントラクトのテスト用スクリプトはすべてこのディレクトリに格納されます。
 
-- `truffle-config.js` : Truffleの構成設定が含まれています。
+- `truffle-config.js` : Truffle の構成設定が含まれています。
 
 この段階で、フォルダ構造は下記のようになっていることを確認してください。
 

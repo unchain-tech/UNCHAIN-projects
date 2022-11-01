@@ -45,7 +45,7 @@ netlify deploy --prod
 +  Create & configure a new site
 ```
 
-次に、どのチームとして デプロイ するかを聞かれるので、ログインの時に作成したチーム名にしてください。
+次に、どのチームとしてデプロイするかを聞かれるので、ログインの時に作成したチーム名にしてください。
 
 ```bash
 ? Team: ysaito
@@ -105,9 +105,9 @@ Website URL:       https://near-hotel-booking-dapp.netlify.app
 
 NFT を取得する条件は、以下のようになります。
 
-1. MVP の機能がすべて実装されている（実装 OK ）
+1. MVP の機能がすべて実装されている（実装 OK）
 
-2. Web アプリケーションで MVP の機能が問題なく実行される（テスト OK ）
+2. Web アプリケーションで MVP の機能が問題なく実行される（テスト OK）
 
 3. このページの最後にリンクされている Project Completion Form に記入する
 

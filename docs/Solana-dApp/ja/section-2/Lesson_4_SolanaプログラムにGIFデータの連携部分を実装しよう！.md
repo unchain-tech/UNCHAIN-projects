@@ -82,7 +82,7 @@ pub struct BaseAccount {
 
 `BaseAccount` に `gif_list` パラメータが追加され、`ItemStruct` 型の配列が格納されています。
 
-`gif_list` は `Vector` の略である `Vec` 型です。（詳細については[こちら](https://doc.rust-lang.org/std/vec/struct.Vec.html)を参照してください。）
+`gif_list` は `Vector` の略である `Vec` 型です（詳細については[こちら](https://doc.rust-lang.org/std/vec/struct.Vec.html)を参照してください）。
 
 ```rust
 #[derive(Debug, Clone, AnchorSerialize, AnchorDeserialize)]

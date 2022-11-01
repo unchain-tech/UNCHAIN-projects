@@ -49,7 +49,7 @@ npm run dev
 
 雛形ではすでに [`@solana/web3.js`](https://solana-labs.github.io/solana-web3.js/index.html) というライブラリがインストールされるようになっています。 これは `Javascript` で書かれたライブラリで、 `Solana` のプログラムと対話するプログラムを書くのに役立ちます。
 
-また [`Tailwind CSS`](https://tailwindcss.com/) というUtility Firstを掲げて設計されたCSSフレームワークも導入しています。
+また [`Tailwind CSS`](https://tailwindcss.com/) という Utility First を掲げて設計された CSS フレームワークも導入しています。
 
 これからウォレット開発を進めていく上で変更されるファイルは以下の３つのみになります。
 

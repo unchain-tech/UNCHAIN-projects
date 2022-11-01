@@ -61,7 +61,7 @@ module.exports = {
 
 少し説明します。
 
-`truffle-config.js` では、Truffleの基本的な構成を定義しています。
+`truffle-config.js` では、Truffle の基本的な構成を定義しています。
 
 ```js
 //truffle-config.js
@@ -74,9 +74,9 @@ module.exports = {
   },
 ```
 
-現在、Ganacheブロックチェーンが稼働している `localhost:7545` にスマートコントラクトをデプロイするよう指定しています。
+現在、Ganache ブロックチェーンが稼働している `localhost:7545` にスマートコントラクトをデプロイするよう指定しています。
 
-それでは、Ganache上にスマートコントラクトをデプロイするために、コマンドを実行していきます。
+それでは、Ganache 上にスマートコントラクトをデプロイするために、コマンドを実行していきます。
 
 ```bash
 truffle migrate
@@ -121,7 +121,7 @@ module.exports = {
 ![](/public/images/Polygon-Mobile-dApp/section-1/1_3_2.png)
 
 ローカルネットワークへのコンパイルとデプロイの作業は以上で完了です。
-次は、Flutterアプリケーションへ接続していきましょう。
+次は、Flutter アプリケーションへ接続していきましょう。
 ### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discord の `#polygon-mobile-dapp` で質問をしてください。
@@ -138,4 +138,4 @@ module.exports = {
 ---
 ターミナルの出力結果を Discord の `#polygon-mobile-dapp` に投稿して、コミュニティにシェアしてください!
 
-次のセクションに進んで、Flutterアプリケーションへの接続を開始しましょう 🎉
+次のセクションに進んで、Flutter アプリケーションへの接続を開始しましょう 🎉

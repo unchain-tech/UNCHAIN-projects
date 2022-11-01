@@ -68,7 +68,7 @@ Solana プログラムは Devnet にデプロイされました。
 
 これは、Web アプリケーションが接続するプログラムを指定するものです。
 
-`target/idl/myepicproject.json` の中身をすべてコピーし、Web アプリケーションを構築したディレクトリの下にある `src` の直下に `idl.json` ファイルを作成してください。（ `App.js` と同じディレクトリです。）
+`target/idl/myepicproject.json` の中身をすべてコピーし、Web アプリケーションを構築したディレクトリの下にある `src` の直下に `idl.json` ファイルを作成してください（`App.js` と同じディレクトリです）。
 
 そこに `target/idl/myepicproject.json` の中身をすべて張り付けてください。
 
@@ -293,7 +293,7 @@ const createGifAccount = async () => {
 
 1\. ウォレットを接続しているが、`BaseAccount` のアカウントが作成されていないため、初期化されたアカウントを作成するためのボタンを表示する。
 
-2\. ウォレットを接続しているが、`BaseAccount` が存在していたので、`gifList` をレンダリングして、ユーザーが GIT データを送信できるようにする。
+2\. ウォレットを接続しているが、`BaseAccount` が存在していたので、`gifList` をレンダリングして、ユーザーが Git データを送信できるようにする。
 
 ```jsx
 // App.js

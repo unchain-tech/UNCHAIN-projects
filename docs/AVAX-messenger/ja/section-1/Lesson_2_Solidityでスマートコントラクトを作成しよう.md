@@ -130,12 +130,12 @@ class の概念については,[こちら](https://aiacademy.jp/media/?p=131) �
 
 ### 🔩 constructor とは
 
-`constructor` はオプションの関数で,`Messenger`コントラクト の状態変数を初期化するために使用されます。
+`constructor` はオプションの関数で,`Messenger`コントラクトの状態変数を初期化するために使用されます。
 
 `constructor` に関しては,まず以下の特徴をおさえましょう。
 
-- `Messenger`コントラクト は 1 つの `constructor` しか持つことができません。
-- `constructor` は,スマートコントラクトの作成時に一度だけ実行され,`Messenger`コントラクト の状態を初期化するために使用されます。
+- `Messenger`コントラクトは 1 つの `constructor` しか持つことができません。
+- `constructor` は,スマートコントラクトの作成時に一度だけ実行され,`Messenger`コントラクトの状態を初期化するために使用されます。
 - `constructor` が実行された後,コードがブロックチェーンにデプロイされます。
 
 ### 🧪 テストを実装する
@@ -183,7 +183,7 @@ describe("Messenger", function () {
 `Mocha`について詳しくは[こちら](https://mochajs.org/#getting-started)をご覧ください。
 
 `it`の引数にテスト名とテスト関数を渡します。  
-さらに複数の`it`関数を`describe`の引数(の関数)内に渡すことで, 個々のテストを一つの`describe`でグループ化します。
+さらに複数の`it`関数を`describe`の引数(の関数)内に渡すことで, 個々のテストを 1 つの`describe`でグループ化します。
 
 ```ts
 it("construct", async function () {

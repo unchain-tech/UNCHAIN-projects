@@ -87,7 +87,7 @@ Done deploying to contract.hotel_booking.testnet
 
 ### 🎓 NEAR CLI でメソッドを呼び出す方法について
 
-`View`メソッドと`Change`メソッドで、引数の指定やオプションの種類が異なります。以下はコマンドの例になります。（詳しくは[こちら](https://docs.near.org/tools/near-cli#near-call)）
+`View`メソッドと`Change`メソッドで、引数の指定やオプションの種類が異なります。以下はコマンドの例になります（詳しくは[こちら](https://docs.near.org/tools/near-cli#near-call)）
 
 `View`メソッド
 
@@ -206,7 +206,7 @@ false
 
 ---
 
-おめでとうございます！セクション 1 は終了です ✨
+おめでとうございます！　セクション 1 は終了です ✨
 
 `near view contract.hotel_booking.testnet exists '{"owner_id": "hotel_booking.testnet", "room_name": "Sun Room"}' --accountId hotel_booking.testnet` の結果を `#section-1` に投稿して、あなたの成功をコミュニティで祝いましょう 🎉
 

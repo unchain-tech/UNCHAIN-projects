@@ -707,7 +707,7 @@ Minted NFT #1
 下記のように、あなたの SquareNFT が OpenSea で確認できたでしょうか？
 ![](/public/images/ETH-NFT-Collection/section-2/2_3_3.png)
 
-OpenSea上で画像が表示されない場合は[Rarible](https://testnet.rarible.com/)で検索してみてください。
+OpenSea 上で画像が表示されない場合は[Rarible](https://testnet.rarible.com/)で検索してみてください。
 
 ### 🙋‍♂️ 質問する
 

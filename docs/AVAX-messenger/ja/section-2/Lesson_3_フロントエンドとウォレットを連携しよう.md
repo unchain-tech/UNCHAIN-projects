@@ -47,7 +47,7 @@ Web アプリケーション上で,ユーザーがブロックチェーンネッ
 
 これから,あなたの Web アプリケーションにウォレットを接続したユーザーに,スマートコントラクトを呼び出す権限を付与する機能を実装していきます。これは,Web サイトへの認証機能です。
 
-`window.ethereum`は MetaMask が `window`(javascript にデフォルトで存在するグローバル変数)の直下に用意するオブジェクトであり API です。  
+`window.ethereum`は MetaMask が `window`(JavaScript にデフォルトで存在するグローバル変数)の直下に用意するオブジェクトであり API です。  
 この API を使用して, ウェブサイトはユーザーのイーサリアムアカウントを要求し, ユーザーが接続しているブロックチェーンからデータを読み取り, ユーザーがメッセージや取引に署名するよう求めることができます。
 
 まずは `window.ethereum` を使用できるよう typescript のコードを書きます。
@@ -86,7 +86,7 @@ export const getEthereum = (): MetaMaskInpageProvider | null => {
 
 typescript で`window.ethereum` を使用するためには, `window` に `ethereum` オブジェクトがあるということを明示する必要があります。  
 コード内の以下の部分で `window` に `ethereum` を追加しています。  
-`MetaMaskInpageProvider` は 環境設定時にインストールした `@metamask/providers` から取得した `ethereum` の型定義です。
+`MetaMaskInpageProvider` は環境設定時にインストールした `@metamask/providers` から取得した `ethereum` の型定義です。
 
 ```ts
 declare global {
@@ -210,7 +210,7 @@ return {
 };
 ```
 
-次に二つの関数を作成しました。
+次に 2 つの関数を作成しました。
 
 `connectWallet`は web アプリがユーザのウォレットにアクセスすることを求める関数で,  
 この後の実装で UI にユーザのウォレット接続ボタンを用意し, そのボタンとこの関数を連携します。  

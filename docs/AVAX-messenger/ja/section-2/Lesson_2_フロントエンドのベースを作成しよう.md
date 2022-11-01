@@ -138,7 +138,7 @@ messenger-client
 以下の画像をダウンロードするか, あなたのお好きな画像を `favicon.png` という名前で`public`ディレクトリ内に保存してください。  
 ![](/public/images/AVAX-messenger/section-2/2_2_1.png)
 
-この画像はあなたの web アプリケーションのファビコンとなります！ 🙆‍♂️
+この画像はあなたの web アプリケーションのファビコンとなります！　🙆‍♂️
 
 `public`に関するフォルダ構成はこのようになります。
 
@@ -535,7 +535,7 @@ messenger-client
 
 最後に`messenger-client`ディレクトリ直下の`pages`ディレクトリを編集していきます。
 
-Next.js では,pages ディレクトリのファイルからエクスポートされた コンポーネント がページとなります。  
+Next.js では,pages ディレクトリのファイルからエクスポートされたコンポーネントがページとなります。  
 ページは,ファイル名からルートと関連付けられます。  
 たとえば`pages/index.js` は `/` ルートに関連付けられます。  
 `pages/message/SendMessagePage.tsx` は `/message/SendMessagePage` ルートに関連付けられます。  
@@ -676,7 +676,7 @@ export default Home;
 ```
 
 イメージ図 1 のホームページ全体を構成します。  
-ページ内に二つの`Link`を用意していて, それぞれ先ほど作成した`SendMessagePage`, `ConfirmMessagePage`とリンクしています。
+ページ内に 2 つの`Link`を用意していて, それぞれ先ほど作成した`SendMessagePage`, `ConfirmMessagePage`とリンクしています。
 
 `pages`に関するフォルダ構成はこのようになります。
 

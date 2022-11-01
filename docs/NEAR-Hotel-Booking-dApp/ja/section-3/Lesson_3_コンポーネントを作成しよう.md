@@ -404,7 +404,7 @@ React Bootstrap の[Row](https://react-bootstrap.netlify.app/layout/grid/#row-pr
 追加した内容を見ていきましょう。
 
 Room
-コンポーネントは、二つの引数を受け取ります。
+コンポーネントは、2 つの引数を受け取ります。
 
 - `room` : 部屋のデータが入っています。
 - `booking` : **Book for x NEAR ボタン**を押した時に実行される関数です。

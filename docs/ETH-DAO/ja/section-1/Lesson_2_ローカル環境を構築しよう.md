@@ -31,7 +31,7 @@ npx thirdweb create -t next-typescript-starter
 
 コマンドを実行すると、`Ok to proceed?` と聞かれるので `y` を入力してエンターを押します。
 
-続いて、`? What is your project named?` でプロジェクト名を入力し、エンターを押します。（今回は `eth-dao-starter-project` とします。）
+続いて、`? What is your project named?` でプロジェクト名を入力し、エンターを押します（今回は `eth-dao-starter-project` とします）。
 
 ![](/public/images/ETH-DAO/section-1/1_2_1.png)
 

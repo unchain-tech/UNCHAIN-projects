@@ -42,7 +42,7 @@ To configure your current shell, run:
 source "$HOME/.cargo/env"
 ```
 
-また、環境変数を設定するために下のコマンドを実行します。（[環境変数とは？](https://wa3.i-3-i.info/word11027.html)）
+また、環境変数を設定するために下のコマンドを実行します（[環境変数とは？](https://wa3.i-3-i.info/word11027.html)）
 
 ```bash
 source $HOME/.cargo/env
@@ -143,6 +143,6 @@ npm start
 
 ---
 
-おめでとうございます！セクション 0 は終了です！
+おめでとうございます！　セクション 0 は終了です！
 
 次のセクションに進み、スマートコントラクトの実装を開始しましょう 🚀

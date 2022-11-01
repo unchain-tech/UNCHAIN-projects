@@ -307,7 +307,7 @@ export default function OwnerPage() {
 `useMessengerContract` から取得した `numOfPendingLimits` と `changeNumOfPendingLimits` を  
 先ほど作成した `ChangeOwnerValueForm` に渡しています。
 
-また, `owner` が 現在接続しているアカウントと違う場合は `Unauthorized` というメッセージを表示します。
+また, `owner` が現在接続しているアカウントと違う場合は `Unauthorized` というメッセージを表示します。
 
 最後に `pages`ディレクトリ内の `index.tsx` を以下のように編集しましょう。
 
@@ -367,7 +367,7 @@ const Home: NextPage = () => {
 export default Home;
 ```
 
-`OwnerPage.tsx`と同じように `owner` と ユーザアカウントを照合して,  
+`OwnerPage.tsx`と同じように `owner` とユーザアカウントを照合して,  
 `owner` の場合は管理者画面である`OwnerPage`へリンクを表示します。
 
 ### 🖥️ web アプリを立ち上げましょう

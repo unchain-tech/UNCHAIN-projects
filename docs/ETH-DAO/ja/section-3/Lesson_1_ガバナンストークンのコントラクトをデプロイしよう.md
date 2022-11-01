@@ -266,7 +266,7 @@ const token = sdk.getContract("INSERT_TOKEN_ADDRESS", "token");
 })();
 ```
 
-少し長いですが、一つずつ丁寧に見ていきましょう。
+少し長いですが、1 つずつ丁寧に見ていきましょう。
 
 まず、`editionDrop` と `token` の両方のコントラクトが必要であることがわかります。
 

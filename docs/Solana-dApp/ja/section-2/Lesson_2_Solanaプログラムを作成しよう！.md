@@ -51,7 +51,7 @@ Solana プログラムを書きやすくするために、 Anchor が提供し�
 declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 ```
 
-これは、Anchor が自動生成した「プログラム ID 」と呼ばれるものです。
+これは、Anchor が自動生成した「プログラム ID」と呼ばれるものです。
 
 Solana が Web アプリケーションを実行するための情報を持っています。
 
@@ -146,7 +146,7 @@ const tx = await program.rpc.startStuffOff();
 
 まず、`anchor.setProvider` で `solana config get` から Anchor にプロバイダーを設定するように指示します。
 
-このように記述することで、Anchor はプログラムをローカル上で実行することができるようになります。（ devnet でコードをテストできるようになります。）
+このように記述することで、Anchor はプログラムをローカル上で実行することができるようになります（devnet でコードをテストできるようになります）。
 
 次に、`anchor.workspace.Myepicproject` を取得します。
 

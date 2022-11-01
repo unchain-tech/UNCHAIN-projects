@@ -1,12 +1,12 @@
 ### 👛 HDウォレットについて
 
-このセクションでは、HDウォレットと呼ばれる種類のウォレットを構築します。HDとは階層的決定性(Hierarchy Deterministic)​の略です。
+このセクションでは、HD ウォレットと呼ばれる種類のウォレットを構築します。HD とは階層的決定性(Hierarchy Deterministic)の略です。
 
-これは簡単に言うと、1つのシードからマスターキーとなる秘密鍵を生成し、そこから木構造のような階層的に複数の派生秘密鍵と派生公開鍵及びアドレスを生成します。
+これは簡単に言うと、1 つのシードからマスタキーとなる秘密鍵を生成し、そこから木構造のような階層的に複数の派生秘密鍵と派生公開鍵及びアドレスを生成します。
 
 最初の秘密鍵は、シードと呼ばれるランダムな文字列から作ります。その後は作った秘密鍵をシードとして新たな秘密鍵を階層的に作ることができます。
 
-シードは覚えにくい文字列ですので、シードから「シードフレーズ」や「リカバリーフレーズ」などと呼ばれる、12個から24個の単語に変換して記録しておく方法が使われています。
+シードは覚えにくい文字列ですので、シードから「シードフレーズ」や「リカバリーフレーズ」などと呼ばれる、12 個から 24 個の単語に変換して記録しておく方法が使われています。
 
 <!--
 参考
@@ -18,9 +18,9 @@ https://coinpedia.cc/hd-wallet
 
 フレーズを生成するには、決定論的なキーのフレーズ生成の標準を設定した `BIP39仕様` を満たす外部ライブラリを活用する必要があります。
 
-JavaScriptには [`BIP39`](https://github.com/bitcoinjs/bip39) と呼ばれるライブラリがあるのでこれを利用していきましょう。
+JavaScript には [`BIP39`](https://github.com/bitcoinjs/bip39) と呼ばれるライブラリがあるのでこれを利用していきましょう。
 
-`BIP39` ライブラリは、フレーズを生成し、それをSolanaウォレットキーの生成に必要なシードに変換するために必要な機能を提供してくれます。
+`BIP39` ライブラリは、フレーズを生成し、それを Solana ウォレットキーの生成に必要なシードに変換するために必要な機能を提供してくれます。
 
 - `BIP39` ライブラリを `npm install` する
 
@@ -28,7 +28,7 @@ JavaScriptには [`BIP39`](https://github.com/bitcoinjs/bip39) と呼ばれる�
 npm install bip39
 ```
 
-- importする
+- import する
 
 ライブラリのインストールが完了したら、 ファイルの先頭でライブラリを読み込みましょう。
 
@@ -54,9 +54,9 @@ const generatedMnemonic = Bip39.generateMnemonic();
 
 [`@solana/web3.js`](https://solana-labs.github.io/solana-web3.js/classes/Keypair.html) ドキュメントを確認すると、`Keypair` クラスが "An account keypair used for signing transactions." として定義されていることがわかります。これはまさに、ニーモニックフレーズを使用して生成する必要があるものです。
 
-またドキュメントを読むと、 `Keypair` クラスには、32バイトのシードから `Keypair` を生成する `fromSeed` メソッドがあることがわかります。そして、シードは `Uint8Array` である必要があります。つまり、ニーモニックフレーズを `Uint8Array` に変換する方法が必要だということです。
+またドキュメントを読むと、 `Keypair` クラスには、32 バイトのシードから `Keypair` を生成する `fromSeed` メソッドがあることがわかります。そして、シードは `Uint8Array` である必要があります。つまり、ニーモニックフレーズを `Uint8Array` に変換する方法が必要だということです。
 
-`BIP39` ライブラリに戻ると、`mnemonicToSeedSync(mnemonic)` というメソッドがあり、16進数のリストのような `Buffer` オブジェクトが返されます。このメソッドを実行し、生成したニーモニックを渡すことで、テストすることができます。
+`BIP39` ライブラリに戻ると、`mnemonicToSeedSync(mnemonic)` というメソッドがあり、16 進数のリストのような `Buffer` オブジェクトが返されます。このメソッドを実行し、生成したニーモニックを渡すことで、テストすることができます。
 
 ```javascript
 const seed = Bip39.mnemonicToSeedSync(generatedMnemonic);
@@ -67,7 +67,7 @@ console.log(seed);
 
 ゴールまでもう少しです!🥭
 
-`Keypair` クラスは32バイトの `Uint8Array` を必要としますが、現在は64バイトの `Uint8Array` を取得しています。シードを slice して、最初の32バイトだけを保持するようにしましょう。
+`Keypair` クラスは 32 バイトの `Uint8Array` を必要としますが、現在は 64 バイトの `Uint8Array` を取得しています。シードを slice して、最初の 32 バイトだけを保持するようにしましょう。
 
 ```javascript
 const seed = Bip39.mnemonicToSeedSync(generatedMnemonic).slice(0, 32);

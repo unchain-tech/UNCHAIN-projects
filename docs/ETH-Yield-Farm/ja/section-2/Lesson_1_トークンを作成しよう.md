@@ -3,12 +3,12 @@
 
 ### 👀 プロジェクトの概要を復習しよう
 
-プロジェクトでは3つのスマートコントラクトを使用します。
+プロジェクトでは 3 つのスマートコントラクトを使用します。
 
 `src/contracts` フォルダを参照してください。
 
 1. MockDaiToken.sol
-   - 偽のDaiトークンを作成するコントラクト
+   - 偽の Dai トークンを作成するコントラクト
 2. DappToken.sol
    - 投資家が私たちのプロジェクトで獲得できるコミュニティトークン Dapp を作成するコントラクト
 3. TokenFarm.sol
@@ -60,7 +60,7 @@ const DappToken = artifacts.require(`DappToken`)
 const DaiToken = artifacts.require(`DaiToken`)
 ```
 
-ここでは`TokenFarm`, `DappToken`, `MockDaiToken`の3つのコントラクトとやりとりをするよとtruffleに伝えています。
+ここでは`TokenFarm`, `DappToken`, `MockDaiToken`の 3 つのコントラクトとやりとりをするよと truffle に伝えています。
 
 次に、`function()` の引数として、`network` と `accounts` を追加していきましょう。
 
@@ -72,7 +72,7 @@ module.exports = async function(deployer, newtwork, accounts) {
 
 `async` キーワードを追加するのをお忘れなく!
 
-マイグレーションファイル内でアクセス可能な変数として、スマートコントラクトが配置される `network`　と、Ganacheからのアカウントリスト（`accounts`）を追加しました。これは、投資家に Dapp トークンを提供するために重要な変数となります。
+マイグレーションファイル内でアクセス可能な変数として、スマートコントラクトが配置される `network`　と、Ganache からのアカウントリスト（`accounts`）を追加しました。これは、投資家に Dapp トークンを提供するために重要な変数となります。
 
 次の部分では、 `deploy()` で実際にコントラクトをデプロイして、`deployed()` でデプロイされた結果を取得しています。
 
@@ -92,9 +92,9 @@ await deployer.deploy(TokenFarm, dappToken.address, daiToken.address)
 const tokenFarm = await TokenFarm.deployed()
 ```
 
-これらのコードが実行されると、3つのスマートコントラクトがブロックチェーン上にデプロイされます!
+これらのコードが実行されると、3 つのスマートコントラクトがブロックチェーン上にデプロイされます!
 
-最後に、今回のアプリケーションでユーザーがステーキングするのに使う偽の Dai トークンと、その見返りとしてコミュニティが渡す Dapp トークンをコントラクトへそれぞれ 100 Dai, 100万 Dappずつデプロイします。
+最後に、今回のアプリケーションでユーザーがステーキングするのに使う偽の Dai トークンと、その見返りとしてコミュニティが渡す Dapp トークンをコントラクトへそれぞれ 100 Dai, 100 万 Dapp ずつデプロイします。
 
 一つ一つ見ていきましょう。まず、`dappToken` を `tokenFarm` に預け入れる処理を確認しましょう。
 
@@ -111,7 +111,7 @@ await dappToken.transfer(tokenFarm.address, '1000000000000000000000000')
 
 基本的に、プロジェクトオーナーはすべてのオリジナルトークン（e.g., Dapp）を流動性プールに置き、アプリからそれらのトークンを投資家に配布しています。
 
-- すべての Dapp トークンをこのトークンファームプロジェクトに配置し、投資家がWEBアプリケーションを使うときに、自動的にトークンが分配されるようにします。
+- すべての Dapp トークンをこのトークンファームプロジェクトに配置し、投資家が Web アプリケーションを使うときに、自動的にトークンが分配されるようにします。
 - ユーザーは、Dapp トークンを購入する代わりに、流動性マイニングやイールドファーミングによって Dapp トークンを獲得することができます。
 
 ちなみに、Solidity では `1Wei(10^(-18))` が基本の単位となっているので `1Dai` は `10^18` となります。
@@ -129,7 +129,7 @@ await daiToken.transfer(accounts[1], '100000000000000000000')
 
 今、DaiToken をデプロイすると、すべてのトークンはデプロイした人（＝あなた / Ganache の `accounts[0]`）のものになります。なので、ここでは、Dai の一部を投資家に譲渡しています。
 
-- Dai トークンの `transfer` 関数についている `accounts[1]` というのは Ganache のアカウントの上から2番目のアカウントのことを示しています。
+- Dai トークンの `transfer` 関数についている `accounts[1]` というのは Ganache のアカウントの上から 2 番目のアカウントのことを示しています。
 - 後から出てくるので頭の片隅に置いておいてください。
 
 ### 🪙　TokenFarmコントラクトに Dai と Dapp トークンを導入する
@@ -176,7 +176,7 @@ constructor(DappToken _dappToken, DaiToken _daiToken) public {
         daiToken = _daiToken;
 }
 ```
-`constructor()` の 中にある `DappToken` と `DaiToken` は実際のスマートコントラクトである「型」です。
+`constructor()` の中にある `DappToken` と `DaiToken` は実際のスマートコントラクトである「型」です。
 
 `_dappToken` と `_daiToken` は、それぞれコントラクトのアドレスです。
 そして、これらの変数を取り出して、それぞれ状態変数である `dappToken` と `daiToken` に代入しています。
@@ -249,7 +249,7 @@ truffle(development)> accounts = await web3.eth.getAccounts()
 truffle(development)> accounts[1]
 ```
 
-ターミナルに出力されるアドレスが、Ganacheに表示されている上から2番目のアカウントのアドレスと一致していることを確認しましょう!このアカウントは仮想の投資家のアドレスとなります。
+ターミナルに出力されるアドレスが、Ganache に表示されている上から 2 番目のアカウントのアドレスと一致していることを確認しましょう!このアカウントは仮想の投資家のアドレスとなります。
 
 次に、ターミナルで以下のコードを実行していきましょう。
 
@@ -277,7 +277,7 @@ mapping(address => unit256) public balanceOf
 
 `balanceOf` は実際にはマッピングですが、ここでは `public` と定義しているので、誰でもこのマッピングの値を `balanceOf` 関数で取得することができます。
 
-マッピングとは他のプログラミング言語における連想配列やハッシュテーブル、キーバリューストアのようなもので、Key を与えると Value を返してくれるものです。
+マッピングとは他のプログラミング言語における連想配列やハッシュテーブル、key-value ストアのようなもので、Key を与えると Value を返してくれるものです。
 
 それでは、`100000000000000000000` という値を人間の読みやすい形に変換するために、以下のコードを `truffle(development)` 上で実行しましょう。
 
@@ -287,17 +287,17 @@ truffle(development)> formattedBalance = web3.utils.fromWei(balance)
 
 `100` とターミナルに出力されたでしょうか？
 
-ちょっと前に、Dappのトークンは小数点以下が18桁という話をしたのを覚えていますか？
+ちょっと前に、Dapp のトークンは小数点以下が 18 桁という話をしたのを覚えていますか？
 
-イーサリアムでは、基本的に小数点以下が18桁あることが分かっているイーサーの最小単位が `Wei` となります。
+イーサリアムでは、基本的に小数点以下が 18 桁あることが分かっているイーサーの最小単位が `Wei` となります。
 
 つまり、この出力結果は、投資家アカウントである `accounts[1]` が 100　Dai トークンを持っていることを意味します。
 
 以上で、truffle を用いたコントラクトの検証は終了です!
 
-* truffleコンソールを終了するには、`^C` を2回入力するか、`.exit` を入力してください。
+* truffle コンソールを終了するには、`^C` を 2 回入力するか、`.exit` を入力してください。
 
-truffle について更に詳しく知りたい方は、[こちら](https://github.com/trufflesuite/truffle)の GitHub レポジトリをご覧ください。
+truffle について更に詳しく知りたい方は、[こちら](https://github.com/trufflesuite/truffle)の GitHub リポジトリをご覧ください。
 
 ### 🙋‍♂️ 質問する
 

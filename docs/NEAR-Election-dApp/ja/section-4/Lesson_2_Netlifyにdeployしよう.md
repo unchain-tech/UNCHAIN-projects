@@ -31,7 +31,7 @@ netlify login
 +   status = 200
 ```
 
-最後にnear-election-dapp-frontendディレクトリにいることを確認し netlify にコードをデプロイするために下のコマンドを実行しましょう。
+最後に near-election-dapp-frontend ディレクトリにいることを確認し netlify にコードをデプロイするために下のコマンドを実行しましょう。
 
 ```bash
 netlify deploy --prod
@@ -89,7 +89,7 @@ Website URL:       https://near-election-dapp.netlify.app
 成功すれば以下のようにブラウザ上で自分の作成した dApp が使えるようになるはずです！
 ![](/public/images/NEAR-Election-dApp/section-4/4_2_1.png)
 
-ぜひデプロイされた Web アプリケーションを自分の目で確認してみてください！！
+ぜひデプロイされた Web アプリケーションを自分の目で確認してみてください！　！
 
 ### 🙋‍♂️ 質問する
 
@@ -108,9 +108,9 @@ Website URL:       https://near-election-dapp.netlify.app
 
 NFT を取得する条件は、以下のようになります。
 
-1. MVP の機能がすべて実装されている（実装 OK ）
+1. MVP の機能がすべて実装されている（実装 OK）
 
-2. Web アプリケーションで MVP の機能が問題なく実行される（テスト OK ）
+2. Web アプリケーションで MVP の機能が問題なく実行される（テスト OK）
 
 3. このページの最後にリンクされている Project Completion Form に記入する
 

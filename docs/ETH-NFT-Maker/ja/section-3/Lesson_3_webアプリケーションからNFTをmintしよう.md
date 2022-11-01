@@ -19,7 +19,7 @@ import { ethers } from "ethers";
 ```
 npm install --save ethers
 ```
-これでインストールしましょう。ethersをもっと詳しく知りたい方は、[こちら](https://www.npmjs.com/package/ethers)をどうぞ。
+これでインストールしましょう。ethers をもっと詳しく知りたい方は、[こちら](https://www.npmjs.com/package/ethers)をどうぞ。
 
 次に、下記のコードを `NftUploader.jsx` の `connectWallet` 関数の下に `askContractToMintNft` 関数を追加してください。
 
@@ -225,10 +225,10 @@ import Web3Mint from "../../utils/Web3Mint.json";
 
 ### 🛠 `Web3.storage`を使用する
 
-これで、NFTをMintする準備はほとんど終わりましたが、まだ足りないものがありますね。
-そうです!受け取った画像をIPFSにアップロードしてCIDを返してもらう機能が足りませんね。
+これで、NFT を Mint する準備はほとんど終わりましたが、まだ足りないものがありますね。
+そうです!受け取った画像を IPFS にアップロードして CID を返してもらう機能が足りませんね。
 
-まずは、`Web3.storage`のライブラリをインストールしましょう!このライブラリを使うことでsection2で手作業で行ったIPFSに画像をアップロードする作業をコードで実装できるようになります。
+まずは、`Web3.storage`のライブラリをインストールしましょう!このライブラリを使うことで section2 で手作業で行った IPFS に画像をアップロードする作業をコードで実装できるようになります。
 
 ```
 npm install web3.storage
@@ -287,7 +287,7 @@ const imageToNFT = async (e) => {
         const image = e.target
         console.log(image)
 ```
-ここでは、`input` から受け取った画像をeで受け取って、画像のオブジェクトを `e.target` で `image` に代入しています。
+ここでは、`input` から受け取った画像を e で受け取って、画像のオブジェクトを `e.target` で `image` に代入しています。
 
 `e` という合成イベントについては、[公式の説明](https://ja.reactjs.org/docs/events.html)や[こちら](https://react.keicode.com/basics/synthetic-events.php)が役に立つと思います。
 
@@ -299,9 +299,9 @@ const imageToNFT = async (e) => {
 
 すると、`Name your token` という記入画面があると思うので、そこに好きな名前をいれて `api_key` を作りましょう。
 
-名前を入れて enter を押すと、しばらくまって下の画面にkeyがでてくるはずなので、それをコピーしましょう
+名前を入れて enter を押すと、しばらくまって下の画面に key がでてくるはずなので、それをコピーしましょう
 
-`NftUploader.jsx` に戻って、API_KEYを定義しましょう。
+`NftUploader.jsx` に戻って、API_KEY を定義しましょう。
 
 ```javascript
 // NftUploader.jsx
@@ -335,9 +335,9 @@ const rootCid = await client.put(image.files, {
 
 先程の返り値をつかって、今度は保存したファイルのデータを取りに行っています。
 
-この `file.cid` が送った画像のIPFSになります。気になる方は、console.log で出たものをブラウザに表示させてみてください。
-そのfile.cidを引数にして、`askContractToMintNft` 関数を使いましょう。
-これで、mintするための準備はすべて整ったはずです。
+この `file.cid` が送った画像の IPFS になります。気になる方は、console.log で出たものをブラウザに表示させてみてください。
+その file.cid を引数にして、`askContractToMintNft` 関数を使いましょう。
+これで、mint するための準備はすべて整ったはずです。
 
 
 ### 🥳 NFT を Mint する

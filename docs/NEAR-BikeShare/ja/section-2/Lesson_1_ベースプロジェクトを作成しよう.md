@@ -23,7 +23,7 @@ $ npx create-near-app@3.1.0 --frontend=react --contract=rust near_bike_share_dap
 
 ![](/public/images/NEAR-BikeShare/section-2/2_1_1.png)
 
-作成したレポジトリへ移動し, `yarn dev`を実行しましょう！
+作成したリポジトリへ移動し, `yarn dev`を実行しましょう！
 
 > `yarn`をお持ちでない方は`npm run dev`で進めるか,
 >

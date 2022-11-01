@@ -8,7 +8,7 @@
 
 ### 📁 `hooks`ディレクトリ
 
-`hooks` ディレクトリ内に `useContract.ts` というファイルを作成し, 以下のコードを記述してください。  
+`hooks` ディレクトリ内に `useContract.ts` というファイルを作成し, 以下のコードを記述してください。
 💁 現時点ではまだ用意していないファイルから import している箇所があるためエラーメッセージが出ても無視して大丈夫です。
 
 ```ts
@@ -123,7 +123,7 @@ export const useContract = (
 };
 ```
 
-ファイル上部は必要な関数などの import と, 型定義をしています。  
+ファイル上部は必要な関数などの import と, 型定義をしています。
 💁 現時点ではまだ用意していないファイルから import している箇所があるためエラーメッセージが出ても無視して大丈夫です。
 
 ```ts
@@ -178,7 +178,7 @@ const getContract = (
 
 `getContract` は引数で指定されたアドレスと abi のコントラクトのインスタンスを取得する関数です。
 
-インスタンスを取得できたら引数で渡された関数に渡します。  
+インスタンスを取得できたら引数で渡された関数に渡します。
 `storeContract(Contract);`
 
 ```ts
@@ -256,24 +256,24 @@ TEST_ACCOUNT_PRIVATE_KEY="YOUR_PRIVATE_KEY"
 >
 > ![](/public/images/AVAX-amm/section-3/3_3_3.png)
 >
-> 4.  MetaMask のパスワードを求められるので、入力したら `Confirm` を押します。  
+> 4.  MetaMask のパスワードを求められるので、入力したら `Confirm` を押します。
 >     あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
 >
 > ![](/public/images/AVAX-amm/section-3/3_3_4.png)
 
 > - `.env` の `YOUR_PRIVATE_KEY` の部分をここで取得した秘密鍵とを入れ替えます。
 
-⚠️gitignore ファイルに.env が記述されていることを確認して下さい。  
+⚠️gitignore ファイルに.env が記述されていることを確認して下さい。
 秘密鍵は外部に漏れないように GitHub 上に上げません。
 
-> **✍️: スマートコントラクトをデプロイするのに秘密鍵が必要な理由**  
+> **✍️: スマートコントラクトをデプロイするのに秘密鍵が必要な理由**
 > **新しくスマートコントラクトをブロックチェーン上にデプロイすること**も,トランザクションの一つです。
 >
 > トランザクションを行うためには,ブロックチェーンに「ログイン」する必要があります。
 >
 > 「ログイン」には公開アドレスと秘密鍵の情報が必要となります。
 
-次に`contract`ディレクトリ直下にある `hardhat.config.ts` 中身を以下のコードに書き換えてください。  
+次に`contract`ディレクトリ直下にある `hardhat.config.ts` 中身を以下のコードに書き換えてください。
 ※ solidity のバージョンの部分(`solidity: "0.8.17",`)は元々記載されているものを使用してください。
 
 ```ts
@@ -383,7 +383,7 @@ joe address: 0x538589242114BCBcD0f12B1990865E57b3344448
 amm address: 0x1d09929346a768Ec6919bf89dae36B27D7e39321
 ```
 
-を,  
+を,
 `client`ディレクトリ内, `hooks/useContract.ts`の中の以下の部分にそれぞれ貼り付けてください。
 
 ```ts
@@ -406,7 +406,7 @@ ABI ファイルは,コントラクトがコンパイルされた時に生成さ
 
 `contract`からパスを追っていくと, `contract/artifacts/contracts/~.sol/~.json`というファイルがそれぞれのコントラクトに対して生成されているはずです。
 
-これを`client`の中の`utils`ディレクトリ内にコピーしてください。  
+これを`client`の中の`utils`ディレクトリ内にコピーしてください。
 `Avalanche-AMM`直下からターミナルでコピーを行う場合, このようなコマンドになります。
 
 ```
@@ -415,13 +415,13 @@ cd contract/artifacts/contracts/ERC20Tokens.sol/USDCToken.json contract/artifact
 
 📽️ 型定義ファイルを取得する
 
-TypeScript は静的型付け言語なので, 外部から取ってきたオブジェクトの情報として型を知りたい場合があります。  
+TypeScript は静的型付け言語なので, 外部から取ってきたオブジェクトの情報として型を知りたい場合があります。
 その時に役に立つのが型定義ファイルです。
 
-コントラクトの型定義ファイルは, コントラクトがコンパイルされた時に生成され, `typechain-types`ディレクトリに自動的に格納されます。  
+コントラクトの型定義ファイルは, コントラクトがコンパイルされた時に生成され, `typechain-types`ディレクトリに自動的に格納されます。
 これは`npx hardhat`実行時に typescript を選択したため, 初期設定が済んでいるためです。
 
-`contract`内の`typechain-types`ディレクトリをそのまま`client`にコピーしてください。  
+`contract`内の`typechain-types`ディレクトリをそのまま`client`にコピーしてください。
 `Avalanche-AMM`直下からターミナルでコピーを行う場合, このようなコマンドになります。
 
 ```
@@ -442,7 +442,7 @@ cp -r contract/typechain-types client/
 
 📁 `Details`ディレクトリ
 
-`components` ディレクトリ内に `Details` というディレクトリを作成し,  
+`components` ディレクトリ内に `Details` というディレクトリを作成し,
 その中に `Details.module.css` と `Details.tsx` という名前のファイルを作成してください。
 
 `Details.module.css` 内に以下のコードを記述してください。
@@ -669,7 +669,7 @@ type Props = {
 
 token0, token1 にはそれぞれ USDC, JOE のいずれかのオブジェクトが渡されます。
 
-updateDetailsFlag はこのコンポーネントで表示する情報を更新するトリガーとなります。  
+updateDetailsFlag はこのコンポーネントで表示する情報を更新するトリガーとなります。
 このフラグが変更された時に情報を更新するよう, この後の `useEffect` で依存関係に含めています。
 
 ```ts
@@ -683,13 +683,13 @@ const [totalShare, setTotalShare] = useState("");
 
 このコンポーネントで扱う情報を格納するための状態変数です。
 
-このコンポーネントでは引数で渡された token0, token1 を  
+このコンポーネントでは引数で渡された token0, token1 を
 扱いやすいように `tokens` の配列に格納します。
 
 他の状態変数で string 型の配列となっているものは　`tokens` と同じ順番で対応しております。
 
-例えば `tokens = [token0, token1]` の順番で格納されている場合,  
-ユーザの所有するトークンの量を表す `amountOfUserTokens` は以下のように情報を格納します。  
+例えば `tokens = [token0, token1]` の順番で格納されている場合,
+ユーザの所有するトークンの量を表す `amountOfUserTokens` は以下のように情報を格納します。
 `amountOfUserTokens = [ユーザの所有するtoken0のトークンの量, ユーザの所有するtoken1のトークンの量]`
 
 ```ts
@@ -712,17 +712,17 @@ const getAmountOfUserTokens = useCallback(async () => {
 
 各トークンのコントラクトの `balanceOf` 関数を呼び出し, ユーザの所有するトークンの量を状態変数へ格納します。
 
-> 📓 `useCallBack` について  
+> 📓 `useCallBack` について
 > `useCallBack`は関数をメモ化します。
 >
-> 通常コンポーネント(ここでいう`Details`)の再描画が行われる場合は内部の関数が再作成されますが,  
+> 通常コンポーネント(ここでいう`Details`)の再描画が行われる場合は内部の関数が再作成されますが,
 > メモ化をすると, 依存配列(ここでいう`[currentAccount, tokens]`)に変化がない場合は再作成をしません。
 >
-> 今回はこの後に続く `useEffect` の依存配列に `getAmountOfUserTokens` が含まれていることが原因で `useCallBack` を使用しています。  
-> `Details` コンポーネントが描画された際に `getAmountOfUserTokens` を実行したいので, 関数実行と依存配列に関数を入れていますが,  
+> 今回はこの後に続く `useEffect` の依存配列に `getAmountOfUserTokens` が含まれていることが原因で `useCallBack` を使用しています。
+> `Details` コンポーネントが描画された際に `getAmountOfUserTokens` を実行したいので, 関数実行と依存配列に関数を入れていますが,
 > コンポーネント再描画のたびに `getAmountOfUserTokens` が再作成されてしまうと再び `useEffect` が動いてしまうのためです。
 >
-> 参考: https://ja.reactjs.org/docs/hooks-reference.html#usecallback  
+> 参考: https://ja.reactjs.org/docs/hooks-reference.html#usecallback
 > 参考: https://stackoverflow.com/questions/57156582/should-i-wrap-all-functions-that-defined-in-component-in-usecallback
 
 その他の関数においても同様にコントラクトから特定の情報を取得し状態変数へ格納しています。
@@ -826,7 +826,7 @@ const [updateDetailsFlag, setUpdateDetailsFlag] = useState(0); // ユーザや�
 const { usdc: token0, joe: token1, amm } = useContract(currentAccount); // useContractからコントラクトの取得
 ```
 
-- フラグを切り替える関数の実装  
+- フラグを切り替える関数の実装
   この関数を実行する度にフラグが 0 か 1 に変化します。
 
 ```ts
@@ -858,7 +858,7 @@ $ npm run dev
 
 ブラウザで`http://localhost:3000 `へアクセスしてください。
 
-以下のような画面が表示されれば成功です！  
+以下のような画面が表示されれば成功です！
 画面右側にユーザとプールの詳細情報が表示されました。
 
 ![](/public/images/AVAX-amm/section-3/3_3_5.png)
@@ -869,8 +869,8 @@ $ npm run dev
 
 > [こちら](https://github.com/unchain-dev/avalanche-amm-dapp)に本プロジェクトの完成形のレポジトリがあります。
 >
-> コードがうまく動かない場合は参考にしてみてください。  
-> `contract` はリンク先のレポジトリ内の `package/contract` を。  
+> コードがうまく動かない場合は参考にしてみてください。
+> `contract` はリンク先のレポジトリ内の `package/contract` を。
 > `client` はリンク先のレポジトリ内の `package/client` を参照してください。
 
 ### 🙋‍♂️ 質問する

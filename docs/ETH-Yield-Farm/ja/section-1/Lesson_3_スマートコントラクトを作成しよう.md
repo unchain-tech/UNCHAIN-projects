@@ -50,7 +50,7 @@ touch src/contracts/TokenFarm.sol
 
 これから、本プロジェクトのコアとなるイールドファーミング機能を `TokenFarm.sol` に実装していきます。
 
-`TokenFarm.sol` によって、ユーザーは利子を得て、Dappトークンという新しいトークンを獲得することができるようになります。
+`TokenFarm.sol` によって、ユーザーは利子を得て、Dapp トークンという新しいトークンを獲得することができるようになります。
 
 まず、`TokenFarm.sol` にステーキングに使う関数を定義していきます。
 
@@ -88,7 +88,7 @@ module.exports = function(deployer) {
 };
 ```
 
-このマイグレーションファイル（ `2_deploy_contracts.js` ）が実行されると、取引を生み出す新しいスマートコントラクトがブロックチェーン上に配置されます。
+このマイグレーションファイル（`2_deploy_contracts.js`）が実行されると、取引を生み出す新しいスマートコントラクトがブロックチェーン上に配置されます。
 
 それでは、ターミナルを開き `yield-farm-starter-project` にいることを確認したら、次のコードを実行してください。
 
@@ -111,7 +111,7 @@ Compiling your contracts...
    - solc: 0.5.16+commit.9c3226ce.Emscripten.clang
 ```
 
-また、`src` ディレクトリの中の `abis` ディレクトリの中にそれぞれの `.sol` ファイルに対してabiファイルが作られていることを確認しましょう。
+また、`src` ディレクトリの中の `abis` ディレクトリの中にそれぞれの `.sol` ファイルに対して abi ファイルが作られていることを確認しましょう。
 
 ### 📂 ABI ファイルとは？
 
@@ -217,7 +217,7 @@ name: [Function (anonymous)] {
 
 この出力結果は、`tokenFarm` という変数に格納されているスマートコントラクトの中身を意味しています。
 
-- truffle コンソール（ `truffle(development)>` ）は、ブロックチェーンを使用するためのJavaScript 実行環境です。
+- truffle コンソール（`truffle(development)>`）は、ブロックチェーンを使用するための JavaScript 実行環境です。
 
 - truffle コンソールから Ganache 開発ブロックチェーン上に作成されたすべてのトランザクションにアクセスすることができます。
 
@@ -261,6 +261,6 @@ truffle(development)> name
 ---
 あなたは、簡単なスマートコントラクトを作成し、ブロックチェーン上にアップしたことを確認しました🎉
 
-あなたのコントラクトのアドレスをDiscordの `#eth-yield-farm` でシェアしてください!
+あなたのコントラクトのアドレスを Discord の `#eth-yield-farm` でシェアしてください!
 
 次のセクションではいよいよ本格的なスマートコントラクトを作成していくので楽しんでいきましょう!

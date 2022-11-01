@@ -759,7 +759,7 @@ yarn dev
 ```
 
 下のように表示されていたら成功です！
-section-2でコントラクト内から`nft_add_likes_to_candidate関数`を走らせたのでどれか一つの候補者の得票数が`1`になっているはずです。
+section-2 でコントラクト内から`nft_add_likes_to_candidate関数`を走らせたのでどれか 1 つの候補者の得票数が`1`になっているはずです。
 ![](/public/images/NEAR-Election-dApp/section-3/3_3_1.png)
 ![](/public/images/NEAR-Election-dApp/section-3/3_3_2.png)
 ![](/public/images/NEAR-Election-dApp/section-3/3_3_3.png)
@@ -784,4 +784,4 @@ section-2でコントラクト内から`nft_add_likes_to_candidate関数`を走�
 
 あなたの成功をコミュニティで祝いましょう 🎉
 
-では最後のsection-4でどのように機能しているのかを確認し、netlifyにdeployしてあなたのアプリを公開しましょう！
+では最後の section-4 でどのように機能しているのかを確認し、netlify に deploy してあなたのアプリを公開しましょう！

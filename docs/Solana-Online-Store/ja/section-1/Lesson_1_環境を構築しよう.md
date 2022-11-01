@@ -34,7 +34,7 @@ Chrome の方は[こちら](https://chrome.google.com/webstore/detail/phantom/bf
 
 ※ GitHub アカウントの初期設定がお済みでない方は、アカウント設定を行ってからお進みください。
 
-まず、 [この GitHub リンク](https://github.com/unchain-dev/solana-pay-starter-project) にアクセスして、ページの右上にある [Fork] ボタンを押してください。
+まず、 [この GitHub リンク](https://github.com/unchain-dev/solana-pay-starter-project) にアクセスして、ページの右上にある[Fork]ボタンを押してください。
 
 このリポジトリをフォークすると、自分の GitHub に同一のリポジトリがコピーされます。
 
@@ -59,7 +59,7 @@ git clone YOUR_FORKED_LINK
 
 これはフレームワーク **React.js** 上に構築されているものです。
 
-すでに React.js に精通している場合は Next.js を使いこなすのは比較的簡単です。（React.js が分からない場合でも適宜説明を加えますのでご安心ください。）
+すでに React.js に精通している場合は Next.js を使いこなすのは比較的簡単です（React.js が分からない場合でも適宜説明を加えますのでご安心ください）。
 
 それでは早速、以下の手順で Web アプリケーションを起動してみましょう。
 

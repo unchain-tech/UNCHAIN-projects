@@ -185,7 +185,7 @@ let contractBalance = await hre.ethers.provider.getBalance(
 console.log("Contract balance:", hre.ethers.utils.formatEther(contractBalance));
 ```
 
-ここでは、`hre.ethers.utils.formatEther(contractBalance)` を使用してwei単位の残高をETH単位に変換したうえで出力し、コントラクトに 0.1ETH の残高があるか確認しています。
+ここでは、`hre.ethers.utils.formatEther(contractBalance)` を使用して wei 単位の残高を ETH 単位に変換したうえで出力し、コントラクトに 0.1ETH の残高があるか確認しています。
 
 **3 \. `wave` したあとのコントラクトの残高を確認する**
 

@@ -4,11 +4,11 @@
 
 無料でデプロイして、メインネットで販売することで、誰でも USDC で収入を得ることができます。
 
-**メインネットに移行したい場合は以下を参照してみてください。（チュートリアル内では実施しません。）**
+**メインネットに移行したい場合は以下を参照してみてください（チュートリアル内では実施しません）。**
 
 メインネットでトランザクションを受けるには、以下の 2 つの変数を更新する必要があります。
 
-1\. `createTransaction.js` で設定した テストネットの USDC SPL トークンアドレスを以下のとおりメインネットの USDC SPL トークンアドレスに変更します。
+1\. `createTransaction.js` で設定したテストネットの USDC SPL トークンアドレスを以下のとおりメインネットの USDC SPL トークンアドレスに変更します。
 
 ```jsx
 const usdcAddress = new PublicKey("EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v");
@@ -46,7 +46,7 @@ Github などにコードをアップロードする際は、秘密鍵や構成�
 
 ただし、Github にアップロードする場合、`.gitignore` に `.env` が含まれていないと `.env` も一緒にアップロードされてしまうので注意が必要です。
 
-`.gitignore` の中身が以下のようなっているかどうか確認しましょう。（以下のとおりとなっていなければ以下のように変更します。）
+`.gitignore` の中身が以下のようなっているかどうか確認しましょう（以下のとおりとなっていなければ以下のように変更します）。
 
 ```txt
 node_modules
@@ -97,15 +97,15 @@ git push
 
 3\. プロジェクトの設定では、**FRAMEWORK PRESET** に `Create React App`、**ROOT DIRECTORY** に `app` を入力してください。
 
-4\. **Environment Variables** に環境変数 `CI = false` （ NAME: CI 、 VALUE: false ）を追加します。（警告が原因でビルドが失敗しないようになります。）
+4\. **Environment Variables** に環境変数 `CI = false`（NAME: CI 、 VALUE: false）を追加します（警告が原因でビルドが失敗しないようになります）。
 
-5\. **Environment Variables** に `.env` で設定した環境変数（ NAME: SOLANA_NETWORK 、 VALUE: devnet ）を直接入力してください。（ GitHub には `.env` ファイルを保存していないため、`Vercel` に直接記載する必要があります。）
+5\. **Environment Variables** に `.env` で設定した環境変数（NAME: SOLANA_NETWORK 、 VALUE: devnet）を直接入力してください（GitHub には `.env` ファイルを保存していないため、`Vercel` に直接記載する必要があります）。
 
 ![Environment Variables1](/public/images/Solana-Online-Store/section-4/4_1_3.png)
 
 ![Environment Variables2](/public/images/Solana-Online-Store/section-4/4_1_4.png)
 
-6\. [Deploy]ボタンを押してデプロイします。（ Vercel は GitHub と連動しているので、GitHub が更新されるたびに自動でデプロイを行ってくれます。）
+6\.[Deploy]ボタンを押してデプロイします（Vercel は GitHub と連動しているので、GitHub が更新されるたびに自動でデプロイを行ってくれます）。
 
 **Vercel へのデプロイが無事完了しました!**
 
@@ -130,9 +130,9 @@ git push
 
 NFT を取得する条件は、以下のようになります。
 
-1. MVP の機能がすべて実装されている（実装 OK ）
+1. MVP の機能がすべて実装されている（実装 OK）
 
-2. Web アプリケーションで MVP の機能が問題なく実行される（テスト OK ）
+2. Web アプリケーションで MVP の機能が問題なく実行される（テスト OK）
 
 3. このページの最後にリンクされている Project Completion Form に記入する
 

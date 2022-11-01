@@ -6,9 +6,9 @@ MVP を起点にして Web アプリケーションのアップグレードに�
 
 ※ 以下は一例です。
 
-1\. Web アプリケーションに接続したユーザーのウォレットアドレスを表示する。（ヒント： `item.userAddress.toString()` ）
+1\. Web アプリケーションに接続したユーザーのウォレットアドレスを表示する（ヒント： `item.userAddress.toString()`）
 
-2\. それぞれの GIF 画像に「いいね数」が表示される「いいね」 ボタンを実装する。
+2\. それぞれの GIF 画像に「いいね数」が表示される「いいね」ボタンを実装する。
 
 3\. GIF データ送信時に表示されるローディング画面を実装する。
 
@@ -27,7 +27,7 @@ npm install --save dotenv
 
 `dotenv` をインストールしたら、ルートディレクトリ直下に `.env` ファイルを作成し、以下のとおり更新します。
 
-※ 以下は記載例です。（プログラムIDには作成したものを入れてください。）
+※ 以下は記載例です（プログラム ID には作成したものを入れてください）。
 
 ```txt
 SOLANA_NETWORK=devnet
@@ -103,15 +103,15 @@ git push
 
 3\. プロジェクトの設定では、**FRAMEWORK PRESET** に `Create React App`、**ROOT DIRECTORY** に `app` を入力してください。
 
-4\. **Environment Variables** に環境変数 `CI = false` （ NAME: CI 、 VALUE: false ）を追加します。（警告が原因でビルドが失敗しないようになります。）
+4\. **Environment Variables** に環境変数 `CI = false`（NAME: CI 、 VALUE: false）を追加します（警告が原因でビルドが失敗しないようになります）。
 
-5\. **Environment Variables** に `.env` で設定した環境変数（ NAME: SOLANA_NETWORK 、 VALUE: devnet ）を直接入力してください。（ GitHub には `.env` ファイルを保存していないため、`Vercel` に直接記載する必要があります。）
+5\. **Environment Variables** に `.env` で設定した環境変数（NAME: SOLANA_NETWORK 、 VALUE: devnet）を直接入力してください（GitHub には `.env` ファイルを保存していないため、`Vercel` に直接記載する必要があります）。
 
 ![Environment Variables1](/public/images/Solana-dApp/section-4/4_1_3.png)
 
 ![Environment Variables2](/public/images/Solana-dApp/section-4/4_1_4.png)
 
-6\. [Deploy]ボタンを押してデプロイします。（ Vercel は GitHub と連動しているので、GitHub が更新されるたびに自動でデプロイを行ってくれます。）
+6\.[Deploy]ボタンを押してデプロイします（Vercel は GitHub と連動しているので、GitHub が更新されるたびに自動でデプロイを行ってくれます）。
 
 **Vercel へのデプロイが無事完了しました!**
 
@@ -136,9 +136,9 @@ git push
 
 NFT を取得する条件は、以下のようになります。
 
-1. MVP の機能がすべて実装されている（実装 OK ）
+1. MVP の機能がすべて実装されている（実装 OK）
 
-2. Web アプリケーションで MVP の機能が問題なく実行される（テスト OK ）
+2. Web アプリケーションで MVP の機能が問題なく実行される（テスト OK）
 
 3. このページの最後にリンクされている Project Completion Form に記入する
 

@@ -175,7 +175,7 @@ _⚠️ 注意： インターネットのリンク(ex. https://~)を使用す�
 yarn node --loader ts-node/esm src/scripts/2-deploy-drop.ts
 ```
 
-成功すると、以下のように得られた結果が出力されます。（少し時間がかかります。）
+成功すると、以下のように得られた結果が出力されます（少し時間がかかります）。
 
 ```bash
 SDK initialized by address: 0x8cB688A30D5Fd6f2e5025d8915eD95e770832933

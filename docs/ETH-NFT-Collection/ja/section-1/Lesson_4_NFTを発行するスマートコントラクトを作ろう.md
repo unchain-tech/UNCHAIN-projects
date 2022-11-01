@@ -441,7 +441,7 @@ Alchemy のアカウントを作成したら、`CREATE APP` ボタンを押し�
 
 MetaMask ウォレットに `Goerli Test Network` が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽 ETH を取得しましょう。
 
-- [Alchemy](https://goerlifaucet.com/) - 0.25 Goerli ETH （24 時間に 1 度もらうことができる）
+- [Alchemy](https://goerlifaucet.com/) - 0.25 Goerli ETH（24 時間に 1 度もらうことができる）
   - ウォレットアドレスを入力して `Send Me ETH` ボタンを押下するとその場でもらえます。
 - [Chainlink](https://faucets.chain.link/) - 0.1 Goerli ETH（その場でもらえる）
   - `Connect wallet` をクリックして MetaMask と接続する必要があります。
@@ -652,7 +652,7 @@ _表示されるまでに約 1 分かかり場合があります。_
 
 ![](/public/images/ETH-NFT-Collection/section-1/1_4_20.png)
 
-私が作成した Tanya コレクションの `tokenID` 0 番のリンクは[こちら](https://testnets.opensea.io/ja/assets/rinkeby/0x67cd3f53c20e3a6211458dd5b7465e1f9464531c/0)になります。（リンク先は、学習コンテンツ制作時に使用した Rinkeby になっていますが、Rinkeby の箇所が Goerli でも同様に表示されます。）
+私が作成した Tanya コレクションの `tokenID` 0 番のリンクは[こちら](https://testnets.opensea.io/ja/assets/rinkeby/0x67cd3f53c20e3a6211458dd5b7465e1f9464531c/0)になります（リンク先は、学習コンテンツ制作時に使用した Rinkeby になっていますが、Rinkeby の箇所が Goerli でも同様に表示されます）。
 
 リンクの内容は以下のようになります。
 

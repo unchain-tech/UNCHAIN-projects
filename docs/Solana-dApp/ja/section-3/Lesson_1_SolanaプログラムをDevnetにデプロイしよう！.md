@@ -45,7 +45,7 @@ solana airdrop 2
 solana balance
 ```
 
-ウォレットに 4 SOL が入っていることを確認できました。（Devnet での残高を取得しています。）
+ウォレットに 4 SOL が入っていることを確認できました（Devnet での残高を取得しています）。
 
 ※ 現時点では、一度にエアドロップできる SOL の量は 2 SOL までです。
 
@@ -149,9 +149,9 @@ anchor deploy
 
 完了したら、[Solana Explorer](https://explorer.solana.com/?cluster=devnet)にアクセスして、すべてがうまくいったかどうかを確認します。
 
-※ 今回は Devnet にデプロイしたため、必ず右上の接続先が [Devnet] になっているかどうか確認する必要があります。
+※ 今回は Devnet にデプロイしたため、必ず右上の接続先が[Devnet]になっているかどうか確認する必要があります。
 
-エスプローラーで、プログラム ID （ `solana address -k target/deploy/myepicproject-keypair.json` で取得した ID ）を貼り付けて検索します。
+エスプローラーで、プログラム ID（`solana address -k target/deploy/myepicproject-keypair.json` で取得した ID）を貼り付けて検索します。
 
 デプロイされた Solana プログラムが表示されたら、下にスクロールしてトランザクション履歴を確認すると、そこにデプロイ履歴が表示されているので確認してみてください。
 

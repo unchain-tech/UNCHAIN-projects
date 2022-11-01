@@ -135,9 +135,9 @@ class SignIn extends StatelessWidget {
 }
 ```
 
-flutter では`main`関数から走り出します。まず`.env`ファイルを読み込み、その後 javascript でいう props のような`provider`を作成します。
+flutter では`main`関数から走り出します。まず`.env`ファイルを読み込み、その後 JavaScript でいう props のような`provider`を作成します。
 
-この provider を使用することで他の widget からも情報の共有、監視ができるようになります。
+この provider を使用することで他のウィジェットからも情報の共有、監視ができるようになります。
 
 ```
 Future main() async {
@@ -158,7 +158,7 @@ Future main() async {
 }
 ```
 
-child として`MyApp`が指定されているので次にこの widget が表示されることになります。
+child として`MyApp`が指定されているので次にこのウィジェットが表示されることになります。
 
 ```
 class MyApp extends StatelessWidget {
@@ -202,9 +202,9 @@ class MyApp extends StatelessWidget {
 }
 ```
 
-`MyApp`では`routes`でルートを指定しています。ここでは`/signIn`というルートでは`SignIn`widget が、`/home`というルートでは`BottomNavigationBarWidget`widget が表示されることになります。
+`MyApp`では`routes`でルートを指定しています。ここでは`/signIn`というルートでは`SignIn`ウィジェットが、`/home`というルートでは`BottomNavigationBarWidget`ウィジェットが表示されることになります。
 
-`initialRoute`には`/signIn`が指定されているのでまずは`SignIn`widget が表示されます。
+`initialRoute`には`/signIn`が指定されているのでまずは`SignIn`ウィジェットが表示されます。
 
 ではエミュレータで動かしてみましょう！
 

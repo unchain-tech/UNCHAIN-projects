@@ -1,6 +1,6 @@
 ### ✨ Flutter でフロントを開発する（UI編）
 
-FlutterのUI部分を構築するために、まず、2.`TodoList.dart` ファイルの中身を作成していきます。
+Flutter の UI 部分を構築するために、まず、2.`TodoList.dart` ファイルの中身を作成していきます。
 
 `TodoList.dart` ファイルに、下記を追加してください。
 
@@ -91,7 +91,7 @@ class TodoList extends StatelessWidget {
 ```
 `StatelessWidget` クラスを継承した `TodoList` クラスを作成しています。
 
-簡単に説明すると、`StatelessWidget` とは状態がずっと変化しないWidgetのことです。
+簡単に説明すると、`StatelessWidget` とは状態がずっと変化しないウィジェットのことです。
 
 詳しくは[こちら](https://flutternyumon.com/flutter-statelesswidget-vs-statefulwidget/)をご覧ください。
 
@@ -102,7 +102,7 @@ class TodoList extends StatelessWidget {
   }
 ```
 
-ビルド関数では、`TodoListModel` をリッスンして、それに応じてUIをレンダリングしています。
+ビルド関数では、`TodoListModel` をリッスンして、それに応じて UI をレンダリングしています。
 
 ```dart
 //TodoList.dart
@@ -168,11 +168,11 @@ class TodoList extends StatelessWidget {
 
 - `isLoading` フォームの `TodoListModel` が `true` ならば `Loading` ウィジェットをレンダリングし、そうでなければ `ListView` を作成して `TodoListModel` の `todos` の長さ分ループしています。
 
-- `ListView` では、to-doの `isComplete` 値を切り替えるためのチェックボックスと、タスク名のコンテナを返します。
+- `ListView` では、to-do の `isComplete` 値を切り替えるためのチェックボックスと、タスク名のコンテナを返します。
 
-- `floatingActionButton` は、to-doリストに新しいタスクを追加するためのボタンです。下の画像の右下にある＋アイコン。
+- `floatingActionButton` は、to-do リストに新しいタスクを追加するためのボタンです。下の画像の右下にある＋アイコン。
 
-下の画像のようなUIになります。
+下の画像のような UI になります。
 
 ![](/public/images/Polygon-Mobile-dApp/section-2/2_3_1.png)
 
@@ -284,7 +284,7 @@ TextButton buildButton(String text, void Function()? onPressed) {
 }
 ```
 
-ここでは、`showTodoBottomSheet` と `buildButton` という2つの関数を作成しています。
+ここでは、`showTodoBottomSheet` と `buildButton` という 2 つの関数を作成しています。
 
 それでは、詳しく見ていきましょう。
 
@@ -361,9 +361,9 @@ showTodoBottomSheet(BuildContext context, {Task? task}) {
 
 `showTodoBottomSheet` は、ユーザーがタスクを作成、更新、削除できるボトムシートを表示します。
 
-- オプションのパラメータ `task` を受け取り、`task` の値に基づいてボトムシートのUIをレンダリングしています。
+- オプションのパラメータ `task` を受け取り、`task` の値に基づいてボトムシートの UI をレンダリングしています。
 
-`task` の値が `null` の場合は、新しいto-doタスクを作成するUIをレンダリングし、`null` でない場合は、更新および削除UIをレンダリングしています。
+`task` の値が `null` の場合は、新しい to-do タスクを作成する UI をレンダリングし、`null` でない場合は、更新および削除 UI をレンダリングしています。
 
 - 作成、更新、削除のボタンが押されると、`TodoListModel` クラスからそれぞれのスマートコントラクト関数が呼び出されます。
 
@@ -398,7 +398,7 @@ TextButton buildButton(String text, void Function()? onPressed) {
 
 ユーザーが `floatingActionButton` をタップすると、タスクの値を `null` として `showTodoBottomSheet` を呼び出し、ユーザーが `ListView` からタスク・アイテムをタップすると、ユーザーがタップしたタスク・オブジェクトをタスクの値として `showTodoBottomSheet` を呼び出します。
 
-下の画像のようなUIになります。
+下の画像のような UI になります。
 
 ![](/public/images/Polygon-Mobile-dApp/section-2/2_3_2.png)
 

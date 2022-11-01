@@ -163,7 +163,7 @@ near call contract.hotel_booking.testnet change_status_to_available '{"room_id":
 
 ---
 
-おめでとうございます！予約機能がきちんと実装できていることが確認できました ✨
+おめでとうございます！　予約機能がきちんと実装できていることが確認できました ✨
 
 ターミナルに出力されたアウトプットを `#near-booking-dapp` に投稿して、あなたの成功をコミュニティで祝いましょう 🎉
 

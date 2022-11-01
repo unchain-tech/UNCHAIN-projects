@@ -1,6 +1,6 @@
 ### 🔥 トークンの引き出し機能を実装しましょう
 
-前回のレッスンではトークンの提供機能を実装しましたが,  
+前回のレッスンではトークンの提供機能を実装しましたが,
 このレッスンでは流動性の提供者が預けたトークンを引き出す機能を実装します。
 
 ユーザは自身のシェアの分だけプールに預けたトークンを引き出すことができます。
@@ -46,7 +46,7 @@
 
 `getWithdrawEstimate` 関数では, 指定されたシェアの分に応じたトークンの量を算出します。
 
-シェアの総量(`totalShare`)に対する指定されたシェア(`share`)の割合は$\frac{share}{totalShare}$で表されるので,  
+シェアの総量(`totalShare`)に対する指定されたシェア(`share`)の割合は$\frac{share}{totalShare}$で表されるので,
 シェアの分に応じたトークンの量は $\frac{share}{totalShare} * totalAmount[\_token](トークンの総量)$で算出することができます。
 
 `withdraw` 関数では実際に引き出し処理を実装しています。
@@ -59,7 +59,7 @@
 
 ### 🧪 テストを追加しましょう
 
-それでは追加した機能に対してテストを書いていきます。  
+それでは追加した機能に対してテストを書いていきます。
 `test/AMM.ts`内のテストの最後の行に以下のコードを追加してください。
 
 ```ts
@@ -87,10 +87,10 @@ describe("getWithdrawEstimate", function () {
 });
 ```
 
-`getWithdrawEstimate` テストでは otherAccount のシェアを引数に指定した場合の  
+`getWithdrawEstimate` テストでは otherAccount のシェアを引数に指定した場合の
 `getWithdrawEstimate` 関数の返り値をテストしています。
 
-otherAccount は `amountOtherProvided0` と `amountOtherProvided1` だけそれぞれプールに預けているので, シェアの分だけ引き出せる量を計算すると  
+otherAccount は `amountOtherProvided0` と `amountOtherProvided1` だけそれぞれプールに預けているので, シェアの分だけ引き出せる量を計算すると
 預けている量と同じ量が返ってくるはずです。
 
 続いてその下に以下のテストを追加しましょう。
@@ -162,10 +162,10 @@ describe("withdraw", function () {
 });
 ```
 
-`Token should be moved` テストでは, `withdraw` 関数を実行する前後でトークンが正しく移動しているかを確認しています。  
+`Token should be moved` テストでは, `withdraw` 関数を実行する前後でトークンが正しく移動しているかを確認しています。
 ロジックは `provide` に関するテストで行ったトークンの移動の確認と同じです。
 
-続く `Should set the right number of amm details` テストでは, otherAccount が自身のシェアの分トークンを引き出した場合に,  
+続く `Should set the right number of amm details` テストでは, otherAccount が自身のシェアの分トークンを引き出した場合に,
 AMM コントラクトの状態変数が正しく変更されているかを確認しています。
 
 ### ⭐ テストを実行しましょう
@@ -186,8 +186,8 @@ $ npx hardhat test
 
 > [こちら](https://github.com/unchain-dev/avalanche-amm-dapp)に本プロジェクトの完成形のレポジトリがあります。
 >
-> コードがうまく動かない場合は参考にしてみてください。  
-> `contract` はリンク先のレポジトリ内の `package/contract` を。  
+> コードがうまく動かない場合は参考にしてみてください。
+> `contract` はリンク先のレポジトリ内の `package/contract` を。
 > `client` はリンク先のレポジトリ内の `package/client` を参照してください。
 
 ### 🙋‍♂️ 質問する
@@ -205,7 +205,7 @@ $ npx hardhat test
 
 ---
 
-おめでとうございます!  
+おめでとうございます!
 セクション 1 が終了しました!
 
 次のセクションでは AMM コントラクトに swap 機能を実装していきます 🏄‍♂️

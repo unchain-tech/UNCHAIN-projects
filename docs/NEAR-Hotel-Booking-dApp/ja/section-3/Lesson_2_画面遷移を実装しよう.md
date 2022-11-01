@@ -119,7 +119,7 @@ return 文の中で、ナビゲーションバーを実装する`<NavBar />`を�
 </Routes>
 ```
 
-例えば、`Home画面`は 「`http://localhost:1234/`を表示するために`Home.js`を使用します」となります。
+例えば、`Home画面`は「`http://localhost:1234/`を表示するために`Home.js`を使用します」となります。
 
 次に、ナビゲーションバーを実装します。
 以下のコードを`frontend/asserts/js/components/NavBar.js`に追加してください。

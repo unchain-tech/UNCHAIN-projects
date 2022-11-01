@@ -141,7 +141,7 @@ export default Home;
 
 私のコードに`<h1>Welcome to MyDAO !!</h1>` とありますが、ここでの DAO の名前はあなたが作成する DAO の名前にしてください。
 
-私の真似をしないでください！これはあなたの DAO です！
+私の真似をしないでください！　これはあなたの DAO です！
 
 📝 備考：ユーザーがウォレットを接続していない場合をテストしたい場合は、ご自由に MetaMask から[ウェブサイトの接続を解除](https://metamask.zendesk.com/hc/en-us/articles/360059535551-Disconnect-wallet-from-Dapp)してください。
 

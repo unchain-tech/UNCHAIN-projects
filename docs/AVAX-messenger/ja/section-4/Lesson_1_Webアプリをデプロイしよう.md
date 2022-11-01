@@ -31,7 +31,7 @@ Vercel はサーバレス機能のホスティングを提供するクラウド�
 
 Vercel に関する詳しい説明は,[こちら](https://zenn.dev/lollipop_onl/articles/eoz-vercel-pricing-2020)をご覧ください。
 
-まず,GitHub の `messenger-client` にあるローカルファイルを github へアップロードしましょう。
+まず,GitHub の `messenger-client` にあるローカルファイルを GitHub へアップロードしましょう。
 
 まだアップロードをしていない方は, ターミナル上で `messenger-client` に移動して,下記を実行しましょう。  
 ⚠️ `.gitignore`ファイル内に`.env`が記載されていることを確認していください。
