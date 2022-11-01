@@ -1,0 +1,9 @@
+{
+    "project_id": 106,
+    "title": "ETH DAO",
+    "difficulty": "intermediate",
+    "chain": "Ethereum",
+    "description": "👉 thirdweb を利用してメンバーシップ NFT やガバナンストークンなどを作成し、DAO に必要な機能を搭載した Web アプリを構築します。",
+    "total_sections": 4,
+    "total_lessons": 15
+}
