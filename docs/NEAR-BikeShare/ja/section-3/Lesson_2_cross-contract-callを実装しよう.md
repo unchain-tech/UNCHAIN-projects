@@ -1,7 +1,7 @@
 ### ⚔️ `cross contract call`を実装しよう
 
 これまでのレッスンの中で
-アカウントが他のアカウントに ft を転送するには `ftコントラクト`のメソッドを呼び出せばよいことがわかりました。
+アカウントが他のアカウントにftを転送するには`ftコントラクト`のメソッドを呼び出せばよいことがわかりました。
 そして本プロジェクトではいくつか必要な機能がまだ残っています。
 そのうちの１つが
 **`bikeコントラクト`からバイクの点検をしてくれたユーザへ報酬として ft を支払う**
@@ -9,17 +9,17 @@
 この場合の処理の流れを整理します。
 
 1. バイクを点検中のユーザがバイクの返却を`bikeコントラクト`に申請する。
-2. `bikeコントラクト`はユーザのアカウント ID を照合し報酬として ft をユーザへ転送。
-3. `bikeコントラクト`は ft の転送後, バイクの返却手続きを進める。
+2. `bikeコントラクト`はユーザのアカウントIDを照合し報酬としてftをユーザへ転送。
+3. `bikeコントラクト`はftの転送後, バイクの返却手続きを進める。
 
 これを実現するには以下の処理を同期的に行う必要があります。
 
 1. ユーザが`bikeコントラクト`のバイク返却メソッドを呼ぶ。
-2. `bikeコントラクト`が`ftコントラクト`の ft 転送メソッドを呼ぶ。
+2. `bikeコントラクト`が`ftコントラクト`のft転送メソッドを呼ぶ。
 3. **ft の転送が成功していれば**`bikeコントラクト`の返却処理を進める。
 
-`cross contract call` と`callback`関数という機能を使用してこの機能を実装します。
-`cross contract call` はあるコントラクトから別のコントラクトのメソッドを呼び出す仕組みです。
+`cross contract call`と`callback`関数という機能を使用してこの機能を実装します。
+`cross contract call`はあるコントラクトから別のコントラクトのメソッドを呼び出す仕組みです。
 `callback`関数は`cross contract call`の結果に対応した処理を際に使用します。
 まずはコントラクト内に下記のコードを追加してください！
 
@@ -127,7 +127,7 @@ impl Contract {
 
 変更点を見ていきましょう。
 `cross contract call`を使用するには, 呼び出す外部コントラクトのメソッドをトレイトで定義しておきます。
-今回は ft コントラクトの`ft_transfer`メソッドを呼び出すので[ドキュメント](https://nomicon.io/Standards/Tokens/FungibleToken/Core#reference-level-explanation)や[ソースコード](https://github.com/near-examples/FT)を参考に`ft_transfer`のプロトタイプ宣言をここで記述します。
+今回はftコントラクトの`ft_transfer`メソッドを呼び出すので[ドキュメント](https://nomicon.io/Standards/Tokens/FungibleToken/Core#reference-level-explanation)や[ソースコード](https://github.com/near-examples/FT)を参考に`ft_transfer`のプロトタイプ宣言をここで記述します。
 トレイトの注釈には`#[ext_contract(ext_ft)]`をつけます。
 `ext_ft`は後でメソッド呼び出しに使用する略称で任意の名前です。
 また`FungibleToken`も任意の名前です。
@@ -192,7 +192,7 @@ impl Contract {
 }
 ```
 
-`return_inspected_bike`関数は`cross contract call`によって ft を receiver_id へ送信,
+`return_inspected_bike`関数は`cross contract call`によってftをreceiver_idへ送信,
 その後の処理を`callback`関数で行っています。
 `cross contract call`を実行するためには先ほど定義した`ext_ft`を使用して外部メソッドの呼び出しを行います。
 そして`then`で, 外部コントラクトのメソッド呼び出し後に実行するアクションとして`callback`関数を待機させます。
@@ -206,7 +206,7 @@ impl Contract {
 
 文法に関して詳しくは[こちら](https://www.near-sdk.io/cross-contract/callbacks)を参照してください。
 
-最後に, `callback`関数では`cross contract call`の結果を env を通して取得し処理をしています。
+最後に, `callback`関数では`cross contract call`の結果をenvを通して取得し処理をしています。
 
 ### 💁 コントラクトをアップデートしよう
 
@@ -565,14 +565,14 @@ mod tests {
 }
 ```
 
-init 関数と共にコントラクトをデプロイする際はオプションをつけて指定することができます。
+init関数と共にコントラクトをデプロイする際はオプションをつけて指定することができます。
 その時の構文は以下のようになります。
 
 ```
 $ near deploy [contractID] --wasmFile [wasm file path] --initFunction '[func name]'  --initArgs '{"arg_name": "arg_value"}'
 ```
 
-また, ft をやり取りする機能を`bikeコントラクト`に搭載したので, `bikeコントラクト`はアプリ起動前に ft をある程度持っている必要があります。
+また, ftをやり取りする機能を`bikeコントラクト`に搭載したので, `bikeコントラクト`はアプリ起動前にftをある程度持っている必要があります。
 以上を踏まえて`near_bike_share_dapp`内の`package.json`を編集します。
 `package.json`の以下
 
@@ -585,7 +585,7 @@ $ near deploy [contractID] --wasmFile [wasm file path] --initFunction '[func nam
   }
 ```
 
-`deploy`, `start`の 2 行を以下の 4 行に変更しましょう。
+`deploy`, `start`の2行を以下の4行に変更しましょう。
 
 ```js
  "deploy": "npm run build:contract && near dev-deploy --initFunction 'new' --initArgs '{\"num_of_bikes\": 5}'",
@@ -600,13 +600,13 @@ $ near deploy [contractID] --wasmFile [wasm file path] --initFunction '[func nam
 
 変更点について
 
-- `deploy`: init 関数の実行を追加
+- `deploy`: init関数の実行を追加
 - `reset` : 既存の開発アカウントを削除
-  init 関数を 2 度実行しようとするとパニックを起こすので, 毎度新しいアカウントを作るようにするために使用します。
-- `init` : `bikeコントラクト`に 100ft を用意(`FT_OWNER`から`CONTRACT_NAME`に ft を転送)
+  init関数を2度実行しようとするとパニックを起こすので, 毎度新しいアカウントを作るようにするために使用します。
+- `init` : `bikeコントラクト`に100ftを用意(`FT_OWNER`から`CONTRACT_NAME`にftを転送)
   `FT_CONTRACT`を`ftコントラクト`のデプロイされているアカウント名に変更してください。
-  `FT_OWNER`を ft の owner_id に指定したアカウントに変更してください。
-- `start` : reset -> deploy -> init -> parcel の順番に実行
+  `FT_OWNER`をftのowner_idに指定したアカウントに変更してください。
+- `start` : reset -> deploy -> init -> parcelの順番に実行
 
 それでは最後に動作確認を行います。
 `near_bike_share_dapp`内で下記を実行しましょう。
@@ -623,7 +623,7 @@ $ yarn test:unit
 $ yarn dev
 ```
 
-適当なユーザでサインインしてから, バイクの点検によって ft が支払われているかを確かめましょう。
+適当なユーザでサインインしてから, バイクの点検によってftが支払われているかを確かめましょう。
 
 点検前
 
@@ -635,9 +635,9 @@ $ yarn dev
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-economy` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#near-sharing-economy`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 

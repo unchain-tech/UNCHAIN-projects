@@ -6,7 +6,7 @@
 - プロフィール
 - ポートフォリオ
 
-を作成して Web サイトを完成させたいと思います。
+を作成してWebサイトを完成させたいと思います。
 
 先に、プロフィール欄で表示する画像を準備しましょう。ここでは以下の画像を使用しますが、お好きな画像を準備していただいて大丈夫です！
 
@@ -16,13 +16,13 @@
 
 準備した画像を、`./src/assets/`フォルダに入れます。
 
-次に、3 つのファイルを作成します。
+次に、3つのファイルを作成します。
 
 ```bash
 touch ./src/lib/Home.svelte ./src/lib/About.svelte ./src/lib/Portfolio.svelte
 ```
 
-ここまでで、以下のように 4 つのファイルが追加されます。
+ここまでで、以下のように4つのファイルが追加されます。
 
 ```diff
  ./
@@ -105,7 +105,7 @@ touch ./src/lib/Home.svelte ./src/lib/About.svelte ./src/lib/Portfolio.svelte
 </section>
 ```
 
-`<script></script>`に、準備していただいたプロフィール画像のインポート文を書きます。ファイル名は適宜書き換えてください。また、13 行目の`YOUR_NAME`と、14 行目の`YOUR_MESSAGE`は自由に書き換えてください。
+`<script></script>`に、準備していただいたプロフィール画像のインポート文を書きます。ファイル名は適宜書き換えてください。また、13行目の`YOUR_NAME`と、14行目の`YOUR_MESSAGE`は自由に書き換えてください。
 
 ### 📄 ポートフォリオを作成しよう
 
@@ -145,7 +145,7 @@ touch ./src/lib/Home.svelte ./src/lib/About.svelte ./src/lib/Portfolio.svelte
 </section>
 ```
 
-`<script></script>`の中は、これまで UNCHAIN で取り組んだコンテンツなど、ご自身の作品を自由に設定してください。ここでは、各プロジェクトの名前と URL を要素として持つデータ構造を、`projects`という変数に代入しています。
+`<script></script>`の中は、これまでUNCHAINで取り組んだコンテンツなど、ご自身の作品を自由に設定してください。ここでは、各プロジェクトの名前とURLを要素として持つデータ構造を、`projects`という変数に代入しています。
 
 ```javascript
 <script>
@@ -198,7 +198,7 @@ touch ./src/lib/Home.svelte ./src/lib/About.svelte ./src/lib/Portfolio.svelte
 </main>
 ````
 
-スクロールやナビゲーションバーを操作して、Web サイトを確認してみましょう。
+スクロールやナビゲーションバーを操作して、Webサイトを確認してみましょう。
 
 ![](/public/images/ICP-Static-Site/section-2/2_4_2.png)
 
@@ -231,7 +231,7 @@ touch ./src/lib/Home.svelte ./src/lib/About.svelte ./src/lib/Portfolio.svelte
 
 サンプルプロジェクトで使用されていたアイコンのリンク`<link />`を削除し、タイトル`<title></title>`を変更しました。
 
-次に、不要となったタイトルのアイコン・ロゴを削除します。以下のコマンドで実行できます（ロゴを残しておきたい方はここをとばしてください）。
+次に、不要となったタイトルのアイコン・ロゴを削除します。以下のコマンドで実行できます(ロゴを残しておきたい方はここをとばしてください)。
 
 ```bash
 rm -r ./public ./src/assets/svelte.svg
@@ -239,9 +239,9 @@ rm -r ./public ./src/assets/svelte.svg
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#icp-static-site` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#icp-static-site`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -252,6 +252,6 @@ rm -r ./public ./src/assets/svelte.svg
 
 ---
 
-おめでとうございます！セクション 2 は終了です！
+おめでとうございます！ セクション2は終了です！
 
-次のセクションに進み、IC 上にデプロイする準備をしていきましょう 🚀
+次のセクションに進み、IC上にデプロイする準備をしていきましょう 🚀

@@ -2,17 +2,17 @@
 
 ウォレットをダウンロードしましょう。
 
-このプロジェクトでは MetaMask を使用します。
+このプロジェクトではMetaMaskを使用します。
 
-- [こちら](https://MetaMask.io/download.html) からブラウザの拡張機能をダウンロードし,MetaMask ウォレットをあなたのブラウザに設定します。
+- [こちら](https://MetaMask.io/download.html) からブラウザの拡張機能をダウンロードし,MetaMaskウォレットをあなたのブラウザに設定します。
 
 > ✍️: MetaMask が必要な理由
 > ユーザーが,スマートコントラクトを呼び出すとき,本人のアドレスと秘密鍵を備えたウォレットが必要となります。
 > これは,認証作業のようなものです。
 
-MetaMask を設定できたら, Avalanche のテストネットワークを追加しましょう。
+MetaMaskを設定できたら, Avalancheのテストネットワークを追加しましょう。
 
-MetaMask の上部のネットワークタブを開き, `Add Network`をクリックします。
+MetaMaskの上部のネットワークタブを開き, `Add Network`をクリックします。
 
 ![](/public/images/AVAX-messenger/section-2/2_3_2.png)
 
@@ -28,34 +28,34 @@ Explorer: https://testnet.snowtrace.io/
 
 ![](/public/images/AVAX-messenger/section-2/2_3_3.png)
 
-登録が成功したら Avalanche のテストネットである`Avalanche Fuji C-Chain`が選択できるはずです。
+登録が成功したらAvalancheのテストネットである`Avalanche Fuji C-Chain`が選択できるはずです。
 
 ![](/public/images/AVAX-messenger/section-2/2_3_4.png)
 
-### 🚰 `Faucet` を利用して `AVAX` をもらう
+### 🚰 `Faucet`を利用して`AVAX`をもらう
 
-続いて, [Avalanche Faucet](https://faucet.avax.network/)で `AVAX` を取得します。
+続いて, [Avalanche Faucet](https://faucet.avax.network/)で`AVAX`を取得します。
 
-テストネットでのみ使用できる偽の `AVAX` です。
+テストネットでのみ使用できる偽の`AVAX`です。
 
-上記リンクへ移動して, あなたのウォレットのアドレスを入力して avax を受け取ってください。  
-💁 アドレスは MetaMask 上部のアカウント名の部分をクリックするとコピーができます。
+上記リンクへ移動して, あなたのウォレットのアドレスを入力してavaxを受け取ってください。  
+💁 アドレスはMetaMask上部のアカウント名の部分をクリックするとコピーができます。
 
-### 🌅 `window.ethereum` を設定する
+### 🌅 `window.ethereum`を設定する
 
-Web アプリケーション上で,ユーザーがブロックチェーンネットワークと通信するためには,Web アプリケーションはユーザーのウォレット情報を取得する必要があります。
+Webアプリケーション上で,ユーザーがブロックチェーンネットワークと通信するためには,Webアプリケーションはユーザーのウォレット情報を取得する必要があります。
 
-これから,あなたの Web アプリケーションにウォレットを接続したユーザーに,スマートコントラクトを呼び出す権限を付与する機能を実装していきます。これは,Web サイトへの認証機能です。
+これから,あなたのWebアプリケーションにウォレットを接続したユーザーに,スマートコントラクトを呼び出す権限を付与する機能を実装していきます。これは,Webサイトへの認証機能です。
 
-`window.ethereum`は MetaMask が `window`(javascript にデフォルトで存在するグローバル変数)の直下に用意するオブジェクトであり API です。  
-この API を使用して, ウェブサイトはユーザーのイーサリアムアカウントを要求し, ユーザーが接続しているブロックチェーンからデータを読み取り, ユーザーがメッセージや取引に署名するよう求めることができます。
+`window.ethereum`はMetaMaskが`window`(JavaScriptにデフォルトで存在するグローバル変数)の直下に用意するオブジェクトでありAPIです。  
+このAPIを使用して, ウェブサイトはユーザーのイーサリアムアカウントを要求し, ユーザーが接続しているブロックチェーンからデータを読み取り, ユーザーがメッセージや取引に署名するよう求めることができます。
 
-まずは `window.ethereum` を使用できるよう typescript のコードを書きます。
+まずは`window.ethereum`を使用できるようtypescriptのコードを書きます。
 
 ### 📁 `utils`ディレクトリ
 
-`messenger-client`へ移動し `utils` ディレクトリを作成してください。  
-その中に `ethereum.ts` というファイルを作成してください。
+`messenger-client`へ移動し`utils`ディレクトリを作成してください。  
+その中に`ethereum.ts`というファイルを作成してください。
 
 ```
 messenger-client
@@ -63,7 +63,7 @@ messenger-client
     └── ethereum.ts
 ```
 
-`ethereum.ts` の中に以下のコードを記述してください。
+`ethereum.ts`の中に以下のコードを記述してください。
 
 ```ts
 import { MetaMaskInpageProvider } from "@metamask/providers";
@@ -84,9 +84,9 @@ export const getEthereum = (): MetaMaskInpageProvider | null => {
 };
 ```
 
-typescript で`window.ethereum` を使用するためには, `window` に `ethereum` オブジェクトがあるということを明示する必要があります。  
-コード内の以下の部分で `window` に `ethereum` を追加しています。  
-`MetaMaskInpageProvider` は 環境設定時にインストールした `@metamask/providers` から取得した `ethereum` の型定義です。
+typescriptで`window.ethereum`を使用するためには, `window`に`ethereum`オブジェクトがあるということを明示する必要があります。  
+コード内の以下の部分で`window`に`ethereum`を追加しています。  
+`MetaMaskInpageProvider`は環境設定時にインストールした`@metamask/providers`から取得した`ethereum`の型定義です。
 
 ```ts
 declare global {
@@ -96,11 +96,11 @@ declare global {
 }
 ```
 
-また, `getEthereum` 関数を呼び出すと `window` から取り出した `ethereum` オブジェクトを取得できるようにしています。
+また, `getEthereum`関数を呼び出すと`window`から取り出した`ethereum`オブジェクトを取得できるようにしています。
 
 ### 📁 `hooks`ディレクトリ
 
-づついてユーザが Metamask を持っていることの確認とウォレットへの接続機能を実装します。
+づついてユーザがMetamaskを持っていることの確認とウォレットへの接続機能を実装します。
 
 既に作成している`hooks`ディレクトリ内に`useWallet.ts`というファイルを作成し, 以下のコードを記述してください。
 
@@ -210,28 +210,28 @@ return {
 };
 ```
 
-次に二つの関数を作成しました。
+次に2つの関数を作成しました。
 
-`connectWallet`は web アプリがユーザのウォレットにアクセスすることを求める関数で,  
-この後の実装で UI にユーザのウォレット接続ボタンを用意し, そのボタンとこの関数を連携します。  
+`connectWallet`はwebアプリがユーザのウォレットにアクセスすることを求める関数で,  
+この後の実装でUIにユーザのウォレット接続ボタンを用意し, そのボタンとこの関数を連携します。  
 そのため外部で使用できるように返り値の中に含めています。
 
-`checkIfWalletIsConnected`は既にユーザのウォレットと web アプリが接続しているかを確認する関数で,  
-`useEffect`を使用して web アプリがユーザのウォレットを使用する際には初回レンダリング時に確認するようにしています。
+`checkIfWalletIsConnected`は既にユーザのウォレットとwebアプリが接続しているかを確認する関数で,  
+`useEffect`を使用してwebアプリがユーザのウォレットを使用する際には初回レンダリング時に確認するようにしています。
 
 > `eslint-disable-next-line react-hooks/exhaustive-deps`コメントについて  
 > `create-next-app`を実行した際に標準で`eslint`という静的解析ツールがインストールされています。  
 > `eslint-disable-next-line react-hooks/exhaustive-deps`は次の行を解析から外すことを指定するコメントです。  
 > 今回は useEffect の依存配列に関して, `eslint`のルールにそぐわないためそうしています。
 
-また, それぞれの関数内で使用している `eth_requestAccounts` と `eth_accounts` は,空の配列または単一のアカウントアドレスを含む配列を返す特別なメソッドです。  
-ユーザーがウォレットに複数のアカウントを持っている場合を考慮して, プログラムはユーザーの 1 つ目のアカウントアドレスを取得することにしています。
+また, それぞれの関数内で使用している`eth_requestAccounts`と`eth_accounts`は,空の配列または単一のアカウントアドレスを含む配列を返す特別なメソッドです。  
+ユーザーがウォレットに複数のアカウントを持っている場合を考慮して, プログラムはユーザーの1つ目のアカウントアドレスを取得することにしています。
 
 ### 📁 `layout`ディレクトリ
 
 ウォレットを使用するページ(今回は全てのページがそうです)のためにレイアウトを用意しましょう！
 
-既に作成した`layout`ディレクトリの中に `RequireWallet.module.css` と `RequireWallet.tsx` を作成してください。
+既に作成した`layout`ディレクトリの中に`RequireWallet.module.css`と`RequireWallet.tsx`を作成してください。
 
 `RequireWallet.module.css`の中に以下のコードを記述してください。
 
@@ -286,7 +286,7 @@ export default function RequireWallet({
 }
 ```
 
-引数として子コンポーネントと`currentAccount`, `connectWallet` を受け取っています。  
+引数として子コンポーネントと`currentAccount`, `connectWallet`を受け取っています。  
 `currentAccount`(ユーザのウォレットアドレス)がまだ格納されていない場合は`Connect Wallet`というボタンを表示し, `connectWallet`関数と連携しています。
 
 ### 📁 `pages`ディレクトリ
@@ -421,26 +421,26 @@ export default function SendMessagePage() {
 
 ### 🌐 ウォレットコネクトのテストを実行する
 
-上記のコードをすべて反映させたら,ターミナルで `messenger-client` に移動し,下記を実行しましょう。
+上記のコードをすべて反映させたら,ターミナルで`messenger-client`に移動し,下記を実行しましょう。
 
 ```bash
 npm run dev
 ```
 
-ローカルサーバで Web サイトを立ち上げたら,MetaMask のプラグインをクリックし,あなたのウォレットアドレスの接続状況を確認しましょう。
+ローカルサーバーでWebサイトを立ち上げたら,MetaMaskのプラグインをクリックし,あなたのウォレットアドレスの接続状況を確認しましょう。
 
 ウォレットを接続していない状態では以下のような画面が表示されるはずです。
 
 ![](/public/images/AVAX-messenger/section-2/2_3_1.png)
 
-`Connect Wallet`ボタンをクリックし, MetaMask を接続してください。  
+`Connect Wallet`ボタンをクリックし, MetaMaskを接続してください。  
 ⚠️ ネットワークに`Fuji`を選択した状態で行ってください。
 
-下図のように MetaMask からウォレット接続を求められますので,承認してください。
+下図のようにMetaMaskからウォレット接続を求められますので,承認してください。
 
 ![](/public/images/AVAX-messenger/section-2/2_3_5.png)
 
-MetaMask の承認が終わると, 画面が切り替わり, 画面上部にあなたの接続しているウォレットのアドレスが表示されます。
+MetaMaskの承認が終わると, 画面が切り替わり, 画面上部にあなたの接続しているウォレットのアドレスが表示されます。
 
 ![](/public/images/AVAX-messenger/section-2/2_3_6.png)
 
@@ -449,14 +449,14 @@ MetaMask の承認が終わると, 画面が切り替わり, 画面上部にあ�
 > [こちら](https://github.com/unchain-dev/avalanche_messenger_dapp)に本プロジェクトの完成形のレポジトリがあります。
 >
 > コードがうまく動かない場合は参考にしてみてください。  
-> `messenger-contract` はリンク先のレポジトリ内の `package/contract` を。  
-> `messenger-client` はリンク先のレポジトリ内の `package/client` を参照してください。
+> `messenger-contract`はリンク先のレポジトリ内の`package/contract`を。  
+> `messenger-client`はリンク先のレポジトリ内の`package/client`を参照してください。
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は,Discord の`#avax-messenger`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は,Discordの`#avax-messenger`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので,エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので,エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

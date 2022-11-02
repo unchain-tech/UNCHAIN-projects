@@ -1,9 +1,9 @@
 ### 🛫 スマートコントラクトをデプロイしよう
 
-Rust コードをコンパイルしてスマートコントラクトをアカウントにデプロイしましょう！
+Rustコードをコンパイルしてスマートコントラクトをアカウントにデプロイしましょう！
 
 **コンパイル**
-前項で確認した `ft` ディレクトリへ移動してコンパイルを実行します。
+前項で確認した`ft`ディレクトリへ移動してコンパイルを実行します。
 
 ```
 $ cd ft
@@ -16,10 +16,10 @@ $ cargo build --all --target wasm32-unknown-unknown --release
 Finished release [optimized] target(s) in 0.26s
 ```
 
-`cargo` は Rust のビルドシステム兼パッケージマネージャです。
+`cargo`はRustのビルドシステム兼パッケージマネージャです。
 `cargo build`でコンパイルを行います。
-各 option の説明は`cargo build --help`で確認できますが,
-ここでは`--target`を使用することで Wasm 形式で Rust のコードをコンパイルしたということだけ分かれば十分です 🙆‍♀️
+各optionの説明は`cargo build --help`で確認できますが,
+ここでは`--target`を使用しWasm形式でRustのコードをコンパイルしたということだけ分かれば十分です 🙆‍♀️
 
 コンパイルしたファイルは`target/wasm32-unknown-unknown/release`ディレクトリに`fungible_token.wasm`という名前で保存されています。
 これをプロジェクトルート直下の`res`ディレクトリにコピーしましょう!
@@ -30,9 +30,9 @@ $ cp target/wasm32-unknown-unknown/release/fungible_token.wasm ../res
 
 **サプアカウントの作成**
 
-NEAR ではコントラクトを**アカウントへデプロイ**するという形をとります。
+NEARではコントラクトを**アカウントへデプロイ**するという形をとります。
 なのでコントラクトをデプロイするには, デプロイ先のアカウントがあることが前提となります。
-そして NEAR のアカウントにはサブアカウントを作ることができます。
+そしてNEARのアカウントにはサブアカウントを作ることができます。
 サブアカウントを作る際は既存のアカウントの前に追加する名前と`.`をつけます。
 既存のアカウント名が`alice.testnet`とすると, `bob.alice.testnet`や`mike.alice.testnet`のようなサブアカウントを作成することができます。
 さらに`bob.alice.testnet`には`mike.bob.alice.testnet`というように, `.`と追加する名前を既存のアカウントの先頭につけることでサブアカウントを増やしていくことができます。
@@ -48,7 +48,7 @@ NEAR ではコントラクトを**アカウントへデプロイ**するとい�
 $ export ID=ft_account.testnet
 ```
 
-※`echo $ID`で export できているか確認しましょう!
+※`echo $ID`でexportできているか確認しましょう!
 
 サブアカウント名は好きなもので良いですが, ここでは`sub.ft_account.testnet`で進めていきます。
 以下のコマンドで`ft_account.testnet`にサブアカウントを作成します。
@@ -63,9 +63,9 @@ $ near create-account sub.$ID --masterAccount $ID --initialBalance 30
 Account sub.ft_account.testnet for network "testnet" was created.
 ```
 
-`--initialBalance`でサブアカウントに持たせる NEAR token の量を指定しています。
-アカウントは作成時に 200NEAR を受け取れるのでそこから 30 NEAR 分けているということです。
-もし既存のアカウントの所持する token の量が足りずにエラーが出る場合は, [NEAR faucet](https://near-faucet.io/)から NEAR を受け取る,
+`--initialBalance`でサブアカウントに持たせるNEAR tokenの量を指定しています。
+アカウントは作成時に200NEARを受け取れるのでそこから30 NEAR分けているということです。
+もし既存のアカウントの所持するtokenの量が足りずにエラーが出る場合は, [NEAR faucet](https://near-faucet.io/)からNEARを受け取る,
 またはアカウントを再作成してからやり直しましょう。
 
 **デプロイ**
@@ -76,7 +76,7 @@ Account sub.ft_account.testnet for network "testnet" was created.
 $ near deploy sub.$ID --wasmFile res/fungible_token.wasm
 ```
 
-`--wasmFile`でデプロイする Wasm ファイルを先ほどコンパイルしたもので指定しています。
+`--wasmFile`でデプロイするWasmファイルを先ほどコンパイルしたもので指定しています。
 
 デプロイが成功すると以下のような表示がされます(メッセージ表示から処理の終了までに少し時間がかかる場合があります)。
 
@@ -92,13 +92,13 @@ Done deploying to sub.ft_account.testnet
 >
 > でサブアカウントごと削除した後, もう一度サブアカウント作成~デプロイまでの流れを実行することで可能です。
 
-うまくいかない方は, アカウントの再作成(作成時に NEAR がもらえます), `near login`での再ログインを試してみましょう。
+うまくいかない方は, アカウントの再作成(作成時にNEARがもらえます), `near login`での再ログインを試してみましょう。
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-economy` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#near-sharing-economy`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

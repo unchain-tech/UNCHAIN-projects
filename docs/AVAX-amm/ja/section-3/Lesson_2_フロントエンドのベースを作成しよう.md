@@ -6,7 +6,7 @@
 
 ### 📁 `styles`ディレクトリ
 
-`styles`ディレクトリには css のコードが入っています。  
+`styles`ディレクトリにはcssのコードが入っています。  
 全てのページに適用されるよう用意された`global.css`と, ホームページ用の`Home.module.css`があります。
 
 `global.css`内に以下のコードを記述してください。  
@@ -119,16 +119,16 @@ client
 ### 📁 `public`ディレクトリ
 
 `Next.js`はルートディレクトリ直下の`public`ディレクトリを静的なリソース(画像やテキストデータなど)の配置場所と認識します。  
-そのためソースコード内で画像の URL を`/image.png`と指定した場合,  
+そのためソースコード内で画像のURLを`/image.png`と指定した場合,  
 `Next.js`は自動的に`public`ディレクトリをルートとした`プロジェクトルート/public/image.png`を参照してくれます。
 
-ディレクトリ内の `favicon.ico` 以外のファイルを全て削除してください。  
+ディレクトリ内の`favicon.ico`以外のファイルを全て削除してください。  
 そして新たに画像を追加します。
 
-以下の画像をダウンロードするか, あなたのお好きな画像を `bird.png` (または別の名前) という名前で`public`ディレクトリ内に保存してください。  
+以下の画像をダウンロードするか, あなたのお好きな画像を`bird.png` (または別の名前) という名前で`public`ディレクトリ内に保存してください。  
 ![](/public/images/AVAX-amm/section-3/3_2_2.png)
 
-また, `favicon.ico` を別の画像にすると, あなたの web アプリケーションのファビコンが変わるので自由に変更してみてください。
+また, `favicon.ico`を別の画像にすると, あなたのwebアプリケーションのファビコンが変わるので自由に変更してみてください。
 
 `public`に関するフォルダ構成はこのようになります。
 
@@ -141,8 +141,8 @@ client
 
 ### 📁 `utils`ディレクトリ
 
-`client`へ移動し `utils` ディレクトリを作成してください。  
-その中に `ethereum.ts`, `format.ts`, `validAmount.ts` というファイルを作成してください。
+`client`へ移動し`utils`ディレクトリを作成してください。  
+その中に`ethereum.ts`, `format.ts`, `validAmount.ts`というファイルを作成してください。
 
 ```
 client
@@ -152,7 +152,7 @@ client
     └── validAmount.ts
 ```
 
-`ethereum.ts` の中に以下のコードを記述してください。
+`ethereum.ts`の中に以下のコードを記述してください。
 
 ```ts
 import { MetaMaskInpageProvider } from "@metamask/providers";
@@ -173,18 +173,18 @@ export const getEthereum = (): MetaMaskInpageProvider | null => {
 };
 ```
 
-typescript で`window.ethereum` を使用するためには, `window` に `ethereum` オブジェクトがあるということを明示する必要があります。  
-`MetaMaskInpageProvider` は環境設定時にインストールした `@metamask/providers` から取得した `ethereum` の型定義です。
+typescriptで`window.ethereum`を使用するためには, `window`に`ethereum`オブジェクトがあるということを明示する必要があります。  
+`MetaMaskInpageProvider`は環境設定時にインストールした`@metamask/providers`から取得した`ethereum`の型定義です。
 
 > 📓 `window.ethereum`とは  
 > Web アプリケーション上でユーザーがブロックチェーンネットワークと通信するためには, Web アプリケーションはユーザーのウォレット情報を取得する必要があります。
 >
-> `window.ethereum`は MetaMask が `window`(JavaScript にデフォルトで存在するグローバル変数)の直下に用意するオブジェクトであり API です。  
+> `window.ethereum`は MetaMask が`window`(JavaScript にデフォルトで存在するグローバル変数)の直下に用意するオブジェクトであり API です。  
 > この API を使用して, ウェブサイトはユーザーのイーサリアムアカウントを要求し, ユーザーが接続しているブロックチェーンからデータを読み取り, ユーザーがメッセージや取引に署名するよう求めることができます。
 
-また, `getEthereum` 関数を呼び出すと `window` から取り出した `ethereum` オブジェクトを取得できるようにしています。
+また, `getEthereum`関数を呼び出すと`window`から取り出した`ethereum`オブジェクトを取得できるようにしています。
 
-`format.ts` の中に以下のコードを記述してください。
+`format.ts`の中に以下のコードを記述してください。
 
 ```ts
 import { BigNumber } from "ethers";
@@ -206,16 +206,16 @@ export const formatWithoutPrecision = (
 };
 ```
 
-ここではコントラクトと share の情報をやり取りする際に使用する util 関数を用意しています。
+ここではコントラクトとshareの情報をやり取りする際に使用するutil関数を用意しています。
 
-share については一度離れていた部分なので, 再確認したい方は[section-1/Lesson-2](/docs/AVAX-amm/ja/section-1/Lesson_2_Solidity%E3%81%A7%E3%82%B9%E3%83%9E%E3%83%BC%E3%83%88%E3%82%B3%E3%83%B3%E3%83%88%E3%83%A9%E3%82%AF%E3%83%88%E3%82%92%E4%BD%9C%E6%88%90%E3%81%97%E3%82%88%E3%81%86.md)の`シェアについて`の部分を読み返してください。
+shareについては一度離れていた部分なので, 再確認したい方は[section-1/Lesson-2](/docs/AVAX-amm/ja/section-1/Lesson_2_Solidity%E3%81%A7%E3%82%B9%E3%83%9E%E3%83%BC%E3%83%88%E3%82%B3%E3%83%B3%E3%83%88%E3%83%A9%E3%82%AF%E3%83%88%E3%82%92%E4%BD%9C%E6%88%90%E3%81%97%E3%82%88%E3%81%86.md)の`シェアについて`の部分を読み返してください。
 
-基本的にフロントエンドでは, share を PRECISION なしで string 型で保持します。
+基本的にフロントエンドでは, shareをPRECISIONなしでstring型で保持します。
 
-フロントエンド -> コントラクトへ share を伝える際は, `formatWithPrecision` を使用し  
-コントラクト -> フロントエンドへ share が伝えられた際は, `formatWithoutPrecision` を使用して変換を行います。
+フロントエンド -> コントラクトへshareを伝える際は, `formatWithPrecision`を使用し  
+コントラクト -> フロントエンドへshareが伝えられた際は, `formatWithoutPrecision`を使用して変換を行います。
 
-`validAmount.ts` の中に以下のコードを記述してください。
+`validAmount.ts`の中に以下のコードを記述してください。
 
 ```ts
 const regValidNumber = /^[0-9]+[.]?[0-9]*$/;
@@ -303,16 +303,16 @@ export const useWallet = (): ReturnUseWallet => {
 };
 ```
 
-ここでは, ユーザが Metamask を持っていることの確認とウォレットへの接続機能を実装します。
+ここでは, ユーザがMetamaskを持っていることの確認とウォレットへの接続機能を実装します。
 
-`connectWallet`は web アプリがユーザのウォレットにアクセスすることを求める関数で,  
-この後の実装で UI にユーザのウォレット接続ボタンを用意し, そのボタンとこの関数を連携します。  
+`connectWallet`はwebアプリがユーザのウォレットにアクセスすることを求める関数で,  
+この後の実装でUIにユーザのウォレット接続ボタンを用意し, そのボタンとこの関数を連携します。  
 そのため外部で使用できるように返り値の中に含めています。
 
-`checkIfWalletIsConnected`は既にユーザのウォレットと web アプリが接続しているかを確認する関数で,
+`checkIfWalletIsConnected`は既にユーザのウォレットとwebアプリが接続しているかを確認する関数で,
 
-また, それぞれの関数内で使用している `eth_requestAccounts` と `eth_accounts` は,空の配列または単一のアカウントアドレスを含む配列を返す特別なメソッドです。  
-ユーザーがウォレットに複数のアカウントを持っている場合を考慮して, プログラムはユーザーの 1 つ目のアカウントアドレスを取得することにしています。
+また, それぞれの関数内で使用している`eth_requestAccounts`と`eth_accounts`は,空の配列または単一のアカウントアドレスを含む配列を返す特別なメソッドです。  
+ユーザーがウォレットに複数のアカウントを持っている場合を考慮して, プログラムはユーザーの1つ目のアカウントアドレスを取得することにしています。
 
 `hooks`に関するフォルダ構成はこのようになります。
 
@@ -335,9 +335,9 @@ client
 📁 `Container`ディレクトリ
 
 まず`components`ディレクトリ内に`Container`というディレクトリを作成し,  
-その中に `Container.module.css` と `Container.tsx` という名前のファイルを作成してください。
+その中に`Container.module.css`と`Container.tsx`という名前のファイルを作成してください。
 
-`Container.module.css` 内に以下のコードを記述してください。
+`Container.module.css`内に以下のコードを記述してください。
 
 ```css
 .centerContent {
@@ -386,7 +386,7 @@ client
 }
 ```
 
-`Container.tsx`で使用する css になります。
+`Container.tsx`で使用するcssになります。
 
 `Container.tsx`内に以下のコードを記述してください。
 
@@ -462,10 +462,10 @@ export default function Container({ currentAccount }: Props) {
 }
 ```
 
-ここでは今回作る UI のベースとなるものが記載されています。  
+ここでは今回作るUIのベースとなるものが記載されています。  
 `activeTab`を変更することで表示する内容が変更できるようになっております。
 
-レッスンの最後で確認する UI と照らし合わせると, 内容がわかりやすいと思います。
+レッスンの最後で確認するUIと照らし合わせると, 内容がわかりやすいと思います。
 
 > 📓 `~.module.css`とは  
 > `module.css`を css ファイルの語尾に付けることで, `CSSモジュール`という`Next.js`の仕組みを利用することができます。  
@@ -566,7 +566,7 @@ export default function InputNumberBox({
 }
 ```
 
-ユーザが数値を入力する UI でこのコンポーネントを使用します。
+ユーザが数値を入力するUIでこのコンポーネントを使用します。
 
 `components`に関するフォルダ構成はこのようになります。
 
@@ -587,7 +587,7 @@ client
 
 まず初めに`api`ディレクトリは今回使用しないのでディレクトリごと削除してください。
 
-`_app.tsx` 内に以下のコードを記述してください。  
+`_app.tsx`内に以下のコードを記述してください。  
 ※初期設定のままなので編集箇所がない場合があります。
 
 ```tsx
@@ -649,12 +649,12 @@ const Home: NextPage = () => {
 export default Home;
 ```
 
-ここでは先ほど作成した `useWallet` を使用していて, `currentAccount` の存在有無で  
-wallet への接続を求めるか, 接続している `currentAccount` の値を表示するかを条件分岐しています。
+ここでは先ほど作成した`useWallet`を使用していて, `currentAccount`の存在有無で  
+walletへの接続を求めるか, 接続している`currentAccount`の値を表示するかを条件分岐しています。
 
-[Image タグ](https://nextjs.org/docs/basic-features/image-optimization) は Next.js に用意されたタグで画像描画について最適化されます。
+[Image タグ](https://nextjs.org/docs/basic-features/image-optimization) はNext.jsに用意されたタグで画像描画について最適化されます。
 
-先ほど作成した `Container` コンポーネントも使用しています。
+先ほど作成した`Container`コンポーネントも使用しています。
 
 `pages`に関するフォルダ構成はこのようになります。
 
@@ -676,14 +676,14 @@ $ npm run dev
 そしてブラウザで`http://localhost:3000 `へアクセスしてください。
 
 以下のような画面が表示されれば成功です！  
-`swap` などのタブを切り替えると各 tab の名前が表示されるはずです。
+`swap`などのタブを切り替えると各tabの名前が表示されるはずです。
 
 ![](/public/images/AVAX-amm/section-3/3_2_1.png)
 
 画面右上の`Connect to wallet`ボタンを押下するとウォレットと接続することができます。  
 ⚠️ この先ウォレットを接続する場合は, ネットワークに`Fuji`を選択した状態で行ってください。
 
-MetaMask の承認が終わると, `Connect to wallet`ボタンの部分があなたの接続しているウォレットのアドレスの表示に変更されます。
+MetaMaskの承認が終わると, `Connect to wallet`ボタンの部分があなたの接続しているウォレットのアドレスの表示に変更されます。
 
 ![](/public/images/AVAX-amm/section-3/3_2_3.png)
 
@@ -692,14 +692,14 @@ MetaMask の承認が終わると, `Connect to wallet`ボタンの部分があ�
 > [こちら](https://github.com/unchain-dev/avalanche-amm-dapp)に本プロジェクトの完成形のレポジトリがあります。
 >
 > コードがうまく動かない場合は参考にしてみてください。  
-> `contract` はリンク先のレポジトリ内の `package/contract` を。  
-> `client` はリンク先のレポジトリ内の `package/client` を参照してください。
+> `contract`はリンク先のレポジトリ内の`package/contract`を。  
+> `client`はリンク先のレポジトリ内の`package/client`を参照してください。
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は,Discord の `#avax-amm` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は,Discordの`#avax-amm`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので,エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので,エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

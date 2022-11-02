@@ -1,16 +1,16 @@
-### 🌅 `window.ethereum` を設定する
+### 🌅 `window.ethereum`を設定する
 
-Web アプリケーション上で、ユーザーがイーサリアムネットワークと通信するためには、Web アプリケーションはユーザーのウォレット情報を取得する必要があります。
+Webアプリケーション上で、ユーザーがイーサリアムネットワークと通信するためには、Webアプリケーションはユーザーのウォレット情報を取得する必要があります。
 
-これから、あなたの Web アプリケーションにウォレットを接続したユーザーに、スマートコントラクトを呼び出す権限を付与する機能を実装していきます。
+これから、あなたのWebアプリケーションにウォレットを接続したユーザーに、スマートコントラクトを呼び出す権限を付与する機能を実装していきます。
 
-- これは、Web サイトへの認証機能です。
+- これは、Webサイトへの認証機能です。
 
-ターミナル上で、`nft-game-starter-project/src`に移動し、その中にある `App.js` を VS Code で開きましょう。
+ターミナル上で、`nft-game-starter-project/src`に移動し、その中にある`App.js`をVS Codeで開きましょう。
 
 下記のように、`App.js`の中身を更新します。
 
-- `App.js` はあなたの Web アプリケーションのフロントエンド機能を果たします。
+- `App.js`はあなたのWebアプリケーションのフロントエンド機能を果たします。
 
 ```javascript
 // App.js
@@ -67,28 +67,28 @@ export default App;
 
 ### 🦊 ユーザーアカウントにアクセスできるか確認する
 
-`window.ethereum` は、あなたの Web アプリケーションに参加するユーザーが MetaMask を持っているか確認し、結果を `Console log` に出力します。
+`window.ethereum`は、あなたのWebアプリケーションに参加するユーザーがMetaMaskを持っているか確認し、結果を`Console log`に出力します。
 
-ターミナルで `nft-game-starter-project` に移動し、下記を実行してみましょう。
+ターミナルで`nft-game-starter-project`に移動し、下記を実行してみましょう。
 
 ```bash
 npm run start
 ```
 
-ローカルサーバで Web サイトを立ち上げたら、サイトの上で右クリックを行い、`Inspect`を選択します。
+ローカルサーバーでWebサイトを立ち上げたら、サイトの上で右クリックを行い、`Inspect`を選択します。
 ![](/public/images/ETH-NFT-Game/section-3/3_2_1.png)
 次に、`Console`を選択し、出力結果を確認してみましょう。
 ![](/public/images/ETH-NFT-Game/section-3/3_2_2.png)
 
-Console に `We have the ethereum object` と表示されているでしょうか？
+Consoleに`We have the ethereum object`と表示されているでしょうか？
 
-- これは、`window.ethereum` が、この Web サイトを訪問したユーザー（ここでいうあなた）が MetaMask を持っていることを確認したことを示しています。
+- これは、`window.ethereum`が、このWebサイトを訪問したユーザー(ここでいうあなた)がMetaMaskを持っていることを確認したことを示しています。
 
-次に、Web サイトがユーザーのウォレットにアクセスする権限があるか確認します。
+次に、Webサイトがユーザーのウォレットにアクセスする権限があるか確認します。
 
 - アクセスできたら、スマートコントラクトを呼び出すことができます。
 
-これから、ユーザー自身が承認した Web サイトにウォレットのアクセス権限を与えるコードを書いていきます。
+これから、ユーザー自身が承認したWebサイトにウォレットのアクセス権限を与えるコードを書いていきます。
 
 - これは、ユーザーのログイン機能です。
 
@@ -175,9 +175,9 @@ export default App;
 const [currentAccount, setCurrentAccount] = useState(null);
 ```
 
-アクセス可能なアカウントを検出した後、`currentAccount` にユーザーのウォレットアカウント（`0x...`）の値が入ります。
+アクセス可能なアカウントを検出した後、`currentAccount`にユーザーのウォレットアカウント(`0x...`)の値が入ります。
 
-以下で `currentAccount` を更新しています。
+以下で`currentAccount`を更新しています。
 
 ```javascript
 // App.js
@@ -195,13 +195,13 @@ if (accounts.length !== 0) {
 }
 ```
 
-この処理のおかげで、ユーザーがウォレットに複数のアカウントを持っている場合でも、プログラムはユーザーの 1 番目のアカウントアドレスを取得できます。
+この処理のおかげで、ユーザーがウォレットに複数のアカウントを持っている場合でも、プログラムはユーザーの1番目のアカウントアドレスを取得できます。
 
 ### 👛 ウォレット接続ボタンを作成する
 
-次に、`connectWallet` ボタンを作成していきます。
+次に、`connectWallet`ボタンを作成していきます。
 
-下記の通り `App.js` を更新していきましょう。
+下記の通り`App.js`を更新していきましょう。
 
 ```javascript
 // App.js
@@ -305,9 +305,9 @@ const App = () => {
 export default App;
 ```
 
-ここで新しく実装した機能は、以下の 2 つです。
+ここで新しく実装した機能は、以下の2つです。
 
-**1 \. `connectWallet` メソッドを実装**
+**1 \. `connectWallet`メソッドを実装**
 
 ```javascript
 // App.js
@@ -332,9 +332,9 @@ const connectWalletAction = async () => {
 };
 ```
 
-`eth_requestAccounts` メソッドを使用することで、MetaMask からユーザーにウォレットへのアクセスを許可するよう呼びかけることができます。
+`eth_requestAccounts`メソッドを使用することで、MetaMaskからユーザーにウォレットへのアクセスを許可するよう呼びかけることができます。
 
-**2 \. `Connect Wallet` ボタンの実装**
+**2 \. `Connect Wallet`ボタンの実装**
 
 ```javascript
 // App.js
@@ -354,9 +354,9 @@ const connectWalletAction = async () => {
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の`#eth-nft-game`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#eth-nft-game`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

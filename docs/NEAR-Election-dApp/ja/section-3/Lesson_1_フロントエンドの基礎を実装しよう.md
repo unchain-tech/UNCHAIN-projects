@@ -2,14 +2,14 @@
 
 ここからはいよいよフロントエンドを編集していくのですが、まずは必要なファイルを追加していきましょう。
 
-注意してほしいところは次の 2 つです
+注意してほしいところは次の2つです
 
 1. `near-election-dapp-frontend/frontend`というディレクトリの中に作成
-2. `AppRouter.js`は pages の中ではなく assets の中に作成
+2. `AppRouter.js`はpagesの中ではなくassetsの中に作成
 
-です。import 時の PATH に関わってくるのでこれと同じように作らないと動かなくなります（もし実行時エラーなどが起きたときはこのファイルの PATH が正しいか確認してみてください）。
+です。import時のPATHに関わってくるのでこれと同じように作らないと動かなくなります(もし実行時エラーなどが起きたときはこのファイルのPATHが正しいか確認してみてください)。
 
-次にフロントエンドで使う画像（下の 4 つの画像）をダウンロードして near-election-dapp-frontend/frontend/assets/img の中にそれぞれ画像の上に示してある名前で保存しましょう。
+次にフロントエンドで使う画像(下の4つの画像)をダウンロードしてnear-election-dapp-frontend/frontend/assets/imgの中にそれぞれ画像の上に示してある名前で保存しましょう。
 
 `cross.png`
 
@@ -27,7 +27,7 @@
 
 ![](/public/images/NEAR-Election-dApp/section-3/3_1_4.png)
 
-最終的に以下のようなファイル構造になっていれば OK です！
+最終的に以下のようなファイル構造になっていればOKです！
 
 ```diff
   frontend/
@@ -60,7 +60,7 @@
   └── index.js
 ```
 
-ディレクトリ構造が整理できたら次は下のコマンドをターミナルで実行させることで必要なライブラリをインストールしましょう。
+ディレクトリ構造が整理できたら次は下のコマンドで必要なライブラリをインストールしましょう。
 
 この時、フロントエンドのディレクトリ(ここでは`near-election-dapp-frontend`)にいることを確認して行ってください。
 
@@ -68,7 +68,7 @@
 npm install react-ipfs-image react-router-dom
 ```
 
-その後`frontend/neardev/dev-account.env`にある変数を以下のように書き換えましょう。`YOUR_WALLET_ID`というのは変数にあなたが deploy した Wallet の Id を入れましょう。
+その後`frontend/neardev/dev-account.env`にある変数を以下のように書き換えましょう。`YOUR_WALLET_ID`というのは変数にあなたがdeployしたWalletのIdを入れましょう。
 
 [dev-account.env]
 
@@ -225,7 +225,7 @@ contractName, {
   }
 ```
 
-次に使用する関数を export します。それぞれ名前を一致させ引数も同じように設定します。
+次に使用する関数をexportします。それぞれ名前を一致させ引数も同じように設定します。
 
 そうすることで関数を使用する時に混乱することがなくなります！
 
@@ -326,7 +326,7 @@ export async function reopen_election() {
 }
 ```
 
-いくつか下のような値がついていますが、これらは上がガス代、下はコントラクトに deposit する NEAR の値を示しています。
+いくつか下のような値がついていますが、これらは上がガス代、下はコントラクトにdepositするNEARの値を示しています。
 
 ```javascript
     300000000000000,
@@ -413,7 +413,7 @@ export default function App() {
 
 ```
 
-最初の部分で必要なライブラリや画像の PATH をインポートしています。
+最初の部分で必要なライブラリや画像のPATHをインポートしています。
 
 一番下の部分では`login, logout`という関数をコントラクトからインポートしています。
 
@@ -433,11 +433,11 @@ import AppRouter from './assets/AppRouter'
 import { login, logout } from './assets/js/near/utils'
 ```
 
-この部分はサインインされていない場合に表示される UI を記述しています。
+この部分はサインインされていない場合に表示されるUIを記述しています。
 
-`className=""`で書かれている部分は`Tailwind`で書かれている CSS です。
+`className=""`で書かれている部分は`Tailwind`で書かれているCSSです。
 
-気になる CSS があればれば[こちら](https://tailwindcss.com/docs/responsive-design)で随時検索してみてください。
+気になるCSSがあればれば[こちら](https://tailwindcss.com/docs/responsive-design)で随時検索してみてください。
 
 この部分の最後のところのボタンは押すとサインインの関数が走るようになっています。
 
@@ -462,9 +462,9 @@ if (!window.walletConnection.isSignedIn()) {
 
 その次の部分ではほとんどがホームバーのデザインを記述しています。
 
-ホームバーには４つの文字列 `Home, Add Candidate, Add Voter, Sign Out`があり、それぞれが URL を変更するようになっています。
+ホームバーには４つの文字列`Home, Add Candidate, Add Voter, Sign Out`があり、それぞれがURLを変更するようになっています。
 
-最後の`<AppRouter />`がボディの部分の UI となり、URL によって画面が遷移するようになっています。
+最後の`<AppRouter />`がボディの部分のUIとなり、URLによって画面が遷移するようになっています。
 
 ```javascript
 return (
@@ -503,9 +503,9 @@ return (
 
 次に`AppRouter.js`を下のように書き換えましょう。
 
-`react-router-dom`というライブラリを使うことで URL によって画面が遷移するようにできます。
+`react-router-dom`というライブラリを使うことでURLによって画面が遷移するようにできます。
 
-`<Router>`というコンポーネント内にあるコンポーネントが`path`の URL に従って表示されることになります。
+`<Router>`というコンポーネント内にあるコンポーネントが`path`のURLに従って表示されることになります。
 
 [AppRouter.js]
 
@@ -540,9 +540,9 @@ const AppRouter = () => {
 export default AppRouter;
 ```
 
-では URL によって変わる３つのコンポーネント`<Home />, <Candidate />, <Voter />`を適当に編集して画面遷移がきちんとされていることを確認しましょう。
+ではURLによって変わる３つのコンポーネント`<Home />, <Candidate />, <Voter />`を適当に編集して画面遷移がきちんとされていることを確認しましょう。
 
-pages にある`home.js, candidate.js, voter.js`を下のように編集しましょう。
+pagesにある`home.js, candidate.js, voter.js`を下のように編集しましょう。
 
 [home.js]
 
@@ -636,11 +636,11 @@ html {
 
 ```
 
-ではここで web アプリを起動させて画面遷移の様子をみていきたいところですが、今のままではもともとあったコントラクトをコンパイル・deploy して起動するようになります。
+ではここでwebアプリを起動させて画面遷移の様子をみていきたいところですが、今のままではもともとあったコントラクトをコンパイル・deployして起動するようになります。
 
 なので`package.json`に移動して以下のように編集しましょう。
 
-この編集によって`yarn dev`によって走るコードが変わり、`neardev/dev-account.env`に記載した wallet id に deploy されているコントラクトを読みにいけるようになりました
+これにより`yarn dev`が呼び出すコマンドが変わり、`neardev/dev-account.env`に記載したwallet idにdeployされているコントラクトを読みにいけるようになりました
 
 ```diff
 {
@@ -710,9 +710,9 @@ yarn dev
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-election-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#near-election-dapp`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

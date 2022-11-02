@@ -1,13 +1,13 @@
 ### 📒 Web アプリケーションからスマートコントラクトを呼び出す
 
-このレッスンでは,MetaMask の認証機能を使用して,Web アプリケーションから実際にあなたのコントラクトを呼び出す機能を実装します。
+このレッスンでは,MetaMaskの認証機能を使用して,Webアプリケーションから実際にあなたのコントラクトを呼び出す機能を実装します。
 
 `messenger-client`ディレクトリへ移動してください。
 
 ### 📁 `hooks`ディレクトリ
 
-`hooks`ディレクトリ内の`useMessengerContract.ts`内を以下のコードに変更してください。  
-💁 現時点ではまだ用意していないファイルから import している箇所があるためエラーメッセージが出ても無視して大丈夫です。
+`hooks`ディレクトリ内の`useMessengerContract.ts`内を以下のコードに変更してください。
+💁 現時点ではまだ用意していないファイルからimportしている箇所があるためエラーメッセージが出ても無視して大丈夫です。
 
 ```ts
 import { useState, useEffect } from "react";
@@ -185,8 +185,8 @@ export const useMessengerContract = ({
 
 変更内容を見ていきましょう！
 
-ファイル上部は必要な関数などの import と, 型定義をしています。  
-💁 現時点ではまだ用意していないファイルから import している箇所があるためエラーメッセージが出ても無視して大丈夫です。
+ファイル上部は必要な関数などのimportと, 型定義をしています。
+💁 現時点ではまだ用意していないファイルからimportしている箇所があるためエラーメッセージが出ても無視して大丈夫です。
 
 ```ts
 export const useMessengerContract = ({
@@ -218,7 +218,7 @@ export const useMessengerContract = ({
 };
 ```
 
-`getMessengerContract`は Messenger コントラクトのオブジェクトを取得する関数です。  
+`getMessengerContract`はMessengerコントラクトのオブジェクトを取得する関数です。
 内部で使用している関数について触れます。
 
 **I\. `provider`**
@@ -227,11 +227,11 @@ export const useMessengerContract = ({
 > const provider = new ethers.providers.Web3Provider(ethereum);
 > ```
 >
-> ここでは, `provider` (= MetaMask) を設定しています。  
-> `provider` を介して,ユーザーはブロックチェーン上に存在するノードに接続することができます。  
+> ここでは, `provider` (= MetaMask) を設定しています。
+> `provider`を介して,ユーザーはブロックチェーン上に存在するノードに接続することができます。
 > MetaMask が提供するノードを使用して,デプロイされたコントラクトからデータを送受信するために上記の実装を行いました。
 >
-> `ethers` のライブラリにより `provider` のインスタンスを新規作成しています。
+> `ethers`のライブラリにより`provider`のインスタンスを新規作成しています。
 
 **II\. `signer`**
 
@@ -239,11 +239,11 @@ export const useMessengerContract = ({
 > const signer = provider.getSigner();
 > ```
 >
-> `signer` は,ユーザーのウォレットアドレスを抽象化したものです。
+> `signer`は,ユーザーのウォレットアドレスを抽象化したものです。
 >
-> `provider` を作成し,`provider.getSigner()` を呼び出すだけで,ユーザーはウォレットアドレスを使用してトランザクションに署名し,そのデータを`C-Chain`ネットワークに送信することができます。
+> `provider`を作成し,`provider.getSigner()`を呼び出すだけで,ユーザーはウォレットアドレスを使用してトランザクションに署名し,そのデータを`C-Chain`ネットワークに送信することができます。
 >
-> `provider.getSigner()` は新しい `signer` インスタンスを返すので,それを使って署名付きトランザクションを送信することができます。
+> `provider.getSigner()`は新しい`signer`インスタンスを返すので,それを使って署名付きトランザクションを送信することができます。
 
 **III\. コントラクトインスタンス**
 
@@ -257,21 +257,21 @@ export const useMessengerContract = ({
 >
 > ここで,**コントラクトへの接続を行っています。**
 >
-> コントラクトの新しいインスタンスを作成するには,以下 3 つの変数を `ethers.Contract` 関数に渡す必要があります。
+> コントラクトの新しいインスタンスを作成するには,以下 3 つの変数を`ethers.Contract`関数に渡す必要があります。
 >
 > 1. コントラクトのデプロイ先のアドレス
 > 2. コントラクトの ABI
-> 3. `provider`,もしくは `signer`
+> 3. `provider`,もしくは`signer`
 >
 > コントラクトインスタンスでは,コントラクトに格納されているすべての関数を呼び出すことができます。
 >
-> もしこのコントラクトインスタンスに `provider` を渡すと,そのインスタンスは**読み取り専用の機能しか実行できなくなります**。
+> もしこのコントラクトインスタンスに`provider`を渡すと,そのインスタンスは**読み取り専用の機能しか実行できなくなります**。
 >
-> 一方,`signer` を渡すと,そのインスタンスは**読み取りと書き込みの両方の機能を実行できるようになります**。
+> 一方,`signer`を渡すと,そのインスタンスは**読み取りと書き込みの両方の機能を実行できるようになります**。
 >
 > ※ ABI については後ほど触れます。
 
-コントラクトインスタンスを取得できたら状態変数にセットします。  
+コントラクトインスタンスを取得できたら状態変数にセットします。
 `setMessengerContract(MessengerContract);`
 
 ```ts
@@ -297,10 +297,10 @@ async function getOwnMessages() {
 }
 ```
 
-`messengerContract.getOwnMessages();`のようにコントラクトの `getOwnMessages` 関数を呼び出しています。
+`messengerContract.getOwnMessages();`のようにコントラクトの`getOwnMessages`関数を呼び出しています。
 
-取得したメッセージ情報を`map`メソッドを利用することでフロントエンドで保持するデータ型に変換し,  
-`messagesCleaned`に格納します。  
+取得したメッセージ情報を`map`メソッドを用いフロントエンドで保持するデータ型に変換し,
+`messagesCleaned`に格納します。
 `messagesCleaned`を状態変数にセットします。
 
 ```ts
@@ -329,9 +329,9 @@ async function sendMessage({ text, receiver, tokenInEther }: PropsSendMessage) {
 }
 ```
 
-`sendMessage`では引数を３つ受け取っていますが, これらは UI からユーザが入力した値が渡されます。
+`sendMessage`では引数を３つ受け取っていますが, これらはUIからユーザが入力した値が渡されます。
 
-UI ではトークンの単位は`ether`ですから, コントラクトに送信する前に`wei`へと変換しています。  
+UIではトークンの単位は`ether`ですから, コントラクトに送信する前に`wei`へと変換しています。
 該当箇所: `const tokenInWei = ethers.utils.parseEther(tokenInEther);`
 
 テストの方で見覚えがあるかと思いますが, コントラクトの関数呼び出しには追加の引数`Overrides`を渡すことができます。
@@ -345,9 +345,9 @@ const txn = await messengerContract.post(text, receiver, {
 
 `value`は関数呼び出しと共に送信するトークンの量です。
 
-`gasLimit`はトランザクションに使用できるガス代に制限を設けています。  
-これは,送金先のプログラムの問題などで,ずっと処理が実行され続けて,送金手数料の支払いが無限に発生する（「ガス量」が無限に大きくなる）ことを防ぐためのものです。  
-最大送金手数料は ガス価格 × ガスリミット で計算されます。
+`gasLimit`はトランザクションに使用できるガス代に制限を設けています。
+これは,送金先のプログラムの問題などで,ずっと処理が実行され続けて,送金手数料の支払いが無限に発生する(「ガス量」が無限に大きくなる)ことを防ぐためのものです。
+最大送金手数料はガス価格 × ガスリミットで計算されます。
 
 最後にイベントリスナの設定について見ていきましょう。
 
@@ -399,7 +399,7 @@ useEffect(() => {
 
 引数で渡された各要素を元にフロントエンドで扱うデータ構造を作成し, `ownMessages`に追加しています。
 
-`Contract.on("イベント名", イベントリスナ)`とすることでイベントリスナを登録することができます。  
+`Contract.on("イベント名", イベントリスナ)`とすることでイベントリスナを登録することができます。
 (🔗 参考リンク -> [ethers contract](https://docs.ethers.io/v5/api/contract/contract/#Contract--events))
 
 登録が繰り返されることを防ぐため, クリーンアップ関数として解除を行っています。
@@ -419,7 +419,7 @@ Contract deployed at: 0xf531A6BCF3cD579f5A367cf45ff996dB1FC3beA1
 Contract's fund is: BigNumber { value: "100" }
 ```
 
-その時, `Contract deployed at:`の後に表示されたアドレスを  
+その時, `Contract deployed at:`の後に表示されたアドレスを
 `messenger-client`ディレクトリ内, `hooks/useMessengerContract.ts`の中の以下の部分に貼り付けてください。
 
 ```ts
@@ -432,9 +432,9 @@ const contractAddress = "あなたのコントラクトのデプロイ先アド�
 const contractAddress = "0xf531A6BCF3cD579f5A367cf45ff996dB1FC3beA1";
 ```
 
-📽️ ABI ファイルを取得する
+📽️ ABIファイルを取得する
 
-> 📓 ABI (Application Binary Interface) はコントラクトの取り扱い説明書のようなものです。  
+> 📓 ABI (Application Binary Interface) はコントラクトの取り扱い説明書のようなものです。
 > Web アプリケーションがコントラクトと通信するために必要な情報が,ABI ファイルに含まれています。
 >
 > コントラクト一つ一つにユニークな ABI ファイルが紐づいており,その中には下記の情報が含まれています。
@@ -443,10 +443,10 @@ const contractAddress = "0xf531A6BCF3cD579f5A367cf45ff996dB1FC3beA1";
 > 2. それぞれの関数にアクセスするため必要なパラメータとその型
 > 3. 関数の実行結果に対して返るデータ型の種類
 
-ABI ファイルは,コントラクトがコンパイルされた時に生成され,`artifacts` ディレクトリに自動的に格納されます。
+ABIファイルは,コントラクトがコンパイルされた時に生成され,`artifacts`ディレクトリに自動的に格納されます。
 
-`messenger-contract`からパスを追っていくと, `messenger-contract/artifacts/contracts/Messenger.sol/Messenger.json`というファイルが生成されているはずです。  
-これを`messenger-client`の中の`utils`ディレクトリ内にコピーしてください。  
+`messenger-contract`からパスを追っていくと, `messenger-contract/artifacts/contracts/Messenger.sol/Messenger.json`というファイルが生成されているはずです。
+これを`messenger-client`の中の`utils`ディレクトリ内にコピーしてください。
 `Avalanche-dApp`直下からターミナルでコピーを行う場合, このようなコマンドになります。
 
 ```
@@ -455,25 +455,25 @@ $ cp messenger-contract/artifacts/contracts/Messenger.sol/Messenger.json messeng
 
 📽️ 型定義ファイルを取得する
 
-TypeScript は静的型付け言語なので, 外部から取ってきたオブジェクトの情報として型を知りたい場合があります。  
+TypeScriptは静的型付け言語なので, 外部から取ってきたオブジェクトの情報として型を知りたい場合があります。
 その時に役に立つのが型定義ファイルです。
 
-コントラクトの型定義ファイルは, コントラクトがコンパイルされた時に生成され, `typechain-types`ディレクトリに自動的に格納されます。  
-これは`npx hardhat`実行時に typescript を選択したため, 初期設定が済んでいるためです。
+コントラクトの型定義ファイルは, コントラクトがコンパイルされた時に生成され, `typechain-types`ディレクトリに自動的に格納されます。
+これは`npx hardhat`実行時にtypescriptを選択したため, 初期設定が済んでいるためです。
 
-`messenger-contract`内の`typechain-types`ディレクトリをそのまま`messenger-client`にコピーしてください。  
+`messenger-contract`内の`typechain-types`ディレクトリをそのまま`messenger-client`にコピーしてください。
 `Avalanche-dApp`直下からターミナルでコピーを行う場合, このようなコマンドになります。
 
 ```
 $ cp -r messenger-contract/typechain-types messenger-client/
 ```
 
-以上でコントラクトの情報を反映することができました。  
-`useMessengerContract.ts`内のファイル上部, import 文もファイルを用意したのでエラーが消えているはずです。
+以上でコントラクトの情報を反映することができました。
+`useMessengerContract.ts`内のファイル上部, import文もファイルを用意したのでエラーが消えているはずです。
 
 ### 🌞 web アプリを立ち上げて挙動を確認する
 
-ここまでで作成した`useMessengerContract`を使うように二つのページを編集しましょう。  
+ここまでで作成した`useMessengerContract`を使うように2つのページを編集しましょう。
 `messenger-client`ディレクトリ内を編集します。
 
 📁 `message`ディレクトリ
@@ -560,10 +560,10 @@ export default function SendMessagePage() {
 }
 ```
 
-前回まで`SendMessageForm`に渡していた関数の処理は空でしたが,  
+前回まで`SendMessageForm`に渡していた関数の処理は空でしたが,
 `useMessengerContract`から`sendMessage`関数を取得することで, コントラクトの関数(`post`)を呼び出す処理を入れることができました。
 
-それでは`messenger-client`ディレクトリ直下で以下のコマンドを走らせ, web アプリを立ち上げてください。
+それでは`messenger-client`ディレクトリ直下で以下のコマンドを走らせ, webアプリを立ち上げてください。
 
 ```
 $ npm run dev
@@ -573,8 +573,8 @@ $ npm run dev
 
 ![](/public/images/AVAX-messenger/section-2/2_5_3.png)
 
-`send ->`リンクをクリックして画面を移動しましょう。  
-メッセージの宛先アドレスを自分の公開アドレスにして, 自分自身にメッセージを送信してみましょう！  
+`send ->`リンクをクリックして画面を移動しましょう。
+メッセージの宛先アドレスを自分の公開アドレスにして, 自分自身にメッセージを送信してみましょう！
 `send`ボタンをクリックすると承認画面が開くので承認します。
 
 ![](/public/images/AVAX-messenger/section-2/2_5_1.png)
@@ -585,31 +585,31 @@ $ npm run dev
 
 ![](/public/images/AVAX-messenger/section-2/2_5_2.png)
 
-### 🌵 `ETH` と `AVAX`
+### 🌵 `ETH`と`AVAX`
 
-今まで実装としては `ETH` または `wei` を使用してきましたが, 実際に支払ったのは `AVAX` です。  
+今まで実装としては`ETH`または`wei`を使用してきましたが, 実際に支払ったのは`AVAX`です。
 この単位の変換はこのように行われています。
 
 ```
 1 Wei = 10^-18 AVAX
 ```
 
-つまり `1 ETH (= 1,000,000,000,000,000,000 wei)` という量でトークンを関数呼び出しに付与した場合  
-`C-Chain` 上では `1,000,000,000,000,000,000 * 10^-18 = 1` という量に変換され, `1 AVAX` を使用することになっています。
+つまり`1 ETH (= 1,000,000,000,000,000,000 wei)`という量でトークンを関数呼び出しに付与した場合
+`C-Chain`上では`1,000,000,000,000,000,000 * 10^-18 = 1`という量に変換され, `1 AVAX`を使用することになっています。
 
-単純に, `1 ETH` を使用するよう実装しているなら, `C-Chain` 上で動かすと `1 AVAX` を使うことになると考えたほうがわかりやすいかもしれません。  
-⚠️ 現実世界の価値が `1 ETH` = `1 AVAX` というわけではありません。
+単純に, `1 ETH`を使用するよう実装しているなら, `C-Chain`上で動かすと`1 AVAX`を使うことになると考えたほうがわかりやすいかもしれません。
+⚠️ 現実世界の価値が`1 ETH` = `1 AVAX`というわけではありません。
 
 詳しくは[こちら](https://docs.avax.network/specs/coreth-arc20s#nativeassetcall)をご覧ください。
 
 ### 🤖 残りのメッセージ確認機能を追加しよう
 
-メッセージの送信機能をフロントエンドへ実装したので,  
+メッセージの送信機能をフロントエンドへ実装したので,
 同じ要領でメッセージの確認機能も追加しましょう。
 
 📁 `hooks`ディレクトリ
 
-`useMessengerContract.ts`にコードを追加していきます。  
+`useMessengerContract.ts`にコードを追加していきます。
 該当箇所を編集してください。
 
 ```ts
@@ -728,7 +728,7 @@ return {
 };
 ```
 
-`accept`と`deny`を呼び出す機能を追加したので, UI で操作できるようにします。
+`accept`と`deny`を呼び出す機能を追加したので, UIで操作できるようにします。
 
 📁 `pages/message`ディレクトリ
 
@@ -775,12 +775,12 @@ export default function ConfirmMessagePage() {
 }
 ```
 
-違いは `useMessengerContract` から `acceptMessage` と `denyMessage` を取得,  
+違いは`useMessengerContract`から`acceptMessage`と`denyMessage`を取得,
 `MessageCard`に渡す関数内の処理に利用しています。
 
 🖥️ 画面で確認しましょう
 
-それでは`messenger-client`ディレクトリ直下で以下のコマンドを走らせ, web アプリを立ち上げてください。
+それでは`messenger-client`ディレクトリ直下で以下のコマンドを走らせ, webアプリを立ち上げてください。
 
 ```
 $ npm run dev
@@ -794,9 +794,9 @@ $ npm run dev
 
 ![](/public/images/AVAX-messenger/section-2/2_5_6.png)
 
-ブラウザ上で `右クリック` -> `検証` -> `コンソール` を開きます。
+ブラウザ上で`右クリック` -> `検証` -> `コンソール`を開きます。
 
-`console` タブ を開きログを確認し, `Done`ではじまる行の値をコピーします。
+`console`タブを開きログを確認し, `Done`ではじまる行の値をコピーします。
 
 ```
 Done --
@@ -809,7 +809,7 @@ Done --
 
 先ほどコピーしたアドレスを [AVASCAN testnet](https://testnet.avascan.info/blockchain/c/home) に貼り付けて, あなたのスマートコントラクトのトランザクション履歴を見てみましょう。
 
-検索結果が表示され, `STATUS: SUCCESS` が表示されればトランザクションの成功を確認できます。
+検索結果が表示され, `STATUS: SUCCESS`が表示されればトランザクションの成功を確認できます。
 
 ![](/public/images/AVAX-messenger/section-2/2_5_8.png)
 
@@ -817,15 +817,15 @@ Done --
 
 > [こちら](https://github.com/unchain-dev/avalanche_messenger_dapp)に本プロジェクトの完成形のレポジトリがあります。
 >
-> コードがうまく動かない場合は参考にしてみてください。  
-> `messenger-contract` はリンク先のレポジトリ内の `package/contract` を。  
-> `messenger-client` はリンク先のレポジトリ内の `package/client` を参照してください。
+> コードがうまく動かない場合は参考にしてみてください。
+> `messenger-contract`はリンク先のレポジトリ内の`package/contract`を。
+> `messenger-client`はリンク先のレポジトリ内の`package/client`を参照してください。
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は,Discord の `#avax-messenger` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は,Discordの`#avax-messenger`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので,エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので,エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -836,7 +836,7 @@ Done --
 
 ---
 
-おめでとうございます!  
-セクション 2 が終了しました!  
-`#avax-messenger` にあなたの AVASCAN のリンクを貼り付けて,コミュニティで進捗を祝いましょう 🎉  
-AVASCAN でトランザクションの確認をしたら,次のレッスンに進んでください 😊
+おめでとうございます!
+セクション2が終了しました!
+`#avax-messenger`にあなたのAVASCANのリンクを貼り付けて,コミュニティで進捗を祝いましょう 🎉
+AVASCANでトランザクションの確認をしたら,次のレッスンに進んでください 😊

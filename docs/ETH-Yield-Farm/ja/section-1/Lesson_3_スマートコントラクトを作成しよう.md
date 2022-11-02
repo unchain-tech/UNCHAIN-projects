@@ -5,17 +5,17 @@
 
 1 \. `package.json`
 
-`yield-farm-starter-project` フォルダの中に、`package.json` というファイルが存在します。
+`yield-farm-starter-project`フォルダの中に、`package.json`というファイルが存在します。
 
-`package.json` は、プロジェクトで使用するすべての依存関係（dependencies）を保持するファイルです。
+`package.json`は、プロジェクトで使用するすべての依存関係(dependencies)を保持するファイルです。
 
-`package.json` ファイルには、アプリケーションとブロックチェーンを接続するための `web3.js` と `truffle` 、クライアント側のアプリケーションを構築するための `react` など、このプロジェクトの構築に必要な様々なパッケージの依存関係のリストが含まれています。
+`package.json`ファイルには、アプリケーションとブロックチェーンを接続するための`web3.js`と`truffle` 、クライアント側のアプリケーションを構築するための`react`など、このプロジェクトの構築に必要な様々なパッケージの依存関係のリストが含まれています。
 
 2 \. `truffle-config.js`
 
-`yield-farm-starter-project` フォルダの中にある Truffle 設定ファイル（`truffle-config.js`）は、実際に Truffle プロジェクトをブロックチェーンに接続するファイルです。
+`yield-farm-starter-project`フォルダの中にあるTruffle設定ファイル(`truffle-config.js`)は、実際にTruffleプロジェクトをブロックチェーンに接続するファイルです。
 
-`truffle-config.js` の 4-11 行目に注目してください。
+`truffle-config.js`の4-11行目に注目してください。
 
 ```javascript
 // truffle-config.js
@@ -30,31 +30,31 @@ module.exports = {
   :
 ```
 
-ここでは、「本プロジェクトを Ganache に接続する」と定義しています。
+ここでは、「本プロジェクトをGanacheに接続する」と定義しています。
 
-下の図からわかるように、Ganache は localhost 上で、`host: "127.0.0.1"` と `port: 7545`で実行されていることがわかります。
+下の図からわかるように、Ganacheはlocalhost上で、`host: "127.0.0.1"`と`port: 7545`で実行されていることがわかります。
 
 ![](/public/images/ETH-Yield-Farm/section-1/1_2_1.png)
 
-`truffle-config.js` にはそれらの情報が記載されています。
+`truffle-config.js`にはそれらの情報が記載されています。
 
-### ⛏ `TokenFarm.sol` を作成する
+### ⛏ `TokenFarm.sol`を作成する
 
-いよいよここからは実際にスマートコントラクトを作成していきます。`src/contracts` に `TokenFarm.sol` というファイルを新規作成します。
+いよいよここからは実際にスマートコントラクトを作成していきます。`src/contracts`に`TokenFarm.sol`というファイルを新規作成します。
 
-ターミナルを開いて `yield-farm-starter-project` にいることを確認してから下記のコードを実行しましょう。
+ターミナルを開いて`yield-farm-starter-project`にいることを確認してから下記のコードを実行しましょう。
 
 ```bash
 touch src/contracts/TokenFarm.sol
 ```
 
-これから、本プロジェクトのコアとなるイールドファーミング機能を `TokenFarm.sol` に実装していきます。
+これから、本プロジェクトのコアとなるイールドファーミング機能を`TokenFarm.sol`に実装していきます。
 
-`TokenFarm.sol` によって、ユーザーは利子を得て、Dappトークンという新しいトークンを獲得することができるようになります。
+`TokenFarm.sol`によって、ユーザーは利子を得て、Dappトークンという新しいトークンを獲得することができるようになります。
 
-まず、`TokenFarm.sol` にステーキングに使う関数を定義していきます。
+まず、`TokenFarm.sol`にステーキングに使う関数を定義していきます。
 
-`TokenFarm.sol` を以下のように更新していきます。
+`TokenFarm.sol`を以下のように更新していきます。
 
 ```solidity
 // TokenFarm.sol
@@ -65,19 +65,19 @@ contract TokenFarm{
 }
 ```
 
-ここでは `TokenFarm` コントラクトで `string` 型の `name` という変数に値を代入しています。　
+ここでは`TokenFarm`コントラクトで`string`型の`name`という変数に値を代入しています。　
 
-イーサリアム仮想マシン（EVM）である Ganache が機能しているかを確認するために非常に簡単なスマートコントラクトを作成しました。
+イーサリアム仮想マシン(EVM)であるGanacheが機能しているかを確認するために非常に簡単なスマートコントラクトを作成しました。
 
-次にスマートコントラクトをブロックチェーン上にデプロイするための `js` ファイルを作成しましょう。
+次にスマートコントラクトをブロックチェーン上にデプロイするための`js`ファイルを作成しましょう。
 
-ターミナルを開いて、`yield-farm-starter-project` にいることを確認し、以下のコードを実行して、`migrations` フォルダに `2_deploy_contracts.js` ファイルを作成します。
+ターミナルを開いて、`yield-farm-starter-project`にいることを確認し、以下のコードを実行して、`migrations`フォルダに`2_deploy_contracts.js`ファイルを作成します。
 
 ```bash
 touch migrations/2_deploy_contracts.js
 ```
 
-`2_deploy_contracts.js` を以下のように更新してください。
+`2_deploy_contracts.js`を以下のように更新してください。
 
 ```javascript
 // 2_deploy_contracts.js
@@ -88,15 +88,15 @@ module.exports = function(deployer) {
 };
 ```
 
-このマイグレーションファイル（ `2_deploy_contracts.js` ）が実行されると、取引を生み出す新しいスマートコントラクトがブロックチェーン上に配置されます。
+このマイグレーションファイル( `2_deploy_contracts.js`)が実行されると、取引を生み出す新しいスマートコントラクトがブロックチェーン上に配置されます。
 
-それでは、ターミナルを開き `yield-farm-starter-project` にいることを確認したら、次のコードを実行してください。
+それでは、ターミナルを開き`yield-farm-starter-project`にいることを確認したら、次のコードを実行してください。
 
 ```bash
 truffle compile
 ```
 
-`truffle compile` によりスマートコントラクトがコンパイルされます。
+`truffle compile`によりスマートコントラクトがコンパイルされます。
 
 下のようになっていれば成功です。
 
@@ -111,15 +111,15 @@ Compiling your contracts...
    - solc: 0.5.16+commit.9c3226ce.Emscripten.clang
 ```
 
-また、`src` ディレクトリの中の `abis` ディレクトリの中にそれぞれの `.sol` ファイルに対してabiファイルが作られていることを確認しましょう。
+また、`src`ディレクトリの中の`abis`ディレクトリの中にそれぞれの`.sol`ファイルに対してabiファイルが作られていることを確認しましょう。
 
 ### 📂 ABI ファイルとは？
 
 ABI (Application Binary Interface) はコントラクトの取り扱い説明書のようなものです。
 
-Web アプリケーションがコントラクトと通信するために必要な情報が、ABI ファイルに含まれています。
+Webアプリケーションがコントラクトと通信するために必要な情報が、ABIファイルに含まれています。
 
-コントラクト 1 つ 1 つにユニークな ABI ファイルが紐づいており、その中には下記の情報が含まれています。
+コントラクト1つ1つにユニークなABIファイルが紐づいており、その中には下記の情報が含まれています。
 
 1. そのコントラクトに使用されている関数の名前
 
@@ -129,15 +129,15 @@ Web アプリケーションがコントラクトと通信するために必要�
 
 ### 🍫 Ganache が機能しているかを確認する
 
-それでは次に Ganache が機能しているか確認するためにローカルネットワークにスマートコントラクトをデプロイしていきましょう!
+それでは次にGanacheが機能しているか確認するためにローカルネットワークにスマートコントラクトをデプロイしていきましょう!
 
-ターミナルを開いて `yield-farm-starter-project` にいることを確認してから下記のコードを実行してみてください。
+ターミナルを開いて`yield-farm-starter-project`にいることを確認してから下記のコードを実行してみてください。
 
 ```bash
 truffle migrate
 ```
 
-スマートコントラクトをブロックチェーン上に新しく配置し、マイグレーションを実行するには、`truffle migrate` コマンドを使用します。
+スマートコントラクトをブロックチェーン上に新しく配置し、マイグレーションを実行するには、`truffle migrate`コマンドを使用します。
 
 ターミナルに、以下のような出力結果が返ってきていればデプロイは成功です。
 
@@ -156,7 +156,7 @@ Summary
 
 > 👀: **Ganache 内で ETH 残高が減ったことにお気づきでしょうか？**
 >
-> ブロックチェーン上にスマートコントラクトを展開することは、トランザクションを作成すること（ブロックチェーンにデータを書き込むこと）でもあります。そのため、`migration` を行う際にはガス代が必要です。
+> ブロックチェーン上にスマートコントラクトを展開することは、トランザクションを作成すること（ブロックチェーンにデータを書き込むこと）でもあります。そのため、`migration`を行う際にはガス代が必要です。
 >
 > Ganache の一番上に表示されているアカウントは、truffle のデフォルトアカウントです。
 >
@@ -164,17 +164,17 @@ Summary
 >
 >したがって、このアカウントの残高は減少しています。
 
-次に Ganache 上でスマートコントラクトが正常にデプロイされているかを確認します。
+次にGanache上でスマートコントラクトが正常にデプロイされているかを確認します。
 
-### 💻 `truffle console` を使用する
+### 💻 `truffle console`を使用する
 
-ターミナルを開いて `yield-farm-starter-project` ディレクトリにいることを確認してから下記のコードを実行してみてください。
+ターミナルを開いて`yield-farm-starter-project`ディレクトリにいることを確認してから下記のコードを実行してみてください。
 
 ```bash
 truffle console
 ```
 
-`truffle(development)>` がターミナルに表示されているはずです。この状態で、直接スマートコントラクトとターミナル上でやりとりすることができます。
+`truffle(development)>`がターミナルに表示されているはずです。この状態で、直接スマートコントラクトとターミナル上でやりとりすることができます。
 
 そこで以下のコードを実行してください。
 
@@ -182,17 +182,17 @@ truffle console
 truffle(development)> tokenFarm = await TokenFarm.deployed()
 ```
 
-ここでは、`TokenFarm.deployed()` により、ネットワークから `TokenFarm` のコントラクトを取得し、`tokenFarm` という変数に格納しています。
+ここでは、`TokenFarm.deployed()`により、ネットワークから`TokenFarm`のコントラクトを取得し、`tokenFarm`という変数に格納しています。
 
 
-- `2_deploy_contracts.js` で、`TokenFarm` を定義しています。
-- `TokenFarm.deployed()` は関数で、ブロックチェーンとのやりとりは非同期なので、 `await` キーワードを使っています。
-- `deployed()` は実際に解決するために関数呼び出しの終了を約束したものを返し、それを変数に代入しています。
+- `2_deploy_contracts.js`で、`TokenFarm`を定義しています。
+- `TokenFarm.deployed()`は関数で、ブロックチェーンとのやりとりは非同期なので、 `await`キーワードを使っています。
+- `deployed()`は実際に解決するために関数呼び出しの終了を約束したものを返し、それを変数に代入しています。
 
 
-`tokenFarm = await TokenFarm.deployed()` を実行すると、`undefined` とターミナルに出力されるはずです。
+`tokenFarm = await TokenFarm.deployed()`を実行すると、`undefined`とターミナルに出力されるはずです。
 
-次に、スマートコントラクトの中身を確認するためには、ターミナルで以下を実行して、変数値 `tokenFarm` を呼び出しましょう。
+次に、スマートコントラクトの中身を確認するためには、ターミナルで以下を実行して、変数値`tokenFarm`を呼び出しましょう。
 
 ```bash
 truffle(development)> tokenFarm
@@ -215,19 +215,19 @@ name: [Function (anonymous)] {
 :
 ```
 
-この出力結果は、`tokenFarm` という変数に格納されているスマートコントラクトの中身を意味しています。
+この出力結果は、`tokenFarm`という変数に格納されているスマートコントラクトの中身を意味しています。
 
-- truffle コンソール（ `truffle(development)>` ）は、ブロックチェーンを使用するためのJavaScript 実行環境です。
+- truffleコンソール( `truffle(development)>`)は、ブロックチェーンを使用するためのJavaScript実行環境です。
 
-- truffle コンソールから Ganache 開発ブロックチェーン上に作成されたすべてのトランザクションにアクセスすることができます。
+- truffleコンソールからGanache開発ブロックチェーン上に作成されたすべてのトランザクションにアクセスすることができます。
 
-ターミナルで `tokenFarm.address` と入力すると、コントラクトのアドレスが表示されるので、確認してみましょう。
+ターミナルで`tokenFarm.address`と入力すると、コントラクトのアドレスが表示されるので、確認してみましょう。
 
 ```bash
 truffle(development)> tokenFarm.address
 ```
 
-出力結果（`0x..`）が、ネットワーク上に存在する `tokenFarm` コントラクトのアドレスです。
+出力結果(`0x..`)が、ネットワーク上に存在する`tokenFarm`コントラクトのアドレスです。
 
 また、コントラクトの名前も確認することができます。以下を実行してみましょう。
 
@@ -239,17 +239,17 @@ truffle(development)> name = await tokenFarm.name()
 truffle(development)> name
 ```
 
-`Dapp Token Farm` というコントラクトの名前が返ってくることを確認しましょう。
+`Dapp Token Farm`というコントラクトの名前が返ってくることを確認しましょう。
 
-以上で `truffle console` を使ったコントラクトとのやり取りは終了です。
+以上で`truffle console`を使ったコントラクトとのやり取りは終了です。
 
 これで、あなたのスマートコントラクトがブロックチェーン上に存在することが確認できました!
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#eth-yield-farm` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#eth-yield-farm`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -261,6 +261,6 @@ truffle(development)> name
 ---
 あなたは、簡単なスマートコントラクトを作成し、ブロックチェーン上にアップしたことを確認しました🎉
 
-あなたのコントラクトのアドレスをDiscordの `#eth-yield-farm` でシェアしてください!
+あなたのコントラクトのアドレスをDiscordの`#eth-yield-farm`でシェアしてください!
 
 次のセクションではいよいよ本格的なスマートコントラクトを作成していくので楽しんでいきましょう!

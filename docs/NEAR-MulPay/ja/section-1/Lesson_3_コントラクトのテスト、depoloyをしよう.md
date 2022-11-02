@@ -4,7 +4,7 @@
 
 `test`フォルダにある`swap.test.ts`ファイルの中身を下のように書き換えていきましょう。
 
-`SwapContract.address`の部分に赤線が出ている人もいるかもしれませんが、これは linter が過剰に反応しているだけでテストはきちんと行うことができるので気にする必要はありません。
+`SwapContract.address`の部分に赤線が出ている人もいるかもしれませんが、これはlinterが過剰に反応しているだけでテストはきちんと行うことができるので気にする必要はありません。
 
 [`swap.test.ts`]
 
@@ -152,7 +152,7 @@ async function deployTokenFixture() {
   }
 ```
 
-最初の部分では ERC20 規格のトークンがきちんと deploy されているかをテストしています。
+最初の部分ではERC20規格のトークンがきちんとdeployされているかをテストしています。
 
 ```
 it("ERC20 token is minted from smart contract", async function () {
@@ -162,11 +162,11 @@ it("ERC20 token is minted from smart contract", async function () {
     });
 ```
 
-ここでは ERC20 規格に搭載されている、残高を確認するためのメソッドである`blanceOf`関数が機能しているか、SwapContract に全てのトークンが入っているのかを確認しています。
+ここではERC20規格に搭載されている、残高を確認するためのメソッドである`blanceOf`関数が機能しているか、SwapContractに全てのトークンが入っているのかを確認しています。
 
-次に`DAI/ETH`の価値を算出しています。SwapContract が保有しているそれぞれのトークン量によって変動します。
+次に`DAI/ETH`の価値を算出しています。SwapContractが保有しているそれぞれのトークン量によって変動します。
 
-`ERC20Tokens.sol`では ETH の発行量は DAI のそれより 1/10 の量なので 0.1 になるはずです。
+`ERC20Tokens.sol`ではETHの発行量はDAIのそれより1/10の量なので0.1になるはずです。
 
 ```
 it("Get value ETH/DAI", async function () {
@@ -185,7 +185,7 @@ it("Get value ETH/DAI", async function () {
     });
 ```
 
-次に symbol と token のアドレスのペアをセットして、それが正しく格納されているかをチェックしています。
+次にsymbolとtokenのアドレスのペアをセットして、それが正しく格納されているかをチェックしています。
 
 ```
 // check list up function token symbol => token address
@@ -236,9 +236,9 @@ it("Get value ETH/DAI", async function () {
     });
 ```
 
-最後に swap 機能がきちんと動くかをチェックしています。送金者と仮定するアドレス(owner)に`200DAI`を SwapContract から送金します。
+最後にswap機能がきちんと動くかをチェックしています。送金者と仮定するアドレス(owner)に`200DAI`をSwapContractから送金します。
 
-その後受領者の残高を swap 前後で確認しています。
+その後受領者の残高をswap前後で確認しています。
 
 ```
 // check swap function works
@@ -275,7 +275,7 @@ it("Get value ETH/DAI", async function () {
     });
 ```
 
-これで test のためのコードは書けたので、下のコマンドをターミナルで実行することでチェックしてみましょう。
+これでtestのためのコードは書けたので、下のコマンドを実行しチェックしてみましょう。
 
 ```
 npx hardhat test
@@ -298,17 +298,17 @@ After transfer, address_1 has 0.1 ETH
   3 passing (1s)
 ```
 
-1. SwapContract にきちんと ERC20 トークンが発行されている
-2. ETH/DAI の相対的な価値が 0.1 となっている
-3. address_1 の残高が 0ETH→0.1ETH に変わっている
+1. SwapContractにきちんとERC20トークンが発行されている
+2. ETH/DAIの相対的な価値が0.1となっている
+3. address_1の残高が0ETH→0.1ETHに変わっている
 
-これらのことが確認できたので test 成功です！
+これらのことが確認できたのでtest成功です！
 
 では次に、作成したコントラクトをデプロイしましょう！
 
 ### ⬆️ 作成したコントラクトを deploy しよう
 
-コントラクトがきちんと動いていることが確認できたので実際に Aurora のテストネットに deploy しましょう。
+コントラクトがきちんと動いていることが確認できたので実際にAuroraのテストネットにdeployしましょう。
 
 では`scripts`フォルダにある`deploy.ts`ファイルに下のように記述していきましょう！
 
@@ -382,19 +382,19 @@ main().catch((error) => {
 });
 ```
 
-記述が完了したら早速 deploy を行なっていきたいところですが、その前に[こちら](https://aurora.dev/faucet)から`Aurora Testnet`用のトークンを取得しましょう！
+記述が完了したら早速deployを行なっていきたいところですが、その前に[こちら](https://aurora.dev/faucet)から`Aurora Testnet`用のトークンを取得しましょう！
 
-これがないと Aurora Testnet に deploy する時のガス代を支払うことができなくなります 😭
+これがないとAurora Testnetにdeployする時のガス代を支払うことができなくなります 😭
 
-faucet でトークンをてにいれたら、下のコマンドを実行することで deploy を行いましょう！
+faucetでトークンをてにいれたら、下のコマンドを実行することでdeployを行いましょう！
 
 ```
 npx hardhat run scripts/deploy.ts --network testnet_aurora
 ```
 
-deploy が正常に完了していたら下のようなメッセージが返ってくるはずです。
+deployが正常に完了していたら下のようなメッセージが返ってくるはずです。
 
-こちらのアドレスは後で使用するのでコピペしてメモ帳か何かへ貼り付けておいてください！！
+こちらのアドレスは後で使用するのでコピー&ペーストしてメモ帳か何かへ貼り付けておいてください！ ！
 
 ```
 Deploying contracts with the account: 0xa9eD1748Ffcda5442dCaEA242603E7e3FF09dD7F
@@ -416,13 +416,13 @@ UniToken is deployed to: 0xC73F7cBD464aC7163D03dE669dedc3d1fA6Af5E4
 MaticToken is deployed to: 0x4A8c0C9f9f2444197cE78b672F0D98D1Fe47bdA6
 ```
 
-これでコントラクトの deploy は成功したので、コントラクトの実装は完了です！
+これでコントラクトのdeployは成功したので、コントラクトの実装は完了です！
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#section-1` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#section-1`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -433,8 +433,8 @@ MaticToken is deployed to: 0x4A8c0C9f9f2444197cE78b672F0D98D1Fe47bdA6
 
 ---
 
-section-1 Lesson-3 の完了おめでとうございます 🎉
+section-1 Lesson-3の完了おめでとうございます 🎉
 
-これでコントラクトに関する実装は全て完了しました！！
+これでコントラクトに関する実装は全て完了しました！ ！
 
 次のレッスンからはフロントエンドの作成、フロントエンドとコントラクトの接続をしていきましょう。

@@ -2,10 +2,10 @@
 
 ここまでのレッスンで、予約機能を実装しました。
 
-`section-1 Lesson 3 - スマートコントラクトをテストしてみよう` で、テストには 2 つの方法があると紹介しました。
+`section-1 Lesson 3 - スマートコントラクトをテストしてみよう`で、テストには2つの方法があると紹介しました。
 
 1. テスト用の関数を走らせて、思った通りの挙動をするか一気にテストする
-2. 実際に deploy してターミナル上から関数を動かして確認する
+2. 実際にdeployしてターミナル上から関数を動かして確認する
 
 このレッスンでは、1. の方法でテストを行います。
 他の人がすぐにコードのテストができるという意味でも重要なので機能テストを入れることを癖づけていきましょう！
@@ -25,7 +25,7 @@ impl Contract {
 +     use super::*;
 +     use near_sdk::test_utils::{accounts, VMContextBuilder};
 +     use near_sdk::testing_env;
-+ 
++
 +     // トランザクションを実行するテスト環境を設定
 +     fn get_context(is_view: bool) -> VMContextBuilder {
 +         let mut builder = VMContextBuilder::new();
@@ -37,12 +37,12 @@ impl Contract {
 +             .is_view(is_view);
 +         builder
 +     }
-+ 
++
 +     #[test]
 +     fn add_then_get_registered_rooms() {
 +         let context = get_context(false);
 +         testing_env!(context.build());
-+ 
++
 +         let mut contract = Contract::default();
 +         contract.add_room_to_owner(
 +             "101".to_string(),
@@ -60,29 +60,29 @@ impl Contract {
 +             "Tokyo".to_string(),
 +             U128(10),
 +         );
-+ 
++
 +         // add_room_to_owner関数をコールしたアカウントIDを取得
 +         let owner_id = env::signer_account_id();
-+ 
++
 +         let all_rooms = contract.get_rooms_registered_by_owner(owner_id);
 +         assert_eq!(all_rooms.len(), 2);
 +     }
-+ 
++
 +     #[test]
 +     fn no_registered_room() {
 +         let context = get_context(true);
 +         testing_env!(context.build());
 +         let contract = Contract::default();
-+ 
++
 +         let no_registered_room = contract.get_rooms_registered_by_owner(accounts(0));
 +         assert_eq!(no_registered_room.len(), 0);
 +     }
-+ 
++
 +     #[test]
 +     fn add_then_get_available_rooms() {
 +         let mut context = get_context(false);
 +         testing_env!(context.build());
-+ 
++
 +         let mut contract = Contract::default();
 +         contract.add_room_to_owner(
 +             "101".to_string(),
@@ -100,35 +100,35 @@ impl Contract {
 +             "Tokyo".to_string(),
 +             U128(10),
 +         );
-+ 
++
 +         // `get_available_rooms`をコールするアカウントを設定
 +         testing_env!(context.signer_account_id(accounts(2)).build());
 +         let available_rooms = contract.get_available_rooms("2222-01-01".to_string());
 +         assert_eq!(available_rooms.len(), 2);
 +     }
-+ 
++
 +     #[test]
 +     fn no_available_room() {
 +         let context = get_context(true);
 +         testing_env!(context.build());
 +         let contract = Contract::default();
-+ 
++
 +         let available_rooms = contract.get_available_rooms("2222-01-01".to_string());
 +         assert_eq!(available_rooms.len(), 0);
 +     }
-+ 
++
 +     // Room Owner   : bob(accounts(1))
 +     // Booking Guest: charlie(accounts(2))
 +     #[test]
 +     fn book_room_then_change_status() {
 +         let mut context = get_context(false);
-+ 
++
 +         // 宿泊料を支払うため、NEARを設定
 +         context.account_balance(10);
 +         context.attached_deposit(10);
-+ 
++
 +         testing_env!(context.build());
-+ 
++
 +         let owner_id = env::signer_account_id();
 +         let mut contract = Contract::default();
 +         contract.add_room_to_owner(
@@ -139,49 +139,49 @@ impl Contract {
 +             "Tokyo".to_string(),
 +             U128(10),
 +         );
-+ 
++
 +         ///////////////////
 +         // CHECK BOOKING //
 +         ///////////////////
 +         // `get_available_rooms`と`book_room`をコールするアカウントを設定
 +         testing_env!(context.signer_account_id(accounts(2)).build());
-+ 
++
 +         let check_in_date: String = "2222-01-01".to_string();
 +         let available_rooms = contract.get_available_rooms(check_in_date.clone());
-+ 
++
 +         // 予約を実行
 +         contract.book_room(available_rooms[0].room_id.clone(), check_in_date.clone());
-+ 
++
 +         // オーナー用の予約データの中身を確認
 +         let booked_rooms = contract.get_booking_info_for_owner(owner_id.clone());
 +         assert_eq!(booked_rooms.len(), 1);
 +         assert_eq!(booked_rooms[0].check_in_date, check_in_date);
 +         assert_eq!(booked_rooms[0].guest_id, accounts(2));
-+ 
++
 +         // 宿泊者用の予約データの中身を確認
 +         let guest_booked_rooms = contract.get_booking_info_for_guest(accounts(2));
 +         assert_eq!(guest_booked_rooms.len(), 1);
 +         assert_eq!(guest_booked_rooms[0].owner_id, owner_id);
-+ 
++
 +         /////////////////////////
 +         // CHECK CHANGE STATUS //
 +         /////////////////////////
 +         // 'change_status_to_stay'をコールするアカウントを部屋のオーナーに設定
 +         testing_env!(context.signer_account_id(accounts(1)).build());
-+ 
++
 +         // 部屋のステータスを確認
 +         let is_available = contract.is_available(booked_rooms[0].room_id.clone());
 +         assert_eq!(is_available, true);
-+ 
++
 +         // 部屋のステータスを変更（Available -> Stay）
 +         contract.change_status_to_stay(booked_rooms[0].room_id.clone(), check_in_date.clone());
 +         let booked_rooms = contract.get_booking_info_for_owner(owner_id.clone());
 +         assert_ne!(booked_rooms[0].status, UsageStatus::Available);
-+ 
++
 +         // 再度ステータスを確認
 +         let is_available = contract.is_available(booked_rooms[0].room_id.clone());
 +         assert_eq!(is_available, false);
-+ 
++
 +         // 部屋のステータスを変更（Stay -> Available）
 +         contract.change_status_to_available(
 +             available_rooms[0].room_id.clone(),
@@ -191,7 +191,7 @@ impl Contract {
 +         // 予約データから削除されたかチェック
 +         let booked_rooms = contract.get_booking_info_for_owner(owner_id.clone());
 +         assert_eq!(booked_rooms.len(), 0);
-+ 
++
 +         // 宿泊者の予約データから消えたかチェック
 +         let guest_booked_info = contract.get_booking_info_for_guest(accounts(2));
 +         assert_eq!(guest_booked_info.len(), 0);
@@ -199,10 +199,10 @@ impl Contract {
 + }
 ```
 
-テスト環境を構築する関数と、スマートコントラクト内のメソッドを呼び出して結果を確認する関数を 5 つ定義しました。
+テスト環境を構築する関数と、スマートコントラクト内のメソッドを呼び出して結果を確認する関数を5つ定義しました。
 内容を見ていきましょう。
 
-最初に定義した関数が、環境を構築します。これは、テストをするための仮想的なチェーン（Virtual Machine）をビルドするためのものです。
+最初に定義した関数が、環境を構築します。これは、テストをするための仮想的なチェーン(Virtual Machine)をビルドするためのものです。
 
 ```rust
     // トランザクションを実行するテスト環境を設定
@@ -218,7 +218,7 @@ impl Contract {
     }
 ```
 
-次の関数は、`add_room_to_owner`メソッドを 2 回呼び出し部屋のデータを登録します。最後に`get_rooms_registered_by_owner`メソッドの返り値から、データが 2 つ登録されているかを`assert_eq!()`メソッドで確認しています。
+次の関数は、`add_room_to_owner`メソッドを2回呼び出し部屋のデータを登録します。最後に`get_rooms_registered_by_owner`メソッドの返り値から、データが2つ登録されているかを`assert_eq!()`メソッドで確認しています。
 
 ```rust
     #[test]
@@ -431,9 +431,9 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-booking-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#near-booking-dapp`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -444,4 +444,4 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 
 ---
 
-次のレッスンに進み、実際の testnet にデプロイをして動作を確認してみましょう！
+次のレッスンに進み、実際のtestnetにデプロイをして動作を確認してみましょう！

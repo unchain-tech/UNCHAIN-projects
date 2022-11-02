@@ -1,6 +1,6 @@
 ### 🚲 `bikeコントラクト`を自分のアカウントにデプロイしよう
 
-これまで `bikeコントラクト` は`dev-account`にデプロイしていましたが,
+これまで`bikeコントラクト`は`dev-account`にデプロイしていましたが,
 自分の作成したアカウントにデプロイしましょう。
 [testnet wallet](https://wallet.testnet.near.org/)から新しいアカウントを作成します。
 ここでは`bike_account.testnet`としました。
@@ -17,7 +17,7 @@ $ near login
 
 それではターミナルからデプロイまでの一連の流れを実行しましょう！
 前回までのレッスンでコンパイル済みの`out/main.wasm`が存在することが前提です。
-※ `near_bike_share_dapp` 直下で実行してください。
+※ `near_bike_share_dapp`直下で実行してください。
 
 ```
 $ export ID=bike_account.testnet
@@ -31,7 +31,7 @@ $ near deploy sub.$ID --wasmFile out/main.wasm  --initFunction 'new' --initArgs 
 Done deploying and initializing sub.bike_account.testnet
 ```
 
-次に`bikeコントラクト`のアカウントに ft を転送します。
+次に`bikeコントラクト`のアカウントにftを転送します。
 `package.js`に記載した`init`スクリプトと同じことを実行していきますが,
 コントラクト名のみ正しいものに使用するよう気をつけてください。
 環境変数用意
@@ -40,7 +40,7 @@ Done deploying and initializing sub.bike_account.testnet
 $ export FT_CONTRACT=sub.ft_account.testnet FT_OWNER=ft_account.testnet CONTRACT_NAME=sub.bike_account.testnet
 ```
 
-init 処理
+init処理
 
 ```
 $ near call $FT_CONTRACT storage_deposit '' --accountId $CONTRACT_NAME --amount 0.00125 && near call $FT_CONTRACT ft_transfer '{"receiver_id": "'$CONTRACT_NAME'", "amount": "100"}' --accountId $FT_OWNER --amount 0.000000000000000000000001
@@ -59,7 +59,7 @@ const CONTRACT_NAME = process.env.CONTRACT_NAME || "sub.bike_account.testnet";
 // ...
 ```
 
-[parcel](https://parceljs.org/docs/)で web アプリをビルドします。
+[parcel](https://parceljs.org/docs/)でwebアプリをビルドします。
 ※ `near_bike_share_dapp`のルートディレクトリで実行してください。
 
 ```
@@ -78,11 +78,11 @@ $ npx parcel frontend/index.html
 最後にあなたが作成したアプリをホストしましょう！
 
 ここでは[Netlify](https://www.netlify.com/)を用いてデプロイします。
-`Netlify` は静的サイトのホスティングを提供する web サービスです。
-Netlify のアカウントをお持ちでない方は、上記のリンクにアクセスして、アカウントを作成してください。
+`Netlify`は静的サイトのホスティングを提供するwebサービスです。
+Netlifyのアカウントをお持ちでない方は、上記のリンクにアクセスして、アカウントを作成してください。
 その際`team name`などはご自由にご記入ください！
 
-次に netlify をローカルで実行するために以下のコマンドを実行してください。
+次にnetlifyをローカルで実行するために以下のコマンドを実行してください。
 
 ```
 $ npm install netlify-cli -g
@@ -144,7 +144,7 @@ Unique Deploy URL: https://62f5c61e5760ee5d76132194--near-bikeshare-dapp.netlify
 Website URL:       https://near-bikeshare-dapp.netlify.app
 ```
 
-`Website URL:`欄にある URL をブラウザに貼り付けてアプリを確認しましょう！
+`Website URL:`欄にあるURLをブラウザに貼り付けてアプリを確認しましょう！
 
 ![](/public/images/NEAR-BikeShare/section-4/4_2_4.png)
 
@@ -154,15 +154,15 @@ Website URL:       https://near-bikeshare-dapp.netlify.app
 機能追加の例
 
 - フロントエンドの変更
-- 1 ユーザにつき 1 つのバイクのみ利用できるようにする
+- 1ユーザにつき1つのバイクのみ利用できるようにする
 - `bikeコントラクト`にも`owner_id`属性を追加し, `owner_id`はバイクの数を増やせるなど管理者機能をつける
-- ft のやり取りにルールを追加する
+- ftのやり取りにルールを追加する
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-economy` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#near-sharing-economy`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -173,23 +173,23 @@ Website URL:       https://near-bikeshare-dapp.netlify.app
 
 ### 🎫 NFT を取得しよう！
 
-NFT を取得する条件は、以下のようになります。
+NFTを取得する条件は、以下のようになります。
 
-1. MVP の機能がすべて実装されている（実装 OK）
+1. MVPの機能がすべて実装されている(実装OK)
 
-2. Web アプリケーションで MVP の機能が問題なく実行される（テスト OK）
+2. WebアプリケーションでMVPの機能が問題なく実行される(テストOK)
 
-3. このページの最後にリンクされている Project Completion Form に記入する
+3. このページの最後にリンクされているProject Completion Formに記入する
 
-4. Discord の `🔥｜post-your-project` チャンネルに、あなたの Web サイトをシェアしてください 😉🎉 。Discord へ投稿する際に、追加実装した機能とその概要も教えていただけると幸いです！
+4. Discordの`🔥｜post-your-project`チャンネルに、あなたのWebサイトをシェアしてください 😉🎉 。Discordへ投稿する際に、追加実装した機能とその概要も教えていただけると幸いです！
 
-プロジェクトを完成させていただいた方には、NFT をお送りします。
+プロジェクトを完成させていただいた方には、NFTをお送りします。
 
 ### 🎉 おつかれさまでした！
 
-これでバイクシェア dapp を作成することができました！
+これでバイクシェアdappを作成することができました！
 
 このアプリが
-あなたのこれからの Web3 での活動に少しでも糧となれば幸いです ✨
+あなたのこれからのweb3での活動に少しでも糧となれば幸いです ✨
 
-これからも Web3 への旅を一緒に楽しみましょう 🚀
+これからもweb3への旅を一緒に楽しみましょう 🚀

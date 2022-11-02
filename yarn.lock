@@ -2490,6 +2490,15 @@ textlint-rule-no-mix-dearu-desumasu@^5.0.0:
     textlint-rule-helper "^2.0.0"
     unist-util-visit "^3.0.0"
 
+textlint-rule-no-mixed-zenkaku-and-hankaku-alphabet@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/textlint-rule-no-mixed-zenkaku-and-hankaku-alphabet/-/textlint-rule-no-mixed-zenkaku-and-hankaku-alphabet-1.0.1.tgz#2d1b0d3cefa5f526e649c8d7d1af2cdda6a9333b"
+  integrity sha512-jRiBtdslvtFNgWhCT1FZW0Ct5lfO3Af39iKJV20hxOZMhxM0sz+pnfmooEQ9wpAQm5kL+W1kJoX2O9uKw01AvA==
+  dependencies:
+    match-index "^1.0.1"
+    moji "^0.5.1"
+    textlint-rule-helper "^2.0.0"
+
 textlint-rule-no-nfd@^1.0.1, textlint-rule-no-nfd@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/textlint-rule-no-nfd/-/textlint-rule-no-nfd-1.0.2.tgz#8c5793b57caada6e620b89d7a1d2886487dbbe2e"

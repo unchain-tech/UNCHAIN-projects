@@ -2,16 +2,16 @@
 
 前回までのセクションで投票機能を実装してコントラクトとしては完成したので実際に機能しているかターミナル上で確認してみましょう！
 
-テストの方法は 2 つあり
+テストの方法は2つあり
 
 1. テスト用の関数を走らせて、思った通りの挙動をするか一気にテストする
-2. 実際に deploy してターミナル上から関数を動かして確認する
+2. 実際にdeployしてターミナル上から関数を動かして確認する
 
 です。
 
-まずは手軽にできる 1 つ目の方法でテストして、それが成功したら 2 つ目のテストをしましょう。
+まずは手軽にできる1つ目の方法でテストして、それが成功したら2つ目のテストをしましょう。
 
-一つ目のテストは他の人がすぐにコードのテストができるという意味でも重要なのでテストを入れることを癖づけていきましょう！
+1つ目のテストは他の人がすぐにコードのテストができるという意味でも重要なのでテストを入れることを癖づけていきましょう！
 
 `lib.rs`に移動して以下のようにコードを追加してください。
 
@@ -235,9 +235,9 @@ impl Contract {
 
 ```
 
-３つあるテストの関数を 1 つずつみていきましょう。
+３つあるテストの関数を1つずつみていきましょう。
 
-まず最初に宣言している`get_context関数`というのはテストをしているのではなく、テストをするための仮想的なチェーン（Virtual Machine）をビルドするためのものです。
+まず最初に宣言している`get_context関数`というのはテストをしているのではなく、テストをするための仮想的なチェーン(Virtual Machine)をビルドするためのものです。
 
 ```rust
 fn get_context(predecessor_account_id: AccountId) -> VMContextBuilder {
@@ -252,11 +252,11 @@ fn get_context(predecessor_account_id: AccountId) -> VMContextBuilder {
 
 次にかかれている`mint_test関数`は文字通り`mint`がうまくできているかをテストしています。
 
-最初の部分で初期化のための関数である`new_default_meta関数`を呼び、その後 mint のための関数である`nft_mint関数`を読んだ後に、NFT の情報を見るために前回までで作成した関数を呼び思ったような挙動をしているのかを確認します。
+最初の部分で初期化のための関数である`new_default_meta関数`を呼び、その後mintのための関数である`nft_mint関数`を読んだ後に、NFTの情報を見るために前回までで作成した関数を呼び思ったような挙動をしているのかを確認します。
 
-`assert_eq!()`というメソッドはひとつ目の引数と二つ目の引数が一致していなければ error を出すようになものです。
+`assert_eq!()`というメソッドはひとつ目の引数と2つ目の引数が一致していなければerrorを出すようになものです。
 
-NFT の全ての情報を確認するのは面倒なので NFT の中の情報の一部がきちんと一致しているかをテストしています。
+NFTの全ての情報を確認するのは面倒なのでNFTの中の情報の一部がきちんと一致しているかをテストしています。
 
 ```rust
 #[test]
@@ -302,7 +302,7 @@ NFT の全ての情報を確認するのは面倒なので NFT の中の情報�
     }
 ```
 
-この部分によって NEAR を deposit しています。これはストレージを確保するためのもので、`mint, transfer`のために必要になります。
+この部分によってNEARをdepositしています。これはストレージを確保するためのもので、`mint, transfer`のために必要になります。
 
 ```rust
 testing_env!(context
@@ -334,7 +334,7 @@ fn vote_closed_test() {
     }
 ```
 
-最後の`transfer_test関数`では NFT の transfer 機能がうまく動いているのか、つまりきちんと NFT の所有者が移譲されているかを確認しています。
+最後の`transfer_test関数`ではNFTのtransfer機能がうまく動いているのか、つまりきちんとNFTの所有者が移譲されているかを確認しています。
 
 ```rust
 fn transfer_test() {
@@ -374,7 +374,7 @@ fn transfer_test() {
     }
 ```
 
-それでは下のコマンドをターミナルで実行させることでテストをしてみましょう！
+それでは下のコマンドをターミナルで実行しテストをしてみましょう！
 
 ```bash
 cargo test
@@ -399,36 +399,36 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 
 これで基本的な関数は動いていることが確認できました。
 
-次は実際の testnet にデプロイして挙動を確認してみましょう！
+次は実際のtestnetにデプロイして挙動を確認してみましょう！
 
-前回の実装でそれぞれの候補者に紐づいた得票数の map への処理を加えたましたねが、それまでに deploy された NFT の情報は map に反映されずエラーが起きる可能性があります。
+前回の実装でそれぞれの候補者に紐づいた得票数のmapへの処理を加えたましたねが、それまでにdeployされたNFTの情報はmapに反映されずエラーが起きる可能性があります。
 
-なので再度新しい wallet の id を作成して新しいコントラクトとして deploy してみましょう！
+なので再度新しいwalletのidを作成して新しいコントラクトとしてdeployしてみましょう！
 
 [こちら](https://wallet.testnet.near.org/)から作成できます。
 
-section1-lesson4 で行った`new_default_meta関数をターミナルで走らせるところまで`行いましょう。
+section1-lesson4で行った`new_default_meta関数をターミナルで走らせるところまで`行いましょう。
 
 具体的には`export...`から`near call $NFT_CONTRACT_ID new_default_meta...`のところまでやりましょう！
 
-それが完了したら下のコマンドをターミナルで実行させて、候補者の NFT を mint してみましょう！
+それが完了したら下のコマンドをターミナルで実行させて、候補者のNFTをmintしてみましょう！
 
-画像の CID（IPFS で保存された画像の URI）や title は自由に変えてもらって大丈夫です！
+画像のCID(IPFSで保存された画像のURI)やtitleは自由に変えてもらって大丈夫です！
 
 ```bash
 near call $NFT_CONTRACT_ID nft_mint '{"metadata": {"title": "Rob Stark(candidate)", "description": "Forth Token", "media": "https://gateway.pinata.cloud/ipfs/QmQaBSeg58JcWkCxzGhqHiy9SSUugH9MtV8UnZQ3siMRYA", "media_CID": "QmQaBSeg58JcWkCxzGhqHiy9SSUugH9MtV8UnZQ3siMRYA", "candidate_name": "Rob Stark", "candidate_manifest": "In three words I can sum up everything I have learned about life it goes on.", "token_kind": "candidate"}, "receiver_id": "'$NFT_CONTRACT_ID'"}' --accountId $NFT_CONTRACT_ID --amount 0.1
 ```
 
-これによって下のように新しく作成した wallet に候補者の NFT が mint されているはずです。
+これによって下のように新しく作成したwalletに候補者のNFTがmintされているはずです。
 ![](/public/images/NEAR-Election-dApp/section-2/2_3_1.png)
 
-まずは下のコマンドをターミナルで実行させることで mint した NFT の値を確認してみましょう！
+まずは下のコマンドでmintしたNFTの値を確認してみましょう！
 
 ```bash
 near view $NFT_CONTRACT_ID nft_tokens
 ```
 
-下のように NFT の metadata が返ってくるはずです。
+下のようにNFTのmetadataが返ってくるはずです。
 
 ```bash
 [
@@ -447,20 +447,20 @@ near view $NFT_CONTRACT_ID nft_tokens
   }
 ```
 
-次に下のコマンドをターミナルで実行させることでこの NFT に紐づいた得票数を確認してみましょう。
+次にこのNFTに紐づいた得票数を確認してみましょう。
 
 ```bash
 near call $NFT_CONTRACT_ID nft_return_candidate_likes '{"token_id": 0}' --accountId $NFT_CONTRACT_ID
 ```
 
 `0`という値が返ってくるはずです。
-次に下のコマンドをターミナルで実行させることでこの NFT に紐づいた得票数を 1 大きくしてみましょう。
+今度はNFTに紐づいた得票数を1大きくしてみましょう。
 
 ```bash
 near call $NFT_CONTRACT_ID nft_add_likes_to_candidate '{"token_id": 0}' --accountId $NFT_CONTRACT_ID
 ```
 
-返り値はないですが、再び下のコマンドをターミナルで実行させることでこの NFT に紐づいた得票数を確認してみましょう。
+返り値はないですが、再び下のコマンドを実行しこのNFTに紐づいた得票数を確認してみましょう。
 
 ```bash
 near call $NFT_CONTRACT_ID nft_return_candidate_likes '{"token_id": 0}' --accountId $NFT_CONTRACT_ID
@@ -470,7 +470,7 @@ near call $NFT_CONTRACT_ID nft_return_candidate_likes '{"token_id": 0}' --accoun
 
 次は投票の締め切りができるか、また締め切っているのか確認できるかをテストしてみましょう！
 
-下のコマンドをターミナルで実行させることで現在投票が締め切られているか確認してみましょう。
+下のコマンドで現在投票が締め切られているか確認してみましょう。
 
 ```bash
 near view $NFT_CONTRACT_ID if_election_closed
@@ -480,7 +480,7 @@ near view $NFT_CONTRACT_ID if_election_closed
 
 これは投票が締まっていないことを示しています。
 
-では次に下のコマンドをターミナルで実行させることで投票を締め切りましょう。
+では次に投票を締め切りましょう。
 
 ```bash
 near call $NFT_CONTRACT_ID close_election --accountId $NFT_CONTRACT_ID
@@ -494,23 +494,23 @@ near view $NFT_CONTRACT_ID if_election_closed
 
 `true`に変わっているはずです。
 
-では試しに下のコマンドをターミナルで実行させて違う候補者の NFT を mint してみましょう。
+では試しに下のコマンドをターミナルで実行させて違う候補者のNFTをmintしてみましょう。
 
 ```bash
 near call $NFT_CONTRACT_ID nft_mint '{"metadata": {"title": "Jenny Lind(candidate)", "description": "Seventh Token", "media": "https://gateway.pinata.cloud/ipfs/QmWUzLowW5ErzoezkpdSVZNF5LFgWTtMhiwfAdZU9LhcgF", "media_CID": "QmWUzLowW5ErzoezkpdSVZNF5LFgWTtMhiwfAdZU9LhcgF", "candidate_name": "Jenny Lind", "candidate_manifest": "Be yourself everyone else is already taken.", "token_kind": "candidate"}, "receiver_id": "'$NFT_CONTRACT_ID'"}' --accountId $NFT_CONTRACT_ID --amount 0.1
 ```
 
-panic(rust における error)が起こっていれば OK です。
+panic(rustにおけるerror)が起こっていればOKです。
 
-なぜなら投票が終了していたら mint も transfer も投票もできないようにしていますからね。
+なぜなら投票が終了していたらmintもtransferも投票もできないようにしていますからね。
 
-では下のコマンドをターミナルで実行させることで投票を再開してみましょう。
+では投票を再開してみましょう。
 
 ```bash
 near call $NFT_CONTRACT_ID reopen_election --accountId $NFT_CONTRACT_ID
 ```
 
-では下のコマンドをターミナルで実行させることで現在投票が再開されているか確認してみましょう。
+次に現在投票が再開されているか確認してみましょう。
 
 ```bash
 near view $NFT_CONTRACT_ID if_election_closed
@@ -518,21 +518,21 @@ near view $NFT_CONTRACT_ID if_election_closed
 
 これで`false`に戻っていれば成功です。
 
-では先ほど試みた mint をもう一度してみましょう!下のコマンドをターミナルで実行させてください。
+では先ほど試みたmintをもう一度してみましょう!下のコマンドをターミナルで実行させてください。
 
 ```bash
 near call $NFT_CONTRACT_ID nft_mint '{"metadata": {"title": "Jenny Lind(candidate)", "description": "Seventh Token", "media": "https://gateway.pinata.cloud/ipfs/QmWUzLowW5ErzoezkpdSVZNF5LFgWTtMhiwfAdZU9LhcgF", "media_CID": "QmWUzLowW5ErzoezkpdSVZNF5LFgWTtMhiwfAdZU9LhcgF", "candidate_name": "Jenny Lind", "candidate_manifest": "Be yourself everyone else is already taken.", "token_kind": "candidate"}, "receiver_id": "'$NFT_CONTRACT_ID'"}' --accountId $NFT_CONTRACT_ID --amount 0.1
 ```
 
-投票が再開されているので mint が成功して下のようになっているはずです。
+投票が再開されているのでmintが成功して下のようになっているはずです。
 
 ![](/public/images/NEAR-Election-dApp/section-2/2_3_2.png)
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#section-2` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#section-2`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -547,14 +547,14 @@ near call $NFT_CONTRACT_ID nft_mint '{"metadata": {"title": "Jenny Lind(candidat
 
 これで投票機能がきちんと実装できていることが確認できました。
 
-セクション 2 は終了です。
+セクション2は終了です。
 
-投票が再開され、mint が成功しているフロントエンドのスクリーンショットを `#near-election-dapp` に投稿してください 😊
+投票が再開され、mintが成功しているフロントエンドのスクリーンショットを`#near-election-dapp`に投稿してください 😊
 
 あなたの成功をコミュニティで祝いましょう 🎉
 
-こう見るとシンプルですごさがあまりわかりませんが、たくさんの NFT が mint されてその中から特定の NFT に紐づいた得票数が取得できればすごいと思いませんか！？
+こう見るとシンプルですごさがあまりわかりませんが、たくさんのNFTがmintされてその中から特定のNFTに紐づいた得票数が取得できればすごいと思いませんか！ ？
 
-次のセクションからはいよいよフロントエンドでコントラクトとの接続+UI の作成を行なっていきます。
+次のセクションからはいよいよフロントエンドでコントラクトとの接続+UIの作成を行なっていきます。
 
 楽しんでいきましょう！

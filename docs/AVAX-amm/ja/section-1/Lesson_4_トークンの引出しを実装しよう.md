@@ -5,7 +5,7 @@
 
 ユーザは自身のシェアの分だけプールに預けたトークンを引き出すことができます。
 
-それでは`AMM.sol`の AMM コントラクトの最後の行に以下の 2 つの関数を追加してください。
+それでは`AMM.sol`のAMMコントラクトの最後の行に以下の2つの関数を追加してください。
 
 ```solidity
     // ユーザのシェアから引き出せるトークンの量を算出します。
@@ -44,18 +44,18 @@
     }
 ```
 
-`getWithdrawEstimate` 関数では, 指定されたシェアの分に応じたトークンの量を算出します。
+`getWithdrawEstimate`関数では, 指定されたシェアの分に応じたトークンの量を算出します。
 
 シェアの総量(`totalShare`)に対する指定されたシェア(`share`)の割合は$\frac{share}{totalShare}$で表されるので,  
 シェアの分に応じたトークンの量は $\frac{share}{totalShare} * totalAmount[\_token](トークンの総量)$で算出することができます。
 
-`withdraw` 関数では実際に引き出し処理を実装しています。
+`withdraw`関数では実際に引き出し処理を実装しています。
 
-初めに `getWithdrawEstimate` により各トークンの AMM から引き出す量を算出します。
+初めに`getWithdrawEstimate`により各トークンのAMMから引き出す量を算出します。
 
 引き出す分だけシェアとトークン量の状態変数の調整を行い, トークンを関数を呼び出したユーザへ送信します。
 
-ここでは AMM コントラクトからユーザへトークンを送信するので, `transfer` 関数を使用すれば良いです。
+ここではAMMコントラクトからユーザへトークンを送信するので, `transfer`関数を使用すれば良いです。
 
 ### 🧪 テストを追加しましょう
 
@@ -87,10 +87,10 @@ describe("getWithdrawEstimate", function () {
 });
 ```
 
-`getWithdrawEstimate` テストでは otherAccount のシェアを引数に指定した場合の  
-`getWithdrawEstimate` 関数の返り値をテストしています。
+`getWithdrawEstimate`テストではotherAccountのシェアを引数に指定した場合の  
+`getWithdrawEstimate`関数の返り値をテストしています。
 
-otherAccount は `amountOtherProvided0` と `amountOtherProvided1` だけそれぞれプールに預けているので, シェアの分だけ引き出せる量を計算すると  
+otherAccountは`amountOtherProvided0`と`amountOtherProvided1`だけそれぞれプールに預けているので, シェアの分だけ引き出せる量を計算すると  
 預けている量と同じ量が返ってくるはずです。
 
 続いてその下に以下のテストを追加しましょう。
@@ -162,11 +162,11 @@ describe("withdraw", function () {
 });
 ```
 
-`Token should be moved` テストでは, `withdraw` 関数を実行する前後でトークンが正しく移動しているかを確認しています。  
-ロジックは `provide` に関するテストで行ったトークンの移動の確認と同じです。
+`Token should be moved`テストでは, `withdraw`関数を実行する前後でトークンが正しく移動しているかを確認しています。  
+ロジックは`provide`に関するテストで行ったトークンの移動の確認と同じです。
 
-続く `Should set the right number of amm details` テストでは, otherAccount が自身のシェアの分トークンを引き出した場合に,  
-AMM コントラクトの状態変数が正しく変更されているかを確認しています。
+続く`Should set the right number of amm details`テストでは, otherAccountが自身のシェアの分トークンを引き出した場合に,  
+AMMコントラクトの状態変数が正しく変更されているかを確認しています。
 
 ### ⭐ テストを実行しましょう
 
@@ -187,14 +187,14 @@ $ npx hardhat test
 > [こちら](https://github.com/unchain-dev/avalanche-amm-dapp)に本プロジェクトの完成形のレポジトリがあります。
 >
 > コードがうまく動かない場合は参考にしてみてください。  
-> `contract` はリンク先のレポジトリ内の `package/contract` を。  
-> `client` はリンク先のレポジトリ内の `package/client` を参照してください。
+> `contract`はリンク先のレポジトリ内の`package/contract`を。  
+> `client`はリンク先のレポジトリ内の`package/client`を参照してください。
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は,Discord の `#avax-amm` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は,Discordの`#avax-amm`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので,エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので,エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -206,6 +206,6 @@ $ npx hardhat test
 ---
 
 おめでとうございます!  
-セクション 1 が終了しました!
+セクション1が終了しました!
 
-次のセクションでは AMM コントラクトに swap 機能を実装していきます 🏄‍♂️
+次のセクションではAMMコントラクトにswap機能を実装していきます 🏄‍♂️

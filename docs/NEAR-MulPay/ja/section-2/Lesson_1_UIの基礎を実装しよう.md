@@ -4,7 +4,7 @@
 
 まずは使用する画像やファイルを追加していきます。
 
-一番上の階層（`lib`ディレクトリと同じ階層）に`assets`, `smartcontracts`というディレクトリと `.env`ファイルを追加しましょう。
+一番上の階層(`lib`ディレクトリと同じ階層)に`assets`, `smartcontracts`というディレクトリと`.env`ファイルを追加しましょう。
 
 追加後は下のようなディレクトリ構造になります。
 
@@ -28,9 +28,9 @@
 └── windows/
 ```
 
-`.env`ファイルは隠しファイルになっているので表示はされていません。このファイルは git に上げないために.gitignore ファイルに追加しておいてください。
+`.env`ファイルは隠しファイルになっているので表示はされていません。このファイルはGitに上げないために.gitignoreファイルに追加しておいてください。
 
-次に assets ファイルに本 dapp に必要な画像を追加していきます。以下の画像を assets ファイルにコピペしてください。
+次にassetsファイルに本dappに必要な画像を追加していきます。以下の画像をassetsファイルにコピー&ペーストしてください。
 
 [assets]
 
@@ -88,13 +88,13 @@
 [wallet.svg]
 ![](/public/images/NEAR-MulPay/section-2/2_1_18.svg)
 
-次に`smartcontracts`ディレクトリに section-1 で作成したコントラクトの abi ファイルを追加します。
+次に`smartcontracts`ディレクトリにsection-1で作成したコントラクトのabiファイルを追加します。
 
-MulPay-contract ディレクトリの`artifacts/contracts/`にあるそれぞれのコントラクトの abi ファイルをコピペします。例えば`ERC20Tokens.sol/AuraraToken.json`などです。
+MulPay-contractディレクトリの`artifacts/contracts/`にあるそれぞれのコントラクトのabiファイルをコピー&ペーストします。例えば`ERC20Tokens.sol/AuraraToken.json`などです。
 
 少し面倒ですが、これらを用いてコントラクトとやりとりをするので必要な過程です。
 
-smarcontracts ディレクトリの中身は下のようになります。
+smarcontractsディレクトリの中身は下のようになります。
 
 ```
 smartcontracts/
@@ -110,13 +110,13 @@ smartcontracts/
 
 次にこれらの使用するファイルや画像があることを宣言していきます。
 
-flutter では`pubspec.yaml`というファイルに必要なライブラリや使用するファイルを記述します。
+flutterでは`pubspec.yaml`というファイルに必要なライブラリや使用するファイルを記述します。
 
 下のように`pubspec.yaml`ファイルの中の`dependencies:`直下を下のように書き換えましょう。
 
 ここで注意なのが、`pubspec.yaml`ファイルではスペースが一行でもずれてしまうとライブラリが使用できなくなるのでそこに注意してください。
 
-なので UI を作成しているときにエラーがでた際は`pubspec.yaml`ファイルに記述しているライブラリが正しいスペースで記述されているかを確認しながら行ってください。デフォルトで記述してある通りのスペースで記述できているかを確認していきながら行っていけば OK です！
+なのでUIを作成しているときにエラーがでた際は`pubspec.yaml`ファイルに記述しているライブラリが正しいスペースで記述されているかを確認しながら行ってください。デフォルトで記述してある通りのスペースで記述できているかを確認していきながら行っていけばOKです！
 
 [`pubspec.yaml`]
 
@@ -181,7 +181,7 @@ flutter:
     - smartcontracts/
 ```
 
-スペースについては下のようになっていれば OK です。
+スペースについては下のようになっていればOKです。
 ![](/public/images/NEAR-MulPay/section-2/2_1_19.png)
 ![](/public/images/NEAR-MulPay/section-2/2_1_20.png)
 
@@ -200,9 +200,9 @@ flutter pub run flutter_launcher_icons:main
 
 これで画像やファイルの宣言、アイコンを変更のための記述は完了しました！
 
-ではここからはいよいよ UI を作成していきます。
+ではここからはいよいよUIを作成していきます。
 
-まずは deploy したコントラクトのアドレスやそのコントラクトの名前を.env ファイルに追加していきましょう。
+まずはdeployしたコントラクトのアドレスやそのコントラクトの名前を.envファイルに追加していきましょう。
 
 [`.env`]
 
@@ -230,15 +230,15 @@ MATIC_CONTRACT_NAME = "PolygonToken"
 INFURA_KEY_TEST = "Infura's aurora testnet http key"
 ```
 
-`XXX_CONTRACT_ADDRESS`には section-1 の Lesson-2 で行った deploy でかえってきたそれぞれのアドレスを入れます。
+`XXX_CONTRACT_ADDRESS`にはsection-1のLesson-2で行ったdeployから返ってきたそれぞれのアドレスを入れます。
 
-`INFURA_KEY_TEST`には前半で作った infura アカウントの aurora testnet 用のの http key を入れます。下のような形式になっているものです。
+`INFURA_KEY_TEST`には前半で作ったinfuraアカウントの、aurora testnet用のhttp keyを入れます。下のような形式になっているものです。
 
 ```
 INFURA_KEY_TEST = "https://aurora-testnet.infura.io/v3/4b5...."
 ```
 
-ではいよいよ基礎となる model や widget を作成していきたいところですが、その前にホーム画面などのそれぞれの画面を簡単に作っておきます。
+ではいよいよ基礎となるmodelやウィジェットを作成していきたいところですが、その前にホーム画面などのそれぞれの画面を簡単に作っておきます。
 
 最終的には画面遷移を想定して作るので、その遷移先がなければエラーが出てしまい動かないという事態が起きかねないので簡単な画面を作っておきます。
 
@@ -365,7 +365,7 @@ class _HomeState extends State<Wallet> {
 }
 ```
 
-では model や widget を作成していきましょう。
+ではmodelやウィジェットを作成していきましょう。
 
 `lib/model/contract_model.dart`に移動して以下のコードを追加しましょう。
 
@@ -651,7 +651,7 @@ import 'package:http/http.dart' as http;
 
 次の`ContractModel`の中に必要なプロパティやメソッドを入れています。
 
-序盤ではそれぞれの Token についてアドレスやコントラクトの名前などをリスト化したものや Aurora 上のコントラクトとやり取りするためのプロパティを宣言しています。
+序盤ではそれぞれのTokenについてアドレスやコントラクトの名前などをリスト化したものやAurora上のコントラクトとやり取りするためのプロパティを宣言しています。
 
 ```
 class ContractModel extends ChangeNotifier {
@@ -730,7 +730,7 @@ class ContractModel extends ChangeNotifier {
 
 後半の部分ではコントラクトにあるメソッドを呼び出すためのメソッドが書かれています。
 
-最初に書いている`init`関数はこのコントラクトが作成された時に最初に走るメソッドで、infura を通じて Aurora の Testnet 上にデプロイしたコントラクトとやりとりができるための準備をしています。
+最初に書いている`init`関数はこのコントラクトが作成された時に最初に走るメソッドで、infuraを通じてAuroraのTestnet上にデプロイしたコントラクトとやりとりができるための準備をしています。
 
 ```
 ContractModel() {
@@ -771,7 +771,7 @@ Future<DeployedContract> getContract(
 }
 ```
 
-`query`関数は読み取り専用の関数を呼ぶ際に使うものです。これは wallet とのやり取りをする必要（wallet の許可を必要）がない関数に使われるものです。この関数ではブロックチェーン状の値を書き換えたり、追加したりすることはできせん。
+`query`関数は読み取り専用の関数を呼ぶ際に使うものです。これはwalletとのやり取りをする必要(walletの許可を必要)がない関数に使われるものです。この関数ではブロックチェーン状の値を書き換えたり、追加したりすることはできせん。
 
 ```
 Future<List<dynamic>> query(String contractName, String contractAddress,
@@ -788,7 +788,7 @@ Future<List<dynamic>> query(String contractName, String contractAddress,
 }
 ```
 
-次の`sendTransaction`関数はブロックチェーン上の値を書き換えるような関数を呼び出すことができます。ただし、毎回 wallet の許可が必要となります。
+次の`sendTransaction`関数はブロックチェーン上の値を書き換えるような関数を呼び出すことができます。ただし、毎回walletの許可が必要となります。
 
 ```
 Future<void> sendTransaction(String contractName, String contractAddress,
@@ -816,7 +816,7 @@ Future<void> sendTransaction(String contractName, String contractAddress,
   }
 ```
 
-`setConnection`関数は wallet と接続した情報をインスタンス化したこの model に保存するための関数です。
+`setConnection`関数はwalletと接続した情報をインスタンス化したこのmodelに保存するための関数です。
 
 ```
 Future<void> setConnection(Web3Connect connection) async {
@@ -826,7 +826,7 @@ Future<void> setConnection(Web3Connect connection) async {
   }
 ```
 
-それ以降はコントラクトに存在する関数を呼び出すもので、指定のトークンの残高を参照したり、swap を行うなど section-1 で作成した関数を呼び出すことができます。
+それ以降はコントラクトに存在する関数を呼び出すもので、指定のトークンの残高を参照したり、swapを行うなどsection-1で作成した関数を呼び出すことができます。
 
 ```
 Future<String> getBalance(
@@ -903,7 +903,7 @@ Future<String> getBalance(
   }
 ```
 
-一番下に記述している`Token`というクラスはトークンの情報を保存するための class になります。
+一番下に記述している`Token`というクラスはトークンの情報を保存するためのclassになります。
 
 ```
 class Token {
@@ -928,7 +928,7 @@ class Token {
 }
 ```
 
-では次に home 画面に表示する、それぞれのコインの残高情報を示すリスト一つ一つの元となる UI を作成していきます。
+では次にhome画面に表示する、それぞれのコインの残高情報を示すリスト一つ一つの元となるUIを作成していきます。
 
 ![](/public/images/NEAR-MulPay/section-2/2_1_19.png)
 
@@ -1021,7 +1021,7 @@ Widget Coins(double displayWidth, displayHeight, String imagePath, symbol, name,
 
 ```
 
-これでそれぞれのトークンについて、ロゴや名前、残高と ETH 換算した時の価値を表示できるようになりました！
+これでそれぞれのトークンについて、ロゴや名前、残高とETH換算した時の価値を表示できるようになりました！
 
 次に下に置くナビゲーションバーの実装を行なっていきましょう。
 
@@ -1128,7 +1128,7 @@ class BottomNavigationBarProvider with ChangeNotifier {
 }
 ```
 
-次の部分で実際に下に置かれるナビゲーションバーの UI を記述しています。
+次の部分で実際に下に置かれるナビゲーションバーのUIを記述しています。
 
 ```
 class _BottomNavigationBarState extends State<BottomNavigationBarWidget> {
@@ -1186,15 +1186,15 @@ class _BottomNavigationBarState extends State<BottomNavigationBarWidget> {
 
 ```
 
-今回は`home, send, wallet`の 3 つのメニューを用意しています。それぞれのメニューには下のような機能を備えています。
+今回は`home, send, wallet`の3つのメニューを用意しています。それぞれのメニューには下のような機能を備えています。
 
-`home`: ユーザーのアドレスと、ウォレットアドレスを QR コードで表示できる。残高を参照できる
+`home`: ユーザーのアドレスと、ウォレットアドレスをQRコードで表示できる。残高を参照できる
 
-`send`:送金先、送金するトークンとその額、受け取るトークンの種類を選択して送金できる。送金先は QR コードから取得可能。
+`send`:送金先、送金するトークンとその額、受け取るトークンの種類を選択して送金できる。送金先はQRコードから取得可能。
 
-`wallet`:ユーザーのウォレットアドレスの参照、QR コードでの参照が可能。また、それぞれのトークンを 100wei 獲得できるボタンがある。ウォレットを disconnect することもできる。
+`wallet`:ユーザーのウォレットアドレスの参照、QRコードでの参照が可能。また、それぞれのトークンを100wei獲得できるボタンがある。ウォレットをdisconnectすることもできる。
 
-次にユーザーのウォレットアドレスを QR コード化して表示するための widget を実装していきましょう。
+次にユーザーのウォレットアドレスをQRコード化して表示するためのウィジェットを実装していきましょう。
 
 `lib/view/widgets/qr_code.dart`に以下のコードを
 
@@ -1229,15 +1229,15 @@ class _QRCodeState extends State<QRCode> {
 }
 ```
 
-これは非常に単純で、前の画面で QR コード化されたものを modal の形で画面上に表示するだけなので説明は省略します。
+これは非常に単純で、前の画面でQRコード化されたものをmodalの形で画面上に表示するだけなので説明は省略します。
 
 これでそれぞれの画面で必要なものは作成できました！
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#section-2` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#section-2`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -1248,12 +1248,12 @@ class _QRCodeState extends State<QRCode> {
 
 ---
 
-section-2-lesson1 の完了おめでとうございます 🎉
+section-2-lesson1の完了おめでとうございます 🎉
 
-これでコントラクトに関する実装は全て完了しました！！
+これでコントラクトに関する実装は全て完了しました！ ！
 
 次のレッスンからはフロントエンドの作成、フロントエンドとコントラクトの接続をしていきましょう。
 
 ここまではコード上の実装だけで実際に目に見えたものがまだありませんでしたが、次からは実機またはエミュレータを使いながらの実装になるので楽しくなってきます。
 
-次の Lesson2 でそれぞれの画面の UI, UX を実装していきましょう！
+次のLesson2でそれぞれの画面のUI, UXを実装していきましょう！

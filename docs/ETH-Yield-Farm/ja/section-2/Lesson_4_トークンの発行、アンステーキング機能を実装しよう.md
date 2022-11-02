@@ -3,12 +3,12 @@
 
 ### 💪 ステーキングに必要な残りの機能を実装しよう
 
-前回のレッスンでは、`TokenFarm.sol` にステーキング機能を実装しました。
-今回は、Yield Farming を完成させるために、残り二つの機能を実装していきます。
+前回のレッスンでは、`TokenFarm.sol`にステーキング機能を実装しました。
+今回は、Yield Farmingを完成させるために、残り2つの機能を実装していきます。
 1. コミュニティのトークン発行機能
-2. ステーキングしたトークンを手元に戻す機能（アンステーキング機能）
+2. ステーキングしたトークンを手元に戻す機能(アンステーキング機能)
 
-それでは早速 `TokenFarm.sol` を下のように更新していきましょう!
+それでは早速`TokenFarm.sol`を下のように更新していきましょう!
 
 ```solidity
 // TokenFarm.sol
@@ -84,12 +84,12 @@ contract TokenFarm{
 }
 ```
 
-以上で、`TokenFarm.sol` に Yield Farming を実装する上で必要な機能が全て備わりました!
+以上で、`TokenFarm.sol`にYield Farmingを実装する上で必要な機能が全て備わりました!
 ### 👀 テストコードを更新する。
 
-それでは、`TokenFarm_test.js` を更新して、テストを行っていきましょう。
+それでは、`TokenFarm_test.js`を更新して、テストを行っていきましょう。
 
-- `追加するテストコード` が新しく追加されるテストコードです。
+- `追加するテストコード`が新しく追加されるテストコードです。
 
 ```javascript
 // TokenFarm_test.js
@@ -209,7 +209,7 @@ contract('TokenFarm', ([owner, investor]) => {
 })
 ```
 
-ではターミナルを開いて `yield-farm-starter-project` ディレクトリにいることを確認してから下記のコードを実行してみてください。
+ではターミナルを開いて`yield-farm-starter-project`ディレクトリにいることを確認してから下記のコードを実行してみてください。
 
 ```bash
 truffle test
@@ -238,13 +238,13 @@ Contract: TokenFarm
 
 ### 🪙 Dapp トークンを発行する
 
-さて、`TokenFarm.sol` の中に Yield Farming を行うのに必要な機能はすべて揃いました。しかし、最後にやることが一つあります。
+さて、`TokenFarm.sol`の中にYield Farmingを行うのに必要な機能はすべて揃いました。しかし、最後にやることが1つあります。
 
-それは、`issue` 関数を呼び出すための `js` ファイルの作成です。
+それは、`issue`関数を呼び出すための`js`ファイルの作成です。
 
-Token Farm のWEBアプリに Dai トークンをステーキングした投資家に Dapp トークンが自動的に発行されるのが理想ですが、今回 Dapp トークンは公開されているものではないため、手動で発行していきます。
+Token FarmのWebアプリにDaiトークンをステーキングした投資家にDappトークンが自動的に発行されるのが理想ですが、今回Dappトークンは公開されているものではないため、手動で発行していきます。
 
-ターミナルを開いて、`yield-farm-starter-project` にいることを確認し、以下のコードを実行して、`scripts` ディレクトリに `issue-token.js` を作成しましょう。
+ターミナルを開いて、`yield-farm-starter-project`にいることを確認し、以下のコードを実行して、`scripts`ディレクトリに`issue-token.js`を作成しましょう。
 
 ```bash
 mkdir scripts
@@ -253,7 +253,7 @@ mkdir scripts
 touch scripts/issue-token.js
 ```
 
-では早速以下を、`issue-token.js` に書き込んでいきましょう。
+では早速以下を、`issue-token.js`に書き込んでいきましょう。
 
 ```javascript
 // issue-token.js
@@ -267,7 +267,7 @@ module.exports = async function(callback) {
 }
 ```
 
-これで `issueTokens` を手動で呼び出せるようになりました。ではターミナルを開いて `yield-farm-starter-project` にいることを確認してから下記のコードを順番に実行してみましょう。
+これで`issueTokens`を手動で呼び出せるようになりました。ではターミナルを開いて`yield-farm-starter-project`にいることを確認してから下記のコードを順番に実行してみましょう。
 
 ```bash
 truffle migrate --reset
@@ -285,12 +285,12 @@ Using network 'development'.
 Tokens issued!
 ```
 
-現在、誰も Token Farm にステーキングを行っていないので、実際にはトークンを発行することはありませんが、本番で失敗しないように実行だけはしておきます。
+現在、誰もToken Farmにステーキングを行っていないので、実際にはトークンを発行することはありませんが、本番で失敗しないように実行だけはしておきます。
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#eth-yield-farm` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#eth-yield-farm`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -301,5 +301,5 @@ Tokens issued!
 
 ---
 これでバックエンドの作成は完了です!お疲れ様でした🎉
-ターミナルの出力結果を `#eth-yield-farm` にシェアしましょう!
-次のセクションではフロントエンドの作成に取り掛かっていきます。Token Farm の完成まで後少しです!頑張っていきましょう💪
+ターミナルの出力結果を`#eth-yield-farm`にシェアしましょう!
+次のセクションではフロントエンドの作成に取り掛かっていきます。Token Farmの完成まで後少しです!頑張っていきましょう💪

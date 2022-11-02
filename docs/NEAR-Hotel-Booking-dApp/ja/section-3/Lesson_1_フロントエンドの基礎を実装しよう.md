@@ -1,6 +1,6 @@
 ### 📝 　設定ファイルを編集しよう
 
-ここからはフロントエンドの作成になりますが、まずは、前回のセクションまでで完成したスマートスマートコントラクトをデプロイしているアカウント ID が使用されるようにします。
+ここからはフロントエンドの作成になりますが、まずは、前回のセクションまでで完成したスマートスマートコントラクトをデプロイしているアカウントIDが使用されるようにします。
 
 `near-hotel-booking-dapp/contract/neardev/dev-account.env`内の`CONTRACT_NAME`を書き換えます。
 
@@ -18,7 +18,7 @@ CONTRACT_NAME=contract.hotel_booking.testnet
 
 ### 🔌 スマートコントラクトとの接続を実装しよう
 
-`frontend/near-api.js`に、NEAR Wallet のデータやスマートコントラクトのメソッドを設定するための実装を行います。以下のように書き換えてください
+`frontend/near-api.js`に、NEAR Walletのデータやスマートコントラクトのメソッドを設定するための実装を行います。以下のように書き換えてください
 
 `frontend/near-api.js`
 
@@ -193,7 +193,7 @@ import {
 } from "near-api-js/lib/utils/format";
 ```
 
-NEAR トランザクションの内部で扱う単位と、人が扱う単位の変換は[こちらの関数](https://docs.near.org/tools/near-api-js/utils)で実行できます。
+NEARトランザクションの内部で扱う単位と、人が扱う単位の変換は[こちらの関数](https://docs.near.org/tools/near-api-js/utils)で実行できます。
 
 - `formatNearAmount()` : YoctoNEAR => NEAR
 - `parseNearAmount()` : NEAR => yoctoNEAR
@@ -227,10 +227,10 @@ window.contract = await new Contract(
 );
 ```
 
-- `viewMethods` : ブロックチェーン上のデータを読み込むメソッド（ガス代は無料）
-- `changeMethods` : ブロックチェーン上にデータを書き込むメソッド（ガス代が必要）
+- `viewMethods` : ブロックチェーン上のデータを読み込むメソッド(ガス代は無料)
+- `changeMethods` : ブロックチェーン上にデータを書き込むメソッド(ガス代が必要)
 
-次に、使用するメソッドの処理を定義し `export` します。
+次に、使用するメソッドの処理を定義し`export`します。
 
 ```javascript
 // コールするメソッドの処理を定義
@@ -323,7 +323,7 @@ export async function change_status_to_stay(room_id, check_in_date) {
 }
 ```
 
-トークンの転送処理が行われる`book_room`メソッドには、第二引数にガスの上限、第三引数に量（ここでは宿泊料）を指定します。
+トークンの転送処理が行われる`book_room`メソッドには、第二引数にガスの上限、第三引数に量(ここでは宿泊料)を指定します。
 
 ```javascript
 await window.contract.book_room(
@@ -349,9 +349,9 @@ await window.contract.book_room(
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-booking-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#near-booking-dapp`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

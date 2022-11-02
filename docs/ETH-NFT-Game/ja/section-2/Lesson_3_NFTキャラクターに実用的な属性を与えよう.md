@@ -1,26 +1,26 @@
 ### 🤝 フロントエンドと連携するための関数を作成する
 
-これから、Web アプリケーションにゲームを構築していくので、コントラクトとフロントエンドを連携させるための関数を実装していきます。
+これから、Webアプリケーションにゲームを構築していくので、コントラクトとフロントエンドを連携させるための関数を実装していきます。
 
 - 下記で実装していく関数は、フロントエンドから呼び出すことを前提としています。
 
 - したがって、今わからないことがあったとしても、フロントエンドのスクリプトを実装する段階では、それらはクリアになるはずです。
 
-- まずは、`MyEpicGame.sol` を更新することをゴールに進んでいきましょう。
+- まずは、`MyEpicGame.sol`を更新することをゴールに進んでいきましょう。
 
 ### ✅ ユーザーが NFT キャラクターを持っているか確認する
 
-`checkIfUserHasNFT` 関数を作成していきます。
+`checkIfUserHasNFT`関数を作成していきます。
 
-この関数の機能は下記の 2 つです。
+この関数の機能は下記の2つです。
 
-- ユーザーがすでに NFT キャラクターを持っているかどうかを確認する。
+- ユーザーがすでにNFTキャラクターを持っているかどうかを確認する。
 
-- ユーザーのウォレットに NFT キャラクターがすでに存在する場合は、その属性を取得情報（HP など）を取得する。
+- ユーザーのウォレットにNFTキャラクターがすでに存在する場合は、その属性を取得情報(HPなど)を取得する。
 
-下記の関数を `MyEpicGame.sol` に追加してください。
+下記の関数を`MyEpicGame.sol`に追加してください。
 
-- `attackBoss` 関数のコードブロック直下がお勧めです。
+- `attackBoss`関数のコードブロック直下がお勧めです。
 
 ```solidity
 // MyEpicGame.sol
@@ -50,9 +50,9 @@ function checkIfUserHasNFT() public view returns (CharacterAttributes memory) {
 	:
 ```
 
-`checkIfUserHasNFT` 関数がフロントエンドから呼び出されると、`uint256 userNftTokenId = nftHolders[msg.sender];` を実行して、ユーザーがすでに NFT キャラクターを持っているかチェックします。
+`checkIfUserHasNFT`関数がフロントエンドから呼び出されると、`uint256 userNftTokenId = nftHolders[msg.sender];`を実行して、ユーザーがすでにNFTキャラクターを持っているかチェックします。
 
-`userNftTokenId` には、Web アプリケーションにログインしたユーザーの `tokenId` が入ります。
+`userNftTokenId`には、Webアプリケーションにログインしたユーザーの`tokenId`が入ります。
 
 次に、下記のコードを見ていきましょう。
 
@@ -69,21 +69,21 @@ else {
 }
 ```
 
-`constructor` で `_tokenIds.increment()` を行っているので、`tokenId` の `0` 番を保持している人は存在しません。
+`constructor`で`_tokenIds.increment()`を行っているので、`tokenId`の`0`番を保持している人は存在しません。
 
-よって、`userNftTokenId > 0` の場合、ユーザーは何かしらの `tokenId` を保持していることになります。
+よって、`userNftTokenId > 0`の場合、ユーザーは何かしらの`tokenId`を保持していることになります。
 
-同時に、`nftHolders[msg.sender]` に新しいユーザーのアドレスが渡された場合は、デフォルト値である `0` が `userNftTokenId` に格納されます。
+同時に、`nftHolders[msg.sender]`に新しいユーザーのアドレスが渡された場合は、デフォルト値である`0`が`userNftTokenId`に格納されます。
 
-もし、ユーザーが NFT キャラクターをまだ持っていない場合は、`emptyStruct` が返されるので、そこに新しく NFT キャラクターの情報を格納していくことになります。
+もし、ユーザーがNFTキャラクターをまだ持っていない場合は、`emptyStruct`が返されるので、そこに新しくNFTキャラクターの情報を格納していくことになります。
 
 ### 🎃 キャラクターを選ぶ
 
-Web アプリケーションに、「キャラクター選択画面」を作成し、プレイヤーに Mint する NFT キャラクターを選んでもらいます。
+Webアプリケーションに、「キャラクター選択画面」を作成し、プレイヤーにMintするNFTキャラクターを選んでもらいます。
 
-そのための関数 `getAllDefaultCharacters` を `MyEpicGame.sol` の中に作成していきます。
+そのための関数`getAllDefaultCharacters`を`MyEpicGame.sol`の中に作成していきます。
 
-- `checkIfUserHasNFT` 関数のコードブロック直下がお勧めです。
+- `checkIfUserHasNFT`関数のコードブロック直下がお勧めです。
 
 ```solidity
 // MyEpicGame.sol
@@ -92,13 +92,13 @@ function getAllDefaultCharacters() public view returns (CharacterAttributes[] me
 }
 ```
 
-これにより、Web アプリケーションから、3 体の NFT キャラクターのデフォルト情報が取得できます。
+これにより、Webアプリケーションから、3体のNFTキャラクターのデフォルト情報が取得できます。
 
 ### 💀 フロントエンドからボスのデータを取得する
 
-フロントエンドに、ボスの情報（HP、名前、画像など）を反映させる関数を作成します。
+フロントエンドに、ボスの情報(HP、名前、画像など)を反映させる関数を作成します。
 
-- `getAllDefaultCharacters` 関数のコードブロック直下がお勧めです。
+- `getAllDefaultCharacters`関数のコードブロック直下がお勧めです。
 
 ```solidity
 // MyEpicGame.sol
@@ -113,13 +113,13 @@ function getBigBoss() public view returns (BigBoss memory) {
 
 イベントは [Webhooks](https://kintone-blog.cybozu.co.jp/developer/000283.html) のようなものです。
 
-Solidity の `event` はバックエンドであるスマートコントラクトから、フロントエンドであるクライアントへメッセージを「発射（`emit`）」するために宣言されます。
+Solidityの`event`はバックエンドであるスマートコントラクトから、フロントエンドであるクライアントへメッセージを「発射(`emit`)」するために宣言されます。
 
-- `event` / `emit` を使用することで、ブロックチェーン上で更新された情報が、フロントエンドに自動で反映されます。
+- `event` / `emit`を使用することで、ブロックチェーン上で更新された情報が、フロントエンドに自動で反映されます。
 
-- 次のレッスンで、`App.js` というフロントエンド用のスクリプトを作成し、Web アプリケーションがイベントを「キャッチ」するための実装を行います。
+- 次のレッスンで、`App.js`というフロントエンド用のスクリプトを作成し、Webアプリケーションがイベントを「キャッチ」するための実装を行います。
 
-それでは、`mapping(address => uint256) public nftHolders` の直下に下記 2 つのイベントを宣言しましょう。
+それでは、`mapping(address => uint256) public nftHolders`の直下に下記2つのイベントを宣言しましょう。
 
 ```solidity
 // MyEpicGame.sol
@@ -129,17 +129,17 @@ event CharacterNFTMinted(address sender, uint256 tokenId, uint256 characterIndex
 event AttackComplete(uint newBossHp, uint newPlayerHp);
 ```
 
-**`event CharacterNFTMinted` は、ユーザーが NFT キャラクターを Mint し終えたときに発生します。**
+**`event CharacterNFTMinted`は、ユーザーが NFT キャラクターを Mint し終えたときに発生します。**
 
-- これにより、NFT キャラクターの Mint が完了したことをフロントエンドに通知できます。
+- これにより、NFTキャラクターのMintが完了したことをフロントエンドに通知できます。
 
-**`event AttackComplete` は NFT キャラクターがボスを攻撃したときに発生します。**
+**`event AttackComplete`は NFT キャラクターがボスを攻撃したときに発生します。**
 
-- イベントによって、ボスの新しい HP（`newBossHp`）とプレイヤーの新しい HP（`newPlayerHp`）がそれぞれ返されます。
+- イベントによって、ボスの新しいHP(`newBossHp`)とプレイヤーの新しいHP(`newPlayerHp`)がそれぞれ返されます。
 
-- `event AttackComplete` をフロントエンドでキャッチすることで、ページを再度読み込みすることなく、プレイヤーやボスの HP を動的に更新できます。
+- `event AttackComplete`をフロントエンドでキャッチすることで、ページを再度読み込みすることなく、プレイヤーやボスのHPを動的に更新できます。
 
-次に、`mintCharacterNFT` 関数の一番下 (`_tokenIds.increment();` の直下) に、次の行を追加していきましょう。
+次に、`mintCharacterNFT`関数の一番下 (`_tokenIds.increment();`の直下) に、次の行を追加していきましょう。
 
 ```solidity
 // MyEpicGame.sol
@@ -147,7 +147,7 @@ event AttackComplete(uint newBossHp, uint newPlayerHp);
 emit CharacterNFTMinted(msg.sender, newItemId, _characterIndex);
 ```
 
-それから、`attackBoss` 関数の一番下に次の行を追加しましょう。
+それから、`attackBoss`関数の一番下に次の行を追加しましょう。
 
 ```solidity
 // MyEpicGame.sol
@@ -155,25 +155,25 @@ emit CharacterNFTMinted(msg.sender, newItemId, _characterIndex);
 emit AttackComplete(bigBoss.hp, player.hp);
 ```
 
-`emit` は `event` の発射機能です。
+`emit`は`event`の発射機能です。
 
 これにより、フロントエンドで、イベントを受け取ることができます。
 
 - フロントエンドでイベントを「キャッチ」する方法に関しては、次のレッスンで説明します 🚀
 
-> ✍️: `event` / `emit` について補足
+> ✍️: `event` / `emit`について補足
 >
-> `event` / `emit` を使用することで、ブロックチェーン上で更新された情報が、フロントエンドに表示されるようになります。
+> `event` / `emit`を使用することで、ブロックチェーン上で更新された情報が、フロントエンドに表示されるようになります。
 
 ### ➡️ コントラクトを更新して、もう一度デプロイする
 
-これで、Web アプリケーション内で使用する機能の準備ができました。
+これで、Webアプリケーション内で使用する機能の準備ができました。
 
 これから、コントラクトを再度テストネットにデプロイしていきます。
 
-まず、下記のように、`deploy.js` を更新しましょう。
+まず、下記のように、`deploy.js`を更新しましょう。
 
-- フロントエンド用のスクリプトに `attackBoss()` 関数は実装していくので、`deploy.js` では排除しています。
+- フロントエンド用のスクリプトに`attackBoss()`関数は実装していくので、`deploy.js`では排除しています。
 
 ```javascript
 // deploy.js
@@ -212,7 +212,7 @@ const runMain = async () => {
 runMain();
 ```
 
-それでは、ターミナルに向かい、下記を `epic-game` ディレクトリ上で実行していきましょう。
+それでは、ターミナルに向かい、下記を`epic-game`ディレクトリ上で実行していきましょう。
 
 ```
 npx hardhat run scripts/deploy.js --network goerli
@@ -234,9 +234,9 @@ Contract deployed to: 0xEC4D62E631c4FdC9c293772b3897C64A07874B06
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#eth-nft-game` で質問してください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#eth-nft-game`で質問してください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -247,10 +247,10 @@ Contract deployed to: 0xEC4D62E631c4FdC9c293772b3897C64A07874B06
 
 ---
 
-これでセクション 2 は終了です!　おめでとうございます!
+これでセクション2は終了です!　おめでとうございます!
 
-ぜひ、ターミナルの出力結果を `#eth-nft-game` に投稿してください 😊
+ぜひ、ターミナルの出力結果を`#eth-nft-game`に投稿してください 😊
 
 コミュニティであなたの成功を祝いましょう 🎉
 
-次のレッスンでは、Web アプリケーションを作り始めます!
+次のレッスンでは、Webアプリケーションを作り始めます!

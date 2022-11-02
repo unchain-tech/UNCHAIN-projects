@@ -1,40 +1,40 @@
 ### 🐝 OpenSea で NFT を確認する
 
-コントラクトのアドレス（`Contract deployed to` に続く `0x..`）をターミナルからコピーして、[テストネット用の OpenSea](https://testnets.opensea.io/) に貼り付け、検索してみてください。
+コントラクトのアドレス(`Contract deployed to`に続く`0x..`)をターミナルからコピーして、[テストネット用の OpenSea](https://testnets.opensea.io/) に貼り付け、検索してみてください。
 
-私のコレクションはこのような形で表示されます。（画像は学習コンテンツ制作時に使用していた Rarible rinkeby testnet のものを使用しています。）
+私のコレクションはこのような形で表示されます(画像は学習コンテンツ制作時に使用していたRarible rinkeby testnetのものを使用しています)。
 
 ![](/public/images/Polygon-Generative-NFT/section-2/2_4_1.png)
 
-`deploy.js` で、10 個の NFT を自分用にキープしてから、3 個 NFT を Mint しました。
+`deploy.js`で、10個のNFTを自分用にキープしてから、3個NFTをMintしました。
 
-したがって、今コントラクトアドレスから表示できる NFT コレクションは、13 個です。
+したがって、今コントラクトアドレスから表示できるNFTコレクションは、13個です。
 
-### 📝 Etherscan を使ってコントラクトを verify（検証）する
+### 📝 Etherscan を使ってコントラクトを verify(検証)する
 
-最後に、Etherscan で **コントラクトの Verification（検証）** を行いましょう。
+最後に、Etherscanで **コントラクトの Verification(検証)** を行いましょう。
 
-この機能を使えば、あなたの Solidity プログラムを世界中の人に公開できます。
+この機能を使えば、あなたのSolidityプログラムを世界中の人に公開できます。
 
 また、あなたもほかの人の書いたコードを読むことができます。
 
-まず、Etherscan のアカウントを取得して、API Key を取得しましょう。
+まず、Etherscanのアカウントを取得して、API Keyを取得しましょう。
 
 アカウントをまだお持ちでない場合は、[https://etherscan.io/register](https://etherscan.io/register) にアクセスして、無料のユーザーアカウントを作成してください。
 
-アカウントが作成できたら、`My Profile` 画面に移動してください。
+アカウントが作成できたら、`My Profile`画面に移動してください。
 
 ![](/public/images/Polygon-Generative-NFT/section-2/2_4_2.png)
 
-`API Keys` タブを選択し、`+ Add` ボタンを押したら、`Create API Key` のポップアップが表示されるので、あなたの API に任意の名前をつけましょう。
+`API Keys`タブを選択し、`+ Add`ボタンを押したら、`Create API Key`のポップアップが表示されるので、あなたのAPIに任意の名前をつけましょう。
 
 ![](/public/images/Polygon-Generative-NFT/section-2/2_4_3.png)
 
-次に、あなたが作成した API の横の `Edit` ボタンを選択してください。ポップアップが表示されるので、`apiKey` を取得しましょう。
+次に、あなたが作成したAPIの横の`Edit`ボタンを選択してください。ポップアップが表示されるので、`apiKey`を取得しましょう。
 
-次に、ターミナルで `nft-collectible` ディレクトリに移動して、次のコマンドを実行してください。
+次に、ターミナルで`nft-collectible`ディレクトリに移動して、次のコマンドを実行してください。
 
-Etherscan で verification を行うために必要なツールをインストールします。
+Etherscanでverificationを行うために必要なツールをインストールします。
 
 ```bash
 npm install @nomiclabs/hardhat-etherscan
@@ -42,15 +42,15 @@ npm install @nomiclabs/hardhat-etherscan
 
 ![](/public/images/Polygon-Generative-NFT/section-2/2_4_4.png)
 
-次に、`nft-collectible` ディレクトリにある `.env` を開きます。
+次に、`nft-collectible`ディレクトリにある`.env`を開きます。
 
-`YOUR ETHERSCAN apiKey HERE` の部分に Etherscan から取得した `apiKey` を貼り付けたら、下記のコードを `.env` に追加しましょう。
+`YOUR ETHERSCAN apiKey HERE`の部分にEtherscanから取得した`apiKey`を貼り付けたら、下記のコードを`.env`に追加しましょう。
 
 ```
 ETHERSCAN_API = "YOUR ETHERSCAN apiKey HERE"
 ```
 
-最後に、`nft-collectible/hardhat.config.js` を下記のように更新しましょう。
+最後に、`nft-collectible/hardhat.config.js`を下記のように更新しましょう。
 
 ```javascript
 // hardhat.config.js
@@ -85,7 +85,7 @@ module.exports = {
 
 これでコントラクトを検証する準備は整いました。
 
-下記の `DEPLOYED_CONTRACT_ADDRESS` と `"BASE_TOKEN_URI"` をあなたのものに更新したら、ターミナルで実行していきましょう。
+下記の`DEPLOYED_CONTRACT_ADDRESS`と`"BASE_TOKEN_URI"`をあなたのものに更新したら、ターミナルで実行していきましょう。
 
 ```bash
 npx hardhat clean
@@ -93,9 +93,9 @@ npx hardhat clean
 npx hardhat verify --network goerli DEPLOYED_CONTRACT_ADDRESS "BASE_TOKEN_URI"
 ```
 
-- `DEPLOYED_CONTRACT_ADDRESS` はあなたのコントラクトアドレスです。
+- `DEPLOYED_CONTRACT_ADDRESS`はあなたのコントラクトアドレスです。
 
-- `"BASE_TOKEN_URI"` は、`deploy.js` に記載されているものと同一である必要があります。
+- `"BASE_TOKEN_URI"`は、`deploy.js`に記載されているものと同一である必要があります。
 
 私のコマンドは下記のようになります。
 
@@ -115,31 +115,31 @@ Successfully verified contract NFTCollectible on Etherscan.
 https://goerli.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#code
 ```
 
-出力された `goerli.etherscan.io` の URL にアクセスしてみましょう。
+出力された`goerli.etherscan.io`のURLにアクセスしてみましょう。
 
 私の [URL リンク](https://goerli.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#code) の中身は下記のように表示されます。
 
 ![](/public/images/Polygon-Generative-NFT/section-2/2_4_5.png)
 
-`Contract` タブの横に小さな緑のチェックマーク ✅ が表示されているでしょうか？
+`Contract`タブの横に小さな緑のチェックマーク ✅ が表示されているでしょうか？
 
-✅ は、ユーザーが MetaMask を使ってし、Etherscan 自体からコントラクトの機能を呼び出せるようになったということを意味します。
+✅ は、ユーザーがMetaMaskを使ってし、Etherscan自体からコントラクトの機能を呼び出せるようになったということを意味します。
 
 ![](/public/images/Polygon-Generative-NFT/section-2/2_4_6.png)
 
-`Contract` タブの中の `Write Contract` を選択して以下を試してみましょう。
+`Contract`タブの中の`Write Contract`を選択して以下を試してみましょう。
 
-- コントラクトをデプロイするのに使用した MetaMask アカウントに接続し、`withdraw` 関数を呼び出します。
+- コントラクトをデプロイするのに使用したMetaMaskアカウントに接続し、`withdraw`関数を呼び出します。
 
-- 0.03 ETH をコントラクトから自分のウォレットに転送できるはずです。
+- 0.03 ETHをコントラクトから自分のウォレットに転送できるはずです。
 
-- また、`mintNFTs` 関数を呼び出して数枚の NFT を Mint してみましょう。
+- また、`mintNFTs`関数を呼び出して数枚のNFTをMintしてみましょう。
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#polygon-generative-nft` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#polygon-generative-nft`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -150,7 +150,7 @@ https://goerli.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#c
 
 ---
 
-Etherscan リンクを `#polygon-generative-nft` に投稿してください 😊
+Etherscanリンクを`#polygon-generative-nft`に投稿してください 😊
 
 コミュニティであなたの成功を祝いましょう 🎉
 

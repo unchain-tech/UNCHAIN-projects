@@ -1,6 +1,6 @@
 ### 🍃 Tailwind CSS のセットアップをしよう
 
-このレッスンでは、Tailwind CSS を使用するための準備を行います。
+このレッスンでは、Tailwind CSSを使用するための準備を行います。
 
 `ic-static-website/`にいることを確認して、以下のコマンドを実行します。
 
@@ -14,7 +14,7 @@ npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init  -p
 ```
 
-2 つのファイルが作成されます。
+2つのファイルが作成されます。
 
 ```bash
 Created Tailwind CSS config file: tailwind.config.cjs
@@ -36,7 +36,7 @@ module.exports = {
 };
 ```
 
-最後に、CSS に Tailwind の設定を追加します。`./src/app.css`ファイルを以下のように上書きしてください。
+最後に、CSSにTailwindの設定を追加します。`./src/app.css`ファイルを以下のように上書きしてください。
 
 [app.css]
 
@@ -46,9 +46,9 @@ module.exports = {
 @tailwind utilities;
 ```
 
-これで Tailwind CSS の設定は完了です。きちんと機能しているか確認してみましょう。
+これでTailwind CSSの設定は完了です。きちんと機能しているか確認してみましょう。
 
-`./src/App.svelte`ファイルの 15 行目を、以下のように書き換えます。
+`./src/App.svelte`ファイルの15行目を、以下のように書き換えます。
 
 [App.svelte]
 
@@ -61,7 +61,7 @@ module.exports = {
 
 ![](/public/images/ICP-Static-Site/section-2/2_2_1.png)
 
-この時点でのファイル構成を`tree`コマンドで確認してみましょう。最後に指定した`.`は、現在自分がいるディレクトリ（カレントディレクトリ）を意味します。
+この時点でのファイル構成を`tree`コマンドで確認してみましょう。最後に指定した`.`は、現在自分がいるディレクトリ(カレントディレクトリ)を意味します。
 
 ```bash
 tree -L 1 -F -a .
@@ -88,9 +88,9 @@ tree -L 1 -F -a .
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#icp-static-site` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#icp-static-site`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -101,4 +101,4 @@ tree -L 1 -F -a .
 
 ---
 
-次のレッスンに進み、Web サイトのコンポーネントを作成していきましょう！
+次のレッスンに進み、Webサイトのコンポーネントを作成していきましょう！

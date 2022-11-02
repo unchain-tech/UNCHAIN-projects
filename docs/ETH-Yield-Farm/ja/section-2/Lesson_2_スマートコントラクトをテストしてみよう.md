@@ -3,7 +3,7 @@
 
 ### ✏️ スマートコントラクトのテストを作成する
 
-まず、ターミナルを開いて、`yield-farm-starter-project` ディレクトリにいることを確認し、以下のコマンドを実行しましょう。
+まず、ターミナルを開いて、`yield-farm-starter-project`ディレクトリにいることを確認し、以下のコマンドを実行しましょう。
 
 ```bash
 mkdir test
@@ -12,11 +12,11 @@ mkdir test
 touch test/TokenFarm_test.js
 ```
 
-ここでは、`yield-farm-starter-project` ディレクトリの中に `test` フォルダを作成し、その中にテスト用のファイル (`TokenFarm_test.js`) を作成しています。
+ここでは、`yield-farm-starter-project`ディレクトリの中に`test`フォルダを作成し、その中にテスト用のファイル (`TokenFarm_test.js`) を作成しています。
 
 スマートコントラクトは、一度ブロックチェーン上にデプロイすると変更できないため、コードが問題なく動作することをテストすることが重要です。
 
-では `TokenFarm_test.js` を開いて以下のコードを追加していきましょう。
+では`TokenFarm_test.js`を開いて以下のコードを追加していきましょう。
 
 ```javascript
 // TokenFarm_test.js
@@ -109,13 +109,13 @@ require(`chai`)
     .should()
 ```
 
-今回テストに使用する `chai` は、truffle が提供するテスト用のライブラリです。
-- `yield-farm-starter-project/package.json` の中に、使用する `chai` のバージョンが記載されています。
-- テストには、`chai` だけでなく、`mocha` という　truffle に含まれている JavaScript 用のテストフレームワークを使用します。
-- `chai` について詳しく知りたい方は、[こちら](https://www.chaijs.com/)の公式ドキュメントをご覧ください🫖
-- `mocha` について詳しく知りたい方は、[こちら](https://mochajs.org/)の公式ドキュメントをご覧ください☕️
+今回テストに使用する`chai`は、truffleが提供するテスト用のライブラリです。
+- `yield-farm-starter-project/package.json`の中に、使用する`chai`のバージョンが記載されています。
+- テストには、`chai`だけでなく、`mocha`というtruffleに含まれているJavaScript用のテストフレームワークを使用します。
+- `chai`について詳しく知りたい方は、[こちら](https://www.chaijs.com/)の公式ドキュメントをご覧ください🫖
+- `mocha`について詳しく知りたい方は、[こちら](https://mochajs.org/)の公式ドキュメントをご覧ください☕️
 
-次に、任意の ETH の値を Wei に変換するヘルパー関数 `token()` を定義します。
+次に、任意のETHの値をWeiに変換するヘルパー関数`token()`を定義します。
 
 ```javascript
 // TokenFarm_test.js
@@ -148,9 +148,9 @@ contract('TokenFarm', ([owner, investor]) => {
 
 これらのコードは、同時に複数のテストを書くのに便利です。
 
-`contract` の中の引数は、それぞれ以下のような変数が含まれます。
-- `owner`: Dapp トークンをブロックチェーンにデプロイした人のアドレス
-- `investor`: Token Farm に Dai を預ける人のアドレス
+`contract`の中の引数は、それぞれ以下のような変数が含まれます。
+- `owner`: Dappトークンをブロックチェーンにデプロイした人のアドレス
+- `investor`: Token FarmにDaiを預ける人のアドレス
 
 まず、3つのスマートコントラクトに関連付けるローカル変数をそれぞれ作成します。
 
@@ -159,16 +159,16 @@ contract('TokenFarm', ([owner, investor]) => {
 let daiToken, dappToken, tokenFarm
 ```
 
-次に、`before` フックを作成します。
+次に、`before`フックを作成します。
 
 ```javascript
 // TokenFarm_test.js
 before(async () =>{})
 ```
 
-`before` フックは、各テストの前に実行される関数です。
+`before`フックは、各テストの前に実行される関数です。
 
-`before` フックの内部では、3つのスマートコントラクトを読み込みます。
+`before`フックの内部では、3つのスマートコントラクトを読み込みます。
 
 ```javascript
 // TokenFarm_test.js
@@ -178,7 +178,7 @@ dappToken = await DappToken.new()
 tokenFarm = await TokenFarm.new(dappToken.address, daiToken.address)
 ```
 
-そして、すべての Dapp トークンと 100 Dai トークンをそれぞれトークンファームに転送します。
+そして、すべてのDappトークンと100 Daiトークンをそれぞれトークンファームに転送します。
 
 ```javascript
 // TokenFarm_test.js
@@ -189,11 +189,11 @@ await dappToken.transfer(tokenFarm.address, tokens('1000000'));
 await daiToken.transfer(investor, tokens('100'), {from: owner})
 ```
 
-任意の ETH の値を Wei に変換する `token()` 関数がここで使用されていますね😊
+任意のETHの値をWeiに変換する`token()`関数がここで使用されていますね😊
 
 最後に、3つのスマートコントラクトが正常にブロックチェーン上にデプロイされているかテストします。
 
-`TokenFarm_test.js` のテスト1-3でやっていることはほぼ同じです。
+`TokenFarm_test.js`のテスト1-3でやっていることはほぼ同じです。
 
 テスト1を例に、何をやっているのか詳しく見ていきましょう。
 
@@ -209,11 +209,11 @@ describe('Mock DAI deployment', async () => {
 })
 ```
 
-テスト1は、DaiToken コントラクトがネットワークに正常にデプロイされたかどうかをテストしています。
+テスト1は、DaiTokenコントラクトがネットワークに正常にデプロイされたかどうかをテストしています。
 
-テスト1が成功した場合、テスト1は デプロイされたコントラクトが "Mock DAI Token" という名前を持っていることを示します。
+テスト1が成功した場合、テスト1はデプロイされたコントラクトが "Mock DAI Token" という名前を持っていることを示します。
 
-最後に、TokenFarm に Dapp トークンが転送されていることを確認するためにテスト4を作成します。
+最後に、TokenFarmにDappトークンが転送されていることを確認するためにテスト4を作成します。
 
 ```javascript
 // TokenFarm_test.js
@@ -224,13 +224,13 @@ it('contract has tokens', async () => {
 })
 ```
 
-テスト4が成功すると、Token Farm が 100万 Dapp Token を持っていると表示されるはずです。
+テスト4が成功すると、Token Farmが100万Dapp Tokenを持っていると表示されるはずです。
 
 > 👀: truffle console と　テストコードの違い
 >
->前回のレッスンでは、truffle console を使って、選択したコントラクトがブロックチェーン上で正しく動作しているかを確認しましたが、 `TokenFarm_test.js` の内容を振り返ってみると、やっていることはほとんど同じです。
+>前回のレッスンでは、truffle console を使って、選択したコントラクトがブロックチェーン上で正しく動作しているかを確認しましたが、 `TokenFarm_test.js`の内容を振り返ってみると、やっていることはほとんど同じです。
 >
-> しかし、`TokenFarm_test.js` のようなテストコードでは、コントラクト内のすべての関数とプロパティを一度にテストすることができます。
+> しかし、`TokenFarm_test.js`のようなテストコードでは、コントラクト内のすべての関数とプロパティを一度にテストすることができます。
 >
 > テストコードは、1つのファイルで各機能のテストを実行できるため、便利なので、どんどん開発に取り入れていきましょう。
 
@@ -239,7 +239,7 @@ it('contract has tokens', async () => {
 
 それでは、テスト実行しましょう。
 
-ターミナルを開いて、`yield-farm-starter-project` ディレクトリにいることを確認し、以下のコマンドを実行してください。
+ターミナルを開いて、`yield-farm-starter-project`ディレクトリにいることを確認し、以下のコマンドを実行してください。
 
 ```bash
 truffle test
@@ -262,9 +262,9 @@ Contract: TokenFarm
 ```
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#eth-yield-farm` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#eth-yield-farm`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -274,4 +274,4 @@ Contract: TokenFarm
 ```
 
 ---
-スマートコントラクトのテストは出来ましたか？次からはいよいよステーキングのシステムを作っていきます。
+スマートコントラクトのテストは出来ましたか？ 次からはいよいよステーキングのシステムを作っていきます。

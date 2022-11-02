@@ -128,7 +128,7 @@ impl Contract {
 
 まず初めに, [enum](https://doc.rust-jp.rs/book-ja/ch06-01-defining-an-enum.html)を利用して`Bike`型を定義しています。
 `Bike`はバイクの状態を表します。
-※`AccountId`は`near-sdk`ライブラリにある NEAR アカウント ID 用の型です。
+※`AccountId`は`near-sdk`ライブラリにあるNEARアカウントID用の型です。
 
 ```rust
 #[derive(BorshDeserialize, BorshSerialize)]
@@ -139,10 +139,10 @@ enum Bike {
 }
 ```
 
-`enum` は取りうる値を列挙する型です。
+`enum`は取りうる値を列挙する型です。
 すると状態遷移が明瞭, かつコード内にある`Bike`型の値は必ず列挙されている内のどれかの状態であるという保証ができます。
 また, 関連するデータを保持することができるため`InUse(AccountId)`のように,
-`InUse`に紐づくアカウント ID(誰が使用しているのか)も一緒に表現することができます。
+`InUse`に紐づくアカウントID(誰が使用しているのか)も一緒に表現することができます。
 
 次に`Contract`と初期化処理を変更しました。
 
@@ -194,14 +194,14 @@ impl Default for Contract {
 	// ...
 ```
 
-`enum` は [match](https://doc.rust-jp.rs/book-ja/ch06-02-match.html)という制御文を利用して条件分岐が可能です。
+`enum`は [match](https://doc.rust-jp.rs/book-ja/ch06-02-match.html)という制御文を利用して条件分岐が可能です。
 条件にマッチした場合の処理を`=>`の後に記述します。
-例えば, `is_available`メソッドでは指定された index の`bike`が`Available`であれば`true`を返し, そうでなければ`false`を返します。
+例えば, `is_available`メソッドでは指定されたindexの`bike`が`Available`であれば`true`を返し, そうでなければ`false`を返します。
 
 また, `Option<AccountId>`という型が登場しました。
-[Option](https://doc.rust-jp.rs/book-ja/ch06-02-match.html#optiont%E3%81%A8%E3%81%AE%E3%83%9E%E3%83%83%E3%83%81)は何か値を保持している(`Some`)か何も保持していない(`None`)の 2 つの状態を表します。
-例えば`who_is_using`メソッドでは指定された index の`bike`が使用中であればそのアカウント ID を`Some`に詰めて返却し, そうでなければ`None`を返します。
-また`所有権`の観点からアカウント ID は`clone`しています(`user_id.clone()`)。
+[Option](https://doc.rust-jp.rs/book-ja/ch06-02-match.html#optiont%E3%81%A8%E3%81%AE%E3%83%9E%E3%83%83%E3%83%81)は何か値を保持している(`Some`)か何も保持していない(`None`)の2つの状態を表します。
+例えば`who_is_using`メソッドでは指定されたindexの`bike`が使用中であればそのアカウントIDを`Some`に詰めて返却し, そうでなければ`None`を返します。
+また`所有権`の観点からアカウントIDは`clone`しています(`user_id.clone()`)。
 
 > `return 値`は書かなくても値を返却するのか?
 > Rust では関数の終了時点の文末に`;`をつけなければそのまま返却値とすることができます。
@@ -253,7 +253,7 @@ impl Default for Contract {
 
 ここでも`match`を利用して処理を分岐しています。
 ユーザがバイクを使用・点検する際は各メソッドを呼び出し,
-メソッド内では呼び出し元のアカウント ID をコントラクト内に保持するようにしてバイクの状態を変更します。
+メソッド内では呼び出し元のアカウントIDをコントラクト内に保持するようにしてバイクの状態を変更します。
 これで使用・点検の手続きが済みます。
 返却はその逆です。
 バイクの状態が期待するものでない場合は, なるべく**早い段階でパニックさせます**。
@@ -380,7 +380,7 @@ mod tests {
 ```
 
 `get_context`は`VMContextBuilder`を初期化しています。
-初期化の内容は少し前に出てきた 3 つの id を事前にセットしています。
+初期化の内容は少し前に出てきた3つのidを事前にセットしています。
 
 各テスト関数では`get_context`により`VMContextBuilder`を取得し,
 `testing_env!`マクロに`context`を渡すことでテスト環境(モックされたブロックチェーン)を初期化しています。
@@ -412,9 +412,9 @@ $ cargo test
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-economy` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#near-sharing-economy`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 

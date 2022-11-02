@@ -117,7 +117,7 @@ contract Messenger {
     mapping(address => uint256) private numOfPendingAtAddress;
 ```
 
-上記の 2 つはメッセージ保留数の上限値と, 各アドレス宛のメッセージがどのくらい保留されているかを保持する状態変数です。
+上記の2つはメッセージ保留数の上限値と, 各アドレス宛のメッセージがどのくらい保留されているかを保持する状態変数です。
 
 ```solidity
     constructor(uint256 _numOfPendingLimits) payable {
@@ -249,7 +249,7 @@ $ npx hardhat test
 
 ### 💠 コントラクトに管理者機能を設けましょう
 
-コントラクトに管理者を設けて, 管理者のみ `numOfPendingLimits` を変更してコントラクト内のルールを変更できるようにしましょう。
+コントラクトに管理者を設けて, 管理者のみ`numOfPendingLimits`を変更してコントラクト内のルールを変更できるようにしましょう。
 
 それでは`contracts`ディレクトリ内の
 `Messenger.sol`と同じ階層に`Ownable.sol`というファイルを作成しましょう。
@@ -281,15 +281,15 @@ contract Ownable {
 }
 ```
 
-このファイルは openzeppelin ライブラリの[ownable](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol) というコントラクトを簡単にしたものです。
+このファイルはopenzeppelinライブラリの[ownable](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol) というコントラクトを簡単にしたものです。
 
 コンストラクタ内ではコンストラクタを呼び出した(デプロイした)アドレスで状態変数の`owner`を初期化しています。
 
-`modifier`はまだ出てきていない関数修飾子の一つで, その使用方法と共にどんなものなのかこの後理解します。  
+`modifier`はまだ出てきていない関数修飾子の1つで, その使用方法と共にどんなものなのかこの後理解します。  
 ここで見て頂きたいのは, `require`を利用して, 関数を実行する人が`owner`と等しいことを確認していること  
-次の行に `_;` を記述しているということです。
+次の行に`_;`を記述しているということです。
 
-`Messenger.sol` に `Ownable`を継承させて, `Ownable`の関数を利用できるようにしましょう。
+`Messenger.sol`に`Ownable`を継承させて, `Ownable`の関数を利用できるようにしましょう。
 
 `Messenger.sol`を以下のように編集してください。
 
@@ -350,24 +350,24 @@ import "hardhat/console.sol";
 }
 ```
 
-`contract Messenger is Ownable` のようにコントラクトを宣言することで,  
-`Messenger.sol` は `Ownable`を継承するという関係を作れます, すると `Ownable` の関数を `Messenger.sol` も利用できるようになります。
+`contract Messenger is Ownable`のようにコントラクトを宣言することで,  
+`Messenger.sol`は`Ownable`を継承するという関係を作れます, すると`Ownable`の関数を`Messenger.sol`も利用できるようになります。
 
-コンストラクタ内で `Ownable` の関数 `ownable` を実行しています。  
+コンストラクタ内で`Ownable`の関数`ownable`を実行しています。  
 `ownable`を実行すると, コンストラクタを呼び出した(=デプロイをした)アカウントのアドレスをコントラクトは管理者として記録します。
 
-新しく追加した `changeNumOfPendingLimits` 関数に注目しましょう。  
-関数の実行に修飾子の `onlyOwner` を指定しています。
+新しく追加した`changeNumOfPendingLimits`関数に注目しましょう。  
+関数の実行に修飾子の`onlyOwner`を指定しています。
 
 ここで起こる処理の流れを整理します。
 
-- `changeNumOfPendingLimits` が呼び出されると, 修飾子 `onlyOwner` の内容が実行されます。
-- `onlyOwner` の内では, 関数を呼び出したアカウントが管理者であるかを確認しています。
-- 確認が取れたら, `_;` の記述された箇所から, 今度は `changeNumOfPendingLimits` の処理が実行されます。
-- `numOfPendingLimits` を変更しイベントを emit します。
+- `changeNumOfPendingLimits`が呼び出されると, 修飾子`onlyOwner`の内容が実行されます。
+- `onlyOwner`の内では, 関数を呼び出したアカウントが管理者であるかを確認しています。
+- 確認が取れたら, `_;`の記述された箇所から, 今度は`changeNumOfPendingLimits`の処理が実行されます。
+- `numOfPendingLimits`を変更しイベントをemitします。
 
 このように`modifier`を利用した関数修飾子は, 自分でカスタムした処理をある関数の実行前の処理として適用させることができます。  
-今回のように管理者権限の必要な関数には `onlyOwner` を修飾子としてつけるだけで決まった処理をしてくれるので便利です。
+今回のように管理者権限の必要な関数には`onlyOwner`を修飾子としてつけるだけで決まった処理をしてくれるので便利です。
 
 オーナーに特別な権限を与えることは, オーナーの利益のためにルールを変更できるという面で, 濫用される恐れもあります。
 
@@ -377,7 +377,7 @@ import "hardhat/console.sol";
 > 気になる部分については、すべてのソースコードに目を通して、オーナーに特別な力がないことを確認する必要があります。  
 > 開発者としてバグを修正するように DApp をコントロールする権限が必要な一方で、オーナーの数を少なくしてユーザーのデータの安全性を確保できるようなプラットフォームを開発をすることも重要であり、両者のバランスに常に気をつける必要があります。
 
-是非 openzeppelin の [ownable](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol) コントラクトを見てみてください!
+是非openzeppelinの [ownable](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol) コントラクトを見てみてください!
 
 ### 🧪 テストを追加しましょう
 
@@ -443,15 +443,15 @@ describe("Messenger", function () {
 });
 ```
 
-`Deployment`テスト内に追加したテストケース `it` 内ではデプロイ後に `owner` が正しくセットされているかを確認しています。
+`Deployment`テスト内に追加したテストケース`it`内ではデプロイ後に`owner`が正しくセットされているかを確認しています。
 
 `ChangeLimits`テスト内では,
 
-`owner` 以外が`numOfPendingLimits`を変更しようとした場合にトランザクションがキャンセルされるか
+`owner`以外が`numOfPendingLimits`を変更しようとした場合にトランザクションがキャンセルされるか
 
-`owner` は`numOfPendingLimits`を正しく変更できているか
+`owner`は`numOfPendingLimits`を正しく変更できているか
 
-`changeNumOfPendingLimits`実行時に正しくイベントを emit できているか
+`changeNumOfPendingLimits`実行時に正しくイベントをemitできているか
 
 をそれぞれ確認しています。
 
@@ -576,9 +576,9 @@ $ cp -r messenger-contract/typechain-types messenger-client/
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は,Discord の `#avax-messenger` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は,Discordの`#avax-messenger`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので,エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので,エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

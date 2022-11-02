@@ -2,13 +2,13 @@
 
 前のセクションでスマートコントラクトが書けたので、次はそれをコンパイルします。
 
-ターミナルを `todo-dApp-contract` ディレクトリで開き、以下のコマンドを実行します。
+ターミナルを`todo-dApp-contract`ディレクトリで開き、以下のコマンドを実行します。
 
 ```bash
 truffle compile
 ```
 
-`truffle compile` でエラーが出た場合は下記をお試しください。
+`truffle compile`でエラーが出た場合は下記をお試しください。
 
 ```bash
 npx truffle compile
@@ -18,7 +18,7 @@ npx truffle compile
 
 ![](/public/images/Polygon-Mobile-dApp/section-1/1_3_1.png)
 
-ブロックチェーンにコントラクトを移行します。`migrations` ディレクトリに移動し、`2_todo_contract_migration.js` というファイルを新規作成し、以下のコードを追加してください。
+ブロックチェーンにコントラクトを移行します。`migrations`ディレクトリに移動し、`2_todo_contract_migration.js`というファイルを新規作成し、以下のコードを追加してください。
 
 ```js
 // 2_todo_contract_migration.js
@@ -29,9 +29,9 @@ module.exports = function (deployer) {
 };
 ```
 
-移行作業を開始する前に、`Ganache` がインストールされていることを確認してください。システムで `Ganache GUI` アプリを起動します。
+移行作業を開始する前に、`Ganache`がインストールされていることを確認してください。システムで`Ganache GUI`アプリを起動します。
 
-`truffle-config.js` の既存の内容をすべて削除し、以下のコードに置き換えてください。
+`truffle-config.js`の既存の内容をすべて削除し、以下のコードに置き換えてください。
 
 ```js
 //truffle-config.js
@@ -61,7 +61,7 @@ module.exports = {
 
 少し説明します。
 
-`truffle-config.js` では、Truffleの基本的な構成を定義しています。
+`truffle-config.js`では、Truffleの基本的な構成を定義しています。
 
 ```js
 //truffle-config.js
@@ -74,7 +74,7 @@ module.exports = {
   },
 ```
 
-現在、Ganacheブロックチェーンが稼働している `localhost:7545` にスマートコントラクトをデプロイするよう指定しています。
+現在、Ganacheブロックチェーンが稼働している`localhost:7545`にスマートコントラクトをデプロイするよう指定しています。
 
 それでは、Ganache上にスマートコントラクトをデプロイするために、コマンドを実行していきます。
 
@@ -82,13 +82,13 @@ module.exports = {
 truffle migrate
 ```
 
-`truffle migrate` でエラーが出た場合は下記をお試しください。
+`truffle migrate`でエラーが出た場合は下記をお試しください。
 
 ```bash
 npx truffle migrate
 ```
 
-こちらでもエラーが出た場合は、`truffle-config.js` ファイルを下記に変更して、もう一度上記の操作を行ってください。
+こちらでもエラーが出た場合は、`truffle-config.js`ファイルを下記に変更して、もう一度上記の操作を行ってください。
 
 ```js
 //truffle-config.js
@@ -124,9 +124,9 @@ module.exports = {
 次は、Flutterアプリケーションへ接続していきましょう。
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#polygon-mobile-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#polygon-mobile-dapp`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -136,6 +136,6 @@ module.exports = {
 ```
 
 ---
-ターミナルの出力結果を Discord の `#polygon-mobile-dapp` に投稿して、コミュニティにシェアしてください!
+ターミナルの出力結果をDiscordの`#polygon-mobile-dapp`に投稿して、コミュニティにシェアしてください!
 
 次のセクションに進んで、Flutterアプリケーションへの接続を開始しましょう 🎉

@@ -1,33 +1,33 @@
-### ⚔️ `cross contract call` の `event pattern` を実装しよう
+### ⚔️ `cross contract call`の`event pattern`を実装しよう
 
 まだ実装していない残りの機能は以下です！
 
 **バイクを使用するためにユーザがコントラクトへ ft を支払う**
 処理の流れを整理します。
 
-1. ユーザがバイクを使用するために`bikeコントラクト`へ ft を送信する。
-2. `bikeコントラクト`は ft の受信を確認する
-3. `bikeコントラクト`は ft の送信者によるバイクの使用手続きを進める
+1. ユーザがバイクを使用するために`bikeコントラクト`へftを送信する。
+2. `bikeコントラクト`はftの受信を確認する
+3. `bikeコントラクト`はftの送信者によるバイクの使用手続きを進める
 
 これを実現するには以下の処理を同期的に行う必要があります。
 
-1. ユーザが`ftコントラクト`の ft 転送メソッドを呼ぶ。
-2. `ftコントラクト`が`bikeコントラクト`へ ft の転送をするメソッドを実行。
-3. ft 転送のメソッドをトリガーに,
-   `bikeコントラクト`は受信した ft の確認, バイクの使用手続きをするメソッドを実行。
+1. ユーザが`ftコントラクト`のft転送メソッドを呼ぶ。
+2. `ftコントラクト`が`bikeコントラクト`へftの転送をするメソッドを実行。
+3. ft転送のメソッドをトリガーに,
+   `bikeコントラクト`は受信したftの確認, バイクの使用手続きをするメソッドを実行。
 
 あるコントラクトのメソッドの実行が, 他のコントラクトのメソッドの実行に繋がるような機能を
 `cross contract call`の`event pattern`で実装することができます。
-2 つのコントラクトにそのように動作するメソッドをあらかじめ用意しておくのです。
+2つのコントラクトにそのように動作するメソッドをあらかじめ用意しておくのです。
 例えば`ftコントラクト`には`ft_transfer_call`というメソッドが存在します。
-このメソッドは ft の転送を行いますが, 同時に ft の転送をする相手のアカウントに
+このメソッドはftの転送を行いますが, 同時にftの転送をする相手のアカウントに
 `ft_on_transfer`というメソッドを実装したコントラクトがあることを期待します。
-そして ft の転送と共に`ft_on_transfer`の実行を`cross contract call`で行います。
+そしてftの転送と共に`ft_on_transfer`の実行を`cross contract call`で行います。
 つまり先ほどの処理フローはこのように書き換えることができます。
 
-1. ユーザが`ftコントラクト`の `ft_transfer_call` メソッドを呼ぶ。
-2. `ftコントラクト`が`bikeコントラクト`へ `ft_transfer_call` メソッドを実行。
-3. `bikeコントラクト`は`ft_on_transfer`にて ft の確認, バイクの使用手続きを進めます。
+1. ユーザが`ftコントラクト`の`ft_transfer_call`メソッドを呼ぶ。
+2. `ftコントラクト`が`bikeコントラクト`へ`ft_transfer_call`メソッドを実行。
+3. `bikeコントラクト`は`ft_on_transfer`にてftの確認, バイクの使用手続きを進めます。
 
 `ft_transfer_call`について詳しくは[こちら](https://nomicon.io/Standards/Tokens/FungibleToken/Core)をご覧ください。
 それでは`bikeコントラクト`に`ft_on_transfer`を実装しましょう！
@@ -129,19 +129,19 @@ impl Contract {
 `ft_on_transfer`のプロトタイプ宣言を[ドキュメント](https://nomicon.io/Standards/Tokens/FungibleToken/Core#reference-level-explanation)や[ソースコード](https://github.dev/near-examples/FT)を参考に実装しています。
 `ft_on_transfer`の引数について整理しましょう。
 
-- `sender_id`: `ft_transfer_call`を呼び出した(つまりユーザの)アカウント ID
-- `amount` : ft の量
+- `sender_id`: `ft_transfer_call`を呼び出した(つまりユーザの)アカウントID
+- `amount` : ftの量
 - `msg` : 何かを伝えるためのメッセージ, オプション
 
 `msg`は`ft_transfer_call`によって実行したい関数が複数存在する場合にどれを実行するのかを指定するなど用途は自由です。
 今回は実行する関数が`use_bike`と決まっているので,
-`msg`を`use_bike`に渡すバイクの index 番号の指定に使用することにします。
+`msg`を`use_bike`に渡すバイクのindex番号の指定に使用することにします。
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-economy` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#near-sharing-economy`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 

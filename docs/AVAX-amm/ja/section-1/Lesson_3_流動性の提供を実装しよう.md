@@ -4,14 +4,14 @@
 
 以下に実装の要点を整理します。
 
-- ユーザは 2 つのトークンをコントラクトに預けることができます。
+- ユーザは2つのトークンをコントラクトに預けることができます。
 
 - 預けるトークンはお互い同価値の量を預てもらうというルールを設けます。  
-  例) プールにトークン X と Y が 1:2 の割合で存在する場合, トークン X を 10 預ける場合はもうトークン Y は 20 必要なことになります。
+  例) プールにトークンXとYが1:2の割合で存在する場合, トークンXを10預ける場合はもうトークンYは20必要なことになります。
 
 - コントラクト内では, ユーザが預けたトークンの量が全体のどれくらいの割合であるか(シェア)を数値として保持します。
 
-それでは実装に入りますが, まずは `AMM.sol` 内が以下になるようにコンストラクタの下にコードを追加してください。
+それでは実装に入りますが, まずは`AMM.sol`内が以下になるようにコンストラクタの下にコードを追加してください。
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -100,7 +100,7 @@ contract AMM {
 
 ここではユーザが流動性を提供する前に, 片方の預けるトークンの量から, もう片方の同価値の量を返却する関数を実装しています。
 
-トークン X と Y に関してプールにある総量をそれぞれ x, y, 流動性提供によりプールに増える量をそれぞれ x', y'で表すとすると次の式が成り立ちます。
+トークンXとYに関してプールにある総量をそれぞれx, y, 流動性提供によりプールに増える量をそれぞれx', y'で表すとすると次の式が成り立ちます。
 
 $$
 x : y = x' : y'
@@ -163,7 +163,7 @@ $$
 ```
 
 引数には預けるトークンコントラクトとその量を受け取ります。  
-modifier や require を使って各値が正常か確認しています。
+modifierやrequireを使って各値が正常か確認しています。
 
 預けられたトークンのシェアを求め, `newShare`に格納します。  
 ここでは条件分岐があります。
@@ -184,9 +184,9 @@ if (totalShare == 0) {
 }
 ```
 
-`totalShare == 0` の時, つまりプールにまだトークンが存在しない場合は, シェアの初期値を 100 とします。
+`totalShare == 0`の時, つまりプールにまだトークンが存在しない場合は, シェアの初期値を100とします。
 
-`totalShare != 0` の場合は, それぞれのトークンに関して, 預けられたトークンの全体のトークンに対するシェアを求めます。  
+`totalShare != 0`の場合は, それぞれのトークンに関して, 預けられたトークンの全体のトークンに対するシェアを求めます。  
 計算式は以下を基にしています。
 
 $$
@@ -204,13 +204,13 @@ _tokenY.transferFrom(msg.sender, address(this), _amountY);
 
 ここでは流動性を提供するユーザから実際にトークンをコントラクトへ引き出します。
 
-`IERC20` の中にある関数 `transferFrom` は以下のような引数に従って, トークンの移動(送金)を行うことができます。
+`IERC20`の中にある関数`transferFrom`は以下のような引数に従って, トークンの移動(送金)を行うことができます。
 
-- 引数 1: トークンの送金元のアドレス。今回は流動性の提供者であるため msg.sender。
-- 引数 2: トークンの送金先のアドレス。今回はコントラクトであるため address(this)。
-- 引数 3: 送金するトークンの量。今回は預けるトークンの量。
+- 引数1: トークンの送金元のアドレス。今回は流動性の提供者であるためmsg.sender。
+- 引数2: トークンの送金先のアドレス。今回はコントラクトであるためaddress(this)。
+- 引数3: 送金するトークンの量。今回は預けるトークンの量。
 
-`transferFrom` に関してはこの後さらに詳しく理解していきます。
+`transferFrom`に関してはこの後さらに詳しく理解していきます。
 
 ```solidity
 totalAmount[_tokenX] += _amountX;
@@ -226,11 +226,11 @@ share[msg.sender] += newshare;
 
 ここではプール内に増えたトークンのシェアを, シェア総量と流動性提供者のシェアに加えます。
 
-### 🏦 `transferFrom` と `approve`
+### 🏦 `transferFrom`と`approve`
 
-先ほど `transferFrom` という関数を使用しましたが, この関数は `approve` という関数とセットで使います。
+先ほど`transferFrom`という関数を使用しましたが, この関数は`approve`という関数とセットで使います。
 
-`approve` という関数は, あるアカウントまたはスマートコントラクトが, 自分の所有するトークンを移動することを許可する関数です。
+`approve`という関数は, あるアカウントまたはスマートコントラクトが, 自分の所有するトークンを移動することを許可する関数です。
 
 このように使います。
 
@@ -238,63 +238,63 @@ share[msg.sender] += newshare;
 ERC20TokenContract.approve(移動を実行するアカウントまたはコントラクトのアドレス, 移動するトークンの量);
 ```
 
-例えば, アカウント A が TokenX を所有していて, アカウント B が A の持つ TokenX を 30 だけ移動する許可を与えたいとします。  
-そのためには, A はこのようにして TokenX の `approve` を呼び出します。
+例えば, アカウントAがTokenXを所有していて, アカウントBがAの持つTokenXを30だけ移動する許可を与えたいとします。  
+そのためには, AはこのようにしてTokenXの`approve`を呼び出します。
 
 ```
 TokenX.approve(Bのアドレス, 30);
 ```
 
-すると, B は TokenX の `transferFrom` を呼び出すことで A の持つ TokenX を自身に移動することができます。
+すると, BはTokenXの`transferFrom`を呼び出すことでAの持つTokenXを自身に移動することができます。
 
 ```
 TokenX.transferFrom(Aのアドレス, Bのアドレス, 30);
 ```
 
-この `approve`, `transferFrom` の一連の流れを経て B は A の持つトークンを自身へ移動することができました。  
-`approve` なしに `transferFrom` が使えてしまうと, B は好き勝手に A の持つトークンを移動できてしまうのでトークンの機能として成り立ちません。
+この`approve`, `transferFrom`の一連の流れを経てBはAの持つトークンを自身へ移動することができました。  
+`approve`なしに`transferFrom`が使えてしまうと, Bは好き勝手にAの持つトークンを移動できてしまうのでトークンの機能として成り立ちません。
 
-`AMMコントラクト` の `provide` 関数内では `transferFrom` を使用していますが, これは流動性提供者が `provide` を呼び出す前に  
-各トークンの `approve` の実行を済ませていることが前提です。  
-`approve` が行われていない場合は `transferFrom` の呼び出しは失敗します。
+`AMMコントラクト`の`provide`関数内では`transferFrom`を使用していますが, これは流動性提供者が`provide`を呼び出す前に  
+各トークンの`approve`の実行を済ませていることが前提です。  
+`approve`が行われていない場合は`transferFrom`の呼び出しは失敗します。
 
-📓 `approve`/`transferFrom` を使う理由
+📓 `approve`/`transferFrom`を使う理由
 
-上記の話は, トークンを直接 `AMMコントラクト` へ送信(`transfer`を使用)してから, `provide` を呼び出すという流れでも成立しそうですが  
-なぜ `approve`/`transferFrom` を使用するのかについても考えてみます。
+上記の話は, トークンを直接`AMMコントラクト`へ送信(`transfer`を使用)してから, `provide`を呼び出すという流れでも成立しそうですが  
+なぜ`approve`/`transferFrom`を使用するのかについても考えてみます。
 
-トークンを直接 `AMMコントラクト` へ送信してから`provide` を呼び出す場合は以下のような流れになります。
+トークンを直接`AMMコントラクト`へ送信してから`provide`を呼び出す場合は以下のような流れになります。
 
-1. A はトークンコントラクトの `transfer` を呼び出して, AMM へトークンを送信する
-2. A は AMM コントラクトの `provide` を呼び出して流動性を提供する
-   - AMM はプールの状態を確認しシェア算出などの処理をする
+1. Aはトークンコントラクトの`transfer`を呼び出して, AMMへトークンを送信する
+2. AはAMMコントラクトの`provide`を呼び出して流動性を提供する
+   - AMMはプールの状態を確認しシェア算出などの処理をする
    - シェアなどの状態変数を変更する
 
-この 1 と 2 を独立した処理として順番に実行したとすると, 以下の問題が起きます。
+この1と2を独立した処理として順番に実行したとすると, 以下の問題が起きます。
 
-- 1 と 2 の処理の合間にプールの状態が変更する可能性がある
-- 2 のトランザクションが何らかの理由で失敗すると, 1 の返金処理をする必要がある
-- AMM から見て, 1 が A から流動性提供で実行されたものだということがわからない
+- 1と2の処理の合間にプールの状態が変更する可能性がある
+- 2のトランザクションが何らかの理由で失敗すると, 1の返金処理をする必要がある
+- AMMから見て, 1がAから流動性提供で実行されたものだということがわからない
 
-つまり, 1 と 2 は同時に行う必要があります。
+つまり, 1と2は同時に行う必要があります。
 
-ここで transferFrom と approve の出番です。
+ここでtransferFromとapproveの出番です。
 
 実際に行う処理の流れを整理します。
 
-1.  A はトークンコントラクトの `approve` を呼び出すことで, AMM コントラクトがトークンを移動することを許可する
-2.  A は AMM コントラクトの `provide` を呼び出して流動性を提供する
-    - AMM はプールの状態を確認しシェア算出などの処理をする
-    - AMM は流動性提供者からトークンを自身へ移動
+1.  Aはトークンコントラクトの`approve`を呼び出すことで, AMMコントラクトがトークンを移動することを許可する
+2.  AはAMMコントラクトの`provide`を呼び出して流動性を提供する
+    - AMMはプールの状態を確認しシェア算出などの処理をする
+    - AMMは流動性提供者からトークンを自身へ移動
     - シェアなどの状態変数を変更する
 
-後に実装する swap の際にも, 同じような理由で  
-トークンの送受信と AMM コントラクト内での処理(レートの計算など)を同じトランザクションで行いたいので `approve`/`transferFrom` を使用します。
+後に実装するswapの際にも, 同じような理由で  
+トークンの送受信とAMMコントラクト内での処理(レートの計算など)を同じトランザクションで行いたいので`approve`/`transferFrom`を使用します。
 
 ### 🧪 テストを追加しましょう
 
 追加した機能に対するテストを追加しましょう。
-`test/AMM.ts` ファイル内の `init` テストを以下のように `provide` テストに書き換えてください。
+`test/AMM.ts`ファイル内の`init`テストを以下のように`provide`テストに書き換えてください。
 
 - 変更すると環境によって赤の波線が表示される箇所があるかもしれませんが、テストを実行すると消えますので、一旦気にせず進めてください。
 
@@ -340,11 +340,11 @@ describe("provide", function () {
 });
 ```
 
-`provide` を実行する前後でトークンの移動が正常にされているかをテストしています。
+`provide`を実行する前後でトークンの移動が正常にされているかをテストしています。
 
-テストの冒頭では `provide` を実行する前の owner や amm の残高, `provide` で預けるトークンの量を変数に格納しています。
+テストの冒頭では`provide`を実行する前のownerやammの残高, `provide`で預けるトークンの量を変数に格納しています。
 
-次に以下の部分で, `approve` をしてから `provide` を実行しています。
+次に以下の部分で, `approve`をしてから`provide`を実行しています。
 
 ```ts
 await token0.approve(amm.address, amountProvide0);
@@ -357,10 +357,10 @@ await amm.provide(
 );
 ```
 
-最後に `provide` 後の各残高の確認をしています。
+最後に`provide`後の各残高の確認をしています。
 
-例えば以下の部分では, owner の token0 の残高が  
-`provide` 実行前の残高(`ownerBalance0Before`)から　`provide` した token0 の量(`amountProvide0`)だけ減っていることを確認しています。
+例えば以下の部分では, ownerのtoken0の残高が  
+`provide`実行前の残高(`ownerBalance0Before`)から　`provide`したtoken0の量(`amountProvide0`)だけ減っていることを確認しています。
 
 ```ts
 expect(await token0.balanceOf(owner.address)).to.eql(
@@ -368,7 +368,7 @@ expect(await token0.balanceOf(owner.address)).to.eql(
 );
 ```
 
-次に以下のコードを `provide` テストの後に追加してください。
+次に以下のコードを`provide`テストの後に追加してください。
 
 ```ts
 async function deployContractWithLiquidity() {
@@ -447,17 +447,17 @@ describe("Deploy with liquidity", function () {
 });
 ```
 
-プールにトークンが存在する状態の AMM をテスト内では流用したいため,  
-`deployContractWithLiquidity` にて, 各コントラクトのデプロイから amm のプールにトークンが存在する状態までを関数にしています。  
-仕組みは先ほど行った `provide` と同じですが, owner に加え otherAccount も流動性を提供しています。  
+プールにトークンが存在する状態のAMMをテスト内では流用したいため,  
+`deployContractWithLiquidity`にて, 各コントラクトのデプロイからammのプールにトークンが存在する状態までを関数にしています。  
+仕組みは先ほど行った`provide`と同じですが, ownerに加えotherAccountも流動性を提供しています。  
 各アカウントが提供したトークンの量は関数の返り値に含めています。
 
-その下に続く `Deploy with liquidity` のテストでは,  
-`deployContractWithLiquidity` を実行後の amm コントラクト内状態変数の初期値を確認しています。
+その下に続く`Deploy with liquidity`のテストでは,  
+`deployContractWithLiquidity`を実行後のammコントラクト内状態変数の初期値を確認しています。
 
 ---
 
-📓 PRECISION について
+📓 PRECISIONについて
 
 先ほどのテストから抜粋。
 
@@ -465,12 +465,12 @@ describe("Deploy with liquidity", function () {
 expect(await amm.share(owner.address)).to.equal(BN100.mul(precision));
 ```
 
-amm から取得した owner のシェアは PRECISION の値だけ大きいので,
-100(owner のシェア)に precision をかけた値を比較しています。
+ammから取得したownerのシェアはPRECISIONの値だけ大きいので,
+100(ownerのシェア)にprecisionをかけた値を比較しています。
 
 ---
 
-最後に以下のコードを `Deploy with liquidity` テストの後に追加してください。
+最後に以下のコードを`Deploy with liquidity`テストの後に追加してください。
 
 ```ts
 describe("getEquivalentToken", function () {
@@ -492,11 +492,11 @@ describe("getEquivalentToken", function () {
 });
 ```
 
-ここでは `getEquivalentToken` 関数の計算が合っているのかをテストしています。
+ここでは`getEquivalentToken`関数の計算が合っているのかをテストしています。
 
-token0 10ether 分(`amountProvide0`)と同価値の token1 の量(`equivalentToken1`)を関数の返り値と比較して正しいか確かめています。
+token0 10ether分(`amountProvide0`)と同価値のtoken1の量(`equivalentToken1`)を関数の返り値と比較して正しいか確かめています。
 
-計算式自体は AMM コントラクトの `getEquivalentToken` 関数の中で行なっているロジックと同じです。
+計算式自体はAMMコントラクトの`getEquivalentToken`関数の中で行なっているロジックと同じです。
 
 ### ⭐ テストを実行しましょう
 
@@ -517,14 +517,14 @@ $ npx hardhat test
 > [こちら](https://github.com/unchain-dev/avalanche-amm-dapp)に本プロジェクトの完成形のレポジトリがあります。
 >
 > コードがうまく動かない場合は参考にしてみてください。  
-> `contract` はリンク先のレポジトリ内の `package/contract` を。  
-> `client` はリンク先のレポジトリ内の `package/client` を参照してください。
+> `contract`はリンク先のレポジトリ内の`package/contract`を。  
+> `client`はリンク先のレポジトリ内の`package/client`を参照してください。
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は, Discord の `#avax-amm` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は, Discordの`#avax-amm`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので, エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので, エラーレポートには下記の3点を記載してください ✨
 
 ```
 

@@ -1,14 +1,14 @@
 ### 🎁 ユーザーに ETH を贈る
 
-コントラクトの魅力の 1 つとして、コントラクトに関与したユーザーに報酬を支払える機能を実装できることが挙げらます。
+コントラクトの魅力の1つとして、コントラクトに関与したユーザーに報酬を支払える機能を実装できることが挙げらます。
 
-よって、このレッスンでは、ETH をユーザーに送る機能をコントラクトに実装する方法を学びます。
+よって、このレッスンでは、ETHをユーザーに送る機能をコントラクトに実装する方法を学びます。
 
-まず、あなたの Web アプリケーションで「👋（wave）」を送ってくれた人に「0.0001ETH（≒$0.30）」を提供するスクリプトを作成していきます。
+まず、あなたのWebアプリケーションで「👋(wave)」を送ってくれた人に「0.0001ETH(≒$0.30)」を提供するスクリプトを作成していきます。
 
-引き続き、Goerli Test Network 上にコントラクトをデプロイするので、ユーザーに送るのは偽の ETH になります。
+引き続き、Goerli Test Network上にコントラクトをデプロイするので、ユーザーに送るのは偽のETHになります。
 
-`WavePortal.sol` の `wave` 関数を下記のように更新していきます。
+`WavePortal.sol`の`wave`関数を下記のように更新していきます。
 
 ```solidity
 // WavePortal.sol
@@ -38,7 +38,7 @@ function wave(string memory _message) public {
 
 コードを見ていきましょう。
 
-> まず、下記で `prizeAmount` という変数を定義し、`0.0001` ETH を指定しています。
+> まず、下記で`prizeAmount`という変数を定義し、`0.0001` ETH を指定しています。
 >
 > ```solidity
 > // WavePortal.sol
@@ -55,10 +55,10 @@ function wave(string memory _message) public {
 > );
 > ```
 >
-> `address(this).balance` は**コントラクトが持つの資金の残高**を示しています。
+> `address(this).balance`は**コントラクトが持つの資金の残高**を示しています。
 >
-> `require` は、何らかの条件が `true` もしくは `false` であることを確認する `if` 文のような役割を果たします。
-> もし `require` の結果が `false` の場合（＝コントラクトが持つ資金が足りない場合）は、トランザクションをキャンセルします。
+> `require`は、何らかの条件が`true`もしくは`false`であることを確認する`if`文のような役割を果たします。
+> もし`require`の結果が`false`の場合（＝コントラクトが持つ資金が足りない場合）は、トランザクションをキャンセルします。
 >
 > コントラクトに資金を提供する方法については、次のレッスンで説明します。
 >
@@ -78,7 +78,7 @@ function wave(string memory _message) public {
 >
 > 成功した場合は送金を行い、成功しなかった場合は、エラー文を出力しています。
 
-次に、`WavePortal.sol` の `constructor` を下記のように変更します。
+次に、`WavePortal.sol`の`constructor`を下記のように変更します。
 
 ```solidity
 // WavePortal.sol
@@ -87,16 +87,16 @@ constructor() payable {
 }
 ```
 
-`payable` を加えることで、コントラクトに送金機能を実装します。
+`payable`を加えることで、コントラクトに送金機能を実装します。
 
 ### 🏦 コントラクトに資金を提供する
 
-上記で、ユーザーに ETH を送金するためのコードを実装しました。
-次に、その資金源となる ETH をコントラクトに付与する作業を行います。
+上記で、ユーザーにETHを送金するためのコードを実装しました。
+次に、その資金源となるETHをコントラクトに付与する作業を行います。
 
-テストを実施するために、 `run.js` を更新します。
+テストを実施するために、 `run.js`を更新します。
 
-- `run.js` はコントラクトのコア機能のテストを行うためのスクリプトです。
+- `run.js`はコントラクトのコア機能のテストを行うためのスクリプトです。
 
 ```javascript
 // run.js
@@ -165,7 +165,7 @@ const waveContract = await waveContractFactory.deploy({
 });
 ```
 
-`hre.ethers.utils.parseEther("0.1")` によって、コントラクトがデプロイされた際に、コントラクトに 0.1 ETH の資金を提供することを宣言しています。
+`hre.ethers.utils.parseEther("0.1")`によって、コントラクトがデプロイされた際に、コントラクトに0.1 ETHの資金を提供することを宣言しています。
 
 ```javascript
 // run.js
@@ -174,9 +174,9 @@ let contractBalance = await hre.ethers.provider.getBalance(
 );
 ```
 
-ここでは、`ethers.js` が提供している `getBalance` 関数を使って、コントラクトのアドレスに紐づいている残高を `contractBalance` に格納しています。
+ここでは、`ethers.js`が提供している`getBalance`関数を使って、コントラクトのアドレスに紐づいている残高を`contractBalance`に格納しています。
 
-`ethers.js` の公式ドキュメントは [こちら（英語）](https://docs.ethers.io/v5/)です。
+`ethers.js`の公式ドキュメントは [こちら（英語）](https://docs.ethers.io/v5/)です。
 
 **2 \. コントラクトの資金を確認する**
 
@@ -185,9 +185,9 @@ let contractBalance = await hre.ethers.provider.getBalance(
 console.log("Contract balance:", hre.ethers.utils.formatEther(contractBalance));
 ```
 
-ここでは、`hre.ethers.utils.formatEther(contractBalance)` を使用してwei単位の残高をETH単位に変換したうえで出力し、コントラクトに 0.1ETH の残高があるか確認しています。
+ここでは、`hre.ethers.utils.formatEther(contractBalance)`を使用してwei単位の残高をETH単位に変換したうえで出力し、コントラクトに0.1ETHの残高があるか確認しています。
 
-**3 \. `wave` したあとのコントラクトの残高を確認する**
+**3 \. `wave`したあとのコントラクトの残高を確認する**
 
 ```javascript
 // run.js
@@ -203,11 +203,11 @@ contractBalance = await hre.ethers.provider.getBalance(waveContract.address);
 console.log("Contract balance:", hre.ethers.utils.formatEther(contractBalance));
 ```
 
-ここでは、`wave` が呼ばれた後に `0.0001 ETH` がコントラクトの資金から差し引かれるか、確認しています。
+ここでは、`wave`が呼ばれた後に`0.0001 ETH`がコントラクトの資金から差し引かれるか、確認しています。
 
 ### ⭐️ テストを実行する
 
-それでは、ターミナル上で `my-wave-portal` に移動し、下記を実行し、テストを行いましょう。
+それでは、ターミナル上で`my-wave-portal`に移動し、下記を実行し、テストを行いましょう。
 
 ```bash
 npx hardhat run scripts/run.js
@@ -233,11 +233,11 @@ Contract balance: 0.0999
 ]
 ```
 
-`Contract balance: 0.1` が、`Contract balance: 0.0999` に下がっていれば、成功です 🎉
+`Contract balance: 0.1`が、`Contract balance: 0.0999`に下がっていれば、成功です 🎉
 
-### 🛫 `deploy.js` を更新する
+### 🛫 `deploy.js`を更新する
 
-本番環境でコントラクトに資金を提供するため、下記のように `deploy.js` を更新します。
+本番環境でコントラクトに資金を提供するため、下記のように`deploy.js`を更新します。
 
 ```javascript
 // deploy.js
@@ -281,13 +281,13 @@ const waveContract = await waveContractFactory.deploy({
 });
 ```
 
-`value: hre.ethers.utils.parseEther("0.001")` で、コントラクトに資金提供を行っています。
+`value: hre.ethers.utils.parseEther("0.001")`で、コントラクトに資金提供を行っています。
 
-今回はテストですので、少額の 0.001ETH をコントラクトに付与しています。
+今回はテストですので、少額の0.001ETHをコントラクトに付与しています。
 
-また、`await waveContract.deployed()` を追加して、資金を追加するまでデプロイを待機するように設定しています。
+また、`await waveContract.deployed()`を追加して、資金を追加するまでデプロイを待機するように設定しています。
 
-※ この 1 行を追加すると、開発者はコントラクトがデプロイされたことを簡単に知ることができます。任意で排除しても、コードは走ります 😊
+※ この1行を追加すると、開発者はコントラクトがデプロイされたことを簡単に知ることができます。任意で排除しても、コードは走ります 😊
 
 ### 🛩 もう一度デプロイする
 
@@ -295,15 +295,15 @@ const waveContract = await waveContractFactory.deploy({
 
 1. 再度コントラクトをデプロイする
 
-2. フロントエンドのコントラクトアドレスを更新する（更新するファイル: `App.js`）
+2. フロントエンドのコントラクトアドレスを更新する(更新するファイル: `App.js`)
 
-3. フロントエンドの ABI ファイルを更新する（更新するファイル: `dApp-starter-project/src/utils/WavePortal.json`）
+3. フロントエンドのABIファイルを更新する(更新するファイル: `dApp-starter-project/src/utils/WavePortal.json`)
 
 **コントラクトを更新するたび、これらの 3 つのステップを実行する必要があります。**
 
 復習もかねて、丁寧に実行していきましょう。
 
-1 \. ターミナル上で `my-wave-portal` に移動します。
+1 \. ターミナル上で`my-wave-portal`に移動します。
 
 下記を実行し、コントラクトを再度デプロイしましょう。
 
@@ -321,21 +321,21 @@ WavePortal address:  0x550925E923Cb1734de73B3a843A21b871fe2a673
 
 [Etherscan](https://goerli.etherscan.io/) にアクセスして、コントラクトアドレスを貼り付けてみましょう。
 
-下記のように、`Balance` が `0.001 Ether` となっていることを確認してください。
+下記のように、`Balance`が`0.001 Ether`となっていることを確認してください。
 
 ![](/public/images/ETH-dApp/section-3/3_2_1.png)
 
 これで、テストネットにコントラクトがデプロイされました 🎉
 
-2 \. `App.js` の `contractAddress` を、ターミナルで取得した新しいコントラクトアドレスに変更します。
+2 \. `App.js`の`contractAddress`を、ターミナルで取得した新しいコントラクトアドレスに変更します。
 
-ターミナルに出力されたコントラクト（`WavePortal address`）のアドレス(`0x..`)をコピーしましょう。
+ターミナルに出力されたコントラクト(`WavePortal address`)のアドレス(`0x..`)をコピーしましょう。
 
-- コピーしたアドレスを `App.js` の `const contractAddress = "こちら"` に貼り付けましょう。
+- コピーしたアドレスを`App.js`の`const contractAddress = "こちら"`に貼り付けましょう。
 
-3 \. 以前と同じように `artifacts` から ABI ファイルを取得します。下記のステップを実行してください。
+3 \. 以前と同じように`artifacts`からABIファイルを取得します。下記のステップを実行してください。
 
-> 1\. ターミナル上で `my-wave-portal` にいることを確認する（もしくは移動する）。
+> 1\. ターミナル上で`my-wave-portal`にいることを確認する（もしくは移動する）。
 >
 > 2\. ターミナル上で下記を実行する。
 >
@@ -343,15 +343,15 @@ WavePortal address:  0x550925E923Cb1734de73B3a843A21b871fe2a673
 > code artifacts/contracts/WavePortal.sol/WavePortal.json
 > ```
 >
-> 3\. VS Code で `WavePortal.json` ファイルが開かれるので、中身を全てコピーしましょう。※ VS Code のファインダーを使って、直接 `WavePortal.json` を開くことも可能です。
+> 3\. VS Code で`WavePortal.json`ファイルが開かれるので、中身を全てコピーしましょう。※ VS Code のファインダーを使って、直接`WavePortal.json`を開くことも可能です。
 >
-> 4\. **コピーした `my-wave-portal/artifacts/contracts/WavePortal.sol/WavePortal.json` の中身で `dApp-starter-project/src/utils/WavePortal.json` の中身を上書きしてください。**
+> 4\. **コピーした`my-wave-portal/artifacts/contracts/WavePortal.sol/WavePortal.json`の中身で`dApp-starter-project/src/utils/WavePortal.json`の中身を上書きしてください。**
 
 **繰り返しますが、コントラクトを更新するたびにこれを行う必要があります。**
 
-`wave` を送ったユーザーに 0.0001ETH が送られているか確認してみましょう。
+`wave`を送ったユーザーに0.0001ETHが送られているか確認してみましょう。
 
-1\. ターミナル上で `dApp-starter-project` に移動する。
+1\. ターミナル上で`dApp-starter-project`に移動する。
 
 2\. 下記を実行する。
 
@@ -359,19 +359,19 @@ WavePortal address:  0x550925E923Cb1734de73B3a843A21b871fe2a673
 > npm run start
 > ```
 
-3\. ローカル環境で Web アプリケーションを開き、`wave` を送る。
+3\. ローカル環境でWebアプリケーションを開き、`wave`を送る。
 
-例）このような結果が Web アプリケーションに反映されていること確認してください。コントラクトを新しくしたので、既存の `wave` はリセットされています。
+例)このような結果がWebアプリケーションに反映されていること確認してください。コントラクトを新しくしたので、既存の`wave`はリセットされています。
 
 > ![](/public/images/ETH-dApp/section-3/3_2_2.png)
 
 4\. [Etherscan](https://goerli.etherscan.io/) にアクセスして、コントラクトアドレスを貼り付ける。
 
-> 下記のように、`Balance` が `0.0009 Ether` となっていることを確認してください。
+> 下記のように、`Balance`が`0.0009 Ether`となっていることを確認してください。
 >
 > ![](/public/images/ETH-dApp/section-3/3_2_3.png)
 >
-> WEB アプリで `wave` を送ったユーザーに 0.0001ETH を送ったので、残高が `0.001-0.0001=0.0009 ETH` になっています。
+> WEB アプリで`wave`を送ったユーザーに 0.0001ETH を送ったので、残高が`0.001-0.0001=0.0009 ETH`になっています。
 
 ターミナルを閉じるときは、以下のコマンドが使えます ✍️
 
@@ -380,9 +380,9 @@ WavePortal address:  0x550925E923Cb1734de73B3a843A21b871fe2a673
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#eth-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#eth-dapp`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -393,6 +393,6 @@ WavePortal address:  0x550925E923Cb1734de73B3a843A21b871fe2a673
 
 ---
 
-おめでとうございます!　セクション 3 が終了しました!
-あなたの Etherscan のアドレスを `#eth-dapp` に投稿してあなたの成功をコミュニティで祝いましょう 😊
-ユーザーに ETH を送れるコントラクトの実装が完了したら、次のレッスンに進みましょう 🎉
+おめでとうございます!　セクション3が終了しました!
+あなたのEtherscanのアドレスを`#eth-dapp`に投稿してあなたの成功をコミュニティで祝いましょう 😊
+ユーザーにETHを送れるコントラクトの実装が完了したら、次のレッスンに進みましょう 🎉

@@ -32,13 +32,13 @@ const CandidateCard = (props) => {
 export default CandidateCard;
 ```
 
-このインポートによって IPFS という分散化した画像保存の技術によって保存された画像をすばやく読み込むことができるようになります。
+このインポートによってIPFSという分散化した画像保存の技術によって保存された画像をすばやく読み込むことができるようになります。
 
 ```javascript
 import { IpfsImage } from 'react-ipfs-image';
 ```
 
-`return`以下で下のようなそれぞれの候補者のカードの UI を示しています。
+`return`以下で下のようなそれぞれの候補者のカードのUIを示しています。
 
 ![](/public/images/NEAR-Election-dApp/section-3/3_2_1.png)
 
@@ -69,7 +69,7 @@ const Input = (props) => {
 export default Input;
 ```
 
-ここで`preventDefault()`としているのは、デフォルトでの Enter キーを押した時に自動的に送信されることを防ぐためで
+ここで`preventDefault()`としているのは、デフォルトでのEnterキーを押した時に自動的に送信されることを防ぐためで
 
 ```javascript
 <form className="w-3/5" onSubmit={e => { e.preventDefault(); }}>
@@ -79,7 +79,7 @@ export default Input;
 
 ![](/public/images/NEAR-Election-dApp/section-3/3_2_2.png)
 
-最後に`components/title.js`で title コンポーネントを作成しましょう！
+最後に`components/title.js`でtitleコンポーネントを作成しましょう！
 
 [title.js]
 
@@ -105,9 +105,9 @@ export default Title;
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-election-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#near-election-dapp`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -118,4 +118,4 @@ export default Title;
 
 これで必要なコンポーネントは完成しました！
 
-次のレッスンではいよいよコントラクトの関数を呼び出してこの web アプリを完成させましょう！
+次のレッスンではいよいよコントラクトの関数を呼び出してこのwebアプリを完成させましょう！

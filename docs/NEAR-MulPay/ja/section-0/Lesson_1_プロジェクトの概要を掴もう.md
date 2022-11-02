@@ -1,6 +1,6 @@
 ### 🌈 Aurora Multiple Payment dApp 開発プロジェクトへようこそ!
 
-このプロジェクトでは Aurora というチェーン上で複数コインでの送金 dApp の作成を行なっていきます！
+このプロジェクトではAuroraというチェーン上で複数コインでの送金dAppの作成を行なっていきます！
 
 プロジェクトを進めるには以下の技術が必要です。
 
@@ -10,33 +10,33 @@
 
 ### 🧐 Aurora とは何か？
 
-Aurora はブロックチェーンの一つで、Ethereum 上で動くコントラクトを NEAR 上で動かすことができるということが大きな特徴です。
+Auroraはブロックチェーンの1つで、Ethereum上で動くコントラクトをNEAR上で動かすことができるということが大きな特徴です。
 
-NEAR の特徴としては、独自の`シャーディング技術`によって他のチェーンと比べて低い手数料での取引が可能だったり、トランザクションの完了が素早いという特徴があります。
+NEARの特徴としては、独自の`シャーディング技術`によって他のチェーンと比べて低い手数料での取引が可能だったり、トランザクションの完了が素早いという特徴があります。
 
-このシャーディング技術は複数のトランザクションを一つのブロックチェーンで処理するのではなく、「シャード」と呼ばれる単位の複数のチェーンで処理を分散化することで並行処理ができるようにする技術のことです。
+このシャーディング技術は複数のトランザクションを1つのブロックチェーンで処理するのではなく、「シャード」と呼ばれる単位の複数のチェーンで処理を分散化することで並行処理ができるようにする技術のことです。
 
-また、環境への配慮もされており従来の通貨に比べて約 1/1300 の電気しか使用しないそうです。
+また、環境への配慮もされており従来の通貨に比べて約1/1300の電気しか使用しないそうです。
 
-従来では`Rust` や `AssemblyScript`（Javascript っぽい言語）の二つの言語で作成されたコントラクトしか動かすことができなかったのですが、Aurora チェーンを仲介することで Ethereum 上で動かすことができるコントラクト（Solidity で作成されたものなど）を NEAR 上で動かすことができるようになりました。
+従来では`Rust`や`AssemblyScript`(JavaScriptっぽい言語)の2つの言語で作成されたコントラクトしか動かすことができなかったのですが、Auroraチェーンを仲介することで、EVM上で動くコントラクト(Solidity, Vyper, etc)をNEAR上でも動かすことができるようになりました。
 
-このことでより多くのサービスを NEAR という高速トランザクションを実現したチェーンで展開できるということです。
+このことでより多くのサービスをNEARという高速トランザクションを実現したチェーンで展開できるということです。
 
-このようにユーザーにも開発者にも素晴らしい環境を用意してくれている Aurora の世界へ飛び込んでみましょう！
+このようにユーザーにも開発者とっても素晴らしい環境を用意してくれているAuroraの世界へ飛び込んでみましょう！
 
 ### 🛠 何を開発するのか？
 
-今回開発するものは、swap 機能を利用した送金 dApp です。
+今回開発するものは、swap機能を利用した送金dAppです。
 
-現在 Ethereum 上ではたくさんのサービスが展開されるとともに、それに伴ってたくさんのトークンが流通しています。
+現在Ethereum上ではたくさんのサービスが展開されるとともに、それに伴ってたくさんのトークンが流通しています。
 
 これによってユーザー一人一人が欲しいトークンが異なる状況が想定されます。そのような状況において送金者と受取人がそれぞれ異なるトークンでやりとりしたいとなることが考えられます。
 
-そこで NEAR の高速なトランザクションと swap 機能によって異なるトークンでやりとりができるようにすることがこの送金 dApp の目的です。具体的には以下の機能を作成していきます。
+そこでNEARの高速なトランザクションとswap機能によって異なるトークンでやりとりができるようにすることがこの送金dAppの目的です。具体的には以下の機能を作成していきます。
 
 - ユーザーの保有トークン残高の表示
-- ユーザーの wallet address の QR コード化
-- QR コードのスキャン
+- ユーザーのwallet addressのQRコード化
+- QRコードのスキャン
 - 異なるトークン間での送金
 
 完成した`Multiple Payment dApp`は以下のような見た目になります 💪
@@ -50,26 +50,26 @@ NEAR の特徴としては、独自の`シャーディング技術`によって�
 
 [UNCHAIN](https://app.shiftbase.xyz) のプロジェクトは [UNCHAIN License](https://github.com/unchain-dev/UNCHAIN-projects/blob/main/LICENSE) により運用されています。
 
-プロジェクトに参加していて、「こうすればもっと分かりやすいのに！」「これは間違っている！」と思ったら、ぜひ `pull request` を送ってください。
+プロジェクトに参加していて、「こうすればもっと分かりやすいのに！」「これは間違っている！」と思ったら、ぜひ`pull request`を送ってください。
 
-GitHub から直接コードを編集して直接 `pull request` を送る方法は、[こちら](https://docs.github.com/ja/repositories/working-with-files/managing-files/editing-files#editing-files-in-another-users-repository)を参照してください。
+GitHubから直接コードを編集して直接`pull request`を送る方法は、[こちら](https://docs.github.com/ja/repositories/working-with-files/managing-files/editing-files#editing-files-in-another-users-repository)を参照してください。
 
 どんなリクエストでも大歓迎です 🎉
 
-また、プロジェクトを自分の GitHub アカウントに `Fork` して、中身を編集してから `pull request` を送ることもできます。
+また、プロジェクトを自分のGitHubアカウントに`Fork`して、中身を編集してから`pull request`を送ることもできます。
 
-- プロジェクトを `Fork` する方法は、[こちら](https://docs.github.com/ja/get-started/quickstart/fork-a-repo) を参照してください。
-- `Fork` から `pull request` を作成する方法は、[こちら](https://docs.github.com/ja/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) です。
+- プロジェクトを`Fork`する方法は、[こちら](https://docs.github.com/ja/get-started/quickstart/fork-a-repo) を参照してください。
+- `Fork`から`pull request`を作成する方法は、[こちら](https://docs.github.com/ja/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) です。
 
-### ⚡️ `Issue` を作成する
+### ⚡️ `Issue`を作成する
 
-`pull request` 送るほどでもないけど、提案を残したい！　と思ったら、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/issues) に `Issue` を作成してみましょう。
+`pull request`送るほどでもないけど、提案を残したい！　と思ったら、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/issues) に`Issue`を作成してみましょう。
 
-`Issue` の作成方法に関しては、[こちら](https://docs.github.com/ja/issues/tracking-your-work-with-issues/creating-an-issue)を参照してください。
+`Issue`の作成方法に関しては、[こちら](https://docs.github.com/ja/issues/tracking-your-work-with-issues/creating-an-issue)を参照してください。
 
-`pull request` や `issue` の作成は実際にチームで開発する際、重要な作業になるので、ぜひトライしてみてください。
+`pull request`や`issue`の作成は実際にチームで開発する際、重要な作業になるので、ぜひトライしてみてください。
 
-UNCHAIN のプロジェクトをみんなでより良いものにしていきましょう ✨
+UNCHAINのプロジェクトをみんなでより良いものにしていきましょう ✨
 
 ---
 
@@ -77,9 +77,9 @@ UNCHAIN のプロジェクトをみんなでより良いものにしていきま
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#section-0` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#section-0`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

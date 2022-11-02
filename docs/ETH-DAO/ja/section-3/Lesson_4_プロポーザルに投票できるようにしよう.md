@@ -2,7 +2,7 @@
 
 トレジャリーと投票の準備ができたので、早速提案を作成してみましょう！
 
-まず、`src/scripts/10-create-vote-proposals.ts` を作成し、以下のとおりコードを変更します。
+まず、`src/scripts/10-create-vote-proposals.ts`を作成し、以下のとおりコードを変更します。
 
 ※ あなたのアドレスを設定することを忘れないでください！
 
@@ -77,19 +77,19 @@ const token = sdk.getContract("INSERT_TOKEN_ADDRESS", "token");
 })();
 ```
 
-ここでは会員に投票してもらうために、2 つの新しい提案を作成しています。
+ここでは会員に投票してもらうために、2つの新しい提案を作成しています。
 
-1. トレジャリーが42万個の新しいトークンを鋳造（mint）できるようにする提案を作成しています。
+1. トレジャリーが42万個の新しいトークンを鋳造(mint)できるようにする提案を作成しています。
    
    これはとても民主的なトレジャリーであるため、もしメンバーの大多数がこの提案を不賛成とした場合、この提案は否決される可能性があります。
 
-2. トレジャリーから自分のウォレットに 6,900 トークンを送金する提案を作成しています。
+2. トレジャリーから自分のウォレットに6,900トークンを送金する提案を作成しています。
    
-   既存の DAO では、DAO に貢献してくれた人などのウォレットにトークンを送る際、今回のようにプロポーザルを作成するのが一般的です。
+   既存のDAOでは、DAOに貢献してくれた人などのウォレットにトークンを送る際、今回のようにプロポーザルを作成するのが一般的です。
 
-`nativeTokenValue` は、ガバナンストークンの他に ETH を送るための設定です。
+`nativeTokenValue`は、ガバナンストークンの他にETHを送るための設定です。
 
-ただし、ETH を送りたい場合は DAO のトレジャリーに送金分の ETH がなければなりません。
+ただし、ETHを送りたい場合はDAOのトレジャリーに送金分のETHがなければなりません。
 
 それでは、ターミナルに移動し、下記コマンドを実行してみましょう。
 
@@ -107,7 +107,7 @@ Done in 54.29s.
 ```
 
 > ⚠️注意
-> `proposal_token_threshold > 0` のように設定した場合、エラーとなる可能性があるため、提案を作成する前にトークンをガバナンスコントラクトに移動させたうえで動作させる必要があるかもしれません。
+> `proposal_token_threshold > 0`のように設定した場合、エラーとなる可能性があるため、提案を作成する前にトークンをガバナンスコントラクトに移動させたうえで動作させる必要があるかもしれません。
 > 
 
 
@@ -115,17 +115,17 @@ Done in 54.29s.
 
 私たちの提案はスマートコントラクト上で公開されています。
 
-このままでは簡単に投票できないので、DAO （ダッシュボード）からユーザーが提案に投票できるようにしていきましょう。
+このままでは簡単に投票できないので、DAO (ダッシュボード)からユーザーが提案に投票できるようにしていきましょう。
 
-では、`src/pages/index.tsx` へ移動し、以下のとおりコードを変更します。
+では、`src/pages/index.tsx`へ移動し、以下のとおりコードを変更します。
 
-まず、`Proposal` をインポートします。
+まず、`Proposal`をインポートします。
 
 ```typescript
 import { Proposal } from "@thirdweb-dev/sdk";
 ```
 
-続いて、`const token = useContract...` の下に投票コントラクトを初期化するコードを追加します。
+続いて、`const token = useContract...`の下に投票コントラクトを初期化するコードを追加します。
 
 ※ あなたのアドレスを設定することを忘れないでください！
 
@@ -134,7 +134,7 @@ import { Proposal } from "@thirdweb-dev/sdk";
   const vote = useContract("INSERT_VOTE_ADDRESS", "vote").contract;
 ```
 
-さらに、`const [memberAddresses, setMemberAddresses] = useState...` の下に新しい `useState` を追加します。
+さらに、`const [memberAddresses, setMemberAddresses] = useState...`の下に新しい`useState`を追加します。
 
 ```typescript
   const [proposals, setProposals] = useState<Proposal[]>([]);
@@ -142,7 +142,7 @@ import { Proposal } from "@thirdweb-dev/sdk";
   const [hasVoted, setHasVoted] = useState(false);
 ```
 
-さいごに、`shortenAddress` 関数の下に以下のコードを追加します。
+さいごに、`shortenAddress`関数の下に以下のコードを追加します。
 
 ```typescript
   // コントラクトから既存の提案を全て取得します
@@ -193,17 +193,17 @@ import { Proposal } from "@thirdweb-dev/sdk";
   }, [hasClaimedNFT, proposals, address, vote]);
 ```
 
-ここでは、以下の 2 つのことを行っています。
+ここでは、以下の2つのことを行っています。
 
-1. 最初の `useEffect` では、`vote!.getAll()` を実行して、ガバナンスコントラクトに存在するすべての提案を取得し、`setProposals` を実行して、後でそれらをレンダリングできるようにしています。
+1. 最初の`useEffect`では、`vote!.getAll()`を実行して、ガバナンスコントラクトに存在するすべての提案を取得し、`setProposals`を実行して、後でそれらをレンダリングできるようにしています。
    
-2. 2 つ目の `useEffect` では、`vote!.hasVoted(properties[0].proposalId.toString(), address)` を実行して、このアドレスが最初の提案に投票しているかどうかを確認しています。
+2. 2つ目の`useEffect`では、`vote!.hasVoted(properties[0].proposalId.toString(), address)`を実行して、このアドレスが最初の提案に投票しているかどうかを確認しています。
    
-   もし投票済みだった場合は、`setHasVoted` を実行して、ユーザが再び投票できないようにします。
+   もし投票済みだった場合は、`setHasVoted`を実行して、ユーザが再び投票できないようにします。
 
    ただし、もしこの処理がなかったとしても、ユーザが二重投票をしようとしたら、私たちのコントラクトがトランザクションを拒否することでしょう！
 
-ページを更新すると、🌈 の横に先ほどあなたが提案した 2 つの提案が表示され、すべての提案データを閲覧することができるはずです。
+ページを更新すると、🌈 の横に先ほどあなたが提案した2つの提案が表示され、すべての提案データを閲覧することができるはずです。
 
 ![](/public/images/ETH-DAO/section-3/3_4_1.png)
 
@@ -213,13 +213,13 @@ import { Proposal } from "@thirdweb-dev/sdk";
 
 さて、それではこれからユーザーが投票する際、賛成・反対・棄権の中から選択肢を選べるようにしていきましょう。
 
-まず、以下の `AddressZero` をインポートします。
+まず、以下の`AddressZero`をインポートします。
 
 ```typescript
 import { AddressZero } from "@ethersproject/constants";
 ```
 
-続いて、DAO ダッシュボード画面を表示している `else if (hasClaimedNFT) {...}` の中身を以下のコードに置き換えます。
+続いて、DAOダッシュボード画面を表示している`else if (hasClaimedNFT) {...}`の中身を以下のコードに置き換えます。
 
 ```typescript
     return (
@@ -376,22 +376,22 @@ import { AddressZero } from "@ethersproject/constants";
 
 ![](/public/images/ETH-DAO/section-3/3_4_3.png)
 
-今回は、24 時間後に投票を受付できなくなるように設定しています。
+今回は、24時間後に投票を受付できなくなるように設定しています。
 
-24 時間後に「提案への賛成票＞提案への反対票」となった場合は、どのメンバーもガバナンスコントラクトを通じて提案を実行することができるようになります。
+24時間後に「提案への賛成票＞提案への反対票」となった場合は、どのメンバーもガバナンスコントラクトを通じて提案を実行することができるようになります。
 
-ちなみに、ここで 2 つの提案に対し `For` を選択して `Submit Votes` ボタンを押下すると MetaMask が立ち上がり確認を求められます。
+ちなみに、ここで2つの提案に対し`For`を選択して`Submit Votes`ボタンを押下するとMetaMaskが立ち上がり確認を求められます。
 
-確認後、正常に動作すると以下のようにボタンが `You Already Voted` となり、コンソールに `successfuly voted` と表示されます。
+確認後、正常に動作すると以下のようにボタンが`You Already Voted`となり、コンソールに`successfuly voted`と表示されます。
 
 ![](/public/images/ETH-DAO/section-3/3_4_4.png)
 
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#eth-dao` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#eth-dao`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -402,8 +402,8 @@ import { AddressZero } from "@ethersproject/constants";
 
 ---
 
-ぜひ、コンソールに `successfuly voted` と表示されたフロントエンド画面のスクリーンショットを `#eth-dao` に投稿してください 😊
+ぜひ、コンソールに`successfuly voted`と表示されたフロントエンド画面のスクリーンショットを`#eth-dao`に投稿してください 😊
 
 あなたの成功をコミュニティで祝いましょう 🎉
 
-次のレッスンでは、DAO をより分散化させるために管理権限の排除をしていきます！
+次のレッスンでは、DAOをより分散化させるために管理権限の排除をしていきます！

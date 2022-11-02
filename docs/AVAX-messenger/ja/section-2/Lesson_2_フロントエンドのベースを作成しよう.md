@@ -1,7 +1,7 @@
 ### 🍽 ページを作ろう
 
 それでは実際にコードを書いてフロントエンドのベースとなるものを作成していきます。  
-先にこのレッスンでどのような UI を作るのかイメージ図を載せます。  
+先にこのレッスンでどのようなUIを作るのかイメージ図を載せます。  
 手順の中でイメージ図の何番という形で参照することになるのでこちらを参照するようにしてください。
 
 1 \. ホーム画面
@@ -22,7 +22,7 @@
 
 ### 📁 `styles`ディレクトリ
 
-`styles`ディレクトリには css のコードが入っています。  
+`styles`ディレクトリにはcssのコードが入っています。  
 全てのページに適用されるよう用意された`global.css`と, ホームページ用の`Home.module.css`があります。
 
 `global.css`内に以下のコードを記述してください。  
@@ -129,16 +129,16 @@ messenger-client
 ### 📁 `public`ディレクトリ
 
 `Next.js`はルートディレクトリ直下の`public`ディレクトリを静的なリソース(画像やテキストデータなど)の配置場所と認識します。  
-そのためソースコード内で画像の URL を`/image.png`と指定した場合,  
+そのためソースコード内で画像のURLを`/image.png`と指定した場合,  
 `Next.js`は自動的に`public`ディレクトリをルートとした`プロジェクトルート/public/image.png`を参照してくれます。
 
 ディレクトリ内画像を全て削除してください。  
 そして新たに画像を追加します。
 
-以下の画像をダウンロードするか, あなたのお好きな画像を `favicon.png` という名前で`public`ディレクトリ内に保存してください。  
+以下の画像をダウンロードするか, あなたのお好きな画像を`favicon.png`という名前で`public`ディレクトリ内に保存してください。  
 ![](/public/images/AVAX-messenger/section-2/2_2_1.png)
 
-この画像はあなたの web アプリケーションのファビコンとなります！ 🙆‍♂️
+この画像はあなたのwebアプリケーションのファビコンとなります！ 🙆‍♂️
 
 `public`に関するフォルダ構成はこのようになります。
 
@@ -192,9 +192,9 @@ messenger-client
 📁 `card`ディレクトリ
 
 まず`components`ディレクトリ内に`card`というディレクトリを作成し,  
-その中に `MessageCard.module.css` と `MessageCard.tsx` という名前のファイルを作成してください。
+その中に`MessageCard.module.css`と`MessageCard.tsx`という名前のファイルを作成してください。
 
-`MessageCard.module.css` 内に以下のコードを記述してください。
+`MessageCard.module.css`内に以下のコードを記述してください。
 
 ```css
 .card {
@@ -227,7 +227,7 @@ p.text {
 }
 ```
 
-`MessageCard.tsx`で使用する css になります。
+`MessageCard.tsx`で使用するcssになります。
 
 `MessageCard.tsx`内に以下のコードを記述してください。
 
@@ -270,11 +270,11 @@ export default function MessageCard({
 }
 ```
 
-ここでは画像のイメージ図 3 の, ユーザが自分宛のメッセージを一覧で確認するページの部品を作っています。  
-一つ一つのメッセージの表示にこの `MessageCard` コンポーネントが使用されます。
+ここでは画像のイメージ図3の, ユーザが自分宛のメッセージを一覧で確認するページの部品を作っています。  
+一つ一つのメッセージの表示にこの`MessageCard`コンポーネントが使用されます。
 
-ファイル内の初めには `Props` という形で `MessageCard` コンポーネントの引数を定義しています。  
-表示するメッセージの情報とコントラクトの `accept`, `deny` を呼び出すための関数を受け取ることになります。
+ファイル内の初めには`Props`という形で`MessageCard`コンポーネントの引数を定義しています。  
+表示するメッセージの情報とコントラクトの`accept`, `deny`を呼び出すための関数を受け取ることになります。
 
 関数の初めの一行に注目しましょう。
 
@@ -284,9 +284,9 @@ const depositInEther = ethers.utils.formatEther(message.depositInWei);
 
 ここではメッセージトークン`message.depositInWei`(単位`Wei`)を  
 `ethers`の関数を利用して`depositInEther`(単位`ether`)に変換しています。  
-`depositInEther`は UI で実際に表示する数値になります。  
-solidity では小数点を扱わないのでトークンの量は`Wei`を使用し, フロントエンドでも`Wei`を基準にメッセージトークンを認識しますが  
-実際に UI でトークンの量を表示する際はわかりやすい`ether`の単位に直したトークン量を使用することにします。
+`depositInEther`はUIで実際に表示する数値になります。  
+solidityでは小数点を扱わないのでトークンの量は`Wei`を使用し, フロントエンドでも`Wei`を基準にメッセージトークンを認識しますが  
+実際にUIでトークンの量を表示する際はわかりやすい`ether`の単位に直したトークン量を使用することにします。
 
 > 📓 TSX とは  
 > ファイル拡張子に typescript の ts ではなく, tsx というものをつけました。  
@@ -428,7 +428,7 @@ export default function SendMessageForm({ sendMessage }: Props) {
 }
 ```
 
-ここではイメージ図 2 の, メッセージ送信フォーム UI を構成するコンポーネントを作成しています。  
+ここではイメージ図2の, メッセージ送信フォームUIを構成するコンポーネントを作成しています。  
 テキスト, 送り先のアドレス, 添付するトークンの量の入力欄を用意し, `send`ボタンと`sendMessage`関数を連携しています。
 
 📁 `layout`ディレクトリ
@@ -535,10 +535,10 @@ messenger-client
 
 最後に`messenger-client`ディレクトリ直下の`pages`ディレクトリを編集していきます。
 
-Next.js では,pages ディレクトリのファイルからエクスポートされた コンポーネント がページとなります。  
+Next.jsでは,pagesディレクトリのファイルからエクスポートされたコンポーネントがページとなります。  
 ページは,ファイル名からルートと関連付けられます。  
-たとえば`pages/index.js` は `/` ルートに関連付けられます。  
-`pages/message/SendMessagePage.tsx` は `/message/SendMessagePage` ルートに関連付けられます。  
+たとえば`pages/index.js`は`/`ルートに関連付けられます。  
+`pages/message/SendMessagePage.tsx`は`/message/SendMessagePage`ルートに関連付けられます。  
 まず初めに`api`ディレクトリは今回使用しないのでディレクトリごと削除してください。
 
 📁 `message`ディレクトリ
@@ -567,7 +567,7 @@ export default function SendMessagePage() {
 }
 ```
 
-イメージ図 2 のメッセージ送信画面全体を構成しています。  
+イメージ図2のメッセージ送信画面全体を構成しています。  
 これまでで作成した`Layout`コンポーネントと`SendMessageForm`コンポーネントを使用しています。  
 現段階では`SendMessageForm`に渡す関数は処理が空なので, `SendMessageForm`内で`send`ボタンを押しても何も起きません。
 
@@ -608,20 +608,20 @@ export default function ConfirmMessagePage() {
 }
 ```
 
-イメージ図 3 のメッセージ確認画面全体を構成しています。  
-コンポーネントの初めに `ownMessages` というメッセージデータを持った配列を作成し,  
-コンポーネントの返り値の中で `ownMessages` に `map` メソッドを使用していることに注目してください。
+イメージ図3のメッセージ確認画面全体を構成しています。  
+コンポーネントの初めに`ownMessages`というメッセージデータを持った配列を作成し,  
+コンポーネントの返り値の中で`ownMessages`に`map`メソッドを使用していることに注目してください。
 
-本来 `ownMessages` はスマートコントラクトから取得したデータを格納する変数ですが,  
-現時点ではスマートコントラクトと連携していないので疑似的に `message` オブジェクトを使って作成しています。
+本来`ownMessages`はスマートコントラクトから取得したデータを格納する変数ですが,  
+現時点ではスマートコントラクトと連携していないので疑似的に`message`オブジェクトを使って作成しています。
 
-`ownMessages.map()` によって一つ一つの要素に対して `MessageCard` コンポーネントを適用させた新たな配列を返却しています。  
-`ownMessages` には要素を 2 つ用意したので, 2 つの `MessageCard` コンポーネントの表示がイメージ図 3 では確認できます。  
+`ownMessages.map()`によって一つ一つの要素に対して`MessageCard`コンポーネントを適用させた新たな配列を返却しています。  
+`ownMessages`には要素を2つ用意したので, 2つの`MessageCard`コンポーネントの表示がイメージ図3では確認できます。  
 なお引数で渡す関数はまだ処理が空です。
 
-最後に `pages` ディレクトリ内にある `_app.tsx` と `index.tsx` を編集します。
+最後に`pages`ディレクトリ内にある`_app.tsx`と`index.tsx`を編集します。
 
-`_app.tsx` 内に以下のコードを記述してください。  
+`_app.tsx`内に以下のコードを記述してください。  
 ※初期設定のままなので編集箇所がない場合があります。
 
 ```tsx
@@ -675,8 +675,8 @@ const Home: NextPage = () => {
 export default Home;
 ```
 
-イメージ図 1 のホームページ全体を構成します。  
-ページ内に二つの`Link`を用意していて, それぞれ先ほど作成した`SendMessagePage`, `ConfirmMessagePage`とリンクしています。
+イメージ図1のホームページ全体を構成します。  
+ページ内に2つの`Link`を用意していて, それぞれ先ほど作成した`SendMessagePage`, `ConfirmMessagePage`とリンクしています。
 
 `pages`に関するフォルダ構成はこのようになります。
 
@@ -704,14 +704,14 @@ $ npm run dev
 > [こちら](https://github.com/unchain-dev/avalanche_messenger_dapp)に本プロジェクトの完成形のレポジトリがあります。
 >
 > コードがうまく動かない場合は参考にしてみてください。  
-> `messenger-contract` はリンク先のレポジトリ内の `package/contract` を。  
-> `messenger-client` はリンク先のレポジトリ内の `package/client` を参照してください。
+> `messenger-contract`はリンク先のレポジトリ内の`package/contract`を。  
+> `messenger-client`はリンク先のレポジトリ内の`package/client`を参照してください。
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は,Discord の `#avax-messenger` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は,Discordの`#avax-messenger`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので,エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので,エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

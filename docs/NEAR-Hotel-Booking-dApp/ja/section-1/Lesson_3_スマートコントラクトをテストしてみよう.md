@@ -2,7 +2,7 @@
 
 前回までのレッスンで、部屋を登録・取得するスマートコントラクトが作成できました。このレッスンでは、実際に機能しているかターミナル上で確認をしていきます。
 
-テストは以下の 2 つの方法があります。
+テストは以下の2つの方法があります。
 
 1. テスト用の関数を走らせて、思った通りの挙動をするか一気にテストする
 2. 実際にデプロイをしてターミナル上から関数を動かして確認する
@@ -11,7 +11,7 @@
 
 ### 👤 NEAR testnet のアカウントを作成する
 
-デプロイをするには、NEAR testnet のアカウントが必要です。[こちら](https://wallet.testnet.near.org/create)から作成してください。既にお持ちの方は、こちらのステップを飛ばしていただいて構いません。
+デプロイをするには、NEAR testnetのアカウントが必要です。[こちら](https://wallet.testnet.near.org/create)から作成してください。既にお持ちの方は、こちらのステップを飛ばしていただいて構いません。
 
 ### ✅ 　デプロイをしてテストする
 
@@ -43,7 +43,7 @@ ls ./target/wasm32-unknown-unknown/release | grep hotel_booking.wasm
 hotel_booking.wasm
 ```
 
-次に、スマートコントラクトのデプロイを行います。ここからは、環境構築時にインストールをした`NEAR CLI`を使ってターミナルから直接 NEAR ネットワークを操作していきます。
+次に、スマートコントラクトのデプロイを行います。ここからは、環境構築時にインストールをした`NEAR CLI`を使ってターミナルから直接NEARネットワークを操作していきます。
 
 まずは、ログインをします。ターミナルで以下のコマンドを実行します。
 
@@ -65,7 +65,7 @@ near create-account ${SUBACCOUNT_ID}.${ACCOUNT_ID} --masterAccount ${ACCOUNT_ID}
 near create-account contract.hotel_booking.testnet --masterAccount hotel_booking.testnet --initialBalance 5
 ```
 
-⚠️ 以降では、下記のように実際のアカウント ID を指定してコマンドを実行します。適宜ご自身のアカウント ID に読み替えてください。
+⚠️ 以降では、下記のように実際のアカウントIDを指定してコマンドを実行します。適宜ご自身のアカウントIDに読み替えてください。
 
 - スマートコントラクトをデプロイするサブアカウント : `contract.hotel_booking.testnet`
 - 部屋のオーナーアカウント : `hotel_booking.testnet`
@@ -87,7 +87,7 @@ Done deploying to contract.hotel_booking.testnet
 
 ### 🎓 NEAR CLI でメソッドを呼び出す方法について
 
-`View`メソッドと`Change`メソッドで、引数の指定やオプションの種類が異なります。以下はコマンドの例になります。（詳しくは[こちら](https://docs.near.org/tools/near-cli#near-call)）
+`View`メソッドと`Change`メソッドで、引数の指定やオプションの種類が異なります。以下はコマンドの例になります(詳しくは[こちら](https://docs.near.org/tools/near-cli#near-call))
 
 `View`メソッド
 
@@ -121,7 +121,7 @@ View call: contract.hotel_booking.testnet.get_rooms_registered_by_owner({"owner_
 
 次に、`add_room_to_owner`メソッドを呼んで部屋のデータを登録してみます。
 
-💡 このプロジェクトでは、部屋の画像に`URL`を用います。`"image": "URL"`には、お好きな画像の URL を指定してみてください。
+💡 このプロジェクトでは、部屋の画像に`URL`を用います。`"image": "URL"`には、お好きな画像のURLを指定してみてください。
 
 ```bash
 near call contract.hotel_booking.testnet add_room_to_owner '{"name": "Sun Room", "image": "URL", "beds": 1, "description": "This is Sun room.", "location": "Tokyo", "price": "1000000000000000000000000"}' --accountId hotel_booking.testnet
@@ -182,7 +182,7 @@ true
 near view contract.hotel_booking.testnet exists '{"owner_id": "hotel_booking.testnet", "room_name": "Moon Room"}' --accountId hotel_booking.testnet
 ```
 
-Moon Room という名前の部屋は登録していないので、`false`が返ってきます。
+Moon Roomという名前の部屋は登録していないので、`false`が返ってきます。
 
 ```bash
 View call: contract.hotel_booking.testnet.exists({"owner_id": "hotel_booking.testnet", "room_name": "Moon Room"})
@@ -193,9 +193,9 @@ false
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-booking-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#near-booking-dapp`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -206,8 +206,8 @@ false
 
 ---
 
-おめでとうございます！セクション 1 は終了です ✨
+おめでとうございます！ セクション1は終了です ✨
 
-`near view contract.hotel_booking.testnet exists '{"owner_id": "hotel_booking.testnet", "room_name": "Sun Room"}' --accountId hotel_booking.testnet` の結果を `#section-1` に投稿して、あなたの成功をコミュニティで祝いましょう 🎉
+`near view contract.hotel_booking.testnet exists '{"owner_id": "hotel_booking.testnet", "room_name": "Sun Room"}' --accountId hotel_booking.testnet`の結果を`#section-1`に投稿して、あなたの成功をコミュニティで祝いましょう 🎉
 
 次のセクションに進み、スマートコントラクトの機能を拡張しましょう 🚀

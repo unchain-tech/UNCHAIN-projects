@@ -1,16 +1,16 @@
 ### 👩‍💻 コントラクトを作成する
 
-「👋（wave）」の総数をトラッキングするスマートコントラクトを作成します。ここで作成するスマートコントラクトは、後でユースケースに合わせて自由に変更できます。
+「👋(wave)」の総数をトラッキングするスマートコントラクトを作成します。ここで作成するスマートコントラクトは、後でユースケースに合わせて自由に変更できます。
 
-`contracts` ディレクトリの下に `WavePortal.sol` という名前のファイルを作成します。
+`contracts`ディレクトリの下に`WavePortal.sol`という名前のファイルを作成します。
 
 ターミナル上で新しくファイルを作成する場合は、下記のコマンドが役立ちます。
 
-1. `my-wave-portal` ディレクトリに移動: `cd my-wave-portal`
-2. `contracts` ディレクトリに移動: `cd contracts`
-3. `WavePortal.sol` ファイルを作成: `touch WavePortal.sol`
+1. `my-wave-portal`ディレクトリに移動: `cd my-wave-portal`
+2. `contracts`ディレクトリに移動: `cd contracts`
+3. `WavePortal.sol`ファイルを作成: `touch WavePortal.sol`
 
-Hardhat を使用する場合、ファイル構造は非常に重要ですので、注意する必要があります。ファイル構造が下記のようになっていれば大丈夫です 😊
+Hardhatを使用する場合、ファイル構造は非常に重要ですので、注意する必要があります。ファイル構造が下記のようになっていれば大丈夫です 😊
 
 ```bash
 my-wave-portal
@@ -20,21 +20,21 @@ my-wave-portal
 
 次に、コードエディタでプロジェクトのコードを開きます。
 
-ここでは、VS Code の使用をお勧めします。ダウンロードは [こちら](https://azure.microsoft.com/ja-jp/products/visual-studio-code/) から。
+ここでは、VS Codeの使用をお勧めします。ダウンロードは [こちら](https://azure.microsoft.com/ja-jp/products/visual-studio-code/) から。
 
-VS Code をターミナルから起動する方法は [こちら](https://maku.blog/p/f5iv9kx/) をご覧ください。
+VS Codeをターミナルから起動する方法は [こちら](https://maku.blog/p/f5iv9kx/) をご覧ください。
 
-- ターミナル上で、`code` コマンドを実行
+- ターミナル上で、`code`コマンドを実行
 
-今後 VS Code を起動するのが一段と楽になるので、ぜひ導入してみてください。
+今後VS Codeを起動するのが一段と楽になるので、ぜひ導入してみてください。
 
-コーディングのサポートツールとして、VS Code 上で Solidity の拡張機能をダウンロードすることをお勧めします。
+コーディングのサポートツールとして、VS Code上でSolidityの拡張機能をダウンロードすることをお勧めします。
 
 ダウンロードは [こちら](https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity) から。
 
-それでは、これから `WavePortal.sol` の中身の作成していきます。
+それでは、これから`WavePortal.sol`の中身の作成していきます。
 
-`WavePortal.sol` を VS Code で開き、下記を入力します。
+`WavePortal.sol`をVS Codeで開き、下記を入力します。
 
 ```solidity
 // WavePortal.sol
@@ -58,7 +58,7 @@ contract WavePortal {
 // SPDX-License-Identifier: MIT
 ```
 
-これは「SPDX ライセンス識別子」と呼ばれ、ソフトウェア・ライセンスの種類が一目でわかるようにするための識別子です。
+これは「SPDXライセンス識別子」と呼ばれ、ソフトウェア・ライセンスの種類が一目でわかるようにするための識別子です。
 
 詳細については、[こちら](https://www.skyarch.net/blog/?p=15940) を参照してみてください。
 
@@ -67,20 +67,20 @@ contract WavePortal {
 pragma solidity ^0.8.9;
 ```
 
-これは、コントラクトで使用する Solidity コンパイラのバージョンです。
+これは、コントラクトで使用するSolidityコンパイラのバージョンです。
 
-上記のコードでは、このコントラクトを実行するときは Solidity コンパイラのバージョン `0.8.9` のみを使用しそれ以下のものは使用しません、という宣言をしています。
+上記のコードでは、このコントラクトを実行するときはSolidityコンパイラのバージョン`0.8.9`のみを使用しそれ以下のものは使用しません、という宣言をしています。
 
-コンパイラのバージョンが `hardhat.config.js` で同じであることを確認してください。
+コンパイラのバージョンが`hardhat.config.js`で同じであることを確認してください。
 
-もし、`hardhat.config.js` の中に記載されている Solidity のバージョンが`0.8.9` でなかった場合は、`WavePortal.sol`の中身を`hardhat.config.js` に記載されているバージョンに変更しましょう。
+もし、`hardhat.config.js`の中に記載されているSolidityのバージョンが`0.8.9`でなかった場合は、`WavePortal.sol`の中身を`hardhat.config.js`に記載されているバージョンに変更しましょう。
 
 ```solidity
 // WavePortal.sol
 import "hardhat/console.sol";
 ```
 
-コントラクトを実行する際、コンソールログをターミナルに出力するために Hardhat の `console.sol` のファイルをインポートしています。
+コントラクトを実行する際、コンソールログをターミナルに出力するためにHardhatの`console.sol`のファイルをインポートしています。
 
 これは、今後スマートコントラクトのデバッグが発生した場合に、とても役立つツールです。
 
@@ -93,27 +93,27 @@ contract WavePortal {
 }
 ```
 
-`contract` は、ほかの言語でいうところの「[class](https://wa3.i-3-i.info/word1120.html)」のようなものなのです。
+`contract`は、ほかの言語でいうところの「[class](https://wa3.i-3-i.info/word1120.html)」のようなものなのです。
 
-この `contract` を初期化すると、`constructor` が実行されて `console.log` の中身がターミナル上に表示されます。
+この`contract`を初期化すると、`constructor`が実行されて`console.log`の中身がターミナル上に表示されます。
 
-class の概念については、[こちら](https://aiacademy.jp/media/?p=131) を参照してください。
+classの概念については、[こちら](https://aiacademy.jp/media/?p=131) を参照してください。
 
 ### 🔩 constructor とは
 
-`constructor` はオプションの関数で、`contract` の状態変数を初期化するために使用されます。
+`constructor`はオプションの関数で、`contract`の状態変数を初期化するために使用されます。
 
-これから詳しく説明していくので、`constructor` に関しては、まず以下の特徴を理解してください。
+これから詳しく説明していくので、`constructor`に関しては、まず以下の特徴を理解してください。
 
-- `contract` は 1 つの `constructor` しか持つことができません。
-- `constructor` は、スマートコントラクトの作成時に一度だけ実行され、`contract` の状態を初期化するために使用されます。
-- `constructor` が実行された後、コードがブロックチェーンにデプロイされます。
+- `contract`は1つの`constructor`しか持つことができません。
+- `constructor`は、スマートコントラクトの作成時に一度だけ実行され、`contract`の状態を初期化するために使用されます。
+- `constructor`が実行された後、コードがブロックチェーンにデプロイされます。
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#eth-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#eth-dapp`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

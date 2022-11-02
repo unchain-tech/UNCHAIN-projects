@@ -135,9 +135,9 @@ class SignIn extends StatelessWidget {
 }
 ```
 
-flutter では`main`関数から走り出します。まず`.env`ファイルを読み込み、その後 javascript でいう props のような`provider`を作成します。
+flutterでは`main`関数から走り出します。まず`.env`ファイルを読み込み、その後JavaScriptでいうpropsのような`provider`を作成します。
 
-この provider を使用することで他の widget からも情報の共有、監視ができるようになります。
+このproviderを使用することで他のウィジェットからも情報の共有、監視ができるようになります。
 
 ```
 Future main() async {
@@ -158,7 +158,7 @@ Future main() async {
 }
 ```
 
-child として`MyApp`が指定されているので次にこの widget が表示されることになります。
+childとして`MyApp`が指定されているので次にこのウィジェットが表示されることになります。
 
 ```
 class MyApp extends StatelessWidget {
@@ -202,14 +202,14 @@ class MyApp extends StatelessWidget {
 }
 ```
 
-`MyApp`では`routes`でルートを指定しています。ここでは`/signIn`というルートでは`SignIn`widget が、`/home`というルートでは`BottomNavigationBarWidget`widget が表示されることになります。
+`MyApp`では`routes`でルートを指定しています。ここでは`/signIn`というルートでは`SignIn`ウィジェットが、`/home`というルートでは`BottomNavigationBarWidget`ウィジェットが表示されることになります。
 
-`initialRoute`には`/signIn`が指定されているのでまずは`SignIn`widget が表示されます。
+`initialRoute`には`/signIn`が指定されているのでまずは`SignIn`ウィジェットが表示されます。
 
 ではエミュレータで動かしてみましょう！
 
 
-その前に、使用しているライブラリの中で android の設定を変えないと動かないものがあるので`android/app/build.gradle`に移動して`compileSdkVersion`を`32`に変更しましょう。
+その前に、使用しているライブラリの中でandroidの設定を変えないと動かないものがあるので`android/app/build.gradle`に移動して`compileSdkVersion`を`32`に変更しましょう。
 
 また、`defaultConfig`の中の`minSdkVersion`を`20`にしましょう。
 
@@ -496,7 +496,7 @@ class Home extends StatelessWidget {
 }
 ```
 
-この画面では上部のメニューの balance に残高全てを ETH で表示しています。また、その下のそれぞれのトークンの残高をコントラクトの関数によって取得しています。
+この画面では上部のメニューの残高に残高全てをETHで表示しています。また、その下のそれぞれのトークンの残高をコントラクトの関数によって取得しています。
 
 これらの情報の取得は非同期処理で取得しているので、取得するまではインジケーターが回るようになっています。
 
@@ -509,9 +509,9 @@ class Home extends StatelessWidget {
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#section-2` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#section-2`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -522,8 +522,8 @@ class Home extends StatelessWidget {
 
 ---
 
-section-2-lesson2 の完了おめでとうございます 🎉
+section-2-lesson2の完了おめでとうございます 🎉
 
 これでサインイン画面とホーム画面は完成しました！
 
-次のレッスンでは送金画面、wallet 画面を実装していきます。
+次のレッスンでは送金画面、wallet画面を実装していきます。

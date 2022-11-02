@@ -3,7 +3,7 @@
 前レッスンではバイクを管理するコントラクトを作成しました 🌟
 このレッスンではフロントエンドを本プロジェクト用に編集し, コントラクトと接続してみましょう！
 
-`near_bike_share_dapp` の中にある`frontend`ディレクトリの中身を変更します。
+`near_bike_share_dapp`の中にある`frontend`ディレクトリの中身を変更します。
 `frontend`のフォルダ構成を以下に示します。
 
 ```
@@ -34,7 +34,7 @@ frontend
 ![](/public/images/NEAR-BikeShare/section-2/2_4_4.png)
 
 次に`frontend/assets/css/global.css`を以下に示すコードで書き換えてください。
-今回のプロジェクトに合わせた `css` を記述しています。
+今回のプロジェクトに合わせた`css`を記述しています。
 
 ```css
 /* global.css */
@@ -269,13 +269,13 @@ export async function initContract() {
 // コントラクトAPI の実装 ...
 ```
 
-`near-api-js` というライブラリを `import` してコントラクトとの接続に使用します。
-`near-api-js` の使い方に関しては[こちら](https://docs.near.org/develop/integrate/frontend)を参照してください。
-また, `config.js` ファイルから `import` した `getConfig` 関数を使用して設定を取得しています。
-その後に `initContract` 関数でコントラクトとの接続を初期化,
+`near-api-js`というライブラリを`import`してコントラクトとの接続に使用します。
+`near-api-js`の使い方に関しては[こちら](https://docs.near.org/develop/integrate/frontend)を参照してください。
+また, `config.js`ファイルから`import`した`getConfig`関数を使用して設定を取得しています。
+その後に`initContract`関数でコントラクトとの接続を初期化,
 さらにその後に`コントラクトAPI`(コントラクトの機能を使用するための関数) の実装が続いています。
 
-`initContract` 関数内の以下の部分に注目しましょう。
+`initContract`関数内の以下の部分に注目しましょう。
 
 ```js
 window.contract = await new Contract(
@@ -288,9 +288,9 @@ window.contract = await new Contract(
 );
 ```
 
-`window` 変数に新しいコントラクト情報を格納しています。
+`window`変数に新しいコントラクト情報を格納しています。
 もともとコントラクトとして存在した`greeter`コントラクトの情報が記述されています。
-`view メソッド`に`get_greeting`,`change メソッド`に`set_greeting` がある状態です。
+`view メソッド`に`get_greeting`,`change メソッド`に`set_greeting`がある状態です。
 これをあなたが作ったメソッド名に変更しましょう！
 
 ```js
@@ -309,7 +309,7 @@ window.contract = await new Contract(
 );
 ```
 
-そして`コントラクトAPI` の以下の部分についても`get_greeting`, `set_greeting`を使用している状態です。
+そして`コントラクトAPI`の以下の部分についても`get_greeting`, `set_greeting`を使用している状態です。
 
 ```js
 export async function set_greeting(message) {
@@ -889,7 +889,7 @@ export default function App() {
 ```
 
 少し長いので読むのが大変かと思いますが,
-Web サイトがブラウザ上で起動してからの`App.js`内の処理フローをここで簡単に整理します。
+Webサイトがブラウザ上で起動してからの`App.js`内の処理フローをここで簡単に整理します。
 
 - 起動時, `useEffect`内で定義した`allBikeInfo`と`renderingState`の初期化が実行されます。
 - 次にファイル下部にある`switch`文が実行されます。
@@ -898,7 +898,7 @@ Web サイトがブラウザ上で起動してからの`App.js`内の処理フ�
 - ホーム画面の表示(`hoem`関数)では`bikeContents`関数が実行されます。
   `allBikeInfo`と共にユーザが利用できるボタンをリスト表示します。
 
-最後に `package.json` 内,`build:contract`スクリプトを以下のように変更します。
+最後に`package.json`内,`build:contract`スクリプトを以下のように変更します。
 
 ```js
 // package.json
@@ -930,11 +930,11 @@ $ yarn dev
 
 `use`, `inspect`, `return`ボタンを押してみて挙動を確かめましょう。
 
-サイトの上で右クリックを行い、`Inspect` を選択 -> `Console`を選択し出力結果を確認してみましょう。
+サイトの上で右クリックを行い、`Inspect`を選択 -> `Console`を選択し出力結果を確認してみましょう。
 
 ![](/public/images/NEAR-BikeShare/section-2/2_4_2.png)
 
-アプリの挙動を確かめた後`Console`の出力に URL が 2 つ表示されています。
+アプリの挙動を確かめた後`Console`の出力にURLが2つ表示されています。
 
 ![](/public/images/NEAR-BikeShare/section-2/2_4_3.png)
 
@@ -943,9 +943,9 @@ $ yarn dev
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-economy` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#near-sharing-economy`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 
@@ -960,5 +960,5 @@ $ yarn dev
 
 おめでとうございます！
 アプリの基盤を作ることができました！
-先ほど確認した URL(`Console` に最後に表示されたコントラクトアカウント ID に関する URL)を `#near-sharing-economy` に投稿して、あなたの成功をコミュニティで祝いましょう 🎉
-次のレッスンでは `ftコントラクト`を連携していきます！
+先ほど確認したURL(`Console`に最後に表示されたコントラクトアカウントIDに関するURL)を`#near-sharing-economy`に投稿して、あなたの成功をコミュニティで祝いましょう 🎉
+次のレッスンでは`ftコントラクト`を連携していきます！

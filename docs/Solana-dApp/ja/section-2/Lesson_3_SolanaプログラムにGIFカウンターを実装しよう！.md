@@ -2,26 +2,26 @@
 
 データを保存するための変更を加えていきましょう!
 
-今回作成する Web アプリケーションは、誰でも GIF を投稿することができます。
+今回作成するWebアプリケーションは、誰でもGIFを投稿することができます。
 
-そのため、`total_gifs` で GIF の投稿数の管理ができるとかなり便利です。
+そのため、`total_gifs`でGIFの投稿数の管理ができるとかなり便利です。
 
 
 ### 🥞 GIF カウントを保存する　
 
-GIF の投稿数を保存するための変数 `total_gifs` を定義し、誰かが新しく GIF を投稿した際に、`total_gifs` の数値を `+1` すれば良いだけです。
+GIFの投稿数を保存するための変数`total_gifs`を定義し、誰かが新しくGIFを投稿した際に、`total_gifs`の数値を`+1`すれば良いだけです。
 
-しかし、Solana は Ethereum とは異なり、「ステートレス」であるため、データを永久に保持することはできません。
+しかし、SolanaはEthereumとは異なり、「ステートレス」であるため、データを永久に保持することはできません。
 
-ただし、Solana は「アカウント」とやり取りができます。
+ただし、Solanaは「アカウント」とやり取りができます。
 
-Solana の「アカウント」は「プログラムが読み書きできるファイル」のことを指します。
+Solanaの「アカウント」は「プログラムが読み書きできるファイル」のことを指します。
 
 「ウォレットでアカウントを作成する」といった際に利用される「アカウント」とは異なるので、紛らわしいですが注意しましょう。
 
 アカウントについての詳細は[こちら](https://docs.solana.com/developing/programming-model/accounts)を参照してください。
 
-それでは、`lib.rs` を以下のとおり修正していきましょう。
+それでは、`lib.rs`を以下のとおり修正していきましょう。
 
 ```rust
 // lib.rs
@@ -73,7 +73,7 @@ pub struct BaseAccount {
 
 ここでは、どんな種類のアカウントを作成し、その中に何を保持するかを定義しています。
 
-今回は `BaseAccount` が `total_gifs` という名前の整数を保持することになります。
+今回は`BaseAccount`が`total_gifs`という名前の整数を保持することになります。
 
 ```rust
 #[derive(Accounts)]
@@ -86,23 +86,23 @@ pub struct StartStuffOff<'info> {
 }
 ```
 
-ここでは、`StartStuffOff` コンテキストで初期化する方法と保持する変数を実際に実際に指定しています。
+ここでは、`StartStuffOff`コンテキストで初期化する方法と保持する変数を実際に実際に指定しています。
 
-`[account(init, payer = user, space = 9000)]` では、`BaseAccount` の初期化方法を Solana に指示しています。
+`[account(init, payer = user, space = 9000)]`では、`BaseAccount`の初期化方法をSolanaに指示しています。
 
 詳細は以下のとおりです。
 
-1\. `init` では、Solana にプログラムの新しいアカウントを作成するよう指示しています。
+1\. `init`では、Solanaにプログラムの新しいアカウントを作成するよう指示しています。
 
-2\. `payer = user` では、アカウントの利用料金を誰が支払うかをプログラム側に指示しています。（今回はこの関数を呼び出したユーザーです。）
+2\. `payer = user`では、アカウントの利用料金を誰が支払うかをプログラム側に指示しています(今回はこの関数を呼び出したユーザーです)。
 
-3\. `space = 9000` では、9000 バイトのスペースがアカウントに割り当てています。（今回は9000バイトで十分です。）
+3\. `space = 9000`では、9000バイトのスペースがアカウントに割り当てています(今回は9000バイトで十分です)。
 
 なぜアカウントにお金を支払う必要があるのでしょうか？
 
 実は、データの保存は無料ではないのです。
 
-Solana の仕組み上、ユーザーがアカウントの「レンタル料」を支払う必要があります。
+Solanaの仕組み上、ユーザーがアカウントの「レンタル料」を支払う必要があります。
 
 ちなみに、「レンタル料」を支払わない場合は、バリデータのよってアカウントが削除されます。
 
@@ -110,9 +110,9 @@ Solana の仕組み上、ユーザーがアカウントの「レンタル料」�
 
 `pub user:Signer <'info>`　はプログラムに渡されるデータで、プログラムを呼び出したユーザーが、ウォレットアカウントを所有していることを証明するものです。
 
-`pub system_program:Program` は Solana を実行するプログラム[SystemProgram](https://docs.solana.com/developing/runtime-facilities/programs#system-program)への参照です。
+`pub system_program:Program`はSolanaを実行するプログラム[SystemProgram](https://docs.solana.com/developing/runtime-facilities/programs#system-program)への参照です。
 
-`SystemProgram` では多くのことができますが、主な役割は Solana アカウントを作成することです。
+`SystemProgram`では多くのことができますが、主な役割はSolanaアカウントを作成することです。
 
 ```rust
 pub fn start_stuff_off(ctx: Context<StartStuffOff>) -> Result <()> {
@@ -124,12 +124,12 @@ pub fn start_stuff_off(ctx: Context<StartStuffOff>) -> Result <()> {
 }
 ```
 
-最後に、`start_stuff_off` 関数内で `Context<StartStuffOff>` を実行して、`StartStuffOff` コンテキストから `base_account` を取得する処理を実行します。
+最後に、`start_stuff_off`関数内で`Context<StartStuffOff>`を実行して、`StartStuffOff`コンテキストから`base_account`を取得する処理を実行します。
 
 
 ### 👋 アカウントデータを取得する
 
-javascript の世界でもアカウントデータを取得できるようになったので、`myepicproject.js` を以下のとおり更新しましょう。
+JavaScriptの世界でもアカウントデータを取得できるようになったので、`myepicproject.js`を以下のとおり更新しましょう。
 
 ```javascript
 // myepicproject.js
@@ -181,18 +181,18 @@ const runMain = async () => {
 runMain();
 ```
 
-`anchor.web3.Keypair.generate()` では、`BaseAccount` 用の認証情報を作成しています。
+`anchor.web3.Keypair.generate()`では、`BaseAccount`用の認証情報を作成しています。
 
-`program.rpc.startStuffOff` では、`lib.rs` で指定した `pub struct StartStuffOff` のパラメータを渡しています。
+`program.rpc.startStuffOff`では、`lib.rs`で指定した`pub struct StartStuffOff`のパラメータを渡しています。
 
 ```javascript
 await program.account.baseAccount.fetch(baseAccount.publicKey)
 console.log('👀 GIF Count', account.totalGifs.toString())
 ```
 
-ここでは、作成したアカウントを取得して、`totalGifs` にアクセスしています。
+ここでは、作成したアカウントを取得して、`totalGifs`にアクセスしています。
 
-`anchor test` コマンドを実行すると以下のように表示されます。
+`anchor test`コマンドを実行すると以下のように表示されます。
 
 ```bash
 🚀 Starting test...
@@ -200,16 +200,16 @@ console.log('👀 GIF Count', account.totalGifs.toString())
 👀 GIF Count 0
 ```
 
-`GIF Count` が 0 になっていますね。
+`GIF Count`が0になっていますね。
 
-これで、実際にプログラムを呼び出し、Solana チェーン上にデータを保存することができました。
+これで、実際にプログラムを呼び出し、Solanaチェーン上にデータを保存することができました。
 
 
 ### 👷‍♀️ GIF カウンターを更新する関数を作成する
 
-それでは、GIF カウンターをインクリメントする `add_gif` 関数を作成しましょう。
+それでは、GIFカウンターをインクリメントする`add_gif`関数を作成しましょう。
 
-`lib.rs` を以下のとおり更新します。
+`lib.rs`を以下のとおり更新します。
 
 ```rust
 // lib.rs
@@ -267,9 +267,9 @@ pub struct AddGif<'info> {
 }
 ```
 
-ここでは、`AddGif` という名前の `Context` を作成し、`base_account` へアクセス（変更可能）できるようにしています。
+ここでは、`AddGif`という名前の`Context`を作成し、`base_account`へアクセス(変更可能)できるようにしています。
 
-つまり、`BaseAccount` に保存されている `total_gifs` の値を実際に変更できるようになったということになります。
+つまり、`BaseAccount`に保存されている`total_gifs`の値を実際に変更できるようになったということになります。
 
 単純な関数内でのデータ更新ではアカウントの値は変更されないので、この記述はアカウントの値を変更するために必要な記述となります。
 
@@ -281,14 +281,14 @@ pub fn add_gif(ctx: Context<AddGif>) -> Result <()> {
 }
 ```
 
-`add_gif` 関数では、`Context<AddGif>` を介して関数に渡された `base_account` を取得し、カウンターをインクリメントしています。
+`add_gif`関数では、`Context<AddGif>`を介して関数に渡された`base_account`を取得し、カウンターをインクリメントしています。
 
 
 ### 🌈 テストスクリプトを更新する
 
 プログラムを更新するたびに、テストスクリプトを更新してテストを実行する必要があります。
 
-`myepicproject.js` を以下のとおり更新して `add_gif` を呼び出してみましょう。
+`myepicproject.js`を以下のとおり更新して`add_gif`を呼び出してみましょう。
 
 ```javascript
 // myepicproject.js
@@ -348,7 +348,7 @@ runMain();
 anchor test
 ```
 
-以下のように表示されれば OK です。
+以下のように表示されればOKです。
 
 ```bash
 🚀 Starting test...
@@ -357,22 +357,22 @@ anchor test
 👀 GIF Count 1
 ```
 
-ここまでで、Solana プログラムにデータを保存し、そのデータを変更することができました。
+ここまでで、Solanaプログラムにデータを保存し、そのデータを変更することができました。
 
 > ⚠️ 注意
 >
-> `anchor test` を再度実行すると GIF カウンターが 0 から始まります。
+> `anchor test`を再度実行すると GIF カウンターが 0 から始まります。
 >
-> これは、`anchor.web3.Keypair.generate()` によって、`anchor test` のたびにアカウントのキーペアが生成されるためです。
+> これは、`anchor.web3.Keypair.generate()`によって、`anchor test`のたびにアカウントのキーペアが生成されるためです。
 >
 > Web アプリケーションではこの対処を行いますが、テスト時には毎回はじめから確認できるので便利です。
 
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#solana-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#solana-dapp`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -383,4 +383,4 @@ anchor test
 
 ---
 
-次のレッスンでは、Solana プログラムに GIF データの連携部分を実装します!
+次のレッスンでは、SolanaプログラムにGIFデータの連携部分を実装します!

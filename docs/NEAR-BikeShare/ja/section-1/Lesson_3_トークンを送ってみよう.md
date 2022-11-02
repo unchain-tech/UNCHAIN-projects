@@ -1,8 +1,8 @@
 ここまでであなたは以下のことを実行しました ✨
 
-- アカウント作成(環境変数 ID へ export)
+- アカウント作成(環境変数IDへexport)
 - サブアカウント作成
-- サブアカウントに `ftコントラクト`をデプロイ
+- サブアカウントに`ftコントラクト`をデプロイ
 
 このレッスンでは以下のことに挑戦します 🚀
 
@@ -27,8 +27,8 @@ $ near call sub.$ID new '{"owner_id": "'$ID'", "total_supply": "1000000000000000
 near call (or view) [コントラクトのデプロイされたアカウント名] [メソッド名] [メソッドの引数(json形式)]
 ```
 
-つまり, 先ほどのコマンドでは, `sub.ft_account.testnet` のコントラクト(`ftコントラクト`)の
-`new` メソッドを引数とともに呼び出していました。
+つまり, 先ほどのコマンドでは, `sub.ft_account.testnet`のコントラクト(`ftコントラクト`)の
+`new`メソッドを引数とともに呼び出していました。
 引数では
 
 ```
@@ -38,12 +38,12 @@ metadata: ftに関するメタデータ
 ```
 
 を指定していました。
-メタデータの中身は発行する ft のシンボルなどを指定していました。(詳しくは[こちら](https://nomicon.io/Standards/Tokens/FungibleToken/Metadata#reference-level-explanation)を参照してください)
+メタデータの中身は発行するftのシンボルなどを指定していました。(詳しくは[こちら](https://nomicon.io/Standards/Tokens/FungibleToken/Metadata#reference-level-explanation)を参照してください)
 
-また, `--accountId`によってどのアカウントから `new`メソッドを呼び出すかを指定していました。
+また, `--accountId`によってどのアカウントから`new`メソッドを呼び出すかを指定していました。
 
 `new`メソッドの呼び出しを終えたら, [testnet wallet](https://wallet.testnet.near.org/)から
-owner_id で指定したアカウントに ft が発行されていることを確認しましょう！
+owner_idで指定したアカウントにftが発行されていることを確認しましょう！
 
 ![](/public/images/NEAR-BikeShare/section-1/1_3_2.png)
 
@@ -51,9 +51,9 @@ owner_id で指定したアカウントに ft が発行されていることを�
 
 ブロックチェーン上にデプロイされたスマートコントラクトにはメソッド(関数)が用意されています。
 コントラクトのメソッドを呼び出すことでそのコントラクトの機能を使えるということです。
-メソッドには大きく分けて 2 種類あります。
+メソッドには大きく分けて2種類あります。
 コントラクトの情報を読み取るのみのメソッドと情報を書き換えるメソッドです。
-読み取るのみのメソッドを `viewメソッド`, 書き換えるメソッドを `changeメソッド`と呼ぶことにしましょう。
+読み取るのみのメソッドを`viewメソッド`, 書き換えるメソッドを`changeメソッド`と呼ぶことにしましょう。
 以下に各メソッドの特徴を整理します。
 **`viewメソッド`**
 
@@ -109,7 +109,7 @@ $ near call sub.$ID storage_deposit '' --accountId ft_receiver.testnet --amount 
 $ near call sub.$ID ft_transfer '{"receiver_id": "ft_receiver.testnet", "amount": "19"}' --accountId $ID --amount 0.000000000000000000000001
 ```
 
-実行結果(結果に表示される URL をブラウザに貼り付けるとトランザクションの内容が見られます)
+実行結果(結果に表示されるURLをブラウザに貼り付けるとトランザクションの内容が見られます)
 ![](/public/images/NEAR-BikeShare/section-1/1_3_5.png)
 
 結果を[testnet wallet](https://wallet.testnet.near.org/)で確認することもできますが, `viewメソッド`の`ft_balance_of`を使用して`ft_receiver.testnet`の残高を確認してみましょう。
@@ -125,9 +125,9 @@ $ near view sub.$ID ft_balance_of '{"account_id": "ft_receiver.testnet"}'
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-economy` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#near-sharing-economy`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -140,6 +140,6 @@ $ near view sub.$ID ft_balance_of '{"account_id": "ft_receiver.testnet"}'
 
 おめでとうございます！
 このセクションでの作業はここで終了です。
-トークンの転送結果を `#near-sharing-economy` に投稿して、あなたの成功をコミュニティで祝いましょう 🎉
+トークンの転送結果を`#near-sharing-economy`に投稿して、あなたの成功をコミュニティで祝いましょう 🎉
 最後にコントラクトのコードを少しだけ覗きに行きます！
 次のレッスンに進みましょう！

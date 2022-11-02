@@ -28,13 +28,13 @@ MulPay_contract/
 
 これらのファイルにはそれぞれ下のようなことを記述していきます。
 
-`ERC20Tokens.sol`:MulPay アプリの中で使う ERC20 規格のトークンを複数種類発行する。
-`Swap.sol`:任意のトークンのペアに対して swap ができる、送金ができる。
-`swap.test.ts`:swap が機能しているかをテストする。
+`ERC20Tokens.sol`:MulPayアプリの中で使うERC20規格のトークンを複数種類発行する。
+`Swap.sol`:任意のトークンのペアに対してswapができる、送金ができる。
+`swap.test.ts`:swapが機能しているかをテストする。
 
 次に`MulPay_contract`直下に`.env`ファイルを作成してください。そのファイルに以下の内容を追記してください。
 
-`YOUR_WALLET_PRIVATE_KEY`には自分の持っているウォレットの private key を入れてください。ここには先ほど metamask で作成した wallet の private key を入れてください。
+`YOUR_WALLET_PRIVATE_KEY`には自分の持っているウォレットのprivate keyを入れてください。ここには先ほどmetamaskで作成したwalletのprivate keyを入れてください。
 
 [`.env`]
 
@@ -44,7 +44,7 @@ AURORA_PRIVATE_KEY="YOUR_WALLET_PRIVATE_KEY"
 
 最後に`hardhat.config.ts`を下のように編集しましょう。
 
-ここには aurora テストネットとデプロイするアドレスの情報を書いていきます。
+ここにはauroraテストネットとデプロイするアドレスの情報を書いていきます。
 
 [`hardhat.config.ts`]
 
@@ -71,9 +71,9 @@ export default config;
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#section-1` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#section-1`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -84,6 +84,6 @@ export default config;
 
 ---
 
-section-1-Lesson-1 の完了おめでとうございます！
+section-1-Lesson-1の完了おめでとうございます！
 
 では次のセクションではいよいよスマートコントラクトの実装に移っていきましょう！

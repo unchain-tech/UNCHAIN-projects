@@ -1,33 +1,34 @@
-### 🛠 Solana 上にデータショップを作ろう!
+### 👋 Solana にプログラムをデプロイしてみよう!
 
-このプロジェクトでは、Solanaブロックチェーン上で任意のデジタルデータを売買できるWebアプリケーションを構築します。
+このプロジェクトでは、Solanaネットワーク上にスマートコントラクトを実装して、スマートコントラクトとやりとりできる独自のWebアプリケーションを構築します。
 
 プロジェクトを進めるには以下の技術が必要です。
 
 - [Terminal 操作](https://qiita.com/ryouzi/items/f9dee1540a04a0bfb9a3)
 - [Javascript](https://developer.mozilla.org/ja/docs/Web/JavaScript)
-- [Next.js](https://nextjs.org/docs)
-- [React](https://reactjs.org/docs/getting-started.html)
+- [React.js](https://ja.reactjs.org/)
+- [Rust](https://www.rust-lang.org/ja/)
 
 いますべてを理解している必要はありません。
 
 わからないことがあったらインターネットで検索したり、コミュニティで質問しながらプロジェクトを進めていきましょう!
 
+
 ### 🛠 何を構築するのか？
 
-本プロジェクトでは、ユーザーがSolana用のウォレットを接続し、Solanaチェーン上で売買できるデータストアを作成することです。
+本プロジェクトでは、ユーザーがSolana用のウォレットを接続し、Solanaチェーン上に送信したGIFデータを取得して表示するWebアプリケーションを作成することです。
 
 以下は作成するWebアプリケーションのイメージです。
 
-![web application](/public/images/Solana-Online-Store/section-0/0_1_1.jpg)
+![web application](/public/images/Solana-dApp/section-0/0_1_1.jpg)
 
 本プロジェクトは以下の3つのステップに分かれています。
 
-1\. ウォレット接続など、Webアプリケーションの基礎を構築する。
+1\. GIFデータを読み込むWebアプリケーションの基礎を構築する。
 
-2\. Solanaブロックチェーン(テストネット)上で売買する機能を実装する。
+2\. Solanaブロックチェーン(テストネット)上にGIFデータを保存するスマートコントラクトをデプロイする。
 
-3\. ストアにデータを追加する機能を実装する。
+3\. Solanaブロックチェーン(テストネット)からGIFデータを取得し、表示するようにWebアプリケーションを再構築する。
 
 
 ### 🌍 プロジェクトをアップグレードする
@@ -38,7 +39,7 @@
 
 GitHubから直接コードを編集して直接`pull request`を送る方法は、[こちら](https://docs.github.com/ja/repositories/working-with-files/managing-files/editing-files#editing-files-in-another-users-repository)を参照してください。
 
-どんなリクエストでも大歓迎です🎉
+どんなリクエストでも大歓迎です 🎉
 
 **👋 `UNCHAIN-projects`に`pull request`を送る! ⏩ [UNCHAIN の GitHub](https://github.com/shiftbase-xyz/UNCHAIN-projects) にアクセス!**
 
@@ -56,15 +57,15 @@ GitHubから直接コードを編集して直接`pull request`を送る方法は
 
 `pull request`や`issue`の作成は実際にチームで開発する際、重要な作業になるので、ぜひトライしてみてください。
 
-UNCHAINのプロジェクトをみんなでより良いものにしていきましょう✨
+UNCHAINのプロジェクトをみんなでより良いものにしていきましょう ✨
 
 ---
 
-次のセクションに進み、環境構築から始めていきましょう🎉
+次のレッスンに進んでプログラミングの環境構築しましょう 🎉
 
 ---
 
 Attribution: This learning content is licensed under [Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/) © 2022 buildspace.
 Sharelike: Translations and modifications to markdown documents.
 
-Documentation created by [empire-uts](https://github.com/empire-uts) (UNCHAIN discord ID: kii#6246)
+Documentation created by [KatotenMk2](https://github.com/KatotenMk2) (UNCHAIN discord ID: Katoten#2669)

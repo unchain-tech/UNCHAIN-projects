@@ -49,21 +49,21 @@ Polygonは、より多くのトランザクション数を処理でき、トラ�
 
 それでも「イーサリアム以外のブロックチェーンを学習して役に立つのかな？」とお考えかもしれません。
 
-大丈夫です! Polygon PoSチェーンはEVM（Ethereum Virtual Machine）と互換性があるため、Ethereumで実行されるすべてのものは、少し設定を変えれば特に大きな書き換えなしでPolygonでも実行できます。
+大丈夫です! Polygon PoSチェーンはEVM(Ethereum Virtual Machine)と互換性があるため、Ethereumで実行されるすべてのものは、少し設定を変えれば特に大きな書き換えなしでPolygonでも実行できます。
 
 Polygonでは高いトランザクション費用を払う必要はありません。
 
 Polygonははるかに高速で安価であるため、合理的です。
 
-また、Hardhat、Remix、Truffle、Web3jsなどの人気のあるEthereum開発ツールはすべてPolygonで動作します。
+また、Hardhat、Remix、Truffle、web3jsなどの人気のあるEthereum開発ツールはすべてPolygonで動作します。
 
 言い換えればPolygonを学習しておけばいつでもEthereum向けの開発はできるということですね。
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#polygon-ens-domain` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#polygon-ens-domain`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

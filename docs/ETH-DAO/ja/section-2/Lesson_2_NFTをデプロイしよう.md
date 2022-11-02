@@ -1,10 +1,10 @@
 ### 🥳 Initialize SDK
 
-前回の Lesson により、thirdweb のスクリプトを実行する環境構築を行いました。
+前回のLessonにより、thirdwebのスクリプトを実行する環境構築を行いました。
 
-それでは実際にスクリプトを書き、メンバーシップ NFT をコントラクトにデプロイしていきましょう。
+それでは実際にスクリプトを書き、メンバーシップNFTをコントラクトにデプロイしていきましょう。
 
-`src/scripts/1-initialize-sdk.ts` を作成して、以下を追加します。
+`src/scripts/1-initialize-sdk.ts`を作成して、以下を追加します。
 
 ```typescript
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
@@ -49,29 +49,29 @@ const sdk = new ThirdwebSDK(
 export default sdk;
 ```
 
-たくさんあるように見えますが、やっていることは以下の 2 つだけです。
+たくさんあるように見えますが、やっていることは以下の2つだけです。
 
-- thirdweb の初期化
-- 初期化した SDK を他のスクリプトで再利用できるように export
+- thirdwebの初期化
+- 初期化したSDKを他のスクリプトで再利用できるようにexport
 
 これは、サーバーからデータベースへの接続を初期化するのと似ています。
 
 
 ### 🍬 SDK の初期化を実行する
 
-ここでは ts-node を使ってターミナル上で実行結果を取得します。
+ここではts-nodeを使ってターミナル上で実行結果を取得します。
 
-以下のコマンドを実行して ts-node をインストールしましょう。
+以下のコマンドを実行してts-nodeをインストールしましょう。
 
 ```bash
 yarn add ts-node
 ```
 
-次に、以下を参考に `package.json` に `"type": "module",` の記述を追加して ESModules を有効化して ts-node を使用できるように設定を変更します。
+次に、以下を参考に`package.json`に`"type": "module",`の記述を追加してESModulesを有効化してts-nodeを使用できるように設定を変更します。
 
 ![](/public/images/ETH-DAO/section-2/2_2_1.png)
 
-続いて、`next.config.js` を以下のとおり変更します。
+続いて、`next.config.js`を以下のとおり変更します。
 
 ```Typescript
 /** @type {import('next').NextConfig} */
@@ -93,28 +93,28 @@ SDK initialized by address: 0x8cB688A30D5Fd6f2e5025d8915eD95e770832933
 Done in 3.62s.
 ```
 
-ウォレットのアドレスが表示されたら、SDK の初期化が正常に完了したことを意味しています。
+ウォレットのアドレスが表示されたら、SDKの初期化が正常に完了したことを意味しています。
 
-_📝 備考: `ExperimentalWarning` のようなランダムな警告が表示されることがありますが、アドレスが表示されていることを確認してください_
+_📝 備考: `ExperimentalWarning`のようなランダムな警告が表示されることがありますが、アドレスが表示されていることを確認してください_
 
 
 ### 🧨 ERC-1155 のメンバーシップ NFT コレクションを作ろう
 
-これから行うのは、[ERC-1155](https://ethereum.org/ja/developers/docs/standards/tokens/erc-1155/) コントラクトを作成し、Goerli テストネットにデプロイすることです。
+これから行うのは、[ERC-1155](https://ethereum.org/ja/developers/docs/standards/tokens/erc-1155/) コントラクトを作成し、Goerliテストネットにデプロイすることです。
 
-現段階では NFT を作成せず、コレクション自体のメタデータを設定するところまで行います。
+現段階ではNFTを作成せず、コレクション自体のメタデータを設定するところまで行います。
 
-ここで言うメタデータとは、コレクションの名前（例： CryptoPunks）や、コレクションに関連する画像（OpenSea でヘッダーとして表示されます）などとなります。
+ここで言うメタデータとは、コレクションの名前(例： CryptoPunks)や、コレクションに関連する画像(OpenSeaでヘッダーとして表示されます)などとなります。
 
-[ERC-721](https://ethereum.org/ja/developers/docs/standards/tokens/erc-721/) をご存知の方は、同じ画像、名前、プロパティを持つ NFT であっても、それぞれユニークです。
+[ERC-721](https://ethereum.org/ja/developers/docs/standards/tokens/erc-721/) をご存知の方は、同じ画像、名前、プロパティを持つNFTであっても、それぞれユニークです。
 
-一方で、[ERC-1155](https://ethereum.org/ja/developers/docs/standards/tokens/erc-1155/) では、複数の人が同じ NFT の所有者になることができます。
+一方で、[ERC-1155](https://ethereum.org/ja/developers/docs/standards/tokens/erc-1155/) では、複数の人が同じNFTの所有者になることができます。
 
-今プロジェクトで作る「メンバーシップ NFT」は全員が同じもので問題ないので、毎回新しい NFT を作るのではなく、会員全員に同じ NFT を割り当てるだけでいいのです。
+今プロジェクトで作る「メンバーシップNFT」は全員が同じもので問題ないので、毎回新しいNFTを作るのではなく、会員全員に同じNFTを割り当てるだけでいいのです。
 
-この方がガス効率も良く、DAO ではこの手法が一般的です。
+この方がガス効率も良く、DAOではこの手法が一般的です。
 
-では、`src/scripts/2-deploy-drop.ts` を作成し、次のコードを追加してください。
+では、`src/scripts/2-deploy-drop.ts`を作成し、次のコードを追加してください。
 
 ※ コレクションのアイコンとなる画像はお気に入りの画像に変更しておきましょう。
 
@@ -161,11 +161,11 @@ import { readFileSync } from "fs";
 
 とてもシンプルなスクリプトです。
 
-コレクションに `name`、`description`、`image`、`primary_sale_recipient` を指定します。
+コレクションに`name`、`description`、`image`、`primary_sale_recipient`を指定します。
 
-画像はローカルファイルから読み込むので、`scripts`フォルダ以下に`assets`フォルダを新規作成し、`src/scripts/assets` の中にその画像を必ず入れてください。
+画像はローカルファイルから読み込むので、`scripts`フォルダ以下に`assets`フォルダを新規作成し、`src/scripts/assets`の中にその画像を必ず入れてください。
 
-※ 画像は PNG、JPG、GIF のいずれかとし、ローカルの画像であることを確認してください。
+※ 画像はPNG、JPG、GIFのいずれかとし、ローカルの画像であることを確認してください。
 
 _⚠️ 注意： インターネットのリンク(ex. https://~)を使用すると動作しません_
 
@@ -175,7 +175,7 @@ _⚠️ 注意： インターネットのリンク(ex. https://~)を使用す�
 yarn node --loader ts-node/esm src/scripts/2-deploy-drop.ts
 ```
 
-成功すると、以下のように得られた結果が出力されます。（少し時間がかかります。）
+成功すると、以下のように得られた結果が出力されます(少し時間がかかります)。
 
 ```bash
 SDK initialized by address: 0x8cB688A30D5Fd6f2e5025d8915eD95e770832933
@@ -194,38 +194,38 @@ Done in 40.59s.
 
 さて、今起こったことは、とても壮大なことです。
 
-以下の 2 つのことが起こりました。
+以下の2つのことが起こりました。
 
 **1 つは、ERC-1155 のコントラクトを Goerli にデプロイしたこと**です。
 
-実際に `https://goerli.etherscan.io/` にアクセスし、`editionDrop` コントラクトのアドレス（出力の `✅ Successfully deployed editionDrop contract, address:` 以下のアドレス）を貼り付けると、スマートコントラクトがデプロイされたことが分かります。
+実際に`https://goerli.etherscan.io/`にアクセスし、`editionDrop`コントラクトのアドレス(出力の`✅ Successfully deployed editionDrop contract, address:`以下のアドレス)を貼り付けると、スマートコントラクトがデプロイされたことが分かります。
 
 このコントラクトはあなたが所有し、あなたのウォレットからデプロイされました。
 
-_📝 備考： `editionDrop` のアドレスは、後で必要になるので保管しておいてください。もし紛失した場合は、いつでも [thirdweb のダッシュボード](https://thirdweb.com/dashboard)から取得することができます。_
+_📝 備考： `editionDrop`のアドレスは、後で必要になるので保管しておいてください。もし紛失した場合は、いつでも [thirdweb のダッシュボード](https://thirdweb.com/dashboard)から取得することができます。_
 
 ![](/public/images/ETH-DAO/section-2/2_2_2.png)
 
-TypeScript だけでデプロイされた独自コントラクトですが、thirdweb が内部で実際に使用しているスマートコントラクトのコードは[こちら](https://github.com/thirdweb-dev/contracts/blob/main/contracts/drop/DropERC1155.sol)から確認できます。
+TypeScriptだけでデプロイされた独自コントラクトですが、thirdwebが内部で実際に使用しているスマートコントラクトのコードは[こちら](https://github.com/thirdweb-dev/contracts/blob/main/contracts/drop/DropERC1155.sol)から確認できます。
 
 もうひとつは、**thirdweb が自動的にコレクションの画像を IPFS にアップロードして URL を挿入してくれたこと**です。
 
-`https://gateway.ipfscdn.io` で始まるリンクが出力されているのがわかると思います。
+`https://gateway.ipfscdn.io`で始まるリンクが出力されているのがわかると思います。
 
-ブラウザにリンクを貼り付けると、CloudFlare 経由で IPFS から取得された NFT の画像が表示されます。
+ブラウザにリンクを貼り付けると、CloudFlare経由でIPFSから取得されたNFTの画像が表示されます。
 
 _📝 備考：`ipfs://` URI を使って IPFS を直接叩くこともできます (注意 - Chrome では IPFS ノードを実行する必要があるので動作しませんが、Brave では動作します)。_
 
-Solidity で独自コントラクトを開発したことがある人なら、ちょっと心惹かれるのではないでしょうか。
+Solidityで独自コントラクトを開発したことがある人なら、ちょっと心惹かれるのではないでしょうか。
 
-すでに Goerli ネットワークにデプロイされた独自コントラクトと IPFS にホストされたデータが保持されています。
+すでにGoerliネットワークにデプロイされた独自コントラクトとIPFSにホストされたデータが保持されています。
 
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#eth-dao` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#eth-dao`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -236,4 +236,4 @@ Solidity で独自コントラクトを開発したことがある人なら、�
 
 ---
 
-次のレッスンでは、実際に NFT を作成していきます！
+次のレッスンでは、実際にNFTを作成していきます！

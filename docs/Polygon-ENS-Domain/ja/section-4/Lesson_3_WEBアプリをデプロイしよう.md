@@ -37,7 +37,7 @@ module.exports = {
 };
 ```
 
-.env ファイルの中身を次のように作成します。
+.envファイルの中身を次のように作成します。
 
 ```
 STAGING_ALCHEMY_KEY=YOURS_1
@@ -63,9 +63,9 @@ YOURS_1,2のところはご自分のものを使用してください(" "で囲�
 
 Reactアプリのデプロイはとても簡単です。 今回Vercelを使用しますが**無料**です。
 
-Vercel に関する説明は、[こちら](https://zenn.dev/lollipop_onl/articles/eoz-vercel-pricing-2020)などをご覧ください。
+Vercelに関する説明は、[こちら](https://zenn.dev/lollipop_onl/articles/eoz-vercel-pricing-2020)などをご覧ください。
 
-手順について、詳しくは別のプロジェクト Polygon-Generative-NFT Section 4 - Lesson 2 を参照ください。
+手順について、詳しくは別のプロジェクトPolygon-Generative-NFT Section 4 - Lesson 2を参照ください。
 
 これまでにアプリを完成させてきました。
 
@@ -75,10 +75,10 @@ Vercel に関する説明は、[こちら](https://zenn.dev/lollipop_onl/article
 
 - 最新のフロントエンドコードをGithubにプッシュします。 (`.env`など公開したくないファイルがある場合そのファイルはコミットしないでください。)
 - VercelをGithubのリポジトリに接続します。VercelのDashboardページの右上に見える`New Project`ボタンから登録していきます。
-- 設定を入力（下の注を参照）したらデプロイします。
+- 設定を入力(下の注を参照)したらデプロイします。
 - 完成です。
 
-注：Vercelでは、環境変数 `CI=false`を追加する必要があります。 これにより、`warning`が原因でビルドが失敗しないようになります。
+注：Vercelでは、環境変数`CI=false`を追加する必要があります。 これにより、`warning`が原因でビルドが失敗しないようになります。
 
 ![](/public/images/Polygon-ENS-Domain/section-4/4_3_1.png)
 
@@ -87,7 +87,7 @@ Vercel に関する説明は、[こちら](https://zenn.dev/lollipop_onl/article
 
 デプロイにはしばらく時間がかかります。
 
-・・・
+…
 
 お待たせしました。
 
@@ -106,20 +106,20 @@ Vercel に関する説明は、[こちら](https://zenn.dev/lollipop_onl/article
 
 あなたのオリジナルのドメインネームサービスWebアプリケーションが完成しました。
 
-あなたが習得したスキルは、分散型 Web アプリがより一般的になる社会の中で、世界を変える重要なスキルです。
+あなたが習得したスキルは、分散型Webアプリがより一般的になる社会の中で、世界を変える重要なスキルです。
 
-これからも Web3 への旅をあなたが続けてくれることを願っています 🚀
+これからもweb3への旅をあなたが続けてくれることを願っています 🚀
 
 ### 🎫 NFT を取得しよう!
 
-NFT を取得する条件は、以下のようになります。
+NFTを取得する条件は、以下のようになります。
 
-1. MVP の機能がすべて実装されている（実装 OK）
+1. MVPの機能がすべて実装されている(実装OK)
 
-2. Web アプリケーションで MVP の機能が問題なく実行される（テスト OK）
+2. WebアプリケーションでMVPの機能が問題なく実行される(テストOK)
 
-3. このページの最後にリンクされている Project Completion Form に記入する
+3. このページの最後にリンクされているProject Completion Formに記入する
 
-4. Discord の `🔥｜polygon-post-projects` チャンネルに、あなたの Web サイトをシェアしてください 😉🎉 Discord に投稿する際に、追加実装した機能とその概要も教えていただけると幸いです!
+4. Discordの`🔥｜polygon-post-projects`チャンネルに、あなたのWebサイトをシェアしてください 😉🎉 Discordに投稿する際に、追加実装した機能とその概要も教えていただけると幸いです!
 
-プロジェクトを完成させていただいた方には、NFT をお送りします。
+プロジェクトを完成させていただいた方には、NFTをお送りします。

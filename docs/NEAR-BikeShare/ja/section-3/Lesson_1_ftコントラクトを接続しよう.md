@@ -3,18 +3,18 @@
 これまでにあなたは以下のことを達成しました ✨
 
 - `ftコントラクト`のデプロイ
-- バイクを管理するコントラクト(以降 `bikeコントラクト`と呼びます)のデプロイ
+- バイクを管理するコントラクト(以降`bikeコントラクト`と呼びます)のデプロイ
 - `bikeコントラクト`とフロントエンドの接続
 
 このセクションであなたは以下のことを行います 🛫
 
-- `ftコントラクト`をフロントエンドに接続して `ftコントラクト`のメソッドも利用可能にする。
-- `ftコントラクト`と `bikeコントラクト`を接続する。
+- `ftコントラクト`をフロントエンドに接続して`ftコントラクト`のメソッドも利用可能にする。
+- `ftコントラクト`と`bikeコントラクト`を接続する。
   これを行うことでバイクの使用や点検にトークンのやり取りを組み込むことができます。
 
-それでは `ftコントラクト`を接続するために
-再び`near_bike_share_dapp` の中にある`frontend`ディレクトリの中身を変更していきます。
-以降のセクションでは, 今回作成したオリジナル ft のことを ft と便宜上呼ぶことにします。
+それでは`ftコントラクト`を接続するために
+再び`near_bike_share_dapp`の中にある`frontend`ディレクトリの中身を変更していきます。
+以降のセクションでは, 今回作成したオリジナルftのことをftと便宜上呼ぶことにします。
 
 初めに`frontend/assets/js/near/config.js`を次のように変更しましょう！
 
@@ -95,7 +95,7 @@ module.exports = getConfig;
 ```
 
 変更点は, `FT_CONTRACT_NAME`を追加しています。
-`"sub.ft_account.testnet"`の部分はあなたが `ftコントラクト`をデプロイした先のアカウント ID を入力してください。
+`"sub.ft_account.testnet"`の部分はあなたが`ftコントラクト`をデプロイした先のアカウントIDを入力してください。
 また`getConfig`が返却するオブジェクトに`ftContractName`フィールドを追加しています。
 
 次に`frontend/assets/js/near/utils.js`を次のように変更します。
@@ -463,11 +463,11 @@ const transferFt = () => {
 $ yarn dev
 ```
 
-ブラウザで立ち上がったら, `check my balance` などのボタンを押して挙動を確認してみてください。
+ブラウザで立ち上がったら, `check my balance`などのボタンを押して挙動を確認してみてください。
 
 ![](/public/images/NEAR-BikeShare/section-3/3_1_1.png)
 
-また, 一度サインアウト(※ft をたくさん持っているアカウントで `Unregister` を押さないように気をつけてください。)し,
+また, 一度サインアウト(※ftをたくさん持っているアカウントで`Unregister`を押さないように気をつけてください。)し,
 新たに作成したアカウントでサインインすると,
 `ftコントラクト`に未登録なので登録画面が表示されます。
 ここでは[testnet wallet](https://wallet.testnet.near.org/)を利用して, `new_ft_user.testnet`という新規アカウントを作成しました。
@@ -481,13 +481,13 @@ $ yarn dev
 
 ![](/public/images/NEAR-BikeShare/section-3/3_1_3.png)
 
-再びサインアウトし, `ft_account.testnet`(ft の`owner id`, ft をたくさん持っていればどんなアカウントでも良いです)で入り直します。
-`ft_account.testnet` から `new_ft_user.testnet` へ ft の送信を行ってみます。
-事前に`new_ft_user.testnet`の残高を調べると 0ft です。
+再びサインアウトし, `ft_account.testnet`(ftの`owner id`, ftをたくさん持っていればどんなアカウントでも良いです)で入り直します。
+`ft_account.testnet`から`new_ft_user.testnet`へftの送信を行ってみます。
+事前に`new_ft_user.testnet`の残高を調べると0ftです。
 
 ![](/public/images/NEAR-BikeShare/section-3/3_1_4.png)
 
-`new_ft_user.testnet`へ ft を送信します。
+`new_ft_user.testnet`へftを送信します。
 
 ![](/public/images/NEAR-BikeShare/section-3/3_1_5.png)
 
@@ -497,9 +497,9 @@ $ yarn dev
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-sharing-economy` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#near-sharing-economy`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -511,4 +511,4 @@ $ yarn dev
 ---
 
 `ftコントラクト`の接続と実行ができました 🎉
-次のレッスンでは `ftコントラクト`と `bikeコントラクト`を連携させます！
+次のレッスンでは`ftコントラクト`と`bikeコントラクト`を連携させます！

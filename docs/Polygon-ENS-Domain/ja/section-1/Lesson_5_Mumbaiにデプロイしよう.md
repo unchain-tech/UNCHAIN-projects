@@ -1,4 +1,4 @@
-前回までで私たちはチェーン上で Polygon がどのように機能するかについて学んできました.
+前回までで私たちはチェーン上でPolygonがどのように機能するかについて学んできました.
 
 **おめでとうございます-これで、Polygon の Testnet にデプロイする準備が整いました。**
 
@@ -8,7 +8,7 @@
 
 さてはじめに、コントラクトがどのように機能するかを簡単に説明しておきます。
 
-コントラクトのデプロイはトランザクションとしてカウントされます。 また、ブロックチェーン上の他のトランザクションと同様に、ネットワーク全体が新しい変更を認識する必要があります。 これは、チェーンに新しいコントラクトを追加したり、誰かが MATIC を送信したりするときと同じです。
+コントラクトのデプロイはトランザクションとしてカウントされます。 また、ブロックチェーン上の他のトランザクションと同様に、ネットワーク全体が新しい変更を認識する必要があります。 これは、チェーンに新しいコントラクトを追加したり、誰かがMATICを送信したりするときと同じです。
 
 コントラクトをデプロイするときは、**すべての**ノードに次のようなことを伝える必要があります。
 
@@ -18,81 +18,81 @@
 
 ここで[Alchemy](https://alchemy.com/)を使います。
 
-Alchemy は、世界中のトランザクションを一元化し、マイナーの承認を促進するプラットフォームです。
+Alchemyは、世界中のトランザクションを一元化し、マイナーの承認を促進するプラットフォームです。
 
-[こちら](https://www.alchemy.com/) から Alchemy のアカウントを作成してください。
+[こちら](https://www.alchemy.com/) からAlchemyのアカウントを作成してください。
 
 ### 💎 Alchemy でネットワークを作成
 
 **_なお Alchemy の Dadhboard がなかなか開けないなどの不調がごくまれに起こる場合があります。その場合は 1 日程度時間を置いてから作業すると回復します。この場合、こちらで何かをすることはできません。ひと休みですね。_**
 
-Alchemy のアカウントを作成したら、Dashboard の`CREATE APP` ボタンを押してください。
+Alchemyのアカウントを作成したら、Dashboardの`CREATE APP`ボタンを押してください。
 ![](/public/images/Polygon-ENS-Domain/section-1/1_5_1.png)
 
 次に、下記の項目を埋めていきます。下図を参考にしてください。
 
 ![](/public/images/Polygon-ENS-Domain/section-1/1_5_2.png)
 
-- `NAME`: プロジェクトの名前（例: `CoolDomains`）
-- `DESCRIPTION`: プロジェクトの概要（例：`ENS on Polygon`）
-- `CHAIN`: `Polygon` を選択。
-- `NETWORK`: `Polygon Mumbai` を選択。
+- `NAME`: プロジェクトの名前(例: `CoolDomains`)
+- `DESCRIPTION`: プロジェクトの概要(例：`ENS on Polygon`)
+- `CHAIN`: `Polygon`を選択。
+- `NETWORK`: `Polygon Mumbai`を選択。
 
-それから、作成した App の `VIEW DETAILS` をクリックします。
+それから、作成したAppの`VIEW DETAILS`をクリックします。
 
 ![](/public/images/Polygon-ENS-Domain/section-1/1_5_3.png)
 
-プロジェクトを開いたら、`VIEW KEY` ボタンをクリックします。
+プロジェクトを開いたら、`VIEW KEY`ボタンをクリックします。
 
-ポップアップが開くので、`HTTP` のリンクをコピーしてください。
+ポップアップが開くので、`HTTP`のリンクをコピーしてください。
 
-これがあなたが本番環境のネットワークに接続する際に使用する `API Key` になります。
+これがあなたが本番環境のネットワークに接続する際に使用する`API Key`になります。
 
-- **`API Key` は、今後必要になるので、PC 上のわかりやすいところに保存しておきましょう。**
+- **`API Key`は、今後必要になるので、PC 上のわかりやすいところに保存しておきましょう。**
 
 ### 🦊 Metamask
 
-Metamask が必要ですが、インストールについては ETH-dAPP など別の基礎的な課題を適宜参照ください。
+Metamaskが必要ですが、インストールについてはETH-dAPPなど別の基礎的な課題を適宜参照ください。
 
 ここでは割愛します。
 
 ### 💜 MetaMask と Hardhat に Polygon Network を追加する
 
-MetaMask ウォレットに Matic Mainnet と Polygon Mumbai-Testnet を追加してみましょう。
+MetaMaskウォレットにMatic MainnetとPolygon Mumbai-Testnetを追加してみましょう。
 
 **1 \. Matic Mainnet を MetaMask に接続する**
 
-Matic Mainnet を MetaMask に追加するには、次の手順に従ってください。
+Matic MainnetをMetaMaskに追加するには、次の手順に従ってください。
 
-まず、[Polygonscan](https://polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Polygon Network` ボタンをクリックします。
+まず、[Polygonscan](https://polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Polygon Network`ボタンをクリックします。
 
 ![](/public/images/Polygon-ENS-Domain/section-1/1_5_4.png)
 
-下記のようなポップアップが立ち上がったら、`Switch Network` をクリックしましょう。
+下記のようなポップアップが立ち上がったら、`Switch Network`をクリックしましょう。
 
 ![](/public/images/Polygon-ENS-Domain/section-1/1_5_5.png)
 
-`Matic Mainnet` があなたの MetaMask にセットアップされました。
+`Matic Mainnet`があなたのMetaMaskにセットアップされました。
 
 ![](/public/images/Polygon-ENS-Domain/section-1/1_5_6.png)
 
 **2 \. Polygon Mumbai-Testnet を MetaMask に接続する**
 
-Polygon Mumbai-Testnet を MetaMask に追加するには、次の手順に従ってください。
+Polygon Mumbai-TestnetをMetaMaskに追加するには、次の手順に従ってください。
 
-まず、[mumbai.polygonscan.com](https://mumbai.polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Mumbai Network` ボタンをクリックします。
+まず、[mumbai.polygonscan.com](https://mumbai.polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Mumbai Network`ボタンをクリックします。
 
-`Matic Mainnet` を設定した時と同じ要領で `Polygon Testnet` をあなたの MetaMask に設定してください。
+`Matic Mainnet`を設定した時と同じ要領で`Polygon Testnet`をあなたのMetaMaskに設定してください。
 
 ### 🚰 偽 MATIC を入手する
 
-MetaMask と Hardhat の両方で Polygon ネットワークの設定が完了したら、偽の MATIC を取得していきましょう。
+MetaMaskとHardhatの両方でPolygonネットワークの設定が完了したら、偽のMATICを取得していきましょう。
 
-[こちら](https://faucet.polygon.technology/) にアクセスして、下記のように偽 MATIC をリクエストしてください。
+[こちら](https://faucet.polygon.technology/) にアクセスして、下記のように偽MATICをリクエストしてください。
 
 ![](/public/images/Polygon-ENS-Domain/section-1/1_5_7.png)
 
-1 回のリクエストでは少量ですので、数回リクエストして、1 MATIC 程度 入手しましょう。
+1回のリクエストでは少量ですので、数回リクエストして、1 MATIC程度入手しましょう。
 
 間隔を置かずにリクエストするとはじかれることもあるので少し時間を置いてみましょう。
 
@@ -106,7 +106,7 @@ MetaMask と Hardhat の両方で Polygon ネットワークの設定が完了�
 >
 > 2. 仮想通貨の取引所（ WazirX や Coinbase など）で MATIC を購入し、それを直接 MetaMask に転送する。
 >
-> Polygon のようなサイドチェーンの場合、`2` の方が簡単で安く済みます。
+> Polygon のようなサイドチェーンの場合、`2`の方が簡単で安く済みます。
 
 ### 🇮🇳 Polygon テストネットにコントラクトをデプロイする
 
@@ -116,9 +116,9 @@ MetaMask と Hardhat の両方で Polygon ネットワークの設定が完了�
 
 デプロイすれば世界中の人々がアクセス可能になります 🌎
 
-覚えているかと思いますが、以前のレッスンでローカルブロックチェーンにデプロイするため `run.js`ファイルを作成し、そのファイルでいくつかの関数を実行してテストしました。 ムンバイのテストネットにデプロイする場合、テストネットにデプロイ用の別のファイルを作成する必要があります。
+覚えているかと思いますが、以前のレッスンでローカルブロックチェーンにデプロイするため`run.js`ファイルを作成し、そのファイルでいくつかの関数を実行してテストしました。 ムンバイのテストネットにデプロイする場合、テストネットにデプロイ用の別のファイルを作成する必要があります。
 
-`run.js`とは別でファイルを作成します。`scripts` ディレクトリの中にある `deploy.js` を以下のとおり更新します。`console.log`ステートメントが多いことを除けば、`run.js`ファイルと非常によく似ています。
+`run.js`とは別でファイルを作成します。`scripts`ディレクトリの中にある`deploy.js`を以下のとおり更新します。`console.log`ステートメントが多いことを除けば、`run.js`ファイルと非常によく似ています。
 
 ```javascript
 // deploy.js
@@ -183,10 +183,10 @@ module.exports = {
 };
 ```
 
-開発とテストのために、MetaMask（または使用している他の Ethereum ウォレットアプリ）内に別のウォレットを作成することを**強くお勧めします**。 所要時間は約 10 秒です。秘密鍵を記載したPublicリポジトリを公開した場合はウォレット内のすべての Token が無くなることも覚悟しなければなりません。
+開発とテストのために、MetaMask(または使用している他のEthereumウォレットアプリ)内に別のウォレットを作成することを**強くお勧めします**。 所要時間は約10秒です。秘密鍵を記載したPublicリポジトリを公開した場合はウォレット内のすべてのTokenが無くなることも覚悟しなければなりません。
 
 
-数ステップ前に取得した API の URL を準備します。`url`のところで使用します。 アプリが PolygonMumbai テストネット用であることを確認してください。 次に、[メタマスクから取得](https://metamask.zendesk.com/hc/en-us/articles/360015289632-How-to-Export-an-Account-Private-Key)できる**秘密鍵**（パブリックアドレスではありません!）が必要になります。`accounts`のところで使用します。
+数ステップ前に取得したAPIのURLを準備します。`url`のところで使用します。 アプリがPolygonMumbaiテストネット用であることを確認してください。 次に、[メタマスクから取得](https://metamask.zendesk.com/hc/en-us/articles/360015289632-How-to-Export-an-Account-Private-Key)できる**秘密鍵**(パブリックアドレスではありません!)が必要になります。`accounts`のところで使用します。
 
 **注：このファイルを GitHub にコミットしないでください。 現在秘密鍵を扱っています。 公開したらハッキングされて資産を奪われます。 この秘密鍵は、メインネットの秘密鍵と同じです。** 後で、`.env`変数で公開しないで取り扱う方法について説明します。
 
@@ -194,9 +194,9 @@ module.exports = {
 
 なぜ秘密鍵を使用する必要があるのでしょうか？
 
-コントラクトのデプロイなどのトランザクションを実行するには、ブロックチェーンに「ログイン」して、コントラクトに署名/デプロイする必要があるためです。 また、ユーザー名はパブリックアドレスであり、パスワードは秘密鍵です。 AWS や GCP にログインしてデプロイするようなものです。
+コントラクトのデプロイなどのトランザクションを実行するには、ブロックチェーンに「ログイン」して、コントラクトに署名/デプロイする必要があるためです。 また、ユーザー名はパブリックアドレスであり、パスワードは秘密鍵です。AWSやGCPにログインしてデプロイするようなものです。
 
-config のセットアップが完了すると、前に作成した`deploy.js`スクリプトを使用してデプロイするように設定されます。
+configのセットアップが完了すると、前に作成した`deploy.js`スクリプトを使用してデプロイするように設定されます。
 
 このコマンドは、`cool-domains`のルートディレクトリから実行します。
 
@@ -204,7 +204,7 @@ config のセットアップが完了すると、前に作成した`deploy.js`�
 npx hardhat run scripts/deploy.js --network mumbai
 ```
 
-通常、デプロイには 20〜40 秒かかります。 デプロイしているだけではありません。`deploy.js`では NFT も作成しているので、これにも時間がかかります。 実際には、トランザクションが「マイニング」されてノードによって取得されるのを待つ必要があります。 その 1 つのコマンドですべてを実行できます。 問題なければ、次のような結果が表示されます。
+通常、デプロイには20〜40秒かかります。 デプロイしているだけではありません。`deploy.js`ではNFTも作成しているので、これにも時間がかかります。 実際には、トランザクションが「マイニング」されてノードによって取得されるのを待つ必要があります。 その1つのコマンドですべてを実行できます。 問題なければ、次のような結果が表示されます。
 
 Mumbaiもストップしていることがまれにありますのでその場合は時間を置いてから実施してください。
 
@@ -246,13 +246,13 @@ RPCについては検索してみてください。
 
 ![](/public/images/Polygon-ENS-Domain/section-1/1_5_8.png)
 
-Polygonscan の使用に慣れると便利です。これは、問題が発生した場合にデプロイを追跡して問題を解決する最も簡単なツールです。 Polygonscan に表示されない場合は、まだ処理中であるか、問題が発生したことを意味します。
+Polygonscanの使用に慣れると便利です。これは、問題が発生した場合にデプロイを追跡して問題を解決する最も簡単なツールです。Polygonscanに表示されない場合は、まだ処理中であるか、問題が発生したことを意味します。
 
 エラーがなければ、**コントラクトをデプロイできました!**
 
 ### 🐝 OpenSea で NFT を確認する
 
-コントラクトアドレス（`Contract deployed to` に続く `0x..`）をターミナルからコピーして、[テストネット用の OpenSea](https://testnets.opensea.io/) に貼り付け、検索してみてください。
+コントラクトアドレス(`Contract deployed to`に続く`0x..`)をターミナルからコピーして、[テストネット用の OpenSea](https://testnets.opensea.io/) に貼り付け、検索してみてください。
 **コントラクトアドレスはご自身のターミナルに表示されているものを使用してください。**
 
 ![](/public/images/Polygon-ENS-Domain/section-1/1_5_9.png)
@@ -261,15 +261,15 @@ Polygonscan の使用に慣れると便利です。これは、問題が発生�
 
 ### 🙀 NFT が 表示されない場合
 
-数分待っても NFT が OpenSea に表示されない場合は、[testnets.dev](http://testnets.dev)というサイトにアクセスしてください。 上部のテストネット選択で Matic Mumbai を選択し、コントラクトアドレスを入力して、トークン ID を 0 に設定します。 これで実際のブロックチェーンであなたのドメインを見ることができます。
+数分待ってもNFTがOpenSeaに表示されない場合は、[testnets.dev](http://testnets.dev)というサイトにアクセスしてください。 上部のテストネット選択でMatic Mumbaiを選択し、コントラクトアドレスを入力して、トークンIDを0に設定します。 これで実際のブロックチェーンであなたのドメインを見ることができます。
 
 ![](/public/images/Polygon-ENS-Domain/section-1/1_5_10.png)
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#polygon-ens-domain` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#polygon-ens-domain`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

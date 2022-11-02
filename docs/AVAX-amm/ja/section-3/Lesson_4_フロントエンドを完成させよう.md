@@ -4,8 +4,8 @@
 
 このレッスンでは残りのコンポーネントを実装してフロントエンドを完成させましょう。
 
-各コンポーネント作成ごとに UI を確認していくので,  
-`client`ディレクトリ直下で以下のコマンドを実行して, web サイトを立ち上げておくと楽かもしれません。
+各コンポーネント作成ごとにUIを確認していくので,  
+`client`ディレクトリ直下で以下のコマンドを実行して, webサイトを立ち上げておくと楽かもしれません。
 
 ```
 $ npm run dev
@@ -15,10 +15,10 @@ $ npm run dev
 
 📁 `SelectTab`ディレクトリ
 
-`components` ディレクトリ内に `SelectTab` というディレクトリを作成し,  
-その中に `SelectTab.module.css` という名前のファイルを作成してください。
+`components`ディレクトリ内に`SelectTab`というディレクトリを作成し,  
+その中に`SelectTab.module.css`という名前のファイルを作成してください。
 
-`SelectTab.module.css` 内に以下のコードを記述してください。
+`SelectTab.module.css`内に以下のコードを記述してください。
 
 ```css
 .tabBody {
@@ -86,7 +86,7 @@ $ npm run dev
 
 🚰 Faucet
 
-次に `SelectTab` ディレクトリ内に `Faucet.tsx` という名前のファイルを作成し, 以下のコードを記述してください。
+次に`SelectTab`ディレクトリ内に`Faucet.tsx`という名前のファイルを作成し, 以下のコードを記述してください。
 
 ```ts
 import { useEffect, useState } from "react";
@@ -181,11 +181,11 @@ export default function Faucet({
 }
 ```
 
-ここではあなたがデプロイした, USDC と JOE の faucet を実装しています。
+ここではあなたがデプロイした, USDCとJOEのfaucetを実装しています。
 
-実装の中身を見る前にブラウザ上で UI を見てみましょう。
+実装の中身を見る前にブラウザ上でUIを見てみましょう。
 
-`components/Container/Container.tsx` 内に以下の内容を追加してください。
+`components/Container/Container.tsx`内に以下の内容を追加してください。
 
 ```diff
 import { useState } from "react";
@@ -222,18 +222,18 @@ export default function Container({ currentAccount }: Props) {
 
 ブラウザで`http://localhost:3000 `へアクセスします。
 
-`Faucet` タブをクリックすると以下のような表示がされます。
+`Faucet`タブをクリックすると以下のような表示がされます。
 
 ![](/public/images/AVAX-amm/section-3/3_4_1.png)
 
-入力欄に 10 と入力し, `Fund` をクリックします。  
-トランザクションに署名し, しばらく待つと(ポップアップが表示され ok を押した後)右側の`Your Details`の USDC の部分が 10 増えているはずです。
+入力欄に10と入力し, `Fund`をクリックします。  
+トランザクションに署名し, しばらく待つと(ポップアップが表示されokを押した後)右側の`Your Details`のUSDCの部分が10増えているはずです。
 
 ![](/public/images/AVAX-amm/section-3/3_4_2.png)
 
-`Change` ボタンをクリックすると USDC -> JOE へ変更されるため, JOE に関しても同じように faucet を利用することができます。
+`Change`ボタンをクリックするとUSDC -> JOEへ変更されるため, JOEに関しても同じようにfaucetを利用することができます。
 
-それでは `Faucet.tsx` の中身を見ましょう。
+それでは`Faucet.tsx`の中身を見ましょう。
 
 使用する状態変数は以下の通りです。
 
@@ -281,14 +281,14 @@ async function onClickFund() {
 ```
 
 - `onChangeToken`: `Change`ボタンをクリックされた際に`currentTokenIndex`を変更します。  
-  これにより USDC と JOE の切り替えをします。
-- `onChangeAmountOfFunds`: ユーザの入力値を `amountOfFunds` にセットします。
-- `onClickFund`: `Fund`ボタンをクリックされた際に`currentTokenIndex`のトークンの `faucet` 関数を呼び出します。  
-  このコンポーエントの引数で渡されている `updateDetails()` を実行することで details を更新します。
+  これによりUSDCとJOEの切り替えをします。
+- `onChangeAmountOfFunds`: ユーザの入力値を`amountOfFunds`にセットします。
+- `onClickFund`: `Fund`ボタンをクリックされた際に`currentTokenIndex`のトークンの`faucet`関数を呼び出します。  
+  このコンポーエントの引数で渡されている`updateDetails()`を実行することでdetailsを更新します。
 
 🦜 Provide
 
-次に `SelectTab` ディレクトリ内に `Provide.tsx` という名前のファイルを作成し, 以下のコードを記述してください。
+次に`SelectTab`ディレクトリ内に`Provide.tsx`という名前のファイルを作成し, 以下のコードを記述してください。
 
 ```ts
 import { useCallback, useEffect, useState } from "react";
@@ -457,11 +457,11 @@ export default function Provide({
 }
 ```
 
-ここでは Provide タブを実装しています。
+ここではProvideタブを実装しています。
 
-実装の中身を見る前にブラウザ上で UI を見てみましょう。
+実装の中身を見る前にブラウザ上でUIを見てみましょう。
 
-`components/Container/Container.tsx` 内に以下の内容を追加してください。
+`components/Container/Container.tsx`内に以下の内容を追加してください。
 
 ```diff
 import { useState } from "react";
@@ -507,27 +507,27 @@ export default function Container({ currentAccount }: Props) {
 
 ブラウザで`http://localhost:3000 `へアクセスします。
 
-`Provide` タブをクリックすると以下のような表示がされます。
+`Provide`タブをクリックすると以下のような表示がされます。
 
 ![](/public/images/AVAX-amm/section-3/3_4_3.png)
 
-入力欄にそれぞれ 100 と入力し, `Provide` をクリックします。
+入力欄にそれぞれ100と入力し, `Provide`をクリックします。
 
-provide の実行では以下のトランザクションへの署名が必要です。
+provideの実行では以下のトランザクションへの署名が必要です。
 
-- USDC の `approve`
-- JOE の `approve`
-- AMM の `provide`
+- USDCの`approve`
+- JOEの`approve`
+- AMMの`provide`
 
-まず初めに Metamask の署名画面が 2 度続けて表示されます。  
-それぞれに署名をし, しばらく待つと最後に `provide` の署名について求められるので署名をします。  
-🙌 こちらの UI 改善できる方がいらっしゃれば UNCHAIN にて共有して頂けると大変助かります！
+まず初めにMetamaskの署名画面が2度続けて表示されます。  
+それぞれに署名をし, しばらく待つと最後に`provide`の署名について求められるので署名をします。  
+🙌 こちらのUI改善できる方がいらっしゃればUNCHAINにて共有して頂けると大変助かります！
 
-しばらく待つと(ポップアップが表示され ok を押した後)右側の`Your Details`が更新されます！
+しばらく待つと(ポップアップが表示されokを押した後)右側の`Your Details`が更新されます！
 
 ![](/public/images/AVAX-amm/section-3/3_4_4.png)
 
-それでは `Provide.tsx` の中身を見ましょう。
+それでは`Provide.tsx`の中身を見ましょう。
 
 使用する状態変数は以下の通りです。
 
@@ -537,8 +537,8 @@ const [amountOfToken1, setAmountOfToken1] = useState(""); // ユーザが指定�
 const [activePool, setActivePool] = useState(true); // プールに流動性があるのかをフラグで保持します。
 ```
 
-次の 2 つの関数は, ユーザがどちらか一方(USDC or JOE)の入力欄に数値を入力した際に, もう片方に必要なトークンの量を表示するために必要です。  
-※ 先ほどの挙動確認では最初の流動性提供であったためこの機能は確認できませんでした。もう 1 度 `Provide`タブにて入力欄に数値を入力すると確認できるはずです！
+次の2つの関数は, ユーザがどちらか一方(USDC or JOE)の入力欄に数値を入力した際に, もう片方に必要なトークンの量を表示するために必要です。  
+※ 先ほどの挙動確認では最初の流動性提供であったためこの機能は確認できませんでした。もう1度`Provide`タブにて入力欄に数値を入力すると確認できるはずです！
 
 ```ts
 const getProvideEstimate = async (
@@ -574,17 +574,17 @@ const onChangeAmount = (
 };
 ```
 
-`getProvideEstimate` は内部で, amm の `getEquivalentToken`を引数で指定されたトークンとその量を併せて呼び出しています。  
-その返り値(指定したトークンと同価値のペアのトークンの量)を `setPairTokenAmount` によりセットしています。
+`getProvideEstimate`は内部で, ammの`getEquivalentToken`を引数で指定されたトークンとその量を併せて呼び出しています。  
+その返り値(指定したトークンと同価値のペアのトークンの量)を`setPairTokenAmount`によりセットしています。
 
-`onChangeAmount` はユーザが入力欄に数値を入力した際に動く関数です。  
-目的は入力されたトークンの量の状態変数の更新と, `getProvideEstimate` を呼び出すことにより同価値のペアのトークンの量の状態変数を更新することです。
+`onChangeAmount`はユーザが入力欄に数値を入力した際に動く関数です。  
+目的は入力されたトークンの量の状態変数の更新と, `getProvideEstimate`を呼び出すことにより同価値のペアのトークンの量の状態変数を更新することです。
 
-続く `onClickProvide` 関数は amm の　`provide` を呼び出す関数ですが, ポイントは `provide` を実行する前に各トークンの `approve` を呼び出している点です。
+続く`onClickProvide`関数はammの　`provide`を呼び出す関数ですが, ポイントは`provide`を実行する前に各トークンの`approve`を呼び出している点です。
 
 🦢 Swap
 
-次に `SelectTab` ディレクトリ内に `Swap.tsx` という名前のファイルを作成し, 以下のコードを記述してください。
+次に`SelectTab`ディレクトリ内に`Swap.tsx`という名前のファイルを作成し, 以下のコードを記述してください。
 
 ```ts
 import { useEffect, useState } from "react";
@@ -739,9 +739,9 @@ export default function Swap({
 }
 ```
 
-ここでは Swap タブを実装しています。
+ここではSwapタブを実装しています。
 
-`components/Container/Container.tsx` 内に以下の内容を追加し, UI を確認します。
+`components/Container/Container.tsx`内に以下の内容を追加し, UIを確認します。
 
 ```diff
 import { useState } from "react";
@@ -796,29 +796,29 @@ export default function Container({ currentAccount }: Props) {
 
 ブラウザで`http://localhost:3000 `へアクセスします。
 
-`Swap` タブをクリックすると以下のような表示がされます。
+`Swap`タブをクリックすると以下のような表示がされます。
 
 ![](/public/images/AVAX-amm/section-3/3_4_5.png)
 
-USDC 入力欄に 50 と入力すると, swap により受けることができる JOE の量が表示されます。  
-`Swap` をクリックします。
+USDC入力欄に50と入力すると, swapにより受けることができるJOEの量が表示されます。  
+`Swap`をクリックします。
 
-swap の実行では以下のトランザクションへの署名が必要です。
+swapの実行では以下のトランザクションへの署名が必要です。
 
-- USDC の `approve`
-- AMM の `swap`
+- USDCの`approve`
+- AMMの`swap`
 
-初めに表示された `approve` のトランザクションに署名し, しばらく待つと `swap` の署名について求められるので署名をします。
+初めに表示された`approve`のトランザクションに署名し, しばらく待つと`swap`の署名について求められるので署名をします。
 
 ここでは以下の図のようなことを行っています。
 
 ![](/public/images/AVAX-amm/section-3/swap.drawio.svg)
 
-しばらく待つと(ポップアップが表示され ok を押した後)右側の`Your Details`が更新されます！
+しばらく待つと(ポップアップが表示されokを押した後)右側の`Your Details`が更新されます！
 
 ![](/public/images/AVAX-amm/section-3/3_4_6.png)
 
-それでは `Swap.tsx` の中身を見ましょう。
+それでは`Swap.tsx`の中身を見ましょう。
 
 使用する状態変数は以下の通りです。
 
@@ -832,10 +832,10 @@ const [amountIn, setAmountIn] = useState("");
 const [amountOut, setAmountOut] = useState("");
 ```
 
-`TokenIn` と `TokenOut` はユーザの操作によって中身に入るトークンオブジェクトが変化します。  
-UI の Swap タブで, 真ん中にある上下矢印のアイコンをクリックすると USDC と JOE が切り替わるのは, この`TokenIn`/`TokenOut`の中身を入れ替えているためです。
+`TokenIn`と`TokenOut`はユーザの操作によって中身に入るトークンオブジェクトが変化します。  
+UIのSwapタブで, 真ん中にある上下矢印のアイコンをクリックするとUSDCとJOEが切り替わるのは, この`TokenIn`/`TokenOut`の中身を入れ替えているためです。
 
-以下の `useEffect` で初期値を与え, `rev` 関数により中身を入れ替えています。
+以下の`useEffect`で初期値を与え, `rev`関数により中身を入れ替えています。
 
 ```ts
 useEffect(() => {
@@ -854,16 +854,16 @@ const rev = () => {
 };
 ```
 
-その他の関数は AMM コントラクトの関数を呼び出し, 返り値を状態変数へ格納しています。
+その他の関数はAMMコントラクトの関数を呼び出し, 返り値を状態変数へ格納しています。
 
 ポイントは以下です。
 
-- スワップ元のトークン(先ほどの挙動確認での USDC)の入力値に変化があった場合は, `onChangeIn` が `getSwapEstimateOut` を実行することでスワップ先のトークン(先ほどの挙動確認での JOE)の表示内容を更新します。
-- スワップ先のトークンの入力値に変化があった場合は, `onChangeOut` が `getSwapEstimateIn` を実行することでスワップ元のトークンの表示内容を更新します。
+- スワップ元のトークン(先ほどの挙動確認でのUSDC)の入力値に変化があった場合は, `onChangeIn`が`getSwapEstimateOut`を実行することでスワップ先のトークン(先ほどの挙動確認でのJOE)の表示内容を更新します。
+- スワップ先のトークンの入力値に変化があった場合は, `onChangeOut`が`getSwapEstimateIn`を実行することでスワップ元のトークンの表示内容を更新します。
 
 🐃 Withdraw
 
-最後に `SelectTab` ディレクトリ内に `Withdraw.tsx` という名前のファイルを作成し, 以下のコードを記述してください。
+最後に`SelectTab`ディレクトリ内に`Withdraw.tsx`という名前のファイルを作成し, 以下のコードを記述してください。
 
 ```ts
 import { useCallback, useEffect, useState } from "react";
@@ -1026,9 +1026,9 @@ export default function Withdraw({
 }
 ```
 
-ここでは Withdraw タブを実装しています。
+ここではWithdrawタブを実装しています。
 
-`components/Container/Container.tsx` 内に以下の内容を追加し, UI を確認します。
+`components/Container/Container.tsx`内に以下の内容を追加し, UIを確認します。
 
 ```diff
 import { useState } from "react";
@@ -1092,40 +1092,40 @@ export default function Container({ currentAccount }: Props) {
 
 ブラウザで`http://localhost:3000 `へアクセスします。
 
-`Withdraw` タブをクリックすると以下のような表示がされます。
+`Withdraw`タブをクリックすると以下のような表示がされます。
 
 ![](/public/images/AVAX-amm/section-3/3_4_7.png)
 
-`Max` ボタンをクリックするとユーザの保有するシェアが入力値となり, 引き出すことのできるトークンの量がそれぞれ下に表示されます。  
-`Withdraw` をクリックします。
+`Max`ボタンをクリックするとユーザの保有するシェアが入力値となり, 引き出すことのできるトークンの量がそれぞれ下に表示されます。  
+`Withdraw`をクリックします。
 
-トランザクションに署名し, しばらく待つと(ポップアップが表示され ok を押した後)右側の`Your Details`が更新されます！
+トランザクションに署名し, しばらく待つと(ポップアップが表示されokを押した後)右側の`Your Details`が更新されます！
 
 ![](/public/images/AVAX-amm/section-3/3_4_8.png)
 
-今回は 1 つのアカウントで挙動を確かめているため Max のシェアでトークンを引き出すとプールは空になり, ユーザの保有するトークンの量が元々保有していた量に戻ります。
+今回は1つのアカウントで挙動を確かめているためMaxのシェアでトークンを引き出すとプールは空になり, ユーザの保有するトークンの量が元々保有していた量に戻ります。
 
-`Withdraw.tsx` の中身はこれまでの実装に比べるとシンプルです。
+`Withdraw.tsx`の中身はこれまでの実装に比べるとシンプルです。
 
 主な処理は以下の流れで行われます。
 
-1. ユーザが入力欄に数値を入力する or `Max` ボタンをクリックするとそれぞれ　`onChangeAmountOfShare`, `onClickMax` が実行されます。
-2. `onChangeAmountOfShare`/`onClickMax` は状態変数を更新後, `getEstimate` 関数を実行することで AMM コントラクトの `getWithdrawEstimate` を呼び出します。
-3. `getWithdrawEstimate`の返り値を状態変数(`amountOfToken0`/`amountOfToken1`)にセットすることで, UI に表示するユーザが受け取れるトークンの量を更新します。
+1. ユーザが入力欄に数値を入力するor `Max`ボタンをクリックするとそれぞれ　`onChangeAmountOfShare`, `onClickMax`が実行されます。
+2. `onChangeAmountOfShare`/`onClickMax`は状態変数を更新後, `getEstimate`関数を実行することでAMMコントラクトの`getWithdrawEstimate`を呼び出します。
+3. `getWithdrawEstimate`の返り値を状態変数(`amountOfToken0`/`amountOfToken1`)にセットすることで, UIに表示するユーザが受け取れるトークンの量を更新します。
 
 ### 🌔 参考リンク
 
 > [こちら](https://github.com/unchain-dev/avalanche-amm-dapp)に本プロジェクトの完成形のレポジトリがあります。
 >
 > コードがうまく動かない場合は参考にしてみてください。  
-> `contract` はリンク先のレポジトリ内の `package/contract` を。  
-> `client` はリンク先のレポジトリ内の `package/client` を参照してください。
+> `contract`はリンク先のレポジトリ内の`package/contract`を。  
+> `client`はリンク先のレポジトリ内の`package/client`を参照してください。
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は,Discord の `#avax-amm` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は,Discordの`#avax-amm`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので,エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので,エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -1137,6 +1137,6 @@ export default function Container({ currentAccount }: Props) {
 ---
 
 おめでとうございます!  
-セクション 3 が終了しました!
+セクション3が終了しました!
 
-次のセクションであなたの web アプリをデプロイしましょう 🛫
+次のセクションであなたのwebアプリをデプロイしましょう 🛫

@@ -3,9 +3,9 @@
 
 ### 📝 ステーキングの仕組み実装する
 
-ここからはこの Yield Farming の根幹となるステーキングのシステムを実装していきます。
+ここからはこのYield Farmingの根幹となるステーキングのシステムを実装していきます。
 
-まず、`TokenFarm.sol` を以下のように更新していきましょう。
+まず、`TokenFarm.sol`を以下のように更新していきましょう。
 
 ```solidity
 // TokenFarm.sol
@@ -56,9 +56,9 @@ contract TokenFarm{
 }
 ```
 
-コードの理解を促進するために、1 から 10 までコメントに番号を振りました。一つずつみていきましょう。
+コードの理解を促進するために、1から10までコメントに番号を振りました。1つずつみていきましょう。
 
-まず、新しく追加された　`stakeTokens()` 関数に注目してください。
+まず、新しく追加された　`stakeTokens()`関数に注目してください。
 
 ```solidity
 // TokenFarm.sol
@@ -68,11 +68,11 @@ function stakeTokens(uint _amount) public {
 }
 ```
 
-`stakeTokens` 関数は、ステークするトークンの量（`_amount`）をを引数としています。
+`stakeTokens`関数は、ステークするトークンの量(`_amount`)を引数としています。
 
-- また、この関数は、スマートコントラクトの外部から呼び出せるように `public` 修飾子を持っています。
+- また、この関数は、スマートコントラクトの外部から呼び出せるように`public`修飾子を持っています。
 
-`stakeTokens` 関数の主な役割は、**投資家のウォレットから `TokenFarm.sol` というスマートコントラクトに Dai トークンを転送すること**です。
+`stakeTokens`関数の主な役割は、**投資家のウォレットから`TokenFarm.sol`というスマートコントラクトに Dai トークンを転送すること**です。
 
 更に詳しく見ていきましょう。
 
@@ -88,19 +88,19 @@ function stakeTokens(uint _amount) public {
 }
 ```
 
-ここで最も重要になるのが、`transferFrom()` 関数です。
+ここで最も重要になるのが、`transferFrom()`関数です。
 
-`daiToken` のもととなるスマートコントラクト `MockDaiToken.sol` は他のERC-20トークンと同じように `transferFrom()` 関数を保持しています。
-- `transferFrom()` 関数の中身が気になる人は、`MockDaiToken.sol` の中に定義されている `transferFrom()` を見てみてください!
+`daiToken`のもととなるスマートコントラクト`MockDaiToken.sol`は他のERC-20トークンと同じように`transferFrom()`関数を保持しています。
+- `transferFrom()`関数の中身が気になる人は、`MockDaiToken.sol`の中に定義されている`transferFrom()`を見てみてください!
 
-`transferFrom()` を使用すると、投資家に代わってコントラクト自体（`TokenFarm.sol`）が、実際に資金を移動させることができるようになります。
-- `msg.sender` は Solidity 内部の特別な変数です。`msg` またはメッセージは Solidity 内のグローバル変数で、関数が呼び出されるたびに送信されるメッセージに対応します。`sender` は関数を呼び出した人を意味します。
-- 第二引数 `address(this)` は、アドレス型に変換されたスマートコントラクトそのもの（`TokenFarm.sol`）です。
-- 第三引数は、 `msg.sender` が移動させるトークンの量 `amount` を意味します。
+`transferFrom()`を使用すると、投資家に代わってコントラクト自体(`TokenFarm.sol`)が、実際に資金を移動させることができるようになります。
+- `msg.sender`はSolidity内部の特別な変数です。`msg`またはメッセージはSolidity内のグローバル変数で、関数が呼び出されるたびに送信されるメッセージに対応します。`sender`は関数を呼び出した人を意味します。
+- 第二引数`address(this)`は、アドレス型に変換されたスマートコントラクトそのもの(`TokenFarm.sol`)です。
+- 第三引数は、 `msg.sender`が移動させるトークンの量`amount`を意味します。
 
 ### 🎁 ステーキングに関するデータを保存する
 
-`stakeTokens()` 関数を実装するためには、いろいろなことを記録しておく必要があります。
+`stakeTokens()`関数を実装するためには、いろいろなことを記録しておく必要があります。
 - トークンファームの中にどれだけのトークンがあるのか、ユーザーがどれだけの金額を預けているのか、など。
 
 そのために、まず、投資家のアドレスと彼らのステーキングしたトークンの量を紐づけるマッピングを作成します。
@@ -111,10 +111,10 @@ function stakeTokens(uint _amount) public {
 mapping (address => uint) public stakingBalance;
 ```
 
-マッピングは Key に対応する Value を返すデータ構造です。
-今回定義した `stakingBalance` の場合、Key は `address` （投資のウォレットアドレス）、Value は投資家がステークするトークンの量になります。
+マッピングはKeyに対応するValueを返すデータ構造です。
+今回定義した`stakingBalance`の場合、Keyは`address` (投資のウォレットアドレス)、Valueは投資家がステークするトークンの量になります。
 
-次に、`stakeTokens()` の中で、`stakingBalance` マッピングを使用し、ステーキングされたトークンの残高が更新されるようにします。
+次に、`stakeTokens()`の中で、`stakingBalance`マッピングを使用し、ステーキングされたトークンの残高が更新されるようにします。
 
 ```solidity
 // TokenFarm.sol
@@ -130,7 +130,7 @@ stakingBalance[msg.sender] = stakingBalance[msg.sender] + _amount;
 mapping (address => bool) public hasStaked;
 ```
 
-また、これまでにステークしたことのあるすべてのアドレスを追跡する配列（`stakers`）も作成します。
+また、これまでにステークしたことのあるすべてのアドレスを追跡する配列(`stakers`)も作成します。
 
 ```solidity
 // TokenFarm.sol
@@ -138,15 +138,15 @@ mapping (address => bool) public hasStaked;
 address[] public stakers;
 ```
 
-Solidityの配列はリストなので、`stakers` の中身は、以下のような形になります。
+Solidityの配列はリストなので、`stakers`の中身は、以下のような形になります。
 
 ```
 ["0x0...", "0x43...", "0x12..."]
 ```
 
-`stakers` 配列が必要なのは、後でステーキングをしてくれた投資家たちに報酬を発行する必要があるためです。
+`stakers`配列が必要なのは、後でステーキングをしてくれた投資家たちに報酬を発行する必要があるためです。
 
-それでは、`stakeTokens()` に戻り、投資家を `stakers` 配列に追加する機能をみていきましょう。
+それでは、`stakeTokens()`に戻り、投資家を`stakers`配列に追加する機能をみていきましょう。
 
 ```solidity
 // TokenFarm.sol
@@ -156,9 +156,9 @@ if(!hasStaked[msg.sender]){
 }
 ```
 
-ここでポイントとなるのは、`stakers` 配列には、ユニークなアドレスのみ保管しているということです。
+ここでポイントとなるのは、`stakers`配列には、ユニークなアドレスのみ保管しているということです。
 
-よって、上記のコードでは、**ステーキングする投資家（ユーザー）が Token Farm のはじめてのお客様であった場合にのみ**、彼らのアドレスを、`stakers` 配列に追加する仕様になっています。
+よって、上記のコードでは、**ステーキングする投資家(ユーザー)が Token Farm のはじめてのお客様であった場合にのみ**、彼らのアドレスを、`stakers`配列に追加する仕様になっています。
 
 
 最後に、投資家のステーキングに関する状態を更新するコードを追加します。
@@ -176,10 +176,10 @@ hasStaked[msg.sender] = true;
 mapping (address => bool) public isStaking;
 ```
 
-以上で、`TokenFarm.sol` の更新は終了です。次に、テストコードを更新していきます。
+以上で、`TokenFarm.sol`の更新は終了です。次に、テストコードを更新していきます。
 ### 💪 テストを更新する
 
-`TokenFarm_test.js` を下のように更新していきましょう。
+`TokenFarm_test.js`を下のように更新していきましょう。
 
 ```javascript
 // TokenFarm_test.js
@@ -269,17 +269,17 @@ contract('TokenFarm', ([owner, investor]) => {
 })
 ```
 
-`追加するテストコード` の中身をよく見てみてください。
+`追加するテストコード`の中身をよく見てみてください。
 
-ここでのポイントは、`approve` 関数を呼び出して、`investor` を `TokenFarm` の承認済みユーザとして登録している点です。
-- `approve` 関数について復習したい方は、section 1 の lesson 2 を参照してください!
+ここでのポイントは、`approve`関数を呼び出して、`investor`を`TokenFarm`の承認済みユーザとして登録している点です。
+- `approve`関数について復習したい方は、section 1のlesson 2を参照してください!
 
-`approve` 関数が実行されることにより、`investor` は自身のトークンを Token Farm にステークできるようになります。
+`approve`関数が実行されることにより、`investor`は自身のトークンをToken Farmにステークできるようになります。
 ### 🔥 テストを実行する
 
 それでは、テストを実行していきましょう
 
-ターミナルを開いて `yield-farm-starter-project` にいることを確認してから下記のコードを実行してみてください。
+ターミナルを開いて`yield-farm-starter-project`にいることを確認してから下記のコードを実行してみてください。
 
 ```bash
 truffle test
@@ -305,9 +305,9 @@ Contract: TokenFarm
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#eth-yield-farm` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#eth-yield-farm`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

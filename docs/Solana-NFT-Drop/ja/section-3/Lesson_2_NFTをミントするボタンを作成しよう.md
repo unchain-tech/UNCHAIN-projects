@@ -1,10 +1,10 @@
-### 🎩 `mintToken` 関数を実装する
+### 🎩 `mintToken`関数を実装する
 
-`CandyMachine` コンポーネントには、`mintToken` という名前の関数があります。これは Metaplex のフロントエンドライブラリの一部です。
+`CandyMachine`コンポーネントには、`mintToken`という名前の関数があります。これはMetaplexのフロントエンドライブラリの一部です。
 
 この関数はかなり複雑なため、ここでは詳細な説明は省きますが、一度コードを読んでみてください。
 
-お勧めとして、command キー（macOS）や CTRL キー（Windows）を使って関数をクリックし、その関数がどのように動作するか確認してみてください。
+お勧めとして、commandキー(macOS)やCTRLキー(Windows)を使って関数をクリックし、その関数がどのように動作するか確認してみてください。
 
 ではざっくりとチャンクごとにコードを見ていきます。
 
@@ -16,21 +16,21 @@ const userTokenAccountAddress = (
 )[0];
 ```
 
-ここでは、NFT のアカウントを作成しています。
+ここでは、NFTのアカウントを作成しています。
 
-Solana ではプログラムで状態を保持しません。
+Solanaではプログラムで状態を保持しません。
 
-コントラクトで状態を保持する Ethereum とは大きく異なります。詳細は [こちら](https://docs.solana.com/developing/programming-model/accounts) をご覧ください。
+コントラクトで状態を保持するEthereumとは大きく異なります。詳細は [こちら](https://docs.solana.com/developing/programming-model/accounts) をご覧ください。
 
-> ✍️: `Cannot read properties of undefined` エラーが発生した場合
+> ✍️: `Cannot read properties of undefined`エラーが発生した場合
 >
-> 下記のコードを `const mint = web3.Keypair.generate();` の直下に追加してみてください。
+> 下記のコードを`const mint = web3.Keypair.generate();`の直下に追加してみてください。
 >
 > ```
 > if (!mint || !candyMachine?.state) return;
 > ```
 >
-> これにより `mint` や `candyMachine` が未定義の場合でも、問題なくコードが走ります。
+> これにより`mint`や`candyMachine`が未定義の場合でも、問題なくコードが走ります。
 
 ```jsx
 const userPayingAccountAddress = candyMachine.state.tokenMint
@@ -44,9 +44,9 @@ const remainingAccounts = [];
 const signers = [mint];
 ```
 
-Candy Machine が NFT を作成するために必要なすべてのパラメータです。
+Candy MachineがNFTを作成するために必要なすべてのパラメータです。
 
-`userPayingAccountAddress` ( NFT 費用を支払い、受け取りを行う人)から、作成する NFT のアカウントアドレスである `mint` ( mint する NFT アカウントアドレス)まですべて必要です。
+`userPayingAccountAddress` ( NFT費用を支払い、受け取りを行う人)から、作成するNFTのアカウントアドレスである`mint` ( mintするNFTアカウントアドレス)まですべて必要です。
 
 ```jsx
 const instructions = [
@@ -84,7 +84,7 @@ const instructions = [
 ];
 ```
 
-Solana では、トランザクションの中に命令をひとまとめにしています。ここではいくつかの命令をまとめていますが、私たちが作成した Candy Machine に存在する関数であり、Metaplex の標準関数です。
+Solanaでは、トランザクションの中に命令をひとまとめにしています。ここではいくつかの命令をまとめていますが、私たちが作成したCandy Machineに存在する関数であり、Metaplexの標準関数です。
 そのため、ゼロから関数を書く必要はありません。
 
 ```jsx
@@ -98,9 +98,9 @@ if (candyMachine.state.tokenMint) {
 }
 ```
 
-ここでは、キャンディマシンが bot を防ぐためにキャプチャーを使用しているかどうか（`gatekeeper`）、ホワイトリストが設定されているかどうか、ミントがトークンゲートであるかどうかをチェックしています。
+ここでは、キャンディマシンがbotを防ぐためにキャプチャーを使用しているかどうか(`gatekeeper`)、ホワイトリストが設定されているかどうか、ミントがトークンゲートであるかどうかをチェックしています。
 
-これらはユーザーのアカウントごとにパスすべきチェック項目が異なります。if 文を抜けると次の処理に進みます。
+これらはユーザーのアカウントごとにパスすべきチェック項目が異なります。if文を抜けると次の処理に進みます。
 
 ```jsx
 const metadataAddress = await getMetadata(mint.publicKey);
@@ -136,7 +136,7 @@ instructions.push(
 );
 ```
 
-最後に、すべてのチェックを通過した後、実際に NFT をミントするための命令をします。
+最後に、すべてのチェックを通過した後、実際にNFTをミントするための命令をします。
 
 ```jsx
 try {
@@ -153,15 +153,15 @@ try {
 }
 ```
 
-プロバイダ、ウォレット、すべての命令を用いて、ブロックチェーンと対話する関数である `sendTransactions` を呼び出します。
+プロバイダ、ウォレット、すべての命令を用いて、ブロックチェーンと対話する関数である`sendTransactions`を呼び出します。
 
-私たちが実際にキャンディマシンをたたき、NFT をミントするように指示する、おまじないコードです。
+私たちが実際にキャンディマシンをたたき、NFTをミントするように指示する、おまじないコードです。
 
-ざっくりとした説明は以上です。できる限り自分で読み解いてみてくださいね。メンバーと一緒に読み合わせするのもよいでしょう。また、誰かがこのコードを素敵な `npm` モジュールにしてくれることを夢見ています...。
+ざっくりとした説明は以上です。できる限り自分で読み解いてみてくださいね。メンバーと一緒に読み合わせするのもよいでしょう。また、誰かがこのコードを素敵な`npm`モジュールにしてくれることを夢見ています...。
 
 ### ✨ NFT をミントしよう!
 
-`CandyMachine` コンポーネントで、"Mint" ボタンをクリックしたときに `mintToken` 関数を呼び出すよう設定します。`index.js` を下記の通り修正してください。
+`CandyMachine`コンポーネントで、"Mint" ボタンをクリックしたときに`mintToken`関数を呼び出すよう設定します。`index.js`を下記の通り修正してください。
 
 ```jsx
 // index.js
@@ -179,43 +179,43 @@ return (
   );
 ```
 
-`Mint NFT` をクリックする前に、PhantomWallet に DevnetSOL があることを確認する必要があります。これはとても簡単です。
+`Mint NFT`をクリックする前に、PhantomWalletにDevnetSOLがあることを確認する必要があります。これはとても簡単です。
 
-まず、Phantom Wallet のパブリックアドレスを取得します。
+まず、Phantom Walletのパブリックアドレスを取得します。
 
 ![無題](/public/images/Solana-NFT-Drop/section-3/3_2_1.png)
 
-次に、Devnet でトークンを得るためにターミナルで次のコマンドを実行します。
+次に、Devnetでトークンを得るためにターミナルで次のコマンドを実行します。
 
 ```txt
 solana airdrop 2 INSERT_YOUR_PHANTOM_WALLET_ADDRESS
 ```
 
-`Mint NFT` をクリックすると、次のようなポップアップが表示されます。
+`Mint NFT`をクリックすると、次のようなポップアップが表示されます。
 
 ![無題](/public/images/Solana-NFT-Drop/section-3/3_2_2.png)
 
-[承認]をクリックして取引手数料を支払うと、キャンディーマシンに NFT を作成するように指示されます。
+[承認]をクリックして取引手数料を支払うと、キャンディーマシンにNFTを作成するように指示されます。
 
-ログを確認するために、ブラウザのコンソールを開いたままにしておきましょう。3〜10 秒ほどかかります。
+ログを確認するために、ブラウザのコンソールを開いたままにしておきましょう。3〜10秒ほどかかります。
 
-NFT が正常にミントすると、コンソールに次のようなものが表示されます。
+NFTが正常にミントすると、コンソールに次のようなものが表示されます。
 
 ![無題](/public/images/Solana-NFT-Drop/section-3/3_2_3.png)
 
-NFT を mint できました!
+NFTをmintできました!
 
-Phantom Wallet を開き、`[]` セクションに表示されるかどうかを確認します。
+Phantom Walletを開き、`[]`セクションに表示されるかどうかを確認します。
 
-Phantom Wallet の左から 2 つ目のタブに切り替えてみましょう 👀
+Phantom Walletの左から2つ目のタブに切り替えてみましょう 👀
 
 ![無題](/public/images/Solana-NFT-Drop/section-3/3_2_4.png)
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#solana-nft-drop` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#solana-nft-drop`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -226,10 +226,10 @@ Phantom Wallet の左から 2 つ目のタブに切り替えてみましょう �
 
 ---
 
-おめでとうございます!　セクション 3 は終了です!
+おめでとうございます!　セクション3は終了です!
 
-ぜひ、あなたの NFT 画像をコミュニティに投稿してください!
+ぜひ、あなたのNFT画像をコミュニティに投稿してください!
 
-あなたの NFT が気になります ✨
+あなたのNFTが気になります ✨
 
-次のレッスンに進んで、ほかの機能を Web アプリケーションに実装していきましょう 🎉
+次のレッスンに進んで、ほかの機能をWebアプリケーションに実装していきましょう 🎉

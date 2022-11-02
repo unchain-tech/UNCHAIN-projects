@@ -1,10 +1,10 @@
 ### 🎲 0.0001ETH を送るユーザーをランダムに選ぶ
 
-現在、コントラクトはすべてのユーザーに 0.0001ETH を送るように設定されています。
+現在、コントラクトはすべてのユーザーに0.0001ETHを送るように設定されています。
 
 しかし、それでは、コントラクトはすぐに資金を使い果たしてしまうでしょう。
 
-これを防ぐために、これから下記の機能を `WavePortal.sol` に実装していきます。
+これを防ぐために、これから下記の機能を`WavePortal.sol`に実装していきます。
 
 ```solidity
 // WavePortal.sol
@@ -91,7 +91,7 @@ contract WavePortal {
 uint256 private seed;
 ```
 
-ここでは、乱数を生成するために使用する初期シード（乱数の種）を定義しています。
+ここでは、乱数を生成するために使用する初期シード(乱数の種)を定義しています。
 
 ```solidity
 // WavePortal.sol
@@ -102,15 +102,15 @@ constructor() payable {
 }
 ```
 
-ここでは、`constructor` の中にユーザーのために生成された乱数を `seed` に格納しています。
+ここでは、`constructor`の中にユーザーのために生成された乱数を`seed`に格納しています。
 
-`block.difficulty` と `block.timestamp` の 2 つは、Solidity から与えられた数値です。
+`block.difficulty`と`block.timestamp`の2つは、Solidityから与えられた数値です。
 
-- `block.difficulty` は、ブロック承認（＝マイニング）の難易度をマイナーに通知するための値です。ブロック内のトランザクションが多いほど、難易度は高くなります。
+- `block.difficulty`は、ブロック承認(＝マイニング)の難易度をマイナーに通知するための値です。ブロック内のトランザクションが多いほど、難易度は高くなります。
 
-- `block.timestamp` は、ブロックが処理されている時の UNIX タイムスタンプです。
+- `block.timestamp`は、ブロックが処理されている時のUNIXタイムスタンプです。
 
-そして、`％100` により、数値を 0〜100 の範囲に設定しています。
+そして、`％100`により、数値を0〜100の範囲に設定しています。
 
 次に下記のコードを確認しましょう。
 
@@ -127,7 +127,7 @@ function wave(string memory _message) public {
 	:
 ```
 
-ここで、ユーザーが `wave` を送信するたびに `seed` を更新しています。
+ここで、ユーザーが`wave`を送信するたびに`seed`を更新しています。
 
 これにより、ランダム性の担保を行っています。ランダム性を強化することにより、ハッカーからの攻撃を防げます。
 
@@ -140,9 +140,9 @@ if (seed <= 50) {
 	:
 ```
 
-ここでは、`seed` の値が、50 以下であるかどうかを確認するために、`if` ステートメントを実装しています。
+ここでは、`seed`の値が、50以下であるかどうかを確認するために、`if`ステートメントを実装しています。
 
-`seed` の値が 50 以下の場合、ユーザーは ETH を獲得できます。
+`seed`の値が50以下の場合、ユーザーはETHを獲得できます。
 
 > ✍️: 乱数が「ランダムであること」の重要性
 > 「ユーザーに ETH がランダムで配布される」ようなゲーム性のあるサービスにおいて、ハッカーからの攻撃を防ぐことは大変重要です。
@@ -153,7 +153,7 @@ if (seed <= 50) {
 
 ### ☕️ テストを実行する
 
-下記のように、`run.js` を更新して、ユーザーにランダムに ETH を送れるかテストしてみましょう。
+下記のように、`run.js`を更新して、ユーザーにランダムにETHを送れるかテストしてみましょう。
 
 ```javascript
 // run.js
@@ -217,7 +217,7 @@ const runMain = async () => {
 runMain();
 ```
 
-それでは、ターミナル上で `my-wave-portal` に移動し、下記のコードを実行してみましょう。
+それでは、ターミナル上で`my-wave-portal`に移動し、下記のコードを実行してみましょう。
 
 ```
 npx hardhat run scripts/run.js
@@ -261,7 +261,7 @@ Contract balance: 0.0999
 
 下記を見てみましょう。
 
-一人目のユーザーは、乱数の結果 `89` という値を取得したので、ETH を獲得できませんでした。`Contract balance` は 0.1ETH のままです。
+一人目のユーザーは、乱数の結果`89`という値を取得したので、ETHを獲得できませんでした。`Contract balance`は0.1ETHのままです。
 
 ```bash
 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 has waved!
@@ -279,17 +279,17 @@ Random # generated: 31
 Contract balance: 0.0999
 ```
 
-二人目のユーザーは、乱数の結果 `31` という値を取得したので、ETH を獲得しました。
+二人目のユーザーは、乱数の結果`31`という値を取得したので、ETHを獲得しました。
 
-`Contract balance` が、0.0999ETH に更新されていることを確認してください。
+`Contract balance`が、0.0999ETHに更新されていることを確認してください。
 
 ### 🚔 スパムを防ぐためのクールダウンを実装する
 
 最後に、スパムを防ぐためのクールダウン機能を実装していきます。
 
-ここでいうスパムは、あなたの Web アプリケーションから連続して `wave` を送って、ETH を稼ごうとする動作を意味します。
+ここでいうスパムは、あなたのWebアプリケーションから連続して`wave`を送って、ETHを稼ごうとする動作を意味します。
 
-それでは、下記のように `WavePortal.sol` を更新しましょう。
+それでは、下記のように`WavePortal.sol`を更新しましょう。
 
 ```solidity
 // WavePortal.sol
@@ -382,17 +382,17 @@ contract WavePortal {
 mapping(address => uint256) public lastWavedAt;
 ```
 
-ここでは、`mapping` と呼ばれる特別なデータ構造を使用しています。
+ここでは、`mapping`と呼ばれる特別なデータ構造を使用しています。
 
-Solidity の `mapping` は、ほかの言語におけるハッシュテーブルや辞書のような役割を果たします。
+Solidityの`mapping`は、ほかの言語におけるハッシュテーブルや辞書のような役割を果たします。
 
-これらは、下記のように `_Key` と `_Value` のペアの形式でデータを格納するために使用されます。
+これらは、下記のように`_Key`と`_Value`のペアの形式でデータを格納するために使用されます。
 
 ```javascript
 mapping（_Key=> _Value）public mappingName
 ```
 
-今回は、ユーザーのアドレス（= `_Key` = `address`）をそのユーザーが `wave` を送信した時刻（= `_Value` = `uint256`）に関連付けるために `mapping` を使用しました。
+今回は、ユーザーのアドレス(= `_Key` = `address`)をそのユーザーが`wave`を送信した時刻(= `_Value` = `uint256`)に関連付けるために`mapping`を使用しました。
 
 理解を深めるために、次のコードを見ていきましょう。
 
@@ -406,11 +406,11 @@ function wave(string memory _message) public {
 	);
 ```
 
-ここでは、Web アプリケーション上で現在ユーザーが `wave` を送ろうとしている時刻と、そのユーザーが前回 `wave` を送った時刻を比較して、15 分以上経過しているか検証しています。
+ここでは、Webアプリケーション上で現在ユーザーが`wave`を送ろうとしている時刻と、そのユーザーが前回`wave`を送った時刻を比較して、15分以上経過しているか検証しています。
 
-`lastWavedAt[msg.sender]` の初期値は `0` ですので、まだ一度も `wave` を送ったことがないユーザーは、`wave` を送信できます。
+`lastWavedAt[msg.sender]`の初期値は`0`ですので、まだ一度も`wave`を送ったことがないユーザーは、`wave`を送信できます。
 
-15 分待たずに `wave` を送ろうとしてくるユーザーには、`"Wait 15min"` というアラートを返します。これにより、スパムを防止しています。
+15分待たずに`wave`を送ろうとしてくるユーザーには、`"Wait 15min"`というアラートを返します。これにより、スパムを防止しています。
 
 最後に、下記のコードを確認してください。
 
@@ -419,13 +419,13 @@ function wave(string memory _message) public {
 lastWavedAt[msg.sender] = block.timestamp;
 ```
 
-ここで、ユーザーが `wave` を送った時刻がタイムスタンプとして記録されます。
+ここで、ユーザーが`wave`を送った時刻がタイムスタンプとして記録されます。
 
-`mapping(address => uint256) public lastWavedAt` でユーザーのアドレスと `lastWavedAt` を紐づけているので、これで次に同じユーザーが `wave` を送ってきた時に、15 分経過しているか検証できます。
+`mapping(address => uint256) public lastWavedAt`でユーザーのアドレスと`lastWavedAt`を紐づけているので、これで次に同じユーザーが`wave`を送ってきた時に、15分経過しているか検証できます。
 
 ### 🧙‍♂️ テストを実行する
 
-ターミナル上で `my-wave-portal` に移動し、下記を実行してみましょう。
+ターミナル上で`my-wave-portal`に移動し、下記を実行してみましょう。
 
 ```
 npx hardhat run scripts/run.js
@@ -437,27 +437,27 @@ npx hardhat run scripts/run.js
 Error: VM Exception while processing transaction: reverted with reason string 'Wait 15m'
 ```
 
-`WavePortal.sol` に記載されている `15 minutes` を `0 minutes` に変更し、`npx hardhat run scripts/run.js` をもう一度実行すると、エラーはなくなります 😊
+`WavePortal.sol`に記載されている`15 minutes`を`0 minutes`に変更し、`npx hardhat run scripts/run.js`をもう一度実行すると、エラーはなくなります 😊
 
 ### 🧞‍♀️ デプロイする？
 
-`deploy.js` を更新する必要はないので、ここまでのデプロイは任意です。
+`deploy.js`を更新する必要はないので、ここまでのデプロイは任意です。
 
-あなたの WavePortal をどのように構築するかは、あなたの自由です 🌈
+あなたのWavePortalをどのように構築するかは、あなたの自由です 🌈
 
-ここまでのレッスンを参考にして、下記を自由に設定してみましょう。あなただけの Web アプリケーションを完成させてください。
+ここまでのレッスンを参考にして、下記を自由に設定してみましょう。あなただけのWebアプリケーションを完成させてください。
 
-- `WavePortal.sol` の `uint256 prizeAmount` を更新して、ユーザーに送る ETH の金額を再設定する
+- `WavePortal.sol`の`uint256 prizeAmount`を更新して、ユーザーに送るETHの金額を再設定する
 
-- `deploy.js` の `hre.ethers.utils.parseEther("0.001")` を更新して、コントラクトに提供する資金を再設定する
+- `deploy.js`の`hre.ethers.utils.parseEther("0.001")`を更新して、コントラクトに提供する資金を再設定する
 
-- `WavePortal.sol` に記載されている `15 minutes` を調整して、バッファ期間を調整する（※テストに関しては、`30 seconds` を推奨しています）
+- `WavePortal.sol`に記載されている`15 minutes`を調整して、バッファ期間を調整する(※テストに関しては、`30 seconds`を推奨しています)
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#eth-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#eth-dapp`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

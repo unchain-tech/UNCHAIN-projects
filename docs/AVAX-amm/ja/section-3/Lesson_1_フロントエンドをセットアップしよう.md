@@ -13,7 +13,7 @@
 
 ### 🛠️ 　フロントエンドのセットアップをしよう
 
-プロジェクトのルートディレクトリである `Avalanche-AMM` ディレクトリに移動し,以下のコードを実行して下さい。
+プロジェクトのルートディレクトリである`Avalanche-AMM`ディレクトリに移動し,以下のコードを実行して下さい。
 
 ```
 npx create-next-app client --ts --use-npm
@@ -31,7 +31,7 @@ Avalanche-AMM
    |_ contract
 ```
 
-ターミナル上で `client` に移動して下記を実行しましょう。
+ターミナル上で`client`に移動して下記を実行しましょう。
 
 ```
 cd client
@@ -40,19 +40,19 @@ npm run dev
 
 あなたのお使いのブラウザで  
 `http://localhost:3000`
-へアクセスすると Web サイトのフロントエンドが表示されるはずです。
+へアクセスするとWebサイトのフロントエンドが表示されるはずです。
 
-⚠️ 本手順では`Chromeブラウザ`を使用しておりますので, 何か不具合が生じた場合はブラウザを合わせるのも 1 つの解決策かもしれません。
+⚠️ 本手順では`Chromeブラウザ`を使用しておりますので, 何か不具合が生じた場合はブラウザを合わせるのも1つの解決策かもしれません。
 
-例）ローカル環境で表示されている Web サイト
+例)ローカル環境で表示されているWebサイト
 
 ![](/public/images/AVAX-amm/section-3/3_1_1.png)
 
 上記のような形でフロントエンドが確認できれば成功です。
 
-これからフロントエンドの表示を確認する際は,`client` ディレクトリ上で,`npm run dev` を実行します。
+これからフロントエンドの表示を確認する際は,`client`ディレクトリ上で,`npm run dev`を実行します。
 
-web サイトの立ち上げを終了する場合は以下のコマンドが使えます ✍️
+webサイトの立ち上げを終了する場合は以下のコマンドが使えます ✍️
 
 - Mac: `ctrl + c`
 - Windows: `ctrl + shift + w`
@@ -89,17 +89,17 @@ npm install ethers @metamask/providers react-icons
 ```
 
 - `ethers`: スマートコントラクトとの連携に使用します。
-- `@metamask/providers`: metamask との連携の際にオブジェクトの型を取得するために使用します。
-- `react-icons`: react が用意するアイコンを使用できます。
+- `@metamask/providers`: metamaskとの連携の際にオブジェクトの型を取得するために使用します。
+- `react-icons`: reactが用意するアイコンを使用できます。
 
-### 🐊 `github` にソースコードをアップロードしよう
+### 🐊 `github`にソースコードをアップロードしよう
 
-本プロジェクトの最後では, アプリをデプロイするために `github` へソースコードをアップロードする必要があります。  
+本プロジェクトの最後では, アプリをデプロイするために`github`へソースコードをアップロードする必要があります。  
 今後の開発にも役に立つと思いますので, 今のうちにアップロード方法をおさらいしておきましょう。
 
-GitHub のアカウントをお持ちでない方は,[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
+GitHubのアカウントをお持ちでない方は,[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
-GitHub へアップロードをしたことがない方は以下を参考にしてください。
+GitHubへアップロードをしたことがない方は以下を参考にしてください。
 
 [新しいレポジトリを作成](https://docs.github.com/ja/get-started/quickstart/create-a-repo) (リポジトリ名などはご自由に)した後,  
 手順に従いターミナルからアップロードを済ませます。  
@@ -129,24 +129,24 @@ $ git push -u origin main
 
 ### 🦊 MetaMask をダウンロードする
 
-あなたの web アプリケーションと接続するウォレットをダウンロードしましょう。
+あなたのwebアプリケーションと接続するウォレットをダウンロードしましょう。
 
-このプロジェクトでは MetaMask を使用します。
+このプロジェクトではMetaMaskを使用します。
 
 > 📓 [Core](https://support.avax.network/en/collections/3391518-core) ウォレット について  
 > Ava Labs(Avalanche エコシステムの開発チーム) がサポートしている Core というウォレットが存在します。  
 > Core でのウォレットを使用すると Avalanche に適した処理により, 高速なトランザクションが実現する可能性があります。  
 > 現在は beta 版ということもありバグや仕様変更が日々改善されているため, ここでは使用しませんが注目なウォレットです。
 
-- [こちら](https://MetaMask.io/download.html) からブラウザの拡張機能をダウンロードし,MetaMask ウォレットをあなたのブラウザに設定します。
+- [こちら](https://MetaMask.io/download.html) からブラウザの拡張機能をダウンロードし,MetaMaskウォレットをあなたのブラウザに設定します。
 
 > ✍️: MetaMask が必要な理由
 > ユーザーが,スマートコントラクトを呼び出すとき,本人のアドレスと秘密鍵を備えたウォレットが必要となります。
 > これは,認証作業のようなものです。
 
-MetaMask を設定できたら, Avalanche のテストネットワークを追加しましょう。
+MetaMaskを設定できたら, Avalancheのテストネットワークを追加しましょう。
 
-MetaMask の上部のネットワークタブを開き, `Add Network`をクリックします。
+MetaMaskの上部のネットワークタブを開き, `Add Network`をクリックします。
 
 ![](/public/images/AVAX-amm/section-3/3_1_2.png)
 
@@ -162,24 +162,24 @@ Explorer: https://testnet.snowtrace.io/
 
 ![](/public/images/AVAX-amm/section-3/3_1_3.png)
 
-登録が成功したら Avalanche のテストネットである`Avalanche Fuji C-Chain`が選択できるはずです。
+登録が成功したらAvalancheのテストネットである`Avalanche Fuji C-Chain`が選択できるはずです。
 
 ![](/public/images/AVAX-amm/section-3/3_1_4.png)
 
-### 🚰 `Faucet` を利用して `AVAX` をもらう
+### 🚰 `Faucet`を利用して`AVAX`をもらう
 
-続いて, [Avalanche Faucet](https://faucet.avax.network/)で `AVAX` を取得します。
+続いて, [Avalanche Faucet](https://faucet.avax.network/)で`AVAX`を取得します。
 
-テストネットでのみ使用できる偽の `AVAX` です。
+テストネットでのみ使用できる偽の`AVAX`です。
 
-上記リンクへ移動して, あなたのウォレットのアドレスを入力して avax を受け取ってください。  
-💁 アドレスは MetaMask 上部のアカウント名の部分をクリックするとコピーができます。
+上記リンクへ移動して, あなたのウォレットのアドレスを入力してavaxを受け取ってください。  
+💁 アドレスはMetaMask上部のアカウント名の部分をクリックするとコピーができます。
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は,Discord の `#avax-amm` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は,Discordの`#avax-amm`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので,エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので,エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

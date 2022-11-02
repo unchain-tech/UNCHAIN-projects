@@ -15,24 +15,64 @@
     "spellcheck-tech-word": true,
     "preset-ja-spacing": {
       "ja-space-between-half-and-full-width": {
-        "space": "always",
-        "exceptPunctuation": true
-      }
+        "space": "never",
+        "exceptPunctuation": false,
+        "lintStyledNode": false
+      },
+      "ja-space-around-code": true,
+      "ja-no-space-between-full-width": true,
+      "ja-nakaguro-or-halfwidth-space-between-katakana": true,
+      "ja-no-space-around-parentheses": true,
+      "ja-space-after-exclamation": false,
+      "ja-space-after-question": false
     },
     "preset-ja-technical-writing": {
-      "ja-no-mixed-period": false,
-      "ja-no-weak-phrase": false,
-      "ja-no-redundant-expression": false,
+      "arabic-kanji-numbers": true,
+      "sentence-length": {
+        "max": 200
+      },
+      "max-comma": {
+        "max": 6
+      },
+      "max-ten": {
+        "max": 6,
+        "strict": false,
+        "touten": ["、", ","],
+        "kuten": ["。", "."]
+      },
+      "max-kanji-continuous-len": {
+        "max": 6,
+        "allow": ["公開鍵暗号方式", "最大送金手数料", "分散型自律組織", "運転免許証番号", "暗号通貨取引所", "候補者追加画面", "投票者追加画面"]
+      },
+      "no-mix-dearu-desumasu": {
+        "preferInHeader": "",
+        "preferInBody": "ですます",
+        "preferInList": "である",
+        "strict": false
+      },
+      "no-double-negative-ja": false,
+      "no-dropping-the-ra": false,
+      "no-doubled-conjunctive-particle-ga": false,
+      "no-doubled-conjunction": true,
+      "no-nfd": true,
+      "no-invalid-control-character": true,
+      "no-zero-width-spaces": true,
       "no-exclamation-question-mark": {
         "allowHalfWidthExclamation": true,
         "allowFullWidthExclamation": true,
         "allowHalfWidthQuestion": true,
         "allowFullWidthQuestion": true
       },
-      "sentence-length": {
-        "max": 200
-      },
+      "no-hankaku-kana": true,
+      "ja-no-weak-phrase": false,
+      "ja-no-successive-word": true,
+      "ja-no-abusage": false,
+      "ja-no-redundant-expression": false,
+      "ja-unnatural-alphabet": {"allow": ["x", "y", "z", "k", "n", "e", "/[A-Z]/"]},
+      "no-unmatched-pair": true,
+      "ja-no-mixed-period": false,
       "no-doubled-joshi": {
+        "min_interval" : 1,
         "strict": false,
         "allow": [
           "か",
@@ -40,8 +80,24 @@
           "が",
           "と",
           "も"
-        ]
+        ],
+        "separatorCharacters": [
+          ".",
+          "．",
+          "。",
+          "?",
+          "!",
+          "？",
+          "！"
+      ],
+      "commaCharacters": [
+          "、",
+          "，"
+      ]
       }
+    },
+    "no-mixed-zenkaku-and-hankaku-alphabet": {
+      "prefer": "半角"
     },
     "prh": {
       "rulePaths": [

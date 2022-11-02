@@ -1,14 +1,14 @@
 ### 🦋 netlify に deploy しよう
 
-作成した Web アプリケーションをデプロイしてみましょう。
+作成したWebアプリケーションをデプロイしてみましょう。
 
 ここでは[Netlify](https://www.netlify.com/)を用いてデプロイします。
 
-`Netlify` は静的サイトのホスティングを提供する web サービスです。
+`Netlify`は静的サイトのホスティングを提供するwebサービスです。
 
-Netlify のアカウントをお持ちでない方は、上記のリンクにアクセスして、アカウントを作成してください。
+Netlifyのアカウントをお持ちでない方は、上記のリンクにアクセスして、アカウントを作成してください。
 
-まずはターミナルで下のコマンドを実行しましょう。これは netlify とやりとりをするためのものです。
+まずはターミナルで下のコマンドを実行しましょう。これはnetlifyとやりとりをするためのものです。
 
 ```diff
 npm install netlify-cli -g
@@ -20,7 +20,7 @@ npm install netlify-cli -g
 netlify login
 ```
 
-次に Netlify でのページ遷移がうまく行くように`near-election-dapp/near-election-dapp-frontend`の直下(.gitignore や package.json と同じ階層)に`netlify.toml`というファイルを作成して下のコードを加えましょう。
+次にNetlifyでのページ遷移がうまく行くように`near-election-dapp/near-election-dapp-frontend`の直下(.gitignoreやpackage.jsonと同じ階層)に`netlify.toml`というファイルを作成して下のコードを加えましょう。
 
 [netlify.toml]
 
@@ -31,7 +31,7 @@ netlify login
 +   status = 200
 ```
 
-最後にnear-election-dapp-frontendディレクトリにいることを確認し netlify にコードをデプロイするために下のコマンドを実行しましょう。
+最後にnear-election-dapp-frontendディレクトリにいることを確認しnetlifyにコードをデプロイするために下のコマンドを実行しましょう。
 
 ```bash
 netlify deploy --prod
@@ -39,14 +39,14 @@ netlify deploy --prod
 
 この時、コマンドを実行するにはいくつかターミナルで入力する必要があります。
 
-まず、すでに`Netlify`に存在するプロジェクトを更新するのか、新しいプロジェクトとして deploy するのかを聞かれます。ここでは後者を選択してください。
+まず、すでに`Netlify`に存在するプロジェクトを更新するのか、新しいプロジェクトとしてdeployするのかを聞かれます。ここでは後者を選択してください。
 
 ```bash
 ? What would you like to do?
 +  Create & configure a new site
 ```
 
-次にどのチームとして deploy するかを聞かれるので、ログインの時に作成したチーム名にしてください。
+次にどのチームとしてdeployするかを聞かれるので、ログインの時に作成したチーム名にしてください。
 
 ```bash
 ? Team: Tonny
@@ -60,15 +60,15 @@ Choose a unique site name (e.g. super-cool-site-by-honganji.netlify.app) or leav
 ? Site name (optional): near-election-dapp
 ```
 
-最後に deploy に必要な HTML などの情報を含んでいる`Publish Directory`を指定する必要があるので、その部分を下のように指定しましょう。
+最後にdeployに必要なHTMLなどの情報を含んでいる`Publish Directory`を指定する必要があるので、その部分を下のように指定しましょう。
 
 ```bash
 Publish directory: ./dist
 ```
 
-これで deploy の作業が始まりますのでしばらくお待ちください。
+これでdeployの作業が始まりますのでしばらくお待ちください。
 
-deploy が完了したら下のように URL が返ってくるので、一番下の'Website URL
+deployが完了したら下のようにURLが返ってくるので、一番下の'Website URL
 
 ```bash
 Deploying to main site URL...
@@ -84,18 +84,18 @@ Unique Deploy URL: https://62e70f7be8e9f53c94cf1ed3--near-election-dapp.netlify.
 Website URL:       https://near-election-dapp.netlify.app
 ```
 
-ここで`Website URL: `URL をコピーして自分が使用しているブラウザに貼り付けてみましょう。
+ここで`Website URL: `URLをコピーして自分が使用しているブラウザに貼り付けてみましょう。
 
-成功すれば以下のようにブラウザ上で自分の作成した dApp が使えるようになるはずです！
+成功すれば以下のようにブラウザ上で自分の作成したdAppが使えるようになるはずです！
 ![](/public/images/NEAR-Election-dApp/section-4/4_2_1.png)
 
-ぜひデプロイされた Web アプリケーションを自分の目で確認してみてください！！
+ぜひデプロイされたWebアプリケーションを自分の目で確認してみてください！ ！
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-election-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#near-election-dapp`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -106,24 +106,24 @@ Website URL:       https://near-election-dapp.netlify.app
 
 ### 🎫 NFT を取得しよう！
 
-NFT を取得する条件は、以下のようになります。
+NFTを取得する条件は、以下のようになります。
 
-1. MVP の機能がすべて実装されている（実装 OK ）
+1. MVPの機能がすべて実装されている(実装OK)
 
-2. Web アプリケーションで MVP の機能が問題なく実行される（テスト OK ）
+2. WebアプリケーションでMVPの機能が問題なく実行される(テストOK)
 
-3. このページの最後にリンクされている Project Completion Form に記入する
+3. このページの最後にリンクされているProject Completion Formに記入する
 
-4. Discord の `🔥｜near-post-projects` チャンネルに、あなたの Web サイトをシェアしてください 😉🎉 。Discord へ投稿する際に、追加実装した機能とその概要も教えていただけると幸いです！
+4. Discordの`🔥｜near-post-projects`チャンネルに、あなたのWebサイトをシェアしてください 😉🎉 。Discordへ投稿する際に、追加実装した機能とその概要も教えていただけると幸いです！
 
-プロジェクトを完成させていただいた方には、NFT をお送りします。
+プロジェクトを完成させていただいた方には、NFTをお送りします。
 
 ### 🎉 おつかれさまでした！
 
-これで投票 dApp を作成することができました！
+これで投票dAppを作成することができました！
 
-今回学習した rust の知識や near でのコントラクトの作りかたは Web3 がより一般的になる社会の中で、世界を変える重要なスキルです。
+今回学習したrustの知識やnearでのコントラクトの作りかたはweb3がより一般的になる社会の中で、世界を変える重要なスキルです。
 
-UI のデザインや機能をアップグレードして、ぜひコミュニティにシェアしてください！　 😊
+UIのデザインや機能をアップグレードして、ぜひコミュニティにシェアしてください！　 😊
 
-これからも Web3 への旅をあなたが続けてくれることを願っています 🚀
+これからもweb3への旅をあなたが続けてくれることを願っています 🚀

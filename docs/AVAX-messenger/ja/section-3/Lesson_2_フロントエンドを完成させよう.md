@@ -9,7 +9,7 @@
 ### 📁 `hooks`ディレクトリ
 
 コントラクトに追加した機能を利用できるように, `useMessengerContract.ts`の中身を編集してきましょう。  
-基本的にコントラクトに追加した `owner` 機能や `numOfPendingLimits`, `changeNumOfPendingLimits` を使用できるように変更しています。
+基本的にコントラクトに追加した`owner`機能や`numOfPendingLimits`, `changeNumOfPendingLimits`を使用できるように変更しています。
 
 `ReturnUseMessengerContract`の返り値の型を変更します。
 
@@ -196,9 +196,9 @@ return {
 📁 `form`ディレクトリ
 
 `components/form`ディレクトリ内,  
-その中に `ChangeOwnerValueForm.tsx` という名前のファイルを作成してください。
+その中に`ChangeOwnerValueForm.tsx`という名前のファイルを作成してください。
 
-`ChangeOwnerValueForm.tsx` 内に以下のコードを記述してください。
+`ChangeOwnerValueForm.tsx`内に以下のコードを記述してください。
 
 ```tsx
 import styles from "./Form.module.css";
@@ -304,12 +304,12 @@ export default function OwnerPage() {
 
 管理者ページを構成します。
 
-`useMessengerContract` から取得した `numOfPendingLimits` と `changeNumOfPendingLimits` を  
-先ほど作成した `ChangeOwnerValueForm` に渡しています。
+`useMessengerContract`から取得した`numOfPendingLimits`と`changeNumOfPendingLimits`を  
+先ほど作成した`ChangeOwnerValueForm`に渡しています。
 
-また, `owner` が 現在接続しているアカウントと違う場合は `Unauthorized` というメッセージを表示します。
+また, `owner`が現在接続しているアカウントと違う場合は`Unauthorized`というメッセージを表示します。
 
-最後に `pages`ディレクトリ内の `index.tsx` を以下のように編集しましょう。
+最後に`pages`ディレクトリ内の`index.tsx`を以下のように編集しましょう。
 
 ```tsx
 import type { NextPage } from "next";
@@ -367,12 +367,12 @@ const Home: NextPage = () => {
 export default Home;
 ```
 
-`OwnerPage.tsx`と同じように `owner` と ユーザアカウントを照合して,  
-`owner` の場合は管理者画面である`OwnerPage`へリンクを表示します。
+`OwnerPage.tsx`と同じように`owner`とユーザアカウントを照合して,  
+`owner`の場合は管理者画面である`OwnerPage`へリンクを表示します。
 
 ### 🖥️ web アプリを立ち上げましょう
 
-それでは`messenger-client`ディレクトリ直下で以下のコマンドを走らせ, web アプリを立ち上げてください。
+それでは`messenger-client`ディレクトリ直下で以下のコマンドを走らせ, webアプリを立ち上げてください。
 
 ```
 $ npm run dev
@@ -389,9 +389,9 @@ $ npm run dev
 
 ![](/public/images/AVAX-messenger/section-3/3_2_2.png)
 
-トランザクションが完了し, `current limits` が変更したら  
+トランザクションが完了し, `current limits`が変更したら  
 ブラウザのコンソールから, `Done`ではじまる行の値をコピーして, [AVASCAN testnet](https://testnet.avascan.info/blockchain/c/home)で履歴を確認してみましょう。  
-💁 コンソールを表示するには, ブラウザ上で `右クリック` -> `検証` -> `コンソール` を開きます。
+💁 コンソールを表示するには, ブラウザ上で`右クリック` -> `検証` -> `コンソール`を開きます。
 
 ![](/public/images/AVAX-messenger/section-3/3_2_3.png)
 
@@ -400,14 +400,14 @@ $ npm run dev
 > [こちら](https://github.com/unchain-dev/avalanche_messenger_dapp)に本プロジェクトの完成形のレポジトリがあります。
 >
 > コードがうまく動かない場合は参考にしてみてください。  
-> `messenger-contract` はリンク先のレポジトリ内の `package/contract` を。  
-> `messenger-client` はリンク先のレポジトリ内の `package/client` を参照してください。
+> `messenger-contract`はリンク先のレポジトリ内の`package/contract`を。  
+> `messenger-client`はリンク先のレポジトリ内の`package/client`を参照してください。
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は,Discord の `#avax-messenger` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は,Discordの`#avax-messenger`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので,エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので,エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -419,6 +419,6 @@ $ npm run dev
 ---
 
 おめでとうございます!  
-セクション 3 が終了しました!  
-`#avax-messenger` にあなたの AVASCAN のリンクを貼り付けて,コミュニティで進捗を祝いましょう 🎉  
-web アプリが完成したら,次のレッスンに進みましょう 🎉
+セクション3が終了しました!  
+`#avax-messenger`にあなたのAVASCANのリンクを貼り付けて,コミュニティで進捗を祝いましょう 🎉  
+webアプリが完成したら,次のレッスンに進みましょう 🎉

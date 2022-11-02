@@ -1,46 +1,46 @@
 ### コントラクトをテストネットにデプロイしよう 🎉
 
-これまでフロントエンドに UI を用意し, ウォレットとの接続も出来ました！
+これまでフロントエンドにUIを用意し, ウォレットとの接続も出来ました！
 
 このレッスンではフロントエンドとスマートコントラクトを連携するために, あなたのスマートコントラクトをデプロイします。
 
-今回のプロジェクトではコスト（＝ 本物の ETH）が発生するメインネットではなく,**テストネットにコントラクトをデプロイします。**
+今回のプロジェクトではコスト(＝ 本物のETH)が発生するメインネットではなく,**テストネットにコントラクトをデプロイします。**
 
 テストネットはメインネットを模しています。
 
 `messenger-contract`ディレクトリへ移動し, `.env`という名前のファイルを作成します。  
 💁 ドットを先頭につけたファイルは`ls`などでは非表示になる特殊なファイルです。
 
-`.env` ファイルの中に以下を記入してください。  
+`.env`ファイルの中に以下を記入してください。  
 `"YOUR_PRIVATE_KEY"`の部分をあなたのアカウントの秘密鍵と入れ替えてください。
 
 ```
 TEST_ACCOUNT_PRIVATE_KEY="YOUR_PRIVATE_KEY"
 ```
 
-> `YOUR_PRIVATE_KEY` の取得
+> `YOUR_PRIVATE_KEY`の取得
 >
-> 1.  お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを `Avalanche FUJI C-Chain` に変更します。
+> 1.  お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを`Avalanche FUJI C-Chain`に変更します。
 >
 > ![](/public/images/AVAX-messenger/section-2/2_4_1.png)
 >
-> 2.  それから、`Account details` を選択してください。
+> 2.  それから、`Account details`を選択してください。
 >
 > ![](/public/images/AVAX-messenger/section-2/2_4_2.png)
 >
-> 3.  `Account details` から `Export Private Key` をクリックしてください。
+> 3.  `Account details`から`Export Private Key`をクリックしてください。
 >
 > ![](/public/images/AVAX-messenger/section-2/2_4_3.png)
 >
-> 4.  MetaMask のパスワードを求められるので、入力したら `Confirm` を押します。  
+> 4.  MetaMask のパスワードを求められるので、入力したら`Confirm`を押します。  
 >     あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
 >
 > ![](/public/images/AVAX-messenger/section-2/2_4_4.png)
 
-> - `.env` の `YOUR_PRIVATE_KEY` の部分をここで取得した秘密鍵とを入れ替えます。
+> - `.env`の`YOUR_PRIVATE_KEY`の部分をここで取得した秘密鍵とを入れ替えます。
 
-⚠️gitignore ファイルに.env が記述されていることを確認して下さい。  
-秘密鍵は外部に漏れないように github 上に上げません。
+⚠️gitignoreファイルに.envが記述されていることを確認して下さい。  
+秘密鍵は外部に漏れないようにGitHub上に上げません。
 
 > **✍️: スマートコントラクトをデプロイするのに秘密鍵が必要な理由**  
 > **新しくスマートコントラクトをブロックチェーン上にデプロイすること**も,トランザクションの一つです。
@@ -51,7 +51,7 @@ TEST_ACCOUNT_PRIVATE_KEY="YOUR_PRIVATE_KEY"
 >
 > ユーザー名とパスワードを使用して,AWS にログインしてプロジェクトをデプロイするのと同じです。
 
-次に`messenger-contract`ディレクトリ直下にある `hardhat.config.ts` 中身を以下のコードに書き換えてください。
+次に`messenger-contract`ディレクトリ直下にある`hardhat.config.ts`中身を以下のコードに書き換えてください。
 
 ```ts
 import { HardhatUserConfig } from "hardhat/config";
@@ -164,13 +164,13 @@ Contract's fund is: BigNumber { value: "100" }
 
 実際のブロックチェーン上には,すでに何百万ものスマートコントラクトがデプロイされています。
 
-最後に `.gitignore` に `.env` が含まれていることを確認してください!
+最後に`.gitignore`に`.env`が含まれていることを確認してください!
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は,Discord の `#avax-messenger` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は,Discordの`#avax-messenger`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので,エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので,エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -181,4 +181,4 @@ Contract's fund is: BigNumber { value: "100" }
 
 ---
 
-Avalanche Fuji C-Chain にスマートコントラクトをデプロイしたら,次のレッスンに進みましょう 🎉
+Avalanche Fuji C-Chainにスマートコントラクトをデプロイしたら,次のレッスンに進みましょう 🎉

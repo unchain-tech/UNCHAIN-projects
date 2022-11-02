@@ -1,10 +1,10 @@
 ### 🛫 ローカル環境でコントラクトをデプロイする
 
-ローカル環境で、Goerli テストネットワークにコントラクトをデプロイするための準備をしましょう。
+ローカル環境で、Goerliテストネットワークにコントラクトをデプロイするための準備をしましょう。
 
-`nft-collectible/scripts` ディレクトリに移動し、`run.js` という名前のファイルを作成してください。
+`nft-collectible/scripts`ディレクトリに移動し、`run.js`という名前のファイルを作成してください。
 
-**`run.js` はローカル環境でスマートコントラクトのテストを行うためのテストプログラムです。**
+**`run.js`はローカル環境でスマートコントラクトのテストを行うためのテストプログラムです。**
 
 ```javascript
 // run.js
@@ -51,11 +51,11 @@ main()
   });
 ```
 
-`run.js` は、`ethers.js` ライブラリを利用してコントラクトをデプロイし、デプロイ後にコントラクトの関数を呼び出す JavaScript コードです。
+`run.js`は、`ethers.js`ライブラリを利用してコントラクトをデプロイし、デプロイ後にコントラクトの関数を呼び出すJavaScriptコードです。
 
-以下は、その `run.js` で実行されるテストの流れです。
+以下は、その`run.js`で実行されるテストの流れです。
 
-- NFT コレクションのメタデータを取得。**`beseTokenURI` のアドレスをあなたの IPSF のアドレスに変更してください。**
+- NFTコレクションのメタデータを取得。**`beseTokenURI`のアドレスをあなたの IPSF のアドレスに変更してください。**
 
   ```javascript
   // run.js
@@ -63,7 +63,7 @@ main()
   const baseTokenURI = "ipfs://QmZbWNKJPAjxXuNFSEaksCJVd1M6DaKQViJBYPK2BdpDEP/";
   ```
 
-- コントラクトの所有者（あなた）のアドレスを取得。
+- コントラクトの所有者(あなた)のアドレスを取得。
 
   ```javascript
   // run.js
@@ -79,7 +79,7 @@ main()
   const contractFactory = await hre.ethers.getContractFactory("NFTCollectible");
   ```
 
-- コントラクトをデプロイするためのリクエストを送り、マイナーがこのリクエストを選んでブロックチェーンに追加するのを待つ（トランザクションの承認待ち）。
+- コントラクトをデプロイするためのリクエストを送り、マイナーがこのリクエストを選んでブロックチェーンに追加するのを待つ(トランザクションの承認待ち)。
 
   ```javascript
   // run.js
@@ -90,7 +90,7 @@ main()
   await contract.deployed();
   ```
 
-- トランザクションが承認（mine）されると、コントラクトのアドレスが取得される。
+- トランザクションが承認(mine)されると、コントラクトのアドレスが取得される。
 
   ```javascript
   // run.js
@@ -98,9 +98,9 @@ main()
   console.log("Contract deployed to:", contract.address);
   ```
 
-その後、コントラクトの `public` 関数を呼び出します。
+その後、コントラクトの`public`関数を呼び出します。
 
-- 10 NFT を予約し、コントラクトに 0.03 ETH を送信して、3 NFT を Mint し、所有する NFT をチェックします。
+- 10 NFTを予約し、コントラクトに0.03 ETHを送信して、3 NFTをMintし、所有するNFTをチェックします。
 
   ```javascript
   // run.js
@@ -120,9 +120,9 @@ main()
   console.log("Owner has tokens: ", tokens);
   ```
 
-- ブロックチェーンにデータを書き込んでいるため、`reserveNFTs` と `mintNFTs` の呼び出しにはガス代が必要です。
+- ブロックチェーンにデータを書き込んでいるため、`reserveNFTs`と`mintNFTs`の呼び出しにはガス代が必要です。
 
-- `tokensOfOwner` の呼び出しは、単にブロックチェーンからデータを読み込んでいるので、ガス代はかかりません。
+- `tokensOfOwner`の呼び出しは、単にブロックチェーンからデータを読み込んでいるので、ガス代はかかりません。
 
 これをローカルで実行してみましょう。
 
@@ -154,19 +154,19 @@ Owner has tokens:  [
 
 ### 🚀 Goerli Test Network にコントラクトをデプロイする
 
-それでは、Goerli Test Network にコントラクトをデプロイしましょう。
+それでは、Goerli Test Networkにコントラクトをデプロイしましょう。
 
-`nft-collectible/scripts` の中にある `deploy.js` に、`run.js` の中身と同じにしてください。
+`nft-collectible/scripts`の中にある`deploy.js`に、`run.js`の中身と同じにしてください。
 
 > ⚠️: 注意
 >
-> `run.js` はあくまでローカル環境でコントラクトのテストを実行するスクリプトです。
+> `run.js`はあくまでローカル環境でコントラクトのテストを実行するスクリプトです。
 >
-> 一方、`deploy.js` はテストネットやイーサリアムメインネットに実際にコントラクトをデプロイするときに使用するスクリプトです。
+> 一方、`deploy.js`はテストネットやイーサリアムメインネットに実際にコントラクトをデプロイするときに使用するスクリプトです。
 >
-> `run.js` と `deploy.js` は分けて管理することをおすすめします。
+> `run.js`と`deploy.js`は分けて管理することをおすすめします。
 
-`deploy.js` が作成できたら、ターミナル上で `nft-collectible` ディレクトリに移動し、下記のコマンドを実行しましょう。
+`deploy.js`が作成できたら、ターミナル上で`nft-collectible`ディレクトリに移動し、下記のコマンドを実行しましょう。
 
 ```bash
 npx hardhat run scripts/deploy.js --network goerli
@@ -194,35 +194,35 @@ Owner has tokens:  [
 ]
 ```
 
-あなたのターミナル上で、`Contract deployed to` の後に出力されたコントラクトアドレス（`0x..`）をコピーして、保存しておきましょう。
+あなたのターミナル上で、`Contract deployed to`の後に出力されたコントラクトアドレス(`0x..`)をコピーして、保存しておきましょう。
 
 後でフロントエンドを構築する際に必要となります。
 
 ### 👀 Etherscan でトランザクションを確認する
 
-`Contract deployed to:` に続くアドレス（`0x..`）をコピーして、[Etherscan](https://goerli.etherscan.io/) に貼り付けてみましょう。
+`Contract deployed to:`に続くアドレス(`0x..`)をコピーして、[Etherscan](https://goerli.etherscan.io/) に貼り付けてみましょう。
 
 あなたのスマートコントラクトのトランザクション履歴が確認できます。
 
-- Etherscan は、イーサリアムネットワーク上のトランザクションに関する情報を確認するのに便利なプラットフォームです。
+- Etherscanは、イーサリアムネットワーク上のトランザクションに関する情報を確認するのに便利なプラットフォームです。
 
 - _表示されるまでに約 1 分かかり場合があります。_
 
-下記のような結果が、Goerli Etherscan 上で確認できれば、テストネットへのデプロイは成功です。
+下記のような結果が、Goerli Etherscan上で確認できれば、テストネットへのデプロイは成功です。
 
 ![](/public/images/Polygon-Generative-NFT/section-2/2_2_14.png)
 
 **デプロイのデバッグに Goerli Etherscan 使うことに慣れましょう。**
 
-Goerli Etherscan はデプロイを追跡する最も簡単な方法であり、問題を特定するのに適しています。
+Goerli Etherscanはデプロイを追跡する最も簡単な方法であり、問題を特定するのに適しています。
 
-- Etherscan にトランザクションが表示されないということは、まだ処理中か、何か問題があったということになります。
+- Etherscanにトランザクションが表示されないということは、まだ処理中か、何か問題があったということになります。
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#polygon-generative-nft` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#polygon-generative-nft`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

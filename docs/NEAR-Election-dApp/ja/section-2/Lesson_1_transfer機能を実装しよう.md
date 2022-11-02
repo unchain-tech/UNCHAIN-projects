@@ -1,8 +1,8 @@
 ### 📬 transfer 機能を実装しよう
 
-前回のレッスンでは mint 機能を実装しましたね！
+前回のレッスンではmint機能を実装しましたね！
 
-本レッスンでは transfer 機能を実装した後に、投票システムに必要な機能を実装していきます。まずは`nft_core.rs`ファイルを下のように書き換えましょう。
+本レッスンではtransfer機能を実装した後に、投票システムに必要な機能を実装していきます。まずは`nft_core.rs`ファイルを下のように書き換えましょう。
 
 [nft_core.rs]
 
@@ -45,11 +45,11 @@ impl NonFungibleTokenCore for Contract {
 
 ```
 
-追加した`nft_transfer関数`は引数として、送る相手の Wallet Id と送る NFT の Id を受け取ります。
+追加した`nft_transfer関数`は引数として、送る相手のWallet Idと送るNFTのIdを受け取ります。
 
-関数の内容としては投票が終わっているかどうかを確認します。その後`assert_one_yocto関数`で 1yoctoNEAR が attach されているかを確認します。`yocto`とは NEAR における単位で Ethereum の wei と同じようなものです。確認する理由はプログラムの安全性の問題があるからです。
+関数の内容としては投票が終わっているかどうかを確認します。その後`assert_one_yocto関数`で1yoctoNEARがattachされているかを確認します。`yocto`とはNEARにおける単位でEthereumのweiと同じようなものです。確認する理由はプログラムの安全性の問題があるからです。
 
-その後 NFT の送信者のアドレスと一緒に`internal_transfer関数`への引数として渡して transfer します。
+その後NFTの送信者のアドレスと一緒に`internal_transfer関数`への引数として渡してtransferします。
 
 ```bash
 #[payable]
@@ -66,7 +66,7 @@ impl NonFungibleTokenCore for Contract {
     }
 ```
 
-では `internal.rs` に移動して transfer の本質的な処理を実装していきます。下のコードに書き換えてください。
+では`internal.rs`に移動してtransferの本質的な処理を実装していきます。下のコードに書き換えてください。
 
 [internal.rs]
 
@@ -206,7 +206,7 @@ impl Contract {
 
 順番に見ていきましょう
 
-こちらは 1yoctoNEAR が attach されていることを確認しています。
+こちらは1yoctoNEARがattachされていることを確認しています。
 
 ```bash
 pub(crate) fn assert_one_yocto() {
@@ -218,7 +218,7 @@ pub(crate) fn assert_one_yocto() {
 }
 ```
 
-この関数では引数として取りいれたユーザーの id と送りたい token の id を用いて、そのユーザーがもっている NFT をリストから削除します。
+この関数では引数として取りいれたユーザーのidと送りたいtokenのidを用いて、そのユーザーがもっているNFTをリストから削除します。
 
 ```bash
 pub(crate) fn internal_remove_token_from_owner(
@@ -242,11 +242,11 @@ pub(crate) fn internal_remove_token_from_owner(
     }
 ```
 
-次のこの関数では送り主、受け取るユーザーそれぞれの Wallet Id を受け取ります。
+次のこの関数では送り主、受け取るユーザーそれぞれのWallet Idを受け取ります。
 
-まずは送り主と受取人の id が一致していないことを確認します。
+まずは送り主と受取人のidが一致していないことを確認します。
 
-これをクリアしたら`tokens_per_owner`という map から元の所有者の token の id と所有者の map を消し、新しい所有者の token の id と所有者の map を追加します。
+これをクリアしたら`tokens_per_owner`というmapから元の所有者のtokenのidと所有者のmapを消し、新しい所有者のtokenのidと所有者のmapを追加します。
 
 ```bash
 // transfer token
@@ -280,17 +280,17 @@ pub(crate) fn internal_remove_token_from_owner(
     }
 ```
 
-これで NFT の transfer 機能が完成しました！
+これでNFTのtransfer機能が完成しました！
 
-では mint した後にその NFT を transfer してみましょう！
+ではmintした後にそのNFTをtransferしてみましょう！
 
 ### 📝 transfer のテスト
 
-transfer の実装は成功したので、それが機能しているのかテストしてみましょう。
+transferの実装は成功したので、それが機能しているのかテストしてみましょう。
 
-まずは NFT を送る別の wallet を作成しましょう。NEARの管理画面の右上のAccont IDの部分をクリックすると`+ Create New Account`というボタンがあると思います。そこから新しいWallet IDを作成してください。
+まずはNFTを送る別のwalletを作成しましょう。NEARの管理画面の右上のAccont IDの部分をクリックすると`+ Create New Account`というボタンがあると思います。そこから新しいWallet IDを作成してください。
 
-次に、編集したコードを反映させるためにコードのコンパイル＋デプロイでコントラクトを更新してみましょう。下のコマンドをターミナルで実行してください。（うまくいかない場合は新しく wallet を作ってそのアドレスを使って deploy してみましょう。）
+次に、編集したコードを反映させるためにコードのコンパイル＋デプロイでコントラクトを更新してみましょう。下のコマンドをターミナルで実行してください(うまくいかない場合は新しくwalletを作ってそのアドレスを使ってdeployしてみましょう)。
 
 コントラクトディレクトリの名前を変えた方は`near_election_dapp_contract`の部分を自分が変えたディレクトリの名前に変えないとエラーがでてしまいますので気をつけてください！
 
@@ -298,13 +298,13 @@ transfer の実装は成功したので、それが機能しているのかテ�
 set -e && RUSTFLAGS='-C link-arg=-s' cargo build --target wasm32-unknown-unknown --release && near deploy --wasm-file target/wasm32-unknown-unknown/release/near_election_dapp_contract.wasm --accountId $NFT_CONTRACT_ID
 ```
 
-これでコントラクトの更新はできたので、次は下のコマンドをターミナルで実行させることで新しく NFT を mint してみましょう。
+コントラクトの更新ができたので、次は下のコマンドを実行し、新しくNFTをmintしてみましょう。
 
 ```bash
 near call $NFT_CONTRACT_ID nft_mint '{"metadata": {"title": "Tonny(candidate)", "description": "Fifth Token", "media": "https://gateway.pinata.cloud/ipfs/QmTGtuh3c1qaMdiBUnbiF9k2M3Yr4gZn8yixtAQuVvZueW", "media_CID": "QmTGtuh3c1qaMdiBUnbiF9k2M3Yr4gZn8yixtAQuVvZueW", "candidate_name": "Tonny", "candidate_manifest": "Be yourself everyone else is already taken.", "token_kind": "candidate"}, "receiver_id": "'$NFT_CONTRACT_ID'"}' --accountId $NFT_CONTRACT_ID --amount 0.1
 ```
 
-次に deloy するために下のコマンドをターミナルで実行させることで必要な token の id を確かめましょう。
+次にdeloyするために下のコマンドをターミナルで実行し、必要なtokenのidを確かめましょう。
 
 ```bash
 near view $NFT_CONTRACT_ID nft_tokens
@@ -312,7 +312,7 @@ near view $NFT_CONTRACT_ID nft_tokens
 
 下のようなメッセージが返ってくるはずです。
 
-`owner_id`の部分は自分の作った wallet の id になっているはずです。
+`owner_id`の部分は自分の作ったwalletのidになっているはずです。
 
 ```bash
 [
@@ -345,22 +345,22 @@ near view $NFT_CONTRACT_ID nft_tokens
 ]
 ```
 
-では 2 つ目のトークンを新しく作った wallet に送ってみましょう！
+では2つ目のトークンを新しく作ったwalletに送ってみましょう！
 
-下のコマンドの`NEW_WALLET_ID`に新しい Wallet Id を入れて実行させてみましょう。
+下のコマンドの`NEW_WALLET_ID`に新しいWallet Idを入れて実行させてみましょう。
 
 ```bash
 near call $NFT_CONTRACT_ID nft_transfer '{"receiver_id": "NEW_WALLET_ID", "token_id": 1}' --accountId $NFT_CONTRACT_ID --depositYocto 1
 ```
 
-成功していれば下のように新しい wallet で見ることができます。
+成功していれば下のように新しいwalletで見ることができます。
 ![](/public/images/NEAR-Election-dApp/section-2/2_1_1.png)
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-election-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#near-election-dapp`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -371,4 +371,4 @@ near call $NFT_CONTRACT_ID nft_transfer '{"receiver_id": "NEW_WALLET_ID", "token
 
 ---
 
-これで transfer 機能が実装できたので、次のレッスンで投票に必要な関数を実装しいきましょう！
+これでtransfer機能が実装できたので、次のレッスンで投票に必要な関数を実装しいきましょう！

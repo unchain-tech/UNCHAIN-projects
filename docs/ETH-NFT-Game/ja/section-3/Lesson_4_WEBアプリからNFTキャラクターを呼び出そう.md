@@ -2,31 +2,31 @@
 
 これまでのレッスンでは、スマートコントラクトのロジックの設定を行いました。
 
-これからは、スマートコントラクトを Web アプリケーションから呼び出す機能を実装していきます。
+これからは、スマートコントラクトをWebアプリケーションから呼び出す機能を実装していきます。
 
-下記のステップに沿って、Goerli Test Network にデプロイされたスマートコントラクトに、Web アプリケーションを接続させていきます。
+下記のステップに沿って、Goerli Test Networkにデプロイされたスマートコントラクトに、Webアプリケーションを接続させていきます。
 
-1\. デプロイされた最新のコントラクトアドレスをコピーし、Web アプリケーションに貼り付けます。
+1\. デプロイされた最新のコントラクトアドレスをコピーし、Webアプリケーションに貼り付けます。
 
-2\. 最新の ABI ファイルをコピーして、Web アプリケーションのディレクトリに貼り付けます。ABI とは何かについては、のちほど詳しく説明します。
+2\. 最新のABIファイルをコピーして、Webアプリケーションのディレクトリに貼り付けます。ABIとは何かについては、のちほど詳しく説明します。
 
-3\. クライアント（＝フロントエンド）からスマートコントラクト（＝バックエンド）にアクセスするために、`ethers.js` をインポートします。
+3\. クライアント(＝フロントエンド)からスマートコントラクト(＝バックエンド)にアクセスするために、`ethers.js`をインポートします。
 
 ### 🏠 最新のスマートコントラクトアドレスを取得する
 
-あなたのスマートコントラクトのデプロイ先のアドレス（＝スマートコントラクトアドレス）を `App.js` でも使用します。
+あなたのスマートコントラクトのデプロイ先のアドレス(＝スマートコントラクトアドレス)を`App.js`でも使用します。
 
-`deploy.js` スクリプトを実行するたびに、ターミナルに出力されていたアドレス（`Contract deployed to: 0x..`）を覚えていますか？
+`deploy.js`スクリプトを実行するたびに、ターミナルに出力されていたアドレス(`Contract deployed to: 0x..`)を覚えていますか？
 
-`0x..` が、あなたがデプロイしたスマートコントラクトアドレスになります。
+`0x..`が、あなたがデプロイしたスマートコントラクトアドレスになります。
 
 ブロックチェーン上には、何百万ものコントラクトが存在しています。
 
-クライアント（＝ Web アプリケーションのフロントエンド）に対して、どのコントラクトに接続するかを伝えるために、スマートコントラクトアドレスが必要です。
+クライアント(＝ Webアプリケーションのフロントエンド)に対して、どのコントラクトに接続するかを伝えるために、スマートコントラクトアドレスが必要です。
 
 このアドレスは、さまざまなタイミングで使用する予定ですので、簡単にアクセスできるようにしましょう。
 
-`nft-game-starter-project/src` の中に `constants.js` ファイルを作成し、以下のコードを追加してください。
+`nft-game-starter-project/src`の中に`constants.js`ファイルを作成し、以下のコードを追加してください。
 
 ```javascript
 // constants.js
@@ -35,9 +35,9 @@ const CONTRACT_ADDRESS = "YOUR_CONTRACT_ADDRESS_GOES_HERE";
 export { CONTRACT_ADDRESS };
 ```
 
-**`YOUR_CONTRACT_ADDRESS_GOES_HERE` の部分にあなたのスマートコントラクトアドレスを貼り付けてください。**
+**`YOUR_CONTRACT_ADDRESS_GOES_HERE`の部分にあなたのスマートコントラクトアドレスを貼り付けてください。**
 
-次に、`App.js`ファイルに戻り、ファイルの先頭に下記をインポートして、`constants.js` にアクセスできるようにしましょう。
+次に、`App.js`ファイルに戻り、ファイルの先頭に下記をインポートして、`constants.js`にアクセスできるようにしましょう。
 
 ```javascript
 // App.js
@@ -48,9 +48,9 @@ import { CONTRACT_ADDRESS } from "./constants";
 
 ABI (Application Binary Interface) はコントラクトの取り扱い説明書のようなものです。
 
-Web アプリケーションがコントラクトと通信するために必要な情報が、ABI ファイルに含まれています。
+Webアプリケーションがコントラクトと通信するために必要な情報が、ABIファイルに含まれています。
 
-コントラクト 1 つ 1 つにユニークな ABI ファイルが紐づいており、その中には下記の情報が含まれています。
+コントラクト1つ1つにユニークなABIファイルが紐づいており、その中には下記の情報が含まれています。
 
 1\. そのコントラクトに使用されている関数の名前
 
@@ -58,17 +58,17 @@ Web アプリケーションがコントラクトと通信するために必要�
 
 3\. 関数の実行結果に対して返るデータ型の種類
 
-ABI ファイルは、コントラクトがコンパイルされた時に生成され、`epic-game/artifacts` ディレクトリに自動的に格納されます。
+ABIファイルは、コントラクトがコンパイルされた時に生成され、`epic-game/artifacts`ディレクトリに自動的に格納されます。
 
-ターミナルで `epic-game` ディレクトリに移動し、`ls` を実行しましょう。
+ターミナルで`epic-game`ディレクトリに移動し、`ls`を実行しましょう。
 
-`artifacts` ディレクトリの存在を確認してください。
+`artifacts`ディレクトリの存在を確認してください。
 
-ABI ファイルの中身は、`MyEpicGame.json` というファイルに格納されいます。
+ABIファイルの中身は、`MyEpicGame.json`というファイルに格納されいます。
 
-下記を実行して、ABI ファイルをコピーしましょう。
+下記を実行して、ABIファイルをコピーしましょう。
 
-1\. ターミナル上で `epic-game` にいることを確認する（もしくは移動する）。
+1\. ターミナル上で`epic-game`にいることを確認する(もしくは移動する)。
 
 2\. ターミナル上で下記を実行する。
 
@@ -76,58 +76,58 @@ ABI ファイルの中身は、`MyEpicGame.json` というファイルに格納�
 > code artifacts/contracts/MyEpicGame.sol/MyEpicGame.json
 > ```
 
-3\. VS Code で `MyEpicGame.json` ファイルが開かれるので、中身をすべてコピーしましょう。
+3\. VS Codeで`MyEpicGame.json`ファイルが開かれるので、中身をすべてコピーしましょう。
 
     ※ VS Codeのファインダーを使って、直接 `MyEpicGame.json` を開くことも可能です。
 
-次に、下記を実行して、ABI ファイルを Web アプリケーションから呼び出せるようにしましょう。
+次に、下記を実行して、ABIファイルをWebアプリケーションから呼び出せるようにしましょう。
 
-1\. ターミナル上で `nft-game-starter-project` にいることを確認する（もしくは移動する）。
+1\. ターミナル上で`nft-game-starter-project`にいることを確認する(もしくは移動する)。
 
-2\. 下記を実行して、`nft-game-starter-project/src/` の中に `utils` ディレクトリを作成する。
+2\. 下記を実行して、`nft-game-starter-project/src/`の中に`utils`ディレクトリを作成する。
 
 > ```bash
 > mkdir src/utils
 > ```
 
-3\. 下記を実行して、`utils` ディレクトリに `MyEpicGame.json` ファイルを作成する。
+3\. 下記を実行して、`utils`ディレクトリに`MyEpicGame.json`ファイルを作成する。
 
 > ```bash
 > touch src/utils/MyEpicGame.json
 > ```
 
-4\. 下記を実行して、`MyEpicGame.json` ファイルを VS Code で開く。
+4\. 下記を実行して、`MyEpicGame.json`ファイルをVS Codeで開く。
 
 > ```bash
 > code nft-game-starter-project/src/utils/MyEpicGame.json
 > ```
 
-5\. **先ほどコピーした `epic-game/artifacts/contracts/MyEpicGame.sol/MyEpicGame.json` の中身を新しく作成した `nft-game-starter-project/src/utils/MyEpicGame.json` の中に貼り付けてください。**
+5\. **先ほどコピーした`epic-game/artifacts/contracts/MyEpicGame.sol/MyEpicGame.json`の中身を新しく作成した`nft-game-starter-project/src/utils/MyEpicGame.json`の中に貼り付けてください。**
 
-ABI ファイルの準備ができたので、`App.js` にインポートしましょう。
+ABIファイルの準備ができたので、`App.js`にインポートしましょう。
 
-下記を `App.js` の 1 行目に追加しましょう。
+下記を`App.js`の1行目に追加しましょう。
 
 ```javascript
 // App.js
 import myEpicGame from "./utils/MyEpicGame.json";
 ```
 
-ここでは、先ほど取得した、ABI ファイルを含む `MyEpicGame.json` ファイルをインポートしています。
+ここでは、先ほど取得した、ABIファイルを含む`MyEpicGame.json`ファイルをインポートしています。
 
 ### 🚨 コントラクトを再びデプロイする際の注意点
 
-コントラクトの中身を更新する場合、必ず下記 3 つのステップを実行することを忘れないようにしましょう。
+コントラクトの中身を更新する場合、必ず下記3つのステップを実行することを忘れないようにしましょう。
 
 1\. 再度、コントラクトをデプロイする。
 
-- `npx hardhat run scripts/deploy.js --network goerli` を実行する必要があります。
+- `npx hardhat run scripts/deploy.js --network goerli`を実行する必要があります。
 
-2\. フロントエンド（`App.js`）の `CONTRACT_ADDRESS` を更新する。
+2\. フロントエンド(`App.js`)の`CONTRACT_ADDRESS`を更新する。
 
-3\. ABI ファイルを更新する。
+3\. ABIファイルを更新する。
 
-`epic-game/artifacts/contracts/MyEpicGame.sol/MyEpicGame.json` の中身を新しく作成する `nft-game-starter-project/src/utils/MyEpicGame.json` の中に貼り付ける必要があります。
+`epic-game/artifacts/contracts/MyEpicGame.sol/MyEpicGame.json`の中身を新しく作成する`nft-game-starter-project/src/utils/MyEpicGame.json`の中に貼り付ける必要があります。
 
 **コントラクトを更新する際、必ずこの 3 つのステップを実行してください。**
 
@@ -141,26 +141,26 @@ import myEpicGame from "./utils/MyEpicGame.json";
 
 ### 📞 ethers.js を使用する
 
-スマートコントラクトを WBE アプリケーションに接続するために、必要なものがすべてそろいました。
+スマートコントラクトをWBEアプリケーションに接続するために、必要なものがすべてそろいました。
 
-これから、スマートコントラクトを呼び出すため、 JavaScript でオブジェクトを設定していきます。
+これから、スマートコントラクトを呼び出すため、JavaScriptでオブジェクトを設定していきます。
 
-まず、[ethers.js](https://github.com/ethers-io/ethers.js) が提供するライブラリを `App.js` にインポートします。
+まず、[ethers.js](https://github.com/ethers-io/ethers.js) が提供するライブラリを`App.js`にインポートします。
 
-- `import { CONTRACT_ADDRESS } from './constants'` の直下に下記を追加しましょう。
+- `import { CONTRACT_ADDRESS } from './constants'`の直下に下記を追加しましょう。
 
 ```javascript
 // App.js
 import { ethers } from "ethers";
 ```
 
-ここでは、フロントエンドとコントラクトを連携させるライブラリ `ethers` をインポートしています。
+ここでは、フロントエンドとコントラクトを連携させるライブラリ`ethers`をインポートしています。
 
 ### 🌐 ネットワークを確認する
 
-次に、ユーザーが Goerli Test Network に接続しているか確認し、そうでない場合は、フロントエンド上でアラートを出す関数を実装していきます。
+次に、ユーザーがGoerli Test Networkに接続しているか確認し、そうでない場合は、フロントエンド上でアラートを出す関数を実装していきます。
 
-`checkNetwork` 関数を `const [characterNFT, setCharacterNFT] = useState(null);` の直下に追加してください。
+`checkNetwork`関数を`const [characterNFT, setCharacterNFT] = useState(null);`の直下に追加してください。
 
 ```javascript
 // App.js
@@ -179,17 +179,17 @@ const checkNetwork = async () => {
 };
 ```
 
-`window.ethereum.networkVersion` では、ユーザーがどのイーサリアムネットワークを使用しているか確認しています。
+`window.ethereum.networkVersion`では、ユーザーがどのイーサリアムネットワークを使用しているか確認しています。
 
-イーサリアムネットワークには異なるチェーン ID が付与されており、Goerli チェーンの ID は `5` です。
+イーサリアムネットワークには異なるチェーン IDが付与されており、GoerliチェーンのIDは`5`です。
 
-したがって、ユーザーが Goerli Test Network に接続されてないことを Web アプリケーションが検知したら、「Goerli Test Network に接続してください!」というアラートがフロントエンドに表示されます。
+したがって、ユーザーがGoerli Test Networkに接続されてないことをWebアプリケーションが検知したら、「Goerli Test Networkに接続してください!」というアラートがフロントエンドに表示されます。
 
-次に、`App.js` を下記のように変更していきましょう。
+次に、`App.js`を下記のように変更していきましょう。
 
-- `checkNetwork()` を `checkIfWalletIsConnected` 関数の中の `setCurrentAccount(account);` の直下に追加する。
+- `checkNetwork()`を`checkIfWalletIsConnected`関数の中の`setCurrentAccount(account);`の直下に追加する。
 
-- `connectWalletAction` 関数を下記のように更新します。
+- `connectWalletAction`関数を下記のように更新します。
 
 > ```javascript
 > // App.js
@@ -224,29 +224,29 @@ const checkNetwork = async () => {
 
 ### ⛰ ページがロードされたらスマートコントラクトを呼び出す
 
-スマートコントラクトで `checkIfUserHasNFT` メソッドを作成したのを覚えていますか？
+スマートコントラクトで`checkIfUserHasNFT`メソッドを作成したのを覚えていますか？
 
-> ✍️: `checkIfUserHasNFT` メソッドの機能
+> ✍️: `checkIfUserHasNFT`メソッドの機能
 >
 > ユーザーがすでに NFT キャラクターを持っているかどうかを確認する。
 >
-> プレーヤーがすでに NFT キャラクターを Mint している場合、`checkIfUserHasNFT` メソッドはその NFT キャラクターのメタデータを返します。
+> プレーヤーがすでに NFT キャラクターを Mint している場合、`checkIfUserHasNFT`メソッドはその NFT キャラクターのメタデータを返します。
 >
-> プレーヤーがまだ NFT キャラクターを Mint していない場合、空白の `CharacterAttributes` 構造体を返します。
+> プレーヤーがまだ NFT キャラクターを Mint していない場合、空白の`CharacterAttributes`構造体を返します。
 
-これからフロントエンドで、`checkIfUserHasNFT` メソッドを呼び出すコードを作成していきます。
+これからフロントエンドで、`checkIfUserHasNFT`メソッドを呼び出すコードを作成していきます。
 
-まず、シナリオ 2 を振り返りましょう。
+まず、シナリオ2を振り返りましょう。
 
 **シナリオ 2. ユーザーは Web アプリケーションにログインしており、かつ NFT キャラクターを持っていない場合**
 
     👉 WEBアプリ上に、`SelectCharacter` コンポーネントを表示します。
 
-シナリオ 2 を実装するには、Web アプリケーションがフロントエンドにロードされたら、すぐに `checkIfUserHasNFT` メソッドを呼び出す必要があります。
+シナリオ2を実装するには、Webアプリケーションがフロントエンドにロードされたら、すぐに`checkIfUserHasNFT`メソッドを呼び出す必要があります。
 
-上記を実装するために、`App.js` の中に、もう 1 つ `useEffect()` 関数を作成しましょう。
+上記を実装するために、`App.js`の中に、もう1つ`useEffect()`関数を作成しましょう。
 
-- `checkIfWalletIsConnected();` を呼び出している `useEffect()` 関数の直下に、新しい `useEffect()` 関数（下記）を追加してください。
+- `checkIfWalletIsConnected();`を呼び出している`useEffect()`関数の直下に、新しい`useEffect()`関数(下記)を追加してください。
 
 ```javascript
 // App.js
@@ -281,11 +281,11 @@ useEffect(() => {
 }, [currentAccount]);
 ```
 
-ここでは、Web アプリケーションがロードされると同時に、スマートコントラクトを呼び出しています。
+ここでは、Webアプリケーションがロードされると同時に、スマートコントラクトを呼び出しています。
 
 > ⚠️: 注意
 >
-> ブラウザ上の Console に `transformCharacterData` が未定義であるというエラーが発生していても、すぐに解決していくので、このまま進んでください。
+> ブラウザ上の Console に`transformCharacterData`が未定義であるというエラーが発生していても、すぐに解決していくので、このまま進んでください。
 
 追加されたコードを見ながら、新しい概念について学びましょう。
 
@@ -294,11 +294,11 @@ useEffect(() => {
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 ```
 
-`provider` を介して、ユーザーはブロックチェーン上に存在するイーサリアムノードに接続できます。
+`provider`を介して、ユーザーはブロックチェーン上に存在するイーサリアムノードに接続できます。
 
-MetaMask が提供するイーサリアムノードを使用して、デプロイされたコントラクトからデータを送受信するために上記の実装を行いました。
+MetaMaskが提供するイーサリアムノードを使用して、デプロイされたコントラクトからデータを送受信するために上記の実装を行いました。
 
-`ethers` のライブラリにより `provider` のインスタンスを新規作成しています。
+`ethers`のライブラリにより`provider`のインスタンスを新規作成しています。
 
 次に、下記のコードを見ていきましょう。
 
@@ -307,11 +307,11 @@ MetaMask が提供するイーサリアムノードを使用して、デプロ�
 const signer = provider.getSigner();
 ```
 
-`signer` は、ユーザーのウォレットアドレスを抽象化したものです。
+`signer`は、ユーザーのウォレットアドレスを抽象化したものです。
 
-`provider` を作成し `provider.getSigner()` を呼び出すだけで、ユーザーはウォレットアドレスを使用してトランザクションに署名し、そのデータをイーサリアムネットワークに送信できます。
+`provider`を作成し`provider.getSigner()`を呼び出すだけで、ユーザーはウォレットアドレスを使用してトランザクションに署名し、そのデータをイーサリアムネットワークに送信できます。
 
-`provider.getSigner()` は新しい `signer` インスタンスを返すので、それを使って署名付きトランザクションを送信できます。
+`provider.getSigner()`は新しい`signer`インスタンスを返すので、それを使って署名付きトランザクションを送信できます。
 
 次に、下記のコードを見ていきましょう。
 
@@ -324,26 +324,26 @@ const gameContract = new ethers.Contract(
 );
 ```
 
-`provider` と `signer` を作成したら、コントラクトインスタンス（＝ `gameContract`）を作成する準備が整います。
+`provider`と`signer`を作成したら、コントラクトインスタンス(＝ `gameContract`)を作成する準備が整います。
 
-新しいコントラクトインスタンスを作成するには、以下 3 つの変数を `ethers.Contract` 関数に渡す必要があります。
+新しいコントラクトインスタンスを作成するには、以下3つの変数を`ethers.Contract`関数に渡す必要があります。
 
-1\. `CONTRACT_ADDRESS`: コントラクトのデプロイ先のアドレス（ローカル、テストネット、またはイーサリアムメインネット）
+1\. `CONTRACT_ADDRESS`: コントラクトのデプロイ先のアドレス(ローカル、テストネット、またはイーサリアムメインネット)
 
-2\. `myEpicGame.abi`: コントラクトの ABI
+2\. `myEpicGame.abi`: コントラクトのABI
 
-3\. `signer` もしくは `provider`
+3\. `signer`もしくは`provider`
 
-`gameContract` が設定されたら、`checkIfUserHasNFT` メソッドを呼び出すことができます。
+`gameContract`が設定されたら、`checkIfUserHasNFT`メソッドを呼び出すことができます。
 
 ```javascript
 // App.js
 const txn = await gameContract.checkIfUserHasNFT();
 ```
 
-この処理により、ブロックチェーン上のコントラクトにアクセスし、`checkIfUserHasNFT()` メソッドを呼び出します。
+この処理により、ブロックチェーン上のコントラクトにアクセスし、`checkIfUserHasNFT()`メソッドを呼び出します。
 
-`MyEpicGame.sol` に記載されている `checkIfUserHasNFT()` メソッドは、下記のような内容になります。
+`MyEpicGame.sol`に記載されている`checkIfUserHasNFT()`メソッドは、下記のような内容になります。
 
 ```solidity
 // MyEpicGame.sol
@@ -378,17 +378,17 @@ if (txn.name) {
 }
 ```
 
-コントラクトからデータ（`txn`）を受信したら、下記を実行します。
+コントラクトからデータ(`txn`)を受信したら、下記を実行します。
 
-- ユーザーが NFT キャラクターを持っているか否か確認する。
+- ユーザーがNFTキャラクターを持っているか否か確認する。
 
-- ユーザーが NFT キャラクターを持っている場合は、その NFT のデータの中身を確認する。
+- ユーザーがNFTキャラクターを持っている場合は、そのNFTのデータの中身を確認する。
 
-`txn.name` でユーザーが所有する NFT キャラクターの名前を取得します。
+`txn.name`でユーザーが所有するNFTキャラクターの名前を取得します。
 
-`if (txn.name) ... else` は、もし `txn.name` が存在した場合は、ユーザーは NFT キャラクターを持っていると判断します。そうでない場合は、まだ NFT をユーザーが Mint していないと判断するロジックです。
+`if (txn.name) ... else`は、もし`txn.name`が存在した場合は、ユーザーはNFTキャラクターを持っていると判断します。そうでない場合は、まだNFTをユーザーがMintしていないと判断するロジックです。
 
-それでは、このデータ（`txn`）を使用して、`characterNFT` の状態を設定し、アプリケーションで使用できるようにしていきましょう。
+それでは、このデータ(`txn`)を使用して、`characterNFT`の状態を設定し、アプリケーションで使用できるようにしていきましょう。
 
 次に、下記のコードを見ていきましょう。
 
@@ -400,9 +400,9 @@ if (currentAccount) {
 }
 ```
 
-ユーザーのウォレットアドレスが Web アプリケーションに接続されている場合にのみ（`if (currentAccount)`）、`fetchNFTMetadata()` 関数を呼び出します。
+ユーザーのウォレットアドレスがWebアプリケーションに接続されている場合にのみ(`if (currentAccount)`)、`fetchNFTMetadata()`関数を呼び出します。
 
-`useEffect` を実行するときはいつでも、**ユーザーのウォレットアドレスが接続されていること**を確認する必要があります。
+`useEffect`を実行するときはいつでも、**ユーザーのウォレットアドレスが接続されていること**を確認する必要があります。
 
 最後に下記のコードを見ていきましょう。
 
@@ -413,15 +413,15 @@ useEffect(() => {
 }, [currentAccount]);
 ```
 
-`[currentAccount]` は、MetaMask から取得するユーザーのパブリックウォレットアドレスです。
+`[currentAccount]`は、MetaMaskから取得するユーザーのパブリックウォレットアドレスです。
 
-**`currentAccount` の値が変更されると、この `useEffect` が起動されます。**
+**`currentAccount`の値が変更されると、この`useEffect`が起動されます。**
 
-たとえば、`currentAccount` が `null` から新しいウォレットアドレスに変更されると、`useEffect` のロジックが実行されます。
+たとえば、`currentAccount`が`null`から新しいウォレットアドレスに変更されると、`useEffect`のロジックが実行されます。
 
-### ⏫ `constants.js` を更新する
+### ⏫ `constants.js`を更新する
 
-それでは、`nft-game-starter-project/src` に移動し、コントラクトアドレスを保持するために作成した `constants.js` ファイルの中身を下記のように更新しましょう。
+それでは、`nft-game-starter-project/src`に移動し、コントラクトアドレスを保持するために作成した`constants.js`ファイルの中身を下記のように更新しましょう。
 
 ```javascript
 // constants.js
@@ -443,51 +443,51 @@ const transformCharacterData = (characterData) => {
 export { CONTRACT_ADDRESS, transformCharacterData };
 ```
 
-`transformCharacterData` により、スマートコントラクトのデータが、`App.js` でも使用できる優れたオブジェクトになります。
+`transformCharacterData`により、スマートコントラクトのデータが、`App.js`でも使用できる優れたオブジェクトになります。
 
-次に、`App.js` に向かい、`import { ethers } from 'ethers';` の直下に下記を追加してください。
+次に、`App.js`に向かい、`import { ethers } from 'ethers';`の直下に下記を追加してください。
 
 ```javascript
 // App.js
 import { CONTRACT_ADDRESS, transformCharacterData } from "./constants";
 ```
 
-この処理により、`constants.js` で宣言された `CONTRACT_ADDRESS` と `transformCharacterData` が `App.js` でも使えます。
+この処理により、`constants.js`で宣言された`CONTRACT_ADDRESS`と`transformCharacterData`が`App.js`でも使えます。
 
-- `constants.js` 上で `transformCharacterData` を `export` し、`App.js` 上で `import` したので、Console 上の `transformCharacterData` が未定義であるというエラーは解消します。
+- `constants.js`上で`transformCharacterData`を`export`し、`App.js`上で`import`したので、Console上の`transformCharacterData`が未定義であるというエラーは解消します。
 
 ### ⭕️ レンダリングをテストする
 
-最後に、すべてのロジックが正確に Web アプリケーションにレンダリングされているかテストしていきましょう。
+最後に、すべてのロジックが正確にWebアプリケーションにレンダリングされているかテストしていきましょう。
 
-ターミナルに向かい、`nft-game-starter-project` 上で下記を実行し、ローカルサーバで Web サイトを立ち上げてください。
+ターミナルに向かい、`nft-game-starter-project`上で下記を実行し、ローカルサーバーでWebサイトを立ち上げてください。
 
 ```
 npm run start
 ```
 
-次に、ブラウザの MetaMask のプラグインをクリックし、あなたのウォレットアドレスの接続状況を確認しましょう。
+次に、ブラウザのMetaMaskのプラグインをクリックし、あなたのウォレットアドレスの接続状況を確認しましょう。
 
-もし、下図のように `Connected` と表示されている場合は、`Connected` の文字をクリックします。
+もし、下図のように`Connected`と表示されている場合は、`Connected`の文字をクリックします。
 ![](/public/images/ETH-NFT-Game/section-3/3_4_1.png)
 
-そこで、Web サイトとあなたのウォレットアドレスの接続を一度解除します。
+そこで、Webサイトとあなたのウォレットアドレスの接続を一度解除します。
 
-- `Disconnect this account` を選択してください。
+- `Disconnect this account`を選択してください。
 
 ![](/public/images/ETH-NFT-Game/section-3/3_4_2.png)
 
-ページをリフレッシュして、下記のように、`Connect Wallet to Get Started` ボタンが画面の中央に表示されていることを確認してください。
+ページをリフレッシュして、下記のように、`Connect Wallet to Get Started`ボタンが画面の中央に表示されていることを確認してください。
 
 ![](/public/images/ETH-NFT-Game/section-3/3_4_3.png)
 
-次に、`Connect Wallet to Get Started` ボタンを押して、ウォレットを接続しましょう。
+次に、`Connect Wallet to Get Started`ボタンを押して、ウォレットを接続しましょう。
 
-さらに、Web アプリケーション上で右クリックを行い、`Inspect` をクリックしたら、Console に向かいましょう。
+さらに、Webアプリケーション上で右クリックを行い、`Inspect`をクリックしたら、Consoleに向かいましょう。
 
 ![](/public/images/ETH-NFT-Game/section-3/3_4_4.png)
 
-Console に下記のアウトプットが表示されていることを確認してください。
+Consoleに下記のアウトプットが表示されていることを確認してください。
 
 ```
 No character NFT found
@@ -497,9 +497,9 @@ No character NFT found
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の`#eth-nft-game`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#eth-nft-game`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -510,4 +510,4 @@ No character NFT found
 
 ---
 
-次のレッスンに進んで、NFT キャラクターの作成を行いましょう 🤘!
+次のレッスンに進んで、NFTキャラクターの作成を行いましょう 🤘!

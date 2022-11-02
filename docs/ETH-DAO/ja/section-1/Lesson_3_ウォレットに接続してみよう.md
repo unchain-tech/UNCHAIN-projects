@@ -8,9 +8,9 @@
 
 以前のプロジェクトで「Connect to Wallet」実装を [Ethers.js](https://docs.ethers.io/v5/) で作ったことがある方もいらっしゃるのではないでしょうか。
 
-今回は、めちゃくちゃ簡単に作れる thirdweb のフロントエンド SDK を使って実装していきます。
+今回は、めちゃくちゃ簡単に作れるthirdwebのフロントエンドSDKを使って実装していきます。
 
-`pages/_app.tsx` に移動して、以下のようにコードを更新しましょう。
+`pages/_app.tsx`に移動して、以下のようにコードを更新しましょう。
 
 ```typescript
 import type { AppProps } from "next/app";
@@ -35,15 +35,15 @@ export default MyApp;
 
 かなりシンプルですよね。
 
-[thirdweb](https://thirdweb.com/) をインポートして、Goerli のチェーン ID を指定しています。
+[thirdweb](https://thirdweb.com/) をインポートして、Goerliのチェーン IDを指定しています。
 
-このプロバイダーは、ユーザーの認証済みウォレットデータを保持し、それを App コンポーネントに渡します。
+このプロバイダーは、ユーザーの認証済みウォレットデータを保持し、それをAppコンポーネントに渡します。
 
-Next.js において App コンポーネント (`_app.tsx`) で全ページ共通の処理を挟むことや、ページ初期化の制御などを行うことができます。
+Next.jsにおいてAppコンポーネント (`_app.tsx`) で全ページ共通の処理を挟むことや、ページ初期化の制御などを行うことができます。
 
 続いて、ヘッダー部分のコードを準備しましょう。
 
-ルートディレクトリの直下に `components/head.tsx` を作成し、以下のコードを追加します。
+ルートディレクトリの直下に`components/head.tsx`を作成し、以下のコードを追加します。
 
 ```typescript
 import * as React from 'react';
@@ -77,13 +77,13 @@ export default function HeadComponent(): JSX.Element {
 }
 ```
 
-続いて、ルートディレクトリ直下にある `public` フォルダの中に以下の画像を `banner.png` という名前で保存します。
+続いて、ルートディレクトリ直下にある`public`フォルダの中に以下の画像を`banner.png`という名前で保存します。
 
 ![](/public/images/ETH-DAO/section-1/1_3_1.png)
 
 これで、ヘッダーの準備が整いました。
 
-⚠️ 以前に dApps 開発取り組んだことがある場合、メタマスクの接続済みサイトから https://localhost:3000 を解除しておきましょう。
+⚠️ 以前にdApps開発取り組んだことがある場合、メタマスクの接続済みサイトから https://localhost:3000 を解除しておきましょう。
 
 ![](/public/images/ETH-DAO/section-1/1_3_2.png)
 
@@ -92,7 +92,7 @@ export default function HeadComponent(): JSX.Element {
 
 以下のコマンドを実行するとローカルでフロントエンドが立ち上がるので、初期画面を確認してみましょう。
 
-※ `localhost:3000` を開くと表示されます。
+※ `localhost:3000`を開くと表示されます。
 
 ```bash
 yarn dev
@@ -102,7 +102,7 @@ yarn dev
 
 では、初期画面を更新していきましょう。
 
-`pages/index.tsx` に移動して、コードを以下とおり更新しましょう。
+`pages/index.tsx`に移動して、コードを以下とおり更新しましょう。
 
 ```typescript
 import { ConnectWallet } from "@thirdweb-dev/react";
@@ -131,7 +131,7 @@ export default Home;
 
 とても簡単ですね！
 
-これで、Web アプリで `Connect Wallet` をクリックして `MetaMask` を選択すると、MetaMask のポップアップ表示されます。
+これで、Webアプリで`Connect Wallet`をクリックして`MetaMask`を選択すると、MetaMaskのポップアップ表示されます。
 
 ウォレットを認証が完了すると、このような画面となります。
 
@@ -139,18 +139,18 @@ export default Home;
 
 ここでページをリロードしても、ウォレット接続が残っているのがわかると思います。
 
-私のコードに`<h1>Welcome to MyDAO !!</h1>` とありますが、ここでの DAO の名前はあなたが作成する DAO の名前にしてください。
+私のコードに`<h1>Welcome to MyDAO !!</h1>`とありますが、ここでのDAOの名前はあなたが作成するDAOの名前にしてください。
 
-私の真似をしないでください！これはあなたの DAO です！
+私の真似をしないでください！ これはあなたのDAOです！
 
-📝 備考：ユーザーがウォレットを接続していない場合をテストしたい場合は、ご自由に MetaMask から[ウェブサイトの接続を解除](https://metamask.zendesk.com/hc/en-us/articles/360059535551-Disconnect-wallet-from-Dapp)してください。
+📝 備考：ユーザーがウォレットを接続していない場合をテストしたい場合は、ご自由にMetaMaskから[ウェブサイトの接続を解除](https://metamask.zendesk.com/hc/en-us/articles/360059535551-Disconnect-wallet-from-Dapp)してください。
 
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#eth-dao` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#eth-dao`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

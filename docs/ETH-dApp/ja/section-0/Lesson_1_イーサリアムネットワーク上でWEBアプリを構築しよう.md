@@ -1,6 +1,6 @@
 ### 👋 dApp 開発プロジェクトへようこそ!
 
-このプロジェクトでは、イーサリアムネットワーク上にスマートコントラクトを実装して、スマートコントラクトとやりとりできる独自の Web アプリケーションを構築します。
+このプロジェクトでは、イーサリアムネットワーク上にスマートコントラクトを実装して、スマートコントラクトとやりとりできる独自のWebアプリケーションを構築します。
 
 プロジェクトを進めるには以下の技術が必要です。
 
@@ -14,7 +14,7 @@
 
 ### ⛓ ブロックチェーンとは何か？
 
-ブロックチェーンとは、互いに通信するコンピュータ（ノード）のピアツーピア・ネットワークです。
+ブロックチェーンとは、互いに通信するコンピュータ(ノード)のピアツーピア・ネットワークです。
 
 参加者全員がネットワークの運営を分担する分散型ネットワークですので、各ネットワークの参加者は、ブロックチェーン上のコードとデータのコピーを維持します。
 
@@ -26,13 +26,13 @@
 
 そして、互いに会話するコンピュータのネットワークですから、ネットワークとなります。ネットワークとデータベースが一体化したものと考えればよいでしょう。
 
-また、従来の Web アプリケーションとブロックチェーンアプリケーションの根本的な違いとして、アプリケーションは、ユーザーのデータを一切管理しません。ユーザーのデータは、ブロックチェーンによって管理されています。
+また、従来のWebアプリケーションとブロックチェーンアプリケーションの根本的な違いとして、アプリケーションは、ユーザーのデータを一切管理しません。ユーザーのデータは、ブロックチェーンによって管理されています。
 
 ### 🥫 スマートコントラクトとは何か？
 
-スマートコントラクトとは、ブロックチェーン上でコントラクト（＝契約）を自動的に実行するしくみです。
+スマートコントラクトとは、ブロックチェーン上でコントラクト(＝契約)を自動的に実行するしくみです。
 
-よくたとえられるのは、自動販売機です。自動販売機には「100 円が投下され、ボタンが押されたら、飲み物を落とす」というプログラムが搭載されており、「店員さんがお金を受け取って飲み物を渡す」というプロセスを必要としません。
+よくたとえられるのは、自動販売機です。自動販売機には「100円が投下され、ボタンが押されたら、飲み物を落とす」というプログラムが搭載されており、「店員さんがお金を受け取って飲み物を渡す」というプロセスを必要としません。
 
 人の介在を省き、自動的にプログラムが実行される点こそ、スマートコントラクトが、「スマート」と呼ばれる理由です。
 
@@ -40,67 +40,67 @@
 
 イーサリアムの汎用性により、そのネットワーク上にアプリケーションを構築できます。
 
-スマートコントラクトのコードはすべてイミュータブル（不変）、つまり**変更不可**能です。
+スマートコントラクトのコードはすべてイミュータブル(不変)、つまり**変更不可**能です。
 
 つまり、スマートコントラクトをブロックチェーンにデプロイすると、コードを変更したり更新できなくなるのです。
 
 これは、コードの信頼性と安全性を確保するための設計上の特徴です。
 
-私はよくスマートコントラクトを Web 上のマイクロサービスにたとえます。ブロックチェーンからデータを読み書きしたり、ビジネスロジックを実行したりするためのインタフェースとして機能するのです。これらはパブリックにアクセス可能で、ブロックチェーンにアクセスできる人なら誰でもそのインタフェースにアクセスできることを意味します。
+私はよくスマートコントラクトをWeb上のマイクロサービスにたとえます。ブロックチェーンからデータを読み書きしたり、ビジネスロジックを実行したりするためのインタフェースとして機能するのです。これらはパブリックにアクセス可能で、ブロックチェーンにアクセスできる人なら誰でもそのインタフェースにアクセスできることを意味します。
 
 ### 📱 dApps とは何か？
 
-dApps は、**分散型アプリケーション（decentralized Application）** の略です。
+dAppsは、**分散型アプリケーション(decentralized Application)** の略です。
 
-dApps は、ブロックチェーン上に構築されたスマートコントラクトと、フロントエンドであるユーザーインタフェース（Web サイトなど）を組み合わせたアプリケーションのことを指します。
+dAppsは、ブロックチェーン上に構築されたスマートコントラクトと、フロントエンドであるユーザーインタフェース(Webサイトなど)を組み合わせたアプリケーションのことを指します。
 
-dApps は、イーサリアムのプログラミング言語である Solidity を基盤に構築されています。
+dAppsは、イーサリアムのプログラミング言語であるSolidityを基盤に構築されています。
 
-イーサリアムでは、スマートコントラクトはオープン API のように誰でもアクセスできます。よって、ほかの人が書いたスマートコントラクトも、あなたの Web アプリケーションから呼び出すことができます。逆も然りです。
+イーサリアムでは、スマートコントラクトはオープンAPIのように誰でもアクセスできます。よって、ほかの人が書いたスマートコントラクトも、あなたのWebアプリケーションから呼び出すことができます。逆も然りです。
 
 ### 🛠 何を構築するのか？
 
-WavePortal と呼ばれる **分散型 Web アプリケーション（dApp）** を構築します。
+WavePortalと呼ばれる **分散型 Web アプリケーション(dApp)** を構築します。
 
-WavePortal では、以下の機能を実装します。
+WavePortalでは、以下の機能を実装します。
 
 1. インターネット上の誰もが、あなたに「👋+メッセージ」送ることができる。
 2. それらのデータは、イーサリアムのスマートコントラクトを介してブロックチェーン上に保存される。
-3. あなたに手を振ったユーザーは、ラッキーだったらあなたのサイトから少量の ETH を獲得できる 🎉
+3. あなたに手を振ったユーザーは、ラッキーだったらあなたのサイトから少量のETHを獲得できる 🎉
 
 このプロジェクトでは、具体的に以下の実装します。
 
-- ユーザーのウォレットをあなたの WavePortal に接続する。
-- Web アプリケーションを通して、ユーザーがスマートコントラクトとやりとりとりできる機能を実装する。
+- ユーザーのウォレットをあなたのWavePortalに接続する。
+- Webアプリケーションを通して、ユーザーがスマートコントラクトとやりとりとりできる機能を実装する。
 
-Solidity でバックエンドを実装し、React でフロントエンドを構築します。
+Solidityでバックエンドを実装し、Reactでフロントエンドを構築します。
 
 ### 🌍 プロジェクトをアップグレードする
 
-この学習コンテンツは、[Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/) © 2022 buildspace のライセンス及び [UNCHAIN License](https://github.com/unchain-dev/UNCHAIN-projects/blob/main/LICENSE) のもとで運用されています。
+この学習コンテンツは、[Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/) © 2022 buildspaceのライセンス及び [UNCHAIN License](https://github.com/unchain-dev/UNCHAIN-projects/blob/main/LICENSE) のもとで運用されています。
 
-プロジェクトに参加していて、「こうすればもっと分かりやすいのに!」「これは間違っている!」と思ったら、ぜひ `pull request` を送ってください。
+プロジェクトに参加していて、「こうすればもっと分かりやすいのに!」「これは間違っている!」と思ったら、ぜひ`pull request`を送ってください。
 
-GitHub から直接コードを編集して直接 `pull request` を送る方法は、[こちら](https://docs.github.com/ja/repositories/working-with-files/managing-files/editing-files#editing-files-in-another-users-repository)を参照してください。
+GitHubから直接コードを編集して直接`pull request`を送る方法は、[こちら](https://docs.github.com/ja/repositories/working-with-files/managing-files/editing-files#editing-files-in-another-users-repository)を参照してください。
 
 どんなリクエストでも大歓迎です 🎉
 
-また、プロジェクトを自分の GitHub アカウントに `Fork` して、中身を編集してから `pull request` を送ることもできます。
+また、プロジェクトを自分のGitHubアカウントに`Fork`して、中身を編集してから`pull request`を送ることもできます。
 
-- プロジェクトを `Fork` する方法は、[こちら](https://docs.github.com/ja/get-started/quickstart/fork-a-repo) を参照してください。
-- `Fork` から `pull request` を作成する方法は、[こちら](https://docs.github.com/ja/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) です。
+- プロジェクトを`Fork`する方法は、[こちら](https://docs.github.com/ja/get-started/quickstart/fork-a-repo) を参照してください。
+- `Fork`から`pull request`を作成する方法は、[こちら](https://docs.github.com/ja/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) です。
 
-**👋 `UNCHAIN-projects` に `pull request` を送る! ⏩ [UNCHAIN の GitHub](https://github.com/shiftbase-xyz/UNCHAIN-projects) にアクセス!**
+**👋 `UNCHAIN-projects`に`pull request`を送る! ⏩ [UNCHAIN の GitHub](https://github.com/shiftbase-xyz/UNCHAIN-projects) にアクセス!**
 
-### ⚡️ `Issue` を作成する
+### ⚡️ `Issue`を作成する
 
-`pull request` 送るほどでもないけど、提案を残したい!　と思ったら、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/issues) に `Issue` を作成してみましょう。
+`pull request`送るほどでもないけど、提案を残したい!　と思ったら、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/issues) に`Issue`を作成してみましょう。
 
-`Issue` の作成方法に関しては、[こちら](https://docs.github.com/ja/issues/tracking-your-work-with-issues/creating-an-issue)を参照してください。
+`Issue`の作成方法に関しては、[こちら](https://docs.github.com/ja/issues/tracking-your-work-with-issues/creating-an-issue)を参照してください。
 
-`pull request` や `issue` の作成は実際にチームで開発する際、重要な作業になるので、ぜひトライしてみてください。
+`pull request`や`issue`の作成は実際にチームで開発する際、重要な作業になるので、ぜひトライしてみてください。
 
-UNCHAIN のプロジェクトをみんなでより良いものにしていきましょう ✨
+UNCHAINのプロジェクトをみんなでより良いものにしていきましょう ✨
 
 ---
 
