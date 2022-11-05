@@ -97,11 +97,13 @@ const Home: NextPage = () => {
   const [network, switchNetwork] = useNetwork();
 
   // editionDrop コントラクトを初期化
-  const editionDrop = useContract("INSERT_EDITION_DROP_ADDRESS", "edition-drop").contract;
+  const editionDrop = useContract("0xBc4305f4ab3AAF938D526627CfdF5ee756c5ADBA", "edition-drop").contract;
+
   // トークンコントラクトの初期化
-  const token = useContract("INSERT_TOKEN_ADDRESS", "token").contract;
+  const token = useContract("0x786af75636a133473C1FA25D7121b93667E757Bf", "token").contract;
+
   // 投票コントラクトの初期化
-  const vote = useContract("INSERT_VOTE_ADDRESS", "vote").contract;
+  const vote = useContract("0xafDa052e39fd0EFc47CfDD48B365d102ED6AA4A4", "vote").contract;
 
   // ユーザーがメンバーシップ NFT を持っているかどうかを知るためのステートを定義
   const [hasClaimedNFT, setHasClaimedNFT] = useState(false);
@@ -272,7 +274,7 @@ const Home: NextPage = () => {
       <div className={styles.container}>
         <main className={styles.main}>
           <h1 className={styles.title}>
-            Welcome to BlackTankTop Collective !!
+            Welcome to Tokyo Sauna Collective !!
           </h1>
           <div className={styles.connect}>
             <ConnectWallet />
@@ -447,7 +449,20 @@ const Home: NextPage = () => {
         </main>
       </div>
     );
-    }
+  }
+  // ウォレットと接続されていたら Mint ボタンを表示
+  else {
+    return (
+      <div className={styles.container}>
+        <main className={styles.main}>
+          <h1 className={styles.title}>Mint your free 🍪DAO Membership NFT</h1>
+          <button disabled={isClaiming} onClick={mintNft}>
+            {isClaiming ? "Minting..." : "Mint your nft (FREE)"}
+          </button>
+        </main>
+      </div>
+    );
+  }
 };
 
 export default Home;
