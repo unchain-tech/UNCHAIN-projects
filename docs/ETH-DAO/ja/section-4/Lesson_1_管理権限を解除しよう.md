@@ -97,13 +97,13 @@ const Home: NextPage = () => {
   const [network, switchNetwork] = useNetwork();
 
   // editionDrop コントラクトを初期化
-  const editionDrop = useContract("0xBc4305f4ab3AAF938D526627CfdF5ee756c5ADBA", "edition-drop").contract;
+  const editionDrop = useContract("INSERT_EDITION_DROP_ADDRESS", "edition-drop").contract;
 
   // トークンコントラクトの初期化
-  const token = useContract("0x786af75636a133473C1FA25D7121b93667E757Bf", "token").contract;
+  const token = useContract("INSERT_TOKEN_ADDRESS", "token").contract;
 
   // 投票コントラクトの初期化
-  const vote = useContract("0xafDa052e39fd0EFc47CfDD48B365d102ED6AA4A4", "vote").contract;
+  const vote = useContract("INSERT_VOTE_ADDRESS", "vote").contract;
 
   // ユーザーがメンバーシップ NFT を持っているかどうかを知るためのステートを定義
   const [hasClaimedNFT, setHasClaimedNFT] = useState(false);
