@@ -98,8 +98,10 @@ const Home: NextPage = () => {
 
   // editionDrop コントラクトを初期化
   const editionDrop = useContract("INSERT_EDITION_DROP_ADDRESS", "edition-drop").contract;
+
   // トークンコントラクトの初期化
   const token = useContract("INSERT_TOKEN_ADDRESS", "token").contract;
+
   // 投票コントラクトの初期化
   const vote = useContract("INSERT_VOTE_ADDRESS", "vote").contract;
 
@@ -272,7 +274,7 @@ const Home: NextPage = () => {
       <div className={styles.container}>
         <main className={styles.main}>
           <h1 className={styles.title}>
-            Welcome to BlackTankTop Collective !!
+            Welcome to Tokyo Sauna Collective !!
           </h1>
           <div className={styles.connect}>
             <ConnectWallet />
@@ -447,7 +449,20 @@ const Home: NextPage = () => {
         </main>
       </div>
     );
-    }
+  }
+  // ウォレットと接続されていたら Mint ボタンを表示
+  else {
+    return (
+      <div className={styles.container}>
+        <main className={styles.main}>
+          <h1 className={styles.title}>Mint your free 🍪DAO Membership NFT</h1>
+          <button disabled={isClaiming} onClick={mintNft}>
+            {isClaiming ? "Minting..." : "Mint your nft (FREE)"}
+          </button>
+        </main>
+      </div>
+    );
+  }
 };
 
 export default Home;
