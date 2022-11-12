@@ -20,9 +20,7 @@ swapを要求するユーザがプールに送信するトークンの量を, AM
 
 前回のレッスンの`シチュエーション 1`で導き出した式
 
-$$
-y' = \frac{x'y}{x+x'}
-$$
+![](/public/images/AVAX-amm/section-2/2_2_1.png)
 
 を使用すると,
 
@@ -35,16 +33,7 @@ $$
 
 🐟 手数料を考慮しない場合
 
-<!-- textlint-disable -->
-
-$$
-\begin{align}
-y' &= \frac{1,000 * 10,000}{10,000 + 1,000}\\
-&= 909.0...
-\end{align}
-$$
-
-<!-- textlint-enable -->
+![](/public/images/AVAX-amm/section-2/2_2_2.png)
 
 プール内のXは1,000増えます。
 Yは909減ります。
@@ -56,12 +45,7 @@ Yは909減ります。
 ユーザはXの量に`1,000`を指定してswapを実行しますが,  
 AMMの内部では`1,000`から0.3％ の3を引いて`997`で計算をします。
 
-$$
-\begin{align}
-y' &= \frac{997 * 10,000}{10,000 + 997}\\
-&= 906.6...
-\end{align}
-$$
+![](/public/images/AVAX-amm/section-2/2_2_3.png)
 
 プール内のXは1,000増えます。
 Yは906減ります。
@@ -96,57 +80,35 @@ Y -> Xへswapをするとこれと逆のことが起こります。
 
 元の式は以下です。
 
-$$
-y' = \frac{x'y}{x+x'}
-$$
+![](/public/images/AVAX-amm/section-2/2_2_1.png)
 
 x'に関して, 0.3％ 引いた0.997x' とすれば良いのですが,  
 後にsolidityで実装する際に小数を扱えないことに備えて  
 全ての値に`1,000`をかけて3桁分繰り上げましょう。
 
-<!-- textlint-disable -->
-
-$$
-1,000y' = \frac{997x' * 1,000y}{1,000x + 997x'}
-$$
+![](/public/images/AVAX-amm/section-2/2_2_4.png)
 
 両辺を `1,000` で割ると以下の式が導き出せます。
 
-$$
-y' = \frac{997x'y}{1,000x + 997x'}
-$$
-
-<!-- textlint-enable -->
+![](/public/images/AVAX-amm/section-2/2_2_5.png)
 
 🐬 シチュエーション2: y' からx' を算出する
 
 元の式は以下です。
 
-$$
-x' = \frac{xy'}{y-y'}
-$$
+![](/public/images/AVAX-amm/section-2/2_2_6.png)
 
 先ほどと同じようにx' から0.3％ 引き, 全ての値を3桁分繰り上げると以下のような形になります。
 
-<!-- textlint-disable -->
-
-$$
-997x' = \frac{1,000x * 1,000y'}{1,000y - 1,000y'}
-$$
-
-<!-- textlint-enable -->
+![](/public/images/AVAX-amm/section-2/2_2_7.png)
 
 右辺は分母と分子をそれぞれ`1,000`で割ると
 
-$$
-997x' = \frac{1,000xy'}{y - y'}
-$$
+![](/public/images/AVAX-amm/section-2/2_2_8.png)
 
 となり, 両辺を`997`で割ると
 
-$$
-x' = \frac{1,000xy'}{997(y - y')}
-$$
+![](/public/images/AVAX-amm/section-2/2_2_9.png)
 
 x'について式が導き出せました。
 
