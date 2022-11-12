@@ -46,8 +46,16 @@
 
 `getWithdrawEstimate`関数では, 指定されたシェアの分に応じたトークンの量を算出します。
 
-シェアの総量(`totalShare`)に対する指定されたシェア(`share`)の割合は$\frac{share}{totalShare}$で表されるので,  
-シェアの分に応じたトークンの量は $\frac{share}{totalShare} * totalAmount[\_token](トークンの総量)$で算出することができます。
+シェアの総量(`totalShare`)に対する指定されたシェア(`share`)の割合は
+
+![](/public/images/AVAX-amm/section-1/1_4_2.png)
+
+で表されるので,  
+シェアの分に応じたトークンの量は
+
+![](/public/images/AVAX-amm/section-1/1_4_3.png)
+
+で算出することができます。
 
 `withdraw`関数では実際に引き出し処理を実装しています。
 
