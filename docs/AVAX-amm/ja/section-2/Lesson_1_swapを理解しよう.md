@@ -1,7 +1,11 @@
 ### 🐣 swap の仕組みを理解しましょう
 
 AMMではアルゴリズムに従ってswapできるトークンの量を決定します。
-ここではUniswapと同様に式$k = y * x$を使用します。
+ここではUniswapと同様に式
+
+![](/public/images/AVAX-amm/section-2/2_1_5.png)
+
+を使用します。
 
 yは流動性プールにある一方のトークンYの量, xは他方のトークンXの量です。
 
@@ -9,9 +13,13 @@ kは固定定数です。
 つまり, プールにある双方のトークン量の積は常に一定です。
 
 ⚠️ 実際には, 流動性の提供時やswap時に手数料を考慮するとkは変化しますが,
-あくまで$k = y * x$の法則に基づいてトークンの価格を算出しています。
+あくまで
 
-$k = y * x$の式を図にすると以下のような曲線を描きます。
+![](/public/images/AVAX-amm/section-2/2_1_5.png)
+
+の法則に基づいてトークンの価格を算出しています。
+
+上式を図にすると以下のような曲線を描きます。
 
 ![](/public/images/AVAX-amm/section-2/2_1_1.png)
 
@@ -30,7 +38,7 @@ xの量が増えるほどyの量が減り, yの量が増えるほどxの量は�
 
 ![](/public/images/AVAX-amm/section-2/2_1_3.png)
 
-このようにAMMの内部では$k = y * x$に基づいて価格決定をしています。
+このようにAMMの内部では基本式に基づいて価格決定をしています。
 
 X->Yへのswapが続きプール内にXの量が増えるだけ, 同じXの量でswapできるYの量は減ります。
 Xの価値は下がりYの価値は上がります。
@@ -60,31 +68,17 @@ Discordの`#avax-amm`で聞くのも良いでしょう。
 
 基本式は以下で, Kは定数というものでした。
 
-$$k = y * x$$
+![](/public/images/AVAX-amm/section-2/2_1_5.png)
 
 つまりx' とy' 分の増減があってもプールに残るXとYの積は一定ということです。
 これを式にすると以下のようになります。
 
-$$xy = (x+x')(y-y')$$
+![](/public/images/AVAX-amm/section-2/2_1_6.png)
 
 式の左辺が上図のA地点, 右辺が上図のB地点のKを表しています。
 さらに今回求めたいy' について上の式を解いていきます。
 
-$$
-\begin{align}
-xy &=(x+x')(y-y')\\
-y-y' &= \frac{xy}{x+x'}\\
-\end{align}
-$$
-
-$$
-\begin{align}
-y' &= y - \frac{xy}{x+x'}\\
-&= \frac{y(x+x') - xy}{x+x'}\\
-&= \frac{xy+x'y - xy}{x+x'}\\
-&= \frac{x'y}{x+x'}
-\end{align}
-$$
+![](/public/images/AVAX-amm/section-2/2_1_7.png)
 
 シンプルな式が導き出されました。
 この計算式を利用することでy' を求めることができます。
@@ -99,21 +93,7 @@ $$
 
 計算は先ほどとほとんど同じで, 今度はx' について解きます。
 
-$$
-\begin{align}
-xy &=(x+x')(y-y')\\
-x+x' &= \frac{xy}{y-y'}\\
-\end{align}
-$$
-
-$$
-\begin{align}
-x' &= \frac{xy}{y-y'} - x\\
-&= \frac{xy - x(y-y')}{y-y'}\\
-&= \frac{xy - xy + xy'}{y-y'}\\
-&= \frac{xy'}{y-y'}\\
-\end{align}
-$$
+![](/public/images/AVAX-amm/section-2/2_1_8.png)
 
 以上でユーザがswapをする際に, swap元のトークンの量から受け取れるswap先のトークンの量を求めたい時はシチュエーション1の式を,
 swapによって受け取りたいswap先のトークンの量からどのくらいswap元のトークンが必要かを求めたい時はシチュエーション2の式を利用すれば良いことがわかりました。
