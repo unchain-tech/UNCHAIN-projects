@@ -612,7 +612,10 @@ export default function Details({
           return (
             <div key={index} className={styles.detailsRow}>
               <div className={styles.detailsAttribute}>
-                {tokens[index].symbol}:
+                {tokens[index] === undefined
+                  ? "loading..."
+                  : tokens[index].symbol}
+                :
               </div>
               <div className={styles.detailsValue}>
                 {amount.substring(0, DISPLAY_CHAR_LIMIT)}
@@ -631,7 +634,11 @@ export default function Details({
           return (
             <div key={index} className={styles.detailsRow}>
               <div className={styles.detailsAttribute}>
-                Total {tokens[index].symbol}:
+                Total{" "}
+                {tokens[index] === undefined
+                  ? "loading..."
+                  : tokens[index].symbol}
+                :
               </div>
               <div className={styles.detailsValue}>
                 {amount.substring(0, DISPLAY_CHAR_LIMIT)}
