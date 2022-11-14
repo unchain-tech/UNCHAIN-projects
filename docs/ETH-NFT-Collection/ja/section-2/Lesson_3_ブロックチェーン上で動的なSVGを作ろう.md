@@ -645,7 +645,7 @@ An NFT w/ ID 1 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
 
 ### 🛠 `finalTokenUri`の中身を確認しよう
 
-ターミナルに出力された`Token URI`の1つをコピーして、[NFT Preview](https://nftpreview.0xdev.codes/) に貼り付け、中身を確認してみましょう。
+ターミナルに出力された`Token URI`の1つをコピーして、[NFT Preview](https://0y190.sse.codesandbox.io/) に貼り付け、中身を確認してみましょう。
 
 NFT Previewを使用すれば、テストネットにデプロイしなくても、JSONファイルからSVGデータを確認できます。
 
