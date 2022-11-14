@@ -37,7 +37,7 @@ Chromeの方は[こちら](https://chrome.google.com/webstore/detail/phantom/bfn
 
 ※ 今回はDevnetを使用するので、ウォレットもDevnetに変更する必要があります。
 
-- 「設定」→「ネットワークの変更」→「Devnet」から変更できます。
+- 「設定」→「デベロッパー設定」→「ネットワークの変更」→「Devnet」から変更できます。
 
 ![phantom wallet settings](/public/images/Solana-dApp/section-1/1_1_2.png)
 
