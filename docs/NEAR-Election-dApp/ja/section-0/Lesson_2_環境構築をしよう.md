@@ -181,7 +181,7 @@ module.exports = {
 
 最後に`.postcssrc`というファイルを`tailwind.config.js`と同じ階層に作成して、以下を追加しましょう。
 
-[.PostCSSrc]
+[.postcssrc]
 
 ```
 {
