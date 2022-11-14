@@ -14,11 +14,11 @@
 $ curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
 ```
 
-1) Proceed with installation (default)
-2) Customize installation
-3) Cancel installation
-このようなメッセージが出てきたら、1のdefaultを選択してください。
-インストールが成功していれば下のようなメッセージが表示されているでしょう
+1. Proceed with installation (default)
+2. Customize installation
+3. Cancel installation
+   このようなメッセージが出てきたら、1のdefaultを選択してください。
+   インストールが成功していれば下のようなメッセージが表示されているでしょう
 
 ```bash
 Rust is installed now. Great!
@@ -66,6 +66,7 @@ npm install -g near-cli
 mkdir near-election-dapp
 cd  near-election-dapp
 ```
+
 `near-election-dapp`のディレクトリに移動して下のコマンドをターミナルで実行させましょう。
 
 ```bash
@@ -126,7 +127,6 @@ near-election-dapp/
 https://dot-blog.jp/news/mac-zsh-tree/
 https://dot-blog.jp/news/homebrew-how-to-install/
 
-
 ここで`near-election-dapp-frontend`へ移って下のコマンドをターミナルで実行すると、あらかじめ用意されているコントラクトのコンパイルとデプロイがされた後にフロントエンドが起動されます！
 
 ```bash
@@ -141,7 +141,6 @@ yarn dev
 
 もし、`command not found: yarn`とエラーが出てしまった方は、以下の記事を参考にしてみてください。
 https://asapoon.com/error/2795/command-not-found-yarn/
-
 
 次に`Tailwind`の設定をしていきましょう
 
@@ -169,19 +168,17 @@ npm install -D tailwindcss postcss &&  npx tailwindcss init
 
 ```javascript
 module.exports = {
-  content: [
-    "./frontend/**/*.{js,jsx,ts,tsx}",
-  ],
+  content: ["./frontend/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {},
   },
   plugins: [],
-}
+};
 ```
 
 最後に`.postcssrc`というファイルを`tailwind.config.js`と同じ階層に作成して、以下を追加しましょう。
 
-[.postcssrc]
+[.PostCSSrc]
 
 ```
 {
