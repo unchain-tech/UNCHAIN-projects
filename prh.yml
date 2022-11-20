@@ -1,20 +1,15 @@
 version: 2
 
 rules:
-  - expected: 残高
+  - expected: （$1）
     pattern:
-      - バランス
-      - "/[Bb]alance/g"
+      - /\(([^)]+)\)/
   - expected: チェーン
     pattern: チェイン
   - expected: ？
     pattern: ?
   - expected: ！
     pattern: !
-  - expected: (
-    pattern: （
-  - expected: )
-    pattern: ）
   - expected: web3
   - expected: dApps
   - expected: スマートコントラクト
