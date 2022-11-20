@@ -27,7 +27,7 @@
 
 1. DAOのメンバーシップNFTをミントできるようにする
 2. DAO独自のガバナンストークンのデプロイ
-3. DAOダッシュボードの作成(プロポーザルへの投票など)
+3. DAOダッシュボードの作成（プロポーザルへの投票など）
 
 このプロジェクトではSolidityは必要ありません。JavaScriptだけでスマートコントラクトを扱うことができる、[thirdweb](https://thirdweb.com/) というツールを使用します。
 
@@ -71,4 +71,4 @@ UNCHAINのプロジェクトをみんなでより良いものにしていきま�
 Attribution: This learning content is licensed under [Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/) © 2022 buildspace. 
 Sharelike: Translations and modifications to markdown documents.
 
-Documentation created by [yokinist](https://github.com/yokinist) and [katoten](https://github.com/KatotenMk2) (UNCHAIN discord ID: yokinist#0759, Katoten#2669)
+Documentation created by [yokinist](https://github.com/yokinist) and [katoten](https://github.com/KatotenMk2)（UNCHAIN discord ID: yokinist#0759, Katoten#2669）

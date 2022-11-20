@@ -30,7 +30,7 @@ Vercelのアカウントを取得したら、下記を実行しましょう。
 
 3\. プロジェクトを作成します。Environment Variableに下記を追加します。
 
-`NAME`＝`CI`、`VALUE`＝`false`(下図参照)。
+`NAME`＝`CI`、`VALUE`＝`false`（下図参照）。
 ![](/public/images/ETH-NFT-Game/section-4/4_3_3.png)
 
 4\. `Deploy`ボタンを推しましょう。
@@ -62,9 +62,9 @@ https://my-nft-game-nine.vercel.app/
 
 NFTを取得する条件は、以下のようになります。
 
-1. MVPの機能がすべて実装されている(実装OK)
+1. MVPの機能がすべて実装されている（実装OK）
 
-2. WebアプリケーションでMVPの機能が問題なく実行される(テストOK)
+2. WebアプリケーションでMVPの機能が問題なく実行される（テストOK）
 
 3. このページの最後にリンクされているProject Completion Formに記入する
 

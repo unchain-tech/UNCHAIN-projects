@@ -65,7 +65,7 @@ Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押して�
 
 ### 🐣 テストネットから始める
 
-今回のプロジェクトでは、コスト(＝ 本物のETH)が発生するメインネットではなく、**テストネットにコントラクトをデプロイします。**
+今回のプロジェクトでは、コスト（＝ 本物のETH）が発生するメインネットではなく、**テストネットにコントラクトをデプロイします。**
 
 テストネットはイーサリアムメインネットを模しています。
 
@@ -89,7 +89,7 @@ Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押して�
 
 今回は、`Goerli`というイーサリアム財団によって運営されているテストネットを使用します。
 
-`Goerli`にコントラクトをデプロイし、コードのテストを行うために、偽のETHを取得しましょう。ユーザーが偽のETHを取得するために用意されたインフラは、「フォーセット(＝蛇口)」と呼ばれています。
+`Goerli`にコントラクトをデプロイし、コードのテストを行うために、偽のETHを取得しましょう。ユーザーが偽のETHを取得するために用意されたインフラは、「フォーセット（＝蛇口）」と呼ばれています。
 
 フォーセットを使用する前に、あなたのMetaMaskウォレットを`Goerli Test Network`に設定してください。
 
@@ -112,9 +112,9 @@ Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押して�
 
 MetaMaskウォレットに`Goerli Test Network`が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽ETHを取得しましょう。
 
-- [Alchemy](https://goerlifaucet.com/) - 0.25 Goerli ETH (24時間に1度もらうことができる)
+- [Alchemy](https://goerlifaucet.com/) - 0.25 Goerli ETH（24時間に1度もらうことができる）
   - ウォレットアドレスを入力して`Send Me ETH`ボタンを押下するとその場でもらえます。
-- [Chainlink](https://faucets.chain.link/) - 0.1 Goerli ETH(その場でもらえる)
+- [Chainlink](https://faucets.chain.link/) - 0.1 Goerli ETH（その場でもらえる）
   - `Connect wallet`をクリックしてMetaMaskと接続する必要があります。
   - Twitterアカウントを連携する必要があります。
 
@@ -335,12 +335,12 @@ Goerli Etherscanはデプロイを追跡する最も簡単な方法であり、�
 
 最後に、コントラクトのアドレス(`Contract deployed to`に続く`0x..`)をターミナルからコピーして、[テストネット用の OpenSea](https://testnets.opensea.io/) に貼り付け、検索してみてください。
 
-下記のように、あなたのNFTもOpenSeaで確認できたでしょうか？ (画像は学習コンテンツ制作時に利用したRarible rinkeby testnetのものになります。)。
+下記のように、あなたのNFTもOpenSeaで確認できたでしょうか？（画像は学習コンテンツ制作時に利用したRarible rinkeby testnetのものになります）。
 ![](/public/images/ETH-NFT-Game/section-1/1_5_16.png)
 
 キャラクターをクリックして、右下に表示されている`Properties`を確認してみましょう。
 
-![](/public/images/ETH-NFT-Game/section-1/1_5_17.png)(画像は学習コンテンツ制作時に利用したRarible rinkeby testnetのものになります。)。
+![](/public/images/ETH-NFT-Game/section-1/1_5_17.png)（画像は学習コンテンツ制作時に利用したRarible rinkeby testnetのものになります）。
 キャラクターの攻撃力(`Attack Damage`)やHPがOpenSeaに反映されています。
 
 OpenSeaなどのNFTマーケットプレイスはキャラクター属性を適切にレンダリングしてくれます 😊

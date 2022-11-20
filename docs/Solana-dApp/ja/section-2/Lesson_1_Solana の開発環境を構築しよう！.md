@@ -64,7 +64,7 @@ Solanaの[公式サイト](https://docs.solana.com/cli/install-solana-cli-tools#
 
 Solana CLIをWindows、Linux、およびMacにインストールするための手順が記載されているのでご確認ください。
 
-※ 安定版をインストールするには、以下のようにバージョン番号を`stable`に置き換えます(以下のコマンドは参考ですので、環境にあったインストール方法を実行してください)。
+※ 安定版をインストールするには、以下のようにバージョン番号を`stable`に置き換えます（以下のコマンドは参考ですので、環境にあったインストール方法を実行してください）。
 
 ```bash
 sh -c "$(curl -sSfL https://release.solana.com/stable/install)"

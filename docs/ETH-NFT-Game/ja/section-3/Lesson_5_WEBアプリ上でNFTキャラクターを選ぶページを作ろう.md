@@ -494,7 +494,7 @@ if (gameContract) {
 
 まず、`if (gameContract)`でNFTキャラクターがすでにMintされていることを確認しています。
 
-ユーザーがすでにNFTキャラクターをMintしている場合は、`checkIfUserHasNFT`関数を使って、コントラクト(`gameContract`)に保存されているそのNFTキャラクターのメタデータ(HPなど)を`characterNFT`に格納します。
+ユーザーがすでにNFTキャラクターをMintしている場合は、`checkIfUserHasNFT`関数を使って、コントラクト(`gameContract`)に保存されているそのNFTキャラクターのメタデータ（HPなど）を`characterNFT`に格納します。
 
 `setCharacterNFT(transformCharacterData(characterNFT));`は、コントラクトに保存されているメタデータをフロントエンドで扱えるオブジェクト形式に変換する処理です。
 
@@ -513,7 +513,7 @@ if (gameContract) {
 
 `gameContract.on('CharacterNFTMinted', onCharacterMint)`により、フロントエンドは、`CharacterNFtMinted`イベントがコントラクトから発信されたときに、情報を受け取ります。これにより、情報がフロントエンドに反映されます。
 
-- このことを、**コンポーネント(情報)がマウント(フロントエンドに反映)される**と言います。
+- このことを、**コンポーネント（情報）がマウント（フロントエンドに反映）される**と言います。
 
 - また、フロントエンドでイベントを受信する機能のことを「リスナ」と呼びます。
 
@@ -533,7 +533,7 @@ return () => {
 
 ここでは、NFTキャラクターが一度Mintされた後、`CharacterNFTMinted`の受信を停止する処理を行っています。
 
-コンポーネントがマウントされる状態をそのままにしておくと、メモリリーク(コンピュータを動作させている内に、使用可能なメモリの容量が減っていってしまう現象)が発生する可能性があります。
+コンポーネントがマウントされる状態をそのままにしておくと、メモリリーク（コンピュータを動作させている内に、使用可能なメモリの容量が減っていってしまう現象）が発生する可能性があります。
 
 メモリリークを防ぐために、`gameContract.off('CharacterNFTMinted', onCharacterMint)`では、`onCharacterMint`関数の稼働をやめています。これは、イベントリスナをやめることを意味しています。
 
@@ -567,7 +567,7 @@ User has character NFT
 https://testnets.opensea.io/assets/CONTRACT_ADDRES/TOKEN_ID
 ```
 
-下記のように、オンライン上でもあなたのNFTキャラクターが表示されることを確認しましょう(画像は学習コンテンツ制作時に利用したRarible rinkeby testnetのものになります)。
+下記のように、オンライン上でもあなたのNFTキャラクターが表示されることを確認しましょう（画像は学習コンテンツ制作時に利用したRarible rinkeby testnetのものになります）。
 
 ![](/public/images/ETH-NFT-Game/section-3/3_5_2.png)
 

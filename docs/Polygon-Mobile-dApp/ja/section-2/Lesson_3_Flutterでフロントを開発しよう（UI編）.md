@@ -1,4 +1,4 @@
-### ✨ Flutter でフロントを開発する(UI編)
+### ✨ Flutter でフロントを開発する（UI編）
 
 FlutterのUI部分を構築するために、まず、2.`TodoList.dart`ファイルの中身を作成していきます。
 

@@ -227,7 +227,7 @@ export default function Container({ currentAccount }: Props) {
 ![](/public/images/AVAX-amm/section-3/3_4_1.png)
 
 入力欄に10と入力し, `Fund`をクリックします。  
-トランザクションに署名し, しばらく待つと(ポップアップが表示されokを押した後)右側の`Your Details`のUSDCの部分が10増えているはずです。
+トランザクションに署名し, しばらく待つと（ポップアップが表示されokを押した後）右側の`Your Details`のUSDCの部分が10増えているはずです。
 
 ![](/public/images/AVAX-amm/section-3/3_4_2.png)
 
@@ -523,7 +523,7 @@ provideの実行では以下のトランザクションへの署名が必要で�
 それぞれに署名をし, しばらく待つと最後に`provide`の署名について求められるので署名をします。  
 🙌 こちらのUI改善できる方がいらっしゃればUNCHAINにて共有して頂けると大変助かります！
 
-しばらく待つと(ポップアップが表示されokを押した後)右側の`Your Details`が更新されます！
+しばらく待つと（ポップアップが表示されokを押した後）右側の`Your Details`が更新されます！
 
 ![](/public/images/AVAX-amm/section-3/3_4_4.png)
 
@@ -537,7 +537,7 @@ const [amountOfToken1, setAmountOfToken1] = useState(""); // ユーザが指定�
 const [activePool, setActivePool] = useState(true); // プールに流動性があるのかをフラグで保持します。
 ```
 
-次の2つの関数は, ユーザがどちらか一方(USDC or JOE)の入力欄に数値を入力した際に, もう片方に必要なトークンの量を表示するために必要です。  
+次の2つの関数は, ユーザがどちらか一方（USDC or JOE）の入力欄に数値を入力した際に, もう片方に必要なトークンの量を表示するために必要です。  
 ※ 先ほどの挙動確認では最初の流動性提供であったためこの機能は確認できませんでした。もう1度`Provide`タブにて入力欄に数値を入力すると確認できるはずです！
 
 ```ts
@@ -575,7 +575,7 @@ const onChangeAmount = (
 ```
 
 `getProvideEstimate`は内部で, ammの`getEquivalentToken`を引数で指定されたトークンとその量を併せて呼び出しています。  
-その返り値(指定したトークンと同価値のペアのトークンの量)を`setPairTokenAmount`によりセットしています。
+その返り値（指定したトークンと同価値のペアのトークンの量）を`setPairTokenAmount`によりセットしています。
 
 `onChangeAmount`はユーザが入力欄に数値を入力した際に動く関数です。  
 目的は入力されたトークンの量の状態変数の更新と, `getProvideEstimate`を呼び出すことにより同価値のペアのトークンの量の状態変数を更新することです。
@@ -814,7 +814,7 @@ swapの実行では以下のトランザクションへの署名が必要です�
 
 ![](/public/images/AVAX-amm/section-3/swap.drawio.svg)
 
-しばらく待つと(ポップアップが表示されokを押した後)右側の`Your Details`が更新されます！
+しばらく待つと（ポップアップが表示されokを押した後）右側の`Your Details`が更新されます！
 
 ![](/public/images/AVAX-amm/section-3/3_4_6.png)
 
@@ -858,7 +858,7 @@ const rev = () => {
 
 ポイントは以下です。
 
-- スワップ元のトークン(先ほどの挙動確認でのUSDC)の入力値に変化があった場合は, `onChangeIn`が`getSwapEstimateOut`を実行することでスワップ先のトークン(先ほどの挙動確認でのJOE)の表示内容を更新します。
+- スワップ元のトークン（先ほどの挙動確認でのUSDC）の入力値に変化があった場合は, `onChangeIn`が`getSwapEstimateOut`を実行することでスワップ先のトークン（先ほどの挙動確認でのJOE）の表示内容を更新します。
 - スワップ先のトークンの入力値に変化があった場合は, `onChangeOut`が`getSwapEstimateIn`を実行することでスワップ元のトークンの表示内容を更新します。
 
 🐃 Withdraw
@@ -1099,7 +1099,7 @@ export default function Container({ currentAccount }: Props) {
 `Max`ボタンをクリックするとユーザの保有するシェアが入力値となり, 引き出すことのできるトークンの量がそれぞれ下に表示されます。  
 `Withdraw`をクリックします。
 
-トランザクションに署名し, しばらく待つと(ポップアップが表示されokを押した後)右側の`Your Details`が更新されます！
+トランザクションに署名し, しばらく待つと（ポップアップが表示されokを押した後）右側の`Your Details`が更新されます！
 
 ![](/public/images/AVAX-amm/section-3/3_4_8.png)
 

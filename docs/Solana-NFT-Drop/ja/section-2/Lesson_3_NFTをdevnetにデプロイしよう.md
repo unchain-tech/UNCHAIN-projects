@@ -6,7 +6,7 @@ Candy Machine v2により、このプロセスが大幅に簡素化されまし�
 
 1つのコマンドで、以下を実行できます。
 
-1\. NFTを [Arweave](https://www.arweave.org) (分散型ファイルストア)にアップロードし、Candy Machineの構成を初期化する
+1\. NFTを [Arweave](https://www.arweave.org)（分散型ファイルストア）にアップロードし、Candy Machineの構成を初期化する
 
 2\. MetaplexのコントラクトでCandy Machineを作成する
 

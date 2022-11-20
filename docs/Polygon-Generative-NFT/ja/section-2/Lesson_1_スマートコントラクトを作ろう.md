@@ -88,7 +88,7 @@ Lock with 1 ETH and unlock timestamp 1692501171 deployed to 0x5FbDB2315678afecb3
 npm install @openzeppelin/contracts
 ```
 
-これにより、ERC 721コントラクト(NFTの標準規格)と、OpenZeppelinが提供するヘルパー・ライブラリにアクセスできます。
+これにより、ERC 721コントラクト（NFTの標準規格）と、OpenZeppelinが提供するヘルパー・ライブラリにアクセスできます。
 
 GitHubなどのWebサイトでプロジェクトのコードを公開する場合、秘密鍵、Etherscan APIキー、Alchemy URLなどの機密情報をローカル環境にのみ保存し、非公開にする必要があります。
 
@@ -224,7 +224,7 @@ contract NFTCollectible is ERC721Enumerable, Ownable {
 
 - Ownableコントラクトでは、コントラクトの特定の側面に管理者権限を追加できます。
 
-上記に加えて、OpenZeppelinのSafeMathライブラリとCountersライブラリを使用して、符号なし整数演算(オーバーフローを防止)とトークンIDの安全に処理を行っていきます。
+上記に加えて、OpenZeppelinのSafeMathライブラリとCountersライブラリを使用して、符号なし整数演算（オーバーフローを防止）とトークンIDの安全に処理を行っていきます。
 
 `contract`は、ほかの言語でいうところの「[class](https://wa3.i-3-i.info/word1120.html)」のようなものなのです。
 
@@ -259,9 +259,9 @@ string public baseTokenURI;
 
 それから、下記を変数として定義します。
 
-**Base Token URI( `baseTokenURI`)**: JSONファイル(メタデータ)が格納されているフォルダのIPFS URL。
+**Base Token URI( `baseTokenURI`)**: JSONファイル（メタデータ）が格納されているフォルダのIPFS URL。
 
-コントラクトの所有者 (またはデプロイ先) が必要に応じてBase Token URIを変更できるように、これから`baseTokenURI`のセッタ関数を記述していきます。
+コントラクトの所有者（またはデプロイ先）が必要に応じてBase Token URIを変更できるように、これから`baseTokenURI`のセッタ関数を記述していきます。
 
 > ✍️: `public`は Solidity の**アクセス修飾子**です。
 > Solidity のアクセス修飾子に関しては、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/blob/main/docs/102-ETH-NFT-Collection/ja/section-2/Lesson_4_Solidity%E3%81%AE%E6%9B%B8%E3%81%8D%E6%96%B9%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E5%AD%A6%E3%81%BC%E3%81%86.md) をご覧ください。
@@ -310,7 +310,7 @@ constructor(string memory baseURI) ERC721("NFT Collectible", "NFTC") {
 
 したがって、すべてのNFTを有料にすると、自分自身や友達、イベントの景品として無料でNFTを配布できなくなってしまいます。
 
-なので今から、ある一定数(この場合は10個)のNFTをキープしておいて、ユーザーが無料でMintできる関数(`reserveNFTs`)をコントラクトに実装していきます。
+なので今から、ある一定数（この場合は10個）のNFTをキープしておいて、ユーザーが無料でMintできる関数(`reserveNFTs`)をコントラクトに実装していきます。
 
 下記を、`constructor`のコードブロック直下に追加しましょう。
 
@@ -333,7 +333,7 @@ function reserveNFTs() public onlyOwner {
 
 - `tokenId`は`0`から始まり、NFTがMintされるごとに`+1`されます。
 
-次に、`require`を使って、キープできるNFT(＝ 10個)がコレクションに残っているかどうかを確認します。
+次に、`require`を使って、キープできるNFT（＝ 10個）がコレクションに残っているかどうかを確認します。
 
 - `totalMinted.add(10) < MAX_SUPPLY`は、現在Mintされようとしている`tokenId`に`+10`した数が、`MAX_SUPPLY`(この場合は`30`)を超えていないかチェックしています。
 
@@ -468,7 +468,7 @@ function _mintSingleNFT() private {
 
 まず、`uint newTokenID = _tokenIds.current();`で、まだMintされていないNFTのIDを取得します。
 
-次に、`_safeMint(msg.sender, newTokenID);`で、OpenZeppelinですでに定義されている`_safeMint()`関数を使用して、ユーザー(関数を呼び出したアドレス)にNFT IDを割り当てます。
+次に、`_safeMint(msg.sender, newTokenID);`で、OpenZeppelinですでに定義されている`_safeMint()`関数を使用して、ユーザー（関数を呼び出したアドレス）にNFT IDを割り当てます。
 
 最後に、`_tokenIds.increment();`で、tokenIdのカウンタを +1しています。
 

@@ -236,7 +236,7 @@ it("Get value ETH/DAI", async function () {
     });
 ```
 
-最後にswap機能がきちんと動くかをチェックしています。送金者と仮定するアドレス(owner)に`200DAI`をSwapContractから送金します。
+最後にswap機能がきちんと動くかをチェックしています。送金者と仮定するアドレス（owner）に`200DAI`をSwapContractから送金します。
 
 その後受領者の残高をswap前後で確認しています。
 

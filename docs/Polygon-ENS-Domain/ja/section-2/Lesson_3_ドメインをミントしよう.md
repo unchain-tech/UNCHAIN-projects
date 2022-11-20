@@ -191,7 +191,7 @@ return (
 );
 ```
 
-`&&`構文は少し違和感を感じるかもしれませんが、`&&`の前の条件が`true`の場合、レンダリング関数を返します。 したがって、 `currentAccount`が空の場合(つまり、trueでない場合)、ウォレットの接続ボタンが表示されます。
+`&&`構文は少し違和感を感じるかもしれませんが、`&&`の前の条件が`true`の場合、レンダリング関数を返します。 したがって、 `currentAccount`が空の場合（つまり、trueでない場合）、ウォレットの接続ボタンが表示されます。
 
 `renderInputForm`の内容は、Reactで状態変数に関連付けられた入力フォームを使用する際には標準的な形式です。 それらについての詳細は[ここ](https://reactjs.org/docs/hooks-state.html)で読むことができます。
 
@@ -384,13 +384,13 @@ ABIファイルの内容は、HardhatプロジェクトのJSONファイルにあ
 
 `artifacts/contracts/Domains.sol/Domains.json`
 
-`Domains.json`からコンテンツをコピーして、ウェブアプリ(フロントエンド側)に移動します。
+`Domains.json`からコンテンツをコピーして、ウェブアプリ（フロントエンド側）に移動します。
 
-(全選択はCtrl+A (Windows), Command+A (Mac)を使用すると便利です。)
+（全選択はCtrl+A（Windows）, Command+A（Mac）を使用すると便利です）。
 
 `src`の下に`utils`というフォルダに、`contractABI.json`という名前のファイルを作成します。
 
-(フォルダがない場合は作成してください。)
+（フォルダがない場合は作成してください）。
 
 したがって、フルパスは次のようになります。
 
@@ -415,7 +415,7 @@ import contractAbi from "./utils/contractABI.json";
 
 ![](/public/images/Polygon-ENS-Domain/section-2/2_3_2.png)
 
-ここから行う必要があるのは、ドメイン名とレコードを入力し、`Mint`をクリックして、ガスを支払い(偽のMATICを使用)、トランザクションがマイニングされるのを待つだけです。
+ここから行う必要があるのは、ドメイン名とレコードを入力し、`Mint`をクリックして、ガスを支払い（偽のMATICを使用）、トランザクションがマイニングされるのを待つだけです。
 
 ドメインは前のSectionで使用したOpenSeaなどで確認してみてください。
 

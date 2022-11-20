@@ -106,7 +106,7 @@ npm run start
 
 Consoleに`We have the ethereum object`と表示されているでしょうか？
 
-- これは、`window.ethereum`が、このWebサイトを訪問したユーザー(ここでいうあなた)がMetaMaskを持っていることを確認したことを示しています。
+- これは、`window.ethereum`が、このWebサイトを訪問したユーザー（ここでいうあなた）がMetaMaskを持っていることを確認したことを示しています。
 
 次に、Webサイトがユーザーのウォレットにアクセスする権限があるか確認します。
 

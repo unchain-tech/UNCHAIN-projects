@@ -43,7 +43,7 @@ module.exports = {
 STAGING_ALCHEMY_KEY=YOURS_1
 PRIVATE_KEY=YOURS_2
 ```
-YOURS_1,2のところはご自分のものを使用してください(" "で囲います)。
+YOURS_1,2のところはご自分のものを使用してください（" "で囲います）。
 
 また、言うまでもないことですが`.env`をコミットしてはいけません。`.gitignore`ファイルに`.env`を入力します.
 
@@ -75,7 +75,7 @@ Vercelに関する説明は、[こちら](https://zenn.dev/lollipop_onl/articles
 
 - 最新のフロントエンドコードをGithubにプッシュします。 (`.env`など公開したくないファイルがある場合そのファイルはコミットしないでください。)
 - VercelをGithubのリポジトリに接続します。VercelのDashboardページの右上に見える`New Project`ボタンから登録していきます。
-- 設定を入力(下の注を参照)したらデプロイします。
+- 設定を入力（下の注を参照）したらデプロイします。
 - 完成です。
 
 注：Vercelでは、環境変数`CI=false`を追加する必要があります。 これにより、`warning`が原因でビルドが失敗しないようになります。
@@ -114,9 +114,9 @@ Vercelに関する説明は、[こちら](https://zenn.dev/lollipop_onl/articles
 
 NFTを取得する条件は、以下のようになります。
 
-1. MVPの機能がすべて実装されている(実装OK)
+1. MVPの機能がすべて実装されている（実装OK）
 
-2. WebアプリケーションでMVPの機能が問題なく実行される(テストOK)
+2. WebアプリケーションでMVPの機能が問題なく実行される（テストOK）
 
 3. このページの最後にリンクされているProject Completion Formに記入する
 

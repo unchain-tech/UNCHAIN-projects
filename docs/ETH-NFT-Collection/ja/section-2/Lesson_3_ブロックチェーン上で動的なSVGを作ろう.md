@@ -298,7 +298,7 @@ An NFT w/ ID 1 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
 
 ### 👩‍💻 メタデータを動的に生成する
 
-次に、JSONファイル(＝メタデータ)を設定する必要があります。
+次に、JSONファイル（＝メタデータ）を設定する必要があります。
 
 追加でいくつか関数を作成する必要があります。
 
@@ -548,7 +548,7 @@ import { Base64 } from "./libraries/Base64.sol";
 string memory combinedWord = string(abi.encodePacked(first, second, third));
 ```
 
-ここでは、3つの単語を組み合わせた言葉(例: GrandCuteBird)を`combinedWord`変数に格納しています。
+ここでは、3つの単語を組み合わせた言葉（例: GrandCuteBird）を`combinedWord`変数に格納しています。
 
 次に、下記のコードを見ていきましょう。
 

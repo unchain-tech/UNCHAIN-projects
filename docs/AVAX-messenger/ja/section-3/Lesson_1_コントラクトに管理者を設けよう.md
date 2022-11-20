@@ -283,7 +283,7 @@ contract Ownable {
 
 このファイルはopenzeppelinライブラリの[ownable](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol) というコントラクトを簡単にしたものです。
 
-コンストラクタ内ではコンストラクタを呼び出した(デプロイした)アドレスで状態変数の`owner`を初期化しています。
+コンストラクタ内ではコンストラクタを呼び出した（デプロイした）アドレスで状態変数の`owner`を初期化しています。
 
 `modifier`はまだ出てきていない関数修飾子の1つで, その使用方法と共にどんなものなのかこの後理解します。  
 ここで見て頂きたいのは, `require`を利用して, 関数を実行する人が`owner`と等しいことを確認していること  
@@ -354,7 +354,7 @@ import "hardhat/console.sol";
 `Messenger.sol`は`Ownable`を継承するという関係を作れます, すると`Ownable`の関数を`Messenger.sol`も利用できるようになります。
 
 コンストラクタ内で`Ownable`の関数`ownable`を実行しています。  
-`ownable`を実行すると, コンストラクタを呼び出した(=デプロイをした)アカウントのアドレスをコントラクトは管理者として記録します。
+`ownable`を実行すると, コンストラクタを呼び出した（=デプロイをした）アカウントのアドレスをコントラクトは管理者として記録します。
 
 新しく追加した`changeNumOfPendingLimits`関数に注目しましょう。  
 関数の実行に修飾子の`onlyOwner`を指定しています。

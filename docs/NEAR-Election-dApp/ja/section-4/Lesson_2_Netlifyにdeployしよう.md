@@ -20,7 +20,7 @@ npm install netlify-cli -g
 netlify login
 ```
 
-次にNetlifyでのページ遷移がうまく行くように`near-election-dapp/near-election-dapp-frontend`の直下(.gitignoreやpackage.jsonと同じ階層)に`netlify.toml`というファイルを作成して下のコードを加えましょう。
+次にNetlifyでのページ遷移がうまく行くように`near-election-dapp/near-election-dapp-frontend`の直下（.gitignoreやpackage.jsonと同じ階層）に`netlify.toml`というファイルを作成して下のコードを加えましょう。
 
 [netlify.toml]
 
@@ -108,9 +108,9 @@ Website URL:       https://near-election-dapp.netlify.app
 
 NFTを取得する条件は、以下のようになります。
 
-1. MVPの機能がすべて実装されている(実装OK)
+1. MVPの機能がすべて実装されている（実装OK）
 
-2. WebアプリケーションでMVPの機能が問題なく実行される(テストOK)
+2. WebアプリケーションでMVPの機能が問題なく実行される（テストOK）
 
 3. このページの最後にリンクされているProject Completion Formに記入する
 

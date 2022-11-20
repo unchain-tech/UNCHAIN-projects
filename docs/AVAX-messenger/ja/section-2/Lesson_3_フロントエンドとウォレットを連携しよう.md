@@ -47,7 +47,7 @@ Webアプリケーション上で,ユーザーがブロックチェーンネッ�
 
 これから,あなたのWebアプリケーションにウォレットを接続したユーザーに,スマートコントラクトを呼び出す権限を付与する機能を実装していきます。これは,Webサイトへの認証機能です。
 
-`window.ethereum`はMetaMaskが`window`(JavaScriptにデフォルトで存在するグローバル変数)の直下に用意するオブジェクトでありAPIです。  
+`window.ethereum`はMetaMaskが`window`（JavaScriptにデフォルトで存在するグローバル変数）の直下に用意するオブジェクトでありAPIです。  
 このAPIを使用して, ウェブサイトはユーザーのイーサリアムアカウントを要求し, ユーザーが接続しているブロックチェーンからデータを読み取り, ユーザーがメッセージや取引に署名するよう求めることができます。
 
 まずは`window.ethereum`を使用できるようtypescriptのコードを書きます。
@@ -229,7 +229,7 @@ return {
 
 ### 📁 `layout`ディレクトリ
 
-ウォレットを使用するページ(今回は全てのページがそうです)のためにレイアウトを用意しましょう！
+ウォレットを使用するページ（今回は全てのページがそうです）のためにレイアウトを用意しましょう！
 
 既に作成した`layout`ディレクトリの中に`RequireWallet.module.css`と`RequireWallet.tsx`を作成してください。
 
@@ -287,7 +287,7 @@ export default function RequireWallet({
 ```
 
 引数として子コンポーネントと`currentAccount`, `connectWallet`を受け取っています。  
-`currentAccount`(ユーザのウォレットアドレス)がまだ格納されていない場合は`Connect Wallet`というボタンを表示し, `connectWallet`関数と連携しています。
+`currentAccount`（ユーザのウォレットアドレス）がまだ格納されていない場合は`Connect Wallet`というボタンを表示し, `connectWallet`関数と連携しています。
 
 ### 📁 `pages`ディレクトリ
 

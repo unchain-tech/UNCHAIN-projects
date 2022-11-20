@@ -17,7 +17,7 @@
 
 ### 🛠 何を構築するのか？
 
-`Miniswap`という **分散型 Web アプリケーション(dApp)** を構築します。
+`Miniswap`という **分散型 Web アプリケーション（dApp）** を構築します。
 
 `Miniswap`は`AMM`の機能を搭載したスマートコントラクトと, スマートコントラクトとユーザの仲介をするフロントエンドのコードによって作成します。
 
@@ -30,7 +30,7 @@ AvalancheとC-Chainに関する概要は[こちら](https://app.unchain.tech/lea
 
 ### 🪙 Defi と DEX と AMM
 
-🐦 Defi (分散型金融)
+🐦 Defi（分散型金融）
 
 ブロックチェーンのネットワーク上に構築される, 中心となる管理者がいない金融のエコシステムです。
 
@@ -44,19 +44,19 @@ Defiがオープンで低価格な点は, 現在の金融システムを利用�
 
 [参考記事](https://academy.binance.com/ja/articles/the-complete-beginners-guide-to-decentralized-finance-defi)
 
-🦏 DEX(分散型取引所)
+🦏 DEX（分散型取引所）
 
 DEXは, AVAX-USDCペアのような2つのトークン間で取引を行うことにより, 誰でもブロックチェーン上で暗号通貨トークンを交換することができる取引所です。  
 Defiの一種です。
 
-Binanceなどの中央集権型の取引所(CEX)は, 買い手と売り手のマッチングに注文書を使用するオンライン取引プラットフォームです。  
+Binanceなどの中央集権型の取引所（CEX）は, 買い手と売り手のマッチングに注文書を使用するオンライン取引プラットフォームです。  
 オンライン証券口座と似たような仕組みで, 投資家に人気があります。
 
-PancakeSwapやUniswapなどの分散型取引所(DEX)は, 暗号通貨トレーダーが保有資産を変換できるスマートコントラクトを搭載した自己完結型の金融プロトコルです。
+PancakeSwapやUniswapなどの分散型取引所（DEX）は, 暗号通貨トレーダーが保有資産を変換できるスマートコントラクトを搭載した自己完結型の金融プロトコルです。
 
 分散型取引所はメンテナンスの作業を減らすことができるので, 中央集権型の取引所よりも一般的に取引手数料が安価です。
 
-🐅 AMM(自動マーケットメーカー)
+🐅 AMM（自動マーケットメーカー）
 
 AMMとは数式に基づいて自動化されたトレードシステムで, 多くのDEXが採用しています。
 
@@ -114,4 +114,4 @@ UNCHAINのプロジェクトをみんなでより良いものにしていきま�
 
 ---
 
-Documentation created by [ryojiroakiyama](https://github.com/ryojiroakiyama) (UNCHAIN discord ID: rakiyama#8051)
+Documentation created by [ryojiroakiyama](https://github.com/ryojiroakiyama)（UNCHAIN discord ID: rakiyama#8051）

@@ -6,7 +6,7 @@
 
 - 「サーバー」がブロックチェーンであることを除けば、Truffleはローカルサーバーと同じです。
 
-まず、`node` / `npm`を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスしてください。(Hardhatのためのサイトですが気にしないでください)
+まず、`node` / `npm`を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスしてください（Hardhatのためのサイトですが気にしないでください）
 
 `node v16`をインストールすることを推奨しています。
 

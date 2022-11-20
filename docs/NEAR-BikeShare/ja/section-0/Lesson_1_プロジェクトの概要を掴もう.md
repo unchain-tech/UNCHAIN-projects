@@ -24,7 +24,7 @@
 
 NEARの特徴は以下のようなものが挙げられます。
 
-**1. ユーザ(開発者とエンドユーザ共に)の利用しやすい設計**
+**1. ユーザ（開発者とエンドユーザ共に）の利用しやすい設計**
 
 - NEARには`アカウント`という概念があり, NEARのエコシステムに参加するためには誰しもアカウントを作成する必要があります。
   - 開発者はアカウントにスマートコントラクトをデプロイします。
@@ -49,7 +49,7 @@ NEARの特徴は以下のようなものが挙げられます。
 
 バイクシェアdappを開発することで簡単な`シェリングエコノミー`を構築しましょう！
 シェアリングエコノミーを循環させるために`オリジナルトークン`を利用します。
-以降このオリジナルトークンをft(fungible tokenの略)と呼びます。
+以降このオリジナルトークンをft（fungible tokenの略）と呼びます。
 主に以下の機能を実装します
 
 - ftの発行と利用
@@ -110,4 +110,4 @@ UNCHAINのプロジェクトをみんなでより良いものにしていきま�
 
 ---
 
-Documentation created by [ryojiroakiyama](https://github.com/ryojiroakiyama) (UNCHAIN discord ID: rakiyama#8051)
+Documentation created by [ryojiroakiyama](https://github.com/ryojiroakiyama)（UNCHAIN discord ID: rakiyama#8051）

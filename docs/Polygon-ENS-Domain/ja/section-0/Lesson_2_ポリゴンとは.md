@@ -49,7 +49,7 @@ Polygonは、より多くのトランザクション数を処理でき、トラ�
 
 それでも「イーサリアム以外のブロックチェーンを学習して役に立つのかな？」とお考えかもしれません。
 
-大丈夫です! Polygon PoSチェーンはEVM(Ethereum Virtual Machine)と互換性があるため、Ethereumで実行されるすべてのものは、少し設定を変えれば特に大きな書き換えなしでPolygonでも実行できます。
+大丈夫です! Polygon PoSチェーンはEVM（Ethereum Virtual Machine）と互換性があるため、Ethereumで実行されるすべてのものは、少し設定を変えれば特に大きな書き換えなしでPolygonでも実行できます。
 
 Polygonでは高いトランザクション費用を払う必要はありません。
 

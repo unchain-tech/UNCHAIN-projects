@@ -4,7 +4,7 @@
 
 では、お手持ちのデバイスに合わせてインストールしてください。
 
-- [macOS](https://hara-chan.com/it/programming/how-to-setup-flutter/) (sdkダウンロード後は「Visual Studio Codeのセットアップ」をご参照ください。)
+- [macOS](https://hara-chan.com/it/programming/how-to-setup-flutter/)（sdkダウンロード後は「Visual Studio Codeのセットアップ」をご参照ください）。
 
 - [Windows](https://qiita.com/apricotcomic/items/7ff53950e10fcff212d2)
 
@@ -82,4 +82,4 @@ flutter:
 
 ---
 
-次のレッスンに進んで、フロント側の実装(ロジック編)を開始しましょう 🎉
+次のレッスンに進んで、フロント側の実装（ロジック編）を開始しましょう 🎉

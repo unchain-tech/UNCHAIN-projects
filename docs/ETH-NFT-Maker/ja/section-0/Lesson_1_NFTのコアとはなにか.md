@@ -25,8 +25,8 @@
 ### 🔥 NFTのコアとはなにか
 
 NFTを作るにあたって開発者に意識してほしい点があります。
-それは、NFTはあくまで識別子(unique identifier)である点です。
-NFTには、多くの要素(例えば画像)をつけることができ、ついそちらに目がいきがちになってしまうのですが、あくまでそれは、識別子に紐付けられたデータなのです。
+それは、NFTはあくまで識別子（unique identifier）である点です。
+NFTには、多くの要素（例えば画像）をつけることができ、ついそちらに目がいきがちになってしまうのですが、あくまでそれは、識別子に紐付けられたデータなのです。
 識別子と聞いて、ピンと来られない方は、マイナンバーや運転免許証番号を思い浮かべてください、あれらも一人ひとりに固有の番号で、番号をもとに個人を特定することができます。
 ここを意識しながら、開発をすると、理解度がぜんぜん違うと思うので、ぜひそれを意識しながらこれからのsectionを見ていってください!
 
@@ -72,4 +72,4 @@ UNCHAINのプロジェクトをみんなでより良いものにしていきま�
 
 ---
 
-Documentation created by [totokazu](https://github.com/totokazu) (UNCHAIN discord ID: totokazu#4878)
+Documentation created by [totokazu](https://github.com/totokazu)（UNCHAIN discord ID: totokazu#4878）

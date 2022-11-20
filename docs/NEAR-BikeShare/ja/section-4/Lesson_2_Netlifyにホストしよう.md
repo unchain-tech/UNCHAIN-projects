@@ -46,7 +46,7 @@ init処理
 $ near call $FT_CONTRACT storage_deposit '' --accountId $CONTRACT_NAME --amount 0.00125 && near call $FT_CONTRACT ft_transfer '{"receiver_id": "'$CONTRACT_NAME'", "amount": "100"}' --accountId $FT_OWNER --amount 0.000000000000000000000001
 ```
 
-成功すれば最後の出力結果は`''`(空)となっています。
+成功すれば最後の出力結果は`''`（空）となっています。
 
 次に`frontend/assets/js/near/config.js`の以下の部分を書き換えます。
 
@@ -175,9 +175,9 @@ Website URL:       https://near-bikeshare-dapp.netlify.app
 
 NFTを取得する条件は、以下のようになります。
 
-1. MVPの機能がすべて実装されている(実装OK)
+1. MVPの機能がすべて実装されている（実装OK）
 
-2. WebアプリケーションでMVPの機能が問題なく実行される(テストOK)
+2. WebアプリケーションでMVPの機能が問題なく実行される（テストOK）
 
 3. このページの最後にリンクされているProject Completion Formに記入する
 

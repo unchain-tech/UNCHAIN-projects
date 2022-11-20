@@ -212,7 +212,7 @@ console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
 _tokenIds.increment();
 ```
 
-NFTが発行された後、`_tokenIds.increment()`(＝ OpenZeppelinが提供する関数)を使用して、`tokenIds`をインクリメント(＝ `+1`)しています。
+NFTが発行された後、`_tokenIds.increment()`（＝ OpenZeppelinが提供する関数）を使用して、`tokenIds`をインクリメント(＝ `+1`)しています。
 
 これにより、毎回NFTが発行されると、異なる`tokenIds`識別子がNFTと紐付けられます。
 
@@ -377,7 +377,7 @@ Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押して�
 ![](/public/images/ETH-NFT-Collection/section-1/1_4_4.png)
 
 - `NAME` : プロジェクトの名前(例: `MyEpicNFT`)
-- `DESCRIPTION` : プロジェクトの概要(任意)
+- `DESCRIPTION` : プロジェクトの概要（任意）
 - `CHAIN` : `Ethereum`を選択
 - `NETWORK` : `Goerli`を選択
 
@@ -397,7 +397,7 @@ Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押して�
 
 ### 🐣 テストネットとは？
 
-今回のプロジェクトでは、コスト(＝ 本物のETH)が発生するイーサリアムメインネットではなく、**テストネットにコントラクトをデプロイします。**
+今回のプロジェクトでは、コスト（＝ 本物のETH）が発生するイーサリアムメインネットではなく、**テストネットにコントラクトをデプロイします。**
 
 テストネットはイーサリアムメインネットを模しています。
 
@@ -417,7 +417,7 @@ Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押して�
 
 `Goerli`にコントラクトをデプロイし、コードのテストを行うために、偽のETHを取得しましょう。
 
-ユーザーが偽のETHを取得するために用意されたインフラは、「フォーセット(＝蛇口)」と呼ばれています。
+ユーザーが偽のETHを取得するために用意されたインフラは、「フォーセット（＝蛇口）」と呼ばれています。
 
 フォーセットを使用する前に、あなたのMetaMaskウォレットを`Goerli Test Network`に設定してください。
 
@@ -441,9 +441,9 @@ Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押して�
 
 MetaMaskウォレットに`Goerli Test Network`が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽ETHを取得しましょう。
 
-- [Alchemy](https://goerlifaucet.com/) - 0.25 Goerli ETH (24時間に1度もらうことができる)
+- [Alchemy](https://goerlifaucet.com/) - 0.25 Goerli ETH（24時間に1度もらうことができる）
   - ウォレットアドレスを入力して`Send Me ETH`ボタンを押下するとその場でもらえます。
-- [Chainlink](https://faucets.chain.link/) - 0.1 Goerli ETH(その場でもらえる)
+- [Chainlink](https://faucets.chain.link/) - 0.1 Goerli ETH（その場でもらえる）
   - `Connect wallet`をクリックしてMetaMaskと接続する必要があります。
   - Twitterアカウントを連携する必要があります。
 
@@ -652,7 +652,7 @@ _表示されるまでに約 1 分かかり場合があります。_
 
 ![](/public/images/ETH-NFT-Collection/section-1/1_4_20.png)
 
-私が作成したTanyaコレクションの`tokenID` 0番のリンクは[こちら](https://testnets.opensea.io/ja/assets/rinkeby/0x67cd3f53c20e3a6211458dd5b7465e1f9464531c/0)になります(リンク先は、学習コンテンツ制作時に使用したRinkebyになっていますが、Rinkebyの箇所がGoerliでも同様に表示されます)。
+私が作成したTanyaコレクションの`tokenID` 0番のリンクは[こちら](https://testnets.opensea.io/ja/assets/rinkeby/0x67cd3f53c20e3a6211458dd5b7465e1f9464531c/0)になります（リンク先は、学習コンテンツ制作時に使用したRinkebyになっていますが、Rinkebyの箇所がGoerliでも同様に表示されます）。
 
 リンクの内容は以下のようになります。
 

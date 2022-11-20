@@ -771,7 +771,7 @@ Future<DeployedContract> getContract(
 }
 ```
 
-`query`関数は読み取り専用の関数を呼ぶ際に使うものです。これはwalletとのやり取りをする必要(walletの許可を必要)がない関数に使われるものです。この関数ではブロックチェーン状の値を書き換えたり、追加したりすることはできせん。
+`query`関数は読み取り専用の関数を呼ぶ際に使うものです。これはwalletとのやり取りをする必要（walletの許可を必要）がない関数に使われるものです。この関数ではブロックチェーン状の値を書き換えたり、追加したりすることはできせん。
 
 ```
 Future<List<dynamic>> query(String contractName, String contractAddress,

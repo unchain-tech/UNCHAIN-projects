@@ -134,7 +134,7 @@ GitHubのアカウントをお持ちでない方は,[こちら](https://qiita.co
 
 GitHubへアップロードをしたことがない方は以下を参考にしてください。
 
-[新しいレポジトリを作成](https://docs.github.com/ja/get-started/quickstart/create-a-repo) (リポジトリ名などはご自由に)した後,
+[新しいレポジトリを作成](https://docs.github.com/ja/get-started/quickstart/create-a-repo)（リポジトリ名などはご自由に）した後,
 手順に従いターミナルからアップロードを済ませます。
 以下ターミナルで実行するコマンドの参考です。(`messenger-client`直下で実行することを想定しております)
 

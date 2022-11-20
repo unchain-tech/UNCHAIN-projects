@@ -1,6 +1,6 @@
 ### 🤖 ウォレットプロバイダーを設定する
 
-今回接続するウォレットは [Phantom Wallet](https://phantom.app/) ですが、Solanaウォレットならどれでも使用できるはずです(ただし、他のウォレットではテストしていません)。
+今回接続するウォレットは [Phantom Wallet](https://phantom.app/) ですが、Solanaウォレットならどれでも使用できるはずです（ただし、他のウォレットではテストしていません）。
 
 このWebアプリケーションを作成するにあたり、一番始めにやるべきことはウォレットを接続することです。
 
@@ -67,7 +67,7 @@ export default App;
 
 次は[@solana/wallet-adapter](https://solana-labs.github.io/wallet-adapter/) の`wallet-adapter-network`です。
 
-これは、利用可能なネットワーク(mainnet-beta、testnet、devnet)を略記した[オブジェクトを記述した配列](https://github.com/solana-labs/wallet-adapter/blob/469edb5dd45231d397751b0268c86dffd6ed730a/packages/core/base/src/types.ts)です(詳細はリンク先を参照)
+これは、利用可能なネットワーク（mainnet-beta、testnet、devnet）を略記した[オブジェクトを記述した配列](https://github.com/solana-labs/wallet-adapter/blob/469edb5dd45231d397751b0268c86dffd6ed730a/packages/core/base/src/types.ts)です（詳細はリンク先を参照）
 
 次の`WalletModalProvider`はユーザーのウォレット選択を捗らせる素晴らしいReactコンポーネントです。
 
@@ -85,7 +85,7 @@ export default App;
 
 最後の`clusterApiURL`は指定したネットワークに基づいてRPCエンドポイントを生成する関数です。
 
-React Appコンポーネント内のreturnステートメントでは、子(アプリの残りの部分)をいくつかの[context](https://reactjs.org/docs/context.html#contextprovider)プロバイダーでラップしています。
+React Appコンポーネント内のreturnステートメントでは、子（アプリの残りの部分）をいくつかの[context](https://reactjs.org/docs/context.html#contextprovider)プロバイダーでラップしています。
 
 これで、ウォレットを接続するための準備が整いました。
 

@@ -4,7 +4,7 @@
 
 スマートコントラクトの作成に使う言語は`Solidity`です。
 
-フロントエンドでは`Dart`という言語を用いた`Flutter`というフレームワークで開発していきます。Flutterを用いることによる最大の利点はios,android,webアプリを全て同じコード(一部変える必要有り)で記述できるという特徴があります。
+フロントエンドでは`Dart`という言語を用いた`Flutter`というフレームワークで開発していきます。Flutterを用いることによる最大の利点はios,android,webアプリを全て同じコード（一部変える必要有り）で記述できるという特徴があります。
 
 なじみのない方も多いかもしれませんが、現在Flutterは使用者数が急増しておりライブラリの数も豊富で自由度の高いUIを作成することできることが魅力です。
 
@@ -23,18 +23,18 @@ Windows版の方は[こちら](https://blog.css-net.co.jp/entry/2022/05/30/13394
 エミュレータはこのようになります！
 ![](/public/images/NEAR-MulPay/section-0/0_2_1.png)
 
-metamaskのセットアップではアカウントを２つ(受信用・送金用)作成して、Aurora Testnetを追加しましょう。[こちら](https://docs.alchemy.com/docs/how-to-add-near-aurora-to-metamask)を参考にするとスムーズにAurora Testnetを追加できます！
+metamaskのセットアップではアカウントを２つ（受信用・送金用）作成して、Aurora Testnetを追加しましょう。[こちら](https://docs.alchemy.com/docs/how-to-add-near-aurora-to-metamask)を参考にするとスムーズにAurora Testnetを追加できます！
 追加できたらこのようになります。
 ![](/public/images/NEAR-MulPay/section-0/0_2_2.png)
 
-Flutterの環境構築はそれぞれのPCによって予期しないエラーが出ることがよくある(筆者の経験)ので何か問題があれば気軽にdiscordで質問してみてください！
+Flutterの環境構築はそれぞれのPCによって予期しないエラーが出ることがよくある（筆者の経験）ので何か問題があれば気軽にdiscordで質問してみてください！
 
 最後にコントラクトとやり取りする仲介役をしてくれる`Infura`でアカウントを作って、Aurora Testnet用のhttp keyを[こちら](https://infura.io/)で取得しましょう。
 手順は下の通りです。
 
-1. アカウントを作成(作成済みの人は2から)
+1. アカウントを作成（作成済みの人は2から）
 2. アカウントを作成したら右上の`Create New Key`ボタンを押す
-3. web3 API(Formerly Ethereum)を選択して、プロジェクトの名前を記入して`Create`ボタンを押す
+3. web3 API（Formerly Ethereum）を選択して、プロジェクトの名前を記入して`Create`ボタンを押す
 4. dashboardの`Manage Key`ボタンを押して下の画面が出てきたら成功！
    ![](/public/images/NEAR-MulPay/section-0/0_2_3.png)
 

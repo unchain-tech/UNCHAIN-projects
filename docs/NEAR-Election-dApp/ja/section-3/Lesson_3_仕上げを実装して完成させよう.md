@@ -477,7 +477,7 @@ const State = {
 }
 ```
 
-ここでは`useEffect`で`nft_tokens_for_kind関数`を引数(candidate)をとることで候補者の情報を取得しています。
+ここでは`useEffect`で`nft_tokens_for_kind関数`を引数（candidate）をとることで候補者の情報を取得しています。
 
 取得した値は`setCandidateInfoList`によって`candidateInfoList`というリストに格納されます。また、`setState`によって`state`という変数は`fetched`に変わります。これによって次はそれぞれの候補者の得票数を取りにいくという次の段階に移ることができます。
 

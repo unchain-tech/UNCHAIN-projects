@@ -231,7 +231,7 @@ touch ./src/lib/Home.svelte ./src/lib/About.svelte ./src/lib/Portfolio.svelte
 
 サンプルプロジェクトで使用されていたアイコンのリンク`<link />`を削除し、タイトル`<title></title>`を変更しました。
 
-次に、不要となったタイトルのアイコン・ロゴを削除します。以下のコマンドで実行できます(ロゴを残しておきたい方はここをとばしてください)。
+次に、不要となったタイトルのアイコン・ロゴを削除します。以下のコマンドで実行できます（ロゴを残しておきたい方はここをとばしてください）。
 
 ```bash
 rm -r ./public ./src/assets/svelte.svg

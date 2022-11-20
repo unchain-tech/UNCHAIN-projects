@@ -413,7 +413,7 @@ section1-lesson4で行った`new_default_meta関数をターミナルで走ら�
 
 それが完了したら下のコマンドをターミナルで実行させて、候補者のNFTをmintしてみましょう！
 
-画像のCID(IPFSで保存された画像のURI)やtitleは自由に変えてもらって大丈夫です！
+画像のCID（IPFSで保存された画像のURI）やtitleは自由に変えてもらって大丈夫です！
 
 ```bash
 near call $NFT_CONTRACT_ID nft_mint '{"metadata": {"title": "Rob Stark(candidate)", "description": "Forth Token", "media": "https://gateway.pinata.cloud/ipfs/QmQaBSeg58JcWkCxzGhqHiy9SSUugH9MtV8UnZQ3siMRYA", "media_CID": "QmQaBSeg58JcWkCxzGhqHiy9SSUugH9MtV8UnZQ3siMRYA", "candidate_name": "Rob Stark", "candidate_manifest": "In three words I can sum up everything I have learned about life it goes on.", "token_kind": "candidate"}, "receiver_id": "'$NFT_CONTRACT_ID'"}' --accountId $NFT_CONTRACT_ID --amount 0.1
@@ -500,7 +500,7 @@ near view $NFT_CONTRACT_ID if_election_closed
 near call $NFT_CONTRACT_ID nft_mint '{"metadata": {"title": "Jenny Lind(candidate)", "description": "Seventh Token", "media": "https://gateway.pinata.cloud/ipfs/QmWUzLowW5ErzoezkpdSVZNF5LFgWTtMhiwfAdZU9LhcgF", "media_CID": "QmWUzLowW5ErzoezkpdSVZNF5LFgWTtMhiwfAdZU9LhcgF", "candidate_name": "Jenny Lind", "candidate_manifest": "Be yourself everyone else is already taken.", "token_kind": "candidate"}, "receiver_id": "'$NFT_CONTRACT_ID'"}' --accountId $NFT_CONTRACT_ID --amount 0.1
 ```
 
-panic(rustにおけるerror)が起こっていればOKです。
+panic（rustにおけるerror）が起こっていればOKです。
 
 なぜなら投票が終了していたらmintもtransferも投票もできないようにしていますからね。
 

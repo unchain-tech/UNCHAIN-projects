@@ -146,7 +146,7 @@ const tx = await program.rpc.startStuffOff();
 
 まず、`anchor.setProvider`で`solana config get`からAnchorにプロバイダーを設定するように指示します。
 
-このように記述することで、Anchorはプログラムをローカル上で実行することができるようになります( devnetでコードをテストできるようになります)。
+このように記述することで、Anchorはプログラムをローカル上で実行することができるようになります（devnetでコードをテストできるようになります）。
 
 次に、`anchor.workspace.Myepicproject`を取得します。
 

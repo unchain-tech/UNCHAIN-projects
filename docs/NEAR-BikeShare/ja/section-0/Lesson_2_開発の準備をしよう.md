@@ -10,7 +10,7 @@
 
 **`node`/`npm`の取得**
 `node`/`npm`をお持ちでない方は[こちら](https://hardhat.org/tutorial/setting-up-the-environment#installing-node.js)にアクセスし、node v16をインストールしてください。
-(例として使われているバージョンを16に変更することをお忘れなく!)。
+（例として使われているバージョンを16に変更することをお忘れなく!）。
 今回はこちらのバージョンで進めていきます。
 この先バージョンによる違いによりエラーに遭遇する場合があるので参考にしてください。
 
@@ -30,7 +30,7 @@ $ npm -v
 $ curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
 ```
 
-このコマンドはスクリプトをダウンロードし、rustup(rustを管理するツール)のインストールを開始し、Rustの最新の安定版をインストールします。
+このコマンドはスクリプトをダウンロードし、rustup（rustを管理するツール）のインストールを開始し、Rustの最新の安定版をインストールします。
 成功していれば下のようなメッセージが表示されているでしょう。
 
 ```
@@ -39,7 +39,7 @@ Rust is installed now. Great!
 
 Windowsを使用している方や失敗した方は[こちら](https://doc.rust-jp.rs/book-ja/ch01-01-installation.html)を参考にしてください。
 
-次に [WebAssembly(Wasm)](https://webassembly.org/) 形式でコンパイルするためのtoolchain(Rustではツールまたはその集まりをtoolchainと総称しています)を追加しましょう！
+次に [WebAssembly(Wasm)](https://webassembly.org/) 形式でコンパイルするためのtoolchain（Rustではツールまたはその集まりをtoolchainと総称しています）を追加しましょう！
 ※ スマートコントラクトはRustからWasmへコンパイルした後NEAR上にデプロイします。
 
 ```
@@ -59,7 +59,7 @@ Create Accountを選択します。
 
 ![](/public/images/NEAR-BikeShare/section-0/0_2_2.png)
 
-Secure Passphraseを選択(Ledger Hardware Walletでも構いません 🙆‍♂️)してパスフレーズをどこかに保存しておきましょう！
+Secure Passphraseを選択（Ledger Hardware Walletでも構いません 🙆‍♂️）してパスフレーズをどこかに保存しておきましょう！
 
 ![](/public/images/NEAR-BikeShare/section-0/0_2_3.png)
 

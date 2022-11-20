@@ -43,9 +43,9 @@ NFTは**オン・チェーン**にデプロイされます。
 
 実際には、スマートコントラクトのしくみは、イーサリアムネットワーク上のすべてのコンピュータに複製され処理されるプログラムにより成り立っています。
 
-イーサリアムの汎用性により、そのうえにアプリケーション(＝ dApp)を構築できます。
+イーサリアムの汎用性により、そのうえにアプリケーション（＝ dApp）を構築できます。
 
-今回構築するWebアプリケーションもdecentralized Application / dApp(＝分散型アプリケーション)の1つです。
+今回構築するWebアプリケーションもdecentralized Application / dApp（＝分散型アプリケーション）の1つです。
 
 ### 🌍 プロジェクトをアップグレードする
 
@@ -84,4 +84,4 @@ UNCHAINのプロジェクトをみんなでより良いものにしていきま�
 
 ---
 
-Documentation created by [yukis4san](https://github.com/yukis4san) (UNCHAIN discord ID: yshimura#7617)
+Documentation created by [yukis4san](https://github.com/yukis4san)（UNCHAIN discord ID: yshimura#7617）

@@ -136,7 +136,7 @@ use std::collections::HashMap;
 
 追加した内容を見ていきましょう。
 
-最初のブロックは、既存の型(今回は`String`)に対して別の名前をつける、ということを宣言しています。これを、[型エイリアス](https://doc.rust-jp.rs/book-ja/ch19-04-advanced-types.html?highlight=type#%E5%9E%8B%E3%82%A8%E3%82%A4%E3%83%AA%E3%82%A2%E3%82%B9%E3%81%A7%E5%9E%8B%E5%90%8C%E7%BE%A9%E8%AA%9E%E3%82%92%E7%94%9F%E6%88%90%E3%81%99%E3%82%8B)(type alias)を宣言すると言います。
+最初のブロックは、既存の型(今回は`String`)に対して別の名前をつける、ということを宣言しています。これを、[型エイリアス](https://doc.rust-jp.rs/book-ja/ch19-04-advanced-types.html?highlight=type#%E5%9E%8B%E3%82%A8%E3%82%A4%E3%83%AA%E3%82%A2%E3%82%B9%E3%81%A7%E5%9E%8B%E5%90%8C%E7%BE%A9%E8%AA%9E%E3%82%92%E7%94%9F%E6%88%90%E3%81%99%E3%82%8B)（type alias）を宣言すると言います。
 ここでは、
 
 - 「String型に`RoomId`  という別名をつけます」
@@ -197,7 +197,7 @@ pub struct Room {
 
 最後に、Enumと構造体の上に書かれていた`#[derive(...)]`と`#[serde(...)]`について説明します。
 
-これは、[アトリビュート](https://doc.rust-jp.rs/rust-by-example-ja/attribute.html)(属性)と呼ばれるものです。何をしているかというと、
+これは、[アトリビュート](https://doc.rust-jp.rs/rust-by-example-ja/attribute.html)（属性）と呼ばれるものです。何をしているかというと、
 
 - `#[derive]`属性は型に対して特定のトレイトの実装を提供します。
 - `#[serde]`属性はシリアライズ・デシリアライズの実装をカスタマイズします。

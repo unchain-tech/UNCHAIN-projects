@@ -4,7 +4,7 @@
 
 この関数はかなり複雑なため、ここでは詳細な説明は省きますが、一度コードを読んでみてください。
 
-お勧めとして、commandキー(macOS)やCTRLキー(Windows)を使って関数をクリックし、その関数がどのように動作するか確認してみてください。
+お勧めとして、commandキー（macOS）やCTRLキー（Windows）を使って関数をクリックし、その関数がどのように動作するか確認してみてください。
 
 ではざっくりとチャンクごとにコードを見ていきます。
 
@@ -46,7 +46,7 @@ const signers = [mint];
 
 Candy MachineがNFTを作成するために必要なすべてのパラメータです。
 
-`userPayingAccountAddress` ( NFT費用を支払い、受け取りを行う人)から、作成するNFTのアカウントアドレスである`mint` ( mintするNFTアカウントアドレス)まですべて必要です。
+`userPayingAccountAddress`（NFT費用を支払い、受け取りを行う人）から、作成するNFTのアカウントアドレスである`mint`（mintするNFTアカウントアドレス）まですべて必要です。
 
 ```jsx
 const instructions = [

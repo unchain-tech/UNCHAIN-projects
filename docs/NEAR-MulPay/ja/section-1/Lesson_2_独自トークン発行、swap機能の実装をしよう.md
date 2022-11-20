@@ -94,7 +94,7 @@ etherの最小単位`wei`は`10の-18乗`であり、発行数の単位はweiな
 このように
 
 1. トークンの名前
-2. トークンのsymbol(ETH等)
+2. トークンのsymbol（ETH等）
 3. トークンの初期オーナー
 4. 発行枚数
 
@@ -114,9 +114,9 @@ etherの最小単位`wei`は`10の-18乗`であり、発行数の単位はweiな
 
 実装に入る前に今回のプロジェクトの概要を把握しておきましょう。まず送金者は
 
-(1) 送金したいトークン
+（1）送金したいトークン
 
-(2) 送金したい量
+（2）送金したい量
 
 を決めることができます。
 
@@ -199,7 +199,7 @@ address public deployerAddress;
 
 この関数では2つのトークンの相対的な価値を算出しています。計算方法は単純で、このスマートコントラクトが所持しているトークンの総量のうち、一方を他方のそれで割って価値を決めています。
 
-`value`という変数が算出された価値になるのですが、solidityでは小数点以下は扱うことができないので最初に1 ether(10^18)をかけることで小数点以下が消えることを回避しています。しかし後でこの1ether分掛け合わせる必要があるので覚えておいてください。
+`value`という変数が算出された価値になるのですが、solidityでは小数点以下は扱うことができないので最初に1 ether（10^18）をかけることで小数点以下が消えることを回避しています。しかし後でこの1ether分掛け合わせる必要があるので覚えておいてください。
 
 ```
 // distribute token to users
@@ -273,7 +273,7 @@ require(sendToken.balanceOf(msg.sender) >= sendAmount, "Your asset is smaller th
         require(receiveToken.balanceOf(address(this)) >= recieveAmount, "Contract asset of the currency recipient want is smaller than amount you want to send");
 ```
 
-最後に送信者、このコントラクトの両方からそれぞれ指定されたトークン量(sendAmount,recieveAmount)をtransferします。
+最後に送信者、このコントラクトの両方からそれぞれ指定されたトークン量（sendAmount,recieveAmount）をtransferします。
 
 ```
 sendToken.transferFrom(msg.sender, address(this), sendAmount);

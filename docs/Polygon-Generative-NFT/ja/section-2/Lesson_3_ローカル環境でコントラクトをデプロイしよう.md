@@ -63,7 +63,7 @@ main()
   const baseTokenURI = "ipfs://QmZbWNKJPAjxXuNFSEaksCJVd1M6DaKQViJBYPK2BdpDEP/";
   ```
 
-- コントラクトの所有者(あなた)のアドレスを取得。
+- コントラクトの所有者（あなた）のアドレスを取得。
 
   ```javascript
   // run.js
@@ -79,7 +79,7 @@ main()
   const contractFactory = await hre.ethers.getContractFactory("NFTCollectible");
   ```
 
-- コントラクトをデプロイするためのリクエストを送り、マイナーがこのリクエストを選んでブロックチェーンに追加するのを待つ(トランザクションの承認待ち)。
+- コントラクトをデプロイするためのリクエストを送り、マイナーがこのリクエストを選んでブロックチェーンに追加するのを待つ（トランザクションの承認待ち）。
 
   ```javascript
   // run.js
@@ -90,7 +90,7 @@ main()
   await contract.deployed();
   ```
 
-- トランザクションが承認(mine)されると、コントラクトのアドレスが取得される。
+- トランザクションが承認（mine）されると、コントラクトのアドレスが取得される。
 
   ```javascript
   // run.js

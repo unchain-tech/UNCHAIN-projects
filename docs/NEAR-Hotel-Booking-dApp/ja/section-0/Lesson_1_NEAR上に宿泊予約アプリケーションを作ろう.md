@@ -23,7 +23,7 @@ NEARはブロックチェーンの1つで、Ethereumに取って替わるとも�
 
 また、環境への配慮もされており従来の通貨に比べて約1/1300の電気しか使用しないそうです。
 
-開発者に対する配慮もされています。`Rust`や`AssemblyScript`(JavaScriptっぽい言語)など比較的広く利用されているプログラミング言語を利用して開発が行えるようになっています。
+開発者に対する配慮もされています。`Rust`や`AssemblyScript`（JavaScriptっぽい言語）など比較的広く利用されているプログラミング言語を利用して開発が行えるようになっています。
 
 加えて、NEARが公式的に「grant」という`報酬システム`を用意してくれています。NEAR上での面白いアイデアやプロダクトを提出して承認されるとNEARという暗号通貨で報酬をもらえるというものです。詳しくは[こちら](https://near.org/grants/)をご覧ください。
 
@@ -108,4 +108,4 @@ UNCHAINのプロジェクトをみんなでより良いものにしていきま�
 
 ---
 
-Documentation created by [yk-saito](https://github.com/yk-saito) (UNCHAIN discord ID: ysaito#8278)
+Documentation created by [yk-saito](https://github.com/yk-saito)（UNCHAIN discord ID: ysaito#8278）

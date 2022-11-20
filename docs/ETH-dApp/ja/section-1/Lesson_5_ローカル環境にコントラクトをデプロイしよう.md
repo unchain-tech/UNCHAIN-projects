@@ -84,7 +84,7 @@ Contract deployed by:  0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
 Deploying contracts with account:  0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
 ```
 
-ここには、スマートコントラクトをデプロイした人(＝ここでいうあなた)のアドレスが表示されています。
+ここには、スマートコントラクトをデプロイした人（＝ここでいうあなた）のアドレスが表示されています。
 
 ```
 Account balance:  10000000000000000000000

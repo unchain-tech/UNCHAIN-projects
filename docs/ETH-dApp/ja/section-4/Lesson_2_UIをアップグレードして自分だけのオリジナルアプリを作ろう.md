@@ -152,7 +152,7 @@ Vercelのアカウントを取得したら、下記を実行しましょう。
 `Environment Variable`に下記を追加します。
 
 - `NAME`＝`CI`
-- `VALUE`＝`false`(下図参照)
+- `VALUE`＝`false`（下図参照）
 
 ![](/public/images/ETH-dApp/section-4/4_2_6.png)
 
@@ -167,7 +167,7 @@ VercelはGitHubと連動しているので、GitHubが更新されるたびに�
 
 こちらが、今回のプロジェクトで作成されるWebアプリケーションのデモは、[こちら](https://my-wave-portal2-nine.vercel.app/) です。
 
-これはMVP(=最小機能のついたプロダクト)です。
+これはMVP（=最小機能のついたプロダクト）です。
 
 ぜひCSSを駆使して、あなたのアプリケーションを魅力的なものにしてください 🪄
 
@@ -250,9 +250,9 @@ module.exports = {
 
 NFTを取得する条件は、以下のようになります。
 
-1. MVPの機能がすべて実装されている(実装OK)
+1. MVPの機能がすべて実装されている（実装OK）
 
-2. WebアプリケーションでMVPの機能が問題なく実行される(テストOK)
+2. WebアプリケーションでMVPの機能が問題なく実行される（テストOK）
 
 3. このページの最後にリンクされているProject Completion Formに記入する
 

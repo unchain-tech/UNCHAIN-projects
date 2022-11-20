@@ -4,7 +4,7 @@
 
 無料でデプロイして、メインネットで販売することで、誰でもUSDCで収入を得ることができます。
 
-**メインネットに移行したい場合は以下を参照してみてください(チュートリアル内では実施しません)。**
+**メインネットに移行したい場合は以下を参照してみてください（チュートリアル内では実施しません）。**
 
 メインネットでトランザクションを受けるには、以下の2つの変数を更新する必要があります。
 
@@ -46,7 +46,7 @@ Githubなどにコードをアップロードする際は、秘密鍵や構成�
 
 ただし、Githubにアップロードする場合、`.gitignore`に`.env`が含まれていないと`.env`も一緒にアップロードされてしまうので注意が必要です。
 
-`.gitignore`の中身が以下のようなっているかどうか確認しましょう(以下のとおりとなっていなければ以下のように変更します)。
+`.gitignore`の中身が以下のようなっているかどうか確認しましょう（以下のとおりとなっていなければ以下のように変更します）。
 
 ```txt
 node_modules
@@ -97,15 +97,15 @@ git push
 
 3\. プロジェクトの設定では、**FRAMEWORK PRESET** に`Create React App`、**ROOT DIRECTORY** に`app`を入力してください。
 
-4\. **Environment Variables** に環境変数`CI = false` ( NAME: CI、VALUE: false)を追加します(警告が原因でビルドが失敗しないようになります)。
+4\. **Environment Variables** に環境変数`CI = false`（NAME: CI、VALUE: false）を追加します（警告が原因でビルドが失敗しないようになります）。
 
-5\. **Environment Variables** に`.env`で設定した環境変数( NAME: SOLANA_NETWORK、VALUE: devnet)を直接入力してください( GitHubには`.env`ファイルを保存していないため、`Vercel`に直接記載する必要があります)。
+5\. **Environment Variables** に`.env`で設定した環境変数（NAME: SOLANA_NETWORK、VALUE: devnet）を直接入力してください( GitHubには`.env`ファイルを保存していないため、`Vercel`に直接記載する必要があります)。
 
 ![Environment Variables1](/public/images/Solana-Online-Store/section-4/4_1_3.png)
 
 ![Environment Variables2](/public/images/Solana-Online-Store/section-4/4_1_4.png)
 
-6\.[Deploy]ボタンを押してデプロイします( VercelはGitHubと連動しているので、GitHubが更新されるたびに自動でデプロイを行ってくれます)。
+6\.[Deploy]ボタンを押してデプロイします（VercelはGitHubと連動しているので、GitHubが更新されるたびに自動でデプロイを行ってくれます）。
 
 **Vercel へのデプロイが無事完了しました!**
 
@@ -130,9 +130,9 @@ git push
 
 NFTを取得する条件は、以下のようになります。
 
-1. MVPの機能がすべて実装されている(実装OK)
+1. MVPの機能がすべて実装されている（実装OK）
 
-2. WebアプリケーションでMVPの機能が問題なく実行される(テストOK)
+2. WebアプリケーションでMVPの機能が問題なく実行される（テストOK）
 
 3. このページの最後にリンクされているProject Completion Formに記入する
 

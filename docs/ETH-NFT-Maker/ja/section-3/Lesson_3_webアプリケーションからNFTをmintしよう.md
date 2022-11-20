@@ -119,7 +119,7 @@ let nftTxn = await connectedContract.mintIpfsNFT("sample",ipfs);
 console.log("Mining...please wait.");
 ```
 
-ここでは、`mintIpfsNFT`関数をコントラクトから呼び出し、`await`を使用して、NFTの発行が承認(＝マイニング)されるまで、処理をやめています。
+ここでは、`mintIpfsNFT`関数をコントラクトから呼び出し、`await`を使用して、NFTの発行が承認（＝マイニング）されるまで、処理をやめています。
 
 `console.log`では、NFTを発行するためのトランザクションが「承認中」であることを通知しています。
 
@@ -159,7 +159,7 @@ Search for the keywords to learn more about each error.
 
 ### 📂 ABI ファイルを取得する
 
-ABI (Application Binary Interface) はコントラクトの取り扱い説明書のようなものです。
+ABI（Application Binary Interface）はコントラクトの取り扱い説明書のようなものです。
 
 Webアプリケーションがコントラクトと通信するために必要な情報が、ABIファイルに含まれています。
 
@@ -181,7 +181,7 @@ ABIファイルの中身は、`Web3Mint.json`というファイルに格納さ�
 
 下記を実行して、ABIファイルをコピーしましょう。
 
-1\. ターミナル上で`ipfs-nfts`にいることを確認する(もしくは移動する)。
+1\. ターミナル上で`ipfs-nfts`にいることを確認する（もしくは移動する）。
 
 2\. ターミナル上で下記を実行する。
 
@@ -192,7 +192,7 @@ ABIファイルの中身は、`Web3Mint.json`というファイルに格納さ�
 
 次に、下記を実行して、ABIファイルをWebアプリケーションから呼び出せるようにしましょう。
 
-1\. ターミナル上で`nft-maker-starter-project`にいることを確認する(もしくは移動する)。
+1\. ターミナル上で`nft-maker-starter-project`にいることを確認する（もしくは移動する）。
 
 2\. 下記を実行して、`nft-maker-starter-project/src/`の中に`utils`ディレクトリを作成する。
 

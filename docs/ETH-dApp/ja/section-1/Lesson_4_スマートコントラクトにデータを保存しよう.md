@@ -1,6 +1,6 @@
 ### 📦 データを保存しよう
 
-このレッスンでは、ユーザーがあなたに送った「👋(wave)」の数をデータとして保存する方法を学びます。
+このレッスンでは、ユーザーがあなたに送った「👋（wave）」の数をデータとして保存する方法を学びます。
 
 ブロックチェーンは、AWSのようなクラウド上にデータを保存できるサーバーのようなものです。
 
@@ -12,7 +12,7 @@
 
 イーサリアムのブロックチェーン上にデータを書き込む場合、私たちは代金として`$ETH`を「マイナー」に支払います。
 
-それでは、「👋(wave)」を保存するために、`WavePortal.sol`を更新していきましょう。
+それでは、「👋（wave）」を保存するために、`WavePortal.sol`を更新していきましょう。
 
 ```solidity
 // WavePortal.sol
@@ -63,7 +63,7 @@ function wave() public {
 }
 ```
 
-ここで、「👋(wave)」の回数を記録する`wave()`関数が追加されました。まず、`public`について見ていきます。
+ここで、「👋（wave）」の回数を記録する`wave()`関数が追加されました。まず、`public`について見ていきます。
 
 これは、Solidityのアクセス修飾子の1つです。
 
@@ -97,7 +97,7 @@ function wave() public {
 
 `wave()`関数の中に`msg.sender`が登場するのをお気付きでしょうか？
 
-`msg.sender`に入る値は、ずばり、**関数を呼び出した人(＝あなたに「👋(wave)」を送った人)のウォレットアドレス**です。
+`msg.sender`に入る値は、ずばり、**関数を呼び出した人（＝あなたに「👋（wave）」を送った人）のウォレットアドレス**です。
 
 これは、**ユーザー認証**のようなものです。
 
@@ -106,9 +106,9 @@ function wave() public {
 
 ### 🖋 Solidity の関数修飾子について
 
-Solidityには、関数(function)に対してのみ使用される修飾子(＝関数修飾子)が存在します。
+Solidityには、関数（function）に対してのみ使用される修飾子（＝関数修飾子）が存在します。
 
-Solidity開発では関数修飾子を意識しておかないとデータを記録する際のコスト(＝ガス代)が跳ね上がってしまうので注意が必要です。
+Solidity開発では関数修飾子を意識しておかないとデータを記録する際のコスト（＝ガス代）が跳ね上がってしまうので注意が必要です。
 
 ここでポイントとなるのは、**ブロックチェーンに値を書き込むにはガス代を払う必要があること、そしてブロックチェーンから値を参照するだけなら、ガス代を払う必要がないことです。**
 
@@ -137,8 +137,8 @@ function wave() public {
 
 `wave()`関数には関数修飾子がついていないことをお気付きでしょうか。
 
-- 同一のユーザーが送った「👋(wave)」の回数が`totalWaves += 1`によってカウントされ、ブロックチェーン上にデータが書き込まれます。
-- また、この関数が呼び出されると、`console.log("%s has waved!", msg.sender)`によって、あなたに「👋(wave)」を送ったユーザーのアドレスがターミナル上に表示されます。
+- 同一のユーザーが送った「👋（wave）」の回数が`totalWaves += 1`によってカウントされ、ブロックチェーン上にデータが書き込まれます。
+- また、この関数が呼び出されると、`console.log("%s has waved!", msg.sender)`によって、あなたに「👋（wave）」を送ったユーザーのアドレスがターミナル上に表示されます。
 
 それでは、下記のコードも見ていきましょう。
 
@@ -150,7 +150,7 @@ function getTotalWaves() public view returns (uint256) {
 }
 ```
 
-一方、`view`という関数修飾子がついた`getTotalWaves()`関数は、ユーザーがあなたに送った「👋(wave)」の総数の参照のみを行います。
+一方、`view`という関数修飾子がついた`getTotalWaves()`関数は、ユーザーがあなたに送った「👋（wave）」の総数の参照のみを行います。
 
 ### ✅ `run.js`を更新して関数を呼び出す
 
@@ -205,13 +205,13 @@ runMain();
 const [owner, randomPerson] = await hre.ethers.getSigners();
 ```
 
-ブロックチェーンに`WavePortal`コントラクトをデプロイする際、「👋(wave)」を送る側のウォレットアドレスが必要です。
+ブロックチェーンに`WavePortal`コントラクトをデプロイする際、「👋（wave）」を送る側のウォレットアドレスが必要です。
 
 `hre.ethers.getSigners()`はHardhatが提供する任意のアドレスを返す関数です。
 
-- ここでは、コントラクト所有者(＝あなた)のウォレットアドレスと、あなたに「👋(wave)」を送るユーザーのウォレットアドレスをHardhatがそれぞれ生成し、`owner`と`randomPerson`という変数に格納しています。
+- ここでは、コントラクト所有者（＝あなた）のウォレットアドレスと、あなたに「👋（wave）」を送るユーザーのウォレットアドレスをHardhatがそれぞれ生成し、`owner`と`randomPerson`という変数に格納しています。
 
-- `randomPerson`は、テスト環境で「👋(wave)」を送ってくるユーザーだと思ってください。
+- `randomPerson`は、テスト環境で「👋（wave）」を送ってくるユーザーだと思ってください。
 
 次に、下記のコードを見ていきましょう。
 
@@ -227,7 +227,7 @@ console.log("Contract deployed to:", wavePortal.address);
 console.log("Contract deployed by:", owner.address);
 ```
 
-ここでは、`WavePortal`コントラクトをデプロイした人(＝あなた)のアドレス(＝ `owner.address`)をターミナルに出力しています。
+ここでは、`WavePortal`コントラクトをデプロイした人（＝あなた）のアドレス(＝ `owner.address`)をターミナルに出力しています。
 
 最後に、下記のコードを見ていきましょう。
 
@@ -252,7 +252,7 @@ waveCount = await waveContract.getTotalWaves();
 
 まず、`let waveCount`でローカル変数を宣言します。
 
-次に、`waveContract.getTotalWaves()`で`WavePortal.sol`に記載された`getTotalWaves()`を呼び出し、既存の「👋(wave)」の総数を取得します。
+次に、`waveContract.getTotalWaves()`で`WavePortal.sol`に記載された`getTotalWaves()`を呼び出し、既存の「👋（wave）」の総数を取得します。
 
 ```javascript
 // run.js
@@ -260,7 +260,7 @@ let waveTxn = await waveContract.wave();
 await waveTxn.wait();
 ```
 
-`let waveTxn = await waveContract.wave()`では、ユーザーが新しい「👋(wave)」を送ったことを承認するまで、コントラクトからの応答をフロントエンドが待機するよう設定しています。
+`let waveTxn = await waveContract.wave()`では、ユーザーが新しい「👋（wave）」を送ったことを承認するまで、コントラクトからの応答をフロントエンドが待機するよう設定しています。
 
 `.wave()`関数ではブロックチェーン上の書き込みが発生するので、ガス代がかかります。よって、ユーザーは取引を確認する必要があります。
 
@@ -299,7 +299,7 @@ We have 1 total waves!
 
 あなたのターミナルでも同じような結果が出力されたでしょうか？
 
-この結果は、あなたがこのスマートコントラクトの`owner`であり、同時にあなた自身が自分に「👋(wave)」を送ったことを示しています。
+この結果は、あなたがこのスマートコントラクトの`owner`であり、同時にあなた自身が自分に「👋（wave）」を送ったことを示しています。
 
 ですので、`Contract deployed by`に続くアドレスと、「`0x...` has waved!」のアドレスは一致しているはずです。
 
@@ -311,9 +311,9 @@ We have 1 total waves!
 
 これらは、WavePortalのWebサイトを構築する上で大切な要素です。
 
-### 🤝 ほかのユーザーに 👋(wave)を送ってもらう
+### 🤝 ほかのユーザーに 👋（wave）を送ってもらう
 
-ここでは、ほかのユーザーがあなたに「👋(wave)」を送った場合のシミュレーションを行います。
+ここでは、ほかのユーザーがあなたに「👋（wave）」を送った場合のシミュレーションを行います。
 
 下記を`run.js`に反映させて、ターミナルにどのような結果がでるかテストしてみましょう。
 
@@ -374,7 +374,7 @@ waveCount = await waveContract.getTotalWaves();
 waveTxn = await waveContract.connect(randomPerson).wave();
 ```
 
-ここでは、`.connect(randomPerson)`を用いて、ほかのユーザーがあなたに「👋(wave)」を送った状態をシミュレーションしています。
+ここでは、`.connect(randomPerson)`を用いて、ほかのユーザーがあなたに「👋（wave）」を送った状態をシミュレーションしています。
 
 ```javascript
 // run.js
@@ -382,7 +382,7 @@ await waveTxn.wait();
 waveCount = await waveContract.getTotalWaves();
 ```
 
-ここでは、あなたが自分自身に「👋(wave)」を送り、その承認を持ってから　`waveCount`の値を更新したように、`randomPerson`の挙動を確認してから`waveCount`の更新(`+1`)を行っています。
+ここでは、あなたが自分自身に「👋（wave）」を送り、その承認を持ってから　`waveCount`の値を更新したように、`randomPerson`の挙動を確認してから`waveCount`の更新(`+1`)を行っています。
 
 それでは、`run.js`を更新して、下記を実行してみましょう。
 
@@ -407,7 +407,7 @@ We have 2 total waves!
 
 `We have # total waves!`の`#`が更新されていることを確認してください。
 
-一人の目の「👋(wave)」はあなた自身なので`We have 1 total waves!`の前に表示されているアドレスは、`Contract deployed by`に続くアドレスと一致していることを確認してください。
+一人の目の「👋（wave）」はあなた自身なので`We have 1 total waves!`の前に表示されているアドレスは、`Contract deployed by`に続くアドレスと一致していることを確認してください。
 
 `We have 2 total waves!`に続くアドレスは、Hardhatが取得した`randomPerson`のアドレスです。
 

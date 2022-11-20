@@ -271,7 +271,7 @@ function mintCharacterNFT(uint _characterIndex) external {
 
 `_characterIndex`はフロントエンドから送信される変数です。
 
-`_characterIndex`を`mintCharacterNFT`関数に渡すことで、プレイヤーがどのキャラクター(例：ナミ)を欲しいか、コントラクトに伝えます。
+`_characterIndex`を`mintCharacterNFT`関数に渡すことで、プレイヤーがどのキャラクター（例：ナミ）を欲しいか、コントラクトに伝えます。
 
 たとえば、`mintCharacterNFT(1)`とすると、`defaultCharacters[1]`のデータを持つキャラクターがMintされます。
 
@@ -303,7 +303,7 @@ NFTの一意な識別子を追跡するために`_tokenIds`を使用していま
 _safeMint(msg.sender, newItemId);
 ```
 
-上記が実行されると、`newItemId`というIDのNFTキャラクターが`msg.sender`(＝フロントエンドからユーザーのアドレス)に、Mintされます。
+上記が実行されると、`newItemId`というIDのNFTキャラクターが`msg.sender`（＝フロントエンドからユーザーのアドレス）に、Mintされます。
 
 > ✍️: `msg.sender`について
 > `msg.sender`は [Solidity が提供する](https://docs.soliditylang.org/en/develop/uints-and-global-variables.html#block-and-transaction-properties) 変数で、フロントエンドからコントラクトを呼び出したユーザーの **公開アドレス** を保持した変数です。
@@ -475,7 +475,7 @@ console.log("Token URI:", returnedTokenUri);
 
 `tokenURI()`は、NFTにアタッチされている **実際のデータ** を返す関数です。
 
-`gameContract.tokenURI(1)`が呼び出されると、`returnedTokenUri`には、`tokenId` ＝ `1`のNFTキャラクターのデータ(キャラクターの名前、HPなど)が格納されます。
+`gameContract.tokenURI(1)`が呼び出されると、`returnedTokenUri`には、`tokenId` ＝ `1`のNFTキャラクターのデータ（キャラクターの名前、HPなど）が格納されます。
 
 それでは、ターミナル上で`epic-game`ディレクトリに移動して、下記を実行してみましょう。
 
@@ -597,7 +597,7 @@ library Base64 {
 
 次に、`MyEpicGame.sol`に`Base64.sol`をインポートするコードを追加します。
 
-下記のコードを、`MyEpicGame.sol`の先頭付近(ライブラリをインポートしているコードブロックの近く)に、追加してください。
+下記のコードを、`MyEpicGame.sol`の先頭付近（ライブラリをインポートしているコードブロックの近く）に、追加してください。
 
 ```solidity
 // MyEpicGame.sol

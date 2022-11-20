@@ -7,9 +7,9 @@
 1. `near-election-dapp-frontend/frontend`というディレクトリの中に作成
 2. `AppRouter.js`はpagesの中ではなくassetsの中に作成
 
-です。import時のPATHに関わってくるのでこれと同じように作らないと動かなくなります(もし実行時エラーなどが起きたときはこのファイルのPATHが正しいか確認してみてください)。
+です。import時のPATHに関わってくるのでこれと同じように作らないと動かなくなります（もし実行時エラーなどが起きたときはこのファイルのPATHが正しいか確認してみてください）。
 
-次にフロントエンドで使う画像(下の4つの画像)をダウンロードしてnear-election-dapp-frontend/frontend/assets/imgの中にそれぞれ画像の上に示してある名前で保存しましょう。
+次にフロントエンドで使う画像（下の4つの画像）をダウンロードしてnear-election-dapp-frontend/frontend/assets/imgの中にそれぞれ画像の上に示してある名前で保存しましょう。
 
 `cross.png`
 

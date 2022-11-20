@@ -129,7 +129,7 @@ pub fn new(owner_id: AccountId, metadata: NFTContractMetadata) -> Self {
 
 例えばtokens_per_ownerを例にとると、`LookupMap`という型が持つ`new`というメソッドによって初期化されて新しいインスタンスが生み出されます。
 
-その後`try_to_vec()`によってResult型のベクター(他の言語では配列)が作られて、`unwrap()`というメソッドによって
+その後`try_to_vec()`によってResult型のベクター（他の言語では配列）が作られて、`unwrap()`というメソッドによって
 `Result<Vec<u8>>->Vec<u8>`に変換されます。くわしくは[Result の説明](https://doc.rust-lang.org/std/result/)と[unwrap の説明](https://ja.stackoverflow.com/questions/1730/rust%E3%81%AEunwrap%E3%81%AF%E4%BD%95%E3%82%92%E3%81%99%E3%82%8B%E3%82%82%E3%81%AE%E3%81%A7%E3%81%99%E3%81%8B)をご覧ください
 
 `UnorderedMap`と`LookupMap`はどちらもMap形式の型なのですが`UnorderedMap`はそれぞれのmapがインデックス化されておりベクター型のmapなのですが、`LookupMap`はインデックス化されておらず、mapだけが存在しているものです。
@@ -280,7 +280,7 @@ pub fn new_default_meta(owner_id: AccountId) -> Self {
 pub fn nft_mint(&mut self, mut metadata: TokenMetadata, receiver_id: AccountId)
 ```
 
-関数の中身としてはまずコントラクトの`is_election_closed`という変数が`false`である、つまりまだ投票が終了していないことを確認して、もししまっている(true)のときはもう投票できないというメッセージをコンソールに出力します。
+関数の中身としてはまずコントラクトの`is_election_closed`という変数が`false`である、つまりまだ投票が終了していないことを確認して、もししまっている（true）のときはもう投票できないというメッセージをコンソールに出力します。
 
 ```rust
 // set token id
@@ -343,7 +343,7 @@ self.token_metadata_by_id.insert(&self.token_id_counter, &metadata);
 
 1つ目の`internal_add_token_to_owner`という関数はtokenのidとその保有者のWallet Idを紐づけるためのmapである`tokens_per_owner`にそれぞれの値を格納する関数です。
 
-次の`internal_add_token_to_kind_map`はtokenのidとその種類(候補者のNFTか投票券のNFTか)を紐づけるmapである`tokens_per_kind`にそれぞれの値を格納する関数です。
+次の`internal_add_token_to_kind_map`はtokenのidとその種類（候補者のNFTか投票券のNFTか）を紐づけるmapである`tokens_per_kind`にそれぞれの値を格納する関数です。
 
 ```rust
 self.internal_add_token_to_owner(&token.owner_id, &token_id);
@@ -362,7 +362,7 @@ self.likes_per_candidate.insert(&self.token_id_counter, &(0 as Likes));
 self.added_voter_list.insert(&receiver_id_clone, &self.token_id_counter);
 ```
 
-これは次の部分で記述する関数を呼び出しており、次にmintされるNFTのためにtokenのidをインクリメント(1大きくすること)しています。
+これは次の部分で記述する関数を呼び出しており、次にmintされるNFTのためにtokenのidをインクリメント（1大きくすること）しています。
 
 ```rust
 self.token_id_count();
@@ -374,7 +374,7 @@ self.token_id_count();
 let required_storage_in_bytes = env::storage_usage() - initial_storage_usage;
 ```
 
-この関数は`internal.rs`ファイルに宣言する関数で、ユーザーがmint時にdepositしてくれたNEAR(暗号通貨)に対して多すぎた場合に返金する関数です。
+この関数は`internal.rs`ファイルに宣言する関数で、ユーザーがmint時にdepositしてくれたNEAR（暗号通貨）に対して多すぎた場合に返金する関数です。
 
 ```rust
 refund_deposit(required_storage_in_bytes);

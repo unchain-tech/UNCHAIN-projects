@@ -2,7 +2,7 @@
 
 コントラクトのアドレス(`Contract deployed to`に続く`0x..`)をターミナルからコピーして、[テストネット用の OpenSea](https://testnets.opensea.io/) に貼り付け、検索してみてください。
 
-私のコレクションはこのような形で表示されます(画像は学習コンテンツ制作時に使用していたRarible rinkeby testnetのものを使用しています)。
+私のコレクションはこのような形で表示されます（画像は学習コンテンツ制作時に使用していたRarible rinkeby testnetのものを使用しています）。
 
 ![](/public/images/Polygon-Generative-NFT/section-2/2_4_1.png)
 
@@ -10,9 +10,9 @@
 
 したがって、今コントラクトアドレスから表示できるNFTコレクションは、13個です。
 
-### 📝 Etherscan を使ってコントラクトを verify(検証)する
+### 📝 Etherscan を使ってコントラクトを verify（検証）する
 
-最後に、Etherscanで **コントラクトの Verification(検証)** を行いましょう。
+最後に、Etherscanで **コントラクトの Verification（検証）** を行いましょう。
 
 この機能を使えば、あなたのSolidityプログラムを世界中の人に公開できます。
 

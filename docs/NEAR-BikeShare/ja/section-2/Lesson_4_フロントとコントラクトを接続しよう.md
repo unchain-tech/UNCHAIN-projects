@@ -247,8 +247,8 @@ function getConfig(env) {
 
 このファイルはコントラクトとの接続に必要な設定をオブジェクトとして返却する`getConfig`関数を記述しています。
 
-さらに接続するコントラクト(のデプロイしているアカウント名)の指定を`CONTRACT_NAME`で行っています。
-プロセスの環境変数として`CONTRACT_NAME`を設定(後に行います)するか, `new-awesome-project`を適切なアカウント名に変更します。
+さらに接続するコントラクト（のデプロイしているアカウント名）の指定を`CONTRACT_NAME`で行っています。
+プロセスの環境変数として`CONTRACT_NAME`を設定（後に行います）するか, `new-awesome-project`を適切なアカウント名に変更します。
 このファイルは編集せずに先に進みましょう。
 
 次は`utils.js`ファイルを見ていきます。
@@ -273,7 +273,7 @@ export async function initContract() {
 `near-api-js`の使い方に関しては[こちら](https://docs.near.org/develop/integrate/frontend)を参照してください。
 また, `config.js`ファイルから`import`した`getConfig`関数を使用して設定を取得しています。
 その後に`initContract`関数でコントラクトとの接続を初期化,
-さらにその後に`コントラクトAPI`(コントラクトの機能を使用するための関数) の実装が続いています。
+さらにその後に`コントラクトAPI`（コントラクトの機能を使用するための関数）の実装が続いています。
 
 `initContract`関数内の以下の部分に注目しましょう。
 

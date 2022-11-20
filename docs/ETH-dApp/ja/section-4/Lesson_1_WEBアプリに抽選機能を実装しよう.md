@@ -91,7 +91,7 @@ contract WavePortal {
 uint256 private seed;
 ```
 
-ここでは、乱数を生成するために使用する初期シード(乱数の種)を定義しています。
+ここでは、乱数を生成するために使用する初期シード（乱数の種）を定義しています。
 
 ```solidity
 // WavePortal.sol
@@ -106,7 +106,7 @@ constructor() payable {
 
 `block.difficulty`と`block.timestamp`の2つは、Solidityから与えられた数値です。
 
-- `block.difficulty`は、ブロック承認(＝マイニング)の難易度をマイナーに通知するための値です。ブロック内のトランザクションが多いほど、難易度は高くなります。
+- `block.difficulty`は、ブロック承認（＝マイニング）の難易度をマイナーに通知するための値です。ブロック内のトランザクションが多いほど、難易度は高くなります。
 
 - `block.timestamp`は、ブロックが処理されている時のUNIXタイムスタンプです。
 

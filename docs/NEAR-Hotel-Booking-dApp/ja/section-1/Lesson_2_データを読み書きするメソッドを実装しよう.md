@@ -35,7 +35,7 @@ impl Default for Contract
 ```
 
 関数の中では、`rooms_per_owner`と`rooms_by_id`のインスタンスを`new()`で生成しています。
-// TODO: newの引数について説明を入れる(違い)。
+// TODO: newの引数について説明を入れる（違い）。
 `LookupMap`は`new()`に`b"m"`を引数に渡します。これは、`new()`が`LookupMap`のインスタンスを生成する際に、キーの一意なプレフィックスを設置するためです。`b"..."`は、バイト文字列リテラルを生成する`Rust`のキーワードです。
 
 ```rust
@@ -197,7 +197,7 @@ match self.rooms_per_owner.get(&owner_id) {
 
 `insert()`で保存する前に、`match`という[制御フロー演算子](https://doc.rust-jp.rs/book-ja/ch06-02-match.html)を使用してオーナーが既に他の部屋を登録しているか、初めて登録するかに応じて処理を分けています。`get()`は、引数にkeyを渡すと、対応するvalueを返す関数です。(厳密には、`Option`型というものを返します。([Option 型とは](https://qiita.com/take4s5i/items/c890fa66db3f71f41ce7)))
 
-- 別の部屋を登録済み → Some → 保存されているVectorに新しく要素(RoomId)を`push()`で追加する。 → `insert()`でマップに保存する。
+- 別の部屋を登録済み → Some → 保存されているVectorに新しく要素（RoomId）を`push()`で追加する。 → `insert()`でマップに保存する。
 - 初めて登録 → None → Vectorのインスタンスを、 `RoomId`を要素に生成する → `insert()`でマップに保存する。
 
 今回追加した`add_room_to_owner`メソッドが、ブロックチェーン上にデータを書き込むメソッドです。

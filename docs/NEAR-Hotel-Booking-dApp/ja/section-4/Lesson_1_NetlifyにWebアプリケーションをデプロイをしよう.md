@@ -20,7 +20,7 @@ npm install netlify-cli -g
 netlify login
 ```
 
-デプロイの前に、Netlifyで画面遷移がうまくいくように`near-hotel-booking-dapp/`直下(.gitignoreやpackage.jsonと同じ階層)にnetlify.tomlというファイルを作成して、以下のコードを加えましょう。
+デプロイの前に、Netlifyで画面遷移がうまくいくように`near-hotel-booking-dapp/`直下（.gitignoreやpackage.jsonと同じ階層）にnetlify.tomlというファイルを作成して、以下のコードを加えましょう。
 
 ```diff
 + //以下を追加してください
@@ -105,9 +105,9 @@ Website URL:       https://near-hotel-booking-dapp.netlify.app
 
 NFTを取得する条件は、以下のようになります。
 
-1. MVPの機能がすべて実装されている(実装OK)
+1. MVPの機能がすべて実装されている（実装OK）
 
-2. WebアプリケーションでMVPの機能が問題なく実行される(テストOK)
+2. WebアプリケーションでMVPの機能が問題なく実行される（テストOK）
 
 3. このページの最後にリンクされているProject Completion Formに記入する
 

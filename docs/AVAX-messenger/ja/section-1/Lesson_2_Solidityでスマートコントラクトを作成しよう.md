@@ -82,8 +82,8 @@ Solidityは [Semantic Versioning](https://semver.org/) を採用しているた�
 MAJOR.MINOR.PATCH
 ```
 
-となり, MAJOR(一番左の番号)は互換性がない修正・変更がSolidityに加わった場合に変わります。  
-つまり, `0.8.9`から`1.0.0`までの範囲は修正が加わっても互換性がある(コンパイルが可能)変更なので, `^`を先頭につけることで,  
+となり, MAJOR（一番左の番号）は互換性がない修正・変更がSolidityに加わった場合に変わります。  
+つまり, `0.8.9`から`1.0.0`までの範囲は修正が加わっても互換性がある（コンパイルが可能）変更なので, `^`を先頭につけることで,  
 その範囲のバージョンの違いは許容するということです。
 
 `0.8.9`が`hardhat.config.ts`でも記載されていることを確認してください。
@@ -183,7 +183,7 @@ describe("Messenger", function () {
 `Mocha`について詳しくは[こちら](https://mochajs.org/#getting-started)をご覧ください。
 
 `it`の引数にテスト名とテスト関数を渡します。  
-さらに複数の`it`関数を`describe`の引数(の関数)内に渡すことで, 個々のテストを1つの`describe`でグループ化します。
+さらに複数の`it`関数を`describe`の引数（の関数）内に渡すことで, 個々のテストを1つの`describe`でグループ化します。
 
 ```ts
 it("construct", async function () {

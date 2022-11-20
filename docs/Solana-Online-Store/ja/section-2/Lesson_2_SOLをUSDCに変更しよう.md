@@ -116,7 +116,7 @@ export default function handler(req, res) {
 }
 ```
 
-最初に追加したのはfaucetから取得(記載のある)したdevnet上に存在するUSDCトークンのトークンアドレスです。
+最初に追加したのはfaucetから取得（記載のある）したdevnet上に存在するUSDCトークンのトークンアドレスです。
 
 ```jsx
 const usdcAddress = new PublicKey("Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr");
@@ -126,7 +126,7 @@ const usdcAddress = new PublicKey("Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr"
 
 Solana上の代替可能なトークンは、[トークンプログラム](https://spl.solana.com/token)により作成されます。
 
-これは、各トークンが独自のアカウント(アドレス)を持つことを意味します。
+これは、各トークンが独自のアカウント（アドレス）を持つことを意味します。
 
 Solanaアカウントをホテル、各トークンのアカウントをホテルの部屋と考えると、ホテルの部屋の中を見るためには部屋番号が必要になります。
 
@@ -147,13 +147,13 @@ Solanaアカウントをホテル、各トークンのアカウントをホテ�
 
 ちなみに、上記の部分を任意の[SPLトークン](https://spl.solana.com/)に置き換えても機能します。
 
-`Buy now →`ボタンをクリックすると、トークン名(アドレスで表示される)「Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr」のリクエストが表示されるはずです。
+`Buy now →`ボタンをクリックすると、トークン名（アドレスで表示される）「Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr」のリクエストが表示されるはずです。
 
 これは**偽の USDC トークンのアドレス**ですが、メインネットではこれがUSDCとなるわけです。
 
 説明だけでは分かりづらいところがあるので、`sellerAddress`に設定したアドレスAとは別のアドレスBでWebアプリケーションに接続し、実際に`Buy now →`ボタンを押して購入してみてください。
 
-アドレスBから、所定の金額がアドレスAに送金されていることが分かるはずです(初期設定では金額が0.09 USDCとなっているので、分かりやすいように10.00 USDCに変更して試してみてください)。
+アドレスBから、所定の金額がアドレスAに送金されていることが分かるはずです（初期設定では金額が0.09 USDCとなっているので、分かりやすいように10.00 USDCに変更して試してみてください）。
 
 以上で、USDCでの支払いの準備が整いました!
 

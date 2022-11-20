@@ -30,7 +30,7 @@ NFTは**オン・チェーン**にデプロイされます。
 
 ### ⛓ ブロックチェーンとは何か？
 
-ブロックチェーンとは、互いに通信するコンピュータ(ノード)のピアツーピア・ネットワークです。
+ブロックチェーンとは、互いに通信するコンピュータ（ノード）のピアツーピア・ネットワークです。
 
 参加者全員がネットワークの運営を分担する分散型ネットワークですので、各ネットワークの参加者は、ブロックチェーン上のコードとデータのコピーを維持します。
 
@@ -54,7 +54,7 @@ NFTは**オン・チェーン**にデプロイされます。
 
 イーサリアムの汎用性により、そのネットワーク上にアプリケーションを構築できます。
 
-スマートコントラクトのコードはすべてイミュータブル(不変)、つまり**変更不可**能です。
+スマートコントラクトのコードはすべてイミュータブル（不変）、つまり**変更不可**能です。
 
 つまり、スマートコントラクトをブロックチェーンにデプロイすると、コードを変更したり更新したりすることはできなくなるのです。
 
@@ -64,9 +64,9 @@ NFTは**オン・チェーン**にデプロイされます。
 
 ### 📱 dApps とは何か？
 
-dAppsは、**分散型アプリケーション(decentralized Application)** の略です。
+dAppsは、**分散型アプリケーション（decentralized Application）** の略です。
 
-dAppsは、ブロックチェーン上に構築されたスマートコントラクトと、フロントエンドであるユーザーインタフェース(Webサイトなど)を組み合わせたアプリケーションのことを指します。
+dAppsは、ブロックチェーン上に構築されたスマートコントラクトと、フロントエンドであるユーザーインタフェース（Webサイトなど）を組み合わせたアプリケーションのことを指します。
 
 dAppsは、イーサリアムのプログラミング言語であるSolidityを基盤に構築されています。
 
@@ -112,4 +112,4 @@ UNCHAINのプロジェクトをみんなでより良いものにしていきま�
 Attribution: This learning content is licensed under [Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/) © 2022 buildspace. 
 Sharelike: Translations and modifications to markdown documents.
 
-Documentation created by [yukis4san](https://github.com/yukis4san) (UNCHAIN discord ID: yshimura#7617)
+Documentation created by [yukis4san](https://github.com/yukis4san)（UNCHAIN discord ID: yshimura#7617）

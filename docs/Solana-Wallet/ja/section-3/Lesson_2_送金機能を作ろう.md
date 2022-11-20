@@ -88,7 +88,7 @@ console.log(transaction);
 
 - 送信者
 - 受信者
-- 金額(lamports)
+- 金額（lamports）
 
 この3つで構成されています。
 

@@ -43,7 +43,7 @@ dfx 0.11.1
 
 ### ✨ Node.js の確認をする
 
-`node` / `npm`がインストールされている必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスし、インストールをしてください(Hardhatのためのサイトですが気にしないでください)。
+`node` / `npm`がインストールされている必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスし、インストールをしてください（Hardhatのためのサイトですが気にしないでください）。
 
 `node v16`をインストールすることを推奨しています。
 

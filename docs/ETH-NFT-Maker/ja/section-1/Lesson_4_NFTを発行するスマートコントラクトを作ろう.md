@@ -49,6 +49,7 @@ contract Web3Mint is ERC721URIStorage {
 contract Web3Mint is ERC721URIStorage {
 	:
 ```
+
 ここでは、`ERC721URIStorage`を継承しています。
 
 なぜ、`ERC721`ではなく`ERC721URIStorage`を継承しているのかと疑問に思った方もいるかもしれないですが、これはいきなり`tokenURI`関数で解説するよりも、`setTokenURI`で解説したほうがわかりやすいだろうという考えです。
@@ -61,6 +62,7 @@ contract Web3Mint is ERC721URIStorage {
 // Web3Mint.sol
 using Counters for Counters.Counter;
 ```
+
 `using Counters for Counters.Counter`はOpenZeppelinが`_tokenIds`を追跡するために提供するライブラリを呼び出しています。
 
 using A for Bは、Bという型で定義したものがAというメンバー関数を使うことができることになるものです。詳しくは[公式](https://docs.soliditylang.org/en/v0.8.13/contracts.html?highlight=using#using-for)を読んでみてください。
@@ -71,17 +73,18 @@ using A for Bは、Bという型で定義したものがAというメンバー�
 uint256のNFTをオーバーフローさせるのに必要なETHはとんでもない額になるので、おそらくオーバーフローはしないのですが、対策をしていくのは大事なことだと思います。
 
 次に、下記のコードを見ていきましょう。
+
 ```solidity
 // Web3Mint.sol
 Counters.Counter private _tokenIds;
 ```
 
 ここでは、`private _tokenIds`を宣言して、`_tokenIds`を初期化しています。
+
 - `_tokenIds`の初期値は0です。
--
-`tokenId`はNFTの一意な識別子で、0, 1, 2, .. Nのように付与されます。
-これが初めから強調してきた、NFTの本体と言ってもいい識別子になるので、これに注意してコードを書いていきましょう!
-次に、下記のコードを見ていきましょう。
+- `tokenId`はNFTの一意な識別子で、0, 1, 2, .. Nのように付与されます。
+  これが初めから強調してきた、NFTの本体と言ってもいい識別子になるので、これに注意してコードを書いていきましょう!
+  次に、下記のコードを見ていきましょう。
 
 ```solidity
 // Web3Mint.sol
@@ -89,6 +92,7 @@ constructor() ERC721 ("TanyaNFT", "TANYA") {
     console.log("This is my NFT contract.");
 }
 ```
+
 `ERC721`モジュールを使用した`constructor`を定義しています。
 ここでは任意のNFTトークンの名前とシンボルを引数として渡しています。
 
@@ -98,6 +102,7 @@ node_modulesの中にある`ERC721.sol`を見ればわかるのですが、継�
 - `TANYA`: NFTトークンのそのシンボル
 
 次に、下記の`makeAnEpicNFT`関数を段階的に見ていきましょう。
+
 ```solidity
 // Web3Mint.sol
 // ユーザーが NFT を取得するために実行する関数です。
@@ -112,11 +117,14 @@ function makeAnEpicNFT() public {
 	_tokenIds.increment();
 }
 ```
+
 まず、下記のコードを見ていきます。
+
 ```solidity
 // Web3Mint.sol
 uint256 newItemId = _tokenIds.current();
 ```
+
 `_tokenIds`について理解を深めましょう。
 Project2でも同じような解説が乗っていたと思いますが、これは重要なのでもう一度説明します。ピカソの例を思い出してください。
 
@@ -126,6 +134,7 @@ Project2でも同じような解説が乗っていたと思いますが、これ
 
 `_tokenIds`は単なる数字です。
 したがって、 `makeAnEpicNFT`関数が初めて呼び出されたとき、 `newItemId`は0になります。
+
 - `Counters.Counter private _tokenIds`により初期化されているため、`newItemId`は0です。
 
 もう一度実行すると、`newItemId`は1になり、以下同様に続きます。
@@ -137,12 +146,14 @@ Project2でも同じような解説が乗っていたと思いますが、これ
 // Web3Mint.sol
 _safeMint(msg.sender, newItemId);
 ```
+
 ここでは、コントラクトを呼び出したユーザー(＝ `msg.sender`)のアドレスに、ID(= `newItemId`)の付与されたNFTをMintしています。
 
 ざっくりと解説した、NFTの識別子をmint先のユーザーと結びつける行為ですね。
 `msg.sender`はSolidityが提供している変数であり、あなたのスマートコントラクトを呼び出したユーザーのパブリックアドレスを取得するために使用されます。
 
 これは、**ユーザーのパブリックアドレスを取得するための安全な方法**です。
+
 - ユーザーはパブリックアドレスを使用して、コントラクトを呼び出す必要があります。
 - これは、「サインイン」のような認証機能の役割を果たします。
 
@@ -152,25 +163,30 @@ _safeMint(msg.sender, newItemId);
 // Web3Mint.sol
 _setTokenURI(newItemId, "Valuable data!");
 ```
+
 これにより、NFTの一意の識別子と、その一意の識別子に関連付けられたデータが紐付けられます。
+
 - NFTを価値あるものにするのは、文字通り「NFTの一意の識別子」と「実際のデータ」を紐付ける必要があります。
-今は、`Valuable data!`という文字列が、「実際のデータ」として設定されていますが、これは後で変更します。
+  今は、`Valuable data!`という文字列が、「実際のデータ」として設定されていますが、これは後で変更します。
 - `Valuable data!`は、`ERC721`の基準に準拠していません。
 - `Valuable data!`と入れ替わる`tokenURI`についてこれから学んでいきます。
 
-
 最後に、下記のコードを見ていきましょう。
+
 ```solidity
 // Web3Mint.sol
 _tokenIds.increment();
 ```
-NFTが発行された後、`_tokenIds.increment()`(＝ OpenZeppelinが提供する関数)を使用して、`tokenIds`をインクリメント(＝ `+1`)しています。
+
+NFTが発行された後、`_tokenIds.increment()`（＝ OpenZeppelinが提供する関数）を使用して、`tokenIds`をインクリメント(＝ `+1`)しています。
 これにより、毎回NFTが発行されると、異なる`tokenIds`識別子がNFTと紐付けられます。
 複数のユーザーが、同じ`tokenIds`を持つことはありません。
 
 ### 🎟 `tokenURI`を取得して、コントラクトをローカル環境で実行しよう
+
 `tokenURI`は、**NFT データが保存されている場所**を意味します。
 `tokenURI`は、下記のような「**メタデータ**」と呼ばれるJSONファイルに**リンク**されています。
+
 ```bash
 {
     "name": "Tanya",
@@ -178,15 +194,16 @@ NFTが発行された後、`_tokenIds.increment()`(＝ OpenZeppelinが提供す�
     "image": "https://i.imgur.com/t1fye4S.jpg"
 }
 ```
+
 メタデータの構造に注意してください。
+
 - `"name"`: デジタルデータの名前
 - `"description"`: デジタルデータの説明
 - `"image"`: デジタルデータへのリンク
-メタデータの構造が [OpenSea の要件](https://zenn.dev/hayatoomori/articles/f26cc4637c7d66) と一致しない場合、デジタルデータはOpenSea上で正しく表示されません。
+  メタデータの構造が [OpenSea の要件](https://zenn.dev/hayatoomori/articles/f26cc4637c7d66) と一致しない場合、デジタルデータはOpenSea上で正しく表示されません。
 - Openseaは、`ERC721`のメタデータ規格をサポートしています。
 - 音声ファイル、動画ファイル、3Dメディアなどに対応するメタデータ構造に関しては、[OpenSea の要件](https://zenn.dev/hayatoomori/articles/f26cc4637c7d66) を参照してください。
--
-上記の`Tanya`のJSONメタデータをコピーして、 [ここ](https://jsonkeeper.com/)のWebサイトに貼り付けてください。
+- 上記の`Tanya`のJSONメタデータをコピーして、 [ここ](https://jsonkeeper.com/)のWebサイトに貼り付けてください。
 
 このWebサイトは、JSONデータをホストするのに便利です。
 
@@ -215,10 +232,12 @@ NFTが発行された後、`_tokenIds.increment()`(＝ OpenZeppelinが提供す�
 ### 🐈 `Web3Mint.sol`を更新する
 
 それでは、スマートコントラクトに向かい、下記の行を変更しましょう。
+
 ```solidity
 // Web3Mint.sol
 _setTokenURI(newItemId, "Valuable data!");
 ```
+
 先ほど取得したJSONファイルへのリンクこそ、`tokenURI`(＝ **NFT データが保存されている場所**)です。
 そのリンクを下記に貼り付けましょう。
 
@@ -229,7 +248,9 @@ _setTokenURI(
   "こちらに、JSON ファイルへのリンクを貼り付けてください"
 );
 ```
+
 ### 🎉 NFT をローカルネットワークにデプロイしよう
+
 ここから、実際に`makeAnEpicNFT()`関数を呼び出し、スマートコントラクトが問題なくデプロイされるかテストしていきます。
 テスト用のプログラム`run.js`ファイルを下記のように変更しましょう。
 
@@ -260,12 +281,16 @@ const runMain = async () => {
 };
 runMain();
 ```
+
 上記を`run.js`に反映させえたら、下記をターミナル上で実行しましょう。
+
 ```bash
 npx hardhat run scripts/run.js
 ```
+
 エラーが発生した場合は、`pwd`を実行して、 `ipfs-nfts`ディレクトリにいることを確認して、もう一度上記のコードを実行してみてください。
 下記のような結果が、ターミナルに出力されれば、テストは成功です。
+
 ```
 Compiling 1 file with 0.8.9
 Solidity compilation finished successfully
@@ -274,10 +299,12 @@ Contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 An NFT w/ ID 0 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
 An NFT w/ ID 1 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
 ```
+
 現在、ユーザーがこのスマートコントラクトにアクセスしてNFTを発行するたび、データは常に同じ`Tanya`です!　 🐱。
 それでは、テストネットに`Web3Mint.sol`コントラクトをデプロイしましょう。
 
 ### 🛫 テストネットへコントラクトをデプロイする
+
 これから、テストネットにあなたのスマートコントラクトをデプロイしていきます。
 これが成功すると、**NFT をオンラインで表示**できるようになり、 世界中のユーザーがあなたのNFTをOpenSeaから見ることができます。
 
@@ -290,6 +317,7 @@ An NFT w/ ID 1 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
 そして最後は、イーサリアムのノードにアクセスすることです。これは自分でノードを立ててもいいのですが、それは少し面倒なため、APIを使ってノードを叩けるようにしてくれているAlchemyのAPIを使います。
 
 ### 💳 トランザクションについて
+
 **イーサリアムネットワーク上でブロックチェーンに新しく情報を書き込むこと**を、**トランザクション**と呼びます。
 **新しくスマートコントラクトをイーサリアムネットワークにデプロイした**という情報をブロックチェーン上に書き込むこともトランザクションです。
 トランザクションにはマイナーの承認が必要ですので、Alchemyを導入します。
@@ -297,38 +325,45 @@ Alchemyは、世界中のトランザクションを一元化し、マイナー�
 [こちら](https://www.alchemy.com/) からAlchemyのアカウントを作成してください。
 
 ### 💎 Alchemy でネットワークを作成する
+
 Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押してください。
 ![](/public/images/ETH-NFT-Maker/section-1/1_4_3.png)
 次に、下記の項目を埋めていきます。下図を参考にしてください。
 ![](/public/images/ETH-NFT-Maker/section-1/1_4_4.png)
+
 - `NAME` : プロジェクトの名前(例: `Web3NFT`)
-- `DESCRIPTION` : プロジェクトの概要(任意)
+- `DESCRIPTION` : プロジェクトの概要（任意）
 - `CHAIN` : `Ethereum`を選択。
 - `NETWORK` : `Goerli`を選択。
-それから、作成したAppの`VIEW DETAILS`をクリックします。
-![](/public/images/ETH-NFT-Maker/section-1/1_4_5.png)
-プロジェクトを開いたら、`VIEW KEY`ボタンをクリックします。
-![](/public/images/ETH-NFT-Maker/section-1/1_4_6.png)
-ポップアップが開くので、`HTTP`のリンクをコピーしてください。
-これがあなたが本番環境のネットワークに接続する際に使用する`API Key`になります。
+  それから、作成したAppの`VIEW DETAILS`をクリックします。
+  ![](/public/images/ETH-NFT-Maker/section-1/1_4_5.png)
+  プロジェクトを開いたら、`VIEW KEY`ボタンをクリックします。
+  ![](/public/images/ETH-NFT-Maker/section-1/1_4_6.png)
+  ポップアップが開くので、`HTTP`のリンクをコピーしてください。
+  これがあなたが本番環境のネットワークに接続する際に使用する`API Key`になります。
 - **`API Key`は、後で必要になるので、あなたの PC 上のわかりやすいところに、メモとして残しておいてください。**
 
 ### 🐣 テストネットとは？
-今回のプロジェクトでは、コスト(＝ 本物のETH)が発生するイーサリアムメインネットではなく、**テストネットにコントラクトをデプロイします。**
+
+今回のプロジェクトでは、コスト（＝ 本物のETH）が発生するイーサリアムメインネットではなく、**テストネットにコントラクトをデプロイします。**
 テストネットはイーサリアムメインネットを模しています。
+
 - イーサリアムメインネットにコントラクトをデプロイした際に発生するイベントのテストを行うのに最適です。
 - テストネットは偽のETHを使用しているため、いくらでもトランザクションのテストを行えます。
-今回は、以下のイベントをテストしていきます。
+  今回は、以下のイベントをテストしていきます。
+
 1. トランザクションの発生を世界中のマイナーたちに知らせる
 2. あるマイナーがトランザクションを発見する
 3. そのマイナーがトランザクションを承認する
 4. そのマイナーがトランザクションを承認したことをほかのマイナーたちに知らせ、トランザクションのコピーを更新する
 
 ### 🚰 偽の ETH を取得する
+
 今回は、`Goerli`というイーサリアム財団によって運営されているテストネットを使用します。
 `Goerli`にコントラクトをデプロイし、コードのテストを行うために、偽のETHを取得しましょう。
-ユーザーが偽のETHを取得するために用意されたインフラは、「フォーセット(＝蛇口)」と呼ばれています。
+ユーザーが偽のETHを取得するために用意されたインフラは、「フォーセット（＝蛇口）」と呼ばれています。
 フォーセットを使用する前に、あなたのMetaMaskウォレットを`Goerli Test Network`に設定してください。
+
 > ✍️: MetaMask で`Goerli Test Network`を設定する方法
 >
 > 1 \. MetaMask ウォレットのネットワークトグルを開く。
@@ -346,10 +381,11 @@ Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押して�
 > 4 \. `Goerli Test Network`を選択する。
 >
 > ![](/public/images/ETH-NFT-Maker/section-1/1_4_10.png)
-MetaMaskウォレットに`Goerli Test Network`が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽ETHを取得しましょう。
-- [Alchemy](https://goerlifaucet.com/) - 0.25 Goerli ETH (24時間に1度もらうことができる)
+> MetaMask ウォレットに`Goerli Test Network`が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽 ETH を取得しましょう。
+
+- [Alchemy](https://goerlifaucet.com/) - 0.25 Goerli ETH（24時間に1度もらうことができる）
   - ウォレットアドレスを入力して`Send Me ETH`ボタンを押下するとその場でもらえます。
-- [Chainlink](https://faucets.chain.link/) - 0.1 Goerli ETH(その場でもらえる)
+- [Chainlink](https://faucets.chain.link/) - 0.1 Goerli ETH（その場でもらえる）
   - `Connect wallet`をクリックしてMetaMaskと接続する必要があります。
   - Twitterアカウントを連携する必要があります。
 
@@ -395,10 +431,13 @@ runMain();
 ```
 
 ### 📈 Goerli Test Network に コントラクトをデプロイしましょう
+
 `hardhat.config.js`ファイルを変更する必要があります。
 これは、スマートコントラクトプロジェクトのルートディレクトリにあります。
+
 - 今回は、`ipfs-nfts`ディレクトリの直下に`hardhat.config.js`が存在するはずです。
-例)`ipfs-nfts`で`ls`を実行した結果
+  例)`ipfs-nfts`で`ls`を実行した結果
+
 ```
 README.md			package-lock.json
 artifacts			package.json
@@ -406,6 +445,7 @@ cache				scripts
 contracts			test
 hardhat.config.js
 ```
+
 下記のように、`hardhat.config.js`の中身を更新します。
 
 ```javascript
@@ -421,10 +461,12 @@ module.exports = {
   },
 };
 ```
+
 次に、`YOUR_ALCHEMY_API_URL`と`YOUR_PRIVATE_GOERLI_ACCOUNT_KEY`を取得して、`hardhat.config.js`に貼り付けましょう。
 1\. `YOUR_ALCHEMY_API_URL`の取得
+
 > `hardhat.config.js`の`YOUR_ALCHEMY_API_URL`の部分を先ほど取得した Alchemy の URL（ `HTTP`リンク） と入れ替えます。
-2\. `YOUR_PRIVATE_GOERLI_ACCOUNT_KEY`の取得
+> 2\. `YOUR_PRIVATE_GOERLI_ACCOUNT_KEY`の取得
 > 1\. お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを`Goerli Test Network`に変更します。
 >
 > ![](/public/images/ETH-NFT-Maker/section-1/1_4_11.png)
@@ -451,12 +493,15 @@ module.exports = {
 > `hardhat.config.js`ファイルを Github にコミットしないでください。
 >
 > `hardhat.config.js`ファイルは、あなたのウォレットの秘密鍵を保持しており、他の人が見れる場所に保存するのは、大変危険です。
-下記を実行して、VS Codeで`.gitignore`ファイルを編集しましょう。
+> 下記を実行して、VS Code で`.gitignore`ファイルを編集しましょう。
+
 ```
 code .gitignore
 ```
+
 `.gitignore`に`hardhat.config.js`の行を追加します。
 `.gitignore`の中身が下記のようになっていれば、問題ありません。
+
 ```bash
 node_modules
 .env
@@ -470,7 +515,9 @@ cache
 artifacts
 hardhat.config.js
 ```
+
 `.gitignore`に記載されているファイルやディレクトリは、GitHubにディレクトリをプッシュされずに、ローカル環境にのみ保存されます。
+
 > **✍️: スマートコントラクトをデプロイするのに秘密鍵が必要な理由** > **新らしくスマートコントラクトをイーサリアムネットワーク上にデプロイすること**も、トランザクションの一つです。
 >
 > トランザクションを行うためには、ブロックチェーンに「ログイン」する必要があります。
@@ -486,25 +533,32 @@ hardhat.config.js
 > ユーザー名とパスワードを使用して、AWS にログインしてプロジェクトをデプロイするのと同じです。
 
 ### ⭐️ 実行する
+
 構成のセットアップが完了すると、前に作成したデプロイスクリプトを使用してデプロイするように設定されます。
 `ipfs-nfts`のルートディレクトリからこのコマンドを実行します 。
+
 ```bash
 npx hardhat run scripts/deploy.js --network goerli
 ```
+
 `deploy.js`を実行すると、実際にNFTを作成します。
 このプロセスは、約20〜40秒かかります。
 下記のような結果がターミナルに出力されば、成功です。
+
 ```
 Contract deployed to: 0x8F315ec3999874A676bbC9323cE31F3d242a4bC7
 Minted NFT #1
 Minted NFT #2
 ```
+
 ### 👀 Etherscan でトランザクションを確認する
+
 ターミナルに出力された`Contract deployed to`に続くアドレスを、[Etherscan](https://goerli.etherscan.io/) に貼り付けて、あなたのスマートコントラクトのトランザクション履歴を見てみましょう。
 Etherscanは、イーサリアムネットワーク上のトランザクションに関する情報を確認するのに便利なプラットフォームです。
 _表示されるまでに約 1 分かかる場合があります。_
 
 ### 🖼 NFT をオンラインで確認しよう
+
 作成したNFTは、OpenSeaのTestNetサイトで確認できます。
 [testnets.opensea.io](https://testnets.opensea.io/) にアクセスしてください。
 ターミナルに出力された`Contract deployed to`に続くアドレスを検索してみましょう。
@@ -516,26 +570,32 @@ _表示されるまでに約 1 分かかる場合があります。_
 ![](/public/images/ETH-NFT-Collection/section-1/1_4_19.png)
 コレクションがOpenSeaに表示されているのを確認してください。
 ![](/public/images/ETH-NFT-Collection/section-1/1_4_20.png)
-私が作成したTanyaコレクションの`tokenID` 0番のリンクは[こちら](https://testnets.opensea.io/ja/assets/rinkeby/0x67cd3f53c20e3a6211458dd5b7465e1f9464531c/0)になります(リンク先は、学習コンテンツ制作時に使用したRinkebyになっていますが、Rinkebyの箇所がGoerliでも同様に表示されます。)。
+私が作成したTanyaコレクションの`tokenID` 0番のリンクは[こちら](https://testnets.opensea.io/ja/assets/rinkeby/0x67cd3f53c20e3a6211458dd5b7465e1f9464531c/0)になります（リンク先は、学習コンテンツ制作時に使用したRinkebyになっていますが、Rinkebyの箇所がGoerliでも同様に表示されます）。
 リンクの内容は以下のようになります。
+
 ```
 https://testnets.opensea.io/ja/assets/rinkeby/0x67cd3f53c20e3a6211458dd5b7465e1f9464531c/0
 ```
+
 中身を見ていきましょう。
 `0x67cd3f53c20e3a6211458dd5b7465e1f9464531c`は、`MyEpicNFT`コントラクトのデプロイ先のアドレスです。
 `0`は、`tokenID`が0番であることを意味しています。
 上記のリンクを共有すれば、誰でもあなたのNFTをオンライン上で見ることができます。
 
 ### 🙋‍♂️ 質問する
+
 ここまでの作業で何かわからないことがある場合は、Discordの`#eth-nft-maker`で質問をしてください。
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
+
 ```
 1. 質問が関連しているセクション番号とレッスン番号
 2. 何をしようとしていたか
 3. エラー文をコピー&ペースト
 4. エラー画面のスクリーンショット
 ```
+
 ---
+
 おめでとうございます!　セクション1が終了しました!
 OpenSeaのリンクを`#eth-nft-maker`を貼り付けて、コミュニティにあなたのNFTをシェアしてください 😊
 どんなNFTなのか気になります ✨

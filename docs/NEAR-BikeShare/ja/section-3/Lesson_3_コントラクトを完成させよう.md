@@ -129,7 +129,7 @@ impl Contract {
 `ft_on_transfer`のプロトタイプ宣言を[ドキュメント](https://nomicon.io/Standards/Tokens/FungibleToken/Core#reference-level-explanation)や[ソースコード](https://github.dev/near-examples/FT)を参考に実装しています。
 `ft_on_transfer`の引数について整理しましょう。
 
-- `sender_id`: `ft_transfer_call`を呼び出した(つまりユーザの)アカウントID
+- `sender_id`: `ft_transfer_call`を呼び出した（つまりユーザの）アカウントID
 - `amount` : ftの量
 - `msg` : 何かを伝えるためのメッセージ, オプション
 

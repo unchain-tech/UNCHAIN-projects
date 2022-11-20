@@ -7,7 +7,7 @@
 
 `yield-farm-starter-project`フォルダの中に、`package.json`というファイルが存在します。
 
-`package.json`は、プロジェクトで使用するすべての依存関係(dependencies)を保持するファイルです。
+`package.json`は、プロジェクトで使用するすべての依存関係（dependencies）を保持するファイルです。
 
 `package.json`ファイルには、アプリケーションとブロックチェーンを接続するための`web3.js`と`truffle` 、クライアント側のアプリケーションを構築するための`react`など、このプロジェクトの構築に必要な様々なパッケージの依存関係のリストが含まれています。
 
@@ -67,7 +67,7 @@ contract TokenFarm{
 
 ここでは`TokenFarm`コントラクトで`string`型の`name`という変数に値を代入しています。　
 
-イーサリアム仮想マシン(EVM)であるGanacheが機能しているかを確認するために非常に簡単なスマートコントラクトを作成しました。
+イーサリアム仮想マシン（EVM）であるGanacheが機能しているかを確認するために非常に簡単なスマートコントラクトを作成しました。
 
 次にスマートコントラクトをブロックチェーン上にデプロイするための`js`ファイルを作成しましょう。
 
@@ -115,7 +115,7 @@ Compiling your contracts...
 
 ### 📂 ABI ファイルとは？
 
-ABI (Application Binary Interface) はコントラクトの取り扱い説明書のようなものです。
+ABI（Application Binary Interface）はコントラクトの取り扱い説明書のようなものです。
 
 Webアプリケーションがコントラクトと通信するために必要な情報が、ABIファイルに含まれています。
 

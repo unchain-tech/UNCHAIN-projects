@@ -104,7 +104,7 @@ _📝 備考: `ExperimentalWarning`のようなランダムな警告が表示さ
 
 現段階ではNFTを作成せず、コレクション自体のメタデータを設定するところまで行います。
 
-ここで言うメタデータとは、コレクションの名前(例： CryptoPunks)や、コレクションに関連する画像(OpenSeaでヘッダーとして表示されます)などとなります。
+ここで言うメタデータとは、コレクションの名前（例： CryptoPunks）や、コレクションに関連する画像（OpenSeaでヘッダーとして表示されます）などとなります。
 
 [ERC-721](https://ethereum.org/ja/developers/docs/standards/tokens/erc-721/) をご存知の方は、同じ画像、名前、プロパティを持つNFTであっても、それぞれユニークです。
 
@@ -175,7 +175,7 @@ _⚠️ 注意： インターネットのリンク(ex. https://~)を使用す�
 yarn node --loader ts-node/esm src/scripts/2-deploy-drop.ts
 ```
 
-成功すると、以下のように得られた結果が出力されます(少し時間がかかります)。
+成功すると、以下のように得られた結果が出力されます（少し時間がかかります）。
 
 ```bash
 SDK initialized by address: 0x8cB688A30D5Fd6f2e5025d8915eD95e770832933

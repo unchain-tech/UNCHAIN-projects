@@ -15,7 +15,7 @@ ETHERSCAN_API = ""
 POLYGON_URL = ""
 ```
 
-今回の実装では、`API_URL`(Alchemy API)は必要ないので、空文字列`""`を設定してください。
+今回の実装では、`API_URL`（Alchemy API）は必要ないので、空文字列`""`を設定してください。
 
 - ただし削除しないでください、設定ファイルが壊れてしまいます。
 
@@ -87,14 +87,14 @@ uint public constant PRICE = 0.01 ether;
 >
 > ERC20 に準拠しているトークンは、MetaMask のような既存のウォレットで管理することができます。
 
-現在(2022年2月)、ETHとMATICを日本円に換算すると以下のようになります。
+現在（2022年2月）、ETHとMATICを日本円に換算すると以下のようになります。
 
 ```
 1 ETH    ≒  340,000円
 1 MATIC  ≒  200 円
 ```
 
-したがって、ETHで表記したNFT 1つあたりの価格(0.01 ETH)をMATICに換算すると、17 MATICとなります。
+したがって、ETHで表記したNFT 1つあたりの価格（0.01 ETH）をMATICに換算すると、17 MATICとなります。
 
 この変更を反映させるために、`NFTCollectible.sol`の価格表記を下記のように更新しましょう。
 
@@ -203,7 +203,7 @@ MetaMaskとHardhatの両方でPolygonネットワークの設定が完了した�
 
 Goerliとは異なり、これらのトークンの取得にそれほど問題はないはずです。
 
-1回のリクエストで0.5 MATIC(偽)が手に入るので、2回リクエストして、1 MATIC入手しましょう。
+1回のリクエストで0.5 MATIC（偽）が手に入るので、2回リクエストして、1 MATIC入手しましょう。
 
 **⚠️: Polygon のメインネットワークにコントラクトをデプロイする際の注意事項**
 
@@ -276,9 +276,9 @@ Owner has tokens:  []
 
 ![](/public/images/Polygon-Generative-NFT/section-3/3_2_8.png)
 
-### 📝 Polygonscan を使ってコントラクトを verify(検証)する
+### 📝 Polygonscan を使ってコントラクトを verify（検証）する
 
-最後に、Polygonscanで **コントラクトの Verification(検証)** を行い、ユーザーがPolygonscanから直接あなたのNFTをMintできるようにしましょう。
+最後に、Polygonscanで **コントラクトの Verification（検証）** を行い、ユーザーがPolygonscanから直接あなたのNFTをMintできるようにしましょう。
 
 まず、[Polygonscan](https://polygonscan.com/) に向かい、アカウントを作成しましょう。
 

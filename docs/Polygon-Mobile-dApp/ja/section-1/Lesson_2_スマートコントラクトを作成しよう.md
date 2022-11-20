@@ -88,7 +88,7 @@ contract TodoContract {
     }
 ```
 
-`struct Task`は、各ToDoに関する情報(メタデータ)を格納するためのデータ構造です。これには、To-doの`id`、`taskName`、`isComplete`のブール値などが含まれています。
+`struct Task`は、各ToDoに関する情報（メタデータ）を格納するためのデータ構造です。これには、To-doの`id`、`taskName`、`isComplete`のブール値などが含まれています。
 - `id` : To-doを識別するためのid
 - `taskName` : To-doのタイトル
 - `isComplete` : To-doが完了したかどうかの状態(完了したら`true`、完了してないなら`false`)

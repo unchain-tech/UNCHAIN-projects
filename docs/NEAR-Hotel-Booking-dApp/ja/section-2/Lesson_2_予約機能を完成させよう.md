@@ -216,7 +216,7 @@
         room.status = UsageStatus::Stay { check_in_date };
 ```
 
-`status`を変更する際に、どの宿泊データ(宿泊日)が使用されているのかを周知するために、`check_in_date`を保存します。
+`status`を変更する際に、どの宿泊データ（宿泊日）が使用されているのかを周知するために、`check_in_date`を保存します。
 
 `is_available`メソッドは、オーナーが誤って**Check In**ボタンを押してしまわないように確認をするためのものです。フロントエンドを実装する際に、`change_status_to_stay`メソッドを呼び出す前にこのメソッドを使用します。
 確認したい部屋のIDが引数として渡されるので、IDに紐づく部屋を取得して`status`を確認します。

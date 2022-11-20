@@ -30,16 +30,16 @@
 重要な機能を分割し最適なデータ構造を採用することで, 開発者により柔軟性と制御性のある環境を提供しています。  
 以下に簡単にまとめます。
 
-1. `C-Chain` (Contract Chain)  
+1. `C-Chain`（Contract Chain）  
    スマートコントラクトのデプロイ・実行ができるブロックチェーンです。
-2. `P-Chain` (Platform Chain)  
-   Subnet(独自ブロックチェーン) を作成できるブロックチェーンです。
-3. `X-Chain` (Exchange Chain)  
+2. `P-Chain`（Platform Chain）  
+   Subnet（独自ブロックチェーン）を作成できるブロックチェーンです。
+3. `X-Chain`（Exchange Chain）  
    デジタル資産の作成及びトレードに特化したチェーンです。
 
 ### ⛓️ `C-Chain`とは何か？
 
-`C-Chain` (Contract Chain)はスマートコントラクトのデプロイ・実行ができるブロックチェーンで, `Avalanche`を構成するネットワークの1つです。  
+`C-Chain`（Contract Chain）はスマートコントラクトのデプロイ・実行ができるブロックチェーンで, `Avalanche`を構成するネットワークの1つです。  
 `C-Chain`は [EVM](https://phemex.com/ja/academy/%E3%82%A4%E3%83%BC%E3%82%B5%E3%83%AA%E3%82%A2%E3%83%A0%E3%83%90%E3%83%BC%E3%83%81%E3%83%A3%E3%83%AB%E3%83%9E%E3%82%B7%E3%83%B3-%E3%81%9D%E3%81%AE%E4%BB%95%E7%B5%84%E3%81%BF%E3%81%A8%E3%81%AF#:~:text=%E3%82%A4%E3%83%BC%E3%82%B5%E3%83%AA%E3%82%A2%E3%83%A0%E3%83%90%E3%83%BC%E3%83%81%E3%83%A3%E3%83%AB%E3%83%9E%E3%82%B7%E3%83%B3%EF%BC%88EVM,%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%81%8C%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%99%E3%80%82) 互換となっています。  
 つまりEthereum上で動作するスマートコントラクトをそのまま`Avalanche`の`C-Chain`上にデプロイすることができます。  
 Ethereumはとても大きなプラットフォームですから, 多くのブロックチェーン開発者にとって  
@@ -53,14 +53,14 @@ Ethereumはとても大きなプラットフォームですから, 多くのブ�
 
 ### 🛠 何を構築するのか？
 
-`Messenger`という **分散型 Web アプリケーション(dApp)** を構築します。
+`Messenger`という **分散型 Web アプリケーション（dApp）** を構築します。
 
 `Messenger`では,以下の機能を実装します。
 
 1. ユーザは他のユーザへメッセージを送ることができる。
-2. メッセージにはテキストと`AVAX`(Avalancheのネイティブトークン) を送付することができる。
+2. メッセージにはテキストと`AVAX`（Avalancheのネイティブトークン）を送付することができる。
 3. メッセージデータは,`C-Chain`上のスマートコントラクトを介してブロックチェーン上に保存される。
-4. メッセージの受信者であるユーザはテキストの確認と, 送付された`AVAX`を受け取る(または返却する)ことができる 🎉
+4. メッセージの受信者であるユーザはテキストの確認と, 送付された`AVAX`を受け取る（または返却する）ことができる 🎉
 
 アプリケーション全体としては  
 バックエンドの役目を担うスマートコントラクトを`Solidity`という言語を使用して実装し,  
@@ -102,4 +102,4 @@ UNCHAINのプロジェクトをみんなでより良いものにしていきま�
 
 次のレッスンに進んでプログラミングの環境構築しましょう 🎉
 
-Documentation created by [ryojiroakiyama](https://github.com/ryojiroakiyama) (UNCHAIN discord ID: rakiyama#8051)
+Documentation created by [ryojiroakiyama](https://github.com/ryojiroakiyama)（UNCHAIN discord ID: rakiyama#8051）

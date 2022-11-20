@@ -227,8 +227,8 @@ window.contract = await new Contract(
 );
 ```
 
-- `viewMethods` : ブロックチェーン上のデータを読み込むメソッド(ガス代は無料)
-- `changeMethods` : ブロックチェーン上にデータを書き込むメソッド(ガス代が必要)
+- `viewMethods` : ブロックチェーン上のデータを読み込むメソッド（ガス代は無料）
+- `changeMethods` : ブロックチェーン上にデータを書き込むメソッド（ガス代が必要）
 
 次に、使用するメソッドの処理を定義し`export`します。
 
@@ -323,7 +323,7 @@ export async function change_status_to_stay(room_id, check_in_date) {
 }
 ```
 
-トークンの転送処理が行われる`book_room`メソッドには、第二引数にガスの上限、第三引数に量(ここでは宿泊料)を指定します。
+トークンの転送処理が行われる`book_room`メソッドには、第二引数にガスの上限、第三引数に量（ここでは宿泊料）を指定します。
 
 ```javascript
 await window.contract.book_room(

@@ -18,7 +18,7 @@ NEARの特徴としては、独自の`シャーディング技術`によって�
 
 また、環境への配慮もされており従来の通貨に比べて約1/1300の電気しか使用しないそうです。
 
-従来では`Rust`や`AssemblyScript`(JavaScriptっぽい言語)の2つの言語で作成されたコントラクトしか動かすことができなかったのですが、Auroraチェーンを仲介することで、EVM上で動くコントラクト(Solidity, Vyper, etc)をNEAR上でも動かすことができるようになりました。
+従来では`Rust`や`AssemblyScript`（JavaScriptっぽい言語）の2つの言語で作成されたコントラクトしか動かすことができなかったのですが、Auroraチェーンを仲介することで、EVM上で動くコントラクト（Solidity, Vyper, etc）をNEAR上でも動かすことができるようになりました。
 
 このことでより多くのサービスをNEARという高速トランザクションを実現したチェーンで展開できるということです。
 
@@ -96,4 +96,4 @@ UNCHAINのプロジェクトをみんなでより良いものにしていきま�
 
 ---
 
-Documentation created by [honganji](https://github.com/honganji) (UNCHAIN discord ID: Tonny#5693)
+Documentation created by [honganji](https://github.com/honganji)（UNCHAIN discord ID: Tonny#5693）

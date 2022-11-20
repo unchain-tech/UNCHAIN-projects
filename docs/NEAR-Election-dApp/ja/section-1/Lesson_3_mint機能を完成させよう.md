@@ -127,7 +127,7 @@ pub(crate) fn refund_deposit(storage_used: u64) {
 
 `tokens_set`の前についている`mut`は`mutable`のことで変更可能であることを示しています。
 
-`unwrap_or_else`というメソッドはもし引数である`account_id`に対するtokenの値(ベクター型)が存在していなければ新しくベクターを作るというものです。
+`unwrap_or_else`というメソッドはもし引数である`account_id`に対するtokenの値（ベクター型）が存在していなければ新しくベクターを作るというものです。
 
 `UnorderedSet`の`{}`では引数である`account_id`をハッシュ化した値によってユニークなストレージの接頭辞を作り出す目的がある。
 

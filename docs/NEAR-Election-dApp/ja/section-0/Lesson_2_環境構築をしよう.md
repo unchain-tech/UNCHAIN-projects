@@ -14,7 +14,7 @@
 $ curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
 ```
 
-1. Proceed with installation (default)
+1. Proceed with installation（default）
 2. Customize installation
 3. Cancel installation
    このようなメッセージが出てきたら、1のdefaultを選択してください。
@@ -75,7 +75,7 @@ cargo new near-election-dapp-contract --lib
 
 始めの`cargo`はrustのパッケージを管理してくれるもので、JavaScriptで使っていたnpmのrust版と考えていただければOKです。
 
-次の`new`は新しいプロジェクトということを表しており、その次の`near-election-dapp-contract`はプロジェクト名を表しています。ここは自分の好きな名前に変えてもらって大丈夫です(ただし、この後もここで使った名前を使うので、同じ名前にしておいた方がスムーズに進めることができるかと思います)。
+次の`new`は新しいプロジェクトということを表しており、その次の`near-election-dapp-contract`はプロジェクト名を表しています。ここは自分の好きな名前に変えてもらって大丈夫です（ただし、この後もここで使った名前を使うので、同じ名前にしておいた方がスムーズに進めることができるかと思います）。
 
 最後の`--lib`はライブラリということを意味しています。これは、スマートコントラクトがライブラリだからです。これを付け忘れるとスマートコントラクトとして機能しないので忘れないように気をつけてください！
 
@@ -93,7 +93,7 @@ npx create-near-app@3.1.0 --frontend=react --contract=rust near-election-dapp-fr
 
 このコードが意味しているのは`フロント=react`で、`コントラクト=Rust `で記述されているプロジェクトであるということです。
 
-最後の`near-election-dapp-frontend`はプロジェクト名なので自分の好きな名前に変えてもらって大丈夫です(ただし、この後もここで使った名前を使うので同じ名前にしておいた方がスムーズに進めることができるかと思います)。
+最後の`near-election-dapp-frontend`はプロジェクト名なので自分の好きな名前に変えてもらって大丈夫です（ただし、この後もここで使った名前を使うので同じ名前にしておいた方がスムーズに進めることができるかと思います）。
 
 ここまででファイル構造は下のようなものになっているはずです。
 
@@ -146,7 +146,7 @@ https://asapoon.com/error/2795/command-not-found-yarn/
 
 まずは下のコマンドをターミナルで実行し、Tailwindのインストールとconfigファイルの生成をします。
 
-注意点として、このコマンドをターミナルで実行するのは先ほど作成したフロントエンドのディレクトリである`near-election-dapp-frontend`です(名前を変えた方はその名前)。
+注意点として、このコマンドをターミナルで実行するのは先ほど作成したフロントエンドのディレクトリである`near-election-dapp-frontend`です（名前を変えた方はその名前）。
 
 ```bash
 npm install -D tailwindcss postcss &&  npx tailwindcss init
@@ -205,7 +205,7 @@ module.exports = {
 下のように一部分が赤字に変わっていれば成功です！
 ![](/public/images/NEAR-Election-dApp/section-0/0_2_2.png)
 
-では最後に、コントラクトのディレクトリ(ここではnear-election-dapp-frontend)内にある`contract`というディレクトリは削除してください。
+では最後に、コントラクトのディレクトリ（ここではnear-election-dapp-frontend）内にある`contract`というディレクトリは削除してください。
 
 先ほど`npx create-near-app@3.1.0 --frontend=react --contract=rust near-election-dapp-frontend`を実行させることによってコントラクトも同時に作られましたが、一からスマートコントラクトを作る練習ということでフロントとコントラクトを別々に作っており、ややこしくなる可能性があるのでこの作業を行います。
 

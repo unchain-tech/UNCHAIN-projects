@@ -12,7 +12,7 @@
 
 ### 💰 支払いを実装しよう
 
-私たちは実際には`.eth`のようなTLD(トップレベルドメイン)をコントラクトに入れていません。
+私たちは実際には`.eth`のようなTLD（トップレベルドメイン）をコントラクトに入れていません。
 
 ミントしたいドメインを設定しましょう! 私は`.ninja`を使います 🥷
 
@@ -175,7 +175,7 @@ runMain();
 登録されているすべてのドメインの末尾を`.ninja`にします。 つまり、 `tld`プロパティを初期化するには、`deploy`関数に`ninja`を渡す必要があります。 次に、ドメインを登録するには、実際に`register`関数を呼び出す必要があります。 このとき2つの引数が必要であることに注意しておきましょう。
 
 - 登録するdomain
-- **Matic 建ての domain(ガスを含む)の価格**
+- **Matic 建ての domain（ガスを含む）の価格**
 
 単位換算は[Solidity では動作が異なる](https://docs.soliditylang.org/en/v0.8.11/units-and-global-variables.html#units-and-globally-available)ため、特別な`parseEther`関数を使用します)。 これにより、支払いとして0.01Maticがウォレットからコントラクトに送信されます。 その後、ドメインは私のウォレットアドレスに作成されます。
 
@@ -225,7 +225,7 @@ OpenSeaにENSドメインを所有している場合、実際には次のよう�
 
 1. OpenZeppelinのコントラクトを使用して、ERC721トークンを簡単に作成します。
 2. NFT用のSVGを作成し、チェーンストレージで使用します。
-3. トークンメタデータ( NFTが保持するデータ)を設定します。
+3. トークンメタデータ（NFTが保持するデータ）を設定します。
 4. ミントします!
 
 最後には**新しく登録したドメインを取得して、そこから NFT を作成し**します。
@@ -368,7 +368,7 @@ constructor(string memory _tld) payable ERC721("Ninja Name Service", "NNS") {
 
 次に、NFTを設計します。 これはアプリの非常に重要な部分となります。NFTは、誰もが自分のウォレットやOpenSeaで目にするものです。 実際には、NFTをPolygonブロックチェーン上に保存します。 多くのNFTは、画像ホスティングサービスを指す単なるリンクです。 通常サーバーサービスがダウンした場合、NFTにはイメージ画像がなくなります。 それをブロックチェーン上に置くことによって、永続性を持ちます。
 
-これを実現するために、SVG(コードで構築されたイメージ)を使用します。 グラデーション、ポリゴンロゴ、ドメインテキストを含む正方形のボックスのSVGコードは次のとおりです。
+これを実現するために、SVG（コードで構築されたイメージ）を使用します。 グラデーション、ポリゴンロゴ、ドメインテキストを含む正方形のボックスのSVGコードは次のとおりです。
 
 ```html
 <svg xmlns="http://www.w3.org/2000/svg" width="270" height="270" fill="none">
@@ -510,7 +510,7 @@ function register(string calldata name) public payable {
 
 ほとんどはもう学習済みです。今までで取り上げていないのは、`_tokenIds`と`json`の使用だけです。
 
-`json` NFTはJSONを使用して、名前(name)、説明(description)、属性(attributes)、メディア(media)などの詳細情報を保存します。 `json`で行っているのは、文字列と`abi.encodePacked`を組み合わせてJSONオブジェクトを作成することです。 次に、トークンURIとして設定する前に、Base64文字列としてエンコードしています。
+`json` NFTはJSONを使用して、名前（name）、説明（description）、属性（attributes）、メディア（media）などの詳細情報を保存します。 `json`で行っているのは、文字列と`abi.encodePacked`を組み合わせてJSONオブジェクトを作成することです。 次に、トークンURIとして設定する前に、Base64文字列としてエンコードしています。
 
 `_tokenIds`について知っておく必要があるのは、NFTの一意のトークン番号にアクセスして設定できるオブジェクトであるということだけです。 各NFTには一意の`id`があり、それはNFTを確認するのに役立ちます。 以下の2つの行は、実際にNFTを作成する行です。
 
@@ -547,7 +547,7 @@ Owner of domain mortal: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
 Contract balance: 0.1
 ```
 
-`npx hardhat run scripts/run.js`を実行します。 大きな違いは、コンソールの出力です。 私の外観です(このスクリーンショットのURIは短縮してあります)：
+`npx hardhat run scripts/run.js`を実行します。 大きな違いは、コンソールの出力です。 私の外観です（このスクリーンショットのURIは短縮してあります）：
 
 ![](/public/images/Polygon-ENS-Domain/section-1/1_4_4.png)
 

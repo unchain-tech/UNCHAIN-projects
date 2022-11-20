@@ -13,7 +13,7 @@
 truffle migrate --reset
 ```
 
-次に、用意したフロントエンドの内容(テンプレート)を確認するために、以下のコマンドを実行しましょう。
+次に、用意したフロントエンドの内容（テンプレート）を確認するために、以下のコマンドを実行しましょう。
 
 ```bash
 npm run start
@@ -38,7 +38,7 @@ npm run start
 
 ![](/public/images/ETH-Yield-Farm/section-3/3_1_4.png)
 
-そこでGanacheに向かい、`100mDai`トークンを送金したアカウント(ここまで手順通りにコーディングした場合Ganache画面の上から2番目のアカウント)のPrivate keyをコピーしましょう。
+そこでGanacheに向かい、`100mDai`トークンを送金したアカウント（ここまで手順通りにコーディングした場合Ganache画面の上から2番目のアカウント）のPrivate keyをコピーしましょう。
 
 Metamaskの`Private Key`入力欄にコピーしたPrivate keyを貼り付け、Importボタンを押してください。
 

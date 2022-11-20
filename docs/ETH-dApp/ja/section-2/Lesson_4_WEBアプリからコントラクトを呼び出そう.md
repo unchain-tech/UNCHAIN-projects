@@ -286,7 +286,7 @@ const contractAddress = "あなたの WavePortal の address を貼り付けて�
 
 ### 📂 ABI ファイルを取得する
 
-ABI (Application Binary Interface) はコントラクトの取り扱い説明書のようなものです。
+ABI（Application Binary Interface）はコントラクトの取り扱い説明書のようなものです。
 
 Webアプリケーションがコントラクトと通信するために必要な情報が、ABIファイルに含まれています。
 
@@ -306,7 +306,7 @@ ABIファイルの中身は、`WavePortal.json`というファイルに格納さ
 
 下記を実行して、ABIファイルをコピーしましょう。
 
-1. ターミナル上で`my-wave-portal`にいることを確認する(もしくは移動する)。
+1. ターミナル上で`my-wave-portal`にいることを確認する（もしくは移動する）。
 
 2. ターミナル上で下記を実行し、`WavePortal.json`を開きましょう。※ ファインダーから直接開くことも可能です。
 
@@ -611,7 +611,7 @@ npm run start
 
 1 \. `Connect Wallet`をボタンを押して、WebアプリケーションにあなたのMetaMaskのウォレットアドレスを接続する。
 
-2 \. `Wave at Me`ボタンを押して、実際にブロックチェーン上にあなたの「👋(wave)」が反映されているか確認する。
+2 \. `Wave at Me`ボタンを押して、実際にブロックチェーン上にあなたの「👋（wave）」が反映されているか確認する。
 
 いつものようにローカルサーバーにホストされているWebアプリケーションを`Inspect`し、Consoleを確認しましょう。
 
@@ -636,7 +636,7 @@ npm run start
 
 - Mined -- `0x..` ← これをコピーしてEtherscanに貼り付ける
 
-  🎉 あなたのWebアプリケーションを介してGoerli Test Network上に書き込まれた「👋(wave)」に対するトランザクションの履歴が参照できます。
+  🎉 あなたのWebアプリケーションを介してGoerli Test Network上に書き込まれた「👋（wave）」に対するトランザクションの履歴が参照できます。
 
 ### 🙋‍♂️ 質問する
 

@@ -236,7 +236,7 @@ Contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 
 ### 🌱 Mint とは
 
-NFTにおける「Mint(ミント)」とは、**スマートコントラクトを用いて、NFT を新らしく作成・発行すること**を意味します。
+NFTにおける「Mint（ミント）」とは、**スマートコントラクトを用いて、NFT を新らしく作成・発行すること**を意味します。
 
 ### 🎩 Hardhat Runtime Environment について
 
@@ -244,9 +244,9 @@ NFTにおける「Mint(ミント)」とは、**スマートコントラクトを
 
 しかし、`hre`はどこにもインポートされていません。それはなぜでしょうか？
 
-それは、ずばり、HardhatがHardhat Runtime Environment(HRE)を呼び出しているからです。
+それは、ずばり、HardhatがHardhat Runtime Environment（HRE）を呼び出しているからです。
 
-HREは、Hardhatが用意したすべての機能を含むオブジェクト(＝コードの束)です。`hardhat`で始まるターミナルコマンドを実行するたびに、HREにアクセスしているので、`hre`を`run.js`にインポートする必要はありません。
+HREは、Hardhatが用意したすべての機能を含むオブジェクト（＝コードの束）です。`hardhat`で始まるターミナルコマンドを実行するたびに、HREにアクセスしているので、`hre`を`run.js`にインポートする必要はありません。
 
 詳しくは、[Hardhat 公式ドキュメント（英語）](https://hardhat.org/advanced/hardhat-runtime-environment.html) にて確認できます。
 

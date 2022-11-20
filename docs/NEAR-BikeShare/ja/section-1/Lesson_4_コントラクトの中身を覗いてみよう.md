@@ -17,11 +17,11 @@ impl struct_name {
 }
 ```
 
-`pub struct`という構文でストラクト(構造体)を用意し, その中にコントラクト内で扱う値を保持します。
+`pub struct`という構文でストラクト（構造体）を用意し, その中にコントラクト内で扱う値を保持します。
 `impl`という構文でストラクトに関するメソッドを定義してゆきます。
 
 それでは実際の中身を見ます。
-お気に入りのコードエディタ(お持ちでない方はVSCodeをインストールしましょう)でプロジェクトのディレクトリを開きます。
+お気に入りのコードエディタ（お持ちでない方はVSCodeをインストールしましょう）でプロジェクトのディレクトリを開きます。
 そして`ft/src/lib.rs`を開きます。
 コードを上から見てゆくと, ストラクトの定義が途中に見つけられます。
 
@@ -95,10 +95,10 @@ near_contract_standards::impl_fungible_token_storage!(Contract, token, on_accoun
 NEARが用意したライブラリ(`near_contract_standards`)を使用しています。
 
 - `impl_fungible_token_core`
-  [NEP-141](https://nomicon.io/Standards/Tokens/FungibleToken/Core#reference-level-explanation)(fungible tokenの規約)に則ったメソッドをストラクトに実装します。
+  [NEP-141](https://nomicon.io/Standards/Tokens/FungibleToken/Core#reference-level-explanation)（fungible tokenの規約）に則ったメソッドをストラクトに実装します。
   例えば`ft_transfer`, `ft_balance_of`メソッドなどです。
 - `impl_fungible_token_storage`
-  [NEP-145](https://nomicon.io/Standards/StorageManagement)(ストレージマネジメントの規約)に則ったメソッドをストラクトに実装します。
+  [NEP-145](https://nomicon.io/Standards/StorageManagement)（ストレージマネジメントの規約）に則ったメソッドをストラクトに実装します。
   例えば`storage_deposit`メソッドなどです。
 
 ざっくりとでしたが`ftコントラクト`の中で何が記述されているのかを見ることができました。

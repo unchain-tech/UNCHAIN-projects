@@ -178,7 +178,7 @@ if (!window.accountId) {
 
 接続されていたら、部屋を追加する**POST**ボタンと部屋のデータを表示します。
 
-データの表示には、`React Bootstrap`の[Table](https://react-bootstrap.github.io/components/table/)を使用します。表示する際に、オーナーが利用状況を把握しやすいようステータスが`Available`なら白(デフォルト)、`Stay`なら赤を背景色にします。
+データの表示には、`React Bootstrap`の[Table](https://react-bootstrap.github.io/components/table/)を使用します。表示する際に、オーナーが利用状況を把握しやすいようステータスが`Available`なら白（デフォルト）、`Stay`なら赤を背景色にします。
 
 ```javascript
 {
