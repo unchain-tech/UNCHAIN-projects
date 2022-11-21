@@ -154,3 +154,7 @@ NFTを取得する条件は、以下のようになります。
 Webアプリケーション上でオリジナルの機能を実装して遊んでみてください。
 
 イケている機能を実装できたらDiscordでコミュニティに紹介してみてください!
+
+---
+
+Project Completion Form は[こちら](https://airtable.com/shrf1cCtTx0iQuszX)です。

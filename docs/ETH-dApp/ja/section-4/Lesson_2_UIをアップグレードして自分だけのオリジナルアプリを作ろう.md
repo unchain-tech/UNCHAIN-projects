@@ -271,3 +271,7 @@ NFTを取得する条件は、以下のようになります。
 UIのデザインや機能をアップグレードしたら、ぜひコミュニティにシェアしてください!　 😊
 
 これからもweb3への旅をあなたが続けてくれることを願っています 🚀
+
+---
+
+Project Completion Form は[こちら](https://airtable.com/shrf1cCtTx0iQuszX)です。
