@@ -98,7 +98,7 @@ contract JOEToken is ERC20 {
 
 `0.8.17`が`hardhat.config.ts`でも記載されていることを確認してください。
 
-もし,`hardhat.config.ts`の中に記載されているSolidityのバージョンが`0.8.17`でなかった場合は,`Messenger.sol`の中身を`hardhat.config.ts`に記載されているバージョンに変更しましょう。
+もし,`hardhat.config.ts`の中に記載されているSolidityのバージョンが`0.8.17`でなかった場合は,`ERC20Tokens.sol`の中身を`hardhat.config.ts`に記載されているバージョンに変更しましょう。
 
 ここでは2つの`ERC20Tokenコントラクト`を作成しています。
 
