@@ -1,16 +1,27 @@
-version: 1
+version: 2
 
 rules:
-  - expected: 残高
+  - expected: （$1）
     pattern:
-      - バランス
-      - Balance
+      - /\(([^)]+)\)/
   - expected: チェーン
     pattern: チェイン
-  - expected: Web3
+  - expected: ？
+    pattern: ?
+  - expected: ！
+    pattern: !
+  - expected: web3
   - expected: dApps
+  - expected: スマートコントラクト
+    patterns:
+      - "/[Ss]mart [Cc]ontracts/g"
   - expected: キャラクター
     pattern: /キャラクタ(?!ー)/
     specs:
       - from: キャラクタ
         to: キャラクター
+  - expected: サーバー
+    pattern:  /サーバ(?!ー)/
+    specs:
+      - from: サーバ
+        to:   サーバー

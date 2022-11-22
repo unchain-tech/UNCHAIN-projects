@@ -1,8 +1,8 @@
 ### 📒 Web アプリケーションからスマートコントラクトを呼び出す
 
-このレッスンでは、MetaMask の認証機能を使用して、Web アプリケーションから実際にあなたのコントラクトを呼び出す機能を実装します。
+このレッスンでは、MetaMaskの認証機能を使用して、Webアプリケーションから実際にあなたのコントラクトを呼び出す機能を実装します。
 
-`WavePortal.sol` に実装した `getTotalWaves` 関数を覚えていますか？
+`WavePortal.sol`に実装した`getTotalWaves`関数を覚えていますか？
 
 ```solidity
 // WavePortal.sol
@@ -12,7 +12,7 @@
   }
 ```
 
-`App.js` を以下のように更新して、フロントエンドから `getTotalWaves` 関数へアクセスできるようにします。
+`App.js`を以下のように更新して、フロントエンドから`getTotalWaves`関数へアクセスできるようにします。
 
 ```javascript
 // App.js
@@ -131,7 +131,7 @@ const App = () => {
 export default App;
 ```
 
-ここで実装した新しい機能は下記の 3 つです。
+ここで実装した新しい機能は下記の3つです。
 
 **1 \. ethers 変数を使えるようにする**
 
@@ -140,7 +140,7 @@ export default App;
 import { ethers } from "ethers";
 ```
 
-`ethers` のさまざまなクラスや関数は、[ethersproject](https://docs.ethers.io/v5/getting-started/) が提供するサブパッケージからインポートできます。これは、Web アプリケーションからコントラクトを呼び出す際に必須となるので、覚えておきましょう。
+`ethers`のさまざまなクラスや関数は、[ethersproject](https://docs.ethers.io/v5/getting-started/) が提供するサブパッケージからインポートできます。これは、Webアプリケーションからコントラクトを呼び出す際に必須となるので、覚えておきましょう。
 
 **2 \. wave の回数をカウントする関数を実装する**
 
@@ -180,10 +180,10 @@ const wave = async () => {
 > ```
 >
 > ここでは、`provider` (= MetaMask) を設定しています。
-> `provider` を介して、ユーザーはブロックチェーン上に存在するイーサリアムノードに接続することができます。
+> `provider`を介して、ユーザーはブロックチェーン上に存在するイーサリアムノードに接続することができます。
 > MetaMask が提供するイーサリアムノードを使用して、デプロイされたコントラクトからデータを送受信するために上記の実装を行いました。
 >
-> `ethers` のライブラリにより `provider` のインスタンスを新規作成しています。
+> `ethers`のライブラリにより`provider`のインスタンスを新規作成しています。
 
 **II\. `signer`**
 
@@ -192,11 +192,11 @@ const wave = async () => {
 > const signer = provider.getSigner();
 > ```
 >
-> `signer` は、ユーザーのウォレットアドレスを抽象化したものです。
+> `signer`は、ユーザーのウォレットアドレスを抽象化したものです。
 >
-> `provider` を作成し、`provider.getSigner()` を呼び出すだけで、ユーザーはウォレットアドレスを使用してトランザクションに署名し、そのデータをイーサリアムネットワークに送信することができます。
+> `provider`を作成し、`provider.getSigner()`を呼び出すだけで、ユーザーはウォレットアドレスを使用してトランザクションに署名し、そのデータをイーサリアムネットワークに送信することができます。
 >
-> `provider.getSigner()` は新しい `signer` インスタンスを返すので、それを使って署名付きトランザクションを送信することができます。
+> `provider.getSigner()`は新しい`signer`インスタンスを返すので、それを使って署名付きトランザクションを送信することができます。
 
 **III\. コントラクトインスタンス**
 
@@ -211,17 +211,17 @@ const wave = async () => {
 >
 > ここで、**コントラクトへの接続を行っています。**
 >
-> コントラクトの新しいインスタンスを作成するには、以下 3 つの変数を `ethers.Contract` 関数に渡す必要があります。
+> コントラクトの新しいインスタンスを作成するには、以下 3 つの変数を`ethers.Contract`関数に渡す必要があります。
 >
 > 1. コントラクトのデプロイ先のアドレス（ローカル、テストネット、またはイーサリアムメインネット）
 > 2. コントラクトの ABI
-> 3. `provider`、もしくは `signer`
+> 3. `provider`、もしくは`signer`
 >
 > コントラクトインスタンスでは、コントラクトに格納されているすべての関数を呼び出すことができます。
 >
-> もしこのコントラクトインスタンスに `provider` を渡すと、そのインスタンスは**読み取り専用の機能しか実行できなくなります**。
+> もしこのコントラクトインスタンスに`provider`を渡すと、そのインスタンスは**読み取り専用の機能しか実行できなくなります**。
 >
-> 一方、`signer` を渡すと、そのインスタンスは**読み取りと書き込みの両方の機能を実行できるようになります**。
+> 一方、`signer`を渡すと、そのインスタンスは**読み取りと書き込みの両方の機能を実行できるようになります**。
 >
 > ※ ABI についてはこのレッスンの終盤にて詳しく説明します。
 
@@ -231,24 +231,24 @@ const wave = async () => {
 // App.js <button className="waveButton" onClick={wave}>Wave at Me</button>
 ```
 
-`onClick` プロップを `null` から `wave` に更新して、`wave()` 関数を `waveButton` に接続しています。
+`onClick`プロップを`null`から`wave`に更新して、`wave()`関数を`waveButton`に接続しています。
 
 ### 🧪 テストを実行する
 
-今回のレッスンでは実装する機能が多いので、追加する機能 3 つに対してテストを行います。
+今回のレッスンでは実装する機能が多いので、追加する機能3つに対してテストを行います。
 
-`App.js` を更新したら、ターミナル上で `dApp-starter-project` に移動し、`npm run start` を実行してください。
+`App.js`を更新したら、ターミナル上で`dApp-starter-project`に移動し、`npm run start`を実行してください。
 
-ローカルサーバを介して表示されている Web アプリケーションから右クリック → `Inspect` を選択し、Console の出力結果を確認してみましょう。
+ローカルサーバーを介して表示されているWebアプリケーションから右クリック → `Inspect`を選択し、Consoleの出力結果を確認してみましょう。
 
 下記のようなエラーが表示されていれば、テストは成功です。
 ![](/public/images/ETH-dApp/section-2/2_4_1.png)
 
-これから `contractAddress` と `contractABI` を設定していきます。
+これから`contractAddress`と`contractABI`を設定していきます。
 
-### 🏠 `contractAddress` の設定
+### 🏠 `contractAddress`の設定
 
-Rinkeby Test Network にコントラクトをデプロイしたとき、下記がターミナルに出力されていたことを覚えてますか？
+Goerli Test Networkにコントラクトをデプロイしたとき、下記がターミナルに出力されていたことを覚えてますか？
 
 ```
 Deploying contracts with account:  0x821d451FB0D9c5de6F818d700B801a29587C3dCa
@@ -256,19 +256,19 @@ Account balance:  324443375262705541
 Contract deployed to:  0x3610145E4c6C801bBf2F926DFd8FDd2cE1103493
 ```
 
-`App.js` に `contractAddress` を設定するために、`Contract deployed to` の出力結果（`0x..`）が必要です。
+`App.js`に`contractAddress`を設定するために、`Contract deployed to`の出力結果(`0x..`)が必要です。
 
-`Contract deployed to` に続く出力結果をどこかにメモしていた場合は、このままレッスンを進めましょう。
+`Contract deployed to`に続く出力結果をどこかにメモしていた場合は、このままレッスンを進めましょう。
 
-再度この結果を出力する場合は、ターミナル上で `my-wave-portal` ディレクトリに移動し、下記を実行してください。
+再度この結果を出力する場合は、ターミナル上で`my-wave-portal`ディレクトリに移動し、下記を実行してください。
 
 ```
-npx hardhat run scripts/deploy.js --network rinkeby
+npx hardhat run scripts/deploy.js --network goerli
 ```
 
-コントラクトのデプロイ先のアドレスを取得できたら、`App.js` に `contractAddress` という新規の変数を追加しましょう。`Contract deployed to` の出力結果（`0x..`）を設定していきます。
+コントラクトのデプロイ先のアドレスを取得できたら、`App.js`に`contractAddress`という新規の変数を追加しましょう。`Contract deployed to`の出力結果(`0x..`)を設定していきます。
 
-`const [currentAccount, setCurrentAccount] = useState("")` の直下に`contractAddress` を作成しましょう。以下のようになります。
+`const [currentAccount, setCurrentAccount] = useState("")`の直下に`contractAddress`を作成しましょう。以下のようになります。
 
 ```javascript
 // App.js
@@ -279,70 +279,70 @@ const [currentAccount, setCurrentAccount] = useState("");
 const contractAddress = "あなたの WavePortal の address を貼り付けてください";
 ```
 
-`App.js` を更新したら、ローカルサーバにホストされている Web アプリケーションから Console を確認してみましょう。
+`App.js`を更新したら、ローカルサーバーにホストされているWebアプリケーションからConsoleを確認してみましょう。
 
-`contractAddress` に関するエラーが消えていれば、成功です。
+`contractAddress`に関するエラーが消えていれば、成功です。
 ![](/public/images/ETH-dApp/section-2/2_4_2.png)
 
 ### 📂 ABI ファイルを取得する
 
-ABI (Application Binary Interface) はコントラクトの取り扱い説明書のようなものです。
+ABI（Application Binary Interface）はコントラクトの取り扱い説明書のようなものです。
 
-Web アプリケーションがコントラクトと通信するために必要な情報が、ABI ファイルに含まれています。
+Webアプリケーションがコントラクトと通信するために必要な情報が、ABIファイルに含まれています。
 
-コントラクト一つ一つにユニークな ABI ファイルが紐づいており、その中には下記の情報が含まれています。
+コントラクト一つ一つにユニークなABIファイルが紐づいており、その中には下記の情報が含まれています。
 
 1. そのコントラクトに使用されている関数の名前
 2. それぞれの関数にアクセスするため必要なパラメータとその型
 3. 関数の実行結果に対して返るデータ型の種類
 
-ABI ファイルは、コントラクトがコンパイルされた時に生成され、`artifacts` ディレクトリに自動的に格納されます。
+ABIファイルは、コントラクトがコンパイルされた時に生成され、`artifacts`ディレクトリに自動的に格納されます。
 
-ターミナルで `my-wave-portal` ディレクトリに移動し、`ls` を実行しましょう。
+ターミナルで`my-wave-portal`ディレクトリに移動し、`ls`を実行しましょう。
 
-`artifacts` ディレクトリの存在を確認してください。
+`artifacts`ディレクトリの存在を確認してください。
 
-ABI ファイルの中身は、`WavePortal.json` というファイルに格納されています。
+ABIファイルの中身は、`WavePortal.json`というファイルに格納されています。
 
-下記を実行して、ABI ファイルをコピーしましょう。
+下記を実行して、ABIファイルをコピーしましょう。
 
-1. ターミナル上で `my-wave-portal` にいることを確認する（もしくは移動する）。
+1. ターミナル上で`my-wave-portal`にいることを確認する（もしくは移動する）。
 
-2. ターミナル上で下記を実行し、`WavePortal.json` を開きましょう。※ ファインダーから直接開くことも可能です。
+2. ターミナル上で下記を実行し、`WavePortal.json`を開きましょう。※ ファインダーから直接開くことも可能です。
 
    > ```
    > code artifacts/contracts/WavePortal.sol/WavePortal.json
    > ```
 
-3. VS Code で `WavePortal.json` ファイルが開かれるので、中身をすべてコピーしましょう。※ VS Code のファインダーを使って、直接 `WavePortal.json` を開くことも可能です。
+3. VS Codeで`WavePortal.json`ファイルが開かれるので、中身をすべてコピーしましょう。※ VS Codeのファインダーを使って、直接`WavePortal.json`を開くことも可能です。
 
-次に、下記を実行して、ABI ファイルを Web アプリケーションから呼び出せるようにしましょう。
+次に、下記を実行して、ABIファイルをWebアプリケーションから呼び出せるようにしましょう。
 
-1. ターミナル上で `dApp-starter-project/src` に移動する。
+1. ターミナル上で`dApp-starter-project/src`に移動する。
 
-2. 下記を実行して、`dApp-starter-project/src/` の中に `utils` ディレクトリを作成する。
+2. 下記を実行して、`dApp-starter-project/src/`の中に`utils`ディレクトリを作成する。
 
 > ```bash
 > mkdir utils
 > ```
 
-1. `utils` ディレクトリに移動して `WavePortal.json` ファイルを作成する。
+1. `utils`ディレクトリに移動して`WavePortal.json`ファイルを作成する。
 
 > ```bash
 > touch WavePortal.json
 > ```
 
-1. 下記を実行して、`WavePortal.json` ファイルを VS Code で開く。
+1. 下記を実行して、`WavePortal.json`ファイルをVS Codeで開く。
 
 > ```bash
 > code dApp-starter-project/src/utils/WavePortal.json
 > ```
 
-5. **先ほどコピーした `my-wave-portal/artifacts/contracts/WavePortal.sol/WavePortal.json` の中身を新しく作成した `dApp-starter-project/src/utils/WavePortal.json` の中に貼り付けてください。**
+5. **先ほどコピーした`my-wave-portal/artifacts/contracts/WavePortal.sol/WavePortal.json`の中身を新しく作成した`dApp-starter-project/src/utils/WavePortal.json`の中に貼り付けてください。**
 
-ABI ファイルの準備ができたので、`App.js` にインポートしましょう。
+ABIファイルの準備ができたので、`App.js`にインポートしましょう。
 
-下記のように `App.js` を更新します。
+下記のように`App.js`を更新します。
 
 ```javascript
 // App.js
@@ -507,7 +507,7 @@ export default App;
 const contractAddress = "あなたのコントラクトアドレスを貼り付けてください";
 ```
 
-新しく実装されいる機能は下記の 3 つです。
+新しく実装されいる機能は下記の3つです。
 
 **1 \. ABI ファイルを含む WavePortal.json ファイルをインポートする**
 
@@ -523,7 +523,7 @@ import abi from "./utils/WavePortal.json";
 const contractABI = abi.abi;
 ```
 
-ABI の参照先を確認しましょう。`wave` 関数の中に実装されています。
+ABIの参照先を確認しましょう。`wave`関数の中に実装されています。
 
 ```javascript
 // App.js
@@ -552,7 +552,7 @@ const wave = async () => {
 };
 ```
 
-ABI ファイルを `App.js` に追加すると、フロントエンドで `Wave` ボタンがクリックされたとき、**ブロックチェーン上のコントラクトから正式にデータを読み取ることができます**。
+ABIファイルを`App.js`に追加すると、フロントエンドで`Wave`ボタンがクリックされたとき、**ブロックチェーン上のコントラクトから正式にデータを読み取ることができます**。
 
 **3 \. データをブロックチェーンに書き込む**
 
@@ -601,25 +601,25 @@ const wave = async () => {
 
 ### 🚀 テストを実行する
 
-ターミナル上で `dApp-starter-project` に移動し、下記を実行しましょう。
+ターミナル上で`dApp-starter-project`に移動し、下記を実行しましょう。
 
 ```
 npm run start
 ```
 
-ローカルサーバ上で表示されている Web アプリケーションで `Inspect` を実行し、以下を試してみましょう。
+ローカルサーバー上で表示されているWebアプリケーションで`Inspect`を実行し、以下を試してみましょう。
 
-1 \. `Connect Wallet` をボタンを押して、Web アプリケーションにあなたの MetaMask のウォレットアドレスを接続する。
+1 \. `Connect Wallet`をボタンを押して、WebアプリケーションにあなたのMetaMaskのウォレットアドレスを接続する。
 
-2 \. `Wave at Me` ボタンを押して、実際にブロックチェーン上にあなたの「👋（wave）」が反映されているか確認する。
+2 \. `Wave at Me`ボタンを押して、実際にブロックチェーン上にあなたの「👋（wave）」が反映されているか確認する。
 
-いつものようにローカルサーバにホストされている Web アプリケーションを `Inspect` し、Console を確認しましょう。
+いつものようにローカルサーバーにホストされているWebアプリケーションを`Inspect`し、Consoleを確認しましょう。
 
-例）`Wave at Me` ボタンを 2 回押した際に出力された  Console の結果。
+例)`Wave at Me`ボタンを2回押した際に出力された  Consoleの結果。
 
 ![](/public/images/ETH-dApp/section-2/2_4_3.png)
 
-それぞれの `Wave` がカウントされ、承認されていることが確認できたら、次のステップに進みましょう。
+それぞれの`Wave`がカウントされ、承認されていることが確認できたら、次のステップに進みましょう。
 
 ターミナルを閉じるときは、以下のコマンドが使えます ✍️
 
@@ -628,21 +628,21 @@ npm run start
 
 ### 🌱 Etherscan でトランザクションを確認する
 
-あなたの Console に出力されている以下のアドレスをそれぞれコピーして、[Etherscan](https://rinkeby.etherscan.io/) に貼り付けてみましょう。
+あなたのConsoleに出力されている以下のアドレスをそれぞれコピーして、[Etherscan](https://goerli.etherscan.io/) に貼り付けてみましょう。
 
-- Connected: `0x..` ← これをコピーして Etherscan に貼り付ける
+- Connected: `0x..` ← これをコピーしてEtherscanに貼り付ける
 
-  🎉 あなたの Rinkeby Test Network 上のトランザクションの履歴が参照できます。
+  🎉 あなたのGoerli Test Network上のトランザクションの履歴が参照できます。
 
-- Mined -- `0x..` ← これをコピーして Etherscan に貼り付ける
+- Mined -- `0x..` ← これをコピーしてEtherscanに貼り付ける
 
-  🎉 あなたの Web アプリケーションを介して Rinkeby Test Network 上に書き込まれた「👋（wave）」に対するトランザクションの履歴が参照できます。
+  🎉 あなたのWebアプリケーションを介してGoerli Test Network上に書き込まれた「👋（wave）」に対するトランザクションの履歴が参照できます。
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#eth-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#eth-dapp`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -653,5 +653,5 @@ npm run start
 
 ---
 
-おめでとうございます!　セクション 2 が終了しました! `#eth-dapp` にあなたの Etherscan のリンクを貼り付けて、コミュニティで進捗を祝いましょう 🎉
-Etherscan でトランザクションの確認をしたら、次のレッスンに進んでください 😊
+おめでとうございます!　セクション2が終了しました! `#eth-dapp`にあなたのEtherscanのリンクを貼り付けて、コミュニティで進捗を祝いましょう 🎉
+Etherscanでトランザクションの確認をしたら、次のレッスンに進んでください 😊

@@ -1,13 +1,13 @@
 ### 👋 Yield Farm Project へようこそ!
 
-Yield Farm Project では、イーサリアムネットワーク上にスマートコントラクトを実装して、トークンを配布できる独自の Web アプリケーションを構築します。
+Yield Farm Projectでは、イーサリアムネットワーク上にスマートコントラクトを実装して、トークンを配布できる独自のWebアプリケーションを構築します。
 
 このプロジェクトでは、具体的に以下の実装します。
 
-- ユーザーのウォレットをあなたの Dapp Token Farm に接続する。
-- Web アプリケーションを通して、ユーザーがスマートコントラクトとやりとりとりできる機能を実装する。
+- ユーザーのウォレットをあなたのDapp Token Farmに接続する。
+- Webアプリケーションを通して、ユーザーがスマートコントラクトとやりとりとりできる機能を実装する。
 
-Solidity でバックエンドを実装し、React でフロントエンドを構築します。
+Solidityでバックエンドを実装し、Reactでフロントエンドを構築します。
 
 プロジェクトを進めるには以下の技術が必要です。
 
@@ -17,15 +17,15 @@ Solidity でバックエンドを実装し、React でフロントエンドを�
 
 いますべてを理解している必要はありません。
 わからないことがあったらインターネットで検索したり、コミュニティで質問しながらプロジェクトを進めていきましょう!
-開発初心者の方は、まず ETH-DAPP プロジェクトから始めることをお勧めします☺️
+開発初心者の方は、まずETH-DAPPプロジェクトから始めることをお勧めします☺️
 ### 🛠 何を構築するのか？
 
-Dapp Token Farm と呼ばれる **DeFi Web アプリケーション** を構築します。
+Dapp Token Farmと呼ばれる **DeFi Web アプリケーション** を構築します。
 
-Dapp Token Farm では、以下の機能を実装します。
+Dapp Token Farmでは、以下の機能を実装します。
 
 1. インターネット上の誰もが投資家となり、あなたのプロジェクトにトークンを預けることができる（流動性の提供）
-	- このプロジェクトでは、投資可能なトークンとして、米ドルにペッグされた模擬仮想通貨「mDAI トークン」を使用します。
+	- このプロジェクトでは、投資可能なトークンとして、米ドルにペッグされた模擬仮想通貨「mDAIトークン」を使用します。
 2. 投資家は、預けたトークンの量に比例して、あなたのプロジェクトのトークンを獲得できる（Staking）
    - このプロジェクトでは、mDAIの投資金額に応じて、オリジナルのトークンであるDappトークンが投資家に還元されます。
 3. 投資家は自分が投資したトークンを手元に戻せる（Unstaking）
@@ -44,13 +44,13 @@ Dapp Token Farm では、以下の機能を実装します。
 
 そして、互いに会話するコンピュータのネットワークですから、ネットワークとなります。ネットワークとデータベースが一体化したものと考えればよいでしょう。
 
-また、従来の Web アプリケーションとブロックチェーンアプリケーションの根本的な違いとして、アプリケーションは、ユーザーのデータを一切管理しません。ユーザーのデータは、ブロックチェーンによって管理されています。
+また、従来のWebアプリケーションとブロックチェーンアプリケーションの根本的な違いとして、アプリケーションは、ユーザーのデータを一切管理しません。ユーザーのデータは、ブロックチェーンによって管理されています。
 
 ### 🥫 スマートコントラクトとは何か？
 
 スマートコントラクトとは、ブロックチェーン上でコントラクト（＝契約）を自動的に実行するしくみです。
 
-よくたとえられるのは、自動販売機です。自動販売機には「100 円が投下され、ボタンが押されたら、飲み物を落とす」というプログラムが搭載されており、「店員さんがお金を受け取って飲み物を渡す」というプロセスを必要としません。
+よくたとえられるのは、自動販売機です。自動販売機には「100円が投下され、ボタンが押されたら、飲み物を落とす」というプログラムが搭載されており、「店員さんがお金を受け取って飲み物を渡す」というプロセスを必要としません。
 
 人の介在を省き、自動的にプログラムが実行される点こそ、スマートコントラクトが、「スマート」と呼ばれる理由です。
 
@@ -64,7 +64,7 @@ Dapp Token Farm では、以下の機能を実装します。
 
 これは、コードの信頼性と安全性を確保するための設計上の特徴です。
 
-私はよくスマートコントラクトを Web 上のマイクロサービスにたとえます。ブロックチェーンからデータを読み書きしたり、ビジネスロジックを実行したりするためのインタフェースとして機能するのです。これらはパブリックにアクセス可能で、ブロックチェーンにアクセスできる人なら誰でもそのインタフェースにアクセスできることを意味します。
+私はよくスマートコントラクトをWeb上のマイクロサービスにたとえます。ブロックチェーンからデータを読み書きしたり、ビジネスロジックを実行したりするためのインタフェースとして機能するのです。これらはパブリックにアクセス可能で、ブロックチェーンにアクセスできる人なら誰でもそのインタフェースにアクセスできることを意味します。
 ### ❓　エラーが出た時の進め方
 このプロジェクトは動画を参考にして作られています。なのでエラーが出て詰まってしまったときには参考とした動画を見てもらいたいと思います。
 
@@ -73,47 +73,51 @@ Dapp Token Farm では、以下の機能を実装します。
 もし動画を参考にしてもエラーが解決しない場合はdiscordで気軽に質問してください!
 ###  🖥 このレッスンの参考動画URL
 
-今回のプロジェクトは、Dapp University という有名なブロックチェーンの Tutorial をベースに作成されています。
+今回のプロジェクトは、Dapp Universityという有名なブロックチェーンのTutorialをベースに作成されています。
 興味のある方は、ぜひご覧ください（コンテンツは英語になります）:
 [Dapp University Video](https://youtu.be/CgXQC4dbGUE)
 
 ### 📱 dApps とは何か？
 
-dApps は、**分散型アプリケーション（decentralized Application）** の略です。
+dAppsは、**分散型アプリケーション（decentralized Application）** の略です。
 
-dApps は、ブロックチェーン上に構築されたスマートコントラクトと、フロントエンドであるユーザーインタフェース（Web サイトなど）を組み合わせたアプリケーションのことを指します。
+dAppsは、ブロックチェーン上に構築されたスマートコントラクトと、フロントエンドであるユーザーインタフェース（Webサイトなど）を組み合わせたアプリケーションのことを指します。
 
-dApps は、イーサリアムのプログラミング言語である Solidity を基盤に構築されています。
+dAppsは、イーサリアムのプログラミング言語であるSolidityを基盤に構築されています。
 
-イーサリアムでは、スマートコントラクトはオープン API のように誰でもアクセスできます。よって、ほかの人が書いたスマートコントラクトも、あなたの Web アプリケーションから呼び出すことができます。逆も然りです。
+イーサリアムでは、スマートコントラクトはオープンAPIのように誰でもアクセスできます。よって、ほかの人が書いたスマートコントラクトも、あなたのWebアプリケーションから呼び出すことができます。逆も然りです。
 
 ### 🌍 プロジェクトをアップグレードする
 
-[UNCHAIN](https://app.shiftbase.xyz) のプロジェクトはすべてオープンソース（[MIT ライセンス](https://wisdommingle.com/mit-license/)）で運用されています。
+[UNCHAIN](https://app.shiftbase.xyz) のプロジェクトは [UNCHAIN License](https://github.com/unchain-dev/UNCHAIN-projects/blob/main/LICENSE) により運用されています。
 
-プロジェクトに参加していて、「こうすればもっと分かりやすいのに!」「これは間違っている!」と思ったら、ぜひ `pull request` を送ってください。
+プロジェクトに参加していて、「こうすればもっと分かりやすいのに!」「これは間違っている!」と思ったら、ぜひ`pull request`を送ってください。
 
-GitHub から直接コードを編集して直接 `pull request` を送る方法は、[こちら](https://docs.github.com/ja/repositories/working-with-files/managing-files/editing-files#editing-files-in-another-users-repository)を参照してください。
+GitHubから直接コードを編集して直接`pull request`を送る方法は、[こちら](https://docs.github.com/ja/repositories/working-with-files/managing-files/editing-files#editing-files-in-another-users-repository)を参照してください。
 
 どんなリクエストでも大歓迎です 🎉
 
-**👋 `UNCHAIN-projects` に `pull request` を送る! ⏩ [UNCHAIN の GitHub](https://github.com/shiftbase-xyz/UNCHAIN-projects) にアクセス!**
+**👋 `UNCHAIN-projects`に`pull request`を送る! ⏩ [UNCHAIN の GitHub](https://github.com/shiftbase-xyz/UNCHAIN-projects) にアクセス!**
 
-また、プロジェクトを自分の GitHub アカウントに `Fork` して、中身を編集してから `pull request` を送ることもできます。
+また、プロジェクトを自分のGitHubアカウントに`Fork`して、中身を編集してから`pull request`を送ることもできます。
 
-- プロジェクトを `Fork` する方法は、[こちら](https://docs.github.com/ja/get-started/quickstart/fork-a-repo) を参照してください。
-- `Fork` から `pull request` を作成する方法は、[こちら](https://docs.github.com/ja/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) です。
+- プロジェクトを`Fork`する方法は、[こちら](https://docs.github.com/ja/get-started/quickstart/fork-a-repo) を参照してください。
+- `Fork`から`pull request`を作成する方法は、[こちら](https://docs.github.com/ja/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) です。
 
-### ⚡️ `Issue` を作成する
+### ⚡️ `Issue`を作成する
 
-`pull request` 送るほどでもないけど、提案を残したい!　と思ったら、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/issues) に `Issue` を作成してみましょう。
+`pull request`送るほどでもないけど、提案を残したい!　と思ったら、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/issues) に`Issue`を作成してみましょう。
 
-`Issue` の作成方法に関しては、[こちら](https://docs.github.com/ja/issues/tracking-your-work-with-issues/creating-an-issue)を参照してください。
+`Issue`の作成方法に関しては、[こちら](https://docs.github.com/ja/issues/tracking-your-work-with-issues/creating-an-issue)を参照してください。
 
-`pull request` や `issue` の作成は実際にチームで開発する際、重要な作業になるので、ぜひトライしてみてください。
+`pull request`や`issue`の作成は実際にチームで開発する際、重要な作業になるので、ぜひトライしてみてください。
 
-UNCHAIN のプロジェクトをみんなでより良いものにしていきましょう ✨
+UNCHAINのプロジェクトをみんなでより良いものにしていきましょう ✨
 
 ---
 
-次のレッスンに進んで DeFi と Yield Farming について学びましょう🎉
+次のレッスンに進んでDeFiとYield Farmingについて学びましょう🎉
+
+---
+
+Documentation created by [honganji](https://github.com/honganji)（UNCHAIN discord ID: Tonny#5693）

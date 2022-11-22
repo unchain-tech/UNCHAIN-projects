@@ -1,6 +1,6 @@
 ### 🫣 NFT の情報を確認できるようにしよう
 
-まずは NFT1 つ 1 つの情報を見るための関数をつくります。nft_core.rs に移動して下のコードを追加しましょう。
+まずはNFT1つ1つの情報を見るための関数をつくります。nft_core.rsに移動して下のコードを追加しましょう。
 
 [nft_core.rs]
 
@@ -36,7 +36,7 @@ pub trait NonFungibleTokenCore {
 }
 ```
 
-次の部分では`nft_token関数`の中身を記述します。ここでは引数である token の id に対して metadata が存在するのかを確かめて、ある場合はそれを返すという処理をしています。
+次の部分では`nft_token関数`の中身を記述します。ここでは引数であるtokenのidに対してmetadataが存在するのかを確かめて、ある場合はそれを返すという処理をしています。
 
 ```rust
 #[near_bindgen]
@@ -56,7 +56,7 @@ impl NonFungibleTokenCore for Contract {
 }
 ```
 
-これによってそれぞれの token の metadata を見れるようになりましたが、wallet が NFT を表示できるようにするための関数である`nft_tokens_for_owner関数`がまだ実装できていないので`enumeration.rs`に移動して下のコードを追加しましょう。
+これによってそれぞれのtokenのmetadataを見れるようになりましたが、walletがNFTを表示できるようにするための関数である`nft_tokens_for_owner関数`がまだ実装できていないので`enumeration.rs`に移動して下のコードを追加しましょう。
 
 [enumeration.rs]
 
@@ -113,9 +113,9 @@ impl NonFungibleTokenCore for Contract {
 + }
 ```
 
-最初の`nft_total_supply関数`ではコントラクトに保存されている NFT の数を取得できます。
+最初の`nft_total_supply関数`ではコントラクトに保存されているNFTの数を取得できます。
 
-次の`nft_tokens`ではコントラクトに保管されている全ての NFT の metadata が得られます。
+次の`nft_tokens`ではコントラクトに保管されている全てのNFTのmetadataが得られます。
 
 ```rust
 pub fn nft_total_supply(&self) -> U128 {
@@ -133,7 +133,7 @@ pub fn nft_tokens(&self, from_index: Option<U128>, limit: Option<u64>) -> Vec<Js
 }
 ```
 
-この関数では特定の所有者が持つ NFT の数を取得できます。これは wallet 上での表示にも関わってくるので書き漏れのないように特に気をつけてください。
+この関数では特定の所有者が持つNFTの数を取得できます。これはwallet上での表示にも関わってくるので書き漏れのないように特に気をつけてください。
 
 ```rust
 pub fn nft_supply_for_owner(&self, account_id: AccountId) -> U128 {
@@ -146,9 +146,9 @@ pub fn nft_supply_for_owner(&self, account_id: AccountId) -> U128 {
 }
 ```
 
-引数としてはユーザーの Wallet Id をとります。`from_index、limit` は対象のユーザーがたくさん NFT を持っているときに NFT のリストのどこからどこまでを取得するかを指定するために用意されています。
+引数としてはユーザーのWallet Idをとります。`from_index、limit`は対象のユーザーがたくさんNFTを持っているときにNFTのリストのどこからどこまでを取得するかを指定するために用意されています。
 
-返り値として metadata と owner の id が入っている`JsonToken`型のベクターが返ってきます。
+返り値としてmetadataとownerのidが入っている`JsonToken`型のベクターが返ってきます。
 
 ```rust
 pub fn nft_tokens_for_owner(
@@ -159,11 +159,11 @@ pub fn nft_tokens_for_owner(
 )-> Vec<JsonToken>
 ```
 
-内容としてはまず所有者の token の id から token の id がリスト化されたベクターをとってきます。
+内容としてはまず所有者のtokenのidからtokenのidがリスト化されたベクターをとってきます。
 
-その次の処理で token の id のリストの中身が無い場合は新しくインスタンス化します。
+その次の処理でtokenのidのリストの中身が無い場合は新しくインスタンス化します。
 
-最後に先ほど作成した`nft_token関数`を利用して token の metadata とその所有者を紐づけた情報を返します。
+最後に先ほど作成した`nft_token関数`を利用してtokenのmetadataとその所有者を紐づけた情報を返します。
 
 ```rust
 pub fn nft_tokens_for_owner(
@@ -189,22 +189,22 @@ pub fn nft_tokens_for_owner(
 }
 ```
 
-これでやっと mint 機能とそれを wallet とターミナル上で確認できるようになったので次は実際にコントラクトを deploy して、mint してみましょう！
+これでやっとmint機能とそれをwalletとターミナル上で確認できるようになったので次は実際にコントラクトをdeployして、mintしてみましょう！
 
 ### 🤞 mint してみよう
 
-mint をしたいところですが、mint ができているかを確認するためにまずは NEAR の Testnet で自分の Wallet を作成する必要があります。
+mintをしたいところですが、mintができているかを確認するためにまずはNEARのTestnetで自分のWalletを作成する必要があります。
 [こちら](https://wallet.testnet.near.org/)から作成してください。
 
 作成が完了したら、まずターミナルでコントラクトのディレクトリ(ここでは`near-election-dapp-contract`)に移動しましょう。
 
-wallet の id をコピーして下のコマンドの`YOUR_WALLET_ID`に入れてターミナルで実行させてください。
+walletのidをコピーして下のコマンドの`YOUR_WALLET_ID`に入れてターミナルで実行させてください。
 
 ```bash
 export NFT_CONTRACT_ID=YOUR_WALLET_ID
 ```
 
-下のコマンドをターミナルを実行させてきちんと`NFT_CONTRACT_ID`という変数にあなたの Wallet Id が入っているかを確認してみましょう。
+下のコマンドをターミナルを実行させてきちんと`NFT_CONTRACT_ID`という変数にあなたのWallet Idが入っているかを確認してみましょう。
 
 ```bash
 echo $NFT_CONTRACT_ID
@@ -216,7 +216,7 @@ echo $NFT_CONTRACT_ID
 near login
 ```
 
-次に下のコマンドをターミナルを実行させてコードのコンパイルと deploy をしましょう。
+次に下のコマンドをターミナルを実行させてコードのコンパイルとdeployをしましょう。
 
 ただし、コントラクトディレクトリの名前を変えた方は`near_election_dapp_contract`の部分を自分が変えたディレクトリの名前に変えないとエラーがでてしまいますので気をつけてください！
 
@@ -230,22 +230,22 @@ set -e && RUSTFLAGS='-C link-arg=-s' cargo build --target wasm32-unknown-unknown
 near call $NFT_CONTRACT_ID new_default_meta '{"owner_id": "'$NFT_CONTRACT_ID'"}' --accountId $NFT_CONTRACT_ID
 ```
 
-これでコントラクトのメタデータを更新できました。最後に下のコマンドをターミナルを実行させて mint をしてみましょう。
+これでコントラクトのメタデータを更新できました。最後に下のコマンドをターミナルを実行させてmintをしてみましょう。
 
-コードの`nft_mint`以下では、この関数が必要とする引数を記述しています。他にいい画像などがあればその URL を`media`に入れてもできます！
+コードの`nft_mint`以下では、この関数が必要とする引数を記述しています。他にいい画像などがあればそのURLを`media`に入れてもできます！
 
 ```bash
 near call $NFT_CONTRACT_ID nft_mint '{"metadata": {"title": "Vote Ticket", "description": "First Token", "media": "https://gateway.pinata.cloud/ipfs/QmUs5K3LwdvbhKA58bH9C6FX5Q7Bhsvvg9GRAhr9aVKLyx", "media_CID": "QmUs5K3LwdvbhKA58bH9C6FX5Q7Bhsvvg9GRAhr9aVKLyx","token_kind": "vote"}, "receiver_id": "'$NFT_CONTRACT_ID'"}' --accountId $NFT_CONTRACT_ID --amount 0.1
 ```
 
-これによって投票券の NFT を mint できました！先ほど作成した Wallet の`Collectibles`を確認してみましょう！下のような NFT が mint できているはずです。
+これによって投票券のNFTをmintできました！ 先ほど作成したWalletの`Collectibles`を確認してみましょう！ 下のようなNFTがmintできているはずです。
 ![](/public/images/NEAR-Election-dApp/section-1/1_4_1.png)
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-election-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#near-election-dapp`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -256,12 +256,12 @@ near call $NFT_CONTRACT_ID nft_mint '{"metadata": {"title": "Vote Ticket", "desc
 
 ---
 
-おめでとうございます！これで mint 機能が完成しました！
+おめでとうございます！ これでmint機能が完成しました！
 
-セクション 1 は終了です！
+セクション1は終了です！
 
-ぜひ、mint した投票権 NFT が表示されている Wallet 画面のスクリーンショットを `#near-election-dapp` に投稿してください 😊
+ぜひ、mintした投票権NFTが表示されているWallet画面のスクリーンショットを`#near-election-dapp`に投稿してください 😊
 
 あなたの成功をコミュニティで祝いましょう 🎉
 
-次のセクションではもう一つのコア機能である`transfer機能`や投票に必要な機能を実装してコントラクトのコーディングは完了になりますので頑張っていきましょう！
+次のセクションではもう1つのコア機能である`transfer機能`や投票に必要な機能を実装してコントラクトのコーディングは完了になりますので頑張っていきましょう！

@@ -1,10 +1,10 @@
-### 🪄 MVP = Web3Mint.sol × NftUploader.jsx
-今回のプロジェクトの MVP（＝最小限の機能を備えたプロダクト）を構築する Web3Mint.sol と NftUploader.jsx のスクリプトを共有します。
+### 🪄 MVP = web3Mint.sol × NftUploader.jsx
+今回のプロジェクトのMVP（＝最小限の機能を備えたプロダクト）を構築するweb3Mint.solとNftUploader.jsxのスクリプトを共有します。
 
 見やすいように少し整理整頓してあります 🧹✨
 もしコードにエラーが発生してデバッグが困難な場合は、下記のコードを使用してみてください。
 
-**`Web3Mint.sol` はこちら:**
+**`Web3Mint.sol`はこちら:**
 
 ```solidity
 // Web3Mint.sol
@@ -67,7 +67,7 @@ contract Web3Mint is ERC721{
     }
 }
 ```
-**`NftUploader.jsx` はこちら:**
+**`NftUploader.jsx`はこちら:**
 
 ```javascript
 // NftUploader.jsx
@@ -147,7 +147,7 @@ const NftUploader = () => {
         console.log("Mining...please wait.");
         await nftTxn.wait();
         console.log(
-          `Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`
+          `Mined, see transaction: https://goerli.etherscan.io/tx/${nftTxn.hash}`
         );
       } else {
         console.log("Ethereum object doesn't exist!");
@@ -220,52 +220,52 @@ export default NftUploader;
 
 ### 😎 Web アプリケーションをアップグレードする
 
-MVP を起点に Web アプリケーションを自分の好きなようにアップグレードしましょう。
+MVPを起点にWebアプリケーションを自分の好きなようにアップグレードしましょう。
 
 **1\. ミントされた NFT の数に制限を設定する**
 
-- `Web3Mint.sol` を変更して、あらかじめ設定された数の NFT のみをミントできるようにすることをお勧めします。
-- `NftUploader.jsx` を更新して、Web アプリケーション上で Mint カウンタを表示してみましょう!（例、「これまでに作成された 4/50 NFT」）
+- `Web3Mint.sol`を変更して、あらかじめ設定された数のNFTのみをミントできるようにすることをお勧めします。
+- `NftUploader.jsx`を更新して、Webアプリケーション上でMintカウンタを表示してみましょう!（例、「これまでに作成された4/50 NFT」）
 
 **2\. ユーザーが間違ったネットワーク上にいるときアラートを出す**
 
-- あなたの Web サイトは Rinkeby Test Network で**のみ**機能します。
-- ユーザーが、Rinkeby 以外のネットワークにログインしている状態で、あなたの Web サイトに接続しようとしたら、それを知らせるアラートを出しましょう。
-- `ethereum.request` と `eth_accounts` と `eth_requestAccounts` というメソッドを使用して、アラートを作成できます。
-- `eth_chainId` を使ってブロックチェーンを識別する ID を取得します。
+- あなたのWebサイトはGoerli Test Networkで**のみ**機能します。
+- ユーザーが、Goerli以外のネットワークにログインしている状態で、あなたのWebサイトに接続しようとしたら、それを知らせるアラートを出しましょう。
+- `ethereum.request`と`eth_accounts`と`eth_requestAccounts`というメソッドを使用して、アラートを作成できます。
+- `eth_chainId`を使ってブロックチェーンを識別するIDを取得します。
 
-下記のコードを `NftUploader.jsx` に組み込んでみましょう。
+下記のコードを`NftUploader.jsx`に組み込んでみましょう。
 
 ```javascript
 // NftUploader.jsx
 let chainId = await ethereum.request({ method: "eth_chainId" });
 console.log("Connected to chain " + chainId);
-// 0x4 は　Rinkeby の ID です。
-const rinkebyChainId = "0x4";
-if (chainId !== rinkebyChainId) {
-  alert("You are not connected to the Rinkeby Test Network!");
+// 0x5 は Goerli の ID です。
+const goerliChainId = "0x5";
+if (chainId !== goerliChainId) {
+  alert("You are not connected to the Goerli Test Network!");
 }
 ```
 
-他のブロックチェーン ID は [こちら](https://docs.MetaMask.io/guide/ethereum-provider.html#chain-ids) から見つけることができます。
+他のブロックチェーン IDは [こちら](https://docs.MetaMask.io/guide/ethereum-provider.html#chain-ids) から見つけることができます。
 
 **3\. マイニングアニメーションを作成する**
 
-- 一部のユーザーは、Mint をクリックした後、15 秒以上何も起こらないと、混乱してしまう可能性があるでしょう。
+- 一部のユーザーは、Mintをクリックした後、15秒以上何も起こらないと、混乱してしまう可能性があるでしょう。
 - "Loading ..." のようなアニメーションを追加して、ユーザーに安心してもらいましょう。
 
 **4\. あなたのコレクション Web アプリケーションをリンクさせる**
 
-- あなたのコレクションを見にいけるボタンを Web アプリケーション上に作成して、ユーザーがいつでもあなたの NFT コレクションを見に行けるようにしましょう。
-- あなたの Web サイトに、「Rarible でコレクションを表示」という小さなボタンを追加します。
+- あなたのコレクションを見にいけるボタンをWebアプリケーション上に作成して、ユーザーがいつでもあなたのNFTコレクションを見に行けるようにしましょう。
+- あなたのWebサイトに、「OpenSeaでコレクションを表示」という小さなボタンを追加します。
 - ユーザーがそれをクリックすると、コレクションのページに行けるようにしましょう。
-- Rarible へのリンクは `NftUploader.jsx` にハードコーディングする必要があります。
+- OpenSeaへのリンクは`NftUploader.jsx`にハードコーディングする必要があります。
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の`#eth-nft-maker`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#eth-nft-maker`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

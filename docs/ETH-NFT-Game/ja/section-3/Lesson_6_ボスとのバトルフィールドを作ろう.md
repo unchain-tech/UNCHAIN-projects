@@ -1,6 +1,6 @@
 ### 💥 ボスと戦う
 
-前回のレッスンで、シナリオの 1 と 2 を実装しました。
+前回のレッスンで、シナリオの1と2を実装しました。
 
 ✅ **シナリオ 1. ユーザーが Web アプリケーションにログインしていない場合**
 
@@ -10,7 +10,7 @@
 
     👉 WEBアプリ上に、`SelectCharacter` コンポーネントを表示します。
 
-これから、ボスとのバトルフィールド「`Arena`」を作成し、シナリオ 3 を実装していきます。
+これから、ボスとのバトルフィールド「`Arena`」を作成し、シナリオ3を実装していきます。
 
 🔥 **シナリオ 3. ユーザーは Web アプリケーションにログインしており、かつ NFT キャラクターを持っている場合**
 
@@ -18,15 +18,15 @@
 
     	- 「Arena Component」は、プレイヤーがボスと戦う場所です。
 
-まず、ターミナル上で `nft-game-starter-project/src/Components/Arena` フォルダに移動して、`index.js`という名前の新しいファイルを作成しましょう。
+まず、ターミナル上で`nft-game-starter-project/src/Components/Arena`フォルダに移動して、`index.js`という名前の新しいファイルを作成しましょう。
 
-`Arena` フォルダには `Arena.css` ファイルが含まれています。
+`Arena`フォルダには`Arena.css`ファイルが含まれています。
 
-Web アプリケーションの構築が完了したら、CSS のスタイリングを楽しんでください ✨
+Webアプリケーションの構築が完了したら、CSSのスタイリングを楽しんでください ✨
 
-### 🏰 `Arena` を作成する
+### 🏰 `Arena`を作成する
 
-次に、`nft-game-starter-project/src/Components/Arena/index.js` を開き、下記のコードを貼り付けましょう。
+次に、`nft-game-starter-project/src/Components/Arena/index.js`を開き、下記のコードを貼り付けましょう。
 
 ```javascript
 // index.js
@@ -67,7 +67,7 @@ const Arena = ({ characterNFT }) => {
 export default Arena;
 ```
 
-`Arena` コンポーネント準備ができたので、`App.js` に戻って、シナリオ 3 を実装していきます。
+`Arena`コンポーネント準備ができたので、`App.js`に戻って、シナリオ3を実装していきます。
 
 **シナリオ 3. ユーザーは Web アプリケーションにログインしており、かつ NFT キャラクターを持っている場合**
 
@@ -75,14 +75,14 @@ export default Arena;
 
     	- 「Arena Component」は、プレイヤーがボスと戦う場所です。
 
-まず、`Arena` をインポートするため、`App.js` の先頭に、下記を追加しましょう。
+まず、`Arena`をインポートするため、`App.js`の先頭に、下記を追加しましょう。
 
 ```javascript
 // App.js
 import Arena from "./Components/Arena";
 ```
 
-次に、`renderContent` 関数を下記のように更新しましょう。
+次に、`renderContent`関数を下記のように更新しましょう。
 
 ```javascript
 // App.js
@@ -115,7 +115,7 @@ const renderContent = () => {
 };
 ```
 
-Web アプリケーションを更新すると、「アリーナ」コンポーネントに直接移動します。
+Webアプリケーションを更新すると、「アリーナ」コンポーネントに直接移動します。
 
 フロントエンドが下記のように表示されていれば、ここまでの実装は成功です。
 
@@ -123,11 +123,11 @@ Web アプリケーションを更新すると、「アリーナ」コンポー�
 
 ### 😈 スマートコントラクトからボスを取得する
 
-それでは、`Arena` コンポーネントに、ボスのデータを取得していきましょう。
+それでは、`Arena`コンポーネントに、ボスのデータを取得していきましょう。
 
-- `SelectCharacter` コンポーネントで、NFT キャラクターのデータを取得した方法と同じ要領で進めていきます。
+- `SelectCharacter`コンポーネントで、NFTキャラクターのデータを取得した方法と同じ要領で進めていきます。
 
-まず、`Arena` コンポーネントの中の `const [gameContract, setGameContract] = useState(null);` の直下に下記を追記してください。
+まず、`Arena`コンポーネントの中の`const [gameContract, setGameContract] = useState(null);`の直下に下記を追記してください。
 
 ```javascript
 // Arena/index.js
@@ -149,11 +149,11 @@ useEffect(() => {
 }, [gameContract]);
 ```
 
-上記の実装が完了したら、Web アプリケーション上で Console を開いて、ボスのデータが読み込まれていることを確認しましょう。
+上記の実装が完了したら、Webアプリケーション上でConsoleを開いて、ボスのデータが読み込まれていることを確認しましょう。
 
 ### 🙀 ボスをフロントエンドにレンダリングする
 
-まず、`Arena/index.js` に向かい、`const [boss, setBoss] = useState(null);` の直下に下記を追加しましょう。
+まず、`Arena/index.js`に向かい、`const [boss, setBoss] = useState(null);`の直下に下記を追加しましょう。
 
 ```javascript
 // Arena/index.js
@@ -161,7 +161,7 @@ useEffect(() => {
 const runAttackAction = async () => {};
 ```
 
-次に、`Arena/index.js` の `return();` の中身を下記のように更新しましょう。
+次に、`Arena/index.js`の`return();`の中身を下記のように更新しましょう。
 
 ```javascript
 // Arena/index.js
@@ -194,15 +194,15 @@ return (
 );
 ```
 
-ローカルサーバで、Web アプリケーションを開き、下記のようにボスが `Arena` にレンダリングされていることを確認してください。
+ローカルサーバーで、Webアプリケーションを開き、下記のようにボスが`Arena`にレンダリングされていることを確認してください。
 
 ![](/public/images/ETH-NFT-Game/section-3/3_6_3.png)
 
-### 🛡 NFT キャラクターを `Arena` にレンダリングする
+### 🛡 NFT キャラクターを`Arena`にレンダリングする
 
-ボスとのバトルフィールドである `Arena` に、NFT キャラクターをレンダリングしましょう。
+ボスとのバトルフィールドである`Arena`に、NFTキャラクターをレンダリングしましょう。
 
-`Arena/index.js` の `return();` の中身を下記のように更新しましょう。
+`Arena/index.js`の`return();`の中身を下記のように更新しましょう。
 
 ```javascript
 // Arena/index.js
@@ -256,7 +256,7 @@ return (
 );
 ```
 
-ローカルサーバで、Web アプリケーションを開き、下記のようにあなたの NFT キャラクターが `Arena` にレンダリングされていることを確認してください。
+ローカルサーバーで、Webアプリケーションを開き、下記のようにあなたのNFTキャラクターが`Arena`にレンダリングされていることを確認してください。
 
 ![](/public/images/ETH-NFT-Game/section-3/3_6_4.png)
 
@@ -264,7 +264,7 @@ return (
 
 これから、ボスとのバトルを実装していきます。
 
-`Arena/index.js` を下記のように更新していきましょう。
+`Arena/index.js`を下記のように更新していきましょう。
 
 ```javascript
 // Arena/index.js
@@ -304,9 +304,9 @@ const runAttackAction = async () => {
 };
 ```
 
-更新したのは、以下の 2 点です。
+更新したのは、以下の2点です。
 
-**1 \. `const [boss, setBoss] = useState(null);` の直下に、下記を追加。**
+**1 \. `const [boss, setBoss] = useState(null);`の直下に、下記を追加。**
 
 ```javascript
 // Arena/index.js
@@ -314,9 +314,9 @@ const runAttackAction = async () => {
 const [attackState, setAttackState] = useState("");
 ```
 
-`attackState` はバトル中にアニメーションを発生させるために追加しています。
+`attackState`はバトル中にアニメーションを発生させるために追加しています。
 
-`setAttackState` を使用すると、`attackState` に、下記 3 つの状態のいずれかを保存できます。
+`setAttackState`を使用すると、`attackState`に、下記3つの状態のいずれかを保存できます。
 
 - `attacking` : 攻撃をした後、トランザクションが完了するのを待っている状態
 
@@ -324,17 +324,17 @@ const [attackState, setAttackState] = useState("");
 
 - `''` : デフォルトの状態
 
-`nft-game-starter-project/src/Components/Arena/Arena.css` を開いて、`attacking` や `hit` を調べてみてください。
+`nft-game-starter-project/src/Components/Arena/Arena.css`を開いて、`attacking`や`hit`を調べてみてください。
 
-- アニメーションのための CSS が設定されています ✨
+- アニメーションのためのCSSが設定されています ✨
 
-**2 \. `runAttackAction` 関数の中身を更新。**
+**2 \. `runAttackAction`関数の中身を更新。**
 
-これから、Web アプリケーションに上記の実装を連携させていきます。
+これから、Webアプリケーションに上記の実装を連携させていきます。
 
-`Arena/index.js` の中の `return();` の中身を見ていきましょう。
+`Arena/index.js`の中の`return();`の中身を見ていきましょう。
 
-- `{boss ..}` の中身を下記のように更新しましょう。
+- `{boss ..}`の中身を下記のように更新しましょう。
 
 ```javascript
 // Arena/index.js
@@ -369,15 +369,15 @@ return (
 
 ### ✊ テストを実行する
 
-1 \. Web アプリケーションで `Attack CROCODILE` ボタンを押してください。
+1 \. Webアプリケーションで`Attack CROCODILE`ボタンを押してください。
 
-- MetaMask がポップアップして、攻撃の承認が求められます。
+- MetaMaskがポップアップして、攻撃の承認が求められます。
 
-- `Confirm` を押して攻撃を行いましょう。
+- `Confirm`を押して攻撃を行いましょう。
 
-2 \. `Consol` に「`Attacking boss ...`」で始まるログが表示されることを確認しましょう。
+2 \. `Consol`に「`Attacking boss ...`」で始まるログが表示されることを確認しましょう。
 
-3 \. 攻撃が完了すると、トランザクションハッシュ（`attackTxn:`）が Console に表示されます。
+3 \. 攻撃が完了すると、トランザクションハッシュ(`attackTxn:`)がConsoleに表示されます。
 
 ![](/public/images/ETH-NFT-Game/section-3/3_6_5.png)
 
@@ -385,11 +385,11 @@ return (
 
 ### 🩹 攻撃によるダメージを反映させる
 
-それでは、NFT キャラクターとボスのダメージを Web アプリケーションに反映させていきましょう。
+それでは、NFTキャラクターとボスのダメージをWebアプリケーションに反映させていきましょう。
 
-`MyEpicGame.sol` に記載した `event AttackComplete` を Web アプリケーションで受信するコードを実装していきます。
+`MyEpicGame.sol`に記載した`event AttackComplete`をWebアプリケーションで受信するコードを実装していきます。
 
-まず、`Arena/index.js` の中にある `Arena` コンポーネントを下記のように更新してください。
+まず、`Arena/index.js`の中にある`Arena`コンポーネントを下記のように更新してください。
 
 ```javascript
 // Arena/index.js
@@ -397,7 +397,7 @@ return (
 const Arena = ({ characterNFT, setCharacterNFT }) => {
 ```
 
-次に、`fetchBoss` 関数が記載されている `useEffect` の中身を下記のように更新しましょう。
+次に、`fetchBoss`関数が記載されている`useEffect`の中身を下記のように更新しましょう。
 
 ```javascript
 // Arena/index.js
@@ -445,18 +445,18 @@ useEffect(() => {
 }, [gameContract]);
 ```
 
-また、`App.js` を開き、`Arena` コンポーネントを下記のよう更新してください。
+また、`App.js`を開き、`Arena`コンポーネントを下記のよう更新してください。
 
-- `Arena/index.js` で `Arena` コンポーネントの引数に、`setCharacterNFT` を追加したので、`App.js` にも更新を反映させます。
+- `Arena/index.js`で`Arena`コンポーネントの引数に、`setCharacterNFT`を追加したので、`App.js`にも更新を反映させます。
 
 ```javascript
 // App.js
 <Arena characterNFT={characterNFT} setCharacterNFT={setCharacterNFT} />
 ```
 
-新しく追加したコードは、ほぼ `SelectCharacter` コンポーネントを設定したロジックと同じです。
+新しく追加したコードは、ほぼ`SelectCharacter`コンポーネントを設定したロジックと同じです。
 
-1 つだけ React の手法 [`prevState`](https://ratio.ym-tane.com/development/react-prevstate/) を使用したので、下記のコードを見ていきましょう。
+1つだけReactの手法 [`prevState`](https://ratio.ym-tane.com/development/react-prevstate/) を使用したので、下記のコードを見ていきましょう。
 
 ```javascript
 // Arena/index.js
@@ -470,27 +470,27 @@ setCharacterNFT((prevState) => {
 
 ここでは、下記が行われています。
 
-上記のように `prevState` を使用すると、変数の以前の状態にアクセス・参照して、値を変更できます。
+上記のように`prevState`を使用すると、変数の以前の状態にアクセス・参照して、値を変更できます。
 
 ここでは、以下の処理が行われています。
 
-- `setBoss` で `boss` の `hp` 値を新しい値（`bossHp`）に更新
+- `setBoss`で`boss`の`hp`値を新しい値(`bossHp`)に更新
 
-- `setCharacterNFT` で `characterNFT` の `hp` 値を新しい値（`playerHp`）に更新
+- `setCharacterNFT`で`characterNFT`の`hp`値を新しい値(`playerHp`)に更新
 
 😼 もう一度攻撃してみる
 
 もう一度クロコダイルに攻撃をしかけてみましょう。
 
-下記のようにボスと NFT キャラクターの HP が更新されていれば成功です。
+下記のようにボスとNFTキャラクターのHPが更新されていれば成功です。
 
 ![](/public/images/ETH-NFT-Game/section-3/3_6_6.png)
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#eth-nft-game` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#eth-nft-game`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -501,8 +501,8 @@ setCharacterNFT((prevState) => {
 
 ---
 
-おめでとうございます!　セクション 3 は終了です!
+おめでとうございます!　セクション3は終了です!
 
-ぜひ、あなたのボスを `#eth-nft-game` にシェアしてください 👿🔥
+ぜひ、あなたのボスを`#eth-nft-game`にシェアしてください 👿🔥
 
-次のレッスンに進んで、UI を完成させましょう 🎉
+次のレッスンに進んで、UIを完成させましょう 🎉

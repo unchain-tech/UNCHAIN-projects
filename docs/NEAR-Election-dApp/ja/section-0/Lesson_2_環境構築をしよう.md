@@ -1,30 +1,30 @@
 ### 🏭 環境構築をしよう
 
-このプロジェクトは中級者向けということで、github からある程度出来上がったプロジェクトを clone するのではなく `1 からプロジェクトを作成`していきます！
+このプロジェクトは中級者向けということで、GitHubからある程度出来上がったプロジェクトをcloneするのではなく`1 からプロジェクトを作成`していきます！
 
-スマートコントラクトの作成に使う言語は `Rust` です。比較的低水準の言語で solidity と比べると注意しないといけない部分が多かったりしますが、その分後々起きるかもしれないバグを予防してくれているのでとても優秀な言語だと言えます。
+スマートコントラクトの作成に使う言語は`Rust`です。比較的低水準の言語でsolidityと比べると注意しないといけない部分が多かったりしますが、その分後々起きるかもしれないバグを予防してくれているのでとても優秀な言語だと言えます。
 
-では Rust でスマートコントラクトを作成するための環境を整えていきましょう。
+ではRustでスマートコントラクトを作成するための環境を整えていきましょう。
 
 **Rust のインストール**
 
-まずは下のコマンドをターミナルで実行することで Rust をインストールしてください
+まずは下のコマンドをターミナルで実行しRustをインストールしてください
 
 ```bash
 $ curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
 ```
 
-1) Proceed with installation (default)
-2) Customize installation
-3) Cancel installation
-このようなメッセージが出てきたら、1のdefaultを選択してください。
-インストールが成功していれば下のようなメッセージが表示されているでしょう
+1. Proceed with installation（default）
+2. Customize installation
+3. Cancel installation
+   このようなメッセージが出てきたら、1のdefaultを選択してください。
+   インストールが成功していれば下のようなメッセージが表示されているでしょう
 
 ```bash
 Rust is installed now. Great!
 ```
 
-また、環境変数を設定するために下のコマンドをターミナルで実行させましょう（[環境変数とは？](https://wa3.i-3-i.info/word11027.html)）
+また、環境変数を設定するために下のコマンドをターミナルで実行させましょう([環境変数とは？](https://wa3.i-3-i.info/word11027.html))
 
 ```bash
 source $HOME/.cargo/env
@@ -46,7 +46,7 @@ $ rustc --version
 rustc x.y.z (abcabcabc yyyy-mm-dd)
 ```
 
-次にコンピュータから near に接続するためのツールである`near-cli`をどのディレクトリでも使えるように下のコマンドを実行することでグローバルにインストールしましょう！
+次にコンピュータからnearに接続するためのツールである`near-cli`をどのディレクトリでも使えるように下のコマンドを実行することでグローバルにインストールしましょう！
 
 ```bash
 npm install -g near-cli
@@ -66,15 +66,16 @@ npm install -g near-cli
 mkdir near-election-dapp
 cd  near-election-dapp
 ```
+
 `near-election-dapp`のディレクトリに移動して下のコマンドをターミナルで実行させましょう。
 
 ```bash
 cargo new near-election-dapp-contract --lib
 ```
 
-始めの`cargo`は rust のパッケージを管理してくれるもので、javascript で使っていた npm の rust 版と考えていただければ OK です。
+始めの`cargo`はrustのパッケージを管理してくれるもので、JavaScriptで使っていたnpmのrust版と考えていただければOKです。
 
-次の`new`は新しいプロジェクトということを表しており、その次の`near-election-dapp-contract`はプロジェクト名を表しています。ここは自分の好きな名前に変えてもらって大丈夫です。（ただし、この後もここで使った名前を使うので、同じ名前にしておいた方がスムーズに進めることができるかと思います。）
+次の`new`は新しいプロジェクトということを表しており、その次の`near-election-dapp-contract`はプロジェクト名を表しています。ここは自分の好きな名前に変えてもらって大丈夫です（ただし、この後もここで使った名前を使うので、同じ名前にしておいた方がスムーズに進めることができるかと思います）。
 
 最後の`--lib`はライブラリということを意味しています。これは、スマートコントラクトがライブラリだからです。これを付け忘れるとスマートコントラクトとして機能しないので忘れないように気をつけてください！
 
@@ -83,20 +84,20 @@ cargo new near-election-dapp-contract --lib
 次にフロントエンドのセッティングもしていきます。`near-election-dapp`ディレクトリにいることを確認して以下のコードを実行しましょう。
 
 ```bash
-npx create-near-app --frontend=react --contract=rust near-election-dapp-frontend
+npx create-near-app@3.1.0 --frontend=react --contract=rust near-election-dapp-frontend
 ```
 
 コードを入力すると、2回ほどYes、Noを問われると思うので、全てYesを選択するで大丈夫です。
 
 これによってコントラクトとフロントの接続をすでにコーディングしてくれている状態のプロジェクトを作成してくれます。
 
-このコードが意味しているのは`フロントは react` で、`コントラクトは Rust `で記述されているプロジェクトであるということです。
+このコードが意味しているのは`フロント=react`で、`コントラクト=Rust `で記述されているプロジェクトであるということです。
 
-最後の`near-election-dapp-frontend`はプロジェクト名なので自分の好きな名前に変えてもらって大丈夫です。（ただし、この後もここで使った名前を使うので同じ名前にしておいた方がスムーズに進めることができるかと思います。）
+最後の`near-election-dapp-frontend`はプロジェクト名なので自分の好きな名前に変えてもらって大丈夫です（ただし、この後もここで使った名前を使うので同じ名前にしておいた方がスムーズに進めることができるかと思います）。
 
 ここまででファイル構造は下のようなものになっているはずです。
 
-下のコマンドをターミナルで実行することで確認できます。`-L 2`は２つ下の階層まで、`-F`はディレクトリを`/`で表現するという意味です。
+下のコマンドをターミナルで実行すると確認できます。`-L 2`は２つ下の階層まで、`-F`はディレクトリを`/`で表現するという意味です。
 
 ```bash
 tree -L 2 -F
@@ -126,7 +127,6 @@ near-election-dapp/
 https://dot-blog.jp/news/mac-zsh-tree/
 https://dot-blog.jp/news/homebrew-how-to-install/
 
-
 ここで`near-election-dapp-frontend`へ移って下のコマンドをターミナルで実行すると、あらかじめ用意されているコントラクトのコンパイルとデプロイがされた後にフロントエンドが起動されます！
 
 ```bash
@@ -135,17 +135,16 @@ yarn dev
 
 その結果下のようになっているはずです。
 
-背景は時間帯によって変化するような CSS が適用されているため、白くなっている可能性がありますが問題はありません。
+背景は時間帯によって変化するようなCSSが適用されているため、白くなっている可能性がありますが問題はありません。
 
 ![](/public/images/NEAR-Election-dApp/section-0/0_2_1.png)
 
 もし、`command not found: yarn`とエラーが出てしまった方は、以下の記事を参考にしてみてください。
 https://asapoon.com/error/2795/command-not-found-yarn/
 
-
 次に`Tailwind`の設定をしていきましょう
 
-まずは下のコマンドをターミナルで実行することで Tailwind のインストールと config ファイルの生成をします。
+まずは下のコマンドをターミナルで実行し、Tailwindのインストールとconfigファイルの生成をします。
 
 注意点として、このコマンドをターミナルで実行するのは先ほど作成したフロントエンドのディレクトリである`near-election-dapp-frontend`です（名前を変えた方はその名前）。
 
@@ -153,7 +152,7 @@ https://asapoon.com/error/2795/command-not-found-yarn/
 npm install -D tailwindcss postcss &&  npx tailwindcss init
 ```
 
-次に上のディレクトリの near-election-dapp-frontend/frontend/assets/css/global.css の一番上に下のコードを追加してください
+次に上のディレクトリのnear-election-dapp-frontend/frontend/assets/css/global.cssの一番上に下のコードを追加してください
 
 [global.css]
 
@@ -169,19 +168,17 @@ npm install -D tailwindcss postcss &&  npx tailwindcss init
 
 ```javascript
 module.exports = {
-  content: [
-    "./frontend/**/*.{js,jsx,ts,tsx}",
-  ],
+  content: ["./frontend/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {},
   },
   plugins: [],
-}
+};
 ```
 
 最後に`.postcssrc`というファイルを`tailwind.config.js`と同じ階層に作成して、以下を追加しましょう。
 
-[.postcssrc]
+[.PostCSSrc]
 
 ```
 {
@@ -193,9 +190,9 @@ module.exports = {
 
 ```
 
-これで tailwind の設定は完了したのできちんと機能しているか確認してみましょう。
+これでtailwindの設定は完了したのできちんと機能しているか確認してみましょう。
 
-まず near-election-dapp-frontend/frontend/App.js の 58 行目を下のようにかえます。
+まずnear-election-dapp-frontend/frontend/App.jsの58行目を下のようにかえます。
 
 次にターミナル上で`near-election-dapp-frontend`に移動して、`yarn dev`を実行してみましょう！
 
@@ -208,11 +205,11 @@ module.exports = {
 下のように一部分が赤字に変わっていれば成功です！
 ![](/public/images/NEAR-Election-dApp/section-0/0_2_2.png)
 
-では最後に、コントラクトのディレクトリ（ここでは near-election-dapp-frontend）内にある `contract` というディレクトリは削除してください。
+では最後に、コントラクトのディレクトリ（ここではnear-election-dapp-frontend）内にある`contract`というディレクトリは削除してください。
 
-先ほど`npx create-near-app --frontend=react --contract=rust near-election-dapp-frontend`を実行させることによってコントラクトも同時に作られましたが、一からスマートコントラクトを作る練習ということでフロントとコントラクトを別々に作っており、ややこしくなる可能性があるのでこの作業を行います。
+先ほど`npx create-near-app@3.1.0 --frontend=react --contract=rust near-election-dapp-frontend`を実行させることによってコントラクトも同時に作られましたが、一からスマートコントラクトを作る練習ということでフロントとコントラクトを別々に作っており、ややこしくなる可能性があるのでこの作業を行います。
 
-最終的なファイル構造は以下のようになっていれば OK です
+最終的なファイル構造は以下のようになっていればOKです
 
 末尾が`/`となっているものはディレクトリ、それ以外はファイルであることを示しています
 
@@ -224,7 +221,6 @@ near-election-dapp/
 └── near-election-dapp-frontend/
     ├── README.md
     ├── ava.config.cjs
-    ├── contract/
     ├── dist/
     ├── frontend/
     ├── integration-tests/
@@ -240,17 +236,17 @@ near-election-dapp/
 これで環境構築＋ディレクトリ構造の作成は完了です。
 
 **拡張機能**
-Rust、Tailwind で開発を行うときにエラーや候補を表示してくれる機能があるととても便利です！
+Rust、Tailwindで開発を行うときにエラーや候補を表示してくれる機能があるととても便利です！
 
-なので vscode を使っている方はぜひ下の二つの拡張機能を入れることをおすすめします。
+なのでvscodeを使っている方はぜひ下の2つの拡張機能を入れることをおすすめします。
 ![](/public/images/NEAR-Election-dApp/section-0/0_2_3.png)
 ![](/public/images/NEAR-Election-dApp/section-0/0_2_4.png)
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-election-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#near-election-dapp`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -263,10 +259,10 @@ Rust、Tailwind で開発を行うときにエラーや候補を表示してく�
 
 おめでとうございます！
 
-セクション 0 は終了です！
+セクション0は終了です！
 
 次のセクションではいよいよコントラクトの作成に移ります。
 
-rust はほとんどの人にとって不慣れな言語だとは思いますが、一度習得できれば一生ものです！
+rustはほとんどの人にとって不慣れな言語だとは思いますが、一度習得できれば一生ものです！
 
 頑張っていきましょう 🚀

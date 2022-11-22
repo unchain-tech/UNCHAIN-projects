@@ -59,7 +59,7 @@
             .expect("ERR_NOT_FOUND_ROOM");
 ```
 
-`env::attached_deposit()`メソッドで、宿泊者が支払う NEAR を取得します。
+`env::attached_deposit()`メソッドで、宿泊者が支払うNEARを取得します。
 
 ```rust
         // 関数コール時に送付されたNEARを取得
@@ -84,7 +84,7 @@
         self.add_booking_to_guest(account_id, room_id, check_in_date);
 ```
 
-最後に、宿泊料をオーナーへ支払います。`transfer()`メソッドは、引数に受け取った トークン を`Promise`が動作するアカウントに転送します。`Promise`は、オーナーのアカウント ID を指定して作成されていることに注目してください。ここでは、「`Promise`が動作するアカウント」が部屋を登録したオーナーとなります。よって、部屋のオーナーにトークンが転送されます。
+最後に、宿泊料をオーナーへ支払います。`transfer()`メソッドは、引数に受け取ったトークンを`Promise`が動作するアカウントに転送します。`Promise`は、オーナーのアカウントIDを指定して作成されていることに注目してください。ここでは、「`Promise`が動作するアカウント」が部屋を登録したオーナーとなります。よって、部屋のオーナーにトークンが転送されます。
 
 ```rust
         // 宿泊料を部屋のオーナーへ支払う
@@ -187,10 +187,10 @@
 
 追加した内容を見ていきましょう。
 
-オーナーが部屋の利用状況を変更できる機能を追加しました。これらは、Web アプリケーション上でオーナーがボタンを操作することにより実現されます。
+オーナーが部屋の利用状況を変更できる機能を追加しました。これらは、Webアプリケーション上でオーナーがボタンを操作することにより実現されます。
 
 `change_status_to_available`メソッドは、オーナーが**Check Out**ボタンを押した際に、部屋の利用状況を`Stay` → `Available`に変更します。
-利用状況を変更したい部屋の ID が引数として渡されるので、データから ID に紐づく部屋を取得します。次に、取得した部屋の`status`を変更します。これは、宿泊者がチェックアウトをしたことを意味するので、予約データから`remove()`というメソッドを使用して`check_in_date`を削除します。
+利用状況を変更したい部屋のIDが引数として渡されるので、データからIDに紐づく部屋を取得します。次に、取得した部屋の`status`を変更します。これは、宿泊者がチェックアウトをしたことを意味するので、予約データから`remove()`というメソッドを使用して`check_in_date`を削除します。
 
 ```rust
         // 部屋が持つ予約データの削除
@@ -202,14 +202,14 @@
         room.status = UsageStatus::Available;
 ```
 
-最後に、宿泊者の予約データを削除します。この操作は、`Contract` 構造体が持つ`bookings_per_guest`データに対して行われます。`remove_booking_from_guest`メソッドは後ほど追加します。
+最後に、宿泊者の予約データを削除します。この操作は、`Contract`構造体が持つ`bookings_per_guest`データに対して行われます。`remove_booking_from_guest`メソッドは後ほど追加します。
 
 ```rust
         // 宿泊者が持つ予約データを削除
         self.remove_booking_from_guest(guest_id, check_in_date);
 ```
 
-`change_status_to_stay`メソッドは、オーナーが**Check In**ボタンを押した際に、部屋の利用状況を`Available` → `Stay`に変更します。ID から部屋を取得する部分は、`change_status_to_available`メソッドと同じです。違いは、以下の部分です。
+`change_status_to_stay`メソッドは、オーナーが**Check In**ボタンを押した際に、部屋の利用状況を`Available` → `Stay`に変更します。IDから部屋を取得する部分は、`change_status_to_available`メソッドと同じです。違いは、以下の部分です。
 
 ```rust
          // 利用状況を`Stay`に変更
@@ -219,7 +219,7 @@
 `status`を変更する際に、どの宿泊データ（宿泊日）が使用されているのかを周知するために、`check_in_date`を保存します。
 
 `is_available`メソッドは、オーナーが誤って**Check In**ボタンを押してしまわないように確認をするためのものです。フロントエンドを実装する際に、`change_status_to_stay`メソッドを呼び出す前にこのメソッドを使用します。
-確認したい部屋の ID が引数として渡されるので、ID に紐づく部屋を取得して`status`を確認します。
+確認したい部屋のIDが引数として渡されるので、IDに紐づく部屋を取得して`status`を確認します。
 
 ```rust
         if room.status != UsageStatus::Available {
@@ -300,7 +300,7 @@ impl Contract {
 
 `remove_booking_from_guest`メソッドは、引数で削除したい宿泊データの日付`check_in_date`が渡されます。このデータを`Contract`構造体が所有する`bookings_per_guest`から削除します。これは、`change_status_to_available`メソッド内で呼ばれます。
 
-2 つのメソッドには、`fn`キーワードの前に`pub`キーワードがありません。これは、`lib.rs`内部でのみ呼ばれる([プライベート](https://doc.rust-jp.rs/rust-by-example-ja/mod/visibility.html))メソッドであるためです。
+2つのメソッドには、`fn`キーワードの前に`pub`キーワードがありません。これは、`lib.rs`内部でのみ呼ばれる([プライベート](https://doc.rust-jp.rs/rust-by-example-ja/mod/visibility.html))メソッドであるためです。
 
 ```rust
     fn add_booking_to_guest(
@@ -312,9 +312,9 @@ impl Contract {
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-booking-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#near-booking-dapp`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

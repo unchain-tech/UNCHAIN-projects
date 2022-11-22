@@ -3,7 +3,7 @@
 
 ### 🍽 テンプレートをあなたの GitHub にフォークする
 
-このセクションでは、Web サイトの構築を通して、フロントエンドがスマートコントラクトとどのように関連するのか学びます。
+このセクションでは、Webサイトの構築を通して、フロントエンドがスマートコントラクトとどのように関連するのか学びます。
 
 まず、ターミナルに向かいましょう。
 
@@ -16,15 +16,15 @@ cd Yield-Farm
 
 次にテンプレートをフォークしたのちに、それをローカル環境にクローンします。
 
-まだ GitHub のアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
+まだGitHubのアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
-GitHub のアカウントをお持ちの方は、[こちら](https://github.com/shiftbase-xyz/yield-farm-starter-project) から、テンプレートである `yield-farm-starter-project` をあなたの GitHub にフォークしましょう。
+GitHubのアカウントをお持ちの方は、[こちら](https://github.com/shiftbase-xyz/yield-farm-starter-project) から、テンプレートである`yield-farm-starter-project`をあなたのGitHubにフォークしましょう。
 
 フォークの方法は、[こちら](https://docs.github.com/ja/get-started/quickstart/fork-a-repo) を参照してください。
 
-ご自身の GitHub アカウントにフォークした `yield-farm-starter-project` リポジトリをあなたのローカル環境にクローンしましょう。
+ご自身のGitHubアカウントにフォークした`yield-farm-starter-project`リポジトリをあなたのローカル環境にクローンしましょう。
 
-下図のように、`Code` ボタンをクリックした後、`SSH` を選択し、Git リンクをコピーしましょう。
+下図のように、`Code`ボタンをクリックした後、`SSH`を選択し、Gitリンクをコピーしましょう。
 
 ![](/public/images/ETH-dApp/section-2/2_1_1.png)
 
@@ -40,7 +40,7 @@ GitHub のアカウントをお持ちの方は、[こちら](https://github.com/
 >
 > 自分で管理して必ず見せてはいけない秘密鍵と、サーバーに渡して見せても良い公開鍵の 2 つが SSH の通信では重要になってきます。
 > Github における SSH の設定は、[こちら](https://docs.github.com/ja/authentication/connecting-to-github-with-ssh) を参照してください!
-ターミナルで先ほど作成した `yield-farm-starter-project` ディレクトリに移動し、先ほどコピーしたリンクを貼り付け、下記を実行してください。
+ターミナルで先ほど作成した`yield-farm-starter-project`ディレクトリに移動し、先ほどコピーしたリンクを貼り付け、下記を実行してください。
 
 ```bash
 git clone コピーした_github_リンク
@@ -53,30 +53,30 @@ Yield-Farm
    |_ yield-farm-starter-project
 ```
 
-ターミナル上で `yield-farm-starter-project` に移動して下記を実行しましょう。
+ターミナル上で`yield-farm-starter-project`に移動して下記を実行しましょう。
 
 ```bash
 npm install
 ```
 
-`npm` コマンドを実行することで、JavaScript ライブラリのインストールが行われます。
+`npm`コマンドを実行することで、JavaScriptライブラリのインストールが行われます。
 
 ### 💻 ネットワーク情報の編集
 
 テンプレートファイルの中にある`truffle-config.js`というファイルを見てみましょう。ここにはテストに使うGanacheの情報を打ち込む必要があります。
 
-下のGanacheの画像の `NETWORK ID` と書いてある部分の４桁の数字を`truffle.config.js` の `network_id` というところに打ち込んでください。
+下のGanacheの画像の`NETWORK ID`と書いてある部分の４桁の数字を`truffle.config.js`の`network_id`というところに打ち込んでください。
 
-![](/public/images/Ganache-Yield-Farm/section-1/12_1_2.png)
-![](/public/images/Ganache-Yield-Farm/section-1/12_1_3.png)
+![](/public/images/ETH-Yield-Farm/section-1/1_2_1.png)
+![](/public/images/ETH-Yield-Farm/section-1/1_2_2.png)
 
-これで Ganache のネットワークを使ってテストができるようになりました!
+これでGanacheのネットワークを使ってテストができるようになりました!
 
-### 👀 `contracts` フォルダの中身の確認する
+### 👀 `contracts`フォルダの中身の確認する
 
-次に `scr/contracts` にあるスマートコントラクトのコードが書かれているファイルの確認を行いましょう。
+次に`src/contracts`にあるスマートコントラクトのコードが書かれているファイルの確認を行いましょう。
 
-このファイルには `MockDaiToken.sol` と `DappToken.sol` が含まれています。
+このファイルには`MockDaiToken.sol`と`DappToken.sol`が含まれています。
 
 これらのファイルには、それぞれトークンのコードが含まれています。MockDaiトークンは、AstarやLinkなど、既存の仮想通貨を模したトークンです。
 
@@ -87,7 +87,7 @@ ERC-20は、イーサリアムトークンの構築方法に関するAPI仕様�
 
 ERC-20規格に関する詳しい説明は[こちら](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md)をご覧ください。
 
-この規格に準拠したトークンを `MockDaiToken.sol` と `DappToken.sol` で作成することになります。
+この規格に準拠したトークンを`MockDaiToken.sol`と`DappToken.sol`で作成することになります。
 
 ERC-20トークンの場合、スマートコントラクトはトークンの操作に関連するすべてのアクションを管理し、トークンの所有権と口座残高を追跡します。
 
@@ -97,13 +97,13 @@ ERC-20標準規格を使用することで、トークンは以下のユース�
 - 暗号通貨取引所での売買
 - クラウドセール（ICO）でのトークンの購入
 
-### 🧪 `DappToken.sol` を深ぼる
+### 🧪 `DappToken.sol`を深ぼる
 
-`DappToken.sol` と `MockDaiToken.sol` に記述されている機能はほぼ同じです。
+`DappToken.sol`と`MockDaiToken.sol`に記述されている機能はほぼ同じです。
 
-ERC-20規格に準拠した機能を理解するために、`DappToken.sol` の内容を見てみましょう。
+ERC-20規格に準拠した機能を理解するために、`DappToken.sol`の内容を見てみましょう。
 
-まず、`DappToken.sol` の4-10行目に注目してください。
+まず、`DappToken.sol`の4-10行目に注目してください。
 
 ```solidity
 // DappToken.sol
@@ -116,7 +116,7 @@ string  public symbol = "DAPP";
 uint256 public totalSupply = 1000000000000000000000000;
 ```
 
-ここでは、`DappToken.sol` で使用する変数を定義し、値を格納しています。
+ここでは、`DappToken.sol`で使用する変数を定義し、値を格納しています。
 
 次に、25行目を見ていきましょう。
 ```solidity
@@ -124,15 +124,15 @@ uint256 public totalSupply = 1000000000000000000000000;
 mapping(address => uint256) public balanceOf;
 ```
 
-この `balanceOf` というマッピングは、「Key が `address` で Value が `uint256` 」という解釈をします。
+この`balanceOf`というマッピングは、「Keyが`address`でValueが`uint256`」という解釈をします。
 
-`balanceOf` は、実際のユーザーの `address` を引数に、そのユーザーアドレスの残高 (バランス) を返します。
+`balanceOf`は、実際のユーザーの`address`を引数に、そのユーザーアドレスの残高（残高）を返します。
 
-そして、このマッピングは `public` なので、コントラクトの外から呼び出すことができます。
+そして、このマッピングは`public`なので、コントラクトの外から呼び出すことができます。
 
 **1️⃣ `transfer`**
 
-次に、`transfer` 関数（ `DappToken.sol` の31-38行）を見ていきましょう。
+次に、`transfer`関数( `DappToken.sol`の31-38行)を見ていきましょう。
 
 ```solidity
 // DappToken.sol
@@ -151,9 +151,9 @@ function transfer(address _to, uint256 _value) public returns (bool success) {
 }
 ```
 
-`transfer` 関数は、あるアドレス（ `_from` ）から別のアドレス（ `_to` ）へ、ある量のトークン（ `_value` ）を転送する関数です。その際に、必ず、 `Transfer` イベントを発生させなければいけません。
+`transfer`関数は、あるアドレス( `_from`)から別のアドレス( `_to`)へ、ある量のトークン( `_value`)を転送する関数です。その際に、必ず、 `Transfer`イベントを発生させなければいけません。
 
-`Transfer` イベントを発生させるために、`DappToken.sol` の12-16行目に以下の `event` が定義されています。
+`Transfer`イベントを発生させるために、`DappToken.sol`の12-16行目に以下の`event`が定義されています。
 
 ```solidity
 // DappToken.sol
@@ -163,25 +163,25 @@ event Transfer(
    uint256 _value
 );
 ```
-`Transfer` イベントには以下の変数が必要になります。
+`Transfer`イベントには以下の変数が必要になります。
 - `_from`: トークンを送る人のアドレス
 - `_to`: トークンが送られる人のアドレス
 - `_value`: 送られるトークンの金額
 
-トークンがピアツーピアで転送されるときは、必ず `Transfer` イベントを発生させる必要があります。新しいトークンを作成する際には、 `_from` アドレスを `0x0` に設定して、 `Transfer` イベントを発生させるようにします。
+トークンがピアツーピアで転送されるときは、必ず`Transfer`イベントを発生させる必要があります。新しいトークンを作成する際には、 `_from`アドレスを`0x0`に設定して、 `Transfer`イベントを発生させるようにします。
 
 **2️⃣ `approve`**
 
-次に、`approve` 関数を見ていきましょう。
+次に、`approve`関数を見ていきましょう。
 
-まず、`allowance` マッピング（ `DappToken.sol` の26行目）に着目してください。
+まず、`allowance`マッピング( `DappToken.sol`の26行目)に着目してください。
 
 ```solidity
 DappToken.sol
 mapping(address => mapping(address => uint256)) public allowance;
 ```
 
-`allowance` マッピングはネストされたマッピングの形をとっていますが、至って簡単なコンセプトです。以下を見ていきましょう。
+`allowance`マッピングはネストされたマッピングの形をとっていますが、至って簡単なコンセプトです。以下を見ていきましょう。
 
 ```solidity
 DappToken.sol
@@ -189,15 +189,15 @@ mapping(address => mapping(address => uint256)) public allowance;
           (1)                (2)        (3)
 ```
 
-まず、(1)-(3)の変数の意味を見ていきましょう。
+まず、（1）-（3）の変数の意味を見ていきましょう。
 
-- `(1)`: コントラクトオーナー( `owner` ）のアドレス
+- `(1)`: コントラクトオーナー( `owner`)のアドレス
 - `(2)`: `spender`（任意のユーザー）のアドレス
-- `(3)`: `spender` が引き出すことができる金額（ `_value` ）
+- `(3)`: `spender`が引き出すことができる金額( `_value`)
 
-`allowance` マッピングは `(1)` の `owner` のアドレスを Key として、そのコントラクトを叩いたユーザー ( `spender` ) が引き出すことのできる金額 ( `_value` ) を返すマッピングです。
+`allowance`マッピングは`(1)`の`owner`のアドレスをKeyとして、そのコントラクトを叩いたユーザー ( `spender` ) が引き出すことのできる金額 ( `_value` ) を返すマッピングです。
 
-次に、`approve` 関数（`DappToken.sol` の41-45行目）を見ていきましょう。
+次に、`approve`関数(`DappToken.sol`の41-45行目)を見ていきましょう。
 
 ```solidity
 // DappToken.sol
@@ -208,27 +208,27 @@ function approve(address _spender, uint256 _value) public returns (bool success)
    return true;
 }
 ```
-`approve` 関数は、任意のユーザー( `spender` )が一定量( `_value` )のトークンを繰り返し引き出せるようにする関数です。この関数が再び呼び出された場合、現在引き出し可能な金額は新しい `_value` 値で上書きされます。
+`approve`関数は、任意のユーザー( `spender` )が一定量( `_value` )のトークンを繰り返し引き出せるようにする関数です。この関数が再び呼び出された場合、現在引き出し可能な金額は新しい`_value`値で上書きされます。
 
-次に、26行目で定義した `allowance` マッピングが `approve` 関数の中で呼び出されていることを確認しましょう。
+次に、26行目で定義した`allowance`マッピングが`approve`関数の中で呼び出されていることを確認しましょう。
 
 ```solidity
 // DappToken.sol
 allowance[msg.sender][_spender] = _value;
 ```
 
-ここでは `_spender`（任意のユーザー）が `msg.sender`（コントラクトのオーナーユーザー）からまだ引き出すことができる金額（ `_value` ）を設定しています。
+ここでは`_spender`（任意のユーザー）が`msg.sender`（コントラクトのオーナーユーザー）からまだ引き出すことができる金額( `_value`)を設定しています。
 
-最後に、`Approval` イベントを発生させていることに着目してください。
+最後に、`Approval`イベントを発生させていることに着目してください。
 
 ```solidity
 // DappToken.sol
 emit Approval(msg.sender, _spender, _value);
 ```
 
-`Approval` イベントは `approve` 関数の呼び出しに成功したときに発生します。
+`Approval`イベントは`approve`関数の呼び出しに成功したときに発生します。
 
-`Approval` イベントを発生させるために、`DappToken.sol` の18-22行目に以下の `event` が定義されていることを確認してください。
+`Approval`イベントを発生させるために、`DappToken.sol`の18-22行目に以下の`event`が定義されていることを確認してください。
 
 ```solidity
 // DappToken.sol
@@ -241,7 +241,7 @@ event Approval(
 
 **3️⃣ `transferFrom`**
 
-最後に、`DappToken.sol` の47-56行目に記載されている `transferFrom` 関数を見ていきましょう。
+最後に、`DappToken.sol`の47-56行目に記載されている`transferFrom`関数を見ていきましょう。
 
 ```solidity
 // DappToken.sol
@@ -257,15 +257,15 @@ function transferFrom(address _from, address _to, uint256 _value) public returns
 }
 ```
 
-`transferFrom` は、`_value` の量のトークンをアドレス `_from` からアドレス `_to` に転送し、`Transfer` イベントを発生させる関数です。
+`transferFrom`は、`_value`の量のトークンをアドレス`_from`からアドレス`_to`に転送し、`Transfer`イベントを発生させる関数です。
 
-`transferFrom` は、コントラクトがあなたに代わってトークンを転送することを許可する、トークン引き出しワークフローに使用されます。これは例えば、コントラクトがあなたに代わってトークンを転送したり、サブ通貨で手数料を請求したりすることを可能にするために使用できます。
+`transferFrom`は、コントラクトがあなたに代わってトークンを転送することを許可する、トークン引き出しワークフローに使用されます。これは例えば、コントラクトがあなたに代わってトークンを転送したり、サブ通貨で手数料を請求したりすることを可能にするために使用できます。
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#eth-yield-farm` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#eth-yield-farm`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

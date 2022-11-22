@@ -43,13 +43,13 @@ names[newRecordId] = name;
 
 ---
 
-さて、Section-3 ではコントラクトを変更しています。
+さて、Section-3ではコントラクトを変更しています。
 
 何をしなければならないかおわかりでしょうか。
 
 復習です🔥
 
-Section-2 の Lesson-3 を参照くださいね👋
+Section-2のLesson-3を参照くださいね👋
 
 ---
 ### 💔 コントラクトのドメインの有効性を確認
@@ -104,7 +104,7 @@ function register(string calldata name) public payable {
 できました!
 
 試しに長い文字列を登録してみてください!以下のようなエラーが出力されるでしょうか？
-(deploy.jsを元にした試行用のファイルを作成して使用した結果です。)
+（deploy.jsを元にした試行用のファイルを作成して使用した結果です）。
 
 ```
 % npx hardhat run scripts/run_S3_L2.js
@@ -117,9 +117,9 @@ Error: VM Exception while processing transaction: reverted with custom error 'In
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#polygon-ens-domain` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#polygon-ens-domain`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -129,6 +129,6 @@ Error: VM Exception while processing transaction: reverted with custom error 'In
 ```
 
 ---
-お疲れ様でした!! ターミナルに出力されたエラー文を Discord の `polygon-ens-domain` にシェアしてみましょう!
+お疲れ様でした!! ターミナルに出力されたエラー文をDiscordの`polygon-ens-domain`にシェアしてみましょう!
 
 テストは重要な作業なので、コミュニティのメンバーと確認し合いながら作業を進めましょう✨

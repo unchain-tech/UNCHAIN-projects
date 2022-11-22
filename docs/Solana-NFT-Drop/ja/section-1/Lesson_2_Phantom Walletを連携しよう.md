@@ -1,18 +1,18 @@
 ### 🤖 ローカル開発環境を設定する
 
-※ GitHub アカウントの初期設定がお済みでない方は、アカウント設定を行ってから先へお進みください。
+※ GitHubアカウントの初期設定がお済みでない方は、アカウント設定を行ってから先へお進みください。
 
 まず、 [この GitHub リンク](https://github.com/shiftbase-xyz/nft-drop-starter-project) にアクセスして、ページの右上にある[Fork]ボタンを押してください。
 
-このリポジトリをフォークすると、自分の GitHub に同一のリポジトリがコピーされます。
+このリポジトリをフォークすると、自分のGitHubに同一のリポジトリがコピーされます。
 
 次に新しくフォークされたリポジトリをローカルに保存します。
 
 「Code」ボタンをクリックして、そのリンクをコピーしてください。
 
-![](/public/images/Solana-NFT-Drop/section1/1_1_1.png)
+![](/public/images/Solana-NFT-Drop/section-1/1_1_1.png)
 
-最後に、ターミナルに移動し、`cd` コマンドでプロジェクトが存在するディレクトリまでいき、次のコマンドを実行します。
+最後に、ターミナルに移動し、`cd`コマンドでプロジェクトが存在するディレクトリまでいき、次のコマンドを実行します。
 
 ```txt
 git clone YOUR_FORKED_LINK
@@ -22,35 +22,35 @@ git clone YOUR_FORKED_LINK
 
 ### 🔌 Phantom Wallet を使用してウォレット接続ボタンを作成する
 
-このプロジェクトでは、[ Phantom Wallet ](https://phantom.app/)という、Solana の NFT 取扱に優れたウォレットを使用します。
+このプロジェクトでは、[ Phantom Wallet ](https://phantom.app/)という、SolanaのNFT取扱に優れたウォレットを使用します。
 
-まずは拡張機能をダウンロードして Phantom Wallet をセットアップしてください。
+まずは拡張機能をダウンロードしてPhantom Walletをセットアップしてください。
 
-Phantom Wallet は **Chrome**、 **Brave**、 **Firefox**、および **Edge** をサポートしています。
+Phantom Walletは **Chrome**、 **Brave**、 **Firefox**、および **Edge** をサポートしています。
 
-Chrome の方は[ こちら ](https://chrome.google.com/webstore/detail/phantom/bfnaelmomeimhlpmgjnjophhpkkoljpa)から Phantom Wallet をインストールすることがきます。
+Chromeの方は[ こちら ](https://chrome.google.com/webstore/detail/phantom/bfnaelmomeimhlpmgjnjophhpkkoljpa)からPhantom Walletをインストールすることがきます。
 
-Phantom Wallet のネットワークを Devnet に変更してください。
+Phantom WalletのネットワークをDevnetに変更してください。
 
 - 「設定」→「ネットワークの変更」→「Devnet」から変更できます。
 
-今回作成する Candy Machine は Devnet 上にあるので、ウォレットも Devnet に変更する必要があります。
+今回作成するCandy MachineはDevnet上にあるので、ウォレットもDevnetに変更する必要があります。
 
-![無題](/public/images/Solana-NFT-Drop/section3/3_1_1.png)
+![無題](/public/images/Solana-NFT-Drop/section-3/3_1_1.png)
 
-※ 本プロジェクトでは Brave と Chrome でのみ動作が確認できます。
+※ 本プロジェクトではBraveとChromeでのみ動作が確認できます。
 
 ### 👻 Solana オブジェクトを設定する
 
-ユーザーの Phantom Wallet を、作成する Web アプリケーションと接続する必要があります。
+ユーザーのPhantom Walletを、作成するWebアプリケーションと接続する必要があります。
 
-エディタより、`src/App.js` ファイルを開いてください。これはアプリケーションのメインのエントリポイントになるファイルです。
+エディタより、`src/App.js`ファイルを開いてください。これはアプリケーションのメインのエントリポイントになるファイルです。
 
-Phantom Wallet 拡張機能がインストールされている場合は、`window` オブジェクトに `solana` という名前の特別なオブジェクトが自動的に代入されます。
+Phantom Wallet拡張機能がインストールされている場合は、`window`オブジェクトに`solana`という名前の特別なオブジェクトが自動的に代入されます。
 
-ミントする前に、`solana` が代入されているか確認する必要があります。存在しない場合はダウンロードするようにユーザーに指示しましょう。
+ミントする前に、`solana`が代入されているか確認する必要があります。存在しない場合はダウンロードするようにユーザーに指示しましょう。
 
-`App.js` を下記の通り変更します。
+`App.js`を下記の通り変更します。
 
 ```jsx
 // App.js
@@ -118,7 +118,7 @@ const App = () => {
 export default App;
 ```
 
-`App.js` を分解して説明します。
+`App.js`を分解して説明します。
 
 ```jsx
 // App.js
@@ -137,9 +137,9 @@ const checkIfWalletIsConnected = async () => {
 };
 ```
 
-関数 `checkIfWalletIsConnected` は、DOM の `window` オブジェクトをチェックして 、Phantom Wallet が `solana` オブジェクトを挿入したかどうかを確認します。
+関数`checkIfWalletIsConnected`は、DOMの`window`オブジェクトをチェックして 、Phantom Walletが`solana`オブジェクトを挿入したかどうかを確認します。
 
-`solana` オブジェクトが存在しているか、またそれが Phantom Wallet であるかどうかを確認しています。
+`solana`オブジェクトが存在しているか、またそれがPhantom Walletであるかどうかを確認しています。
 
 ```jsx
 // App.js
@@ -154,11 +154,11 @@ useEffect(() => {
 
 最後に、これを呼び出す必要があります。
 
-React では、 2 番目のパラメータ( `[]` )が空の場合、コンポーネントをマウント時に `useEffect` hook が 1 回呼び出されます。
+Reactでは、2番目のパラメータ( `[]` )が空の場合、コンポーネントをマウント時に`useEffect` hookが1回呼び出されます。
 
-これで、私たちの Web アプリケーションにアクセスするとすぐに、Phantom Wallet がインストールされているかどうかを確認できます。これは **非常に重要**な機能です。
+これで、私たちのWebアプリケーションにアクセスするとすぐに、Phantom Walletがインストールされているかどうかを確認できます。これは **非常に重要**な機能です。
 
-最後に、あなたの Twitter ハンドルを以下に貼り付けるのをお忘れなく!
+最後に、あなたのTwitterハンドルを以下に貼り付けるのをお忘れなく!
 
 ```jsx
 // App.js
@@ -169,25 +169,25 @@ const TWITTER_HANDLE = "あなたのTwitterハンドル";
 
 一度、ブラウザでインタフェースを確認してみましょう。
 
-1\. ターミナルを開き、`cd` で `app` フォルダまで移動します。
+1\. ターミナルを開き、`cd`で`app`フォルダまで移動します。
 
-2\. `npm install` を実行します。
+2\. `npm install`を実行します。
 
-3\. `npm run start` を実行します。
+3\. `npm run start`を実行します。
 
-これを実行すると、Web アプリケーションのコンソールに `Phantom Wallet found!` という行が表示されるはずです。
+これを実行すると、Webアプリケーションのコンソールに`Phantom Wallet found!`という行が表示されるはずです。
 
-![無題](/public/images/Solana-NFT-Drop/section1/1_1_2.png)
+![無題](/public/images/Solana-NFT-Drop/section-1/1_1_2.png)
 
-次に、ユーザーのウォレットにアクセスすることが**許可**されているか確認する必要があります。アクセスが許可されていると、Solana プログラムの関数にアクセスできます。
+次に、ユーザーのウォレットにアクセスすることが**許可**されているか確認する必要があります。アクセスが許可されていると、Solanaプログラムの関数にアクセスできます。
 
-Phantom Wallet は、すべての Web アプリケーションにウォレット情報を提供する訳ではなく、許可した Web アプリケーションだけに許可します。
+Phantom Walletは、すべてのWebアプリケーションにウォレット情報を提供する訳ではなく、許可したWebアプリケーションだけに許可します。
 
-Web アプリケーションで最初に行う必要があるのは、ユーザーが Web アプリケーションでウォレットを使用する許可を与えているか確認することです。
+Webアプリケーションで最初に行う必要があるのは、ユーザーがWebアプリケーションでウォレットを使用する許可を与えているか確認することです。
 
 これはユーザーが「ログイン」しているかどうかを確認するようなものです。
 
-ここで `checkIfWalletIsConnected` 関数にもう 1 行追加する必要があります。以下のコードを修正してください。
+ここで`checkIfWalletIsConnected`関数にもう1行追加する必要があります。以下のコードを修正してください。
 
 ```jsx
 // App.js
@@ -214,21 +214,21 @@ const checkIfWalletIsConnected = async () => {
 };
 ```
 
-`connect` を呼び出すだけで、Web アプリケーションがそのウォレットに関する情報へのアクセスを許可されていることを Phantom Wallet に通知できます。
+`connect`を呼び出すだけで、Webアプリケーションがそのウォレットに関する情報へのアクセスを許可されていることをPhantom Walletに通知できます。
 
-`onlyIfTrusted` プロパティは、ユーザーがすでにウォレットをアプリケーションに接続している場合、`true` になります。
+`onlyIfTrusted`プロパティは、ユーザーがすでにウォレットをアプリケーションに接続している場合、`true`になります。
 
-別の接続ポップアップを表示せずに、すぐにデータを pull します。詳細は [fantom の公式ドキュメント](https://docs.phantom.app/integrating/establishing-a-connection#eagerly-connecting)をご覧ください。
+別の接続ポップアップを表示せずに、すぐにデータをpullします。詳細は [fantom の公式ドキュメント](https://docs.phantom.app/integrating/establishing-a-connection#eagerly-connecting)をご覧ください。
 
 以上です!
 
-現時点では、コンソールのログに `Phantom wallet found!` と表示されるだけです。
+現時点では、コンソールのログに`Phantom wallet found!`と表示されるだけです。
 
-もしコンソールに `UserRejectedRequest` エラーが表示されても心配しないでください。
+もしコンソールに`UserRejectedRequest`エラーが表示されても心配しないでください。
 
-現段階のみの問題で、`connect` メソッド内に `onlyIfTrusted：true` パラメータを追加したためです。
+現段階のみの問題で、`connect`メソッド内に`onlyIfTrusted：true`パラメータを追加したためです。
 
-`onlyIfTrusted` パラメータが `true` に設定された `connect` メソッドは 、ユーザーがウォレットと Web アプリケーション間の接続をすでに承認している場合にのみ実行されます。次のセクションで修正します。
+`onlyIfTrusted`パラメータが`true`に設定された`connect`メソッドは 、ユーザーがウォレットとWebアプリケーション間の接続をすでに承認している場合にのみ実行されます。次のセクションで修正します。
 
 ターミナルを閉じるときは、以下のコマンドが使えます ✍️
 
@@ -237,9 +237,9 @@ const checkIfWalletIsConnected = async () => {
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#solana-nft-drop` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#solana-nft-drop`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

@@ -1,18 +1,18 @@
 ### 🤑 SOL から USDC に変更する
 
-USDC のトランザクションは SOL のトランザクションと非常によく似ています。
+USDCのトランザクションはSOLのトランザクションと非常によく似ています。
 
 ここでの変更点は、トランザクション関数で別のタイプの命令を呼び出すことです。
 
-まず、[ここ](https://spl-token-faucet.com/?token-name=USDC)で、Solana 上で展開されている devnet 用の USDC トークン受け取ってください。
+まず、[ここ](https://spl-token-faucet.com/?token-name=USDC)で、Solana上で展開されているdevnet用のUSDCトークン受け取ってください。
 
-ウォレットを接続して、「Network selection」から「DEVNET」を選択し、「Address for airdrop」に自分のアドレスを入れ、「USDC airdrop」の`GET USDC` ボタンを押すと USDC が Airdrop されます。
+ウォレットを接続して、「Network selection」から「DEVNET」を選択し、「Address for airdrop」に自分のアドレスを入れ、「USDC airdrop」の`GET USDC`ボタンを押すとUSDCがAirdropされます。
 
 ![USDC TOKEN FAUCET](/public/images/Solana-Online-Store/section-2/2_2_1.jpg)
 
-USDC を手に入れたら、`pages/api` フォルダ内の `createTransaction.js` を以下のとおり更新します。
+USDCを手に入れたら、`pages/api`フォルダ内の`createTransaction.js`を以下のとおり更新します。
 
-**※ コピー&ペーストした後、`sellerAddress` の値を自分のウォレットアドレスに変更するのを忘れないでください!**
+**※ コピー&ペーストした後、`sellerAddress`の値を自分のウォレットアドレスに変更するのを忘れないでください!**
 
 ```jsx
 // createTransaction.js
@@ -116,23 +116,23 @@ export default function handler(req, res) {
 }
 ```
 
-最初に追加したのは faucet から取得（記載のある）した devnet 上に存在する USDC トークンのトークンアドレスです。
+最初に追加したのはfaucetから取得（記載のある）したdevnet上に存在するUSDCトークンのトークンアドレスです。
 
 ```jsx
 const usdcAddress = new PublicKey("Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr");
 ```
 
-このアドレスを使用して、USDC トークンアカウントのアドレスを探して扱えるようにします。
+このアドレスを使用して、USDCトークンアカウントのアドレスを探して扱えるようにします。
 
-Solana 上の代替可能なトークンは、[トークンプログラム](https://spl.solana.com/token)により作成されます。
+Solana上の代替可能なトークンは、[トークンプログラム](https://spl.solana.com/token)により作成されます。
 
 これは、各トークンが独自のアカウント（アドレス）を持つことを意味します。
 
-Solana アカウントをホテル、各トークンのアカウントをホテルの部屋と考えると、ホテルの部屋の中を見るためには部屋番号が必要になります。
+Solanaアカウントをホテル、各トークンのアカウントをホテルの部屋と考えると、ホテルの部屋の中を見るためには部屋番号が必要になります。
 
 つまり、トークンアカウントからトークンを送信するためには、そのトークンのアドレスを知る必要があるということです。
 
-※ユーザーアカウントに USDC が入っていない場合、USDC トークンアドレスが存在しないと認識されてしまうため、送信先・送信元の両方のユーザーアカウントに USDC が必要となります。
+※ユーザーアカウントにUSDCが入っていない場合、USDCトークンアドレスが存在しないと認識されてしまうため、送信先・送信元の両方のユーザーアカウントにUSDCが必要となります。
 
 ```jsx
     const transferInstruction = createTransferCheckedInstruction(
@@ -147,22 +147,22 @@ Solana アカウントをホテル、各トークンのアカウントをホテ�
 
 ちなみに、上記の部分を任意の[SPLトークン](https://spl.solana.com/)に置き換えても機能します。
 
-`Buy now →` ボタンをクリックすると、トークン名（アドレスで表示される）「Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr」のリクエストが表示されるはずです。
+`Buy now →`ボタンをクリックすると、トークン名（アドレスで表示される）「Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr」のリクエストが表示されるはずです。
 
-これは**偽の USDC トークンのアドレス**ですが、メインネットではこれが USDC となるわけです。
+これは**偽の USDC トークンのアドレス**ですが、メインネットではこれがUSDCとなるわけです。
 
-説明だけでは分かりづらいところがあるので、`sellerAddress` に設定したアドレス A とは別のアドレス B で Web アプリケーションに接続し、実際に `Buy now →` ボタンを押して購入してみてください。
+説明だけでは分かりづらいところがあるので、`sellerAddress`に設定したアドレスAとは別のアドレスBでWebアプリケーションに接続し、実際に`Buy now →`ボタンを押して購入してみてください。
 
-アドレス B から、所定の金額がアドレス A に送金されていることが分かるはずです。（初期設定では金額が 0.09 USDC となっているので、分かりやすいように 10.00 USDC に変更して試してみてください。）
+アドレスBから、所定の金額がアドレスAに送金されていることが分かるはずです（初期設定では金額が0.09 USDCとなっているので、分かりやすいように10.00 USDCに変更して試してみてください）。
 
-以上で、USDC での支払いの準備が整いました!
+以上で、USDCでの支払いの準備が整いました!
 
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#solana-online-store` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#solana-online-store`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

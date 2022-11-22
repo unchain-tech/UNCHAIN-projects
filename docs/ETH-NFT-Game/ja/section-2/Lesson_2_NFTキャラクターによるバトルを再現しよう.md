@@ -1,10 +1,10 @@
 ### 👻 コントラクトを再度デプロイして、NFT の値が変化するのを確認する
 
-これから、NFT キャラクターの属性情報が更新されていることを確認していきます。
+これから、NFTキャラクターの属性情報が更新されていることを確認していきます。
 
-`player.hp = player.hp - bigBoss.attackDamage;` が実行されると、更新された NFT キャラクターの `Health Points` の情報が Rarible や OpenSea に反映されるはずです。
+`player.hp = player.hp - bigBoss.attackDamage;`が実行されると、更新されたNFTキャラクターの`Health Points`の情報がOpenSeaなどのNFTマーケットプレイスに反映されるはずです。
 
-`deploy.js` を下記のように更新していきましょう。
+`deploy.js`を下記のように更新していきましょう。
 
 ```javascript
 // deploy.js
@@ -60,10 +60,10 @@ const runMain = async () => {
 runMain();
 ```
 
-次に、ターミナルに向かい、`epic-game` ディレクトリ上で下記を実行して、テストネットに再びコントラクトをデプロイしていきましょう。
+次に、ターミナルに向かい、`epic-game`ディレクトリ上で下記を実行して、テストネットに再びコントラクトをデプロイしていきましょう。
 
 ```bash
-npx hardhat run scripts/deploy.js --network rinkeby
+npx hardhat run scripts/deploy.js --network goerli
 ```
 
 下記のような結果がターミナルに表示されていることを確認してください。
@@ -75,34 +75,31 @@ Second attack.
 Done!
 ```
 
-数分待つと、OpenSea や Rarible などのサイトに NFT キャラクターと更新された HP が表示されるはずです。
+数分待つと、OpenSeaなどのNFTマーケットプレイスにNFTキャラクターと更新されたHPが表示されるはずです。
 
-`deploy.js` では、「ウソップ」の NFT を 1 体作り、「ウソップ」に「クロコダイル」を 2 回攻撃させました。
+`deploy.js`では、「ウソップ」のNFTを1体作り、「ウソップ」に「クロコダイル」を2回攻撃させました。
 
-ウソップの HP は **300** から始まっているので、クロコダイルを 2 回攻撃した場合、ウソップの HP は 200 になるはずです。
+ウソップのHPは **300** から始まっているので、クロコダイルを2回攻撃した場合、ウソップのHPは200になるはずです。
 
-[rinkeby.rarible.com](https://rinkeby.rarible.com/) にコントラクトのアドレスを貼り付け、あなたの NFT キャラクターの属性情報が更新されたか確認してみてください。
+[テストネット用の OpenSea](https://testnets.opensea.io/) にコントラクトのアドレスを貼り付け、あなたのNFTキャラクターの属性情報が更新されたか確認してみてください。
 
-下記のアドレスを直接ブラウザに貼り付けて、NFT キャラクターを確認することもできます。
+下記のアドレスを直接ブラウザに貼り付けて、NFTキャラクターを確認することもできます。
 
 ```
-https://rinkeby.rarible.com/token/INSERT_DEPLOY_CONTRACT_ADDRESS_HERE:INSERT_TOKEN_ID_HERE
+https://testnets.opensea.io/assets/INSERT_DEPLOY_CONTRACT_ADDRESS_HERE:INSERT_TOKEN_ID_HERE
 ```
 
-Rarible で NFT を確認したら、`Refresh Metadata` をクリックしてみてください。
+OpenSeaでNFTを確認したら、`Refresh Metadata`をクリックしてみてください。
 ![](/public/images/ETH-NFT-Game/section-2/2_2_1.png)
 
-`Health Points` が `200` に更新されていれば、成功です。
+`Health Points`が`200`に更新されていれば、成功です。
 
-> ⚠️: 注意
->
-> OpenSea でも同じように NFT データを確認できますが、反映されるまでに 30 分以上かかることがあるので、このプロジェクトでは Rarible をお勧めしています。
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#eth-nft-game` で質問してください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#eth-nft-game`で質問してください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

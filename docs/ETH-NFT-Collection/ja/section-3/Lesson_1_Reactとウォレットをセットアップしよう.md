@@ -1,6 +1,6 @@
 ### 💻 クライアントを設定する
 
-このセクションでは、Web サイトの構築を通して、クライアントとスマートコントラクトの連携方法について学びます。
+このセクションでは、Webサイトの構築を通して、クライアントとスマートコントラクトの連携方法について学びます。
 
 実装は下記をイメージしてください。
 
@@ -12,17 +12,17 @@
 
 ### 🍽 Git リポジトリをあなたの GitHub にフォークする
 
-まだ GitHub のアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
+まだGitHubのアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
-GitHub のアカウントをお持ちの方は、[こちら](https://github.com/shiftbase-xyz/nft-collection-starter-project) から、フロントエンドの基盤となるリポジトリをあなたの GitHub にフォークしましょう。フォークの方法は、[こちら](https://denno-sekai.com/github-fork/) を参照してください。
+GitHubのアカウントをお持ちの方は、[こちら](https://github.com/shiftbase-xyz/nft-collection-starter-project) から、フロントエンドの基盤となるリポジトリをあなたのGitHubにフォークしましょう。フォークの方法は、[こちら](https://denno-sekai.com/github-fork/) を参照してください。
 
-あなたの GitHub アカウントにフォークした `nft-collection-starter-project` リポジトリを、ローカル環境にクローンしてください。
+あなたのGitHubアカウントにフォークした`nft-collection-starter-project`リポジトリを、ローカル環境にクローンしてください。
 
-まず、下図のように、`Code` ボタンをクリックして `SSH` を選択し、Git リンクをコピーしましょう。
+まず、下図のように、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
 
 ![](/public/images/ETH-NFT-Collection/section-3/3_1_1.png)
 
-ターミナルで先ほど作成した `ETH-NFT-collection` ディレクトリに移動し、先ほどコピーしたリンクを貼り付け、下記を実行してください。
+ターミナルで先ほど作成した`ETH-NFT-collection`ディレクトリに移動し、先ほどコピーしたリンクを貼り付け、下記を実行してください。
 
 ```bash
 git clone コピーした_github_リンク
@@ -36,13 +36,13 @@ ETH-NFT-collection
 	|_ nft-collection-starter-project
 ```
 
-ターミナル上で `nft-collection-starter-project` に移動して下記を実行しましょう。
+ターミナル上で`nft-collection-starter-project`に移動して下記を実行しましょう。
 
 ```bash
 npm install
 ```
 
-`npm` コマンドを実行することで、JavaScript ライブラリのインストールが行われます。
+`npm`コマンドを実行することで、JavaScriptライブラリのインストールが行われます。
 
 次に、下記を実行してみましょう。
 
@@ -50,15 +50,15 @@ npm install
 npm run start
 ```
 
-あなたのローカル環境で、Web サイトのフロントエンドが立ち上がりましたか？
+あなたのローカル環境で、Webサイトのフロントエンドが立ち上がりましたか？
 
-例）ローカル環境で表示されている Web サイト
+例)ローカル環境で表示されているWebサイト
 
 ![](/public/images/ETH-NFT-Collection/section-3/3_1_2.png)
 
 上記のような形でフロントエンドが確認できれば成功です。
 
-これからフロントエンドの表示を確認したい時は、ターミナルに向かい、`nft-collection-starter-project` ディレクトリ上で、`npm run start` を実行します。これからも必要となる作業ですので、よく覚えておいてください。
+これからフロントエンドの表示を確認したい時は、ターミナルに向かい、`nft-collection-starter-project`ディレクトリ上で、`npm run start`を実行します。これからも必要となる作業ですので、よく覚えておいてください。
 
 ターミナルを閉じるときは、以下のコマンドが使えます ✍️
 
@@ -69,11 +69,11 @@ npm run start
 
 次に、イーサリアムウォレットをダウンロードしましょう。
 
-このプロジェクトでは MetaMask を使用します。
+このプロジェクトではMetaMaskを使用します。
 
-- [こちら](https://MetaMask.io/download.html) からブラウザの拡張機能をダウンロードし、MetaMask ウォレットをあなたのブラウザに設定します。
+- [こちら](https://MetaMask.io/download.html) からブラウザの拡張機能をダウンロードし、MetaMaskウォレットをあなたのブラウザに設定します。
 
-すでに別のウォレットをお持ちの場合でも、今回は MetaMask を使用してください。
+すでに別のウォレットをお持ちの場合でも、今回はMetaMaskを使用してください。
 
 > ✍️: MetaMask が必要な理由
 > ユーザーが、スマートコントラクトを呼び出すとき、イーサリアムアドレスと秘密鍵を備えたウォレットが必要となります。
@@ -82,9 +82,9 @@ npm run start
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#eth-nft-collection` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#eth-nft-collection`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -95,4 +95,4 @@ npm run start
 
 ---
 
-MetaMask のダウンロードが完了したら次のレッスンに進みましょう 🎉
+MetaMaskのダウンロードが完了したら次のレッスンに進みましょう 🎉

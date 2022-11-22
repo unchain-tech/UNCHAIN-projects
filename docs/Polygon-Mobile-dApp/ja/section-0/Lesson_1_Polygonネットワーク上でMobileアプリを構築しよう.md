@@ -1,6 +1,6 @@
 ### 👋 ようこそ
 
-このプロジェクトでは、Polygonネットワーク上にスマートコントラクトを実装して、スマートコントラクトとやりとりできる独自の Mobile アプリケーションを構築します。
+このプロジェクトでは、Polygonネットワーク上にスマートコントラクトを実装して、スマートコントラクトとやりとりできる独自のMobileアプリケーションを構築します。
 
 プロジェクトを進めるには以下の技術が必要です。
 
@@ -8,24 +8,24 @@
 - [Dart](https://www.cresc.co.jp/tech/java/Google_Dart2/language/overview/overview.html)
 - [Flutter](https://flutter.dev/)
 
-※ 開発初心者の方は、まず `ETH-dApp` のプロジェクトから始めることをお勧めします ☺️
+※ 開発初心者の方は、まず`ETH-dApp`のプロジェクトから始めることをお勧めします ☺️
 
 いますべてを理解している必要はありません。
 わからないことがあったらインターネットで検索したり、コミュニティで質問しながらプロジェクトを進めていきましょう!
 
 ### ✨ Mobile dApp を作ろう
 
-このプロジェクトでは、Polygonネットワーク上のFlutter dAppで CRUD（Create, Read, Update, Delete）操作を行う方法を、ToDoアプリを作成することで学びます。
+このプロジェクトでは、Polygonネットワーク上のFlutter dAppでCRUD（Create, Read, Update, Delete）操作を行う方法を、ToDoアプリを作成することで学びます。
 
-プロジェクトは下記の 3 ステップに分かれています。
+プロジェクトは下記の3ステップに分かれています。
 
 1. スマートコントラクトを作成する。
 2. 作成したスマートコントラクトをブロックチェーンにデプロイする。
-3. 簡単に CURD できる ToDoアプリを構築する。
+3. 簡単にCURDできるToDoアプリを構築する。
 
-ToDo は**オン・チェーン**にデプロイされます。
+ToDoは**オン・チェーン**にデプロイされます。
 
-- オン・チェーンにデプロイされるとは、「作成した ToDo のデータはすべてブロックチェーン上に記載される」という意味です。
+- オン・チェーンにデプロイされるとは、「作成したToDoのデータはすべてブロックチェーン上に記載される」という意味です。
 
 
 ### ⛓ ブロックチェーンとは何か？
@@ -42,13 +42,13 @@ ToDo は**オン・チェーン**にデプロイされます。
 
 そして、互いに会話するコンピュータのネットワークですから、ネットワークとなります。ネットワークとデータベースが一体化したものと考えればよいでしょう。
 
-また、従来の Web アプリケーションとブロックチェーンアプリケーションの根本的な違いとして、アプリケーションは、ユーザーのデータを一切管理しません。ユーザーのデータは、ブロックチェーンによって管理されています。
+また、従来のWebアプリケーションとブロックチェーンアプリケーションの根本的な違いとして、アプリケーションは、ユーザーのデータを一切管理しません。ユーザーのデータは、ブロックチェーンによって管理されています。
 
 ### 🥫 スマートコントラクトとは何か？
 
 スマートコントラクトとは、ブロックチェーン上でコントラクト（＝契約）を自動的に実行するしくみです。
 
-よくたとえられるのは、自動販売機です。自動販売機には「100 円が投下され、ボタンが押されたら、飲み物を落とす」というプログラムが搭載されており、「店員さんがお金を受け取って飲み物を渡す」というプロセスを必要としません。
+よくたとえられるのは、自動販売機です。自動販売機には「100円が投下され、ボタンが押されたら、飲み物を落とす」というプログラムが搭載されており、「店員さんがお金を受け取って飲み物を渡す」というプロセスを必要としません。
 
 人の介在を省き、自動的にプログラムが実行される点こそ、スマートコントラクトが、「スマート」と呼ばれる理由です。
 
@@ -62,49 +62,53 @@ ToDo は**オン・チェーン**にデプロイされます。
 
 これは、コードの信頼性と安全性を確保するための設計上の特徴です。
 
-私はよくスマートコントラクトを Web 上のマイクロサービスにたとえます。ブロックチェーンからデータを読み書きしたり、ビジネスロジックを実行したりするためのインタフェースとして機能するのです。これらはパブリックにアクセス可能で、ブロックチェーンにアクセスできる人なら誰でもそのインタフェースにアクセスできることを意味します。
+私はよくスマートコントラクトをWeb上のマイクロサービスにたとえます。ブロックチェーンからデータを読み書きしたり、ビジネスロジックを実行したりするためのインタフェースとして機能するのです。これらはパブリックにアクセス可能で、ブロックチェーンにアクセスできる人なら誰でもそのインタフェースにアクセスできることを意味します。
 
 ### 📱 dApps とは何か？
 
-dApps は、**分散型アプリケーション（decentralized Application）** の略です。
+dAppsは、**分散型アプリケーション（decentralized Application）** の略です。
 
-dApps は、ブロックチェーン上に構築されたスマートコントラクトと、フロントエンドであるユーザーインタフェース（Web サイトなど）を組み合わせたアプリケーションのことを指します。
+dAppsは、ブロックチェーン上に構築されたスマートコントラクトと、フロントエンドであるユーザーインタフェース（Webサイトなど）を組み合わせたアプリケーションのことを指します。
 
-dApps は、イーサリアムのプログラミング言語である Solidity を基盤に構築されています。
+dAppsは、イーサリアムのプログラミング言語であるSolidityを基盤に構築されています。
 
-イーサリアムでは、スマートコントラクトはオープン API のように誰でもアクセスできます。よって、ほかの人が書いたスマートコントラクトも、あなたの Web アプリケーションから呼び出すことができます。逆も然りです。
+イーサリアムでは、スマートコントラクトはオープンAPIのように誰でもアクセスできます。よって、ほかの人が書いたスマートコントラクトも、あなたのWebアプリケーションから呼び出すことができます。逆も然りです。
 
 ### 🌍 プロジェクトをアップグレードする
 
-[UNCHAIN](https://app.shiftbase.xyz) のプロジェクトはすべてオープンソース（[MIT ライセンス](https://wisdommingle.com/mit-license/))で運用されています。
+[UNCHAIN](https://app.shiftbase.xyz) のプロジェクトは [UNCHAIN License](https://github.com/unchain-dev/UNCHAIN-projects/blob/main/LICENSE) により運用されています。
 
-プロジェクトに参加していて、「こうすればもっと分かりやすいのに!」「これは間違っている!」と思ったら、ぜひ `pull request` を送ってください。
+プロジェクトに参加していて、「こうすればもっと分かりやすいのに!」「これは間違っている!」と思ったら、ぜひ`pull request`を送ってください。
 
-GitHub から直接コードを編集して直接 `pull request` を送る方法は、[こちら](https://docs.github.com/ja/repositories/working-with-files/managing-files/editing-files#editing-files-in-another-users-repository)を参照してください。
+GitHubから直接コードを編集して直接`pull request`を送る方法は、[こちら](https://docs.github.com/ja/repositories/working-with-files/managing-files/editing-files#editing-files-in-another-users-repository)を参照してください。
 
 どんなリクエストでも大歓迎です 🎉
 
-**👋 `UNCHAIN-projects` に `pull request` を送られる方は、[UNCHAIN の GitHub](https://github.com/shiftbase-xyz/UNCHAIN-projects) にアクセスしてください!**
+**👋 `UNCHAIN-projects`に`pull request`を送られる方は、[UNCHAIN の GitHub](https://github.com/shiftbase-xyz/UNCHAIN-projects) にアクセスしてください!**
 
-また、プロジェクトを自分の GitHub アカウントに `Fork` して、中身を編集してから `pull request` を送ることもできます。
+また、プロジェクトを自分のGitHubアカウントに`Fork`して、中身を編集してから`pull request`を送ることもできます。
 
-- プロジェクトを `Fork` する方法は、[こちら](https://docs.github.com/ja/get-started/quickstart/fork-a-repo) を参照してください。
-- `Fork` から `pull request` を作成する方法は、[こちら](https://docs.github.com/ja/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) です。
+- プロジェクトを`Fork`する方法は、[こちら](https://docs.github.com/ja/get-started/quickstart/fork-a-repo) を参照してください。
+- `Fork`から`pull request`を作成する方法は、[こちら](https://docs.github.com/ja/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) です。
 
-### ⚡️ `Issue` を作成する
+### ⚡️ `Issue`を作成する
 
-`pull request` 送るほどでもないけど、提案を残したい!と思ったら、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/issues) に `Issue` を作成してみましょう。
+`pull request`送るほどでもないけど、提案を残したい!と思ったら、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/issues) に`Issue`を作成してみましょう。
 
-`Issue` の作成方法に関しては、[こちら](https://docs.github.com/ja/issues/tracking-your-work-with-issues/creating-an-issue)を参照してください。
+`Issue`の作成方法に関しては、[こちら](https://docs.github.com/ja/issues/tracking-your-work-with-issues/creating-an-issue)を参照してください。
 
-`pull request` や `issue` の作成は、実際にチームで開発を行う際に重要な作業になるので、ぜひトライしてみてください。
+`pull request`や`issue`の作成は、実際にチームで開発を行う際に重要な作業になるので、ぜひトライしてみてください。
 
-UNCHAIN のプロジェクトをみんなでより良いものにしていきましょう ✨
+UNCHAINのプロジェクトをみんなでより良いものにしていきましょう ✨
 
 ### 🙋‍♂️ 質問する
 
-ここまで何かわからないことがある場合は、Discord の `#polygon-mobile-dapp` で質問をしてください。
+ここまで何かわからないことがある場合は、Discordの`#polygon-mobile-dapp`で質問をしてください。
 
 ---
 
-次のレッスンに進んで、Mobile dApp について学びましょう 🚀
+次のレッスンに進んで、Mobile dAppについて学びましょう 🚀
+
+---
+
+Documentation created by [RATDOTLweb3](https://github.com/RATDOTLweb3)（UNCHAIN discord ID: Kyotaro#3990）

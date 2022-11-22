@@ -1,16 +1,16 @@
-### 🌅 `window.ethereum` を設定する
+### 🌅 `window.ethereum`を設定する
 
-Web アプリケーション上で、ユーザーがイーサリアムネットワークと通信するためには、Web アプリケーションはユーザーのウォレット情報を取得する必要があります。
+Webアプリケーション上で、ユーザーがイーサリアムネットワークと通信するためには、Webアプリケーションはユーザーのウォレット情報を取得する必要があります。
 
-これから、あなたの Web アプリケーションにウォレットを接続したユーザーに、スマートコントラクトを呼び出す権限を付与する機能を実装していきます。
+これから、あなたのWebアプリケーションにウォレットを接続したユーザーに、スマートコントラクトを呼び出す権限を付与する機能を実装していきます。
 
-- これは、Web サイトへの認証機能です。
+- これは、Webサイトへの認証機能です。
 
-ターミナル上で、`nft-maker-starter-project/src/components`に移動し、その中にある `NftUploader.jsx` を VS Code で開きましょう。
+ターミナル上で、`nft-maker-starter-project/src/components`に移動し、その中にある`NftUploader.jsx`をVS Codeで開きましょう。
 
 下記のように、`NftUploader.jsx`の中身を更新します。
 
-- `NftUploader.jsx` はあなたの Web アプリケーションのフロントエンド機能を果たします。
+- `NftUploader.jsx`はあなたのWebアプリケーションのフロントエンド機能を果たします。
 
 ```javascript
 // NftUploader.jsx
@@ -81,7 +81,7 @@ export default NftUploader;
 const { ethereum } = window;
 ```
 
-`window.ethereum` は MetaMask が提供する API です。
+`window.ethereum`はMetaMaskが提供するAPIです。
 
 詳しく知りたい方は [こちら](https://zenn.dev/cauchye/articles/20211020_matsuoka_ethereum-metamask-ethers-angular#metamask%E3%81%B8%E3%81%AE%E6%8E%A5%E7%B6%9A%E3%82%92%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88%E3%81%99%E3%82%8B) を参照してみてください。
 
@@ -89,34 +89,34 @@ const { ethereum } = window;
 
 ### 🦊 ユーザーアカウントにアクセスできるか確認する
 
-`window.ethereum` は、あなたの Web サイトを訪問したユーザーが MetaMask を持っているか確認し、結果を `Console log` に出力します。
+`window.ethereum`は、あなたのWebサイトを訪問したユーザーがMetaMaskを持っているか確認し、結果を`Console log`に出力します。
 
-ターミナルで `nft-maker-starter-project` に移動し、下記を実行してみましょう。
+ターミナルで`nft-maker-starter-project`に移動し、下記を実行してみましょう。
 
 ```bash
 npm start
 ```
 
-ローカルサーバで Web サイトを立ち上げたら、サイトの上で右クリックを行い、`Inspect`を選択します。
+ローカルサーバーでWebサイトを立ち上げたら、サイトの上で右クリックを行い、`Inspect`を選択します。
 
 
 次に、`Console`を選択し、出力結果を確認してみましょう。
 
-![](/public/images/ETH-NFT-Maker/section3/3-2-1.png)
+![](/public/images/ETH-NFT-Maker/section-3/3_2_1.png)
 
-Console に `We have the ethereum object` と表示されているでしょうか？
+Consoleに`We have the ethereum object`と表示されているでしょうか？
 
-- これは、`window.ethereum` が、この Web サイトを訪問したユーザー（ここでいうあなた）が MetaMask を持っていることを確認したことを示しています。
+- これは、`window.ethereum`が、このWebサイトを訪問したユーザー（ここでいうあなた）がMetaMaskを持っていることを確認したことを示しています。
 
-次に、Web サイトがユーザーのウォレットにアクセスする権限があるか確認します。
+次に、Webサイトがユーザーのウォレットにアクセスする権限があるか確認します。
 
 - アクセスできたら、スマートコントラクトを呼び出すことができます。
 
-これから、ユーザー自身が承認した Web サイトにウォレットのアクセス権限を与えるコードを書いていきます。
+これから、ユーザー自身が承認したWebサイトにウォレットのアクセス権限を与えるコードを書いていきます。
 
 - これは、ユーザーのログイン機能です。
 
-以下の通り、`NftUploader.jsx` を修正してください。
+以下の通り、`NftUploader.jsx`を修正してください。
 
 ```javascript
 // NftUploader.jsx
@@ -200,9 +200,9 @@ const [currentAccount, setCurrentAccount] = useState("");
 console.log("currentAccount: ", currentAccount);
 ```
 
-アクセス可能なアカウントを検出した後、`currentAccount` にユーザーのウォレットアカウント（`0x...`）の値が入ります。
+アクセス可能なアカウントを検出した後、`currentAccount`にユーザーのウォレットアカウント(`0x...`)の値が入ります。
 
-以下で `currentAccount` を更新しています。
+以下で`currentAccount`を更新しています。
 
 ```javascript
 // App.js
@@ -220,13 +220,13 @@ if (accounts.length !== 0) {
 }
 ```
 
-この処理のおかげで、ユーザーがウォレットに複数のアカウントを持っている場合でも、プログラムはユーザーの 1 番目のアカウントアドレスを取得できます。
+この処理のおかげで、ユーザーがウォレットに複数のアカウントを持っている場合でも、プログラムはユーザーの1番目のアカウントアドレスを取得できます。
 
 ### 👛 ウォレット接続ボタンを作成する
 
-次に、`connectWallet` ボタンを作成していきます。
+次に、`connectWallet`ボタンを作成していきます。
 
-下記の通り `NftUploader.jsx` を更新していきましょう。
+下記の通り`NftUploader.jsx`を更新していきましょう。
 
 ```javascript
 // NftUploader.jsx
@@ -327,9 +327,9 @@ const NftUploader = () => {
 export default NftUploader;
 ```
 
-ここで実装した機能は以下の 3 つです。
+ここで実装した機能は以下の3つです。
 
-**1 \. `connectWallet` メソッドを実装**
+**1 \. `connectWallet`メソッドを実装**
 
 ```javascript
 // App.js
@@ -351,9 +351,9 @@ const connectWallet = async () => {
 };
 ```
 
-`eth_requestAccounts` メソッドを使用することで、MetaMask からユーザーにウォレットへのアクセスを許可するよう呼びかけることができます。
+`eth_requestAccounts`メソッドを使用することで、MetaMaskからユーザーにウォレットへのアクセスを許可するよう呼びかけることができます。
 
-**2 \. `renderNotConnectedContainer` メソッドを実装**
+**2 \. `renderNotConnectedContainer`メソッドを実装**
 
 ```javascript
 // App.js
@@ -364,11 +364,11 @@ const renderNotConnectedContainer = () => (
 );
 ```
 
-`renderNotConnectedContainer` メソッドによって、ユーザーのウォレットアドレスが、Web アプリケーションと紐づいていない場合は、「`Connect to Wallet`」のボタンがフロントエンドに表示されます。
+`renderNotConnectedContainer`メソッドによって、ユーザーのウォレットアドレスが、Webアプリケーションと紐づいていない場合は、「`Connect to Wallet`」のボタンがフロントエンドに表示されます。
 
-**注意としては**、localhost3000につながっているウォレットが一つでもあった場合は、`Connect to Wallet`のボタンではなく、`If you choose image, you can mint your NFT`のように表示されてしまうので、`Connect to Wallet`のボタンがしっかり出るか確認した場合は、すべてのウォレットの接続を切ってください。
+**注意としては**、localhost3000につながっているウォレットが1つでもあった場合は、`Connect to Wallet`のボタンではなく、`If you choose image, you can mint your NFT`のように表示されてしまうので、`Connect to Wallet`のボタンがしっかり出るか確認した場合は、すべてのウォレットの接続を切ってください。
 
-**3 \. `renderNotConnectedContainer` メソッドを使った条件付きレンダリング**
+**3 \. `renderNotConnectedContainer`メソッドを使った条件付きレンダリング**
 
 ```javascript
 // NftUploader.jsx
@@ -386,7 +386,7 @@ const renderNotConnectedContainer = () => (
 
 ここでは、条件付きレンダリングを実装しています。
 
-`currentAccount === ""` は、`currentAccount` にユーザーのウォレットアドレスが紐づいているかどうか判定しています。
+`currentAccount === ""`は、`currentAccount`にユーザーのウォレットアドレスが紐づいているかどうか判定しています。
 
 条件付きレンダリングは、下記のように実行されます。
 
@@ -394,46 +394,46 @@ const renderNotConnectedContainer = () => (
 { currentAccount === "" ? ( currentAccount にアドレスが紐づいてなければ、A を実行 ) : ( currentAccount にアドレスが紐づいれば B を実行 )}
 ```
 
-`NftUploader.jsx` の場合、`A` ならば、`renderNotConnectedContainer()` を実行し、`B` ならば、`If you choose image, you can mint your NFT` という文字をフロントエンドに反映させています。
+`NftUploader.jsx`の場合、`A`ならば、`renderNotConnectedContainer()`を実行し、`B`ならば、`If you choose image, you can mint your NFT`という文字をフロントエンドに反映させています。
 
 条件付きレンダリングについて詳しくは [こちら](https://ja.reactjs.org/docs/conditional-rendering.html) を参照してください。
 
 ### 🌐 ウォレットコネクトのテストを実行する
 
-上記のコードをすべて `NftUploader.jsx` に反映させたら、ターミナル上で `nft-maker-starter-project` ディレクトリに移動し、下記を実行しましょう。
+上記のコードをすべて`NftUploader.jsx`に反映させたら、ターミナル上で`nft-maker-starter-project`ディレクトリに移動し、下記を実行しましょう。
 
 ```bash
 npm start
 ```
 
-ローカルサーバで Web サイトを立ち上げたら、MetaMask のプラグインをクリックし、あなたのウォレットアドレスの接続状況を確認しましょう。
-もし、下図のように `Connected` と表示されている場合は、`Connected` の文字をクリックします。
+ローカルサーバーでWebサイトを立ち上げたら、MetaMaskのプラグインをクリックし、あなたのウォレットアドレスの接続状況を確認しましょう。
+もし、下図のように`Connected`と表示されている場合は、`Connected`の文字をクリックします。
 
-![](/public/images/ETH-NFT-Maker/section3/3-2-2.png)
+![](/public/images/ETH-NFT-Maker/section-3/3_2_2.png)
 
-そこで、Web サイトとあなたのウォレットアドレスの接続を一度解除します。
+そこで、Webサイトとあなたのウォレットアドレスの接続を一度解除します。
 
-- `Disconnect this account` を選択してください。
+- `Disconnect this account`を選択してください。
 
-![](/public/images/ETH-NFT-Maker/section3/3-2-3.png)
+![](/public/images/ETH-NFT-Maker/section-3/3_2_3.png)
 
-次にローカルサーバにホストされているあなたの Web サイトをリフレッシュしてボタンの表示を確認してください。
+次にローカルサーバーにホストされているあなたのWebサイトをリフレッシュしてボタンの表示を確認してください。
 
-- ウォレット接続用のボタンが、`Connect Wallet` と表示されていれば成功です。
+- ウォレット接続用のボタンが、`Connect Wallet`と表示されていれば成功です。
 
-次に、右クリック → `Inspect` を選択し、Console を立ち上げましょう。下図のように、`No authorized account found` と出力されていれば成功です。
+次に、右クリック → `Inspect`を選択し、Consoleを立ち上げましょう。下図のように、`No authorized account found`と出力されていれば成功です。
 
-![](/public/images/ETH-NFT-Maker/section3/3-2-4.png)
+![](/public/images/ETH-NFT-Maker/section-3/3_2_4.png)
 
-では、`Connect Wallet` ボタンを押してみましょう。
+では、`Connect Wallet`ボタンを押してみましょう。
 
-下図のように MetaMask からウォレット接続を求められますので、承認してください。
+下図のようにMetaMaskからウォレット接続を求められますので、承認してください。
 
-![](/public/images/ETH-NFT-Maker/section3/3-2-5.png)
+![](/public/images/ETH-NFT-Maker/section-3/3_2_5.png)
 
-MetaMask の承認が終わると、ウォレット接続ボタンの表示が `If you choose image, you can mint your NFT` に変更されているはずです。
+MetaMaskの承認が終わると、ウォレット接続ボタンの表示が`If you choose image, you can mint your NFT`に変更されているはずです。
 
-下記のように、Console にも、接続されたウォレットアドレスが、`currentAccount` として出力されていることを確認してください。
+下記のように、Consoleにも、接続されたウォレットアドレスが、`currentAccount`として出力されていることを確認してください。
 
 ```
 Connected 0x3a0a49fb3cf930e599f0fa7abe554dc18bd1f135
@@ -447,9 +447,9 @@ currentAccount:  0x3a0a49fb3cf930e599f0fa7abe554dc18bd1f135
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の`#eth-nft-maker`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#eth-nft-maker`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

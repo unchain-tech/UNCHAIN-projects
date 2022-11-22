@@ -5,7 +5,7 @@
 
 前のレッスンで作成させたものに加えて仕上げをしてバックエンドとフロントエンドの接続部分を完成させましょう!
 
-`App.js` を以下のように更新してください。
+`App.js`を以下のように更新してください。
 
 ```javascript
 // App.js
@@ -197,13 +197,13 @@ import Main from './Main'
 import './App.css'
 ```
 
-ここで注目していただきたいのは、`DappToken.json`、`TokenFarm.json`、`Main.js` をインポートしている点です。
+ここで注目していただきたいのは、`DappToken.json`、`TokenFarm.json`、`Main.js`をインポートしている点です。
 
-`Main.js` は、ユーザーの状態に応じてフロントエンドの表示（UI）を変えたいときに、if文が多すぎてコードが読みづらくならないように、コードを分割して保存するために使うファイルです。このレッスンの最後に作成します🔥
+`Main.js`は、ユーザーの状態に応じてフロントエンドの表示（UI）を変えたいときに、if文が多すぎてコードが読みづらくならないように、コードを分割して保存するために使うファイルです。このレッスンの最後に作成します🔥
 
 つまり、ロード時以外のフロントエンドでレンダリングされるデザインは、`Main.js`にあるのです!
 
-次に、`dappTokenData` と `tokenFarmData` を使用し、スマートコントラクトのデータをWEBアプリに読み込むコードを見ていきましょう。
+次に、`dappTokenData`と`tokenFarmData`を使用し、スマートコントラクトのデータをWebアプリに読み込むコードを見ていきましょう。
 
 ```javascript
 // App.js
@@ -244,9 +244,9 @@ if(tokenFarmData){
 // ↑ --- 1. 追加するコード ---- ↑
 ```
 
-実際に、フロントエンドをブラウザで確認する際に、右クリック → `Inspect` → `Console` を選択して、`console.log` で出力される結果を確認してみてください。
+実際に、フロントエンドをブラウザで確認する際に、右クリック → `Inspect` → `Console`を選択して、`console.log`で出力される結果を確認してみてください。
 
-次に `stakeTokens`、`unstakeTokens` メソッドについて書かれた部分を見ていきましょう。
+次に`stakeTokens`、`unstakeTokens`メソッドについて書かれた部分を見ていきましょう。
 
 ```javascript
 // App.js
@@ -270,9 +270,9 @@ unstakeTokens = (amount) => {
 // ↑ --- 2. 追加するコード ---- ↑
 ```
 
-ここでは `TokenFarm.sol` で作成されたメソッドを呼び出して、フロントエンド上でユーザーがステーキングとアンステーキングを行うための処理が記述されています。
+ここでは`TokenFarm.sol`で作成されたメソッドを呼び出して、フロントエンド上でユーザーがステーキングとアンステーキングを行うための処理が記述されています。
 
-最後に `render` メソッドの中で `return` の前に書かれている処理を見ていきましょう。
+最後に`render`メソッドの中で`return`の前に書かれている処理を見ていきましょう。
 
 ```javascript
 // App.js
@@ -290,9 +290,9 @@ let content
     }
 ```
 
-ここでは、`render` メソッドを使用することで、フロントエンドの状態により、描画するコンポーネントを切り替える処理が記載されています。
+ここでは、`render`メソッドを使用することで、フロントエンドの状態により、描画するコンポーネントを切り替える処理が記載されています。
 
-`App.js` の中に以下のようなコードが記載されていることにお気づきでしょうか？
+`App.js`の中に以下のようなコードが記載されていることにお気づきでしょうか？
 
 ```javascript
 // App.js
@@ -303,21 +303,21 @@ this.setState({loading: true})
 this.setState({loading: false})
 ```
 
-`this.setState()` は、フロントエンドがローディング状態であるか否か設定する関数です。この関数により、フロントエンドに異なるコンポーネントが表示されます。
-- `loading` が `true` の場合にはフロントエンド画面に `loading` と表示されます。
-- `loading` が `false` の場合は `Main` コンポーネントに変数を受け渡して、`Main` コンポーネントに書かれているデザインがフロントエンドに描画されます。
+`this.setState()`は、フロントエンドがローディング状態であるか否か設定する関数です。この関数により、フロントエンドに異なるコンポーネントが表示されます。
+- `loading`が`true`の場合にはフロントエンド画面に`loading`と表示されます。
+- `loading`が`false`の場合は`Main`コンポーネントに変数を受け渡して、`Main`コンポーネントに書かれているデザインがフロントエンドに描画されます。
 
-### 👨‍🎨 `Main.js` を作成する
+### 👨‍🎨 `Main.js`を作成する
 
-それでは、仕上げに `Main.js` を `Components` ディレクトリに作成していきます。
+それでは、仕上げに`Main.js`を`Components`ディレクトリに作成していきます。
 
-ターミナルを開いて `yield-farm-starter-project` にいることを確認したら、下記のコードを実行してください。
+ターミナルを開いて`yield-farm-starter-project`にいることを確認したら、下記のコードを実行してください。
 
 ```bash
 touch src/components/Main.js
 ```
 
-ファイルが完成したら `Main.js` に以下のコードを記述してください。
+ファイルが完成したら`Main.js`に以下のコードを記述してください。
 
 ```javascript
 // Main.js
@@ -391,46 +391,46 @@ class Main extends Component {
 export default Main;
 ```
 
-`Main.js` には、Token Farm のアプリの標準のUIが記述されています。
+`Main.js`には、Token Farmのアプリの標準のUIが記述されています。
 
 これでフロントエンドとバックエンド、その接続部分は完成になります!
 
 では早速、動かしていきましょう。
 
-ターミナルを開いて `yield-farm-starter-project` にいることを確認してから下記のコードを順番に実行してみましょう。
+ターミナルを開いて`yield-farm-starter-project`にいることを確認してから下記のコードを順番に実行してみましょう。
 
 ```bash
 npm run start
 ```
 
 するとしたのような画面が出てくるはずです。
-![](/public/images/Ganache-Yield-Farm/section-1/12_3_9.png)
+![](/public/images/ETH-Yield-Farm/section-3/3_3_1.png)
 
-ここで入力欄に100以下の数字を打ち込んで `STAKE!` ボタンを押してみてください。
+ここで入力欄に100以下の数字を打ち込んで`STAKE!`ボタンを押してみてください。
 
-その後下の画像のように MetaMask の画面が2回出てくるのでその二つを承認します。
-![](/public/images/Ganache-Yield-Farm/section-1/12_3_10.png)
-![](/public/images/Ganache-Yield-Farm/section-1/12_3_11.png)
+その後下の画像のようにMetaMaskの画面が2回出てくるのでその2つを承認します。
+![](/public/images/ETH-Yield-Farm/section-3/3_3_2.png)
+![](/public/images/ETH-Yield-Farm/section-3/3_3_3.png)
 
-最後にページをリロードしたら、下の画像のように Staking Balance が増えて、Balance が減っているはずです。
+最後にページをリロードしたら、下の画像のようにStaking残高が増えて、残高が減っているはずです。
 
-![](/public/images/Ganache-Yield-Farm/section-1/12_3_12.png)
+![](/public/images/ETH-Yield-Farm/section-3/3_3_4.png)
 
 これでステーキングが成功しました🎉
 
 一方でトークンの発行はどうでしょうか？
 
-Reward Balance は変わっていませんね。
+Reward残高は変わっていませんね。
 
 それもそのはずです👍 トークンの発行は手動で行うことにしているのであなたが操作する必要があります。
 
-ということで `npm run start` を実行したターミナルとは別のターミナルを開いて、`yield-farm-starter-project` にいることを確認してから下記のコードを実行してみましょう。
+ということで`npm run start`を実行したターミナルとは別のターミナルを開いて、`yield-farm-starter-project`にいることを確認してから下記のコードを実行してみましょう。
 
 ```bash
 truffle exec scripts/issue-token.js
 ```
 
-ターミナルに以下のような結果が返ってくれば `issue` メソッドの実行は成功です!
+ターミナルに以下のような結果が返ってくれば`issue`メソッドの実行は成功です!
 
 ```bash
 Using network 'development'.
@@ -438,18 +438,18 @@ Using network 'development'.
 Tokens issued!
 ```
 
-では最後に `Dapp Token Farm` の画面に移ってみましょう。
-下のように報酬として `Reward Balance` が `Staking Balance` と同じ数になっているはずです。
+では最後に`Dapp Token Farm`の画面に移ってみましょう。
+下のように報酬として`Reward Balance`が`Staking Balance`と同じ数になっているはずです。
 
-![](/public/images/Ganache-Yield-Farm/section-1/12_3_13.png)
+![](/public/images/ETH-Yield-Farm/section-3/3_3_5.png)
 
-また、`unstake` 機能もステーキング機能同様に `UN-STAKE...` ボタンを押せば実行できるので試してみてください!
+また、`unstake`機能もステーキング機能同様に`UN-STAKE...`ボタンを押せば実行できるので試してみてください!
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#eth-yield-farm` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#eth-yield-farm`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -459,6 +459,6 @@ Tokens issued!
 ```
 
 ---
-これでフロントエンドが完成しました!あなたのフロントエンドのスクリーンショットを `#eth-yield-farm` にシェアしてください😊
+これでフロントエンドが完成しました!あなたのフロントエンドのスクリーンショットを`#eth-yield-farm`にシェアしてください😊
 
-次のレッスンで作ったWEBアプリケーションをネット上に上げましょう!
+次のレッスンで作ったWebアプリケーションをネット上に上げましょう!

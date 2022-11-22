@@ -1,17 +1,17 @@
-ここまでで必要な API はほぼ揃いました。
+ここまでで必要なAPIはほぼ揃いました。
 
-では、これから Web アプリケーションと Solana プログラムを接続しましょう。
+では、これからWebアプリケーションとSolanaプログラムを接続しましょう。
 
-まず、Solana のテストネットである Devnet に Solana プログラムをデプロイする必要があります。
+まず、SolanaのテストネットであるDevnetにSolanaプログラムをデプロイする必要があります。
 
 
 ### 🌳 Devnet の環境設定をする
 
-Devnet にデプロイするのはかなり大変です。
+Devnetにデプロイするのはかなり大変です。
 
 必要なステップを見逃さないように注意しながら進めてください。
 
-まず、Devnet への切り替えを行います。
+まず、Devnetへの切り替えを行います。
 
 ```bash
 solana config set --url devnet
@@ -23,17 +23,17 @@ solana config set --url devnet
 solana config get
 ```
 
-このコマンドは Anchor がどこにデプロイするかを知る方法です。
+このコマンドはAnchorがどこにデプロイするかを知る方法です。
 
-Solana ネットワークの接続先の設定が `https://api.devnet.solana.com` となっていることを確認してください。
+Solanaネットワークの接続先の設定が`https://api.devnet.solana.com`となっていることを確認してください。
 
 ![solana config](/public/images/Solana-dApp/section-3/3_1_1.jpg)
 
-それでは、次に Devnet 上の SOL をエアドロップしましょう。
+それでは、次にDevnet上のSOLをエアドロップしましょう。
 
 エアドロップはとても簡単です。
 
-以下のコマンドを 2 回実行してください。
+以下のコマンドを2回実行してください。
 
 ```bash
 solana airdrop 2
@@ -45,20 +45,20 @@ solana airdrop 2
 solana balance
 ```
 
-ウォレットに 4 SOL が入っていることを確認できました。（Devnet での残高を取得しています。）
+ウォレットに4 SOLが入っていることを確認できました（Devnetでの残高を取得しています）。
 
-※ 現時点では、一度にエアドロップできる SOL の量は 2 SOL までです。
+※ 現時点では、一度にエアドロップできるSOLの量は2 SOLまでです。
 
 ![airdrop](/public/images/Solana-dApp/section-3/3_1_2.jpg)
 
 
 ### ✨ 変数を変更する
 
-Devnet に接続するために、`Anchor.toml` の変数を変更する必要があります。
+Devnetに接続するために、`Anchor.toml`の変数を変更する必要があります。
 
-まず、`[programs.localnet]` を `[programs.devnet]` に変更します。
+まず、`[programs.localnet]`を`[programs.devnet]`に変更します。
 
-次に、`cluster="localnet"` を `cluster="devnet"` に変更します。
+次に、`cluster="localnet"`を`cluster="devnet"`に変更します。
 
 上記の変更が完了したら、以下のコマンドを実行してください。
 
@@ -66,7 +66,7 @@ Devnet に接続するために、`Anchor.toml` の変数を変更する必要�
 anchor build
 ```
 
-これにより、プログラム ID を持つ新しいビルドが作成されます。
+これにより、プログラムIDを持つ新しいビルドが作成されます。
 
 以下のコマンドを実行することでアクセスできます。
 
@@ -74,29 +74,29 @@ anchor build
 solana address -k target/deploy/myepicproject-keypair.json
 ```
 
-これによりプログラム ID が出力されます。
+これによりプログラムIDが出力されます。
 
-このプログラム ID は後ほど使うので、コピーしておいてください。
+このプログラムIDは後ほど使うので、コピーしておいてください。
 
-次に、`lib.rs` にを表示します。
+次に、`lib.rs`にを表示します。
 
-この ID が上部に表示されているはずです。
+このIDが上部に表示されているはずです。
 
 ```bash
 declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 ```
 
-このプログラム ID は `anchor init` で最初に自動生成される ID です。
+このプログラムIDは`anchor init`で最初に自動生成されるIDです。
 
-プログラム ID とは、プログラムを読み込んで実行する方法を指定し、Solana ランタイムがどのようにプログラムを実行するかの情報を含んでいる ID のことを指します。
+プログラムIDとは、プログラムを読み込んで実行する方法を指定し、Solanaランタイムがどのようにプログラムを実行するかの情報を含んでいるIDのことを指します。
 
-この ID があることで、Solana はプログラムによって生成されたすべてのアカウントを確認、参照することができるようになります。
+このIDがあることで、Solanaはプログラムによって生成されたすべてのアカウントを確認、参照することができるようになります。
 
-したがって、`declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");` の ID 部分を `solana address -k target/deploy/myepicproject-keypair.json` コマンドで出力されたプログラム ID に変更する必要があります。
+したがって、`declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");`のID部分を`solana address -k target/deploy/myepicproject-keypair.json`コマンドで出力されたプログラムIDに変更する必要があります。
 
-また、`Anchor.toml` の `[programs.devnet]` 下の`myepicproject="Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"` の ID 部分も上記と同じように変更する必要があります。
+また、`Anchor.toml`の`[programs.devnet]`下の`myepicproject="Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"`のID部分も上記と同じように変更する必要があります。
 
-以上の 2 か所でプログラム ID を変更しましたか？
+以上の2か所でプログラムIDを変更しましたか？
 
 ここまで終わったら、以下のコマンドを再度実行しましょう。
 
@@ -104,13 +104,13 @@ declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 anchor build
 ```
 
-新しいプログラム ID でプロジェクトをビルドしました。
+新しいプログラムIDでプロジェクトをビルドしました。
 
-Anchor はビルド時に特定のファイルを `target` ディレクトリの下に生成します。
+Anchorはビルド時に特定のファイルを`target`ディレクトリの下に生成します。
 
-それらの生成されたファイルが最新のプログラム ID を持っているか確認しましょう。
+それらの生成されたファイルが最新のプログラムIDを持っているか確認しましょう。
 
-Devnet の設定には様々な手順がありました。
+Devnetの設定には様々な手順がありました。
 
 以下に使用したコマンドをまとめます。
 
@@ -134,7 +134,7 @@ anchor build
 
 ### 🚀 Devnet にデプロイする
 
-Devnet に Solana プログラムをデプロイしましょう。
+DevnetにSolanaプログラムをデプロイしましょう。
 
 ```bash
 anchor deploy
@@ -142,18 +142,18 @@ anchor deploy
 
 デプロイには少し時間がかかる場合があります。
 
-以下の画像のように `Deploy success` という単語が表示されていればデプロイ完了です。
+以下の画像のように`Deploy success`という単語が表示されていればデプロイ完了です。
 
 ![Deploy success](/public/images/Solana-dApp/section-3/3_1_3.jpg)
 
 
 完了したら、[Solana Explorer](https://explorer.solana.com/?cluster=devnet)にアクセスして、すべてがうまくいったかどうかを確認します。
 
-※ 今回は Devnet にデプロイしたため、必ず右上の接続先が [Devnet] になっているかどうか確認する必要があります。
+※ 今回はDevnetにデプロイしたため、必ず右上の接続先が[Devnet]になっているかどうか確認する必要があります。
 
-エスプローラーで、プログラム ID （ `solana address -k target/deploy/myepicproject-keypair.json` で取得した ID ）を貼り付けて検索します。
+エスプローラーで、プログラムID ( `solana address -k target/deploy/myepicproject-keypair.json`で取得したID)を貼り付けて検索します。
 
-デプロイされた Solana プログラムが表示されたら、下にスクロールしてトランザクション履歴を確認すると、そこにデプロイ履歴が表示されているので確認してみてください。
+デプロイされたSolanaプログラムが表示されたら、下にスクロールしてトランザクション履歴を確認すると、そこにデプロイ履歴が表示されているので確認してみてください。
 
 ![solana explorer](/public/images/Solana-dApp/section-3/3_1_4.jpg)
 
@@ -161,14 +161,14 @@ anchor deploy
 >
 > Solana プログラムを変更する際は、毎回再デプロイして上記のステップを踏む必要があります。
 
-※ Devnet は「メインネット」ではありませんが、Devnet もマイナーによって運営されています。
+※ Devnetは「メインネット」ではありませんが、Devnetもマイナーによって運営されています。
 
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#solana-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#solana-dapp`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -179,4 +179,4 @@ anchor deploy
 
 ---
 
-次のレッスンでは、Solana プログラムと Web アプリケーションを接続します!
+次のレッスンでは、SolanaプログラムとWebアプリケーションを接続します!

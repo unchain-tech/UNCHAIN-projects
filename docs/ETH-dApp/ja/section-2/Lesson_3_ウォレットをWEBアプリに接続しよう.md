@@ -1,14 +1,14 @@
-### 🌅 `window.ethereum` を設定する
+### 🌅 `window.ethereum`を設定する
 
-Web アプリケーション上で、ユーザーがイーサリアムネットワークと通信するためには、Web アプリケーションはユーザーのウォレット情報を取得する必要があります。
+Webアプリケーション上で、ユーザーがイーサリアムネットワークと通信するためには、Webアプリケーションはユーザーのウォレット情報を取得する必要があります。
 
-これから、あなたの Web アプリケーションにウォレットを接続したユーザーに、スマートコントラクトを呼び出す権限を付与する機能を実装していきます。これは、Web サイトへの認証機能です。
+これから、あなたのWebアプリケーションにウォレットを接続したユーザーに、スマートコントラクトを呼び出す権限を付与する機能を実装していきます。これは、Webサイトへの認証機能です。
 
-ターミナル上で、`dApp-starter-project/src` に移動し、その中にある `App.js` を VS Code で開きましょう。
+ターミナル上で、`dApp-starter-project/src`に移動し、その中にある`App.js`をVS Codeで開きましょう。
 
-下記のように、`App.js` の中身を更新します。
+下記のように、`App.js`の中身を更新します。
 
-- `App.js` はあなたの Web アプリケーションのフロントエンド機能を果たします。
+- `App.js`はあなたのWebアプリケーションのフロントエンド機能を果たします。
 
 ```javascript
 // App.js
@@ -63,33 +63,33 @@ export default App;
 
 ### 🦊 ユーザーアカウントにアクセスできるか確認する
 
-`window.ethereum` は、あなたの Web サイトを訪問したユーザーが MetaMask を持っているか確認し、結果を `Console log` に出力します。
+`window.ethereum`は、あなたのWebサイトを訪問したユーザーがMetaMaskを持っているか確認し、結果を`Console log`に出力します。
 
-ターミナルで `dApp-starter-project` に移動し、下記を実行してみましょう。
+ターミナルで`dApp-starter-project`に移動し、下記を実行してみましょう。
 
 ```bash
 npm run start
 ```
 
-ローカルサーバで Web サイトを立ち上げたら、サイトの上で右クリックを行い、`Inspect` を選択します。
+ローカルサーバーでWebサイトを立ち上げたら、サイトの上で右クリックを行い、`Inspect`を選択します。
 
 ![](/public/images/ETH-dApp/section-2/2_3_1.png)
 
-次に、Console を選択し、出力結果を確認してみましょう。
+次に、Consoleを選択し、出力結果を確認してみましょう。
 
 ![](/public/images/ETH-dApp/section-2/2_3_2.png)
 
-Console に `We have the ethereum object` と表示されているでしょうか？
+Consoleに`We have the ethereum object`と表示されているでしょうか？
 
-- これは、`window.ethereum` が、この Web サイトを訪問したユーザー（ここでいうあなた）が MetaMask を持っていることを確認したことを示しています。
+- これは、`window.ethereum`が、このWebサイトを訪問したユーザー（ここでいうあなた）がMetaMaskを持っていることを確認したことを示しています。
 
-次に、Web サイトがユーザーのウォレットにアクセスする権限があるか確認します。
+次に、Webサイトがユーザーのウォレットにアクセスする権限があるか確認します。
 
 - アクセスできたら、スマートコントラクトを呼び出すことができます。
 
-これから、ユーザー自身が承認した Web サイトにウォレットのアクセス権限を与えるコードを書いていきます。これは、ユーザーのログイン機能です。
+これから、ユーザー自身が承認したWebサイトにウォレットのアクセス権限を与えるコードを書いていきます。これは、ユーザーのログイン機能です。
 
-下記のように、`App.js` の中身を更新します。
+下記のように、`App.js`の中身を更新します。
 
 ```javascript
 // App.js
@@ -170,26 +170,26 @@ if (accounts.length !== 0) {
 }
 ```
 
-`eth_accounts` は、空の配列または単一のアカウントアドレスを含む配列を返す特別なメソッドです。
+`eth_accounts`は、空の配列または単一のアカウントアドレスを含む配列を返す特別なメソッドです。
 
-ユーザーのウォレットアカウントへのアクセスが許可されている場合は、 `Found an authorized account` と Console に出力されます。
+ユーザーのウォレットアカウントへのアクセスが許可されている場合は、 `Found an authorized account`とConsoleに出力されます。
 
-ターミナルで再度 `dApp-starter-project` に移動し、下記を実行してみましょう。
+ターミナルで再度`dApp-starter-project`に移動し、下記を実行してみましょう。
 
 ```bash
 npm run start
 ```
 
-ローカルサーバで Web サイトを立ち上げたら、サイトの上で右クリックを行い、`Inspect` を選択します。
+ローカルサーバーでWebサイトを立ち上げたら、サイトの上で右クリックを行い、`Inspect`を選択します。
 
 ![](/public/images/ETH-dApp/section-2/2_3_3.png)
 
-次に、 Console を選択し、出力結果を確認してみましょう。
+次に、Consoleを選択し、出力結果を確認してみましょう。
 
 ![](/public/images/ETH-dApp/section-2/2_3_4.png)
 
 > ✍️:  Console の結果を見てわかること
-> `App.js` に記載されているコードは上から順を追って走っているので、最初に `currentAccount` の状態変数を定義したときには、中身が空であることがわかります。
+> `App.js`に記載されているコードは上から順を追って走っているので、最初に`currentAccount`の状態変数を定義したときには、中身が空であることがわかります。
 
 > ```javascript
 > // App.js
@@ -198,9 +198,9 @@ npm run start
 > console.log("currentAccount: ", currentAccount);
 > ```
 >
-> アクセス可能なアカウントを検出した後、`currentAccount` にユーザーのウォレットアカウント（`0x...`）の値が入ります。
+> アクセス可能なアカウントを検出した後、`currentAccount`にユーザーのウォレットアカウント（`0x...`）の値が入ります。
 
-以下で `currentAccount` を更新しています。
+以下で`currentAccount`を更新しています。
 
 > ```javascript
 > // App.js
@@ -220,7 +220,7 @@ npm run start
 > ```
 >
 > この処理のおかげで、ユーザーがウォレットに複数のアカウントを持っている場合でも、プログラムはユーザーの 1 つ目のアカウントアドレスを取得することができます。
-> ウォレット接続ボタンを実装するまで `No authorized account found` のエラーが出力されますが、心配しないでください 😊
+> ウォレット接続ボタンを実装するまで`No authorized account found`のエラーが出力されますが、心配しないでください 😊
 
 ターミナルを閉じるときは、以下のコマンドが使えます ✍。
 
@@ -229,7 +229,7 @@ npm run start
 
 ### 👛 ウォレット接続ボタンを作成する
 
-`connectWallet` ボタンを作成していきます。
+`connectWallet`ボタンを作成していきます。
 
 ```javascript
 // App.js
@@ -323,9 +323,9 @@ const App = () => {
 export default App;
 ```
 
-ここで実装した機能は以下の 2 つです。
+ここで実装した機能は以下の2つです。
 
-**1 \. `connectWallet` メソッドを実装**
+**1 \. `connectWallet`メソッドを実装**
 
 ```javascript
 // App.js
@@ -347,7 +347,7 @@ const connectWallet = async () => {
 };
 ```
 
-`eth_requestAccounts` 関数を使用することで、MetaMask からユーザーにウォレットへのアクセスを許可するよう呼びかけることができます。
+`eth_requestAccounts`関数を使用することで、MetaMaskからユーザーにウォレットへのアクセスを許可するよう呼びかけることができます。
 
 **2 \. ウォレットコネクトのボタンを実装**
 
@@ -373,48 +373,48 @@ const connectWallet = async () => {
 
 ### 🌐 ウォレットコネクトのテストを実行する
 
-上記のコードをすべて `App.js` に反映させたら、ターミナルで `dApp-starter-project` に移動し、下記を実行しましょう。
+上記のコードをすべて`App.js`に反映させたら、ターミナルで`dApp-starter-project`に移動し、下記を実行しましょう。
 
 ```bash
 npm run start
 ```
 
-ローカルサーバで Web サイトを立ち上げたら、MetaMask のプラグインをクリックし、あなたのウォレットアドレスの接続状況を確認しましょう。
+ローカルサーバーでWebサイトを立ち上げたら、MetaMaskのプラグインをクリックし、あなたのウォレットアドレスの接続状況を確認しましょう。
 
-もし、下図のように `Connected` と表示されている場合は、`Connected` の文字をクリックします。
+もし、下図のように`Connected`と表示されている場合は、`Connected`の文字をクリックします。
 
 ![](/public/images/ETH-dApp/section-2/2_3_5.png)
 
-そこで、Web サイトとあなたのウォレットアドレスの接続を一度解除します。
+そこで、Webサイトとあなたのウォレットアドレスの接続を一度解除します。
 
-- `Disconnect this account` を選択してください。
+- `Disconnect this account`を選択してください。
 
 ![](/public/images/ETH-dApp/section-2/2_3_6.png)
 
-次にローカルサーバにホストされているあなたの Web サイトをリフレッシュしてボタンの表示を確認してください。
+次にローカルサーバーにホストされているあなたのWebサイトをリフレッシュしてボタンの表示を確認してください。
 
-- ウォレット接続用のボタンが、`Connect Wallet` と表示されていれば成功です。
+- ウォレット接続用のボタンが、`Connect Wallet`と表示されていれば成功です。
 
 ![](/public/images/ETH-dApp/section-2/2_3_7.png)
 
-次に、右クリック → `Inspect` を選択し、Console を立ち上げましょう。下図のように、`No authorized account found` と出力されていれば成功です。
+次に、右クリック → `Inspect`を選択し、Consoleを立ち上げましょう。下図のように、`No authorized account found`と出力されていれば成功です。
 
 ![](/public/images/ETH-dApp/section-2/2_3_8.png)
 
-では、`Connect Wallet` ボタンを押してみましょう。
-下図のように MetaMask からウォレット接続を求められますので、承認してください。
+では、`Connect Wallet`ボタンを押してみましょう。
+下図のようにMetaMaskからウォレット接続を求められますので、承認してください。
 
 ![](/public/images/ETH-dApp/section-2/2_3_9.png)
 
-MetaMask の承認が終わると、ウォレット接続ボタンの表示が `Wallet Connected` に変更されているはずです。Console にも、接続されたウォレットアドレスが、`currentAccount` として出力されていることを確認してください。
+MetaMaskの承認が終わると、ウォレット接続ボタンの表示が`Wallet Connected`に変更されているはずです。Consoleにも、接続されたウォレットアドレスが、`currentAccount`として出力されていることを確認してください。
 
 ![](/public/images/ETH-dApp/section-2/2_3_10.png)
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の`#eth-dapp`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#eth-dapp`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

@@ -1,42 +1,42 @@
 ### 🦊 MetaMask に Polygon Network を追加する
 
-MetaMask ウォレットに Matic Mainnet と Polygon Mumbai-Testnet を追加してみましょう。
+MetaMaskウォレットにMatic MainnetとPolygon Mumbai-Testnetを追加してみましょう。
 
 **1 \. Matic Mainnet を MetaMask に接続する**
 
-Matic Mainnet を MetaMask に追加するには、次の手順に従ってください。
+Matic MainnetをMetaMaskに追加するには、次の手順に従ってください。
 
-まず、[Polygonscan](https://polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Polygon Network` ボタンをクリックします。
+まず、[Polygonscan](https://polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Polygon Network`ボタンをクリックします。
 
-![](/public/images/Polygon-Mobile-dApp/section-3/3_1_01.png)
+![](/public/images/Polygon-Mobile-dApp/section-3/3_1_1.png)
 
-下記のようなポップアップが立ち上がったら、`Switch Network` をクリックしましょう。
+下記のようなポップアップが立ち上がったら、`Switch Network`をクリックしましょう。
 
-![](/public/images/Polygon-Mobile-dApp/section-3/3_1_02.png)
+![](/public/images/Polygon-Mobile-dApp/section-3/3_1_2.png)
 
-`Matic Mainnet` があなたの MetaMask にセットアップされました。
+`Matic Mainnet`があなたのMetaMaskにセットアップされました。
 
-![](/public/images/Polygon-Mobile-dApp/section-3/3_1_03.png)
+![](/public/images/Polygon-Mobile-dApp/section-3/3_1_3.png)
 
 **2 \. Polygon Mumbai-Testnet を MetaMask に接続する**
 
-Polygon Mumbai-Testnet を MetaMask に追加するには、次の手順に従ってください。
+Polygon Mumbai-TestnetをMetaMaskに追加するには、次の手順に従ってください。
 
-まず、[mumbai.polygonscan.com](https://mumbai.polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Mumbai Network` ボタンをクリックします。
+まず、[mumbai.polygonscan.com](https://mumbai.polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Mumbai Network`ボタンをクリックします。
 
-`Matic Mainnet` を設定した時と同じ要領で `Polygon Testnet` をあなたの MetaMask に設定してください。
+`Matic Mainnet`を設定した時と同じ要領で`Polygon Testnet`をあなたのMetaMaskに設定してください。
 
 ### 🚰 偽 MATIC を入手する
 
-MetaMask で Polygon ネットワークの設定が完了したら、偽の MATIC を取得していきましょう。
+MetaMaskでPolygonネットワークの設定が完了したら、偽のMATICを取得していきましょう。
 
-[こちら](https://faucet.polygon.technology/) にアクセスして、下記のように偽 MATIC をリクエストしてください。
+[こちら](https://faucet.polygon.technology/) にアクセスして、下記のように偽MATICをリクエストしてください。
 
-![](/public/images/Polygon-Mobile-dApp/section-3/3_1_04.png)
+![](/public/images/Polygon-Mobile-dApp/section-3/3_1_4.png)
 
-Rinkeby とは異なり、これらのトークンの取得にそれほど問題はないはずです。
+Goerliとは異なり、これらのトークンの取得にそれほど問題はないはずです。
 
-1 回のリクエストで 0.5 MATIC（偽）が手に入るので、2 回リクエストして、1 MATIC 入手しましょう。
+1回のリクエストで0.5 MATIC（偽）が手に入るので、2回リクエストして、1 MATIC入手しましょう。
 
 **⚠️: Polygon のメインネットワークにコントラクトをデプロイする際の注意事項**
 
@@ -48,18 +48,18 @@ Rinkeby とは異なり、これらのトークンの取得にそれほど問題
 >
 > 2. 仮想通貨の取引所（ WazirX や Coinbase など）で MATIC を購入し、それを直接 MetaMask に転送する。
 >
-> Polygon のようなサイドチェーンの場合、`2` の方が簡単で安く済みます。
+> Polygon のようなサイドチェーンの場合、`2`の方が簡単で安く済みます。
 
 
 ### ✨ スマートコントラクトを Mumbai testnet に公開する
 
-`Truffle-config.js` にテストネットのプロバイダの詳細を追加することで、Polygon Mumbai testnetにスマートコントラクトを公開していきます。
+`Truffle-config.js`にテストネットのプロバイダの詳細を追加することで、Polygon Mumbai testnetにスマートコントラクトを公開していきます。
 
-まず、 `todo-dApp-contract` ディレクトリに `.secret` ファイルを作成し、そのファイルに metamask の秘密のリカバリフレーズを貼り付けてください。
+まず、 `todo-dApp-contract`ディレクトリに`.secret`ファイルを作成し、そのファイルにmetamaskの秘密のリカバリフレーズを貼り付けてください。
 
-※ `.secret` ファイルが `.gitignore` ファイルに追加されていることを確認してください。`.gitignore` ファイルが無ければ、作成してください。
+※ `.secret`ファイルが`.gitignore`ファイルに追加されていることを確認してください。`.gitignore`ファイルが無ければ、作成してください。
 
-`todo-dApp-contract` 上でターミナルを開き、以下のコマンドを実行し、`hdwallet-provider` をインストールして、ガス料金を自分のアカウントで支払うことができるようにします。
+`todo-dApp-contract`上でターミナルを開き、以下のコマンドを実行し、`hdwallet-provider`をインストールして、ガス料金を自分のアカウントで支払うことができるようにします。
 
 ```bash
 npm install @truffle/hdwallet-provider
@@ -115,17 +115,17 @@ module.exports = {
 };
 ```
 
-上記の `providerOrUrl: process.env.ALCHEMY_API_KEY,` の `process.env.ALCHEMY_API_KEY` の部分を、[alchemy.com](https://www.alchemy.com/)で作成したPolygon用のデプロイ先の `API key` に設定します。
+上記の`providerOrUrl: process.env.ALCHEMY_API_KEY,`の`process.env.ALCHEMY_API_KEY`の部分を、[alchemy.com](https://www.alchemy.com/)で作成したPolygon用のデプロイ先の`API key`に設定します。
 
 手順は下記のとおりです。
 
-まず、先ほどのリンクからログインして、`Create App` を選択し、下記のように設定してください。
+まず、先ほどのリンクからログインして、`Create App`を選択し、下記のように設定してください。
 
-![](/public/images/Polygon-Mobile-dApp/section-3/3_1_05.png)
+![](/public/images/Polygon-Mobile-dApp/section-3/3_1_5.png)
 
 下の画像で示す部分をクリックすると、`HTTP`を確認できます。
 
-![](/public/images/Polygon-Mobile-dApp/section-3/3_1_06.jpg)
+![](/public/images/Polygon-Mobile-dApp/section-3/3_1_6.jpg)
 
 次に下記のコマンドを`todo-dApp-contract`フォルダ上でターミナルを開いて実行してください。
 
@@ -133,16 +133,16 @@ module.exports = {
 npm install dotenv
 ```
 
-インストールができたら、`todo-dApp-contract` フォルダ直下に `.env` ファイルを作成し、下記のコードを追加してください。
+インストールができたら、`todo-dApp-contract`フォルダ直下に`.env`ファイルを作成し、下記のコードを追加してください。
 
 ```js
 //.env
 POLYGON_URL = "Alchemy Polygon URL";
 ```
 
-`Alchemy Polygon URL` の部分に、先ほど確認した `HTTP` を貼り付けてください。
+`Alchemy Polygon URL`の部分に、先ほど確認した`HTTP`を貼り付けてください。
 
-次に、`.gitignore` ファイルを以下のように更新してください。
+次に、`.gitignore`ファイルを以下のように更新してください。
 
 ```
 node_modules
@@ -151,7 +151,7 @@ package-lock.json
 .env
 ```
 
-以上が完了したら、`todo-dApp-contract` 上でターミナルを開き、以下のコマンドを実行し、Polygon testnet上にスマートコントラクトをデプロイします。
+以上が完了したら、`todo-dApp-contract`上でターミナルを開き、以下のコマンドを実行し、Polygon testnet上にスマートコントラクトをデプロイします。
 
 ```bash
 truffle migrate --network matic
@@ -171,9 +171,9 @@ npx truffle migrate --network matic --reset
 
 下記のような結果になれば成功です。
 
-![](/public/images/Polygon-Mobile-dApp/section-3/3_1_07.png)
+![](/public/images/Polygon-Mobile-dApp/section-3/3_1_7.png)
 
-[mumbai.polygonscan.com](https://mumbai.polygonscan.com/) に向かい、`contract address` を貼り付けて、デプロイできているか確認してみましょう。
+[mumbai.polygonscan.com](https://mumbai.polygonscan.com/) に向かい、`contract address`を貼り付けて、デプロイできているか確認してみましょう。
 
 確認できたら、デプロイの作業は終わりです。
 
@@ -181,9 +181,9 @@ npx truffle migrate --network matic --reset
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#polygon-mobile-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#polygon-mobile-dapp`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -193,6 +193,6 @@ npx truffle migrate --network matic --reset
 ```
 
 ---
-あなたのコントラクトアドレスのリンクを Discord の `#polygon-mobile-dapp` に投稿してください!
+あなたのコントラクトアドレスのリンクをDiscordの`#polygon-mobile-dapp`に投稿してください!
 
 次のセクションに進んで、動作状況をGifに収めるを開始しましょう 🎉

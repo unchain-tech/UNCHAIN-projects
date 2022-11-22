@@ -1,29 +1,17 @@
-### 🌊 ユーザー に OpenSea/Rarible のリンクを提供する
+### 🌊 ユーザー に OpenSea のリンクを提供する
 
-NFT が発行された後、OpenSea や Rarible で NFT へのリンクを共有できます。
+NFTが発行された後、OpenSeaでNFTへのリンクを共有できます。
 
-OpenSea の NFT へのリンクは次のようになります。
+OpenSeaのNFTへのリンクは次のようになります。
 
 ```
 https://testnets.opensea.io/assets/0x88a0e9c2F3939598c402eccb7Ae1612e45448C04/0
 ```
 
-リンクには、下記 2 つの変数が組み込まれています。
+リンクには、下記2つの変数が組み込まれています。
 
 ```
 https://testnets.opensea.io/assets/あなたのコントラクトアドレス/tokenId
-```
-
-また、Rarible の NFT のリンクは次のようになります。
-
-```
-https://rinkeby.rarible.com/token/0x88a0e9c2F3939598c402eccb7Ae1612e45448C04:0
-```
-
-リンクには、下記 2 つの変数が組み込まれています。
-
-```
-https://rinkeby.rarible.com/token/あなたのコントラクトアドレス:tokenId
 ```
 
 ### 🗂 コントラクトを更新して tokenId を取得する
@@ -35,39 +23,39 @@ https://rinkeby.rarible.com/token/あなたのコントラクトアドレス:tok
 const CONTRACT_ADDRESS = "0x.."; ← こちら
 ```
 
-ですが、現在 `App.js` には、`tokenId` が記載されていません。
+ですが、現在`App.js`には、`tokenId`が記載されていません。
 
-これから、`tokenId` を取得するコードを `MyEpicNFT.sol` に追加し、再度デプロイしていきます。
+これから、`tokenId`を取得するコードを`MyEpicNFT.sol`に追加し、再度デプロイしていきます。
 
-下記 2 点の変更を `MyEpicNFT.sol` に反映させましょう。
+下記2点の変更を`MyEpicNFT.sol`に反映させましょう。
 
-**1 \. `NewEpicNFTMinted` イベントを定義する**
+**1 \. `NewEpicNFTMinted`イベントを定義する**
 
-`string[] thirdWords` が定義されているコードの直下に、下記のコードを追加してください。
+`string[] thirdWords`が定義されているコードの直下に、下記のコードを追加してください。
 
 ```solidity
 // MyEpicNFT.sol
 event NewEpicNFTMinted(address sender, uint256 tokenId);
 ```
 
-**2 \. `NewEpicNFTMinted` イベントを `emit` する**
+**2 \. `NewEpicNFTMinted`イベントを`emit`する**
 
-`makeAnEpicNFT` 関数の一番下に、下記のコードを追加しましょう。
+`makeAnEpicNFT`関数の一番下に、下記のコードを追加しましょう。
 
 ```solidity
 // MyEpicNFT.sol
 emit NewEpicNFTMinted(msg.sender, newItemId);
 ```
 
-このコードが、`makeAnEpicNFT` 関数の最後の行になるように注意してくだい。
+このコードが、`makeAnEpicNFT`関数の最後の行になるように注意してくだい。
 
-> **✍️: Solidity では、`event` と `emit` が頻繁に使用されます。**
+> **✍️: Solidity では、`event`と`emit`が頻繁に使用されます。**
 
-上記の実装は、`NewEpicNFTMinted` イベントが `emit` されるごとに、コントラクトに書き込まれたデータを Web アプリケーションのフロントエンドに反映させることを目的としています。
+上記の実装は、`NewEpicNFTMinted`イベントが`emit`されるごとに、コントラクトに書き込まれたデータをWebアプリケーションのフロントエンドに反映させることを目的としています。
 
-- コントラクトでイベントが `emit` されると、フロントエンド（`App.js`）でその情報を受け取ります。
+- コントラクトでイベントが`emit`されると、フロントエンド(`App.js`)でその情報を受け取ります。
 
-- `NewEpicNFTMinted` イベントが `emit` される際、フロントエンド（`App.js`）で使用する変数 `msg.sender` と `newItemId` をフロントエンドに送信しています。
+- `NewEpicNFTMinted`イベントが`emit`される際、フロントエンド(`App.js`)で使用する変数`msg.sender`と`newItemId`をフロントエンドに送信しています。
 
 ### 🛩 もう一度デプロイする
 
@@ -75,33 +63,33 @@ emit NewEpicNFTMinted(msg.sender, newItemId);
 
 1\. 再度コントラクトをデプロイする
 
-2\. フロントエンドのコントラクトアドレスを更新する（更新するファイル: `App.js`）
+2\. フロントエンドのコントラクトアドレスを更新する(更新するファイル: `App.js`)
 
-3\. フロントエンドの ABI ファイルを更新する（更新するファイル: `nft-collection-starter-project/src/utils/MyEpicNFT.json`）
+3\. フロントエンドのABIファイルを更新する(更新するファイル: `nft-collection-starter-project/src/utils/MyEpicNFT.json`)
 
 **コントラクトを更新するたび、これらの 3 つのステップを実行する必要があります。**
 
 復習もかねて、丁寧に実行していきましょう。
 
-**1\. ターミナル上で `epic-nfts` に移動します。**
+**1\. ターミナル上で`epic-nfts`に移動します。**
 
 下記を実行し、コントラクトを再度デプロイしましょう。
 
 ```
-npx hardhat run scripts/deploy.js --network rinkeby
+npx hardhat run scripts/deploy.js --network goerli
 ```
 
-下記のように、ターミナルに出力されたコントラクトアドレス（`0x..`）をコピーしましょう。
+下記のように、ターミナルに出力されたコントラクトアドレス(`0x..`)をコピーしましょう。
 
 ```
 Contract deployed to: 0x... ← あなたのコントラクトアドレスをコピー
 ```
 
-**2\. コピーしたアドレスを `App.js` の `const CONTRACT_ADDRESS = "こちら"` に貼り付けましょう。**
+**2\. コピーしたアドレスを`App.js`の`const CONTRACT_ADDRESS = "こちら"`に貼り付けましょう。**
 
-**3\. 以前と同じように `artifacts` から ABI ファイルを取得します。下記のステップを実行してください。**
+**3\. 以前と同じように`artifacts`から ABI ファイルを取得します。下記のステップを実行してください。**
 
-1\. ターミナル上で `epic-nfts` にいることを確認する（もしくは移動する）。
+1\. ターミナル上で`epic-nfts`にいることを確認する（もしくは移動する）。
 
 2\. ターミナル上で下記を実行する。
 
@@ -109,21 +97,21 @@ Contract deployed to: 0x... ← あなたのコントラクトアドレスをコ
 > code artifacts/contracts/MyEpicNFT.sol/MyEpicNFT.json
 > ```
 
-3\. VS Code で `MyEpicNFT.json` ファイルが開かれるので、中身をすべてコピーする。※ VS Code のファインダーを使って、直接 `MyEpicNFT.json` を開くことも可能です。
+3\. VS Codeで`MyEpicNFT.json`ファイルが開かれるので、中身をすべてコピーする。※ VS Codeのファインダーを使って、直接`MyEpicNFT.json`を開くことも可能です。
 
-4\. コピーした `epic-nfts/artifacts/contracts/MyEpicNFT.sol/MyEpicNFT.json` の中身を `nft-collection-starter-project/src/utils/MyEpicNFT.json` の中身と交換する。
+4\. コピーした`epic-nfts/artifacts/contracts/MyEpicNFT.sol/MyEpicNFT.json`の中身を`nft-collection-starter-project/src/utils/MyEpicNFT.json`の中身と交換する。
 
 **繰り返しますが、コントラクトを更新するたびにこれを行う必要があります。**
 
 ### 🪄 フロントエンドを更新する
 
-下記のように、`App.js` を更新してください。
+下記のように、`App.js`を更新してください。
 
-まず、`const TWITTER_HANDLE = 'こちら'` に、あなたの Twitter ハンドルを貼り付けてみてください。あなたの Web サイトからあなたの Twitter アカウントをリンクさせることができます。
+まず、`const TWITTER_HANDLE = 'こちら'`に、あなたのTwitterハンドルを貼り付けてみてください。あなたのWebサイトからあなたのTwitterアカウントをリンクさせることができます。
 
-次に、下記 2 つのコードブロックに `setupEventListener()` を設定しましょう。
+次に、下記2つのコードブロックに`setupEventListener()`を設定しましょう。
 
-1 つ目のイベントリスナを設定。
+1つ目のイベントリスナを設定。
 
 ```javascript
 // App.js
@@ -143,7 +131,7 @@ if (accounts.length !== 0) {
 }
 ```
 
-2 つ目のイベントリスナを設定。
+2つ目のイベントリスナを設定。
 
 ```javascript
 // App.js
@@ -171,7 +159,7 @@ const connectWallet = async () => {
 };
 ```
 
-次に、`connectWallet` 関数の直下に、下記の `setupEventListener` 関数を追加してください。
+次に、`connectWallet`関数の直下に、下記の`setupEventListener`関数を追加してください。
 
 ```javascript
 // App.js
@@ -207,19 +195,19 @@ const setupEventListener = async () => {
 };
 ```
 
-`setupEventListener` 関数は、NFT が発行される際に `emit` される `NewEpicNFTMinted` イベントを受信します。
+`setupEventListener`関数は、NFTが発行される際に`emit`される`NewEpicNFTMinted`イベントを受信します。
 
-- `tokenId` を取得して、新しくミントされた NFT への OpenSea リンクをユーザーに提供しています。
+- `tokenId`を取得して、新しくミントされたNFTへのOpenSeaリンクをユーザーに提供しています。
 
 ### 🪄 MVP = `MyEpicNFT.sol` × `App.js`
 
-今回のプロジェクトの MVP（＝最小限の機能を備えたプロダクト）を構築する `MyEpicNFT.sol` と `App.js` のスクリプトを共有します。
+今回のプロジェクトのMVP（＝最小限の機能を備えたプロダクト）を構築する`MyEpicNFT.sol`と`App.js`のスクリプトを共有します。
 
 - 見やすいように少し整理整頓してあります 🧹✨
 
 もしコードにエラーが発生してデバッグが困難な場合は、下記のコードを使用してみてください。
 
-**`MyEpicNFT.sol` はこちら:**
+**`MyEpicNFT.sol`はこちら:**
 
 ```solidity
 // MyEpicNFT.sol
@@ -363,7 +351,7 @@ contract MyEpicNFT is ERC721URIStorage {
 }
 ```
 
-**`App.js` はこちら:**
+**`App.js`はこちら:**
 
 ```javascript
 // App.js
@@ -497,7 +485,7 @@ const App = () => {
         await nftTxn.wait();
         console.log(nftTxn);
         console.log(
-          `Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`
+          `Mined, see transaction: https://goerli.etherscan.io/tx/${nftTxn.hash}`
         );
       } else {
         console.log("Ethereum object doesn't exist!");
@@ -564,52 +552,52 @@ export default App;
 
 ### 😎 Web アプリケーションをアップグレードする
 
-MVP を起点に Web アプリケーションを自分の好きなようにアップグレードしましょう。
+MVPを起点にWebアプリケーションを自分の好きなようにアップグレードしましょう。
 
 **1\. ミントされた NFT の数に制限を設定する**
 
-- `MyEpicNFT.sol` を変更して、あらかじめ設定された数の NFT のみをミントできるようにすることをお勧めします。
-- `App.js` を更新して、Web アプリケーション上で Mint カウンタを表示してみましょう!（例、「これまでに作成された 4/50 NFT」）
+- `MyEpicNFT.sol`を変更して、あらかじめ設定された数のNFTのみをミントできるようにすることをお勧めします。
+- `App.js`を更新して、Webアプリケーション上でMintカウンタを表示してみましょう!（例、「これまでに作成された4/50 NFT」）
 
 **2\. ユーザーが間違ったネットワーク上にいるときアラートを出す**
 
-- あなたの Web サイトは Rinkeby Test Network で**のみ**機能します。
-- ユーザーが、Rinkeby 以外のネットワークにログインしている状態で、あなたの Web サイトに接続しようとしたら、それを知らせるアラートを出しましょう。
-- `methereum.request` と `eth_accounts` と `eth_requestAccounts` というメソッドを使用して、アラートを作成できます。
-- `eth_chainId` を使ってブロックチェーンを識別する ID を取得します。
+- あなたのWebサイトはGoerli Test Networkで**のみ**機能します。
+- ユーザーが、Goerli以外のネットワークにログインしている状態で、あなたのWebサイトに接続しようとしたら、それを知らせるアラートを出しましょう。
+- `methereum.request`と`eth_accounts`と`eth_requestAccounts`というメソッドを使用して、アラートを作成できます。
+- `eth_chainId`を使ってブロックチェーンを識別するIDを取得します。
 
-下記のコードを `App.js` に組み込んでみましょう。
+下記のコードを`App.js`に組み込んでみましょう。
 
 ```javascript
 // App.js
 let chainId = await ethereum.request({ method: "eth_chainId" });
 console.log("Connected to chain " + chainId);
-// 0x4 は　Rinkeby の ID です。
-const rinkebyChainId = "0x4";
-if (chainId !== rinkebyChainId) {
-  alert("You are not connected to the Rinkeby Test Network!");
+// 0x5 は　Goerli の ID です。
+const goerliChainId = "0x5";
+if (chainId !== goerliChainId) {
+  alert("You are not connected to the Goerli Test Network!");
 }
 ```
 
-他のブロックチェーン ID は [こちら](https://docs.MetaMask.io/guide/ethereum-provider.html#chain-ids) から見つけることができます。
+他のブロックチェーン IDは [こちら](https://docs.MetaMask.io/guide/ethereum-provider.html#chain-ids) から見つけることができます。
 
 **3\. マイニングアニメーションを作成する**
 
-- 一部のユーザーは、Mint をクリックした後、15 秒以上何も起こらないと、混乱してしまう可能性があるでしょう。
+- 一部のユーザーは、Mintをクリックした後、15秒以上何も起こらないと、混乱してしまう可能性があるでしょう。
 - "Loading ..." のようなアニメーションを追加して、ユーザーに安心してもらいましょう。
 
 **4\. あなたのコレクション Web アプリケーションをリンクさせる**
 
-- あなたのコレクションを見にいけるボタンを Web アプリケーション上に作成して、ユーザーがいつでもあなたの NFT コレクションを見に行けるようにしましょう。
-- あなたの Web サイトに、「Rarible でコレクションを表示」という小さなボタンを追加します。
+- あなたのコレクションを見にいけるボタンをWebアプリケーション上に作成して、ユーザーがいつでもあなたのNFTコレクションを見に行けるようにしましょう。
+- あなたのWebサイトに、「OpenSeaでコレクションを表示」という小さなボタンを追加します。
 - ユーザーがそれをクリックすると、コレクションのページに行けるようにしましょう。
-- Rarible へのリンクは `App.js` にハードコーディングする必要があります。
+- OpenSeaへのリンクは`App.js`にハードコーディングする必要があります。
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の`#eth-nft-collection`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#eth-nft-collection`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

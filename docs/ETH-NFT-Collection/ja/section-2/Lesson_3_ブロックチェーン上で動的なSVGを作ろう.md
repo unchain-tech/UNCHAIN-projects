@@ -1,10 +1,10 @@
 ### 🔤 SVG 画像にランダムに単語を反映させよう
 
-前回のレッスンでは、NFT をオンチェーンで作成するコントラクトを実装しました。
+前回のレッスンでは、NFTをオンチェーンで作成するコントラクトを実装しました。
 
-これから、3 つのランダムな単語を動的に組み合わせて NFT を出力するコードを作成していきます。
+これから、3つのランダムな単語を動的に組み合わせてNFTを出力するコードを作成していきます。
 
-下記のように、`MyEpicNFT.sol` を更新していきましょう。
+下記のように、`MyEpicNFT.sol`を更新していきましょう。
 
 ```solidity
 // MyEpicNFT.sol
@@ -59,13 +59,13 @@ contract MyEpicNFT is ERC721URIStorage {
     uint256 rand = random(string(abi.encodePacked("FIRST_WORD", Strings.toString(tokenId))));
 
     // seed rand をターミナルに出力する。
-	  console.log("rand seed: ", rand);
+    console.log("rand seed: ", rand);
 
-	  // firstWords配列の長さを基準に、rand 番目の単語を選びます。
+    // firstWords配列の長さを基準に、rand 番目の単語を選びます。
     rand = rand % firstWords.length;
 
-	  // firstWords配列から何番目の単語が選ばれるかターミナルに出力する。
-	  console.log("rand first word: ", rand);
+    // firstWords配列から何番目の単語が選ばれるかターミナルに出力する。
+    console.log("rand first word: ", rand);
     return firstWords[rand];
   }
 
@@ -126,23 +126,23 @@ contract MyEpicNFT is ERC721URIStorage {
 
 ### 🏷 SVG 形式でデータを表示できるようにする
 
-`baseSvg` 変数は、SVG 形式で単語を表示するために、作成されています。
+`baseSvg`変数は、SVG形式で単語を表示するために、作成されています。
 
 ```solidity
 // MyEpicNFT.sol
 string baseSvg = "<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='xMinYMin meet' viewBox='0 0 350 350'><style>.base { fill: white; font-family: serif; font-size: 24px; }</style><rect width='100%' height='100%' fill='black' /><text x='50%' y='50%' class='base' dominant-baseline='middle' text-anchor='middle'>";
 ```
 
-`makeAnEpicNFT()` 関数の中で、3 つの単語を連結させて 1 つのテキストを作成します。
+`makeAnEpicNFT()`関数の中で、3つの単語を連結させて1つのテキストを作成します。
 
-下記では、`baseSvg` 変数の中身と、`"</text></svg>"`で、3 つの単語（`first`、`second`、`third` 変数に格納された値）を閉じて文字列（`string`）として連結しています。
+下記では、`baseSvg`変数の中身と、`"</text></svg>"`で、3つの単語(`first`、`second`、`third`変数に格納された値)を閉じて文字列(`string`)として連結しています。
 
 ```solidity
 // MyEpicNFT.sol
 string memory finalSvg = string(abi.encodePacked(baseSvg, first, second, third, "</text></svg>"));
 ```
 
-これで、SVG 形式で文字のデータを NFT 画像として表示できます。
+これで、SVG形式で文字のデータをNFT画像として表示できます。
 
 ### 📝 ランダムに組み合わされる単語を設定する
 
@@ -153,9 +153,9 @@ string[] secondWords = ["YOUR_WORD", "YOUR_WORD", "YOUR_WORD", "YOUR_WORD", "YOU
 string[] thirdWords = ["YOUR_WORD", "YOUR_WORD", "YOUR_WORD", "YOUR_WORD", "YOUR_WORD", "YOUR_WORD"];
 ```
 
-`YOUR_WORD` に好きな単語を入力してください。
+`YOUR_WORD`に好きな単語を入力してください。
 
-ランダム性を担保するため、配列ごとに 15〜20 単語程度を格納することをお勧めします。今回の例では、簡単のため 6 単語を表記しています。
+ランダム性を担保するため、配列ごとに15〜20単語程度を格納することをお勧めします。今回の例では、簡単のため6単語を表記しています。
 
 私の配列は下記のようになっています。
 
@@ -167,9 +167,9 @@ string[] thirdWords = ["Kitten", "Puppy", "Monkey", "Bird", "Panda", "Elephant"]
 
 ### 🥴 乱数を生成して、単語をランダムに組み合わせる
 
-下記のコードでは、`string[] firstWords` 配列からランダムに単語を選ぶ関数を作成しています。
+下記のコードでは、`string[] firstWords`配列からランダムに単語を選ぶ関数を作成しています。
 
-`pickRandomFirstWord` 関数は、NFT 画像に 1 番目に表示される単語を選びます。
+`pickRandomFirstWord`関数は、NFT画像に1番目に表示される単語を選びます。
 
 ```solidity
 // MyEpicNFT.sol
@@ -184,11 +184,11 @@ function pickRandomFirstWord(uint256 tokenId) public view returns (string memory
 }
 ```
 
-ここで 1 つ重要なことを覚えておきましょう。
+ここで1つ重要なことを覚えておきましょう。
 
 それは、スマートコントラクトで乱数を生成することは、**たいへん難しい**ということです。
 
-通常のプログラムでは、PC のファンの速度、CPU の温度、インターネット速度など制御が難しい数値を変数に設定し、これらの数値を組み合わせて、「ランダム」な数値を生成するアルゴリズムを作成します。
+通常のプログラムでは、PCのファンの速度、CPUの温度、インターネット速度など制御が難しい数値を変数に設定し、これらの数値を組み合わせて、「ランダム」な数値を生成するアルゴリズムを作成します。
 
 ですが、**ブロックチェーンにおいて、スマートコントラクトは一般に公開されているため、プログラムがどの数値を変数として使用しているのか誰でも確認できてしまいます。**
 
@@ -203,15 +203,15 @@ function pickRandomFirstWord(uint256 tokenId) public view returns (string memory
 uint256 rand = random(string(abi.encodePacked("FIRST_WORD", Strings.toString(tokenId))));
 ```
 
-ここでは、文字列 `FIRST_WORD` と、`Strings.toString()` により文字列化された `tokenId` の 2 つの値を `abi.encodePacked` を使用して結合し、`rand` に格納しています。
+ここでは、文字列`FIRST_WORD`と、`Strings.toString()`により文字列化された`tokenId`の2つの値を`abi.encodePacked`を使用して結合し、`rand`に格納しています。
 
-`rand` に格納されているのは、次のような値です。
+`rand`に格納されているのは、次のような値です。
 
 ```plaintext
 96777463446932378109744360884080025980584389114515208476196941633474201541706
 ```
 
-`rand` は、乱数を生成するための「種」です。ですので、値そのものに意味はありません。
+`rand`は、乱数を生成するための「種」です。ですので、値そのものに意味はありません。
 
 次に、次のコードを見ていきましょう。
 
@@ -221,26 +221,26 @@ rand = rand % firstWords.length;
 return firstWords[rand];
 ```
 
-ここでは、`firstWords` 配列の長さを基準に、`rand` 番目の単語を選んでいます。
+ここでは、`firstWords`配列の長さを基準に、`rand`番目の単語を選んでいます。
 
-`%` は、整数の割り算における余りを返します。
+`%`は、整数の割り算における余りを返します。
 
-下記のような例では、`%` により割り算の余りが整数で返されます。
+下記のような例では、`%`により割り算の余りが整数で返されます。
 
 ```
 1 % 2 = 1 // 1が余り
 2 % 2 = 0 // 0が余り
 ```
 
-`rand = rand % firstWords.length` では、`0` から `firstWords.length - 1` の間の任意の値を `rand` に格納しています。
+`rand = rand % firstWords.length`では、`0`から`firstWords.length - 1`の間の任意の値を`rand`に格納しています。
 
-これにより、`firstWords` 配列からランダムに値を選べます。
+これにより、`firstWords`配列からランダムに値を選べます。
 
-- 私の `firstWords` 配列には 6 つの単語が格納されています。
+- 私の`firstWords`配列には6つの単語が格納されています。
 
-- Solidity では、配列に最初に格納されている値を `0` 番目ととらえます。
+- Solidityでは、配列に最初に格納されている値を`0`番目ととらえます。
 
-- したがって、私の例では、`rand % firstWords.length` によって、`0` から `5` までの値が 1 つ返されます。
+- したがって、私の例では、`rand % firstWords.length`によって、`0`から`5`までの値が1つ返されます。
 
 > ⚠️: 注意
 >
@@ -252,19 +252,19 @@ return firstWords[rand];
 >
 > 今回のプロジェクトでは、その必要がないので、上記のアルゴリズムを採用します。
 
-Solidity は、インプットが同じであれば必ず同じ結果が出力されるように設計されているため、公式な乱数生成の処理をサポートするライブラリを提供していません。
+Solidityは、インプットが同じであれば必ず同じ結果が出力されるように設計されているため、公式な乱数生成の処理をサポートするライブラリを提供していません。
 
-Solidity における乱数生成の方法に興味があれば、[Chainlink（英語）](https://docs.chain.link/docs/intermediates-tutorial/) のドキュメントを参照してみましょう。
+Solidityにおける乱数生成の方法に興味があれば、[Chainlink（英語）](https://docs.chain.link/docs/intermediates-tutorial/) のドキュメントを参照してみましょう。
 
 ### 👩‍🔬 テストしてみよう
 
-乱数の生成に関して理解を深めるために、ターミナルで下記を実行して、`MyEpicNFT.sol` の中の `console.log` によって出力される結果を確認してみましょう。
+乱数の生成に関して理解を深めるために、ターミナルで下記を実行して、`MyEpicNFT.sol`の中の`console.log`によって出力される結果を確認してみましょう。
 
 ```bash
 npx hardhat run scripts/run.js
 ```
 
-- 上記のコードを実行するときは、ターミナル上で `epic-nfts` ディレクトリにいることを確認してください。
+- 上記のコードを実行するときは、ターミナル上で`epic-nfts`ディレクトリにいることを確認してください。
 
 下記のような結果がターミナルに出力されていれば成功です。
 
@@ -291,18 +291,18 @@ rand - first word:  5
 An NFT w/ ID 1 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
 ```
 
-ターミナルに出力された SVG の 1 つをコピーして、[ここ](https://www.svgviewer.dev/)に貼り付け、中身を確認してみましょう。
+ターミナルに出力されたSVGの1つをコピーして、[ここ](https://www.svgviewer.dev/)に貼り付け、中身を確認してみましょう。
 
 下記のような結果が表示されていればテストは成功です。
 ![](/public/images/ETH-NFT-Collection/section-2/2_3_1.png)
 
 ### 👩‍💻 メタデータを動的に生成する
 
-次に、JSON ファイル（＝メタデータ）を設定する必要があります。
+次に、JSONファイル（＝メタデータ）を設定する必要があります。
 
 追加でいくつか関数を作成する必要があります。
 
-`contracts` ディレクトリの下に `libraries` というディレクトリを作成しましょう。
+`contracts`ディレクトリの下に`libraries`というディレクトリを作成しましょう。
 
 下記のディレクトリ構図を参考にしてください。
 
@@ -312,7 +312,7 @@ epic-nfts
 		  |_ libraries
 ```
 
-`libraries` ディレクトリに `Base64.sol` という名前のファイルを作成し、下記のコードを貼り付けてください。
+`libraries`ディレクトリに`Base64.sol`という名前のファイルを作成し、下記のコードを貼り付けてください。
 
 ```solidity
 // Base64.sol
@@ -392,9 +392,9 @@ library Base64 {
 }
 ```
 
-このファイルには、SVG と JSON を Base64 に変換するための関数が含まれています。
+このファイルには、SVGとJSONをBase64に変換するための関数が含まれています。
 
-`MyEpicNFT.sol` も下記のように更新しましょう。
+`MyEpicNFT.sol`も下記のように更新しましょう。
 
 ```solidity
 // MyEpicNFT.sol
@@ -539,7 +539,7 @@ contract MyEpicNFT is ERC721URIStorage {
 import { Base64 } from "./libraries/Base64.sol";
 ```
 
-ここでは、先ほど追加した `Base64.sol` から、SVG データと JSON ファイルを `Base64` に変換する関数をインポートしています。
+ここでは、先ほど追加した`Base64.sol`から、SVGデータとJSONファイルを`Base64`に変換する関数をインポートしています。
 
 次に、下記のコードを見ていきましょう。
 
@@ -548,7 +548,7 @@ import { Base64 } from "./libraries/Base64.sol";
 string memory combinedWord = string(abi.encodePacked(first, second, third));
 ```
 
-ここでは、3 つの単語を組み合わせた言葉（例: GrandCuteBird）を `combinedWord` 変数に格納しています。
+ここでは、3つの単語を組み合わせた言葉（例: GrandCuteBird）を`combinedWord`変数に格納しています。
 
 次に、下記のコードを見ていきましょう。
 
@@ -572,11 +572,11 @@ string memory json = Base64.encode(
 );
 ```
 
-ここでは、JSON ファイルのメタデータを `base64` でエンコードしています。
+ここでは、JSONファイルのメタデータを`base64`でエンコードしています。
 
 この処理によって、メタデータが**オンチェーン**に書き込まれ、コントラクトの中に組み込まれます。
 
-`name` では、`base64` でエンコードされた SVG データを追加しています。
+`name`では、`base64`でエンコードされたSVGデータを追加しています。
 
 次に、下記のコードを見ていきましょう。
 
@@ -587,7 +587,7 @@ string memory finalTokenUri = string(
 );
 ```
 
-ここでは、`data:application/json;base64,` の後ろに `base64` でエンコードされたメタデータを結合させ、`finalTokenUri` 変数に格納しています。
+ここでは、`data:application/json;base64,`の後ろに`base64`でエンコードされたメタデータを結合させ、`finalTokenUri`変数に格納しています。
 
 最後に、下記のコードを見ていきましょう。
 
@@ -596,13 +596,13 @@ string memory finalTokenUri = string(
 _setTokenURI(newItemId, finalTokenUri);
 ```
 
-ここでは、`tokenURI` を更新しています。
+ここでは、`tokenURI`を更新しています。
 
-この処理は、あなたの SVG データが組み込まれた JSON のメタデータをコントラクトと紐付けます。
+この処理は、あなたのSVGデータが組み込まれたJSONのメタデータをコントラクトと紐付けます。
 
 ### ⭐️ 実行する
 
-それでは、ターミナルに向かい、`epic-nfts` ディレクトリ上で、下記を実行しましょう。
+それでは、ターミナルに向かい、`epic-nfts`ディレクトリ上で、下記を実行しましょう。
 
 ```bash
 npx hardhat run scripts/run.js
@@ -643,23 +643,23 @@ data:application/json;base64,eyJuYW1lIjogIkdyYW5kQ3V0ZUJpcmQiLCAiZGVzY3JpcHRpb24
 An NFT w/ ID 1 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
 ```
 
-### 🛠 `finalTokenUri` の中身を確認しよう
+### 🛠 `finalTokenUri`の中身を確認しよう
 
-ターミナルに出力された `Token URI` の 1 つをコピーして、[NFT Preview](https://nftpreview.0xdev.codes/) に貼り付け、中身を確認してみましょう。
+ターミナルに出力された`Token URI`の1つをコピーして、[NFT Preview](https://0y190.sse.codesandbox.io/) に貼り付け、中身を確認してみましょう。
 
-NFT Preview を使用すれば、テストネットにデプロイしなくても、JSON ファイルから SVG データを確認できます。
+NFT Previewを使用すれば、テストネットにデプロイしなくても、JSONファイルからSVGデータを確認できます。
 
-下記のように `Token URI` が画像として確認できれば、テストは成功です。
+下記のように`Token URI`が画像として確認できれば、テストは成功です。
 
 ![](/public/images/ETH-NFT-Collection/section-2/2_3_2.png)
 
-### 🚀 Rinkeby Test Network にデプロイする
+### 🚀 Goerli Test Network にデプロイする
 
-下記コマンドをターミナルに入力し、Rinkeby に再度デプロイしましょう。
+下記コマンドをターミナルに入力し、Goerliに再度デプロイしましょう。
 
-`deploy.js` を下記のように更新してください。
+`deploy.js`を下記のように更新してください。
 
-- 変更点は、2 つ目の NFT 発行を削除しているだけです。
+- 変更点は、2つ目のNFT発行を削除しているだけです。
 
 ```javascript
 // deploy.js
@@ -692,7 +692,7 @@ runMain();
 ```
 
 ```bash
-npx hardhat run scripts/deploy.js --network rinkeby
+npx hardhat run scripts/deploy.js --network goerli
 ```
 
 下記のような結果がターミナルに表示されていれば、テストネットへのデプロイは成功です。
@@ -702,18 +702,18 @@ Contract deployed to: 0x2bE00D9524E37A432B695A033912709ecEb64Cfa
 Minted NFT #1
 ```
 
-最後に、コントラクトのアドレス（`Contract deployed to` に続く `0x..`）をターミナルからコピーして、[`rinkeby.rarible.com`](https://rinkeby.rarible.com/) に貼り付け、検索してみてください。
+最後に、コントラクトのアドレス(`Contract deployed to`に続く`0x..`)をターミナルからコピーして、[テストネット用の OpenSea](https://testnets.opensea.io/) に貼り付け、検索してみてください。
 
-- [テストネット用の OpenSea](https://testnets.opensea.io/) でも同じように確認できますが、NFT が OpenSea に反映されるまでに時間がかかるので、Rarible で検証することをお勧めします。
-
-下記のように、あなたの SquareNFT が Rarible で確認できたでしょうか？
+下記のように、あなたのSquareNFTがOpenSeaで確認できたでしょうか？
 ![](/public/images/ETH-NFT-Collection/section-2/2_3_3.png)
+
+OpenSea上で画像が表示されない場合は[Rarible](https://testnet.rarible.com/)で検索してみてください。
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#eth-nft-collection` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#eth-nft-collection`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -724,10 +724,10 @@ Minted NFT #1
 
 ---
 
-おめでとうございます!　セクション 3 はもう少しで終了です ✨
+おめでとうございます!　セクション3はもう少しで終了です ✨
 
-あなたの Rarible のリンクを `#eth-nft-collection` に貼り付けて、コミュニティにシェアしてください 😊
+あなたのOpenSeaのリンクを`#eth-nft-collection`に貼り付けて、コミュニティにシェアしてください 😊
 
-どんな NFT を作ったのか気になります 🔥
+どんなNFTを作ったのか気になります 🔥
 
-コミュニティへの投稿が済んだら、次のレッスンに進んで、ユーザーが NFT を発行できる Web サイトを構築しましょう 🎉
+コミュニティへの投稿が済んだら、次のレッスンに進んで、ユーザーがNFTを発行できるWebサイトを構築しましょう 🎉

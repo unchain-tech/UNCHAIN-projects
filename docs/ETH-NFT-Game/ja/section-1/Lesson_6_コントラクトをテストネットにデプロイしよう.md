@@ -2,17 +2,17 @@
 
 これから、実際にコントラクトをテストネットにデプロイしていきます。
 
-テストネットにデプロイすると、NFT をオンラインで見ることができます。
+テストネットにデプロイすると、NFTをオンラインで見ることができます。
 
 ### 🦊 MetaMask をダウンロードする
 
 次に、イーサリアムウォレットをダウンロードしましょう。
 
-このプロジェクトでは MetaMask を使用します。
+このプロジェクトではMetaMaskを使用します。
 
-- [こちら](https://MetaMask.io/download.html) からブラウザの拡張機能をダウンロードし、MetaMask ウォレットをあなたのブラウザに設定します。
+- [こちら](https://MetaMask.io/download.html) からブラウザの拡張機能をダウンロードし、MetaMaskウォレットをあなたのブラウザに設定します。
 
-すでに別のウォレットをお持ちの場合でも、今回は MetaMask を使用してください。
+すでに別のウォレットをお持ちの場合でも、今回はMetaMaskを使用してください。
 
 > ✍️: MetaMask が必要な理由
 > ユーザーが、スマートコントラクトを呼び出すとき、本人のイーサリアムアドレスと秘密鍵を備えたウォレットが必要となります。
@@ -28,15 +28,15 @@
 - **新規にスマートコントラクトをイーサリアムネットワークにデプロイした**という情報をブロックチェーン上に書き込む。
 - **ユーザーが NFT を Mint した**という情報をブロックチェーンに書き込む。
 
-トランザクションにはマイナーの承認が必要ですので、Alchemy を導入します。
+トランザクションにはマイナーの承認が必要ですので、Alchemyを導入します。
 
-Alchemy は、世界中のトランザクションを一元化し、マイナーの承認を促進するプラットフォームです。
+Alchemyは、世界中のトランザクションを一元化し、マイナーの承認を促進するプラットフォームです。
 
-[こちら](https://www.alchemy.com/) から Alchemy のアカウントを作成してください。
+[こちら](https://www.alchemy.com/) からAlchemyのアカウントを作成してください。
 
 ### 💎 Alchemy でネットワークを作成
 
-Alchemy のアカウントを作成したら、`CREATE APP` ボタンを押してください。
+Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押してください。
 
 ![](/public/images/ETH-NFT-Game/section-1/1_5_1.png)
 
@@ -44,35 +44,34 @@ Alchemy のアカウントを作成したら、`CREATE APP` ボタンを押し�
 
 ![](/public/images/ETH-NFT-Game/section-1/1_5_2.png)
 
-- `NAME`: プロジェクトの名前（例: `MyEpicGame`）
+- `NAME`: プロジェクトの名前(例: `MyEpicGame`)
 - `DESCRIPTION`: プロジェクトの概要
-- `ENVIRONMENT`: `Development` を選択。
-- `CHAIN`: `Ethereum` を選択。
-- `NETWORK`: `Rinkeby` を選択。
+- `CHAIN`: `Ethereum`を選択。
+- `NETWORK`: `Goerli`を選択。
 
-それから、作成した App の `VIEW DETAILS` をクリックします。
+それから、作成したAppの`VIEW DETAILS`をクリックします。
 
 ![](/public/images/ETH-NFT-Game/section-1/1_5_3.png)
 
-プロジェクトを開いたら、`VIEW KEY` ボタンをクリックします。
+プロジェクトを開いたら、`VIEW KEY`ボタンをクリックします。
 
 ![](/public/images/ETH-NFT-Game/section-1/1_5_4.png)
 
-ポップアップが開くので、`HTTP` のリンクをコピーしてください。
+ポップアップが開くので、`HTTP`のリンクをコピーしてください。
 
-これがあなたが本番環境のネットワークに接続する際に使用する `API Key` になります。
+これがあなたが本番環境のネットワークに接続する際に使用する`API Key`になります。
 
 - **これは、後に何回か必要になるので、あなたの PC 上のわかりやすいところに、メモとして残しておいてください。**
 
 ### 🐣 テストネットから始める
 
-今回のプロジェクトでは、コスト（＝ 本物の ETH）が発生するメインネットではなく、**テストネットにコントラクトをデプロイします。**
+今回のプロジェクトでは、コスト（＝ 本物のETH）が発生するメインネットではなく、**テストネットにコントラクトをデプロイします。**
 
 テストネットはイーサリアムメインネットを模しています。
 
 - イーサリアムメインネットにコントラクトをデプロイした際に発生するイベントのテストを行うのに最適です。
 
-- テストネットは偽の ETH を使用しているため、いくらでもトランザクションのテストを行えます。
+- テストネットは偽のETHを使用しているため、いくらでもトランザクションのテストを行えます。
 
 今回は、以下のイベントをテストしていきます。
 
@@ -88,44 +87,44 @@ Alchemy のアカウントを作成したら、`CREATE APP` ボタンを押し�
 
 ### 🚰 偽の ETH を取得する
 
-今回は、`Rinkeby` というイーサリアム財団によって運営されているテストネットを使用します。
+今回は、`Goerli`というイーサリアム財団によって運営されているテストネットを使用します。
 
-`Rinkeby` にコントラクトをデプロイし、コードのテストを行うために、偽の ETH を取得しましょう。ユーザーが偽の ETH を取得するために用意されたインフラは、「フォーセット（＝蛇口）」と呼ばれています。
+`Goerli`にコントラクトをデプロイし、コードのテストを行うために、偽のETHを取得しましょう。ユーザーが偽のETHを取得するために用意されたインフラは、「フォーセット（＝蛇口）」と呼ばれています。
 
-フォーセットを使用する前に、あなたの MetaMask ウォレットを `Rinkeby Test Network` に設定してください。
+フォーセットを使用する前に、あなたのMetaMaskウォレットを`Goerli Test Network`に設定してください。
 
-> ✍️: MetaMask で `Rinkeby Test Network` を設定する方法
+> ✍️: MetaMask で`Goerli Test Network`を設定する方法
 > 1 \. MetaMask ウォレットのネットワークトグルを開く。
 >
 > ![](/public/images/ETH-NFT-Game/section-1/1_5_5.png)
 
-> 2 \. `Show/hide test networks` をクリック。
+> 2 \. `Show/hide test networks`をクリック。
 >
 > ![](/public/images/ETH-NFT-Game/section-1/1_5_6.png)
 
-> 3 \. `Show test networks` を `ON` にする。
+> 3 \. `Show test networks`を`ON`にする。
 >
 > ![](/public/images/ETH-NFT-Game/section-1/1_5_7.png)
 
-> 4 \. `Rinkeby Test Network` を選択する。
+> 4 \. `Goerli Test Network`を選択する。
 >
 > ![](/public/images/ETH-NFT-Game/section-1/1_5_8.png)
 
-MetaMask ウォレットに `Rinkeby Test Network` が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽 ETH を取得しましょう。
+MetaMaskウォレットに`Goerli Test Network`が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽ETHを取得しましょう。
 
-- [Alchemy](https://docs.alchemy.com/alchemy/guides/choosing-a-network#rinkeby) - 0.1 ETH（その場でもらえる）
-- [MyCrypto](https://app.mycrypto.com/faucet) - 0.01 ETH（その場でもらえる）
-- [Official Rinkeby](https://faucet.rinkeby.io/) - 3 / 7.5 / 18.75 ETH ( 8 時間 / 1 日 / 3 日)
-- [Chainlink](https://faucets.chain.link/rinkeby) - 0.1 ETH（その場でもらえる）
-  - Chainlink を使うときは `Connect wallet` をクリックして MetaMask と接続する必要があります。
+- [Alchemy](https://goerlifaucet.com/) - 0.25 Goerli ETH（24時間に1度もらうことができる）
+  - ウォレットアドレスを入力して`Send Me ETH`ボタンを押下するとその場でもらえます。
+- [Chainlink](https://faucets.chain.link/) - 0.1 Goerli ETH（その場でもらえる）
+  - `Connect wallet`をクリックしてMetaMaskと接続する必要があります。
+  - Twitterアカウントを連携する必要があります。
 
-### 🚀 `deploy.js` ファイルを作成する
+### 🚀 `deploy.js`ファイルを作成する
 
-今までは、ローカル環境でスマートコントラクトのテストを行う際に、`run.js` スクリプトを使用してきました。
+今までは、ローカル環境でスマートコントラクトのテストを行う際に、`run.js`スクリプトを使用してきました。
 
-`epic-game/scripts` ディレクトリに、`scripts` ディレクトリの中にある `deploy.js` を以下のとおり更新します。
+`epic-game/scripts`ディレクトリに、`scripts`ディレクトリの中にある`deploy.js`を以下のとおり更新します。
 
-内容は、既存の `run.js` に、`mintCharacterNFT` 関数の呼び出しを追加しただけです。
+内容は、既存の`run.js`に、`mintCharacterNFT`関数の呼び出しを追加しただけです。
 
 ```javascript
 // deploy.js
@@ -182,15 +181,15 @@ const runMain = async () => {
 runMain();
 ```
 
-### 📈 `hardhat.config.js` ファイルを編集する
+### 📈 `hardhat.config.js`ファイルを編集する
 
-`hardhat.config.js` ファイルを変更する必要があります。
+`hardhat.config.js`ファイルを変更する必要があります。
 
 これは、スマートコントラクトプロジェクトのルートディレクトリにあります。
 
-- 今回は、`epic-game` ディレクトリの直下に `hardhat.config.js` が存在するはずです。
+- 今回は、`epic-game`ディレクトリの直下に`hardhat.config.js`が存在するはずです。
 
-例）`epic-game` で `ls` を実行した結果
+例)`epic-game`で`ls`を実行した結果
 
 ```
 yukis4san@Yukis-MacBook-Pro epic-game % ls
@@ -201,7 +200,7 @@ contracts			test
 hardhat.config.js
 ```
 
-`hardhat.config.js` を VS Code で開いて、中身を編集していきます。
+`hardhat.config.js`をVS Codeで開いて、中身を編集していきます。
 
 ```javascript
 // hardhat.config.js
@@ -209,9 +208,9 @@ require("@nomicfoundation/hardhat-toolbox");
 module.exports = {
   solidity: "0.8.9",
   networks: {
-    rinkeby: {
+    goerli: {
       url: "YOUR_ALCHEMY_API_URL",
-      accounts: ["YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY"],
+      accounts: ["YOUR_PRIVATE_GOERLI_ACCOUNT_KEY"],
     },
   },
 };
@@ -219,46 +218,46 @@ module.exports = {
 
 1. \. `YOUR_ALCHEMY_API_URL`の取得
 
-> `hardhat.config.js` の `YOUR_ALCHEMY_API_URL` の部分を先ほど取得した Alchemy の URL（ `HTTP` リンク） と入れ替えます。
+> `hardhat.config.js`の`YOUR_ALCHEMY_API_URL`の部分を先ほど取得した Alchemy の URL（ `HTTP`リンク） と入れ替えます。
 
-2. \. `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の取得
-   > 1\. お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを `Rinkeby Test Network` に変更します。
+2. \. `YOUR_PRIVATE_GOERLI_ACCOUNT_KEY`の取得
+   > 1\. お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを`Goerli Test Network`に変更します。
    > ![](/public/images/ETH-NFT-Game/section-1/1_5_8.png)
    >
-   > 2\. それから、`Account details` を選択してください。
+   > 2\. それから、`Account details`を選択してください。
    > ![](/public/images/ETH-NFT-Game/section-1/1_5_9.png)
    >
-   > 3\. `Account details` から `Export Private Key` をクリックしてください。
+   > 3\. `Account details`から`Export Private Key`をクリックしてください。
    > ![](/public/images/ETH-NFT-Game/section-1/1_5_10.png)
    >
-   > 4\. MetaMask のパスワードを求められるので、入力したら `Confirm` を推します。
+   > 4\. MetaMask のパスワードを求められるので、入力したら`Confirm`を推します。
    > ![](/public/images/ETH-NFT-Game/section-1/1_5_11.png)
    >
    > 5\. あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
    > ![](/public/images/ETH-NFT-Game/section-1/1_5_12.png)
    >
-   > `hardhat.config.js` の `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の部分をここで取得した秘密鍵とを入れ替えます。
+   > `hardhat.config.js`の`YOUR_PRIVATE_GOERLI_ACCOUNT_KEY`の部分をここで取得した秘密鍵とを入れ替えます。
 
 ### 🙊 秘密鍵は誰にも教えてはいけません
 
-`hardhat.config.js` を更新したら、ここで一度立ち止まりましょう。
+`hardhat.config.js`を更新したら、ここで一度立ち止まりましょう。
 
-> **🚨: `hardhat.config.js` ファイルをあなたの秘密鍵の情報を含んだ状態で Github にコミットしてはいけません**。
+> **🚨: `hardhat.config.js`ファイルをあなたの秘密鍵の情報を含んだ状態で Github にコミットしてはいけません**。
 > この秘密鍵は、あなたのイーサリアムメインネットの秘密鍵と同じです。
 >
 > 秘密鍵が流出してしまうと、誰でもあなたのウォレットにアクセスすることができてしまうので、とても危険です。
 >
 > **絶対に秘密鍵を自分以外の人が見れる場所に置かないようにしましょう**。
 
-下記を実行して、VS Code で `.gitignore` ファイルを編集しましょう。
+下記を実行して、VS Codeで`.gitignore`ファイルを編集しましょう。
 
 ```
 code .gitignore
 ```
 
-`.gitignore` に `hardhat.config.js` の行を追加します。
+`.gitignore`に`hardhat.config.js`の行を追加します。
 
-`.gitignore` の中身が下記のようになっていれば、問題ありません。
+`.gitignore`の中身が下記のようになっていれば、問題ありません。
 
 ```bash
 node_modules
@@ -274,7 +273,7 @@ artifacts
 hardhat.config.js
 ```
 
-`.gitignore` に記載されているファイルやディレクトリは、GitHub にディレクトリをプッシュされずに、ローカル環境にのみ保存されます。
+`.gitignore`に記載されているファイルやディレクトリは、GitHubにディレクトリをプッシュされずに、ローカル環境にのみ保存されます。
 
 > **✍️: スマートコントラクトをデプロイするのに秘密鍵が必要な理由** > **新しくスマートコントラクトをイーサリアムネットワーク上にデプロイすること**も、トランザクションの一つです。
 >
@@ -288,14 +287,14 @@ hardhat.config.js
 >
 > ユーザー名とパスワードを使用して、AWS にログインしてプロジェクトをデプロイするのと同じです。
 
-### 🚀 Rinkeby Test Network にコントラクトをデプロイする
+### 🚀 Goerli Test Network にコントラクトをデプロイする
 
-`hardhat.config.js` の更新が完了したら、Rinkeby Test Network にコントラクトをデプロイしてみましょう。
+`hardhat.config.js`の更新が完了したら、Goerli Test Networkにコントラクトをデプロイしてみましょう。
 
-ターミナル上で `epic-game` ディレクトリに移動し、下記のコマンドを実行しましょう。
+ターミナル上で`epic-game`ディレクトリに移動し、下記のコマンドを実行しましょう。
 
 ```bash
-npx hardhat run scripts/deploy.js --network rinkeby
+npx hardhat run scripts/deploy.js --network goerli
 ```
 
 ターミナルに、下記のような結果が出力されていることを確認してください。
@@ -310,63 +309,61 @@ Done deploying and minting!
 >
 > 通常 1〜2 分程度でデプロイが完了します。
 >
-> `deploy.js` で NFT を Mint し、マイナーにトランザクションを承認してもらう必要があるため、時間がかかります。
+> `deploy.js`で NFT を Mint し、マイナーにトランザクションを承認してもらう必要があるため、時間がかかります。
 
 ### 👀 Etherscan でトランザクションを確認する
 
-`Contract deployed to:` に続くアドレス（`0x..`）をコピーして、[Etherscan](https://rinkeby.etherscan.io/) に貼り付けてみましょう。
+`Contract deployed to:`に続くアドレス(`0x..`)をコピーして、[Etherscan](https://goerli.etherscan.io/) に貼り付けてみましょう。
 
 あなたのスマートコントラクトのトランザクション履歴が確認できます。
 
-- Etherscan は、イーサリアムネットワーク上のトランザクションに関する情報を確認するのに便利なプラットフォームです。
+- Etherscanは、イーサリアムネットワーク上のトランザクションに関する情報を確認するのに便利なプラットフォームです。
 
 - _表示されるまでに約 1 分かかり場合があります。_
 
-下記のような結果が、Rinkeby Etherscan 上で確認できれば、テストネットへのデプロイは成功です 🎉
+下記のような結果が、Goerli Etherscan上で確認できれば、テストネットへのデプロイは成功です 🎉
 
 ![無題](/public/images/ETH-NFT-Game/section-1/1_5_15.png)
 
-**デプロイのデバッグに Rinkeby Etherscan 使うことに慣れましょう。**
+**デプロイのデバッグに Goerli Etherscan 使うことに慣れましょう。**
 
-Rinkeby Etherscan はデプロイを追跡する最も簡単な方法であり、問題を特定するのに適しています。
+Goerli Etherscanはデプロイを追跡する最も簡単な方法であり、問題を特定するのに適しています。
 
-- Etherscan にトランザクションが表示されないということは、まだ処理中か、何か問題があったということになります。
+- Etherscanにトランザクションが表示されないということは、まだ処理中か、何か問題があったということになります。
 
-### 🐝 Rarible で NFT を確認する
+### 🐝 OpenSea で NFT を確認する
 
-最後に、コントラクトのアドレス（`Contract deployed to` に続く `0x..`）をターミナルからコピーして、[`rinkeby.rarible.com`](https://rinkeby.rarible.com/) に貼り付け、検索してみてください。
+最後に、コントラクトのアドレス(`Contract deployed to`に続く`0x..`)をターミナルからコピーして、[テストネット用の OpenSea](https://testnets.opensea.io/) に貼り付け、検索してみてください。
 
-- [テストネット用の OpenSea](https://testnets.opensea.io/) でも同じように確認できますが、NFT が OpenSea に反映されるまでに時間がかかるので、Rarible で検証することをお勧めします。
-
-下記のように、あなたの NFT も Rarible で確認できたでしょうか？
+下記のように、あなたのNFTもOpenSeaで確認できたでしょうか？（画像は学習コンテンツ制作時に利用したRarible rinkeby testnetのものになります）。
 ![](/public/images/ETH-NFT-Game/section-1/1_5_16.png)
 
-キャラクターをクリックして、右下に表示されている `Properties` を確認してみましょう。
+キャラクターをクリックして、右下に表示されている`Properties`を確認してみましょう。
 
-![](/public/images/ETH-NFT-Game/section-1/1_5_17.png)
-キャラクターの攻撃力（`Attack Damage`）や HP が Rarible に反映されています。
+![](/public/images/ETH-NFT-Game/section-1/1_5_17.png)（画像は学習コンテンツ制作時に利用したRarible rinkeby testnetのものになります）。
+キャラクターの攻撃力(`Attack Damage`)やHPがOpenSeaに反映されています。
 
-Rarible や OpenSea はキャラクター属性を適切にレンダリングしてくれます 😊
+OpenSeaなどのNFTマーケットプレイスはキャラクター属性を適切にレンダリングしてくれます 😊
 
 > ⚠️: 注意
 >
 > 現在、一つのウォレットに 3 つの NFT が Mint されています。
 >
-> また、現在 `nftHolders` は、1 つのユニークなアドレスに対して 1 つの `tokenId` しか保持できません。
+> また、現在`nftHolders`は、1 つのユニークなアドレスに対して 1 つの`tokenId`しか保持できません。
 >
-> そのため、同じアドレスに新しい NFT が Mint されるたびに、以前の `tokenId` が上書きされます。
+> そのため、同じアドレスに新しい NFT が Mint されるたびに、以前の`tokenId`が上書きされます。
 >
 > これからのレッスンでは、一つのウォレットに 1 つの NFT が Mint された後に上書きされない仕組みを実装していきます。
 
 ### 🥳 NFT ゲームの可能性
 
-世界最大の NFT ゲーム「Axie Infinity」も、NFT キャラクターに属性を付与しています。
+世界最大のNFTゲーム「Axie Infinity」も、NFTキャラクターに属性を付与しています。
 
-「Axie Infinity」は、ポケモンのようなターン制のゲームで、ほかのプレイヤーと 1 対 1 で戦います。
+「Axie Infinity」は、ポケモンのようなターン制のゲームで、ほかのプレイヤーと1対1で戦います。
 
-[こちら](https://opensea.io/assets/0xf5b0a3efb8e8e4c201e2a935f110eaaf3ffecb8d/78852) で Axie キャラクターの `Properties` や `Levels` など、さまざまな属性をチェックしてみてください。
+[こちら](https://opensea.io/assets/0xf5b0a3efb8e8e4c201e2a935f110eaaf3ffecb8d/78852) でAxieキャラクターの`Properties`や`Levels`など、さまざまな属性をチェックしてみてください。
 
-これらの属性によって、NFT キャラクターはゲーム内で個性豊かな能力を発揮します。
+これらの属性によって、NFTキャラクターはゲーム内で個性豊かな能力を発揮します。
 
 💪: 次のセクションで行うこと
 
@@ -376,31 +373,31 @@ Rarible や OpenSea はキャラクター属性を適切にレンダリングし
 >
 > - NFT キャラクターがボスを攻撃すると、ボスば反撃し、NFT キャラクターの**HP が減ります**。
 >
-> - OpenSea や Rarible 上でも NFT キャラクターの HP 値は減少します。
+> - OpenSea などの NFT マーケットプレイス上でも NFT キャラクターの HP 値は減少します。
 
 👉 **NFT は見た目がかっこいいだけでなく、このように実用性を持たすことができます。**
 
-NFT の実用性は、革新的な技術です。
+NFTの実用性は、革新的な技術です。
 
 大乱闘スマッシュブラザーズのおような一般的なゲームでは、ゲームを買ってからキャラクターを選びます。
 
 **ブロックチェーンの技術を使うと、プレイヤーは自分のキャラクター NFT を選び、ゲーム内に持ち込んで遊ぶことができます。**
 
-たとえば、ポケモンの作者が、「ピカチュウ」の NFT を作成し、10 万人のユーザーがそれを Mint したとします。
+たとえば、ポケモンの作者が、「ピカチュウ」のNFTを作成し、10万人のユーザーがそれをMintしたとします。
 
-- ピカチュウ NFT を所有するユニークプレイヤーは 10 万人です。
+- ピカチュウNFTを所有するユニークプレイヤーは10万人です。
 
-別の開発者がやってきて、ピカチュウ NFT を基盤に別のゲームを作り、ピカチュウ NFT を持っているプレイヤーは誰でも新しいゲームに参加できるようにしたとしましょう。
+別の開発者がやってきて、ピカチュウNFTを基盤に別のゲームを作り、ピカチュウNFTを持っているプレイヤーは誰でも新しいゲームに参加できるようにしたとしましょう。
 
-- ピカチュウ NFT を持っている人は、そのゲームの中でピカチュウとしてプレイできます!
+- ピカチュウNFTを持っている人は、そのゲームの中でピカチュウとしてプレイできます!
 
-さらに、ピカチュウ NFT の作者が販売する NFT が転売される度に、ロイヤリティを請求できます。つまり、NFT の人気が上がれば、クリエイターは販売ごとにお金を稼ぐことができるのです ✨
+さらに、ピカチュウNFTの作者が販売するNFTが転売される度に、ロイヤリティを請求できます。つまり、NFTの人気が上がれば、クリエイターは販売ごとにお金を稼ぐことができるのです ✨
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#eth-nft-game` で質問してください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#eth-nft-game`で質問してください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -411,7 +408,7 @@ NFT の実用性は、革新的な技術です。
 
 ---
 
-おめでとうございます!　セクション 1 は終了です!
-Rarible のリンクを `#eth-nft-game` にシェアしてください 😊
-あなたの作った NFT が気になります!　 ✨
+おめでとうございます!　セクション1は終了です!
+OpenSeaのリンクを`#eth-nft-game`にシェアしてください 😊
+あなたの作ったNFTが気になります!　 ✨
 次のレッスンに進んで、実際にゲームのロジックを構築していきましょう 🎉

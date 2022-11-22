@@ -4,13 +4,13 @@ lesson2,3で行うことは、今までunchain projectをやってきた方々�
 
 スマートコントラクトをすばやくコンパイルし、ローカル環境にてテストを行うために、**Hardhat** というツールを使用します。
 
-- Hardhat により、ローカル環境でイーサリアムネットワークを簡単に起動し、テストネットでイーサリアムを利用できます。
+- Hardhatにより、ローカル環境でイーサリアムネットワークを簡単に起動し、テストネットでイーサリアムを利用できます。
 
-- 「サーバ」がブロックチェーンであることを除けば、Hardhat はローカルサーバと同じです。
+- 「サーバー」がブロックチェーンであることを除けば、Hardhatはローカルサーバーと同じです。
 
-まず、`node` / `npm` を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスしてください。
+まず、`node` / `npm`を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスしてください。
 
-`node v16` をインストールすることを推奨しています。
+`node v16`をインストールすることを推奨しています。
 
 次に、ターミナルに向かいましょう。
 
@@ -32,19 +32,19 @@ NFT-Maker
 	|_ ipfs-nfts
 ```
 
-`ipfs-nfts` の中にスマートコントラクトを構築するためのファイルを作成していきます。
+`ipfs-nfts`の中にスマートコントラクトを構築するためのファイルを作成していきます。
 
-> ✍️: `warning` について
+> ✍️: `warning`について
 > 最後のコマンドを実行して Hardhat をインストールすると、脆弱性に関するメッセージが表示される場合があります。
 >
-> 基本的に `warning` は無視して問題ありません。
+> 基本的に`warning`は無視して問題ありません。
 >
 > NPM から何かをインストールするたびに、インストールしているライブラリに脆弱性が報告されているかどうかを確認するためにセキュリティチェックが行われます。
 ### 👏 サンプルプロジェクトを開始する
 
-次に、Hardhat を実行します。
+次に、Hardhatを実行します。
 
-ターミナルで `ipfs-nfts` ディレクトリに移動し、下記を実行します：
+ターミナルで`ipfs-nfts`ディレクトリに移動し、下記を実行します：
 
 ```bash
 npx hardhat
@@ -55,22 +55,22 @@ npx hardhat
 > Windows で Git Bash を使用してハードハットをインストールしている場合、このステップ (HH1) でエラーが発生する可能性があります。問題が発生した場合は、WindowsCMD（コマンドプロンプト）を使用して HardHat のインストールを実行してみてください。
 > ⚠️: 注意 #2
 >
-> `npm` と一緒に `yarn` をインストールしている場合、`npm ERR! could not determine executable to run` などのエラーが発生する可能性があります。
+> `npm`と一緒に`yarn`をインストールしている場合、`npm ERR! could not determine executable to run`などのエラーが発生する可能性があります。
 >
-> - この場合、`yarn add hardhat` のコマンドを実行しましょう。
+> - この場合、`yarn add hardhat`のコマンドを実行しましょう。
 > ⚠️: 注意 #3
 >
-> `npx hardhat` が実行されなかった場合、以下をターミナルで実行してください。
+> `npx hardhat`が実行されなかった場合、以下をターミナルで実行してください。
 >
 > ```bash
 > npm install --save-dev @nomicfoundation/hardhat-toolbox
 > ```
 
-`hardhat` がターミナル上で立ち上がったら、`Create a JavaScript project` を選択します。
+`hardhat`がターミナル上で立ち上がったら、`Create a JavaScript project`を選択します。
 
-- プロジェクトのルートディレクトリを設定し、`.gitignore` を追加する選択肢で `yes` を選んでください。
+- プロジェクトのルートディレクトリを設定し、`.gitignore`を追加する選択肢で`yes`を選んでください。
 
-サンプルプロジェクトでは、`hardhat-toolbox` をインストールするように求められます。
+サンプルプロジェクトでは、`hardhat-toolbox`をインストールするように求められます。
 
 次に、安全なスマートコントラクトを開発するために使用されるライブラリ **OpenZeppelin** をインストールします。
 
@@ -82,7 +82,7 @@ npm install @openzeppelin/contracts
 
 [OpenZeppelin](https://github.com/OpenZeppelin/openzeppelin-contracts) はイーサリアムネットワーク上で安全なスマートコントラクトを実装するためのフレームワークです。
 
-OpenZeppelin には非常に多くの機能が実装されておりインポートするだけで安全にその機能を使うことができます。
+OpenZeppelinには非常に多くの機能が実装されておりインポートするだけで安全にその機能を使うことができます。
 
 ### ⭐️ 実行する
 
@@ -96,7 +96,7 @@ npx hardhat compile
 
 > ⚠️: 注意 #1
 >
-> `npx hardhat compile` が実行されなかった場合、以下をターミナルで実行してください。
+> `npx hardhat compile`が実行されなかった場合、以下をターミナルで実行してください。
 >
 > ```bash
 > npm install --save-dev @nomicfoundation/hardhat-toolbox
@@ -115,7 +115,7 @@ Lock
 9 passing
 ```
 
-ターミナル上で `ipfs-nfts` に移動し、`ls` と入力してみて、下記のフォルダーとファイルが表示されていたら成功です。
+ターミナル上で`ipfs-nfts`に移動し、`ls`と入力してみて、下記のフォルダーとファイルが表示されていたら成功です。
 
 ```
 README.md		hardhat.config.js	scripts
@@ -126,18 +126,18 @@ contracts		package.json
 
 ここまできたら、フォルダーの中身を整理しましょう。
 
-まず、`test` の下のファイル `Lock.js` を削除します。
+まず、`test`の下のファイル`Lock.js`を削除します。
 
-1. `test` フォルダーに移動: `cd test`
+1. `test`フォルダーに移動: `cd test`
 
-2. `Lock.js` を削除: `rm Lock.js`
+2. `Lock.js`を削除: `rm Lock.js`
 
-次に、上記の手順を参考にして `contracts` の下の `Lock.sol` を削除してください。実際のフォルダは削除しないように注意しましょう。
+次に、上記の手順を参考にして`contracts`の下の`Lock.sol`を削除してください。実際のフォルダは削除しないように注意しましょう。
 
 
 ### ☀️ Hardhat の機能について
 
-Hardhat は段階的に下記を実行しています。
+Hardhatは段階的に下記を実行しています。
 
 1\. **Hardhat は、スマートコントラクトを Solidity からバイトコードにコンパイルしています。**
 
@@ -150,9 +150,9 @@ Hardhat は段階的に下記を実行しています。
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#eth-nft-maker` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#eth-nft-maker`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -163,4 +163,4 @@ Hardhat は段階的に下記を実行しています。
 
 ---
 
-次のレッスンに進んで、独自の NFT コントラクトの実装を開始しましょう 🎉
+次のレッスンに進んで、独自のNFTコントラクトの実装を開始しましょう 🎉

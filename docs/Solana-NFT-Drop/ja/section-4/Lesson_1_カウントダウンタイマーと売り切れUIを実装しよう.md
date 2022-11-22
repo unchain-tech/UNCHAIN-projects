@@ -2,7 +2,7 @@
 
 ドロップ開始日までのカウントダウンタイマーを追加してみましょう。
 
-今のところ、日付を過去に設定しているので、「ドロップ」はすでに発生しています。`config.json` ファイルを開き、日付を未来のいつかに変更しましょう。
+今のところ、日付を過去に設定しているので、「ドロップ」はすでに発生しています。`config.json`ファイルを開き、日付を未来のいつかに変更しましょう。
 
 ```
 {
@@ -25,7 +25,7 @@
 }
 ```
 
-`config.json` を修正を反映させるため、下記の`update_candy_machine` コマンドを入力してください。
+`config.json`を修正を反映させるため、下記の`update_candy_machine`コマンドを入力してください。
 
 ```txt
 ts-node ~/metaplex/js/packages/cli/src/candy-machine-v2-cli.ts update_candy_machine -e devnet  -k ~/.config/solana/devnet.json -cp config.json
@@ -45,23 +45,23 @@ TypeError: Cannot read property 'candyMachineAddress' of undefined
     at processTicksAndRejections (node:internal/process/task_queues:96:5)
 ```
 
-上記はコマンドが Candy Machine と NFT 周辺の重要なデータを含む `.cache` フォルダにアクセスできないことを意味します。
+上記はコマンドがCandy MachineとNFT周辺の重要なデータを含む`.cache`フォルダにアクセスできないことを意味します。
 
-`.cache` フォルダ、`assets` フォルダと同じディレクトリからコマンドを実行していることを確認してください。
+`.cache`フォルダ、`assets`フォルダと同じディレクトリからコマンドを実行していることを確認してください。
 
 カウントダウンタイマーを設定するにあたり、下記を実装します。
 
 - 現在の日付が、設定したドロップ日より以前の場合にのみ表示される
 
-- 1 秒ごとにカウントダウンする「カウントダウン」スタイルのタイマーを実装
+- 1秒ごとにカウントダウンする「カウントダウン」スタイルのタイマーを実装
 
-Web アプリケーションのコードをクリーンに保つため、タイマーの状態とロジックを処理する別のコンポーネントを作成します。
+Webアプリケーションのコードをクリーンに保つため、タイマーの状態とロジックを処理する別のコンポーネントを作成します。
 
-`src/CountdownTimer` フォルダをすでに作成してあります。
+`src/CountdownTimer`フォルダをすでに作成してあります。
 
-( `CountdownTimer` 直下には `CountdownTimer.css` しかないはずです)
+( `CountdownTimer`直下には`CountdownTimer.css`しかないはずです)
 
-そこに `index.js` ファイルを作成し、次のコードを追加します。
+そこに`index.js`ファイルを作成し、次のコードを追加します。
 
 ```jsx
 // CountdownTimer/index.js
@@ -83,9 +83,9 @@ const CountdownTimer = ({ dropDate }) => {
 export default CountdownTimer;
 ```
 
-ここでは、いくつかの状態を保持するシンプルな React コンポーネントを設定し、`dropDate` を取り込みます。
+ここでは、いくつかの状態を保持するシンプルなReactコンポーネントを設定し、`dropDate`を取り込みます。
 
-先へ進む前に、`app/src/CandyMachine/index.js` に移動して、このコンポーネントをインポートしましょう。
+先へ進む前に、`app/src/CandyMachine/index.js`に移動して、このコンポーネントをインポートしましょう。
 
 ```jsx
 // CandyMachine/index.js
@@ -112,7 +112,7 @@ import CountdownTimer from "../CountdownTimer";
 
 現在の日付がドロップ日の**前**である場合にのみ、このコンポーネントを表示します。ドロップ日時がすぎている場合は、ドロップ開始の日時を表示します。
 
-`app/src/CandyMachine/index.js` の下部にコードを記述しましょう。
+`app/src/CandyMachine/index.js`の下部にコードを記述しましょう。
 
 ```jsx
 // CandyMachine/index.js
@@ -150,9 +150,9 @@ return (
 条件付きレンダリングを使用して、コンポーネントのレンダリング関数を
 呼び出しています。
 
-ページを更新して、UI が反映されているか確認しましょう。
+ページを更新して、UIが反映されているか確認しましょう。
 
-`CountdownTimer` コンポーネントに戻って、残りのロジック設定を取得できます。タイマーのカウントダウンをリアルタイムで確認しましょう。
+`CountdownTimer`コンポーネントに戻って、残りのロジック設定を取得できます。タイマーのカウントダウンをリアルタイムで確認しましょう。
 
 ```jsx
 // CandyMachine/index.js
@@ -196,17 +196,17 @@ useEffect(() => {
 
 シンプルなカウントダウンタイマーを実装しました。
 
-![無題](/public/images/Solana-NFT-Drop/section4/4_1_1.png)
+![無題](/public/images/Solana-NFT-Drop/section-4/4_1_1.png)
 
 ### 📭「売り切れ」状態を構築する
 
-すべての NFT をミントしきった際、「Sold Out」を表示する機能を実装します。
+すべてのNFTをミントしきった際、「Sold Out」を表示する機能を実装します。
 
-これは、`candyMachine.state` プロパティの `itemsRedeemed` と `itemsAvailable` の 2 つのプロパティをチェックすることで実装が可能になります。
+これは、`candyMachine.state`プロパティの`itemsRedeemed`と`itemsAvailable`の2つのプロパティをチェックすることで実装が可能になります。
 
-加えて、ミントするアイテムがあり、NFT ドロップ日に達した場合にのみ、ミントボタンを表示するようにします。
+加えて、ミントするアイテムがあり、NFTドロップ日に達した場合にのみ、ミントボタンを表示するようにします。
 
-`CandyMachine` コンポーネントのレンダリング関数を修正しましょう。以下を追加します。
+`CandyMachine`コンポーネントのレンダリング関数を修正しましょう。以下を追加します。
 
 ```jsx
 return (
@@ -231,13 +231,13 @@ return (
 
 実装完了です。
 
-![無題](/public/images/Solana-NFT-Drop/section4/4_1_2.png)
+![無題](/public/images/Solana-NFT-Drop/section-4/4_1_2.png)
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#solana-nft-drop` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#solana-nft-drop`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -248,4 +248,4 @@ return (
 
 ---
 
-次のレッスンに進んで、ほかの機能を Web アプリケーションを完成させましょう 🎉
+次のレッスンに進んで、ほかの機能をWebアプリケーションを完成させましょう 🎉

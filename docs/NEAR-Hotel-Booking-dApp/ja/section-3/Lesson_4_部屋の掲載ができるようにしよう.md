@@ -135,7 +135,7 @@ import {
 } from "../near/utils";
 ```
 
-`get_rooms_registered_by_owner()`に NEAR Wallet に接続しているアカウント ID を渡します。これで、アカウント ID に紐づいて保存されている部屋のデータを取得します。
+`get_rooms_registered_by_owner()`にNEAR Walletに接続しているアカウントIDを渡します。これで、アカウントIDに紐づいて保存されている部屋のデータを取得します。
 
 ```javascript
 // オーナーが登録した部屋のデータを取得
@@ -163,7 +163,7 @@ const addRoom = async (data) => {
 };
 ```
 
-次は表示する内容を実装していますが、NEAR Wallet に接続されているかどうかで表示を変えます。接続されていない場合はメッセージのみを表示させます。
+次は表示する内容を実装していますが、NEAR Walletに接続されているかどうかで表示を変えます。接続されていない場合はメッセージのみを表示させます。
 
 ```javascript
 // NEAR Walletに接続されていない時
@@ -178,7 +178,7 @@ if (!window.accountId) {
 
 接続されていたら、部屋を追加する**POST**ボタンと部屋のデータを表示します。
 
-データの表示には、`React Bootstrap`の[Table](https://react-bootstrap.github.io/components/table/)を使用します。表示する際に、オーナーが利用状況を把握しやすいようステータスが`Available`なら白(デフォルト)、`Stay`なら赤を背景色にします。
+データの表示には、`React Bootstrap`の[Table](https://react-bootstrap.github.io/components/table/)を使用します。表示する際に、オーナーが利用状況を把握しやすいようステータスが`Available`なら白（デフォルト）、`Stay`なら赤を背景色にします。
 
 ```javascript
 {
@@ -219,7 +219,7 @@ if (!window.accountId) {
 }
 ```
 
-では、動作確認をします。`Section2`で部屋を追加したアカウント ID で NEAR Wallet に接続します。接続後、ナビゲーションバーから`ManageRooms画面`に移動します。
+では、動作確認をします。`Section2`で部屋を追加したアカウントIDでNEAR Walletに接続します。接続後、ナビゲーションバーから`ManageRooms画面`に移動します。
 
 ![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_4_1.png)
 
@@ -236,7 +236,7 @@ if (!window.accountId) {
 
 ![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_4_4.png)
 
-最後に、NEAR Wallet の接続を解除してみましょう。ナビゲーションバーのメニュー**Disconnect**から実行できます。
+最後に、NEAR Walletの接続を解除してみましょう。ナビゲーションバーのメニュー**Disconnect**から実行できます。
 
 以下のように、メッセージのみが表示されるでしょう。
 
@@ -246,9 +246,9 @@ if (!window.accountId) {
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-booking-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#near-booking-dapp`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

@@ -1,10 +1,10 @@
 ### ✨ Flutter でフロントを開発する（ロジック編）
 
-※ 今回のプロジェクトでは Android Emulator を用いて開発します。
+※ 今回のプロジェクトではAndroid Emulatorを用いて開発します。
 
 ※ Flutterはメインではないので1行1行解説はしていきません。詳しく知りたい方は各自での学習をお願い致します。
 
-UIとデータコントローラを構築するのに、`lib` ディレクトリに3つのファイルを作成します。
+UIとデータコントローラを構築するのに、`lib`ディレクトリに3つのファイルを作成します。
 
 1. `TodoListModel.dart` : データモデル、コントラクト関数、UIを更新するためのノーティファイクラスが含まれます。
 
@@ -12,7 +12,7 @@ UIとデータコントローラを構築するのに、`lib` ディレクトリ
 
 3. `TodoBottomSheet.dart` : ToDoの作成・更新フォームが含まれます。
 
-それではまず、Flutterのロジック部分を構築するために、1. `TodoListModel.dart` ファイルから中身を作成していきます。
+それではまず、Flutterのロジック部分を構築するために、1. `TodoListModel.dart`ファイルから中身を作成していきます。
 
 `TodoListModel.dart`ファイルに、下記を追加してください。
 
@@ -55,7 +55,7 @@ class TodoListModel extends ChangeNotifier {
 }
 ```
 
-`List<Task> todos = [];` の `Task` に赤波線が引かれていますが、後で定義していくので今は無視してください。
+`List<Task> todos = [];`の`Task`に赤波線が引かれていますが、後で定義していくので今は無視してください。
 
 それでは、詳しく見ていきましょう。
 
@@ -79,17 +79,17 @@ class TodoListModel extends ChangeNotifier {
 }
 ```
 
-`Provider` パッケージの `ChangeNotifier` クラスを継承した `TodoListModel` クラスを作成しています。
+`Provider`パッケージの`ChangeNotifier`クラスを継承した`TodoListModel`クラスを作成しています。
 
-`Provider` パッケージの詳細については[こちら](https://pub.dev/packages/provider)をご覧ください。
+`Provider`パッケージの詳細については[こちら](https://pub.dev/packages/provider)をご覧ください。
 
 ```dart
   final String _rpcUrl = "http://127.0.0.1:7545";
   final String _wsUrl = "ws://127.0.0.1:7545/";
 ```
 
-Ganache の `_rpcUrl` と `_wsUrl` をローカル環境用に設定しています。
-* Android向けにEmulatorを使ってDebugビルドをする場合は_rpcUrlを `http://10.0.2.2:7545` に変更する必要があります
+Ganacheの`_rpcUrl`と`_wsUrl`をローカル環境用に設定しています。
+* Android向けにEmulatorを使ってDebugビルドをする場合は_rpcUrlを`http://10.0.2.2:7545`に変更する必要があります
 > また、開発マシンのアドレス 127.0.0.1 は、エミュレータ固有のループバック インターフェースと一致することになります。開発マシンのループバック インターフェース（マシン上の別名 127.0.0.1）で実行されているサービスにアクセスする場合は、代わりに特殊アドレス 10.0.2.2 を使用する必要があります。
 (参照: https://developer.android.com/studio/run/emulator-networking)
 
@@ -101,12 +101,12 @@ Ganache の `_rpcUrl` と `_wsUrl` をローカル環境用に設定していま
 
 Ganacheから任意のアカウントの秘密鍵を設定する（Ganache UIで鍵アイコンをクリックすると取得できますので貼り付けてください）。下記参考。
 
-![](/public/images/Polygon-Mobile-dApp/section-2/2_2_01.jpg)
+![](/public/images/Polygon-Mobile-dApp/section-2/2_2_1.jpg)
 
-![](/public/images/Polygon-Mobile-dApp/section-2/2_2_02.png)
+![](/public/images/Polygon-Mobile-dApp/section-2/2_2_2.png)
 
 
-次に、`TodoListModel` クラス内の `ContractFunction? _toggleComplete;` の直下に下記を追加してください。
+次に、`TodoListModel`クラス内の`ContractFunction? _toggleComplete;`の直下に下記を追加してください。
 
 ```dart
 //TodoListModel.dart
@@ -155,7 +155,7 @@ Ganacheから任意のアカウントの秘密鍵を設定する（Ganache UIで
 }
 ```
 
-`await getTodos();` の `getTodos` に赤波線が引かれていますが、後で定義していくので今は無視してください。
+`await getTodos();`の`getTodos`に赤波線が引かれていますが、後で定義していくので今は無視してください。
 
 それでは、詳しく見ていきましょう。
 
@@ -176,9 +176,9 @@ Ganacheから任意のアカウントの秘密鍵を設定する（Ganache UIで
   }
 ```
 
-`TodoListModel` クラスのコンストラクタでは、非同期の `init` 関数を呼び出しています。
+`TodoListModel`クラスのコンストラクタでは、非同期の`init`関数を呼び出しています。
 
-`init` 関数には、`_client` オブジェクトの初期化に続いて、`getAbi`、`getCredentials`、`getDeployedContract` 関数を呼び出しています。
+`init`関数には、`_client`オブジェクトの初期化に続いて、`getAbi`、`getCredentials`、`getDeployedContract`関数を呼び出しています。
 
 ```dart
 //TodoListModel.dart
@@ -192,7 +192,7 @@ Ganacheから任意のアカウントの秘密鍵を設定する（Ganache UIで
   }
 ```
 
-`getAbi` 関数では、スマートコントラクトの `ABI` を取得し、デプロイされたコントラクトのアドレスを取り出しています。
+`getAbi`関数では、スマートコントラクトの`ABI`を取得し、デプロイされたコントラクトのアドレスを取り出しています。
 
 ```dart
 //TodoListModel.dart
@@ -202,7 +202,7 @@ Ganacheから任意のアカウントの秘密鍵を設定する（Ganache UIで
   }
 ```
 
-`getCredentials` 関数では、秘密鍵を渡して `Credentials` クラスのインスタンスを生成しています。
+`getCredentials`関数では、秘密鍵を渡して`Credentials`クラスのインスタンスを生成しています。
 
 ※秘密鍵は暗号化して保存することが推奨されています。今回の学習では重要ではないので、簡略化するためにも、秘密鍵は文字列形式で保存しています。
 
@@ -221,11 +221,11 @@ Ganacheから任意のアカウントの秘密鍵を設定する（Ganache UIで
   }
 ```
 
-`getDeployedContract` 関数では、`_abiCode` と `_contractAddress` を使用して、スマートコントラクトのインスタンスを作成しています。
+`getDeployedContract`関数では、`_abiCode`と`_contractAddress`を使用して、スマートコントラクトのインスタンスを作成しています。
 
 コントラクトのインスタンスができれば、上記のコードのように、スマートコントラクトにあるすべての関数のインスタンスを作成することができます。
 
-これですべての変数を初期化できたので、次は `CRUD` 操作を実装します。以下の4つを思い出してください。
+これですべての変数を初期化できたので、次は`CRUD`操作を実装します。以下の4つを思い出してください。
 
 1. to-doを作成する機能
 
@@ -235,7 +235,7 @@ Ganacheから任意のアカウントの秘密鍵を設定する（Ganache UIで
 
 4. to-doを削除する機能
 
-`TodoListModel` クラス内の `getDeployedContract` 関数の下に下記を追加してください。
+`TodoListModel`クラス内の`getDeployedContract`関数の下に下記を追加してください。
 
 ```dart
 //TodoListModel.dart
@@ -356,9 +356,9 @@ Ganacheから任意のアカウントの秘密鍵を設定する（Ganache UIで
   }
 ```
 
-`getTodos` では、`_taskCount` 関数を呼び出してto-doの総数を取得し、ループを使ってすべてのto-do項目を取得してリストに追加しています。
+`getTodos`では、`_taskCount`関数を呼び出してto-doの総数を取得し、ループを使ってすべてのto-do項目を取得してリストに追加しています。
 
-すべてのto-doを取得したら、`isLoading` を `false` に設定し、Providerパッケージから `notifyListeners` を呼び出してUIを更新しています。
+すべてのto-doを取得したら、`isLoading`を`false`に設定し、Providerパッケージから`notifyListeners`を呼び出してUIを更新しています。
 
 ```dart
 //TodoListModel.dart
@@ -377,7 +377,7 @@ Ganacheから任意のアカウントの秘密鍵を設定する（Ganache UIで
   }
 ```
 
-`addTask` では、タスク名をパラメータとして受け取り、`isLoading` を `true` に設定し、 `_contract` オブジェクトを使用して 、`taskNameData` をパラメータとして渡し、`_createTask` 関数を呼び出すようにしています。
+`addTask`では、タスク名をパラメータとして受け取り、`isLoading`を`true`に設定し、 `_contract`オブジェクトを使用して 、`taskNameData`をパラメータとして渡し、`_createTask`関数を呼び出すようにしています。
 
 ```dart
 //TodoListModel.dart
@@ -396,9 +396,9 @@ Ganacheから任意のアカウントの秘密鍵を設定する（Ganache UIで
   }
 ```
 
-`updateTask` はタスクの `id` と更新された `taskNameData` を受け取り、スマートコントラクトにクレデンシャルを使用してトランザクションを作成しています。
+`updateTask`はタスクの`id`と更新された`taskNameData`を受け取り、スマートコントラクトにクレデンシャルを使用してトランザクションを作成しています。
 
-`web3dart` パッケージは `BigInt` 形式のすべての数値を必要とするため、`id` を `BigInt` のインスタンスとして送信していることに注意してください。
+`web3dart`パッケージは`BigInt`形式のすべての数値を必要とするため、`id`を`BigInt`のインスタンスとして送信していることに注意してください。
 
 ```dart
 //TodoListModel.dart
@@ -417,7 +417,7 @@ Ganacheから任意のアカウントの秘密鍵を設定する（Ganache UIで
   }
 ```
 
-`toggleComplete` 関数はタスクの `id` を受け取り、スマートコントラクトの `isComplete` ブール値の値を切り替えています。
+`toggleComplete`関数はタスクの`id`を受け取り、スマートコントラクトの`isComplete`ブール値の値を切り替えています。
 
 ```dart
 //TodoListModel.dart
@@ -436,17 +436,17 @@ Ganacheから任意のアカウントの秘密鍵を設定する（Ganache UIで
   }
 ```
 
-`deleteTask` 関数は、削除するタスクの `id` を受け取り、スマートコントラクトの `todos` マッピングからその特定のタスクを削除するために、コントラクトの `_deleteTask` 関数を呼び出します。
+`deleteTask`関数は、削除するタスクの`id`を受け取り、スマートコントラクトの`todos`マッピングからその特定のタスクを削除するために、コントラクトの`_deleteTask`関数を呼び出します。
 
-`addTask`、`updateTask`、`toggleComplete`、`deleteTask` 関数の最後で、`getTodos` を呼び出して、更新されたto-doリストを取得し、UIを更新しています。
+`addTask`、`updateTask`、`toggleComplete`、`deleteTask`関数の最後で、`getTodos`を呼び出して、更新されたto-doリストを取得し、UIを更新しています。
 
 また、スマートコントラクト関数を呼び出す前にローカルのto-doリストを更新して、結果を即座に表示し、バックグラウンドでリストを更新することも可能です。
 
-ここまでで、`Task` に赤波線がいかれているかと思いますが、その `Task` を定義していきます。
+ここまでで、`Task`に赤波線がいかれているかと思いますが、その`Task`を定義していきます。
 
-`Task` は、`TodoListModel` でto-doのリストを格納するモデルクラスでです。
+`Task`は、`TodoListModel`でto-doのリストを格納するモデルクラスでです。
 
-それでは、以下のコードを `TodoListModel.dart` ファイルの一番下に追加してください。
+それでは、以下のコードを`TodoListModel.dart`ファイルの一番下に追加してください。
 
 ```dart
 //TodoListModel.dart
@@ -459,13 +459,13 @@ class Task {
 }
 ```
 
-以上で、Flutter のロジック部分が終わったので、次にアプリのUIを作成していきます。
+以上で、Flutterのロジック部分が終わったので、次にアプリのUIを作成していきます。
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#polygon-mobile-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#polygon-mobile-dapp`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

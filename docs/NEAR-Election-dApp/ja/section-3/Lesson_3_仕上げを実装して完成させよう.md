@@ -53,7 +53,7 @@ const Voter = () => {
 export default Voter;
 ```
 
-まず`nft_mint, check_voter_has_been_added`の 2 つの関数をインポートしましょう。
+まず`nft_mint, check_voter_has_been_added`の2つの関数をインポートしましょう。
 
 ```javascript
 import { nft_mint, check_voter_has_been_added } from '../js/near/utils'
@@ -67,7 +67,7 @@ const [inputId, setInputId] = useState("");
 
 次に`mint関数`の中身を確認してみましょう。
 
-まず操作しているユーザーがコントラクトを deploy した人かどうかを確認します。
+まず操作しているユーザーがコントラクトをdeployした人かどうかを確認します。
 
 その次に`check_voter_has_been_added`を呼び出して、すでに投票券を付与していないかを確認します。
 
@@ -85,7 +85,7 @@ if (isMinted !== 0) {
 }
 ```
 
-これら 2 つをクリアした場合に`nft_mint関数`を呼び出して、投票券を入力された Wallet Id が所有者になるように mint して、mint 後にユーザーに mint されたことを表示します。
+これら2つをクリアした場合に`nft_mint関数`を呼び出して、投票券を入力されたWallet Idが所有者になるようにmintして、mint後にユーザーにmintされたことを表示します。
 
 最後に入力フォームを空にします。
 
@@ -95,7 +95,7 @@ await nft_mint("Vote Ticket", "", "https://gateway.pinata.cloud/ipfs/QmUs5K3Lwdv
         setInputId("");
 ```
 
-描画する UI は return する以下のものです。
+描画するUIはreturnする以下のものです。
 
 一番下のボタンを押した時に`mint関数`が走るようになっています。
 
@@ -164,7 +164,7 @@ export default Candidate;
 import { nft_mint } from '../js/near/utils'
 ```
 
-`addCandidate関数`では入力された CID や候補者の名前を取得して候補者 NFT を mint します。
+`addCandidate関数`では入力されたCIDや候補者の名前を取得して候補者NFTをmintします。
 
 ```javascript
 const addCandidate = async () => {
@@ -177,7 +177,7 @@ const addCandidate = async () => {
 }
 ```
 
-最後に return 内が UI となります。
+最後にreturn内がUIとなります。
 
 ```javascript
 <div className="grid place-items-center w-full">
@@ -477,7 +477,7 @@ const State = {
 }
 ```
 
-ここでは`useEffect`で`nft_tokens_for_kind関数`を引数(candidate)をとることで候補者の情報を取得しています。
+ここでは`useEffect`で`nft_tokens_for_kind関数`を引数（candidate）をとることで候補者の情報を取得しています。
 
 取得した値は`setCandidateInfoList`によって`candidateInfoList`というリストに格納されます。また、`setState`によって`state`という変数は`fetched`に変わります。これによって次はそれぞれの候補者の得票数を取りにいくという次の段階に移ることができます。
 
@@ -490,7 +490,7 @@ useEffect(async () => {
 }, [])
 ```
 
-次の`vote関数`では token の id を引数にしています。この`token_id`にはユーザーが取得した投票券の token の id が入ることになります。この token の id は投票する候補者の NFT の id が入ることになります。
+次の`vote関数`ではtokenのidを引数にしています。この`token_id`にはユーザーが取得した投票券のtokenのidが入ることになります。このtokenのidは投票する候補者のNFTのidが入ることになります。
 
 ```javascript
 const vote = (token_id) => {
@@ -527,31 +527,31 @@ const vote = (token_id) => {
 
 まずは`check_voter_has_voted関数`を走らせることでユーザーがすでに投票していないかをチェックします。投票済みであれば`alert()`でそのことを知らせます。
 
-引数として受け取っている`window.accountId`とはサインインしているユーザーの wallet の id のことです。
+引数として受け取っている`window.accountId`とはサインインしているユーザーのwalletのidのことです。
 
 ```javascript
 check_voter_has_voted(window.accountId)
 ```
 
-次に`check_voter_has_been_added関数`で投票者が投票券を保有しているかを確認します。ここで重要になってくるのが wallet の id と一緒に格納している値です。
+次に`check_voter_has_been_added関数`で投票者が投票券を保有しているかを確認します。ここで重要になってくるのがwalletのidと一緒に格納している値です。
 
-`check_voter_has_voted関数`で確認のために使われるコントラクト内のベクター`voted_voter_list`では wallet の id に紐づいて 0 という値を格納しています。なぜなら投票済みかどうかを確認するだけでいいからです。
+`check_voter_has_voted関数`で確認のために使われるコントラクト内のベクター`voted_voter_list`ではwalletのidに紐づいて0という値を格納しています。なぜなら投票済みかどうかを確認するだけでいいからです。
 
-一方で`check_voter_has_been_added関数`ではで確認のために使われるコントラクト内のベクター`added_voter_list`では wallet の id に紐づいてそれぞれのユーザーに配布した`投票券のid`が返ってくるようになっています。これによって投票時にその投票券をコントラクトに返す`nft_transfer関数`を使うときに token の id を受け取ることができます。
+一方で`check_voter_has_been_added関数`ではで確認のために使われるコントラクト内のベクター`added_voter_list`ではwalletのidに紐づいてそれぞれのユーザーに配布した`投票券のid`が返ってくるようになっています。これによって投票時にその投票券をコントラクトに返す`nft_transfer関数`を使うときにtokenのidを受け取ることができます。
 
 もし投票券を持っていなければ投票券を配布してもらうよう`alert()`でしらせます。
 
-その後`confirm()`関数で 1 度投票したら 2 度とできないことを確認します。
+その後`confirm()`関数で1度投票したら2度とできないことを確認します。
 
 ```javascript
 check_voter_has_been_added(window.accountId)
 ```
 
-`cardsInCaseOpen関数`では投票が開いているときの候補者それぞれのカードの UI を作成します。投票が閉じているときとの違いは後ほど説明します。
+`cardsInCaseOpen関数`では投票が開いているときの候補者それぞれのカードのUIを作成します。投票が閉じているときとの違いは後ほど説明します。
 
 この中では取得した候補者の情報のリスト`candidateInfoList`の長さだけカードを作成しており、そのカードの下には投票ボタンをつけています。そのボタンを押すと先ほど説明した`vote関数`が走り投票が完了します。
 
-最後にコントラクト内にある全ての候補者について UI の作成が完了できたらそのリストを返し描画に反映されます。
+最後にコントラクト内にある全ての候補者についてUIの作成が完了できたらそのリストを返し描画に反映されます。
 
 ```javascript
 const cardsInCaseOpen = () => {
@@ -577,7 +577,7 @@ const cardsInCaseOpen = () => {
 }
 ```
 
-次の`cardsInCaseClosed関数`では投票が閉じているときの候補者の UI を作成しています。上の`cardsInCaseOpen関数`との違いは、投票による勝者が確定するのでその候補者の上に`Win!`という文字を載せて他の候補者についてはカードを薄くしています。
+次の`cardsInCaseClosed関数`では投票が閉じているときの候補者のUIを作成しています。上の`cardsInCaseOpen関数`との違いは、投票による勝者が確定するのでその候補者の上に`Win!`という文字を載せて他の候補者についてはカードを薄くしています。
 
 ```javascript
 const cardsInCaseClosed = () => {
@@ -618,15 +618,15 @@ const cardsInCaseClosed = () => {
 }
 ```
 
-選挙の勝者は`mostVotedNum`という変数に`candidateLikesList`というリストの得票数の最大値をいれ、それと同値である候補者とそうでない候補者の UI を変えるようにしています。
+選挙の勝者は`mostVotedNum`という変数に`candidateLikesList`というリストの得票数の最大値をいれ、それと同値である候補者とそうでない候補者のUIを変えるようにしています。
 
 ```javascript
 let mostVotedNum = candidateLikesList.reduce((a, b) => { return Math.max(a, b) });
 ```
 
-次の`getCandidateLikes関数`では`nft_tokens_for_kind関数`で取得したそれぞれの候補者の NFT の情報の内 token の id を引数として受け取り`nft_return_candidate_likes関数`を呼ぶことで得票数を取得しています。
+次の`getCandidateLikes関数`では`nft_tokens_for_kind関数`で取得したそれぞれの候補者のNFTの情報の内tokenのidを引数として受け取り`nft_return_candidate_likes関数`を呼ぶことで得票数を取得しています。
 
-全候補者について得票数の取得が終了したら`if_election_closed関数`を呼ぶことで投票が終了しているかを確認して、それによって`state`の値を変化させて実際に描画させる UI を変えています。
+全候補者について得票数の取得が終了したら`if_election_closed関数`を呼ぶことで投票が終了しているかを確認して、それによって`state`の値を変化させて実際に描画させるUIを変えています。
 
 ```javascript
 const getCandidateLikes = async () => {
@@ -648,11 +648,11 @@ const getCandidateLikes = async () => {
 }
 ```
 
-次の`closeButton関数`はまず最初にコントラクトを deploy したユーザーとサインインしているユーザーの wallet の id が一致していることを確認しています。誰でも締め切れるのは選挙として成り立ちませんからね。
+次の`closeButton関数`はまず最初にコントラクトをdeployしたユーザーとサインインしているユーザーのwalletのidが一致していることを確認しています。誰でも締め切れるのは選挙として成り立ちませんからね。
 
-それがクリアしていればボタンを表示するようにして、ボタンを押すと`confirm()`で本当に投票を締め切るのかを確認して OK ならば`close_election関数`を呼ぶようにしています。
+それがクリアしていればボタンを表示するようにして、ボタンを押すと`confirm()`で本当に投票を締め切るのかを確認してOKならば`close_election関数`を呼ぶようにしています。
 
-この後は投票が締め切っているようにして UI を変更させます。
+この後は投票が締め切っているようにしてUIを変更させます。
 
 ```javascript
 const closeButton = () => {
@@ -695,7 +695,7 @@ const reopenButton = () => {
 }
 ```
 
-次の`messageToWait関数`は情報の取得中に表示する UI を返しているだけです。
+次の`messageToWait関数`は情報の取得中に表示するUIを返しているだけです。
 
 ```javascript
 const messageToWait = () => {
@@ -703,7 +703,7 @@ const messageToWait = () => {
 }
 ```
 
-最後の`switch`文では`state`の値によって表示する UI が変更されるように呼び込む関数を変えています。
+最後の`switch`文では`state`の値によって表示するUIが変更されるように呼び込む関数を変えています。
 
 ```javascript
 switch (state) {
@@ -742,9 +742,9 @@ switch (state) {
 
 これでフロントエンドは完成です!
 
-ではここで UI の確認の前に`frontend/neardev/dev-account.env`にある変数を以下のように書き換えましょう。
+ではここでUIの確認の前に`frontend/neardev/dev-account.env`にある変数を以下のように書き換えましょう。
 
-`YOUR_WALLET_ID`というのは変数にあなたが deploy した Wallet の Id を入れましょう。
+`YOUR_WALLET_ID`というのは変数にあなたがdeployしたWalletのIdを入れましょう。
 
 [dev-account.env]
 
@@ -752,14 +752,14 @@ switch (state) {
 CONTRACT_NAME=YOUR_WALLET_ID
 ```
 
-では早速下のコマンドを実行して,UI を見てみましょう！
+では早速下のコマンドを実行して,UIを見てみましょう！
 
 ```bash
 yarn dev
 ```
 
 下のように表示されていたら成功です！
-section-2でコントラクト内から`nft_add_likes_to_candidate関数`を走らせたのでどれか一つの候補者の得票数が`1`になっているはずです。
+section-2でコントラクト内から`nft_add_likes_to_candidate関数`を走らせたのでどれか1つの候補者の得票数が`1`になっているはずです。
 ![](/public/images/NEAR-Election-dApp/section-3/3_3_1.png)
 ![](/public/images/NEAR-Election-dApp/section-3/3_3_2.png)
 ![](/public/images/NEAR-Election-dApp/section-3/3_3_3.png)
@@ -767,9 +767,9 @@ section-2でコントラクト内から`nft_add_likes_to_candidate関数`を走�
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-election-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#near-election-dapp`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -780,7 +780,7 @@ section-2でコントラクト内から`nft_add_likes_to_candidate関数`を走�
 
 これでコントラクト、フロントエンドは完成してアプリとして完成しました！
 
-投票により、得票数が 1 になっているフロントエンドのスクリーンショットを `#near-election-dapp` に投稿してください 😊
+投票により、得票数が1になっているフロントエンドのスクリーンショットを`#near-election-dapp`に投稿してください 😊
 
 あなたの成功をコミュニティで祝いましょう 🎉
 

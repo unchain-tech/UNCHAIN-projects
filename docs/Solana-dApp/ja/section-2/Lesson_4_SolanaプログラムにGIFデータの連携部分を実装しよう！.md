@@ -1,15 +1,15 @@
-Solana プログラム上にデータを保存することができました。
+Solanaプログラム上にデータを保存することができました。
 
 次は、より多くのデータを保存できるように設定しましょう。
 
-例えば、GIF へのリンクや投稿者のアドレスなど、必要なデータを構造体の配列に格納しましょう。
+例えば、GIFへのリンクや投稿者のアドレスなど、必要なデータを構造体の配列に格納しましょう。
 
 そして、それらのデータをクライアントで取得できるようにします。
 
 
 ### 💎 Vector を設定する
 
-`lib.js` を以下のとおり更新します。
+`lib.js`を以下のとおり更新します。
 
 ```rust
 // lib.js
@@ -80,9 +80,9 @@ pub struct BaseAccount {
 
 下から順に説明していきます。
 
-`BaseAccount` に `gif_list` パラメータが追加され、`ItemStruct` 型の配列が格納されています。
+`BaseAccount`に`gif_list`パラメータが追加され、`ItemStruct`型の配列が格納されています。
 
-`gif_list` は `Vector` の略である `Vec` 型です。（詳細については[こちら](https://doc.rust-lang.org/std/vec/struct.Vec.html)を参照してください。）
+`gif_list`は`Vector`の略である`Vec`型です(詳細については[こちら](https://doc.rust-lang.org/std/vec/struct.Vec.html)を参照してください)。
 
 ```rust
 #[derive(Debug, Clone, AnchorSerialize, AnchorDeserialize)]
@@ -92,9 +92,9 @@ pub struct ItemStruct {
 }
 ```
 
-ここでは、`ItemStruct` を宣言しています。
+ここでは、`ItemStruct`を宣言しています。
 
-`gif_link` は `String` を、`user_address` は `PubKey` を保持しています。
+`gif_link`は`String`を、`user_address`は`PubKey`を保持しています。
 
 ```rust
 #[derive(Debug, Clone, AnchorSerialize, AnchorDeserialize)]
@@ -102,14 +102,14 @@ pub struct ItemStruct {
 
 データをアカウントに保存するためには、データをバイナリ形式にシリアル化する必要があり、保存されたデータを取得する際には、今度は元に戻してあげる必要があります。
 
-ここでは、構造体をシリアル化したり、元に戻したりする方法を Anchor に指示しています。
+ここでは、構造体をシリアル化したり、元に戻したりする方法をAnchorに指示しています。
 
 カスタム構造体を適切にシリアライズ / デシリアライズされていることを確認するために、この処理を行っているというわけです。
 
 
 ### 🤯 テストスクリプトを更新する
 
-では、テストを行う前に `myepicproject.js` を以下のとおり更新しておきましょう。
+では、テストを行う前に`myepicproject.js`を以下のとおり更新しておきましょう。
 
 ```javascript
 //myepicproject.js
@@ -167,7 +167,7 @@ const runMain = async () => {
 runMain();
 ```
 
-テスト実行前に、`addGif` メソッドの `insert_a_gif_link_here` に GIF のリンクを張り付ける必要があります。
+テスト実行前に、`addGif`メソッドの`insert_a_gif_link_here`にGIFのリンクを張り付ける必要があります。
 
 忘れずにリンクを更新しましょう。
 
@@ -177,7 +177,7 @@ runMain();
 anchor test
 ```
 
-以下のように表示されていれば OK です。
+以下のように表示されていればOKです。
 
 ```bash
 🚀 Starting test...
@@ -194,14 +194,14 @@ anchor test
 ]
 ```
 
-ここまでで、Solana プログラムの実装部分はほとんど完了しました。
+ここまでで、Solanaプログラムの実装部分はほとんど完了しました。
 
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#solana-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#solana-dapp`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -214,10 +214,10 @@ anchor test
 
 おめでとうございます!
 
-セクション 2 は終了です!
+セクション2は終了です!
 
 ぜひ、ターミナルの出力結果をコミュニティに投稿してください!
 
 あなたの成功をコミュニティで祝いましょう 🎉
 
-次のレッスンでは、作成した Solana プログラムを Devnet にデプロイします!
+次のレッスンでは、作成したSolanaプログラムをDevnetにデプロイします!

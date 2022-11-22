@@ -1,8 +1,8 @@
 ### 🪄 IPFS を使おう
 
-IPFS に写真をアップロードできたところで、その写真を使ってNFTを作ってみましょう。
+IPFSに写真をアップロードできたところで、その写真を使ってNFTを作ってみましょう。
 
-`Web3Mint.sol` を下記のように更新してみましょう。
+`Web3Mint.sol`を下記のように更新してみましょう。
 
 ```solidity
 // Web3Mint.sol
@@ -72,12 +72,12 @@ contract Web3Mint is ERC721{
 // Web3Mint.sol
 import "./libraries/Base64.sol";
 ```
-`tokenURI` には、NFTデータを JSON 形式で渡さなければいけません。
-Base64 のやり方は、[project3](https://unchain-portal.netlify.app/projects/104-ETH-NFT-game/section-1-Lesson-5) のやり方を参考にしています。
+`tokenURI`には、NFTデータをJSON形式で渡さなければいけません。
+Base64のやり方は、[project3](https://unchain-portal.netlify.app/projects/104-ETH-NFT-game/section-1-Lesson-5) のやり方を参考にしています。
 
-なぜ、Base64 で渡す必要があるのかを調べてみてください!
+なぜ、Base64で渡す必要があるのかを調べてみてください!
 
-`libraries` ディレクトリの下に `Base64.sol` ファイルを作成して、下記のコードを貼り付けてください
+`libraries`ディレクトリの下に`Base64.sol`ファイルを作成して、下記のコードを貼り付けてください
 
 ```solidity
 // Base64.sol
@@ -168,12 +168,12 @@ struct NftAttributes{
 
     NftAttributes[] Web3Nfts;
 ```
-最初に書いていた NFT のデータを保存するための配列がこれです。
+最初に書いていたNFTのデータを保存するための配列がこれです。
 この配列の番号と、NFT  の識別子の番号を揃えます。
 
-例えば、0 番目の識別子のNFTのデータは、`Web3Nfts` の配列の 0 番目に入るようにするといったような感じです。
+例えば、0番目の識別子のNFTのデータは、`Web3Nfts`の配列の0番目に入るようにするといったような感じです。
 
-次は mintIpfsNFT 関数です。
+次はmintIpfsNFT関数です。
 
 ```solidity
 // Web3Mint.sol
@@ -189,7 +189,7 @@ function mintIpfsNFT(string memory name,string memory imageURI) public{
     }
 ```
 
-先程のコードから `setTokenURI` 関数が消え、代わりに下記のコードが追加されています。
+先程のコードから`setTokenURI`関数が消え、代わりに下記のコードが追加されています。
 
 ```solidity
 // Web3Mint.sol
@@ -198,9 +198,9 @@ Web3Nfts.push(NftAttributes({
             imageURL: imageURI
         }));
 ```
-`mintIpfsNFT` 関数が引数で、NFTにしたいもののデータを受け取り、ここで配列に加えます。`tokenId` の値と、配列の番号は同じになっています。
+`mintIpfsNFT`関数が引数で、NFTにしたいもののデータを受け取り、ここで配列に加えます。`tokenId`の値と、配列の番号は同じになっています。
 
-次は `tokenURI` 関数です。
+次は`tokenURI`関数です。
 ```solidity
 // Web3Mint.sol
 function tokenURI(uint256 _tokenId) public override view returns(string memory){
@@ -224,19 +224,19 @@ function tokenURI(uint256 _tokenId) public override view returns(string memory){
     return output;
     }
 ```
-opensea などの NFT マーケットサービスは、この `tokenURI` 関数のデータをみています。
+openseaなどのNFTマーケットサービスは、この`tokenURI`関数のデータをみています。
 詳しく知りたい方は [こちら](https://docs.opensea.io/docs/metadata-standards#implementing-token-uri) をごらんください。
 
 >For OpenSea to pull in off-chain metadata for ERC721 and ERC1155 assets, your contract will need to return a URI where we can find the metadata. > To find this URI, we use the tokenURI method in ERC721 and the uri method in ERC1155
 
-`tokenURI` 関数は ERC721 から override している関数で、外部からでも `_tokenId` をいれれば return を返してくれる関数でないといけないので、引数などから NFT のメタデータを送ることはできません。なので、`tokenId` だけを与えられて、NFT の metadata を返せるようにしなければならないです。
+`tokenURI`関数はERC721からoverrideしている関数で、外部からでも`_tokenId`をいれればreturnを返してくれる関数でないといけないので、引数などからNFTのメタデータを送ることはできません。なので、`tokenId`だけを与えられて、NFTのmetadataを返せるようにしなければならないです。
 そこで、配列を使おうという発想になっています。
 
 次は、このコードがしっかりと動いているか確認するためにテストコードを書いてみましょう。
 
-`ipfs-nfts/test` のディレクトリに `Web3Mint.js` のファイルを追加して、下記のコードをコピーしてください。
+`ipfs-nfts/test`のディレクトリに`Web3Mint.js`のファイルを追加して、下記のコードをコピーしてください。
 
-`scripts/run.js` でテストを行ってもいいのですが、あれはローカル環境にデプロイしているためやはり少し時間が掛かるので、自分でテストコードを書くときには、ミスをすることも多いでしょうし、下記のようにテストを行うことをおすすめします。
+`scripts/run.js`でテストを行ってもいいのですが、あれはローカル環境にデプロイしているためやはり少し時間が掛かるので、自分でテストコードを書くときには、ミスをすることも多いでしょうし、下記のようにテストを行うことをおすすめします。
 
 ```javascript
 // Web3Mint.js
@@ -269,16 +269,16 @@ describe("Web3Mint",  () => {
 このテストコードの書き方に関しては、[hardhatが用意しているドキュメント](https://hardhat.org/guides/waffle-testing.html)が非常に参考になります。
 ethers.jsを使った書き方は今までもしてきているので、その説明は省きます。
 
-今回実は、`expect` という記法を使っていないので、
+今回実は、`expect`という記法を使っていないので、
 
 ```javascript
 const { expect } = require("chai");
 ```
-このように `chai` を読み込む必要はないのですが、スマートコントラクトのテストを行う上で、必ず `expect` を使う機会は来るはずなので興味のある方は調べてみてください。
+このように`chai`を読み込む必要はないのですが、スマートコントラクトのテストを行う上で、必ず`expect`を使う機会は来るはずなので興味のある方は調べてみてください。
 
-今回このテストでは、`mintIpfsNFT` 関数でしっかりとNFTを発行し、`tokenURI` の返り値が期待通りになっているかを確かめます。
+今回このテストでは、`mintIpfsNFT`関数でしっかりとNFTを発行し、`tokenURI`の返り値が期待通りになっているかを確かめます。
 
-変数 `nftName` には好きな名前を、`ipfsCID` には先程つくった `IpfsCID` を入れてみましょう!
+変数`nftName`には好きな名前を、`ipfsCID`には先程つくった`IpfsCID`を入れてみましょう!
 
 ここまでの作業ができたら`npx hardhat test`をしてみましょう
 ```
@@ -303,9 +303,9 @@ data:application/json;base64,eyJuYW1lIjogInBva2VyIC0tIE5GVCAjOiAwIiwgImRlc2NyaXB
 **brave**ブラウザでは、`ipfs://bafkreievxssucnete4vpthh3klylkv2ctll2sk2ib24jvgozyg62zdtm2y`のままブラウザに貼れば表示され、他のブラウザの場合は`https://ipfs.io/ipfs/自分のCID`のようにして、画像を確認してみましょう!
 
 
-最終確認として `run.js` でも確認してみましょう。
+最終確認として`run.js`でも確認してみましょう。
 
-`run.js` を下記に更新してください。
+`run.js`を下記に更新してください。
 
 ```javascript
 // run.js
@@ -337,12 +337,12 @@ const main = async () => {
 
   runMain();
 ```
-`mintIpfsNft` 関数と `tokenURI` 関数がしっかりとできているかを確認しましょう。
+`mintIpfsNft`関数と`tokenURI`関数がしっかりとできているかを確認しましょう。
 
 
 スマートコントラクトの関数がしっかりと機能していることがわかったので、テストネットにデプロイしましょう。
 
-`deploy.js` を下記のように更新して `npx hardhat run scripts/deploy.js` をしてください。
+`deploy.js`を下記のように更新して`npx hardhat run scripts/deploy.js`をしてください。
 
 ```javascript
 // deploy.js
@@ -373,9 +373,9 @@ const main = async () => {
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#eth-nft-maker` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#eth-nft-maker`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

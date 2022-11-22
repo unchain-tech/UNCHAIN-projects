@@ -9,7 +9,7 @@
 - 宿泊者が予約データを確認できる。
 - オーナーが予約の確認・チェックイン・チェックアウトの操作をする。
 
-Lesson1 では上記の内、データ取得に関する機能を実装します。
+Lesson1では上記の内、データ取得に関する機能を実装します。
 
 ### 📝 必要なデータを定義しよう
 
@@ -87,11 +87,11 @@ impl Default for Contract {
 
 追加した内容を見ていきましょう。
 
-最初に 3 つの構造体を定義しました。
+最初に3つの構造体を定義しました。
 
-- `BookedRoom` 構造体 : 予約が入った部屋の一覧を、オーナーが確認する画面で使用されます。
-- `GuestBookedRoom` 構造体 : 宿泊者が予約を確認する際に使用されます。
-- `AvailableRoom` 構造体 : 宿泊希望日に予約できる部屋の一覧を、表示する際に使用されます。
+- `BookedRoom`構造体 : 予約が入った部屋の一覧を、オーナーが確認する画面で使用されます。
+- `GuestBookedRoom`構造体 : 宿泊者が予約を確認する際に使用されます。
+- `AvailableRoom`構造体 : 宿泊希望日に予約できる部屋の一覧を、表示する際に使用されます。
 
 次に、`Contract`構造体の中に`bookings_per_guest`というデータを追加しました。これは、宿泊者の予約データをブロック
 チェーン上に保存する際に使用されます。
@@ -211,7 +211,7 @@ impl Default for Contract {
 
 `get_booking_info_for_owner`メソッドは、オーナーが予約データ一覧を取得するために呼び出されます。
 前回のセクションで実装した、`get_rooms_registered_by_owner`メソッドと基本的な仕組みは一緒ですが、予約データごとにデータを作成する点が異なります。
-`rooms_by_id`から`get()`で取得した部屋が持つ、`booked_info`の長さを`len()`取得します。`booked_info`はデータ構造が`HashMap`であり、保存されている要素の個数が取得できます。要素が 0 であれば予約データが存在しないので、以降の処理をスキップしループ処理の先頭へ戻ります。
+`rooms_by_id`から`get()`で取得した部屋が持つ、`booked_info`の長さを`len()`取得します。`booked_info`はデータ構造が`HashMap`であり、保存されている要素の個数が取得できます。要素が0であれば予約データが存在しないので、以降の処理をスキップしループ処理の先頭へ戻ります。
 
 ```rust
                     let room = self.rooms_by_id.get(room_id).expect("ERR_NOT_FOUND_ROOM");
@@ -225,7 +225,7 @@ impl Default for Contract {
 
 次の`get_booking_info_for_guest`メソッドは、宿泊者が自身の予約データ一覧を取得するために呼び出されます。
 
-`bookings_per_guest`からアカウント ID に紐づく宿泊データを`get()`で取得します。得られたデータは`HashMap`で、[`CheckInDate`, `RoomId`]がペアで保存されています。
+`bookings_per_guest`からアカウントIDに紐づく宿泊データを`get()`で取得します。得られたデータは`HashMap`で、[`CheckInDate`, `RoomId`]がペアで保存されています。
 
 ```rust
         match self.bookings_per_guest.get(&guest_id) {
@@ -260,13 +260,13 @@ impl Default for Contract {
         }
 ```
 
-`get()`でデータが取得できれば`Some`に、取得できなければ`None`の処理が実行されます。予約データが存在しなければ、`AvailableRoom`構造体を作成して、返す Vector に追加します。
+`get()`でデータが取得できれば`Some`に、取得できなければ`None`の処理が実行されます。予約データが存在しなければ、`AvailableRoom`構造体を作成して、返すVectorに追加します。
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#near-booking-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#near-booking-dapp`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

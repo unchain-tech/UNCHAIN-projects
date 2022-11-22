@@ -1,8 +1,8 @@
 ### ✅ Devnet でテストを実行する
 
-Anchor の設定が Devnet になっているため、Devnet 上で直接テストを実行できます。
+Anchorの設定がDevnetになっているため、Devnet上で直接テストを実行できます。
 
-実際に、関数が Devnet 上で正しく機能していることを確認することもできます。
+実際に、関数がDevnet上で正しく機能していることを確認することもできます。
 
 まずは、以下のコマンドを実行しましょう。
 
@@ -12,7 +12,7 @@ anchor test
 
 問題なく実行されると、以下のように表示されます。
 
-※ 資金不足のエラーが表示された場合は `solana airdrop 2` コマンドを実行して Devnet の SOL を取得します。
+※ 資金不足のエラーが表示された場合は`solana airdrop 2`コマンドを実行してDevnetのSOLを取得します。
 
 ```bash
 Deploy success
@@ -37,44 +37,44 @@ Deploy success
 
 ここで、とても大切なことをお伝えします。
 
-`anchor test` コマンドを実行すると、プログラムが再デプロイされ、スクリプト上の全ての関数が実行されます。
+`anchor test`コマンドを実行すると、プログラムが再デプロイされ、スクリプト上の全ての関数が実行されます。
 
-実は、Solana プログラムは[アップグレード可能](https://docs.solana.com/cli/deploy-a-program#redeploy-a-program)です。
+実は、Solanaプログラムは[アップグレード可能](https://docs.solana.com/cli/deploy-a-program#redeploy-a-program)です。
 
-つまり、再デプロイすると、同じプログラム ID を更新して、デプロイしたプログラムの最新版を指すようになるということです。
+つまり、再デプロイすると、同じプログラムIDを更新して、デプロイしたプログラムの最新版を指すようになるということです。
 
 また、プログラムがやりとりするアカウントは変わらずに残り、プログラムに関連するデータを保持してくれます。
 
 簡単にまとめると、**保存されたデータを分離した状態でプログラムをアップグレード**することができます。
 
-これは、一度デプロイされたスマートコントラクトの変更ができない Ethereum とはまったく異なるものです。
+これは、一度デプロイされたスマートコントラクトの変更ができないEthereumとはまったく異なるものです。
 
 
 ### 🤟 IDL ファイルを Web アプリケーションに接続する
 
-Solana プログラムは Devnet にデプロイされました。
+SolanaプログラムはDevnetにデプロイされました。
 
-それでは続いて、Solana プログラムと Web アプリケーションを接続してみましょう。
+それでは続いて、SolanaプログラムとWebアプリケーションを接続してみましょう。
 
-まず必要なのが、`anchor build` コマンドで生成された `idl` ファイルです。
+まず必要なのが、`anchor build`コマンドで生成された`idl`ファイルです。
 
-`target/idl/myepicproject.json` がそのファイルとなっています。
+`target/idl/myepicproject.json`がそのファイルとなっています。
 
-`idl` ファイルは単なる JSON ファイルで、関数の名前や受け取るパラメータなど、Solana プログラムに関する情報を持っています。
+`idl`ファイルは単なるJSONファイルで、関数の名前や受け取るパラメータなど、Solanaプログラムに関する情報を持っています。
 
-このファイルは、デプロイされたプログラムと、Web アプリケーションがやり取りするのに役立ちます。
+このファイルは、デプロイされたプログラムと、Webアプリケーションがやり取りするのに役立ちます。
 
-また、`target/idl/myepicproject.json` を確認すると、一番下にプログラム ID が指定されているのが分かると思います。
+また、`target/idl/myepicproject.json`を確認すると、一番下にプログラムIDが指定されているのが分かると思います。
 
-これは、Web アプリケーションが接続するプログラムを指定するものです。
+これは、Webアプリケーションが接続するプログラムを指定するものです。
 
-`target/idl/myepicproject.json` の中身をすべてコピーし、Web アプリケーションを構築したディレクトリの下にある `src` の直下に `idl.json` ファイルを作成してください。（ `App.js` と同じディレクトリです。）
+`target/idl/myepicproject.json`の中身をすべてコピーし、Webアプリケーションを構築したディレクトリの下にある`src`の直下に`idl.json`ファイルを作成してください( `App.js`と同じディレクトリです)。
 
-そこに `target/idl/myepicproject.json` の中身をすべて張り付けてください。
+そこに`target/idl/myepicproject.json`の中身をすべて張り付けてください。
 
-そして、`App.js` で読み込めるように、以下のとおり `import` 文を追加してください。
+そして、`App.js`で読み込めるように、以下のとおり`import`文を追加してください。
 
-追加する場所は `import './App.css';` のすぐ下で OK です。
+追加する場所は`import './App.css';`のすぐ下でOKです。
 
 ```javascript
 //App.js
@@ -85,30 +85,30 @@ import idl from './idl.json';
 
 ### 👻 Phantom Wallet に資金を供給する
 
-Solana では、アカウントのデータ読み込みは無料でできますが、アカウントを作成したりデータを追加したりするには SOL が必要になります。
+Solanaでは、アカウントのデータ読み込みは無料でできますが、アカウントを作成したりデータを追加したりするにはSOLが必要になります。
 
-そのため、今回作成した Web アプリケーションで使用できる Devnet 上の SOL を Phantom Wallet に供給する必要があります。
+そのため、今回作成したWebアプリケーションで使用できるDevnet上のSOLをPhantom Walletに供給する必要があります。
 
-このとき、Phantom Wallet のアドレスが必要になるので、以下の画像を参考にウォレットアドレスをコピーしましょう。
+このとき、Phantom Walletのアドレスが必要になるので、以下の画像を参考にウォレットアドレスをコピーしましょう。
 
 ![wallet address copy](/public/images/Solana-dApp/section-3/3_2_1.jpg)
 
 次に、ターミナルから以下のコマンドを実行します。
 
-※ `INSERT_YOUR_PHANTOM_PUBLIC_ADDRESS_HERE` に先ほどコピーした Phantom Wallet のアドレスを入れて実行してください。
+※ `INSERT_YOUR_PHANTOM_PUBLIC_ADDRESS_HERE`に先ほどコピーしたPhantom Walletのアドレスを入れて実行してください。
 
 ```bash
 solana airdrop 2 INSERT_YOUR_PHANTOM_PUBLIC_ADDRESS_HERE --url devnet
 ```
 
-Phantom Wallet を確認し、Devnet で 2 SOL が入っていることを確認できれば完了です。
+Phantom Walletを確認し、Devnetで2 SOLが入っていることを確認できれば完了です。
 
 
 ### 🍔 Web アプリケーションで Solana プロバイダをセットアップする
 
-Solana プロバイダーを設定するにあたり、Web アプリケーションに 2 つのパッケージをインストールする必要があります。
+Solanaプロバイダーを設定するにあたり、Webアプリケーションに2つのパッケージをインストールする必要があります。
 
-Anchor プロジェクトでもインストールしていますが、同じものを Web アプリケーションにもインストールしましょう。
+Anchorプロジェクトでもインストールしていますが、同じものをWebアプリケーションにもインストールしましょう。
 
 ルートディレクトリで以下のコマンドを実行します。
 
@@ -116,9 +116,9 @@ Anchor プロジェクトでもインストールしていますが、同じも�
 npm install @project-serum/anchor @solana/web3.js
 ```
 
-インストールしたパッケージを Web アプリケーションにインポートしましょう。
+インストールしたパッケージをWebアプリケーションにインポートしましょう。
 
-`App.js` の `import idl from './idl.json';` のすぐ下に以下のコードを追加します。
+`App.js`の`import idl from './idl.json';`のすぐ下に以下のコードを追加します。
 
 ```javascript
 //App.js
@@ -127,9 +127,9 @@ import { Connection, PublicKey, clusterApiUrl } from '@solana/web3.js';
 import { Program, Provider, web3 } from '@project-serum/anchor';
 ```
 
-続いて、`getProvider` 関数を作成しましょう。
+続いて、`getProvider`関数を作成しましょう。
 
-以下のコードを `onInputChange` 関数のすぐ下に追加します。
+以下のコードを`onInputChange`関数のすぐ下に追加します。
 
 ```javascript
 //App.js
@@ -143,21 +143,21 @@ const getProvider = () => {
 }
 ```
 
-ここでは、Solana への認証された接続である「プロバイダ」を作成しています。
+ここでは、Solanaへの認証された接続である「プロバイダ」を作成しています。
 
-プロバイダの作成には Web アプリケーションに接続されたウォレットが必要です。
+プロバイダの作成にはWebアプリケーションに接続されたウォレットが必要です。
 
-ここまでできたら、`npm run start` コマンドを実行して、ブラウザ上で動作を確認してみてください。
+ここまでできたら、`npm run start`コマンドを実行して、ブラウザ上で動作を確認してみてください。
 
-[Connect to Wallet]ボタンをクリックすると、Web アプリケーションに対し、ウォレットへのアクセスを許可することができます。
+[Connect to Wallet]ボタンをクリックすると、Webアプリケーションに対し、ウォレットへのアクセスを許可することができます。
 
-Phantom Wallet は Solana 上のプログラムと通信するためのプロバイダを作ることができるのです。
+Phantom WalletはSolana上のプログラムと通信するためのプロバイダを作ることができるのです。
 
 **ウォレットが接続されていないと、Solana と通信することができません。**
 
 さて、それでは、まだ定義されていない変数を作成しましょう。
 
-`App.js` を以下のとおり更新します。
+`App.js`を以下のとおり更新します。
 
 ```javascript
 // App.js
@@ -195,13 +195,13 @@ const opts = {
 
 ```
 
-`SystemProgram` は、Solana を実行する[コアプログラム](https://docs.solana.com/developing/runtime-facilities/programs#system-program)への参照です。
+`SystemProgram`は、Solanaを実行する[コアプログラム](https://docs.solana.com/developing/runtime-facilities/programs#system-program)への参照です。
 
-`Keypair.generate()` は、プログラムの GIF データを保持する `BaseAccount` アカウントを作成するために必要なパラメータを提供します。
+`Keypair.generate()`は、プログラムのGIFデータを保持する`BaseAccount`アカウントを作成するために必要なパラメータを提供します。
 
-`idl.metadata.address` でプログラム ID を取得し、`clusterApiUrl('Devnet')` を実行して Devnet への接続を確認しています。
+`idl.metadata.address`でプログラムIDを取得し、`clusterApiUrl('Devnet')`を実行してDevnetへの接続を確認しています。
 
-`preflightCommitment: "processed"` では、トランザクションが成功したときの確認を受け取るタイミングを選択しています。
+`preflightCommitment: "processed"`では、トランザクションが成功したときの確認を受け取るタイミングを選択しています。
 
 今回は、接続しているノードに寄ってトランザクションが確認されるのを待ちます。
 
@@ -212,9 +212,9 @@ const opts = {
 
 すべての準備が整いました。
 
-アカウントを呼び出すためには、API を呼び出すのと同じように「フェッチ」します。
+アカウントを呼び出すためには、APIを呼び出すのと同じように「フェッチ」します。
 
-`App.js` の以下の記述を覚えていますか？
+`App.js`の以下の記述を覚えていますか？
 
 ```javascript
 // App.js
@@ -260,11 +260,11 @@ useEffect(() => {
 ```
 
 
-### 🔥 `startStuffOff` を呼び出してプログラムを初期化する
+### 🔥 `startStuffOff`を呼び出してプログラムを初期化する
 
-現段階では、`BaseAccount` が存在しないため、`startStuffOff` を呼び出してアカウントを初期化する必要があります。
+現段階では、`BaseAccount`が存在しないため、`startStuffOff`を呼び出してアカウントを初期化する必要があります。
 
-以下の関数を `getProvider` 関数の下に追加してください。
+以下の関数を`getProvider`関数の下に追加してください。
 
 ```javascript
 const createGifAccount = async () => {
@@ -289,11 +289,11 @@ const createGifAccount = async () => {
 }
 ```
 
-次に、以下の 2 つのケースを想定して `renderConnectedContainer` 関数を変更しましょう。
+次に、以下の2つのケースを想定して`renderConnectedContainer`関数を変更しましょう。
 
-1\. ウォレットを接続しているが、`BaseAccount` のアカウントが作成されていないため、初期化されたアカウントを作成するためのボタンを表示する。
+1\. ウォレットを接続しているが、`BaseAccount`のアカウントが作成されていないため、初期化されたアカウントを作成するためのボタンを表示する。
 
-2\. ウォレットを接続しているが、`BaseAccount` が存在していたので、`gifList` をレンダリングして、ユーザーが GIT データを送信できるようにする。
+2\. ウォレットを接続しているが、`BaseAccount`が存在していたので、`gifList`をレンダリングして、ユーザーがGitデータを送信できるようにする。
 
 ```jsx
 // App.js
@@ -350,7 +350,7 @@ const renderConnectedContainer = () => {
 
 ブラウザページを更新してウォレットを接続すると、[Do One-Time Initialization For GIF Program Account]ボタンが表示されます。
 
-これをクリックすると、Phantom Wallet がトランザクションの支払いを求めるプロンプトが表示されるので、[承認]ボタンをクリックしてください。
+これをクリックすると、Phantom Walletがトランザクションの支払いを求めるプロンプトが表示されるので、[承認]ボタンをクリックしてください。
 
 すべてがうまくいった場合は、コンソール上に以下のように表示されます。
 
@@ -358,7 +358,7 @@ const renderConnectedContainer = () => {
 
 ここで作成したアカウントを取得しました。
 
-ただし、このアカウントにはまだ GIF を追加していないため、`gifList` は空です。
+ただし、このアカウントにはまだGIFを追加していないため、`gifList`は空です。
 
 現段階では、ページを更新するたびに、もう一度アカウントを作成するように要求されてしまうという問題があります。
 
@@ -367,9 +367,9 @@ const renderConnectedContainer = () => {
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#solana-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#solana-dapp`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 4 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -380,4 +380,4 @@ const renderConnectedContainer = () => {
 
 ---
 
-次のレッスンで、Web アプリケーションを完成させます!
+次のレッスンで、Webアプリケーションを完成させます!

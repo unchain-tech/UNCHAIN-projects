@@ -1,8 +1,8 @@
 ### ✨ NFT を Mint する
 
-さて、キャラクターのデータが整ったので、次は実際に NFT を Mint していきましょう。
+さて、キャラクターのデータが整ったので、次は実際にNFTをMintしていきましょう。
 
-下記のように、`MyEpicGame.sol` を更新してください。
+下記のように、`MyEpicGame.sol`を更新してください。
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -120,7 +120,7 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 
 [OpenZepplin](https://openzeppelin.com/) は、イーサリアムネットワーク上の開発を便利にするフレームワークです。
 
-OpenZeppelin は、NFT の標準規格を実装し、そのうえに独自のロジックを書いてカスタマイズできるライブラリを提供しています。ここでは、それらを `MyEpicGame.sol` にインポートしています。
+OpenZeppelinは、NFTの標準規格を実装し、そのうえに独自のロジックを書いてカスタマイズできるライブラリを提供しています。ここでは、それらを`MyEpicGame.sol`にインポートしています。
 
 次に、下記のコードを見ていきましょう。
 
@@ -130,19 +130,19 @@ contract MyEpicGame is ERC721 {
 	:
 ```
 
-ここでは、コントラクトを宣言する際に、`is ERC721` を使用して OpenZeppelin のコントラクトを「継承」しています。
+ここでは、コントラクトを宣言する際に、`is ERC721`を使用してOpenZeppelinのコントラクトを「継承」しています。
 
-- NFT の標準規格は `ERC721` と呼ばれます。[こちら](https://eips.ethereum.org/EIPS/eip-721) に説明が記載されています。
+- NFTの標準規格は`ERC721`と呼ばれます。[こちら](https://eips.ethereum.org/EIPS/eip-721) に説明が記載されています。
 
-- `ERC721` コントラクトの詳細は、[こちら](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/ERC721.sol) をご覧ください。
+- `ERC721`コントラクトの詳細は、[こちら](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/ERC721.sol) をご覧ください。
 
-「継承」とは、OpenZeppelin のようなライブラリやほかのスマートコントラクトから、必要なモジュールを呼び出すことを意味します。
+「継承」とは、OpenZeppelinのようなライブラリやほかのスマートコントラクトから、必要なモジュールを呼び出すことを意味します。
 
 - これは関数をインポートするようなイメージで理解してください。
 
-- NFT のモジュールは `ERC721` として知られています。
+- NFTのモジュールは`ERC721`として知られています。
 
-- このモジュールには、NFT の発行に必要な標準機能が含まれているため、開発者は自分のコントラクトをカスタマイズすることに集中できます。
+- このモジュールには、NFTの発行に必要な標準機能が含まれているため、開発者は自分のコントラクトをカスタマイズすることに集中できます。
 
 次に、下記のコードを見ていきましょう。
 
@@ -151,13 +151,13 @@ contract MyEpicGame is ERC721 {
 using Counters for Counters.Counter;
 ```
 
-`using Counters for Counters.Counter` は OpenZeppelin が `_tokenIds` を追跡するために提供するライブラリを呼び出しています。
+`using Counters for Counters.Counter`はOpenZeppelinが`_tokenIds`を追跡するために提供するライブラリを呼び出しています。
 
 これにより、トラッキングの際に起こりうるオーバーフローを防ぎます。
 
 > 💡 オーバーフローとは？
 >
-> 例えば、8 ビットの情報量しか持てない `uint8` があるとします。つまり、格納できる最大の数値は 2 進数の 11111111（10 進数では、`2^8 - 1 = 255` ）です。
+> 例えば、8 ビットの情報量しか持てない`uint8`があるとします。つまり、格納できる最大の数値は 2 進数の 11111111（10 進数では、`2^8 - 1 = 255` ）です。
 > 次のコードを見てください。最後の number は何に等しいでしょうか？
 >
 > ```
@@ -165,11 +165,11 @@ using Counters for Counters.Counter;
 > number++;
 > ```
 >
-> この場合、オーバーフローを起こしたので、`number` は増加したにもかかわらず、実は 0 になっています。( 2 進数の 11111111 に 1 を加えると、時計が 23 時 59 分 から 00 時 00 分 に戻るように、00000000 にリセットされます)。
+> この場合、オーバーフローを起こしたので、`number`は増加したにもかかわらず、実は 0 になっています。( 2 進数の 11111111 に 1 を加えると、時計が 23 時 59 分 から 00 時 00 分 に戻るように、00000000 にリセットされます)。
 >
-> アンダーフローも同様で、0 に等しい `uint8` から 1 を引くと、255 になります（ `uint` は符号なしなので、負にすることはできないからです）。
+> アンダーフローも同様で、0 に等しい`uint8`から 1 を引くと、255 になります（ `uint`は符号なしなので、負にすることはできないからです）。
 >
-> ここでは `uint8` を使用していませんし、`uint256` が毎回 1 ずつ増加するときにオーバーフローする可能性は低いと思われますが（ `2^256` は本当に大きな数です）、将来的に DApp が予期せぬ動作をすることがないように、コントラクトに保護規定を設けることはグッとプラクティスです!👍
+> ここでは`uint8`を使用していませんし、`uint256`が毎回 1 ずつ増加するときにオーバーフローする可能性は低いと思われますが（ `2^256`は本当に大きな数です）、将来的に DApp が予期せぬ動作をすることがないように、コントラクトに保護規定を設けることはグッとプラクティスです!👍
 
 次に、下記のコードを見ていきましょう。
 
@@ -177,11 +177,11 @@ using Counters for Counters.Counter;
 Counters.Counter private _tokenIds;
 ```
 
-ここでは、`private _tokenIds` を宣言して、`_tokenIds` を初期化しています。
+ここでは、`private _tokenIds`を宣言して、`_tokenIds`を初期化しています。
 
-- `_tokenIds` の初期値は 0 です。
+- `_tokenIds`の初期値は0です。
 
-tokenId は NFT の一意な識別子で、0, 1, 2, .. N のように付与されます。
+tokenIdはNFTの一意な識別子で、0, 1, 2, .. Nのように付与されます。
 
 次に、下記のコードを見ていきましょう。
 
@@ -190,16 +190,16 @@ tokenId は NFT の一意な識別子で、0, 1, 2, .. N のように付与さ�
 mapping(uint256 => CharacterAttributes) public nftHolderAttributes;
 ```
 
-`nftHolderAttributes` はプレイヤーの NFT の状態を保存する変数になります。
+`nftHolderAttributes`はプレイヤーのNFTの状態を保存する変数になります。
 
-ここでは、NFT の ID を `CharacterAttributes` 構造体に `mapping` しています。
+ここでは、NFTのIDを`CharacterAttributes`構造体に`mapping`しています。
 
-> **✍️: `mapping` について**
-> ここでは、`mapping` と呼ばれる特別なデータ構造を使用しています。
+> **✍️: `mapping`について**
+> ここでは、`mapping`と呼ばれる特別なデータ構造を使用しています。
 >
-> Solidity の `mapping` は、他の言語におけるハッシュテーブルや辞書のような役割を果たします。
+> Solidity の`mapping`は、他の言語におけるハッシュテーブルや辞書のような役割を果たします。
 >
-> これらは、下記のように `_Key` と `_Value` のペアの形式でデータを格納するために使用されます。
+> これらは、下記のように`_Key`と`_Value`のペアの形式でデータを格納するために使用されます。
 >
 > 例：
 >
@@ -207,26 +207,26 @@ mapping(uint256 => CharacterAttributes) public nftHolderAttributes;
 > mapping（_Key=> _Value）public mappingName
 > ```
 
-今回は、NFT キャラクターの `tokenId`（= `_Key` = `uint256`）をそのユーザーが Mint する NFT の `CharacterAttributes`（= `_Value`）に関連付けるために `mapping` を使用しました。
+今回は、NFTキャラクターの`tokenId`(= `_Key` = `uint256`)をそのユーザーがMintするNFTの`CharacterAttributes`(= `_Value`)に関連付けるために`mapping`を使用しました。
 
-- `nftHolderAttributes` という状態変数には、`tokenId` と `CharacterAttributes` 構造体に格納されたデータが対になって保存されます。
+- `nftHolderAttributes`という状態変数には、`tokenId`と`CharacterAttributes`構造体に格納されたデータが対になって保存されます。
 
-- コードの後半に、`nftHolderAttributes[newItemId] = CharacterAttributes({...})` という処理が記載されています。ここでは、現在の `tokenId` である `newItemId` を `CharacterAttributes` 構造体に紐付ける処理が行われています。
+- コードの後半に、`nftHolderAttributes[newItemId] = CharacterAttributes({...})`という処理が記載されています。ここでは、現在の`tokenId`である`newItemId`を`CharacterAttributes`構造体に紐付ける処理が行われています。
 
   - 後で詳しく解説します。
 
-同じように `mapping` を使用している下記のコードを見ていきましょう。
+同じように`mapping`を使用している下記のコードを見ていきましょう。
 
 ```solidity
 // MyEpicGame.sol
 mapping(address => uint256) public nftHolders;
 ```
 
-ここでは、ユーザーの `address` と `tokenId` を紐づけるため、`mapping` を使用しています。
+ここでは、ユーザーの`address`と`tokenId`を紐づけるため、`mapping`を使用しています。
 
-- `nftHolders` という状態変数には、ユーザーの `address` と `tokenId` に格納されたデータが対になって保存されます。
+- `nftHolders`という状態変数には、ユーザーの`address`と`tokenId`に格納されたデータが対になって保存されます。
 
-- コードの後半に、`nftHolders[msg.sender] = newItemId` という処理が記載されています。ここでは、`msg.sender`（＝フロントエンドから送信されるユーザーの `address`）に `newItemId` に紐付ける処理が行われています。
+- コードの後半に、`nftHolders[msg.sender] = newItemId`という処理が記載されています。ここでは、`msg.sender`(＝フロントエンドから送信されるユーザーの`address`)に`newItemId`に紐付ける処理が行われています。
   - 後で詳しく解説します。
 
 次に下記のコードを見ていきましょう。
@@ -235,9 +235,9 @@ mapping(address => uint256) public nftHolders;
 ERC721("OnePiece", "ONEPIECE");
 ```
 
-ここでは、作成する NFT の名前（`"OnePiece"`）とそのシンボル（`"ONEPIECE"`）を ERC721 の規格に渡しています。
+ここでは、作成するNFTの名前(`"OnePiece"`)とそのシンボル(`"ONEPIECE"`)をERC721の規格に渡しています。
 
-NFT は Non-Fungible "Token" の略であり、Token には、必ず名前とシンボルを付与する必要があります。
+NFTはNon-Fungible "Token" の略であり、Tokenには、必ず名前とシンボルを付与する必要があります。
 
 例：
 
@@ -251,15 +251,15 @@ NFT は Non-Fungible "Token" の略であり、Token には、必ず名前とシ
 _tokenIds.increment();
 ```
 
-Solidity において、すべての数は `0` から始まるため、`_tokenIds` の初期値は `0` です。
+Solidityにおいて、すべての数は`0`から始まるため、`_tokenIds`の初期値は`0`です。
 
-ここでは `_tokenIDs` に `1` を加算しています。
+ここでは`_tokenIDs`に`1`を加算しています。
 
-**`constructor` の中で** `_tokenIDs` を `1` にインクリメントするのは、1 番目の `tokenId` を `1` とした方が、あとあと処理が楽になるためです。
+**`constructor`の中で** `_tokenIDs`を`1`にインクリメントするのは、1番目の`tokenId`を`1`とした方が、あとあと処理が楽になるためです。
 
-- `increment()` 関数に関しては、[こちら](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/fa64a1ced0b70ab89073d5d0b6e01b0778f7e7d6/contracts/utils/Counters.sol#L32) を参照してください。
+- `increment()`関数に関しては、[こちら](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/fa64a1ced0b70ab89073d5d0b6e01b0778f7e7d6/contracts/utils/Counters.sol#L32) を参照してください。
 
-次に、`mintCharacterNFT` 関数の中身を見ていきましょう。
+次に、`mintCharacterNFT`関数の中身を見ていきましょう。
 
 ```solidity
 // MyEpicGame.sol
@@ -269,11 +269,11 @@ function mintCharacterNFT(uint _characterIndex) external {
 
 この関数を呼び出すことにより、**NFT の Mint が行われます。**
 
-`_characterIndex` はフロントエンドから送信される変数です。
+`_characterIndex`はフロントエンドから送信される変数です。
 
-`_characterIndex` を `mintCharacterNFT` 関数に渡すことで、プレイヤーがどのキャラクター（例：ナミ）を欲しいか、コントラクトに伝えます。
+`_characterIndex`を`mintCharacterNFT`関数に渡すことで、プレイヤーがどのキャラクター（例：ナミ）を欲しいか、コントラクトに伝えます。
 
-たとえば、`mintCharacterNFT(1)` とすると、`defaultCharacters[1]` のデータを持つキャラクターが Mint されます。
+たとえば、`mintCharacterNFT(1)`とすると、`defaultCharacters[1]`のデータを持つキャラクターがMintされます。
 
 次に下記のコードを見ていきましょう。
 
@@ -282,19 +282,19 @@ function mintCharacterNFT(uint _characterIndex) external {
 uint256 newItemId = _tokenIds.current();
 ```
 
-ここでは、ユーザーが新しく NFT を Mint する際に発行される `tokenID` を格納するために、`newItemId` 変数を定義してます。
+ここでは、ユーザーが新しくNFTをMintする際に発行される`tokenID`を格納するために、`newItemId`変数を定義してます。
 
-これは NFT 自体の ID です。
+これはNFT自体のIDです。
 
-各 NFT は「一意」であり、そのために各トークンに一意の ID を付与しています。
+各NFTは「一意」であり、そのために各トークンに一意のIDを付与しています。
 
-通常 `_tokenIds.current()` は `0` から始まりますが、`constructor` で `_tokenIds.increment()` を行ったので、`newItemId` は `1` になります。
+通常`_tokenIds.current()`は`0`から始まりますが、`constructor`で`_tokenIds.increment()`を行ったので、`newItemId`は`1`になります。
 
-NFT の一意な識別子を追跡するために `_tokenIds` を使用していますが、これは単なる数字です。
+NFTの一意な識別子を追跡するために`_tokenIds`を使用していますが、これは単なる数字です。
 
-- 最初に `mintCharacterNFT` を呼び出すと `newItemId` は `1` になり、もう一度呼び出すと `newItemId` は `2` になり、これが繰り返されます。
+- 最初に`mintCharacterNFT`を呼び出すと`newItemId`は`1`になり、もう一度呼び出すと`newItemId`は`2`になり、これが繰り返されます。
 
-- `newItemId` の値を変更すると、その値はグローバル変数のように直接コントラクトに格納され、メモリ上に永久に残ります。
+- `newItemId`の値を変更すると、その値はグローバル変数のように直接コントラクトに格納され、メモリ上に永久に残ります。
 
 次に、下記のコードを見ていきましょう。
 
@@ -303,10 +303,10 @@ NFT の一意な識別子を追跡するために `_tokenIds` を使用してい
 _safeMint(msg.sender, newItemId);
 ```
 
-上記が実行されると、`newItemId` という ID の NFT キャラクターが `msg.sender`（＝フロントエンドからユーザーのアドレス）に、 Mint されます。
+上記が実行されると、`newItemId`というIDのNFTキャラクターが`msg.sender`（＝フロントエンドからユーザーのアドレス）に、Mintされます。
 
-> ✍️: `msg.sender` について
-> `msg.sender` は [Solidity が提供する](https://docs.soliditylang.org/en/develop/uints-and-global-variables.html#block-and-transaction-properties) 変数で、フロントエンドからコントラクトを呼び出したユーザーの **公開アドレス** を保持した変数です。
+> ✍️: `msg.sender`について
+> `msg.sender`は [Solidity が提供する](https://docs.soliditylang.org/en/develop/uints-and-global-variables.html#block-and-transaction-properties) 変数で、フロントエンドからコントラクトを呼び出したユーザーの **公開アドレス** を保持した変数です。
 >
 > **原則として、ユーザーは、コントラクトを匿名で呼び出すことはできません。**
 >
@@ -316,13 +316,13 @@ _safeMint(msg.sender, newItemId);
 
 ### 🎨 NFT のデータを更新する
 
-引き続き、`MyEpicGame.sol` の内容を見ていきます。
+引き続き、`MyEpicGame.sol`の内容を見ていきます。
 
-今回の Web アプリケーションゲームでは、ボスに攻撃されると、プレイヤーの保持する NFT キャラクターの HP が減少します。
+今回のWebアプリケーションゲームでは、ボスに攻撃されると、プレイヤーの保持するNFTキャラクターのHPが減少します。
 
 例を見ていきましょう。
 
-私が新しく NFT を Mint した際、私の NFT キャラクターには以下のようなデフォルト値が与えられます。
+私が新しくNFTをMintした際、私のNFTキャラクターには以下のようなデフォルト値が与えられます。
 
 ```text
 {
@@ -335,11 +335,11 @@ _safeMint(msg.sender, newItemId);
 }
 ```
 
-たとえば、私のキャラクターが攻撃を受けて HP が 50 減ったとします。
+たとえば、私のキャラクターが攻撃を受けてHPが50減ったとします。
 
-HP は 200 → 150 になります。
+HPは200 → 150になります。
 
-その値を下記のように、NFT 上で変更する必要があります。
+その値を下記のように、NFT上で変更する必要があります。
 
 ```text
 {
@@ -356,7 +356,7 @@ HP は 200 → 150 になります。
 
 > **すべてのプレイヤーは、それぞれ自分のキャラクター NFT を持っており、それぞれの NFT がキャラクターの状態に関する固有のデータを保持しています**。
 
-このようなゲームの仕様を実装するために、コントラクトの中に、NFT キャラクターの HP が減ったことをデータとして保存するロジックを追加しました。
+このようなゲームの仕様を実装するために、コントラクトの中に、NFTキャラクターのHPが減ったことをデータとして保存するロジックを追加しました。
 
 それでは、下記のコードを見ていきましょう。
 
@@ -372,28 +372,28 @@ nftHolderAttributes[newItemId] = CharacterAttributes({
 });
 ```
 
-ここでは、`newItemId` という ID を持つ NFT キャラクターの状態を、更新しています。
+ここでは、`newItemId`というIDを持つNFTキャラクターの状態を、更新しています。
 
-データを更新するために、NFT の `tokenId`（＝ `newItemId`）を `CharacterAttributes` 構造体にマップする `nftHolderAttributes` 変数を使用します。
+データを更新するために、NFTの`tokenId`(＝ `newItemId`)を`CharacterAttributes`構造体にマップする`nftHolderAttributes`変数を使用します。
 
-これにより、プレイヤーの NFT に関連する値を簡単に更新できます。
+これにより、プレイヤーのNFTに関連する値を簡単に更新できます。
 
-- プレイヤーが攻撃されて、NFT キャラクターの `hp` 値が減ると、`nftHolderAttributes` 上でそのキャラクターの `hp` 値が更新されます。
+- プレイヤーが攻撃されて、NFTキャラクターの`hp`値が減ると、`nftHolderAttributes`上でそのキャラクターの`hp`値が更新されます。
 
-- この処理によって、プレイヤー固有の NFT データをコントラクトに保存できます。
+- この処理によって、プレイヤー固有のNFTデータをコントラクトに保存できます。
 
-> ✍️: `mapping` を覚えていますか？
+> ✍️: `mapping`を覚えていますか？
 >
 > ```solidity
 > // MyEpicGame.sol
 > mapping(uint256 => CharacterAttributes) public nftHolderAttributes
 > ```
 >
-> ここで、現在の `tokenId`（＝ `newItemId` ）を `CharacterAttributes` 構造体に紐づける `nftHolderAttributes` 変数を定義しました。
+> ここで、現在の`tokenId`（＝ `newItemId` ）を`CharacterAttributes`構造体に紐づける`nftHolderAttributes`変数を定義しました。
 >
-> `nftHolderAttributes` はプレイヤーの NFT の状態を保存する変数になります。
+> `nftHolderAttributes`はプレイヤーの NFT の状態を保存する変数になります。
 
-NFT のメタデータは変更できないと思われがちですが、そんなことはありません。実はクリエイター次第なんです 😊
+NFTのメタデータは変更できないと思われがちですが、そんなことはありません。実はクリエイター次第なんです 😊
 
 次に、下記の処理を見ていきましょう。
 
@@ -402,9 +402,9 @@ NFT のメタデータは変更できないと思われがちですが、そん�
 nftHolders[msg.sender] = newItemId;
 ```
 
-ここでは、ユーザーのパブリックウォレットアドレスを NFT の `tokenI`（＝ `newItemId`）にマップしています。
+ここでは、ユーザーのパブリックウォレットアドレスをNFTの`tokenI`(＝ `newItemId`)にマップしています。
 
-この処理によって、誰がどの NFT を所有しているかを簡単に追跡できます。
+この処理によって、誰がどのNFTを所有しているかを簡単に追跡できます。
 
 **🦖: プレイヤーと NFT キャラクター**
 
@@ -419,15 +419,15 @@ nftHolders[msg.sender] = newItemId;
 _tokenIds.increment();
 ```
 
-NFT を Mint した後、OpenZeppelin が提供する関数 `_tokenIds.increment()` を使って `_tokenIds` をインクリメントしています。
+NFTをMintした後、OpenZeppelinが提供する関数`_tokenIds.increment()`を使って`_tokenIds`をインクリメントしています。
 
-この処理によって、次回 NFT をミントするユーザーには、新しい `tokenId` が付与されます。すでに Mint された `tokenId` は誰も持つことができません。
+この処理によって、次回NFTをミントするユーザーには、新しい`tokenId`が付与されます。すでにMintされた`tokenId`は誰も持つことができません。
 
 ### 😳 ローカル環境でテストを実行する
 
-次は、`run.js` に、`mintCharacterNFT` 関数を呼び出す処理を追加していきます。
+次は、`run.js`に、`mintCharacterNFT`関数を呼び出す処理を追加していきます。
 
-以下のコードを `run.js` の `console.log` の直下に追加しましょう。
+以下のコードを`run.js`の`console.log`の直下に追加しましょう。
 
 ```javascript
 // run.js
@@ -444,7 +444,7 @@ let returnedTokenUri = await gameContract.tokenURI(1);
 console.log("Token URI:", returnedTokenUri);
 ```
 
-コードを 1 行ずつ見ていきましょう。
+コードを1行ずつ見ていきましょう。
 
 ```javascript
 // run.js
@@ -456,11 +456,11 @@ txn = await gameContract.mintCharacterNFT(2);
 
 https://qiita.com/y-temp4/items/289686fbdde896d22b5e
 
-ここでは、`MyEpicGame.sol` から `mintCharacterNFT` 関数を呼び出して、3 体の NFT キャラクターの中から、3 番目のキャラクターを Mint しています。
+ここでは、`MyEpicGame.sol`から`mintCharacterNFT`関数を呼び出して、3体のNFTキャラクターの中から、3番目のキャラクターをMintしています。
 
-`run.js` から `mintCharacterNFT` 関数を実行する際、Hardhat はあなたのローカル環境に設定された **デフォルトウォレット** をコントラクトに展開します。
+`run.js`から`mintCharacterNFT`関数を実行する際、Hardhatはあなたのローカル環境に設定された **デフォルトウォレット** をコントラクトに展開します。
 
-- したがって、`MyEpicGame.sol` 上では、Hardhat が提供したデフォルトウォレットのパブリックアドレスが `msg.sender` に格納されます。
+- したがって、`MyEpicGame.sol`上では、Hardhatが提供したデフォルトウォレットのパブリックアドレスが`msg.sender`に格納されます。
 
 次に、下記のコードを見ていきましょう。
 
@@ -473,11 +473,11 @@ let returnedTokenUri = await gameContract.tokenURI(1);
 console.log("Token URI:", returnedTokenUri);
 ```
 
-`tokenURI()` は、NFT にアタッチされている **実際のデータ** を返す関数です。
+`tokenURI()`は、NFTにアタッチされている **実際のデータ** を返す関数です。
 
-`gameContract.tokenURI(1)` が呼び出されると、`returnedTokenUri` には、`tokenId` ＝ `1` の NFT キャラクターのデータ（キャラクターの名前、HP など）が格納されます。
+`gameContract.tokenURI(1)`が呼び出されると、`returnedTokenUri`には、`tokenId` ＝ `1`のNFTキャラクターのデータ（キャラクターの名前、HPなど）が格納されます。
 
-それでは、ターミナル上で `epic-game` ディレクトリに移動して、下記を実行してみましょう。
+それでは、ターミナル上で`epic-game`ディレクトリに移動して、下記を実行してみましょう。
 
 ```bash
 npx hardhat run scripts/run.js
@@ -496,15 +496,15 @@ Minted NFT w/ tokenId 1 and characterIndex 2
 Token URI:
 ```
 
-現在、NFT に実際のデータは添付されていないので、ターミナルには、Token URI が出力されていません。
+現在、NFTに実際のデータは添付されていないので、ターミナルには、Token URIが出力されていません。
 
-これから、`MyEpicGame.sol` の `nftHolderAttributes` を更新して、`tokenURI` を添付していきます。
+これから、`MyEpicGame.sol`の`nftHolderAttributes`を更新して、`tokenURI`を添付していきます。
 
-### ⭐️ `tokenURI` をセットアップする
+### ⭐️ `tokenURI`をセットアップする
 
-`tokenURI` には、NFT データを **JSON** 形式で渡す必要があります。
+`tokenURI`には、NFTデータを **JSON** 形式で渡す必要があります。
 
-まず、`epic-game/contracts` ディレクトリの下に `libraries` というディレクトリを作成しましょう。
+まず、`epic-game/contracts`ディレクトリの下に`libraries`というディレクトリを作成しましょう。
 
 下記のディレクトリ構図を参考にしてください。
 
@@ -514,7 +514,7 @@ epic-game
 		  |_ libraries
 ```
 
-`libraries` ディレクトリに `Base64.sol` という名前のファイルを作成し、下記のコードを貼り付けてください。
+`libraries`ディレクトリに`Base64.sol`という名前のファイルを作成し、下記のコードを貼り付けてください。
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -593,11 +593,11 @@ library Base64 {
 }
 ```
 
-このファイルには、SVG と JSON を Base64 に変換するための関数が含まれています。
+このファイルには、SVGとJSONをBase64に変換するための関数が含まれています。
 
-次に、`MyEpicGame.sol` に `Base64.sol` をインポートするコードを追加します。
+次に、`MyEpicGame.sol`に`Base64.sol`をインポートするコードを追加します。
 
-下記のコードを、`MyEpicGame.sol` の先頭付近（ライブラリをインポートしているコードブロックの近く）に、追加してください。
+下記のコードを、`MyEpicGame.sol`の先頭付近（ライブラリをインポートしているコードブロックの近く）に、追加してください。
 
 ```solidity
 // MyEpicGame.sol
@@ -605,9 +605,9 @@ library Base64 {
 import "./libraries/Base64.sol";
 ```
 
-次に、`MyEpicGame` コントラクトの中に、`tokenURI` という関数を記述します。
+次に、`MyEpicGame`コントラクトの中に、`tokenURI`という関数を記述します。
 
-- `mintCharacterNFT` 関数の下に、下記の関数を追加してください。
+- `mintCharacterNFT`関数の下に、下記の関数を追加してください。
 
 ```solidity
 // MyEpicGame.sol
@@ -652,9 +652,9 @@ CharacterAttributes memory charAttributes = nftHolderAttributes[_tokenId];
 	:
 ```
 
-ここでは、`nftHolderAttributes` 関数に渡された `_tokenId` を使って、特定の NFT データを照会し、そのデータを `charAttributes` に格納しています。
+ここでは、`nftHolderAttributes`関数に渡された`_tokenId`を使って、特定のNFTデータを照会し、そのデータを`charAttributes`に格納しています。
 
-- もし私が `tokenURI(151)` を実行したら、151 番目の NFT に関連する JSON データを返します。
+- もし私が`tokenURI(151)`を実行したら、151番目のNFTに関連するJSONデータを返します。
 
 次に、下記のコードを見ていきましょう。
 
@@ -665,7 +665,7 @@ string memory strMaxHp = Strings.toString(charAttributes.maxHp);
 string memory strAttackDamage = Strings.toString(charAttributes.attackDamage);
 ```
 
-ここでは、`charAttributes` データ編集して、JSON の構造に合わせた変数に格納しています。
+ここでは、`charAttributes`データ編集して、JSONの構造に合わせた変数に格納しています。
 
 次に、下記のコードを見ていきましょう。
 
@@ -686,11 +686,11 @@ string memory json = Base64.encode(
 );
 ```
 
-ここでは、OpenSea や Rarible が採用している NFT のメタデータのデータ構造に沿って、JSON をフォーマットしています。
+ここでは、OpenSeaなどのNFTマーケットプレイスが採用しているNFTのメタデータのデータ構造に沿って、JSONをフォーマットしています。
 
-- OpenSea や Rarible で扱える JSON のデータ構造に関しては、[こちら](https://zenn.dev/hayatoomori/articles/f26cc4637c7d66) をご覧ください。
+- OpenSeaなどのNFTマーケットプレイスで扱えるJSONのデータ構造に関しては、[こちら](https://zenn.dev/hayatoomori/articles/f26cc4637c7d66) をご覧ください。
 
-NFT のメタデータとして使用できる JSON は、下記のようなデータ構造になります。
+NFTのメタデータとして使用できるJSONは、下記のようなデータ構造になります。
 
 ```json
 {
@@ -711,9 +711,9 @@ NFT のメタデータとして使用できる JSON は、下記のようなデ�
 abi.encodePacked("data:application/json;base64,", json);
 ```
 
-ここでは、文字列 `data:application/json;base64,` と `json` の中身を結合して、`tokenURI` を作成しています。
+ここでは、文字列`data:application/json;base64,`と`json`の中身を結合して、`tokenURI`を作成しています。
 
-それでは、ターミナル上で `epic-game` ディレクトリに移動して、下記を実行してみましょう。
+それでは、ターミナル上で`epic-game`ディレクトリに移動して、下記を実行してみましょう。
 
 ```bash
 npx hardhat run scripts/run.js
@@ -732,27 +732,27 @@ Minted NFT w/ tokenId 1 and characterIndex 2
 Token URI: data:application/json;base64,eyJuYW1lIjogIlpFTklHQU1FIC0tIE5GVCAjOiAxIiwgImRlc2NyaXB0aW9uIjogIkJyYXZlIGFzIGEgYmxhemluZyBmaXJlLiIsICJpbWFnZSI6ICJodHRwczovL2kuaW1ndXIuY29tL2NmdG9kajkucG5nIiwgImF0dHJpYnV0ZXMiOiBbIHsgInRyYWl0X3R5cGUiOiAiSGVhbHRoIFBvaW50cyIsICJ2YWx1ZSI6IDMwMCwgIm1heF92YWx1ZSI6MzAwfSwgeyAidHJhaXRfdHlwZSI6ICJBdHRhY2sgRGFtYWdlIiwgInZhbHVlIjogMjV9IF19
 ```
 
-Token URI がターミナルに出力されました!
+Token URIがターミナルに出力されました!
 
-`Token URI:` の後に続く文字列全体をコピーしてください。
+`Token URI:`の後に続く文字列全体をコピーしてください。
 
-例）
+例)
 
 ```plaintext
 data:application/json;base64 eyJuYW1lIjogIlpFTklHQU1FIC0tIE5GVC...
 ```
 
-その文字列をブラウザの URL バーに貼り付けて、中身を確認してみましょ。
+その文字列をブラウザのURLバーに貼り付けて、中身を確認してみましょ。
 
-ブラウザに表示されるているのは、`MyEpicGame.sol` に追加した `tokenURI` 関数の中で、NFT キャラクターの情報が JSON ファイル形式にフォーマットされ、さらに Base64 形式で**エンコード**された結果です。
+ブラウザに表示されるているのは、`MyEpicGame.sol`に追加した`tokenURI`関数の中で、NFTキャラクターの情報がJSONファイル形式にフォーマットされ、さらにBase64形式で**エンコード**された結果です。
 
-- JSON ファイルの前に `data:application/json;base64,` を付けると、上記のようなエンコード文字列になり、ブラウザで読み込めます。
+- JSONファイルの前に`data:application/json;base64,`を付けると、上記のようなエンコード文字列になり、ブラウザで読み込めます。
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#eth-nft-game` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#eth-nft-game`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

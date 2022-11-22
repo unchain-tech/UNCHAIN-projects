@@ -1,8 +1,8 @@
 ### ✨ Flutter でフロントを開発する（UI編）
 
-FlutterのUI部分を構築するために、まず、2.`TodoList.dart` ファイルの中身を作成していきます。
+FlutterのUI部分を構築するために、まず、2.`TodoList.dart`ファイルの中身を作成していきます。
 
-`TodoList.dart` ファイルに、下記を追加してください。
+`TodoList.dart`ファイルに、下記を追加してください。
 
 ```dart
 //TodoList.dart
@@ -81,7 +81,7 @@ class TodoList extends StatelessWidget {
 
 それでは、詳しく見ていきましょう。
 
-まず、Flutter アプリの画面構成については、[こちら](https://codezine.jp/article/detail/14064)をご覧ください。
+まず、Flutterアプリの画面構成については、[こちら](https://codezine.jp/article/detail/14064)をご覧ください。
 
 ```dart
 //TodoList.dart
@@ -89,9 +89,9 @@ class TodoList extends StatelessWidget {
     ...
 }
 ```
-`StatelessWidget` クラスを継承した `TodoList` クラスを作成しています。
+`StatelessWidget`クラスを継承した`TodoList`クラスを作成しています。
 
-簡単に説明すると、`StatelessWidget` とは状態がずっと変化しないWidgetのことです。
+簡単に説明すると、`StatelessWidget`とは状態がずっと変化しないウィジェットのことです。
 
 詳しくは[こちら](https://flutternyumon.com/flutter-statelesswidget-vs-statefulwidget/)をご覧ください。
 
@@ -102,7 +102,7 @@ class TodoList extends StatelessWidget {
   }
 ```
 
-ビルド関数では、`TodoListModel` をリッスンして、それに応じてUIをレンダリングしています。
+ビルド関数では、`TodoListModel`をリッスンして、それに応じてUIをレンダリングしています。
 
 ```dart
 //TodoList.dart
@@ -166,21 +166,21 @@ class TodoList extends StatelessWidget {
     );
 ```
 
-- `isLoading` フォームの `TodoListModel` が `true` ならば `Loading` ウィジェットをレンダリングし、そうでなければ `ListView` を作成して `TodoListModel` の `todos` の長さ分ループしています。
+- `isLoading`フォームの`TodoListModel`が`true`ならば`Loading`ウィジェットをレンダリングし、そうでなければ`ListView`を作成して`TodoListModel`の`todos`の長さ分ループしています。
 
-- `ListView` では、to-doの `isComplete` 値を切り替えるためのチェックボックスと、タスク名のコンテナを返します。
+- `ListView`では、to-doの`isComplete`値を切り替えるためのチェックボックスと、タスク名のコンテナを返します。
 
-- `floatingActionButton` は、to-doリストに新しいタスクを追加するためのボタンです。下の画像の右下にある＋アイコン。
+- `floatingActionButton`は、to-doリストに新しいタスクを追加するためのボタンです。下の画像の右下にある＋アイコン。
 
 下の画像のようなUIになります。
 
-![](/public/images/Polygon-Mobile-dApp/section-2/2_3_01.png)
+![](/public/images/Polygon-Mobile-dApp/section-2/2_3_1.png)
 
-以上で、2.`TodoList.dart` ファイルの中身は完成しました。
+以上で、2.`TodoList.dart`ファイルの中身は完成しました。
 
-次に、3.`TodoBottomSheet.dart` ファイルの中身を作成していきます。
+次に、3.`TodoBottomSheet.dart`ファイルの中身を作成していきます。
 
-`TodoBottomSheet.dart` ファイルに、下記を追加してください。
+`TodoBottomSheet.dart`ファイルに、下記を追加してください。
 
 ```dart
 //TodoBottomSheet.dart
@@ -284,7 +284,7 @@ TextButton buildButton(String text, void Function()? onPressed) {
 }
 ```
 
-ここでは、`showTodoBottomSheet` と `buildButton` という2つの関数を作成しています。
+ここでは、`showTodoBottomSheet`と`buildButton`という2つの関数を作成しています。
 
 それでは、詳しく見ていきましょう。
 
@@ -359,13 +359,13 @@ showTodoBottomSheet(BuildContext context, {Task? task}) {
 }
 ```
 
-`showTodoBottomSheet` は、ユーザーがタスクを作成、更新、削除できるボトムシートを表示します。
+`showTodoBottomSheet`は、ユーザーがタスクを作成、更新、削除できるボトムシートを表示します。
 
-- オプションのパラメータ `task` を受け取り、`task` の値に基づいてボトムシートのUIをレンダリングしています。
+- オプションのパラメータ`task`を受け取り、`task`の値に基づいてボトムシートのUIをレンダリングしています。
 
-`task` の値が `null` の場合は、新しいto-doタスクを作成するUIをレンダリングし、`null` でない場合は、更新および削除UIをレンダリングしています。
+`task`の値が`null`の場合は、新しいto-doタスクを作成するUIをレンダリングし、`null`でない場合は、更新および削除UIをレンダリングしています。
 
-- 作成、更新、削除のボタンが押されると、`TodoListModel` クラスからそれぞれのスマートコントラクト関数が呼び出されます。
+- 作成、更新、削除のボタンが押されると、`TodoListModel`クラスからそれぞれのスマートコントラクト関数が呼び出されます。
 
 ```dart
 //TodoBottomSheet.dart
@@ -394,19 +394,19 @@ TextButton buildButton(String text, void Function()? onPressed) {
 }
 ```
 
-`buildButton` は、`showTodoBottomSheet` のボタンの具体的なデザインを返すウィジェットです。
+`buildButton`は、`showTodoBottomSheet`のボタンの具体的なデザインを返すウィジェットです。
 
-ユーザーが `floatingActionButton` をタップすると、タスクの値を `null` として `showTodoBottomSheet` を呼び出し、ユーザーが `ListView` からタスク・アイテムをタップすると、ユーザーがタップしたタスク・オブジェクトをタスクの値として `showTodoBottomSheet` を呼び出します。
+ユーザーが`floatingActionButton`をタップすると、タスクの値を`null`として`showTodoBottomSheet`を呼び出し、ユーザーが`ListView`からタスク・アイテムをタップすると、ユーザーがタップしたタスク・オブジェクトをタスクの値として`showTodoBottomSheet`を呼び出します。
 
 下の画像のようなUIになります。
 
-![](/public/images/Polygon-Mobile-dApp/section-2/2_3_02.png)
+![](/public/images/Polygon-Mobile-dApp/section-2/2_3_2.png)
 
-以上で、3.`TodoBottomSheet.dart` ファイルの中身は完成しました。
+以上で、3.`TodoBottomSheet.dart`ファイルの中身は完成しました。
 
-それでは最後に、`main.dart` ファイルから `TodoList` ウィジェットを呼び出して、アプリをレンダリングします。
+それでは最後に、`main.dart`ファイルから`TodoList`ウィジェットを呼び出して、アプリをレンダリングします。
 
-`main.dart` ファイルを、下記のように更新してください。
+`main.dart`ファイルを、下記のように更新してください。
 
 ```dart
 //main.dart
@@ -437,9 +437,9 @@ class MyApp extends StatelessWidget {
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discord の `#polygon-mobile-dapp` で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#polygon-mobile-dapp`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので、エラーレポートには下記の 3 点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -449,6 +449,6 @@ class MyApp extends StatelessWidget {
 ```
 
 ---
-あなたの UI をスクリーンショットして Discord の `#polygon-mobile-dapp` に投稿してましょう!
+あなたのUIをスクリーンショットしてDiscordの`#polygon-mobile-dapp`に投稿してましょう!
 
-次のセクションに進んで、スマートコントラクトを Mumbai testnet に公開しましょう 🎉
+次のセクションに進んで、スマートコントラクトをMumbai testnetに公開しましょう 🎉
