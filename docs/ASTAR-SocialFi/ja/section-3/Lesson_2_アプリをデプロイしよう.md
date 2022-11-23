@@ -28,7 +28,7 @@
 ![](/public/images/ASTAR-SocialFi/section-3/3_2_5.png)
 ![](/public/images/ASTAR-SocialFi/section-3/3_2_6.png)
 
-これでdepoloyに使うためのトークンが取得できました！ では次に（こちら）[https://polkadot.js .org/apps/?rpc=wss%3A%2F%2Frpc.shibuya.astar.network#/explorer]へ移動してShibuya Networkへコントラクトをデプロイしましょう！
+これでdepoloyに使うためのトークンが取得できました！ では次に[こちら](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frpc.shibuya.astar.network#/explorer)へ移動してShibuya Networkへコントラクトをデプロイしましょう！
 
 デプロイの手順はローカルでやったものと同じですが、下の画像のように`deployment account`を先ほどトークンを取得したアカウントに切り替えましょう。そうでないとデプロイする時のガス代を支払うことができず失敗してしまいます。
 
@@ -43,8 +43,6 @@
 また、`hooks/connect.tsx`の中に格納してある`blockchainUrl`を`Blast: wss://shibuya.public.blastapi.io`に置き換えましょう。
 
 これによってコントラクトとのやりとりをローカルで立てることなく自律的に行わせる環境は整えることができました。
-
-※現状ではShibuya Networkでは機能しませんが...
 
 最後に、[Vercel](https://vercel.com/) にWebアプリケーションをホストする方法を学びます。
 
@@ -138,9 +136,6 @@ NFTを取得する条件は、以下のようになります。
 
 UIのデザインや機能をアップグレードしたら、ぜひコミュニティにシェアしてください!　 😊
 
-## これからも web3 への旅をあなたが続けてくれることを願っています 🚀
+---
 
-Attribution: This learning content is licensed under [Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/) © 2022 buildspace.
-Sharelike: Translations and modifications to markdown documents.
-
-Documentation created by [yukis4san](https://github.com/yukis4san)（UNCHAIN discord ID: yshimura#7617）
+Project Completion Formは[こちら](https://airtable.com/shrf1cCtTx0iQuszX)です。

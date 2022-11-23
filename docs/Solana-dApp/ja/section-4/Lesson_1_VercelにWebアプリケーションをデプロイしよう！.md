@@ -157,4 +157,4 @@ Webアプリケーション上でオリジナルの機能を実装して遊ん�
 
 ---
 
-Project Completion Form は[こちら](https://airtable.com/shrf1cCtTx0iQuszX)です。
+Project Completion Formは[こちら](https://airtable.com/shrf1cCtTx0iQuszX)です。

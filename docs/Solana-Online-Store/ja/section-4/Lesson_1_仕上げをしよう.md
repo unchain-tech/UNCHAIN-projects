@@ -153,4 +153,4 @@ UIのデザインや機能をアップグレードして、ぜひコミュニテ
 
 ---
 
-Project Completion Form は[こちら](https://airtable.com/shrf1cCtTx0iQuszX)です。
+Project Completion Formは[こちら](https://airtable.com/shrf1cCtTx0iQuszX)です。
