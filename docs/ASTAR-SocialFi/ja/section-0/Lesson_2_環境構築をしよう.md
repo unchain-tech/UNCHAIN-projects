@@ -92,7 +92,7 @@ cargo +nightly-2022-08-15 contract build
   - metadata.json (the contract's metadata)
 ```
 
-これで`astar-sns-contract/contracts/astar_sns/target/ink`の直下に`metadata.json`と`astar_sns.wasm`が作成されていれば成功です。
+これで`astar-sns-contract/target/ink`の直下に`metadata.json`と`astar_sns_contract.wasm`が作成されていれば成功です。
 
 次にローカルのノードを立ててローカルでコントラクトのデプロイができる環境を作っていくのですが、そのために必要なツールを下のコマンドをターミナルで実行してインストールしていきましょう。
 
