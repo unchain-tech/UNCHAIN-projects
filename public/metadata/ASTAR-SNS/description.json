@@ -1,0 +1,9 @@
+{
+  "project_id": 701,
+  "title": "Astar-SNS",
+  "difficulty": "beginner",
+  "chain": "Astar Network",
+  "description": "👉 Rust を用いてスマートコントラクトを、React × Next.js を用いてフロントエンドを構築することで、トークンを取得できるフルオンチェーンの SNS アプリ開発を学びます。",
+  "total_sections": 4,
+  "total_lessons": 11
+}
