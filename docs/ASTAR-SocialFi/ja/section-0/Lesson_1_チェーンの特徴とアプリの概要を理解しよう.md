@@ -89,7 +89,7 @@ ASTARが用意してくれている基礎的なシステムをしようすれば
 
 ### 🌍 プロジェクトをアップグレードする
 
-[UNCHAIN](https://app.shiftbase.xyz) のプロジェクトはすべてオープンソース([MIT ライセンス](https://wisdommingle.com/mit-license/))で運用されています。
+この学習コンテンツは、[UNCHAIN License](https://github.com/unchain-dev/UNCHAIN-projects/blob/main/LICENSE) のもとで運用されています。
 
 プロジェクトに参加していて、「こうすればもっと分かりやすいのに!」「これは間違っている!」と思ったら、ぜひ`pull request`を送ってください。
 
@@ -116,7 +116,7 @@ UNCHAINのプロジェクトをみんなでより良いものにしていきま�
 
 ### 🙋‍♂️ 質問する
 
-わからないことがあれば、Discordの`#ASTAR-SNS`でsection ・ Lesson名とともに質問をしてください 👋
+わからないことがあれば、Discordの`#astar-socialfi`でsection ・ Lesson名とともに質問をしてください 👋
 
 ---
 
@@ -124,7 +124,4 @@ UNCHAINのプロジェクトをみんなでより良いものにしていきま�
 
 ---
 
-Attribution: This learning content is licensed under [Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/) © 2022 buildspace.
-Sharelike: Translations and modifications to markdown documents.
-
-Documentation created by [yukis4san](https://github.com/yukis4san)（UNCHAIN discord ID: yshimura#7617）
+Documentation created by [shø](https://github.com/neila) and [Tonny](https://github.com/honganji)（UNCHAIN discord ID: shø#0537, Tonny#5693）
