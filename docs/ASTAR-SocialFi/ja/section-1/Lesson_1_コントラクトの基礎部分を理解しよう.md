@@ -8,7 +8,7 @@
 
 [`lib.rs`]
 
-```rs
+```rust
 #![cfg_attr(not(feature = "std"), no_std)]
 
 use ink_lang as ink;
@@ -100,7 +100,7 @@ use ink_lang as ink;
 
 状態変数を宣言するために`#[ink(storage)]`を最初に記述しておき、その後に構造体としてコントラクトを宣言します。
 
-```rs
+```rust
 mod astar_sns_contract {
 
    /// Defines the storage of your contract.
@@ -127,7 +127,7 @@ mod astar_sns_contract {
 
 なのでnew関数の引数の中の`Default::default()`というのは、Defaultというものの中にあるdefaultという関数を使用することを表しています。これはそれぞれの方に与えられているデフォルトの値が返ってくるというものです。bool型に対しては`false`が返ってきます。
 
-```rs
+```rust
 impl AstarSnsContract {
        /// Constructor that initializes the `bool` value to the given `init_value`.
        #[ink(constructor)]
@@ -152,7 +152,7 @@ impl AstarSnsContract {
 
 `get関数`では状態変数`value`を返されます。
 
-```rs
+```rust
        /// A message that can be called on instantiated contracts.
        /// This one flips the value of the stored `bool` from `true`
        /// to `false` and vice versa.
@@ -177,7 +177,7 @@ impl AstarSnsContract {
 この関数ではget関数によって状態変数`value`に`false`が入っているかを確認しています。
 `it_works関数`ではflip関数によって状態変数`value`がひっくり返されて`true`に変わっているかを確認しています。
 
-```rs
+```rust
 /// module and test functions are marked with a `#[test]` attribute.
    /// The below code is technically just normal Rust code.
    #[cfg(test)]

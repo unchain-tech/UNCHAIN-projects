@@ -33,7 +33,7 @@
 それでは`bikeコントラクト`に`ft_on_transfer`を実装しましょう！
 `src/lib.rs`内をこのように書き換えてください！
 
-```rs
+```rust
 use near_sdk::{
     borsh::{self, BorshDeserialize, BorshSerialize},
     env, ext_contract,

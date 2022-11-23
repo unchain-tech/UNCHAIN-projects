@@ -23,7 +23,7 @@
 `callback`関数は`cross contract call`の結果に対応した処理を際に使用します。
 まずはコントラクト内に下記のコードを追加してください！
 
-```rs
+```rust
 // lib.rs
 
 use near_sdk::{
@@ -133,7 +133,7 @@ impl Contract {
 また`FungibleToken`も任意の名前です。
 文法に関して詳しくは[こちら](https://www.near-sdk.io/cross-contract/callbacks)を参照してください。
 
-```rs
+```rust
 /// 外部コントラクト(ftコントラクト)に実装されているメソッドをトレイトで定義
 #[ext_contract(ext_ft)]
 trait FungibleToken {
@@ -143,7 +143,7 @@ trait FungibleToken {
 
 続いて`return_bike`メソッドに新たに追加された関数を見ていきましょう。
 
-```rs
+```rust
 /// メソッドの実装です。
 #[near_bindgen]
 impl Contract {
@@ -214,7 +214,7 @@ impl Contract {
 今までコントラクトの初期化には`default`関数を使用していました。
 コード内該当箇所。
 
-```rs
+```rust
 // lib.rs
 
 const DEFAULT_NUM_OF_BIKES: usize = 5;
@@ -239,7 +239,7 @@ impl Default for Contract {
 用意していた`Default`の実装を削除し, 以下のようなメソッドを追加します。
 (`PanicOnDefault`は`Default`の実装をしないことを明記するものです)
 
-```rs
+```rust
 /// コントラクトを定義します
 #[near_bindgen]
 #[derive(BorshDeserialize, BorshSerialize, PanicOnDefault)] // <- PanicOnDefault 追加
@@ -287,7 +287,7 @@ impl Contract {
 
 テストコードで使用していた`default`を`new`に変更しましょう！
 
-```rs
+```rust
 #[cfg(test)]
 mod tests {
     // ...
@@ -328,7 +328,7 @@ mod tests {
 
 これまでの編集の結果, ファイルの中身はこのようになります。
 
-```rs
+```rust
 // lib.rs
 
 use near_sdk::{

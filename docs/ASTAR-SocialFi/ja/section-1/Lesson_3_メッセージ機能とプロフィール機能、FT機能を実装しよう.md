@@ -6,7 +6,7 @@
 
 [`message.rs`]
 
-```rs
+```rust
 use crate::metadata::*;
 use ink_env::AccountId;
 use ink_prelude::string::String;
@@ -99,7 +99,7 @@ impl AstarSnsContract {
 
 [`profile.rs`]
 
-```rs
+```rust
 use crate::metadata::*;
 use ink_env::AccountId;
 use ink_prelude::string::String;
@@ -167,7 +167,7 @@ impl AstarSnsContract {
 
 [`FT.rs`]
 
-```rs
+```rust
 use crate::astar_sns_contract::AstarSnsContract;
 use ink_env::AccountId;
 

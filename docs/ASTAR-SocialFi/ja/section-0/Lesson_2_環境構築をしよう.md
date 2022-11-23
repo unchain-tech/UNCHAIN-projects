@@ -222,27 +222,27 @@ npx tailwindcss init -p
 
 [`tailwind.config.js`]
 
-```
+```js
 module.exports = {
-  mode: 'jit',
+  mode: "jit",
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
     "./utils/**/*.{js,ts,jsx,tsx}",
-    './hooks/**/*.{js,ts,jsx,tsx}',
+    "./hooks/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {},
   },
   plugins: [],
-}
+};
 ```
 
 次に`style/globals.css`を下のように書き換えましょう。
 
 [`style/globals.css`]
 
-```
+```css
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -269,7 +269,7 @@ event - compiled client and server successfully in 806 ms (150 modules)
 
 [`index.tsx`]
 
-```
+```ts
 <div className="bg-[#D083EB]">
 ```
 

@@ -6,7 +6,7 @@
 
 [`Cargo.toml`]
 
-```rs
+```rust
 [package]
 name = "astar_sns_contract"
 version = "0.1.0"
@@ -89,7 +89,7 @@ astar_sns_contract/
 
 [`metadata.rs`]
 
-```rs
+```rust
 use ink_env::AccountId;
 use ink_prelude::string::String;
 use ink_prelude::vec::Vec;
@@ -148,7 +148,7 @@ pub struct Message {
 
 型を宣言するときに`#[derive(Debug, Clone, scale::Encode, scale::Decode, SpreadLayout, StorageLayout, PartialEq)]`というように宣言することでこれらの特徴（rustではtrait）を使用することができます。
 
-```rs
+```rust
 use ink_env::AccountId;
 use ink_prelude::string::String;
 use ink_prelude::vec::Vec;
@@ -171,7 +171,7 @@ num_of_likes: いいねの数
 
 post_id: 投稿に割り振られたID
 
-```rs
+```rust
 #[derive(
 Debug, Clone, scale::Encode, scale::Decode, SpreadLayout, StorageLayout, PartialEq, PackedLayout,
 )] #[cfg_attr(feature = "std", derive(scale_info::TypeInfo))]
@@ -203,7 +203,7 @@ message_list_id_list: フォローしているのユーザーとのメッセー�
 
 post_id_list:　自分が投稿した投稿のidを格納しているリスト
 
-```rs
+```rust
 #[derive(
 Debug, Clone, scale::Encode, scale::Decode, SpreadLayout, StorageLayout, PartialEq, PackedLayout,
 )] #[cfg_attr(feature = "std", derive(scale_info::TypeInfo))]
@@ -227,7 +227,7 @@ sender_id:　送信者のウォレットアドレス
 
 created_time:　メッセージを送信した時間
 
-```rs
+```rust
 #[derive(
 Debug, Clone, scale::Encode, scale::Decode, SpreadLayout, StorageLayout, PartialEq, PackedLayout,
 )] #[cfg_attr(feature = "std", derive(scale_info::TypeInfo))]
@@ -242,7 +242,7 @@ pub created_time: String,
 
 [`post.rs`]
 
-```rs
+```rust
 use crate::metadata::\*;
 use ink_env::AccountId;
 use ink_prelude::string::String;
@@ -403,7 +403,7 @@ impl AstarSnsContract {
 
 4行目はAstarSnsContractというコントラクトを参照できることを示しています。
 
-```rs
+```rust
 use crate::metadata::\*;
 use ink_env::AccountId;
 use ink_prelude::vec::Vec;
@@ -443,7 +443,7 @@ Mapping型に用意してある`insert`というメソッドはx->yというマ�
 
 もしkeyとして設定してあるものが既にある（ここで言えばx->z）状態で、同じkeyを用いて違うvalue（x->y）をinsertした場合は内部の情報が上書きされます。
 
-```rs
+```rust
     pub fn release_post_fn(
         &mut self,
         account_id: AccountId,
@@ -495,7 +495,7 @@ Mapping型に用意してある`insert`というメソッドはx->yというマ�
 
 そうでない場合は投稿リストのうち取得したい部分をnumによって指定してその部分を取得します。例えば10個の要素があって3つだけ取得したいときには最後の3つかその前の3つか...をnumで指定します。
 
-```rs
+```rust
 // 全ての投稿から指定の最新度の投稿を取得
     pub fn get_general_post_fn(&self, num: u128) -> Vec<Post> {
         // 返す投稿のリスト用のリストを生成
@@ -541,7 +541,7 @@ Mapping型に用意してある`insert`というメソッドはx->yというマ�
 
 次の`get_individual_post_fn関数`は`get_general_post関数`とほとんど同じなので解説は省略します
 
-```rs
+```rust
     // 個人の投稿を取得
     pub fn get_individual_post_fn(&self, num: u128, account_id: AccountId) -> Vec<Post> {
         // 返す投稿のリスト用のリストを生成
@@ -582,7 +582,7 @@ Mapping型に用意してある`insert`というメソッドはx->yというマ�
 
 次に`add_likes_fn関数`は指定した投稿にlikeを追加するための関数です。
 
-```rs
+```rust
     // 指定された投稿にいいねを追加
     pub fn add_likes_fn(&mut self, post_id: u128) {
         // 指定された投稿の情を取得
@@ -600,7 +600,7 @@ Mapping型に用意してある`insert`というメソッドはx->yというマ�
 
 これはトークンを配布する時に使用されることになります。
 
-```rs
+```rust
     // 指定されたアカウントの投稿に含まれているいいねの総数を取得する関数
     pub fn get_total_likes_fn(&self, account_id: AccountId) -> u128 {
         // 指定したアカウントに紐づく投稿 id のリストを取得
@@ -626,7 +626,7 @@ Mapping型に用意してある`insert`というメソッドはx->yというマ�
 
 [`lib.rs`]
 
-```rs
+```rust
 #![cfg_attr(not(feature = "std"), no_std)]
 
 mod follow;
@@ -688,7 +688,7 @@ use openbrush::test_utils::accounts;
 
 下の部分にエラーが発生して最後まで消えない方もいるかもしれませんが、wasmファイルの作成などには問題ないので大丈夫です。
 
-```rs
+```rust
     pub struct AstarSnsContract {
         pub profile_map: Mapping<AccountId, Profile>,
         pub post_map: Mapping<u128, Post>,
@@ -704,7 +704,7 @@ use openbrush::test_utils::accounts;
 
 [`follow.rs`]
 
-```rs
+```rust
 use crate::metadata::*;
 use ink_env::AccountId;
 use ink_prelude::vec::Vec;
@@ -821,7 +821,7 @@ impl AstarSnsContract {
 
 また、idが追加された時状態変数`message_list_map_counter`に1加えます。
 
-```rs
+```rust
 // 自分のメッセージリストのIDのリストの長さを取得
         let length: usize = following_user_profile.message_list_id_list.len();
 

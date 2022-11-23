@@ -8,7 +8,7 @@
 
 [`lib.rs`]
 
-```rs
+```rust
 #![cfg_attr(not(feature = "std"), no_std)]
 
 mod FT;
@@ -675,7 +675,7 @@ mod astar_sns_contract {
 
 まずは`test_profile_fn_works関数`です。ここではプロファイルの編集がきちんと行えるかを確認して行きます。
 
-```rs
+```rust
  // プロフィールの作成と設定する関数をテスト
         #[ink::test]
         fn test_profile_fn_works() {
@@ -846,7 +846,7 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 
 [`FT_fn_works`]
 
-```rs
+```rust
 #[ink::test]
         fn FT_fn_works() {
             // コントラクトのインスタンス化
