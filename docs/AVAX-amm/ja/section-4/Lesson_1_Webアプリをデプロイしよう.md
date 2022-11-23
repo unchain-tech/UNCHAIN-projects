@@ -87,3 +87,7 @@ NFTを取得する条件は,以下のようになります。
 本プロジェクトが, あなたがAvalancheやAMMのことを知るお役に立てれば幸いです 🤗
 
 これからのあなたのご活躍を期待しております! 🚀
+
+---
+
+Project Completion Form は[こちら](https://airtable.com/shrf1cCtTx0iQuszX)です。

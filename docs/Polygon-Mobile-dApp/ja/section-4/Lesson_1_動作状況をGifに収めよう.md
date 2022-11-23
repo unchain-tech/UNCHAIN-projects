@@ -97,3 +97,7 @@ NFTを取得する条件は、以下のようになります。
 これは、分散型Mobileアプリケーションがより一般的になる社会の中で、世界を変える重要なスキルです。
 
 これからもweb3への旅をあなたが続けてくれることを願っています 🚀
+
+---
+
+Project Completion Form は[こちら](https://airtable.com/shrf1cCtTx0iQuszX)です。

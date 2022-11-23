@@ -106,3 +106,7 @@ NFTを取得する条件は,以下のようになります。
 このdappプロジェクトが, 現在多くの開発者の注目を集めるAvalancheというプラットフォームを理解する手助けになれば幸いです。
 
 これからもweb3への旅を一緒に楽しみましょう 🚀
+
+---
+
+Project Completion Form は[こちら](https://airtable.com/shrf1cCtTx0iQuszX)です。

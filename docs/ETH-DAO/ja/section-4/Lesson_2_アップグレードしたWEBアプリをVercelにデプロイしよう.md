@@ -123,3 +123,7 @@ NFTを取得する条件は、以下のようになります。
 これらは、分散型の世界を目指すうえで非常に重要なスキルです。
 
 これからもweb3への旅をあなたが続けてくれることを願っています 🚀
+
+---
+
+Project Completion Form は[こちら](https://airtable.com/shrf1cCtTx0iQuszX)です。
