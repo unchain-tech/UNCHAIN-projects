@@ -1,6 +1,6 @@
 {
     "project_id": 502,
-    "title": "AVAX-amm",
+    "title": "AVAX AMM",
     "difficulty": "intermediate",
     "chain": "Avalanche",
     "description": "👉 Solidity によるコントラクトの作成と TypeScript × React による AMM 形式の DeFi サービスを構築します。",
