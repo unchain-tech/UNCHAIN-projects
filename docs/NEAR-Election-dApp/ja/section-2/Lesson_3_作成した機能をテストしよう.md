@@ -530,7 +530,7 @@ near call $NFT_CONTRACT_ID nft_mint '{"metadata": {"title": "Jenny Lind(candidat
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの`#section-2`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#near`で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
@@ -549,7 +549,7 @@ near call $NFT_CONTRACT_ID nft_mint '{"metadata": {"title": "Jenny Lind(candidat
 
 セクション2は終了です。
 
-投票が再開され、mintが成功しているフロントエンドのスクリーンショットを`#near-election-dapp`に投稿してください 😊
+投票が再開され、mintが成功しているフロントエンドのスクリーンショットを`#near`に投稿してください 😊
 
 あなたの成功をコミュニティで祝いましょう 🎉
 

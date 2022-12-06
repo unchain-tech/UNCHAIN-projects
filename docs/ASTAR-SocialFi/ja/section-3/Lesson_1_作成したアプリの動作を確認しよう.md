@@ -134,7 +134,7 @@ NEXT_PUBLIC_UNKNOWN_IMAGE_URL="https://images.unsplash.com/..."
 
 ### 🙋‍♂️ 質問する
 
-わからないことがあれば、Discordの`#astar-socialfi`でsection・Lesson名とともに質問をしてください 👋
+わからないことがあれば、Discordの`#astar-network`でsection・Lesson名とともに質問をしてください 👋
 
 ---
 

@@ -1124,7 +1124,7 @@ export const getFollowerList = async (props: PropsGFEL) => {
 
 ### 🙋‍♂️ 質問する
 
-わからないことがあれば、Discordの`#astar-socialfi`でsection・Lesson名とともに質問をしてください 👋
+わからないことがあれば、Discordの`#astar-network`でsection・Lesson名とともに質問をしてください 👋
 
 ---
 
