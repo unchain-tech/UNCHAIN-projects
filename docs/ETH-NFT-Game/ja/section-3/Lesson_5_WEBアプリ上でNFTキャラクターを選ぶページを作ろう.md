@@ -582,9 +582,9 @@ https://testnets.opensea.io/assets/CONTRACT_ADDRES/TOKEN_ID
 ```javascript
 // index.js
 alert(
-  `NFT キャラクーが Mint されました -- リンクはこちらです: https://testnets.opensea.io/assets/${
+  `NFT キャラクターが Mint されました -- リンクはこちらです: https://testnets.opensea.io/assets/${
     gameContract.address
-  }:${tokenId.toNumber()}?tab=details`
+  }/${tokenId.toNumber()}`
 );
 ```
 
