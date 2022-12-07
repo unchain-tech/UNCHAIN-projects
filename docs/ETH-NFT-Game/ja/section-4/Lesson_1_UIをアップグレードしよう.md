@@ -62,6 +62,12 @@ useEffect(() => {
 	}
 	// ユーザーが保持している NFT の確認が完了したら、ロード状態を false に設定します。
 	setIsLoading(false);
+	};
+	
+	if (currentAccount) {
+      		console.log("CurrentAccount:", currentAccount);
+      		fetchNFTMetadata();
+    	}
 }, [currentAccount]);
 ```
 
