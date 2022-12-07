@@ -1,5 +1,0 @@
-{
-  "docs/**/*.md": [
-    "yarn textlint:check"
-  ]
-}
