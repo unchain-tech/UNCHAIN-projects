@@ -445,7 +445,7 @@ useEffect(() => {
 }, [gameContract]);
 ```
 
-また、`App.js`を開き、`Arena`コンポーネントを下記のよう更新してください。
+また、`App.js`を開き、`Arena`コンポーネントを下記のように更新してください。
 
 - `Arena/index.js`で`Arena`コンポーネントの引数に、`setCharacterNFT`を追加したので、`App.js`にも更新を反映させます。
 
