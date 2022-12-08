@@ -498,7 +498,7 @@ if (gameContract) {
 
 `setCharacterNFT(transformCharacterData(characterNFT));`は、コントラクトに保存されているメタデータをフロントエンドで扱えるオブジェクト形式に変換する処理です。
 
-**これらがすべて完了すると、NFT キャラクターがボスとバトルすることになる`Area`コンポーネントでメタデータが使用できます。**
+**これらがすべて完了すると、NFT キャラクターがボスとバトルすることになる`Arena`コンポーネントでメタデータが使用できます。**
 
 次に、下記のコードを見ていきましょう。
 
@@ -582,9 +582,9 @@ https://testnets.opensea.io/assets/CONTRACT_ADDRES/TOKEN_ID
 ```javascript
 // index.js
 alert(
-  `NFT キャラクーが Mint されました -- リンクはこちらです: https://testnets.opensea.io/assets/${
+  `NFT キャラクターが Mint されました -- リンクはこちらです: https://testnets.opensea.io/assets/${
     gameContract.address
-  }:${tokenId.toNumber()}?tab=details`
+  }/${tokenId.toNumber()}`
 );
 ```
 
