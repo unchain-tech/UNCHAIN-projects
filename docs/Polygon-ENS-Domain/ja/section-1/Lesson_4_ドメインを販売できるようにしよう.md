@@ -126,7 +126,7 @@ _注：**Mumbai などテストネットでは価格を下げてミントしま�
 
 - `string memory _tld` constructorは1回だけ実行されます。これはpublicの`tld`変数を設定する方法です。
 
-`contracts`フォルダーに`libraries`という新しいフォルダーを作成し、`StringUtils.sol`というファイルを作成します。[こちら](https://gist.github.com/AlmostEfficient/669ac250214f30347097a1aeedcdfa12)からコピーしてくださいSolidityの文字列は少し特殊なので、変換するのに関数などが必要です。 この外部ライブラリは文字列をバイトに変換し、ガス効率を向上させます。
+`contracts`フォルダーに`libraries`という新しいフォルダーを作成し、`StringUtils.sol`というファイルを作成します。[こちら](https://gist.github.com/AlmostEfficient/669ac250214f30347097a1aeedcdfa12)からコピーしてください。 Solidityの文字列は少し特殊なので、変換するのに関数などが必要です。 この外部ライブラリは文字列をバイトに変換し、ガス効率を向上させます。
 
 作成したスマートコントラクトは支払いを受ける準備ができています。
 
