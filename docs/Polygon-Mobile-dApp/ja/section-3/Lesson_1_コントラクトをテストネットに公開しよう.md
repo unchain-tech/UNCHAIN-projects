@@ -181,7 +181,7 @@ npx truffle migrate --network matic --reset
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの`#polygon-mobile-dapp`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#polygon`で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
@@ -193,6 +193,6 @@ npx truffle migrate --network matic --reset
 ```
 
 ---
-あなたのコントラクトアドレスのリンクをDiscordの`#polygon-mobile-dapp`に投稿してください!
+あなたのコントラクトアドレスのリンクをDiscordの`#polygon`に投稿してください!
 
 次のセクションに進んで、動作状況をGifに収めるを開始しましょう 🎉

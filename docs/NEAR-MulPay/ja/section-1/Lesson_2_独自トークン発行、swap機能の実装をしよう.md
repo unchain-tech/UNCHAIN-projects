@@ -288,7 +288,7 @@ sendToken.transferFrom(msg.sender, address(this), sendAmount);
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの`#section-1`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#near`で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 

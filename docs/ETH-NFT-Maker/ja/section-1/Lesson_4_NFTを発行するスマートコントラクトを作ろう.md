@@ -584,7 +584,7 @@ https://testnets.opensea.io/ja/assets/rinkeby/0x67cd3f53c20e3a6211458dd5b7465e1f
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの`#eth-nft-maker`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#ethereum`で質問をしてください。
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
@@ -597,6 +597,6 @@ https://testnets.opensea.io/ja/assets/rinkeby/0x67cd3f53c20e3a6211458dd5b7465e1f
 ---
 
 おめでとうございます!　セクション1が終了しました!
-OpenSeaのリンクを`#eth-nft-maker`を貼り付けて、コミュニティにあなたのNFTをシェアしてください 😊
+OpenSeaのリンクを`#ethereum`を貼り付けて、コミュニティにあなたのNFTをシェアしてください 😊
 どんなNFTなのか気になります ✨
 オンラインであなたのNFTを確認したら、次のレッスンに進みましょう 🎉

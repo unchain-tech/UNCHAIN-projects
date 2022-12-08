@@ -251,7 +251,7 @@ TypeError: Cannot read property 'candyMachineAddress' of undefined
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの`#solana-nft-drop`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#solana`で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 

@@ -345,7 +345,7 @@ https://mumbai.polygonscan.com/address/0xF899DeB963208560a7c667FA78376ecaFF684b8
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの`#polygon-generative-nft`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#polygon`で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
@@ -360,7 +360,7 @@ https://mumbai.polygonscan.com/address/0xF899DeB963208560a7c667FA78376ecaFF684b8
 
 おめでとうございます!　セクション3は終了です!
 
-ぜひ、あなたのPolygonscanリンクを`#polygon-generative-nft`に投稿してください 😊
+ぜひ、あなたのPolygonscanリンクを`#polygon`に投稿してください 😊
 
 コミュニティであなたの成功を祝いましょう 🎉
 

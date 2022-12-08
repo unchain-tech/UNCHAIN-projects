@@ -576,7 +576,7 @@ $ cp -r messenger-contract/typechain-types messenger-client/
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は,Discordの`#avax-messenger`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は,Discordの`#avalanche`で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので,エラーレポートには下記の3点を記載してください ✨
 

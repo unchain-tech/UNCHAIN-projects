@@ -96,7 +96,7 @@ Fungible TokenとNon-Fungible Toke（NFT）の違いは、主に下記の2点で
 
 NFTやトークンの概念について理解しておくことは、これからの作業を進める上で重要です。
 
-わからないことがあれば、Discordの`#eth-nft-collection`で質問をしてください 👋
+わからないことがあれば、Discordの`#ethereum`で質問をしてください 👋
 
 ---
 
