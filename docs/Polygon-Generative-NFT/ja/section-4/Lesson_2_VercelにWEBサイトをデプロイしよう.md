@@ -101,7 +101,7 @@ Vercelに関する詳しい説明は、[こちら](https://zenn.dev/lollipop_onl
 
 ![](/public/images/Polygon-Generative-NFT/section-4/4_2_6.png)
 
-ターミナルに向かい、任意のディレクトリに移動し、コピーしたリンクを下記に貼り付け絵、実行しましょう。
+ターミナルに向かい、任意のディレクトリに移動し、コピーしたリンクを下記に貼り付け、実行しましょう。
 
 ```
 git clone コピーしたリンクを貼り付け
