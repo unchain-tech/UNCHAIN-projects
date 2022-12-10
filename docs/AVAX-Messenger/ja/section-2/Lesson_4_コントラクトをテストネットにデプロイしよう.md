@@ -8,10 +8,10 @@
 
 テストネットはメインネットを模しています。
 
-`messenger-contract`ディレクトリへ移動し, `.env`という名前のファイルを作成します。  
+`messenger-contract`ディレクトリへ移動し, `.env`という名前のファイルを作成します。
 💁 ドットを先頭につけたファイルは`ls`などでは非表示になる特殊なファイルです。
 
-`.env`ファイルの中に以下を記入してください。  
+`.env`ファイルの中に以下を記入してください。
 `"YOUR_PRIVATE_KEY"`の部分をあなたのアカウントの秘密鍵と入れ替えてください。
 
 ```
@@ -22,28 +22,27 @@ TEST_ACCOUNT_PRIVATE_KEY="YOUR_PRIVATE_KEY"
 >
 > 1.  お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを`Avalanche FUJI C-Chain`に変更します。
 >
-> ![](/public/images/AVAX-messenger/section-2/2_4_1.png)
+> ![](/public/images/AVAX-Messenger/section-2/2_4_1.png)
 >
 > 2.  それから、`Account details`を選択してください。
 >
-> ![](/public/images/AVAX-messenger/section-2/2_4_2.png)
+> ![](/public/images/AVAX-Messenger/section-2/2_4_2.png)
 >
 > 3.  `Account details`から`Export Private Key`をクリックしてください。
 >
-> ![](/public/images/AVAX-messenger/section-2/2_4_3.png)
+> ![](/public/images/AVAX-Messenger/section-2/2_4_3.png)
 >
-> 4.  MetaMask のパスワードを求められるので、入力したら`Confirm`を押します。  
+> 4.  MetaMask のパスワードを求められるので、入力したら`Confirm`を押します。
 >     あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
 >
-> ![](/public/images/AVAX-messenger/section-2/2_4_4.png)
+> ![](/public/images/AVAX-Messenger/section-2/2_4_4.png)
 
 > - `.env`の`YOUR_PRIVATE_KEY`の部分をここで取得した秘密鍵とを入れ替えます。
 
-⚠️gitignoreファイルに.envが記述されていることを確認して下さい。  
+⚠️gitignoreファイルに.envが記述されていることを確認して下さい。
 秘密鍵は外部に漏れないようにGitHub上に上げません。
 
-> **✍️: スマートコントラクトをデプロイするのに秘密鍵が必要な理由**  
-> **新しくスマートコントラクトをブロックチェーン上にデプロイすること**も,トランザクションの一つです。
+> **✍️: スマートコントラクトをデプロイするのに秘密鍵が必要な理由** > **新しくスマートコントラクトをブロックチェーン上にデプロイすること**も,トランザクションの一つです。
 >
 > トランザクションを行うためには,ブロックチェーンに「ログイン」する必要があります。
 >
@@ -136,8 +135,8 @@ console.log(
 );
 ```
 
-はじめに`ethers.getSigners()`でアカウントのアドレスを取得しています。  
-このスクリプトを実行する際に先ほど`hardhat.config.ts`で設定したネットワークを指定すると, `ethers.getSigners()`の返す初めのアカウントの値はあなたのアカウントのアドレスになります。  
+はじめに`ethers.getSigners()`でアカウントのアドレスを取得しています。
+このスクリプトを実行する際に先ほど`hardhat.config.ts`で設定したネットワークを指定すると, `ethers.getSigners()`の返す初めのアカウントの値はあなたのアカウントのアドレスになります。
 ログが出力されるので後ほど確認しましょう。
 
 またデプロイの処理後もログを出力するようにしています。
@@ -157,7 +156,7 @@ Contract deployed at: 0xf531A6BCF3cD579f5A367cf45ff996dB1FC3beA1
 Contract's fund is: BigNumber { value: "100" }
 ```
 
-`Contract deployed at:`の後に続くアドレスはコントラクトがデプロイされた先のアドレスです。  
+`Contract deployed at:`の後に続くアドレスはコントラクトがデプロイされた先のアドレスです。
 この後の項目で必要になるのでどこかに保存しておいてください。
 
 ブロックチェーンにデプロイすると,世界中の誰でもコントラクトにアクセスできます。

@@ -15,7 +15,7 @@
 - Webアプリケーションからデプロイされたコントラクトを呼び出す
 - Webアプリケーションを介してAVAXを取引する
 
-プロジェクトをレベルアップさせましょう！  
+プロジェクトをレベルアップさせましょう！
 これまでのレッスンで作成したdappを元にあなたのお好きなように機能を追加してみてください 💪 🚀
 
 - CSSや文章を変更したり,画像や動画を自分のWebアプリケーションに乗せてみる
@@ -33,7 +33,7 @@ Vercelに関する詳しい説明は,[こちら](https://zenn.dev/lollipop_onl/a
 
 まず,GitHubの`messenger-client`にあるローカルファイルをGitHubへアップロードしましょう。
 
-まだアップロードをしていない方は, ターミナル上で`messenger-client`に移動して,下記を実行しましょう。  
+まだアップロードをしていない方は, ターミナル上で`messenger-client`に移動して,下記を実行しましょう。
 ⚠️ `.gitignore`ファイル内に`.env`が記載されていることを確認していください。
 
 ```
@@ -48,27 +48,27 @@ Vercelのアカウントを取得したら,下記を実行しましょう。
 
 1\. `Dashboard`へ進んで,`New Project`を選択してください。
 
-![](/public/images/AVAX-messenger/section-4/4_1_1.png)
+![](/public/images/AVAX-Messenger/section-4/4_1_1.png)
 
 2\. `Import Git Repository`で自分のGitHubアカウントを接続したら,`messenger-client(あなたのレポジトリの名前)`を選択し,`Import`してください。
 
-![](/public/images/AVAX-messenger/section-4/4_1_2.png)
+![](/public/images/AVAX-Messenger/section-4/4_1_2.png)
 
 3\. プロジェクトを作成します。
 
-デフォルトの設定で良いはずですが,  
+デフォルトの設定で良いはずですが,
 もし`FRAME WORK PRESET`が`Next.js`になっていない場合は`Next.js`を選択してください。
 
-![](/public/images/AVAX-messenger/section-4/4_1_3.png)
+![](/public/images/AVAX-Messenger/section-4/4_1_3.png)
 
 4\. `Deploy`ボタンをクリックしましょう。
 
 VercelはGitHubと連動しているので,GitHubが更新されるたびに自動でデプロイを行ってくれます。
 
-しばらくしてビルドが完了すると  
+しばらくしてビルドが完了すると
 下記のように, メッセージとホーム画面が出力されます。
 
-![](/public/images/AVAX-messenger/section-4/4_1_4.png)
+![](/public/images/AVAX-Messenger/section-4/4_1_4.png)
 
 ホーム画面の表示部分はリンクになっているので, クリックするとあなたの作成したdappがブラウザで確認できます 🎉
 
@@ -95,7 +95,7 @@ NFTを取得する条件は,以下のようになります。
 
 3. このページの最後にリンクされているProject Completion Formに記入する
 
-4. Discordの`avax-messenger`チャンネルに,あなたのWebサイトをシェアしてください 😉🎉 Discordに投稿する際に,追加実装した機能とその概要も教えていただけると幸いです!
+4. Discordの`AVAX-Messenger`チャンネルに,あなたのWebサイトをシェアしてください 😉🎉 Discordに投稿する際に,追加実装した機能とその概要も教えていただけると幸いです!
 
 プロジェクトを完成させていただいた方には,NFTをお送りします。
 

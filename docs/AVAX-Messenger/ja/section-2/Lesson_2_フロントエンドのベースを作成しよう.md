@@ -1,31 +1,31 @@
 ### 🍽 ページを作ろう
 
-それでは実際にコードを書いてフロントエンドのベースとなるものを作成していきます。  
-先にこのレッスンでどのようなUIを作るのかイメージ図を載せます。  
+それでは実際にコードを書いてフロントエンドのベースとなるものを作成していきます。
+先にこのレッスンでどのようなUIを作るのかイメージ図を載せます。
 手順の中でイメージ図の何番という形で参照することになるのでこちらを参照するようにしてください。
 
 1 \. ホーム画面
 
-![](/public/images/AVAX-messenger/section-2/2_2_2.png)
+![](/public/images/AVAX-Messenger/section-2/2_2_2.png)
 
 2 \. メッセージ送信画面
 
-![](/public/images/AVAX-messenger/section-2/2_2_3.png)
+![](/public/images/AVAX-Messenger/section-2/2_2_3.png)
 
 3 \. メッセージ確認画面
 
-![](/public/images/AVAX-messenger/section-2/2_2_4.png)
+![](/public/images/AVAX-Messenger/section-2/2_2_4.png)
 
-ここでは初期設定で存在すると想定されるファイルを削除・編集することがあります。  
-もし削除するファイルがあなたのフォルダ構成の中に無かった場合は, 無視してください。  
+ここでは初期設定で存在すると想定されるファイルを削除・編集することがあります。
+もし削除するファイルがあなたのフォルダ構成の中に無かった場合は, 無視してください。
 もし編集するファイルがあなたのフォルダ構成の中に無かった場合は, 新たにファイルを作成し編集内容のコードをそのままコピーしてください。
 
 ### 📁 `styles`ディレクトリ
 
-`styles`ディレクトリにはcssのコードが入っています。  
+`styles`ディレクトリにはcssのコードが入っています。
 全てのページに適用されるよう用意された`global.css`と, ホームページ用の`Home.module.css`があります。
 
-`global.css`内に以下のコードを記述してください。  
+`global.css`内に以下のコードを記述してください。
 ※初期設定のままなので編集箇所がない場合があります。
 
 ```css
@@ -128,15 +128,15 @@ messenger-client
 
 ### 📁 `public`ディレクトリ
 
-`Next.js`はルートディレクトリ直下の`public`ディレクトリを静的なリソース（画像やテキストデータなど）の配置場所と認識します。  
-そのためソースコード内で画像のURLを`/image.png`と指定した場合,  
+`Next.js`はルートディレクトリ直下の`public`ディレクトリを静的なリソース（画像やテキストデータなど）の配置場所と認識します。
+そのためソースコード内で画像のURLを`/image.png`と指定した場合,
 `Next.js`は自動的に`public`ディレクトリをルートとした`プロジェクトルート/public/image.png`を参照してくれます。
 
-ディレクトリ内画像を全て削除してください。  
+ディレクトリ内画像を全て削除してください。
 そして新たに画像を追加します。
 
-以下の画像をダウンロードするか, あなたのお好きな画像を`favicon.png`という名前で`public`ディレクトリ内に保存してください。  
-![](/public/images/AVAX-messenger/section-2/2_2_1.png)
+以下の画像をダウンロードするか, あなたのお好きな画像を`favicon.png`という名前で`public`ディレクトリ内に保存してください。
+![](/public/images/AVAX-Messenger/section-2/2_2_1.png)
 
 この画像はあなたのwebアプリケーションのファビコンとなります！ 🙆‍♂️
 
@@ -150,7 +150,7 @@ messenger-client
 
 ### 📁 `hooks`ディレクトリ
 
-`messenger-client`ディレクトリ直下に`hooks`というディレクトリを作成しましょう。  
+`messenger-client`ディレクトリ直下に`hooks`というディレクトリを作成しましょう。
 こちらにはウォレットやコントラクトの状態を扱うようなカスタムフック(独自で作った[フック](https://ja.reactjs.org/docs/hooks-overview.html))を実装したファイルを保存します。
 
 まだ具体的な実装はしませんが, `useMessengerContract.ts`という名前のファイルを作成し, 以下のコードを記述してください。
@@ -168,7 +168,7 @@ export type Message = {
 };
 ```
 
-`Message`という名前の型を定義しています。  
+`Message`という名前の型を定義しています。
 `Message`はフロントエンドでメッセージを扱うためのオブジェクトの型を表しています。
 
 `hooks`に関するフォルダ構成はこのようになります。
@@ -181,17 +181,17 @@ messenger-client
 
 ### 📁 `components`ディレクトリ
 
-`messenger-client`ディレクトリ直下に`components`という名前のディレクトリを作成してください。  
+`messenger-client`ディレクトリ直下に`components`という名前のディレクトリを作成してください。
 こちらにはコンポーネントを実装したファイルを保存していきます。
 
-> 📓 コンポーネントとは  
-> UI（ユーザーインターフェイス）を形成する一つの部品のことです。  
-> コンポーネントはボタンのような小さなものから,ページ全体のような大きなものまであります。  
+> 📓 コンポーネントとは
+> UI（ユーザーインターフェイス）を形成する一つの部品のことです。
+> コンポーネントはボタンのような小さなものから,ページ全体のような大きなものまであります。
 > レゴブロックのようにコンポーネントのブロックで UI を作ることで, 機能の追加・削除などの変更を容易にすることができます。
 
 📁 `card`ディレクトリ
 
-まず`components`ディレクトリ内に`card`というディレクトリを作成し,  
+まず`components`ディレクトリ内に`card`というディレクトリを作成し,
 その中に`MessageCard.module.css`と`MessageCard.tsx`という名前のファイルを作成してください。
 
 `MessageCard.module.css`内に以下のコードを記述してください。
@@ -270,10 +270,10 @@ export default function MessageCard({
 }
 ```
 
-ここでは画像のイメージ図3の, ユーザが自分宛のメッセージを一覧で確認するページの部品を作っています。  
+ここでは画像のイメージ図3の, ユーザが自分宛のメッセージを一覧で確認するページの部品を作っています。
 一つ一つのメッセージの表示にこの`MessageCard`コンポーネントが使用されます。
 
-ファイル内の初めには`Props`という形で`MessageCard`コンポーネントの引数を定義しています。  
+ファイル内の初めには`Props`という形で`MessageCard`コンポーネントの引数を定義しています。
 表示するメッセージの情報とコントラクトの`accept`, `deny`を呼び出すための関数を受け取ることになります。
 
 関数の初めの一行に注目しましょう。
@@ -282,29 +282,29 @@ export default function MessageCard({
 const depositInEther = ethers.utils.formatEther(message.depositInWei);
 ```
 
-ここではメッセージトークン`message.depositInWei`(単位`Wei`)を  
-`ethers`の関数を利用して`depositInEther`(単位`ether`)に変換しています。  
-`depositInEther`はUIで実際に表示する数値になります。  
-solidityでは小数点を扱わないのでトークンの量は`Wei`を使用し, フロントエンドでも`Wei`を基準にメッセージトークンを認識しますが  
+ここではメッセージトークン`message.depositInWei`(単位`Wei`)を
+`ethers`の関数を利用して`depositInEther`(単位`ether`)に変換しています。
+`depositInEther`はUIで実際に表示する数値になります。
+solidityでは小数点を扱わないのでトークンの量は`Wei`を使用し, フロントエンドでも`Wei`を基準にメッセージトークンを認識しますが
 実際にUIでトークンの量を表示する際はわかりやすい`ether`の単位に直したトークン量を使用することにします。
 
-> 📓 TSX とは  
-> ファイル拡張子に typescript の ts ではなく, tsx というものをつけました。  
-> TSX は TypeScript の構文拡張で, 使い慣れた HTML ライクな構文で UI を記述できるようになります。  
-> TSX の良いところは HTML と TypeScript 以外の新しい記号や構文をほとんど学ぶ必要がないことです。  
+> 📓 TSX とは
+> ファイル拡張子に typescript の ts ではなく, tsx というものをつけました。
+> TSX は TypeScript の構文拡張で, 使い慣れた HTML ライクな構文で UI を記述できるようになります。
+> TSX の良いところは HTML と TypeScript 以外の新しい記号や構文をほとんど学ぶ必要がないことです。
 > 実際にコードを書いて覚えていきましょう。
 
-> 📓 `~.module.css`とは  
-> `module.css`を css ファイルの語尾に付けることで, `CSSモジュール`という`Next.js`の仕組みを利用することができます。  
-> `CSSモジュール`はファイル内のクラス名を元にユニークなクラス名を生成してくれます。  
-> 内部で自動的に行ってくれるので私たちがユニークなクラス名を直接使用することがありませんが,  
-> クラス名の衝突を気にする必要がなくなります。  
-> 異なるファイルで同じ CSS クラス名を使用することができます。  
+> 📓 `~.module.css`とは
+> `module.css`を css ファイルの語尾に付けることで, `CSSモジュール`という`Next.js`の仕組みを利用することができます。
+> `CSSモジュール`はファイル内のクラス名を元にユニークなクラス名を生成してくれます。
+> 内部で自動的に行ってくれるので私たちがユニークなクラス名を直接使用することがありませんが,
+> クラス名の衝突を気にする必要がなくなります。
+> 異なるファイルで同じ CSS クラス名を使用することができます。
 > 詳しくは[こちら](https://nextjs.org/docs/basic-features/built-in-css-support)をご覧ください。
 
 📁 `form`ディレクトリ
 
-次に`components`ディレクトリ内に`form`というディレクトリを作成し,  
+次に`components`ディレクトリ内に`form`というディレクトリを作成し,
 その中に`Form.module.css`と`SendMessageForm.tsx`という名前のファイルを作成してください。
 
 `Form.module.css`内に以下のコードを記述してください。
@@ -428,12 +428,12 @@ export default function SendMessageForm({ sendMessage }: Props) {
 }
 ```
 
-ここではイメージ図2の, メッセージ送信フォームUIを構成するコンポーネントを作成しています。  
+ここではイメージ図2の, メッセージ送信フォームUIを構成するコンポーネントを作成しています。
 テキスト, 送り先のアドレス, 添付するトークンの量の入力欄を用意し, `send`ボタンと`sendMessage`関数を連携しています。
 
 📁 `layout`ディレクトリ
 
-次に`components`ディレクトリ内に`layout`というディレクトリを作成し,  
+次に`components`ディレクトリ内に`layout`というディレクトリを作成し,
 その中に`Layout.module.css`と`Layout.tsx`という名前のファイルを作成してください。
 
 `Layout.module.css`内に以下のコードを記述してください。
@@ -499,18 +499,18 @@ export default function Layout({ children, home }: Props) {
 }
 ```
 
-ここでは全ページで使用するレイアウトのコンポーネントを記述しています。  
+ここでは全ページで使用するレイアウトのコンポーネントを記述しています。
 `head`情報の用意と, `home`の指定がない場合は`← Back to home`を表示してホームページ（ルート）へリンクするようにしています。
 
-> 📓 `Head`タグ  
-> `Next.js`の機能です。  
-> `head`タグの代わりに`Head`タグを使うことで`<head>`に要素を追加することができます。  
+> 📓 `Head`タグ
+> `Next.js`の機能です。
+> `head`タグの代わりに`Head`タグを使うことで`<head>`に要素を追加することができます。
 > 詳しくは[こちら](https://nextjs-ja-translation-docs.vercel.app/docs/api-reference/next/head)をご覧ください。
 
-> 📓 `Link`タグ  
-> `Next.js`の機能です。  
-> `a`タグの代わりに`Link`タグを使うとページ遷移の際に再ロードではなく, クライアントサイドで遷移が起こるのでより早くコンテンツを切り替えられます。  
-> ⚠️ `className`などの属性を追加する場合は`a`タグを使用して下さい。  
+> 📓 `Link`タグ
+> `Next.js`の機能です。
+> `a`タグの代わりに`Link`タグを使うとページ遷移の際に再ロードではなく, クライアントサイドで遷移が起こるのでより早くコンテンツを切り替えられます。
+> ⚠️ `className`などの属性を追加する場合は`a`タグを使用して下さい。
 > 詳しくは[こちら](https://nextjs-ja-translation-docs.vercel.app/docs/api-reference/next/link)をご覧ください。
 >
 > この他にも自動で画像の最適化を施してくれる`Image`タグなどいくつか機能が備わっているので,上記リンク内の他の API 機能も覗いてみるのも良いかもしれません 🙆‍♂️
@@ -535,15 +535,15 @@ messenger-client
 
 最後に`messenger-client`ディレクトリ直下の`pages`ディレクトリを編集していきます。
 
-Next.jsでは,pagesディレクトリのファイルからエクスポートされたコンポーネントがページとなります。  
-ページは,ファイル名からルートと関連付けられます。  
-たとえば`pages/index.js`は`/`ルートに関連付けられます。  
-`pages/message/SendMessagePage.tsx`は`/message/SendMessagePage`ルートに関連付けられます。  
+Next.jsでは,pagesディレクトリのファイルからエクスポートされたコンポーネントがページとなります。
+ページは,ファイル名からルートと関連付けられます。
+たとえば`pages/index.js`は`/`ルートに関連付けられます。
+`pages/message/SendMessagePage.tsx`は`/message/SendMessagePage`ルートに関連付けられます。
 まず初めに`api`ディレクトリは今回使用しないのでディレクトリごと削除してください。
 
 📁 `message`ディレクトリ
 
-次に`pages`ディレクトリ内に`message`というディレクトリを作成し,  
+次に`pages`ディレクトリ内に`message`というディレクトリを作成し,
 その中に`SendMessagePage.tsx`と`ConfirmMessagePage.tsx`という名前のファイルを作成してください。
 
 `SendMessagePage.tsx`内に以下のコードを記述してください。
@@ -567,8 +567,8 @@ export default function SendMessagePage() {
 }
 ```
 
-イメージ図2のメッセージ送信画面全体を構成しています。  
-これまでで作成した`Layout`コンポーネントと`SendMessageForm`コンポーネントを使用しています。  
+イメージ図2のメッセージ送信画面全体を構成しています。
+これまでで作成した`Layout`コンポーネントと`SendMessageForm`コンポーネントを使用しています。
 現段階では`SendMessageForm`に渡す関数は処理が空なので, `SendMessageForm`内で`send`ボタンを押しても何も起きません。
 
 `ConfirmMessagePage.tsx`内に以下のコードを記述してください。
@@ -608,20 +608,20 @@ export default function ConfirmMessagePage() {
 }
 ```
 
-イメージ図3のメッセージ確認画面全体を構成しています。  
-コンポーネントの初めに`ownMessages`というメッセージデータを持った配列を作成し,  
+イメージ図3のメッセージ確認画面全体を構成しています。
+コンポーネントの初めに`ownMessages`というメッセージデータを持った配列を作成し,
 コンポーネントの返り値の中で`ownMessages`に`map`メソッドを使用していることに注目してください。
 
-本来`ownMessages`はスマートコントラクトから取得したデータを格納する変数ですが,  
+本来`ownMessages`はスマートコントラクトから取得したデータを格納する変数ですが,
 現時点ではスマートコントラクトと連携していないので疑似的に`message`オブジェクトを使って作成しています。
 
-`ownMessages.map()`によって一つ一つの要素に対して`MessageCard`コンポーネントを適用させた新たな配列を返却しています。  
-`ownMessages`には要素を2つ用意したので, 2つの`MessageCard`コンポーネントの表示がイメージ図3では確認できます。  
+`ownMessages.map()`によって一つ一つの要素に対して`MessageCard`コンポーネントを適用させた新たな配列を返却しています。
+`ownMessages`には要素を2つ用意したので, 2つの`MessageCard`コンポーネントの表示がイメージ図3では確認できます。
 なお引数で渡す関数はまだ処理が空です。
 
 最後に`pages`ディレクトリ内にある`_app.tsx`と`index.tsx`を編集します。
 
-`_app.tsx`内に以下のコードを記述してください。  
+`_app.tsx`内に以下のコードを記述してください。
 ※初期設定のままなので編集箇所がない場合があります。
 
 ```tsx
@@ -635,8 +635,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 export default MyApp;
 ```
 
-`_app.tsx`ファイルは標準で, 全てのページの親コンポーネントとなります。  
-今回は`globals.css`の利用のみ行いますが,  
+`_app.tsx`ファイルは標準で, 全てのページの親コンポーネントとなります。
+今回は`globals.css`の利用のみ行いますが,
 全てのページで使用したい`context`やレイアウトがある場合に`_app.tsx`ファイル内で使用すると便利です。
 
 `index.tsx`内に以下のコードを記述してください。
@@ -675,7 +675,7 @@ const Home: NextPage = () => {
 export default Home;
 ```
 
-イメージ図1のホームページ全体を構成します。  
+イメージ図1のホームページ全体を構成します。
 ページ内に2つの`Link`を用意していて, それぞれ先ほど作成した`SendMessagePage`, `ConfirmMessagePage`とリンクしています。
 
 `pages`に関するフォルダ構成はこのようになります。
@@ -696,15 +696,15 @@ messenger-client
 $ npm run dev
 ```
 
-そしてブラウザで`http://localhost:3000 `へアクセスしてください。  
+そしてブラウザで`http://localhost:3000 `へアクセスしてください。
 イメージ図通りの画面が表示されれば成功です！
 
 ### 🌔 参考リンク
 
 > [こちら](https://github.com/unchain-dev/avalanche_messenger_dapp)に本プロジェクトの完成形のレポジトリがあります。
 >
-> コードがうまく動かない場合は参考にしてみてください。  
-> `messenger-contract`はリンク先のレポジトリ内の`package/contract`を。  
+> コードがうまく動かない場合は参考にしてみてください。
+> `messenger-contract`はリンク先のレポジトリ内の`package/contract`を。
 > `messenger-client`はリンク先のレポジトリ内の`package/client`を参照してください。
 
 ### 🙋‍♂️ 質問する
@@ -722,6 +722,6 @@ $ npm run dev
 
 ---
 
-フロントエンドのベースとなるコードが出来ました！  
-本レッスンでは参照するコードの量が多かったですね。 お疲れ様でした 🥰  
+フロントエンドのベースとなるコードが出来ました！
+本レッスンでは参照するコードの量が多かったですね。 お疲れ様でした 🥰
 次のレッスンではユーザのウォレットとフロントエンドを連携する作業に入ります！

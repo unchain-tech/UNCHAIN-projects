@@ -10,7 +10,7 @@ Vercelに関する詳しい説明は,[こちら](https://zenn.dev/lollipop_onl/a
 
 まず,GitHubの`client`にあるローカルファイルをGitHubへアップロードしましょう。
 
-まだアップロードをしていない方は, ターミナル上で`client`に移動して,下記を実行しましょう。  
+まだアップロードをしていない方は, ターミナル上で`client`に移動して,下記を実行しましょう。
 ⚠️ `.gitignore`ファイル内に`.env`が記載されていることを確認していください。
 
 ```
@@ -25,27 +25,27 @@ Vercelのアカウントを取得したら,下記を実行しましょう。
 
 1\. `Dashboard`へ進んで, `New Project`を選択してください。
 
-![](/public/images/AVAX-amm/section-4/4_1_1.png)
+![](/public/images/AVAX-AMM/section-4/4_1_1.png)
 
 2\. `Import Git Repository`で自分のGitHubアカウントを接続したら, `client(あなたのレポジトリの名前)`を選択し`Import`してください。
 
-![](/public/images/AVAX-amm/section-4/4_1_2.png)
+![](/public/images/AVAX-AMM/section-4/4_1_2.png)
 
 3\. プロジェクトを作成します。
 
-デフォルトの設定で良いはずですが,  
+デフォルトの設定で良いはずですが,
 もし`FRAME WORK PRESET`が`Next.js`になっていない場合は`Next.js`を選択してください。
 
-![](/public/images/AVAX-amm/section-4/4_1_3.png)
+![](/public/images/AVAX-AMM/section-4/4_1_3.png)
 
 4\. `Deploy`ボタンをクリックしましょう。
 
 VercelはGitHubと連動しているので,GitHubが更新されるたびに自動でデプロイを行ってくれます。
 
-しばらくしてビルドが完了すると  
+しばらくしてビルドが完了すると
 メッセージと, 下記のようにホーム画面が出力されます。
 
-![](/public/images/AVAX-amm/section-4/4_1_4.png)
+![](/public/images/AVAX-AMM/section-4/4_1_4.png)
 
 ホーム画面の表示部分はリンクになっているので, クリックするとあなたの作成したdappがブラウザで確認できます 🎉
 

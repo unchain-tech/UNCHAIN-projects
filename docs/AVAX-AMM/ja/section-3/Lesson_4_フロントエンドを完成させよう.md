@@ -4,7 +4,7 @@
 
 このレッスンでは残りのコンポーネントを実装してフロントエンドを完成させましょう。
 
-各コンポーネント作成ごとにUIを確認していくので,  
+各コンポーネント作成ごとにUIを確認していくので,
 `client`ディレクトリ直下で以下のコマンドを実行して, webサイトを立ち上げておくと楽かもしれません。
 
 ```
@@ -15,7 +15,7 @@ $ npm run dev
 
 📁 `SelectTab`ディレクトリ
 
-`components`ディレクトリ内に`SelectTab`というディレクトリを作成し,  
+`components`ディレクトリ内に`SelectTab`というディレクトリを作成し,
 その中に`SelectTab.module.css`という名前のファイルを作成してください。
 
 `SelectTab.module.css`内に以下のコードを記述してください。
@@ -224,12 +224,12 @@ export default function Container({ currentAccount }: Props) {
 
 `Faucet`タブをクリックすると以下のような表示がされます。
 
-![](/public/images/AVAX-amm/section-3/3_4_1.png)
+![](/public/images/AVAX-AMM/section-3/3_4_1.png)
 
-入力欄に10と入力し, `Fund`をクリックします。  
+入力欄に10と入力し, `Fund`をクリックします。
 トランザクションに署名し, しばらく待つと（ポップアップが表示されokを押した後）右側の`Your Details`のUSDCの部分が10増えているはずです。
 
-![](/public/images/AVAX-amm/section-3/3_4_2.png)
+![](/public/images/AVAX-AMM/section-3/3_4_2.png)
 
 `Change`ボタンをクリックするとUSDC -> JOEへ変更されるため, JOEに関しても同じようにfaucetを利用することができます。
 
@@ -280,10 +280,10 @@ async function onClickFund() {
 }
 ```
 
-- `onChangeToken`: `Change`ボタンをクリックされた際に`currentTokenIndex`を変更します。  
+- `onChangeToken`: `Change`ボタンをクリックされた際に`currentTokenIndex`を変更します。
   これによりUSDCとJOEの切り替えをします。
 - `onChangeAmountOfFunds`: ユーザの入力値を`amountOfFunds`にセットします。
-- `onClickFund`: `Fund`ボタンをクリックされた際に`currentTokenIndex`のトークンの`faucet`関数を呼び出します。  
+- `onClickFund`: `Fund`ボタンをクリックされた際に`currentTokenIndex`のトークンの`faucet`関数を呼び出します。
   このコンポーエントの引数で渡されている`updateDetails()`を実行することでdetailsを更新します。
 
 🦜 Provide
@@ -509,7 +509,7 @@ export default function Container({ currentAccount }: Props) {
 
 `Provide`タブをクリックすると以下のような表示がされます。
 
-![](/public/images/AVAX-amm/section-3/3_4_3.png)
+![](/public/images/AVAX-AMM/section-3/3_4_3.png)
 
 入力欄にそれぞれ100と入力し, `Provide`をクリックします。
 
@@ -519,13 +519,13 @@ provideの実行では以下のトランザクションへの署名が必要で�
 - JOEの`approve`
 - AMMの`provide`
 
-まず初めにMetamaskの署名画面が2度続けて表示されます。  
-それぞれに署名をし, しばらく待つと最後に`provide`の署名について求められるので署名をします。  
+まず初めにMetamaskの署名画面が2度続けて表示されます。
+それぞれに署名をし, しばらく待つと最後に`provide`の署名について求められるので署名をします。
 🙌 こちらのUI改善できる方がいらっしゃればUNCHAINにて共有して頂けると大変助かります！
 
 しばらく待つと（ポップアップが表示されokを押した後）右側の`Your Details`が更新されます！
 
-![](/public/images/AVAX-amm/section-3/3_4_4.png)
+![](/public/images/AVAX-AMM/section-3/3_4_4.png)
 
 それでは`Provide.tsx`の中身を見ましょう。
 
@@ -537,7 +537,7 @@ const [amountOfToken1, setAmountOfToken1] = useState(""); // ユーザが指定�
 const [activePool, setActivePool] = useState(true); // プールに流動性があるのかをフラグで保持します。
 ```
 
-次の2つの関数は, ユーザがどちらか一方（USDC or JOE）の入力欄に数値を入力した際に, もう片方に必要なトークンの量を表示するために必要です。  
+次の2つの関数は, ユーザがどちらか一方（USDC or JOE）の入力欄に数値を入力した際に, もう片方に必要なトークンの量を表示するために必要です。
 ※ 先ほどの挙動確認では最初の流動性提供であったためこの機能は確認できませんでした。もう1度`Provide`タブにて入力欄に数値を入力すると確認できるはずです！
 
 ```ts
@@ -574,10 +574,10 @@ const onChangeAmount = (
 };
 ```
 
-`getProvideEstimate`は内部で, ammの`getEquivalentToken`を引数で指定されたトークンとその量を併せて呼び出しています。  
+`getProvideEstimate`は内部で, ammの`getEquivalentToken`を引数で指定されたトークンとその量を併せて呼び出しています。
 その返り値（指定したトークンと同価値のペアのトークンの量）を`setPairTokenAmount`によりセットしています。
 
-`onChangeAmount`はユーザが入力欄に数値を入力した際に動く関数です。  
+`onChangeAmount`はユーザが入力欄に数値を入力した際に動く関数です。
 目的は入力されたトークンの量の状態変数の更新と, `getProvideEstimate`を呼び出すことにより同価値のペアのトークンの量の状態変数を更新することです。
 
 続く`onClickProvide`関数はammの　`provide`を呼び出す関数ですが, ポイントは`provide`を実行する前に各トークンの`approve`を呼び出している点です。
@@ -798,9 +798,9 @@ export default function Container({ currentAccount }: Props) {
 
 `Swap`タブをクリックすると以下のような表示がされます。
 
-![](/public/images/AVAX-amm/section-3/3_4_5.png)
+![](/public/images/AVAX-AMM/section-3/3_4_5.png)
 
-USDC入力欄に50と入力すると, swapにより受けることができるJOEの量が表示されます。  
+USDC入力欄に50と入力すると, swapにより受けることができるJOEの量が表示されます。
 `Swap`をクリックします。
 
 swapの実行では以下のトランザクションへの署名が必要です。
@@ -812,11 +812,11 @@ swapの実行では以下のトランザクションへの署名が必要です�
 
 ここでは以下の図のようなことを行っています。
 
-![](/public/images/AVAX-amm/section-3/swap.drawio.svg)
+![](/public/images/AVAX-AMM/section-3/swap.drawio.svg)
 
 しばらく待つと（ポップアップが表示されokを押した後）右側の`Your Details`が更新されます！
 
-![](/public/images/AVAX-amm/section-3/3_4_6.png)
+![](/public/images/AVAX-AMM/section-3/3_4_6.png)
 
 それでは`Swap.tsx`の中身を見ましょう。
 
@@ -832,7 +832,7 @@ const [amountIn, setAmountIn] = useState("");
 const [amountOut, setAmountOut] = useState("");
 ```
 
-`TokenIn`と`TokenOut`はユーザの操作によって中身に入るトークンオブジェクトが変化します。  
+`TokenIn`と`TokenOut`はユーザの操作によって中身に入るトークンオブジェクトが変化します。
 UIのSwapタブで, 真ん中にある上下矢印のアイコンをクリックするとUSDCとJOEが切り替わるのは, この`TokenIn`/`TokenOut`の中身を入れ替えているためです。
 
 以下の`useEffect`で初期値を与え, `rev`関数により中身を入れ替えています。
@@ -1094,14 +1094,14 @@ export default function Container({ currentAccount }: Props) {
 
 `Withdraw`タブをクリックすると以下のような表示がされます。
 
-![](/public/images/AVAX-amm/section-3/3_4_7.png)
+![](/public/images/AVAX-AMM/section-3/3_4_7.png)
 
-`Max`ボタンをクリックするとユーザの保有するシェアが入力値となり, 引き出すことのできるトークンの量がそれぞれ下に表示されます。  
+`Max`ボタンをクリックするとユーザの保有するシェアが入力値となり, 引き出すことのできるトークンの量がそれぞれ下に表示されます。
 `Withdraw`をクリックします。
 
 トランザクションに署名し, しばらく待つと（ポップアップが表示されokを押した後）右側の`Your Details`が更新されます！
 
-![](/public/images/AVAX-amm/section-3/3_4_8.png)
+![](/public/images/AVAX-AMM/section-3/3_4_8.png)
 
 今回は1つのアカウントで挙動を確かめているためMaxのシェアでトークンを引き出すとプールは空になり, ユーザの保有するトークンの量が元々保有していた量に戻ります。
 
@@ -1117,8 +1117,8 @@ export default function Container({ currentAccount }: Props) {
 
 > [こちら](https://github.com/unchain-dev/avalanche-amm-dapp)に本プロジェクトの完成形のレポジトリがあります。
 >
-> コードがうまく動かない場合は参考にしてみてください。  
-> `contract`はリンク先のレポジトリ内の`package/contract`を。  
+> コードがうまく動かない場合は参考にしてみてください。
+> `contract`はリンク先のレポジトリ内の`package/contract`を。
 > `client`はリンク先のレポジトリ内の`package/client`を参照してください。
 
 ### 🙋‍♂️ 質問する
@@ -1136,7 +1136,7 @@ export default function Container({ currentAccount }: Props) {
 
 ---
 
-おめでとうございます!  
+おめでとうございます!
 セクション3が終了しました!
 
 次のセクションであなたのwebアプリをデプロイしましょう 🛫

@@ -6,7 +6,7 @@
 
 - ユーザは2つのトークンをコントラクトに預けることができます。
 
-- 預けるトークンはお互い同価値の量を預てもらうというルールを設けます。  
+- 預けるトークンはお互い同価値の量を預てもらうというルールを設けます。
   例) プールにトークンXとYが1:2の割合で存在する場合, トークンXを10預ける場合はもうトークンYは20必要なことになります。
 
 - コントラクト内では, ユーザが預けたトークンの量が全体のどれくらいの割合であるか（シェア）を数値として保持します。
@@ -102,16 +102,16 @@ contract AMM {
 
 トークンXとYに関してプールにある総量をそれぞれx, y, 流動性提供によりプールに増える量をそれぞれx', y'で表すとすると次の式が成り立ちます。
 
-![](/public/images/AVAX-amm/section-1/1_3_2.png)
+![](/public/images/AVAX-AMM/section-1/1_3_2.png)
 
 上記のような比の関係において, 以下のように式を解いてy'を求めることができます。
 
-![](/public/images/AVAX-amm/section-1/1_3_3.png)
+![](/public/images/AVAX-AMM/section-1/1_3_3.png)
 
-この計算を先ほど実装した関数内では行っています。  
+この計算を先ほど実装した関数内では行っています。
 引数で渡されたトークンとその量から, ペアのトークンとその同価値の量（返り値）を求めています。
 
-次に実際に流動性を提供する関数を実装します。  
+次に実際に流動性を提供する関数を実装します。
 コントラクトの最後の行に以下の関数を追加してください。
 
 ```solidity
@@ -157,10 +157,10 @@ contract AMM {
     }
 ```
 
-引数には預けるトークンコントラクトとその量を受け取ります。  
+引数には預けるトークンコントラクトとその量を受け取ります。
 modifierやrequireを使って各値が正常か確認しています。
 
-預けられたトークンのシェアを求め, `newShare`に格納します。  
+預けられたトークンのシェアを求め, `newShare`に格納します。
 ここでは条件分岐があります。
 
 ```solidity
@@ -181,10 +181,10 @@ if (totalShare == 0) {
 
 `totalShare == 0`の時, つまりプールにまだトークンが存在しない場合は, シェアの初期値を100とします。
 
-`totalShare != 0`の場合は, それぞれのトークンに関して, 預けられたトークンの全体のトークンに対するシェアを求めます。  
+`totalShare != 0`の場合は, それぞれのトークンに関して, 預けられたトークンの全体のトークンに対するシェアを求めます。
 計算式は以下を基にしています。
 
-![](/public/images/AVAX-amm/section-1/1_3_4.png)
+![](/public/images/AVAX-AMM/section-1/1_3_4.png)
 
 各トークンは同価値の量だけ渡されているはずなので, それぞれのシェアも同じになるはずです。
 
@@ -231,7 +231,7 @@ share[msg.sender] += newshare;
 ERC20TokenContract.approve(移動を実行するアカウントまたはコントラクトのアドレス, 移動するトークンの量);
 ```
 
-例えば, アカウントAがTokenXを所有していて, アカウントBがAの持つTokenXを30だけ移動する許可を与えたいとします。  
+例えば, アカウントAがTokenXを所有していて, アカウントBがAの持つTokenXを30だけ移動する許可を与えたいとします。
 そのためには, AはこのようにしてTokenXの`approve`を呼び出します。
 
 ```
@@ -244,16 +244,16 @@ TokenX.approve(Bのアドレス, 30);
 TokenX.transferFrom(Aのアドレス, Bのアドレス, 30);
 ```
 
-この`approve`, `transferFrom`の一連の流れを経てBはAの持つトークンを自身へ移動することができました。  
+この`approve`, `transferFrom`の一連の流れを経てBはAの持つトークンを自身へ移動することができました。
 `approve`なしに`transferFrom`が使えてしまうと, Bは好き勝手にAの持つトークンを移動できてしまうのでトークンの機能として成り立ちません。
 
-`AMMコントラクト`の`provide`関数内では`transferFrom`を使用していますが, これは流動性提供者が`provide`を呼び出す前に  
-各トークンの`approve`の実行を済ませていることが前提です。  
+`AMMコントラクト`の`provide`関数内では`transferFrom`を使用していますが, これは流動性提供者が`provide`を呼び出す前に
+各トークンの`approve`の実行を済ませていることが前提です。
 `approve`が行われていない場合は`transferFrom`の呼び出しは失敗します。
 
 📓 `approve`/`transferFrom`を使う理由
 
-上記の話は, トークンを直接`AMMコントラクト`へ送信(`transfer`を使用)してから, `provide`を呼び出すという流れでも成立しそうですが  
+上記の話は, トークンを直接`AMMコントラクト`へ送信(`transfer`を使用)してから, `provide`を呼び出すという流れでも成立しそうですが
 なぜ`approve`/`transferFrom`を使用するのかについても考えてみます。
 
 トークンを直接`AMMコントラクト`へ送信してから`provide`を呼び出す場合は以下のような流れになります。
@@ -281,7 +281,7 @@ TokenX.transferFrom(Aのアドレス, Bのアドレス, 30);
     - AMMは流動性提供者からトークンを自身へ移動
     - シェアなどの状態変数を変更する
 
-後に実装するswapの際にも, 同じような理由で  
+後に実装するswapの際にも, 同じような理由で
 トークンの送受信とAMMコントラクト内での処理（レートの計算など）を同じトランザクションで行いたいので`approve`/`transferFrom`を使用します。
 
 ### 🧪 テストを追加しましょう
@@ -352,7 +352,7 @@ await amm.provide(
 
 最後に`provide`後の各残高の確認をしています。
 
-例えば以下の部分では, ownerのtoken0の残高が  
+例えば以下の部分では, ownerのtoken0の残高が
 `provide`実行前の残高(`ownerBalance0Before`)から　`provide`したtoken0の量(`amountProvide0`)だけ減っていることを確認しています。
 
 ```ts
@@ -440,12 +440,12 @@ describe("Deploy with liquidity", function () {
 });
 ```
 
-プールにトークンが存在する状態のAMMをテスト内では流用したいため,  
-`deployContractWithLiquidity`にて, 各コントラクトのデプロイからammのプールにトークンが存在する状態までを関数にしています。  
-仕組みは先ほど行った`provide`と同じですが, ownerに加えotherAccountも流動性を提供しています。  
+プールにトークンが存在する状態のAMMをテスト内では流用したいため,
+`deployContractWithLiquidity`にて, 各コントラクトのデプロイからammのプールにトークンが存在する状態までを関数にしています。
+仕組みは先ほど行った`provide`と同じですが, ownerに加えotherAccountも流動性を提供しています。
 各アカウントが提供したトークンの量は関数の返り値に含めています。
 
-その下に続く`Deploy with liquidity`のテストでは,  
+その下に続く`Deploy with liquidity`のテストでは,
 `deployContractWithLiquidity`を実行後のammコントラクト内状態変数の初期値を確認しています。
 
 ---
@@ -503,14 +503,14 @@ $ npx hardhat test
 
 以下のような表示がされたらテスト成功です！
 
-![](/public/images/AVAX-amm/section-1/1_3_1.png)
+![](/public/images/AVAX-AMM/section-1/1_3_1.png)
 
 ### 🌔 参考リンク
 
 > [こちら](https://github.com/unchain-dev/avalanche-amm-dapp)に本プロジェクトの完成形のレポジトリがあります。
 >
-> コードがうまく動かない場合は参考にしてみてください。  
-> `contract`はリンク先のレポジトリ内の`package/contract`を。  
+> コードがうまく動かない場合は参考にしてみてください。
+> `contract`はリンク先のレポジトリ内の`package/contract`を。
 > `client`はリンク先のレポジトリ内の`package/client`を参照してください。
 
 ### 🙋‍♂️ 質問する

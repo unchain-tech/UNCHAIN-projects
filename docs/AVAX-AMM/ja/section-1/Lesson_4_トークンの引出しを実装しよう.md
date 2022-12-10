@@ -1,6 +1,6 @@
 ### 🔥 トークンの引き出し機能を実装しましょう
 
-前回のレッスンではトークンの提供機能を実装しましたが,  
+前回のレッスンではトークンの提供機能を実装しましたが,
 このレッスンでは流動性の提供者が預けたトークンを引き出す機能を実装します。
 
 ユーザは自身のシェアの分だけプールに預けたトークンを引き出すことができます。
@@ -48,12 +48,12 @@
 
 シェアの総量(`totalShare`)に対する指定されたシェア(`share`)の割合は
 
-![](/public/images/AVAX-amm/section-1/1_4_2.png)
+![](/public/images/AVAX-AMM/section-1/1_4_2.png)
 
-で表されるので,  
+で表されるので,
 シェアの分に応じたトークンの量は
 
-![](/public/images/AVAX-amm/section-1/1_4_3.png)
+![](/public/images/AVAX-AMM/section-1/1_4_3.png)
 
 で算出することができます。
 
@@ -67,7 +67,7 @@
 
 ### 🧪 テストを追加しましょう
 
-それでは追加した機能に対してテストを書いていきます。  
+それでは追加した機能に対してテストを書いていきます。
 `test/AMM.ts`内のテストの最後の行に以下のコードを追加してください。
 
 ```ts
@@ -95,10 +95,10 @@ describe("getWithdrawEstimate", function () {
 });
 ```
 
-`getWithdrawEstimate`テストではotherAccountのシェアを引数に指定した場合の  
+`getWithdrawEstimate`テストではotherAccountのシェアを引数に指定した場合の
 `getWithdrawEstimate`関数の返り値をテストしています。
 
-otherAccountは`amountOtherProvided0`と`amountOtherProvided1`だけそれぞれプールに預けているので, シェアの分だけ引き出せる量を計算すると  
+otherAccountは`amountOtherProvided0`と`amountOtherProvided1`だけそれぞれプールに預けているので, シェアの分だけ引き出せる量を計算すると
 預けている量と同じ量が返ってくるはずです。
 
 続いてその下に以下のテストを追加しましょう。
@@ -170,10 +170,10 @@ describe("withdraw", function () {
 });
 ```
 
-`Token should be moved`テストでは, `withdraw`関数を実行する前後でトークンが正しく移動しているかを確認しています。  
+`Token should be moved`テストでは, `withdraw`関数を実行する前後でトークンが正しく移動しているかを確認しています。
 ロジックは`provide`に関するテストで行ったトークンの移動の確認と同じです。
 
-続く`Should set the right number of amm details`テストでは, otherAccountが自身のシェアの分トークンを引き出した場合に,  
+続く`Should set the right number of amm details`テストでは, otherAccountが自身のシェアの分トークンを引き出した場合に,
 AMMコントラクトの状態変数が正しく変更されているかを確認しています。
 
 ### ⭐ テストを実行しましょう
@@ -188,14 +188,14 @@ $ npx hardhat test
 
 以下のような表示がされたらテスト成功です！
 
-![](/public/images/AVAX-amm/section-1/1_4_1.png)
+![](/public/images/AVAX-AMM/section-1/1_4_1.png)
 
 ### 🌔 参考リンク
 
 > [こちら](https://github.com/unchain-dev/avalanche-amm-dapp)に本プロジェクトの完成形のレポジトリがあります。
 >
-> コードがうまく動かない場合は参考にしてみてください。  
-> `contract`はリンク先のレポジトリ内の`package/contract`を。  
+> コードがうまく動かない場合は参考にしてみてください。
+> `contract`はリンク先のレポジトリ内の`package/contract`を。
 > `client`はリンク先のレポジトリ内の`package/client`を参照してください。
 
 ### 🙋‍♂️ 質問する
@@ -213,7 +213,7 @@ $ npx hardhat test
 
 ---
 
-おめでとうございます!  
+おめでとうございます!
 セクション1が終了しました!
 
 次のセクションではAMMコントラクトにswap機能を実装していきます 🏄‍♂️

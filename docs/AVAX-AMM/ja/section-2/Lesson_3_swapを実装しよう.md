@@ -80,12 +80,12 @@
     }
 ```
 
-`swap`関数はシンプルで, `getSwapEstimateOut`によりユーザに送信するトークンの量を取得したら,  
+`swap`関数はシンプルで, `getSwapEstimateOut`によりユーザに送信するトークンの量を取得したら,
 `_inToken`をユーザからコントラクトへ移動させ`_outToken`をコントラクトからユーザへ送信します。
 
 ### 🧪 テストを追加しましょう
 
-それでは追加した機能に対してテストを書いていきます。  
+それでは追加した機能に対してテストを書いていきます。
 `test/AMM.ts`内のテストの最後の行に以下のコードを追加してください。
 
 ```ts
@@ -149,7 +149,7 @@ describe("getSwapEstimateIn", function () {
 });
 ```
 
-`getSwapEstimateOut`, `getSwapEstimateIn`テストは共に先ほど実装した  
+`getSwapEstimateOut`, `getSwapEstimateIn`テストは共に先ほど実装した
 getSwapEstimateOut/getSwapEstimateInが正しく値を返しているかをテスト側でも計算することで確かめています。
 
 また, `getSwapEstimateIn`テストでは`getSwapEstimateIn`を呼び出す際に指定するトークンの量がプール内の総量を超えていた場合にトランザクションがキャンセルされることを確かめています。
@@ -239,14 +239,14 @@ $ npx hardhat test
 
 以下のような表示がされたらテスト成功です！
 
-![](/public/images/AVAX-amm/section-2/2_1_4.png)
+![](/public/images/AVAX-AMM/section-2/2_1_4.png)
 
 ### 🌔 参考リンク
 
 > [こちら](https://github.com/unchain-dev/avalanche-amm-dapp)に本プロジェクトの完成形のレポジトリがあります。
 >
-> コードがうまく動かない場合は参考にしてみてください。  
-> `contract`はリンク先のレポジトリ内の`package/contract`を。  
+> コードがうまく動かない場合は参考にしてみてください。
+> `contract`はリンク先のレポジトリ内の`package/contract`を。
 > `client`はリンク先のレポジトリ内の`package/client`を参照してください。
 
 ### 🙋‍♂️ 質問する
@@ -264,7 +264,7 @@ $ npx hardhat test
 
 ---
 
-おめでとうございます!  
+おめでとうございます!
 セクション2が終了しました。 コントラクトの完成です！
 
 次のセクションではフロントエンドを作成します 🏌️‍♀️

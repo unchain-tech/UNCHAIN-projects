@@ -127,7 +127,7 @@ contract Messenger {
     }
 ```
 
-コンストラクタは引数により, デプロイ時に上限値を受け取れるようになっています。  
+コンストラクタは引数により, デプロイ時に上限値を受け取れるようになっています。
 そして状態変数にセットします。
 
 ```solidity
@@ -149,7 +149,7 @@ contract Messenger {
     }
 ```
 
-`post`関数が呼び出された際, 初めにメッセージの受取人のメッセージ保留数が上限に達しているかを確認しています。  
+`post`関数が呼び出された際, 初めにメッセージの受取人のメッセージ保留数が上限に達しているかを確認しています。
 上限に達していた場合, トランザクションをキャンセルします。
 
 また, 処理を続行する場合は保留数をインクリメントします。
@@ -233,10 +233,10 @@ describe("Messenger", function () {
 
 追加した`Deployment`テストでは, デプロイ時に渡した`numOfPendingLimits`が正しくセットされているかを確認しています。
 
-さらに`Post`テスト内で追加したテストケース`it`の中では,  
+さらに`Post`テスト内で追加したテストケース`it`の中では,
 `for loop`をしようして上限値までメッセージを送り続けることで, `numOfPendingLimits`による制限が働いているかを確認しています。
 
-それではテストを実行しましょう！  
+それではテストを実行しましょう！
 `messenger-contract`ディレクトリ直下で以下のコマンドを実行してください。
 
 ```
@@ -245,7 +245,7 @@ $ npx hardhat test
 
 以下のような表示がされたらテスト成功です！
 
-![](/public/images/AVAX-messenger/section-3/3_1_1.png)
+![](/public/images/AVAX-Messenger/section-3/3_1_1.png)
 
 ### 💠 コントラクトに管理者機能を設けましょう
 
@@ -285,8 +285,8 @@ contract Ownable {
 
 コンストラクタ内ではコンストラクタを呼び出した（デプロイした）アドレスで状態変数の`owner`を初期化しています。
 
-`modifier`はまだ出てきていない関数修飾子の1つで, その使用方法と共にどんなものなのかこの後理解します。  
-ここで見て頂きたいのは, `require`を利用して, 関数を実行する人が`owner`と等しいことを確認していること  
+`modifier`はまだ出てきていない関数修飾子の1つで, その使用方法と共にどんなものなのかこの後理解します。
+ここで見て頂きたいのは, `require`を利用して, 関数を実行する人が`owner`と等しいことを確認していること
 次の行に`_;`を記述しているということです。
 
 `Messenger.sol`に`Ownable`を継承させて, `Ownable`の関数を利用できるようにしましょう。
@@ -350,13 +350,13 @@ import "hardhat/console.sol";
 }
 ```
 
-`contract Messenger is Ownable`のようにコントラクトを宣言することで,  
+`contract Messenger is Ownable`のようにコントラクトを宣言することで,
 `Messenger.sol`は`Ownable`を継承するという関係を作れます, すると`Ownable`の関数を`Messenger.sol`も利用できるようになります。
 
-コンストラクタ内で`Ownable`の関数`ownable`を実行しています。  
+コンストラクタ内で`Ownable`の関数`ownable`を実行しています。
 `ownable`を実行すると, コンストラクタを呼び出した（=デプロイをした）アカウントのアドレスをコントラクトは管理者として記録します。
 
-新しく追加した`changeNumOfPendingLimits`関数に注目しましょう。  
+新しく追加した`changeNumOfPendingLimits`関数に注目しましょう。
 関数の実行に修飾子の`onlyOwner`を指定しています。
 
 ここで起こる処理の流れを整理します。
@@ -366,15 +366,15 @@ import "hardhat/console.sol";
 - 確認が取れたら, `_;`の記述された箇所から, 今度は`changeNumOfPendingLimits`の処理が実行されます。
 - `numOfPendingLimits`を変更しイベントをemitします。
 
-このように`modifier`を利用した関数修飾子は, 自分でカスタムした処理をある関数の実行前の処理として適用させることができます。  
+このように`modifier`を利用した関数修飾子は, 自分でカスタムした処理をある関数の実行前の処理として適用させることができます。
 今回のように管理者権限の必要な関数には`onlyOwner`を修飾子としてつけるだけで決まった処理をしてくれるので便利です。
 
 オーナーに特別な権限を与えることは, オーナーの利益のためにルールを変更できるという面で, 濫用される恐れもあります。
 
 以下, [CryptoZombies](https://cryptozombies.io/jp/lesson/3/chapter/3)からの引用です。
 
-> DApp がイーサリアム上にあるというだけで、全てが分散型になっているというわけではないことを、常に念頭に入れておいてください。  
-> 気になる部分については、すべてのソースコードに目を通して、オーナーに特別な力がないことを確認する必要があります。  
+> DApp がイーサリアム上にあるというだけで、全てが分散型になっているというわけではないことを、常に念頭に入れておいてください。
+> 気になる部分については、すべてのソースコードに目を通して、オーナーに特別な力がないことを確認する必要があります。
 > 開発者としてバグを修正するように DApp をコントロールする権限が必要な一方で、オーナーの数を少なくしてユーザーのデータの安全性を確保できるようなプラットフォームを開発をすることも重要であり、両者のバランスに常に気をつける必要があります。
 
 是非openzeppelinの [ownable](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol) コントラクトを見てみてください!
@@ -455,7 +455,7 @@ describe("Messenger", function () {
 
 をそれぞれ確認しています。
 
-それではテストを実行しましょう！  
+それではテストを実行しましょう！
 `messenger-contract`ディレクトリ直下で以下のコマンドを実行してください。
 
 ```
@@ -464,13 +464,13 @@ $ npx hardhat test
 
 以下のような表示がされたらテスト成功です！
 
-![](/public/images/AVAX-messenger/section-3/3_1_2.png)
+![](/public/images/AVAX-Messenger/section-3/3_1_2.png)
 
 ### 🛫 デプロイ スクリプトを変更する
 
 コンストラクタを変更したので, デプロイ時のコードも変更する必要があります。
 
-`scripts/deploy.ts`内を以下のコードに書き換えてください。  
+`scripts/deploy.ts`内を以下のコードに書き換えてください。
 主にデプロイ時の引数を増やした部分が変わっています。
 
 ```ts
@@ -538,7 +538,7 @@ Contract's number of pending message limits is: BigNumber { value: "10" }
 Contract's fund is: BigNumber { value: "100" }
 ```
 
-出力結果の`Contract deployed at:`の後に続くアドレスをコピーして  
+出力結果の`Contract deployed at:`の後に続くアドレスをコピーして
 `messenger-client/hooks/useMessengerContract.ts`の中の`contractAddress`変数定義の部分に貼り付けます。
 
 例:
