@@ -8,7 +8,7 @@
 - `React.js`: ライブラリ
 - `Next.js`: `React.js`のフレームワーク
 
-それぞれの概要については[こちら](https://app.unchain.tech/learn/AVAX-messenger/section-2_lesson-1)に説明を載せていますので,  
+それぞれの概要については[こちら](https://app.unchain.tech/learn/AVAX-Messenger/section-2_lesson-1)に説明を載せていますので,
 初めて触れる方はご参照ください 💁
 
 ### 🛠️ 　フロントエンドのセットアップをしよう
@@ -19,8 +19,8 @@
 npx create-next-app client --ts --use-npm
 ```
 
-ここでは`create-next-app`というパッケージを利用して`client`という名前のプロジェクトを作成しました。  
-`--ts`は`typescript`を使用することの指定, `--use-npm`は`npm`を使用してアプリの立ち上げを行うこと指定しています。  
+ここでは`create-next-app`というパッケージを利用して`client`という名前のプロジェクトを作成しました。
+`--ts`は`typescript`を使用することの指定, `--use-npm`は`npm`を使用してアプリの立ち上げを行うこと指定しています。
 `client`ディレクトリには`Next.js`を使ったプロジェクト開発に最低限必要なものがあらかじめ作成されます。
 
 この段階で,フォルダ構造は下記のようになっているはずです。
@@ -38,7 +38,7 @@ cd client
 npm run dev
 ```
 
-あなたのお使いのブラウザで  
+あなたのお使いのブラウザで
 `http://localhost:3000`
 へアクセスするとWebサイトのフロントエンドが表示されるはずです。
 
@@ -46,7 +46,7 @@ npm run dev
 
 例)ローカル環境で表示されているWebサイト
 
-![](/public/images/AVAX-amm/section-3/3_1_1.png)
+![](/public/images/AVAX-AMM/section-3/3_1_1.png)
 
 上記のような形でフロントエンドが確認できれば成功です。
 
@@ -57,7 +57,7 @@ webサイトの立ち上げを終了する場合は以下のコマンドが使�
 - Mac: `ctrl + c`
 - Windows: `ctrl + shift + w`
 
-`client`ディレクトリのフォルダ構造は以下のようになっています。  
+`client`ディレクトリのフォルダ構造は以下のようになっています。
 ※`node_modules`は内部ファイルの表示を省略しています。
 
 ```
@@ -94,15 +94,15 @@ npm install ethers @metamask/providers react-icons
 
 ### 🐊 `github`にソースコードをアップロードしよう
 
-本プロジェクトの最後では, アプリをデプロイするために`github`へソースコードをアップロードする必要があります。  
+本プロジェクトの最後では, アプリをデプロイするために`github`へソースコードをアップロードする必要があります。
 今後の開発にも役に立つと思いますので, 今のうちにアップロード方法をおさらいしておきましょう。
 
 GitHubのアカウントをお持ちでない方は,[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
 GitHubへアップロードをしたことがない方は以下を参考にしてください。
 
-[新しいレポジトリを作成](https://docs.github.com/ja/get-started/quickstart/create-a-repo)（リポジトリ名などはご自由に）した後,  
-手順に従いターミナルからアップロードを済ませます。  
+[新しいレポジトリを作成](https://docs.github.com/ja/get-started/quickstart/create-a-repo)（リポジトリ名などはご自由に）した後,
+手順に従いターミナルからアップロードを済ませます。
 以下ターミナルで実行するコマンドの参考です。(`client`直下で実行することを想定しております)
 
 ```
@@ -133,9 +133,9 @@ $ git push -u origin main
 
 このプロジェクトではMetaMaskを使用します。
 
-> 📓 [Core](https://support.avax.network/en/collections/3391518-core) ウォレット について  
-> Ava Labs(Avalanche エコシステムの開発チーム) がサポートしている Core というウォレットが存在します。  
-> Core でのウォレットを使用すると Avalanche に適した処理により, 高速なトランザクションが実現する可能性があります。  
+> 📓 [Core](https://support.avax.network/en/collections/3391518-core) ウォレット について
+> Ava Labs(Avalanche エコシステムの開発チーム) がサポートしている Core というウォレットが存在します。
+> Core でのウォレットを使用すると Avalanche に適した処理により, 高速なトランザクションが実現する可能性があります。
 > 現在は beta 版ということもありバグや仕様変更が日々改善されているため, ここでは使用しませんが注目なウォレットです。
 
 - [こちら](https://MetaMask.io/download.html) からブラウザの拡張機能をダウンロードし,MetaMaskウォレットをあなたのブラウザに設定します。
@@ -148,7 +148,7 @@ MetaMaskを設定できたら, Avalancheのテストネットワークを追加�
 
 MetaMaskの上部のネットワークタブを開き, `Add Network`をクリックします。
 
-![](/public/images/AVAX-amm/section-3/3_1_2.png)
+![](/public/images/AVAX-AMM/section-3/3_1_2.png)
 
 開いた設定ページ内で以下の情報を入力して保存をクリックしましょう。
 
@@ -160,11 +160,11 @@ Symbol: AVAX
 Explorer: https://testnet.snowtrace.io/
 ```
 
-![](/public/images/AVAX-amm/section-3/3_1_3.png)
+![](/public/images/AVAX-AMM/section-3/3_1_3.png)
 
 登録が成功したらAvalancheのテストネットである`Avalanche Fuji C-Chain`が選択できるはずです。
 
-![](/public/images/AVAX-amm/section-3/3_1_4.png)
+![](/public/images/AVAX-AMM/section-3/3_1_4.png)
 
 ### 🚰 `Faucet`を利用して`AVAX`をもらう
 
@@ -172,7 +172,7 @@ Explorer: https://testnet.snowtrace.io/
 
 テストネットでのみ使用できる偽の`AVAX`です。
 
-上記リンクへ移動して, あなたのウォレットのアドレスを入力してavaxを受け取ってください。  
+上記リンクへ移動して, あなたのウォレットのアドレスを入力してavaxを受け取ってください。
 💁 アドレスはMetaMask上部のアカウント名の部分をクリックするとコピーができます。
 
 ### 🙋‍♂️ 質問する

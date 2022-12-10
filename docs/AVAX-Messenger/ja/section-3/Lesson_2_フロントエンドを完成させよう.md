@@ -8,7 +8,7 @@
 
 ### 📁 `hooks`ディレクトリ
 
-コントラクトに追加した機能を利用できるように, `useMessengerContract.ts`の中身を編集してきましょう。  
+コントラクトに追加した機能を利用できるように, `useMessengerContract.ts`の中身を編集してきましょう。
 基本的にコントラクトに追加した`owner`機能や`numOfPendingLimits`, `changeNumOfPendingLimits`を使用できるように変更しています。
 
 `ReturnUseMessengerContract`の返り値の型を変更します。
@@ -195,7 +195,7 @@ return {
 
 📁 `form`ディレクトリ
 
-`components/form`ディレクトリ内,  
+`components/form`ディレクトリ内,
 その中に`ChangeOwnerValueForm.tsx`という名前のファイルを作成してください。
 
 `ChangeOwnerValueForm.tsx`内に以下のコードを記述してください。
@@ -255,10 +255,10 @@ export default function ChangeOwnerValueForm({
 }
 ```
 
-ここでは同じフォルダ内の`SendMessageForm.tsx`と同じようなフォームコンポーネントを作成しています。  
+ここでは同じフォルダ内の`SendMessageForm.tsx`と同じようなフォームコンポーネントを作成しています。
 管理者ページで使用されます。
 
-引数で受け取る`currentValue`と`changeValue`は, それぞれ管理者が変更する値の, 現在の値と値を変更をする関数です。  
+引数で受け取る`currentValue`と`changeValue`は, それぞれ管理者が変更する値の, 現在の値と値を変更をする関数です。
 今回, 管理者が変更する値はメッセージの保留数を指します。
 
 後で実際に表示する画面を見ると, このフォームの構成する部分がわかりやすいと思います。
@@ -304,7 +304,7 @@ export default function OwnerPage() {
 
 管理者ページを構成します。
 
-`useMessengerContract`から取得した`numOfPendingLimits`と`changeNumOfPendingLimits`を  
+`useMessengerContract`から取得した`numOfPendingLimits`と`changeNumOfPendingLimits`を
 先ほど作成した`ChangeOwnerValueForm`に渡しています。
 
 また, `owner`が現在接続しているアカウントと違う場合は`Unauthorized`というメッセージを表示します。
@@ -367,7 +367,7 @@ const Home: NextPage = () => {
 export default Home;
 ```
 
-`OwnerPage.tsx`と同じように`owner`とユーザアカウントを照合して,  
+`OwnerPage.tsx`と同じように`owner`とユーザアカウントを照合して,
 `owner`の場合は管理者画面である`OwnerPage`へリンクを表示します。
 
 ### 🖥️ web アプリを立ち上げましょう
@@ -380,27 +380,27 @@ $ npm run dev
 
 ブラウザで http://localhost:3000 へアクセスします。
 
-管理者のアカウントで接続した場合, 以下のように画面が出力されるはずです。  
+管理者のアカウントで接続した場合, 以下のように画面が出力されるはずです。
 `owner`リンクが増えています。
 
-![](/public/images/AVAX-messenger/section-3/3_2_1.png)
+![](/public/images/AVAX-Messenger/section-3/3_2_1.png)
 
 `owner`リンクをクリックし, 管理者ページで値を入力し, メッセージの保留数上限を変更してみましょう。
 
-![](/public/images/AVAX-messenger/section-3/3_2_2.png)
+![](/public/images/AVAX-Messenger/section-3/3_2_2.png)
 
-トランザクションが完了し, `current limits`が変更したら  
-ブラウザのコンソールから, `Done`ではじまる行の値をコピーして, [AVASCAN testnet](https://testnet.avascan.info/blockchain/c/home)で履歴を確認してみましょう。  
+トランザクションが完了し, `current limits`が変更したら
+ブラウザのコンソールから, `Done`ではじまる行の値をコピーして, [AVASCAN testnet](https://testnet.avascan.info/blockchain/c/home)で履歴を確認してみましょう。
 💁 コンソールを表示するには, ブラウザ上で`右クリック` -> `検証` -> `コンソール`を開きます。
 
-![](/public/images/AVAX-messenger/section-3/3_2_3.png)
+![](/public/images/AVAX-Messenger/section-3/3_2_3.png)
 
 ### 🌔 参考リンク
 
 > [こちら](https://github.com/unchain-dev/avalanche_messenger_dapp)に本プロジェクトの完成形のレポジトリがあります。
 >
-> コードがうまく動かない場合は参考にしてみてください。  
-> `messenger-contract`はリンク先のレポジトリ内の`package/contract`を。  
+> コードがうまく動かない場合は参考にしてみてください。
+> `messenger-contract`はリンク先のレポジトリ内の`package/contract`を。
 > `messenger-client`はリンク先のレポジトリ内の`package/client`を参照してください。
 
 ### 🙋‍♂️ 質問する
@@ -418,7 +418,7 @@ $ npm run dev
 
 ---
 
-おめでとうございます!  
-セクション3が終了しました!  
-`#avalanche`にあなたのAVASCANのリンクを貼り付けて,コミュニティで進捗を祝いましょう 🎉  
+おめでとうございます!
+セクション3が終了しました!
+`#avalanche`にあなたのAVASCANのリンクを貼り付けて,コミュニティで進捗を祝いましょう 🎉
 webアプリが完成したら,次のレッスンに進みましょう 🎉
