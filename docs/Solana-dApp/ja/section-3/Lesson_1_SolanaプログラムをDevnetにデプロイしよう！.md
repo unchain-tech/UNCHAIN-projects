@@ -78,7 +78,7 @@ solana address -k target/deploy/myepicproject-keypair.json
 
 このプログラムIDは後ほど使うので、コピーしておいてください。
 
-次に、`lib.rs`にを表示します。
+次に、`lib.rs`を表示します。
 
 このIDが上部に表示されているはずです。
 
