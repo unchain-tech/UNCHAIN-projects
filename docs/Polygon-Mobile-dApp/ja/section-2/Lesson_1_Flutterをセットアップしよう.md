@@ -40,7 +40,7 @@ dependencies:
   provider: ^6.0.2
 ```
 
-Flutterのパッケージについて詳しき知りたい方は、[こちら](https://pub.dev/)から検索してみてください。
+Flutterのパッケージについて詳しく知りたい方は、[こちら](https://pub.dev/)から検索してみてください。
 
 次に、前のセクションでコンパイルした、ブロックチェーンに接続するための`TodoContract.json`ファイルを`todo_dapp_front`の中に持ってきます。
 
