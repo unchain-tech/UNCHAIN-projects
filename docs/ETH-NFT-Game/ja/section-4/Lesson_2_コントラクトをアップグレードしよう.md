@@ -135,7 +135,7 @@ https://cloudflare-ipfs.com/ipfs/あなたのCIDコードを貼り付けます
 
 ![](/public/images/ETH-NFT-Game/section-4/4_2_2.png)
 
-次に、`epic-game/scripts/run.js`と`epic-game/scripts/deploy.js`の `imgur`リンクを`CID`（＝ IPFSハッシュ）に変更していきましょう。
+次に、`epic-game/scripts/run.js`と`epic-game/scripts/deploy.js`の`imgur`リンクを`CID`（＝ IPFSハッシュ）に変更していきましょう。
 
 ```javascript
 // run.js
