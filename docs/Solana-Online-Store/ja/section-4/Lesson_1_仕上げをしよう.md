@@ -95,15 +95,13 @@ git push
 
 ![Import](/public/images/Solana-Online-Store/section-4/4_1_2.png)
 
-3\. プロジェクトの設定では、**FRAMEWORK PRESET** に`Create React App`、**ROOT DIRECTORY** に`app`を入力してください。
+3\. プロジェクトの設定では、**FRAMEWORK PRESET** に`Next.js`、**ROOT DIRECTORY** に`./`を入力してください。
 
 4\. **Environment Variables** に環境変数`CI = false`（NAME: CI、VALUE: false）を追加します（警告が原因でビルドが失敗しないようになります）。
 
-5\. **Environment Variables** に`.env`で設定した環境変数（NAME: SOLANA_NETWORK、VALUE: devnet）を直接入力してください( GitHubには`.env`ファイルを保存していないため、`Vercel`に直接記載する必要があります)。
+5\. **Environment Variables** に`.env`で設定した環境変数（NAME: NEXT_PUBLIC_OWNER_PUBLIC_KEY、VALUE: `phantom wallet address`）を直接入力してください( GitHubには`.env`ファイルを保存していないため、`Vercel`に直接記載する必要があります)。
 
 ![Environment Variables1](/public/images/Solana-Online-Store/section-4/4_1_3.png)
-
-![Environment Variables2](/public/images/Solana-Online-Store/section-4/4_1_4.png)
 
 6\.[Deploy]ボタンを押してデプロイします（VercelはGitHubと連動しているので、GitHubが更新されるたびに自動でデプロイを行ってくれます）。
 
