@@ -135,7 +135,7 @@ https://cloudflare-ipfs.com/ipfs/あなたのCIDコードを貼り付けます
 
 ![](/public/images/ETH-NFT-Game/section-4/4_2_2.png)
 
-次に、`epic-game/scripts/run.js`を開き、 `imgur`リンクを`CID`（＝ IPFSハッシュ）に変更していきましょう。
+次に、`epic-game/scripts/run.js`と`epic-game/scripts/deploy.js`の`imgur`リンクを`CID`（＝ IPFSハッシュ）に変更していきましょう。
 
 ```javascript
 // run.js
@@ -156,6 +156,43 @@ const gameContract = await gameContractFactory.deploy(
   10000, // Bossのhp
   50 // Bossの攻撃力
 );
+```
+
+```javascript
+// deploy.js
+const main = async () => {
+  const gameContractFactory = await hre.ethers.getContractFactory("MyEpicGame");
+
+  const gameContract = await gameContractFactory.deploy(
+    ["ZORO", "NAMI", "USOPP"], // キャラクターの名前
+    [
+    "QmXxR67ryeUw4xppPLbF2vJmfj1TCGgzANfiEZPzByM5CT", // キャラクターの画像
+    "QmPHX1R4QgvGQrZym5dpWzzopavyNX2WZaVGYzVQQ2QcQL",
+    "QmUGjB7oQLBZdCDNJp9V9ZdjsBECjwcneRhE7bHcs9HwxG",
+    ],
+    [100, 200, 300],
+    [100, 50, 25],
+    "CROCODILE", // Bossの名前
+    "https://i.imgur.com/BehawOh.png", // Bossの画像
+    10000, // Bossのhp
+    50 // Bossの攻撃力
+  );
+  // ここでは、nftGame コントラクトが、
+  // ローカルのブロックチェーンにデプロイされるまで待つ処理を行っています。
+  const nftGame = await gameContract.deployed();
+
+  console.log("Contract deployed to:", nftGame.address);
+};
+const runMain = async () => {
+  try {
+    await main();
+    process.exit(0);
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
+};
+runMain();
 ```
 
 次に、`MyEpicGame.sol`を開き、`tokenURI`関数の中身を編集しましょう。
