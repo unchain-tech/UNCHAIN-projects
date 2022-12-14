@@ -85,7 +85,7 @@ await refreshBalance();
 +      const connection = new Connection(clusterApiUrl(NETWORK), "confirmed");
 +      const publicKey = account.publicKey;
 +
-+      const confirmation = await connection.requestAirdrop(account.publicKey, LAMPORTS_PER_SOL);
++      const confirmation = await connection.requestAirdrop(publicKey, LAMPORTS_PER_SOL);
 +      await connection.confirmTransaction(confirmation, "confirmed");
 +      await refreshBalance();
 +    } catch (error) {
