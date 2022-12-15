@@ -127,7 +127,7 @@ impl Default for Contract {
 +                     }
 +                     // 予約された日付ごとに予約データを作成
 +                     for (date, guest_id) in room.booked_info.clone() {
-+                         // UseStatusを複製
++                         // UsageStatusを複製
 +                         let status: UsageStatus;
 +                         match &room.status {
 +                             UsageStatus::Available => status = UsageStatus::Available,
