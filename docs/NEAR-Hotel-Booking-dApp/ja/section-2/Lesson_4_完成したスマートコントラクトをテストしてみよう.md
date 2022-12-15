@@ -22,7 +22,7 @@ cargo build --target wasm32-unknown-unknown --release
 Cannot deserialize the contract state.
 ```
 
-詳しい説明は[こちら](https://www.near-sdk.io/upgrading/prototyping)を確認してください。予期せぬエラーに何時間も時間を割くよりも一度デプロイするアカウントをリセットする方が良いこともあります。
+詳しい説明は[こちら](https://docs.near.org/sdk/rust/building/prototyping#2-deleting--recreating-contract-account)を確認してください。予期せぬエラーに何時間も時間を割くよりも一度デプロイするアカウントをリセットする方が良いこともあります。
 
 ここで、開発中はデプロイするアカウントにサブアカウントを採用するメリットがあります。ターミナルから簡単に削除・再作成ができるためです！
 
