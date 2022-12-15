@@ -77,7 +77,7 @@ use near_sdk::serde::{Deserialize, Serialize};
 use near_sdk::{env, near_bindgen, AccountId, Promise};
 ```
 
-次の行では、Rustの標準ライブラリから使用したいコレクションを宣言しています。[コレクション](<(https://doc.rust-jp.rs/book-ja/ch08-00-common-collections.html)>)とは、データ構造のことです。
+次の行では、Rustの標準ライブラリから使用したいコレクションを宣言しています。[コレクション](https://doc.rust-jp.rs/book-ja/ch08-00-common-collections.html)とは、データ構造のことです。
 
 ```rust
 use std::collections::HashMap;
