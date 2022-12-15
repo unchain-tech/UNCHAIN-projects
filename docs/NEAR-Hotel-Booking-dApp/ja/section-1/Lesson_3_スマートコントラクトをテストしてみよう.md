@@ -87,7 +87,7 @@ Done deploying to contract.hotel_booking.testnet
 
 ### 🎓 NEAR CLI でメソッドを呼び出す方法について
 
-`View`メソッドと`Change`メソッドで、引数の指定やオプションの種類が異なります。以下はコマンドの例になります(詳しくは[こちら](https://docs.near.org/tools/near-cli#near-call))
+`View`メソッドと`Call`メソッドで、引数の指定やオプションの種類が異なります。以下はコマンドの例になります(詳しくは[こちら](https://docs.near.org/tools/near-cli#near-call))
 
 `View`メソッド
 
@@ -95,7 +95,7 @@ Done deploying to contract.hotel_booking.testnet
 near view [contractName] [method_name] [{ args ]]
 ```
 
-`Change`メソッド
+`Call`メソッド
 
 ```bash
 near call [contractName] [method_name] [{ args }] [--accountId]
