@@ -33,7 +33,7 @@ impl Contract {
 +             .current_account_id(accounts(0))
 +             .predecessor_account_id(accounts(0))
 +             .signer_account_id(accounts(1))
-+             // 使用するメソッドをbooleanで指定(viewメソッドはtrue, changeメソッドはfalse)
++             // 使用するメソッドをbooleanで指定(viewメソッドはtrue, callメソッドはfalse)
 +             .is_view(is_view);
 +         builder
 +     }
@@ -212,7 +212,7 @@ impl Contract {
             .current_account_id(accounts(0))
             .predecessor_account_id(accounts(0))
             .signer_account_id(accounts(1))
-            // 使用するメソッドをbooleanで指定(viewメソッドはtrue, changeメソッドはfalse)
+            // 使用するメソッドをbooleanで指定(viewメソッドはtrue, callメソッドはfalse)
             .is_view(is_view);
         builder
     }
