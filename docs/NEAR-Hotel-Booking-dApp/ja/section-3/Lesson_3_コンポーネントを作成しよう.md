@@ -386,7 +386,7 @@ const Room = ({ room, booking }) => {
 };
 
 // 引数の型を定義
-Room.PrpoTypes = {
+Room.PropTypes = {
   room: PropTypes.instanceOf(Object).isRequired,
   booking: PropTypes.func.isRequired,
 };
@@ -425,7 +425,7 @@ const Room = ({ room, booking }) => {
 };
 
 // 引数の型を定義
-Room.PrpoTypes = {
+Room.PropTypes = {
   room: PropTypes.instanceOf(Object).isRequired,
   booking: PropTypes.func.isRequired,
 };
