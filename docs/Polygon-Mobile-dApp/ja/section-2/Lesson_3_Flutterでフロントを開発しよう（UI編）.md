@@ -437,7 +437,7 @@ class MyApp extends StatelessWidget {
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの`#polygon-mobile-dapp`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#polygon`で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
@@ -449,6 +449,6 @@ class MyApp extends StatelessWidget {
 ```
 
 ---
-あなたのUIをスクリーンショットしてDiscordの`#polygon-mobile-dapp`に投稿してましょう!
+あなたのUIをスクリーンショットしてDiscordの`#polygon`に投稿してましょう!
 
 次のセクションに進んで、スマートコントラクトをMumbai testnetに公開しましょう 🎉

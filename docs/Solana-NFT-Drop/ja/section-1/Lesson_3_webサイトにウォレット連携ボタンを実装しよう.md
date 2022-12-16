@@ -93,7 +93,8 @@ export default App;
 
 これで、Webアプリケーションに「ウォレットに接続」というグラデーションボタンが表示されます。
 
-![無題](/public/Solana-NFT-Drop/section-1/1_2_1.png)
+![無題](/public/images/Solana-NFT-Drop/section-1/1_2_1.png)
+
 
 **ユーザーがウォレットを Web アプリケーションに接続していない場合にのみ、`Connect to Wallet`ボタンが表示されます。**
 
@@ -303,7 +304,7 @@ const connectWallet = async () => {
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの`#solana-nft-drop`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#solana`で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
@@ -316,7 +317,7 @@ const connectWallet = async () => {
 
 ---
 
-ぜひ、あなたのフロントエンドのスクリーンショットを`#solana-nft-drop`に投稿してください 😊
+ぜひ、あなたのフロントエンドのスクリーンショットを`#solana`に投稿してください 😊
 
 あなたの成功をコミュニティで祝いましょう 🎉
 

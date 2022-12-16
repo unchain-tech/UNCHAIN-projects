@@ -137,7 +137,7 @@ https://goerli.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#c
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの`#polygon-generative-nft`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#polygon`で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
@@ -150,7 +150,7 @@ https://goerli.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#c
 
 ---
 
-Etherscanリンクを`#polygon-generative-nft`に投稿してください 😊
+Etherscanリンクを`#polygon`に投稿してください 😊
 
 コミュニティであなたの成功を祝いましょう 🎉
 

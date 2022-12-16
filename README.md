@@ -8,11 +8,11 @@
 
 プロジェクトに参加していて、「こうすればもっと分かりやすいのに!」「これは間違っている!」と思ったら、直接`pull request`を送ってくださると幸いです ✨
 
-Githubから直接コードを編集して直接`pull request`を送る方法は、[こちら](https://docs.github.com/ja/repositories/working-with-files/managing-files/editing-files#editing-files-in-another-users-repository)を参照してください。
+Github から直接コードを編集して直接`pull request`を送る方法は、[こちら](https://docs.github.com/ja/repositories/working-with-files/managing-files/editing-files#editing-files-in-another-users-repository)を参照してください。
 
 どんなリクエストでも大歓迎です 🎉
 
-また、プロジェクトを自分のGithubアカウントに`Fork`して、中身を編集してから`pull request`を送ることもできます。
+また、プロジェクトを自分の Github アカウントに`Fork`して、中身を編集してから`pull request`を送ることもできます。
 
 - プロジェクトを`Fork`する方法は、[こちら](https://docs.github.com/ja/get-started/quickstart/fork-a-repo)を参照してください。
 
@@ -26,11 +26,11 @@ Githubから直接コードを編集して直接`pull request`を送る方法は
 
 ## ✅ textlint について
 
-文中の表記揺れや誤字を防ぐため、[textlint](https://github.com/textlint/textlint) という校正チェックツールを入れています。commitする前、PRに更新があった際にGitHub Actionsにてtextlintを走らせています。ルールや定義の変更がある際は、下記ファイルを変更してください。
+文中の表記揺れや誤字を防ぐため、[textlint](https://github.com/textlint/textlint) という校正チェックツールを入れています。commit する前、PR に更新があった際に GitHub Actions にて textlint を走らせています。ルールや定義の変更がある際は、下記ファイルを変更してください。
 
 - 表記揺れの定義： `prh.yml`
   - see: https://github.com/prh/prh
-- textlintのルール定義： `.textlintrc`
+- textlint のルール定義： `.textlintrc`
 
 # Contributors
 

@@ -34,34 +34,40 @@ const [isLoading, setIsLoading] = useState(false);
 // App.js
 // ページがロードされたときに useEffect()内の関数が呼び出されます。
 useEffect(() => {
-	// ページがロードされたら、即座にロード状態を設定するようにします。
-	setIsLoading(true);
-	checkIfWalletIsConnected();
+  // ページがロードされたら、即座にロード状態を設定するようにします。
+  setIsLoading(true);
+  checkIfWalletIsConnected();
 }, []);
 
 // ページがロードされたときに useEffect()内の関数が呼び出されます。
 useEffect(() => {
-	// スマートコントラクトを呼び出す関数です。
-	const fetchNFTMetadata = async () => {
-		console.log('Checking for Character NFT on address:', currentAccount);
+  // スマートコントラクトを呼び出す関数です。
+  const fetchNFTMetadata = async () => {
+    console.log("Checking for Character NFT on address:", currentAccount);
 
-		const provider = new ethers.providers.Web3Provider(window.ethereum);
-		const signer = provider.getSigner();
-		const gameContract = new ethers.Contract(
-		CONTRACT_ADDRESS,
-		myEpicGame.abi,
-		signer
-		);
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const gameContract = new ethers.Contract(
+      CONTRACT_ADDRESS,
+      myEpicGame.abi,
+      signer
+    );
 
-	const txn = await gameContract.checkIfUserHasNFT();
-	if (txn.name) {
-		console.log('User has character NFT');
-		setCharacterNFT(transformCharacterData(txn));
-	} else {
-		console.log('No character NFT found');
-	}
-	// ユーザーが保持している NFT の確認が完了したら、ロード状態を false に設定します。
-	setIsLoading(false);
+    const txn = await gameContract.checkIfUserHasNFT();
+    if (txn.name) {
+      console.log("User has character NFT");
+      setCharacterNFT(transformCharacterData(txn));
+    } else {
+      console.log("No character NFT found");
+    }
+    // ユーザーが保持している NFT の確認が完了したら、ロード状態を false に設定します。
+    setIsLoading(false);
+  };
+
+  if (currentAccount) {
+    console.log("CurrentAccount:", currentAccount);
+    fetchNFTMetadata();
+  }
 }, [currentAccount]);
 ```
 
@@ -85,7 +91,6 @@ if (isLoading) {
 この処理により、Webアプリケーションがコントラクトからデータを読み込んでいる間は、ローディングマークが表示されます。
 
 次に、`checkIfWalletIsConnected`に下記のように更新して、フロントエンドがユーザーがMetaMaskを持っているか確認している際に、ローディングマークを表示させましょう。
-
 
 ```javascript
 // App.js
@@ -581,7 +586,7 @@ const runAttackAction = async () => {
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの`#eth-nft-game`で質問してください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#ethereum`で質問してください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 

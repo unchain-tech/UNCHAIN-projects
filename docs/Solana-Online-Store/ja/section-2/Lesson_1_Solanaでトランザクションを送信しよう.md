@@ -258,7 +258,7 @@ export default function Product({ product }) {
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの`#solana-online-store`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#solana`で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 

@@ -125,7 +125,7 @@ $ near view sub.$ID ft_balance_of '{"account_id": "ft_receiver.testnet"}'
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの`#near-sharing-economy`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#near`で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
@@ -140,6 +140,6 @@ $ near view sub.$ID ft_balance_of '{"account_id": "ft_receiver.testnet"}'
 
 おめでとうございます！
 このセクションでの作業はここで終了です。
-トークンの転送結果を`#near-sharing-economy`に投稿して、あなたの成功をコミュニティで祝いましょう 🎉
+トークンの転送結果を`#near`に投稿して、あなたの成功をコミュニティで祝いましょう 🎉
 最後にコントラクトのコードを少しだけ覗きに行きます！
 次のレッスンに進みましょう！

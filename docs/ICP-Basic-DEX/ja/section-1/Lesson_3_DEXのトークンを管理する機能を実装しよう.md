@@ -204,7 +204,7 @@ public func hasEnoughBalance(user : Principal, token : T.Token, amount : Nat) : 
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの`#icp-dex`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#internet-computer`で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 

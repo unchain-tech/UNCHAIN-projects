@@ -102,7 +102,7 @@ VercelはGitHubと連動しているので、GitHubが更新されるたびに�
 4. Message画面
 5. Message Room画面
 
-の5つをdiscordの`astar-socialfi-post-projects`チャンネルで共有しましょう！
+の5つをdiscordの`#post-your-projects`チャンネルで共有しましょう！
 
 ![](/public/images/ASTAR-SocialFi/section-3/3_2_10.png)
 ![](/public/images/ASTAR-SocialFi/section-3/3_2_11.png)
@@ -122,7 +122,7 @@ NFTを取得する条件は、以下のようになります。
 
 3. このページの最後にリンクされているProject Completion Formに記入する
 
-4. Discordの`🔥｜astar-socialfi-post-projects`チャンネルに、あなたのWebサイトをシェアしてください 😉🎉 Discordに投稿する際に、追加実装した機能とその概要も教えていただけると幸いです!
+4. Discordの`🔥｜post-your-projects`チャンネルに、あなたのWebサイトをシェアしてください 😉🎉 Discordに投稿する際に、追加実装した機能とその概要も教えていただけると幸いです!
 
 プロジェクトを完成させていただいた方には、NFTをお送りします。
 

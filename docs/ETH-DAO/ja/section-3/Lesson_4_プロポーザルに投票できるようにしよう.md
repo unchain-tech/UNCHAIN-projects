@@ -389,7 +389,7 @@ import { AddressZero } from "@ethersproject/constants";
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの`#eth-dao`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#ethereum`で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
@@ -402,7 +402,7 @@ import { AddressZero } from "@ethersproject/constants";
 
 ---
 
-ぜひ、コンソールに`successfuly voted`と表示されたフロントエンド画面のスクリーンショットを`#eth-dao`に投稿してください 😊
+ぜひ、コンソールに`successfuly voted`と表示されたフロントエンド画面のスクリーンショットを`#ethereum`に投稿してください 😊
 
 あなたの成功をコミュニティで祝いましょう 🎉
 

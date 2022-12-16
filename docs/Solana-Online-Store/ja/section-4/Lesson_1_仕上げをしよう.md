@@ -95,15 +95,13 @@ git push
 
 ![Import](/public/images/Solana-Online-Store/section-4/4_1_2.png)
 
-3\. プロジェクトの設定では、**FRAMEWORK PRESET** に`Create React App`、**ROOT DIRECTORY** に`app`を入力してください。
+3\. プロジェクトの設定では、**FRAMEWORK PRESET** に`Next.js`、**ROOT DIRECTORY** に`./`を入力してください。
 
 4\. **Environment Variables** に環境変数`CI = false`（NAME: CI、VALUE: false）を追加します（警告が原因でビルドが失敗しないようになります）。
 
-5\. **Environment Variables** に`.env`で設定した環境変数（NAME: SOLANA_NETWORK、VALUE: devnet）を直接入力してください( GitHubには`.env`ファイルを保存していないため、`Vercel`に直接記載する必要があります)。
+5\. **Environment Variables** に`.env`で設定した環境変数（NAME: NEXT_PUBLIC_OWNER_PUBLIC_KEY、VALUE: `phantom wallet address`）を直接入力してください( GitHubには`.env`ファイルを保存していないため、`Vercel`に直接記載する必要があります)。
 
 ![Environment Variables1](/public/images/Solana-Online-Store/section-4/4_1_3.png)
-
-![Environment Variables2](/public/images/Solana-Online-Store/section-4/4_1_4.png)
 
 6\.[Deploy]ボタンを押してデプロイします（VercelはGitHubと連動しているので、GitHubが更新されるたびに自動でデプロイを行ってくれます）。
 
@@ -114,7 +112,7 @@ git push
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの`#solana-online-store`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#solana`で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
@@ -136,7 +134,7 @@ NFTを取得する条件は、以下のようになります。
 
 3. このページの最後にリンクされているProject Completion Formに記入する
 
-4. Discordの`🔥｜solana-post-projects`チャンネルに、あなたのWebサイトをシェアしてください 😉🎉 。Discordへ投稿する際に、追加実装した機能とその概要も教えていただけると幸いです!
+4. Discordの`🔥｜post-your-projects`チャンネルに、あなたのWebサイトをシェアしてください 😉🎉 。Discordへ投稿する際に、追加実装した機能とその概要も教えていただけると幸いです!
 
 プロジェクトを完成させていただいた方には、NFTをお送りします。
 

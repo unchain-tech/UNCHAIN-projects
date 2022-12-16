@@ -170,7 +170,7 @@ impl AstarSnsContract {
 
 最後の部分にはテストコードが書かれています。この中の関数には`#[ink::test]`という記述が添えられていますね。
 
-`default_works関数`ではAstarSnsContractコントラクトのコンストラクタ`default関数`の返り値を`AstarSnsContract`という変数に入れることでコントラクトがデプロイされていることを再現します。
+`default_works関数`ではAstarSnsContractコントラクトのコンストラクタ`default関数`の返り値を`astar_sns_contract`という変数に入れることでコントラクトがデプロイされていることを再現します。
 
 このコントラクトに対して作成した関数を実行して、意図した通りの動きをしているかを確認します。
 
@@ -212,7 +212,7 @@ impl AstarSnsContract {
 
 ### 🙋‍♂️ 質問する
 
-わからないことがあれば、Discordの`#astar-socialfi`でsection・Lesson名とともに質問をしてください 👋
+わからないことがあれば、Discordの`#astar-network`でsection・Lesson名とともに質問をしてください 👋
 
 ---
 
