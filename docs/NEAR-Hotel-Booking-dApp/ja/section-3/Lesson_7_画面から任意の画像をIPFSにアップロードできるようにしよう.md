@@ -91,7 +91,7 @@ frontend/
 #### 3. クレデンシャル情報をコピー&ペーストする
 
 次に利用するのはここで表示されているAPI KeyとAPI Secretなのでこの2つをコピーしてしまいましょう！
-<strong>ここで注意点なのですが、この情報は一度しか表示されないため閉じてしまった場合は作り直す必要があるので忘れずにコピーしてください！</strong>
+**ここで注意点なのですが、この情報は一度しか表示されないため閉じてしまった場合は作り直す必要があるので忘れずにコピーしてください！**
 
 コピーした情報は、`frontend/neardev/dev-account.env`ファイルに貼り付けます。
 
@@ -149,7 +149,7 @@ const UploadButton = () => {
      * PinataのAPIを利用してIPFSに画像をアップロードするメソッド
      * @param {*} event
      */
-    const pintaUploadFile = async (event) => {
+    const pinataUploadFile = async (event) => {
         // FormDataオブジェクトを生成
         let postData = new FormData();
         // APIを使って送信するリクエストパラメータを作成する。
@@ -208,7 +208,7 @@ const UploadButton = () => {
                     </Form.Group>
                     {/* Buttonコンポーネント */}
                     <Button
-                        onClick={(e) => pintaUploadFile(e)}
+                        onClick={(e) => pinataUploadFile(e)}
                         variant='info'
                     >
                         Upload Image
@@ -262,7 +262,7 @@ const {
                     </Form.Group>
                     {/* Buttonコンポーネント */}
                     <Button
-                        onClick={(e) => pintaUploadFile(e)}
+                        onClick={(e) => pinataUploadFile(e)}
                         variant='info'
                     >
                         Upload Image
@@ -272,16 +272,16 @@ const {
         </>
 ```
 
-<strong>Upload Image</strong>ボタンを押すと、PinataのAPIを呼び出して画像をアップロードするメソッドを実行する様にしています。
+**Upload Image**ボタンを押すと、PinataのAPIを呼び出して画像をアップロードするメソッドを実行する様にしています。
 
-呼び出される`pintaUploadFile`メソッドを見ていきましょう。
+呼び出される`pinataUploadFile`メソッドを見ていきましょう。
 
 ```js
 /**
      * PinataのAPIを利用してIPFSに画像をアップロードするメソッド
      * @param {*} event
      */
-    const pintaUploadFile = async (event) => {
+    const pinataUploadFile = async (event) => {
         // FormDataオブジェクトを生成
         let postData = new FormData();
         // APIを使って送信するリクエストパラメータを作成する。
@@ -507,7 +507,7 @@ export default App;
 ```
 
 これで修正は完了です！ お疲れ様でした!!  🚀🚀🚀🚀🚀🚀
-これで画面から好きな画像をIPFSにアップロードできる様になりました！ このアプリで使用してみたい画像があったらぜひこの機能を利用して画像をアップロードし、ホテルの部屋を追加してみてください!!
+これで画面から好きな画像をIPFSにアップロードできる様になりました！ このアプリで使用してみたい画像があればぜひこの機能を利用して画像をアップロードし、ホテルの部屋を追加してみてください!!
 
 ### 🙋‍♂️ 質問する
 
