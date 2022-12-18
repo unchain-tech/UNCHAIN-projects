@@ -147,7 +147,7 @@ use near_sdk::{env, near_bindgen, AccountId, Balance, CryptoHash, PanicOnDefault
 次の部分ではこのプロジェクト内で作成したファイルを取り込んで使えるようにしています。(拡張子である`.rs`は除いて書くのがルールです。)
 
 ```rust
-mod confirm;
+mod vote;
 mod enumeration;
 mod internal;
 mod metadata;
@@ -515,4 +515,4 @@ pub enum StorageKey {
 
 長かったですがこれでデータとそれらの型の宣言は完了しました！
 
-次からは実際にこれらのデータに値を入れてコントラクトの情報を更新の準備をしていきましょう！
+次からは実際にこれらのデータに値を入れてコントラクトの情報を更新する準備をしていきましょう！
