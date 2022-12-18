@@ -167,7 +167,7 @@ pub fn new(owner_id: AccountId, metadata: NFTContractMetadata) -> Self {
 
 これは`new_default_meta関数`を呼び出すことで`new関数`と`new_default_meta関数`の両方を読んでいることになるので、一度で初期化が完了していることを意味しています。なのでnew関数を読んでないけど初期化できているの？ と疑問に思う時がきてもこのような理由で完了していることを理解しておいてください。
 
-中身では`spec,name,description`の３つのコントラクトに関する情報と`owner_id`を更新しています。
+中身では`spec,name,reference`の３つのコントラクトに関する情報と`owner_id`を更新しています。
 
 ここで`owner_id`に何も値が入っていないと疑問に思った方もいるかもしれませんが大丈夫です。rustでは引数と同じものであれば省略できるというルールがあるからです。なのでここでは引数として入れられた値がそのまま`owner_id`に入っていることになります。
 
@@ -183,7 +183,7 @@ pub fn new_default_meta(owner_id: AccountId) -> Self {
         NFTContractMetadata {
             spec: "nft-1.0.0".to_string(),
             name: "Near Vote Contract".to_string(),
-            description: "This contract is design for fair election!".to_string(),
+            reference: "This contract is design for fair election!".to_string(),
         },
     )
 }
@@ -304,7 +304,7 @@ metadata.token_id = Some(self.token_id_counter);
 次の`initial_storage_usage`という変数には`storage_usage()`という関数でその時点でのコントラクトが占有しているストレージの領域が格納されます。これはmintによって占有されたストレージの領域を計算するために使われます。
 
 `receiver_id_clone`には引数として受け取った`receiver_id`を格納されています。
-`clone()`というメソッドはデータの値をコピーして、全く新しいストレージにそのデータを格納することをしめしています。これは引数として受け取った`receiver_id`の所有権が次に宣言する`token`に移動してしまうため、その前に値をコピーして他のストレージに移動するという意図があって行われています。
+`clone()`というメソッドはデータの値をコピーして、全く新しいストレージにそのデータを格納することを示しています。これは引数として受け取った`receiver_id`の所有権が次に宣言する`token`に移動してしまうため、その前に値をコピーして他のストレージに移動するという意図があって行われています。
 
 `token`という変数はトークンのオーナーを格納しています。
 
