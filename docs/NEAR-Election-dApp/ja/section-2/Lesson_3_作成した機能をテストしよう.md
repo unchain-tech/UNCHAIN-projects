@@ -401,7 +401,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 
 次は実際のtestnetにデプロイして挙動を確認してみましょう！
 
-前回の実装でそれぞれの候補者に紐づいた得票数のmapへの処理を加えたましたねが、それまでにdeployされたNFTの情報はmapに反映されずエラーが起きる可能性があります。
+前回の実装でそれぞれの候補者に紐づいた得票数のmapへの処理を加えたましたが、それまでにdeployされたNFTの情報はmapに反映されずエラーが起きる可能性があります。
 
 なので再度新しいwalletのidを作成して新しいコントラクトとしてdeployしてみましょう！
 
