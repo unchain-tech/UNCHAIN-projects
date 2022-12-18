@@ -20,7 +20,7 @@
 
 `cross contract call`と`callback`関数という機能を使用してこの機能を実装します。
 `cross contract call`はあるコントラクトから別のコントラクトのメソッドを呼び出す仕組みです。
-`callback`関数は`cross contract call`の結果に対応した処理を際に使用します。
+`callback`関数は`cross contract call`の結果に対応した処理を行う際に使用します。
 まずはコントラクト内に下記のコードを追加してください！
 
 ```rust
