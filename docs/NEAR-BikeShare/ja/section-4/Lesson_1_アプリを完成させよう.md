@@ -170,11 +170,11 @@ export default function App() {
       <div>
         {allBikeInfo.map((bike, index) => {
           return (
-            <div class="bike" style={{ display: "flex" }}>
-              <div class="bike_img">
+            <div className="bike" style={{ display: "flex" }}>
+              <div className="bike_img">
                 <img src={bikeImg} />
               </div>
-              <div class="bike_index">: {index}</div>
+              <div className="bike_index">: {index}</div>
               <button
                 // ボタンを無効化する条件を定義
                 disabled={!bike.available}
