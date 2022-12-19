@@ -366,7 +366,7 @@ const requireRegistration = () => {
 /** 残高表示に使用します。 */
 const checkBalance = () => {
   return (
-    <div class="balance_content">
+    <div className="balance_content">
       <button onClick={() => prepareBalanceInfo(window.accountId)}>
         check my balance
       </button>
