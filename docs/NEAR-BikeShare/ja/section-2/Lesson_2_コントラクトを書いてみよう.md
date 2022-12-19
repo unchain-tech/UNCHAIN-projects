@@ -42,7 +42,7 @@ $ mv bike_share contract
 実際のコードは`src`ディレクトリの中に配置します。
 `Cargo.toml`の中身をこのように書き換えます。
 (詳細は[Cargo.toml について](https://doc.rust-jp.rs/book-ja/ch01-03-hello-cargo.html#cargo%E3%81%A7%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B)や
-[NEAR 開発での Cargo.toml の書き方](https://www.near-sdk.io/building/basic-build)を参照してください)
+[NEAR 開発での Cargo.toml の書き方](https://docs.near.org/sdk/rust/building/basics)を参照してください)
 
 ```rust
 // Cargo.toml
@@ -193,9 +193,7 @@ Rustでコントラクトを書くには, `#[near_bindgen]`という注釈を付
 > データ構造をブロックチェーン上でやり取りをするのみなら`borsh シリアライズ`の指定をすれば良いでしょう。
 > `borshシリアライズ`を実装しているストラクトは`borshシリアライズ`を実装しているデータ構造のみフィールドに含むことができます。
 > 詳しくは以下はご覧ください。
-> [serialization protocols](https://www.near-sdk.io/contract-interface/serialization-interface)
-> [Byte Serialization in Blockchains](https://medium.com/whiteblock/byte-serialization-in-blockchain-e147347ab578)
-> [Does NEAR need both Serialize and BorshSerialize?](https://stackoverflow.com/questions/65362360/does-near-need-both-serialize-and-borshserialize)
+> [serialization protocols](https://www.near-sdk.io/contract-interface/serialization-interface) > [Byte Serialization in Blockchains](https://medium.com/whiteblock/byte-serialization-in-blockchain-e147347ab578) > [Does NEAR need both Serialize and BorshSerialize?](https://stackoverflow.com/questions/65362360/does-near-need-both-serialize-and-borshserialize)
 
 次にコントラクトの初期化をする`default関数`を用意します。
 先ほど定義した`DEFAULT_NUM_OF_BIKES`によりメンバー変数を初期化しています。
