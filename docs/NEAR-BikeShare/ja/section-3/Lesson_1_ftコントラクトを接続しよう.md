@@ -152,7 +152,7 @@ export async function storage_balance_of(account_id) {
   return balance;
 }
 
-/** ストレージ使用量を支払い登録を行います。 */
+/** ストレージ使用量の支払い登録を行います。 */
 export async function storage_deposit() {
   let response = await window.ftContract.storage_deposit(
     {}, // 引数の省略 = このメソッドを呼び出しているアカウントを登録
