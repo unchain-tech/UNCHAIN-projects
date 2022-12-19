@@ -144,13 +144,13 @@ contract SwapContract{
     }
 
     // calculate value between two tokens
-    function calculateValue(address tokenSendAddress, address tokenRecieveMesureAddress) public view returns (uint256 value){
-        value = (1 ether) * IERC20(tokenSendAddress).balanceOf(address(this)) / ERC20(tokenRecieveMesureAddress).balanceOf(address(this));
+    function calculateValue(address tokenSendAddress, address tokenReceiveMesureAddress) public view returns (uint256 value){
+        value = (1 ether) * IERC20(tokenSendAddress).balanceOf(address(this)) / ERC20(tokenReceiveMesureAddress).balanceOf(address(this));
     }
 
-    // distribute toke to users
+    // distribute token to users
     function distributeToken(address tokenAddress, uint256 amount, address recipientAddress) public {
-        require(msg.sender == deployerAddress, "Anyone but depoyer can distribute token!");
+        require(msg.sender == deployerAddress, "Anyone but deployer can distribute token!");
         IERC20 token = IERC20(tokenAddress);
         token.transfer(recipientAddress, amount);
     }
@@ -161,15 +161,15 @@ contract SwapContract{
         IERC20 receiveToken = IERC20(receiveTokenAddress);
 
         uint256 sendTokenValue = calculateValue(sendTokenAddress, measureTokenAddress);
-        uint256 recieveTokenValue = calculateValue(receiveTokenAddress, measureTokenAddress);
+        uint256 receiveTokenValue = calculateValue(receiveTokenAddress, measureTokenAddress);
         uint256 sendAmount = amount * sendTokenValue / (1 ether);
-        uint256 recieveAmount = amount * recieveTokenValue / (1 ether);
+        uint256 receiveAmount = amount * receiveTokenValue / (1 ether);
 
         require(sendToken.balanceOf(msg.sender) >= sendAmount, "Your asset is smaller than amount you want to send");
-        require(receiveToken.balanceOf(address(this)) >= recieveAmount, "Contract asset of the currency recipient want is smaller than amount you want to send");
+        require(receiveToken.balanceOf(address(this)) >= receiveAmount, "Contract asset of the currency recipient want is smaller than amount you want to send");
 
         sendToken.transferFrom(msg.sender, address(this), sendAmount);
-        receiveToken.transfer(recipientAddress, recieveAmount);
+        receiveToken.transfer(recipientAddress, receiveAmount);
     }
 }
 ```
@@ -192,8 +192,8 @@ address public deployerAddress;
 
 ```
 // calculate value between two tokens
-    function calculateValue(address tokenSendAddress, address tokenRecieveMesureAddress) public view returns (uint256 value){
-        value = (1 ether) * IERC20(tokenSendAddress).balanceOf(address(this)) / ERC20(tokenRecieveMesureAddress).balanceOf(address(this));
+    function calculateValue(address tokenSendAddress, address tokenReceiveMesureAddress) public view returns (uint256 value){
+        value = (1 ether) * IERC20(tokenSendAddress).balanceOf(address(this)) / ERC20(tokenReceiveMesureAddress).balanceOf(address(this));
     }
 ```
 
@@ -221,15 +221,15 @@ address public deployerAddress;
         IERC20 receiveToken = IERC20(receiveTokenAddress);
 
         uint256 sendTokenValue = calculateValue(sendTokenAddress, measureTokenAddress);
-        uint256 recieveTokenValue = calculateValue(receiveTokenAddress, measureTokenAddress);
+        uint256 receiveTokenValue = calculateValue(receiveTokenAddress, measureTokenAddress);
         uint256 sendAmount = amount * sendTokenValue / (1 ether);
-        uint256 recieveAmount = amount * recieveTokenValue / (1 ether);
+        uint256 receiveAmount = amount * receiveTokenValue / (1 ether);
 
         require(sendToken.balanceOf(msg.sender) >= sendAmount, "Your asset is smaller than amount you want to send");
-        require(receiveToken.balanceOf(address(this)) >= recieveAmount, "Contract asset of the currency recipient want is smaller than amount you want to send");
+        require(receiveToken.balanceOf(address(this)) >= receiveAmount, "Contract asset of the currency recipient want is smaller than amount you want to send");
 
         sendToken.transferFrom(msg.sender, address(this), sendAmount);
-        receiveToken.transfer(recipientAddress, recieveAmount);
+        receiveToken.transfer(recipientAddress, receiveAmount);
     }
 ```
 
@@ -254,14 +254,14 @@ IERC20 receiveToken = IERC20(receiveTokenAddress);
 
 ```
 uint256 sendTokenValue = calculateValue(sendTokenAddress, measureTokenAddress);
-        uint256 recieveTokenValue = calculateValue(receiveTokenAddress, measureTokenAddress);
+uint256 receiveTokenValue = calculateValue(receiveTokenAddress, measureTokenAddress);
 ```
 
 次に相対的な価値に引数である`amount`を掛け合わせることで送金者が送るトークン量と受領者が受け取るトークン量を算出します。
 
 ```
 uint256 sendAmount = amount * sendTokenValue / (1 ether);
-        uint256 recieveAmount = amount * recieveTokenValue / (1 ether);
+uint256 receiveAmount = amount * receiveTokenValue / (1 ether);
 ```
 
 ここで気をつけておかないといけないことは、先ほども言ったように価値を算出するときに1 etherかけているので、1 etherで割って相殺しないといけないということです。
@@ -270,14 +270,14 @@ uint256 sendAmount = amount * sendTokenValue / (1 ether);
 
 ```
 require(sendToken.balanceOf(msg.sender) >= sendAmount, "Your asset is smaller than amount you want to send");
-        require(receiveToken.balanceOf(address(this)) >= recieveAmount, "Contract asset of the currency recipient want is smaller than amount you want to send");
+require(receiveToken.balanceOf(address(this)) >= receiveAmount, "Contract asset of the currency recipient want is smaller than amount you want to send");
 ```
 
-最後に送信者、このコントラクトの両方からそれぞれ指定されたトークン量（sendAmount,recieveAmount）をtransferします。
+最後に送信者、このコントラクトの両方からそれぞれ指定されたトークン量（sendAmount,receiveAmount）をtransferします。
 
 ```
 sendToken.transferFrom(msg.sender, address(this), sendAmount);
-        receiveToken.transfer(recipientAddress, recieveAmount);
+receiveToken.transfer(recipientAddress, receiveAmount);
 ```
 
 ここで注意しておいてほしいことは、ERC20のもつメソッドの1つである`transferFrom`関数はあらかじめ`approve`関数によって指定されたアドレスに指定された量のトークンを承認しないと使用することができません。
