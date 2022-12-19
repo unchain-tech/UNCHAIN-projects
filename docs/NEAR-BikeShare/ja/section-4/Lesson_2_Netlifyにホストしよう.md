@@ -32,7 +32,7 @@ Done deploying and initializing sub.bike_account.testnet
 ```
 
 次に`bikeコントラクト`のアカウントにftを転送します。
-`package.js`に記載した`init`スクリプトと同じことを実行していきますが,
+`package.json`に記載した`init`スクリプトと同じことを実行していきますが,
 コントラクト名のみ正しいものに使用するよう気をつけてください。
 環境変数用意
 
