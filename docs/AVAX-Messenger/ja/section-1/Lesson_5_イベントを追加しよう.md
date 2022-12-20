@@ -182,7 +182,7 @@ contract Messenger {
 
 ```diff
  describe("Deny", function () {
-+    it("Should emit an event on accept", async function () {
++    it("Should emit an event on deny", async function () {
 +      const { messenger, otherAccount } = await loadFixture(deployContract);
 +      const test_deposit = 1;
 +
