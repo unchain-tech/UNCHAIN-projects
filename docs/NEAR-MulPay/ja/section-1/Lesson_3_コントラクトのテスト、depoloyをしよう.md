@@ -185,57 +185,6 @@ it("Get value ETH/DAI", async function () {
     });
 ```
 
-次にsymbolとtokenのアドレスのペアをセットして、それが正しく格納されているかをチェックしています。
-
-```
-// check list up function token symbol => token address
-    it("List up token address with that of symbol", async function () {
-      const {
-        DaiToken,
-        EthToken,
-        AoaToken,
-        ShibToken,
-        SolToken,
-        UsdtToken,
-        UniToken,
-        MaticToken,
-        SwapContract,
-      } = await loadFixture(deployTokenFixture);
-      const DAI = ethers.utils.formatBytes32String("DAI");
-      const ETH = ethers.utils.formatBytes32String("ETH");
-      const AOA = ethers.utils.formatBytes32String("AOA");
-      const SHIB = ethers.utils.formatBytes32String("SHIB");
-      const SOL = ethers.utils.formatBytes32String("SOL");
-      const USDT = ethers.utils.formatBytes32String("USDT");
-      const UNI = ethers.utils.formatBytes32String("UNI");
-      const MATIC = ethers.utils.formatBytes32String("MATIC");
-
-      const tokenSymbolList = [DAI, ETH, AOA, SHIB, SOL, USDT, UNI, MATIC];
-      const tokenAddressList = [
-        DaiToken.address,
-        EthToken.address,
-        AoaToken.address,
-        ShibToken.address,
-        SolToken.address,
-        UsdtToken.address,
-        UniToken.address,
-        MaticToken.address,
-      ];
-
-      for (let i = 0; i < tokenSymbolList.length; i++) {
-        await SwapContract.listUpTokenAddress(
-          tokenSymbolList[i],
-          tokenAddressList[i]
-        );
-        const tokenAddress = await SwapContract.returnTokenAddress(
-          tokenSymbolList[i]
-        );
-        const tokenSymbol = ethers.utils.parseBytes32String(tokenSymbolList[i]);
-        console.log(`${tokenSymbol} token address :${tokenAddress}`);
-      }
-    });
-```
-
 最後にswap機能がきちんと動くかをチェックしています。送金者と仮定するアドレス（owner）に`200DAI`をSwapContractから送金します。
 
 その後受領者の残高をswap前後で確認しています。
