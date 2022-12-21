@@ -57,7 +57,7 @@ NEARが提供するパッケージで、プロジェクトの雛形を作成し�
 プロジェクトを作成する任意の作業ディレクトリに移動し、以下のコマンドを実行します。
 
 ```bash
-npx create-near-app --frontend=react --contract=rust --tests=rust --install near-hotel-booking-dapp
+npx create-near-app@3.1.0 --frontend=react --contract=rust near-hotel-booking-dapp
 ```
 
 指定したオプションはこちらです。
