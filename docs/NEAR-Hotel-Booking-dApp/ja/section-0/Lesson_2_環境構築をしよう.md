@@ -57,7 +57,7 @@ NEARが提供するパッケージで、プロジェクトの雛形を作成し�
 プロジェクトを作成する任意の作業ディレクトリに移動し、以下のコマンドを実行します。
 
 ```bash
-npx create-near-app --frontend=react --contract=rust --tests=rust --install near-hotel-booking-dapp
+npx create-near-app@3.1.0 --frontend=react --contract=rust near-hotel-booking-dapp
 ```
 
 指定したオプションはこちらです。
@@ -106,12 +106,15 @@ near-hotel-booking-dapp/
 ├── .gitignore
 ├── .gitpod.yml
 ├── README.md
+├── ava.config.cjs
 ├── contract/
 ├── frontend/
 ├── integration-tests/
+├── neardev/
 ├── node_modules/
-├── package-lock.json
+├── out/
 ├── package.json
+└── yarn.lock
 ```
 
 それでは、プロジェクトのディレクトリへ移動し実際に起動してみましょう。
