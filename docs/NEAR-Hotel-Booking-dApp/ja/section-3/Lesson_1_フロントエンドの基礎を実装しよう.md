@@ -20,7 +20,7 @@ CONTRACT_NAME=contract.hotel_booking.testnet
 
 `frontend/near-api.js`に、NEAR Walletのデータやスマートコントラクトのメソッドを設定するための実装を行います。以下のように書き換えてください
 
-`frontend/near-api.js`
+`frontend/assets/js/near/utils.js`
 
 ```javascript
 import { connect, Contract, keyStores, WalletConnection } from "near-api-js";
@@ -28,7 +28,7 @@ import {
   formatNearAmount,
   parseNearAmount,
 } from "near-api-js/lib/utils/format";
-import getConfig from "./near-config";
+import getConfig from './config'
 
 // トランザクション実行時に使用するGASの上限を設定
 const GAS = 100000000000000;
