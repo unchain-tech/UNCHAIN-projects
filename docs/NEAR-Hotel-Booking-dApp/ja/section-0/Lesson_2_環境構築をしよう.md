@@ -106,12 +106,15 @@ near-hotel-booking-dapp/
 ├── .gitignore
 ├── .gitpod.yml
 ├── README.md
+├── ava.config.cjs
 ├── contract/
 ├── frontend/
 ├── integration-tests/
+├── neardev/
 ├── node_modules/
-├── package-lock.json
+├── out/
 ├── package.json
+└── yarn.lock
 ```
 
 それでは、プロジェクトのディレクトリへ移動し実際に起動してみましょう。
