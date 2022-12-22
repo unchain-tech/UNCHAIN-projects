@@ -15,7 +15,7 @@
 import { useState, useEffect } from "react";
 import { BigNumber, ethers } from "ethers";
 import UsdcArtifact from "../utils/USDCToken.json";
-import JoeArtifact from "../utils/USDCToken.json";
+import JoeArtifact from "../utils/JOEToken.json";
 import AmmArtifact from "../utils/AMM.json";
 import { USDCToken as UsdcContractType } from "../typechain-types";
 import { JOEToken as JoeContractType } from "../typechain-types";
@@ -409,7 +409,7 @@ ABIファイルは,コントラクトがコンパイルされた時に生成さ�
 `Avalanche-AMM`直下からターミナルでコピーを行う場合, このようなコマンドになります。
 
 ```
-cd contract/artifacts/contracts/ERC20Tokens.sol/USDCToken.json contract/artifacts/contracts/ERC20Tokens.sol/JOEToken.json contract/artifacts/contracts/AMM.sol/AMM.json client/utils/
+cp contract/artifacts/contracts/ERC20Tokens.sol/USDCToken.json contract/artifacts/contracts/ERC20Tokens.sol/JOEToken.json contract/artifacts/contracts/AMM.sol/AMM.json client/utils/
 ```
 
 📽️ 型定義ファイルを取得する
