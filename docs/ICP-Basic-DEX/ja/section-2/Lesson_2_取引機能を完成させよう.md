@@ -2,9 +2,9 @@
 
 前回のレッスンで実装した`Exchange`モジュールを`main.mo`からコールして、ユーザーが取引を実行できるようにします。
 
-まずは、`src/icp_basic_dex_backend`ディレクトリにある`type.mo`ファイルを編集します。以下のように、オーダーに関するデータ型を追加してください。
+まずは、`src/icp_basic_dex_backend`ディレクトリにある`types.mo`ファイルを編集します。以下のように、オーダーに関するデータ型を追加してください。
 
-[type.mo]
+[types.mo]
 
 ```diff
 module {
