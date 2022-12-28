@@ -31,7 +31,7 @@ touch src/icp_basic_dex_backend/balance_book.mo
 
 作成した`balance_book.mo`ファイルに、まずはライブラリのインポート文とデータを保存する変数を記述します。
 
-[残高_book.mo]
+[balance_book.mo]
 
 ```javascript
 import Iter "mo:base/Iter";
