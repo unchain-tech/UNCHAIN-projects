@@ -607,7 +607,7 @@ type PropsDRL = {
 const contractAddress: string = process.env
   .NEXT_PUBLIC_CONTRACT_ADDRESS as string;
 
-export const balenceOf = async (props: PropsBO) => {
+export const balanceOf = async (props: PropsBO) => {
   const contract = new ContractPromise(props.api!, abi, contractAddress);
   const { gasConsumed, result, output } = await contract.query.balanceOf(
     "",
