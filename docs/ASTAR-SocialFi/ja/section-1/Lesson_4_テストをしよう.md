@@ -682,7 +682,7 @@ mod astar_sns_contract {
             // コントラクトの初期化
             let mut astar_sns_contract = AstarSnsContract::new();
 
-            //　新しいアカウントをインスタンスか
+            //　新しいアカウントをインスタンス化
             let alice_account_id = accounts().alice;
 
             // ↑用のプロフィールを作成
