@@ -125,8 +125,8 @@ actor class Dex() = this {
 +    };
 +
 +    // DEXに転送
-+    let token_reciept = await dip20.transferFrom(msg.caller, Principal.fromActor(this), balance - dip_fee);
-+    switch token_reciept {
++    let token_receipt = await dip20.transferFrom(msg.caller, Principal.fromActor(this), balance - dip_fee);
++    switch token_receipt {
 +      case (#Err e) return #Err(#TransferFailure);
 +      case _ {};
 +    };
@@ -210,8 +210,8 @@ if (balance <= dip_fee) {
 };
 
 // DEXに転送
-let token_reciept = await dip20.transferFrom(msg.caller, Principal.fromActor(this), balance - dip_fee);
-  switch token_reciept {
+let token_receipt = await dip20.transferFrom(msg.caller, Principal.fromActor(this), balance - dip_fee);
+  switch token_receipt {
     case (#Err e) return #Err(#TransferFailure);
     case _ {};
   };
