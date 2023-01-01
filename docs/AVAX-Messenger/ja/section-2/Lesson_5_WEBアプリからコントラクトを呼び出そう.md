@@ -817,7 +817,7 @@ Done --
 
 > [こちら](https://github.com/unchain-dev/avalanche_messenger_dapp)に本プロジェクトの完成形のレポジトリがあります。
 >
-> コードがうまく動かない場合は参考にしてみてください。
+> 期待通り動かない場合は参考にしてみてください。
 > `messenger-contract`はリンク先のレポジトリ内の`package/contract`を。
 > `messenger-client`はリンク先のレポジトリ内の`package/client`を参照してください。
 
