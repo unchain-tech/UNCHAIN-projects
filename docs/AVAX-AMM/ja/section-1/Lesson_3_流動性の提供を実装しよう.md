@@ -510,8 +510,7 @@ $ npx hardhat test
 > [こちら](https://github.com/unchain-dev/avalanche-amm-dapp)に本プロジェクトの完成形のレポジトリがあります。
 >
 > 期待通り動かない場合は参考にしてみてください。
-> `contract`はリンク先のレポジトリ内の`package/contract`を。
-> `client`はリンク先のレポジトリ内の`package/client`を参照してください。
+
 
 ### 🙋‍♂️ 質問する
 
