@@ -448,9 +448,8 @@ MetaMaskの承認が終わると, 画面が切り替わり, 画面上部にあ�
 
 > [こちら](https://github.com/unchain-dev/avalanche_messenger_dapp)に本プロジェクトの完成形のレポジトリがあります。
 >
-> コードがうまく動かない場合は参考にしてみてください。
-> `messenger-contract`はリンク先のレポジトリ内の`package/contract`を。
-> `messenger-client`はリンク先のレポジトリ内の`package/client`を参照してください。
+> 期待通り動かない場合は参考にしてみてください。
+
 
 ### 🙋‍♂️ 質問する
 
