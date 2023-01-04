@@ -13,7 +13,7 @@
 
 ### 🛠️ 　フロントエンドのセットアップをしよう
 
-プロジェクトのルートディレクトリである`Avalanche-AMM`ディレクトリに移動し,以下のコードを実行して下さい。
+プロジェクトのルートディレクトリである`Avax-AMM`ディレクトリに移動し,以下のコードを実行して下さい。
 
 ```
 npx create-next-app client --ts --use-npm
@@ -26,7 +26,7 @@ npx create-next-app client --ts --use-npm
 この段階で,フォルダ構造は下記のようになっているはずです。
 
 ```
-Avalanche-AMM
+Avax-AMM
    |_ client
    |_ contract
 ```

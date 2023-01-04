@@ -406,7 +406,7 @@ ABIファイルは,コントラクトがコンパイルされた時に生成さ�
 `contract`からパスを追っていくと, `contract/artifacts/contracts/~.sol/~.json`というファイルがそれぞれのコントラクトに対して生成されているはずです。
 
 これを`client`の中の`utils`ディレクトリ内にコピーしてください。
-`Avalanche-AMM`直下からターミナルでコピーを行う場合, このようなコマンドになります。
+`Avax-AMM`直下からターミナルでコピーを行う場合, このようなコマンドになります。
 
 ```
 cp contract/artifacts/contracts/ERC20Tokens.sol/USDCToken.json contract/artifacts/contracts/ERC20Tokens.sol/JOEToken.json contract/artifacts/contracts/AMM.sol/AMM.json client/utils/
@@ -421,7 +421,7 @@ TypeScriptは静的型付け言語なので, 外部から取ってきたオブ�
 これは`npx hardhat`実行時にtypescriptを選択したため, 初期設定が済んでいるためです。
 
 `contract`内の`typechain-types`ディレクトリをそのまま`client`にコピーしてください。
-`Avalanche-AMM`直下からターミナルでコピーを行う場合, このようなコマンドになります。
+`Avax-AMM`直下からターミナルでコピーを行う場合, このようなコマンドになります。
 
 ```
 cp -r contract/typechain-types client/

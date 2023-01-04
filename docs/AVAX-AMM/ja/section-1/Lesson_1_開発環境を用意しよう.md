@@ -48,8 +48,8 @@
 作業したいディレクトリに移動したら,次のコマンドを実行します。
 
 ```bash
-mkdir Avalanche-AMM
-cd Avalanche-AMM
+mkdir Avax-AMM
+cd Avax-AMM
 mkdir contract
 cd contract
 npm init -y
@@ -57,7 +57,7 @@ npm install --save-dev hardhat @openzeppelin/test-helpers
 npm install dotenv @openzeppelin/contracts
 ```
 
-dapp全体のディレクトリ(`Avalanche-AMM`)とコントラクト実装に使用するディレクトリ(`contract`)を用意しました。
+dapp全体のディレクトリ(`Avax-AMM`)とコントラクト実装に使用するディレクトリ(`contract`)を用意しました。
 次に`npm init`によりnpmパッケージを管理するための環境をセットアップを行いました。
 最後にスマートコントラクトの開発に必要な以下のパッケージを`npm`コマンドを利用してインストールしています。
 
