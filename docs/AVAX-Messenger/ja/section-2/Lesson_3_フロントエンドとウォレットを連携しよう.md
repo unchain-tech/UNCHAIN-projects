@@ -54,11 +54,11 @@ Webアプリケーション上で,ユーザーがブロックチェーンネッ�
 
 ### 📁 `utils`ディレクトリ
 
-`messenger-client`へ移動し`utils`ディレクトリを作成してください。
+`client`へ移動し`utils`ディレクトリを作成してください。
 その中に`ethereum.ts`というファイルを作成してください。
 
 ```
-messenger-client
+client
 └── utils
     └── ethereum.ts
 ```
@@ -421,7 +421,7 @@ export default function SendMessagePage() {
 
 ### 🌐 ウォレットコネクトのテストを実行する
 
-上記のコードをすべて反映させたら,ターミナルで`messenger-client`に移動し,下記を実行しましょう。
+上記のコードをすべて反映させたら,ターミナルで`client`に移動し,下記を実行しましょう。
 
 ```bash
 npm run dev
