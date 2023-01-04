@@ -92,41 +92,6 @@ npm install ethers @metamask/providers react-icons
 - `@metamask/providers`: metamaskとの連携の際にオブジェクトの型を取得するために使用します。
 - `react-icons`: reactが用意するアイコンを使用できます。
 
-### 🐊 `github`にソースコードをアップロードしよう
-
-本プロジェクトの最後では, アプリをデプロイするために`github`へソースコードをアップロードする必要があります。
-今後の開発にも役に立つと思いますので, 今のうちにアップロード方法をおさらいしておきましょう。
-
-GitHubのアカウントをお持ちでない方は,[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
-
-GitHubへアップロードをしたことがない方は以下を参考にしてください。
-
-[新しいレポジトリを作成](https://docs.github.com/ja/get-started/quickstart/create-a-repo)（リポジトリ名などはご自由に）した後,
-手順に従いターミナルからアップロードを済ませます。
-以下ターミナルで実行するコマンドの参考です。(`client`直下で実行することを想定しております)
-
-```
-$ git init
-$ git add .
-$ git commit -m "first commit"
-$ git branch -M main
-$ git remote add origin [作成したレポジトリの SSH URL]
-$ git push -u origin main
-```
-
-> ✍️: SSH の設定を行う
->
-> Github のレポジトリをクローン・プッシュする際に,SSHKey を作成し,GitHub に公開鍵を登録する必要があります。
->
-> SSH（Secure SHell）はネットワークを経由してマシンを遠隔操作する仕組みのことで,通信が暗号化されているのが特徴的です。
->
-> 主にクライアント（ローカル）からサーバー（リモート）に接続をするときに使われます。この SSH の暗号化について,仕組みを見ていく上で重要になるのが秘密鍵と公開鍵です。
->
-> まずはクライアントのマシンで秘密鍵と公開鍵を作り,公開鍵をサーバーに渡します。そしてサーバー側で「この公開鍵はこのユーザー」というように,紐付けを行っていきます。
->
-> 自分で管理して必ず見せてはいけない秘密鍵と,サーバーに渡して見せても良い公開鍵の 2 つが SSH の通信では重要になってきます。
-> Github における SSH の設定は,[こちら](https://docs.github.com/ja/authentication/connecting-to-github-with-ssh) を参照してください!
-
 ### 🦊 MetaMask をダウンロードする
 
 あなたのwebアプリケーションと接続するウォレットをダウンロードしましょう。
