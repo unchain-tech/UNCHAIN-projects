@@ -50,7 +50,7 @@ Vercelのアカウントを取得したら,下記を実行しましょう。
 
 ![](/public/images/AVAX-Messenger/section-4/4_1_1.png)
 
-2\. `Import Git Repository`で自分のGitHubアカウントを接続したら, 当レポジトリを選択し`Import`してください。
+2\. `Import Git Repository`で自分のGitHubアカウントを接続したら, 当リポジトリを選択し`Import`してください。
 
 ![](/public/images/AVAX-Messenger/section-4/4_1_2.png)
 
