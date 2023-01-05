@@ -8,7 +8,7 @@
 
 テストネットはメインネットを模しています。
 
-`messenger-contract`ディレクトリへ移動し, `.env`という名前のファイルを作成します。
+`contract`ディレクトリへ移動し, `.env`という名前のファイルを作成します。
 💁 ドットを先頭につけたファイルは`ls`などでは非表示になる特殊なファイルです。
 
 `.env`ファイルの中に以下を記入してください。
@@ -50,7 +50,7 @@ TEST_ACCOUNT_PRIVATE_KEY="YOUR_PRIVATE_KEY"
 >
 > ユーザー名とパスワードを使用して,AWS にログインしてプロジェクトをデプロイするのと同じです。
 
-次に`messenger-contract`ディレクトリ直下にある`hardhat.config.ts`中身を以下のコードに書き換えてください。
+次に`contract`ディレクトリ直下にある`hardhat.config.ts`中身を以下のコードに書き換えてください。
 
 ```ts
 import { HardhatUserConfig } from "hardhat/config";
@@ -141,7 +141,7 @@ console.log(
 
 またデプロイの処理後もログを出力するようにしています。
 
-それでは`messenger-contract`ディレクトリ直下で下記のコマンドを実行してデプロイします！
+それでは`contract`ディレクトリ直下で下記のコマンドを実行してデプロイします！
 
 ```
 $ npx hardhat run scripts/deploy.ts --network fuji

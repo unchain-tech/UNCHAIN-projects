@@ -31,9 +31,9 @@ Vercelはサーバーレス機能のホスティングを提供するクラウ�
 
 Vercelに関する詳しい説明は,[こちら](https://zenn.dev/lollipop_onl/articles/eoz-vercel-pricing-2020)をご覧ください。
 
-まず,GitHubの`messenger-client`にあるローカルファイルをGitHubへアップロードしましょう。
+まず, ローカルファイルをGitHubへアップロードしましょう。
 
-まだアップロードをしていない方は, ターミナル上で`messenger-client`に移動して,下記を実行しましょう。
+まだアップロードをしていない方は, ターミナル上で`Avalanche-Messenger`に移動して,下記を実行しましょう。  
 ⚠️ `.gitignore`ファイル内に`.env`が記載されていることを確認していください。
 
 ```
@@ -42,7 +42,7 @@ git commit -m "upload to github"
 git push
 ```
 
-次に,GitHub上の`messenger-client`とローカル環境に存在する`messenger-client`のファイルとディレクトリが反映されていることを確認してください。
+次に, ローカル環境に存在する`Avalanche-Messenger`のファイルとディレクトリがGitHub上の`Avalanche-Messenger`に反映されていることを確認してください。
 
 Vercelのアカウントを取得したら,下記を実行しましょう。
 
@@ -50,14 +50,14 @@ Vercelのアカウントを取得したら,下記を実行しましょう。
 
 ![](/public/images/AVAX-Messenger/section-4/4_1_1.png)
 
-2\. `Import Git Repository`で自分のGitHubアカウントを接続したら,`messenger-client(あなたのレポジトリの名前)`を選択し,`Import`してください。
+2\. `Import Git Repository`で自分のGitHubアカウントを接続したら, 当リポジトリを選択し`Import`してください。
 
 ![](/public/images/AVAX-Messenger/section-4/4_1_2.png)
 
 3\. プロジェクトを作成します。
 
-デフォルトの設定で良いはずですが,
-もし`FRAME WORK PRESET`が`Next.js`になっていない場合は`Next.js`を選択してください。
+`Framework Preset`に`Next.js`を選択してください。  
+`Root directory`に(`Edit`ボタンをクリックし)`client`を選択します。
 
 ![](/public/images/AVAX-Messenger/section-4/4_1_3.png)
 

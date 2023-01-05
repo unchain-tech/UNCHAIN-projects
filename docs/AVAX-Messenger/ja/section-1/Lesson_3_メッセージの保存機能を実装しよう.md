@@ -522,7 +522,7 @@ describe("Post", function () {
 取り出したメッセージの内容が正しいかを確かめます。
 
 それではテストを実行しましょう！
-`messenger-contract`ディレクトリ直下で以下のコマンドを実行してください。
+`contract`ディレクトリ直下で以下のコマンドを実行してください。
 
 ```
 $ npx hardhat test

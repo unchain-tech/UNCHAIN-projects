@@ -7,14 +7,14 @@
 
 ターミナル上で新しくファイルを作成する場合は,下記のコマンドが役立ちます。
 
-1. `messenger-contract`ディレクトリに移動: `cd messenger-contract`
+1. `contract`ディレクトリに移動: `cd contract`
 2. `contracts`ディレクトリに移動: `cd contracts`
 3. `Messenger.sol`ファイルを作成: `touch Messenger.sol`
 
 Hardhatを使用する場合,ファイル構造は非常に重要ですので,注意する必要があります。ファイル構造が下記のようになっていれば大丈夫です 😊
 
 ```bash
-messenger-contract
+contract
     |_ contracts
            |_  Messenger.sol
 ```
@@ -225,7 +225,7 @@ expect(await 関数呼び出し).to.equal(期待する値);
 
 ### ⭐ テストを実行しましょう
 
-`messenger-contract`ディレクトリ直下で以下のコマンドを実行してください。
+`contract`ディレクトリ直下で以下のコマンドを実行してください。
 
 ```
 $ npx hardhat test

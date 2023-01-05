@@ -353,7 +353,7 @@ await expect(関数呼び出し).to.be.revertedWith("リバート時のメッセ
 続く`Deny`に関するテストも`Accept`と同じようなテストを実装しています。
 
 それではテストを実行しましょう！
-`messenger-contract`ディレクトリ直下で以下のコマンドを実行してください。
+`contract`ディレクトリ直下で以下のコマンドを実行してください。
 
 ```
 $ npx hardhat test
