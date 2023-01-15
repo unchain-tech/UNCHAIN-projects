@@ -10,7 +10,7 @@ Vercelに関する詳しい説明は,[こちら](https://zenn.dev/lollipop_onl/a
 
 まず, ローカルファイルをGitHubへアップロードしましょう。
 
-まだアップロードをしていない方は, ターミナル上で`Avalanche-Messenger`に移動して,下記を実行しましょう。  
+まだアップロードをしていない方は, ターミナル上で`Avax-AMM`に移動して,下記を実行しましょう。  
 ⚠️ `.gitignore`ファイル内に`.env`が記載されていることを確認していください。
 
 ```
@@ -19,7 +19,7 @@ git commit -m "upload to github"
 git push
 ```
 
-次に, ローカル環境に存在する`Avalanche-Messenger`のファイルとディレクトリがGitHub上の`Avalanche-Messenger`に反映されていることを確認してください。
+次に, ローカル環境に存在する`Avax-AMM`のファイルとディレクトリがGitHub上の`Avax-AMM`に反映されていることを確認してください。
 
 Vercelのアカウントを取得したら,下記を実行しましょう。
 
