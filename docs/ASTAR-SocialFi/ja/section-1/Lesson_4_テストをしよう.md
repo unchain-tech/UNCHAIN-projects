@@ -682,7 +682,7 @@ mod astar_sns_contract {
             // コントラクトの初期化
             let mut astar_sns_contract = AstarSnsContract::new();
 
-            //　新しいアカウントをインスタンスか
+            //　新しいアカウントをインスタンス化
             let alice_account_id = accounts().alice;
 
             // ↑用のプロフィールを作成
@@ -846,35 +846,14 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 
 [`FT_fn_works`]
 
-```rust
-#[ink::test]
-        fn FT_fn_works() {
-            // コントラクトのインスタンス化
-            let mut astar_sns_contract =
-                AstarSnsContract::new();
+```
+running 1 test
+alice_asset:50
+bob_asset:200
+charlie_asset:50
+test astar_sns_contract::tests::FT_fn_works ... ok
 
-            // 新しいアカウントの作成
-            let alice_account_id = accounts().alice;
-            let bob_account_id = accounts().bob;
-            let charlie_account_id = accounts().charlie;
-
-            // alice, bob, charlieのアカウントへそれぞれ100トークンを配布
-            astar_sns_contract.distribute_fn(alice_account_id, 100);
-            astar_sns_contract.distribute_fn(bob_account_id, 100);
-            astar_sns_contract.distribute_fn(charlie_account_id, 100);
-
-            // alice, charlieからbobへそれぞれ50トークンの送金
-            astar_sns_contract.transfer(alice_account_id, bob_account_id, 50);
-            astar_sns_contract.transfer(charlie_account_id, bob_account_id, 50);
-
-            // alice, bob, charlieの残高を確認
-            let alice_asset = astar_sns_contract.balance_of(alice_account_id);
-            let bob_asset = astar_sns_contract.balance_of(bob_account_id);
-            let charlie_asset = astar_sns_contract.balance_of(charlie_account_id);
-            debug_println!("alice_asset:{}", alice_asset);
-            debug_println!("bob_asset:{}", bob_asset);
-            debug_println!("charlie_asset:{}", charlie_asset);
-        }
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 ```
 
 お疲れ様です！ これでテストは完了しました！

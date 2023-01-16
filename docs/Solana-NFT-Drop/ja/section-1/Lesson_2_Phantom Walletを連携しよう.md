@@ -218,7 +218,7 @@ const checkIfWalletIsConnected = async () => {
 
 `onlyIfTrusted`プロパティは、ユーザーがすでにウォレットをアプリケーションに接続している場合、`true`になります。
 
-別の接続ポップアップを表示せずに、すぐにデータをpullします。詳細は [fantom の公式ドキュメント](https://docs.phantom.app/integrating/establishing-a-connection#eagerly-connecting)をご覧ください。
+別の接続ポップアップを表示せずに、すぐにデータをpullします。詳細は [Phantom の公式ドキュメント](https://docs.phantom.app/integrating/establishing-a-connection#eagerly-connecting)をご覧ください。
 
 以上です!
 

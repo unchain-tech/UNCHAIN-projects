@@ -54,11 +54,11 @@ Webアプリケーション上で,ユーザーがブロックチェーンネッ�
 
 ### 📁 `utils`ディレクトリ
 
-`messenger-client`へ移動し`utils`ディレクトリを作成してください。
+`client`へ移動し`utils`ディレクトリを作成してください。
 その中に`ethereum.ts`というファイルを作成してください。
 
 ```
-messenger-client
+client
 └── utils
     └── ethereum.ts
 ```
@@ -100,7 +100,7 @@ declare global {
 
 ### 📁 `hooks`ディレクトリ
 
-づついてユーザがMetamaskを持っていることの確認とウォレットへの接続機能を実装します。
+つづいてユーザがMetamaskを持っていることの確認とウォレットへの接続機能を実装します。
 
 既に作成している`hooks`ディレクトリ内に`useWallet.ts`というファイルを作成し, 以下のコードを記述してください。
 
@@ -421,7 +421,7 @@ export default function SendMessagePage() {
 
 ### 🌐 ウォレットコネクトのテストを実行する
 
-上記のコードをすべて反映させたら,ターミナルで`messenger-client`に移動し,下記を実行しましょう。
+上記のコードをすべて反映させたら,ターミナルで`client`に移動し,下記を実行しましょう。
 
 ```bash
 npm run dev
@@ -448,9 +448,8 @@ MetaMaskの承認が終わると, 画面が切り替わり, 画面上部にあ�
 
 > [こちら](https://github.com/unchain-dev/avalanche_messenger_dapp)に本プロジェクトの完成形のレポジトリがあります。
 >
-> コードがうまく動かない場合は参考にしてみてください。
-> `messenger-contract`はリンク先のレポジトリ内の`package/contract`を。
-> `messenger-client`はリンク先のレポジトリ内の`package/client`を参照してください。
+> 期待通り動かない場合は参考にしてみてください。
+
 
 ### 🙋‍♂️ 質問する
 

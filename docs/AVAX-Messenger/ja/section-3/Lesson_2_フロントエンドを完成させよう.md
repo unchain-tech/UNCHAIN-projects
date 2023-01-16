@@ -4,7 +4,7 @@
 
 追加するコードのロジックは今までと同じです。
 
-それでは`messenger-client`に移動してください。
+それでは`client`に移動してください。
 
 ### 📁 `hooks`ディレクトリ
 
@@ -372,7 +372,7 @@ export default Home;
 
 ### 🖥️ web アプリを立ち上げましょう
 
-それでは`messenger-client`ディレクトリ直下で以下のコマンドを走らせ, webアプリを立ち上げてください。
+それでは`client`ディレクトリ直下で以下のコマンドを走らせ, webアプリを立ち上げてください。
 
 ```
 $ npm run dev
@@ -399,9 +399,8 @@ $ npm run dev
 
 > [こちら](https://github.com/unchain-dev/avalanche_messenger_dapp)に本プロジェクトの完成形のレポジトリがあります。
 >
-> コードがうまく動かない場合は参考にしてみてください。
-> `messenger-contract`はリンク先のレポジトリ内の`package/contract`を。
-> `messenger-client`はリンク先のレポジトリ内の`package/client`を参照してください。
+> 期待通り動かない場合は参考にしてみてください。
+
 
 ### 🙋‍♂️ 質問する
 

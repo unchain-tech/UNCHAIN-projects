@@ -148,7 +148,7 @@ import Post from "../components/post";
 import PostModal from "../components/postModal";
 import TopBar from "../components/topBar";
 import { connectToContract } from "../hooks/connect";
-import { balenceOf, distributeReferLikes, transfer } from "../hooks/FT";
+import { balanceOf, distributeReferLikes, transfer } from "../hooks/FT";
 import type { PostType } from "../hooks/postFunction";
 import { getGeneralPost } from "../hooks/postFunction";
 import {
@@ -189,7 +189,7 @@ export default function home() {
       userId: actingAccount?.address!,
       setImgUrl: setImgUrl,
     });
-    balenceOf({
+    balanceOf({
       api: api,
       actingAccount: actingAccount!,
       setBalance: setBalance,
@@ -270,7 +270,7 @@ import ProfileSettingModal from "../components/profileSettingModal";
 import ProfileSubTopBar from "../components/profileSubTopBar";
 import TopBar from "../components/topBar";
 import { connectToContract } from "../hooks/connect";
-import { balenceOf } from "../hooks/FT";
+import { balanceOf } from "../hooks/FT";
 import type { PostType } from "../hooks/postFunction";
 import { getIndividualPost } from "../hooks/postFunction";
 import {
@@ -330,7 +330,7 @@ export default function profile(props: any) {
       userId: actingAccount?.address,
       setFollowerList: setFollowerList,
     });
-    balenceOf({
+    balanceOf({
       api: api,
       actingAccount: actingAccount!,
       setBalance: setBalance,
@@ -415,7 +415,7 @@ import MessageMember from "../components/message_member";
 import MessageRoom from "../components/messageRoom";
 import TopBar from "../components/topBar";
 import { connectToContract } from "../hooks/connect";
-import { balenceOf } from "../hooks/FT";
+import { balanceOf } from "../hooks/FT";
 import { getLastMessage, getMessageList } from "../hooks/messageFunction";
 import {
   checkCreatedInfo,
@@ -473,7 +473,7 @@ export default function message() {
     // create message member list UI
     createMessageMemberList();
 
-    balenceOf({
+    balanceOf({
       api: api,
       actingAccount: actingAccount!,
       setBalance: setBalance,

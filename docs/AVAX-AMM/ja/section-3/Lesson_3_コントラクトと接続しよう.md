@@ -15,7 +15,7 @@
 import { useState, useEffect } from "react";
 import { BigNumber, ethers } from "ethers";
 import UsdcArtifact from "../utils/USDCToken.json";
-import JoeArtifact from "../utils/USDCToken.json";
+import JoeArtifact from "../utils/JOEToken.json";
 import AmmArtifact from "../utils/AMM.json";
 import { USDCToken as UsdcContractType } from "../typechain-types";
 import { JOEToken as JoeContractType } from "../typechain-types";
@@ -406,10 +406,10 @@ ABIファイルは,コントラクトがコンパイルされた時に生成さ�
 `contract`からパスを追っていくと, `contract/artifacts/contracts/~.sol/~.json`というファイルがそれぞれのコントラクトに対して生成されているはずです。
 
 これを`client`の中の`utils`ディレクトリ内にコピーしてください。
-`Avalanche-AMM`直下からターミナルでコピーを行う場合, このようなコマンドになります。
+`Avax-AMM`直下からターミナルでコピーを行う場合, このようなコマンドになります。
 
 ```
-cd contract/artifacts/contracts/ERC20Tokens.sol/USDCToken.json contract/artifacts/contracts/ERC20Tokens.sol/JOEToken.json contract/artifacts/contracts/AMM.sol/AMM.json client/utils/
+cp contract/artifacts/contracts/ERC20Tokens.sol/USDCToken.json contract/artifacts/contracts/ERC20Tokens.sol/JOEToken.json contract/artifacts/contracts/AMM.sol/AMM.json client/utils/
 ```
 
 📽️ 型定義ファイルを取得する
@@ -421,7 +421,7 @@ TypeScriptは静的型付け言語なので, 外部から取ってきたオブ�
 これは`npx hardhat`実行時にtypescriptを選択したため, 初期設定が済んでいるためです。
 
 `contract`内の`typechain-types`ディレクトリをそのまま`client`にコピーしてください。
-`Avalanche-AMM`直下からターミナルでコピーを行う場合, このようなコマンドになります。
+`Avax-AMM`直下からターミナルでコピーを行う場合, このようなコマンドになります。
 
 ```
 cp -r contract/typechain-types client/
@@ -875,9 +875,8 @@ $ npm run dev
 
 > [こちら](https://github.com/unchain-dev/avalanche-amm-dapp)に本プロジェクトの完成形のレポジトリがあります。
 >
-> コードがうまく動かない場合は参考にしてみてください。
-> `contract`はリンク先のレポジトリ内の`package/contract`を。
-> `client`はリンク先のレポジトリ内の`package/client`を参照してください。
+> 期待通り動かない場合は参考にしてみてください。
+
 
 ### 🙋‍♂️ 質問する
 

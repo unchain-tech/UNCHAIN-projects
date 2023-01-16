@@ -276,7 +276,7 @@ npm install @polkadot/api @polkadot/extension-inject @polkadot/extension-dapp
 
 `accountList`,`actingAccount`については、それぞれ存在が確認されているアカウント情報のリストと現在接続しているアカウントが入ることになります。
 
-`isSet`には接続がされているかを確認するための`bool`型の値が入りまします。
+`isSetup`には接続がされているかを確認するための`bool`型の値が入りまします。
 
 それ以降の値は`useState`で取得する`set○○`のような関数で、値をセットするための関数が入ります。
 
@@ -607,7 +607,7 @@ type PropsDRL = {
 const contractAddress: string = process.env
   .NEXT_PUBLIC_CONTRACT_ADDRESS as string;
 
-export const balenceOf = async (props: PropsBO) => {
+export const balanceOf = async (props: PropsBO) => {
   const contract = new ContractPromise(props.api!, abi, contractAddress);
   const { gasConsumed, result, output } = await contract.query.balanceOf(
     "",

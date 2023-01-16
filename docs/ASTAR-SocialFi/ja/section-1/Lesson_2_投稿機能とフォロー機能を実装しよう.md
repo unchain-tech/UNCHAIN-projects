@@ -81,7 +81,7 @@ astar_sns_contract/
 
 ```
 
-ここからいろんな関数を記述していくのですが、関数の末尾に`_fn`という記述をしているのはコントラクト外から直接呼ばれるものではない者です。
+ここからいろんな関数を記述していくのですが、関数の末尾に`_fn`という記述をしているのはコントラクト外から直接呼ばれるものではないものです。
 
 コントラクト外から呼ばれるためには`#[ink(message)]`を関数の上に添える必要があるのですが、これは`#[ink::contract]`が添えられたコントラクト以外の場所(`lib.rs`以外のファイル)では宣言できないので、最終的には`lib.rs`内で使用される関数であるという認識で大丈夫です。
 
@@ -138,11 +138,11 @@ pub struct Message {
 
 上の3行は今回使用する型を宣言しています。
 
-`AccountId`は32文字で表せされるアドレスの型です。もしおかしなアドレス（文字数が違うなど）がこの型に入ることになるとエラーとなります。
+`AccountId`は32文字で表されるアドレスの型です。もしおかしなアドレス（文字数が違うなど）がこの型に入ることになるとエラーとなります。
 
 `Vec`はJavaScriptでいう`List`と同じようなものでVec <type>の`type`に入る型の値がリスト状に格納されることになります。
 
-`String`は文字列の方です。
+`String`は文字列の型です。
 
 `PackedLayout, SpreadLayout, StorageLayout`については`metadata.rs`で宣言されるオリジナルの型がコントラクトの関数内で操作を行えるようにするために使われます。
 
@@ -243,7 +243,7 @@ pub created_time: String,
 [`post.rs`]
 
 ```rust
-use crate::metadata::\*;
+use crate::metadata::*;
 use ink_env::AccountId;
 use ink_prelude::string::String;
 use ink_prelude::string::ToString;
@@ -404,7 +404,7 @@ impl AstarSnsContract {
 4行目はAstarSnsContractというコントラクトを参照できることを示しています。
 
 ```rust
-use crate::metadata::\*;
+use crate::metadata::*;
 use ink_env::AccountId;
 use ink_prelude::vec::Vec;
 use crate::astar_sns_contract::AstarSnsContract;
@@ -491,7 +491,7 @@ Mapping型に用意してある`insert`というメソッドはx->yというマ�
 
 まずは先ほど述べた取得する投稿数と最新度の設定方法について説明します。
 
-したの部分が取得のメソッドで、if部分でそもそもの投稿リストの要素数が取得したい数より少ない時はfor文でリスト内の要素を全部取得します。
+下の部分が取得のメソッドで、if部分でそもそもの投稿リストの要素数が取得したい数より少ない時はfor文でリスト内の要素を全部取得します。
 
 そうでない場合は投稿リストのうち取得したい部分をnumによって指定してその部分を取得します。例えば10個の要素があって3つだけ取得したいときには最後の3つかその前の3つか...をnumで指定します。
 

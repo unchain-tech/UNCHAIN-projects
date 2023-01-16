@@ -621,12 +621,7 @@ const Home: NextPage = () => {
     <div className={styles.pageBody}>
       <div className={styles.navBar}>
         <div className={styles.rightHeader}>
-          <Image
-            alt="Picture of icon"
-            src="/bird.png"
-            width="40px"
-            height="30px"
-          />
+          <Image alt="Picture of icon" src="/bird.png" width={40} height={30} />
           <div className={styles.appName}> Miniswap </div>
         </div>
         {currentAccount == undefined ? (
@@ -691,9 +686,8 @@ MetaMaskの承認が終わると, `Connect to wallet`ボタンの部分があな
 
 > [こちら](https://github.com/unchain-dev/avalanche-amm-dapp)に本プロジェクトの完成形のレポジトリがあります。
 >
-> コードがうまく動かない場合は参考にしてみてください。
-> `contract`はリンク先のレポジトリ内の`package/contract`を。
-> `client`はリンク先のレポジトリ内の`package/client`を参照してください。
+> 期待通り動かない場合は参考にしてみてください。
+
 
 ### 🙋‍♂️ 質問する
 

@@ -2,7 +2,7 @@
 
 このレッスンでは,MetaMaskの認証機能を使用して,Webアプリケーションから実際にあなたのコントラクトを呼び出す機能を実装します。
 
-`messenger-client`ディレクトリへ移動してください。
+`client`ディレクトリへ移動してください。
 
 ### 📁 `hooks`ディレクトリ
 
@@ -420,7 +420,7 @@ Contract's fund is: BigNumber { value: "100" }
 ```
 
 その時, `Contract deployed at:`の後に表示されたアドレスを
-`messenger-client`ディレクトリ内, `hooks/useMessengerContract.ts`の中の以下の部分に貼り付けてください。
+`client`ディレクトリ内, `hooks/useMessengerContract.ts`の中の以下の部分に貼り付けてください。
 
 ```ts
 const contractAddress = "あなたのコントラクトのデプロイ先アドレス";
@@ -445,12 +445,12 @@ const contractAddress = "0xf531A6BCF3cD579f5A367cf45ff996dB1FC3beA1";
 
 ABIファイルは,コントラクトがコンパイルされた時に生成され,`artifacts`ディレクトリに自動的に格納されます。
 
-`messenger-contract`からパスを追っていくと, `messenger-contract/artifacts/contracts/Messenger.sol/Messenger.json`というファイルが生成されているはずです。
-これを`messenger-client`の中の`utils`ディレクトリ内にコピーしてください。
-`Avalanche-dApp`直下からターミナルでコピーを行う場合, このようなコマンドになります。
+`contract`からパスを追っていくと, `contract/artifacts/contracts/Messenger.sol/Messenger.json`というファイルが生成されているはずです。
+これを`client`の中の`utils`ディレクトリ内にコピーしてください。
+`Avax-Messenger`直下からターミナルでコピーを行う場合, このようなコマンドになります。
 
 ```
-$ cp messenger-contract/artifacts/contracts/Messenger.sol/Messenger.json messenger-client/utils/
+$ cp contract/artifacts/contracts/Messenger.sol/Messenger.json client/utils/
 ```
 
 📽️ 型定義ファイルを取得する
@@ -461,11 +461,11 @@ TypeScriptは静的型付け言語なので, 外部から取ってきたオブ�
 コントラクトの型定義ファイルは, コントラクトがコンパイルされた時に生成され, `typechain-types`ディレクトリに自動的に格納されます。
 これは`npx hardhat`実行時にtypescriptを選択したため, 初期設定が済んでいるためです。
 
-`messenger-contract`内の`typechain-types`ディレクトリをそのまま`messenger-client`にコピーしてください。
-`Avalanche-dApp`直下からターミナルでコピーを行う場合, このようなコマンドになります。
+`contract`内の`typechain-types`ディレクトリをそのまま`client`にコピーしてください。
+`Avax-Messenger`直下からターミナルでコピーを行う場合, このようなコマンドになります。
 
 ```
-$ cp -r messenger-contract/typechain-types messenger-client/
+$ cp -r contract/typechain-types client/
 ```
 
 以上でコントラクトの情報を反映することができました。
@@ -474,7 +474,7 @@ $ cp -r messenger-contract/typechain-types messenger-client/
 ### 🌞 web アプリを立ち上げて挙動を確認する
 
 ここまでで作成した`useMessengerContract`を使うように2つのページを編集しましょう。
-`messenger-client`ディレクトリ内を編集します。
+`client`ディレクトリ内を編集します。
 
 📁 `message`ディレクトリ
 
@@ -563,7 +563,7 @@ export default function SendMessagePage() {
 前回まで`SendMessageForm`に渡していた関数の処理は空でしたが,
 `useMessengerContract`から`sendMessage`関数を取得することで, コントラクトの関数(`post`)を呼び出す処理を入れることができました。
 
-それでは`messenger-client`ディレクトリ直下で以下のコマンドを走らせ, webアプリを立ち上げてください。
+それでは`client`ディレクトリ直下で以下のコマンドを走らせ, webアプリを立ち上げてください。
 
 ```
 $ npm run dev
@@ -587,20 +587,13 @@ $ npm run dev
 
 ### 🌵 `ETH`と`AVAX`
 
-今まで実装としては`ETH`または`wei`を使用してきましたが, 実際に支払ったのは`AVAX`です。
-この単位の変換はこのように行われています。
+これまでの実装では, Ethereumでの開発と同じ流れで作成したため`ETH`という表記を使用していましたが, C-Chainのネイティブトークンのシンボルは`AVAX`です。
 
-```
-1 Wei = 10^-18 AVAX
-```
+なのでトークンを`1`使用する場合は`1AVAX`を使用することになります。
 
-つまり`1 ETH (= 1,000,000,000,000,000,000 wei)`という量でトークンを関数呼び出しに付与した場合
-`C-Chain`上では`1,000,000,000,000,000,000 * 10^-18 = 1`という量に変換され, `1 AVAX`を使用することになっています。
+ソースコード内で`wei`を使用している部分は, `10^18 AVAX`という単位を扱っていると考えることができます。
 
-単純に, `1 ETH`を使用するよう実装しているなら, `C-Chain`上で動かすと`1 AVAX`を使うことになると考えたほうがわかりやすいかもしれません。
-⚠️ 現実世界の価値が`1 ETH` = `1 AVAX`というわけではありません。
-
-詳しくは[こちら](https://docs.avax.network/specs/coreth-arc20s#nativeassetcall)をご覧ください。
+現実世界の価値が`1 ETH` = `1 AVAX`というわけではありません。
 
 ### 🤖 残りのメッセージ確認機能を追加しよう
 
@@ -780,7 +773,7 @@ export default function ConfirmMessagePage() {
 
 🖥️ 画面で確認しましょう
 
-それでは`messenger-client`ディレクトリ直下で以下のコマンドを走らせ, webアプリを立ち上げてください。
+それでは`client`ディレクトリ直下で以下のコマンドを走らせ, webアプリを立ち上げてください。
 
 ```
 $ npm run dev
@@ -817,9 +810,8 @@ Done --
 
 > [こちら](https://github.com/unchain-dev/avalanche_messenger_dapp)に本プロジェクトの完成形のレポジトリがあります。
 >
-> コードがうまく動かない場合は参考にしてみてください。
-> `messenger-contract`はリンク先のレポジトリ内の`package/contract`を。
-> `messenger-client`はリンク先のレポジトリ内の`package/client`を参照してください。
+> 期待通り動かない場合は参考にしてみてください。
+
 
 ### 🙋‍♂️ 質問する
 
