@@ -46,8 +46,10 @@ cp artifacts/contracts/AssetTokenization.sol/AssetTokenization.json ../client/ar
 ```
 cp -r typechain-types/* ../client/types/
 ```
-以上でコントラクトの情報を反映することができました。　<br>
-再デプロイする際はコントラクトの情報を更新することを忘れないようにしましょう！！
+
+以上でコントラクトの情報を反映することができました。
+
+再デプロイする際はコントラクトの情報の更新を忘れないように気をつけましょう。
 
 
 デプロイしたアドレスは次の`Upkeepの登録`でも使用します。
