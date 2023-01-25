@@ -23,7 +23,7 @@ dfx --version
 ターミナルにインストール時の最新バージョンが表示されたら完了です[（SDK リリースノートを参照）](https://internetcomputer.org/docs/current/developer-docs/updates/release-notes/)。
 
 ```bash
-dfx 0.12.0
+dfx 0.12.1
 ```
 
 ### 🛠 VS Code の拡張機能をインストールする
@@ -94,11 +94,12 @@ cd icp_basic_dex
 dfx start --clean --background
 ```
 
-ターミナル上に出力された最後の2行に、`Starting server.`と表示があれば起動成功です。
+ターミナル上に出力された最後の行に、`Dashboard: http://localhost:58635/_/dashboard`と表示があれば起動成功です。
 
 ```bash
- Nov 09 00:49:49.880 INFO Log Level: INFO
- Nov 09 00:49:49.884 INFO Starting server. Listening on http://127.0.0.1:8000/
+Running dfx start for version 0.12.1
+Using the default definition for the 'local' shared network because /Users/yukasaito/.config/dfx/networks.json does not exist.
+Dashboard: http://localhost:58635/_/dashboard
 ```
 
 続いて、モジュールをインストールします。
@@ -152,9 +153,9 @@ Committing batch.
 Deployed canisters.
 URLs:
   Frontend canister via browser
-    icp_basic_dex_frontend: http://127.0.0.1:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai
+    icp_basic_dex_frontend: http://127.0.0.1:4943/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai
   Backend canister via Candid interface:
-    icp_basic_dex_backend: http://127.0.0.1:8000/?canisterId=r7inp-6aaaa-aaaaa-aaabq-cai&id=rrkah-fqaaa-aaaaa-aaaaq-cai
+    icp_basic_dex_backend: http://127.0.0.1:4943/?canisterId=r7inp-6aaaa-aaaaa-aaabq-cai&id=rrkah-fqaaa-aaaaa-aaaaq-cai
 ```
 
 フロントエンドをテストしてみましょう。
