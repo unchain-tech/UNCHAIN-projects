@@ -59,13 +59,21 @@ const config: HardhatUserConfig = {
   networks: {
     testnet_aurora: {
       url: "https://testnet.aurora.dev",
-      accounts: [process.env.AURORA_PRIVATE_KEY!],
+      accounts:
+        process.env.AURORA_PRIVATE_KEY !== undefined
+          ? [process.env.AURORA_PRIVATE_KEY]
+          : [],
     },
   },
 };
 
 export default config;
 ```
+
+ここでaccountsの欄を下のようにしたのはテストに関係するからです。
+
+教材提出の際にgithub repositoryからcloneするのですが、その際
+.envファイルはgithubに上げられていないにも関わらず読み込もうとしてエラーが起きてしまいます。その結果テストが中断してしまうのでこのように`undifined`の時には何も入らないようにしています！
 
 これで下準備は完了です。
 
