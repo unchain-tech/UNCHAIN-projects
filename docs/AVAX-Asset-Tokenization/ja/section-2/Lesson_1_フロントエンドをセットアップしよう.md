@@ -8,24 +8,24 @@
 - `React.js`: ライブラリ
 - `Next.js`: `React.js`のフレームワーク
 
-それぞれの概要については[LEARNコンテンツ](https://app.unchain.tech/learn)内の`AVAX-Messenger/section2/lesson1`説明を載せていますので, 初めて触れる方はご参照ください 💁
+それぞれの概要については[LEARN コンテンツ](https://app.unchain.tech/learn)内の`AVAX-Messenger/section2/lesson1`説明を載せていますので, 初めて触れる方はご参照ください 💁
 
 ### 🛠️ 　フロントエンドのセットアップをしよう
 
-プロジェクトのルートディレクトリである`AVAX-AssetTokenization`ディレクトリに移動し,以下のコードを実行して下さい。
+プロジェクトのルートディレクトリである`AVAX-Asset-Tokenization`ディレクトリに移動し,以下のコードを実行して下さい。
 
 ```
 npx create-next-app client --ts --use-npm
 ```
 
-ここでは`create-next-app`というパッケージを利用して`client`という名前のプロジェクトを作成しました。  
-`--ts`は`typescript`を使用することの指定, `--use-npm`は`npm`を使用してアプリの立ち上げを行うこと指定しています。  
+ここでは`create-next-app`というパッケージを利用して`client`という名前のプロジェクトを作成しました。
+`--ts`は`typescript`を使用することの指定, `--use-npm`は`npm`を使用してアプリの立ち上げを行うこと指定しています。
 `client`ディレクトリには`Next.js`を使ったプロジェクト開発に最低限必要なものがあらかじめ作成されます。
 
 この段階で, フォルダ構造は下記のようになっているはずです。
 
 ```
-AVAX-AssetTokenization
+AVAX-Asset-Tokenization
    |_ client
    |_ contract
 ```
@@ -43,7 +43,7 @@ npm run dev
 
 例)ローカル環境で表示されているWebサイト
 
-![](/public/images/AVAX-AssetTokenization/section-2/3_1_1.png)
+![](/public/images/AVAX-Asset-Tokenization/section-2/3_1_1.png)
 
 上記のような形でフロントエンドが確認できれば成功です。
 
@@ -54,7 +54,7 @@ Webサイトの立ち上げを終了する場合は以下のコマンドが使�
 - Mac: `ctrl + c`
 - Windows: `ctrl + shift + w`
 
-`client`ディレクトリのフォルダ構造は以下のようになっています。  
+`client`ディレクトリのフォルダ構造は以下のようになっています。
 ※`node_modules`は内部ファイルの表示を省略しています。
 
 ```
@@ -95,9 +95,9 @@ npm install ethers @metamask/providers react-icons
 
 このプロジェクトではMetaMaskを使用します。
 
-> 📓 [Core](https://support.avax.network/en/collections/3391518-core) ウォレット について  
-> Ava Labs(Avalanche エコシステムの開発チーム) がサポートしている Core というウォレットが存在します。  
-> Core でのウォレットを使用すると Avalanche に適した処理により, 高速なトランザクションが実現する可能性があります。  
+> 📓 [Core](https://support.avax.network/en/collections/3391518-core) ウォレット について
+> Ava Labs(Avalanche エコシステムの開発チーム) がサポートしている Core というウォレットが存在します。
+> Core でのウォレットを使用すると Avalanche に適した処理により, 高速なトランザクションが実現する可能性があります。
 > 現在は beta 版ということもありバグや仕様変更が日々改善されているため, ここでは使用しませんが注目なウォレットです。
 
 - [こちら](https://MetaMask.io/download.html) からブラウザの拡張機能をダウンロードし, MetaMaskウォレットをあなたのブラウザに設定します。
@@ -110,7 +110,7 @@ MetaMaskを設定できたら, Avalancheのテストネットワークを追加�
 
 MetaMaskの上部のネットワークタブを開き, `Add Network`をクリックします。
 
-![](/public/images/AVAX-AssetTokenization/section-2/3_1_2.png)
+![](/public/images/AVAX-Asset-Tokenization/section-2/3_1_2.png)
 
 開いた設定ページ内で以下の情報を入力して保存をクリックしましょう。
 
@@ -122,11 +122,11 @@ Symbol: AVAX
 Explorer: https://testnet.snowtrace.io/
 ```
 
-![](/public/images/AVAX-AssetTokenization/section-2/3_1_3.png)
+![](/public/images/AVAX-Asset-Tokenization/section-2/3_1_3.png)
 
 登録が成功したらAvalancheのテストネットである`Avalanche Fuji C-Chain`が選択できるはずです。
 
-![](/public/images/AVAX-AssetTokenization/section-2/3_1_4.png)
+![](/public/images/AVAX-Asset-Tokenization/section-2/3_1_4.png)
 
 ### 🚰 `Faucet`を利用して`AVAX`をもらう
 
@@ -134,7 +134,7 @@ Explorer: https://testnet.snowtrace.io/
 
 テストネットでのみ使用できる偽の`AVAX`です。
 
-上記リンクへ移動して, あなたのウォレットのアドレスを入力してAVAXを受け取ってください。  
+上記リンクへ移動して, あなたのウォレットのアドレスを入力してAVAXを受け取ってください。
 💁 アドレスはMetaMask上部のアカウント名の部分をクリックするとコピーができます。
 
 ### 🙋‍♂️ 質問する

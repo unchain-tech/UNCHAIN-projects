@@ -38,8 +38,8 @@
 作業したいディレクトリに移動したら,次のコマンドを実行します。
 
 ```bash
-mkdir AVAX-AssetTokenization
-cd AVAX-AssetTokenization
+mkdir AVAX-Asset-Tokenization
+cd AVAX-Asset-Tokenization
 mkdir contract
 cd contract
 npm init -y
@@ -47,7 +47,7 @@ npm install --save-dev hardhat @openzeppelin/test-helpers
 npm install dotenv @openzeppelin/contracts @chainlink/contracts
 ```
 
-`dapp`全体のディレクトリ(`AVAX-AssetTokenization`)とコントラクト実装に使用するディレクトリ(`contract`)を用意しました。
+`dapp`全体のディレクトリ(`AVAX-Asset-Tokenization`)とコントラクト実装に使用するディレクトリ(`contract`)を用意しました。
 次に`npm init`により`npmパッケージ`を管理するための環境セットアップを行いました。
 最後にスマートコントラクトの開発に必要な以下のパッケージを`npm`コマンドを利用してインストールしています。
 
@@ -110,7 +110,7 @@ $ npx hardhat test
 
 次のように表示されたら成功です! 🎉
 
-![](/public/images/AVAX-AssetTokenization/section-1/1_1_1.png)
+![](/public/images/AVAX-Asset-Tokenization/section-1/1_1_1.png)
 
 ここまできたら,フォルダーの中身を整理しましょう。
 
@@ -141,7 +141,7 @@ contract
 
 本プロジェクトの最後では, アプリをデプロイするために`github`へソースコードをアップロードする必要があります。
 
-**AVAX-AssetTokenization**全体を対象としてアップロードしましょう。
+**AVAX-Asset-Tokenization**全体を対象としてアップロードしましょう。
 
 今後の開発にも役に立つと思いますので, 今のうちに以下にアップロード方法をおさらいしておきます。
 
@@ -151,7 +151,7 @@ contract
 
 [新しいレポジトリを作成](https://docs.github.com/ja/get-started/quickstart/create-a-repo)（リポジトリ名などはご自由に）した後,
 手順に従いターミナルからアップロードを済ませます。
-以下ターミナルで実行するコマンドの参考です。(`AVAX-AssetTokenization`直下で実行することを想定しております)
+以下ターミナルで実行するコマンドの参考です。(`AVAX-Asset-Tokenization`直下で実行することを想定しております)
 
 ```
 $ git init
@@ -179,7 +179,6 @@ $ git push -u origin main
 
 > [こちら](https://github.com/unchain-dev/AVAX-Asset-Tokenization)に本プロジェクトの完成形のレポジトリがあります。
 > 期待通り動かない場合は参考にしてみてください。
-
 
 ### 🙋‍♂️ 質問する
 

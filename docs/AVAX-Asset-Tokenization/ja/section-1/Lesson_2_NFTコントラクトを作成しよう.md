@@ -1,4 +1,4 @@
-`section1`のこれから先の作業は, `AVAX-AssetTokenization/contract`ディレクトリをルートディレクトリとして話を進めます。 🙌
+`section1`のこれから先の作業は, `AVAX-Asset-Tokenization/contract`ディレクトリをルートディレクトリとして話を進めます。 🙌
 
 ### 👩‍💻 実装する内容の確認
 
@@ -20,16 +20,16 @@ NFTの機能を持つスマートコントラクトです。
 このコントラクトには有効期限を設けます。
 デプロイ時に指定された有効期限の日時を過ぎるとNFTのmintができなくなります。
 
-**AssetTokenization**
+**Asset-Tokenization**
 
 フロントエンドとのデータのやりとり, `FarmNft`のデプロイと管理をする機能を持つスマートコントラクトです。
-`AssetTokenization`は1つで, `FarmNft`は農家の数だけ存在することができます。
+`Asset-Tokenization`は1つで, `FarmNft`は農家の数だけ存在することができます。
 
 作成する2つのスマートコントラクトとフロントエンドとの関係図は以下です。
 
-ここでは`AssetTokenization`がフロントエンドとやり取りをすることと, 複数の`FarmNft`を管理しているという関係性が掴めれば十分です！
+ここでは`Asset-Tokenization`がフロントエンドとやり取りをすることと, 複数の`FarmNft`を管理しているという関係性が掴めれば十分です！
 
-![](/public/images/AVAX-AssetTokenization/section-1/1_1_2.png)
+![](/public/images/AVAX-Asset-Tokenization/section-1/1_1_2.png)
 
 ### 🥮 `FarmNft`コントラクトを作成する
 
@@ -252,10 +252,10 @@ openseaなどのNFTマーケットサービスは, このtokenURI関数のデー
 
 > 📓 `block.timestamp`の使用について
 > スマートコントラクトで時間の参照方法はいくつかあります。
-> `block.timestamp`はブロックチェーンにブロックが書き込まれる際に, バリデータによって操作ができるという懸念点がありますが, 操作のできる範囲は30秒ほどです。
-> つまり30秒の範囲で実際とは差のある時間をコントラクト内のロジックに使用しても良いのなら`block.timestamp`を使用できます。
+> `block.timestamp`はブロックチェーンにブロックが書き込まれる際に, バリデータによって操作ができるという懸念点がありますが, 操作のできる範囲は 30 秒ほどです。
+> つまり 30 秒の範囲で実際とは差のある時間をコントラクト内のロジックに使用しても良いのなら`block.timestamp`を使用できます。
 > 今回は簡易的な実装なのでこちらを使います。
-> Ethereumのコントラクトでは, `block.number`を使用した方法([参考](https://zoom-blc.com/solidity-time-logic))などもありますが, Avalancheでは定期的にブロックが生成されるという仕組みではないためこちらは使用できなそうです。
+> Ethereum のコントラクトでは, `block.number`を使用した方法([参考](https://zoom-blc.com/solidity-time-logic))などもありますが, Avalanche では定期的にブロックが生成されるという仕組みではないためこちらは使用できなそうです。
 > 正確な情報を取得するためにはオラクルを使用する必要があります。
 
 ```solidity
@@ -314,7 +314,6 @@ describe("farmNft", function () {
 
   // テストコード
 });
-
 ```
 
 `deployContract`内ではコントラクトのデプロイ作業を実装しています。
@@ -325,22 +324,22 @@ describe("farmNft", function () {
 
 ```ts
 describe("mint", function () {
-    it("NFT should be minted", async function () {
-      // テストコード
-    });
-
-    it("balance should be change", async function () {
-      // テストコード
-    });
-
-    it("revert when not enough nft to mint", async function () {
-      // テストコード
-    });
-
-    it("revert when not enough currency to mint", async function () {
-      // テストコード
-    });
+  it("NFT should be minted", async function () {
+    // テストコード
   });
+
+  it("balance should be change", async function () {
+    // テストコード
+  });
+
+  it("revert when not enough nft to mint", async function () {
+    // テストコード
+  });
+
+  it("revert when not enough currency to mint", async function () {
+    // テストコード
+  });
+});
 ```
 
 1つ目のテストではNFTをmintした後, そのNFTの保有者が指定したアドレスと一致するかをテストしています。
@@ -371,13 +370,12 @@ $ npx hardhat test test/FarmNft.ts
 以下のような表示がされます。
 実行したテスト名とそのテストがパスしたことがわかります。
 
-![](/public/images/AVAX-AssetTokenization/section-1/1_1_3.png)
+![](/public/images/AVAX-Asset-Tokenization/section-1/1_1_3.png)
 
 ### 🌔 参考リンク
 
 > [こちら](https://github.com/unchain-dev/AVAX-Asset-Tokenization)に本プロジェクトの完成形のレポジトリがあります。
 > 期待通り動かない場合は参考にしてみてください。
-
 
 ### 🙋‍♂️ 質問する
 

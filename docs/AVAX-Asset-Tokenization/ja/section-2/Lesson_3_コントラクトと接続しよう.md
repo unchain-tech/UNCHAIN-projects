@@ -8,17 +8,17 @@
 
 ### 📁 `hooks`ディレクトリ
 
-`hooks`ディレクトリ内に`useContract.ts`というファイルを作成し, 以下のコードを記述してください。  
+`hooks`ディレクトリ内に`useContract.ts`というファイルを作成し, 以下のコードを記述してください。
 💁 現時点ではまだ用意していないファイルからimportしている箇所があるためエラーメッセージが出ても無視して大丈夫です。
 
 ```ts
 import { useState, useEffect, useCallback } from "react";
 import { ethers } from "ethers";
-import AssetTokenizationArtifact from "../artifacts/AssetTokenization.json";
-import { AssetTokenization as AssetTokenizationType } from "../types";
+import Asset-TokenizationArtifact from "../artifacts/Asset-Tokenization.json";
+import { Asset-Tokenization as Asset-TokenizationType } from "../types";
 import { getEthereum } from "../utils/ethereum";
 
-export const AssetTokenizationAddress =
+export const Asset-TokenizationAddress =
   "コントラクトのデプロイ先アドレス";
 
 type PropsUseContract = {
@@ -26,14 +26,14 @@ type PropsUseContract = {
 };
 
 type ReturnUseContract = {
-  assetTokenization: AssetTokenizationType | undefined;
+  assetTokenization: Asset-TokenizationType | undefined;
 };
 
 export const useContract = ({
   currentAccount,
 }: PropsUseContract): ReturnUseContract => {
-  const [assetTokenization, setAssetTokenization] =
-    useState<AssetTokenizationType>();
+  const [assetTokenization, setAsset-Tokenization] =
+    useState<Asset-TokenizationType>();
   const ethereum = getEthereum();
 
   const getContract = useCallback(
@@ -67,10 +67,10 @@ export const useContract = ({
 
   useEffect(() => {
     getContract(
-      AssetTokenizationAddress,
-      AssetTokenizationArtifact.abi,
+      Asset-TokenizationAddress,
+      Asset-TokenizationArtifact.abi,
       (Contract: ethers.Contract) => {
-        setAssetTokenization(Contract as AssetTokenizationType);
+        setAsset-Tokenization(Contract as Asset-TokenizationType);
       }
     );
   }, [ethereum, currentAccount, getContract]);
@@ -101,34 +101,33 @@ TEST_ACCOUNT_PRIVATE_KEY="YOUR_PRIVATE_KEY"
 >
 > 1.  お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを`Avalanche FUJI C-Chain`に変更します。
 >
-> ![](/public/images/AVAX-AssetTokenization/section-2/3_3_1.png)
+> ![](/public/images/AVAX-Asset-Tokenization/section-2/3_3_1.png)
 >
 > 2.  それから、`Account details`を選択してください。
 >
-> ![](/public/images/AVAX-AssetTokenization/section-2/3_3_2.png)
+> ![](/public/images/AVAX-Asset-Tokenization/section-2/3_3_2.png)
 >
 > 3.  `Account details`から`Export Private Key`をクリックしてください。
 >
-> ![](/public/images/AVAX-AssetTokenization/section-2/3_3_3.png)
+> ![](/public/images/AVAX-Asset-Tokenization/section-2/3_3_3.png)
 >
-> 4.  MetaMask のパスワードを求められるので、入力したら`Confirm`を押します。  
+> 4.  MetaMask のパスワードを求められるので、入力したら`Confirm`を押します。
 >     あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
 >
-> ![](/public/images/AVAX-AssetTokenization/section-2/3_3_4.png)
+> ![](/public/images/AVAX-Asset-Tokenization/section-2/3_3_4.png)
 
 > - `.env`の`YOUR_PRIVATE_KEY`の部分をここで取得した秘密鍵とを入れ替えます。
 
-⚠️gitignoreファイルに`.env`が記述されていることを確認して下さい。  
+⚠️gitignoreファイルに`.env`が記述されていることを確認して下さい。
 秘密鍵は外部に漏れないようにGitHubに上げません。
 
-> **✍️: スマートコントラクトをデプロイするのに秘密鍵が必要な理由**  
-> **新しくスマートコントラクトをブロックチェーン上にデプロイすること**も,トランザクションの一つです。
+> **✍️: スマートコントラクトをデプロイするのに秘密鍵が必要な理由** > **新しくスマートコントラクトをブロックチェーン上にデプロイすること**も,トランザクションの一つです。
 >
 > トランザクションを行うためには,ブロックチェーンに「ログイン」する必要があります。
 >
 > 「ログイン」には公開アドレスと秘密鍵の情報が必要となります。
 
-次に`contract`ディレクトリ直下にある`hardhat.config.ts`中身を以下のコードに書き換えてください。  
+次に`contract`ディレクトリ直下にある`hardhat.config.ts`中身を以下のコードに書き換えてください。
 ※ solidityのバージョンの部分(`solidity: "0.8.17",`)は元々記載されているものを使用してください。
 
 ```ts
@@ -169,11 +168,11 @@ async function deploy() {
   // コントラクトをデプロイするアカウントのアドレスを取得します。
   const [deployer] = await ethers.getSigners();
 
-  // AssetTokenizationコントラクトをデプロイします。
-  const AssetTokenization = await ethers.getContractFactory(
-    "AssetTokenization"
+  // Asset-Tokenizationコントラクトをデプロイします。
+  const Asset-Tokenization = await ethers.getContractFactory(
+    "Asset-Tokenization"
   );
-  const assetTokenization = await AssetTokenization.deploy();
+  const assetTokenization = await Asset-Tokenization.deploy();
   await assetTokenization.deployed();
 
   console.log("assetTokenization address:", assetTokenization.address);
@@ -223,14 +222,14 @@ assetTokenization address: 0x4E2F5941e079EcE9c1927fd7b9fc92fDB58E04cD
 を`client`ディレクトリ内, `hooks/useContract.ts`の中の以下の部分に貼り付けてください。
 
 ```ts
-export const AssetTokenizationAddress =
+export const Asset-TokenizationAddress =
   "コントラクトのデプロイ先アドレス";
 ```
 
 例:
 
 ```ts
-export const AssetTokenizationAddress =
+export const Asset-TokenizationAddress =
   "0x4E2F5941e079EcE9c1927fd7b9fc92fDB58E04cD";
 ```
 
@@ -240,23 +239,23 @@ ABIファイルは,コントラクトがコンパイルされた時に生成さ�
 
 `contract`からパスを追っていくと, `contract/artifacts/contracts/~.sol/~.json`というファイルがそれぞれのコントラクトに対して生成されているはずです。
 
-`client`の中に`artifacts`ディレクトリを作成し, その中にコピーしてください。  
+`client`の中に`artifacts`ディレクトリを作成し, その中にコピーしてください。
 
 `contract`直下からターミナルでコピーを行う場合, このようなコマンドになります。
 
 ```
-cp artifacts/contracts/AssetTokenization.sol/AssetTokenization.json ../client/artifacts/
+cp artifacts/contracts/Asset-Tokenization.sol/Asset-Tokenization.json ../client/artifacts/
 ```
 
 📽️ 型定義ファイルを取得する
 
-TypeScriptは静的型付け言語なので, 外部から取ってきたオブジェクトの情報として型を知りたい場合があります。  
+TypeScriptは静的型付け言語なので, 外部から取ってきたオブジェクトの情報として型を知りたい場合があります。
 その時に役に立つのが型定義ファイルです。
 
-コントラクトの型定義ファイルは, コントラクトがコンパイルされた時に生成され, `typechain-types`ディレクトリに自動的に格納されます。  
+コントラクトの型定義ファイルは, コントラクトがコンパイルされた時に生成され, `typechain-types`ディレクトリに自動的に格納されます。
 これは`npx hardhat`実行時にtypescriptを選択したため, 初期設定が済んでいるためです。
 
-`client`の中に`types`ディレクトリを作成し, その中にコピーしてください。  
+`client`の中に`types`ディレクトリを作成し, その中にコピーしてください。
 
 `contract`直下からターミナルでコピーを行う場合, このようなコマンドになります。
 
@@ -270,8 +269,8 @@ cp -r typechain-types/* ../client/types/
 
 ### 🌔 参考リンク
 
-> [こちら](https://github.com/unchain-dev/AVAX-Asset-Tokenization)に本プロジェクトの完成形のレポジトリがあります。  
-> 期待通り動かない場合は参考にしてみてください。 
+> [こちら](https://github.com/unchain-dev/AVAX-Asset-Tokenization)に本プロジェクトの完成形のレポジトリがあります。
+> 期待通り動かない場合は参考にしてみてください。
 
 ### 🙋‍♂️ 質問する
 

@@ -2,28 +2,28 @@
 
 それでは実際にコードを書いてフロントエンドのベースとなるものを作成していきます。
 
-ここでは初期設定で存在すると想定されるファイルを削除・編集することがあります。  
-もし削除するファイルがあなたのフォルダ構成の中に無かった場合は, 無視してください。  
+ここでは初期設定で存在すると想定されるファイルを削除・編集することがあります。
+もし削除するファイルがあなたのフォルダ構成の中に無かった場合は, 無視してください。
 もし編集するファイルがあなたのフォルダ構成の中に無かった場合は, 新たにファイルを作成し編集内容のコードをそのままコピーしてください。
 
-先に必要なファイルを用意する作業が少し長いですが, 最後にブラウザでUIを確認しますので, コードが理解しづらかった部分はブラウザで表示した後に再度確認して頂ければと思います。  
+先に必要なファイルを用意する作業が少し長いですが, 最後にブラウザでUIを確認しますので, コードが理解しづらかった部分はブラウザで表示した後に再度確認して頂ければと思います。
 
 ### 📁 `styles`ディレクトリ
 
-`styles`ディレクトリにはcssのコードが入っています。  
+`styles`ディレクトリにはcssのコードが入っています。
 全てのページに適用されるよう用意された`global.css`と, ホームページ用の`Home.module.css`があります。
 
 `Home.module.css`を削除してください。
 
-`global.css`内に以下のコードを記述してください。  
+`global.css`内に以下のコードを記述してください。
 
 ```css
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
+    Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   background-color: rgb(50, 158, 50);
   color: white;
 }
@@ -54,11 +54,11 @@ client
 
 ### 📁 `public`ディレクトリ
 
-`Next.js`はルートディレクトリ直下の`public`ディレクトリを静的なリソース（画像やテキストデータなど）の配置場所と認識します。  
-そのためソースコード内で画像のURLを`/image.png`と指定した場合,  
+`Next.js`はルートディレクトリ直下の`public`ディレクトリを静的なリソース（画像やテキストデータなど）の配置場所と認識します。
+そのためソースコード内で画像のURLを`/image.png`と指定した場合,
 `Next.js`は自動的に`public`ディレクトリをルートとした`プロジェクトルート/public/image.png`を参照してくれます。
 
-ディレクトリ内の`favicon.ico`以外のファイルを全て削除してください。  
+ディレクトリ内の`favicon.ico`以外のファイルを全て削除してください。
 
 また, あなたのアプリのファビコンを変更したい場合はお好きな画像を`favicon.ico`という名前で保存してください。
 
@@ -72,7 +72,7 @@ client
 
 ### 📁 `utils`ディレクトリ
 
-`client`へ移動し`utils`ディレクトリを作成してください。  
+`client`へ移動し`utils`ディレクトリを作成してください。
 その中に`ethereum.ts`, `formatter.ts`, `validAmount.ts`というファイルを作成してください。
 
 ```
@@ -104,13 +104,13 @@ export const getEthereum = (): MetaMaskInpageProvider | null => {
 };
 ```
 
-型定義に厳格なtypescriptで`window.ethereum`を使用するためには, `window`に`ethereum`オブジェクトがあるということを明示する必要があります。  
+型定義に厳格なtypescriptで`window.ethereum`を使用するためには, `window`に`ethereum`オブジェクトがあるということを明示する必要があります。
 `MetaMaskInpageProvider`は環境設定時にインストールした`@metamask/providers`から取得した`ethereum`の型定義です。
 
-> 📓 `window.ethereum`とは  
+> 📓 `window.ethereum`とは
 > Web アプリケーション上でユーザーがブロックチェーンネットワークと通信するためには, Web アプリケーションはユーザーのウォレット情報を取得する必要があります。
 >
-> `window.ethereum`は MetaMask が`window`(JavaScript にデフォルトで存在するグローバル変数)の直下に用意するオブジェクトであり API です。  
+> `window.ethereum`は MetaMask が`window`(JavaScript にデフォルトで存在するグローバル変数)の直下に用意するオブジェクトであり API です。
 > この API を使用して, ウェブサイトはユーザーのイーサリアムアカウントを要求し, ユーザーが接続しているブロックチェーンからデータを読み取り, ユーザーがメッセージや取引に署名するよう求めることができます。
 
 また, `getEthereum`関数を呼び出すと`window`から取り出した`ethereum`オブジェクトを取得できるようにしています。
@@ -133,10 +133,10 @@ export const blockTimeStampToDate = (timeStamp: BigNumber) => {
 };
 ```
 
-`weiToAvax`(or `avaxToWei`)は`wei`と`AVAX`の単位変換を行なっています。  
+`weiToAvax`(or `avaxToWei`)は`wei`と`AVAX`の単位変換を行なっています。
 ※ APIでは「1 AVAX = 10^18 wei」で単位変換がされているため, `formatEther`(or `parseEther`)を使用できます。
 
-また, `blockTimeStampToDate`はsolidity内の`block.timestamp`から, フロントエンドで使用する`Date`への変換を行なっています。  
+また, `blockTimeStampToDate`はsolidity内の`block.timestamp`から, フロントエンドで使用する`Date`への変換を行なっています。
 `block.timestamp`は単位がミリ秒で, `Date`は秒単位の時間を元に作成するので`* 1000`を行なっています。
 
 `validAmount.ts`の中に以下のコードを記述してください。
@@ -159,7 +159,7 @@ export const validAmount = (amount: string): boolean => {
 
 ### 📁 `hooks`ディレクトリ
 
-`client`ディレクトリ直下に`hooks`というディレクトリを作成しましょう。  
+`client`ディレクトリ直下に`hooks`というディレクトリを作成しましょう。
 こちらにはウォレットやコントラクトの状態を扱うようなカスタムフック(独自で作った[フック](https://ja.reactjs.org/docs/hooks-overview.html))を実装したファイルを保存します。
 
 `hooks`ディレクトリ内に`useWallet.ts`というファイルを作成し, 以下のコードを記述してください。
@@ -229,13 +229,13 @@ export const useWallet = (): ReturnUseWallet => {
 
 ここでは, ユーザがMetamaskを持っていることの確認とウォレットへの接続機能を実装します。
 
-`connectWallet`はWebアプリがユーザのウォレットにアクセスすることを求める関数で,  
-この後の実装でUIにユーザのウォレット接続ボタンを用意し, そのボタンとこの関数を連携します。  
+`connectWallet`はWebアプリがユーザのウォレットにアクセスすることを求める関数で,
+この後の実装でUIにユーザのウォレット接続ボタンを用意し, そのボタンとこの関数を連携します。
 そのため外部で使用できるように返り値の中に含めています。
 
 `checkIfWalletIsConnected`は既にユーザのウォレットとWebアプリが接続しているかを確認する関数で,
 
-また, それぞれの関数内で使用している`eth_requestAccounts`と`eth_accounts`は,空の配列または単一のアカウントアドレスを含む配列を返す特別なメソッドです。  
+また, それぞれの関数内で使用している`eth_requestAccounts`と`eth_accounts`は,空の配列または単一のアカウントアドレスを含む配列を返す特別なメソッドです。
 ユーザーがウォレットに複数のアカウントを持っている場合を考慮して, プログラムはユーザーの1つ目のアカウントアドレスを取得することにしています。
 
 `hooks`に関するフォルダ構成はこのようになります。
@@ -278,7 +278,7 @@ export const CurrentAccountProvider = ({
 export default CurrentAccountContext;
 ```
 
-ここでは, コンテキストを用意しています。  
+ここでは, コンテキストを用意しています。
 コンテキストは複数のコンポーネント間を跨いで値を渡せるもので, 値にはstateも渡せます。
 
 はじめに以下の部分で先ほど作成した`useWallet()`を使用してウォレット接続に関わるオブジェクトを取得しています。
@@ -287,16 +287,16 @@ export default CurrentAccountContext;
 const { currentAccount, connectWallet } = useWallet();
 ```
 
-重要なのは以下です。  
-valueに, 取得したオブジェクトを渡します。  
+重要なのは以下です。
+valueに, 取得したオブジェクトを渡します。
 
 ```ts
-    <CurrentAccountContext.Provider value={[currentAccount, connectWallet]}>
-      {children}
-    </CurrentAccountContext.Provider>
+<CurrentAccountContext.Provider value={[currentAccount, connectWallet]}>
+  {children}
+</CurrentAccountContext.Provider>
 ```
 
-するとこのコンポーネントの子となるコンポーネント(`children`)以下ではどのコンポーネントでもコンテキストからvalueを取得することができます。  
+するとこのコンポーネントの子となるコンポーネント(`children`)以下ではどのコンポーネントでもコンテキストからvalueを取得することができます。
 複数のコンポーネント間でstateを共有できます。
 
 ```
@@ -307,7 +307,7 @@ client
 
 🚀 `pages`ディレクトリのファイルになってしまいますが, 作成したコンテキストに関わるのでここで`pages/_app.tsx`を編集しましょう。
 
-`_app.tsx`内に以下のコードを記述してください。  
+`_app.tsx`内に以下のコードを記述してください。
 
 ```tsx
 import "../styles/globals.css";
@@ -325,7 +325,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 export default MyApp;
 ```
 
-`_app.tsx`ファイルは標準で全てのページの親コンポーネントとなります。  
+`_app.tsx`ファイルは標準で全てのページの親コンポーネントとなります。
 
 ここで`CurrentAccountProvider`を使用し, 全てのコンポーネントが`CurrentAccountProvider`の子コンポーネントとなります。
 
@@ -333,19 +333,19 @@ export default MyApp;
 
 ### 📁 `components`ディレクトリ
 
-`client`ディレクトリ直下に`components`という名前のディレクトリを作成してください。  
+`client`ディレクトリ直下に`components`という名前のディレクトリを作成してください。
 こちらにはコンポーネントを実装したファイルを保存していきます。
 
-> 📓 コンポーネントとは  
-> UI（ユーザーインターフェイス）を形成する一つの部品のことです。  
-> コンポーネントはボタンのような小さなものから,ページ全体のような大きなものまであります。  
+> 📓 コンポーネントとは
+> UI（ユーザーインターフェイス）を形成する一つの部品のことです。
+> コンポーネントはボタンのような小さなものから,ページ全体のような大きなものまであります。
 > レゴブロックのようにコンポーネントのブロックで UI を作ることで, 機能の追加・削除などの変更を容易にすることができます。
 
 📁 `Button`ディレクトリ
 
-ここでは貼り付けるコード量が多いので, [本プロジェクトのclient/components](https://github.com/unchain-dev/AVAX-Asset-Tokenization/tree/main/client/components)を参照します。  
+ここでは貼り付けるコード量が多いので, [本プロジェクトの client/components](https://github.com/unchain-dev/AVAX-Asset-Tokenization/tree/main/client/components)を参照します。
 
-`components`ディレクトリ内から`Button`ディレクトリをそのままコピーして貼り付けてください。  
+`components`ディレクトリ内から`Button`ディレクトリをそのままコピーして貼り付けてください。
 [本レポジトリ](https://github.com/unchain-dev/AVAX-Asset-Tokenization/tree/main)自体をローカルにクローンしてからコピーしたほうがやりやすいかもしれません。
 
 `Button`に関するフォルダ構成はこのようになります。
@@ -360,23 +360,23 @@ client
         └── LinkToPageButton.tsx
 ```
 
-`ActionButton.tsx`, `LinkToPageButton.tsx`はボタンのコンポーネントになります。  
+`ActionButton.tsx`, `LinkToPageButton.tsx`はボタンのコンポーネントになります。
 
 `~.module.css`はそれぞれのcssになります。
 
-> 📓 `~.module.css`とは  
-> `module.css`を css ファイルの語尾に付けることで, `CSSモジュール`という`Next.js`の仕組みを利用することができます。  
-> `CSSモジュール`はファイル内のクラス名を元にユニークなクラス名を生成してくれます。  
-> 内部で自動的に行ってくれるので私たちがユニークなクラス名を直接使用することがありませんが,  
-> クラス名の衝突を気にする必要がなくなります。  
-> 異なるファイルで同じ CSS クラス名を使用することができます。  
+> 📓 `~.module.css`とは
+> `module.css`を css ファイルの語尾に付けることで, `CSSモジュール`という`Next.js`の仕組みを利用することができます。
+> `CSSモジュール`はファイル内のクラス名を元にユニークなクラス名を生成してくれます。
+> 内部で自動的に行ってくれるので私たちがユニークなクラス名を直接使用することがありませんが,
+> クラス名の衝突を気にする必要がなくなります。
+> 異なるファイルで同じ CSS クラス名を使用することができます。
 > 詳しくは[こちら](https://nextjs.org/docs/basic-features/built-in-css-support)をご覧ください。
 
 この後のコンポーネントを使用します。
 
 📁 `Container`ディレクトリ
 
-同じく[本プロジェクトのclient/components](https://github.com/unchain-dev/AVAX-Asset-Tokenization/tree/main/client/components)を参照します。  
+同じく[本プロジェクトの client/components](https://github.com/unchain-dev/AVAX-Asset-Tokenization/tree/main/client/components)を参照します。
 
 `components`ディレクトリ内から`Container`ディレクトリをそのままコピーして貼り付けてください。
 
@@ -392,16 +392,16 @@ client
         └── HomeContainer.tsx
 ```
 
-`FarmerContainer.tsx`では農家が触るUIのベースとなるものが記載されています。  
+`FarmerContainer.tsx`では農家が触るUIのベースとなるものが記載されています。
 `activeTab`を変更することで表示する内容が`Tokenize` or `ViewBuyers`のどちらかに変更できるようになっております。
 
-`HomeContainer.tsx`ではホームページのUIのベースとなるものが記載されています。    
-先ほど作成した`Button/LinkToPageButton`のボタンにそれぞれのページへのパスを渡しリンクするようにしています。  
+`HomeContainer.tsx`ではホームページのUIのベースとなるものが記載されています。
+先ほど作成した`Button/LinkToPageButton`のボタンにそれぞれのページへのパスを渡しリンクするようにしています。
 ページはこの後作成します。
 
 📁 `Layout`ディレクトリ
 
-同じく[本プロジェクトのclient/components](https://github.com/unchain-dev/AVAX-Asset-Tokenization/tree/main/client/components)を参照します。  
+同じく[本プロジェクトの client/components](https://github.com/unchain-dev/AVAX-Asset-Tokenization/tree/main/client/components)を参照します。
 
 `components`ディレクトリ内から`Layout`ディレクトリをそのままコピーして貼り付けてください。
 
@@ -475,7 +475,7 @@ client
 まず初めに`api`ディレクトリは今回使用しないのでディレクトリごと削除してください。
 
 ※ `_app.tsx`は既にコンテキストのところで編集しています。
- 
+
 `_app.tsx`以外のファイルに関して, [こちら](https://github.com/unchain-dev/AVAX-Asset-Tokenization/tree/main/client/pages)に以下の3つのファイルがあるのでコピーしてください。
 
 - `BuyerPage.tsx`
@@ -507,35 +507,34 @@ $ npm run dev
 
 そしてブラウザで`http://localhost:3000 `へアクセスしてください。
 
-以下のような画面が表示されれば成功です！  
+以下のような画面が表示されれば成功です！
 
-![](/public/images/AVAX-AssetTokenization/section-2/2_2_1.png)
+![](/public/images/AVAX-Asset-Tokenization/section-2/2_2_1.png)
 
-画面右上の`Connect to wallet`ボタンを押下するとウォレットと接続することができます。  
+画面右上の`Connect to wallet`ボタンを押下するとウォレットと接続することができます。
 ⚠️ この先ウォレットを接続する場合は, ネットワークに`Fuji`を選択した状態で行ってください。
 
 MetaMaskの承認が終わると, `Connect to wallet`ボタンの部分があなたの接続しているウォレットのアドレスの表示に変更されます。
 
-![](/public/images/AVAX-AssetTokenization/section-2/2_2_2.png)
+![](/public/images/AVAX-Asset-Tokenization/section-2/2_2_2.png)
 
-`For Farmer`ボタンを押すとページが切り替わります。  
+`For Farmer`ボタンを押すとページが切り替わります。
 
-![](/public/images/AVAX-AssetTokenization/section-2/2_2_3.png)
+![](/public/images/AVAX-Asset-Tokenization/section-2/2_2_3.png)
 
 `Tokenize`と`ViewBuyers`ボタンを切り替えると表示も切り替わります。
 
-![](/public/images/AVAX-AssetTokenization/section-2/2_2_5.png)
+![](/public/images/AVAX-Asset-Tokenization/section-2/2_2_5.png)
 
-右下の`Back to home`を押すとホームページに戻ります。  
+右下の`Back to home`を押すとホームページに戻ります。
 `For Buyers`ボタンを押すとまたページが切り替わります。
 
-![](/public/images/AVAX-AssetTokenization/section-2/2_2_4.png)
+![](/public/images/AVAX-Asset-Tokenization/section-2/2_2_4.png)
 
 ### 🌔 参考リンク
 
-> [こちら](https://github.com/unchain-dev/AVAX-Asset-Tokenization)に本プロジェクトの完成形のレポジトリがあります。  
-> 期待通り動かない場合は参考にしてみてください。 
-
+> [こちら](https://github.com/unchain-dev/AVAX-Asset-Tokenization)に本プロジェクトの完成形のレポジトリがあります。
+> 期待通り動かない場合は参考にしてみてください。
 
 ### 🙋‍♂️ 質問する
 
@@ -552,5 +551,5 @@ MetaMaskの承認が終わると, `Connect to wallet`ボタンの部分があな
 
 ---
 
-フロントエンドのベースとなるコードが出来ました！  
+フロントエンドのベースとなるコードが出来ました！
 次のレッスンではコントラクトとフロントエンドを連携する作業に入ります！

@@ -1,10 +1,10 @@
-### 🥮 `AssetTokenization`コントラクトを作成する
+### 🥮 `Asset-Tokenization`コントラクトを作成する
 
-フロントエンドとのデータのやりとり、FarmNftのデプロイと管理をする機能を持つ`AssetTokenization`コントラクトを作成します。
+フロントエンドとのデータのやりとり、FarmNftのデプロイと管理をする機能を持つ`Asset-Tokenization`コントラクトを作成します。
 
-`contracts`ディレクトリの下に`AssetTokenization.sol`という名前のファイルを作成します。
+`contracts`ディレクトリの下に`Asset-Tokenization.sol`という名前のファイルを作成します。
 
-`AssetTokenization.sol`の中に以下のコードを貼り付けてください。
+`Asset-Tokenization.sol`の中に以下のコードを貼り付けてください。
 
 ```solidity
 // SPDX-License-Identifier: UNLICENSED
@@ -13,7 +13,7 @@ pragma solidity ^0.8.17;
 import "./FarmNft.sol";
 import "hardhat/console.sol";
 
-contract AssetTokenization {
+contract Asset-Tokenization {
     address[] farmers; // 農家のアドレスを保存します。
     mapping(address => FarmNft) farmerToNftContract; // 農家のアドレスとデプロイしたFarmNftをマッピングします。
 
@@ -35,7 +35,7 @@ contract AssetTokenization {
 その次には`nftContractDetails`という構造体を定義しています。
 `nftContractDetails`は, フロントエンドへ`farmNft`の情報を渡すために使用する型になります。
 
-次に`AssetTokenization`の最後の行に以下のコードを貼り付けてください。
+次に`Asset-Tokenization`の最後の行に以下のコードを貼り付けてください。
 
 ```solidity
     function availableContract(address farmer) public view returns (bool) {
@@ -89,7 +89,7 @@ contract AssetTokenization {
 `new FarmNft()`により新しく`farmNft`をデプロイします。
 そして`farmerToNftContract`のマッピングに追加します。
 
-次に`AssetTokenization`の最後の行に以下のコードを貼り付けてください。
+次に`Asset-Tokenization`の最後の行に以下のコードを貼り付けてください。
 
 ```solidity
     function getNftContractDetails(address farmerAddress)
@@ -144,7 +144,7 @@ contract AssetTokenization {
 
 ### 🧪 テストを追加しましょう
 
-`test`ディレクトの下に`AssetTokenization.ts`を作成し, 以下のコードを貼り付けてください。
+`test`ディレクトの下に`Asset-Tokenization.ts`を作成し, 以下のコードを貼り付けてください。
 
 ```ts
 import { ethers } from "hardhat";
@@ -152,16 +152,16 @@ import { BigNumber, Overrides } from "ethers";
 import { expect } from "chai";
 import { loadFixture } from "@nomicfoundation/hardhat-network-helpers";
 
-describe("AssetTokenization", function () {
+describe("Asset-Tokenization", function () {
   const oneWeekInSecond = 60 * 60 * 24 * 7;
 
   async function deployContract() {
     const accounts = await ethers.getSigners();
 
-    const AssetTokenization = await ethers.getContractFactory(
-      "AssetTokenization"
+    const Asset-Tokenization = await ethers.getContractFactory(
+      "Asset-Tokenization"
     );
-    const assetTokenization = await AssetTokenization.deploy();
+    const assetTokenization = await Asset-Tokenization.deploy();
 
     return {
       deployAccount: accounts[0],
@@ -274,7 +274,7 @@ describe("AssetTokenization", function () {
 `generateNftContract`を2度呼び出し, それぞれについて`getNftContractDetails`で`farmNft`の情報を取得し正しい値かどうかをテストしています。
 
 `describe("buyNFT", function () { ...`に続くテストでは, `buyNFT`を呼び出した際に正しい量のAVAXが購入者から農家へ支払われているのかを確認しています。
-これは`farmNft`でも同じようなテストをしましたが, `AssetTokenization`は購入者と`farmNft`を仲介してNFTの購入を行っているので, ここではその仲介が正しく機能しているのかを確認しています。
+これは`farmNft`でも同じようなテストをしましたが, `Asset-Tokenization`は購入者と`farmNft`を仲介してNFTの購入を行っているので, ここではその仲介が正しく機能しているのかを確認しています。
 <br>
 <br>
 ※
@@ -287,13 +287,13 @@ describe("AssetTokenization", function () {
 
 ```
 
-$ npx hardhat test test/AssetTokenization.ts
+$ npx hardhat test test/Asset-Tokenization.ts
 
 ```
 
 以下のような表示がされたらテスト成功です！
 
-![](/public/images/AVAX-AssetTokenization/section-1/1_1_4.png)
+![](/public/images/AVAX-Asset-Tokenization/section-1/1_1_4.png)
 
 ### 🌔 参考リンク
 

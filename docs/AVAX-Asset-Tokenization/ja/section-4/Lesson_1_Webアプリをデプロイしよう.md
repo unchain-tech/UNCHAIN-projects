@@ -10,7 +10,7 @@ Vercelに関する詳しい説明は,[こちら](https://zenn.dev/lollipop_onl/a
 
 まず, ローカルファイルをGitHubへアップロードしましょう。
 
-まだアップロードをしていない方は, ターミナル上で`AssetTokenization`に移動して,下記を実行しましょう。  
+まだアップロードをしていない方は, ターミナル上で`Asset-Tokenization`に移動して,下記を実行しましょう。
 ⚠️ `.gitignore`ファイル内に`.env`が記載されていることを確認していください。
 
 ```
@@ -19,33 +19,33 @@ git commit -m "upload to github"
 git push
 ```
 
-次に, ローカル環境に存在する`AssetTokenization`のファイルとディレクトリがGitHub上の`AssetTokenization`に反映されていることを確認してください。
+次に, ローカル環境に存在する`Asset-Tokenization`のファイルとディレクトリがGitHub上の`Asset-Tokenization`に反映されていることを確認してください。
 
 Vercelのアカウントを取得したら,下記を実行しましょう。
 
 1\. `Dashboard`へ進んで, `New Project`を選択してください。
 
-![](/public/images/AVAX-AssetTokenization/section-4/4_1_1.png)
+![](/public/images/AVAX-Asset-Tokenization/section-4/4_1_1.png)
 
 2\. `Import Git Repository`で自分のGitHubアカウントを接続したら, 当リポジトリを選択し`Import`してください。
 
-![](/public/images/AVAX-AssetTokenization/section-4/4_1_2.png)
+![](/public/images/AVAX-Asset-Tokenization/section-4/4_1_2.png)
 
 3\. プロジェクトを作成します。
 
-`Framework Preset`に`Next.js`を選択してください。  
+`Framework Preset`に`Next.js`を選択してください。
 `Root directory`に(`Edit`ボタンをクリックし)`client`を選択します。
 
-![](/public/images/AVAX-AssetTokenization/section-4/4_1_3.png)
+![](/public/images/AVAX-Asset-Tokenization/section-4/4_1_3.png)
 
 4\. `Deploy`ボタンをクリックしましょう。
 
 VercelはGitHubと連動しているので, GitHubでリポジトリが更新されるたびに自動でデプロイを行ってくれます。
 
-しばらくしてビルドが完了すると  
+しばらくしてビルドが完了すると
 メッセージと, 下記のようにホーム画面が表示されます。
 
-![](/public/images/AVAX-AssetTokenization/section-4/4_1_4.png)
+![](/public/images/AVAX-Asset-Tokenization/section-4/4_1_4.png)
 
 ホーム画面の表示部分はリンクになっているので, クリックするとあなたの作成したdappがブラウザで確認できます 🎉
 
@@ -56,8 +56,8 @@ VercelはGitHubと連動しているので, GitHubでリポジトリが更新さ
 例えばこんなことが考えられます 🚀
 
 - NFTの画像をフロントエンドで表示させる
-- トークンのロック機能, ERC721以外のトークン規格, chainlinkを使用した定期実行処理などを利用して  
-ユーザのトークンが自動的に引き落とされる仕組みを構築 => よりサブスクリプションサービスに近づける。
+- トークンのロック機能, ERC721以外のトークン規格, chainlinkを使用した定期実行処理などを利用して
+  ユーザのトークンが自動的に引き落とされる仕組みを構築 => よりサブスクリプションサービスに近づける。
 
 ### 🙋‍♂️ 質問する
 
@@ -96,7 +96,7 @@ NFTを取得する条件は,以下のようになります。
 
 実際にこのプロジェクトを実施するには, NFTを作成した人が実際に農家を営んでいることへの情報の信頼性が必要であったり, 農業協定組合などのスマートコントラクトのみでは解決できないサプライチェーンの存在など, 考慮しなければいけない事はいくつもあると思います。
 
-しかしchainlinkなどのオラクルサービスの台頭とその需要から, ブロックチェーンを使用した資産のトークン化・デジタル化の流れは大きな可能性があります。  
+しかしchainlinkなどのオラクルサービスの台頭とその需要から, ブロックチェーンを使用した資産のトークン化・デジタル化の流れは大きな可能性があります。
 
 本プロジェクトがAvalancheや資産のトークン化について知るお役に立てれば幸いです 🤗
 
