@@ -522,7 +522,7 @@ mod astar_sns_contract {
         //         astar_sns_contract.message_list_map_counter
         //     );
 
-        //     // フォロー機能の確認(alicw -> bob)
+        //     // フォロー機能の確認(alice -> bob)
         //     ink_env::test::set_caller::<ink_env::DefaultEnvironment>(alice_account_id);
         //     astar_sns_contract.follow(bob_account_id);
         //     // メッセージリストのidカウンターの確認
@@ -596,7 +596,7 @@ mod astar_sns_contract {
         //         "12:33".to_string(),
         //     );
         //     astar_sns_contract.send_message(
-        //         "Hey, charlie will come!".to_string(),
+        //         "Hey, Charlie will come!".to_string(),
         //         0,
         //         "12:35".to_string(),
         //     );
