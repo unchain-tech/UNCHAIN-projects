@@ -627,7 +627,6 @@ export const transfer = async (props: PropsTF) => {
   const contract = new ContractPromise(props.api!, abi, contractAddress);
   const performingAccount = props.actingAccount;
   const injector = await web3FromSource(performingAccount.meta.source);
-  const date = new Date();
   const transfer = await contract.tx.transfer(
     {
       value: 0,
@@ -649,7 +648,6 @@ export const distributeReferLikes = async (props: PropsDRL) => {
   const contract = new ContractPromise(props.api!, abi, contractAddress);
   const performingAccount = props.actingAccount;
   const injector = await web3FromSource(performingAccount.meta.source);
-  const date = new Date();
   const transfer = await contract.tx.distributeReferLikes({
     value: 0,
     gasLimit: 31518000000,
@@ -759,11 +757,9 @@ export const getGeneralPost = async (props: PropsGGP) => {
     1
   );
   if (output !== undefined && output !== null) {
-    if (output !== undefined && output !== null) {
-      props.setGeneralPostList(
-        output.toHuman() == null ? [] : output.toHuman()
-      );
-    }
+    props.setGeneralPostList(
+      output.toHuman() == null ? [] : output.toHuman()
+    );
   }
 };
 
