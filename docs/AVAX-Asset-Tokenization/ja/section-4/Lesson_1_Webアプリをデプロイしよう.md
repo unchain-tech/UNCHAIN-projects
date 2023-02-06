@@ -101,3 +101,7 @@ NFTを取得する条件は,以下のようになります。
 本プロジェクトがAvalancheや資産のトークン化について知るお役に立てれば幸いです 🤗
 
 これからのあなたのご活躍を期待しております! 🚀
+
+---
+
+Project Completion Formは[こちら](https://airtable.com/shrf1cCtTx0iQuszX)です。
