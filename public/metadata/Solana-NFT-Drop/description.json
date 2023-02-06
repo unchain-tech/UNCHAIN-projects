@@ -5,5 +5,5 @@
     "chain": "Solana",
     "description": "👉 Metaplex でコントラクトを Solana 上にデプロイし、React で NFT を Mint する WEB サイトを構築します。",
     "total_sections": 4,
-    "total_lessons": 10
+    "total_lessons": 11
 }

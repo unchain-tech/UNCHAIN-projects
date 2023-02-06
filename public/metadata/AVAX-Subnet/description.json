@@ -5,5 +5,5 @@
     "chain": "Avalanche",
     "description": "👉 Avalanche の Subnet を活用して独自のチェーンを用意し、スマートコントラクトで手形取引を管理する Web アプリを構築します。",
     "total_sections": 4,
-    "total_lessons": 10
+    "total_lessons": 11
 }
