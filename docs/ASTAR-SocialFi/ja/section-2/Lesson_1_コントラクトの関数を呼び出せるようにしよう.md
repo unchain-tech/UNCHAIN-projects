@@ -835,7 +835,7 @@ type PropsCCI = {
   setIsCreatedProfile: Dispatch<React.SetStateAction<boolean>>;
 };
 
-// type for createProoject function
+// type for createProject function
 type PropsCP = {
   api: ApiPromise | undefined;
   actingAccount: InjectedAccountWithMeta;
