@@ -79,21 +79,21 @@ const Home: NextPage = () => {
         <Image
           className="rotate-[17deg] h-14 w-16 top-16 left-[530px] absolute "
           src="/cross_star_6_logo-removebg.png"
-          alt="astar_logo"
+          alt="star_logo"
           width={40}
           height={40}
         />
         <Image
           className="rotate-[40deg] h-10 w-10 top-8 right-1/3 absolute "
           src="/cross_star_6_logo-removebg.png"
-          alt="astar_logo"
+          alt="star_logo"
           width={35}
           height={30}
         />
         <Image
           className="rotate-[35deg] h-15 w-16 bottom-16 left-1/3 absolute "
           src="/cross_star_6_logo-removebg.png"
-          alt="astar_logo"
+          alt="star_logo"
           width={40}
           height={40}
         />
