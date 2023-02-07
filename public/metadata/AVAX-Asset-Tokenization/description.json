@@ -5,5 +5,5 @@
     "chain": "Avalanche",
     "description": "👉 Solidity でスマートコントラクトを作成し、NFT 所有者に対し定期的に商品を届けるサブスクリプションサービスを構築します。",
     "total_sections": 4,
-    "total_lessons": 11
+    "total_lessons": 12
 }
