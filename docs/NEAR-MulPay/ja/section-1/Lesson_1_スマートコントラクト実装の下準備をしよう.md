@@ -59,13 +59,20 @@ const config: HardhatUserConfig = {
   networks: {
     testnet_aurora: {
       url: "https://testnet.aurora.dev",
-      accounts: [process.env.AURORA_PRIVATE_KEY!],
+      accounts:
+        process.env.AURORA_PRIVATE_KEY !== undefined
+          ? [process.env.AURORA_PRIVATE_KEY]
+          : [],
     },
   },
 };
 
 export default config;
 ```
+
+ここでaccountsの欄を下のようにしたのはテストに関係するからです。
+
+.envファイルはGit管理の対象外ですが、テストやCI実行の際に読み込みが発生すると参照が存在しないので、エラーが起きてしまいます。ジョブの中断を防ぐために、このようにundifinedの時には何も入らないようにしています！
 
 これで下準備は完了です。
 

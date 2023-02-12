@@ -263,7 +263,7 @@ event - compiled client and server successfully in 806 ms (150 modules)
 ```
 
 下のように見えていればOKです。
-// TODO default image of next.js
+![](/public/images/ASTAR-SocialFi/section-0/0_2_14.png)
 
 では`index.tsx`の7行目の`className`を少し改良してきちんとTailwind CSSが機能しているかを確認してみましょう。
 
@@ -276,7 +276,7 @@ event - compiled client and server successfully in 806 ms (150 modules)
 次に変更内容を保存してみましょう。自動的に変更内容が反映されるはずです。
 
 下のように背景色が変更されていれば成功です！
-![](/public/images/ASTAR-SocialFi/section-0/0_2_14.png)
+![](/public/images/ASTAR-SocialFi/section-0/0_2_15.png)
 
 ここまで完了すればフロントエンドの環境構築は成功です！
 お疲れ様でした 🤞
