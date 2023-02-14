@@ -230,7 +230,7 @@ MATIC_CONTRACT_NAME = "PolygonToken"
 INFURA_KEY_TEST = "Infura's aurora testnet http key"
 ```
 
-`XXX_CONTRACT_ADDRESS`にはsection-1のLesson-2で行ったdeployから返ってきたそれぞれのアドレスを入れます。
+`XXX_CONTRACT_ADDRESS`にはsection-1のlesson-2で行ったdeployから返ってきたそれぞれのアドレスを入れます。
 
 `INFURA_KEY_TEST`には前半で作ったinfuraアカウントの、aurora testnet用のhttp keyを入れます。下のような形式になっているものです。
 
