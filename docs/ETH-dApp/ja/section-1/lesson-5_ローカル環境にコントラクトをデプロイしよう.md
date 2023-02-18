@@ -35,8 +35,9 @@ npx hardhat node
 const main = async () => {
   const [deployer] = await hre.ethers.getSigners();
   const accountBalance = await deployer.getBalance();
-  const waveContract = await hre.ethers.getContractFactory("WavePortal");
-  const wavePortal = await waveContract.deploy();
+  const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
+  const waveContract = await waveContract.deploy();
+  const wavePortal = await waveContract.deployed();
 
   console.log("Deploying contracts with account: ", deployer.address);
   console.log("Account balance: ", accountBalance.toString());
@@ -58,6 +59,8 @@ runMain();
 ```
 
 コードの中身は、`run.js`とほぼ同じです。
+
+- `Account balance` は、あなたの口座に割り当てられた残高(**wei**)を表す文字列です。
 
 ### 🎉 デプロイする
 
@@ -90,7 +93,7 @@ Deploying contracts with account:  0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
 Account balance:  10000000000000000000000
 ```
 
-これは、あなたの口座に割り当てられた残高(**wei**)を表す文字列です。デフォルト値である`10^22 wei`(＝ `10000 ETH`)が表示されています。
+Account balanceには、デフォルト値である`10^22 wei`(＝ `10000 ETH`)が表示されています。
 
 - `Wei`は、イーサリアムの最小額面です。
 - `1ETH ＝ 1,000,000,000,000,000,000 wei (10^18)`です。
