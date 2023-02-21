@@ -91,6 +91,6 @@ export default config;
 
 ---
 
-section-1-Lesson-1の完了おめでとうございます！
+section-1-lesson-1の完了おめでとうございます！
 
 では次のセクションではいよいよスマートコントラクトの実装に移っていきましょう！

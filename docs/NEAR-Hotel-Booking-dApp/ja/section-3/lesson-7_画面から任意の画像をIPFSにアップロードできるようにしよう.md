@@ -1,8 +1,8 @@
-### 🦄 画面から任意の画像をIPFSにアップロードできるようにしよう (credit: [mashharuki](https://github.com/mashharuki))
+### 🦄 画面から任意の画像を IPFS にアップロードできるようにしよう (credit: [mashharuki](https://github.com/mashharuki))
 
 このレッスンでは、任意の画像データをIPFSにアップロードする画面を開発します。
 
-🖼 IPFSについては、[ETH-NFT-MakerのSection2-Lesson1](https://unchain-portal.netlify.app/projects/103-ETH-NFT-Maker/section-2-Lesson-1)で解説しているのでそちらをご覧ください！
+🖼 IPFSについては、[ETH-NFT-Maker の Section2-Lesson1](https://unchain-portal.netlify.app/projects/103-ETH-NFT-Maker/section-2-lesson-1)で解説しているのでそちらをご覧ください！
 
 IPFSへのファイルアップロードについては、デスクトップアプリをダウンロードして、手動でも行うことができるのですが、もし画面からボタンを押すだけでアップロードすることができたら使いやすくて便利ですよね！ このレッスンではそのための画面を作成していきます！
 
@@ -18,11 +18,12 @@ IPFSへのファイルアップロードについては、デスクトップア�
 npm i axios form-data
 ```
 
-### axiosとは
+### axios とは
 
- axiosとは、HTTP通信（データの更新・取得）を簡単に行うことができる、JavaScriptのライブラリです。公開されているAPIの機能を利用してデータを送受信する際に良く使用されるライブラリとなります。
+axiosとは、HTTP通信（データの更新・取得）を簡単に行うことができる、JavaScriptのライブラリです。公開されているAPIの機能を利用してデータを送受信する際に良く使用されるライブラリとなります。
 
-### form-dataとは
+### form-data とは
+
 API等を利用してデータを送信したい場合に、ファイルデータなどの情報を格納したオブジェクトを用意する必要がありますがその際によく利用されるJavaScriptライブラリとなります。今回は画像データを送信する際に使用します。
 
 では、Uoload画面用のコンポーネントファイルを追加していきましょう！
@@ -45,7 +46,7 @@ frontend/
   └─ index.js
 ```
 
-### 🔑APIクレデンシャル情報を取得しよう
+### 🔑API クレデンシャル情報を取得しよう
 
 さて、コンポーネントを作成していきたいのですがもう一点事前に準備が必要なことがあります！
 
@@ -59,13 +60,13 @@ frontend/
 3. クレデンシャル情報をコピー＆ペーストする
 ```
 
-#### 1. Pinataのサイトにログインする。
+#### 1. Pinata のサイトにログインする。
 
 事前にアカウントを作成して[https://www.pinata.cloud/](https://www.pinata.cloud/)にアクセスしましょう！
 
 ![](/public/images/NEAR-Hotel-Booking-dApp/section-4/4_7_1.png)
 
-#### 2. APIクレデンシャル情報を作成する。
+#### 2. API クレデンシャル情報を作成する。
 
 次にAPI用のクレデンシャル情報を作成しましょう！
 ログイン後のページの右上のメニューボタンから「API Keys」を選択してクリックします！
@@ -103,7 +104,7 @@ PINATA_API_Secret=<YOUR_API_SECRET>
 
 ここまで完了したら準備万端です！ いよいよコンポーネントを実装していきます！
 
-### 🔘ファイルをアップロードするフォームとボタンを実装しよう
+### 🔘 ファイルをアップロードするフォームとボタンを実装しよう
 
 次に、ファイルをアップロードするためのフォームとボタンのコンポーネントを作成しましょう！
 
@@ -232,10 +233,7 @@ export default UploadButton;
 
 ```js
 // dev-account.envファイルから読み込む環境変数
-const {
-    PINATA_API_Key,
-    PINATA_API_Secret
-} = process.env;
+const { PINATA_API_Key, PINATA_API_Secret } = process.env;
 ```
 
 フォームとボタンの作成、画像アップロード中に表示するスピナーについては全てReact Bootstrapのものを使用しました。`pendingFlg`というステート変数によって画面表示を切り替えるようにしています!
@@ -278,50 +276,54 @@ const {
 
 ```js
 /**
-     * PinataのAPIを利用してIPFSに画像をアップロードするメソッド
-     * @param {*} event
-     */
-    const pinataUploadFile = async (event) => {
-        // FormDataオブジェクトを生成
-        let postData = new FormData();
-        // APIを使って送信するリクエストパラメータを作成する。
-        postData.append('file', file);
-        postData.append('pinataOptions', '{"cidVersion": 1}');
-        postData.append('pinataMetadata', `{"name": "${fileName}", "keyvalues": {"company": "nearHotel"}}`);
+ * PinataのAPIを利用してIPFSに画像をアップロードするメソッド
+ * @param {*} event
+ */
+const pinataUploadFile = async (event) => {
+  // FormDataオブジェクトを生成
+  let postData = new FormData();
+  // APIを使って送信するリクエストパラメータを作成する。
+  postData.append("file", file);
+  postData.append("pinataOptions", '{"cidVersion": 1}');
+  postData.append(
+    "pinataMetadata",
+    `{"name": "${fileName}", "keyvalues": {"company": "nearHotel"}}`
+  );
 
-        try {
-            // フラグ ON
-            setPendingFlg(true);
-            // POSTメソッドでデータを送信する
-            const res = await axios.post(
-                // APIのURL
-                baseAPIUrl + '/pinning/pinFileToIPFS',
-                // リクエストパラメータ
-                postData ,
-                // ヘッダー情報
-                {
-                    headers: {
-                        'accept': 'application/json',
-                        'pinata_api_key': `${PINATA_API_Key}`,
-                        'pinata_secret_api_key': `${PINATA_API_Secret}`,
-                        'Content-Type': `multipart/form-data; boundary=${postData}`,
-                    },
-                });
-            console.log(res);
-            // CIDを取得
-            console.log("CID:", res.data.IpfsHash);
-            // フラグ OFF
-            setPendingFlg(false);
-            // CIDを出力
-            alert(`upload Successfull!! CID:${res.data.IpfsHash}`);
-        } catch (e) {
-            console.error("upload failfull.....：", e);
-            alert("upload failfull.....");
-        }
-    }
+  try {
+    // フラグ ON
+    setPendingFlg(true);
+    // POSTメソッドでデータを送信する
+    const res = await axios.post(
+      // APIのURL
+      baseAPIUrl + "/pinning/pinFileToIPFS",
+      // リクエストパラメータ
+      postData,
+      // ヘッダー情報
+      {
+        headers: {
+          accept: "application/json",
+          pinata_api_key: `${PINATA_API_Key}`,
+          pinata_secret_api_key: `${PINATA_API_Secret}`,
+          "Content-Type": `multipart/form-data; boundary=${postData}`,
+        },
+      }
+    );
+    console.log(res);
+    // CIDを取得
+    console.log("CID:", res.data.IpfsHash);
+    // フラグ OFF
+    setPendingFlg(false);
+    // CIDを出力
+    alert(`upload Successfull!! CID:${res.data.IpfsHash}`);
+  } catch (e) {
+    console.error("upload failfull.....：", e);
+    alert("upload failfull.....");
+  }
+};
 ```
 
-このメソッドは、[PinataのAPI公式ドキュメント](https://docs.pinata.cloud/pinata-api/pinning/pin-file-or-directory)を参考にして作成しました。
+このメソッドは、[Pinata の API 公式ドキュメント](https://docs.pinata.cloud/pinata-api/pinning/pin-file-or-directory)を参考にして作成しました。
 
 呼び出すAPIエンドポイントの情報、フォームデータ、ヘッダー情報を定義して、最後に`axios`ライブラリの`post`メソッドを利用してAPI機能を実行する様になっています！
 
@@ -329,7 +331,7 @@ const {
 
 これで画面から画像をアップロードできるフォームとボタンのコンポーネントは準備ができました！
 
-### Upload画面を作成しよう
+### Upload 画面を作成しよう
 
 次は、前の部分で作成した`UploadButton`コンポーネントを使って`Upload`画面を作成していきます！
 
@@ -345,13 +347,13 @@ import UploadButton from "../components/UploadButton";
 const Upload = () => {
   return (
     <>
-      <div className='text-center' style={{ margin: "200px" }}>
+      <div className="text-center" style={{ margin: "200px" }}>
         <h1>You can upload Room image!!</h1>
-        <UploadButton/>
+        <UploadButton />
       </div>
     </>
   );
-}
+};
 
 export default Upload;
 ```
@@ -506,7 +508,7 @@ const App = () => {
 export default App;
 ```
 
-これで修正は完了です！ お疲れ様でした!!  🚀🚀🚀🚀🚀🚀
+これで修正は完了です！ お疲れ様でした!! 🚀🚀🚀🚀🚀🚀
 これで画面から好きな画像をIPFSにアップロードできる様になりました！ このアプリで使用してみたい画像があればぜひこの機能を利用して画像をアップロードし、ホテルの部屋を追加してみてください!!
 
 ### 🙋‍♂️ 質問する

@@ -42,7 +42,7 @@ contract Web3Mint is ERC721URIStorage {
 }
 ```
 
-1行ずつコードを見ていきたいですが、ほとんどは[Project2-section1-lesson4](https://unchain-portal.netlify.app/projects/102-ETH-NFT-Collection/section-1-Lesson-4)で解説されているので、今回はポイントに絞って解説したいと思います。解説されていなくてわからない方はぜひ一度戻ってみることをおすすめします。
+1行ずつコードを見ていきたいですが、ほとんどは[Project2-section1-lesson4](https://unchain-portal.netlify.app/projects/102-ETH-NFT-Collection/section-1-lesson-4)で解説されているので、今回はポイントに絞って解説したいと思います。解説されていなくてわからない方はぜひ一度戻ってみることをおすすめします。
 
 ```solidity
 // Web3Mint.sol
