@@ -11,7 +11,6 @@
 それでは早速`TokenFarm.sol`を下のように更新していきましょう!
 
 ```solidity
-// TokenFarm.sol
 pragma solidity ^0.5.0;
 
 import "./DappToken.sol";
@@ -69,15 +68,17 @@ contract TokenFarm{
 
     //　3.アンステーキング機能
     // * 投資家は、預け入れた Dai を引き出すことができる
-    function unstakeTokens() public {
+    function unstakeTokens(uint _amount) public {
         // 投資家がステーキングした金額を取得する
         uint balance = stakingBalance[msg.sender];
         // 投資家がステーキングした金額が0以上であることを確認する
-        require(balance > 0, "staking balance cannot be 0");
+        require(balance > _amount, "staking balance should be more than unstaked amount");
         // 偽の Dai トークンを投資家に返金する
-        daiToken.transfer(msg.sender, balance);
+        daiToken.transfer(msg.sender, _amount);
+        // 返金した分のdappTokenを利子として付与する
+        dappToken.transfer(msg.sender, _amount);
         // 投資家のステーキング残高を0に更新する
-        stakingBalance[msg.sender] = 0;
+        stakingBalance[msg.sender] = balance - _amount;
         // 投資家のステーキング状態を更新する
         isStaking[msg.sender] = false;
     }
@@ -106,7 +107,7 @@ function tokens(n) {
 contract('TokenFarm', ([owner, investor]) => {
     let daiToken, dappToken, tokenFarm
 
-    before(async () =>{
+    before(async () => {
         //コントラクトの読み込み
         daiToken = await DaiToken.new()
         dappToken = await DappToken.new()
@@ -115,7 +116,7 @@ contract('TokenFarm', ([owner, investor]) => {
         //全てのDappトークンをファームに移動する(1 million)
         await dappToken.transfer(tokenFarm.address, tokens('1000000'));
 
-        await daiToken.transfer(investor, tokens('100'), {from: owner})
+        await daiToken.transfer(investor, tokens('100'), { from: owner })
     })
     // テスト1
     describe('Mock DAI deployment', async () => {
@@ -154,8 +155,8 @@ contract('TokenFarm', ([owner, investor]) => {
             assert.equal(result.toString(), tokens('100'), 'investor Mock DAI wallet balance correct before staking')
 
             // テスト6. 偽のDAIトークンを確認する
-            await daiToken.approve(tokenFarm.address, tokens('100'), {from: investor})
-            await tokenFarm.stakeTokens(tokens('100'), {from: investor})
+            await daiToken.approve(tokenFarm.address, tokens('100'), { from: investor })
+            await tokenFarm.stakeTokens(tokens('100'), { from: investor })
 
             // テスト7. ステーキング後の投資家の残高を確認する
             result = await daiToken.balanceOf(investor)
@@ -176,29 +177,29 @@ contract('TokenFarm', ([owner, investor]) => {
             // ----- 追加するテストコード ------ //
 
             // トークンを発行する
-            await tokenFarm.issueTokens({from: owner})
+            await tokenFarm.issueTokens({ from: owner })
 
             // トークンを発行した後の投資家の Dapp 残高を確認する
             result = await dappToken.balanceOf(investor)
             assert.equal(result.toString(), tokens('100'), 'investor DApp Token wallet balance correct after staking')
 
             // あなた（owner）のみがトークンを発行できることを確認する（もしあなた以外の人がトークンを発行しようとした場合、却下される）
-            await tokenFarm.issueTokens({from: investor}).should.be.rejected
+            await tokenFarm.issueTokens({ from: investor }).should.be.rejected
 
             //トークンをアンステーキングする
-            await tokenFarm.unstakeTokens({from: investor})
+            await tokenFarm.unstakeTokens(tokens("60"), { from: investor })
 
             //テスト11. アンステーキングの結果を確認する
             result = await daiToken.balanceOf(investor)
-            assert.equal(result.toString(), tokens('100'), 'investor Mock DAI wallet balance correct after staking')
+            assert.equal(result.toString(), tokens('60'), 'investor Mock DAI wallet balance correct after staking')
 
             //テスト12.投資家がアンステーキングした後の Token Farm 内に存在する偽の Dai 残高を確認する
             result = await daiToken.balanceOf(tokenFarm.address)
-            assert.equal(result.toString(), tokens('0'), 'Token Farm Mock DAI balance correct after staking')
+            assert.equal(result.toString(), tokens('40'), 'Token Farm Mock DAI balance correct after staking')
 
             //テスト13. 投資家がアンステーキングした後の投資家の残高を確認する
             result = await tokenFarm.stakingBalance(investor)
-            assert.equal(result.toString(), tokens('0'), 'investor staking status correct after staking')
+            assert.equal(result.toString(), tokens('40'), 'investor staking status correct after staking')
 
             //テスト14. 投資家がアンステーキングした後の投資家の状態を確認する
             result = await tokenFarm.isStaking(investor)
