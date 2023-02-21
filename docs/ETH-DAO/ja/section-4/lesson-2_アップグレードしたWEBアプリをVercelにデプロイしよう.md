@@ -12,7 +12,6 @@
 
 ぜひチャレンジしてみてください！ ！
 
-
 ### 🤟 Vercel に Web アプリケーションをデプロイする
 
 最後に、[Vercel](https://vercel.com/) にWebアプリケーションをホストする方法を学びます。
@@ -23,7 +22,7 @@ Vercelはサーバーレス機能のホスティングを提供するクラウ�
 
 Vercelに関する詳しい説明は、[こちら](https://zenn.dev/lollipop_onl/articles/eoz-vercel-pricing-2020)をご覧ください。
 
-まず、Vercelにアップロードする前に、section-2のLesson-2でスクリプト用に設定を変更した`package.json`と`next.config.js`を元に戻しましょう。
+まず、Vercelにアップロードする前に、section-2のlesson-2でスクリプト用に設定を変更した`package.json`と`next.config.js`を元に戻しましょう。
 
 ※ これをやらずにアップロードするとエラーが発生し、デプロイすることができません。
 
@@ -39,9 +38,9 @@ Vercelに関する詳しい説明は、[こちら](https://zenn.dev/lollipop_onl
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
 ```
 
 ここまでの作業が完了したら、GitHubにローカルファイルをアップロードしていきましょう。
@@ -85,7 +84,6 @@ VercelはGitHubと連動しているので、GitHubが更新されるたびに�
 
 ![](/public/images/ETH-DAO/section-4/4_2_4.png)
 
-
 ### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discordの`#ethereum`で質問をしてください。
@@ -112,7 +110,6 @@ NFTを取得する条件は、以下のようになります。
 4. Discordの`🔥｜post-your-projects`チャンネルに、あなたのWebサイトをシェアしてください 😉🎉 Discordに投稿する際に、追加実装した機能とその概要も教えていただけると幸いです!
 
 プロジェクトを完成させていただいた方には、NFTをお送りします。
-
 
 ### 🎉 おつかれさまでした!
 

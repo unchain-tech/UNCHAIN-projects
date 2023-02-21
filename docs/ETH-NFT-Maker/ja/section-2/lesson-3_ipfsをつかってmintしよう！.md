@@ -72,8 +72,9 @@ contract Web3Mint is ERC721{
 // Web3Mint.sol
 import "./libraries/Base64.sol";
 ```
+
 `tokenURI`には、NFTデータをJSON形式で渡さなければいけません。
-Base64のやり方は、[project3](https://unchain-portal.netlify.app/projects/104-ETH-NFT-game/section-1-Lesson-5) のやり方を参考にしています。
+Base64のやり方は、[project3](https://unchain-portal.netlify.app/projects/104-ETH-NFT-game/section-1-lesson-5) のやり方を参考にしています。
 
 なぜ、Base64で渡す必要があるのかを調べてみてください!
 
@@ -168,8 +169,9 @@ struct NftAttributes{
 
     NftAttributes[] Web3Nfts;
 ```
+
 最初に書いていたNFTのデータを保存するための配列がこれです。
-この配列の番号と、NFT  の識別子の番号を揃えます。
+この配列の番号と、NFTの識別子の番号を揃えます。
 
 例えば、0番目の識別子のNFTのデータは、`Web3Nfts`の配列の0番目に入るようにするといったような感じです。
 
@@ -198,9 +200,11 @@ Web3Nfts.push(NftAttributes({
             imageURL: imageURI
         }));
 ```
+
 `mintIpfsNFT`関数が引数で、NFTにしたいもののデータを受け取り、ここで配列に加えます。`tokenId`の値と、配列の番号は同じになっています。
 
 次は`tokenURI`関数です。
+
 ```solidity
 // Web3Mint.sol
 function tokenURI(uint256 _tokenId) public override view returns(string memory){
@@ -224,10 +228,11 @@ function tokenURI(uint256 _tokenId) public override view returns(string memory){
     return output;
     }
 ```
+
 openseaなどのNFTマーケットサービスは、この`tokenURI`関数のデータをみています。
 詳しく知りたい方は [こちら](https://docs.opensea.io/docs/metadata-standards#implementing-token-uri) をごらんください。
 
->For OpenSea to pull in off-chain metadata for ERC721 and ERC1155 assets, your contract will need to return a URI where we can find the metadata. > To find this URI, we use the tokenURI method in ERC721 and the uri method in ERC1155
+> For OpenSea to pull in off-chain metadata for ERC721 and ERC1155 assets, your contract will need to return a URI where we can find the metadata. > To find this URI, we use the tokenURI method in ERC721 and the uri method in ERC1155
 
 `tokenURI`関数はERC721からoverrideしている関数で、外部からでも`_tokenId`をいれればreturnを返してくれる関数でないといけないので、引数などからNFTのメタデータを送ることはできません。なので、`tokenId`だけを与えられて、NFTのmetadataを返せるようにしなければならないです。
 そこで、配列を使おうという発想になっています。
@@ -243,30 +248,27 @@ openseaなどのNFTマーケットサービスは、この`tokenURI`関数のデ
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
+describe("Web3Mint", () => {
+  it("Should return the nft", async () => {
+    const Mint = await ethers.getContractFactory("Web3Mint");
+    const mintContract = await Mint.deploy();
+    await mintContract.deployed();
 
-describe("Web3Mint",  () => {
-    it("Should return the nft", async () => {
-      const Mint = await ethers.getContractFactory("Web3Mint");
-      const mintContract = await Mint.deploy();
-      await mintContract.deployed();
+    const [owner, addr1] = await ethers.getSigners();
 
-      const [owner, addr1] = await ethers.getSigners();
+    let nftName = "poker";
+    let ipfsCID = "bafkreievxssucnete4vpthh3klylkv2ctll2sk2ib24jvgozyg62zdtm2y";
 
-      let nftName = 'poker'
-      let ipfsCID = 'bafkreievxssucnete4vpthh3klylkv2ctll2sk2ib24jvgozyg62zdtm2y'
+    await mintContract.connect(owner).mintIpfsNFT(nftName, ipfsCID); //0
+    await mintContract.connect(addr1).mintIpfsNFT(nftName, ipfsCID); //1
 
-      await mintContract.connect(owner).mintIpfsNFT(nftName,ipfsCID) //0
-      await mintContract.connect(addr1).mintIpfsNFT(nftName,ipfsCID) //1
-
-      console.log(await mintContract.tokenURI(0))
-      console.log(await mintContract.tokenURI(1))
-
-
-    });
+    console.log(await mintContract.tokenURI(0));
+    console.log(await mintContract.tokenURI(1));
   });
+});
 ```
 
-このテストコードの書き方に関しては、[hardhatが用意しているドキュメント](https://hardhat.org/guides/waffle-testing.html)が非常に参考になります。
+このテストコードの書き方に関しては、[hardhat が用意しているドキュメント](https://hardhat.org/guides/waffle-testing.html)が非常に参考になります。
 ethers.jsを使った書き方は今までもしてきているので、その説明は省きます。
 
 今回実は、`expect`という記法を使っていないので、
@@ -274,6 +276,7 @@ ethers.jsを使った書き方は今までもしてきているので、その�
 ```javascript
 const { expect } = require("chai");
 ```
+
 このように`chai`を読み込む必要はないのですが、スマートコントラクトのテストを行う上で、必ず`expect`を使う機会は来るはずなので興味のある方は調べてみてください。
 
 今回このテストでは、`mintIpfsNFT`関数でしっかりとNFTを発行し、`tokenURI`の返り値が期待通りになっているかを確かめます。
@@ -281,6 +284,7 @@ const { expect } = require("chai");
 変数`nftName`には好きな名前を、`ipfsCID`には先程つくった`IpfsCID`を入れてみましょう!
 
 ここまでの作業ができたら`npx hardhat test`をしてみましょう
+
 ```
 Web3Mint
 This is my NFT contract.
@@ -290,18 +294,22 @@ data:application/json;base64,eyJuYW1lIjogInBva2VyIC0tIE5GVCAjOiAwIiwgImRlc2NyaXB
 data:application/json;base64,eyJuYW1lIjogInBva2VyIC0tIE5GVCAjOiAxIiwgImRlc2NyaXB0aW9uIjogIkFuIGVwaWMgTkZUIiwgImltYWdlIjogImlwZnM6Ly9iYWZrcmVpZXZ4c3N1Y25ldGU0dnB0aGgza2x5bGt2MmN0bGwyc2syaWIyNGp2Z296eWc2MnpkdG0yeSJ9
     ✔ Should return the nft
 ```
+
 このようなログが表示されるはずです。
+
 ```
 data:application/json;base64,eyJuYW1lIjogInBva2VyIC0tIE5GVCAjOiAwIiwgImRlc2NyaXB0aW9uIjogIkFuIGVwaWMgTkZUIiwgImltYWdlIjogImlwZnM6Ly9iYWZrcmVpZXZ4c3N1Y25ldGU0dnB0aGgza2x5bGt2MmN0bGwyc2syaWIyNGp2Z296eWc2MnpkdG0yeSJ9
 ```
+
 これをブラウザで表示してください。
+
 ```
 {"name": "poker -- NFT #: 0", "description": "An epic NFT", "image": "ipfs://bafkreievxssucnete4vpthh3klylkv2ctll2sk2ib24jvgozyg62zdtm2y"}
 ```
+
 このように表示されていたら成功です。imageのipfsがしっかりと画像を表示させられているかも確認してみてください。
 
 **brave**ブラウザでは、`ipfs://bafkreievxssucnete4vpthh3klylkv2ctll2sk2ib24jvgozyg62zdtm2y`のままブラウザに貼れば表示され、他のブラウザの場合は`https://ipfs.io/ipfs/自分のCID`のようにして、画像を確認してみましょう!
-
 
 最終確認として`run.js`でも確認してみましょう。
 
@@ -310,35 +318,38 @@ data:application/json;base64,eyJuYW1lIjogInBva2VyIC0tIE5GVCAjOiAwIiwgImRlc2NyaXB
 ```javascript
 // run.js
 const main = async () => {
-    // コントラクトがコンパイルします
-    // コントラクトを扱うために必要なファイルが `artifacts` ディレクトリの直下に生成されます。
-    const nftContractFactory = await hre.ethers.getContractFactory("Web3Mint");
-    // Hardhat がローカルの Ethereum ネットワークを作成します。
-    const nftContract = await nftContractFactory.deploy();
-    // コントラクトが Mint され、ローカルのブロックチェーンにデプロイされるまで待ちます。
-    await nftContract.deployed();
-    console.log("Contract deployed to:", nftContract.address);
+  // コントラクトがコンパイルします
+  // コントラクトを扱うために必要なファイルが `artifacts` ディレクトリの直下に生成されます。
+  const nftContractFactory = await hre.ethers.getContractFactory("Web3Mint");
+  // Hardhat がローカルの Ethereum ネットワークを作成します。
+  const nftContract = await nftContractFactory.deploy();
+  // コントラクトが Mint され、ローカルのブロックチェーンにデプロイされるまで待ちます。
+  await nftContract.deployed();
+  console.log("Contract deployed to:", nftContract.address);
 
-    let txn = await nftContract.mintIpfsNFT("poker","bafybeibewfzz7w7lhm33k2rmdrk3vdvi5hfrp6ol5vhklzzepfoac37lry");
-    await txn.wait();
-    let returnedTokenUri = await nftContract.tokenURI(0);
-    console.log("tokenURI:",returnedTokenUri);
-  };
-  // エラー処理を行っています。
-  const runMain = async () => {
-    try {
-      await main();
-      process.exit(0);
-    } catch (error) {
-      console.log(error);
-      process.exit(1);
-    }
-  };
+  let txn = await nftContract.mintIpfsNFT(
+    "poker",
+    "bafybeibewfzz7w7lhm33k2rmdrk3vdvi5hfrp6ol5vhklzzepfoac37lry"
+  );
+  await txn.wait();
+  let returnedTokenUri = await nftContract.tokenURI(0);
+  console.log("tokenURI:", returnedTokenUri);
+};
+// エラー処理を行っています。
+const runMain = async () => {
+  try {
+    await main();
+    process.exit(0);
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
+};
 
-  runMain();
+runMain();
 ```
-`mintIpfsNft`関数と`tokenURI`関数がしっかりとできているかを確認しましょう。
 
+`mintIpfsNft`関数と`tokenURI`関数がしっかりとできているかを確認しましょう。
 
 スマートコントラクトの関数がしっかりと機能していることがわかったので、テストネットにデプロイしましょう。
 
@@ -347,26 +358,26 @@ const main = async () => {
 ```javascript
 // deploy.js
 const main = async () => {
-    // コントラクトがコンパイルします
-    // コントラクトを扱うために必要なファイルが `artifacts` ディレクトリの直下に生成されます。
-    const nftContractFactory = await hre.ethers.getContractFactory("Web3Mint");
-    // Hardhat がローカルの Ethereum ネットワークを作成します。
-    const nftContract = await nftContractFactory.deploy();
-    // コントラクトが Mint され、ローカルのブロックチェーンにデプロイされるまで待ちます。
-    await nftContract.deployed();
-    console.log("Contract deployed to:", nftContract.address);
-    };
-  // エラー処理を行っています。
-  const runMain = async () => {
-    try {
-      await main();
-      process.exit(0);
-    } catch (error) {
-      console.log(error);
-      process.exit(1);
-    }
-  };
-  runMain();
+  // コントラクトがコンパイルします
+  // コントラクトを扱うために必要なファイルが `artifacts` ディレクトリの直下に生成されます。
+  const nftContractFactory = await hre.ethers.getContractFactory("Web3Mint");
+  // Hardhat がローカルの Ethereum ネットワークを作成します。
+  const nftContract = await nftContractFactory.deploy();
+  // コントラクトが Mint され、ローカルのブロックチェーンにデプロイされるまで待ちます。
+  await nftContract.deployed();
+  console.log("Contract deployed to:", nftContract.address);
+};
+// エラー処理を行っています。
+const runMain = async () => {
+  try {
+    await main();
+    process.exit(0);
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
+};
+runMain();
 ```
 
 このコントラクトアドレスは今後も使用するので保存しておいてください。

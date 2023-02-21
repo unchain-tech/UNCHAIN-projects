@@ -10,14 +10,13 @@
 - [React.js](https://ja.reactjs.org/)
 - [NEXT.js](https://nextjs.org/docs)
 - [Thirdweb](https://portal.thirdweb.com/)
-- [NFT に関する基礎知識](https://github.com/shiftbase-xyz/UNCHAIN-projects/blob/main/docs/2-ETH-NFT-collection/ja/section-1/Lesson_1_NFT%E3%81%A8%E3%81%AF%E4%BD%95%E3%81%8B%EF%BC%9F.md)
+- [NFT に関する基礎知識](https://github.com/shiftbase-xyz/UNCHAIN-projects/blob/main/docs/2-ETH-NFT-collection/ja/section-1/lesson-1_NFT%E3%81%A8%E3%81%AF%E4%BD%95%E3%81%8B%EF%BC%9F.md)
 
 ※ 開発初心者の方は、まず`ETH-dApp`のプロジェクトから始めることをお勧めします ☺️
 
 いま、すべてを理解している必要はありません。
 
 わからないことがあったらインターネットで検索したり、コミュニティで質問しながらプロジェクトを進めていきましょう！
-
 
 ### 🛠 何を構築するのか？
 
@@ -31,7 +30,6 @@
 
 このプロジェクトではSolidityは必要ありません。JavaScriptだけでスマートコントラクトを扱うことができる、[thirdweb](https://thirdweb.com/) というツールを使用します。
 
-
 ### 🌍 プロジェクトをアップグレードする
 
 この学習コンテンツは、[Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/) © 2022 buildspaceのライセンス及び、[UNCHAIN License](https://github.com/unchain-dev/UNCHAIN-projects/blob/main/LICENSE) のもとで運用されています。
@@ -43,9 +41,9 @@ GitHubから直接コードを編集して直接`pull request`を送る方法は
 どんなリクエストでも大歓迎です 🎉
 
 また、プロジェクトを自分のGitHubアカウントに`Fork`して、中身を編集してから`pull request`を送ることもできます。
+
 - プロジェクトを`Fork`する方法は、[こちら](https://docs.github.com/ja/get-started/quickstart/fork-a-repo) を参照してください。
 - `Fork`から`pull request`を作成する方法は、[こちら](https://docs.github.com/ja/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) です。
-
 
 ### ⚡️ `Issue`を作成する
 
@@ -57,7 +55,6 @@ GitHubから直接コードを編集して直接`pull request`を送る方法は
 
 UNCHAINのプロジェクトをみんなでより良いものにしていきましょう ✨
 
-
 ### 🙋‍♂️ 質問する
 
 ここまで何かわからないことがある場合は、Discordの`#ethereum`で質問をしてください。
@@ -68,7 +65,7 @@ UNCHAINのプロジェクトをみんなでより良いものにしていきま�
 
 ---
 
-Attribution: This learning content is licensed under [Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/) © 2022 buildspace. 
+Attribution: This learning content is licensed under [Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/) © 2022 buildspace.
 Sharelike: Translations and modifications to markdown documents.
 
 Documentation created by [yokinist](https://github.com/yokinist) and [katoten](https://github.com/KatotenMk2)（UNCHAIN discord ID: yokinist#0759, Katoten#2669）
