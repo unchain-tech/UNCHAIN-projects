@@ -33,58 +33,58 @@ class App extends Component {
     const accounts = await web3.eth.getAccounts()
     // ユーザーの Metamask アカウントを設定
     // この機能により、App.js に記載されている constructor() 内の account（デフォルト: '0x0'）が更新される
-    this.setState({ account: accounts[0]})
+    this.setState({ account: accounts[0] })
     // ユーザーが Metamask を介して接続しているネットワークIDを取得
     const networkId = await web3.eth.net.getId()
 
     // DaiToken のデータを取得
     const daiTokenData = DaiToken.networks[networkId]
-    if(daiTokenData){
+    if (daiTokenData) {
       // DaiToken の情報を daiToken に格納する
       const daiToken = new web3.eth.Contract(DaiToken.abi, daiTokenData.address)
       // constructor() 内の daiToken の情報を更新する
-      this.setState({daiToken})
+      this.setState({ daiToken })
       // ユーザーの Dai トークンの残高を取得する
       let daiTokenBalance = await daiToken.methods.balanceOf(this.state.account).call()
       // daiTokenBalance（ユーザーの Dai トークンの残高）をストリング型に変更する
-      this.setState({daiTokenBalance: daiTokenBalance.toString()})
+      this.setState({ daiTokenBalance: daiTokenBalance.toString() })
       // ユーザーの Dai トークンの残高をフロントエンドの Console に出力する
       console.log(daiTokenBalance.toString())
-    }else{
+    } else {
       window.alert('DaiToken contract not deployed to detected network.')
     }
     // ↓ --- 1. 追加するコード ---- ↓
     // DappToken のデータを取得
     const dappTokenData = DappToken.networks[networkId]
-    if(dappTokenData){
+    if (dappTokenData) {
       // DappToken の情報を dappToken に格納する
       const dappToken = new web3.eth.Contract(DappToken.abi, dappTokenData.address)
       // constructor() 内の dappToken の情報を更新する
-      this.setState({dappToken})
+      this.setState({ dappToken })
       // ユーザーの Dapp トークンの残高を取得する
       let dappTokenBalance = await dappToken.methods.balanceOf(this.state.account).call()
       // dappTokenBalance（ユーザーの Dapp トークンの残高）をストリング型に変更する
-      this.setState({dappTokenBalance: dappTokenBalance.toString()})
+      this.setState({ dappTokenBalance: dappTokenBalance.toString() })
       // ユーザーの Dapp トークンの残高をフロントエンドの Console に出力する
       console.log(dappTokenBalance.toString())
-    }else{
+    } else {
       window.alert('DappToken contract not deployed to detected network.')
     }
 
     // tokenFarmData のデータを取得
     const tokenFarmData = TokenFarm.networks[networkId]
-    if(tokenFarmData){
+    if (tokenFarmData) {
       // TokenFarm の情報を tokenFarm に格納する
       const tokenFarm = new web3.eth.Contract(TokenFarm.abi, tokenFarmData.address)
       // constructor() 内の tokenFarm の情報を更新する
-      this.setState({tokenFarm})
+      this.setState({ tokenFarm })
       // tokenFarm 内にステーキングされている Dai トークンの残高を取得する
       let tokenFarmBalance = await tokenFarm.methods.stakingBalance(this.state.account).call()
       // tokenFarmBalance をストリング型に変更する
-      this.setState({stakingBalance: tokenFarmBalance.toString()})
+      this.setState({ stakingBalance: tokenFarmBalance.toString() })
       // ユーザーの tokenFarmBalance をフロントエンドの Console に出力する
       console.log(tokenFarmBalance.toString())
-    }else{
+    } else {
       window.alert('TokenFarm contract not deployed to detected network.')
     }
     // ↑ --- 1. 追加するコード ---- ↑
@@ -104,23 +104,23 @@ class App extends Component {
       window.alert('Non ethereum browser detected. You should consider trying to install metamask')
     }
 
-    this.setState({ loading: false})
+    this.setState({ loading: false })
   }
   // ↓ --- 2. 追加するコード ---- ↓
   // TokenFarm.sol に記載されたステーキング機能を呼び出す
   stakeTokens = (amount) => {
-    this.setState({loading: true})
-    this.state.daiToken.methods.approve(this.state.tokenFarm._address, amount).send({from: this.state.account}).on('transactionHash', (hash)=> {
-      this.state.tokenFarm.methods.stakeTokens(amount).send({from: this.state.account}).on('transactionHash', (hash) => {
-        this.setState({loading: false})
+    this.setState({ loading: true })
+    this.state.daiToken.methods.approve(this.state.tokenFarm._address, amount).send({ from: this.state.account }).on('transactionHash', (hash) => {
+      this.state.tokenFarm.methods.stakeTokens(amount).send({ from: this.state.account }).on('transactionHash', (hash) => {
+        this.setState({ loading: false })
       })
     })
   }
   // TokenFarm.sol に記載されたアンステーキング機能を呼び出す
   unstakeTokens = (amount) => {
-    this.setState({loading: true})
-    this.state.tokenFarm.methods.unstakeTokens().send({from: this.state.account}).on('transactionHash', (hash) => {
-      this.setState({loading: false})
+    this.setState({ loading: true })
+    this.state.tokenFarm.methods.unstakeTokens(amount).send({ from: this.state.account }).on('transactionHash', (hash) => {
+      this.setState({ loading: false })
     })
   }
   // ↑ --- 2. 追加するコード ---- ↑
@@ -143,14 +143,14 @@ class App extends Component {
   // フロントエンドのレンダリングが以下で実行される
   render() {
     let content
-    if(this.state.loading){
+    if (this.state.loading) {
       content = <p id='loader' className='text-center'>Loading...</p>
-    }else{
+    } else {
       content = <Main
-        daiTokenBalance = {this.state.daiTokenBalance}
-        dappTokenBalance = {this.state.dappTokenBalance}
-        stakingBalance = {this.state.stakingBalance}
-        stakeTokens = {this.stakeTokens}
+        daiTokenBalance={this.state.daiTokenBalance}
+        dappTokenBalance={this.state.dappTokenBalance}
+        stakingBalance={this.state.stakingBalance}
+        stakeTokens={this.stakeTokens}
         unstakeTokens={this.unstakeTokens}
       />
     }
@@ -263,7 +263,7 @@ stakeTokens = (amount) => {
 // TokenFarm.sol に記載されたアンステーキング機能を呼び出す
 unstakeTokens = (amount) => {
   this.setState({loading: true})
-  this.state.tokenFarm.methods.unstakeTokens().send({from: this.state.account}).on('transactionHash', (hash) => {
+  this.state.tokenFarm.methods.unstakeTokens(amount).send({from: this.state.account}).on('transactionHash', (hash) => {
     this.setState({loading: false})
   })
 }
@@ -324,68 +324,69 @@ touch src/components/Main.js
 import React, { Component } from 'react'
 import dai from '../dai.png'
 class Main extends Component {
-  render() {
-    return (
-      <div id='content' className='mt-3'>
-       <table className='table table-borderless text-muted text-center'>
-           <thead>
-               <tr>
-                   <th scope='col'>Staking Balance</th>
-                   <th scope='col'>Reward Balance</th>
-               </tr>
-           </thead>
-           <tbody>
-               <tr>
-                   <td>{window.web3.utils.fromWei(this.props.stakingBalance, 'Ether')} mDAI</td>
-                   <td>{window.web3.utils.fromWei(this.props.dappTokenBalance, 'Ether')} DAPP</td>
-               </tr>
-           </tbody>
-       </table>
-       <div className='card mb-4'>
-           <div className='card-body'>
-               <form className='mb-3' onSubmit={(event) => {
-                   event.preventDefault()
-                   let amount
-                   amount = this.input.value.toString()
-                   amount = window.web3.utils.toWei(amount, 'Ether')
-                   this.props.stakeTokens(amount)
-               }}>
-                   <div>
-                       <label className='float-left'><b>Stake Tokens</b></label>
-                       <span className='float-right text-muted'>
-                       Balance: {window.web3.utils.fromWei(this.props.daiTokenBalance, 'Ether')}
-                       </span>
-                   </div>
-                   <div className='input-group mb-4'>
-                       <input
-                        type="text"
-                        ref = {(input) => {this.input = input}}
-                        className="form-control form-control-lg"
-                        placeholder='0'
-                        required
-                       />
-                       <div className='input-group-append'>
-                           <img src={dai} height='32' alt=""/>
-                           &nbsp;&nbsp;&nbsp; mDai
-                       </div>
-                   </div>
-                   <button type='submit' className='btn btn-primary btn-block btn-lg'>STAKE!</button>
-               </form>
-               <button
-                type='submit'
-                className='btn btn-link btn-block btn-sm'
-                onClick={(event) => {
-                    event.preventDefault()
-                    this.props.unstakeTokens()
-                }}
-                >
-                    UN-STAKE...
-                </button>
-           </div>
-       </div>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div id='content' className='mt-3'>
+                <table className='table table-borderless text-muted text-center'>
+                    <thead>
+                        <tr>
+                            <th scope='col'>Staking Balance</th>
+                            <th scope='col'>Reward Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{window.web3.utils.fromWei(this.props.stakingBalance, 'Ether')} mDAI</td>
+                            <td>{window.web3.utils.fromWei(this.props.dappTokenBalance, 'Ether')} DAPP</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div className='card mb-4'>
+                    <div className='card-body'>
+                        <form className='mb-3' onSubmit={(event) => {
+                            event.preventDefault()
+                            let amount
+                            amount = this.input.value.toString()
+                            amount = window.web3.utils.toWei(amount, 'Ether')
+                            this.props.stakeTokens(amount)
+                        }}>
+                            <div>
+                                <label className='float-left'><b>Stake Tokens</b></label>
+                                <span className='float-right text-muted'>
+                                    Balance: {window.web3.utils.fromWei(this.props.daiTokenBalance, 'Ether')}
+                                </span>
+                            </div>
+                            <div className='input-group mb-4'>
+                                <input
+                                    type="text"
+                                    ref={(input) => { this.input = input }}
+                                    className="form-control form-control-lg"
+                                    placeholder='0'
+                                    required
+                                    id='value'
+                                />
+                                <div className='input-group-append'>
+                                    <img src={dai} height='32' alt="" />
+                                    &nbsp;&nbsp;&nbsp; mDai
+                                </div>
+                            </div>
+                            <button type='submit' className='btn btn-primary btn-block btn-lg'>STAKE!</button>
+                        </form>
+                        <button
+                            type='submit'
+                            className='btn btn-link btn-block btn-sm'
+                            onClick={(event) => {
+                                event.preventDefault()
+                                this.props.unstakeTokens(window.web3.utils.toWei(document.getElementById('value').value.toString(), 'Ether'))
+                            }}
+                        >
+                            UN-STAKE...
+                        </button>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 }
 
 export default Main;
