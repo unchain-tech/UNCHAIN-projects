@@ -458,7 +458,7 @@ We have 0 total waves!
 **1 \. ターミナル上で`my-wave-portal`に移動し、下記を実行し、コントラクトを再度デプロイする。**
 
 ```
-npx hardhat run scripts/deploy.js --network goerli
+npx hardhat run scripts/deploy.js --network sepolia
 ```
 
 ターミナルに下記のような出力結果が表示されていれば、デプロイは成功です。
