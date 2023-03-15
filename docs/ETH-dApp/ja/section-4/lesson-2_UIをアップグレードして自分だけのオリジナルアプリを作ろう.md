@@ -12,7 +12,7 @@
 **2 \. ユーザーのウォレットを Web アプリケーションから接続して、コントラクトと通信する web3 アプリケーションを作成する**
 
 - MetaMaskを設定する
-- コントラクトを実際のGoerli Test Networkにデプロイする
+- コントラクトを実際のSepolia Test Networkにデプロイする
 - ウォレットをWebアプリケーションに接続する
 - Webアプリケーションからデプロイされたコントラクトを呼び出す
 
@@ -100,9 +100,9 @@ Webアプリケーションを`Inspect`して、下記のような結果がConso
 
 ここでは、ユーザーがETHを獲得したこと、コントラクトの資金が`0.000996`から`0.000995`に減少したことがわかります。
 
-さらに詳しくトランザクションについて検証する場合は、[Goerli Etherscan](https://goerli.etherscan.io/) を使用することをお勧めします。
+さらに詳しくトランザクションについて検証する場合は、[Sepolia Etherscan](https://sepolia.etherscan.io/) を使用することをお勧めします。
 
-Goerli Etherscanにコントラクトのアドレスを貼り付けて、発生したトランザクションを表示できます。
+Sepolia Etherscanにコントラクトのアドレスを貼り付けて、発生したトランザクションを表示できます。
 
 それでは、上記で実行した最新のトランザクションを見ていきましょう。
 
@@ -216,7 +216,7 @@ require("dotenv").config();
 module.exports = {
   solidity: "0.8.9",
   networks: {
-    goerli: {
+    sepolia: {
       url: process.env.STAGING_ALCHEMY_KEY,
       accounts: [process.env.PRIVATE_KEY],
     },

@@ -36,7 +36,7 @@ Ecosystem選択欄が出てきた場合は`Ethereum`を選択しましょう。
 - `NAME`: プロジェクトの名前(例: `WavePortal`)
 - `DESCRIPTION`: プロジェクトの概要
 - `CHAIN`: `Ethereum`を選択
-- `NETWORK`: `Goerli`を選択
+- `NETWORK`: `Sepolia`を選択
 
 それから、作成したAppの`VIEW DETAILS`をクリックします。
 ![](/public/images/ETH-dApp/section-2/2_2_3.png)
@@ -69,13 +69,13 @@ Ecosystem選択欄が出てきた場合は`Ethereum`を選択しましょう。
 
 ### 🚰 Testnet ETH を取得する
 
-今回は、`Goerli`というイーサリアム財団によって運営されているテストネットを使用します。
+今回は、`Sepolia`というイーサリアム財団によって運営されているテストネットを使用します。
 
-`Goerli`にコントラクトをデプロイし、コードのテストを行うために、偽のETHを取得しましょう。ユーザーが偽のETHを取得するために用意されたインフラは、「フォーセット（＝蛇口）」と呼ばれています。
+`Sepolia`にコントラクトをデプロイし、コードのテストを行うために、偽のETHを取得しましょう。ユーザーが偽のETHを取得するために用意されたインフラは、「フォーセット（＝蛇口）」と呼ばれています。
 
-フォーセットを使用する前に、あなたのMetaMaskウォレットを`Goerli Test Network`に設定してください。
+フォーセットを使用する前に、あなたのMetaMaskウォレットを`Sepolia Test Network`に設定してください。
 
-> ✍️: MetaMask で`Goerli Test Network`を設定する方法
+> ✍️: MetaMask で`Sepolia Test Network`を設定する方法
 >
 > 1 \. MetaMask ウォレットのネットワークトグルを開く。
 >
@@ -89,18 +89,21 @@ Ecosystem選択欄が出てきた場合は`Ethereum`を選択しましょう。
 >
 > ![](/public/images/ETH-dApp/section-2/2_2_15.png)
 >
-> 4 \. `Goerli Test Network`を選択する。
+> 4 \. `Add network`を選択する。
 >
 > ![](/public/images/ETH-dApp/section-2/2_2_16.png)
+> 5 \. `Add a network manually`を選択する。
+>
+> ![](/public/images/ETH-dApp/section-2/2_2_18.png)
+> 5 \. 以下の情報を入力して`Save`ボタンを押す。
+>
+>
+> ![](/public/images/ETH-dApp/section-2/2_2_19.png)
 
-MetaMaskウォレットに`Goerli Test Network`が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽ETHを取得しましょう。
+MetaMaskウォレットに`Sepolia Test Network`が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽ETHを取得しましょう。
 
-- [Alchemy](https://goerlifaucet.com/) - 0.25 Goerli ETH（24時間に1度もらうことができる）
+- [Alchemy](https://sepoliafaucet.com/) - 1 Sepolia ETH（24時間に1度もらうことができる）
   - ウォレットアドレスを入力して`Send Me ETH`ボタンを押下するとその場でもらえます。
-- [Chainlink](https://faucets.chain.link/) - 0.1 Goerli ETH（その場でもらえる）
-  - `Connect wallet`をクリックしてMetaMaskと接続する必要があります。
-  - Twitterアカウントを連携する必要があります。
-
 
 ### 📈 `hardhat.config.js`ファイルを編集する
 
@@ -130,9 +133,9 @@ require("@nomicfoundation/hardhat-toolbox");
 module.exports = {
   solidity: "0.8.9",
   networks: {
-    goerli: {
+    sepolia: {
       url: "YOUR_ALCHEMY_API_URL",
-      accounts: ["YOUR_PRIVATE_GOERLI_ACCOUNT_KEY"],
+      accounts: ["YOUR_PRIVATE_SEPOLIA_ACCOUNT_KEY"],
     },
   },
 };
@@ -142,9 +145,9 @@ module.exports = {
 
 > `hardhat.config.js`の`YOUR_ALCHEMY_API_URL`の部分を先ほど取得した Alchemy の URL（ `HTTP`リンク） と入れ替えます。
 
-2\. `YOUR_PRIVATE_GOERLI_ACCOUNT_KEY`の取得
+2\. `YOUR_PRIVATE_SEPOLIA_ACCOUNT_KEY`の取得
 
-> 1.  お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを`Goerli Test Network`に変更します。
+> 1.  お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを`Sepolia Test Network`に変更します。
 >
 > ![](/public/images/ETH-dApp/section-2/2_2_5.png)
 >
@@ -164,7 +167,7 @@ module.exports = {
 >
 > ![](/public/images/ETH-dApp/section-2/2_2_9.png)
 
-> - `hardhat.config.js`の`YOUR_PRIVATE_GOERLI_ACCOUNT_KEY`の部分をここで取得した秘密鍵とを入れ替えます。
+> - `hardhat.config.js`の`YOUR_PRIVATE_SEPOLIA_ACCOUNT_KEY`の部分をここで取得した秘密鍵とを入れ替えます。
 
 ### 🙊 秘密鍵は誰にも教えてはいけません
 
@@ -226,14 +229,14 @@ git rm --cached hardhat.config.js
 
 これで、ローカルリポジトリの`hardhat.config.js`ファイルを残した状態で、リモートリポジトリのファイルを消すことができます。再度、`git push`まで行ったら、GitHub上に`hardhat.config.js`が存在しないことを確認してください。
 
-### 🚀 Goerli Test Network にコントラクトをデプロイする
+### 🚀 Sepolia Test Network にコントラクトをデプロイする
 
-`hardhat.config.js`の更新が完了したら、Goerli Test Networkにコントラクトをデプロイしてみましょう。
+`hardhat.config.js`の更新が完了したら、Sepolia Test Networkにコントラクトをデプロイしてみましょう。
 
 ターミナル上で`my-wave-portal`ディレクトリに移動し、下記のコマンドを実行しましょう。
 
 ```bash
-npx hardhat run scripts/deploy.js --network goerli
+npx hardhat run scripts/deploy.js --network sepolia
 ```
 
 下記のような結果が出力されていれば成功です 🎉
@@ -249,7 +252,7 @@ Contract deployed by:  0x1A7f14FBF50acf10bCC08466743fB90384Cbd720
 
 ### 👀 Etherscan でトランザクションを確認する
 
-コピーした`Contract deployed to`に続くアドレスを、[Etherscan](https://goerli.etherscan.io/) に貼り付けて、あなたのスマートコントラクトのトランザクション履歴を見てみましょう。
+コピーした`Contract deployed to`に続くアドレスを、[Etherscan](https://sepolia.etherscan.io/) に貼り付けて、あなたのスマートコントラクトのトランザクション履歴を見てみましょう。
 
 Etherscanは、イーサリアムネットワーク上のトランザクションに関する情報を確認するのに便利なプラットフォームです。
 
@@ -270,4 +273,4 @@ _表示されるまでに約 1 分程度かかる場合があります。_
 
 ---
 
-Goerli Test Networkにスマートコントラクトをデプロイしたら、次のレッスンに進みましょう 🎉
+Sepolia Test Networkにスマートコントラクトをデプロイしたら、次のレッスンに進みましょう 🎉
