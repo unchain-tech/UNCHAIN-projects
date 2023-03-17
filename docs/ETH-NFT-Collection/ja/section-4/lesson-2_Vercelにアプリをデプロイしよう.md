@@ -50,7 +50,7 @@ require("dotenv").config();
 module.exports = {
   solidity: "0.8.9",
   networks: {
-    goerli: {
+    sepolia: {
       url: process.env.STAGING_ALCHEMY_KEY,
       accounts: [process.env.PRIVATE_KEY],
     },
@@ -154,7 +154,7 @@ module.exports = {
     apiKey: process.env.ETHERSCAN_APIKEY
   },
   networks: {
-    goerli: {
+    sepolia: {
       url: process.env.STAGING_ALCHEMY_KEY,
       accounts: [process.env.PRIVATE_KEY],
     },
@@ -165,7 +165,7 @@ module.exports = {
 
 ```
 npx hardhat clean
-npx hardhat verify YOUR_CONTRACT_ADDRESS --network goerli
+npx hardhat verify YOUR_CONTRACT_ADDRESS --network sepolia
 ```
 
 下記のような結果が表示されれば、verificationは成功です。
@@ -176,12 +176,12 @@ contracts/MyEpicNFT.sol:MyEpicNFT at 0xB3340071dc206d09170a7269331155ff1BeE64de
 for verification on the block explorer. Waiting for verification result...
 
 Successfully verified contract MyEpicNFT on Etherscan.
-https://goerli.etherscan.io/address/0xB3340071dc206d09170a7269331155ff1BeE64de#code
+https://sepolia.etherscan.io/address/0xF7d8473eF4555B158689Ae8F3c1b39c246A1244E#code
 ```
 
 出力されたURLリンクをブラウザに貼り付け、中身を確認してみましょう。
 
-私の [URL リンク](https://goerli.etherscan.io/address/0xB3340071dc206d09170a7269331155ff1BeE64de#code) の中身は下記のように表示されます。
+私の [URL リンク](https://sepolia.etherscan.io/address/0xF7d8473eF4555B158689Ae8F3c1b39c246A1244E#code) の中身は下記のように表示されます。
 
 ![](/public/images/ETH-NFT-Collection/section-4/4_2_6.png)
 
