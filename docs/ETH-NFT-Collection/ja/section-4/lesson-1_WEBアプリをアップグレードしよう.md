@@ -65,13 +65,13 @@ emit NewEpicNFTMinted(msg.sender, newItemId);
 
 2\. フロントエンドのコントラクトアドレスを更新する(更新するファイル: `App.js`)
 
-3\. フロントエンドのABIファイルを更新する(更新するファイル: `nft-collection-starter-project/src/utils/MyEpicNFT.json`)
+3\. フロントエンドのABIファイルを更新する(更新するファイル: `packages/client/src/utils/MyEpicNFT.json`)
 
 **コントラクトを更新するたび、これらの 3 つのステップを実行する必要があります。**
 
 復習もかねて、丁寧に実行していきましょう。
 
-**1\. ターミナル上で`epic-nfts`に移動します。**
+**1\. ターミナル上で`packages/contract`ディレクトリに移動します。**
 
 下記を実行し、コントラクトを再度デプロイしましょう。
 
@@ -89,7 +89,7 @@ Contract deployed to: 0x... ← あなたのコントラクトアドレスをコ
 
 **3\. 以前と同じように`artifacts`から ABI ファイルを取得します。下記のステップを実行してください。**
 
-1\. ターミナル上で`epic-nfts`にいることを確認する（もしくは移動する）。
+1\. ターミナル上で`packages/contract`ディレクトリにいることを確認する（もしくは移動する）。
 
 2\. ターミナル上で下記を実行する。
 
@@ -99,7 +99,7 @@ Contract deployed to: 0x... ← あなたのコントラクトアドレスをコ
 
 3\. VS Codeで`MyEpicNFT.json`ファイルが開かれるので、中身をすべてコピーする。※ VS Codeのファインダーを使って、直接`MyEpicNFT.json`を開くことも可能です。
 
-4\. コピーした`epic-nfts/artifacts/contracts/MyEpicNFT.sol/MyEpicNFT.json`の中身を`nft-collection-starter-project/src/utils/MyEpicNFT.json`の中身と交換する。
+4\. コピーした`packages/contract/artifacts/contracts/MyEpicNFT.sol/MyEpicNFT.json`の中身を`packages/client/src/utils/MyEpicNFT.json`の中身と交換する。
 
 **繰り返しますが、コントラクトを更新するたびにこれを行う必要があります。**
 

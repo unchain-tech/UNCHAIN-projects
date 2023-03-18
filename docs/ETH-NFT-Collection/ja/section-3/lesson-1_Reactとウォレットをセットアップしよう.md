@@ -22,32 +22,34 @@ GitHubのアカウントをお持ちの方は、[こちら](https://github.com/s
 
 ![](/public/images/ETH-NFT-Collection/section-3/3_1_1.png)
 
-ターミナルで先ほど作成した`ETH-NFT-collection`ディレクトリに移動し、先ほどコピーしたリンクを貼り付け、下記を実行してください。
+ターミナル上で`ETH-NFT-collection/packages`ディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
 
 ```bash
-git clone コピーした_github_リンク
+git clone コピーした_github_リンク client
 ```
 
 この段階で、フォルダ構造は下記のようになっているはずです。
 
-```
+```diff
 ETH-NFT-collection
-	|_ epic-nfts
-	|_ nft-collection-starter-project
+ ├── package.json
+ └── packages/
++    ├── client/
+     └── contract/
 ```
 
-ターミナル上で`nft-collection-starter-project`に移動して下記を実行しましょう。
+ターミナル上で`ETH-NFT-collection`ディレクトリ下に移動して下記を実行しましょう。
 
 ```bash
-npm install
+yarn install
 ```
 
-`npm`コマンドを実行することで、JavaScriptライブラリのインストールが行われます。
+`yarn`コマンドを実行することで、JavaScriptライブラリのインストールが行われます。
 
 次に、下記を実行してみましょう。
 
 ```bash
-npm run start
+yarn client start
 ```
 
 あなたのローカル環境で、Webサイトのフロントエンドが立ち上がりましたか？
@@ -58,7 +60,7 @@ npm run start
 
 上記のような形でフロントエンドが確認できれば成功です。
 
-これからフロントエンドの表示を確認したい時は、ターミナルに向かい、`nft-collection-starter-project`ディレクトリ上で、`npm run start`を実行します。これからも必要となる作業ですので、よく覚えておいてください。
+これからフロントエンドの表示を確認したい時は、ターミナルに向かい、`ETH-NFT-collection`ディレクトリ上で、`yarn client start`を実行します。これからも必要となる作業ですので、よく覚えておいてください。
 
 ターミナルを閉じるときは、以下のコマンドが使えます ✍️
 

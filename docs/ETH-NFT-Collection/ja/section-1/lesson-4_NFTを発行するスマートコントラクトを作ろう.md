@@ -495,16 +495,15 @@ runMain();
 
 これは、スマートコントラクトプロジェクトのルートディレクトリにあります。
 
-- 今回は、`epic-nfts`ディレクトリの直下に`hardhat.config.js`が存在するはずです。
+- 今回は、`packages/contract`ディレクトリの直下に`hardhat.config.js`が存在するはずです。
 
-例)`epic-nfts`で`ls`を実行した結果
+例)`contract`で`ls`を実行した結果
 
 ```
-README.md			package-lock.json
+README.md			hardhat.config.js
 artifacts			package.json
 cache				scripts
 contracts			test
-hardhat.config.js
 ```
 
 下記のように、`hardhat.config.js`の中身を更新します。
@@ -603,7 +602,7 @@ hardhat.config.js
 
 構成のセットアップが完了すると、前に作成したデプロイスクリプトを使用してデプロイするように設定されます。
 
-`epic-nfts`のルートディレクトリからこのコマンドを実行します 。
+`packages/contract`ディレクトリ下でこのコマンドを実行します 。
 
 ```bash
 npx hardhat run scripts/deploy.js --network sepolia

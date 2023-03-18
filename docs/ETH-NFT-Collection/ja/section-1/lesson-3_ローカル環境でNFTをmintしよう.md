@@ -1,29 +1,24 @@
 ### 📝 スマートコントラクトを作成する
 
-`contracts`ディレクトリの下に`MyEpicNFT.sol`という名前のファイルを作成します。
+前回のレッスンに引き続き、`packages/contract`ディレクトリ下を編集していきます。
 
-ターミナル上で新しくファイルを作成する場合は、下記のコマンドが役立ちます。
-
-1. `epic-nfts`ディレクトリに移動: `cd epic-nfts`
-2. `contracts`ディレクトリに移動: `cd contracts`
-3. `MyEpicNFT.sol`ファイルを作成: `touch MyEpicNFT.sol`
+まずは、`contracts`ディレクトリの下に`MyEpicNFT.sol`という名前のファイルを作成します。
 
 Hardhatを使用する場合、ファイル構造は非常に重要ですので、注意する必要があります。ファイル構造が下記のようになっていれば大丈夫です 😊
 
-```bash
-epic-nfts
-    |_ contracts
-           |_  MyEpicNFT.sol
+```diff
+packages/
+ └── contract/
+     └── contracts/
++        └── MyEpicNFT.sol
 ```
 
-次に、コードエディタでプロジェクトのコードを開きます。
+それでは、実際にコントラクトを書いていきましょう。
 
-ここでは、VS Codeの使用をお勧めします。ダウンロードは [こちら](https://azure.microsoft.com/ja-jp/products/visual-studio-code/) から。
+ここでは、コードエディタとして VS Codeの使用をお勧めします。ダウンロードは [こちら](https://azure.microsoft.com/ja-jp/products/visual-studio-code/) から。
 
 - VS Codeをターミナルから起動する方法は [こちら](https://maku.blog/p/f5iv9kx/) をご覧ください。今後VS Codeを起動するのが一段と楽になるので、ぜひ導入してみてください。
 - VS Code用の [Solidity 拡張機能](https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity) をダウンロードすることをお勧めします。この拡張機能により、構文が見やすくなります。
-
-それでは、実際にコントラクトを書いていきましょう。
 
 `MyEpicNFT.sol`のファイル内に以下のコードを記載します。
 
@@ -215,7 +210,7 @@ console.log("Contract deployed to:", nftContract.address);
 
 では、実行してみましょう。
 
-ターミナルを開いて`epic-nfts`ディレクトリへ移動し、下記を実行してください。
+ターミナルを開いて`packages/contract`ディレクトリ下にいることを確認し、以下のコマンドを実行してください。
 
 ```bash
 npx hardhat run scripts/run.js

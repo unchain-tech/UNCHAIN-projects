@@ -1,11 +1,11 @@
 ### 🙉 GitHub に 関する注意点
 
-**GitHub にコントラクト( `epic-nfts`)のコードをアップロードする際は、秘密鍵を含むハードハット構成ファイルをリポジトリにアップロードしないよう注意しましょう。**
+**GitHub にコントラクト( `packages/contract/`)のコードをアップロードする際は、秘密鍵を含むハードハット構成ファイルをリポジトリにアップロードしないよう注意しましょう。**
 
-秘密鍵などのファイルを隠すために、ターミナルで`epic-nfts`に移動して、下記を実行してください。
+秘密鍵などのファイルを隠すために、ターミナルで`packages/contract`ディレクトリに移動して、下記を実行してください。
 
 ```bash
-npm install --save dotenv
+yarn add --dev dotenv
 ```
 
 `dotenv`モジュールに関する詳しい説明は、[こちら](https://maku77.github.io/nodejs/env/dotenv.html)を参照してください。
@@ -18,7 +18,7 @@ npm install --save dotenv
 
 操作されては困るファイルについては、このように「不可視」の属性を持たせて、一般の人が触れられないようにします。
 
-ターミナル上で`epic-nfts`ディレクトリにいることを確認し、下記を実行しましょう。VS Codeから`.env`ファイルを開きます。
+ターミナル上で`packages/contract`ディレクトリにいることを確認し、下記を実行しましょう。VS Codeから`.env`ファイルを開きます。
 
 ```
 code .env
@@ -137,7 +137,7 @@ STAGING_ALCHEMY_KEY = https://...
 ETHERSCAN_APIKEY = Your_Etherscan_apiKey
 ```
 
-そして、`epic-nfts/hardhat.config.js`を編集していきます。
+そして、`packages/contract/hardhat.config.js`を編集していきます。
 
 
 `require("@nomiclabs/hardhat-etherscan");`を含むのも忘れないようにしましょう。
@@ -229,9 +229,11 @@ Vercelはサーバーレス機能のホスティングを提供するクラウ�
 
 Vercelに関する詳しい説明は、[こちら](https://zenn.dev/lollipop_onl/articles/eoz-vercel-pricing-2020)をご覧ください。
 
-まず、GitHubの`nft-collection-starter-project`にローカルファイルをアップロードしていきます。
+まずは、ローカルファイルをアップロードしましょう。
 
-ターミナル上で`nft-collection-starter-project`に移動して、下記を実行しましょう。
+⚠️ `packages/contract/.gitignore/ファイル内に.envが記載されていることを再度確認してください。
+
+ターミナル上で`ETH-NFT-Collection`に移動して、下記を実行しましょう。
 
 ```
 git add .
@@ -239,7 +241,7 @@ git commit -m "upload to github"
 git push
 ```
 
-次に、GitHub上の`nft-collection-starter-project`に、ローカル環境に存在する`nft-collection-starter-project`のファイルとディレクトリが反映されていることを確認してください。
+次に、ローカル環境に存在する`ETH-NFT-Collection`のファイルとディレクトリがGitHub上の`ETH-NFT-Collection`に反映されていることを確認してください。
 
 Vercelのアカウントを取得したら、下記を実行しましょう。
 
@@ -247,7 +249,7 @@ Vercelのアカウントを取得したら、下記を実行しましょう。
 
 ![](/public/images/ETH-NFT-Collection/section-4/4_2_7.png)
 
-2\. `Import Git Repository`で自分のGitHubアカウントを接続したら、`nft-collection-starter-project`を選択し、`Import`してください。
+2\. `Import Git Repository`で自分のGitHubアカウントを接続したら、`ETH-NFT-Collection`を選択し、`Import`してください。
 
 ![](/public/images/ETH-NFT-Collection/section-4/4_2_8.png)
 
