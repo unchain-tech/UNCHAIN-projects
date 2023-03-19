@@ -229,21 +229,39 @@ Vercelはサーバーレス機能のホスティングを提供するクラウ�
 
 Vercelに関する詳しい説明は、[こちら](https://zenn.dev/lollipop_onl/articles/eoz-vercel-pricing-2020)をご覧ください。
 
-まずは、ローカルファイルをアップロードしましょう。
+まずは、ローカル環境に存在する`ETH-NFT-Collection`をGitHub上へアップロードしましょう。
 
 ⚠️ `packages/contract/.gitignore/ファイル内に.envが記載されていることを再度確認してください。
 
-ターミナル上で`ETH-NFT-Collection`に移動して、下記を実行しましょう。
+最初に、GitHub上に新しくリポジトリを作成しましょう。
 
+1. 右上のドロップダウンメニューから、「New repository」をクリック
+2. `Repository name`を設定（ここでは作成したプロジェクトと同じ名前を設定しています）
+3. 「Create repository」をクリック
+
+作成されたレポジトリのURLをコピーします。
+
+次に、ターミナル上で`ETH-NFT-Collection`ディレクトリにいることを確認し、以下のコマンドを実行します。
+
+スタータープロジェクト内の`.git`ディレクトリを削除します。
+
+```bash
+rm -rf packages/client/.git
 ```
+
+ローカル環境の`ETH-NFT-Collection`ディレクトリと、GitHubのリポジトリを紐づけてコードをアップロードします。
+
+```bash
+git init
 git add .
 git commit -m "upload to github"
-git push
+git remote add origin <コピーしたレポジトリのURL>
+git push origin main
 ```
 
-次に、ローカル環境に存在する`ETH-NFT-Collection`のファイルとディレクトリがGitHub上の`ETH-NFT-Collection`に反映されていることを確認してください。
+GitHub上の`ETH-NFT-Collection`にファイルが反映されていることを確認してください。
 
-Vercelのアカウントを取得したら、下記を実行しましょう。
+それでは、Vercelの操作を行います。Vercelのアカウントを取得したら、下記を実行しましょう。
 
 1\. `Dashboard`へ進んで、`New Project`を選択してください。
 
@@ -253,9 +271,7 @@ Vercelのアカウントを取得したら、下記を実行しましょう。
 
 ![](/public/images/ETH-NFT-Collection/section-4/4_2_8.png)
 
-3\. プロジェクトを作成します。Environment Variableに下記を追加します。
-
-`NAME`＝`CI`、`VALUE`＝`false`（下図参照）
+3\. プロジェクトを作成します。`Root Directory`が「packages/client」となっていることを確認してください。
 
 ![](/public/images/ETH-NFT-Collection/section-4/4_2_9.png)
 
