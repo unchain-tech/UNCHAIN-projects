@@ -256,15 +256,178 @@ Solidityは、インプットが同じであれば必ず同じ結果が出力さ
 
 Solidityにおける乱数生成の方法に興味があれば、[Chainlink（英語）](https://docs.chain.link/docs/intermediates-tutorial/) のドキュメントを参照してみましょう。
 
-### 👩‍🔬 テストしてみよう
+### 👩‍🔬 自動テストを作成してみよう
 
-乱数の生成に関して理解を深めるために、ターミナルで下記を実行して、`MyEpicNFT.sol`の中の`console.log`によって出力される結果を確認してみましょう。
+スマートコントラクトに新たな機能が追加されたので、それに伴い自動テストを作成してみましょう。
+
+HardHatには、`test`ディレクトリ内に格納されたテストコードを`npx hardhat test`コマンドを実行することで、自動的にテストを走らせてくれる機能があります。今回作成するテストは、スマートコントラクト内に定義した各関数を一つずつテストする**単体テスト（unit test）**と呼ばれるものです。実際にスマートコントラクトをデプロイして機能を使う前段階として、その機能が期待する動作を行うか確認することができるテストとなります。
+
+Hardhatの自動テストを利用して、スマートコントラクトの機能をテストしてみましょう。
+
+まずは、`packages/contract/test`ディレクトリ内に`MyEpicNFT.js`というファイルを作成します。
+
+```diff
+packages/
+ └──contract/
+    └── test/
++       └── MyEpicNFT.js
+```
+
+続いて、作成した`MyEpicNFT.js`に以下のコードを書き込みます。
+
+```javascript
+const { loadFixture } = require('@nomicfoundation/hardhat-network-helpers');
+const { ethers } = require('hardhat');
+const { expect } = require('chai');
+
+describe('MyEpicNFT', function () {
+  // 各テストの前に呼び出す関数です。テストで使用する変数やコントラクトのデプロイを行います。
+  async function deployMyEpicNFTFixture() {
+    // テストアカウントを取得します。
+    const [owner] = await ethers.getSigners();
+
+    // コントラクト内で使用する単語の配列を定義します。
+    const firstWords = [
+      'Epic',
+      'Fantastic',
+      'Crude',
+      'Crazy',
+      'Hysterical',
+      'Grand',
+    ];
+    const secondWords = ['Meta', 'Live', 'Pop', 'Cute', 'Sweet', 'Hot'];
+    const thirdWords = [
+      'Kitten',
+      'Puppy',
+      'Monkey',
+      'Bird',
+      'Panda',
+      'Elephant',
+    ];
+
+    // コントラクトのインスタンスを生成し、デプロイを行います。
+    const MyEpicNFTFactory = await ethers.getContractFactory('MyEpicNFT');
+    const MyEpicNFT = await MyEpicNFTFactory.deploy();
+
+    return { MyEpicNFT, owner, firstWords, secondWords, thirdWords };
+  }
+
+  describe('pickRandomFirstWord', function () {
+    it('should get strings in firstWords', async function () {
+      // テストの準備を行います。
+      const { MyEpicNFT, firstWords } = await loadFixture(
+        deployMyEpicNFTFixture,
+      );
+
+      // テストを行う関数を呼び出し、結果を確認します。
+      expect(firstWords).to.include(await MyEpicNFT.pickRandomFirstWord(0));
+    });
+  });
+
+  describe('pickRandomSecondWord', function () {
+    it('should get strings in secondWords', async function () {
+      const { MyEpicNFT, secondWords } = await loadFixture(
+        deployMyEpicNFTFixture,
+      );
+
+      expect(secondWords).to.include(await MyEpicNFT.pickRandomSecondWord(0));
+    });
+  });
+
+  describe('pickRandomThirdWord', function () {
+    it('should get strings in thirdWords', async function () {
+      const { MyEpicNFT, thirdWords } = await loadFixture(
+        deployMyEpicNFTFixture,
+      );
+
+      expect(thirdWords).to.include(await MyEpicNFT.pickRandomThirdWord(0));
+    });
+  });
+});
+```
+
+コードの内容を簡単にみていきましょう。
+
+最初に定義したのは、各テストの前に実行する`deployMyEpicNFTFixture`関数です。実際に機能をテストしたいコントラクト内の関数を呼び出すための、準備を行う関数となります。
+
+その中で定義している文字列の配列は、ご自身が`MyEpicNFT`コントラクト内で定義したものと一致するように適宜変更してください。
+
+```javascript
+// コントラクト内で使用する単語の配列を定義します。
+const firstWords = [
+  'Epic',
+  'Fantastic',
+  'Crude',
+  'Crazy',
+  'Hysterical',
+  'Grand',
+];
+const secondWords = ['Meta', 'Live', 'Pop', 'Cute', 'Sweet', 'Hot'];
+const thirdWords = [
+  'Kitten',
+  'Puppy',
+  'Monkey',
+  'Bird',
+  'Panda',
+  'Elephant',
+];
+```
+
+`deployMyEpicNFTFixture`関数の後に続く3つの`describe`ブロックが、実際に`MyEpicNFT`コントラクト内の各関数を呼び出してテストを行なっている部分になります。
+
+```javascript
+describe('pickRandomFirstWord', function () {
+  it('should get strings in firstWords', async function () {
+    // テストの準備を行います。
+    const { MyEpicNFT, firstWords } = await loadFixture(
+      deployMyEpicNFTFixture,
+    );
+    // テストを行う関数を呼び出し、結果を確認します。
+    expect(firstWords).to.include(await MyEpicNFT.pickRandomFirstWord(0));
+  });
+});
+```
+
+`describe()`にテストをする関数名を定義し、`it()`に期待する動作を記述しています。
+
+テスト部分は、準備フェーズと実行・確認フェーズがあります。
+
+準備フェーズでは、`MyEpicNFT`コントラクトのデプロイやテストで使用する変数を取得します。
+
+実行・確認フェーズでは、実際に`MyEpicNFT`コントラクトの関数を呼び出し、その結果を確認しています。ここでは、`include`という機能を利用して`pickRandomFirstWord`関数が返す値が`firstWords`変数（配列）に含まれているかどうかを確認しています。
+
+それでは、作成したテストを実行してみましょう。
+
+`packages/contract`ディレクトリにいることを確認して、次のコマンドを実行しましょう。
+
+```bash
+npx hardhat test
+```
+
+以下のような結果が出力されていれば成功です。
+
+```bash
+  MyEpicNFT
+    pickRandomFirstWord
+This is my NFT contract.
+rand - seed:  96777463446932378109744360884080025980584389114515208476196941633474201541706
+rand - first word:  0
+      ✔ should get strings in firstWords (1457ms)
+    pickRandomSecondWord
+      ✔ should get strings in secondWords
+    pickRandomThirdWord
+      ✔ should get strings in thirdWords
+
+
+  3 passing (1s)
+```
+
+このように、自動テストでは定義したテストの通過結果が出力されます。
+
+自動テストを全て通過したことが確認できたら、次にデプロイスクリプトを実行してどのような生成物となるのか、`console.log`の出力を確認してみましょう。
 
 ```bash
 npx hardhat run scripts/run.js
-```
-
-- 上記のコードを実行するときは、ターミナル上で`packages/contract`ディレクトリにいることを確認してください。
 
 下記のような結果がターミナルに出力されていれば成功です。
 
@@ -665,32 +828,27 @@ NFT Previewを使用すれば、テストネットにデプロイしなくても
 
 ```javascript
 // deploy.js
-const main = async () => {
+async function main() {
   // コントラクトがコンパイルします
   // コントラクトを扱うために必要なファイルが `artifacts` ディレクトリの直下に生成されます。
-  const nftContractFactory = await hre.ethers.getContractFactory("MyEpicNFT");
+  const nftContractFactory = await hre.ethers.getContractFactory('MyEpicNFT');
   // Hardhat がローカルの Ethereum ネットワークを作成します。
   const nftContract = await nftContractFactory.deploy();
   // コントラクトが Mint され、ローカルのブロックチェーンにデプロイされるまで待ちます。
   await nftContract.deployed();
-  console.log("Contract deployed to:", nftContract.address);
+  console.log('Contract deployed to:', nftContract.address);
   // makeAnEpicNFT 関数を呼び出す。NFT が Mint される。
-  let txn = await nftContract.makeAnEpicNFT();
+  const txn = await nftContract.makeAnEpicNFT();
   // Minting が仮想マイナーにより、承認されるのを待ちます。
   await txn.wait();
-  console.log("Minted NFT #1");
-};
-// エラー処理を行っています。
-const runMain = async () => {
-  try {
-    await main();
-    process.exit(0);
-  } catch (error) {
-    console.log(error);
-    process.exit(1);
-  }
-};
-runMain();
+  console.log('Minted NFT #1');
+}
+
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
+
 ```
 
 続いて、デプロイコマンドを実行します。
