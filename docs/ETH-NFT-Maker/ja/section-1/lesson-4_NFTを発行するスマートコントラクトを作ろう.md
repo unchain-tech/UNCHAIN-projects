@@ -203,7 +203,7 @@ NFTが発行された後、`_tokenIds.increment()`（＝ OpenZeppelinが提供�
   メタデータの構造が [OpenSea の要件](https://zenn.dev/hayatoomori/articles/f26cc4637c7d66) と一致しない場合、デジタルデータはOpenSea上で正しく表示されません。
 - Openseaは、`ERC721`のメタデータ規格をサポートしています。
 - 音声ファイル、動画ファイル、3Dメディアなどに対応するメタデータ構造に関しては、[OpenSea の要件](https://zenn.dev/hayatoomori/articles/f26cc4637c7d66) を参照してください。
-- 上記の`Tanya`のJSONメタデータをコピーして、 [ここ](https://app.jsonstorage.net/items/f1ebc303-e7cf-41d3-85ba-b3b0c361ea48)のWebサイトに貼り付けてください。
+- 上記の`Tanya`のJSONメタデータをコピーして、 [ここ](https://app.jsonstorage.net/)のWebサイトに貼り付けてください。
 
 このWebサイトは、JSONデータをホストするのに便利です。
 
