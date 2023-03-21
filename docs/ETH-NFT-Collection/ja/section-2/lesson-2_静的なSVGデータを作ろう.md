@@ -151,7 +151,7 @@ _setTokenURI(
 - 実行する際は、ターミナル上で`epic-nfts`ディレクトリにいることを確認してください。
 
 ```bash
-npx hardhat run scripts/deploy.js --network goerli
+npx hardhat run scripts/deploy.js --network sepolia
 ```
 
 ターミナルに下記のような結果が表示されていたら、デプロイ成功です。
