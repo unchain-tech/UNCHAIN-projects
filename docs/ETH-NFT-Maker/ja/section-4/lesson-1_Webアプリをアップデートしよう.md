@@ -147,7 +147,7 @@ const NftUploader = () => {
         console.log("Mining...please wait.");
         await nftTxn.wait();
         console.log(
-          `Mined, see transaction: https://goerli.etherscan.io/tx/${nftTxn.hash}`
+          `Mined, see transaction: https://sepolia.etherscan.io/tx/${nftTxn.hash}`
         );
       } else {
         console.log("Ethereum object doesn't exist!");
@@ -229,8 +229,8 @@ MVPを起点にWebアプリケーションを自分の好きなようにアッ�
 
 **2\. ユーザーが間違ったネットワーク上にいるときアラートを出す**
 
-- あなたのWebサイトはGoerli Test Networkで**のみ**機能します。
-- ユーザーが、Goerli以外のネットワークにログインしている状態で、あなたのWebサイトに接続しようとしたら、それを知らせるアラートを出しましょう。
+- あなたのWebサイトはSepolia Test Networkで**のみ**機能します。
+- ユーザーが、Sepolia以外のネットワークにログインしている状態で、あなたのWebサイトに接続しようとしたら、それを知らせるアラートを出しましょう。
 - `ethereum.request`と`eth_accounts`と`eth_requestAccounts`というメソッドを使用して、アラートを作成できます。
 - `eth_chainId`を使ってブロックチェーンを識別するIDを取得します。
 
@@ -240,10 +240,10 @@ MVPを起点にWebアプリケーションを自分の好きなようにアッ�
 // NftUploader.jsx
 let chainId = await ethereum.request({ method: "eth_chainId" });
 console.log("Connected to chain " + chainId);
-// 0x5 は Goerli の ID です。
-const goerliChainId = "0x5";
-if (chainId !== goerliChainId) {
-  alert("You are not connected to the Goerli Test Network!");
+// 0x5 は Sepolia の ID です。
+const sepoliaChainId = "0x5";
+if (chainId !== sepoliaChainId) {
+  alert("You are not connected to the sepolia Test Network!");
 }
 ```
 
