@@ -15,7 +15,7 @@ packages/
 
 それでは、実際にコントラクトを書いていきましょう。
 
-ここでは、コードエディタとして VS Codeの使用をお勧めします。ダウンロードは [こちら](https://azure.microsoft.com/ja-jp/products/visual-studio-code/) から。
+ここでは、コードエディタとしてVS Codeの使用をお勧めします。ダウンロードは [こちら](https://azure.microsoft.com/ja-jp/products/visual-studio-code/) から。
 
 - VS Codeをターミナルから起動する方法は [こちら](https://maku.blog/p/f5iv9kx/) をご覧ください。今後VS Codeを起動するのが一段と楽になるので、ぜひ導入してみてください。
 - VS Code用の [Solidity 拡張機能](https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity) をダウンロードすることをお勧めします。この拡張機能により、構文が見やすくなります。

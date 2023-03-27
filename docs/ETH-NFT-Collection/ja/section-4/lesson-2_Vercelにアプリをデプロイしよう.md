@@ -248,7 +248,7 @@ Vercelに関する詳しい説明は、[こちら](https://zenn.dev/lollipop_onl
 
 ![](/public/images/ETH-NFT-Collection/section-4/4_2_13.png)
 
-作成されたレポジトリのURLをコピーします。ここでは、`SSH`を選択しています。
+作成されたリポジトリのURLをコピーします。ここでは、`SSH`を選択しています。
 
 ![](/public/images/ETH-NFT-Collection/section-4/4_2_14.png)
 
