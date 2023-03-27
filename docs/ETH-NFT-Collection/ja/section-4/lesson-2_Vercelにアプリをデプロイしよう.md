@@ -44,15 +44,19 @@ STAGING_ALCHEMY_KEY = https://...
 
 ```javascript
 // hardhat.config.js
-require("@nomicfoundation/hardhat-toolbox");
-require("dotenv").config();
+require('@nomiclabs/hardhat-etherscan');
+require('@nomicfoundation/hardhat-toolbox');
+require('dotenv').config();
+
+const { STAGING_ALCHEMY_KEY, PRIVATE_KEY } = process.env;
 
 module.exports = {
-  solidity: "0.8.9",
+  solidity: '0.8.18',
+  defaultNetwork: 'hardhat',
   networks: {
     sepolia: {
-      url: process.env.STAGING_ALCHEMY_KEY,
-      accounts: [process.env.PRIVATE_KEY],
+      url: STAGING_ALCHEMY_KEY || '',
+      accounts: PRIVATE_KEY ? [PRIVATE_KEY] : [],
     },
   },
 };
@@ -134,7 +138,7 @@ npm install @nomiclabs/hardhat-etherscan
 // .env
 PRIVATE_KEY = 0x...
 STAGING_ALCHEMY_KEY = https://...
-ETHERSCAN_APIKEY = Your_Etherscan_apiKey
+ETHERSCAN_API_KEY = Your_Etherscan_apiKey
 ```
 
 そして、`packages/contract/hardhat.config.js`を編集していきます。
@@ -144,19 +148,22 @@ ETHERSCAN_APIKEY = Your_Etherscan_apiKey
 
 ```javascript
 // hardhat.config.js
-require("@nomiclabs/hardhat-etherscan");
-require("@nomicfoundation/hardhat-toolbox");
-require("dotenv").config();
+require('@nomiclabs/hardhat-etherscan');
+require('@nomicfoundation/hardhat-toolbox');
+require('dotenv').config();
+
+const { ETHERSCAN_API_KEY, STAGING_ALCHEMY_KEY, PRIVATE_KEY } = process.env;
 
 module.exports = {
-  solidity: "0.8.9",
+  solidity: '0.8.18',
   etherscan: {
-    apiKey: process.env.ETHERSCAN_APIKEY
+    apiKey: ETHERSCAN_API_KEY,
   },
+  defaultNetwork: 'hardhat',
   networks: {
     sepolia: {
-      url: process.env.STAGING_ALCHEMY_KEY,
-      accounts: [process.env.PRIVATE_KEY],
+      url: STAGING_ALCHEMY_KEY || '',
+      accounts: PRIVATE_KEY ? [PRIVATE_KEY] : [],
     },
   },
 };
@@ -236,10 +243,14 @@ Vercelに関する詳しい説明は、[こちら](https://zenn.dev/lollipop_onl
 最初に、GitHub上に新しくリポジトリを作成しましょう。
 
 1. 右上のドロップダウンメニューから、「New repository」をクリック
-2. `Repository name`を設定（ここでは作成したプロジェクトと同じ名前を設定しています）
+2. `Repository name`を設定（ここでは作成したプロジェクトと同じ名前`ETH-NFT-Collection`を設定しています）
 3. 「Create repository」をクリック
 
-作成されたレポジトリのURLをコピーします。
+![](/public/images/ETH-NFT-Collection/section-4/4_2_13.png)
+
+作成されたレポジトリのURLをコピーします。ここでは、`SSH`を選択しています。
+
+![](/public/images/ETH-NFT-Collection/section-4/4_2_14.png)
 
 次に、ターミナル上で`ETH-NFT-Collection`ディレクトリにいることを確認し、以下のコマンドを実行します。
 
@@ -255,7 +266,7 @@ rm -rf packages/client/.git
 git init
 git add .
 git commit -m "upload to github"
-git remote add origin <コピーしたレポジトリのURL>
+git remote add origin <コピーしたGitHubリポジトリのURL>
 git push origin main
 ```
 
