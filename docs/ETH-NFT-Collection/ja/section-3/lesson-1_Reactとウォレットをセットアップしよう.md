@@ -14,7 +14,7 @@
 
 まだGitHubのアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
-GitHubのアカウントをお持ちの方は、[こちら](https://github.com/shiftbase-xyz/nft-collection-starter-project) から、フロントエンドの基盤となるリポジトリをあなたのGitHubにフォークしましょう。フォークの方法は、[こちら](https://denno-sekai.com/github-fork/) を参照してください。
+GitHubのアカウントをお持ちの方は、[こちら](https://github.com/unchain-tech/ETH-NFT-Collection/tree/starter) から、フロントエンドの基盤となるリポジトリをあなたのGitHubにフォークしましょう。フォークの方法は、[こちら](https://denno-sekai.com/github-fork/) を参照してください。
 
 あなたのGitHubアカウントにフォークした`nft-collection-starter-project`リポジトリを、ローカル環境にクローンしてください。
 
