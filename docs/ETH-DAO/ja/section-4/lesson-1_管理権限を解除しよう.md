@@ -85,7 +85,7 @@ Done in 44.18s.
 import { useState, useEffect, useMemo } from "react";
 import type { NextPage } from "next";
 // 接続中のネットワークを取得するため useNetwork を新たにインポートします。
-import { ConnectWallet, ChainId, useNetwork, useAddress, useContract } from "@thirdweb-dev/react";
+import { ConnectWallet, useNetwork, useAddress, useContract } from "@thirdweb-dev/react";
 import styles from "../styles/Home.module.css";
 import { Proposal } from "@thirdweb-dev/sdk";
 import { AddressZero } from "@ethersproject/constants";

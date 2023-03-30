@@ -16,7 +16,7 @@
 import { useState, useEffect } from "react";
 import type { NextPage } from "next";
 // 接続中のネットワークを取得するため useNetwork を新たにインポートします。
-import { ConnectWallet, ChainId, useNetwork, useAddress, useContract } from "@thirdweb-dev/react";
+import { ConnectWallet, useNetwork, useAddress, useContract } from "@thirdweb-dev/react";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
@@ -120,7 +120,7 @@ export default Home;
 import { useState, useEffect } from "react";
 import type { NextPage } from "next";
 // 接続中のネットワークを取得するため useNetwork を新たにインポートします。
-import { ConnectWallet, ChainId, useNetwork, useAddress, useContract } from "@thirdweb-dev/react";
+import { ConnectWallet, useNetwork, useAddress, useContract } from "@thirdweb-dev/react";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {

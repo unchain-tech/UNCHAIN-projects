@@ -9,7 +9,7 @@
 ```typescript
 import type { NextPage } from "next";
 // 接続中のネットワークを取得するため useNetwork を新たにインポートします。
-import { ConnectWallet, ChainId, useNetwork, useAddress } from "@thirdweb-dev/react";
+import { ConnectWallet, useNetwork, useAddress } from "@thirdweb-dev/react";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
