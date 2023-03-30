@@ -383,6 +383,7 @@ Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押して�
 > 4 \. `Sepolia Test Network`を選択する。
 >
 > ![](/public/images/ETH-NFT-Maker/section-1/1_4_10.png)
+
 > MetaMask ウォレットに`Sepolia Test Network`が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽 ETH を取得しましょう。
 
 - [Alchemy](https://sepoliafaucet.com/) - 1 Sepolia ETH（24時間に1度もらうことができる）
@@ -453,19 +454,19 @@ require("@nomicfoundation/hardhat-toolbox");
 module.exports = {
   solidity: "0.8.9",
   networks: {
-    goerli: {
+    sepolia: {
       url: "YOUR_ALCHEMY_API_URL",
-      accounts: ["YOUR_PRIVATE_GOERLI_ACCOUNT_KEY"],
+      accounts: ["YOUR_PRIVATE_SEPOLIA_ACCOUNT_KEY"],
     },
   },
 };
 ```
 
-次に、`YOUR_ALCHEMY_API_URL`と`YOUR_PRIVATE_GOERLI_ACCOUNT_KEY`を取得して、`hardhat.config.js`に貼り付けましょう。
+次に、`YOUR_ALCHEMY_API_URL`と`YOUR_PRIVATE_SEPOLIA_ACCOUNT_KEY`を取得して、`hardhat.config.js`に貼り付けましょう。
 1\. `YOUR_ALCHEMY_API_URL`の取得
 
 > `hardhat.config.js`の`YOUR_ALCHEMY_API_URL`の部分を先ほど取得した Alchemy の URL（ `HTTP`リンク） と入れ替えます。
-> 2\. `YOUR_PRIVATE_GOERLI_ACCOUNT_KEY`の取得
+> 2\. `YOUR_PRIVATE_SEPOLIA_ACCOUNT_KEY`の取得
 > 1\. お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを`Sepolia Test Network`に変更します。
 >
 > ![](/public/images/ETH-NFT-Maker/section-1/1_4_11.png)
@@ -486,7 +487,7 @@ module.exports = {
 >
 > ![](/public/images/ETH-NFT-Maker/section-1/1_4_15.png)
 >
-> `hardhat.config.js`の`YOUR_PRIVATE_GOERLI_ACCOUNT_KEY`の部分をここで取得した秘密鍵とを入れ替えます。
+> `hardhat.config.js`の`YOUR_PRIVATE_SEPOLIA_ACCOUNT_KEY`の部分をここで取得した秘密鍵とを入れ替えます。
 > ⚠️: 注意
 >
 > `hardhat.config.js`ファイルを Github にコミットしないでください。
@@ -537,7 +538,7 @@ hardhat.config.js
 `ipfs-nfts`のルートディレクトリからこのコマンドを実行します 。
 
 ```bash
-npx hardhat run scripts/deploy.js --network goerli
+npx hardhat run scripts/deploy.js --network sepolia
 ```
 
 `deploy.js`を実行すると、実際にNFTを作成します。
@@ -552,7 +553,7 @@ Minted NFT #2
 
 ### 👀 Etherscan でトランザクションを確認する
 
-ターミナルに出力された`Contract deployed to`に続くアドレスを、[Etherscan](https://goerli.etherscan.io/) に貼り付けて、あなたのスマートコントラクトのトランザクション履歴を見てみましょう。
+ターミナルに出力された`Contract deployed to`に続くアドレスを、[Etherscan](https://sepolia.etherscan.io/) に貼り付けて、あなたのスマートコントラクトのトランザクション履歴を見てみましょう。
 Etherscanは、イーサリアムネットワーク上のトランザクションに関する情報を確認するのに便利なプラットフォームです。
 _表示されるまでに約 1 分かかる場合があります。_
 
@@ -569,7 +570,7 @@ _表示されるまでに約 1 分かかる場合があります。_
 ![](/public/images/ETH-NFT-Collection/section-1/1_4_19.png)
 コレクションがOpenSeaに表示されているのを確認してください。
 ![](/public/images/ETH-NFT-Collection/section-1/1_4_20.png)
-私が作成したTanyaコレクションの`tokenID` 0番のリンクは[こちら](https://testnets.opensea.io/ja/assets/rinkeby/0x67cd3f53c20e3a6211458dd5b7465e1f9464531c/0)になります（リンク先は、学習コンテンツ制作時に使用したRinkebyになっていますが、Rinkebyの箇所がGoerliでも同様に表示されます）。
+私が作成したTanyaコレクションの`tokenID` 0番のリンクは[こちら](https://testnets.opensea.io/ja/assets/rinkeby/0x67cd3f53c20e3a6211458dd5b7465e1f9464531c/0)になります（リンク先は、学習コンテンツ制作時に使用したRinkebyになっていますが、Rinkebyの箇所がSEPOLIAでも同様に表示されます）。
 リンクの内容は以下のようになります。
 
 ```

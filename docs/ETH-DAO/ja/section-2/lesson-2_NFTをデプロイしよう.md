@@ -100,7 +100,7 @@ _📝 備考: `ExperimentalWarning`のようなランダムな警告が表示さ
 
 ### 🧨 ERC-1155 のメンバーシップ NFT コレクションを作ろう
 
-これから行うのは、[ERC-1155](https://ethereum.org/ja/developers/docs/standards/tokens/erc-1155/) コントラクトを作成し、Goerliテストネットにデプロイすることです。
+これから行うのは、[ERC-1155](https://ethereum.org/ja/developers/docs/standards/tokens/erc-1155/) コントラクトを作成し、Sepoliaテストネットにデプロイすることです。
 
 現段階ではNFTを作成せず、コレクション自体のメタデータを設定するところまで行います。
 
@@ -196,9 +196,9 @@ Done in 40.59s.
 
 以下の2つのことが起こりました。
 
-**1 つは、ERC-1155 のコントラクトを Goerli にデプロイしたこと**です。
+**1 つは、ERC-1155 のコントラクトを Sepolia にデプロイしたこと**です。
 
-実際に`https://goerli.etherscan.io/`にアクセスし、`editionDrop`コントラクトのアドレス(出力の`✅ Successfully deployed editionDrop contract, address:`以下のアドレス)を貼り付けると、スマートコントラクトがデプロイされたことが分かります。
+実際に`https://sepolia.etherscan.io/`にアクセスし、`editionDrop`コントラクトのアドレス(出力の`✅ Successfully deployed editionDrop contract, address:`以下のアドレス)を貼り付けると、スマートコントラクトがデプロイされたことが分かります。
 
 このコントラクトはあなたが所有し、あなたのウォレットからデプロイされました。
 
@@ -218,7 +218,7 @@ _📝 備考：`ipfs://` URI を使って IPFS を直接叩くこともできま
 
 Solidityで独自コントラクトを開発したことがある人なら、ちょっと心惹かれるのではないでしょうか。
 
-すでにGoerliネットワークにデプロイされた独自コントラクトとIPFSにホストされたデータが保持されています。
+すでにSepoliaネットワークにデプロイされた独自コントラクトとIPFSにホストされたデータが保持されています。
 
 
 ### 🙋‍♂️ 質問する

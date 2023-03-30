@@ -35,7 +35,7 @@ Solidityのコードを書くのに比べて、thirdwebでスマートコント�
 
 ### 📝 環境変数を設定しよう
 
-thirdwebを使ってGoerliにコントラクトを作成し、デプロイするためにはスクリプトをいくつか作成する必要があります。
+thirdwebを使ってSepoliaにコントラクトを作成し、デプロイするためにはスクリプトをいくつか作成する必要があります。
 
 その前に、まずはプロジェクトのルートに以下の`.env.local`ファイルを作成しましょう。
 
@@ -77,7 +77,7 @@ Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押して�
 - `NAME`: プロジェクトの名前(例: `MyDAO`)
 - `DESCRIPTION`: プロジェクトの概要
 - `CHAIN`: `Ethereum`を選択
-- `NETWORK`: `Goerli`を選択
+- `NETWORK`: `Sepolia`を選択
 
 それから、作成したAppの`VIEW DETAILS`をクリックします。
 
@@ -117,13 +117,13 @@ Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押して�
 
 `ALCHEMY_API_URL`についてはこれから取得していきます。
 
-今回は、`Goerli`というイーサリアム財団によって運営されているテストネットを使用します。
+今回は、`Sepolia`というイーサリアム財団によって運営されているテストネットを使用します。
 
-`Goerli`にコントラクトをデプロイし、コードのテストを行うために、偽のETHを取得しましょう。ユーザーが偽のETHを取得するために用意されたインフラは、「フォーセット（＝蛇口）」と呼ばれています。
+`Sepolia`にコントラクトをデプロイし、コードのテストを行うために、偽のETHを取得しましょう。ユーザーが偽のETHを取得するために用意されたインフラは、「フォーセット（＝蛇口）」と呼ばれています。
 
-フォーセットを使用する前に、あなたのMetaMaskウォレットを`Goerli Test Network`に設定してください。
+フォーセットを使用する前に、あなたのMetaMaskウォレットを`Sepolia Test Network`に設定してください。
 
-> ✍️: MetaMask で`Goerli Test Network`を設定する方法
+> ✍️: MetaMask で`Sepolia Test Network`を設定する方法
 >
 > 1 \. MetaMask ウォレットのネットワークトグルを開く。
 >
@@ -137,17 +137,14 @@ Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押して�
 >
 > ![](/public/images/ETH-DAO/section-2/2_1_8.png)
 >
-> 4 \. `Goerli Test Network`を選択する。
+> 4 \. `Sepolia Test Network`を選択する。
 >
 > ![](/public/images/ETH-DAO/section-2/2_1_9.png)
 
-MetaMaskウォレットに`Goerli Test Network`が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽ETHを取得しましょう。
+MetaMaskウォレットに`Sepolia Test Network`が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽ETHを取得しましょう。
 
-- [Alchemy](https://goerlifaucet.com/) - 0.25 Goerli ETH（24時間に1度もらうことができる）
-  - ウォレットアドレスを入力して`Send Me ETH`ボタンを押下するとその場でもらえます。
-- [Chainlink](https://faucets.chain.link/) - 0.1 Goerli ETH（その場でもらえる）
-  - `Connect wallet`をクリックしてMetaMaskと接続する必要があります。
-  - Twitterアカウントを連携する必要があります。
+- [Alchemy](https://sepoliafaucet.com/) - 1 Sepolia ETH（24時間に1度もらうことができる）
+  - ウォレットアドレスを入力して`Send Me ETH`ボタンを押下するとその場でもらえます
 
 
 ### 🙋‍♂️ 質問する
