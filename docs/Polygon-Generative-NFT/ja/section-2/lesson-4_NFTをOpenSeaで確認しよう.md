@@ -70,9 +70,9 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 
 module.exports = {
   solidity: "0.8.9",
-  defaultNetwork: "goerli",
+  defaultNetwork: "sepolia",
   networks: {
-    goerli: {
+    sepolia: {
       url: API_URL,
       accounts: [PRIVATE_KEY],
     },
@@ -90,7 +90,7 @@ module.exports = {
 ```bash
 npx hardhat clean
 
-npx hardhat verify --network goerli DEPLOYED_CONTRACT_ADDRESS "BASE_TOKEN_URI"
+npx hardhat verify --network sepolia DEPLOYED_CONTRACT_ADDRESS "BASE_TOKEN_URI"
 ```
 
 - `DEPLOYED_CONTRACT_ADDRESS`はあなたのコントラクトアドレスです。
@@ -100,7 +100,7 @@ npx hardhat verify --network goerli DEPLOYED_CONTRACT_ADDRESS "BASE_TOKEN_URI"
 私のコマンドは下記のようになります。
 
 ```
-npx hardhat verify --network goerli 0x94E614a7D82d9dD24CBED7607a40eBE4243491dF "ipfs://QmSvw119ALMN9SkP89Xj37jvqJik8jZrSjU5c1vgBhkhz8/"
+npx hardhat verify --network sepolia 0x94E614a7D82d9dD24CBED7607a40eBE4243491dF "ipfs://QmSvw119ALMN9SkP89Xj37jvqJik8jZrSjU5c1vgBhkhz8/"
 ```
 
 ターミナルに、下記のような結果が表示されていることを確認してください。
@@ -112,12 +112,12 @@ contracts/NFTCollectible.sol:NFTCollectible at 0x94E614a7D82d9dD24CBED7607a40eBE
 for verification on the block explorer. Waiting for verification result...
 
 Successfully verified contract NFTCollectible on Etherscan.
-https://goerli.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#code
+https://sepolia.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#code
 ```
 
-出力された`goerli.etherscan.io`のURLにアクセスしてみましょう。
+出力された`sepolia.etherscan.io`のURLにアクセスしてみましょう。
 
-私の [URL リンク](https://goerli.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#code) の中身は下記のように表示されます。
+私の [URL リンク](https://sepolia.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#code) の中身は下記のように表示されます。
 
 ![](/public/images/Polygon-Generative-NFT/section-2/2_4_5.png)
 

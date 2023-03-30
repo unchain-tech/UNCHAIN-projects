@@ -85,7 +85,7 @@ Done in 44.18s.
 import { useState, useEffect, useMemo } from "react";
 import type { NextPage } from "next";
 // 接続中のネットワークを取得するため useNetwork を新たにインポートします。
-import { ConnectWallet, ChainId, useNetwork, useAddress, useContract } from "@thirdweb-dev/react";
+import { ConnectWallet, useNetwork, useAddress, useContract } from "@thirdweb-dev/react";
 import styles from "../styles/Home.module.css";
 import { Proposal } from "@thirdweb-dev/sdk";
 import { AddressZero } from "@ethersproject/constants";
@@ -283,16 +283,16 @@ const Home: NextPage = () => {
       </div>
     );
   }
-  // テストネットが Goerli ではなかった場合に警告を表示
-  else if (address && network && network?.data?.chain?.id !== ChainId.Goerli) {
+  // テストネットが Sepolia ではなかった場合に警告を表示
+  else if (address && network && network?.data?.chain?.id !== 11155111) {
     console.log("wallet address: ", address);
     console.log("network: ", network?.data?.chain?.id);
 
     return (
       <div className={styles.container}>
         <main className={styles.main}>
-          <h1 className={styles.title}>Goerli に切り替えてください⚠️</h1>
-          <p>この dApp は Goerli テストネットのみで動作します。</p>
+          <h1 className={styles.title}>Sepolia に切り替えてください⚠️</h1>
+          <p>この dApp は Sepolia テストネットのみで動作します。</p>
           <p>ウォレットから接続中のネットワークを切り替えてください。</p>
         </main>
       </div>

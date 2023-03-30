@@ -1,6 +1,6 @@
 ### 🚨 ネットワークの警告を出そう
 
-動作を想定しているGoerliネットワーク意外にMetaMaskが接続されている場合、ユーザーの知る余地がない状態で正常に動作せず困ってしまいます。
+動作を想定しているSepoliaネットワーク意外にMetaMaskが接続されている場合、ユーザーの知る余地がない状態で正常に動作せず困ってしまいます。
 
 他の学習コンテンツと同様に、今回も [thirdweb](https://thirdweb.com/) を用いてネットワークの警告を実装していきましょう。
 
@@ -9,22 +9,22 @@
 ```typescript
 import type { NextPage } from "next";
 // 接続中のネットワークを取得するため useNetwork を新たにインポートします。
-import { ConnectWallet, ChainId, useNetwork, useAddress } from "@thirdweb-dev/react";
+import { ConnectWallet, useNetwork, useAddress } from "@thirdweb-dev/react";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   const address = useAddress();
   const [network, switchNetwork] = useNetwork();
 
-  if (address && network && network?.data?.chain?.id !== ChainId.Goerli) {
+  if (address && network && network?.data?.chain?.id !== 11155111) {
     console.log("wallet address: ", address);
     console.log("network: ", network?.data?.chain?.id);
 
     return (
       <div className={styles.container}>
         <main className={styles.main}>
-          <h1 className={styles.title}>Goerli に切り替えてください⚠️</h1>
-          <p>この dApp は Goerli テストネットのみで動作します。</p>
+          <h1 className={styles.title}>Sepolia に切り替えてください⚠️</h1>
+          <p>この dApp は Sepolia テストネットのみで動作します。</p>
           <p>ウォレットから接続中のネットワークを切り替えてください。</p>
         </main>
       </div>
@@ -48,7 +48,7 @@ const Home: NextPage = () => {
 export default Home;
 ```
 
-これで、Goerliネットワークに接続されていなかった場合に警告表示をすることができました。
+これで、Sepoliaネットワークに接続されていなかった場合に警告表示をすることができました。
 
 つまり、各ページが描画されていれば正常なネットワークであることが保証できていることになります。
 

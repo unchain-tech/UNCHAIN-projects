@@ -59,7 +59,7 @@ runMain();
 
 **1 \. 再度、コントラクトをデプロイする。**
 
-- `npx hardhat run scripts/deploy.js --network goerli`を実行する必要があります。
+- `npx hardhat run scripts/deploy.js --network sepolia`を実行する必要があります。
 
 **2 \. フロントエンド( `constants.js`)の`CONTRACT_ADDRESS`を更新する。**
 
