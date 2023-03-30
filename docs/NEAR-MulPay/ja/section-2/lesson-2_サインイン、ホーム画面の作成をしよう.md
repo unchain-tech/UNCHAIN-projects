@@ -281,13 +281,11 @@ class MyApp extends StatelessWidget {
 ではエミュレータで動かしてみましょう！
 
 
-その前に、使用しているライブラリの中でandroidの設定を変えないと動かないものがあるので`android/app/build.gradle`に移動して`compileSdkVersion`を`32`に変更しましょう。
-
-また、`defaultConfig`の中の`minSdkVersion`を`20`にしましょう。
+その前に、使用しているライブラリの中でandroidの設定を変えないと動かないものがあるので`android/app/build.gradle`に移動して`defaultConfig`の中の`minSdkVersion`を`20`にしましょう。
 
 ```
 android {
-    compileSdkVersion 32
+    compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 
     compileOptions {
