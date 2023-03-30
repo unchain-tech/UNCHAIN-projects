@@ -34,7 +34,7 @@ MetaMaskでPolygonネットワークの設定が完了したら、偽のMATICを
 
 ![](/public/images/Polygon-Mobile-dApp/section-3/3_1_4.png)
 
-Goerliとは異なり、これらのトークンの取得にそれほど問題はないはずです。
+Sepoliaとは異なり、これらのトークンの取得にそれほど問題はないはずです。
 
 1回のリクエストで0.5 MATIC（偽）が手に入るので、2回リクエストして、1 MATIC入手しましょう。
 

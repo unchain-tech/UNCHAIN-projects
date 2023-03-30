@@ -240,9 +240,8 @@ MVPを起点にWebアプリケーションを自分の好きなようにアッ�
 // NftUploader.jsx
 let chainId = await ethereum.request({ method: "eth_chainId" });
 console.log("Connected to chain " + chainId);
-// 0x5 は Sepolia の ID です。
-const sepoliaChainId = "0x5";
-if (chainId !== sepoliaChainId) {
+
+if (chainId !== "11155111") {
   alert("You are not connected to the sepolia Test Network!");
 }
 ```
