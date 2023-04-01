@@ -136,9 +136,9 @@ dependencies:
   dropdown_button2: ^1.7.1
   fluttertoast: ^8.0.9
   qr_flutter: ^4.0.0
-  qr_code_scanner: ^1.0.0
+  qr_code_scanner: 1.0.0
   http: ^0.13.5
-  web3dart: ^2.3.5
+  web3dart: 2.3.5
   web_socket_channel: ^2.2.0
   flutter_dotenv: ^5.0.2
   url_launcher: ^6.1.2
