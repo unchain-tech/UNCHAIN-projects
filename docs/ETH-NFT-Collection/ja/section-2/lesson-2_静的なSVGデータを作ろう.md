@@ -162,11 +162,13 @@ Minted NFT #1
 Minted NFT #2
 ```
 
-最後に、コントラクトのアドレス(`Contract deployed to`に続く`0x..`)をターミナルからコピーして、[テストネット用の OpenSea](https://testnets.opensea.io/) に貼り付け、検索してみてください。
+最後に、[gemcase](https://gemcase.vercel.app/) へアクセスをして、ミントされたNFTを確認してみましょう。
 
-下記のように、あなたのSquareNFTがOpenSeaで確認できたでしょうか？
+下記のように、あなたのSquareNFTがgemcaseで確認できたでしょうか？
 
 ![](/public/images/ETH-NFT-Collection/section-2/2_2_4.png)
+
+![](/public/images/ETH-NFT-Collection/section-2/2_2_5.png)
 
 ### 🙋‍♂️ 質問する
 

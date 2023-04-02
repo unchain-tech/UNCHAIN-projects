@@ -90,7 +90,10 @@ contract MyEpicNFT is ERC721URIStorage {
   // ユーザーが NFT を取得するために実行する関数です。
   function makeAnEpicNFT() public {
 
-    // 現在のtokenIdを取得します。tokenIdは0から始まります。
+    // NFT が Mint されるときのカウンターをインクリメントします。
+    _tokenIds.increment();
+
+    // 現在のtokenIdを取得します。tokenIdは1から始まります。
     uint256 newItemId = _tokenIds.current();
 
     // 3つの配列からそれぞれ1つの単語をランダムに取り出します。
@@ -101,7 +104,7 @@ contract MyEpicNFT is ERC721URIStorage {
     // 3つの単語を連結して、<text>タグと<svg>タグで閉じます。
     string memory finalSvg = string(abi.encodePacked(baseSvg, first, second, third, "</text></svg>"));
 
-	// NFTに出力されるテキストをターミナルに出力します。
+	  // NFTに出力されるテキストをターミナルに出力します。
     console.log("\n--------------------");
     console.log(finalSvg);
     console.log("--------------------\n");
@@ -109,15 +112,11 @@ contract MyEpicNFT is ERC721URIStorage {
     // msg.sender を使って NFT を送信者に Mint します。
     _safeMint(msg.sender, newItemId);
 
-	// tokenURI は後で設定します。
-	// 今は、tokenURI の代わりに、"We will set tokenURI later." を設定します。
-	_setTokenURI(newItemId, "We will set tokenURI later.");
-
-	// NFTがいつ誰に作成されたかを確認します。
-	console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
-
-    // 次の NFT が Mint されるときのカウンターをインクリメントする。
-    _tokenIds.increment();
+    // tokenURI は後で設定します。
+    // 今は、tokenURI の代わりに、"We will set tokenURI later." を設定します。
+    _setTokenURI(newItemId, "We will set tokenURI later.");   
+    // NFTがいつ誰に作成されたかを確認します。
+    console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
   }
 }
 ```
@@ -637,7 +636,11 @@ contract MyEpicNFT is ERC721URIStorage {
 
   // ユーザーが NFT を取得するために実行する関数です。
   function makeAnEpicNFT() public {
-    // 現在のtokenIdを取得します。tokenIdは0から始まります。
+
+    // NFT が Mint されるときのカウンターをインクリメントします。
+    _tokenIds.increment();
+
+    // 現在のtokenIdを取得します。tokenIdは1から始まります。
     uint256 newItemId = _tokenIds.current();
 
     // 3つの配列からそれぞれ1つの単語をランダムに取り出します。
@@ -678,7 +681,7 @@ contract MyEpicNFT is ERC721URIStorage {
         abi.encodePacked("data:application/json;base64,", json)
     );
 
-	  console.log("\n----- Token URI ----");
+    console.log("\n----- Token URI ----");
     console.log(finalTokenUri);
     console.log("--------------------\n");
 
@@ -688,11 +691,8 @@ contract MyEpicNFT is ERC721URIStorage {
     // tokenURIを更新します。
     _setTokenURI(newItemId, finalTokenUri);
 
- 	  // NFTがいつ誰に作成されたかを確認します。
-	  console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
-
-    // 次の NFT が Mint されるときのカウンターをインクリメントする。
-    _tokenIds.increment();
+    // NFTがいつ誰に作成されたかを確認します。
+    console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
   }
 }
 ```
@@ -864,12 +864,12 @@ Contract deployed to: 0x2bE00D9524E37A432B695A033912709ecEb64Cfa
 Minted NFT #1
 ```
 
-最後に、コントラクトのアドレス(`Contract deployed to`に続く`0x..`)をターミナルからコピーして、[テストネット用の OpenSea](https://testnets.opensea.io/) に貼り付け、検索してみてください。
+最後に、[gemcase](https://gemcase.vercel.app/) へアクセスをして、ミントされたNFTを確認してみましょう。
 
-下記のように、あなたのSquareNFTがOpenSeaで確認できたでしょうか？
+下記のように、あなたのSquareNFTがgemcaseで確認できたでしょうか？
 ![](/public/images/ETH-NFT-Collection/section-2/2_3_3.png)
 
-OpenSea上で画像が表示されない場合は[Rarible](https://testnet.rarible.com/)で検索してみてください。
+![](/public/images/ETH-NFT-Collection/section-2/2_3_4.png)
 
 ### 🙋‍♂️ 質問する
 
@@ -888,7 +888,7 @@ OpenSea上で画像が表示されない場合は[Rarible](https://testnet.rarib
 
 おめでとうございます!　セクション3はもう少しで終了です ✨
 
-あなたのOpenSeaのリンクを`#ethereum`に貼り付けて、コミュニティにシェアしてください 😊
+あなたのgemcaseのリンクを`#ethereum`に貼り付けて、コミュニティにシェアしてください 😊
 
 どんなNFTを作ったのか気になります 🔥
 

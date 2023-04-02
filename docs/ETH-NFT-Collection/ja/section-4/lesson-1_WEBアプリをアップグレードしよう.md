@@ -1,17 +1,17 @@
-### 🌊 ユーザー に OpenSea のリンクを提供する
+### 🌊 ユーザー に gemcase のリンクを提供する
 
-NFTが発行された後、OpenSeaでNFTへのリンクを共有できます。
+NFTが発行された後、gemcaseでNFTへのリンクを共有できます。
 
-OpenSeaのNFTへのリンクは次のようになります。
+gemcaseのNFTへのリンクは次のようになります。
 
 ```
-https://testnets.opensea.io/assets/0x88a0e9c2F3939598c402eccb7Ae1612e45448C04/0
+https://gemcase.vercel.app/view/evm/sepolia/0x42d097396b8fe79a06f896db6fed76664777600a/2
 ```
 
 リンクには、下記2つの変数が組み込まれています。
 
 ```
-https://testnets.opensea.io/assets/あなたのコントラクトアドレス/tokenId
+https://gemcase.vercel.app/view/evm/sepolia/あなたのコントラクトアドレス/tokenId
 ```
 
 ### 🗂 コントラクトを更新して tokenId を取得する
@@ -269,7 +269,7 @@ const setupEventListener = async () => {
       connectedContract.on("NewEpicNFTMinted", (from, tokenId) => {
         console.log(from, tokenId.toNumber());
         alert(
-          `あなたのウォレットに NFT を送信しました。OpenSea に表示されるまで最大で10分かかることがあります。NFT へのリンクはこちらです: https://testnets.opensea.io/assets/${CONTRACT_ADDRESS}/${tokenId.toNumber()}`
+          `あなたのウォレットに NFT を送信しました。gemcase に表示されるまで数分かかることがあります。NFT へのリンクはこちらです: https://gemcase.vercel.app/view/evm/sepolia/${CONTRACT_ADDRESS}/${tokenId.toNumber()}`,
         );
       });
       console.log("Setup event listener!");
@@ -284,7 +284,7 @@ const setupEventListener = async () => {
 
 `setupEventListener`関数は、NFTが発行される際に`emit`される`NewEpicNFTMinted`イベントを受信します。
 
-- `tokenId`を取得して、新しくミントされたNFTへのOpenSeaリンクをユーザーに提供しています。
+- `tokenId`を取得して、新しくミントされたNFTへのgemcaseリンクをユーザーに提供しています。
 
 ### 🪄 MVP = `MyEpicNFT.sol` × `App.js`
 
@@ -375,7 +375,10 @@ contract MyEpicNFT is ERC721URIStorage {
 
   // ユーザーが NFT を取得するために実行する関数です。
   function makeAnEpicNFT() public {
-    // 現在のtokenIdを取得します。tokenIdは0から始まります。
+    // NFT が Mint されるときのカウンターをインクリメントします。
+    _tokenIds.increment();
+
+    // 現在のtokenIdを取得します。tokenIdは1から始まります。
     uint256 newItemId = _tokenIds.current();
 
     // 3つの配列からそれぞれ1つの単語をランダムに取り出します。
@@ -383,14 +386,14 @@ contract MyEpicNFT is ERC721URIStorage {
     string memory second = pickRandomSecondWord(newItemId);
     string memory third = pickRandomThirdWord(newItemId);
 
-	// 3つの単語を組み合わせた言葉（例: GrandCuteBird）を combinedWord に格納しています。
+	  // 3つの単語を連携して格納する変数 combinedWord を定義します。
     string memory combinedWord = string(abi.encodePacked(first, second, third));
 
     // 3つの単語を連結して、<text>タグと<svg>タグで閉じます。
-    string memory finalSvg = string(abi.encodePacked(baseSvg, first, second, third, "</text></svg>"));
+    string memory finalSvg = string(abi.encodePacked(baseSvg, combinedWord, "</text></svg>"));
 
-	// NFTに出力されるテキストをターミナルに出力します。
-	console.log("\n----- SVG data -----");
+	  // NFTに出力されるテキストをターミナルに出力します。
+	  console.log("\n----- SVG data -----");
     console.log(finalSvg);
     console.log("--------------------\n");
 
@@ -416,23 +419,19 @@ contract MyEpicNFT is ERC721URIStorage {
         abi.encodePacked("data:application/json;base64,", json)
     );
 
-	console.log("\n----- Token URI ----");
+	  console.log("\n----- Token URI ----");
     console.log(finalTokenUri);
     console.log("--------------------\n");
 
-   // msg.sender を使って NFT を送信者に Mint します。
+    // msg.sender を使って NFT を送信者に Mint します。
     _safeMint(msg.sender, newItemId);
 
     // tokenURIを更新します。
     _setTokenURI(newItemId, finalTokenUri);
 
- 	// NFTがいつ誰に作成されたかを確認します。
-	console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
+ 	  // NFTがいつ誰に作成されたかを確認します。
+	  console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
 
-    // 次の NFT が Mint されるときのカウンターをインクリメントする。
-    _tokenIds.increment();
-
-    // イベントを emit します。
     emit NewEpicNFTMinted(msg.sender, newItemId);
   }
 }
@@ -538,8 +537,6 @@ import myEpicNft from "./utils/MyEpicNFT.json";
 
 const TWITTER_HANDLE = "あなたのTwitterハンドル";
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
-const OPENSEA_LINK = "";
-const TOTAL_MINT_COUNT = 50;
 
 // コトントラクトアドレスをCONTRACT_ADDRESS変数に格納
 const CONTRACT_ADDRESS = "あなたのコントラクトアドレス";
@@ -568,7 +565,7 @@ const App = () => {
         connectedContract.on("NewEpicNFTMinted", (from, tokenId) => {
           console.log(from, tokenId.toNumber());
           alert(
-            `あなたのウォレットに NFT を送信しました。OpenSea に表示されるまで最大で10分かかることがあります。NFT へのリンクはこちらです: https://testnets.opensea.io/assets/${CONTRACT_ADDRESS}/${tokenId.toNumber()}`
+            `あなたのウォレットに NFT を送信しました。gemcase に表示されるまで数分かかることがあります。NFT へのリンクはこちらです: https://gemcase.vercel.app/view/evm/sepolia/${CONTRACT_ADDRESS}/${tokenId.toNumber()}`,
           );
         });
 
@@ -760,9 +757,9 @@ if (chainId !== sepoliaChainId) {
 **4\. あなたのコレクション Web アプリケーションをリンクさせる**
 
 - あなたのコレクションを見にいけるボタンをWebアプリケーション上に作成して、ユーザーがいつでもあなたのNFTコレクションを見に行けるようにしましょう。
-- あなたのWebサイトに、「OpenSeaでコレクションを表示」という小さなボタンを追加します。
+- あなたのWebサイトに、「gemcaseでコレクションを表示」という小さなボタンを追加します。
 - ユーザーがそれをクリックすると、コレクションのページに行けるようにしましょう。
-- OpenSeaへのリンクは`App.js`にハードコーディングする必要があります。
+- gemcaseへのリンクは`App.js`にハードコーディングする必要があります。
 
 ### 🙋‍♂️ 質問する
 

@@ -324,9 +324,22 @@ Consoleに出力された`https://sepolia.etherscan.io/...`のアドレスをク
 
 - あなたのSepolia Test Network上のトランザクションの履歴が参照できます。
 
-次に、[テストネット用の OpenSea](https://testnets.opensea.io/) にアクセスして、MintしたNFTがあなたのSepolia Test Networkのアドレスに紐づいているか確認してみましょう。
+![](/public/images/ETH-NFT-Collection/section-3/3_3_2.png)
 
-Consoleに出力された`currentAccount:`に続く、`0x..`のアドレスをOpenSeaのWebサイトに貼り付けて、結果が表示されたら、画面右上の`Profile`メニューを選択してください。それから、ご自身のアカウントを開いて、NFTを確認してみましょう。
+次に、MintしたNFTがあなたのSepolia Test Networkのアドレスに紐づいているか確認してみましょう。上記画像の赤枠で囲まれている部分が、トークンの転送情報です。転送先のアドレス（`To xxx...`）があなたのウォレットアドレスになっていたら大丈夫です。
+
+それでは、[gemcase](https://gemcase.vercel.app/)にアクセスをして確認をしてみましょう。これまでは`Address`にデプロイをしたコントラクトのアドレスを入力していましたが、今度はあなたのウォレットアドレスを入力して`View`をクリックしてみましょう。
+
+![](/public/images/ETH-NFT-Collection/section-3/3_3_3.png)
+
+これまでにあなたのアドレスへミントされたNFTの一覧が取得できます。
+
+ステップ通りに進んできた場合は、一番左上のNFTがアプリケーション上の`Mint NFT`をクリックしてミントされたNFTとなります。NFTをクリックして詳細を確認すると、NFTをミントしたアドレスがApp.jsファイルの
+`const CONTRACT_ADDRESS`に設定したコントラクトのアドレスとなっているはずです！
+
+![](/public/images/ETH-NFT-Collection/section-3/3_3_4.png)
+
+![](/public/images/ETH-NFT-Collection/section-3/3_3_5.png)
 
 ### 🚨 コントラクトを再びデプロイする際の注意点
 
@@ -373,7 +386,7 @@ Consoleに出力された`currentAccount:`に続く、`0x..`のアドレスをOp
 
 NFTをMintできるWebアプリケーションはほぼ完成です!
 
-OpenSeaのリンクを`#ethereum`に貼り付けて、あなたのNFTをシェアしてください 😊
+gemcaseのリンクを`#ethereum`に貼り付けて、あなたのNFTをシェアしてください 😊
 
 あなたの作ったNFTがどんなものなのか気になります ✨
 
