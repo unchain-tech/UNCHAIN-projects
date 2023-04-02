@@ -108,7 +108,7 @@ Done in 50.84s.
 
 オンチェーンでの提案に対し投票できるようにする標準的なガバナンスコントラクトをデプロイできました。
 
-デプロイしたコントラクトは、[こちら](https://goerli.etherscan.io/)から確認することができます。
+デプロイしたコントラクトは、[こちら](https://sepolia.etherscan.io/)から確認することができます。
 
 ![](/public/images/ETH-DAO/section-3/3_3_1.png)
 
@@ -222,7 +222,7 @@ Successfully gave vote contract permissions to act on token contract
 Done in 41.00s.
 ```
 
-さて、ここまでできたら[こちら](https://goerli.etherscan.io/)からガバナンスコントラクトを覗いてみましょう。
+さて、ここまでできたら[こちら](https://sepolia.etherscan.io/)からガバナンスコントラクトを覗いてみましょう。
 
 `Token: `の横にあるドロップダウン(`$0.00 1⃣`)をクリックしてみてください。
 

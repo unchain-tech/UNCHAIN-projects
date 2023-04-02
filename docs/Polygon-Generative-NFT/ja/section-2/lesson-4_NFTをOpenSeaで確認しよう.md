@@ -1,14 +1,24 @@
-### 🐝 OpenSea で NFT を確認する
+### 🐝 gemcase で NFT を確認する
 
-コントラクトのアドレス(`Contract deployed to`に続く`0x..`)をターミナルからコピーして、[テストネット用の OpenSea](https://testnets.opensea.io/) に貼り付け、検索してみてください。
+コントラクトのアドレス(`Contract deployed to`に続く`0x..`)をターミナルからコピーします。
 
-私のコレクションはこのような形で表示されます（画像は学習コンテンツ制作時に使用していたRarible rinkeby testnetのものを使用しています）。
+次に、[gemcase(閲覧できるサービス)](https://gemcase.vercel.app/) に先ほどコピーしたコントラクトアドレスを含めた必要な情報を下のように打ち込んでいきます。
 
-![](/public/images/Polygon-Generative-NFT/section-2/2_4_1.png)
+![](/public/images/Polygon-Generative-NFT/section-2/2_4_7.png)
+
+そして`View`ボタンをクリックするとコレクションの詳細が表示されます。
+
+私のコレクションはこのような形で表示されます。
+
+![](/public/images/Polygon-Generative-NFT/section-2/2_4_8.png)
+
+下にスクロールすると他のコレクションが見れるのでV`View`ボタンをクリックしてみましょう。
+
+![](/public/images/Polygon-Generative-NFT/section-2/2_4_9.png)
 
 `deploy.js`で、10個のNFTを自分用にキープしてから、3個NFTをMintしました。
 
-したがって、今コントラクトアドレスから表示できるNFTコレクションは、13個です。
+したがって、表示できるNFTコレクションは、13個となっているはずです。
 
 ### 📝 Etherscan を使ってコントラクトを verify（検証）する
 
@@ -70,9 +80,9 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 
 module.exports = {
   solidity: "0.8.9",
-  defaultNetwork: "goerli",
+  defaultNetwork: "sepolia",
   networks: {
-    goerli: {
+    sepolia: {
       url: API_URL,
       accounts: [PRIVATE_KEY],
     },
@@ -90,7 +100,7 @@ module.exports = {
 ```bash
 npx hardhat clean
 
-npx hardhat verify --network goerli DEPLOYED_CONTRACT_ADDRESS "BASE_TOKEN_URI"
+npx hardhat verify --network sepolia DEPLOYED_CONTRACT_ADDRESS "BASE_TOKEN_URI"
 ```
 
 - `DEPLOYED_CONTRACT_ADDRESS`はあなたのコントラクトアドレスです。
@@ -100,7 +110,7 @@ npx hardhat verify --network goerli DEPLOYED_CONTRACT_ADDRESS "BASE_TOKEN_URI"
 私のコマンドは下記のようになります。
 
 ```
-npx hardhat verify --network goerli 0x94E614a7D82d9dD24CBED7607a40eBE4243491dF "ipfs://QmSvw119ALMN9SkP89Xj37jvqJik8jZrSjU5c1vgBhkhz8/"
+npx hardhat verify --network sepolia 0x94E614a7D82d9dD24CBED7607a40eBE4243491dF "ipfs://QmSvw119ALMN9SkP89Xj37jvqJik8jZrSjU5c1vgBhkhz8/"
 ```
 
 ターミナルに、下記のような結果が表示されていることを確認してください。
@@ -112,12 +122,12 @@ contracts/NFTCollectible.sol:NFTCollectible at 0x94E614a7D82d9dD24CBED7607a40eBE
 for verification on the block explorer. Waiting for verification result...
 
 Successfully verified contract NFTCollectible on Etherscan.
-https://goerli.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#code
+https://sepolia.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#code
 ```
 
-出力された`goerli.etherscan.io`のURLにアクセスしてみましょう。
+出力された`sepolia.etherscan.io`のURLにアクセスしてみましょう。
 
-私の [URL リンク](https://goerli.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#code) の中身は下記のように表示されます。
+私の [URL リンク](https://sepolia.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#code) の中身は下記のように表示されます。
 
 ![](/public/images/Polygon-Generative-NFT/section-2/2_4_5.png)
 

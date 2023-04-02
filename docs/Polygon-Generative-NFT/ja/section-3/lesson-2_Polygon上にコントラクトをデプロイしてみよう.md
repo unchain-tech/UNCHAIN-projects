@@ -42,7 +42,7 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 module.exports = {
   solidity: "0.8.9",
   networks: {
-    goerli: {
+    sepolia: {
       url: API_URL,
       accounts: [PRIVATE_KEY],
     },
@@ -201,7 +201,7 @@ MetaMaskとHardhatの両方でPolygonネットワークの設定が完了した�
 
 ![](/public/images/Polygon-Generative-NFT/section-3/3_2_7.png)
 
-Goerliとは異なり、これらのトークンの取得にそれほど問題はないはずです。
+Sepoliaとは異なり、これらのトークンの取得にそれほど問題はないはずです。
 
 1回のリクエストで0.5 MATIC（偽）が手に入るので、2回リクエストして、1 MATIC入手しましょう。
 
@@ -256,7 +256,6 @@ main()
     console.error(error);
     process.exit(1);
   });
-const { utils } = require("ethers");
 ```
 
 ターミナルで`nft-collectible`ディレクトリに移動し、以下のコマンドを実行します。

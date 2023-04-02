@@ -14,12 +14,12 @@
 
 ```typescript
 import type { AppProps } from "next/app";
-import { ChainId, ThirdwebProvider } from "@thirdweb-dev/react";
+import {ThirdwebProvider } from "@thirdweb-dev/react";
 import "../styles/globals.css";
 import HeadComponent from '../components/head';
 
-// アプリケーションが動作するチェーン（Goerli）を取得し、定義します。
-const activeChainId = ChainId.Goerli;
+// アプリケーションが動作するチェーン（ Sepolia）を取得し、定義します。
+const activeChainId = 11155111;
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -34,8 +34,6 @@ export default MyApp;
 ```
 
 かなりシンプルですよね。
-
-[thirdweb](https://thirdweb.com/) をインポートして、Goerliのチェーン IDを指定しています。
 
 このプロバイダーは、ユーザーの認証済みウォレットデータを保持し、それをAppコンポーネントに渡します。
 

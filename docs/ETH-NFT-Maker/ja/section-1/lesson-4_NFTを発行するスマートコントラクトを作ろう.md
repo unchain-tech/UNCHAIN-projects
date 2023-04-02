@@ -203,7 +203,7 @@ NFTが発行された後、`_tokenIds.increment()`（＝ OpenZeppelinが提供�
   メタデータの構造が [OpenSea の要件](https://zenn.dev/hayatoomori/articles/f26cc4637c7d66) と一致しない場合、デジタルデータはOpenSea上で正しく表示されません。
 - Openseaは、`ERC721`のメタデータ規格をサポートしています。
 - 音声ファイル、動画ファイル、3Dメディアなどに対応するメタデータ構造に関しては、[OpenSea の要件](https://zenn.dev/hayatoomori/articles/f26cc4637c7d66) を参照してください。
-- 上記の`Tanya`のJSONメタデータをコピーして、 [ここ](https://jsonkeeper.com/)のWebサイトに貼り付けてください。
+- 上記の`Tanya`のJSONメタデータをコピーして、 [ここ](https://app.jsonstorage.net/)のWebサイトに貼り付けてください。
 
 このWebサイトは、JSONデータをホストするのに便利です。
 
@@ -212,6 +212,8 @@ NFTが発行された後、`_tokenIds.increment()`（＝ OpenZeppelinが提供�
 下図のように、Webサイトにメタデータを貼り付けて、`Save`ボタンをクリックすると、JSONファイルへのリンクが表示されます。
 
 ![](/public/images/ETH-NFT-Maker/section-1/1_4_1.png)
+![](/public/images/ETH-NFT-Maker/section-1/1_4_21.png)
+![](/public/images/ETH-NFT-Maker/section-1/1_4_22.png)
 
 枠で囲んだ部分をコピーして、ブラウザに貼り付け、メタデータがリンクとして保存されていることを確認しましょう。
 
@@ -334,7 +336,7 @@ Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押して�
 - `NAME` : プロジェクトの名前(例: `Web3NFT`)
 - `DESCRIPTION` : プロジェクトの概要（任意）
 - `CHAIN` : `Ethereum`を選択。
-- `NETWORK` : `Goerli`を選択。
+- `NETWORK` : `Sepolia`を選択。
   それから、作成したAppの`VIEW DETAILS`をクリックします。
   ![](/public/images/ETH-NFT-Maker/section-1/1_4_5.png)
   プロジェクトを開いたら、`VIEW KEY`ボタンをクリックします。
@@ -359,12 +361,12 @@ Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押して�
 
 ### 🚰 偽の ETH を取得する
 
-今回は、`Goerli`というイーサリアム財団によって運営されているテストネットを使用します。
-`Goerli`にコントラクトをデプロイし、コードのテストを行うために、偽のETHを取得しましょう。
+今回は、`Sepolia`というイーサリアム財団によって運営されているテストネットを使用します。
+`Sepolia`にコントラクトをデプロイし、コードのテストを行うために、偽のETHを取得しましょう。
 ユーザーが偽のETHを取得するために用意されたインフラは、「フォーセット（＝蛇口）」と呼ばれています。
-フォーセットを使用する前に、あなたのMetaMaskウォレットを`Goerli Test Network`に設定してください。
+フォーセットを使用する前に、あなたのMetaMaskウォレットを`Sepolia Test Network`に設定してください。
 
-> ✍️: MetaMask で`Goerli Test Network`を設定する方法
+> ✍️: MetaMask で`Sepolia Test Network`を設定する方法
 >
 > 1 \. MetaMask ウォレットのネットワークトグルを開く。
 >
@@ -378,16 +380,14 @@ Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押して�
 >
 > ![](/public/images/ETH-NFT-Maker/section-1/1_4_9.png)
 >
-> 4 \. `Goerli Test Network`を選択する。
+> 4 \. `Sepolia Test Network`を選択する。
 >
 > ![](/public/images/ETH-NFT-Maker/section-1/1_4_10.png)
-> MetaMask ウォレットに`Goerli Test Network`が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽 ETH を取得しましょう。
 
-- [Alchemy](https://goerlifaucet.com/) - 0.25 Goerli ETH（24時間に1度もらうことができる）
+> MetaMask ウォレットに`Sepolia Test Network`が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽 ETH を取得しましょう。
+
+- [Alchemy](https://sepoliafaucet.com/) - 1 Sepolia ETH（24時間に1度もらうことができる）
   - ウォレットアドレスを入力して`Send Me ETH`ボタンを押下するとその場でもらえます。
-- [Chainlink](https://faucets.chain.link/) - 0.1 Goerli ETH（その場でもらえる）
-  - `Connect wallet`をクリックしてMetaMaskと接続する必要があります。
-  - Twitterアカウントを連携する必要があります。
 
 ### 🚀 `deploy.js`ファイルを作成する
 
@@ -430,7 +430,7 @@ const runMain = async () => {
 runMain();
 ```
 
-### 📈 Goerli Test Network に コントラクトをデプロイしましょう
+### 📈 Sepolia Test Network に コントラクトをデプロイしましょう
 
 `hardhat.config.js`ファイルを変更する必要があります。
 これは、スマートコントラクトプロジェクトのルートディレクトリにあります。
@@ -454,20 +454,20 @@ require("@nomicfoundation/hardhat-toolbox");
 module.exports = {
   solidity: "0.8.9",
   networks: {
-    goerli: {
+    sepolia: {
       url: "YOUR_ALCHEMY_API_URL",
-      accounts: ["YOUR_PRIVATE_GOERLI_ACCOUNT_KEY"],
+      accounts: ["YOUR_PRIVATE_SEPOLIA_ACCOUNT_KEY"],
     },
   },
 };
 ```
 
-次に、`YOUR_ALCHEMY_API_URL`と`YOUR_PRIVATE_GOERLI_ACCOUNT_KEY`を取得して、`hardhat.config.js`に貼り付けましょう。
+次に、`YOUR_ALCHEMY_API_URL`と`YOUR_PRIVATE_SEPOLIA_ACCOUNT_KEY`を取得して、`hardhat.config.js`に貼り付けましょう。
 1\. `YOUR_ALCHEMY_API_URL`の取得
 
 > `hardhat.config.js`の`YOUR_ALCHEMY_API_URL`の部分を先ほど取得した Alchemy の URL（ `HTTP`リンク） と入れ替えます。
-> 2\. `YOUR_PRIVATE_GOERLI_ACCOUNT_KEY`の取得
-> 1\. お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを`Goerli Test Network`に変更します。
+> 2\. `YOUR_PRIVATE_SEPOLIA_ACCOUNT_KEY`の取得
+> 1\. お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを`Sepolia Test Network`に変更します。
 >
 > ![](/public/images/ETH-NFT-Maker/section-1/1_4_11.png)
 >
@@ -487,7 +487,7 @@ module.exports = {
 >
 > ![](/public/images/ETH-NFT-Maker/section-1/1_4_15.png)
 >
-> `hardhat.config.js`の`YOUR_PRIVATE_GOERLI_ACCOUNT_KEY`の部分をここで取得した秘密鍵とを入れ替えます。
+> `hardhat.config.js`の`YOUR_PRIVATE_SEPOLIA_ACCOUNT_KEY`の部分をここで取得した秘密鍵とを入れ替えます。
 > ⚠️: 注意
 >
 > `hardhat.config.js`ファイルを Github にコミットしないでください。
@@ -538,7 +538,7 @@ hardhat.config.js
 `ipfs-nfts`のルートディレクトリからこのコマンドを実行します 。
 
 ```bash
-npx hardhat run scripts/deploy.js --network goerli
+npx hardhat run scripts/deploy.js --network sepolia
 ```
 
 `deploy.js`を実行すると、実際にNFTを作成します。
@@ -553,7 +553,7 @@ Minted NFT #2
 
 ### 👀 Etherscan でトランザクションを確認する
 
-ターミナルに出力された`Contract deployed to`に続くアドレスを、[Etherscan](https://goerli.etherscan.io/) に貼り付けて、あなたのスマートコントラクトのトランザクション履歴を見てみましょう。
+ターミナルに出力された`Contract deployed to`に続くアドレスを、[Etherscan](https://sepolia.etherscan.io/) に貼り付けて、あなたのスマートコントラクトのトランザクション履歴を見てみましょう。
 Etherscanは、イーサリアムネットワーク上のトランザクションに関する情報を確認するのに便利なプラットフォームです。
 _表示されるまでに約 1 分かかる場合があります。_
 
@@ -570,7 +570,7 @@ _表示されるまでに約 1 分かかる場合があります。_
 ![](/public/images/ETH-NFT-Collection/section-1/1_4_19.png)
 コレクションがOpenSeaに表示されているのを確認してください。
 ![](/public/images/ETH-NFT-Collection/section-1/1_4_20.png)
-私が作成したTanyaコレクションの`tokenID` 0番のリンクは[こちら](https://testnets.opensea.io/ja/assets/rinkeby/0x67cd3f53c20e3a6211458dd5b7465e1f9464531c/0)になります（リンク先は、学習コンテンツ制作時に使用したRinkebyになっていますが、Rinkebyの箇所がGoerliでも同様に表示されます）。
+私が作成したTanyaコレクションの`tokenID` 0番のリンクは[こちら](https://testnets.opensea.io/ja/assets/rinkeby/0x67cd3f53c20e3a6211458dd5b7465e1f9464531c/0)になります（リンク先は、学習コンテンツ制作時に使用したRinkebyになっていますが、Rinkebyの箇所がSEPOLIAでも同様に表示されます）。
 リンクの内容は以下のようになります。
 
 ```

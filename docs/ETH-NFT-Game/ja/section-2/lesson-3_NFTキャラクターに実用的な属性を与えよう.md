@@ -215,7 +215,7 @@ runMain();
 それでは、ターミナルに向かい、下記を`epic-game`ディレクトリ上で実行していきましょう。
 
 ```
-npx hardhat run scripts/deploy.js --network goerli
+npx hardhat run scripts/deploy.js --network sepolia
 ```
 
 下記のような結果がターミナルに出力されたことを確認してください。
