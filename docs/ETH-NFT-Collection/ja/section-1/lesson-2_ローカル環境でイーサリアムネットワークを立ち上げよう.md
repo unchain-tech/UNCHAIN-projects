@@ -11,15 +11,15 @@
 それでは本プロジェクトで使用するフォルダーを作成してきましょう。作業を始めるディレクトリに移動したら、次のコマンドを実行します。
 
 ```bash
-mkdir ETH-NFT-collection
-cd ETH-NFT-collection
+mkdir ETH-NFT-Collection
+cd ETH-NFT-Collection
 yarn init --private -y
 ```
 
 ETH-NFT-collectionディレクトリ内に、package.jsonファイルが生成されます。
 
 ```bash
-ETH-NFT-collection
+ETH-NFT-Collection
  └── package.json
 ```
 
@@ -81,7 +81,7 @@ yarn <パッケージ名> <実行したいコマンド>
 以下のようなフォルダー構成となるように、`packages`ディレクトリとその中に`contract`ディレクトリを作成してください（`client`ディレクトリは、後ほどのレッスンでスターターコードをクローンする際に作成したいと思います）。
 
 ```diff
-ETH-NFT-collection
+ETH-NFT-Collection
  ├── package.json
 +└── packages/
 +    └── contract/
@@ -104,7 +104,7 @@ ETH-NFT-collection
 最終的に以下のようなフォルダー構成となっていることを確認してください。
 
 ```bash
-ETH-NFT-collection
+ETH-NFT-Collection
  ├── .gitignore
  ├── package.json
  └── packages/
@@ -173,7 +173,7 @@ $ npx hardhat
 👷 Welcome to Hardhat v2.13.0 👷‍
 
 ✔ What do you want to do? · Create a JavaScript project
-✔ Hardhat project root: · /ETH-NFT-collection/packages/contract
+✔ Hardhat project root: · /ETH-NFT-Collection/packages/contract
 ✔ Do you want to add a .gitignore? (Y/n) · y
 
 ✨ Project created ✨
@@ -200,7 +200,7 @@ Give Hardhat a star on Github if you're enjoying it! 💞✨
 この段階で、フォルダー構造は下記のようになっていることを確認してください。
 
 ```diff
-ETH-NFT-collection
+ETH-NFT-Collection
  ├── .gitignore
  ├── package.json
  └── packages/

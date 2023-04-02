@@ -6,7 +6,7 @@ Webアプリケーション上で、ユーザーがイーサリアムネット�
 
 - これは、Webサイトへの認証機能です。
 
-それでは、`ETH-NFT-collection/packages/client`ディレクトリ下のファイルを編集していきましょう。
+それでは、`ETH-NFT-Collection/packages/client`ディレクトリ下のファイルを編集していきましょう。
 
 下記のように、`App.js`の中身を更新します。
 

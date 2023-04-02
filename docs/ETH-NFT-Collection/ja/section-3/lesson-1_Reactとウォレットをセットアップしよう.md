@@ -32,7 +32,7 @@ GitHubのアカウントをお持ちの方は、下記の手順に沿ってフ�
 
 ![](/public/images/ETH-NFT-Collection/section-3/3_1_1.png)
 
-ターミナル上で`ETH-NFT-collection/packages`ディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
+ターミナル上で`ETH-NFT-Collection/packages`ディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
 
 ```bash
 git clone コピーした_github_リンク client
@@ -41,14 +41,14 @@ git clone コピーした_github_リンク client
 この段階で、フォルダ構造は下記のようになっているはずです。
 
 ```diff
-ETH-NFT-collection
+ETH-NFT-Collection
  ├── package.json
  └── packages/
 +    ├── client/
      └── contract/
 ```
 
-ターミナル上で`ETH-NFT-collection`ディレクトリ下に移動して下記を実行しましょう。
+ターミナル上で`ETH-NFT-Collection`ディレクトリ下に移動して下記を実行しましょう。
 
 ```bash
 yarn install
@@ -70,7 +70,7 @@ yarn client start
 
 上記のような形でフロントエンドが確認できれば成功です。
 
-これからフロントエンドの表示を確認したい時は、ターミナルに向かい、`ETH-NFT-collection`ディレクトリ上で、`yarn client start`を実行します。これからも必要となる作業ですので、よく覚えておいてください。
+これからフロントエンドの表示を確認したい時は、ターミナルに向かい、`ETH-NFT-Collection`ディレクトリ上で、`yarn client start`を実行します。これからも必要となる作業ですので、よく覚えておいてください。
 
 ターミナルを閉じるときは、以下のコマンドが使えます ✍️
 
