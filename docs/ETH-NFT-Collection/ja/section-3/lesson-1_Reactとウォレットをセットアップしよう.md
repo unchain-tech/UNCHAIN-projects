@@ -20,11 +20,13 @@ GitHubのアカウントをお持ちの方は、下記の手順に沿ってフ�
 
 ![](/public/images/ETH-NFT-Collection/section-3/3_1_3.png)
 
-2. [ Copy the `main` branch only ]という項目に**チェックが入っていることを必ず確認してから**、`Create fork`ボタンをクリックします。
+2. Create a new forkページが開くので、以下2つの項目を設定します。
+- [ Repository name ] : `ETH-NFT-Collection-starter`に変更します。
+- [ Copy the `main` branch only ] : **チェックが入っていることを必ず確認します**。
 
 ![](/public/images/ETH-NFT-Collection/section-3/3_1_4.png)
 
-これで、あなたのGitHubアカウントに`ETH-NFT-Collection`リポジトリのフォークが作成されます。
+設定が完了したら`Create fork`ボタンをクリックします。あなたのGitHubアカウントに`ETH-NFT-Collection`リポジトリのフォークが作成されたことを確認してください。
 
 それでは、フォークしたリポジトリをローカル環境にクローンしましょう。
 
