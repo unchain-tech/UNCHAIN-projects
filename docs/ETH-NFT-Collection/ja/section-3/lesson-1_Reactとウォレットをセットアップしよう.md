@@ -14,9 +14,19 @@
 
 まだGitHubのアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
-GitHubのアカウントをお持ちの方は、[こちら](https://github.com/unchain-tech/ETH-NFT-Collection/tree/starter) から、フロントエンドの基盤となるリポジトリをあなたのGitHubにフォークしましょう。フォークの方法は、[こちら](https://denno-sekai.com/github-fork/) を参照してください。
+GitHubのアカウントをお持ちの方は、下記の手順に沿ってフロントエンドの基盤となるリポジトリをあなたのGitHubに[フォーク](https://denno-sekai.com/github-fork/)しましょう。
 
-あなたのGitHubアカウントにフォークした`nft-collection-starter-project`リポジトリを、ローカル環境にクローンしてください。
+1. [こちら](https://github.com/unchain-tech/ETH-NFT-Collection)からunchain-tech/ETH-NFT-Collectionリポジトリにアクセスをして、ページ右上の`Fork`ボタンをクリックします。
+
+![](/public/images/ETH-NFT-Collection/section-3/3_1_3.png)
+
+2. [ Copy the `main` branch only ]という項目に**チェックが入っていることを必ず確認してから**、`Create fork`ボタンをクリックします。
+
+![](/public/images/ETH-NFT-Collection/section-3/3_1_4.png)
+
+これで、あなたのGitHubアカウントに`ETH-NFT-Collection`リポジトリのフォークが作成されます。
+
+それでは、フォークしたリポジトリをローカル環境にクローンしましょう。
 
 まず、下図のように、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
 
