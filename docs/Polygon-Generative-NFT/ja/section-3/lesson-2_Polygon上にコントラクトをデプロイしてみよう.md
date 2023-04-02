@@ -256,7 +256,6 @@ main()
     console.error(error);
     process.exit(1);
   });
-const { utils } = require("ethers");
 ```
 
 ターミナルで`nft-collectible`ディレクトリに移動し、以下のコマンドを実行します。
