@@ -21,8 +21,8 @@ GitHubのアカウントをお持ちの方は、下記の手順に沿ってフ�
 ![](/public/images/ETH-NFT-Collection/section-3/3_1_3.png)
 
 2. Create a new forkページが開くので、以下2つの項目を設定します。
-- [Repository name] : `ETH-NFT-Collection-starter`に変更します。
-- [Copy the `main` branch only] : **チェックが入っていることを必ず確認します**。
+- Repository name: `ETH-NFT-Collection-starter`に変更します。
+- Copy the `main` branch only: **チェックが入っていることを必ず確認します**。
 
 ![](/public/images/ETH-NFT-Collection/section-3/3_1_4.png)
 
