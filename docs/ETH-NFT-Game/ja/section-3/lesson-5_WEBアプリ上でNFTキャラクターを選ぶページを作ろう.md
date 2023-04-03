@@ -559,7 +559,7 @@ User has character NFT
 
 **2️⃣ OpenSea で NFT キャラクターを確認する**
 
-[gemcase(閲覧できるサービス)](https://gemcase.vercel.app/)で、NFTキャラクターを参照してみましょう。
+[gemcase(NFTを閲覧できるサービス)](https://gemcase.vercel.app/)で、NFTキャラクターを参照してみましょう。
 
 あなたの`CONTACT_ADDRESS`と`TOKEN_ID`を取得して、下記のアドレスを更新したら、ブラウザに貼り付けてみてください。
 
