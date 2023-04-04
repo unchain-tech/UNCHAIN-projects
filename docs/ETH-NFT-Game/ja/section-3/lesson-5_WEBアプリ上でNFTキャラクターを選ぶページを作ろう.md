@@ -537,9 +537,9 @@ return () => {
 
 メモリリークを防ぐために、`gameContract.off('CharacterNFTMinted', onCharacterMint)`では、`onCharacterMint`関数の稼働をやめています。これは、イベントリスナをやめることを意味しています。
 
-### 🐝 OpenSea で Mint した NFT キャラクターを確認する
+### 🐝 gemcase で Mint した NFT キャラクターを確認する
 
-それでは、Webアプリケーションから、キャラクターをいったいMintして、[テストネット用の OpenSea](https://testnets.opensea.io/) に反映されるか確認していきましょう。
+それでは、Webアプリケーションから、キャラクターをいったいMintして、[gemcase(閲覧できるサービス)](https://gemcase.vercel.app/) に反映されるか確認していきましょう。
 
 **1️⃣ NFT キャラクターを Mint する**
 
@@ -559,12 +559,12 @@ User has character NFT
 
 **2️⃣ OpenSea で NFT キャラクターを確認する**
 
-[テストネット用の OpenSea](https://testnets.opensea.io/) で、NFTキャラクターを参照してみましょう。
+[gemcase(NFTを閲覧できるサービス)](https://gemcase.vercel.app/)で、NFTキャラクターを参照してみましょう。
 
 あなたの`CONTACT_ADDRESS`と`TOKEN_ID`を取得して、下記のアドレスを更新したら、ブラウザに貼り付けてみてください。
 
 ```
-https://testnets.opensea.io/assets/CONTRACT_ADDRES/TOKEN_ID
+https://gemcase.vercel.app/view/evm/sepolia/CONTRACT_ADDRES/TOKEN_ID
 ```
 
 下記のように、オンライン上でもあなたのNFTキャラクターが表示されることを確認しましょう（画像は学習コンテンツ制作時に利用したRarible rinkeby testnetのものになります）。
@@ -573,7 +573,7 @@ https://testnets.opensea.io/assets/CONTRACT_ADDRES/TOKEN_ID
 
 ### 🪄 おまけ
 
-ユーザーにNFTキャラクターを確認するOpenSeaリンクを発行しましょう。
+ユーザーにNFTキャラクターを確認するgemcaseリンクを発行しましょう。
 
 `index.js`を開いて、`onCharacterMint`関数の中身を変更します。
 
@@ -582,7 +582,7 @@ https://testnets.opensea.io/assets/CONTRACT_ADDRES/TOKEN_ID
 ```javascript
 // index.js
 alert(
-  `NFT キャラクターが Mint されました -- リンクはこちらです: https://testnets.opensea.io/assets/${
+  `NFT キャラクターが Mint されました -- リンクはこちらです: https://gemcase.vercel.app/view/evm/sepolia/${
     gameContract.address
   }/${tokenId.toNumber()}`
 );

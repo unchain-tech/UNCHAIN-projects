@@ -308,7 +308,7 @@ An NFT w/ ID 1 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
 ### 🛫 テストネットへコントラクトをデプロイする
 
 これから、テストネットにあなたのスマートコントラクトをデプロイしていきます。
-これが成功すると、**NFT をオンラインで表示**できるようになり、 世界中のユーザーがあなたのNFTをOpenSeaから見ることができます。
+これが成功すると、**NFT をオンラインで表示**できるようになり、 世界中のユーザーがあなたのNFTをから見ることができます。
 
 ### ✅ テストネットにデプロイするにあたって必要なこと
 
@@ -559,22 +559,22 @@ _表示されるまでに約 1 分かかる場合があります。_
 
 ### 🖼 NFT をオンラインで確認しよう
 
-作成したNFTは、OpenSeaのTestNetサイトで確認できます。
-[testnets.opensea.io](https://testnets.opensea.io/) にアクセスしてください。
+作成したNFTは、[gemcase(NFTで閲覧できるサービス)](https://gemcase.vercel.app/)で確認できます。
+
 ターミナルに出力された`Contract deployed to`に続くアドレスを検索してみましょう。
 **`Enter`をクリックしないように注意してください。検索でコレクションが表示されたら、コレクション自体をクリックしてください** 。
-⚠️: OpenSeaでNFTを確認するのに時間が掛かる場合があります。
+⚠️: gemcaseでNFTを確認するのに時間が掛かる場合があります。
 続いて、ターミナルに出力された`Contract deployed to`に続くアドレスを検索してみましょう。
 ![](/public/images/ETH-NFT-Collection/section-1/1_4_18.png)
 `TanyaNFT`をクリックしてみましょう。
 ![](/public/images/ETH-NFT-Collection/section-1/1_4_19.png)
-コレクションがOpenSeaに表示されているのを確認してください。
+コレクションがgemcaseに表示されているのを確認してください。
 ![](/public/images/ETH-NFT-Collection/section-1/1_4_20.png)
-私が作成したTanyaコレクションの`tokenID` 0番のリンクは[こちら](https://testnets.opensea.io/ja/assets/rinkeby/0x67cd3f53c20e3a6211458dd5b7465e1f9464531c/0)になります（リンク先は、学習コンテンツ制作時に使用したRinkebyになっていますが、Rinkebyの箇所がSEPOLIAでも同様に表示されます）。
+私が作成したTanyaコレクションの`tokenID` 1番のリンクは[こちら]https://gemcase.vercel.app/view/evm/sepolia/0x677fcCF5F8be725ad8A9C23622ba6B738A2DED27/1になります（リンク先は、学習コンテンツ制作時に使用したRinkebyになっていますが、Rinkebyの箇所がSEPOLIAでも同様に表示されます）。
 リンクの内容は以下のようになります。
 
 ```
-https://testnets.opensea.io/ja/assets/rinkeby/0x67cd3f53c20e3a6211458dd5b7465e1f9464531c/0
+https://gemcase.vercel.app/view/evm/sepolia/0x677fcCF5F8be725ad8A9C23622ba6B738A2DED27/1
 ```
 
 中身を見ていきましょう。

@@ -378,12 +378,10 @@ Consoleに出力された`https://sepolia.etherscan.io/...`のアドレスをク
 
 - あなたのSepolia Test Network上のトランザクションの履歴が参照できます。
 
-次に、[テストネット用の OpenSea](https://testnets.opensea.io/)  にアクセスして、MintしたNFTがあなたのSepolia Test Networkのアドレスに紐づいているか確認してみましょう。
+次に、[gemcase(NFTで閲覧できるサービス)](https://gemcase.vercel.app/) にアクセスして、MintしたNFTがあなたのSepolia Test Networkのアドレスに紐づいているか確認してみましょう。
 
 
-Consoleに出力された`currentAccount:`に続く、`0x..`のアドレスをOpenSeaのWebサイトに貼り付けて、結果が表示されたら、画面右上の`Profile`メニューを選択してください。それから、ご自身のアカウントを開いて、NFTを確認してみましょう。
-
-[opensea](https://testnets.opensea.io/)にコントラクトアドレスを入れて、調べるほうがもしかしたら早いかもしれないので、そちらも調べてみましょう。
+Consoleに出力された`currentAccount:`に続く、`0x..`のアドレスをgemcaseのWebサイトに貼り付けて、結果が表示されたら、画面右上の`Profile`メニューを選択してください。それから、ご自身のアカウントを開いて、NFTを確認してみましょう。
 
 ### 🚨 コントラクトを再びデプロイする際の注意点
 
@@ -430,7 +428,7 @@ Consoleに出力された`currentAccount:`に続く、`0x..`のアドレスをOp
 
 NFTをMintできるWebアプリケーションはほぼ完成です!
 
-OpenSeaのリンクを`#ethereum`に貼り付けて、あなたのNFTをシェアしてください 😊
+gemcaseのリンクを`#ethereum`に貼り付けて、あなたのNFTをシェアしてください 😊
 
 あなたの作ったNFTがどんなものなのか気になります ✨
 
