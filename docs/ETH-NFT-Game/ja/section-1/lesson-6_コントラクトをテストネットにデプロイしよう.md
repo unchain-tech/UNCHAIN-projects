@@ -328,17 +328,20 @@ Sepolia Etherscanはデプロイを追跡する最も簡単な方法であり、
 
 - Etherscanにトランザクションが表示されないということは、まだ処理中か、何か問題があったということになります。
 
-### 🐝 OpenSea で NFT を確認する
+### 🐝 gemcase で NFT を確認する
 
-最後に、コントラクトのアドレス(`Contract deployed to`に続く`0x..`)をターミナルからコピーして、[テストネット用の OpenSea](https://testnets.opensea.io/) に貼り付け、検索してみてください。
+![](/public/images/ETH-NFT-Game/section-1/1_5_22.png)
 
-下記のように、あなたのNFTもOpenSeaで確認できたでしょうか？（画像は学習コンテンツ制作時に利用したRarible rinkeby testnetのものになります）。
-![](/public/images/ETH-NFT-Game/section-1/1_5_16.png)
+そして`View`ボタンをクリックするとコレクションの詳細が表示されます。
 
-キャラクターをクリックして、右下に表示されている`Properties`を確認してみましょう。
+私のコレクションはこのような形で表示されます。
 
-![](/public/images/ETH-NFT-Game/section-1/1_5_17.png)（画像は学習コンテンツ制作時に利用したRarible rinkeby testnetのものになります）。
-キャラクターの攻撃力(`Attack Damage`)やHPがOpenSeaに反映されています。
+![](/public/images/ETH-NFT-Game/section-1/1_5_19.png)
+
+下にスクロールすると他のコレクションが見れるのでV`View`ボタンをクリックしてみましょう。
+
+![](/public/images/ETH-NFT-Game/section-1/1_5_20.png)
+![](/public/images/ETH-NFT-Game/section-1/1_5_21.png)
 
 OpenSeaなどのNFTマーケットプレイスはキャラクター属性を適切にレンダリングしてくれます 😊
 
@@ -406,6 +409,6 @@ NFTの実用性は、革新的な技術です。
 ---
 
 おめでとうございます!　セクション1は終了です!
-OpenSeaのリンクを`#ethereum`にシェアしてください 😊
+gemcaseのリンクを`#ethereum`にシェアしてください 😊
 あなたの作ったNFTが気になります!　 ✨
 次のレッスンに進んで、実際にゲームのロジックを構築していきましょう 🎉
