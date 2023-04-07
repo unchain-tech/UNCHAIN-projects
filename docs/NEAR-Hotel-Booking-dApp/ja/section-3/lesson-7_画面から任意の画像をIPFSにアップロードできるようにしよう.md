@@ -111,116 +111,118 @@ PINATA_API_Secret=<YOUR_API_SECRET>
 新しく追加した`UploadButton.js`に以下のコードを追加してください！ ！
 
 ```js
-import { useState } from 'react';
-import Button from "react-bootstrap/Button";
-import Form from 'react-bootstrap/Form';
-import Spinner from 'react-bootstrap/Spinner';
 import axios from 'axios';
 import FormData from 'form-data';
+import { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Spinner from 'react-bootstrap/Spinner';
 
 // APIにアクセスするためのベースとなるURL
-const baseAPIUrl = "https://api.pinata.cloud";
+const baseAPIUrl = 'https://api.pinata.cloud';
 
 // dev-account.envファイルから読み込む環境変数
-const {
-    PINATA_API_Key,
-    PINATA_API_Secret
-} = process.env;
+const { PINATA_API_Key, PINATA_API_Secret } = process.env;
 
 /**
  * UploadButton コンポーネント
  */
 const UploadButton = () => {
-    // ファイル名を格納するステート変数
-    const [ fileName, setFileName ] = useState('select a file');
-    // ファイル本体のデータを格納するステート変数
-    const [ file, setFile] = useState({});
-    // 画像アップロード中であるかどうかを保持するためのフラグ用のステート変数
-    const [ pendingFlg, setPendingFlg ] = useState(false);
+  // ファイル名を格納するステート変数
+  const [fileName, setFileName] = useState('select a file');
+  // ファイル本体のデータを格納するステート変数
+  const [file, setFile] = useState({});
+  // 画像アップロード中であるかどうかを保持するためのフラグ用のステート変数
+  const [pendingFlg, setPendingFlg] = useState(false);
 
-    /**
-     * ファイル名とファイル本体を保存するための関数
-     */
-    const saveFile = (e) => {
-        setFile(e.target.files[0]);
-        setFileName(e.target.files[0].name);
-    };
+  /**
+   * ファイル名とファイル本体を保存するための関数
+   */
+  const saveFile = (e) => {
+    setFile(e.target.files[0]);
+    setFileName(e.target.files[0].name);
+  };
 
-    /**
-     * PinataのAPIを利用してIPFSに画像をアップロードするメソッド
-     * @param {*} event
-     */
-    const pinataUploadFile = async (event) => {
-        // FormDataオブジェクトを生成
-        let postData = new FormData();
-        // APIを使って送信するリクエストパラメータを作成する。
-        postData.append('file', file);
-        postData.append('pinataOptions', '{"cidVersion": 1}');
-        postData.append('pinataMetadata', `{"name": "${fileName}", "keyvalues": {"company": "nearHotel"}}`);
-
-        try {
-            // フラグ ON
-            setPendingFlg(true);
-            // POSTメソッドでデータを送信する
-            const res = await axios.post(
-                // APIのURL
-                baseAPIUrl + '/pinning/pinFileToIPFS',
-                // リクエストパラメータ
-                postData ,
-                // ヘッダー情報
-                {
-                    headers: {
-                        'accept': 'application/json',
-                        'pinata_api_key': `${PINATA_API_Key}`,
-                        'pinata_secret_api_key': `${PINATA_API_Secret}`,
-                        'Content-Type': `multipart/form-data; boundary=${postData}`,
-                    },
-                });
-            console.log(res);
-            // CIDを取得
-            console.log("CID:", res.data.IpfsHash);
-            // フラグ OFF
-            setPendingFlg(false);
-            // CIDを出力
-            alert(`upload Successfull!! CID:${res.data.IpfsHash}`);
-        } catch (e) {
-            console.error("upload failfull.....：", e);
-            alert("upload failfull.....");
-        }
-    }
-
-    return (
-        <>
-            {pendingFlg ? (
-                {/* 画像データアップロード中に表示するSpinnerコンポーネント */}
-                <Spinner animation="border" role="status">
-                    <span className="visually-hidden">Please wait...</span>
-                </Spinner>
-            ):(
-                <>
-                    {/* Formコンポーネント */}
-                    <Form.Group
-                        controlId="formFile"
-                        className="mb-3"
-                        onChange={(e) => saveFile(e)}
-                    >
-                        <Form.Label>Please drop or select</Form.Label>
-                        <Form.Control type="file" />
-                    </Form.Group>
-                    {/* Buttonコンポーネント */}
-                    <Button
-                        onClick={(e) => pinataUploadFile(e)}
-                        variant='info'
-                    >
-                        Upload Image
-                    </Button>
-                </>
-            )}
-        </>
+  /**
+   * PinataのAPIを利用してIPFSに画像をアップロードするメソッド
+   * @param {*} event
+   */
+  const pinataUploadFile = async (event) => {
+    // FormDataオブジェクトを生成
+    let postData = new FormData();
+    // APIを使って送信するリクエストパラメータを作成する。
+    postData.append('file', file);
+    postData.append('pinataOptions', '{"cidVersion": 1}');
+    postData.append(
+      'pinataMetadata',
+      `{"name": "${fileName}", "keyvalues": {"company": "nearHotel"}}`,
     );
+
+    try {
+      // フラグ ON
+      setPendingFlg(true);
+      // POSTメソッドでデータを送信する
+      const res = await axios.post(
+        // APIのURL
+        baseAPIUrl + '/pinning/pinFileToIPFS',
+        // リクエストパラメータ
+        postData,
+        // ヘッダー情報
+        {
+          headers: {
+            accept: 'application/json',
+            pinata_api_key: `${PINATA_API_Key}`,
+            pinata_secret_api_key: `${PINATA_API_Secret}`,
+            'Content-Type': `multipart/form-data; boundary=${postData}`,
+          },
+        },
+      );
+      console.log(res);
+      // CIDを取得
+      console.log('CID:', res.data.IpfsHash);
+      // フラグ OFF
+      setPendingFlg(false);
+      // CIDを出力
+      alert(`upload Successfull!! CID:${res.data.IpfsHash}`);
+    } catch (e) {
+      console.error('upload failfull.....：', e);
+      alert('upload failfull.....');
+    }
+  };
+
+  return (
+    <>
+      {pendingFlg ? (
+          {/* 画像データアップロード中に表示するSpinnerコンポーネント */}
+          <Spinner animation="border" role="status">
+              <span className="visually-hidden">Please wait...</span>
+          </Spinner>
+      ):(
+          <>
+            {/* Formコンポーネント */}
+            <Form.Group
+              controlId="formFile"
+              className="mb-3"
+              onChange={(e) => saveFile(e)}
+            >
+              <Form.Label>Please drop or select</Form.Label>
+              <Form.Control type="file" />
+            </Form.Group>
+            {/* Buttonコンポーネント */}
+            <Button
+              onClick={(e) => pinataUploadFile(e)}
+              variant='info'
+            >
+              Upload Image
+            </Button>
+          </>
+      )}
+    </>
+  );
 }
 
 export default UploadButton;
+
 ```
 
 下記のようなフォームとボタンが表示される様になります！
@@ -242,32 +244,32 @@ const { PINATA_API_Key, PINATA_API_Secret } = process.env;
 
 ```js
 <>
-            {pendingFlg ? (
-                {/* 画像データアップロード中に表示するSpinnerコンポーネント */}
-                <Spinner animation="border" role="status">
-                    <span className="visually-hidden">Please wait...</span>
-                </Spinner>
-            ):(
-                <>
-                    {/* Formコンポーネント */}
-                    <Form.Group
-                        controlId="formFile"
-                        className="mb-3"
-                        onChange={(e) => saveFile(e)}
-                    >
-                        <Form.Label>Please drop or select</Form.Label>
-                        <Form.Control type="file" />
-                    </Form.Group>
-                    {/* Buttonコンポーネント */}
-                    <Button
-                        onClick={(e) => pinataUploadFile(e)}
-                        variant='info'
-                    >
-                        Upload Image
-                    </Button>
-                </>
-            )}
-        </>
+  {pendingFlg ? (
+      {/* 画像データアップロード中に表示するSpinnerコンポーネント */}
+      <Spinner animation="border" role="status">
+          <span className="visually-hidden">Please wait...</span>
+      </Spinner>
+  ):(
+      <>
+        {/* Formコンポーネント */}
+        <Form.Group
+          controlId="formFile"
+          className="mb-3"
+          onChange={(e) => saveFile(e)}
+        >
+          <Form.Label>Please drop or select</Form.Label>
+          <Form.Control type="file" />
+        </Form.Group>
+        {/* Buttonコンポーネント */}
+        <Button
+          onClick={(e) => pinataUploadFile(e)}
+          variant='info'
+        >
+          Upload Image
+        </Button>
+      </>
+  )}
+</>
 ```
 
 **Upload Image**ボタンを押すと、PinataのAPIを呼び出して画像をアップロードするメソッドを実行する様にしています。
@@ -283,42 +285,41 @@ const pinataUploadFile = async (event) => {
   // FormDataオブジェクトを生成
   let postData = new FormData();
   // APIを使って送信するリクエストパラメータを作成する。
-  postData.append("file", file);
-  postData.append("pinataOptions", '{"cidVersion": 1}');
+  postData.append('file', file);
+  postData.append('pinataOptions', '{"cidVersion": 1}');
   postData.append(
-    "pinataMetadata",
-    `{"name": "${fileName}", "keyvalues": {"company": "nearHotel"}}`
+    'pinataMetadata',
+    `{"name": "${fileName}", "keyvalues": {"company": "nearHotel"}}`,
   );
-
   try {
     // フラグ ON
     setPendingFlg(true);
     // POSTメソッドでデータを送信する
     const res = await axios.post(
       // APIのURL
-      baseAPIUrl + "/pinning/pinFileToIPFS",
+      baseAPIUrl + '/pinning/pinFileToIPFS',
       // リクエストパラメータ
       postData,
       // ヘッダー情報
       {
         headers: {
-          accept: "application/json",
+          accept: 'application/json',
           pinata_api_key: `${PINATA_API_Key}`,
           pinata_secret_api_key: `${PINATA_API_Secret}`,
-          "Content-Type": `multipart/form-data; boundary=${postData}`,
+          'Content-Type': `multipart/form-data; boundary=${postData}`,
         },
-      }
+      },
     );
     console.log(res);
     // CIDを取得
-    console.log("CID:", res.data.IpfsHash);
+    console.log('CID:', res.data.IpfsHash);
     // フラグ OFF
     setPendingFlg(false);
     // CIDを出力
     alert(`upload Successfull!! CID:${res.data.IpfsHash}`);
   } catch (e) {
-    console.error("upload failfull.....：", e);
-    alert("upload failfull.....");
+    console.error('upload failfull.....：', e);
+    alert('upload failfull.....');
   }
 };
 ```
@@ -375,21 +376,20 @@ export default Upload;
 まずは、`NavBar.js`から修正します！ 次のように修正してください。
 
 ```diff
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
+import { useEffect, useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useNavigate } from 'react-router-dom';
 
-import { login, logout, accountBalance } from "../near/utils";
+import { accountBalance, login, logout } from '../near/utils';
 
 const NavBar = () => {
   const navigate = useNavigate();
-  const [balance, setBalance] = useState("0");
+  const [balance, setBalance] = useState('0');
 
-  // ログインしたアカウントのNEAR残高を取得
   const getBalance = async () => {
     if (window.accountId) {
       setBalance(await accountBalance());
@@ -401,16 +401,16 @@ const NavBar = () => {
   });
 
   return (
-    <Navbar collapseOnSelect expand='lg' bg='dark' variant='dark'>
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href='/'>HOTEL BOOKING</Navbar.Brand>
-        <Navbar.Toggle aria-controls='responsive-navbar-nav' />
-        <Navbar.Collapse id='responsive-navbar-nav'>
-          <Nav className='me-auto'></Nav>
+        <Navbar.Brand href="/">HOTEL BOOKING</Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="me-auto"></Nav>
           <Nav>
             {/* NEAR Walletに接続されていない時 */}
             {!window.accountId && (
-              <Button onClick={login} variant='outline-light'>
+              <Button onClick={login} variant="outline-light">
                 Connect Wallet
               </Button>
             )}
@@ -420,7 +420,7 @@ const NavBar = () => {
                 {/* 残高を表示 */}
                 <NavDropdown
                   title={`${balance} NEAR`}
-                  id='collasible-nav-dropdown'
+                  id="collasible-nav-dropdown"
                 >
                   {/* NEAR testnet アカウントページへのリンク */}
                   <NavDropdown.Item
@@ -428,7 +428,7 @@ const NavBar = () => {
                   >
                     {window.accountId}
                   </NavDropdown.Item>
-                  {/* 予約一覧の画面へ遷移 */}
+                  {/* 予約一覧へのページ遷移 */}
                   <NavDropdown.Item onClick={() => navigate(`/booked-list`)}>
                     Booked List
                   </NavDropdown.Item>
@@ -444,14 +444,14 @@ const NavBar = () => {
 
                 {/* ホテルのオーナー向けのメニューを表示 */}
                 <NavDropdown
-                  title='For hotel owners'
-                  id='collasible-nav-dropdown'
+                  title="For hotel owners"
+                  id="collasible-nav-dropdown"
                 >
-                  {/* 部屋を管理する画面へ遷移 */}
+                  {/* 部屋を管理するページへ遷移 */}
                   <NavDropdown.Item onClick={() => navigate(`/manage-rooms`)}>
                     Manage Rooms
                   </NavDropdown.Item>
-                  {/* 予約を管理する画面へ遷移 */}
+                  {/* 予約を管理するページへ遷移 */}
                   <NavDropdown.Item
                     onClick={() => navigate(`/manage-bookings`)}
                   >
@@ -459,9 +459,9 @@ const NavBar = () => {
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
                   {/* HOMEへのリンク */}
-                  <NavDropdown.Item href='/'>Home</NavDropdown.Item>
+                  <NavDropdown.Item href="/">Home</NavDropdown.Item>
 +                 {/* UPLOADへのリンク */}
-+                 <NavDropdown.Item href='/upload'>Upload</NavDropdown.Item>
++                 <NavDropdown.Item href="/upload">Upload</NavDropdown.Item>
                 </NavDropdown>
               </>
             )}
@@ -480,26 +480,27 @@ export default NavBar;
 importの部分と`Routes`コンポーネントを次の様に修正してください。
 
 ```diff
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./assets/js/pages/Home";
-import Search from "./assets/js/pages/Search";
-import GuestBookedList from "./assets/js/pages/GuestBookedList";
-import ManageRooms from "./assets/js/pages/ManageRooms";
-import ManageBookings from "./assets/js/pages/ManageBookings";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import NavBar from './assets/js/components/NavBar';
+import GuestBookedList from './assets/js/pages/GuestBookedList';
+import Home from './assets/js/pages/Home';
+import ManageBookings from './assets/js/pages/ManageBookings';
+import ManageRooms from './assets/js/pages/ManageRooms';
+import Search from './assets/js/pages/Search';
 +import Upload from "./assets/js/pages/Upload";
-import NavBar from "./assets/js/components/NavBar";
 
 const App = () => {
   return (
     <BrowserRouter>
       <NavBar />
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/search/:date' element={<Search />} />
-        <Route path='/booked-list' element={<GuestBookedList />} />
-        <Route path='/manage-rooms' element={<ManageRooms />} />
-        <Route path='/manage-bookings' element={<ManageBookings />} />
-+       <Route path='/upload' element={<Upload />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/search/:date" element={<Search />} />
+        <Route path="/booked-list" element={<GuestBookedList />} />
+        <Route path="/manage-rooms" element={<ManageRooms />} />
+        <Route path="/manage-bookings" element={<ManageBookings />} />
++       <Route path="/upload" element={<Upload />} />
       </Routes>
     </BrowserRouter>
   );

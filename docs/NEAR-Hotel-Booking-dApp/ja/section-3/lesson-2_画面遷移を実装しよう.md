@@ -39,18 +39,16 @@ yarn add --dev react-bootstrap bootstrap bootstrap-icons react-router-dom　
 `frontend/index.js`
 
 ```javascript
-import React from "react";
-import { createRoot } from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
-import "bootstrap";
-import "bootstrap-icons/font/bootstrap-icons.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 
-import App from "./App";
+import App from './App';
+import { initContract } from './assets/js/near/utils';
 
-import { initContract } from "./assets/js/near/utils";
-
-const container = document.querySelector("#root");
+const container = document.querySelector('#root');
 const root = createRoot(container);
 
 window.nearInitPromise = initContract()
@@ -58,7 +56,7 @@ window.nearInitPromise = initContract()
     <BrowserRouter>
       <App />
     </BrowserRouter>;
-    root.render(<App tab='home' />);
+    root.render(<App tab="home" />);
   })
   .catch(console.error);
 
@@ -67,41 +65,43 @@ window.nearInitPromise = initContract()
 画面遷移を実行するためのライブラリと、フレームワークをインポートしています。
 
 ```javascript
-import { BrowserRouter } from "react-router-dom";
-import "bootstrap";
-import "bootstrap-icons/font/bootstrap-icons.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 ```
 
 次に、`frontend/App.js`を以下のように書き換えます。
 `frontend/App.js`
 
 ```javascript
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./assets/js/pages/Home";
-import Search from "./assets/js/pages/Search";
-import GuestBookedList from "./assets/js/pages/GuestBookedList";
-import ManageRooms from "./assets/js/pages/ManageRooms";
-import ManageBookings from "./assets/js/pages/ManageBookings";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import NavBar from "./assets/js/components/NavBar";
+import NavBar from './assets/js/components/NavBar';
+import GuestBookedList from './assets/js/pages/GuestBookedList';
+import Home from './assets/js/pages/Home';
+import ManageBookings from './assets/js/pages/ManageBookings';
+import ManageRooms from './assets/js/pages/ManageRooms';
+import Search from './assets/js/pages/Search';
 
 const App = () => {
   return (
     <BrowserRouter>
       <NavBar />
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/search/:date' element={<Search />} />
-        <Route path='/booked-list' element={<GuestBookedList />} />
-        <Route path='/manage-rooms' element={<ManageRooms />} />
-        <Route path='/manage-bookings' element={<ManageBookings />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/search/:date" element={<Search />} />
+        <Route path="/booked-list" element={<GuestBookedList />} />
+        <Route path="/manage-rooms" element={<ManageRooms />} />
+        <Route path="/manage-bookings" element={<ManageBookings />} />
       </Routes>
     </BrowserRouter>
   );
 };
 
 export default App;
+
 ```
 
 return文の中で、ナビゲーションバーを実装する`<NavBar />`を呼び出しています。各ルートの設定の前に呼び出すことで、どのページに遷移しても必ずナビゲーションバーが表示されるようになります。
@@ -111,11 +111,11 @@ return文の中で、ナビゲーションバーを実装する`<NavBar />`を�
 
 ```javascript
 <Routes>
-  <Route path='/' element={<Home />} />
-  <Route path='/search/:date' element={<Search />} />
-  <Route path='/booked-list' element={<GuestBookedList />} />
-  <Route path='/manage-rooms' element={<ManageRooms />} />
-  <Route path='/manage-bookings' element={<ManageBookings />} />
+  <Route path="/" element={<Home />} />
+  <Route path="/search/:date" element={<Search />} />
+  <Route path="/booked-list" element={<GuestBookedList />} />
+  <Route path="/manage-rooms" element={<ManageRooms />} />
+  <Route path="/manage-bookings" element={<ManageBookings />} />
 </Routes>
 ```
 
@@ -127,21 +127,20 @@ return文の中で、ナビゲーションバーを実装する`<NavBar />`を�
 `frontend/assets/js/components/NavBar.js`
 
 ```javascript
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
+import { useEffect, useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useNavigate } from 'react-router-dom';
 
-import { login, logout, accountBalance } from "../near/utils";
+import { accountBalance, login, logout } from '../near/utils';
 
 const NavBar = () => {
   const navigate = useNavigate();
-  const [balance, setBalance] = useState("0");
+  const [balance, setBalance] = useState('0');
 
-  // ログインしたアカウントのNEAR残高を取得
   const getBalance = async () => {
     if (window.accountId) {
       setBalance(await accountBalance());
@@ -153,16 +152,16 @@ const NavBar = () => {
   });
 
   return (
-    <Navbar collapseOnSelect expand='lg' bg='dark' variant='dark'>
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href='/'>HOTEL BOOKING</Navbar.Brand>
-        <Navbar.Toggle aria-controls='responsive-navbar-nav' />
-        <Navbar.Collapse id='responsive-navbar-nav'>
-          <Nav className='me-auto'></Nav>
+        <Navbar.Brand href="/">HOTEL BOOKING</Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="me-auto"></Nav>
           <Nav>
             {/* NEAR Walletに接続されていない時 */}
             {!window.accountId && (
-              <Button onClick={login} variant='outline-light'>
+              <Button onClick={login} variant="outline-light">
                 Connect Wallet
               </Button>
             )}
@@ -172,7 +171,7 @@ const NavBar = () => {
                 {/* 残高を表示 */}
                 <NavDropdown
                   title={`${balance} NEAR`}
-                  id='collasible-nav-dropdown'
+                  id="collasible-nav-dropdown"
                 >
                   {/* NEAR testnet アカウントページへのリンク */}
                   <NavDropdown.Item
@@ -180,7 +179,7 @@ const NavBar = () => {
                   >
                     {window.accountId}
                   </NavDropdown.Item>
-                  {/* 予約一覧の画面へ遷移 */}
+                  {/* 予約一覧へのページ遷移 */}
                   <NavDropdown.Item onClick={() => navigate(`/booked-list`)}>
                     Booked List
                   </NavDropdown.Item>
@@ -196,14 +195,14 @@ const NavBar = () => {
 
                 {/* ホテルのオーナー向けのメニューを表示 */}
                 <NavDropdown
-                  title='For hotel owners'
-                  id='collasible-nav-dropdown'
+                  title="For hotel owners"
+                  id="collasible-nav-dropdown"
                 >
-                  {/* 部屋を管理する画面へ遷移 */}
+                  {/* 部屋を管理するページへ遷移 */}
                   <NavDropdown.Item onClick={() => navigate(`/manage-rooms`)}>
                     Manage Rooms
                   </NavDropdown.Item>
-                  {/* 予約を管理する画面へ遷移 */}
+                  {/* 予約を管理するページへ遷移 */}
                   <NavDropdown.Item
                     onClick={() => navigate(`/manage-bookings`)}
                   >
@@ -211,7 +210,7 @@ const NavBar = () => {
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
                   {/* HOMEへのリンク */}
-                  <NavDropdown.Item href='/'>Home</NavDropdown.Item>
+                  <NavDropdown.Item href="/">Home</NavDropdown.Item>
                 </NavDropdown>
               </>
             )}
@@ -231,7 +230,7 @@ export default NavBar;
 NEAR Walletへの接続や残高を取得する関数をインポートします。
 
 ```javascript
-import { login, logout, accountBalance } from "../near/utils";
+import { accountBalance, login, logout } from '../near/utils';
 ```
 
 NEAR Walletに接続をすると、`window.accountId`にアカウントIDが設定されます。ここでは、if文でチェックをして設定されていたらアカウントの残高を取得しています。
