@@ -122,7 +122,7 @@ impl Default for Contract {
 +                 for room_id in rooms.iter() {
 +                     let room = self.rooms_by_id.get(room_id).expect("ERR_NOT_FOUND_ROOM");
 +                     // 予約がなければ何もしない
-+                     if room.booked_info.len() == 0 {
++                     if room.booked_info.is_empty() {
 +                         continue;
 +                     }
 +                     // 予約された日付ごとに予約データを作成
@@ -130,12 +130,14 @@ impl Default for Contract {
 +                         // UsageStatusを複製
 +                         let status: UsageStatus;
 +                         match &room.status {
-+                             UsageStatus::Available => status = UsageStatus::Available,
++                             UsageStatus::Available => {
++                                 status = UsageStatus::Available;
++                             }
 +                             UsageStatus::Stay { check_in_date } => {
 +                                 if date == check_in_date.clone() {
 +                                     status = UsageStatus::Stay {
 +                                         check_in_date: check_in_date.clone(),
-+                                     }
++                                     };
 +                                 } else {
 +                                     status = UsageStatus::Available;
 +                                 }
@@ -186,7 +188,9 @@ impl Default for Contract {
 +         for (room_id, room) in self.rooms_by_id.iter() {
 +             match room.booked_info.get(&check_in_date) {
 +                 // 宿泊希望日に既に予約が入っていたら何もしない
-+                 Some(_) => continue,
++                 Some(_) => {
++                     continue;
++                 }
 +                 // 予約が入っていなかったら、部屋のデータを作成
 +                 None => {
 +                     let available_room = AvailableRoom {
@@ -211,12 +215,12 @@ impl Default for Contract {
 
 `get_booking_info_for_owner`メソッドは、オーナーが予約データ一覧を取得するために呼び出されます。
 前回のセクションで実装した、`get_rooms_registered_by_owner`メソッドと基本的な仕組みは一緒ですが、予約データごとにデータを作成する点が異なります。
-`rooms_by_id`から`get()`で取得した部屋が持つ、`booked_info`の長さを`len()`取得します。`booked_info`はデータ構造が`HashMap`であり、保存されている要素の個数が取得できます。要素が0であれば予約データが存在しないので、以降の処理をスキップしループ処理の先頭へ戻ります。
+`rooms_by_id`から`get()`で取得した部屋が持つ`booked_info`変数は、要素が存在しないかどうかを`is_empty()`で確認します。要素が0(空)であれば予約データが存在しないので、以降の処理をスキップしループ処理の先頭へ戻ります。
 
 ```rust
                     let room = self.rooms_by_id.get(room_id).expect("ERR_NOT_FOUND_ROOM");
                     // 予約がなければ何もしない
-                    if room.booked_info.len() == 0 {
+                    if room.booked_info.is_empty() {
                         continue;
                     }
                     // 予約された日付ごとに予約データを作成
