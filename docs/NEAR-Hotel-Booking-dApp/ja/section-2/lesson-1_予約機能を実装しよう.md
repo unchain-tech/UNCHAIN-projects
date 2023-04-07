@@ -215,7 +215,7 @@ impl Default for Contract {
 
 `get_booking_info_for_owner`メソッドは、オーナーが予約データ一覧を取得するために呼び出されます。
 前回のセクションで実装した、`get_rooms_registered_by_owner`メソッドと基本的な仕組みは一緒ですが、予約データごとにデータを作成する点が異なります。
-`rooms_by_id`から`get()`で取得した部屋が持つ`booked_info`変数は、要素が存在しないかどうかを`is_empty()`で確認します。要素が0(空)であれば予約データが存在しないので、以降の処理をスキップしループ処理の先頭へ戻ります。
+`rooms_by_id`から`get()`で取得した部屋が持つ`booked_info`変数は、要素が存在しないかどうかを`is_empty()`で確認します。要素が0であれば予約データが存在しないので、以降の処理をスキップしループ処理の先頭へ戻ります。
 
 ```rust
                     let room = self.rooms_by_id.get(room_id).expect("ERR_NOT_FOUND_ROOM");
