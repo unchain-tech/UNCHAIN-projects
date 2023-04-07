@@ -29,7 +29,7 @@
 ナビゲーションバーを作成するためのフレームワークと、画面遷移を実行するためのライブラリを以下のコマンドでインストールします。
 
 ```bash
-npm install react-bootstrap bootstrap bootstrap-icons react-router-dom　
+yarn add --dev react-bootstrap bootstrap bootstrap-icons react-router-dom　
 ```
 
 ### 🖥 画面遷移を実装しよう

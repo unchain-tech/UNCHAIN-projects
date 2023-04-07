@@ -15,7 +15,7 @@ IPFSへのファイルアップロードについては、デスクトップア�
 ※コマンドは`frontend`配下で実行してください！
 
 ```bash
-npm i axios form-data
+yarn add --dev axios form-data
 ```
 
 ### axios とは
