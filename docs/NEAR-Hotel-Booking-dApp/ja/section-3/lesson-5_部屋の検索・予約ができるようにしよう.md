@@ -8,18 +8,17 @@
 `frontend/asserts/js/pages/Home.js`
 
 ```js
-import React from "react";
-import FormDate from "../components/FormDate";
+import FormDate from '../components/FormDate';
 
 const Home = () => {
   return (
     <>
-      <div className='text-center' style={{ margin: "200px" }}>
+      <div className="text-center" style={{ margin: '200px' }}>
         <h1>Welcome.</h1>
         <h1>Select your stay dates and find a hotel!</h1>
         <FormDate />
       </div>
-      <div className='text-center'>
+      <div className="text-center">
         <p>
           Owners who wish to list their rooms should connect to the NEAR Wallet.
         </p>
@@ -49,7 +48,7 @@ export default Home;
 `App.js`
 
 ```javascript
-<Route path='/search/:date' element={<Search />} />
+<Route path="/search/:date" element={<Search />} />
 ```
 
 `/search`のパスに`:date`というキーワードを追加していました。
@@ -65,8 +64,8 @@ localhost:1234/search/2022-08-09
 `FormDate.js`
 
 ```javascript
-            // URLに入力された日付を入れて遷移先へ渡す
-            onClick={() => navigate(`/search/${date}`)}
+// URLに入力された日付を入れて遷移先へ渡す
+onClick={() => navigate(`/search/${date}`)}
 ```
 
 このように、検索された日付を遷移先に渡します。
@@ -79,14 +78,13 @@ localhost:1234/search/2022-08-09
 `frontend/asserts/js/pages/Search.js`
 
 ```js
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import Row from "react-bootstrap/Row";
+import { useEffect, useState } from 'react';
+import Row from 'react-bootstrap/Row';
+import { useParams } from 'react-router-dom';
 
-import Room from "../components/Room";
-import FormDate from "../components/FormDate";
-
-import { get_available_rooms, book_room } from "../../../near-api";
+import FormDate from '../components/FormDate';
+import Room from '../components/Room';
+import { book_room, get_available_rooms } from '../near/utils';
 
 const Search = () => {
   // URLから検索する日付を取得する
@@ -116,14 +114,14 @@ const Search = () => {
     <>
       {/* 日付を入力するフォームを表示 */}
       <FormDate />
-      <div className='text-center' style={{ margin: "20px" }}>
+      <div className="text-center" style={{ margin: '20px' }}>
         <h2>{date}</h2>
         {availableRooms.length === 0 ? (
           <h3>Sorry, no rooms found.</h3>
         ) : (
           <>
             {/* NEAR Walletに接続されている時 */}
-            {(window, accountId && <h3>{availableRooms.length} found.</h3>)}
+            {window.accountId && <h3>{availableRooms.length} found.</h3>}
             {/* NEAR Walletに接続していない時 */}
             {!window.accountId && (
               <h3>
@@ -145,6 +143,7 @@ const Search = () => {
 };
 
 export default Search;
+
 ```
 
 内容を見ていきましょう。

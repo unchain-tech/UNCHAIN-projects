@@ -35,36 +35,36 @@
 `frontend/assets/js/components/FormDate.js`
 
 ```js
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
+import { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import { useNavigate } from 'react-router-dom';
 
 const FormDate = () => {
   const navigate = useNavigate();
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState('');
 
   const isFormFilled = () => date;
   return (
     <Form>
       <Row
-        className='justify-content-center'
-        style={{ marginTop: "50px", marginBottom: "50px" }}
+        className="justify-content-center"
+        style={{ marginTop: '50px', marginBottom: '50px' }}
       >
-        <Col xs='auto'>
+        <Col xs="auto">
           <Form.Control
-            type='date'
-            htmlSize='10'
+            type="date"
+            htmlSize="10"
             onChange={(e) => {
               setDate(e.target.value);
             }}
           />
         </Col>
-        <Col xs='auto'>
+        <Col xs="auto">
           <Button
-            variant='secondary'
+            variant="secondary"
             // 検索する日付が入力されないとボタンを押せないように設定
             disabled={!isFormFilled()}
             // URLに入力された日付を入れて遷移先へ渡す
@@ -79,6 +79,7 @@ const FormDate = () => {
 };
 
 export default FormDate;
+
 ```
 
 このようなフォームとボタンが実装されます。
@@ -93,7 +94,7 @@ export default FormDate;
 
 ```javascript
 <Button
-  variant='secondary'
+  variant="secondary"
   // 検索する日付が入力されないとボタンを押せないように設定
   disabled={!isFormFilled()}
   // URLに入力された日付を入れて遷移先へ渡す
@@ -115,20 +116,19 @@ export default FormDate;
 `frontend/assets/js/components/AddRoom.js`
 
 ```js
-import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Modal from "react-bootstrap/Modal";
-
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
+import { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
 
 const AddRoom = ({ save }) => {
   // フォームで入力されたデータを取得・設定する
-  const [name, setName] = useState("");
+  const [name, setName] = useState('');
   const [beds, setBeds] = useState(0);
-  const [image, setImage] = useState("");
-  const [description, setDescription] = useState("");
-  const [location, setLocation] = useState("");
+  const [image, setImage] = useState('');
+  const [description, setDescription] = useState('');
+  const [location, setLocation] = useState('');
   const [price, setPrice] = useState(0);
   // 全ての項目が入力されたか確認する
   const isFormFilled = () =>
@@ -149,69 +149,69 @@ const AddRoom = ({ save }) => {
         <Form>
           <Modal.Body>
             {/* 部屋の名前 */}
-            <Form.Group className='mb-3' controlId='inputName'>
+            <Form.Group className="mb-3" controlId="inputName">
               <Form.Label>Name</Form.Label>
               <Form.Control
-                type='text'
+                type="text"
                 onChange={(e) => {
                   setName(e.target.value);
                 }}
-                placeholder='Enter name of Room'
+                placeholder="Enter name of Room"
               />
             </Form.Group>
             {/* 部屋の画像 */}
-            <Form.Group className='mb-3' controlId='inputUrl'>
+            <Form.Group className="mb-3" controlId="inputUrl">
               <Form.Label>Image</Form.Label>
               <Form.Control
-                type='text'
-                placeholder='Image URL'
+                type="text"
+                placeholder="Image URL"
                 onChange={(e) => {
                   setImage(e.target.value);
                 }}
               />
             </Form.Group>
             {/* ベッドの数 */}
-            <Form.Group className='mb-3' controlId='inputBeds'>
+            <Form.Group className="mb-3" controlId="inputBeds">
               <Form.Label>Beds</Form.Label>
               <Form.Control
-                type='number'
+                type="number"
                 min={1}
                 onChange={(e) => {
                   setBeds(e.target.value);
                 }}
-                placeholder='Number of Beds'
+                placeholder="Number of Beds"
               />
             </Form.Group>
             {/* 部屋の説明 */}
-            <Form.Group className='mb-3' controlId='inputDescription'>
+            <Form.Group className="mb-3" controlId="inputDescription">
               <Form.Label>Description</Form.Label>
               <Form.Control
-                as='textarea'
-                placeholder='Description'
-                style={{ height: "80px" }}
+                as="textarea"
+                placeholder="Description"
+                style={{ height: '80px' }}
                 onChange={(e) => {
                   setDescription(e.target.value);
                 }}
               />
             </Form.Group>
             {/* ホテルの場所 */}
-            <Form.Group className='mb-3' controlId='inputLocation'>
+            <Form.Group className="mb-3" controlId="inputLocation">
               <Form.Label>Location</Form.Label>
               <Form.Control
-                type='text'
-                placeholder='Location'
+                type="text"
+                placeholder="Location"
                 onChange={(e) => {
                   setLocation(e.target.value);
                 }}
               />
             </Form.Group>
             {/* 一泊の価格（NEAR） */}
-            <Form.Group className='mb-3' controlId='inputPrice'>
+            <Form.Group className="mb-3" controlId="inputPrice">
               <Form.Label>Price</Form.Label>
               <Form.Control
-                type='number'
+                type="number"
                 min={0}
-                placeholder='Price'
+                placeholder="Price"
                 onChange={(e) => {
                   setPrice(e.target.value);
                 }}
@@ -220,18 +220,17 @@ const AddRoom = ({ save }) => {
           </Modal.Body>
         </Form>
         <Modal.Footer>
-          <Button variant='outline-secondary' onClick={handleClose}>
+          <Button variant="outline-secondary" onClick={handleClose}>
             Close
           </Button>
           <Button
-            variant='dark'
+            variant="dark"
             disabled={!isFormFilled()}
             onClick={() => {
               save({
                 name,
                 image,
                 beds,
-                image,
                 description,
                 location,
                 price,
@@ -252,6 +251,7 @@ AddRoom.propTypes = {
 };
 
 export default AddRoom;
+
 ```
 
 このようなフォームが実装されます。
@@ -261,7 +261,7 @@ export default AddRoom;
 追加した内容を見ていきましょう。
 
 ```javascript
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 const AddRoom = ({ save }) => {
 
@@ -335,15 +335,12 @@ React Bootstrapの[Modals](https://react-bootstrap.netlify.app/components/modal/
 `frontend/assets/js/components/Room.js`
 
 ```js
-import React from "react";
-import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Image from "react-bootstrap/Image";
-
-import PropTypes from "prop-types";
-
-import { formatNearAmount } from "near-api-js/lib/utils/format";
+import { formatNearAmount } from 'near-api-js/lib/utils/format';
+import PropTypes from 'prop-types';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Image from 'react-bootstrap/Image';
+import Row from 'react-bootstrap/Row';
 
 const Room = ({ room, booking }) => {
   // roomオブジェクトからデータを取得
@@ -356,10 +353,10 @@ const Room = ({ room, booking }) => {
   };
 
   return (
-    <Row style={{ padding: "20px" }}>
+    <Row style={{ padding: '20px' }}>
       <Col xs={1}></Col>
       <Col xs={2}>
-        <Image src={image} alt={name} width='300' fluid />
+        <Image src={image} alt={name} width="300" fluid />
       </Col>
       <Col xs={4}>
         <h4>{owner_id}</h4>
@@ -374,7 +371,7 @@ const Room = ({ room, booking }) => {
       <Col xs={3}>
         <h6>1 night</h6>
         <Button
-          variant='outline-dark'
+          variant="outline-dark"
           disabled={!window.accountId}
           onClick={handleBooking}
         >
@@ -439,7 +436,7 @@ return文の中で、実際にレイアウトの設定を行なっています�
 
 ```javascript
 <Button
-  variant='outline-dark'
+  variant="outline-dark"
   disabled={!window.accountId}
   onClick={handleBooking}
 >
