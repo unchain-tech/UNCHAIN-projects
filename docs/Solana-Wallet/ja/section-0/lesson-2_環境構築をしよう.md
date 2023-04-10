@@ -6,6 +6,8 @@
 
 `GitHub`のアカウントをお持ちの方は、[こちら](https://github.com/unchain-dev/solana-wallet-starter-project) から、フロントエンドの基盤となるリポジトリをあなたの`GitHub`にフォークしましょう。フォークの方法は、[こちら](https://denno-sekai.com/github-fork/) を参照してください。
 
+<!-- TODO: fork時に、mainブランチのみをチェックする文言を追加する -->
+
 あなたの`GitHub`アカウントにフォークした`solana-wallet-starter-frontend`リポジトリを、ローカル環境にクローンしてください。
 
 `Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。

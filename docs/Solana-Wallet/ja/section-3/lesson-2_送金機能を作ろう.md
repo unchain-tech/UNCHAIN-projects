@@ -168,6 +168,14 @@ await refreshBalance();
 import { Keypair, Connection, clusterApiUrl, LAMPORTS_PER_SOL, SystemProgram, PublicKey, Transaction, sendAndConfirmTransaction } from "@solana/web3.js";
 ```
 
+トランザクションの結果を保存しておくステートを定義します。
+
+```javascript
+const [balance, setBalance] = useState(null);
+// 以下の行を追加
+const [transactionSig, setTransactionSig] = useState("");
+```
+
 送金処理を行う`handleTransfer`関数を定義し、中身を書いていきましょう。
 
 ```javascript
