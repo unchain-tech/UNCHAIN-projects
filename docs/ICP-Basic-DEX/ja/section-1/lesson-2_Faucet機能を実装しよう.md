@@ -399,89 +399,101 @@ touch ./scripts/test.sh
 ```bash
 #!/bin/bash
 
-dfx identity use default
+compare_result() {
+    local label=$1
+    local expect=$2
+    local result=$3
 
+    if [ "$expect" = "$result" ]; then
+        echo "$label: OK"
+        return 0
+    else
+        echo "$label: ERR"
+        diff <(echo $expect) <(echo $result)
+        return 1
+    fi
+}
+
+TEST_STATUS=0
+
+# ===== 準備 =====
+dfx stop
+rm -rf .dfx
+dfx start --clean --background
+
+# ユーザーの準備
+dfx identity use default
 export ROOT_PRINCIPAL=$(dfx identity get-principal)
 
-# ===== CREATE demo user =====
-dfx identity new --disable-encryption user1
+# `||（OR演算子）`：左側のコマンドが失敗（終了ステータス0以外）した場合、右側のコマンドが実行される
+## 既にuser1が存在する場合、`dfx identity new user1`コマンドは実行エラーとなってしまうので、対策として`|| true`を使用
+dfx identity new user1 --disable-encryption || true
 dfx identity use user1
 export USER1_PRINCIPAL=$(dfx identity get-principal)
 
-dfx identity new --disable-encryption user2
+dfx identity new user2 --disable-encryption || true
 dfx identity use user2
 export USER2_PRINCIPAL=$(dfx identity get-principal)
 
-# Set default user
 dfx identity use default
 
-# ===== SETUP Token Canister =====
+# Tokenキャニスターの準備
 dfx deploy GoldDIP20 --argument='("Token Gold Logo", "Token Silver", "TGLD", 8, 10_000_000_000_000_000, principal '\"$ROOT_PRINCIPAL\"', 0)'
 dfx deploy SilverDIP20 --argument='("Token Silver Logo", "Token Silver", "TSLV", 8, 10_000_000_000_000_000, principal '\"$ROOT_PRINCIPAL\"', 0)'
-
 export GoldDIP20_PRINCIPAL=$(dfx canister id GoldDIP20)
 export SilverDIP20_PRINCIPAL=$(dfx canister id SilverDIP20)
 
-# ===== SETUP faucet Canister =====
+# Faucetキャニスターの準備
 dfx deploy faucet
 export FAUCET_PRINCIPAL=$(dfx canister id faucet)
 
-# Pooling tokens
+## トークンをfaucetキャニスターにプールする
 dfx canister call GoldDIP20 mint '(principal '\"$FAUCET_PRINCIPAL\"', 100_000)'
 dfx canister call SilverDIP20 mint '(principal '\"$FAUCET_PRINCIPAL\"', 100_000)'
 
-# ===== TEST faucet =====
-echo -e '\n\n#------ faucet ------------'
+# ===== テスト =====
+# user1がトークンを取得する
 dfx identity use user1
-echo -n "getToken    >  " \
-  && dfx canister call faucet getToken '(principal '\"$GoldDIP20_PRINCIPAL\"')'
-echo -n "balanceOf   >  " \
-  && dfx canister call GoldDIP20 balanceOf '(principal '\"$USER1_PRINCIPAL\"')'
+echo '===== getToken ====='
+EXPECT="(variant { Ok = 1_000 : nat })"
+RESULT=`dfx canister call faucet getToken '(principal '\"$GoldDIP20_PRINCIPAL\"')'` 
+compare_result "return 1_000" "$EXPECT" "$RESULT" || TEST_STATUS=1
 
-echo -e '#------ faucet { Err = variant { AlreadyGiven } } ------------'
-dfx canister call faucet getToken '(principal '\"$GoldDIP20_PRINCIPAL\"')'
-
-echo -e
-dfx identity use user2
-echo -n "getTOken    >  " \
-  && dfx canister call faucet getToken '(principal '\"$SilverDIP20_PRINCIPAL\"')'
-echo -n "balanceOf   >  " \
-  && dfx canister call SilverDIP20 balanceOf '(principal '\"$USER2_PRINCIPAL\"')'
-
+EXPECT="(variant { Err = variant { AlreadyGiven } })"
+RESULT=`dfx canister call faucet getToken '(principal '\"$GoldDIP20_PRINCIPAL\"')'` 
+compare_result "return Err AlreadyGiven" "$EXPECT" "$RESULT" || TEST_STATUS=1
 
 # ===== 後始末 =====
 dfx identity use default
 dfx identity remove user1
 dfx identity remove user2
-```
-
-このテストでは、3人のユーザーを使用します。
-
-- `default` : DIP20キャニスターとFaucetキャニスターをデプロイする
-- `user1`, `user2` : トークンを取得する
-
-やっていることは、テストで使用するユーザーを作成してキャニスターをデプロイし、`getToken`関数をコールしてトークンを取得します。最後に`balanceOf`関数をコールして残高を確認した後ユーザーを削除します。
-
-では、テストを実行してみましょう。今回はターミナルを2つ開いて行います。スクリプトの実行結果と、バックグラウンドで実行されているdfxの出力するログが被ってしまい、結果が分かりにくくなるのを避けるためです。まずは、バックグラウンドの実行を止め、再度キャニスター実行環境を起動しましょう。
-
-[Terminal A]
-
-予期せぬエラーを防ぐため、一度実行環境をリセットします。前回のレッスンで起動したキャニスター実行環境を、`dfx stop`コマンドで止めます。次に、`rm`コマンドで以前のコンパイル時に生成されたディレクトリを一度削除します。
-
-```bash
 dfx stop
-rm -rf .dfx
+
+# ===== テスト結果の確認 =====
+echo '===== Result ====='
+if [ $TEST_STATUS -eq 0 ]; then
+  echo '"PASS"'
+  exit 0
+else
+  echo '"FAIL"'
+  exit 1
+fi
 ```
 
-新たに実行環境を起動します。
+このプロジェクトでは、テストに3人のユーザーを使用します。
 
-```bash
-dfx start --clean
-```
+- `default` : 全てのキャニスターをデプロイする（キャニスターの所有者）
+- `user1`, `user2` : DEXアプリケーションを使用する
 
-続いて、別のターミナルを開きテストを実行します。
+スクリプトの処理を簡単に説明します。テストで使用するユーザーを作成してキャニスターをデプロイし、`getToken`関数をコールしてトークンを取得します。関数を実行した際に発生した結果と、期待する値を比較して`TEST_STATUS`の値を決定しています。値が一致していたらステータスは0のままです。値が違う場合（エラー）は、ステータスが1に設定されます。
 
-[Terminal B]
+値を比較しているのは、`compare_result`関数です。
+
+全てのテストを実行し終えた時、最後に結果の確認を行ないます。`TEST_STATUS`の値をチェックして["PASS"]または["FAIL"]を出力します。
+
+スクリプトの詳しい文法の説明は省略させていただきますので、ぜひご自身で調べてみてください。出力結果を色分けする方法などもあるので、カスタマイズしてみるのも楽しいでしょう！
+
+では、実際にテストを実行してみましょう。ターミナルを開き、作成したスクリプトを走らせます。
 
 ```bash
 bash ./scripts/test.sh
@@ -489,28 +501,27 @@ bash ./scripts/test.sh
 
 実行結果は以下のように出力されるでしょう。
 
-[Terminal B]
-
 ```bash
-#------ faucet ------------
-Using identity: "user1".
-getToken    >  (variant { Ok = 1_000 : nat })
-balanceOf   >  (1_000 : nat)
-#------ faucet { Err = variant { AlreadyGiven } } ------------
-(variant { Err = variant { AlreadyGiven } })
+# キャニスターデプロイの出力結果は省略しています...
 
-Using identity: "user2".
-getTOken    >  (variant { Ok = 1_000 : nat })
-balanceOf   >  (1_000 : nat)
-
-
-#------ clean user ------
+===== getToken =====
+return 1_000: OK
+return Err AlreadyGiven: OK
 Using identity: "default".
 Removed identity "user1".
 Removed identity "user2".
+Using the default definition for the 'local' shared network because /User/user/.config/dfx/networks.json does not exist.
+Stopping canister http adapter...
+Stopped.
+Stopping the replica...
+Stopped.
+Stopping icx-proxy...
+Stopped.
+===== Result =====
+"PASS"
 ```
 
-ユーザーがトークンを取得できること、また再度取得しようとするとエラーができることが確認できます。これで、Faucetキャニスターからユーザーがトークンを受け取ることができるのを確認できました！
+ユーザーがトークンを取得できること、また再度取得しようとするとエラーができることが確認できます。全てのテストを通過し、最後に`"PASS"`と出力されていることを確認しましょう。これで、Faucetキャニスターからユーザーがトークンを受け取ることができるのを確認できました！
 
 ### 🙋‍♂️ 質問する
 
