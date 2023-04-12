@@ -11,7 +11,7 @@ npm install react-icons --save
 ```
 
 ```
-npm install --save react-modal
+npm install --save react-modal @types/react-modal
 ```
 
 次に環境変数として必要な値を登録しましょう。
