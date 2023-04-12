@@ -39,15 +39,13 @@ touch ./src/icp_basic_dex_frontend/src/components/PlaceOrder.jsx ./src/icp_basic
 [PlaceOrder.jsx]
 
 ```javascript
-import React, { useState } from "react";
-
-import { Principal } from "@dfinity/principal";
 import {
   canisterId as DEXCanisterId,
   createActor,
-} from "../../../declarations/icp_basic_dex_backend";
-
-import { tokens } from "../utils/token";
+} from '../../../declarations/icp_basic_dex_backend';
+import { tokens } from '../utils/token';
+import { Principal } from '@dfinity/principal';
+import { useState } from 'react';
 
 export const PlaceOrder = (props) => {
   const { agent, updateOrderList } = props;
@@ -79,7 +77,7 @@ export const PlaceOrder = (props) => {
     try {
       // ログインしているユーザーがDEXとやりとりを行うためにアクターを作成する
       const options = {
-        agent: agent,
+        agent,
       };
       const DEXActor = createActor(DEXCanisterId, options);
 
@@ -179,12 +177,10 @@ export const PlaceOrder = (props) => {
 [ListOrder.jsx]
 
 ```javascript
-import React from "react";
-
 import {
   canisterId as DEXCanisterId,
   createActor,
-} from "../../../declarations/icp_basic_dex_backend";
+} from '../../../declarations/icp_basic_dex_backend';
 
 export const ListOrder = (props) => {
   const { agent, userPrincipal, orderList, updateOrderList, updateUserTokens } =
@@ -193,7 +189,7 @@ export const ListOrder = (props) => {
   const createDEXActor = () => {
     // ログインしているユーザーを設定する
     const options = {
-      agent: agent,
+      agent,
     };
     return createActor(DEXCanisterId, options);
   };
@@ -300,9 +296,9 @@ export const ListOrder = (props) => {
 
 ```diff
 import { Header } from './components/Header';
-import { UserBoard } from './components/UserBoard';
-+import { PlaceOrder } from './components/PlaceOrder';
 +import { ListOrder } from './components/ListOrder';
++import { PlaceOrder } from './components/PlaceOrder';
+import { UserBoard } from './components/UserBoard';
 import { tokens } from './utils/token';
 ```
 
