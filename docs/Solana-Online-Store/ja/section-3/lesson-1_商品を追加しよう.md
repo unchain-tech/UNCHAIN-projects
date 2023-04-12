@@ -17,7 +17,7 @@ NEXT_PUBLIC_OWNER_PUBLIC_KEY=2TmQsWGFh5vhqJdDrG6uA2MRstGrUwUCiiThyHL9HaMe
 >
 > Next.js には [dotenv](https://www.dotenv.org/) が組み込まれていますが、env 変数名を`NEXT_PUBLIC`からはじめる必要があります。
 >
-> また、`.env`への変更を反映させるためには、Next.js を再起動（`CTR + C`で一旦停止させ、`npx next dev`で再び立ち上げる）する必要があることに注意してください。
+> また、`.env`への変更を反映させるためには、Next.js を再起動（`CTR + C`で一旦停止させ、`npm run dev`で再び立ち上げる）する必要があることに注意してください。
 
 それでは、`components`フォルダに`CreateProduct.js`ファイルを作成して以下のコードを貼り付けてください。
 

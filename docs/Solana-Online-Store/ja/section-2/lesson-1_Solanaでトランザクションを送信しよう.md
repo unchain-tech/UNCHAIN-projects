@@ -204,7 +204,7 @@ export default function Buy({ itemID }) {
         <IPFSDownload filename="anya" hash="QmcJPLeiXBwA17WASSXs5GPWJs1n1HEmEmrtcmDgWjApjm" cta="Download goods"/>
       ) : (
         <button disabled={loading} className="buy-button" onClick={processTransaction}>
-          Buy now 🠚
+          Buy now →
         </button>
       )}
     </div>

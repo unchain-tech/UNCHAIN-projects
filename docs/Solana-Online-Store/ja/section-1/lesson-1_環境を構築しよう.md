@@ -34,7 +34,9 @@ Chromeの方は[こちら](https://chrome.google.com/webstore/detail/phantom/bfn
 
 ※ GitHubアカウントの初期設定がお済みでない方は、アカウント設定を行ってからお進みください。
 
-まず、 [この GitHub リンク](https://github.com/unchain-dev/solana-pay-starter-project) にアクセスして、ページの右上にある[Fork]ボタンを押してください。
+まず、 [この GitHub リンク](https://github.com/unchain-tech/Solana-Online-Store) にアクセスして、ページの右上にある[Fork]ボタンを押してください。
+
+Create a new forkページが開くので、「Copy the `main` branch only」という項目に**チェックが入っていることを確認します**。設定に問題がなければ、[Create fork]ボタンを押してフォークを行います。
 
 このリポジトリをフォークすると、自分のGitHubに同一のリポジトリがコピーされます。
 
