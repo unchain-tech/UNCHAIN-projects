@@ -2,7 +2,7 @@
 
 コントラクトのアドレス(`Contract deployed to`に続く`0x..`)をターミナルからコピーします。
 
-次に、[gemcase(閲覧できるサービス)](https://gemcase.vercel.app/) に先ほどコピーしたコントラクトアドレスを含めた必要な情報を下のように打ち込んでいきます。
+次に、[gemcase(NFTを閲覧できるサービス)](https://gemcase.vercel.app/) に先ほどコピーしたコントラクトアドレスを含めた必要な情報を下のように打ち込んでいきます。
 
 ![](/public/images/Polygon-Generative-NFT/section-2/2_4_7.png)
 

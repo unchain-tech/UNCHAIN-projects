@@ -7,38 +7,35 @@
 `frontend/asserts/js/pages/ManageRooms.js`
 
 ```js
-import React, { useEffect, useState } from "react";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Table from "react-bootstrap/Table";
+import { formatNearAmount } from 'near-api-js/lib/utils/format';
+import { useEffect, useState } from 'react';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Table from 'react-bootstrap/Table';
 
-import AddRoom from "../components/AddRoom";
-
-import { formatNearAmount } from "near-api-js/lib/utils/format";
-
+import AddRoom from '../components/AddRoom';
 import {
-  get_rooms_registered_by_owner,
-  exists,
   add_room_to_owner,
-} from "../../../near-api";
+  exists,
+  get_rooms_registered_by_owner,
+} from '../near/utils';
 
 const ManageRooms = () => {
   const [registeredRooms, setRegisteredRooms] = useState([]);
 
-  // オーナーが登録した部屋のデータを取得
   const getRooms = async () => {
     try {
       setRegisteredRooms(await get_rooms_registered_by_owner(window.accountId));
     } catch (error) {
-      console.log({error});
+      console.log(error);
     }
   };
 
   const addRoom = async (data) => {
     // 同じ名前の部屋を登録しないかチェック
-    let exist = await exists(window.accountId, data.name);
-    if (exist == true) {
-      alert("Error: " + data.name + " is already registered.");
+    const exist = await exists(window.accountId, data.name);
+    if (exist === true) {
+      alert('Error: ' + data.name + ' is already registered.');
       return;
     }
     await add_room_to_owner(data);
@@ -65,7 +62,7 @@ const ManageRooms = () => {
         <Col>
           <h2>ROOM LIST</h2>
         </Col>
-        <Col xs={1} style={{ marginTop: "5px" }}>
+        <Col xs={1} style={{ marginTop: '5px' }}>
           <div>
             <AddRoom save={addRoom} />
           </div>
@@ -74,23 +71,23 @@ const ManageRooms = () => {
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th scope='col'>Room Name</th>
-            <th scope='col'>Image</th>
-            <th scope='col'>Beds</th>
-            <th scope='col'>Description</th>
-            <th scope='col'>Location</th>
-            <th scope='col'>Price per night</th>
-            <th scope='col'>Status</th>
+            <th scope="col">Room Name</th>
+            <th scope="col">Image</th>
+            <th scope="col">Beds</th>
+            <th scope="col">Description</th>
+            <th scope="col">Location</th>
+            <th scope="col">Price per night</th>
+            <th scope="col">Status</th>
           </tr>
         </thead>
         {registeredRooms.map((_room) => (
           <tbody key={`${_room.name}`}>
             {/* 部屋が空室の時 */}
-            {_room.status === "Available" && (
+            {_room.status === 'Available' && (
               <tr>
                 <td>{_room.name}</td>
                 <td>
-                  <img src={_room.image} width='100' />
+                  <img src={_room.image} width="100" />
                 </td>
                 <td>{_room.beds}</td>
                 <td>{_room.description}</td>
@@ -100,11 +97,11 @@ const ManageRooms = () => {
               </tr>
             )}
             {/* 部屋が滞在中の時、背景を赤で表示 */}
-            {_room.status !== "Available" && (
-              <tr style={{ backgroundColor: "#FFC0CB" }}>
+            {_room.status !== 'Available' && (
+              <tr style={{ backgroundColor: '#FFC0CB' }}>
                 <td>{_room.name}</td>
                 <td>
-                  <img src={_room.image} width='100' />
+                  <img src={_room.image} width="100" />
                 </td>
                 <td>{_room.beds}</td>
                 <td>{_room.description}</td>
@@ -121,6 +118,7 @@ const ManageRooms = () => {
 };
 
 export default ManageRooms;
+
 ```
 
 追加した内容を見ていきましょう。
@@ -129,10 +127,10 @@ export default ManageRooms;
 
 ```javascript
 import {
-  get_rooms_registered_by_owner,
-  exists,
   add_room_to_owner,
-} from "../near/utils";
+  exists,
+  get_rooms_registered_by_owner,
+} from '../near/utils';
 ```
 
 `get_rooms_registered_by_owner()`にNEAR Walletに接続しているアカウントIDを渡します。これで、アカウントIDに紐づいて保存されている部屋のデータを取得します。
@@ -143,7 +141,7 @@ const getRooms = async () => {
   try {
     setRegisteredRooms(await get_rooms_registered_by_owner(window.accountId));
   } catch (error) {
-    console.log({ error });
+    console.log(error);
   }
 };
 ```
@@ -155,7 +153,7 @@ const addRoom = async (data) => {
   // 同じ名前の部屋を登録しないかチェック
   let exist = await exists(window.accountId, data.name);
   if (exist == true) {
-    alert("Error: " + data.name + " is already registered.");
+    alert('Error: ' + data.name + ' is already registered.');
     return;
   }
   await add_room_to_owner(data);
@@ -181,42 +179,34 @@ if (!window.accountId) {
 データの表示には、`React Bootstrap`の[Table](https://react-bootstrap.github.io/components/table/)を使用します。表示する際に、オーナーが利用状況を把握しやすいようステータスが`Available`なら白（デフォルト）、`Stay`なら赤を背景色にします。
 
 ```javascript
-{
-  /* 部屋が空室の時 */
-}
-{
-  _room.status === "Available" && (
-    <tr>
-      <td>{_room.name}</td>
-      <td>
-        <img src={_room.image} width='100' />
-      </td>
-      <td>{_room.beds}</td>
-      <td>{_room.description}</td>
-      <td>{_room.location}</td>
-      <td>{formatNearAmount(_room.price)} NEAR</td>
-      <td>{_room.status}</td>
-    </tr>
-  );
-}
-{
-  /* 部屋が滞在中の時、背景を赤で表示 */
-}
-{
-  _room.status !== "Available" && (
-    <tr style={{ backgroundColor: "#FFC0CB" }}>
-      <td>{_room.name}</td>
-      <td>
-        <img src={_room.image} width='100' />
-      </td>
-      <td>{_room.beds}</td>
-      <td>{_room.description}</td>
-      <td>{_room.location}</td>
-      <td>{formatNearAmount(_room.price)} NEAR</td>
-      <td>Stay</td>
-    </tr>
-  );
-}
+{/* 部屋が空室の時 */}
+{_room.status === 'Available' && (
+  <tr>
+    <td>{_room.name}</td>
+    <td>
+      <img src={_room.image} width="100" />
+    </td>
+    <td>{_room.beds}</td>
+    <td>{_room.description}</td>
+    <td>{_room.location}</td>
+    <td>{formatNearAmount(_room.price)} NEAR</td>
+    <td>{_room.status}</td>
+  </tr>
+)}
+{/* 部屋が滞在中の時、背景を赤で表示 */}
+{_room.status !== 'Available' && (
+  <tr style={{ backgroundColor: '#FFC0CB' }}>
+    <td>{_room.name}</td>
+    <td>
+      <img src={_room.image} width="100" />
+    </td>
+    <td>{_room.beds}</td>
+    <td>{_room.description}</td>
+    <td>{_room.location}</td>
+    <td>{formatNearAmount(_room.price)} NEAR</td>
+    <td>Stay</td>
+  </tr>
+)}
 ```
 
 では、動作確認をします。`Section2`で部屋を追加したアカウントIDでNEAR Walletに接続します。接続後、ナビゲーションバーから`ManageRooms画面`に移動します。

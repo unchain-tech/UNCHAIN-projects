@@ -102,7 +102,7 @@ impl Default for Contract {
 +         match self.rooms_per_owner.get(&owner_id) {
 +             // オーナーが既に別の部屋を登録済みの時
 +             Some(mut rooms) => {
-+                 rooms.push(room_id.clone());
++                 rooms.push(room_id);
 +                 self.rooms_per_owner.insert(&owner_id, &rooms);
 +             }
 +             // オーナーが初めて部屋を登録する時
@@ -181,7 +181,7 @@ self.rooms_by_id.insert(room_id.clone(), new_room);
 match self.rooms_per_owner.get(&owner_id) {
     // オーナーが既に別の部屋を登録済みの時
     Some(mut rooms) => {
-        rooms.push(room_id.clone());
+        rooms.push(room_id);
         self.rooms_per_owner.insert(&owner_id, &rooms);
     }
     // オーナーが初めて部屋を登録する時
@@ -253,18 +253,15 @@ pub fn exists(&self, owner_id: AccountId, room_name: String) -> bool {
 +                 // `room_id`をkeyとして、マップされている`Room`構造体のデータを取得
 +                 let room = self.rooms_by_id.get(&room_id).expect("ERR_NOT_FOUND_ROOM");
 + 
-+                 let room_status: UsageStatus;
 +                 // 部屋のステータスを複製する
-+                 match &room.status {
++                 let status: UsageStatus = match room.status {
 +                     // ステータスが`Available`の時
-+                     UsageStatus::Available => room_status = UsageStatus::Available,
++                     UsageStatus::Available => UsageStatus::Available,
 +                     // ステータスが`Stay`の時
-+                     UsageStatus::Stay { check_in_date } => {
-+                         room_status = UsageStatus::Stay {
-+                             check_in_date: check_in_date.clone(),
-+                         }
-+                     }
-+                 }
++                     UsageStatus::Stay { ref check_in_date } => UsageStatus::Stay {
++                         check_in_date: check_in_date.clone(),
++                     },
++                　};
 + 
 +                 // 取得した部屋のデータをもとに、`RegisteredRoom`構造体を生成
 +                 let registered_room = RegisteredRoom {
@@ -328,18 +325,15 @@ pub fn get_rooms_registered_by_owner(&self, owner_id: AccountId) -> Vec<Register
 次に、取得した部屋のデータをもとにステータスを複製します。
 
 ```rust
-                    let room_status: UsageStatus;
                     // 部屋のステータスを複製する
-                    match &room.status {
+                    let status: UsageStatus = match room.status {
                         // ステータスが`Available`の時
-                        UsageStatus::Available => room_status = UsageStatus::Available,
+                        UsageStatus::Available => UsageStatus::Available,
                         // ステータスが`Stay`の時
-                        UsageStatus::Stay { check_in_date } => {
-                            room_status = UsageStatus::Stay {
-                                check_in_date: check_in_date.clone(),
-                            }
-                        }
-                    }
+                        UsageStatus::Stay { ref check_in_date } => UsageStatus::Stay {
+                            check_in_date: check_in_date.clone(),
+                        },
+                    };
 ```
 
 続いて、`RegisteredRoom`構造体を生成します。生成したデータは、`push()`で戻り値となるVectorに追加します。
