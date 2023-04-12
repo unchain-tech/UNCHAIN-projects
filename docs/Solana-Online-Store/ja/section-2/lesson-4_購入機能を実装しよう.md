@@ -43,7 +43,7 @@ export const hasPurchased = async (publicKey, itemID) => {
 ```jsx
 // Buy.js
 
-import React, { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Keypair, Transaction } from '@solana/web3.js';
 import { findReference, FindReferenceError } from '@solana/pay';
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
@@ -254,7 +254,7 @@ export const fetchItem = async (itemID) => {
 ```jsx
 // Buy.js
 
-import React, { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { Keypair, Transaction } from "@solana/web3.js";
 import { findReference, FindReferenceError } from "@solana/pay";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";

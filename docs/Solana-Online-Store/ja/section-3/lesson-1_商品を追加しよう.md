@@ -24,7 +24,7 @@ NEXT_PUBLIC_OWNER_PUBLIC_KEY=2TmQsWGFh5vhqJdDrG6uA2MRstGrUwUCiiThyHL9HaMe
 ```jsx
 // CreateProduct.js
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { create } from "ipfs-http-client";
 import styles from "../styles/CreateProduct.module.css";
 
@@ -157,7 +157,7 @@ export default CreateProduct;
 ```jsx
 // index.js
 
-import React, { useState, useEffect} from "react";
+import { useState, useEffect} from "react";
 import CreateProduct from "../components/CreateProduct";
 import Product from "../components/Product";
 import HeadComponent from '../components/Head';
@@ -275,7 +275,6 @@ export default function handler(req, res){
     } catch (error) {
       console.error(error);
       res.status(500).json({error: "error adding product"});
-      return;
     }
   }
   else {

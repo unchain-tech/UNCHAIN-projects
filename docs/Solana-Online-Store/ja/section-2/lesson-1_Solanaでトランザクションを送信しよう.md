@@ -109,7 +109,6 @@ const createTransaction = async (req, res) => {
     console.error(error);
 
     res.status(500).json({ error: "error creating tx" });
-    return;
   }
 }
 
@@ -133,7 +132,7 @@ export default function handler(req, res) {
 ```jsx
 // Buy.js
 
-import React, { useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { Keypair, Transaction } from "@solana/web3.js";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { InfinitySpin } from "react-loader-spinner";
@@ -221,7 +220,6 @@ export default function Buy({ itemID }) {
 ```jsx
 // Product.js
 
-import React from "react";
 import styles from "../styles/Product.module.css";
 import Buy from "./Buy";
 

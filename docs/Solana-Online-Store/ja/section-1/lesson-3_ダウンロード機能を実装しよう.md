@@ -38,7 +38,6 @@ https://cloudflare-ipfs.com/ipfs/"あなたの画像ファイルのCID"
 ```jsx
 // IpfsDownload.js
 
-import React  from 'react';
 import useIPFS from '../hooks/useIPFS';
 
 const IPFSDownload = ({ hash, filename }) => {
@@ -95,7 +94,6 @@ export default IPFSDownload;
 ```jsx
 // Product.js
 
-import React from "react";
 import styles from "../styles/Product.module.css";
 import IPFSDownload from './IpfsDownload';
 
@@ -158,7 +156,7 @@ export default function handler(req, res) {
 ```jsx
 // index.js
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Product from "../components/Product";
 import HeadComponent from '../components/Head';
 
