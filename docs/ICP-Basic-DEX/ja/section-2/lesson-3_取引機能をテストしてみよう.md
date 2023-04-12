@@ -63,9 +63,10 @@ dfx canister call SilverDIP20 mint '(principal '\"$FAUCET_PRINCIPAL\"', 100_000)
 dfx deploy icp_basic_dex_backend
 export DEX_PRINCIPAL=$(dfx canister id icp_basic_dex_backend)
 
+dfx identity use user1
+
 # ===== テスト =====
 # user1がトークンを取得する
-dfx identity use user1
 echo '===== getToken ====='
 EXPECT="(variant { Ok = 1_000 : nat })"
 RESULT=`dfx canister call faucet getToken '(principal '\"$GoldDIP20_PRINCIPAL\"')'` 
@@ -177,7 +178,6 @@ RESULT=`dfx canister call icp_basic_dex_backend getBalance '(principal '\"$USER1
 compare_result "return 100" "$EXPECT" "$RESULT" || TEST_STATUS=1
 
 echo '===== withdraw ====='
-dfx identity use user1
 # [GoldDIP20 500 -> SilverDIP20 500]のオーダーを出す
 ## DEXキャニスターからトークンを引き出した後、残高不足(900 - 500 - 500 = -100)のためオーダーが削除されることを確認するため
 dfx canister call icp_basic_dex_backend placeOrder '(principal '\"$GoldDIP20_PRINCIPAL\"', 500, principal '\"$SilverDIP20_PRINCIPAL\"', 500)' > /dev/null
@@ -232,9 +232,9 @@ bash ./scripts/test.sh
 return 1_000: OK
 return Err AlreadyGiven: OK
 ===== deposit =====
-[Canister rno2w-sqaaa-aaaaa-aaacq-cai] Message caller: xiast-2kdfb-fxkfk-dpfgh-lvp4e-a2u7t-rgftw-fbucf-kprjz-eoig2-6qe| Deposit Token: rrkah-fqaaa-aaaaa-aaaaq-cai
+[Canister rno2w-sqaaa-aaaaa-aaacq-cai] Message caller: rclnc-aonng-g2cn6-uk2g5-7r3gv-3jge3-bi5qz-qgrbs-bdzel-gaw47-3ae| Deposit Token: rrkah-fqaaa-aaaaa-aaaaq-cai
 return 1_000: OK
-[Canister rno2w-sqaaa-aaaaa-aaacq-cai] Message caller: xiast-2kdfb-fxkfk-dpfgh-lvp4e-a2u7t-rgftw-fbucf-kprjz-eoig2-6qe| Deposit Token: rrkah-fqaaa-aaaaa-aaaaq-cai
+[Canister rno2w-sqaaa-aaaaa-aaacq-cai] Message caller: rclnc-aonng-g2cn6-uk2g5-7r3gv-3jge3-bi5qz-qgrbs-bdzel-gaw47-3ae| Deposit Token: rrkah-fqaaa-aaaaa-aaaaq-cai
 return Err BalanceLow: OK
 ===== placeOrder =====
 return order details: OK
@@ -248,7 +248,7 @@ Using identity: "user2".
 return Err NotAllowed: OK
 Using identity: "user2".
 (variant { Ok = 1_000 : nat })
-[Canister rno2w-sqaaa-aaaaa-aaacq-cai] Message caller: urpyt-yjldt-s4pjr-pduei-o2ju2-jkgj3-iwb5k-gk3it-yvo4d-gbgem-gae| Deposit Token: r7inp-6aaaa-aaaaa-aaabq-cai
+[Canister rno2w-sqaaa-aaaaa-aaacq-cai] Message caller: wpasg-2oe3l-ct4yn-lhkvw-n5kto-yanmv-xybeo-mt56y-ijwwt-krrge-mqe| Deposit Token: r7inp-6aaaa-aaaaa-aaabq-cai
 [Canister rno2w-sqaaa-aaaaa-aaacq-cai] Success Trade !
 return null: OK
 ===== getBalance =====
@@ -258,14 +258,13 @@ Using identity: "user1".
 return 900: OK
 return 100: OK
 ===== withdraw =====
-Using identity: "user1".
 return 500: OK
 return (vec {}): OK
 return Err BalanceLow: OK
 Using identity: "default".
 Removed identity "user1".
 Removed identity "user2".
-Using the default definition for the 'local' shared network because /User/user/.config/dfx/networks.json does not exist.
+Using the default definition for the 'local' shared network because /Users/user/.config/dfx/networks.json does not exist.
 Stopping canister http adapter...
 Stopped.
 Stopping the replica...

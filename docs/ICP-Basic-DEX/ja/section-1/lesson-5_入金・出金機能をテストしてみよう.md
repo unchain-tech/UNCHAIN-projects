@@ -63,9 +63,10 @@ dfx canister call SilverDIP20 mint '(principal '\"$FAUCET_PRINCIPAL\"', 100_000)
 dfx deploy icp_basic_dex_backend
 export DEX_PRINCIPAL=$(dfx canister id icp_basic_dex_backend)
 
+dfx identity use user1
+
 # ===== テスト =====
 # user1がトークンを取得する
-dfx identity use user1
 echo '===== getToken ====='
 EXPECT="(variant { Ok = 1_000 : nat })"
 RESULT=`dfx canister call faucet getToken '(principal '\"$GoldDIP20_PRINCIPAL\"')'` 
@@ -87,7 +88,6 @@ RESULT=`dfx canister call icp_basic_dex_backend deposit '(principal '\"$GoldDIP2
 compare_result "return Err BalanceLow" "$EXPECT" "$RESULT" || TEST_STATUS=1
 
 echo '===== withdraw ====='
-dfx identity use user1
 EXPECT="(variant { Ok = 500 : nat })"
 RESULT=`dfx canister call icp_basic_dex_backend withdraw '(principal '\"$GoldDIP20_PRINCIPAL\"', 500)'`
 compare_result "return 500" "$EXPECT" "$RESULT" || TEST_STATUS=1
@@ -131,7 +131,6 @@ return 1_000: OK
 [Canister rno2w-sqaaa-aaaaa-aaacq-cai] Message caller: 2izpv-ryrye-dgnz6-sizfb-auzfn-6roh7-c5v7r-leipv-jhtwb-lmerd-eae| Deposit Token: rrkah-fqaaa-aaaaa-aaaaq-cai
 return Err BalanceLow: OK
 ===== withdraw =====
-Using identity: "user1".
 return 500: OK
 return Err BalanceLow: OK
 Using identity: "default".

@@ -451,9 +451,10 @@ export FAUCET_PRINCIPAL=$(dfx canister id faucet)
 dfx canister call GoldDIP20 mint '(principal '\"$FAUCET_PRINCIPAL\"', 100_000)'
 dfx canister call SilverDIP20 mint '(principal '\"$FAUCET_PRINCIPAL\"', 100_000)'
 
+dfx identity use user1
+
 # ===== テスト =====
 # user1がトークンを取得する
-dfx identity use user1
 echo '===== getToken ====='
 EXPECT="(variant { Ok = 1_000 : nat })"
 RESULT=`dfx canister call faucet getToken '(principal '\"$GoldDIP20_PRINCIPAL\"')'` 
