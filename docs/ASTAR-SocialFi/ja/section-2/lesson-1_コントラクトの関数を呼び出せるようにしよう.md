@@ -1114,7 +1114,7 @@ export const getFollowerList = async (props: PropsGFEL) => {
 
 `profile.tsxFunction`の`imageUrlForUnknown`には初めてのユーザーの画像のURLが入るのでご自分の好きな画像URLを入れてみてください。
 
-ここではURLが長いので`imageUrlForUnknown`に置き換えておきます。
+ここではURLが長いので`imageUrlForUnknown`に置き換えておきます。こちらの変数は環境変数から取得することになります。
 
 これでコントラクト上の関数を呼び出せるようになりました。
 
