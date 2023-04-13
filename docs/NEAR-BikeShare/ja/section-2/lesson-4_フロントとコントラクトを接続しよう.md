@@ -313,14 +313,14 @@ window.contract = await new Contract(
 
 ```js
 export async function set_greeting(message) {
-  let response = await window.contract.set_greeting({
+  const response = await window.contract.set_greeting({
     args: { message: message },
   });
   return response;
 }
 
 export async function get_greeting() {
-  let greeting = await window.contract.get_greeting();
+  const greeting = await window.contract.get_greeting();
   return greeting;
 }
 ```
@@ -329,47 +329,47 @@ export async function get_greeting() {
 
 ```js
 export async function num_of_bikes() {
-  let n = await window.contract.num_of_bikes();
+  const n = await window.contract.num_of_bikes();
   return n;
 }
 
 export async function is_available(index) {
-  let response = await window.contract.is_available({
+  const response = await window.contract.is_available({
     index: index,
   });
   return response;
 }
 
 export async function who_is_using(index) {
-  let response = await window.contract.who_is_using({
+  const response = await window.contract.who_is_using({
     index: index,
   });
   return response;
 }
 
 export async function who_is_inspecting(index) {
-  let response = await window.contract.who_is_inspecting({
+  const response = await window.contract.who_is_inspecting({
     index: index,
   });
   return response;
 }
 
 export async function use_bike(index) {
-  let response = await window.contract.use_bike({
+  const response = await window.contract.use_bike({
     index: index,
   });
   return response;
 }
 
 export async function inspect_bike(index) {
-  let response = await window.contract.inspect_bike({
+  const response = await window.contract.inspect_bike({
     index: index,
   });
   return response;
 }
 
 export async function return_bike(index) {
-  let response = await window.contract.return_bike({
+  const response = await window.contract.return_bike({
     index: index,
   });
   return response;
@@ -433,47 +433,47 @@ export function login() {
 }
 
 export async function num_of_bikes() {
-  let n = await window.contract.num_of_bikes();
+  const n = await window.contract.num_of_bikes();
   return n;
 }
 
 export async function is_available(index) {
-  let response = await window.contract.is_available({
+  const response = await window.contract.is_available({
     index: index,
   });
   return response;
 }
 
 export async function who_is_using(index) {
-  let response = await window.contract.who_is_using({
+  const response = await window.contract.who_is_using({
     index: index,
   });
   return response;
 }
 
 export async function who_is_inspecting(index) {
-  let response = await window.contract.who_is_inspecting({
+  const response = await window.contract.who_is_inspecting({
     index: index,
   });
   return response;
 }
 
 export async function use_bike(index) {
-  let response = await window.contract.use_bike({
+  const response = await window.contract.use_bike({
     index: index,
   });
   return response;
 }
 
 export async function inspect_bike(index) {
-  let response = await window.contract.inspect_bike({
+  const response = await window.contract.inspect_bike({
     index: index,
   });
   return response;
 }
 
 export async function return_bike(index) {
-  let response = await window.contract.return_bike({
+  const response = await window.contract.return_bike({
     index: index,
   });
   return response;
@@ -485,20 +485,20 @@ export async function return_bike(index) {
 ```js
 // App.js
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import "./assets/css/global.css";
 
 import {
+  inspect_bike,
+  is_available,
   login,
   logout,
   num_of_bikes,
-  is_available,
+  return_bike,
+  use_bike,
   who_is_using,
   who_is_inspecting,
-  use_bike,
-  inspect_bike,
-  return_bike,
 } from "./assets/js/near/utils";
 
 export default function App() {
@@ -557,7 +557,7 @@ export default function App() {
       const num = await num_of_bikes();
       console.log("Num of bikes:", num);
 
-      let new_bikes = [];
+      const new_bikes = [];
       for (let i = 0; i < num; i++) {
         const bike = await createBikeInfo(i);
         new_bikes.push(bike);
@@ -573,7 +573,7 @@ export default function App() {
 
   /** 指定されたindexのバイク情報をフロント用に整形して返却します. */
   const createBikeInfo = async (index) => {
-    let bike = await initialBikeInfo();
+    const bike = await initialBikeInfo();
     await is_available(index).then((is_available) => {
       if (is_available) {
         bike.available = is_available;
@@ -740,7 +740,7 @@ export default function App() {
       <div>
         {allBikeInfo.map((bike, index) => {
           return (
-            <div className="bike" style={{ display: "flex" }}>
+            <div className="bike" style={{ display: "flex" }} key={index}>
               <div className="bike_img">
                 <img src={bikeImg} />
               </div>
@@ -779,7 +779,7 @@ export default function App() {
     return (
       <div className="balance_content">
         <button>check my balance</button>
-        <button style={{ marginTop: "0.1em" }}>check contract's balance</button>
+        <button style={{ marginTop: "0.1em" }}>check contract&apos;s balance</button>
         <span>or</span>
         <form
           onSubmit={async (event) => {
@@ -803,7 +803,7 @@ export default function App() {
         </form>
         {showBalance && (
           <div>
-            <p>{balanceInfo.account_id}'s</p>
+            <p>{balanceInfo.account_id}&apos;s</p>
             <p>balance: {balanceInfo.balance}</p>
           </div>
         )}

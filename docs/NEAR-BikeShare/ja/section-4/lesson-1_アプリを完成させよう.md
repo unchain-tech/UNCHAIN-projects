@@ -49,7 +49,7 @@ export async function initContract() {
 
 /* use_bikeを削除してください！
 export async function use_bike(index) {
-  let response = await window.contract.use_bike({
+  const response = await window.contract.use_bike({
     index: index,
   });
   return response;
@@ -59,12 +59,12 @@ export async function use_bike(index) {
 // ...
 
 export async function amount_to_use_bike() {
-  let amount = await window.contract.amount_to_use_bike();
+  const amount = await window.contract.amount_to_use_bike();
   return amount;
 }
 
 export async function ft_transfer_call(index, amount) {
-  let response = await window.ftContract.ft_transfer_call(
+  const response = await window.ftContract.ft_transfer_call(
     {
       receiver_id: nearConfig.contractName,
       amount: amount,
@@ -92,22 +92,22 @@ export async function ft_transfer_call(index, amount) {
 // ...
 
 import {
+  amount_to_use_bike,
+  ft_balance_of,
+  ft_transfer,
+  ft_transfer_call,
+  inspect_bike,
+  is_available,
   login,
   logout,
   num_of_bikes,
-  is_available,
-  who_is_using,
-  who_is_inspecting,
-  inspect_bike,
   return_bike,
-  ft_balance_of,
   storage_balance_of,
   storage_deposit,
   storage_unregister,
-  ft_transfer,
-  amount_to_use_bike,
-  ft_transfer_call,
-} from "./assets/js/near/utils";
+  who_is_inspecting,
+  who_is_using,
+} from './assets/js/near/utils';
 
 export default function App() {
   // ...
@@ -170,7 +170,7 @@ export default function App() {
       <div>
         {allBikeInfo.map((bike, index) => {
           return (
-            <div className="bike" style={{ display: "flex" }}>
+            <div className="bike" style={{ display: "flex" }} key={index}>
               <div className="bike_img">
                 <img src={bikeImg} />
               </div>
