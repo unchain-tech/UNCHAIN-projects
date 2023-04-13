@@ -385,10 +385,7 @@ impl Contract {
 
     /// indexで指定されたバイクが使用可能かどうかを判別します。
     pub fn is_available(&self, index: usize) -> bool {
-        match self.bikes[index] {
-            Bike::Available => true,
-            _ => false,
-        }
+        matches!(self.bikes[index], Bike::Available)
     }
 
     /// indexで指定されたバイクが使用中の場合は使用者のアカウントidを返却します。
