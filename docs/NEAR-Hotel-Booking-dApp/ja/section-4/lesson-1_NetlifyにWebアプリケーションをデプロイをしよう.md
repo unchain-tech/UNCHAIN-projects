@@ -11,7 +11,7 @@ Netlifyのアカウントをお持ちでない方は、上記のリンクにア�
 まずはターミナルで下のコマンドを実行しましょう。これはnetlifyとやりとりをするためのものです。
 
 ```
-npm install netlify-cli -g
+yarn add --dev netlify-cli
 ```
 
 次に、以下のコマンドを実行してログインをしましょう。

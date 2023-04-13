@@ -23,62 +23,63 @@ CONTRACT_NAME=contract.hotel_booking.testnet
 `frontend/assets/js/near/utils.js`
 
 ```javascript
-import { connect, Contract, keyStores, WalletConnection } from "near-api-js";
+import { connect, Contract, keyStores, WalletConnection } from 'near-api-js';
 import {
   formatNearAmount,
   parseNearAmount,
-} from "near-api-js/lib/utils/format";
-import getConfig from './config'
+} from 'near-api-js/lib/utils/format';
+
+import getConfig from './config';
 
 // トランザクション実行時に使用するGASの上限を設定
 const GAS = 100000000000000;
 
-const nearConfig = getConfig(process.env.NODE_ENV || "development");
+const nearConfig = getConfig(process.env.NODE_ENV || 'development');
 
-// スマートコントラクトの初期化とグローバル変数を設定
+// コントラクトの初期化とグローバル変数を設定
 export async function initContract() {
   // NEARテストネットへの接続を初期化する
   const near = await connect(
     Object.assign(
       { deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() } },
-      nearConfig
-    )
+      nearConfig,
+    ),
   );
 
   // ウォレットベースのアカウントを初期化
-  // `https://wallet.testnet.near.org`でホストされている NEAR testnet ウォレットで動作させることができる
+  // // `https://wallet.testnet.near.org`でホストされている NEAR testnet ウォレットで動作させることができる
   window.walletConnection = new WalletConnection(near);
 
   // アカウントIDを取得する
-  // まだ未承認の場合は、空文字列が設定される
+  // // まだ未承認の場合は、空文字列が設定される
   window.accountId = window.walletConnection.getAccountId();
 
-  // スマートコントラクトAPIの初期化
+  // コントラクトAPIの初期化
   window.contract = await new Contract(
     window.walletConnection.account(),
     nearConfig.contractName,
     {
       viewMethods: [
-        "get_available_rooms",
-        "get_rooms_registered_by_owner",
-        "get_booking_info_for_owner",
-        "get_booking_info_for_guest",
-        "exists",
-        "is_available",
+        'get_available_rooms',
+        'get_rooms_registered_by_owner',
+        'get_booking_info_for_owner',
+        'get_booking_info_for_guest',
+        'exists',
+        'is_available',
       ],
       changeMethods: [
-        "add_room_to_owner",
-        "book_room",
-        "change_status_to_available",
-        "change_status_to_stay",
+        'add_room_to_owner',
+        'book_room',
+        'change_status_to_available',
+        'change_status_to_stay',
       ],
-    }
+    },
   );
 }
 
 export function logout() {
   window.walletConnection.signOut();
-  // 画面をリロード
+  // ページをリロード
   window.location.replace(window.location.origin + window.location.pathname);
 }
 
@@ -89,51 +90,51 @@ export function login() {
 export async function accountBalance() {
   return formatNearAmount(
     (await window.walletConnection.account().getAccountBalance()).total,
-    2
+    2,
   );
 }
 
 // コールするメソッドの処理を定義
-// 実際に引数を渡す処理は全てここに実装
+// // 実際に引数を渡す処理は全てここに実装
 export async function get_available_rooms(check_in_date) {
-  let availableRooms = await window.contract.get_available_rooms({
-    check_in_date: check_in_date,
+  const availableRooms = await window.contract.get_available_rooms({
+    check_in_date,
   });
   return availableRooms;
 }
 
 export async function get_rooms_registered_by_owner(owner_id) {
-  let registeredRooms = await window.contract.get_rooms_registered_by_owner({
-    owner_id: owner_id,
+  const registeredRooms = await window.contract.get_rooms_registered_by_owner({
+    owner_id,
   });
   return registeredRooms;
 }
 
 export async function get_booking_info_for_owner(owner_id) {
-  let bookedRooms = await window.contract.get_booking_info_for_owner({
-    owner_id: owner_id,
+  const bookedRooms = await window.contract.get_booking_info_for_owner({
+    owner_id,
   });
   return bookedRooms;
 }
 
 export async function get_booking_info_for_guest(guest_id) {
-  let guestBookedRooms = await window.contract.get_booking_info_for_guest({
-    guest_id: guest_id,
+  const guestBookedRooms = await window.contract.get_booking_info_for_guest({
+    guest_id,
   });
   return guestBookedRooms;
 }
 
 export async function exists(owner_id, room_name) {
-  let ret = await window.contract.exists({
-    owner_id: owner_id,
-    room_name: room_name,
+  const ret = await window.contract.exists({
+    owner_id,
+    room_name,
   });
   return ret;
 }
 
 export async function is_available(room_id) {
-  let ret = await window.contract.is_available({
-    room_id: room_id,
+  const ret = await window.contract.is_available({
+    room_id,
   });
   return ret;
 }
@@ -155,42 +156,43 @@ export async function add_room_to_owner(room) {
 export async function book_room({ room_id, date, price }) {
   await window.contract.book_room(
     {
-      room_id: room_id,
+      room_id,
       check_in_date: date,
     },
     GAS,
-    price
+    price,
   );
 }
 
 export async function change_status_to_available(
   room_id,
   check_in_date,
-  guest_id
+  guest_id,
 ) {
   await window.contract.change_status_to_available({
-    room_id: room_id,
-    check_in_date: check_in_date,
-    guest_id: guest_id,
+    room_id,
+    check_in_date,
+    guest_id,
   });
 }
 
 export async function change_status_to_stay(room_id, check_in_date) {
   await window.contract.change_status_to_stay({
-    room_id: room_id,
-    check_in_date: check_in_date,
+    room_id,
+    check_in_date,
   });
 }
+
 ```
 
 最初に、`near-api-js`からインポートをしています。
 
 ```javascript
-import { connect, Contract, keyStores, WalletConnection } from "near-api-js";
+import { connect, Contract, keyStores, WalletConnection } from 'near-api-js';
 import {
   formatNearAmount,
   parseNearAmount,
-} from "near-api-js/lib/utils/format";
+} from 'near-api-js/lib/utils/format';
 ```
 
 NEARトランザクションの内部で扱う単位と、人が扱う単位の変換は[こちらの関数](https://docs.near.org/tools/near-api-js/utils)で実行できます。
@@ -210,20 +212,20 @@ window.contract = await new Contract(
   nearConfig.contractName,
   {
     viewMethods: [
-      "get_available_rooms",
-      "get_rooms_registered_by_owner",
-      "get_booking_info_for_owner",
-      "get_booking_info_for_guest",
-      "exists",
-      "is_available",
+      'get_available_rooms',
+      'get_rooms_registered_by_owner',
+      'get_booking_info_for_owner',
+      'get_booking_info_for_guest',
+      'exists',
+      'is_available',
     ],
     changeMethods: [
-      "add_room_to_owner",
-      "book_room",
-      "change_status_to_available",
-      "change_status_to_stay",
+      'add_room_to_owner',
+      'book_room',
+      'change_status_to_available',
+      'change_status_to_stay',
     ],
-  }
+  },
 );
 ```
 
@@ -234,46 +236,46 @@ window.contract = await new Contract(
 
 ```javascript
 // コールするメソッドの処理を定義
-// 実際に引数を渡す処理は全てここに実装
-export async function get_available_rooms(searchDate) {
-  let availableRooms = await window.contract.get_available_rooms({
-    check_in_date: searchDate,
+// // 実際に引数を渡す処理は全てここに実装
+export async function get_available_rooms(check_in_date) {
+  const availableRooms = await window.contract.get_available_rooms({
+    check_in_date,
   });
   return availableRooms;
 }
 
 export async function get_rooms_registered_by_owner(owner_id) {
-  let registeredRooms = await window.contract.get_rooms_registered_by_owner({
-    owner_id: owner_id,
+  const registeredRooms = await window.contract.get_rooms_registered_by_owner({
+    owner_id,
   });
   return registeredRooms;
 }
 
 export async function get_booking_info_for_owner(owner_id) {
-  let bookedRooms = await window.contract.get_booking_info_for_owner({
-    owner_id: owner_id,
+  const bookedRooms = await window.contract.get_booking_info_for_owner({
+    owner_id,
   });
   return bookedRooms;
 }
 
 export async function get_booking_info_for_guest(guest_id) {
-  let guestBookedRooms = await window.contract.get_booking_info_for_guest({
-    guest_id: guest_id,
+  const guestBookedRooms = await window.contract.get_booking_info_for_guest({
+    guest_id,
   });
   return guestBookedRooms;
 }
 
 export async function exists(owner_id, room_name) {
-  let ret = await window.contract.exists({
-    owner_id: owner_id,
-    room_name: room_name,
+  const ret = await window.contract.exists({
+    owner_id,
+    room_name,
   });
   return ret;
 }
 
 export async function is_available(room_id) {
-  let ret = await window.contract.is_available({
-    room_id: room_id,
+  const ret = await window.contract.is_available({
+    room_id,
   });
   return ret;
 }
@@ -295,30 +297,30 @@ export async function add_room_to_owner(room) {
 export async function book_room({ room_id, date, price }) {
   await window.contract.book_room(
     {
-      room_id: room_id,
+      room_id,
       check_in_date: date,
     },
     GAS,
-    price
+    price,
   );
 }
 
 export async function change_status_to_available(
   room_id,
   check_in_date,
-  guest_id
+  guest_id,
 ) {
   await window.contract.change_status_to_available({
-    room_id: room_id,
-    check_in_date: check_in_date,
-    guest_id: guest_id,
+    room_id,
+    check_in_date,
+    guest_id,
   });
 }
 
 export async function change_status_to_stay(room_id, check_in_date) {
   await window.contract.change_status_to_stay({
-    room_id: room_id,
-    check_in_date: check_in_date,
+    room_id,
+    check_in_date,
   });
 }
 ```
@@ -328,21 +330,12 @@ export async function change_status_to_stay(room_id, check_in_date) {
 ```javascript
 await window.contract.book_room(
   {
-    room_id: room_id,
+    room_id,
     check_in_date: date,
   },
   GAS,
-  price
+  price,
 );
-```
-
-また、`frontend/near-config.js`を以下のように書き換えてください
-
-`frontend/near-config.js`
-
-```diff
-- export function getConfig(env) {
-+ export default function getConfig(env) {
 ```
 
 これで、スマートコントラクトのメソッドを呼び出す準備ができました。
