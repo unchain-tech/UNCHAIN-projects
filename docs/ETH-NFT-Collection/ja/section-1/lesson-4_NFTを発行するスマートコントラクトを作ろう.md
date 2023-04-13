@@ -295,11 +295,11 @@ _setTokenURI(
 
 ここから、実際に`makeAnEpicNFT()`関数を呼び出し、スマートコントラクトが問題なくデプロイされるかテストしていきます。
 
-テスト用のプログラム`run.js`ファイルを下記のように変更しましょう。
+`scripts/deploy.js`ファイルを下記のように変更しましょう。
 
 ```javascript
-// run.js
-const main = async () => {
+// deploy.js
+async function main() {
   const nftContractFactory = await hre.ethers.getContractFactory("MyEpicNFT");
   const nftContract = await nftContractFactory.deploy();
   await nftContract.deployed();
@@ -313,25 +313,20 @@ const main = async () => {
   // Minting が仮想マイナーにより、承認されるのを待つ。
   await txn.wait();
 };
-const runMain = async () => {
-  try {
-    await main();
-    process.exit(0);
-  } catch (error) {
-    console.log(error);
-    process.exit(1);
-  }
-};
-runMain();
+
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
 ```
 
-上記を`run.js`に反映させえたら、下記をターミナル上で実行しましょう。
+上記を`deploy.js`に反映させたら、下記をターミナル上で実行しましょう。
 
 ```bash
-npx hardhat run scripts/run.js
+npx hardhat run scripts/deploy.js
 ```
 
-エラーが発生した場合は、`pwd`を実行して、 `epic-nfts`ディレクトリにいることを確認して、もう一度上記のコードを実行してみてください。
+エラーが発生した場合は、`pwd`を実行して、 `packages/contract`ディレクトリにいることを確認して、もう一度上記のコードを実行してみてください。
 
 下記のような結果が、ターミナルに出力されれば、テストは成功です。
 
@@ -449,64 +444,21 @@ MetaMaskウォレットに`Sepolia Test Network`が設定されたら、下記�
   - `Connect wallet`をクリックしてMetaMaskと接続する必要があります。
   - Twitterアカウントを連携する必要があります。
 
-
-### 🚀 `deploy.js`ファイルを作成する
-
-`run.js`は、あくまでローカル環境でコードのテストを行うためのスクリプトでした。
-
-テストネットにコントラクトをデプロイするために、`scripts`ディレクトリの中にある`deploy.js`を以下のとおり更新します。
-
-```javascript
-// deploy.js
-const main = async () => {
-  // コントラクトがコンパイルします
-  // コントラクトを扱うために必要なファイルが `artifacts` ディレクトリの直下に生成されます。
-  const nftContractFactory = await hre.ethers.getContractFactory("MyEpicNFT");
-  // Hardhat がローカルの Ethereum ネットワークを作成します。
-  const nftContract = await nftContractFactory.deploy();
-  // コントラクトが Mint され、ローカルのブロックチェーンにデプロイされるまで待ちます。
-  await nftContract.deployed();
-  console.log("Contract deployed to:", nftContract.address);
-  // makeAnEpicNFT 関数を呼び出す。NFT が Mint される。
-  let txn = await nftContract.makeAnEpicNFT();
-  // Minting が仮想マイナーにより、承認されるのを待ちます。
-  await txn.wait();
-  console.log("Minted NFT #1");
-  // makeAnEpicNFT 関数をもう一度呼び出します。NFT がまた Mint されます。
-  txn = await nftContract.makeAnEpicNFT();
-  // Minting が仮想マイナーにより、承認されるのを待ちます。
-  await txn.wait();
-  console.log("Minted NFT #2");
-};
-// エラー処理を行っています。
-const runMain = async () => {
-  try {
-    await main();
-    process.exit(0);
-  } catch (error) {
-    console.log(error);
-    process.exit(1);
-  }
-};
-runMain();
-```
-
 ### 📈 Sepolia Test Network に コントラクトをデプロイしましょう
 
 `hardhat.config.js`ファイルを変更する必要があります。
 
 これは、スマートコントラクトプロジェクトのルートディレクトリにあります。
 
-- 今回は、`epic-nfts`ディレクトリの直下に`hardhat.config.js`が存在するはずです。
+- 今回は、`packages/contract`ディレクトリの直下に`hardhat.config.js`が存在するはずです。
 
-例)`epic-nfts`で`ls`を実行した結果
+例)`contract`で`ls`を実行した結果
 
 ```
-README.md			package-lock.json
+README.md			hardhat.config.js
 artifacts			package.json
 cache				scripts
 contracts			test
-hardhat.config.js
 ```
 
 下記のように、`hardhat.config.js`の中身を更新します。
@@ -515,11 +467,12 @@ hardhat.config.js
 // hardhat.config.js
 require("@nomicfoundation/hardhat-toolbox");
 module.exports = {
-  solidity: "0.8.9",
+  solidity: '0.8.18',
+  defaultNetwork: 'hardhat',
   networks: {
     sepolia: {
-      url: "YOUR_ALCHEMY_API_URL",
-      accounts: ["YOUR_PRIVATE_ACCOUNT_KEY"],
+      url: "YOUR_ALCHEMY_API_URL" || '',
+      accounts: "YOUR_PRIVATE_ACCOUNT_KEY" ? ["YOUR_PRIVATE_ACCOUNT_KEY"] : [],
     },
   },
 };
@@ -605,7 +558,7 @@ hardhat.config.js
 
 構成のセットアップが完了すると、前に作成したデプロイスクリプトを使用してデプロイするように設定されます。
 
-`epic-nfts`のルートディレクトリからこのコマンドを実行します 。
+`packages/contract`ディレクトリ下でこのコマンドを実行します 。
 
 ```bash
 npx hardhat run scripts/deploy.js --network sepolia

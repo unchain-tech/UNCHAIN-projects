@@ -1,11 +1,11 @@
 ### 🙉 GitHub に 関する注意点
 
-**GitHub にコントラクト( `epic-nfts`)のコードをアップロードする際は、秘密鍵を含むハードハット構成ファイルをリポジトリにアップロードしないよう注意しましょう。**
+**GitHub にコントラクト( `packages/contract/`)のコードをアップロードする際は、秘密鍵を含むハードハット構成ファイルをリポジトリにアップロードしないよう注意しましょう。**
 
-秘密鍵などのファイルを隠すために、ターミナルで`epic-nfts`に移動して、下記を実行してください。
+秘密鍵などのファイルを隠すために、ターミナルで`packages/contract`ディレクトリに移動して、下記を実行してください。
 
 ```bash
-npm install --save dotenv
+yarn add --dev dotenv
 ```
 
 `dotenv`モジュールに関する詳しい説明は、[こちら](https://maku77.github.io/nodejs/env/dotenv.html)を参照してください。
@@ -18,7 +18,7 @@ npm install --save dotenv
 
 操作されては困るファイルについては、このように「不可視」の属性を持たせて、一般の人が触れられないようにします。
 
-ターミナル上で`epic-nfts`ディレクトリにいることを確認し、下記を実行しましょう。VS Codeから`.env`ファイルを開きます。
+ターミナル上で`packages/contract`ディレクトリにいることを確認し、下記を実行しましょう。VS Codeから`.env`ファイルを開きます。
 
 ```
 code .env
@@ -44,15 +44,19 @@ STAGING_ALCHEMY_KEY = https://...
 
 ```javascript
 // hardhat.config.js
-require("@nomicfoundation/hardhat-toolbox");
-require("dotenv").config();
+require('@nomiclabs/hardhat-etherscan');
+require('@nomicfoundation/hardhat-toolbox');
+require('dotenv').config();
+
+const { STAGING_ALCHEMY_KEY, PRIVATE_KEY } = process.env;
 
 module.exports = {
-  solidity: "0.8.9",
+  solidity: '0.8.18',
+  defaultNetwork: 'hardhat',
   networks: {
     sepolia: {
-      url: process.env.STAGING_ALCHEMY_KEY,
-      accounts: [process.env.PRIVATE_KEY],
+      url: STAGING_ALCHEMY_KEY || '',
+      accounts: PRIVATE_KEY ? [PRIVATE_KEY] : [],
     },
   },
 };
@@ -134,29 +138,32 @@ npm install @nomiclabs/hardhat-etherscan
 // .env
 PRIVATE_KEY = 0x...
 STAGING_ALCHEMY_KEY = https://...
-ETHERSCAN_APIKEY = Your_Etherscan_apiKey
+ETHERSCAN_API_KEY = Your_Etherscan_apiKey
 ```
 
-そして、`epic-nfts/hardhat.config.js`を編集していきます。
+そして、`packages/contract/hardhat.config.js`を編集していきます。
 
 
 `require("@nomiclabs/hardhat-etherscan");`を含むのも忘れないようにしましょう。
 
 ```javascript
 // hardhat.config.js
-require("@nomiclabs/hardhat-etherscan");
-require("@nomicfoundation/hardhat-toolbox");
-require("dotenv").config();
+require('@nomiclabs/hardhat-etherscan');
+require('@nomicfoundation/hardhat-toolbox');
+require('dotenv').config();
+
+const { ETHERSCAN_API_KEY, STAGING_ALCHEMY_KEY, PRIVATE_KEY } = process.env;
 
 module.exports = {
-  solidity: "0.8.9",
+  solidity: '0.8.18',
   etherscan: {
-    apiKey: process.env.ETHERSCAN_APIKEY
+    apiKey: ETHERSCAN_API_KEY,
   },
+  defaultNetwork: 'hardhat',
   networks: {
     sepolia: {
-      url: process.env.STAGING_ALCHEMY_KEY,
-      accounts: [process.env.PRIVATE_KEY],
+      url: STAGING_ALCHEMY_KEY || '',
+      accounts: PRIVATE_KEY ? [PRIVATE_KEY] : [],
     },
   },
 };
@@ -229,31 +236,53 @@ Vercelはサーバーレス機能のホスティングを提供するクラウ�
 
 Vercelに関する詳しい説明は、[こちら](https://zenn.dev/lollipop_onl/articles/eoz-vercel-pricing-2020)をご覧ください。
 
-まず、GitHubの`nft-collection-starter-project`にローカルファイルをアップロードしていきます。
+まずは、ローカル環境に存在する`ETH-NFT-Collection`をGitHub上へアップロードしましょう。
 
-ターミナル上で`nft-collection-starter-project`に移動して、下記を実行しましょう。
+⚠️ `packages/contract/.gitignore/ファイル内に.envが記載されていることを再度確認してください。
 
+最初に、GitHub上に新しくリポジトリを作成しましょう。
+
+1. 右上のドロップダウンメニューから、「New repository」をクリック
+2. `Repository name`を設定（ここでは作成したプロジェクトと同じ名前`ETH-NFT-Collection`を設定しています）
+3. 「Create repository」をクリック
+
+![](/public/images/ETH-NFT-Collection/section-4/4_2_13.png)
+
+作成されたリポジトリのURLをコピーします。ここでは、`SSH`を選択しています。
+
+![](/public/images/ETH-NFT-Collection/section-4/4_2_14.png)
+
+次に、ターミナル上で`ETH-NFT-Collection`ディレクトリにいることを確認し、以下のコマンドを実行します。
+
+スタータープロジェクト内の`.git`ディレクトリを削除します。
+
+```bash
+rm -rf packages/client/.git
 ```
+
+ローカル環境の`ETH-NFT-Collection`ディレクトリと、GitHubのリポジトリを紐づけてコードをアップロードします。
+
+```bash
+git init
 git add .
 git commit -m "upload to github"
-git push
+git remote add origin <コピーしたGitHubリポジトリのURL>
+git push origin main
 ```
 
-次に、GitHub上の`nft-collection-starter-project`に、ローカル環境に存在する`nft-collection-starter-project`のファイルとディレクトリが反映されていることを確認してください。
+GitHub上の`ETH-NFT-Collection`にファイルが反映されていることを確認してください。
 
-Vercelのアカウントを取得したら、下記を実行しましょう。
+それでは、Vercelの操作を行います。Vercelのアカウントを取得したら、下記を実行しましょう。
 
 1\. `Dashboard`へ進んで、`New Project`を選択してください。
 
 ![](/public/images/ETH-NFT-Collection/section-4/4_2_7.png)
 
-2\. `Import Git Repository`で自分のGitHubアカウントを接続したら、`nft-collection-starter-project`を選択し、`Import`してください。
+2\. `Import Git Repository`で自分のGitHubアカウントを接続したら、`ETH-NFT-Collection`を選択し、`Import`してください。
 
 ![](/public/images/ETH-NFT-Collection/section-4/4_2_8.png)
 
-3\. プロジェクトを作成します。Environment Variableに下記を追加します。
-
-`NAME`＝`CI`、`VALUE`＝`false`（下図参照）
+3\. プロジェクトを作成します。`Root Directory`が「packages/client」となっていることを確認してください。
 
 ![](/public/images/ETH-NFT-Collection/section-4/4_2_9.png)
 

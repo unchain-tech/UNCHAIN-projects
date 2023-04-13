@@ -26,7 +26,7 @@
 +         // 関数コール時に送付されたNEARを取得
 +         let deposit = env::attached_deposit();
 +         // 送付されたNEARと実際の宿泊料（NEAR）を比較するためにキャストをする
-+         let room_price: u128 = room.price.clone().into();
++         let room_price: u128 = room.price.into();
 +         assert_eq!(deposit, room_price, "ERR_DEPOSIT_IS_INCORRECT");
 + 
 +         // 予約が入った日付, 宿泊者IDを登録
@@ -65,7 +65,7 @@
         // 関数コール時に送付されたNEARを取得
         let deposit = env::attached_deposit();
         // 送付されたNEARと実際の宿泊料（NEAR）を比較するためにキャストをする
-        let room_price: u128 = room.price.clone().into();
+        let room_price: u128 = room.price.into();
         assert_eq!(deposit, room_price, "ERR_DEPOSIT_IS_INCORRECT");
 ```
 
@@ -118,7 +118,7 @@
         // 関数コール時に送付されたNEARを取得
         let deposit = env::attached_deposit();
         // 送付されたNEARと実際の宿泊料（NEAR）を比較するためにキャストをする
-        let room_price: u128 = room.price.clone().into();
+        let room_price: u128 = room.price.into();
         assert_eq!(deposit, room_price, "ERR_DEPOSIT_IS_INCORRECT");
 
         // 予約が入った日付, 宿泊者IDを登録
@@ -263,12 +263,12 @@ impl Contract {
 +         match self.bookings_per_guest.get_mut(&guest_id) {
 +             // 宿泊者が既に別の予約データを所有している時
 +             Some(booked_date) => {
-+                 booked_date.insert(check_in_date.clone(), room_id);
++                 booked_date.insert(check_in_date, room_id);
 +             }
 +             // 初めて予約データを保存する時
 +             None => {
 +                 let mut new_guest_date = HashMap::new();
-+                 new_guest_date.insert(check_in_date.clone(), room_id);
++                 new_guest_date.insert(check_in_date, room_id);
 +                 self.bookings_per_guest.insert(guest_id, new_guest_date);
 +             }
 +         }
