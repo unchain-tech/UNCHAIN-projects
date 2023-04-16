@@ -158,7 +158,7 @@ const Home: NextPage = () => {
 
     const checkIfUserHasVoted = async () => {
       try {
-        const hasVoted = await vote!.hasVoted(proposals[0].proposalId.toString(), address);
+        const hasVoted = await vote!.hasVoted(proposals[0].proposalchainId.toString(), address);
         setHasVoted(hasVoted);
         if (hasVoted) {
           console.log("🥵 User has already voted");
@@ -179,7 +179,7 @@ const Home: NextPage = () => {
       return;
     }
 
-    // 先ほどエアドロップしたユーザーがここで取得できます（発行された tokenID 0 のメンバーシップ NFT）
+    // 先ほどエアドロップしたユーザーがここで取得できます（発行された tokenchainID 0 のメンバーシップ NFT）
     const getAllAddresses = async () => {
       try {
         const memberAddresses = await editionDrop?.history.getAllClaimerAddresses(
@@ -284,9 +284,9 @@ const Home: NextPage = () => {
     );
   }
   // テストネットが Sepolia ではなかった場合に警告を表示
-  else if (address && network && network?.data?.chain?.id !== 11155111) {
+  else if (address && network && network?.data?.chain?.chainId !== 11155111) {
     console.log("wallet address: ", address);
-    console.log("network: ", network?.data?.chain?.id);
+    console.log("network: ", network?.data?.chain?.chainId);
 
     return (
       <div className={styles.container}>
@@ -341,12 +341,12 @@ const Home: NextPage = () => {
                   // フォームから値を取得します
                   const votes = proposals.map((proposal) => {
                     const voteResult = {
-                      proposalId: proposal.proposalId,
+                      proposalchainId: proposal.proposalchainId,
                       vote: 2,
                     };
                     proposal.votes.forEach((vote) => {
-                      const elem = document.getElementById(
-                        proposal.proposalId + "-" + vote.type
+                      const elem = document.getElementBychainId(
+                        proposal.proposalchainId + "-" + vote.type
                       ) as HTMLInputElement;
 
                       if (elem!.checked) {
@@ -368,12 +368,12 @@ const Home: NextPage = () => {
                     // 提案に対する投票を行います
                     try {
                       await Promise.all(
-                        votes.map(async ({ proposalId, vote: _vote }) => {
+                        votes.map(async ({ proposalchainId, vote: _vote }) => {
                           // 提案に投票可能かどうかを確認します
-                          const proposal = await vote!.get(proposalId);
+                          const proposal = await vote!.get(proposalchainId);
                           // 提案が投票を受け付けているかどうかを確認します
                           if (proposal.state === 1) {
-                            return vote!.vote(proposalId.toString(), _vote);
+                            return vote!.vote(proposalchainId.toString(), _vote);
                           }
                           return;
                         })
@@ -381,12 +381,12 @@ const Home: NextPage = () => {
                       try {
                         // 提案が実行可能であれば実行する
                         await Promise.all(
-                          votes.map(async ({ proposalId }) => {
-                            const proposal = await vote!.get(proposalId);
+                          votes.map(async ({ proposalchainId }) => {
+                            const proposal = await vote!.get(proposalchainId);
 
                             // state が 4 の場合は実行可能と判断する
                             if (proposal.state === 4) {
-                              return vote!.execute(proposalId.toString());
+                              return vote!.execute(proposalchainId.toString());
                             }
                           })
                         );
@@ -407,20 +407,20 @@ const Home: NextPage = () => {
                 }}
               >
                 {proposals.map((proposal) => (
-                  <div key={proposal.proposalId.toString()} className="card">
+                  <div key={proposal.proposalchainId.toString()} className="card">
                     <h5>{proposal.description}</h5>
                     <div>
                       {proposal.votes.map(({ type, label }) => (
                         <div key={type}>
                           <input
                             type="radio"
-                            id={proposal.proposalId + "-" + type}
-                            name={proposal.proposalId.toString()}
+                            chainId={proposal.proposalchainId + "-" + type}
+                            name={proposal.proposalchainId.toString()}
                             value={type}
                             // デフォルトで棄権票をチェックする
                             defaultChecked={type === 2}
                           />
-                          <label htmlFor={proposal.proposalId + "-" + type}>
+                          <label htmlFor={proposal.proposalchainId + "-" + type}>
                             {label}
                           </label>
                         </div>
