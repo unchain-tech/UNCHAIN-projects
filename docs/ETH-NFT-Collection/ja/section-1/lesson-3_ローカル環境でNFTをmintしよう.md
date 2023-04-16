@@ -1,29 +1,24 @@
 ### 📝 スマートコントラクトを作成する
 
-`contracts`ディレクトリの下に`MyEpicNFT.sol`という名前のファイルを作成します。
+前回のレッスンに引き続き、`packages/contract`ディレクトリ下を編集していきます。
 
-ターミナル上で新しくファイルを作成する場合は、下記のコマンドが役立ちます。
-
-1. `epic-nfts`ディレクトリに移動: `cd epic-nfts`
-2. `contracts`ディレクトリに移動: `cd contracts`
-3. `MyEpicNFT.sol`ファイルを作成: `touch MyEpicNFT.sol`
+まずは、`contracts`ディレクトリの下に`MyEpicNFT.sol`という名前のファイルを作成します。
 
 Hardhatを使用する場合、ファイル構造は非常に重要ですので、注意する必要があります。ファイル構造が下記のようになっていれば大丈夫です 😊
 
-```bash
-epic-nfts
-    |_ contracts
-           |_  MyEpicNFT.sol
+```diff
+packages/
+ └── contract/
+     └── contracts/
++        └── MyEpicNFT.sol
 ```
 
-次に、コードエディタでプロジェクトのコードを開きます。
+それでは、実際にコントラクトを書いていきましょう。
 
-ここでは、VS Codeの使用をお勧めします。ダウンロードは [こちら](https://azure.microsoft.com/ja-jp/products/visual-studio-code/) から。
+ここでは、コードエディタとしてVS Codeの使用をお勧めします。ダウンロードは [こちら](https://azure.microsoft.com/ja-jp/products/visual-studio-code/) から。
 
 - VS Codeをターミナルから起動する方法は [こちら](https://maku.blog/p/f5iv9kx/) をご覧ください。今後VS Codeを起動するのが一段と楽になるので、ぜひ導入してみてください。
 - VS Code用の [Solidity 拡張機能](https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity) をダウンロードすることをお勧めします。この拡張機能により、構文が見やすくなります。
-
-それでは、実際にコントラクトを書いていきましょう。
 
 `MyEpicNFT.sol`のファイル内に以下のコードを記載します。
 
@@ -123,15 +118,13 @@ classの概念については、[ここ](https://aiacademy.jp/media/?p=131)を�
 2. ローカル環境のブロックチェーンにデプロイする。
 3. `console.log`が実行される。
 
-ここでは、この3つのステップを処理して、テストするプログラムを作成していきます。
+ここでは、この3つのステップを処理して、スマートコントラクトのデプロイをテストするプログラムを作成していきます。
 
-`scripts`ディレクトリに移動して、`run.js`という名前のファイルを作成しましょう。
-
-`run.js`の中身を下記のように更新しましょう。
+`scripts/deploy.js`ファイルを、以下の内容に書き換えてください。
 
 ```javascript
-// run.js
-const main = async () => {
+// deploy.js
+async function main() {
   // コントラクトがコンパイルします
   // コントラクトを扱うために必要なファイルが `artifacts` ディレクトリの直下に生成されます。
   const nftContractFactory = await hre.ethers.getContractFactory("MyEpicNFT");
@@ -141,24 +134,17 @@ const main = async () => {
   await nftContract.deployed();
   console.log("Contract deployed to:", nftContract.address);
 };
-// エラー処理を行っています。
-const runMain = async () => {
-  try {
-    await main();
-    process.exit(0);
-  } catch (error) {
-    console.log(error);
-    process.exit(1);
-  }
-};
 
-runMain();
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
 ```
 
 一行ずつコードを見ていきましょう。
 
 ```javascript
-// run.js
+// deploy.js
 const nftContractFactory = await hre.ethers.getContractFactory("MyEpicNFT");
 ```
 
@@ -169,7 +155,7 @@ const nftContractFactory = await hre.ethers.getContractFactory("MyEpicNFT");
 >
 > `hre.ethers`は、Hardhat プラグインの仕様です。
 
-> ✍️: `const main = async ()`と`await`について
+> ✍️: `async function main()`と`await`について
 > Javascript でコードを書いていると、コードの上から順に実行されなくて困ることがあります。これを非同期処理に関する問題といいます。
 >
 > 解決法の一つとして、ここでは`async` / `await`を使用します。
@@ -179,7 +165,7 @@ const nftContractFactory = await hre.ethers.getContractFactory("MyEpicNFT");
 > つまり、`hre.ethers.getContractFactory("MyEpicNFT")`の処理が終わるまで、`main`関数の中に記載されている他の処理は実行されないということです。
 
 ```javascript
-// run.js
+// deploy.js
 const nftContract = await nftContractFactory.deploy();
 ```
 
@@ -190,7 +176,7 @@ HardhatがローカルのEthereumネットワークを、コントラクトの�
 - 常にゼロリセットとなるので、エラーのデバッグがしやすくなります。
 
 ```javascript
-// run.js
+// deploy.js
 await nftContract.deployed();
 ```
 
@@ -215,10 +201,10 @@ console.log("Contract deployed to:", nftContract.address);
 
 では、実行してみましょう。
 
-ターミナルを開いて`epic-nfts`ディレクトリへ移動し、下記を実行してください。
+ターミナルを開いて`packages/contract`ディレクトリ下にいることを確認して、以下のコマンドを実行してください。
 
 ```bash
-npx hardhat run scripts/run.js
+npx hardhat run scripts/deploy.js
 ```
 
 コントラクト内から`console.log`が実行され、さらにコントラクトのアドレスがプリントアウトされるのが確認できるはずです!
@@ -240,13 +226,13 @@ NFTにおける「Mint（ミント）」とは、**スマートコントラク�
 
 ### 🎩 Hardhat Runtime Environment について
 
-`run.js`の中で、`hre.ethers`が登場します。
+`deploy.js`の中で、`hre.ethers`が登場します。
 
 しかし、`hre`はどこにもインポートされていません。それはなぜでしょうか？
 
 それは、ずばり、HardhatがHardhat Runtime Environment（HRE）を呼び出しているからです。
 
-HREは、Hardhatが用意したすべての機能を含むオブジェクト（＝コードの束）です。`hardhat`で始まるターミナルコマンドを実行するたびに、HREにアクセスしているので、`hre`を`run.js`にインポートする必要はありません。
+HREは、Hardhatが用意したすべての機能を含むオブジェクト（＝コードの束）です。`hardhat`で始まるターミナルコマンドを実行するたびに、HREにアクセスしているので、`hre`を`deploy.js`にインポートする必要はありません。
 
 詳しくは、[Hardhat 公式ドキュメント（英語）](https://hardhat.org/advanced/hardhat-runtime-environment.html) にて確認できます。
 

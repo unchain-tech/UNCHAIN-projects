@@ -98,7 +98,7 @@ dfx start --clean --background
 
 ```bash
 Running dfx start for version 0.12.1
-Using the default definition for the 'local' shared network because /Users/yukasaito/.config/dfx/networks.json does not exist.
+Using the default definition for the 'local' shared network because /User/user/.config/dfx/networks.json does not exist.
 Dashboard: http://localhost:58635/_/dashboard
 ```
 
