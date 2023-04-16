@@ -264,7 +264,7 @@ export const useWallet = (): ReturnUseWallet => {
       });
       if (!Array.isArray(accounts)) return;
       console.log("Connected: ", accounts[0]);
-      setCurrentAccount(accounts[0]); //簡易実装のため, 配列の初めのアドレスを使用します。
+      setCurrentAccount(accounts[0]); // 簡易実装のため, 配列の初めのアドレスを使用します。
     } catch (error) {
       console.log(error);
     }
@@ -624,7 +624,7 @@ const Home: NextPage = () => {
           <Image alt="Picture of icon" src="/bird.png" width={40} height={30} />
           <div className={styles.appName}> Miniswap </div>
         </div>
-        {currentAccount == undefined ? (
+        {currentAccount === undefined ? (
           <div className={styles.connectBtn} onClick={connectWallet}>
             {" "}
             Connect to wallet{" "}
