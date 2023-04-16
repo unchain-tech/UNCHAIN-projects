@@ -10,32 +10,33 @@
 
 それでは早速、`src/scripts/11-revoke-roles.ts`を作成し、以下のとおりコードを変更します。
 
-※ あなたのアドレスを設定することを忘れないでください！
-
 ```typescript
-import sdk from "./1-initialize-sdk.js";
+import sdk from './1-initialize-sdk.js';
+import { ERCTokenAddress } from './module.js';
 
-const token = sdk.getContract("INSERT_TOKEN_ADDRESS", "token");
+const token = sdk.getContract(ERCTokenAddress, 'token');
 
 (async () => {
   try {
     // 現在のロールを記録します
     const allRoles = await (await token).roles.getAll();
 
-    console.log("👀 Roles that exist right now:", allRoles);
+    console.log('👀 Roles that exist right now:', allRoles);
 
     // ERC-20 のコントラクトに関して、あなたのウォレットが持っている権限をすべて取り消します
     await (await token).roles.setAll({ admin: [], minter: [] });
     console.log(
-      "🎉 Roles after revoking ourselves",
-      await (await token).roles.getAll()
+      '🎉 Roles after revoking ourselves',
+      await (await token).roles.getAll(),
     );
-    console.log("✅ Successfully revoked our superpowers from the ERC-20 contract");
-
+    console.log(
+      '✅ Successfully revoked our superpowers from the ERC-20 contract',
+    );
   } catch (error) {
-    console.error("Failed to revoke ourselves from the DAO treasury", error);
+    console.error('Failed to revoke ourselves from the DAO treasury', error);
   }
 })();
+
 ```
 
 それでは、ターミナルに移動し、下記コマンドを実行してみましょう。
