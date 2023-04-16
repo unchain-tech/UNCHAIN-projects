@@ -242,6 +242,7 @@ export const validAmount = (amount: string): boolean => {
 
 ```ts
 import { useEffect, useState } from "react";
+
 import { getEthereum } from "../utils/ethereum";
 
 type ReturnUseWallet = {
@@ -392,6 +393,7 @@ client
 
 ```tsx
 import { useState } from "react";
+
 import styles from "./Container.module.css";
 
 type Props = {
@@ -531,6 +533,7 @@ export default function Container({ currentAccount }: Props) {
 
 ```tsx
 import { ChangeEvent } from "react";
+
 import styles from "./InputNumberBox.module.css";
 
 type Props = {
@@ -591,8 +594,9 @@ client
 ※初期設定のままなので編集箇所がない場合があります。
 
 ```tsx
-import "../styles/globals.css";
 import type { AppProps } from "next/app";
+
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />;
@@ -609,10 +613,11 @@ export default MyApp;
 
 ```tsx
 import type { NextPage } from "next";
-import styles from "../styles/Home.module.css";
-import { useWallet } from "../hooks/useWallet";
-import Container from "../components/Container/Container";
 import Image from "next/image";
+
+import Container from "../components/Container/Container";
+import { useWallet } from "../hooks/useWallet";
+import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   const { currentAccount, connectWallet } = useWallet();
