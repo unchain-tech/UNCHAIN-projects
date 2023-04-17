@@ -56,7 +56,7 @@ Xummアプリ内のXRP残高が1000XRPになっていたら成功です！
 
 今回はテスト用のアプリケーションなので入力内容は仮のもので構いません。
 
-作成後API Keyが取得可能になりますのでメモしておいてください。今回はAPI Secretは使用しません。
+作成後API KeyとAPI Secretが取得可能になりますのでメモしておいてください。
 
 また、「Origin/Redirect URIs（one per line）to use」のフィールドに`http://localhost:3000`を入力して`Update Application`ボタンで設定を反映しておいてください。
 このフィールドに設定したURIからのみXummアプリからのアクセスを許可します。
