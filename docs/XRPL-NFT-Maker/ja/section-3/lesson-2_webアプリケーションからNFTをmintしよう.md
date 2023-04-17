@@ -15,6 +15,8 @@
 
 まずは次のコメントアウトを解除し、`api-key`の箇所をsection-1のlesson-2で取得したXummのAPI Keyに置き換えてください。
 
+ここでは`api-secret`は使用しません。
+
 ```js
 const xumm = new Xumm('api-key')
 ```

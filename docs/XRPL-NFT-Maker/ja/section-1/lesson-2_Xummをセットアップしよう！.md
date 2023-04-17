@@ -50,13 +50,17 @@ Xummアプリ内のXRP残高が1000XRPになっていたら成功です！
 
 ![](/public/images/XRPL-NFT-Maker/section-1/1_2_4.png)
 
+メールアドレスやGithub、Xummでアカウントの作成が可能です。お好きな方法を選択してください！
+
+![](/public/images/XRPL-NFT-Maker/section-1/1_2_5.png)
+
 今回はテスト用のアプリケーションなので入力内容は仮のもので構いません。
 
 作成後API Keyが取得可能になりますのでメモしておいてください。今回はAPI Secretは使用しません。
 
 また、「Origin/Redirect URIs（one per line）to use」のフィールドに`http://localhost:3000`を入力して`Update Application`ボタンで設定を反映しておいてください。
 このフィールドに設定したURIからのみXummアプリからのアクセスを許可します。
-![](/public/images/XRPL-NFT-Maker/section-1/1_2_5.png)
+![](/public/images/XRPL-NFT-Maker/section-1/1_2_6.png)
 
 
 ### 🙋‍♂️ 質問する

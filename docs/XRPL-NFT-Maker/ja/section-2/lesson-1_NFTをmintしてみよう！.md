@@ -24,7 +24,7 @@ XRP LedgerのクライアントライブラリはJavaScriptやPythonなどに対
   https://www.npmjs.com/package/xrpl
 
 1. `index.js`ファイルを作成し、以下のコードを入力します。
-   `apikey`はlesson-2でXumm Developer Consoleから取得したものに置き換えてください。
+   `api-key`と`api-secret`はlesson-2でXumm Developer Consoleから取得したものに置き換えてください。
    URIにはIPFSのURIを指定します。メタデータのJSONファイルであることが望ましいですが、ここでは画像のURIで構いません。
 
    IPFSについては[IPFSってなんだろう](https://app.unchain.tech/learn/ETH-NFT-Maker/ja/2/1/)、IPFSに画像をアップロードする方法については[IPFSを使ってみよう！](https://app.unchain.tech/learn/ETH-NFT-Maker/ja/2/2/)をご覧ください！
@@ -33,7 +33,7 @@ XRP LedgerのクライアントライブラリはJavaScriptやPythonなどに対
 const { Xumm } = require('xumm');
 const { convertStringToHex, NFTokenMintFlags } = require('xrpl');
 
-const xumm = new Xumm('apikey', 'apisecret');
+const xumm = new Xumm('api-key', 'api-secret');
 const transaction = {
   TransactionType: 'NFTokenMint',
   NFTokenTaxon: 0,
@@ -51,7 +51,7 @@ xumm.payload?.create(transaction).then(payload=>{
 1. Xummへアクセスするためのインスタンスを作成します。
 
 ```js
-const xumm = new Xumm('apikey', 'apisecret');
+const xumm = new Xumm('api-key', 'api-secret');
 ```
 
 2. NFTをミントするための`NFTokenMint`トランザクションの指定とNFTの情報を指定します。
@@ -68,7 +68,7 @@ const transaction = {
 
 - `TransactionType`: トランザクションの種類を指定します。今回はNFTをミントするために`NFTokenMint`を指定します。
 - `NFTokenTaxon`: NFTのコレクションの識別IDを指定します。今回は`0`を指定します。
-- Flags: NFTの特性を指定します。今回は`tfTransferable`を指定します。`tfTransferable`を指定することでNFTを他のアドレスに送信することが可能になります。他にも発行者によるバーンを許可する`tfBurnable`やNFTの売買をXRPのみに制限する`tfOnlyXRP`が存在し、複数のフラグを指定することも可能です。
+- `Flags`: NFTの特性を指定します。今回は`tfTransferable`を指定します。`tfTransferable`を指定することでNFTを他のアドレスに送信することが可能になります。他にも発行者によるバーンを許可する`tfBurnable`やNFTの売買をXRPのみに制限する`tfOnlyXRP`が存在し、複数のフラグを指定することも可能です。
 - `TransferFee`: NFTのロイヤリティを指定します。今回は10％を指定しています。Flagsに`tfTransferable`を指定している場合のみ有効です。
 - `URI`: NFTのメタデータを指定します。今回はIPFSのURIを指定しています。URIフィールドにはHEX値を指定する必要があるため、URIの文字列を`xrpl`が提供する`convertStringToHex`メソッドで16進数値へ変換します。
 
