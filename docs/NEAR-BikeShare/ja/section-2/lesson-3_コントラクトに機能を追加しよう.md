@@ -59,10 +59,7 @@ impl Contract {
 
     /// indexで指定されたバイクが使用可能かどうかを判別します。
     pub fn is_available(&self, index: usize) -> bool {
-        match self.bikes[index] {
-            Bike::Available => true,
-            _ => false,
-        }
+        matches!(self.bikes[index], Bike::Available)
     }
 
     /// indexで指定されたバイクが使用中の場合は使用者のアカウントidを返却します。
@@ -178,10 +175,7 @@ impl Default for Contract {
 	// ...
 
     pub fn is_available(&self, index: usize) -> bool {
-        match self.bikes[index] {
-            Bike::Available => true,
-            _ => false,
-        }
+        matches!(self.bikes[index], Bike::Available)
     }
 
     pub fn who_is_using(&self, index: usize) -> Option<AccountId> {
@@ -196,7 +190,8 @@ impl Default for Contract {
 
 `enum`は [match](https://doc.rust-jp.rs/book-ja/ch06-02-match.html)という制御文を利用して条件分岐が可能です。
 条件にマッチした場合の処理を`=>`の後に記述します。
-例えば, `is_available`メソッドでは指定されたindexの`bike`が`Available`であれば`true`を返し, そうでなければ`false`を返します。
+
+ですが、`is_available`メソッドはmatch文ではなく、[`matches!`](https://doc.rust-lang.org/std/macro.matches.html#)マクロを利用しています。match文は、条件に応じてbooleanを返すだけの場合には、`matches!`マクロを利用すると、より簡潔に書くことができます(この書き方は、[Clippy](https://rust-lang.github.io/rust-clippy/master/index.html#match_like_matches_macro)というRustの静的解析ツールも推奨しています)。`is_available`メソッドでは指定されたindexの`bike`が`Available`であれば`true`を返し, そうでなければ`false`を返します。よって、ここでは`matches!`マクロで実装を行なっています。
 
 また, `Option<AccountId>`という型が登場しました。
 [Option](https://doc.rust-jp.rs/book-ja/ch06-02-match.html#optiont%E3%81%A8%E3%81%AE%E3%83%9E%E3%83%83%E3%83%81)は何か値を保持している(`Some`)か何も保持していない(`None`)の2つの状態を表します。
