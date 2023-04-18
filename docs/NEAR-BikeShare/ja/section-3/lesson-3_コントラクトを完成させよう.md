@@ -90,7 +90,7 @@ impl Contract {
             amount,
             AMOUNT_TO_USE_BIKE.to_string(),
             "Require {} ft to use the bike",
-            AMOUNT_TO_USE_BIKE.to_string()
+            AMOUNT_TO_USE_BIKE
         );
 
         log!(
