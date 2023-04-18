@@ -9,15 +9,15 @@
 
 ```solidity
     // ユーザのシェアから引き出せるトークンの量を算出します。
-    function getWithdrawEstimate(IERC20 _token, uint256 _share)
+    function getWithdrawEstimate(IERC20 token, uint256 _share)
         public
         view
         activePool
-        validToken(_token)
+        validToken(token)
         returns (uint256)
     {
         require(_share <= totalShare, "Share should be less than totalShare");
-        return (_share * totalAmount[_token]) / totalShare;
+        return (_share * totalAmount[token]) / totalShare;
     }
 
     function withdraw(uint256 _share)
@@ -28,17 +28,17 @@
         require(_share > 0, "share cannot be zero!");
         require(_share <= share[msg.sender], "Insufficient share");
 
-        uint256 amountTokenX = getWithdrawEstimate(tokenX, _share);
-        uint256 amountTokenY = getWithdrawEstimate(tokenY, _share);
+        uint256 amountTokenX = getWithdrawEstimate(_tokenX, _share);
+        uint256 amountTokenY = getWithdrawEstimate(_tokenY, _share);
 
         share[msg.sender] -= _share;
         totalShare -= _share;
 
-        totalAmount[tokenX] -= amountTokenX;
-        totalAmount[tokenY] -= amountTokenY;
+        totalAmount[_tokenX] -= amountTokenX;
+        totalAmount[_tokenY] -= amountTokenY;
 
-        tokenX.transfer(msg.sender, amountTokenX);
-        tokenY.transfer(msg.sender, amountTokenY);
+        _tokenX.transfer(msg.sender, amountTokenX);
+        _tokenY.transfer(msg.sender, amountTokenY);
 
         return (amountTokenX, amountTokenY);
     }
@@ -83,7 +83,7 @@ describe("getWithdrawEstimate", function () {
     } = await loadFixture(deployContractWithLiquidity);
 
     // otherAccountのシェアの取得
-    let share = await amm.share(otherAccount.address);
+    const share = await amm.share(otherAccount.address);
 
     expect(await amm.getWithdrawEstimate(token0.address, share)).to.eql(
       amountOtherProvided0
@@ -121,7 +121,7 @@ describe("withdraw", function () {
     const ammBalance0Before = await token0.balanceOf(amm.address);
     const ammBalance1Before = await token1.balanceOf(amm.address);
 
-    let share = await amm.share(owner.address);
+    const share = await amm.share(owner.address);
     await amm.withdraw(share);
 
     expect(await token0.balanceOf(owner.address)).to.eql(
@@ -151,7 +151,7 @@ describe("withdraw", function () {
     } = await loadFixture(deployContractWithLiquidity);
 
     // otherAccountが全てのシェア分引き出し
-    let share = await amm.share(otherAccount.address);
+    const share = await amm.share(otherAccount.address);
     await amm.connect(otherAccount).withdraw(share);
 
     const precision = await amm.PRECISION();
@@ -178,11 +178,11 @@ AMMコントラクトの状態変数が正しく変更されているかを確�
 
 ### ⭐ テストを実行しましょう
 
-`contract`ディレクトリ直下で以下のコマンドを実行してください。
+`AVAX-AMM`ディレクトリ直下で以下のコマンドを実行してください。
 
 ```
 
-$ npx hardhat test
+$ npm run test
 
 ```
 
