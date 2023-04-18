@@ -202,6 +202,31 @@ Done in 40.59s.
 
 このコントラクトはあなたが所有し、あなたのウォレットからデプロイされました。
 
+ではここでデプロイされたコントラクトのアドレスを保存するためのファイルを作成します。`src/scripts/`に`module.ts`という名前でファイルを作成して下のような変数を作成しましょう。
+
+```
+export const editionDropAddress = '';
+export const ERCTokenAddress = '';
+export const gavananceAddress = '';
+export const ownerWalletAddress = '';
+
+```
+
+そして一番上の変数`editionDropAddress`に先ほど取得したコントラクトのアドレスを,
+変数`ownerWalletAddress`には自分のウォレットアドレスを代入しましょう。
+
+最終的には下のようになります。
+
+```
+export const editionDropAddress = '0x051300f66FD67a8B94D3d64B1e5d07f23BC90170';
+export const ERCTokenAddress = '0x238B28BaE48dA495125aE2B6623094C5f74CCAD5';
+export const gavananceAddress = '0x62e06783EA7490367f3413B79331AC328cb6e00D';
+export const ownerWalletAddress = '0xa9eD1748Ffcda5442dCaEA242603E7e3FF09dD7F';
+
+```
+
+コントラクトの作成の過程で、ERC-1155トークンとガバナンストークンのコントラクトをデプロイすることになりますが同様にこのファイルにコントラクトアドレスを保存しておきましょう。
+
 _📝 備考： `editionDrop`のアドレスは、後で必要になるので保管しておいてください。もし紛失した場合は、いつでも [thirdweb のダッシュボード](https://thirdweb.com/dashboard)から取得することができます。_
 
 ![](/public/images/ETH-DAO/section-2/2_2_2.png)
