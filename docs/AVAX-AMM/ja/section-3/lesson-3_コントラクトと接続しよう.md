@@ -4,7 +4,7 @@
 
 ### 🌵 コントラクトとの接続部分を実装しましょう
 
-`client`ディレクトリへ移動してください。
+引き続き`packages/client`ディレクトリのファイルを操作していきます。
 
 ### 📁 `hooks`ディレクトリ
 
@@ -233,7 +233,7 @@ useEffect(() => {
 
 コントラクトとの接続部分を作成したので, コントラクトを使用するために, テストネットへデプロイします。
 
-`contract`ディレクトリへ移動してください。
+`packages/contract`ディレクトリへ移動してください。
 
 `.env`という名前のファイルを作成し, 以下を記入してください。
 
@@ -245,11 +245,11 @@ TEST_ACCOUNT_PRIVATE_KEY="YOUR_PRIVATE_KEY"
 
 > `YOUR_PRIVATE_KEY`の取得
 >
-> 1.  お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを`Avalanche FUJI C-Chain`に変更します。
+> 1.  お使いのブラウザから,MetaMask プラグインをクリックして,ネットワークを`Avalanche FUJI C-Chain`に変更します。
 >
 > ![](/public/images/AVAX-AMM/section-3/3_3_1.png)
 >
-> 2.  それから、`Account details`を選択してください。
+> 2.  それから,`Account details`を選択してください。
 >
 > ![](/public/images/AVAX-AMM/section-3/3_3_2.png)
 >
@@ -257,8 +257,8 @@ TEST_ACCOUNT_PRIVATE_KEY="YOUR_PRIVATE_KEY"
 >
 > ![](/public/images/AVAX-AMM/section-3/3_3_3.png)
 >
-> 4.  MetaMask のパスワードを求められるので、入力したら`Confirm`を押します。
->     あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
+> 4.  MetaMask のパスワードを求められるので,入力したら`Confirm`を押します。
+>     あなたの秘密鍵（＝ `Private Key` ）が表示されるので,クリックしてコピーします。
 >
 > ![](/public/images/AVAX-AMM/section-3/3_3_4.png)
 
@@ -273,7 +273,7 @@ TEST_ACCOUNT_PRIVATE_KEY="YOUR_PRIVATE_KEY"
 >
 > 「ログイン」には公開アドレスと秘密鍵の情報が必要となります。
 
-次に`contract`ディレクトリ直下にある`hardhat.config.ts`中身を以下のコードに書き換えてください。
+次に`packages/contract`ディレクトリ直下にある`hardhat.config.ts`中身を以下のコードに書き換えてください。
 ※ solidityのバージョンの部分(`solidity: "0.8.17",`)は元々記載されているものを使用してください。
 
 ```ts
@@ -347,16 +347,23 @@ deploy()
 
 このスクリプトを実行する際に先ほど`hardhat.config.ts`で設定したネットワークを指定すると, `ethers.getSigners()`の返す初めのアカウントの値はあなたのアカウントのアドレスになります。
 
-それでは`contract`ディレクトリ直下で下記のコマンドを実行してデプロイします！
+それでは`AVAX-AMM`ディレクトリ直下で下記のコマンドを実行してデプロイします！
 
 ```
-$ npx hardhat run scripts/deploy.ts --network fuji
+$ npm run contract deploy
 ```
 
 このような出力結果が出たら成功です！
 
 ```
-$ npx hardhat run scripts/deploy.ts --network fuji
+$ npm run contract deploy
+> AVAX-AMM@1.0.0 contract
+> npm run --workspace=contract deploy
+
+
+> contract@1.0.0 deploy
+> npx hardhat run scripts/deploy.ts --network fuji
+
 usdc address: 0x5aC2B0744ACD8567c1c33c5c8644C43147645770
 joe address: 0x538589242114BCBcD0f12B1990865E57b3344448
 amm address: 0x1d09929346a768Ec6919bf89dae36B27D7e39321
@@ -384,7 +391,7 @@ amm address: 0x1d09929346a768Ec6919bf89dae36B27D7e39321
 ```
 
 を,
-`client`ディレクトリ内, `hooks/useContract.ts`の中の以下の部分にそれぞれ貼り付けてください。
+`packages/client`ディレクトリ内, `hooks/useContract.ts`の中の以下の部分にそれぞれ貼り付けてください。
 
 ```ts
 export const UsdcAddress = "コントラクトのデプロイ先アドレス";
@@ -404,13 +411,13 @@ export const AmmAddress = "0x1d09929346a768Ec6919bf89dae36B27D7e39321";
 
 ABIファイルは,コントラクトがコンパイルされた時に生成され,`artifacts`ディレクトリに自動的に格納されます。
 
-`contract`からパスを追っていくと, `contract/artifacts/contracts/~.sol/~.json`というファイルがそれぞれのコントラクトに対して生成されているはずです。
+`packages/contract`からパスを追っていくと, `packages/contract/artifacts/contracts/~.sol/~.json`というファイルがそれぞれのコントラクトに対して生成されているはずです。
 
 これを`client`の中の`utils`ディレクトリ内にコピーしてください。
-`Avax-AMM`直下からターミナルでコピーを行う場合, このようなコマンドになります。
+`AVAX-AMM`直下からターミナルでコピーを行う場合, このようなコマンドになります。
 
 ```
-cp contract/artifacts/contracts/ERC20Tokens.sol/USDCToken.json contract/artifacts/contracts/ERC20Tokens.sol/JOEToken.json contract/artifacts/contracts/AMM.sol/AMM.json client/utils/
+npm run contract cp:artifacts
 ```
 
 📽️ 型定義ファイルを取得する
@@ -422,10 +429,10 @@ TypeScriptは静的型付け言語なので, 外部から取ってきたオブ�
 これは`npx hardhat`実行時にtypescriptを選択したため, 初期設定が済んでいるためです。
 
 `contract`内の`typechain-types`ディレクトリをそのまま`client`にコピーしてください。
-`Avax-AMM`直下からターミナルでコピーを行う場合, このようなコマンドになります。
+`AVAX-AMM`直下からターミナルでコピーを行う場合, このようなコマンドになります。
 
 ```
-cp -r contract/typechain-types client/
+npm run contract cp:typechain
 ```
 
 以上でコントラクトの情報を反映することができました。
@@ -860,10 +867,10 @@ const updateDetails = () => {
 
 🖥️ 画面で確認しましょう
 
-`client`ディレクトリ直下で以下のコマンドを実行してください。
+`AVAX-AMM`ディレクトリ直下で以下のコマンドを実行してください。
 
 ```
-$ npm run dev
+$ npm run cilent dev
 ```
 
 ブラウザで`http://localhost:3000 `へアクセスしてください。

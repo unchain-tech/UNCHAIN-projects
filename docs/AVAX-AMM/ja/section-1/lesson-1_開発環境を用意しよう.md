@@ -45,32 +45,167 @@
 
 ### 🛫 プロジェクトを作成しよう
 
+アプリケーションのコードを格納するフォルダーを,モノレポ構成となるように準備していきましょう！
+
+モノレポとは,コントラクトとクライアント（またはその他構成要素）の全コードをまとめて1つのリポジトリで管理する方法です。
+
 作業したいディレクトリに移動したら,次のコマンドを実行します。
 
 ```bash
-mkdir Avax-AMM
-cd Avax-AMM
-mkdir contract
-cd contract
+mkdir AVAX-AMM
+cd AVAX-AMM
+npm init -y
+```
+
+AVAX-AMMディレクトリ内に,package.jsonファイルが生成されます。
+
+```bash
+AVAX-AMM
+ └── package.json
+```
+
+`package.json`ファイルを下記の内容で上書きします。
+
+```json
+// package.json
+
+{
+  "name": "AVAX-AMM",
+  "version": "1.0.0",
+  "description": "`Miniswap` is a amm dapp that allows tokens to be exchanged like `Uniswap`.",
+  "license": "",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unchain-tech/AVAX-AMM.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/unchain-tech/AVAX-AMM/issues"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "contract": "npm run --workspace=contract",
+    "client": "npm run --workspace=client",
+    "test": "npm run contract test"
+  }
+}
+```
+
+`package.json`ファイルの内容を確認してみましょう。
+
+モノレポを作成するにあたり,パッケージマネージャーの機能である[Workspaces](https://docs.npmjs.com/cli/v9/using-npm/workspaces?v=true)を利用しています。
+
+この機能により,npm installを一度だけ実行すれば,すべてのパッケージ（今回はコントラクトのパッケージとクライアントのパッケージ）を一度にインストールできるようになります。
+
+**workspaces**の定義をしている部分は以下になります。
+
+```json
+"workspaces": {
+  "packages": [
+    "packages/*"
+  ]
+},
+```
+
+また,ワークスペース内の各パッケージにアクセスするためのコマンドを以下の部分で定義しています。
+
+```json
+"scripts": {
+  "contract": "npm run --workspace=contract",
+  "client": "npm run --workspace=client",
+  "test": "npm run contract test"
+}
+```
+
+これにより,各パッケージのディレクトリへ階層を移動しなくてもプロジェクトのルート直下から以下のようにコマンドを実行することが可能となります（ただし,各パッケージ内に`package.json`ファイルが存在し,その中にコマンドが定義されていないと実行できません。そのため,現在は実行してもエラーとなります。ファイルは後ほど作成します）。
+
+```bash
+npm run <パッケージ名> <実行したいコマンド>
+```
+
+それでは,ワークスペースのパッケージを格納するディレクトリを作成しましょう。
+
+以下のようなフォルダー構成となるように,`packages`ディレクトリとその中に`contract`ディレクトリを作成してください（`client`ディレクトリは,後ほどのレッスンで作成したいと思います）。
+
+```diff
+AVAX-AMM
+ ├── package.json
++└── packages/
++    └── contract/
+```
+
+最後に,AVAX-AMMディレクトリ下に`.gitignore`ファイルを作成して以下の内容を書き込みます。
+
+```bash
+# dependencies
+**/node_modules
+
+# misc
+**/.DS_Store
+```
+
+最終的に以下のようなフォルダー構成となっていることを確認してください。
+
+```bash
+AVAX-AMM
+├── .gitignore
+├── package.json
+└── packages/
+    └── contract/
+```
+
+これでモノレポの雛形が完成しました！
+
+### ✨ パッケージ をインストールする
+
+それでは,スマートコントラクトの開発に必要なパッケージをインストールしましょう。
+
+先ほど作成した`packages/contract`ディレクトリ内にディレクトリに移動したら,次のコマンドを実行します。
+
+```bash
+cd ./packages/contract
 npm init -y
 npm install --save-dev hardhat @openzeppelin/test-helpers
 npm install dotenv @openzeppelin/contracts
 ```
 
-dapp全体のディレクトリ(`Avax-AMM`)とコントラクト実装に使用するディレクトリ(`contract`)を用意しました。
-次に`npm init`によりnpmパッケージを管理するための環境をセットアップを行いました。
-最後にスマートコントラクトの開発に必要な以下のパッケージを`npm`コマンドを利用してインストールしています。
+`npm init`によりnpmパッケージを管理するための環境をセットアップを行い,スマートコントラクトの開発に必要な以下のパッケージをインストールしています。
 
 - `hardhat`: solidityを使った開発をサポートします。
 - `dotenv`: 環境変数の設定で必要になります。コントラクトをデプロイする際に利用します。
 - `@openzeppelin/test-helpers`: テストを支援するライブラリです。コントラクトのテストを書く際に利用します。
 - `@openzeppelin/contracts`: `ERC20`が実装されています。コントラクトの実装時に`ERC20`を利用します。
 
+では、生成された`contarct/package.json`ファイルの`"scripts"`部分を以下の内容に更新しましょう。また,`"private"`が`true`になっていることを確認（設定されていない場合は記述）してください。
+
+```json
+// package.json
+
+{
+  "name": "contract",
+  "version": "1.0.0",
+  "private": true,
+  // 以下の内容に更新
+  "scripts": {
+    "deploy": "npx hardhat run scripts/deploy.ts --network fuji",
+    "cp": "npm run cp:typechain && npm run cp:artifact",
+    "cp:typechain": "cp -r typechain-types ../client/",
+    "cp:artifact": "cp artifacts/contracts/ERC20Tokens.sol/USDCToken.json artifacts/contracts/ERC20Tokens.sol/JOEToken.json artifacts/contracts/AMM.sol/AMM.json ../client/utils/",
+    "test": "npx hardhat test"
+  },
+}
+```
+
 ### 👏 サンプルプロジェクトを開始する
 
 次に,Hardhatを実行します。
 
-ターミナルで`contract`に移動し,下記を実行します。
+`packages/contract`ディレクトリにいることを確認し,下記を実行します。
 `npx hardhat`を実行すると対話形式で指示を求められるので下記のように回答します。
 `Create a TypeScript project`を選択するところ以外は`enter`を押せば例通りになるはずです。
 
@@ -111,10 +246,10 @@ $ npx hardhat
 
 ### ⭐️ 実行する
 
-すべてが機能していることを確認するには,以下を実行します。
+すべてが機能していることを確認するには,`AVAX-AMM`ディレクトリ直下で次のコマンドを実行します。
 
 ```
-$ npx hardhat test
+$ npm run test
 ```
 
 次のように表示されたら成功です! 🎉
@@ -123,22 +258,23 @@ $ npx hardhat test
 
 ここまできたら,フォルダーの中身を整理しましょう。
 
-`contract`内は以下のようなフォルダ構成になっているはずです。
+`packages/contract`内は以下のようなフォルダ構成になっているはずです。
 
 ```
-contract
-├── README.md
-├── artifacts
-├── cache
-├── contracts
-├── hardhat.config.ts
-├── node_modules
-├── package-lock.json
-├── package.json
-├── scripts
-├── test
-├── tsconfig.json
-└── typechain-types
+packages/
+└── contract
+    ├── README.md
+    ├── artifacts
+    ├── cache
+    ├── contracts
+    ├── hardhat.config.ts
+    ├── node_modules
+    ├── package-lock.json
+    ├── package.json
+    ├── scripts
+    ├── test
+    ├── tsconfig.json
+    └── typechain-types
 ```
 
 `test`の下のファイル`Lock.ts`と
@@ -150,7 +286,7 @@ contract
 
 本プロジェクトの最後では, アプリをデプロイするために`github`へソースコードをアップロードする必要があります。
 
-**Avax-AMM**全体を対象としてアップロードしましょう。
+**AVAX-AMM**全体を対象としてアップロードしましょう。
 
 今後の開発にも役に立つと思いますので, 今のうちに以下にアップロード方法をおさらいしておきます。
 
@@ -160,7 +296,7 @@ contract
 
 [新しいレポジトリを作成](https://docs.github.com/ja/get-started/quickstart/create-a-repo)（リポジトリ名などはご自由に）した後,  
 手順に従いターミナルからアップロードを済ませます。  
-以下ターミナルで実行するコマンドの参考です。(`Avax-AMM`直下で実行することを想定しております)
+以下ターミナルで実行するコマンドの参考です。(`AVAX-AMM`直下で実行することを想定しております)
 
 ```
 $ git init

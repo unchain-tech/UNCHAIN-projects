@@ -1,4 +1,4 @@
-section1のこれから先の作業は, `Avax-AMM/contract`ディレクトリをルートディレクトリとして話を進めます。 🙌
+section1のこれから先の作業は, `AVAX-AMM/packages/contract`ディレクトリ内のファイルを操作していきます。🙌
 
 ### 👩‍💻 実装する内容の確認
 
@@ -60,7 +60,7 @@ Hardhatを使用する場合ファイル構造は非常に重要ですので, �
 
 ```bash
 contract
-    |_ contracts
+    └── contracts
            ├── AMM.sol
            └── ERC20Tokens.sol
 ```
@@ -302,10 +302,10 @@ expect(await amm.totalShare()).to.eql(BigNumber.from(0));
 
 ### ⭐ テストを実行しましょう
 
-`contract`ディレクトリ直下で以下のコマンドを実行してください。
+`AVAX-AMM`ディレクトリ直下で以下のコマンドを実行してください。
 
 ```
-$ npx hardhat test
+$ npm run test
 ```
 
 以下のような表示がされます。
