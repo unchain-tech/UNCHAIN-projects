@@ -205,7 +205,50 @@ const mint = async () => {
   };
 ```
 
-また、この関数内で使うライブラリをインポートします。
+次に選択した画像の表示とミント用のボタンを追加します。
+
+ファイル選択処理を表す次のコードの下にコードを追加してください。
+
+```js
+      <div className="image-box">
+        <Button variant="contained" onChange={uploadImage}>
+          ファイルを選択
+          <input
+            className="imageInput"
+            type="file"
+            accept=".jpg , .jpeg , .png"
+          />
+        </Button>
+      </div>
+```
+
+- 追加するコード
+```jsx
+      {file && (
+          <img
+            src={window.URL.createObjectURL(file)}
+            alt="nft"
+            className="nft-image"
+          />
+      )}
+      {account && (
+        <div>
+          <Button variant="outlined" onClick={mint}>
+            mint
+          </Button>
+        </div>
+      )}
+```
+
+`<div className="image-box">`のスコープの外に追加しましょう！
+
+追加したコードは次のような意味を持っています。
+
+- 画像が選択されている場合はその画像を表示します。
+- ログイン済みの場合は、ミント用のボタンを表示します。
+
+
+次に、この関数内で使うライブラリをインポートします。
 
 まずはコンソールで`npm install buffer xrpl-client nft.storage @xrplkit/txmeta`を実行してください。
 
@@ -245,7 +288,7 @@ mint関数の処理を1つずつ説明していきます。
   store関数を使うことで画像とメタデータのアップロードを同時に行ってくれます。
   
   今回はXRP LedgerのNFTメタデータ規格のXLS-24に合わせてメタデータを作成しています。
-  XLS24の詳細は[こちら](https://github.com/XRPLF/XRPL-Standards/discussions/69)をご覧ください。
+  XLS-24の詳細は[こちら](https://github.com/XRPLF/XRPL-Standards/discussions/69)をご覧ください。
  
   nameやdescriptionは好きな値に変更してください。
 
