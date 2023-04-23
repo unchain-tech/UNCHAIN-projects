@@ -1,17 +1,17 @@
+### 🤟 Vercel に Web アプリケーションをデプロイする
+[Vercel に Web アプリケーションをデプロイする](https://app.unchain.tech/learn/ETH-NFT-Maker/ja/4/2/)を参考にアプリケーションをデプロイしてみてください！
+
 ### 🔧 Xummの設定を変更する
 
 ここまでの設定内容だとデプロイしたアプリケーションではエラーが出てしまいます。それは、[Xumm Developer Console](https://apps.xumm.dev)の設定で`http://localhost:3000`からのアクセスのみを許可していたからです。
 
-再度[Xumm Developer Console](https://apps.xumm.dev)へアクセスし「Origin/Redirect URIs（one per line）to use」をデプロイしたアプリケーションのURLへ変更してください。
+再度[Xumm Developer Console](https://apps.xumm.dev)へアクセスし「Origin/Redirect URIs（one per line）to use」をVercelへデプロイしたアプリケーションのURLへ変更してください。
 
 これで正しくアクセスできるようになるはずです！
 
 `https://localhot:3000`を残したままにしておくとXummのapikeyから第三者からのアクセスを許可してしまうので、必ず削除してください。
 
 Xumm Developer Consoleでデプロイしたアプリ用とローカル用の2つのアプリを作成すると良いでしょう。
-
-### 🤟 Vercel に Web アプリケーションをデプロイする
-[Vercel に Web アプリケーションをデプロイする](https://app.unchain.tech/learn/ETH-NFT-Maker/ja/2/2/)を参考にアプリケーションをデプロイしてみてください！
 
 ### 🙋‍♂️ 質問する
 
