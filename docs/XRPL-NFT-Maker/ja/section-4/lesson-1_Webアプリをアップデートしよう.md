@@ -33,7 +33,7 @@ export const NftMinter = () => {
     xumm.authorize();
   };
 
-  const uploadImage = async (e) => {
+  const uploadImage = (e) => {
     const files = e.target.files;
     setFile(files[0])
   };

@@ -116,7 +116,7 @@ const [file, setFile] = useState(undefined);
 
 また、先ほど追加したconnect関数の下に次のコードを追加してください。
 ```js
-  const uploadImage = async (e) => {
+  const uploadImage = (e) => {
     const files = e.target.files;
     setFile(files[0])
   };
