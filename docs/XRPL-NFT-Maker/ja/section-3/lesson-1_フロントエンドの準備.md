@@ -12,9 +12,9 @@ Webアプリ（フロントエンド）↔︎ Xumm（ウォレット）↔︎ XR
 
 まだGitHubのアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
-GitHubのアカウントをお持ちの方は、[スターターキット](https://github.com/develoQ/xrpl-nft-starter) から、フロントエンドの基盤となるリポジトリをあなたのGitHubにフォークしましょう。フォークの方法は、[こちら](https://denno-sekai.com/github-fork/) を参照してください。
+GitHubのアカウントをお持ちの方は、[スターターキット](https://github.com/unchain-tech/XRPL-NFT-Maker) から、フロントエンドの基盤となるリポジトリをあなたのGitHubにフォークしましょう。フォークの方法は、[こちら](https://denno-sekai.com/github-fork/) を参照してください。
 
-あなたのGitHubアカウントにフォークした`xrpl-nft-starter`リポジトリを、ローカル環境にクローンしてください。
+あなたのGitHubアカウントにフォークした`XRPL-NFT-Maker`リポジトリを、ローカル環境にクローンしてください。
 
 まず、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
 
@@ -25,7 +25,7 @@ git clone コピーした_github_リンク
 ```
 
 
-ターミナル上で`xrpl-nft-starter`に移動して下記を実行しましょう。
+ターミナル上で`XRPL-NFT-Maker`に移動して下記を実行しましょう。
 
 ```bash
 npm install
@@ -45,7 +45,7 @@ npm start
 ![](/public/images/XRPL-NFT-Maker/section-3/3_1_1.png)
 
 
-これからフロントエンドの表示を確認したい時は、`xrpl-nft-starter`ディレクトリ上で、`npm start`を実行します。これからも必要となる作業ですので、よく覚えておいてください。
+これからフロントエンドの表示を確認したい時は、`XRPL-NFT-Maker`ディレクトリ上で、`npm start`を実行します。これからも必要となる作業ですので、よく覚えておいてください。
 
 ターミナルを閉じるときは、以下のコマンドが使えます ✍️
 
