@@ -18,11 +18,10 @@
 pragma solidity ^0.8.17;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "hardhat/console.sol";
 
 contract AMM {
-    IERC20 tokenX; // ERC20を実装したコントラクト
-    IERC20 tokenY; // ERC20を実装したコントラクト
+    IERC20 private _tokenX; // ERC20を実装したコントラクト
+    IERC20 private _tokenY; // ERC20を実装したコントラクト
     uint256 public totalShare; // シェアの総量
     mapping(address => uint256) public share; // 各ユーザのシェア
     mapping(IERC20 => uint256) public totalAmount; // プールにロックされた各トークンの量
@@ -30,9 +29,9 @@ contract AMM {
     uint256 public constant PRECISION = 1_000_000; // シェアの精度に使用する定数(= 6桁)
 
     // プールに使えるトークンを指定します。
-    constructor(IERC20 _tokenX, IERC20 _tokenY) {
-        tokenX = _tokenX;
-        tokenY = _tokenY;
+    constructor(IERC20 tokenX, IERC20 tokenY) {
+        _tokenX = tokenX;
+        _tokenY = tokenY;
     }
 
     // プールに流動性があり, 使用可能であることを確認します。
@@ -42,30 +41,30 @@ contract AMM {
     }
 
     // スマートコントラクトが扱えるトークンであることを確認します。
-    modifier validToken(IERC20 _token) {
+    modifier validToken(IERC20 token) {
         require(
-            _token == tokenX || _token == tokenY,
+            token == _tokenX || token == _tokenY,
             "Token is not in the pool"
         );
         _;
     }
 
     // スマートコントラクトが扱えるトークンであることを確認します。
-    modifier validTokens(IERC20 _tokenX, IERC20 _tokenY) {
+    modifier validTokens(IERC20 tokenX, IERC20 tokenY) {
         require(
-            _tokenX == tokenX || _tokenY == tokenY,
+            tokenX == _tokenX || tokenY == _tokenY,
             "Token is not in the pool"
         );
         require(
-            _tokenY == tokenX || _tokenY == tokenY,
+            tokenY == _tokenX || tokenY == _tokenY,
             "Token is not in the pool"
         );
-        require(_tokenX != _tokenY, "Tokens should be different!");
+        require(tokenX != tokenY, "Tokens should be different!");
         _;
     }
 
     // 引数のトークンとペアのトークンのコントラクトを返します。
-    function pairToken(IERC20 token)
+    function _pairToken(IERC20 token)
         private
         view
         validToken(token)
@@ -85,16 +84,16 @@ contract AMM {
 
 ```solidity
     // 引数のトークンの量に値するペアのトークンの量を返します。
-    function getEquivalentToken(IERC20 _inToken, uint256 _amountIn)
+    function getEquivalentToken(IERC20 inToken, uint256 amountIn)
         public
         view
         activePool
-        validToken(_inToken)
+        validToken(inToken)
         returns (uint256)
     {
-        IERC20 outToken = pairToken(_inToken);
+        IERC20 outToken = _pairToken(inToken);
 
-        return (totalAmount[outToken] * _amountIn) / totalAmount[_inToken];
+        return (totalAmount[outToken] * amountIn) / totalAmount[inToken];
     }
 ```
 
@@ -117,21 +116,21 @@ contract AMM {
 ```solidity
     // プールに流動性を提供します。
     function provide(
-        IERC20 _tokenX,
-        uint256 _amountX,
-        IERC20 _tokenY,
-        uint256 _amountY
-    ) external validTokens(_tokenX, _tokenY) returns (uint256) {
-        require(_amountX > 0, "Amount cannot be zero!");
-        require(_amountY > 0, "Amount cannot be zero!");
+        IERC20 tokenX,
+        uint256 amountX,
+        IERC20 tokenY,
+        uint256 amountY
+    ) external validTokens(tokenX, tokenY) returns (uint256) {
+        require(amountX > 0, "Amount cannot be zero!");
+        require(amountY > 0, "Amount cannot be zero!");
 
         uint256 newshare;
         if (totalShare == 0) {
             // 初期は100
             newshare = 100 * PRECISION;
         } else {
-            uint256 shareX = (totalShare * _amountX) / totalAmount[_tokenX];
-            uint256 shareY = (totalShare * _amountY) / totalAmount[_tokenY];
+            uint256 shareX = (totalShare * amountX) / totalAmount[tokenX];
+            uint256 shareY = (totalShare * amountY) / totalAmount[tokenY];
             require(
                 shareX == shareY,
                 "Equivalent value of tokens not provided..."
@@ -144,11 +143,11 @@ contract AMM {
             "Asset value less than threshold for contribution!"
         );
 
-        _tokenX.transferFrom(msg.sender, address(this), _amountX);
-        _tokenY.transferFrom(msg.sender, address(this), _amountY);
+        tokenX.transferFrom(msg.sender, address(this), amountX);
+        tokenY.transferFrom(msg.sender, address(this), amountY);
 
-        totalAmount[_tokenX] += _amountX;
-        totalAmount[_tokenY] += _amountY;
+        totalAmount[tokenX] += amountX;
+        totalAmount[tokenY] += amountY;
 
         totalShare += newshare;
         share[msg.sender] += newshare;
@@ -169,8 +168,8 @@ if (totalShare == 0) {
     // 初期は100
     newshare = 100 * PRECISION;
 } else {
-    uint256 shareX = (totalShare * _amountX) / totalAmount[_tokenX];
-    uint256 shareY = (totalShare * _amountY) / totalAmount[_tokenY];
+    uint256 shareX = (totalShare * amountX) / totalAmount[tokenX];
+    uint256 shareY = (totalShare * amountY) / totalAmount[tokenY];
     require(
         shareX == shareY,
         "Equivalent value of tokens not provided..."
@@ -191,8 +190,8 @@ if (totalShare == 0) {
 シェアの計算後の処理について見ていきましょう。
 
 ```solidity
-_tokenX.transferFrom(msg.sender, address(this), _amountX);
-_tokenY.transferFrom(msg.sender, address(this), _amountY);
+tokenX.transferFrom(msg.sender, address(this), amountX);
+tokenY.transferFrom(msg.sender, address(this), amountY);
 ```
 
 ここでは流動性を提供するユーザから実際にトークンをコントラクトへ引き出します。
@@ -206,8 +205,8 @@ _tokenY.transferFrom(msg.sender, address(this), _amountY);
 `transferFrom`に関してはこの後さらに詳しく理解していきます。
 
 ```solidity
-totalAmount[_tokenX] += _amountX;
-totalAmount[_tokenY] += _amountY;
+totalAmount[tokenX] += amountX;
+totalAmount[tokenY] += amountY;
 ```
 
 ここではプールにあるトークンの総量を増やしています。
@@ -289,7 +288,7 @@ TokenX.transferFrom(Aのアドレス, Bのアドレス, 30);
 追加した機能に対するテストを追加しましょう。
 `test/AMM.ts`ファイル内の`init`テストを以下のように`provide`テストに書き換えてください。
 
-- 変更すると環境によって赤の波線が表示される箇所があるかもしれませんが、テストを実行すると消えますので、一旦気にせず進めてください。
+- 変更すると環境によって赤の波線が表示される箇所があるかもしれませんが,テストを実行すると消えますので,一旦気にせず進めてください。
 
 ```ts
 describe("provide", function () {
@@ -493,11 +492,11 @@ token0 10ether分(`amountProvide0`)と同価値のtoken1の量(`equivalentToken1
 
 ### ⭐ テストを実行しましょう
 
-`contract`ディレクトリ直下で以下のコマンドを実行してください。
+`AVAX-AMM`ディレクトリ直下で以下のコマンドを実行してください。
 
 ```
 
-$ npx hardhat test
+$ npm run test
 
 ```
 

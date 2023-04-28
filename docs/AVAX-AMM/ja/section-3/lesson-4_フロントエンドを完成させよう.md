@@ -5,10 +5,10 @@
 このレッスンでは残りのコンポーネントを実装してフロントエンドを完成させましょう。
 
 各コンポーネント作成ごとにUIを確認していくので,
-`client`ディレクトリ直下で以下のコマンドを実行して, webサイトを立ち上げておくと楽かもしれません。
+`AVAX-AMM`ディレクトリ直下で以下のコマンドを実行して, webサイトを立ち上げておくと楽かもしれません。
 
 ```
-$ npm run dev
+$ npm run client dev
 ```
 
 ### 📁 `components`ディレクトリ
@@ -89,12 +89,13 @@ $ npm run dev
 次に`SelectTab`ディレクトリ内に`Faucet.tsx`という名前のファイルを作成し, 以下のコードを記述してください。
 
 ```ts
-import { useEffect, useState } from "react";
-import { TokenType } from "../../hooks/useContract";
-import styles from "./SelectTab.module.css";
-import InputNumberBox from "../InputBox/InputNumberBox";
 import { ethers } from "ethers";
+import { useEffect, useState } from "react";
+
+import { TokenType } from "../../hooks/useContract";
 import { validAmount } from "../../utils/validAmount";
+import InputNumberBox from "../InputBox/InputNumberBox";
+import styles from "./SelectTab.module.css";
 
 type Props = {
   token0: TokenType | undefined;
@@ -189,10 +190,11 @@ export default function Faucet({
 
 ```diff
 import { useState } from "react";
+
 import { useContract } from "../../hooks/useContract";
-import styles from "./Container.module.css";
 import Details from "../Details/Details";
 + import Faucet from "../SelectTab/Faucet";
+import styles from "./Container.module.css";
 
 type Props = {
   currentAccount: string | undefined;
@@ -291,13 +293,15 @@ async function onClickFund() {
 次に`SelectTab`ディレクトリ内に`Provide.tsx`という名前のファイルを作成し, 以下のコードを記述してください。
 
 ```ts
-import { useCallback, useEffect, useState } from "react";
-import { TokenType, AmmType } from "../../hooks/useContract";
-import styles from "./SelectTab.module.css";
 import { BigNumber, ethers } from "ethers";
-import InputNumberBox from "../InputBox/InputNumberBox";
+import { useCallback, useEffect, useState } from "react";
 import { MdAdd } from "react-icons/md";
+
+import { AmmType, TokenType } from "../../hooks/useContract";
 import { validAmount } from "../../utils/validAmount";
+import InputNumberBox from "../InputBox/InputNumberBox";
+import styles from "./SelectTab.module.css";
+
 
 type Props = {
   token0: TokenType | undefined;
@@ -465,11 +469,12 @@ export default function Provide({
 
 ```diff
 import { useState } from "react";
+
 import { useContract } from "../../hooks/useContract";
-import styles from "./Container.module.css";
 import Details from "../Details/Details";
 import Faucet from "../SelectTab/Faucet";
 + import Provide from "../SelectTab/Provide";
+import styles from "./Container.module.css";
 
 type Props = {
   currentAccount: string | undefined;
@@ -587,13 +592,14 @@ const onChangeAmount = (
 次に`SelectTab`ディレクトリ内に`Swap.tsx`という名前のファイルを作成し, 以下のコードを記述してください。
 
 ```ts
-import { useEffect, useState } from "react";
-import { TokenType, AmmType } from "../../hooks/useContract";
-import { MdSwapVert } from "react-icons/md";
-import styles from "./SelectTab.module.css";
-import InputNumberBox from "../InputBox/InputNumberBox";
 import { ethers } from "ethers";
+import { useEffect, useState } from "react";
+import { MdSwapVert } from "react-icons/md";
+
+import { AmmType, TokenType } from "../../hooks/useContract";
 import { validAmount } from "../../utils/validAmount";
+import InputNumberBox from "../InputBox/InputNumberBox";
+import styles from "./SelectTab.module.css";
 
 type Props = {
   token0: TokenType | undefined;
@@ -745,12 +751,13 @@ export default function Swap({
 
 ```diff
 import { useState } from "react";
+
 import { useContract } from "../../hooks/useContract";
-import styles from "./Container.module.css";
 import Details from "../Details/Details";
 import Faucet from "../SelectTab/Faucet";
 import Provide from "../SelectTab/Provide";
 + import Swap from "../SelectTab/Swap";
+import styles from "./Container.module.css";
 
 type Props = {
   currentAccount: string | undefined;
@@ -866,16 +873,17 @@ const rev = () => {
 最後に`SelectTab`ディレクトリ内に`Withdraw.tsx`という名前のファイルを作成し, 以下のコードを記述してください。
 
 ```ts
-import { useCallback, useEffect, useState } from "react";
-import { TokenType, AmmType } from "../../hooks/useContract";
-import styles from "./SelectTab.module.css";
 import { BigNumber, ethers } from "ethers";
-import InputNumberBox from "../InputBox/InputNumberBox";
-import { validAmount } from "../../utils/validAmount";
+import { useCallback, useEffect, useState } from "react";
+
+import { AmmType, TokenType } from "../../hooks/useContract";
 import {
-  formatWithPrecision,
   formatWithoutPrecision,
+  formatWithPrecision,
 } from "../../utils/format";
+import { validAmount } from "../../utils/validAmount";
+import InputNumberBox from "../InputBox/InputNumberBox";
+import styles from "./SelectTab.module.css";
 
 type Props = {
   token0: TokenType | undefined;
@@ -1032,13 +1040,14 @@ export default function Withdraw({
 
 ```diff
 import { useState } from "react";
+
 import { useContract } from "../../hooks/useContract";
-import styles from "./Container.module.css";
 import Details from "../Details/Details";
 import Faucet from "../SelectTab/Faucet";
 import Provide from "../SelectTab/Provide";
 import Swap from "../SelectTab/Swap";
 + import Withdraw from "../SelectTab/Withdraw";
+import styles from "./Container.module.css";
 
 type Props = {
   currentAccount: string | undefined;

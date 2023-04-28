@@ -8,40 +8,40 @@
 
 ```solidity
     // swap元のトークン量からswap先のトークン量を算出
-    function getSwapEstimateOut(IERC20 _inToken, uint256 _amountIn)
+    function getSwapEstimateOut(IERC20 inToken, uint256 amountIn)
         public
         view
         activePool
-        validToken(_inToken)
+        validToken(inToken)
         returns (uint256)
     {
-        IERC20 outToken = pairToken(_inToken);
+        IERC20 outToken = _pairToken(inToken);
 
-        uint256 amountInWithFee = _amountIn * 997;
+        uint256 amountInWithFee = amountIn * 997;
 
         uint256 numerator = amountInWithFee * totalAmount[outToken];
-        uint256 denominator = totalAmount[_inToken] * 1000 + amountInWithFee;
+        uint256 denominator = totalAmount[inToken] * 1000 + amountInWithFee;
         uint256 amountOut = numerator / denominator;
 
         return amountOut;
     }
 
     // swap先のトークン量からswap元のトークン量を算出
-    function getSwapEstimateIn(IERC20 _outToken, uint256 _amountOut)
+    function getSwapEstimateIn(IERC20 outToken, uint256 amountOut)
         public
         view
         activePool
-        validToken(_outToken)
+        validToken(outToken)
         returns (uint256)
     {
         require(
-            _amountOut < totalAmount[_outToken],
+            amountOut < totalAmount[outToken],
             "Insufficient pool balance"
         );
-        IERC20 inToken = pairToken(_outToken);
+        IERC20 inToken = _pairToken(outToken);
 
-        uint256 numerator = 1000 * totalAmount[inToken] * _amountOut;
-        uint256 denominator = 997 * (totalAmount[_outToken] - _amountOut);
+        uint256 numerator = 1000 * totalAmount[inToken] * amountOut;
+        uint256 denominator = 997 * (totalAmount[outToken] - amountOut);
         uint256 amountIn = numerator / denominator;
 
         return amountIn;
@@ -50,7 +50,7 @@
 
 `getSwapEstimateOut`関数では前回のレッスンの`シチュエーション 1`を実装しています。
 
-引数で渡されたswapをする元のトークン(`_inToken`)と, その量(`_amountIn`)から, swapによりプールからユーザに送信されるswap先のトークンの量を返却します。
+引数で渡されたswapをする元のトークン(`inToken`)と, その量(`amountIn`)から, swapによりプールからユーザに送信されるswap先のトークンの量を返却します。
 
 ここ使われているoutという言葉はプールから出ていくトークンに関するものであることを表し, inはプールに入ってくるトークンに関するものであることを表します。
 
@@ -64,24 +64,24 @@
 
 ```solidity
     function swap(
-        IERC20 _inToken,
-        IERC20 _outToken,
-        uint256 _amountIn
-    ) external activePool validTokens(_inToken, _outToken) returns (uint256) {
-        require(_amountIn > 0, "Amount cannot be zero!");
+        IERC20 inToken,
+        IERC20 outToken,
+        uint256 amountIn
+    ) external activePool validTokens(inToken, outToken) returns (uint256) {
+        require(amountIn > 0, "Amount cannot be zero!");
 
-        uint256 amountOut = getSwapEstimateOut(_inToken, _amountIn);
+        uint256 amountOut = getSwapEstimateOut(inToken, amountIn);
 
-        _inToken.transferFrom(msg.sender, address(this), _amountIn);
-        totalAmount[_inToken] += _amountIn;
-        totalAmount[_outToken] -= amountOut;
-        _outToken.transfer(msg.sender, amountOut);
+        inToken.transferFrom(msg.sender, address(this), amountIn);
+        totalAmount[inToken] += amountIn;
+        totalAmount[outToken] -= amountOut;
+        outToken.transfer(msg.sender, amountOut);
         return amountOut;
     }
 ```
 
 `swap`関数はシンプルで, `getSwapEstimateOut`によりユーザに送信するトークンの量を取得したら,
-`_inToken`をユーザからコントラクトへ移動させ`_outToken`をコントラクトからユーザへ送信します。
+`inToken`をユーザからコントラクトへ移動させ`outToken`をコントラクトからユーザへ送信します。
 
 ### 🧪 テストを追加しましょう
 
@@ -229,11 +229,11 @@ swapによりammの状態変数が正しく変更されているか, トーク�
 
 ### ⭐ テストを実行しましょう
 
-`contract`ディレクトリ直下で以下のコマンドを実行してください。
+`AVAX-AMM`ディレクトリ直下で以下のコマンドを実行してください。
 
 ```
 
-$ npx hardhat test
+$ npm run test
 
 ```
 
