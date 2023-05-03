@@ -10,7 +10,7 @@ Vercelに関する詳しい説明は,[こちら](https://zenn.dev/lollipop_onl/a
 
 まず, ローカルファイルをGitHubへアップロードしましょう。
 
-まだアップロードをしていない方は, ターミナル上で`Avax-AMM`に移動して,下記を実行しましょう。  
+まだアップロードをしていない方は, ターミナル上で`AVAX-AMM`に移動して,下記を実行しましょう。  
 ⚠️ `.gitignore`ファイル内に`.env`が記載されていることを確認していください。
 
 ```
@@ -19,7 +19,7 @@ git commit -m "upload to github"
 git push
 ```
 
-次に, ローカル環境に存在する`Avax-AMM`のファイルとディレクトリがGitHub上の`Avax-AMM`に反映されていることを確認してください。
+次に, ローカル環境に存在する`AVAX-AMM`のファイルとディレクトリがGitHub上の`AVAX-AMM`に反映されていることを確認してください。
 
 Vercelのアカウントを取得したら,下記を実行しましょう。
 
@@ -34,7 +34,7 @@ Vercelのアカウントを取得したら,下記を実行しましょう。
 3\. プロジェクトを作成します。
 
 `Framework Preset`に`Next.js`を選択してください。  
-`Root directory`に(`Edit`ボタンをクリックし)`client`を選択します。
+`Root directory`に(`Edit`ボタンをクリックし)`packages/client`を選択します。
 
 ![](/public/images/AVAX-AMM/section-4/4_1_3.png)
 

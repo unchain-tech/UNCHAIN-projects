@@ -31,7 +31,10 @@ contract MyEpicNFT is ERC721URIStorage {
   // ユーザーが NFT を取得するために実行する関数です。
   function makeAnEpicNFT() public {
 
-     // 現在のtokenIdを取得します。tokenIdは0から始まります。
+    // NFT が Mint されるときのカウンターをインクリメントします。
+    _tokenIds.increment();
+
+    // 現在のtokenIdを取得します。tokenIdは1から始まります。
     uint256 newItemId = _tokenIds.current();
 
      // msg.sender を使って NFT を送信者に Mint します。
@@ -42,9 +45,6 @@ contract MyEpicNFT is ERC721URIStorage {
 
     // NFTがいつ誰に作成されたかを確認します。
     console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
-
-    // 次の NFT が Mint されるときのカウンターをインクリメントする。
-    _tokenIds.increment();
   }
 }
 ```
@@ -129,18 +129,33 @@ constructor() ERC721 ("TanyaNFT", "TANYA") {
 // MyEpicNFT.sol
 // ユーザーが NFT を取得するために実行する関数です。
 function makeAnEpicNFT() public {
-	// 現在の tokenId を取得します。tokenId は 0 から始まります。
-	uint256 newItemId = _tokenIds.current();
-	// msg.sender を使って NFT を送信者に Mint します。
-	_safeMint(msg.sender, newItemId);
-	// NFT データを設定します。
-	_setTokenURI(newItemId, "Valuable data!");
-	// 次の NFT が Mint されるときのカウンターをインクリメントする。
-	_tokenIds.increment();
+  // NFT が Mint されるときのカウンターをインクリメントします。
+  _tokenIds.increment();
+  // 現在のtokenIdを取得します。tokenIdは1から始まります。
+  uint256 newItemId = _tokenIds.current();
+   // msg.sender を使って NFT を送信者に Mint します。
+  _safeMint(msg.sender, newItemId);
+  // NFT データを設定します。
+  _setTokenURI(newItemId, "Valuable data!");
+  // NFTがいつ誰に作成されたかを確認します。
+  console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
 }
 ```
 
 まず、下記のコードを見ていきます。
+
+```solidity
+// MyEpicNFT.sol
+_tokenIds.increment();
+```
+
+`_tokenIds.increment()`（＝ OpenZeppelinが提供する関数）を使用して、`tokenIds`をインクリメント(＝ `+1`)しています。
+
+これにより、毎回NFTが発行されると、異なる`tokenIds`識別子がNFTと紐付けられます。
+
+複数のユーザーが、同じ`tokenIds`を持つことはありません。
+
+次に、下記のコードを見ていきましょう。
 
 ```solidity
 // MyEpicNFT.sol
@@ -157,11 +172,11 @@ uint256 newItemId = _tokenIds.current();
 
 `_tokenIds`は単なる数字です。
 
-したがって、 `makeAnEpicNFT`関数が初めて呼び出されたとき、 `newItemId`は0になります。
+したがって、 `makeAnEpicNFT`関数が初めて呼び出されたとき、 `newItemId`は1になります。
 
-- `Counters.Counter private _tokenIds`により初期化されているため、`newItemId`は0です。
+- `Counters.Counter private _tokenIds`により初期化し、`makeAnEpicNFT`関数の最初でインクリメントされているため、`newItemId`は1です。
 
-もう一度実行すると、`newItemId`は1になり、以下同様に続きます。
+もう一度実行すると、`newItemId`は2になり、以下同様に続きます。
 
 `_tokenIds`は**状態変数**です。つまり、変更すると、値はコントラクトに直接保存されます。
 
@@ -197,26 +212,13 @@ _setTokenURI(newItemId, "Valuable data!");
 - `Valuable data!`は、`ERC721`の基準に準拠していません。
 - `Valuable data!`と入れ替わる`tokenURI`についてこれから学んでいきます。
 
-次に、下記のコードを見ていきましょう。
+最後に、下記のコードを見ていきましょう。
 
 ```javascript
 console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
 ```
 
 ここでは、NFTがいつ誰に作成されたかを確認しています。
-
-最後に、下記のコードを見ていきましょう。
-
-```solidity
-// MyEpicNFT.sol
-_tokenIds.increment();
-```
-
-NFTが発行された後、`_tokenIds.increment()`（＝ OpenZeppelinが提供する関数）を使用して、`tokenIds`をインクリメント(＝ `+1`)しています。
-
-これにより、毎回NFTが発行されると、異なる`tokenIds`識別子がNFTと紐付けられます。
-
-複数のユーザーが、同じ`tokenIds`を持つことはありません。
 
 ### 🎟 `tokenURI`を取得して、コントラクトをローカル環境で実行しよう
 
@@ -238,7 +240,7 @@ NFTが発行された後、`_tokenIds.increment()`（＝ OpenZeppelinが提供�
 - `"description"`: デジタルデータの説明
 - `"image"`: デジタルデータへのリンク
 
-メタデータの構造が [OpenSea の要件](https://zenn.dev/hayatoomori/articles/f26cc4637c7d66) と一致しない場合、デジタルデータはOpenSea上で正しく表示されません。
+メタデータの構造が [`ERC721`のメタデータ規格](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md) と一致しない場合、デジタルデータはOpenSeaや今回使用するNFTビュアーの[gemcase](https://gemcase.vercel.app/)では正しく表示されません。
 
 - Openseaは、`ERC721`のメタデータ規格をサポートしています。
 - 音声ファイル、動画ファイル、3Dメディアなどに対応するメタデータ構造に関しては、[OpenSea の要件](https://zenn.dev/hayatoomori/articles/f26cc4637c7d66) を参照してください。
@@ -293,11 +295,11 @@ _setTokenURI(
 
 ここから、実際に`makeAnEpicNFT()`関数を呼び出し、スマートコントラクトが問題なくデプロイされるかテストしていきます。
 
-テスト用のプログラム`run.js`ファイルを下記のように変更しましょう。
+`scripts/deploy.js`ファイルを下記のように変更しましょう。
 
 ```javascript
-// run.js
-const main = async () => {
+// deploy.js
+async function main() {
   const nftContractFactory = await hre.ethers.getContractFactory("MyEpicNFT");
   const nftContract = await nftContractFactory.deploy();
   await nftContract.deployed();
@@ -311,25 +313,20 @@ const main = async () => {
   // Minting が仮想マイナーにより、承認されるのを待つ。
   await txn.wait();
 };
-const runMain = async () => {
-  try {
-    await main();
-    process.exit(0);
-  } catch (error) {
-    console.log(error);
-    process.exit(1);
-  }
-};
-runMain();
+
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
 ```
 
-上記を`run.js`に反映させえたら、下記をターミナル上で実行しましょう。
+上記を`deploy.js`に反映させたら、下記をターミナル上で実行しましょう。
 
 ```bash
-npx hardhat run scripts/run.js
+npx hardhat run scripts/deploy.js
 ```
 
-エラーが発生した場合は、`pwd`を実行して、 `epic-nfts`ディレクトリにいることを確認して、もう一度上記のコードを実行してみてください。
+エラーが発生した場合は、`pwd`を実行して、 `packages/contract`ディレクトリにいることを確認して、もう一度上記のコードを実行してみてください。
 
 下記のような結果が、ターミナルに出力されれば、テストは成功です。
 
@@ -352,7 +349,7 @@ An NFT w/ ID 1 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
 
 これから、テストネットにあなたのスマートコントラクトをデプロイしていきます。
 
-これが成功すると、**NFT をオンラインで表示**できるようになり、 世界中のユーザーがあなたのNFTをOpenSeaから見ることができます。
+これが成功すると、**NFT をオンラインで表示**できるようになり、 世界中のユーザーがあなたのNFTを見ることができます。今回は、`gemcase`というNFTビュアーを使用してオンライン上で確認してみたいと思います。
 
 ### 💳 トランザクションについて
 
@@ -447,64 +444,21 @@ MetaMaskウォレットに`Sepolia Test Network`が設定されたら、下記�
   - `Connect wallet`をクリックしてMetaMaskと接続する必要があります。
   - Twitterアカウントを連携する必要があります。
 
-
-### 🚀 `deploy.js`ファイルを作成する
-
-`run.js`は、あくまでローカル環境でコードのテストを行うためのスクリプトでした。
-
-テストネットにコントラクトをデプロイするために、`scripts`ディレクトリの中にある`deploy.js`を以下のとおり更新します。
-
-```javascript
-// deploy.js
-const main = async () => {
-  // コントラクトがコンパイルします
-  // コントラクトを扱うために必要なファイルが `artifacts` ディレクトリの直下に生成されます。
-  const nftContractFactory = await hre.ethers.getContractFactory("MyEpicNFT");
-  // Hardhat がローカルの Ethereum ネットワークを作成します。
-  const nftContract = await nftContractFactory.deploy();
-  // コントラクトが Mint され、ローカルのブロックチェーンにデプロイされるまで待ちます。
-  await nftContract.deployed();
-  console.log("Contract deployed to:", nftContract.address);
-  // makeAnEpicNFT 関数を呼び出す。NFT が Mint される。
-  let txn = await nftContract.makeAnEpicNFT();
-  // Minting が仮想マイナーにより、承認されるのを待ちます。
-  await txn.wait();
-  console.log("Minted NFT #1");
-  // makeAnEpicNFT 関数をもう一度呼び出します。NFT がまた Mint されます。
-  txn = await nftContract.makeAnEpicNFT();
-  // Minting が仮想マイナーにより、承認されるのを待ちます。
-  await txn.wait();
-  console.log("Minted NFT #2");
-};
-// エラー処理を行っています。
-const runMain = async () => {
-  try {
-    await main();
-    process.exit(0);
-  } catch (error) {
-    console.log(error);
-    process.exit(1);
-  }
-};
-runMain();
-```
-
 ### 📈 Sepolia Test Network に コントラクトをデプロイしましょう
 
 `hardhat.config.js`ファイルを変更する必要があります。
 
 これは、スマートコントラクトプロジェクトのルートディレクトリにあります。
 
-- 今回は、`epic-nfts`ディレクトリの直下に`hardhat.config.js`が存在するはずです。
+- 今回は、`packages/contract`ディレクトリの直下に`hardhat.config.js`が存在するはずです。
 
-例)`epic-nfts`で`ls`を実行した結果
+例)`contract`で`ls`を実行した結果
 
 ```
-README.md			package-lock.json
+README.md			hardhat.config.js
 artifacts			package.json
 cache				scripts
 contracts			test
-hardhat.config.js
 ```
 
 下記のように、`hardhat.config.js`の中身を更新します。
@@ -513,11 +467,12 @@ hardhat.config.js
 // hardhat.config.js
 require("@nomicfoundation/hardhat-toolbox");
 module.exports = {
-  solidity: "0.8.9",
+  solidity: '0.8.18',
+  defaultNetwork: 'hardhat',
   networks: {
     sepolia: {
-      url: "YOUR_ALCHEMY_API_URL",
-      accounts: ["YOUR_PRIVATE_ACCOUNT_KEY"],
+      url: "YOUR_ALCHEMY_API_URL" || '',
+      accounts: "YOUR_PRIVATE_ACCOUNT_KEY" ? ["YOUR_PRIVATE_ACCOUNT_KEY"] : [],
     },
   },
 };
@@ -603,7 +558,7 @@ hardhat.config.js
 
 構成のセットアップが完了すると、前に作成したデプロイスクリプトを使用してデプロイするように設定されます。
 
-`epic-nfts`のルートディレクトリからこのコマンドを実行します 。
+`packages/contract`ディレクトリ下でこのコマンドを実行します 。
 
 ```bash
 npx hardhat run scripts/deploy.js --network sepolia
@@ -630,41 +585,40 @@ _表示されるまでに約 1 分かかり場合があります。_
 
 ### 🖼 NFT をオンラインで確認しよう
 
-作成したNFTは、OpenSeaのTestNetサイトで確認できます。
+それでは、作成したNFTをNFTビュアーで確認してみましょう。
 
-[testnets.opensea.io](https://testnets.opensea.io/) にアクセスしてください。
+[gemcase](https://gemcase.vercel.app/) にアクセスし、フォームに情報を入力します。
 
-ターミナルに出力された`Contract deployed to`に続くアドレスを検索してみましょう。
-
-**`Enter`をクリックしないように注意してください。検索でコレクションが表示されたら、コレクション自体をクリックしてください** 。
-
-⚠️: OpenSeaでNFTを確認するのに時間が掛かる場合があります。
-
-続いて、ターミナルに出力された`Contract deployed to`に続くアドレスを検索してみましょう。
+- Blockchain : `EVM`
+- Chain : `Sepolia Testnet`
+- Address : ターミナルに出力された`Contract deployed to`に続くアドレス
+- Token ID : `1`
 
 ![](/public/images/ETH-NFT-Collection/section-1/1_4_18.png)
 
-`TanyaNFT`をクリックしてみましょう。
+`TanyaNFT`が表示されたら、`View`をクリックします。
+
+ミントをしたNFTの情報が表示されます。
 
 ![](/public/images/ETH-NFT-Collection/section-1/1_4_19.png)
 
-コレクションがOpenSeaに表示されているのを確認してください。
+画面を下にスクロールをすると、現在ミントされているNFT一覧が確認できます。ここでは、2つのNFT画像が表示されています。デプロイ時に2回ミントを行ったため、Token ID 1と2のNFT画像が確認できます。
 
 ![](/public/images/ETH-NFT-Collection/section-1/1_4_20.png)
 
-私が作成したTanyaコレクションの`tokenID` 0番のリンクは[こちら](https://testnets.opensea.io/ja/assets/rinkeby/0x67cd3f53c20e3a6211458dd5b7465e1f9464531c/0)になります（リンク先は、学習コンテンツ制作時に使用したRinkebyになっていますが、Rinkebyの箇所がSepoliaでも同様に表示されます）。
+私が作成したTanyaコレクションの`tokenID` 1番のリンクは[こちら](https://gemcase.vercel.app/view/evm/sepolia/0x8f561c94cc0c6c2771052d10980937804cd53cd6/1)になります。
 
 リンクの内容は以下のようになります。
 
 ```
-https://testnets.opensea.io/ja/assets/rinkeby/0x67cd3f53c20e3a6211458dd5b7465e1f9464531c/0
+https://gemcase.vercel.app/view/evm/sepolia/0x8f561c94cc0c6c2771052d10980937804cd53cd6/1
 ```
 
 中身を見ていきましょう。
 
-`0x67cd3f53c20e3a6211458dd5b7465e1f9464531c`は、`MyEpicNFT`コントラクトのデプロイ先のアドレスです。
+`0x8F561C94CC0c6C2771052d10980937804CD53Cd6`は、`MyEpicNFT`コントラクトのデプロイ先のアドレスです。
 
-`0`は、`tokenID`が0番であることを意味しています。
+`1`は、`tokenID`が1番であることを意味しています。
 
 上記のリンクを共有すれば、誰でもあなたのNFTをオンライン上で見ることができます。
 
@@ -685,7 +639,7 @@ https://testnets.opensea.io/ja/assets/rinkeby/0x67cd3f53c20e3a6211458dd5b7465e1f
 
 おめでとうございます!　セクション1が終了しました!
 
-OpenSeaのリンクを`#ethereum`に貼り付けて、コミュニティにあなたのNFTをシェアしてください 😊
+gemcaseのリンクを`#ethereum`に貼り付けて、コミュニティにあなたのNFTをシェアしてください 😊
 
 どんなNFTなのか気になります ✨
 

@@ -6,7 +6,7 @@ Webアプリケーション上で、ユーザーがイーサリアムネット�
 
 - これは、Webサイトへの認証機能です。
 
-ターミナル上で、`nft-collection-starter-project/src`に移動し、その中にある`App.js`をVS Codeで開きましょう。
+それでは、`ETH-NFT-Collection/packages/client`ディレクトリ下のファイルを編集していきましょう。
 
 下記のように、`App.js`の中身を更新します。
 
@@ -20,8 +20,7 @@ import twitterLogo from "./assets/twitter-logo.svg";
 // Constantsを宣言する: constとは値書き換えを禁止した変数を宣言する方法です。
 const TWITTER_HANDLE = "あなたのTwitterのハンドルネームを貼り付けてください";
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
-const OPENSEA_LINK = "";
-const TOTAL_MINT_COUNT = 50;
+
 const App = () => {
   const checkIfWalletIsConnected = () => {
     /*
@@ -90,10 +89,10 @@ const { ethereum } = window;
 
 `window.ethereum`は、あなたのWebサイトを訪問したユーザーがMetaMaskを持っているか確認し、結果を`Console log`に出力します。
 
-ターミナルで`nft-collection-starter-project`に移動し、下記を実行してみましょう。
+プロジェクトのルートディレクトリ（ETH-NFT-Collection/）にいることを確認し、下記を実行してみましょう。
 
 ```bash
-npm run start
+yarn client start
 ```
 
 ローカルサーバーでWebサイトを立ち上げたら、サイトの上で右クリックを行い、`Inspect`を選択します。
@@ -127,8 +126,7 @@ import twitterLogo from "./assets/twitter-logo.svg";
 // Constantsを宣言する: constとは値書き換えを禁止した変数を宣言する方法です。
 const TWITTER_HANDLE = "あなたのTwitterのハンドルネームを貼り付けてください";
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
-const OPENSEA_LINK = "";
-const TOTAL_MINT_COUNT = 50;
+
 const App = () => {
   /*
    * ユーザーのウォレットアドレスを格納するために使用する状態変数を定義します。
@@ -247,8 +245,7 @@ import twitterLogo from "./assets/twitter-logo.svg";
 // Constantsを宣言する: constとは値書き換えを禁止した変数を宣言する方法です。
 const TWITTER_HANDLE = "あなたのTwitterのハンドルネームを貼り付けてください";
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
-const OPENSEA_LINK = "";
-const TOTAL_MINT_COUNT = 50;
+
 const App = () => {
   /*
    * ユーザーのウォレットアドレスを格納するために使用する状態変数を定義します。
@@ -430,10 +427,10 @@ const renderNotConnectedContainer = () => (
 
 ### 🌐 ウォレットコネクトのテストを実行する
 
-上記のコードをすべて`App.js`に反映させたら、ターミナル上で`nft-collection-starter-project`ディレクトリに移動し、下記を実行しましょう。
+上記のコードをすべて`App.js`に反映させたら、ターミナル上で下記を実行しましょう。
 
 ```bash
-npm run start
+yarn client start
 ```
 
 ローカルサーバーでWebサイトを立ち上げたら、MetaMaskのプラグインをクリックし、あなたのウォレットアドレスの接続状況を確認しましょう。

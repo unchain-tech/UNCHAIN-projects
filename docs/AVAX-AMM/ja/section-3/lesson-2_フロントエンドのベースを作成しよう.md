@@ -1,4 +1,4 @@
-それでは実際にコードを書いてフロントエンドのベースとなるものを作成していきます。
+それでは実際にコードを書いてフロントエンドのベースとなるものを作成していきます。これから先の作業は, `AVAX-AMM/packages/client`ディレクトリ内のファイルを操作していきます。🙌
 
 ここでは初期設定で存在すると想定されるファイルを削除・編集することがあります。
 もし削除するファイルがあなたのフォルダ構成の中に無かった場合は, 無視してください。
@@ -242,6 +242,7 @@ export const validAmount = (amount: string): boolean => {
 
 ```ts
 import { useEffect, useState } from "react";
+
 import { getEthereum } from "../utils/ethereum";
 
 type ReturnUseWallet = {
@@ -264,7 +265,7 @@ export const useWallet = (): ReturnUseWallet => {
       });
       if (!Array.isArray(accounts)) return;
       console.log("Connected: ", accounts[0]);
-      setCurrentAccount(accounts[0]); //簡易実装のため, 配列の初めのアドレスを使用します。
+      setCurrentAccount(accounts[0]); // 簡易実装のため, 配列の初めのアドレスを使用します。
     } catch (error) {
       console.log(error);
     }
@@ -392,6 +393,7 @@ client
 
 ```tsx
 import { useState } from "react";
+
 import styles from "./Container.module.css";
 
 type Props = {
@@ -531,6 +533,7 @@ export default function Container({ currentAccount }: Props) {
 
 ```tsx
 import { ChangeEvent } from "react";
+
 import styles from "./InputNumberBox.module.css";
 
 type Props = {
@@ -591,8 +594,9 @@ client
 ※初期設定のままなので編集箇所がない場合があります。
 
 ```tsx
-import "../styles/globals.css";
 import type { AppProps } from "next/app";
+
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />;
@@ -609,10 +613,11 @@ export default MyApp;
 
 ```tsx
 import type { NextPage } from "next";
-import styles from "../styles/Home.module.css";
-import { useWallet } from "../hooks/useWallet";
-import Container from "../components/Container/Container";
 import Image from "next/image";
+
+import Container from "../components/Container/Container";
+import { useWallet } from "../hooks/useWallet";
+import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   const { currentAccount, connectWallet } = useWallet();
@@ -624,7 +629,7 @@ const Home: NextPage = () => {
           <Image alt="Picture of icon" src="/bird.png" width={40} height={30} />
           <div className={styles.appName}> Miniswap </div>
         </div>
-        {currentAccount == undefined ? (
+        {currentAccount === undefined ? (
           <div className={styles.connectBtn} onClick={connectWallet}>
             {" "}
             Connect to wallet{" "}
@@ -662,10 +667,10 @@ client
 
 🖥️ 画面で確認しましょう
 
-それでは`client`ディレクトリ直下で以下のコマンドを実行してください！
+それでは`AVAX-AMM`ディレクトリ直下で以下のコマンドを実行してください！
 
 ```
-$ npm run dev
+$ npm run client dev
 ```
 
 そしてブラウザで`http://localhost:3000 `へアクセスしてください。

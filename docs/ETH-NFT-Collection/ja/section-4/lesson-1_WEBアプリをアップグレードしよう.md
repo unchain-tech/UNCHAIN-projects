@@ -1,17 +1,17 @@
-### 🌊 ユーザー に OpenSea のリンクを提供する
+### 🌊 ユーザー に gemcase のリンクを提供する
 
-NFTが発行された後、OpenSeaでNFTへのリンクを共有できます。
+NFTが発行された後、gemcaseでNFTへのリンクを共有できます。
 
-OpenSeaのNFTへのリンクは次のようになります。
+gemcaseのNFTへのリンクは次のようになります。
 
 ```
-https://testnets.opensea.io/assets/0x88a0e9c2F3939598c402eccb7Ae1612e45448C04/0
+https://gemcase.vercel.app/view/evm/sepolia/0x42d097396b8fe79a06f896db6fed76664777600a/2
 ```
 
 リンクには、下記2つの変数が組み込まれています。
 
 ```
-https://testnets.opensea.io/assets/あなたのコントラクトアドレス/tokenId
+https://gemcase.vercel.app/view/evm/sepolia/あなたのコントラクトアドレス/tokenId
 ```
 
 ### 🗂 コントラクトを更新して tokenId を取得する
@@ -57,6 +57,93 @@ emit NewEpicNFTMinted(msg.sender, newItemId);
 
 - `NewEpicNFTMinted`イベントが`emit`される際、フロントエンド(`App.js`)で使用する変数`msg.sender`と`newItemId`をフロントエンドに送信しています。
 
+### ✅ 自動テストを更新しよう
+
+`makeAnEpicNFT`関数に、新たに`NewEpicNFTMinted`イベントの`emit`機能を追加したので、正しく機能するかをテストしてみましょう。
+
+それでは、`test/MyEpicNFT.js`を更新しましょう。以下を参考に、`makeAnEpicNFT`関数のテストを`pickRandomThirdWord`関数のテスト下に追加します。
+
+```javascript
+const { loadFixture } = require('@nomicfoundation/hardhat-network-helpers');
+const { ethers } = require('hardhat');
+const { expect } = require('chai');
+
+describe('MyEpicNFT', function () {
+  // 各テストの前に呼び出す関数です。テストで使用する変数やコントラクトのデプロイを行います。
+  async function deployMyEpicNFTFixture() {
+    // === 省略 ===
+  }
+
+  describe('pickRandomFirstWord', function () {
+    // === 省略 ===
+  });
+
+  describe('pickRandomSecondWord', function () {
+    // === 省略 ===
+  });
+
+  describe('pickRandomThirdWord', function () {
+    // === 省略 ===
+  });
+
+  // === 追加するテスト ===
+  describe('makeAnEpicNFT', function () {
+    it('emit a NewEpicNFTMinted event', async function () {
+      const { MyEpicNFT, owner } = await loadFixture(deployMyEpicNFTFixture);
+
+      await expect(MyEpicNFT.makeAnEpicNFT())
+        .to.emit(MyEpicNFT, 'NewEpicNFTMinted')
+        .withArgs(owner.address, 0);
+    });
+  });
+  // ===================
+});
+
+```
+
+`makeAnEpicNFT`関数のイベント発行のテストを追加しました。
+
+`to.emit(コントラクト名, イベント名).withArgs(emitされる値)`と定義することで、発行されるイベントの値を確認することができます。今回の`NewEpicNFTMinted`イベントは、第一引数にNFTを受け取るアドレス、第二引数にNFTのIDを設定するので期待する値を上記のようにテストしています。
+
+それでは、自動テストを実行してみましょう。`packages/contract`ディレクトリ下で次のコマンドを実行します。
+
+```bash
+npx hardhat test
+```
+
+以下のような出力があり、全てのテストに通過したことが確認できたら完了です！
+
+```bash
+  MyEpicNFT
+    pickRandomFirstWord
+This is my NFT contract.
+rand - seed:  96777463446932378109744360884080025980584389114515208476196941633474201541706
+rand - first word:  0
+      ✔ should get strings in firstWords (1037ms)
+    pickRandomSecondWord
+      ✔ should get strings in secondWords
+    pickRandomThirdWord
+      ✔ should get strings in thirdWords
+    makeAnEpicNFT
+rand - seed:  96777463446932378109744360884080025980584389114515208476196941633474201541706
+rand - first word:  0
+
+----- SVG data -----
+<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='xMinYMin meet' viewBox='0 0 350 350'><style>.base { fill: white; font-family: serif; font-size: 24px; }</style><rect width='100%' height='100%' fill='black' /><text x='50%' y='50%' class='base' dominant-baseline='middle' text-anchor='middle'>EpicPopBird</text></svg>
+--------------------
+
+
+----- Token URI ----
+data:application/json;base64,eyJuYW1lIjogIkVwaWNQb3BCaXJkIiwgImRlc2NyaXB0aW9uIjogIkEgaGlnaGx5IGFjY2xhaW1lZCBjb2xsZWN0aW9uIG9mIHNxdWFyZXMuIiwgImltYWdlIjogImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjRiV3h1Y3owbmFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNQzl6ZG1jbklIQnlaWE5sY25abFFYTndaV04wVW1GMGFXODlKM2hOYVc1WlRXbHVJRzFsWlhRbklIWnBaWGRDYjNnOUp6QWdNQ0F6TlRBZ016VXdKejQ4YzNSNWJHVStMbUpoYzJVZ2V5Qm1hV3hzT2lCM2FHbDBaVHNnWm05dWRDMW1ZVzFwYkhrNklITmxjbWxtT3lCbWIyNTBMWE5wZW1VNklESTBjSGc3SUgwOEwzTjBlV3hsUGp4eVpXTjBJSGRwWkhSb1BTY3hNREFsSnlCb1pXbG5hSFE5SnpFd01DVW5JR1pwYkd3OUoySnNZV05ySnlBdlBqeDBaWGgwSUhnOUp6VXdKU2NnZVQwbk5UQWxKeUJqYkdGemN6MG5ZbUZ6WlNjZ1pHOXRhVzVoYm5RdFltRnpaV3hwYm1VOUoyMXBaR1JzWlNjZ2RHVjRkQzFoYm1Ob2IzSTlKMjFwWkdSc1pTYytSWEJwWTFCdmNFSnBjbVE4TDNSbGVIUStQQzl6ZG1jKyJ9
+--------------------
+
+An NFT w/ ID 0 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+      ✔ emit a NewEpicNFTMinted event (89ms)
+
+
+  4 passing (1s)
+```
+
 ### 🛩 もう一度デプロイする
 
 コントラクトを更新したので、下記を実行する必要があります。
@@ -65,13 +152,13 @@ emit NewEpicNFTMinted(msg.sender, newItemId);
 
 2\. フロントエンドのコントラクトアドレスを更新する(更新するファイル: `App.js`)
 
-3\. フロントエンドのABIファイルを更新する(更新するファイル: `nft-collection-starter-project/src/utils/MyEpicNFT.json`)
+3\. フロントエンドのABIファイルを更新する(更新するファイル: `packages/client/src/utils/MyEpicNFT.json`)
 
 **コントラクトを更新するたび、これらの 3 つのステップを実行する必要があります。**
 
 復習もかねて、丁寧に実行していきましょう。
 
-**1\. ターミナル上で`epic-nfts`に移動します。**
+**1\. ターミナル上で`packages/contract`ディレクトリに移動します。**
 
 下記を実行し、コントラクトを再度デプロイしましょう。
 
@@ -89,7 +176,7 @@ Contract deployed to: 0x... ← あなたのコントラクトアドレスをコ
 
 **3\. 以前と同じように`artifacts`から ABI ファイルを取得します。下記のステップを実行してください。**
 
-1\. ターミナル上で`epic-nfts`にいることを確認する（もしくは移動する）。
+1\. ターミナル上で`packages/contract`ディレクトリにいることを確認する（もしくは移動する）。
 
 2\. ターミナル上で下記を実行する。
 
@@ -99,7 +186,7 @@ Contract deployed to: 0x... ← あなたのコントラクトアドレスをコ
 
 3\. VS Codeで`MyEpicNFT.json`ファイルが開かれるので、中身をすべてコピーする。※ VS Codeのファインダーを使って、直接`MyEpicNFT.json`を開くことも可能です。
 
-4\. コピーした`epic-nfts/artifacts/contracts/MyEpicNFT.sol/MyEpicNFT.json`の中身を`nft-collection-starter-project/src/utils/MyEpicNFT.json`の中身と交換する。
+4\. コピーした`packages/contract/artifacts/contracts/MyEpicNFT.sol/MyEpicNFT.json`の中身を`packages/client/src/utils/MyEpicNFT.json`の中身と交換する。
 
 **繰り返しますが、コントラクトを更新するたびにこれを行う必要があります。**
 
@@ -182,7 +269,7 @@ const setupEventListener = async () => {
       connectedContract.on("NewEpicNFTMinted", (from, tokenId) => {
         console.log(from, tokenId.toNumber());
         alert(
-          `あなたのウォレットに NFT を送信しました。OpenSea に表示されるまで最大で10分かかることがあります。NFT へのリンクはこちらです: https://testnets.opensea.io/assets/${CONTRACT_ADDRESS}/${tokenId.toNumber()}`
+          `あなたのウォレットに NFT を送信しました。gemcase に表示されるまで数分かかることがあります。NFT へのリンクはこちらです: https://gemcase.vercel.app/view/evm/sepolia/${CONTRACT_ADDRESS}/${tokenId.toNumber()}`,
         );
       });
       console.log("Setup event listener!");
@@ -197,11 +284,11 @@ const setupEventListener = async () => {
 
 `setupEventListener`関数は、NFTが発行される際に`emit`される`NewEpicNFTMinted`イベントを受信します。
 
-- `tokenId`を取得して、新しくミントされたNFTへのOpenSeaリンクをユーザーに提供しています。
+- `tokenId`を取得して、新しくミントされたNFTへのgemcaseリンクをユーザーに提供しています。
 
 ### 🪄 MVP = `MyEpicNFT.sol` × `App.js`
 
-今回のプロジェクトのMVP（＝最小限の機能を備えたプロダクト）を構築する`MyEpicNFT.sol`と`App.js`のスクリプトを共有します。
+今回のプロジェクトのMVP（＝最小限の機能を備えたプロダクト）を構築する`MyEpicNFT.sol`、`MyEpicNFT.js`（自動テスト）、`App.js`のスクリプトを共有します。
 
 - 見やすいように少し整理整頓してあります 🧹✨
 
@@ -288,7 +375,10 @@ contract MyEpicNFT is ERC721URIStorage {
 
   // ユーザーが NFT を取得するために実行する関数です。
   function makeAnEpicNFT() public {
-    // 現在のtokenIdを取得します。tokenIdは0から始まります。
+    // NFT が Mint されるときのカウンターをインクリメントします。
+    _tokenIds.increment();
+
+    // 現在のtokenIdを取得します。tokenIdは1から始まります。
     uint256 newItemId = _tokenIds.current();
 
     // 3つの配列からそれぞれ1つの単語をランダムに取り出します。
@@ -296,14 +386,14 @@ contract MyEpicNFT is ERC721URIStorage {
     string memory second = pickRandomSecondWord(newItemId);
     string memory third = pickRandomThirdWord(newItemId);
 
-	// 3つの単語を組み合わせた言葉（例: GrandCuteBird）を combinedWord に格納しています。
+	  // 3つの単語を連携して格納する変数 combinedWord を定義します。
     string memory combinedWord = string(abi.encodePacked(first, second, third));
 
     // 3つの単語を連結して、<text>タグと<svg>タグで閉じます。
-    string memory finalSvg = string(abi.encodePacked(baseSvg, first, second, third, "</text></svg>"));
+    string memory finalSvg = string(abi.encodePacked(baseSvg, combinedWord, "</text></svg>"));
 
-	// NFTに出力されるテキストをターミナルに出力します。
-	console.log("\n----- SVG data -----");
+	  // NFTに出力されるテキストをターミナルに出力します。
+	  console.log("\n----- SVG data -----");
     console.log(finalSvg);
     console.log("--------------------\n");
 
@@ -329,26 +419,106 @@ contract MyEpicNFT is ERC721URIStorage {
         abi.encodePacked("data:application/json;base64,", json)
     );
 
-	console.log("\n----- Token URI ----");
+	  console.log("\n----- Token URI ----");
     console.log(finalTokenUri);
     console.log("--------------------\n");
 
-   // msg.sender を使って NFT を送信者に Mint します。
+    // msg.sender を使って NFT を送信者に Mint します。
     _safeMint(msg.sender, newItemId);
 
     // tokenURIを更新します。
     _setTokenURI(newItemId, finalTokenUri);
 
- 	// NFTがいつ誰に作成されたかを確認します。
-	console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
+ 	  // NFTがいつ誰に作成されたかを確認します。
+	  console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
 
-    // 次の NFT が Mint されるときのカウンターをインクリメントする。
-    _tokenIds.increment();
-
-    // イベントを emit します。
     emit NewEpicNFTMinted(msg.sender, newItemId);
   }
 }
+```
+
+**`MyEpicNFT.js`はこちら:**
+
+```javascript
+const { loadFixture } = require('@nomicfoundation/hardhat-network-helpers');
+const { ethers } = require('hardhat');
+const { expect } = require('chai');
+
+describe('MyEpicNFT', function () {
+  // 各テストの前に呼び出す関数です。テストで使用する変数やコントラクトのデプロイを行います。
+  async function deployMyEpicNFTFixture() {
+    // テストアカウントを取得します。
+    const [owner] = await ethers.getSigners();
+
+    // コントラクト内で使用する単語の配列を定義します。
+    const firstWords = [
+      'Epic',
+      'Fantastic',
+      'Crude',
+      'Crazy',
+      'Hysterical',
+      'Grand',
+    ];
+    const secondWords = ['Meta', 'Live', 'Pop', 'Cute', 'Sweet', 'Hot'];
+    const thirdWords = [
+      'Kitten',
+      'Puppy',
+      'Monkey',
+      'Bird',
+      'Panda',
+      'Elephant',
+    ];
+
+    // コントラクトのインスタンスを生成し、デプロイを行います。
+    const MyEpicNFTFactory = await ethers.getContractFactory('MyEpicNFT');
+    const MyEpicNFT = await MyEpicNFTFactory.deploy();
+
+    return { MyEpicNFT, owner, firstWords, secondWords, thirdWords };
+  }
+
+  describe('pickRandomFirstWord', function () {
+    it('should get strings in firstWords', async function () {
+      // テストの準備をします。
+      const { MyEpicNFT, firstWords } = await loadFixture(
+        deployMyEpicNFTFixture,
+      );
+
+      // 実行＆確認をします。
+      expect(firstWords).to.include(await MyEpicNFT.pickRandomFirstWord(0));
+    });
+  });
+
+  describe('pickRandomSecondWord', function () {
+    it('should get strings in secondWords', async function () {
+      const { MyEpicNFT, secondWords } = await loadFixture(
+        deployMyEpicNFTFixture,
+      );
+
+      expect(secondWords).to.include(await MyEpicNFT.pickRandomSecondWord(0));
+    });
+  });
+
+  describe('pickRandomThirdWord', function () {
+    it('should get strings in thirdWords', async function () {
+      const { MyEpicNFT, thirdWords } = await loadFixture(
+        deployMyEpicNFTFixture,
+      );
+
+      expect(thirdWords).to.include(await MyEpicNFT.pickRandomThirdWord(0));
+    });
+  });
+
+  describe('makeAnEpicNFT', function () {
+    it('emit a NewEpicNFTMinted event', async function () {
+      const { MyEpicNFT, owner } = await loadFixture(deployMyEpicNFTFixture);
+
+      // 発行されるイベントの確認をします。
+      await expect(MyEpicNFT.makeAnEpicNFT())
+        .to.emit(MyEpicNFT, 'NewEpicNFTMinted')
+        .withArgs(owner.address, 0);
+    });
+  });
+});
 ```
 
 **`App.js`はこちら:**
@@ -367,8 +537,6 @@ import myEpicNft from "./utils/MyEpicNFT.json";
 
 const TWITTER_HANDLE = "あなたのTwitterハンドル";
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
-const OPENSEA_LINK = "";
-const TOTAL_MINT_COUNT = 50;
 
 // コトントラクトアドレスをCONTRACT_ADDRESS変数に格納
 const CONTRACT_ADDRESS = "あなたのコントラクトアドレス";
@@ -397,7 +565,7 @@ const App = () => {
         connectedContract.on("NewEpicNFTMinted", (from, tokenId) => {
           console.log(from, tokenId.toNumber());
           alert(
-            `あなたのウォレットに NFT を送信しました。OpenSea に表示されるまで最大で10分かかることがあります。NFT へのリンクはこちらです: https://testnets.opensea.io/assets/${CONTRACT_ADDRESS}/${tokenId.toNumber()}`
+            `あなたのウォレットに NFT を送信しました。gemcase に表示されるまで数分かかることがあります。NFT へのリンクはこちらです: https://gemcase.vercel.app/view/evm/sepolia/${CONTRACT_ADDRESS}/${tokenId.toNumber()}`,
           );
         });
 
@@ -589,9 +757,9 @@ if (chainId !== sepoliaChainId) {
 **4\. あなたのコレクション Web アプリケーションをリンクさせる**
 
 - あなたのコレクションを見にいけるボタンをWebアプリケーション上に作成して、ユーザーがいつでもあなたのNFTコレクションを見に行けるようにしましょう。
-- あなたのWebサイトに、「OpenSeaでコレクションを表示」という小さなボタンを追加します。
+- あなたのWebサイトに、「gemcaseでコレクションを表示」という小さなボタンを追加します。
 - ユーザーがそれをクリックすると、コレクションのページに行けるようにしましょう。
-- OpenSeaへのリンクは`App.js`にハードコーディングする必要があります。
+- gemcaseへのリンクは`App.js`にハードコーディングする必要があります。
 
 ### 🙋‍♂️ 質問する
 

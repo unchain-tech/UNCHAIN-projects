@@ -197,10 +197,10 @@ return (
 
 最後に、`onClick={null}`を`onClick={askContractToMintNft}`に変更することをお忘れなく!
 
-すべての変更を`App.js`に反映させた後、ターミナルで`nft-collection-starter-project`ディレクトリに移動して下記を実行しみてください。
+すべての変更を`App.js`に反映させた後、ターミナルで下記を実行してみてください。
 
 ```bash
-npm run start
+yarn client start
 ```
 
 ローカルサーバーで、Webサイトが立ち上がり、下記のようなエラーがターミナルに出力されていれば、ここまでの実装は成功です。
@@ -230,9 +230,9 @@ Webアプリケーションがコントラクトと通信するために必要�
 
 3. 関数の実行結果に対して返るデータ型の種類
 
-ABIファイルは、コントラクトがコンパイルされた時に生成され、`epic-nfts/artifacts`ディレクトリに自動的に格納されます。
+ABIファイルは、コントラクトがコンパイルされた時に生成され、`packages/contract/artifacts`ディレクトリに自動的に格納されます。
 
-ターミナルで`epic-nfts`ディレクトリに移動し、`ls`を実行しましょう。
+ターミナルで`packages/contract`ディレクトリに移動し、`ls`を実行しましょう。
 
 `artifacts`ディレクトリの存在を確認してください。
 
@@ -240,7 +240,7 @@ ABIファイルの中身は、`MyEpicNFT.json`というファイルに格納さ�
 
 下記を実行して、ABIファイルをコピーしましょう。
 
-1\. ターミナル上で`epic-nfts`にいることを確認する（もしくは移動する）。
+1\. ターミナル上で`packages/contract`ディレクトリにいることを確認する（もしくは移動する）。
 
 2\. ターミナル上で下記を実行する。
 
@@ -252,9 +252,9 @@ ABIファイルの中身は、`MyEpicNFT.json`というファイルに格納さ�
 
 次に、下記を実行して、ABIファイルをWebアプリケーションから呼び出せるようにしましょう。
 
-1\. ターミナル上で`nft-collection-starter-project`にいることを確認する（もしくは移動する）。
+1\. ターミナル上で`packages/client`ディレクトリにいることを確認する（もしくは移動する）。
 
-2\. 下記を実行して、`nft-collection-starter-project/src/`の中に`utils`ディレクトリを作成する。
+2\. 下記を実行して、`packages/client/src/`の中に`utils`ディレクトリを作成する。
 
 > ```bash
 > mkdir src/utils
@@ -324,9 +324,22 @@ Consoleに出力された`https://sepolia.etherscan.io/...`のアドレスをク
 
 - あなたのSepolia Test Network上のトランザクションの履歴が参照できます。
 
-次に、[テストネット用の OpenSea](https://testnets.opensea.io/) にアクセスして、MintしたNFTがあなたのSepolia Test Networkのアドレスに紐づいているか確認してみましょう。
+![](/public/images/ETH-NFT-Collection/section-3/3_3_2.png)
 
-Consoleに出力された`currentAccount:`に続く、`0x..`のアドレスをOpenSeaのWebサイトに貼り付けて、結果が表示されたら、画面右上の`Profile`メニューを選択してください。それから、ご自身のアカウントを開いて、NFTを確認してみましょう。
+次に、MintしたNFTがあなたのSepolia Test Networkのアドレスに紐づいているか確認してみましょう。上記画像の赤枠で囲まれている部分が、トークンの転送情報です。転送先のアドレス（`To xxx...`）があなたのウォレットアドレスになっていたら大丈夫です。
+
+それでは、[gemcase](https://gemcase.vercel.app/)にアクセスをして確認をしてみましょう。これまでは`Address`にデプロイをしたコントラクトのアドレスを入力していましたが、今度はあなたのウォレットアドレスを入力して`View`をクリックしてみましょう。
+
+![](/public/images/ETH-NFT-Collection/section-3/3_3_3.png)
+
+これまでにあなたのアドレスへミントされたNFTの一覧が取得できます。
+
+ステップ通りに進んできた場合は、一番左上のNFTがアプリケーション上の`Mint NFT`をクリックしてミントされたNFTとなります。NFTをクリックして詳細を確認すると、NFTをミントしたアドレスがApp.jsファイルの
+`const CONTRACT_ADDRESS`に設定したコントラクトのアドレスとなっているはずです！
+
+![](/public/images/ETH-NFT-Collection/section-3/3_3_4.png)
+
+![](/public/images/ETH-NFT-Collection/section-3/3_3_5.png)
 
 ### 🚨 コントラクトを再びデプロイする際の注意点
 
@@ -340,7 +353,7 @@ Consoleに出力された`currentAccount:`に続く、`0x..`のアドレスをOp
 
 3 \. ABIファイルを更新する。
 
-- `epic-nfts/artifacts/contracts/MyEpicNFT.sol/MyEpicNFT.json`の中身を新しく作成する`nft-collection-starter-project/src/utils/MyEpicNFT.json`の中に貼り付ける必要があります。
+- `packages/contract/artifacts/contracts/MyEpicNFT.sol/MyEpicNFT.json`の中身を新しく作成する`packages/client/src/utils/MyEpicNFT.json`の中に貼り付ける必要があります。
 
 **コントラクトを更新する際、必ずこの 3 つのステップを実行してください。**
 
@@ -373,7 +386,7 @@ Consoleに出力された`currentAccount:`に続く、`0x..`のアドレスをOp
 
 NFTをMintできるWebアプリケーションはほぼ完成です!
 
-OpenSeaのリンクを`#ethereum`に貼り付けて、あなたのNFTをシェアしてください 😊
+gemcaseのリンクを`#ethereum`に貼り付けて、あなたのNFTをシェアしてください 😊
 
 あなたの作ったNFTがどんなものなのか気になります ✨
 

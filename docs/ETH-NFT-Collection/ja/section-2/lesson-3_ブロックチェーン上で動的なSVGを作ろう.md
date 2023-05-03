@@ -90,7 +90,10 @@ contract MyEpicNFT is ERC721URIStorage {
   // ユーザーが NFT を取得するために実行する関数です。
   function makeAnEpicNFT() public {
 
-    // 現在のtokenIdを取得します。tokenIdは0から始まります。
+    // NFT が Mint されるときのカウンターをインクリメントします。
+    _tokenIds.increment();
+
+    // 現在のtokenIdを取得します。tokenIdは1から始まります。
     uint256 newItemId = _tokenIds.current();
 
     // 3つの配列からそれぞれ1つの単語をランダムに取り出します。
@@ -101,7 +104,7 @@ contract MyEpicNFT is ERC721URIStorage {
     // 3つの単語を連結して、<text>タグと<svg>タグで閉じます。
     string memory finalSvg = string(abi.encodePacked(baseSvg, first, second, third, "</text></svg>"));
 
-	// NFTに出力されるテキストをターミナルに出力します。
+	  // NFTに出力されるテキストをターミナルに出力します。
     console.log("\n--------------------");
     console.log(finalSvg);
     console.log("--------------------\n");
@@ -109,15 +112,11 @@ contract MyEpicNFT is ERC721URIStorage {
     // msg.sender を使って NFT を送信者に Mint します。
     _safeMint(msg.sender, newItemId);
 
-	// tokenURI は後で設定します。
-	// 今は、tokenURI の代わりに、"We will set tokenURI later." を設定します。
-	_setTokenURI(newItemId, "We will set tokenURI later.");
-
-	// NFTがいつ誰に作成されたかを確認します。
-	console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
-
-    // 次の NFT が Mint されるときのカウンターをインクリメントする。
-    _tokenIds.increment();
+    // tokenURI は後で設定します。
+    // 今は、tokenURI の代わりに、"We will set tokenURI later." を設定します。
+    _setTokenURI(newItemId, "We will set tokenURI later.");   
+    // NFTがいつ誰に作成されたかを確認します。
+    console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
   }
 }
 ```
@@ -256,15 +255,178 @@ Solidityは、インプットが同じであれば必ず同じ結果が出力さ
 
 Solidityにおける乱数生成の方法に興味があれば、[Chainlink（英語）](https://docs.chain.link/docs/intermediates-tutorial/) のドキュメントを参照してみましょう。
 
-### 👩‍🔬 テストしてみよう
+### 👩‍🔬 自動テストを作成してみよう
 
-乱数の生成に関して理解を深めるために、ターミナルで下記を実行して、`MyEpicNFT.sol`の中の`console.log`によって出力される結果を確認してみましょう。
+スマートコントラクトに新たな機能が追加されたので、それに伴い自動テストを作成してみましょう。
+
+HardHatには、`test`ディレクトリ内に格納されたテストコードを`npx hardhat test`コマンドを実行することで、自動的にテストを走らせてくれる機能があります。今回作成するテストは、スマートコントラクト内に定義した各関数を1つずつテストする**ユニットテスト（unit test）**と呼ばれるものです。実際にスマートコントラクトをデプロイして機能を使う前段階として、その機能が期待する動作を行うか確認することができるテストとなります。
+
+Hardhatの自動テストを利用して、スマートコントラクトの機能をテストしてみましょう。
+
+まずは、`packages/contract/test`ディレクトリ内に`MyEpicNFT.js`というファイルを作成します。
+
+```diff
+packages/
+ └──contract/
+    └── test/
++       └── MyEpicNFT.js
+```
+
+続いて、作成した`MyEpicNFT.js`に以下のコードを書き込みます。
+
+```javascript
+const { loadFixture } = require('@nomicfoundation/hardhat-network-helpers');
+const { ethers } = require('hardhat');
+const { expect } = require('chai');
+
+describe('MyEpicNFT', function () {
+  // 各テストの前に呼び出す関数です。テストで使用する変数やコントラクトのデプロイを行います。
+  async function deployMyEpicNFTFixture() {
+    // テストアカウントを取得します。
+    const [owner] = await ethers.getSigners();
+
+    // コントラクト内で使用する単語の配列を定義します。
+    const firstWords = [
+      'Epic',
+      'Fantastic',
+      'Crude',
+      'Crazy',
+      'Hysterical',
+      'Grand',
+    ];
+    const secondWords = ['Meta', 'Live', 'Pop', 'Cute', 'Sweet', 'Hot'];
+    const thirdWords = [
+      'Kitten',
+      'Puppy',
+      'Monkey',
+      'Bird',
+      'Panda',
+      'Elephant',
+    ];
+
+    // コントラクトのインスタンスを生成し、デプロイを行います。
+    const MyEpicNFTFactory = await ethers.getContractFactory('MyEpicNFT');
+    const MyEpicNFT = await MyEpicNFTFactory.deploy();
+
+    return { MyEpicNFT, owner, firstWords, secondWords, thirdWords };
+  }
+
+  describe('pickRandomFirstWord', function () {
+    it('should get strings in firstWords', async function () {
+      // テストの準備を行います。
+      const { MyEpicNFT, firstWords } = await loadFixture(
+        deployMyEpicNFTFixture,
+      );
+
+      // テストを行う関数を呼び出し、結果を確認します。
+      expect(firstWords).to.include(await MyEpicNFT.pickRandomFirstWord(0));
+    });
+  });
+
+  describe('pickRandomSecondWord', function () {
+    it('should get strings in secondWords', async function () {
+      const { MyEpicNFT, secondWords } = await loadFixture(
+        deployMyEpicNFTFixture,
+      );
+
+      expect(secondWords).to.include(await MyEpicNFT.pickRandomSecondWord(0));
+    });
+  });
+
+  describe('pickRandomThirdWord', function () {
+    it('should get strings in thirdWords', async function () {
+      const { MyEpicNFT, thirdWords } = await loadFixture(
+        deployMyEpicNFTFixture,
+      );
+
+      expect(thirdWords).to.include(await MyEpicNFT.pickRandomThirdWord(0));
+    });
+  });
+});
+```
+
+コードの内容を簡単にみていきましょう。
+
+最初に定義したのは、各テストの前に実行する`deployMyEpicNFTFixture`関数です。実際に機能をテストしたいコントラクト内の関数を呼び出すための、準備を行う関数となります。
+
+その中で定義している文字列の配列は、ご自身が`MyEpicNFT`コントラクト内で定義したものと一致するように適宜変更してください。
+
+```javascript
+// コントラクト内で使用する単語の配列を定義します。
+const firstWords = [
+  'Epic',
+  'Fantastic',
+  'Crude',
+  'Crazy',
+  'Hysterical',
+  'Grand',
+];
+const secondWords = ['Meta', 'Live', 'Pop', 'Cute', 'Sweet', 'Hot'];
+const thirdWords = [
+  'Kitten',
+  'Puppy',
+  'Monkey',
+  'Bird',
+  'Panda',
+  'Elephant',
+];
+```
+
+`deployMyEpicNFTFixture`関数の後に続く3つの`describe`ブロックが、実際に`MyEpicNFT`コントラクト内の各関数を呼び出してテストを行なっている部分になります。
+
+```javascript
+describe('pickRandomFirstWord', function () {
+  it('should get strings in firstWords', async function () {
+    // テストの準備を行います。
+    const { MyEpicNFT, firstWords } = await loadFixture(
+      deployMyEpicNFTFixture,
+    );
+    // テストを行う関数を呼び出し、結果を確認します。
+    expect(firstWords).to.include(await MyEpicNFT.pickRandomFirstWord(0));
+  });
+});
+```
+
+`describe()`にテストをする関数名を定義し、`it()`に期待する動作を記述しています。
+
+テスト部分は、準備フェーズと実行・確認フェーズがあります。
+
+準備フェーズでは、`MyEpicNFT`コントラクトのデプロイやテストで使用する変数を取得します。
+
+実行・確認フェーズでは、実際に`MyEpicNFT`コントラクトの関数を呼び出し、その結果を確認しています。ここでは、`include`という機能を利用して`pickRandomFirstWord`関数が返す値が`firstWords`変数（配列）に含まれているかどうかを確認しています。
+
+それでは、作成したテストを実行してみましょう。
+
+`packages/contract`ディレクトリにいることを確認して、次のコマンドを実行しましょう。
+
+```bash
+npx hardhat test
+```
+
+以下のような結果が出力されていれば成功です。
+
+```bash
+  MyEpicNFT
+    pickRandomFirstWord
+This is my NFT contract.
+rand - seed:  96777463446932378109744360884080025980584389114515208476196941633474201541706
+rand - first word:  0
+      ✔ should get strings in firstWords (1457ms)
+    pickRandomSecondWord
+      ✔ should get strings in secondWords
+    pickRandomThirdWord
+      ✔ should get strings in thirdWords
+
+
+  3 passing (1s)
+```
+
+このように、自動テストでは定義したテストの通過結果が出力されます。
+
+自動テストを全て通過したことが確認できたら、次にデプロイスクリプトを実行してどのような生成物となるのか、`console.log`の出力を確認してみましょう。
 
 ```bash
 npx hardhat run scripts/run.js
-```
-
-- 上記のコードを実行するときは、ターミナル上で`epic-nfts`ディレクトリにいることを確認してください。
 
 下記のような結果がターミナルに出力されていれば成功です。
 
@@ -302,14 +464,16 @@ An NFT w/ ID 1 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
 
 追加でいくつか関数を作成する必要があります。
 
-`contracts`ディレクトリの下に`libraries`というディレクトリを作成しましょう。
+`package/contract/contracts`ディレクトリの下に`libraries`というディレクトリを作成しましょう。
 
 下記のディレクトリ構図を参考にしてください。
 
-```
-epic-nfts
-   |_ contracts
-		  |_ libraries
+```diff
+packages/
+ └──contract/
+    └── contracts/
+        ├── MyEpicNFT.sol
++       └── libraries/
 ```
 
 `libraries`ディレクトリに`Base64.sol`という名前のファイルを作成し、下記のコードを貼り付けてください。
@@ -472,7 +636,11 @@ contract MyEpicNFT is ERC721URIStorage {
 
   // ユーザーが NFT を取得するために実行する関数です。
   function makeAnEpicNFT() public {
-    // 現在のtokenIdを取得します。tokenIdは0から始まります。
+
+    // NFT が Mint されるときのカウンターをインクリメントします。
+    _tokenIds.increment();
+
+    // 現在のtokenIdを取得します。tokenIdは1から始まります。
     uint256 newItemId = _tokenIds.current();
 
     // 3つの配列からそれぞれ1つの単語をランダムに取り出します。
@@ -513,7 +681,7 @@ contract MyEpicNFT is ERC721URIStorage {
         abi.encodePacked("data:application/json;base64,", json)
     );
 
-	  console.log("\n----- Token URI ----");
+    console.log("\n----- Token URI ----");
     console.log(finalTokenUri);
     console.log("--------------------\n");
 
@@ -523,11 +691,8 @@ contract MyEpicNFT is ERC721URIStorage {
     // tokenURIを更新します。
     _setTokenURI(newItemId, finalTokenUri);
 
- 	  // NFTがいつ誰に作成されたかを確認します。
-	  console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
-
-    // 次の NFT が Mint されるときのカウンターをインクリメントする。
-    _tokenIds.increment();
+    // NFTがいつ誰に作成されたかを確認します。
+    console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
   }
 }
 ```
@@ -602,7 +767,7 @@ _setTokenURI(newItemId, finalTokenUri);
 
 ### ⭐️ 実行する
 
-それでは、ターミナルに向かい、`epic-nfts`ディレクトリ上で、下記を実行しましょう。
+それでは、ターミナルに向かい、`packages/contract`ディレクトリ上で、下記を実行しましょう。
 
 ```bash
 npx hardhat run scripts/run.js
@@ -655,41 +820,38 @@ NFT Previewを使用すれば、テストネットにデプロイしなくても
 
 ### 🚀 Sepolia Test Network にデプロイする
 
-下記コマンドをターミナルに入力し、Sepoliaに再度デプロイしましょう。
+それでは、コントラクトを再度デプロイしましょう。
 
-`deploy.js`を下記のように更新してください。
+まずは、`deploy.js`を下記のように更新してください。
 
 - 変更点は、2つ目のNFT発行を削除しているだけです。
 
 ```javascript
 // deploy.js
-const main = async () => {
+async function main() {
   // コントラクトがコンパイルします
   // コントラクトを扱うために必要なファイルが `artifacts` ディレクトリの直下に生成されます。
-  const nftContractFactory = await hre.ethers.getContractFactory("MyEpicNFT");
+  const nftContractFactory = await hre.ethers.getContractFactory('MyEpicNFT');
   // Hardhat がローカルの Ethereum ネットワークを作成します。
   const nftContract = await nftContractFactory.deploy();
   // コントラクトが Mint され、ローカルのブロックチェーンにデプロイされるまで待ちます。
   await nftContract.deployed();
-  console.log("Contract deployed to:", nftContract.address);
+  console.log('Contract deployed to:', nftContract.address);
   // makeAnEpicNFT 関数を呼び出す。NFT が Mint される。
-  let txn = await nftContract.makeAnEpicNFT();
+  const txn = await nftContract.makeAnEpicNFT();
   // Minting が仮想マイナーにより、承認されるのを待ちます。
   await txn.wait();
-  console.log("Minted NFT #1");
-};
-// エラー処理を行っています。
-const runMain = async () => {
-  try {
-    await main();
-    process.exit(0);
-  } catch (error) {
-    console.log(error);
-    process.exit(1);
-  }
-};
-runMain();
+  console.log('Minted NFT #1');
+}
+
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
+
 ```
+
+続いて、デプロイコマンドを実行します。
 
 ```bash
 npx hardhat run scripts/deploy.js --network sepolia
@@ -702,12 +864,12 @@ Contract deployed to: 0x2bE00D9524E37A432B695A033912709ecEb64Cfa
 Minted NFT #1
 ```
 
-最後に、コントラクトのアドレス(`Contract deployed to`に続く`0x..`)をターミナルからコピーして、[テストネット用の OpenSea](https://testnets.opensea.io/) に貼り付け、検索してみてください。
+最後に、[gemcase](https://gemcase.vercel.app/) へアクセスをして、ミントされたNFTを確認してみましょう。
 
-下記のように、あなたのSquareNFTがOpenSeaで確認できたでしょうか？
+下記のように、あなたのSquareNFTがgemcaseで確認できたでしょうか？
 ![](/public/images/ETH-NFT-Collection/section-2/2_3_3.png)
 
-OpenSea上で画像が表示されない場合は[Rarible](https://testnet.rarible.com/)で検索してみてください。
+![](/public/images/ETH-NFT-Collection/section-2/2_3_4.png)
 
 ### 🙋‍♂️ 質問する
 
@@ -726,7 +888,7 @@ OpenSea上で画像が表示されない場合は[Rarible](https://testnet.rarib
 
 おめでとうございます!　セクション3はもう少しで終了です ✨
 
-あなたのOpenSeaのリンクを`#ethereum`に貼り付けて、コミュニティにシェアしてください 😊
+あなたのgemcaseのリンクを`#ethereum`に貼り付けて、コミュニティにシェアしてください 😊
 
 どんなNFTを作ったのか気になります 🔥
 

@@ -135,7 +135,7 @@ export async function return_bike(index) {
  * account_idのftの残高を取得します。
  */
 export async function ft_balance_of(account_id) {
-  let balance = await window.ftContract.ft_balance_of({
+  const balance = await window.ftContract.ft_balance_of({
     account_id: account_id,
   });
   return balance;
@@ -146,7 +146,7 @@ export async function ft_balance_of(account_id) {
  * account_idが登録されていない場合はnullが返るので, 登録されているかどうかの判断にこの関数を使用します。
  */
 export async function storage_balance_of(account_id) {
-  let balance = await window.ftContract.storage_balance_of({
+  const balance = await window.ftContract.storage_balance_of({
     account_id: account_id,
   });
   return balance;
@@ -154,7 +154,7 @@ export async function storage_balance_of(account_id) {
 
 /** ストレージ使用量の支払い登録を行います。 */
 export async function storage_deposit() {
-  let response = await window.ftContract.storage_deposit(
+  const response = await window.ftContract.storage_deposit(
     {}, // 引数の省略 = このメソッドを呼び出しているアカウントを登録
     "300000000000000", // ガス量の制限(in gas units)
     "1250000000000000000000" // デポジット (in yoctoNEAR, 1 yoctoNEAR = 10^-24 NEAR)
@@ -165,7 +165,7 @@ export async function storage_deposit() {
 /** アカウントの登録を解除します。 */
 // 今回は簡単のため強制的に解除する方法を引数指定でとっています。
 export async function storage_unregister() {
-  let response = await window.ftContract.storage_unregister(
+  const response = await window.ftContract.storage_unregister(
     { force: true }, // アカウントの情報に関わらず登録を解除する, 所持しているftはバーンされる
     "300000000000000",
     "1"
@@ -175,7 +175,7 @@ export async function storage_unregister() {
 
 /** ftをreceiver_idへ転送します。 */
 export async function ft_transfer(receiver_id, amount) {
-  let response = await window.ftContract.ft_transfer(
+  const response = await window.ftContract.ft_transfer(
     {
       receiver_id: receiver_id,
       amount: amount,
@@ -195,7 +195,7 @@ export async function ft_transfer(receiver_id, amount) {
 
 ```js
 export async function storage_deposit() {
-  let response = await window.ftContract.storage_deposit(
+  const response = await window.ftContract.storage_deposit(
     {}, // 引数の省略 = このメソッドを呼び出しているアカウントを登録
     "300000000000000", // ガス量の制限(in gas units)
     "1250000000000000000000" // デポジット (in yoctoNEAR, 1 yoctoNEAR = 10^-24 NEAR)
@@ -264,7 +264,7 @@ useEffect(() => {
     const num = await num_of_bikes();
     console.log("Num of bikes:", num);
 
-    let new_bikes = [];
+    const new_bikes = [];
     for (let i = 0; i < num; i++) {
       const bike = await createBikeInfo(i);
       new_bikes.push(bike);
@@ -314,7 +314,7 @@ const newUserRegister = async () => {
 const prepareBalanceInfo = async (account_id) => {
   const balance = await ft_balance_of(account_id);
 
-  let balance_info = await initialBalanceInfo();
+  const balance_info = await initialBalanceInfo();
   balance_info.account_id = account_id;
   balance_info.balance = balance;
 
@@ -374,7 +374,7 @@ const checkBalance = () => {
         style={{ marginTop: "0.1em" }}
         onClick={() => prepareBalanceInfo(window.contract.contractId)}
       >
-        check contract's balance
+        check contract&apos;s balance
       </button>
       <span>or</span>
       <form
@@ -400,7 +400,7 @@ const checkBalance = () => {
       </form>
       {showBalance && (
         <div>
-          <p>{balanceInfo.account_id}'s</p>
+          <p>{balanceInfo.account_id}&apos;s</p>
           <p>balance: {balanceInfo.balance}</p>
         </div>
       )}

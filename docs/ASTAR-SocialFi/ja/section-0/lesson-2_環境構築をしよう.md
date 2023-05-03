@@ -159,7 +159,7 @@ tar xvf astar-collator-v4.24.0-macOS-x86_64.tar.gz
 すると下のような画面が出てくるので`Upload & deploy code`をクリックしてみましょう。
 ![](/public/images/ASTAR-SocialFi/section-0/0_2_8.png)
 
-これで下のようなモーダルが出てくるはずなのでそこにさきほどデプロイで取得したコントラクトアドレス、コントラクト名を書き、一番下の部分には`astar-sns-contract/contracts/astar_sns/target/ink`直下に生成されている`metadata.json`を選択して追加してます。
+これで下のようなモーダルが出てくるはずなのでそこにさきほどデプロイした際に取得したmetadata.jsonと.wasmファイルをアップロードします。これらは`astar-sns-contract/contracts/astar_sns/target/ink`直下に生成されています。
 ![](/public/images/ASTAR-SocialFi/section-0/0_2_9.png)
 
 その後モーダルの中の入力欄が増えるので`astar_sns_constract.wasm`を追加しましょう。
@@ -169,6 +169,8 @@ tar xvf astar-collator-v4.24.0-macOS-x86_64.tar.gz
 ![](/public/images/ASTAR-SocialFi/section-0/0_2_11.png)
 
 では下のようにデプロイしたコントラクトの`Messages`という部分をクリックしてexecを押してみましょう。
+
+その後、Readというボタンを押してもう一度Readというボタン（ポップアップの左下）を押すと
 
 `current value`という部分は初期値の`false`になっているはずです。
 
@@ -223,19 +225,21 @@ npx tailwindcss init -p
 [`tailwind.config.js`]
 
 ```js
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  mode: "jit",
   content: [
+    "./app/**/*.{js,ts,jsx,tsx}",
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
-    "./utils/**/*.{js,ts,jsx,tsx}",
-    "./hooks/**/*.{js,ts,jsx,tsx}",
+ 
+    // Or if using `src` directory:
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {},
   },
   plugins: [],
-};
+}
 ```
 
 次に`style/globals.css`を下のように書き換えましょう。

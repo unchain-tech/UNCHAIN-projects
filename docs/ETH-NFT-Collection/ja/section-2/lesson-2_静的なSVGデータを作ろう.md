@@ -146,9 +146,7 @@ _setTokenURI(
 
 トークンの名前を`"SquareNFT"`に、トークンのシンボルを`"SQUARE"`に変更しましょう。
 
-次に、ターミナル上で下記を実行してみましょう。
-
-- 実行する際は、ターミナル上で`epic-nfts`ディレクトリにいることを確認してください。
+次に、ターミナル上で`packages/contract`ディレクトリにいることを確認し、以下のコマンドを実行してみましょう。
 
 ```bash
 npx hardhat run scripts/deploy.js --network sepolia
@@ -164,11 +162,13 @@ Minted NFT #1
 Minted NFT #2
 ```
 
-最後に、コントラクトのアドレス(`Contract deployed to`に続く`0x..`)をターミナルからコピーして、[テストネット用の OpenSea](https://testnets.opensea.io/) に貼り付け、検索してみてください。
+最後に、[gemcase](https://gemcase.vercel.app/) へアクセスをして、ミントされたNFTを確認してみましょう。
 
-下記のように、あなたのSquareNFTがOpenSeaで確認できたでしょうか？
+下記のように、あなたのSquareNFTがgemcaseで確認できたでしょうか？
 
 ![](/public/images/ETH-NFT-Collection/section-2/2_2_4.png)
+
+![](/public/images/ETH-NFT-Collection/section-2/2_2_5.png)
 
 ### 🙋‍♂️ 質問する
 
