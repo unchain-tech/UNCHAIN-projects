@@ -57,9 +57,9 @@ const Home: NextPage = () => {
     checkBalance();
   }, [address, editionDrop]);
 
-  if (address && network && network?.data?.chain?.id !== 11155111) {
+  if (address && network && network?.data?.chain?.chainId !== 11155111) {
     console.log("wallet address: ", address);
-    console.log("network: ", network?.data?.chain?.id);
+    console.log("network: ", network?.data?.chain?.chainId);
 
     return (
       <div className={styles.container}>
@@ -97,9 +97,9 @@ export default Home;
 
 なぜ`"0"`なのでしょうか？
 
-基本的には、 `"0"`がメンバーシップNFTの`tokenId`であることを思い出してください。
+基本的には、 `"0"`がメンバーシップNFTの`tokenchainId`であることを思い出してください。
 
-つまり、ここではコントラクトに「このユーザーはID `"0"`のトークンを所有しているのかどうか」を確認しているのです。
+つまり、ここではコントラクトに「このユーザーはchainID `"0"`のトークンを所有しているのかどうか」を確認しているのです。
 
 このページを更新すると、このように表示されるはずです。
 
@@ -195,9 +195,9 @@ const Home: NextPage = () => {
     );
   }
   // テストネットが Sepolia ではなかった場合に警告を表示
-  else if (address && network && network?.data?.chain?.id !== 11155111) {
+  else if (address && network && network?.data?.chain?.chainId !== 11155111) {
     console.log("wallet address: ", address);
-    console.log("network: ", network?.data?.chain?.id);
+    console.log("network: ", network?.data?.chain?.chainId);
 
     return (
       <div className={styles.container}>
@@ -233,7 +233,7 @@ export default Home;
 
 ここから`editionDrop!.claim("0", 1)`を呼び出し、ユーザーがボタンをクリックした際にNFTをウォレットに実際にミントします。
 
-この場合、メンバーシップNFTのtokenIdは`"0"`なので、`"0"`を渡します。
+この場合、メンバーシップNFTのtokenchainIdは`"0"`なので、`"0"`を渡します。
 
 次に、`1`を渡します。これは、ユーザーのウォレットに1つのメンバーシップNFTを作成したいだけだからです。
 
@@ -308,9 +308,9 @@ NFTのミント画面を描画する前に、以下のコメント`DAO ダッシ
     );
   }
   // テストネットが Sepolia ではなかった場合に警告を表示
-  else if (address && network && network?.data?.chain?.id !== 11155111) {
+  else if (address && network && network?.data?.chain?.chainId !== 11155111) {
     console.log("wallet address: ", address);
-    console.log("network: ", network?.data?.chain?.id);
+    console.log("network: ", network?.data?.chain?.chainId);
 
     return (
       <div className={styles.container}>
