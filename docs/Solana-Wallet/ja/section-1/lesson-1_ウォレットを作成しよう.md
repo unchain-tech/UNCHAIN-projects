@@ -8,11 +8,8 @@
 
 シードは覚えにくい文字列ですので、シードから「シードフレーズ」や「リカバリーフレーズ」などと呼ばれる、12個から24個の単語に変換して記録しておく方法が使われています。
 
-<!--
-参考
-https://zelos.co.jp/crypto-asset-wallet-02-hd-wallet
-https://coinpedia.cc/hd-wallet
--->
+参考: [暗号資産におけるウォレットとは② 〜HDウォレット編〜
+](https://zelos.co.jp/crypto-asset-wallet-02-hd-wallet)
 
 ### ⏬ BIP39ライブラリを追加する
 
