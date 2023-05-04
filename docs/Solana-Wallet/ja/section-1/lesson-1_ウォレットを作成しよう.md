@@ -11,6 +11,27 @@
 参考: [暗号資産におけるウォレットとは② 〜HDウォレット編〜
 ](https://zelos.co.jp/crypto-asset-wallet-02-hd-wallet)
 
+### 🧱 コンポーネントを作成する
+
+まずは、コードを記述するファイルを作成しましょう。`components`ディレクトリの中に、`GenerateWallet/index.js`ファイルを作成します。
+
+```diff
+ components/
++├── GenerateWallet/
++│   └── index.js
+ └── Head.js
+```
+
+作成した`index.js`に、以下のコードを記述します。
+
+```javascript
+import { useState } from 'react';
+
+export default function GenerateWallet({ setAccount }) {
+  return ();
+}
+```
+
 ### ⏬ BIP39ライブラリを追加する
 
 フレーズを生成するには、決定論的なキーのフレーズ生成の標準を設定した`BIP39仕様`を満たす外部ライブラリを活用する必要があります。
@@ -30,7 +51,7 @@ npm install bip39
 ライブラリのインストールが完了したら、 ファイルの先頭でライブラリを読み込みましょう。
 
 ```javascript
-import * as Bip39 from "bip39";
+import * as bip39 from "bip39";
 ```
 
 ### 🏭 ニーモニックフレーズを生成する
@@ -38,7 +59,7 @@ import * as Bip39 from "bip39";
 `BIP39`にはニーモニックフレーズを生成するためのメソッド`generateMnemonic`があります。これを呼び出し、変数に格納してみましょう。
 
 ```javascript
-const generatedMnemonic = Bip39.generateMnemonic();
+const generatedMnemonic = bip39.generateMnemonic();
 ```
 
 これにより、ユーザーがメモして安全に保管できるように、ニーモニックフレーズを設定し、表示することができます。フレーズそれ自体で、その所持者はそのフレーズに一致するアカウントにアクセスすることが可能になります。
@@ -56,7 +77,7 @@ const generatedMnemonic = Bip39.generateMnemonic();
 `BIP39`ライブラリに戻ると、`mnemonicToSeedSync(mnemonic)`というメソッドがあり、16進数のリストのような`Buffer`オブジェクトが返されます。このメソッドを実行し、生成したニーモニックを渡すことで、テストすることができます。
 
 ```javascript
-const seed = Bip39.mnemonicToSeedSync(generatedMnemonic);
+const seed = bip39.mnemonicToSeedSync(generatedMnemonic);
 
 console.log(seed);
 // > Uint8Array(64)
@@ -67,7 +88,7 @@ console.log(seed);
 `Keypair`クラスは32バイトの`Uint8Array`を必要としますが、現在は64バイトの`Uint8Array`を取得しています。シードをsliceして、最初の32バイトだけを保持するようにしましょう。
 
 ```javascript
-const seed = Bip39.mnemonicToSeedSync(generatedMnemonic).slice(0, 32);
+const seed = bip39.mnemonicToSeedSync(generatedMnemonic).slice(0, 32);
 
 console.log(seed);
 // > Uint8Array(32)
@@ -79,7 +100,7 @@ console.log(seed);
 // ファイルの先頭で Keypair クラスを読み込んでおく
 import { Keypair } from "@solana/web3.js";
 
-const newAccount = Keypair.fromSeed(seed);
+const newAccount = Keypair.fromSeed(new Uint8Array(seed));
 
 console.log('newAccount', newAccount.publicKey.toString());
 // > ランダムな文字列
@@ -91,31 +112,27 @@ console.log('newAccount', newAccount.publicKey.toString());
 
 ```javascript
 const generateWallet = () => {
-  const generatedMnemonic = Bip39.generateMnemonic();
+  const generatedMnemonic = bip39.generateMnemonic();
+  // ニーモニックフレーズを使用して、シードを生成します。
+  const seed = bip39.mnemonicToSeedSync(generatedMnemonic).slice(0, 32);
+  // シードを使用して、アカウントを生成します。
+  const newAccount = Keypair.fromSeed(new Uint8Array(seed));
+
   setMnemonic(generatedMnemonic);
-  console.log('generatedMnemonic', generatedMnemonic);
-
-  const seed = Bip39.mnemonicToSeedSync(generatedMnemonic).slice(0, 32);
-  console.log('seed', seed);
-
-  const newAccount = Keypair.fromSeed(seed);
-  console.log('newAccount', newAccount.publicKey.toString());
-
   setAccount(newAccount);
 };
 ```
 
 `generateWallet`関数では、ニーモニックフレーズとアカウントの生成を行ってます。
 
-また、生成したニーモニックフレーズとアカウントは、`useState`を用いて値を保持します。
+また、生成したニーモニックフレーズとアカウントは、`useState`を用いて値を保持します。ニーモニックフレーズは、`GenerateWallet`コンポーネント内でのみ表示するため、`mnemonic`という状態変数に格納します。アカウントは、複数のコンポーネント間で共有したいので、`Home`コンポーネント内で状態変数を定義し、各コンポーネントに引数で渡す形にしましょう。
 
-`export default function Home() {`の直下に、それぞれのデータを保時する状態変数を定義しましょう。
+`export default function GenerateWallet({ setAccount }) {`の直下に、`mnemonic`を保持する状態変数を定義しましょう。
 
 ```javascript
-export default function Home() {
+export default function GenerateWallet({ setAccount }) {
   // 下記を追加
   const [mnemonic, setMnemonic] = useState(null);
-  const [account, setAccount] = useState(null);
 ```
 
 ### 🎨 ウォレット生成ボタンをレンダリングする
@@ -123,35 +140,76 @@ export default function Home() {
 さきほど定義した`generateWallet`関数を呼び出すためのボタンを用意しましょう。
 
 ```javascript
-<h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">STEP1: ウォレットを新規作成する</h2>
-
-// 下記を追加
-<button
-  className="p-2 my-6 text-white bg-indigo-500 focus:ring focus:ring-indigo-300 rounded-lg cursor-pointer"
-  onClick={generateWallet}
->
-  ウォレットを生成
-</button>
-{mnemonic && (
+return (
+  // 下記を追加
   <>
-    <div className="mt-1 p-4 border border-gray-300 bg-gray-200">{mnemonic}</div>
-    <strong className="text-xs">
-      このフレーズは秘密にして、安全に保管してください。このフレーズが漏洩すると、誰でもあなたの資産にアクセスできてしまいます。<br />
-      オンライン銀行口座のパスワードのようなものだと考えてください。
-    </strong>
+    <button
+      className="p-2 my-6 text-white bg-indigo-500 focus:ring focus:ring-indigo-300 rounded-lg cursor-pointer"
+      onClick={generateWallet}
+    >
+      ウォレットを生成
+    </button>
+    {mnemonic && (
+      <>
+        <div className="mt-1 p-4 border border-gray-300 bg-gray-200">
+          {mnemonic}
+        </div>
+        <strong className="text-xs">
+          このフレーズは秘密にして、安全に保管してください。このフレーズが漏洩すると、誰でもあなたの資産にアクセスできてしまいます。
+          <br />
+          オンライン銀行口座のパスワードのようなものだと考えてください。
+        </strong>
+      </>
+    )}
   </>
-)}
+);
 ```
 
 ### 🖥 生成したウォレットアドレスを表示する
 
+それでは、作成した`GenerateWallet`コンポーネントを`Home`コンポーネントに組み込みましょう。ここからは、`pages/index.js`ファイルの編集になります。
+
+まずは、`GenerateWallet`コンポーネントをインポートしましょう。
+
+```javascript
+import GenerateWallet from "../components/GenerateWallet";
+```
+
+`export default function Home() {`の直下に、アカウントを保時する状態変数を定義しましょう。
+
+```javascript
+export default function Home() {
+  // 下記を追加
+  const [account, setAccount] = useState(null);
+```
+
 `My Wallet`の下に、生成したウォレットのアドレスを表示するコードを追加しましょう。
 
 ```javascript
-<h3 className="p-2 border-dotted border-l-8 border-l-indigo-600">My Wallet</h3>
-
+<h3 className="p-2 border-dotted border-l-8 border-l-indigo-600">
+  My Wallet
+</h3>
 // 下記を追加
-{account && <div className="my-6 text-indigo-600 font-bold">アドレス: {account.publicKey.toString()}</div>}
+{account && (
+  <>
+    <div className="my-6 text-indigo-600 font-bold">
+      <span>アドレス: </span>
+      {account.publicKey.toString()}
+    </div>
+  </>
+)}
+```
+
+最後に、`GenerateWallet`コンポーネントを呼び出すコードを追加しましょう。
+
+```javascript
+<div>
+  <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">
+    STEP1: ウォレットを新規作成する
+  </h2>
+  // 下記を追加
+  <GenerateWallet setAccount={setAccount} />
+</div>
 ```
 
 ### ✅ 動作確認
@@ -167,62 +225,124 @@ export default function Home() {
 
 ### 📝 このセクションで追加したコード
 
+- `components/GenerateWallet/index.js`
+
+```javascript
+import * as bip39 from 'bip39';
+import { Keypair } from '@solana/web3.js';
+import { useState } from 'react';
+
+export default function GenerateWallet({ setAccount }) {
+  const [mnemonic, setMnemonic] = useState(null);
+
+  const generateWallet = () => {
+    const generatedMnemonic = bip39.generateMnemonic();
+    // ニーモニックフレーズを使用して、シードを生成します。
+    const seed = bip39.mnemonicToSeedSync(generatedMnemonic).slice(0, 32);
+    // シードを使用して、アカウントを生成します。
+    const newAccount = Keypair.fromSeed(new Uint8Array(seed));
+
+    setMnemonic(generatedMnemonic);
+    setAccount(newAccount);
+  };
+
+  return (
+    <>
+      <button
+        className="p-2 my-6 text-white bg-indigo-500 focus:ring focus:ring-indigo-300 rounded-lg cursor-pointer"
+        onClick={generateWallet}
+      >
+        ウォレットを生成
+      </button>
+      {mnemonic && (
+        <>
+          <div className="mt-1 p-4 border border-gray-300 bg-gray-200">
+            {mnemonic}
+          </div>
+          <strong className="text-xs">
+            このフレーズは秘密にして、安全に保管してください。このフレーズが漏洩すると、誰でもあなたの資産にアクセスできてしまいます。
+            <br />
+            オンライン銀行口座のパスワードのようなものだと考えてください。
+          </strong>
+        </>
+      )}
+    </>
+  );
+}
+```
+
+- `pages/index.js`
+
 ```diff
-+import { useState } from "react";
-+import { Keypair } from "@solana/web3.js";
-+import * as Bip39 from "bip39";
-+
- export default function Home() {
-+  const [mnemonic, setMnemonic] = useState(null);
++import { useState } from 'react';
+
++import GenerateWallet from '../components/GenerateWallet/';
+
+export default function Home() {
 +  const [account, setAccount] = useState(null);
-+
-+  const generateWallet = () => {
-+    const generatedMnemonic = Bip39.generateMnemonic();
-+    setMnemonic(generatedMnemonic);
-+    console.log('generatedMnemonic', generatedMnemonic);
-+
-+    const seed = Bip39.mnemonicToSeedSync(generatedMnemonic).slice(0, 32);
-+    console.log('seed', seed);
-+
-+    const newAccount = Keypair.fromSeed(seed);
-+    console.log('newAccount', newAccount.publicKey.toString());
-+
-+    setAccount(newAccount);
-+  };
-+
-   return (
-     <div className="p-10">
-       <h1 className="text-5xl font-extrabold tracking-tight text-gray-900">
-@@ -12,12 +33,28 @@ export default function Home() {
 
-       <div>
-         <h3 className="p-2 border-dotted border-l-8 border-l-indigo-600">My Wallet</h3>
-+        {account && <div className="my-6 text-indigo-600 font-bold">アドレス: {account.publicKey.toString()}</div>}
-       </div>
+  return (
+    <div>
+      <HeadComponent />
+      <div className="p-10">
+        <h1 className="text-5xl font-extrabold tracking-tight text-gray-900">
+          <span className="text-[#9945FF]">Solana</span>ウォレットを作ろう！
+        </h1>
+        <div className="mx-auto mt-5 text-gray-500">
+          Solanaウォレットの新規作成、インポート、エアドロップ、送金機能の開発にチャレンジしてみよう
+        </div>
 
-       <hr className="my-6" />
+        <hr className="my-6" />
 
-       <div>
-         <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">STEP1: ウォレットを新規作成する</h2>
-+        <button
-+          className="p-2 my-6 text-white bg-indigo-500 focus:ring focus:ring-indigo-300 rounded-lg cursor-pointer"
-+          onClick={generateWallet}
-+        >
-+          ウォレットを生成
-+        </button>
-+        {mnemonic && (
-+          <>
-+            <div className="mt-1 p-4 border border-gray-300 bg-gray-200">{mnemonic}</div>
-+            <strong className="text-xs">
-+              このフレーズは秘密にして、安全に保管してください。このフレーズが漏洩すると、誰でもあなたの資産にアクセスできてしまいます
+        <div>
+          <h3 className="p-2 border-dotted border-l-8 border-l-indigo-600">
+            My Wallet
+          </h3>
++          {account && (
++            <>
++              <div className="my-6 text-indigo-600 font-bold">
++                <span>アドレス: </span>
++                {account.publicKey.toString()}
++              </div>
++            </>
++          )}
+        </div>
 
-+              オンライン銀行口座のパスワードのようなものだと考えてください。
-+            </strong>
-+          </>
-+        )}
-       </div>
-
-       <hr className="my-6" />
+        <hr className="my-6" />
+        <div>
+          <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">
+            STEP1: ウォレットを新規作成する
+          </h2>
++          <GenerateWallet setAccount={setAccount} />
+        </div>
+        <hr className="my-6" />
+        <div>
+          <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">
+            STEP2: 既存のウォレットをインポートする
+          </h2>
+        </div>
+        <hr className="my-6" />
+        <div>
+          <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">
+            STEP3: 残高を取得する
+          </h2>
+        </div>
+        <hr className="my-6" />
+        <div>
+          <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">
+            STEP4: エアドロップ機能を実装する
+          </h2>
+        </div>
+        <hr className="my-6" />
+        <div>
+          <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">
+            STEP5: 送金機能を実装する
+          </h2>
+        </div>
+      </div>
+    </div>
+  );
+}
 ```
 
 ### ☕️ 豆知識
