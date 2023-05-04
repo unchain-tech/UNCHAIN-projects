@@ -16,9 +16,9 @@ const Home: NextPage = () => {
   const address = useAddress();
   const [network, switchNetwork] = useNetwork();
 
-  if (address && network && network?.data?.chain?.id !== 11155111) {
+  if (address && network && network?.data?.chain?.chainId !== 11155111) {
     console.log("wallet address: ", address);
-    console.log("network: ", network?.data?.chain?.id);
+    console.log("network: ", network?.data?.chain?.chainId);
 
     return (
       <div className={styles.container}>

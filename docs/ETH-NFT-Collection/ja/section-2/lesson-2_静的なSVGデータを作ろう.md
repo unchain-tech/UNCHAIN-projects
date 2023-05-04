@@ -146,9 +146,7 @@ _setTokenURI(
 
 トークンの名前を`"SquareNFT"`に、トークンのシンボルを`"SQUARE"`に変更しましょう。
 
-次に、ターミナル上で下記を実行してみましょう。
-
-- 実行する際は、ターミナル上で`epic-nfts`ディレクトリにいることを確認してください。
+次に、ターミナル上で`packages/contract`ディレクトリにいることを確認し、以下のコマンドを実行してみましょう。
 
 ```bash
 npx hardhat run scripts/deploy.js --network sepolia

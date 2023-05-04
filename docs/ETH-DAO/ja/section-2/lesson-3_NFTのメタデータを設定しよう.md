@@ -8,28 +8,32 @@
 
 `src/scripts/3-config-nft.ts`を作成し、下記コードを追加しましょう。
 
-※ あなたのコントラクトアドレスとメンバーシップNFT用の画像を設定することを忘れないでください！
+※ あなたのメンバーシップNFT用の画像を設定することを忘れないでください！
 
 ```typescript
-import sdk from "./1-initialize-sdk.js";
-import { readFileSync } from "fs";
+import { readFileSync } from 'fs';
+
+import sdk from './1-initialize-sdk.js';
+import { editionDropAddress } from './module.js';
 
 // 先ほどメモして残していた editionDrop のコントラクトアドレスをこちらに記載してください
-const editionDrop = sdk.getContract("INSERT_EDITION_DROP_ADDRESS", "edition-drop");
+const editionDrop = sdk.getContract(editionDropAddress, 'edition-drop');
 
 (async () => {
   try {
-    await (await editionDrop).createBatch([
+    await (
+      await editionDrop
+    ).createBatch([
       {
-        name: "Member's Limited Sauna Hat",
+        name: "Member's symbol",
         description:
-          "Tokyo Sauna Collective にアクセスすることができる限定アイテムです",
-        image: readFileSync("src/scripts/assets/NFT.jpg"),
+          'Japan Crack Organization にアクセスすることができる限定アイテムです',
+        image: readFileSync('src/scripts/assets/NFT.png'),
       },
     ]);
-    console.log("✅ Successfully created a new NFT in the drop!");
+    console.log('✅ Successfully created a new NFT in the drop!');
   } catch (error) {
-    console.error("failed to create the new NFT", error);
+    console.error('failed to create the new NFT', error);
   }
 })();
 ```
@@ -37,8 +41,6 @@ const editionDrop = sdk.getContract("INSERT_EDITION_DROP_ADDRESS", "edition-drop
 単純明快ですね。
 
 まず最初に、`editionDrop`のERC-1155コントラクトにアクセスしています。
-
-`INSERT_EDITION_DROP_ADDRESS`には、前のステップで出力されたコントラクトアドレスを貼り付ける必要があります。
 
 ※ `✅ Successfully deployed editionDrop contract, address:`の後に出力されていたアドレスです。
 
@@ -88,13 +90,13 @@ Done in 30.57s.
 
 `src/scripts/4-set-claim-condition.ts`を作成し、下記のコードを追加しましょう。
 
-※ あなたのコントラクトアドレスを設定することを忘れないでください！
-
 ```typescript
-import sdk from "./1-initialize-sdk.js";
-import { MaxUint256 } from "@ethersproject/constants";
+import { MaxUint256 } from '@ethersproject/constants';
 
-const editionDrop = sdk.getContract("INSERT_EDITION_DROP_ADDRESS", "edition-drop");
+import sdk from './1-initialize-sdk.js';
+import { editionDropAddress } from './module.js';
+
+const editionDrop = sdk.getContract(editionDropAddress, 'edition-drop');
 
 (async () => {
   try {
@@ -116,12 +118,13 @@ const editionDrop = sdk.getContract("INSERT_EDITION_DROP_ADDRESS", "edition-drop
         waitInSeconds: MaxUint256,
       },
     ];
-    await (await editionDrop).claimConditions.set("0", claimConditions);
-    console.log("✅ Successfully set claim condition!");
+    await (await editionDrop).claimConditions.set('0', claimConditions);
+    console.log('✅ Successfully set claim condition!');
   } catch (error) {
-    console.error("Failed to set claim condition", error);
+    console.error('Failed to set claim condition', error);
   }
 })();
+
 ```
 
 ここも前回同様、`INSERT_EDITION_DROP_ADDRESS`を必ずERC-1155であるeditionDropコントラクトアドレスに置き換えてください。

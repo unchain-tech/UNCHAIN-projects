@@ -138,13 +138,12 @@ MetaMask"Import Token" をクリックするだけです。
 
 `src/scripts/6-print-money.ts`を作成し、下記コードを追加しましょう。
 
-※ あなたのアドレスを設定することを忘れないでください！
-
 ```typescript
-import sdk from "./1-initialize-sdk.js";
+import sdk from './1-initialize-sdk.js';
+import { ERCTokenAddress } from './module.js';
 
 // これは、前のステップで取得した私たちの ERC-20 コントラクトのアドレスです。
-const token = sdk.getContract("INSERT_TOKEN_ADDRESS", "token");
+const token = sdk.getContract(ERCTokenAddress, 'token');
 
 (async () => {
   try {
@@ -156,17 +155,16 @@ const token = sdk.getContract("INSERT_TOKEN_ADDRESS", "token");
 
     // 今、私たちのトークンがどれだけあるかを表示
     console.log(
-      "✅ There now is",
+      '✅ There now is',
       totalSupply.displayValue,
-      "$TSC in circulation"
+      '$TSC in circulation',
     );
   } catch (error) {
-    console.error("Failed to print money", error);
+    console.error('Failed to print money', error);
   }
 })();
-```
 
-`"INSERT_TOKEN_ADDRESS"`に挿入するアドレスは、あなたの**トークンのコントラクトアドレス**です。
+```
 
 間違ったアドレスを入力すると、`UNPREDICTABLE_GAS_LIMIT`のようなエラーが表示されることがあります。
 
@@ -217,35 +215,37 @@ EtherscanでERC-20コントラクトの画面を表示し、`More Info`から`To
 
 `src/scripts/7-airdrop-token.ts`を作成し、以下のコードを追加してください。
 
-※ あなたのアドレスを設定することを忘れないでください！
-
 ```typescript
-import sdk from "./1-initialize-sdk.js";
+import sdk from './1-initialize-sdk.js';
+import { editionDropAddress, ERCTokenAddress } from './module.js';
 
 // ERC-1155 メンバーシップの NFT コントラクトアドレス
-const editionDrop = sdk.getContract("INSERT_EDITION_DROP_ADDRESS", "edition-drop");
+const editionDrop = sdk.getContract(editionDropAddress, 'edition-drop');
 
 // ERC-20 トークンコントラクトのアドレス
-const token = sdk.getContract("INSERT_TOKEN_ADDRESS", "token");
+const token = sdk.getContract(ERCTokenAddress, 'token');
 
 (async () => {
   try {
     // メンバーシップ NFT を所有している人のアドレスをすべて取得
     // tokenId が 0 メンバーシップ NFT
-    const walletAddresses = await (await editionDrop).history.getAllClaimerAddresses(0);
+    const walletAddresses = await (
+      await editionDrop
+    ).history.getAllClaimerAddresses(0);
 
     if (walletAddresses.length === 0) {
       console.log(
-        "No NFTs have been claimed yet, maybe get some friends to claim your free NFTs!",
+        'No NFTs have been claimed yet, maybe get some friends to claim your free NFTs!',
       );
-      process.exit(0);
     }
 
     // アドレスの配列をループ
     const airdropTargets = walletAddresses.map((address) => {
       // 1000 から 10000 の間でランダムな数を取得
-      const randomAmount = Math.floor(Math.random() * (10000 - 1000 + 1) + 1000);
-      console.log("✅ Going to airdrop", randomAmount, "tokens to", address);
+      const randomAmount = Math.floor(
+        Math.random() * (10000 - 1000 + 1) + 1000,
+      );
+      console.log('✅ Going to airdrop', randomAmount, 'tokens to', address);
 
       // ターゲットを設定
       const airdropTarget = {
@@ -257,11 +257,13 @@ const token = sdk.getContract("INSERT_TOKEN_ADDRESS", "token");
     });
 
     // 全てのエアドロップ先で transferBatch を呼び出す
-    console.log("🌈 Starting airdrop...");
+    console.log('🌈 Starting airdrop...');
     await (await token).transferBatch(airdropTargets);
-    console.log("✅ Successfully airdropped tokens to all the holders of the NFT!");
+    console.log(
+      '✅ Successfully airdropped tokens to all the holders of the NFT!',
+    );
   } catch (err) {
-    console.error("Failed to airdrop tokens", err);
+    console.error('Failed to airdrop tokens', err);
   }
 })();
 ```
