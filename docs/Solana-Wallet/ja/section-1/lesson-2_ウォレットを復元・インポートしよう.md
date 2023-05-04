@@ -4,6 +4,31 @@
 
 公開鍵暗号方式の優れた点は、秘密鍵が事実上、従来のパスワードであることです。暗号アプリケーションのセキュリティは、秘密鍵をパスワードとして使用するよりも高度ですが、特に産業用の強力なウォレットでは、前セクションで学んだウォレット作成の知識を活用して、ウォレットにアクセスする基本機能を実現することができます。
 
+### 🧱 コンポーネントを作成する
+
+ウォレットのインポート機能を記述するファイルを作成しましょう。`components`ディレクトリの中に、`ImportWallet/index.js`ファイルを作成します。
+
+```diff
+ components/
+ ├── GenerateWallet/
+ │   └── index.js
++├── ImportWallet/
++│   └── index.js
+ └── Head.js
+```
+
+作成した`index.js`に、以下のコードを記述します。前のレッスンで作成したGenerateWalletコンポーネント同様に、引数に`setAccount`を受け取るようにします。これは、入力されたニーモニックフレーズをもとに、アカウントを更新するためです。
+
+```javascript
+import * as bip39 from 'bip39';
+import { Keypair } from '@solana/web3.js';
+import { useState } from 'react';
+
+export default function ImportWallet({ setAccount }) {
+  return ();
+}
+```
+
 ### ⏫ ニーモニックフレーズによるウォレットのインポート
 
 前セクションで`HDウォレット`と呼ばれるタイプのウォレットを作成しました。つまり、12単語のニーモニックフレーズをシードにマッピングすることができます。
@@ -28,18 +53,20 @@ const importedAccount = Keypair.fromSeed(seed);
 
 この数行のコードで、ニーモニックフレーズさえあれば、ユーザーがどのデバイスからでも自分のアカウントにアクセスできるようになります。
 
-実際には、ニーモニックフレーズはフォームから入力します。以下のように`handleImport`関数を定義して、フォームから入力されたフレーズをもとに、ウォレットをインポートできるようにしましょう。
+実際には、ニーモニックフレーズはフォームから入力します。`export default function ImportWallet({ setAccount }) {`の直下に、以下のようにフォームに入力されたニーモニックフレーズを保持する状態変数と`handleImport`関数を定義して、フォームから入力されたフレーズをもとに、ウォレットをインポートできるようにしましょう。
 
 ```javascript
+const [recoveryPhrase, setRecoveryPhrase] = useState(null);
+
 const handleImport = (e) => {
   e.preventDefault();
-  const inputMnemonic = e.target[0].value.trim().toLowerCase();
-  console.log('inputMnemonic', inputMnemonic);
 
-  const seed = Bip39.mnemonicToSeedSync(inputMnemonic).slice(0, 32);
+  // ニーモニックフレーズを使用して、シードを生成します。
+  const seed = bip39.mnemonicToSeedSync(recoveryPhrase).slice(0, 32);
+  // シードを使用して、アカウントを生成します。
+  const importedAccount = Keypair.fromSeed(new Uint8Array(seed));
 
-  const importedAccount = Keypair.fromSeed(seed);
-  setAccount(importedAccount);
+setAccount(importedAccount);
 };
 ```
 
@@ -47,23 +74,46 @@ const handleImport = (e) => {
 フォームの`onSubmit`では、上記で定義した`handleImport`関数を実行するようにしましょう。
 
 ```javascript
-<form onSubmit={handleImport} className="my-6">
-  <div className="flex items-center border-b border-indigo-500 py-2">
-    <input
-      type="text"
-      className="w-full text-gray-700 mr-3 p-1 focus:outline-none"
-      placeholder="シークレットリカバリーフレーズ"
-    />
-    <input
-      type="submit"
-      className="p-2 text-white bg-indigo-500 focus:ring focus:ring-indigo-300 rounded-lg cursor-pointer"
-      value="インポート"
-    />
-  </div>
-</form>
+return (
+  <form onSubmit={handleImport} className="my-6">
+    <div className="flex items-center border-b border-indigo-500 py-2">
+      <input
+        type="text"
+        className="w-full text-gray-700 mr-3 p-1 focus:outline-none"
+        placeholder="シークレットリカバリーフレーズ"
+        onChange={(e) => setRecoveryPhrase(e.target.value)}
+      />
+      <input
+        type="submit"
+        className="p-2 text-white bg-indigo-500 focus:ring focus:ring-indigo-300 rounded-lg cursor-pointer"
+        value="インポート"
+      />
+    </div>
+  </form>
+);
 ```
 
 ### ✅ 動作確認
+
+それでは、作成した`ImportWallet`コンポーネントを`Home`コンポーネントに組み込みましょう。ここからは、`pages/index.js`ファイルの編集になります。
+
+まずは、`ImportWallet`コンポーネントをインポートしましょう。
+
+```javascript
+import ImportWallet from "../components/ImportWallet";
+```
+
+続いて、`ImportWallet`コンポーネントを呼び出すコードを追加しましょう。
+
+```javascript
+<div>
+  <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">
+    STEP2: 既存のウォレットをインポートする
+  </h2>
+  // 下記を追加
+  <ImportWallet setAccount={setAccount} />
+</div>
+```
 
 おめでとうございます!これでウォレットのインポート機能が完成しました。
 
@@ -72,45 +122,120 @@ const handleImport = (e) => {
 
 ### 📝 このセクションで追加したコード
 
+- `components/ImportWallet/index.js`
+```javascript
+import * as bip39 from 'bip39';
+import { Keypair } from '@solana/web3.js';
+import { useState } from 'react';
+
+export default function ImportWallet({ setAccount }) {
+  const [recoveryPhrase, setRecoveryPhrase] = useState(null);
+
+  const handleImport = (e) => {
+    e.preventDefault();
+
+    // ニーモニックフレーズを使用して、シードを生成します。
+    const seed = bip39.mnemonicToSeedSync(recoveryPhrase).slice(0, 32);
+    // シードを使用して、アカウントを生成します。
+    const importedAccount = Keypair.fromSeed(new Uint8Array(seed));
+
+    setAccount(importedAccount);
+  };
+
+  return (
+    <form onSubmit={handleImport} className="my-6">
+      <div className="flex items-center border-b border-indigo-500 py-2">
+        <input
+          type="text"
+          className="w-full text-gray-700 mr-3 p-1 focus:outline-none"
+          placeholder="シークレットリカバリーフレーズ"
+          onChange={(e) => setRecoveryPhrase(e.target.value)}
+        />
+        <input
+          type="submit"
+          className="p-2 text-white bg-indigo-500 focus:ring focus:ring-indigo-300 rounded-lg cursor-pointer"
+          value="インポート"
+        />
+      </div>
+    </form>
+  );
+}
+```
+
+- `pages/index.js`
+
 ```diff
-     setAccount(newAccount);
-   };
+import { useState } from 'react';
 
-+  const handleImport = (e) => {
-+    e.preventDefault();
-+    const inputMnemonic = e.target[0].value.trim().toLowerCase();
-+    console.log('inputMnemonic', inputMnemonic);
-+
-+    const seed = Bip39.mnemonicToSeedSync(inputMnemonic).slice(0, 32);
-+
-+    const importedAccount = Keypair.fromSeed(seed);
-+    setAccount(importedAccount);
-+  };
-+
-   return (
-     <div className="p-10">
-       <h1 className="text-5xl font-extrabold tracking-tight text-gray-900">
-@@ -61,6 +72,20 @@ export default function Home() {
+import GenerateWallet from '../components/GenerateWallet/';
++import ImportWallet from '../components/ImportWallet';
 
-       <div>
-         <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">STEP2: 既存のウォレットをインポートする</h2>
-+        <form onSubmit={handleImport} className="my-6">
-+          <div className="flex items-center border-b border-indigo-500 py-2">
-+            <input
-+              type="text"
-+              className="w-full text-gray-700 mr-3 p-1 focus:outline-none"
-+              placeholder="シークレットリカバリーフレーズ"
-+            />
-+            <input
-+              type="submit"
-+              className="p-2 text-white bg-indigo-500 focus:ring focus:ring-indigo-300 rounded-lg cursor-pointer"
-+              value="インポート"
-+            />
-+          </div>
-+        </form>
-       </div>
+export default function Home() {
+  const [account, setAccount] = useState(null);
 
-       <hr className="my-6" />
+  return (
+    <div>
+      <HeadComponent />
+      <div className="p-10">
+        <h1 className="text-5xl font-extrabold tracking-tight text-gray-900">
+          <span className="text-[#9945FF]">Solana</span>ウォレットを作ろう！
+        </h1>
+        <div className="mx-auto mt-5 text-gray-500">
+          Solanaウォレットの新規作成、インポート、エアドロップ、送金機能の開発にチャレンジしてみよう
+        </div>
+
+        <hr className="my-6" />
+
+        <div>
+          <h3 className="p-2 border-dotted border-l-8 border-l-indigo-600">
+            My Wallet
+          </h3>
+          {account && (
+            <>
+              <div className="my-6 text-indigo-600 font-bold">
+                <span>アドレス: </span>
+                {account.publicKey.toString()}
+              </div>
+            </>
+          )}
+        </div>
+
+        <hr className="my-6" />
+        <div>
+          <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">
+            STEP1: ウォレットを新規作成する
+          </h2>
+          <GenerateWallet setAccount={setAccount} />
+        </div>
+        <hr className="my-6" />
+        <div>
+          <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">
+            STEP2: 既存のウォレットをインポートする
+          </h2>
++          <ImportWallet setAccount={setAccount} />
+        </div>
+        <hr className="my-6" />
+        <div>
+          <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">
+            STEP3: 残高を取得する
+          </h2>
+        </div>
+        <hr className="my-6" />
+        <div>
+          <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">
+            STEP4: エアドロップ機能を実装する
+          </h2>
+        </div>
+        <hr className="my-6" />
+        <div>
+          <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">
+            STEP5: 送金機能を実装する
+          </h2>
+        </div>
+      </div>
+    </div>
+  );
+}
 ```
 
 ### ☕️ 豆知識
