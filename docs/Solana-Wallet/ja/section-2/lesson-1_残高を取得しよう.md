@@ -46,6 +46,31 @@ console.log(connection);
 // > Connection {_commitment: 'confirmed', _confirmTransactionInitialTimeout: undefined, _rpcEndpoint: 'https://api.devnet.solana.com', _rpcWsEndpoint: 'wss://api.devnet.solana.com/', _rpcClient: ClientBrowser, …}
 ```
 
+それでは実際に、接続先URLを取得する機能を実装してみましょう。下記を参考に、`pages/index.js`を更新しましょう。
+
+```javascript
+// useEffectのインポートを追加
+import { useState, useEffect } from 'react';
+
+// NETWORKの定義を追加
+const NETWORK = 'devnet';
+
+export default function Home() {
+  // 下記を追加
+  const [network, setNetwork] = useState(null);
+
+  useEffect(() => {
+    // Connectionインスタンスを生成する際に使用する、接続先のURLを取得します。
+    // 現在の実装では、'devnet'のみをサポートしています。
+    if (NETWORK === 'devnet') {
+      const network = clusterApiUrl(NETWORK);
+      setNetwork(network);
+    } else {
+      console.error(`Invalid network: ${NETWORK}. Use 'devnet'.`);
+    }
+  }, []);
+```
+
 ### 🛠 残高を取得する関数を実装しよう
 
 さて、接続ができたので、アカウントの残高を取得する必要があります。口座のパブリックアドレスをパラメータとして受け取り、口座の残高を返す`getBalance`関数があるはずだと推測されるかもしれません。web3.jsのドキュメントで「残高」というキーワードを検索すると、get残高メソッドがあるだけでなく、それはConnectionクラスのメソッドであることがわかります。
@@ -75,53 +100,98 @@ SOLはSolanaのネイティブトークンの名前ですが、マイクロペ�
 Connectionインスタンスの作成と、残高の取得の処理をまとめて`refreshBalance`関数を定義します。取得した残高は`useState`で値を保持しておきます。
 
 ```javascript
-const NETWORK = 'devnet';
-// ...
+const [balance, setBalance] = useState(null);
+
+useEffect(() => {
+  // ...
+}, []);
+
 const refreshBalance = async () => {
   try {
-    const connection = new Connection(clusterApiUrl(NETWORK), "confirmed");
+    // Connectionインスタンスを生成します。
+    const connection = new Connection(network, 'confirmed');
     const publicKey = account.publicKey;
 
     let balance = await connection.getBalance(publicKey);
+    // 残高がlamportで返ってくるため、SOLに変換します。
+    // 100,000,000lamport = 1SOL
     balance = balance / LAMPORTS_PER_SOL;
-    console.log('balance', balance);
+
     setBalance(balance);
   } catch (error) {
-    console.log('error', error);
+    console.error(error);
   }
 };
 ```
 
-### 👀 フロントで残高を表示する
+### 🧱 コンポーネントを作成する
 
-残高を取得する`refreshBalance`関数を作成したので、それを実行するボタンと、残高の表示を実装していきましょう。
+残高を取得する`refreshBalance`関数を作成したので、それを実行するボタンを実装していきましょう。`components`ディレクトリの中に、`GetBalance/index.js`ファイルを作成します。
 
-- `refreshBalance`関数を実行するボタンのレンダリング
+```diff
+ components/
+ ├── GenerateWallet/
+ │   └── index.js
++├── GetBalance/
++│   └── index.js
+ ├── ImportWallet/
+ │   └── index.js
+ └── Head.js
+```
+
+作成した`index.js`に、以下のコードを記述します。先ほど作成した`refreshBalance`関数を引数として受け取り、[残高を取得]ボタンがクリックされた時に実行するようにします。
 
 ```javascript
-<div>
-  <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">STEP3: 残高を取得する</h2>
-  {account &&
+export default function GetBalance({ refreshBalance }) {
+  return (
     <button
       className="p-2 my-6 text-white bg-indigo-500 focus:ring focus:ring-indigo-300 rounded-lg cursor-pointer"
       onClick={refreshBalance}
     >
       残高を取得
     </button>
-  }
+  );
+}
+```
+
+### 👀 フロントで残高を表示する
+
+それでは、`GetBalance`コンポーネントを`Home`コンポーネントに組み込み、残高の表示を実装していきましょう。
+
+まずは、`GetBalance`コンポーネントをインポートしましょう。
+
+```javascript
+import GetBalance from '../components/GetBalance';
+```
+
+`GetBalance`コンポーネントを呼び出すコードを追加して、ボタンをレンダリングします。
+
+```javascript
+<div>
+  <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">
+    STEP3: 残高を取得する
+  </h2>
+  {/* 下記を追加 */}
+  {account && <GetBalance refreshBalance={refreshBalance} />}
 </div>
 ```
 
-- 残高の表示
+最後に、残高を表示するコードを追加しましょう。
 
 ```javascript
 <div>
   <h3 className="p-2 border-dotted border-l-8 border-l-indigo-600">My Wallet</h3>
   {account && (
     <>
-      <div className="my-6 text-indigo-600 font-bold">アドレス: {account.publicKey.toString()}</div>
+      <div className="my-6 text-indigo-600 font-bold">
+        <span>アドレス: </span>
+        {account.publicKey.toString()}
+      </div>
+      {/* 下記を追加 */}
       <div className="my-6 font-bold">ネットワーク: {NETWORK}</div>
-      {typeof balance === "number" && <div className="my-6 font-bold">💰 残高: {balance} SOL</div>}
+      {typeof balance === "number" && (
+        <div className="my-6 font-bold">💰 残高: {balance} SOL</div>
+      )}
     </>
   )}
 </div>
@@ -147,72 +217,132 @@ const refreshBalance = async () => {
 
 ### 📝 このセクションで追加したコード
 
+- `components/GetBalance/index.js`
+
+```javascript
+export default function GetBalance({ refreshBalance }) {
+  return (
+    <button
+      className="p-2 my-6 text-white bg-indigo-500 focus:ring focus:ring-indigo-300 rounded-lg cursor-pointer"
+      onClick={refreshBalance}
+    >
+      残高を取得
+    </button>
+  );
+}
+```
+
+- `pages/index.js`
+
 ```diff
- import { useState } from "react";
--import { Keypair } from "@solana/web3.js";
-+import { Keypair, Connection, clusterApiUrl, LAMPORTS_PER_SOL } from "@solana/web3.js";
- import * as Bip39 from "bip39";
++import { clusterApiUrl, Connection, LAMPORTS_PER_SOL } from '@solana/web3.js';
++import { useEffect, useState } from 'react'; // useEffectの追加
 
-+const NETWORK = 'devnet';
-+
- export default function Home() {
-   const [mnemonic, setMnemonic] = useState(null);
-   const [account, setAccount] = useState(null);
+import GenerateWallet from '../components/GenerateWallet/';
++import GetBalance from '../components/GetBalance';
+import ImportWallet from '../components/ImportWallet';
+
+export default function Home() {
+  const [account, setAccount] = useState(null);
 +  const [balance, setBalance] = useState(null);
++  const [network, setNetwork] = useState(null);
 
-   const generateWallet = () => {
-     const generatedMnemonic = Bip39.generateMnemonic();
-@@ -31,6 +34,20 @@ export default function Home() {
-     setAccount(importedAccount);
-   };
-
++  useEffect(() => {
++    // Connectionインスタンスを生成する際に使用する、接続先のURLを取得します。
++    // 現在の実装では、'devnet'のみをサポートしています。
++    if (NETWORK === 'devnet') {
++      const network = clusterApiUrl(NETWORK);
++      setNetwork(network);
++    } else {
++      console.error(`Invalid network: ${NETWORK}. Use 'devnet'.`);
++    }
++  }, []);
++
 +  const refreshBalance = async () => {
 +    try {
-+      const connection = new Connection(clusterApiUrl(NETWORK), "confirmed");
++      // Connectionインスタンスを生成します。
++      const connection = new Connection(network, 'confirmed');
 +      const publicKey = account.publicKey;
 +
 +      let balance = await connection.getBalance(publicKey);
++      // 残高がlamportで返ってくるため、SOLに変換します。
++      // 100,000,000lamport = 1SOL
 +      balance = balance / LAMPORTS_PER_SOL;
-+      console.log('balance', balance);
++
 +      setBalance(balance);
 +    } catch (error) {
-+      console.log('error', error);
++      console.error(error);
 +    }
 +  };
-+
-   return (
-     <div className="p-10">
-       <h1 className="text-5xl font-extrabold tracking-tight text-gray-900">
-@@ -44,7 +61,13 @@ export default function Home() {
 
-       <div>
-         <h3 className="p-2 border-dotted border-l-8 border-l-indigo-600">My Wallet</h3>
--        {account && <div className="my-6 text-indigo-600 font-bold">アドレス: {account.publicKey.toString()}</div>}
-+        {account && (
-+          <>
-+            <div className="my-6 text-indigo-600 font-bold">アドレス: {account.publicKey.toString()}</div>
-+            <div className="my-6 font-bold">ネットワーク: {NETWORK}</div>
-+            {typeof balance === "number" && <div className="my-6 font-bold">💰 残高: {balance} SOL</div>}
-+          </>
-+        )}
-       </div>
+  return (
+    <div>
+      <HeadComponent />
+      <div className="p-10">
+        <h1 className="text-5xl font-extrabold tracking-tight text-gray-900">
+          <span className="text-[#9945FF]">Solana</span>ウォレットを作ろう！
+        </h1>
+        <div className="mx-auto mt-5 text-gray-500">
+          Solanaウォレットの新規作成、インポート、エアドロップ、送金機能の開発にチャレンジしてみよう
+        </div>
 
-       <hr className="my-6" />
-@@ -92,6 +115,14 @@ export default function Home() {
+        <hr className="my-6" />
 
-       <div>
-         <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">STEP3: 残高を取得する</h2>
-+        {account &&
-+          <button
-+            className="p-2 my-6 text-white bg-indigo-500 focus:ring focus:ring-indigo-300 rounded-lg cursor-pointer"
-+            onClick={refreshBalance}
-+          >
-+            残高を取得
-+          </button>
-+        }
-       </div>
+        <div>
+          <h3 className="p-2 border-dotted border-l-8 border-l-indigo-600">
+            My Wallet
+          </h3>
+          {account && (
+            <>
+              <div className="my-6 text-indigo-600 font-bold">
+                <span>アドレス: </span>
+                {account.publicKey.toString()}
+              </div>
++              <div className="my-6 font-bold">ネットワーク: {network}</div>
++              {typeof balance === 'number' && (
++                <div className="my-6 font-bold">💰 残高: {balance} SOL</div>
++              )}
+            </>
+          )}
+        </div>
 
-       <hr className="my-6" />
+        <hr className="my-6" />
+        <div>
+          <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">
+            STEP1: ウォレットを新規作成する
+          </h2>
+          <GenerateWallet setAccount={setAccount} />
+        </div>
+        <hr className="my-6" />
+        <div>
+          <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">
+            STEP2: 既存のウォレットをインポートする
+          </h2>
+          <ImportWallet setAccount={setAccount} />
+        </div>
+        <hr className="my-6" />
+        <div>
+          <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">
+            STEP3: 残高を取得する
+          </h2>
++          {account && <GetBalance refreshBalance={refreshBalance} />}
+        </div>
+        <hr className="my-6" />
+        <div>
+          <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">
+            STEP4: エアドロップ機能を実装する
+          </h2>
+        </div>
+        <hr className="my-6" />
+        <div>
+          <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">
+            STEP5: 送金機能を実装する
+          </h2>
+        </div>
+      </div>
+    </div>
+  );
+}
 ```
 
 ### ☕️ 豆知識
