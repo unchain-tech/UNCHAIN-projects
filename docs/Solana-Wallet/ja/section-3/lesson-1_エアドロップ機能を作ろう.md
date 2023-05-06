@@ -10,36 +10,25 @@
 
 このセクションを完了すると、`Airdrop`ボタンを押下したときに、自動的に残高が増えるようになります。次のセクションでは資金の送金機能をつくるため、ここで自分のアカウントの資金を増やしておきましょう。
 
-### 🧱 コンポーネントを作成する
+### 🛫 導入
 
-エアドロップ機能を記述するファイルを作成しましょう。`components`ディレクトリの中に、`Airdrop/index.js`ファイルを作成します。
+ここからは`components/Airdrop/index.js`を更新していきます。
 
-```diff
- components/
-+├── Airdrop/
-+│   └── index.js
- ├── GenerateWallet/
- │   └── index.js
- ├── GetBalance/
- │   └── index.js
- ├── ImportWallet/
- │   └── index.js
- └── Head.js
-```
+前のセクションで、Solanaのネットワークの1つへの接続をインスタンス化する方法と、アカウントの公開鍵プロパティを変数に代入する方法を学びました。同じコードをここで適用して、 `handleAirdrop`関数をつくっていきましょう。
 
-作成した`index.js`に、以下のコードを記述しましょう。これまでに作成したコンポーネント同様`Home`コンポーネントが保持しているデータのうち、実装に必要なデータを引数として受け取るようにします。
+まずは、これまでに作成したコンポーネント同様`Home`コンポーネントが保持しているデータのうち、実装に必要なデータを引数として受け取るようにします。
 
 ```javascript
 import { Connection, LAMPORTS_PER_SOL } from '@solana/web3.js';
 
 export default function Airdrop({ account, network, refreshBalance }) {
+  const handleAirdrop = async () => {
+  };
   return ();
 }
 ```
 
-### 🛫 導入
-
-前のセクションで、Solanaのネットワークの1つへの接続をインスタンス化する方法と、アカウントの公開鍵プロパティを変数に代入する方法を学びました。同じコードをここで適用して、 `handleAirdrop`関数をつくっていきましょう。
+それでは、`handleAirdrop`関数の内部を実装していきます。
 
 ```javascript
 const connection = new Connection(network, 'confirmed');
@@ -117,6 +106,14 @@ return (
     Airdrop
   </button>
 );
+```
+
+`Airdrop`コンポーネントの実装が完了したので、テストスクリプトを実行して模擬的に動作確認をしてみましょう。
+
+components/Airdrop/index.test.jsが`PASS`し、`Test Suites`が下記のようになっていたらOKです！
+
+```bash
+Test Suites: 1 failed, 4 passed, 5 total
 ```
 
 それでは、`Airdrop`コンポーネントを`Home`コンポーネントに組み込んで`Airdrop`ボタンを表示しましょう。

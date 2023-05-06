@@ -126,20 +126,9 @@ const refreshBalance = async () => {
 
 ### 🧱 コンポーネントを作成する
 
-残高を取得する`refreshBalance`関数を作成したので、それを実行するボタンを実装していきましょう。`components`ディレクトリの中に、`GetBalance/index.js`ファイルを作成します。
+残高を取得する`refreshBalance`関数を作成したので、それを実行するボタンを実装していきましょう。ここからは、`componentsGetBalance/index.js`を更新していきます。
 
-```diff
- components/
- ├── GenerateWallet/
- │   └── index.js
-+├── GetBalance/
-+│   └── index.js
- ├── ImportWallet/
- │   └── index.js
- └── Head.js
-```
-
-作成した`index.js`に、以下のコードを記述します。先ほど作成した`refreshBalance`関数を引数として受け取り、[残高を取得]ボタンがクリックされた時に実行するようにします。
+先ほど作成した`refreshBalance`関数を引数として受け取り、[残高を取得]ボタンがクリックされた時に実行するようにします。
 
 ```javascript
 export default function GetBalance({ refreshBalance }) {
@@ -152,6 +141,14 @@ export default function GetBalance({ refreshBalance }) {
     </button>
   );
 }
+```
+
+実装はシンプルですが、ここでもテストスクリプトを実行して模擬的に動作確認をしてみましょう。
+
+components/GetBalance/index.test.jsが`PASS`し、`Test Suites`が下記のようになっていたらOKです！
+
+```bash
+Test Suites: 2 failed, 3 passed, 5 total
 ```
 
 ### 👀 フロントで残高を表示する

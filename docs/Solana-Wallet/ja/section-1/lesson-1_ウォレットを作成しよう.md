@@ -11,26 +11,6 @@
 参考: [暗号資産におけるウォレットとは② 〜HDウォレット編〜
 ](https://zelos.co.jp/crypto-asset-wallet-02-hd-wallet)
 
-### 🧱 コンポーネントを作成する
-
-まずは、コードを記述するファイルを作成しましょう。`components`ディレクトリの中に、`GenerateWallet/index.js`ファイルを作成します。
-
-```diff
- components/
-+├── GenerateWallet/
-+│   └── index.js
- └── Head.js
-```
-
-作成した`index.js`に、以下のコードを記述します。
-
-```javascript
-import { useState } from 'react';
-
-export default function GenerateWallet({ setAccount }) {
-  return ();
-}
-```
 
 ### ⏬ BIP39ライブラリを追加する
 
@@ -108,7 +88,7 @@ console.log('newAccount', newAccount.publicKey.toString());
 
 ### 👛 ウォレット生成関数を定義する
 
-これまでの説明を踏まえて、ウォレットを生成するための関数`generateWallet`を定義します。
+これまでの説明を踏まえて、ウォレットを生成するための関数`generateWallet`を定義します。それでは、`components/GenerateWallet/index.js`を更新していきましょう。
 
 ```javascript
 const generateWallet = () => {
@@ -125,9 +105,9 @@ const generateWallet = () => {
 
 `generateWallet`関数では、ニーモニックフレーズとアカウントの生成を行ってます。
 
-また、生成したニーモニックフレーズとアカウントは、`useState`を用いて値を保持します。ニーモニックフレーズは、`GenerateWallet`コンポーネント内でのみ表示するため、`mnemonic`という状態変数に格納します。アカウントは、複数のコンポーネント間で共有したいので、`Home`コンポーネント内で状態変数を定義し、各コンポーネントに引数で渡す形にしましょう。
+また、生成したニーモニックフレーズとアカウントは、`useState`を用いて値を保持します。ニーモニックフレーズは、`GenerateWallet`コンポーネント内でのみ表示するため、`mnemonic`という状態変数に格納します。アカウントは、複数のコンポーネント間で共有したいので、`Home`コンポーネント内で状態変数を定義し、各コンポーネントに必要なものを引数で渡す形にしましょう。
 
-`export default function GenerateWallet({ setAccount }) {`の直下に、`mnemonic`を保持する状態変数を定義しましょう。
+GenerateWalletコンポーネントの引数に`setAccount`を記述し、`export default function GenerateWallet() {`の直下に、`mnemonic`を保持する状態変数を定義しましょう。
 
 ```javascript
 export default function GenerateWallet({ setAccount }) {
@@ -164,6 +144,80 @@ return (
   </>
 );
 ```
+
+### ✅ コンポーネントの動作確認
+
+`GenerateWallet`コンポーネントの実装が完了したので、テストスクリプトを実行してみましょう。
+
+簡単にテスト内容を説明します。`components/GenerateWallet/index.test.js`では、**期待するボタンがレンダリングされるか**、**ボタンを押したときに適切な関数が実行されるか**をテストしています。
+
+- 期待するボタンがレンダリングされるか
+
+```javascript
+/** テスト内容 */
+it('should exist generate wallet button', () => {
+  /** 準備 */
+  /** コンポーネントをレンダリングする */
+  render(<GenerateWallet />);
+
+  /** 実行 */
+  /** 「ウォレットを生成」ボタン要素を取得する */
+  const btnElement = screen.getByRole('button', {
+    name: /ウォレットを生成/i,
+  });
+
+  /** 確認 */
+  /** ボタン要素がドキュメントのボディに存在するかどうか（レンダリングされたか）を確認する */
+  expect(btnElement).toBeInTheDocument();
+});
+```
+
+- ボタンを押したときに適切な関数が実行されるか
+
+```javascript
+it('should implement generate wallet flow', async () => {
+  /** 準備 */
+  /** GenerateWalletコンポーネントに渡すモック関数を作成する */
+  const mockedSetAccount = jest.fn();
+  /** 「ウォレットを生成」ボタンを押したときに実行される関数の戻り値にダミーの値を設定する */
+  bip39.generateMnemonic.mockImplementation(() => dummyMnemonic);
+  bip39.mnemonicToSeedSync.mockImplementation(() => dummySeed);
+  jest.spyOn(Keypair, 'fromSeed').mockImplementation(() => dummyAccount);
+
+  render(<GenerateWallet setAccount={mockedSetAccount} />);
+  const btnElement = screen.getByRole('button', {
+    name: /ウォレットを生成/i,
+  });
+
+  /** 実行 */
+  /**「ウォレットを生成」ボタンをクリックする*/
+  await userEvent.click(btnElement);
+
+  /** 確認 */
+  /** bip39.generateMnemonic関数が呼ばれたか */
+  expect(bip39.generateMnemonic).toBeCalled();
+  /** 期待する値がドキュメントのボディに存在するか */
+  expect(await screen.findByText(dummyMnemonic)).toBeInTheDocument();
+  /** Keypair.fromSeed関数が、引数にdummyUint8ArraySeedを渡されて呼ばれたか*/
+  expect(Keypair.fromSeed).toBeCalledWith(dummyUint8ArraySeed);
+});
+```
+
+モック（Mock）という言葉は、実際のものや状況を「模倣」するものを指します。
+
+テストにおいては、実際のオブジェクトや関数の代わりに使用される模擬的なオブジェクトや関数を指します。上記のテストスクリプトでは、コンポーネントに渡す引数・Bip39モジュールの関数をモックしています。これにより、テスト対象のコードとそれ以外の部分（コンポーネントの外から渡されるデータや外部モジュールなど）を分離し、テスト対象のコードのみを独立してテストできるようになります。
+
+例えば、BIP39ライブラリのgenerateMnemonicは毎回ランダムなニーモニックフレーズを返しますが、これではテスト時にどのような値が返ってくるかわからないため確認が困難となります。そこで、関数をモックしてテスト時の戻り値を設定することで動作確認が容易となります。関数の動作自体がテスト結果に影響を与えることを回避できるためです。
+
+それでは、テストスクリプトを実行してみましょう。ターミナル上で下記を実行します。
+
+```bash
+npm run test
+```
+
+components/GenerateWallet/index.test.jsが`PASS`していることを確認できたらOKです！
+
+![](/public/images/Solana-Wallet/section-1/1_1_1.png)
 
 ### 🖥 生成したウォレットアドレスを表示する
 

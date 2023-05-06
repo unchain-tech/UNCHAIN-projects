@@ -18,35 +18,6 @@
 
 これらの構成要素を念頭に置いて、送金機能をつくっていきましょう!
 
-### 🧱 コンポーネントを作成する
-
-送金機能を記述するファイルを作成しましょう。`components`ディレクトリの中に、`Transfer/index.js`ファイルを作成します。
-
-```diff
- components/
- ├── Airdrop/
- │   └── index.js
- ├── GenerateWallet/
- │   └── index.js
- ├── GetBalance/
- │   └── index.js
- ├── ImportWallet/
- │   └── index.js
-+├── Transfer/
-+│   └── index.js
- └── Head.js
-```
-
-作成した`index.js`に、以下のコードを記述しましょう。これまで同様、実装に必要なデータを`Home`コンポーネントから引数として受け取るようにします。
-
-```javascript
-import { useState } from 'react';
-
-export default function TransferFunction({ account, network, refreshBalance }) {
-  return ();
-}
-```
-
 ### 導入
 
 送金をするために、トランザクション・オブジェクトを構築して送信する必要があります。
@@ -197,10 +168,10 @@ import {
 } from '@solana/web3.js';
 ```
 
-トランザクションの結果を保存しておくステートと、フォームに入力された送信先アドレスを保存しておくステートを定義します。
+これまで同様、実装に必要なデータを`Home`コンポーネントから引数として受け取るようにします。そして、トランザクションの結果を保存しておくステートと、フォームに入力された送信先アドレスを保存しておくステートを定義します。
 
 ```javascript
-export default function TransferFunction({ account, network, refreshBalance }) {
+export default function Transfer({ account, network, refreshBalance }) {
   // 下記を追加
   const [transactionSig, setTransactionSig] = useState('');
   const [toAddress, setToAddress] = useState(null);
@@ -286,6 +257,12 @@ return (
 );
 ```
 
+`Transfer`コンポーネントの実装が完了したので、テストスクリプトを実行して模擬的に動作確認をしてみましょう。
+
+components/Transfer/index.test.jsが`PASS`し、以下のようになっていたらOKです！
+
+![](/public/images/Solana-Wallet/section-3/3_2_6.png)
+
 それでは、`Transfer`コンポーネントを`Home`コンポーネントに組み込んで送信フォームを表示しましょう。
 
 インポート文を追加します。
@@ -338,7 +315,7 @@ import {
 } from '@solana/web3.js';
 import { useState } from 'react';
 
-export default function TransferFunction({ account, network, refreshBalance }) {
+export default function Transfer({ account, network, refreshBalance }) {
   const [transactionSig, setTransactionSig] = useState('');
   const [toAddress, setToAddress] = useState(null);
 
