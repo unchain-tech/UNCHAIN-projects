@@ -141,7 +141,7 @@ export default function GenerateWallet({ setAccount }) {
 
 ```javascript
 return (
-  // 下記を追加
+  {/* 下記を追加 */}
   <>
     <button
       className="p-2 my-6 text-white bg-indigo-500 focus:ring focus:ring-indigo-300 rounded-lg cursor-pointer"
@@ -183,13 +183,25 @@ export default function Home() {
   const [account, setAccount] = useState(null);
 ```
 
-`My Wallet`の下に、生成したウォレットのアドレスを表示するコードを追加しましょう。
+`GenerateWallet`コンポーネントを呼び出すコードを追加しましょう。
+
+```javascript
+<div>
+  <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">
+    STEP1: ウォレットを新規作成する
+  </h2>
+  {/* 下記を追加 */}
+  <GenerateWallet setAccount={setAccount} />
+</div>
+```
+
+最後に、`My Wallet`の下に生成したウォレットのアドレスを表示するコードを追加しましょう。
 
 ```javascript
 <h3 className="p-2 border-dotted border-l-8 border-l-indigo-600">
   My Wallet
 </h3>
-// 下記を追加
+{/* 下記を追加 */}
 {account && (
   <>
     <div className="my-6 text-indigo-600 font-bold">
@@ -198,18 +210,6 @@ export default function Home() {
     </div>
   </>
 )}
-```
-
-最後に、`GenerateWallet`コンポーネントを呼び出すコードを追加しましょう。
-
-```javascript
-<div>
-  <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">
-    STEP1: ウォレットを新規作成する
-  </h2>
-  // 下記を追加
-  <GenerateWallet setAccount={setAccount} />
-</div>
 ```
 
 ### ✅ 動作確認
@@ -277,6 +277,7 @@ export default function GenerateWallet({ setAccount }) {
 +import { useState } from 'react';
 
 +import GenerateWallet from '../components/GenerateWallet/';
+import HeadComponent from '../components/Head';
 
 export default function Home() {
 +  const [account, setAccount] = useState(null);

@@ -168,6 +168,7 @@ export default function ImportWallet({ setAccount }) {
 import { useState } from 'react';
 
 import GenerateWallet from '../components/GenerateWallet/';
+import HeadComponent from '../components/Head';
 +import ImportWallet from '../components/ImportWallet';
 
 export default function Home() {

@@ -240,6 +240,7 @@ export default function GetBalance({ refreshBalance }) {
 
 import GenerateWallet from '../components/GenerateWallet/';
 +import GetBalance from '../components/GetBalance';
+import HeadComponent from '../components/Head';
 import ImportWallet from '../components/ImportWallet';
 
 export default function Home() {
