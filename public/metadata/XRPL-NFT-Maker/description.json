@@ -1,0 +1,9 @@
+{
+    "project_id": 801,
+    "title": "XRPL NFT Maker",
+    "difficulty": "beginner",
+    "chain": "XRP Ledger",
+    "description": "👉 XRP LedgerでNFTをミントするためのWebアプリをReactで構築します。",
+    "total_sections": 4,
+    "total_lessons": 8
+}
