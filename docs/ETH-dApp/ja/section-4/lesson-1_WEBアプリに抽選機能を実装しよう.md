@@ -151,9 +151,9 @@ if (seed <= 50) {
 >
 > 乱数の生成は、一見面倒ではありますが、何百万人ものユーザーがアクセスする dApp を構築する場合は、とても重要な作業となります。
 
-### ☕️ テストを実行する
+### ☕️ 作成した機能の動作確認
 
-下記のように、`run.js`を更新して、ユーザーにランダムにETHを送れるかテストしてみましょう。
+下記のように、`run.js`を更新して、ユーザーにランダムにETHを送れるか確認してみましょう。
 
 ```javascript
 // run.js
@@ -423,21 +423,100 @@ lastWavedAt[msg.sender] = block.timestamp;
 
 `mapping(address => uint256) public lastWavedAt`でユーザーのアドレスと`lastWavedAt`を紐づけているので、これで次に同じユーザーが`wave`を送ってきた時に、15分経過しているか検証できます。
 
-### 🧙‍♂️ テストを実行する
+### 🧙‍♂️ テストを作成・実行する
 
-ターミナル上で`my-wave-portal`に移動し、下記を実行してみましょう。
+ここまでの作業でコントラクトには基本機能として以下の機能が追加されました。
+
+* コントラクトにトークンを提供する機能
+* waveを送信する機能
+* ランダムにトークンを送金する機能
+
+これらの基本機能をテストスクリプトとして記述していきましょう。
+
+ではpackages/contract/testに`test.js`という名前でファイルを作成して、以下のように記述しましょう。
 
 ```
-npx hardhat run scripts/run.js
+const hre = require('hardhat');
+const { expect } = require('chai');
+
+describe('Wave Contract', function () {
+  it('test if wave and token are sent', async function () {
+    const waveContractFactory = await hre.ethers.getContractFactory(
+      'WavePortal',
+    );
+    /*
+     * デプロイする際0.1ETHをコントラクトに提供する
+     */
+    const waveContract = await waveContractFactory.deploy({
+      value: hre.ethers.utils.parseEther('0.1'),
+    });
+    await waveContract.deployed();
+    /*
+     * コントラクトの残高を取得（0.1ETH）
+     */
+    const contractBalanceBefore = hre.ethers.utils.formatEther(
+      await hre.ethers.provider.getBalance(waveContract.address),
+    );
+
+    /*
+     * 2回 waves を送るシミュレーションを行う
+     */
+    const waveTxn = await waveContract.wave('This is wave #1');
+    await waveTxn.wait();
+
+    const waveTxn2 = await waveContract.wave('This is wave #2');
+    await waveTxn2.wait();
+
+    /*
+     * コントラクトの残高を取得し、Waveを取得した後の結果を出力
+     */
+    const contractBalanceAfter = hre.ethers.utils.formatEther(
+      await hre.ethers.provider.getBalance(waveContract.address),
+    );
+
+    /*
+     *勝利した回数に応じてコントラクトから出ていくトークンを計算
+     */
+    const allWaves = await waveContract.getAllWaves();
+    let cost = 0;
+    for (let i = 0; i < allWaves.length; i++) {
+      if (allWaves[i].seed <= 50) {
+        cost += 0.0001;
+      }
+    }
+
+    /*
+     *メッセージの送信をテスト
+     */
+    expect(allWaves[0].message).to.equal('This is wave #1');
+    expect(allWaves[1].message).to.equal('This is wave #2');
+
+    /*
+     *コントラクトのトークン残高がwave時の勝負による減少に連動しているかテスト
+     */
+    expect(parseFloat(contractBalanceAfter)).to.equal(
+      contractBalanceBefore - cost,
+    );
+  });
+});
 ```
 
-下記のようなエラーがターミナルに出力されているでしょうか？
-
+下記のようなメッセージが出力されていればテスト成功です！
 ```
-Error: VM Exception while processing transaction: reverted with reason string 'Wait 15m'
-```
+Compiled 2 Solidity files successfully
 
-`WavePortal.sol`に記載されている`15 minutes`を`0 minutes`に変更し、`npx hardhat run scripts/run.js`をもう一度実行すると、エラーはなくなります 😊
+
+  Wave Contract
+We have been constructed!
+0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 has waved!
+0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 has waved!
+    ✔ test if wave and token are sent (1446ms)
+
+
+  1 passing (1s)
+
+✨  Done in 6.09s.
+```
 
 ### 🧞‍♀️ デプロイする？
 
