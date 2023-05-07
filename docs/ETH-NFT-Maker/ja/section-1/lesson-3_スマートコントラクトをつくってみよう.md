@@ -1,17 +1,11 @@
 ### 📝 スマートコントラクトを作成する
 
-`contracts`ディレクトリの下に`Web3Mint.sol`という名前のファイルを作成します。
-
-ターミナル上で新しくファイルを作成する場合は、下記のコマンドが役立ちます。もちろん、vscode上で作ってもらってもいいです。
-
-1. `ipfs-nfts`ディレクトリに移動: `cd ipfs-nfts`
-2. `contracts`ディレクトリに移動: `cd contracts`
-3. `Web3Mint.sol`ファイルを作成: `touch Web3Mint.sol`
+`contracts`ディレクトリの下に`Web3Mint.sol`という名前のファイルを作成しましょう。
 
 Hardhatを使用する場合、ファイル構造は非常に重要ですので、注意する必要があります。ファイル構造が下記のようになっていれば大丈夫です 😊
 
 ```bash
-ipfs-nfts
+contract
     |_ contracts
            |_  Web3Mint.sol
 ```
