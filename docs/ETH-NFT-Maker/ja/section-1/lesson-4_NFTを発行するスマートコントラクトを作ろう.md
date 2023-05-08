@@ -251,6 +251,52 @@ _setTokenURI(
 );
 ```
 
+### 🧙‍♂️ テストを作成・実行する
+
+ここまでの作業でコントラクトには基本機能としてNFTのmint機能が追加されました。
+
+この機能をテストスクリプトに記述してテストを実効してみましょう。
+ではpackages/contract/testに`test.js`という名前でファイルを作成して、以下のように記述しましょう。
+
+
+```
+const { assert } = require('chai');
+const { ethers } = require('hardhat');
+
+describe('Web3Mint', () => {
+  it('Should return the nft', async () => {
+    const Mint = await ethers.getContractFactory('Web3Mint');
+    const mintContract = await Mint.deploy();
+    await mintContract.deployed();
+
+    const [owner, addr1] = await ethers.getSigners();
+
+    const nftName = 'poker';
+    const ipfsCID =
+      'bafkreievxssucnete4vpthh3klylkv2ctll2sk2ib24jvgozyg62zdtm2y';
+
+    // 違うアドレスでNFTをmint
+    await mintContract.connect(owner).mintIpfsNFT(nftName, ipfsCID);
+    await mintContract.connect(addr1).mintIpfsNFT(nftName, ipfsCID);
+
+    // mintしたアドレスによって違うNFTが作成されていることをテスト
+    assert.equal(
+      await mintContract.tokenURI(0),
+      'data:application/json;base64,eyJuYW1lIjogInBva2VyIC0tIE5GVCAjOiAwIiwgImRlc2NyaXB0aW9uIjogIkFuIGVwaWMgTkZUIiwgImltYWdlIjogImlwZnM6Ly9iYWZrcmVpZXZ4c3N1Y25ldGU0dnB0aGgza2x5bGt2MmN0bGwyc2syaWIyNGp2Z296eWc2MnpkdG0yeSJ9',
+    );
+    assert.equal(
+      await mintContract.tokenURI(1),
+      'data:application/json;base64,eyJuYW1lIjogInBva2VyIC0tIE5GVCAjOiAxIiwgImRlc2NyaXB0aW9uIjogIkFuIGVwaWMgTkZUIiwgImltYWdlIjogImlwZnM6Ly9iYWZrcmVpZXZ4c3N1Y25ldGU0dnB0aGgza2x5bGt2MmN0bGwyc2syaWIyNGp2Z296eWc2MnpkdG0yeSJ9',
+    );
+  });
+});
+```
+
+結果として下のような結果が出力されていればテスト成功です！
+
+
+
+
 ### 🎉 NFT をローカルネットワークにデプロイしよう
 
 ここから、実際に`makeAnEpicNFT()`関数を呼び出し、スマートコントラクトが問題なくデプロイされるかテストしていきます。
@@ -294,12 +340,16 @@ npx hardhat run scripts/run.js
 下記のような結果が、ターミナルに出力されれば、テストは成功です。
 
 ```
-Compiling 1 file with 0.8.9
-Solidity compilation finished successfully
+Web3Mint
 This is my NFT contract.
-Contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 An NFT w/ ID 0 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-An NFT w/ ID 1 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+An NFT w/ ID 1 has been minted to 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+    ✔ Should return the nft (2360ms)
+
+
+  1 passing (2s)
+
+✨  Done in 4.56s.
 ```
 
 現在、ユーザーがこのスマートコントラクトにアクセスしてNFTを発行するたび、データは常に同じ`Tanya`です!　 🐱。
