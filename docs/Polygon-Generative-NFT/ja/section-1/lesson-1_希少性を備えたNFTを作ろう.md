@@ -182,6 +182,18 @@ Polygon-Generative-NFT
      └── contract/
 ```
 
+最後に、ETH-NFT-collectionディレクトリ下に`.gitignore`ファイルを作成して以下の内容を書き込みます。
+
+```bash
+**/yarn-error.log*
+
+# dependencies
+**/node_modules
+
+# misc
+**/.DS_Store
+```
+
 これでモノレポの雛形が完成しました！
 
 ### 🍽 Git リポジトリをあなたの GitHub にフォークする
