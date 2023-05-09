@@ -283,7 +283,7 @@ const { expect } = require("chai");
 
 変数`nftName`には好きな名前を、`ipfsCID`には先程つくった`IpfsCID`を入れてみましょう!
 
-ここまでの作業ができたら`npx hardhat test`をしてみましょう
+ここまでの作業ができたら`yarn contract test`をしてみましょう
 
 ```
 Web3Mint
@@ -353,7 +353,7 @@ runMain();
 
 スマートコントラクトの関数がしっかりと機能していることがわかったので、テストネットにデプロイしましょう。
 
-`deploy.js`を下記のように更新して`npx hardhat run scripts/deploy.js`をしてください。
+`deploy.js`を下記のように更新して`yarn contract deploy`をしてください。
 
 ```javascript
 // deploy.js
