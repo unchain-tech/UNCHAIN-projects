@@ -387,7 +387,7 @@ waveCount = await waveContract.getTotalWaves();
 それでは、`run.js`を更新して、下記を実行してみましょう。
 
 ```bash
-npx hardhat run scripts/run.js
+yarn contract run:script
 ```
 
 下記のような結果がターミナルに出力されれば成功です。
