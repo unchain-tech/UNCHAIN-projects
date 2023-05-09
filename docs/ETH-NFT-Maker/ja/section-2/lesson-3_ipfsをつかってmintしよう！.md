@@ -237,77 +237,67 @@ openseaなどのNFTマーケットサービスは、この`tokenURI`関数のデ
 `tokenURI`関数はERC721からoverrideしている関数で、外部からでも`_tokenId`をいれればreturnを返してくれる関数でないといけないので、引数などからNFTのメタデータを送ることはできません。なので、`tokenId`だけを与えられて、NFTのmetadataを返せるようにしなければならないです。
 そこで、配列を使おうという発想になっています。
 
-次は、このコードがしっかりと動いているか確認するためにテストコードを書いてみましょう。
-
-`ipfs-nfts/test`のディレクトリに`Web3Mint.js`のファイルを追加して、下記のコードをコピーしてください。
+### 🧙‍♂️ テストを作成・実行する
 
 `scripts/run.js`でテストを行ってもいいのですが、あれはローカル環境にデプロイしているためやはり少し時間が掛かるので、自分でテストコードを書くときには、ミスをすることも多いでしょうし、下記のようにテストを行うことをおすすめします。
 
-```javascript
-// Web3Mint.js
-const { expect } = require("chai");
-const { ethers } = require("hardhat");
+ここまでの作業でコントラクトには基本機能としてNFTのmint機能が追加されました。
 
-describe("Web3Mint", () => {
-  it("Should return the nft", async () => {
-    const Mint = await ethers.getContractFactory("Web3Mint");
+この機能をテストスクリプトに記述してテストを実効してみましょう。
+ではpackages/contract/testに`test.js`という名前でファイルを作成して、以下のように記述しましょう。
+
+```
+const { assert } = require('chai');
+const { ethers } = require('hardhat');
+
+describe('Web3Mint', () => {
+  it('Should return the nft', async () => {
+    const Mint = await ethers.getContractFactory('Web3Mint');
     const mintContract = await Mint.deploy();
     await mintContract.deployed();
 
     const [owner, addr1] = await ethers.getSigners();
 
-    let nftName = "poker";
-    let ipfsCID = "bafkreievxssucnete4vpthh3klylkv2ctll2sk2ib24jvgozyg62zdtm2y";
+    const nftName = 'poker';
+    const ipfsCID =
+      'bafkreievxssucnete4vpthh3klylkv2ctll2sk2ib24jvgozyg62zdtm2y';
 
-    await mintContract.connect(owner).mintIpfsNFT(nftName, ipfsCID); //0
-    await mintContract.connect(addr1).mintIpfsNFT(nftName, ipfsCID); //1
+    // 違うアドレスでNFTをmint
+    await mintContract.connect(owner).mintIpfsNFT(nftName, ipfsCID);
+    await mintContract.connect(addr1).mintIpfsNFT(nftName, ipfsCID);
 
-    console.log(await mintContract.tokenURI(0));
-    console.log(await mintContract.tokenURI(1));
+    // mintしたアドレスによって違うNFTが作成されていることをテスト
+    assert.equal(
+      await mintContract.tokenURI(0),
+      'data:application/json;base64,eyJuYW1lIjogInBva2VyIC0tIE5GVCAjOiAwIiwgImRlc2NyaXB0aW9uIjogIkFuIGVwaWMgTkZUIiwgImltYWdlIjogImlwZnM6Ly9iYWZrcmVpZXZ4c3N1Y25ldGU0dnB0aGgza2x5bGt2MmN0bGwyc2syaWIyNGp2Z296eWc2MnpkdG0yeSJ9',
+    );
+    assert.equal(
+      await mintContract.tokenURI(1),
+      'data:application/json;base64,eyJuYW1lIjogInBva2VyIC0tIE5GVCAjOiAxIiwgImRlc2NyaXB0aW9uIjogIkFuIGVwaWMgTkZUIiwgImltYWdlIjogImlwZnM6Ly9iYWZrcmVpZXZ4c3N1Y25ldGU0dnB0aGgza2x5bGt2MmN0bGwyc2syaWIyNGp2Z296eWc2MnpkdG0yeSJ9',
+    );
   });
 });
 ```
 
-このテストコードの書き方に関しては、[hardhat が用意しているドキュメント](https://hardhat.org/guides/waffle-testing.html)が非常に参考になります。
-ethers.jsを使った書き方は今までもしてきているので、その説明は省きます。
-
-今回実は、`expect`という記法を使っていないので、
-
-```javascript
-const { expect } = require("chai");
+では下のコマンドを実行してみましょう。
+```
+yarn contract test
 ```
 
-このように`chai`を読み込む必要はないのですが、スマートコントラクトのテストを行う上で、必ず`expect`を使う機会は来るはずなので興味のある方は調べてみてください。
-
-今回このテストでは、`mintIpfsNFT`関数でしっかりとNFTを発行し、`tokenURI`の返り値が期待通りになっているかを確かめます。
-
-変数`nftName`には好きな名前を、`ipfsCID`には先程つくった`IpfsCID`を入れてみましょう!
-
-ここまでの作業ができたら`yarn contract test`をしてみましょう
+結果として下のような結果が出力されていればテスト成功です！
 
 ```
-Web3Mint
+ Web3Mint
 This is my NFT contract.
 An NFT w/ ID 0 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
 An NFT w/ ID 1 has been minted to 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
-data:application/json;base64,eyJuYW1lIjogInBva2VyIC0tIE5GVCAjOiAwIiwgImRlc2NyaXB0aW9uIjogIkFuIGVwaWMgTkZUIiwgImltYWdlIjogImlwZnM6Ly9iYWZrcmVpZXZ4c3N1Y25ldGU0dnB0aGgza2x5bGt2MmN0bGwyc2syaWIyNGp2Z296eWc2MnpkdG0yeSJ9
-data:application/json;base64,eyJuYW1lIjogInBva2VyIC0tIE5GVCAjOiAxIiwgImRlc2NyaXB0aW9uIjogIkFuIGVwaWMgTkZUIiwgImltYWdlIjogImlwZnM6Ly9iYWZrcmVpZXZ4c3N1Y25ldGU0dnB0aGgza2x5bGt2MmN0bGwyc2syaWIyNGp2Z296eWc2MnpkdG0yeSJ9
-    ✔ Should return the nft
-```
+    ✔ Should return the nft (2319ms)
 
-このようなログが表示されるはずです。
 
-```
-data:application/json;base64,eyJuYW1lIjogInBva2VyIC0tIE5GVCAjOiAwIiwgImRlc2NyaXB0aW9uIjogIkFuIGVwaWMgTkZUIiwgImltYWdlIjogImlwZnM6Ly9iYWZrcmVpZXZ4c3N1Y25ldGU0dnB0aGgza2x5bGt2MmN0bGwyc2syaWIyNGp2Z296eWc2MnpkdG0yeSJ9
-```
+  1 passing (2s)
 
-これをブラウザで表示してください。
-
+✨  Done in 4.93s.
 ```
-{"name": "poker -- NFT #: 0", "description": "An epic NFT", "image": "ipfs://bafkreievxssucnete4vpthh3klylkv2ctll2sk2ib24jvgozyg62zdtm2y"}
-```
-
-このように表示されていたら成功です。imageのipfsがしっかりと画像を表示させられているかも確認してみてください。
 
 **brave**ブラウザでは、`ipfs://bafkreievxssucnete4vpthh3klylkv2ctll2sk2ib24jvgozyg62zdtm2y`のままブラウザに貼れば表示され、他のブラウザの場合は`https://ipfs.io/ipfs/自分のCID`のようにして、画像を確認してみましょう!
 
