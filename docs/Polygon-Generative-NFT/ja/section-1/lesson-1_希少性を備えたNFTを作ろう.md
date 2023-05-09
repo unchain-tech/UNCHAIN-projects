@@ -161,13 +161,12 @@ yarn <パッケージ名> <実行したいコマンド>
 
 それでは、ワークスペースのパッケージを格納するディレクトリを作成しましょう。
 
-以下のようなフォルダー構成となるように、`packages`ディレクトリとその中に`clientとcontract`ディレクトリを作成してください。
+以下のようなフォルダー構成となるように、`packages`ディレクトリとその中に`contract`ディレクトリを作成してください。
 
 ```diff
 Polygon-Generative-NFT
  ├── package.json
 +└── packages/
-+    └── client/
 +    └── contract/
 ```
 
@@ -178,7 +177,6 @@ Polygon-Generative-NFT
  ├── .gitignore
  ├── package.json
  └── packages/
-     └── client/
      └── contract/
 ```
 
@@ -227,7 +225,6 @@ Polygon-Generative-NFT
  ├── .gitignore
  ├── package.json
  └── packages/
-     └── client/
      └── contract/
      └── library/
 ```
