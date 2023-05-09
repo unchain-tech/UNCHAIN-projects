@@ -6,18 +6,10 @@ NFTを作成するスマートコントラクトを作成します。
 
 `contracts`ディレクトリの下に`MyEpicGame.sol`という名前のファイルを作成します。
 
-ターミナル上で新しくファイルを作成する場合は、下記のコマンドが役立ちます。
-
-1\. `epic-game`ディレクトリに移動: `cd epic-game`
-
-2\. `contracts`ディレクトリに移動: `cd contracts`
-
-3\. `MyEpicGame.sol`ファイルを作成: `touch MyEpicGame.sol`
-
 Hardhatを使用する場合、ファイル構造は非常に重要ですので、注意する必要があります。ファイル構造が下記のようになっていれば大丈夫です 😊
 
 ```bash
-epic-game
+contract
     |_ contracts
            |_  MyEpicGame.sol
 ```
@@ -209,10 +201,21 @@ console.log("Contract deployed to:", gameContract.address);
 
 ### 🪄 実行してみよう
 
-ターミナル上で、`scripts`ディレクトリに移動して下記を実行してみましょう。
+まずは、`packages/contract/package.json`の`script`部分を以下のように編集してください。
+
+```
+"scripts": {
+    "run:script":"npx hardhat run scripts/run.js",
+    "test": "npx hardhat test",
+    "deploy": "npx hardhat run scripts/deploy.js --network sepolia",
+    "start":"npx hardhat node",
+  },
+```
+
+ターミナル上で下記を実行してみましょう。
 
 ```bash
-npx hardhat run run.js
+yarn contract run:script
 ```
 
 ターミナル上で`console.log`の中身とコントラクトアドレスが表示されていることを確認してください。

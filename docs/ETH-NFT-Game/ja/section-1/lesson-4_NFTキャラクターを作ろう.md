@@ -266,10 +266,10 @@ uint[] memory characterAttackDmg
  "https://i.imgur.com/pCMZeiM.png"],
 ```
 
-それでは、ターミナル上で、`scripts`ディレクトリに移動して下記を実行してみましょう。
+それでは、ターミナル上で下記を実行してみましょう。
 
 ```bash
-npx hardhat run run.js
+yarn contract run:script
 ```
 
 ターミナル上で`console.log`の中身とコントラクトアドレスが表示されていることを確認してください。

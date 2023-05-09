@@ -392,10 +392,10 @@ await txn.wait();
 
 ここでは、`attackBoss()`を2回実行しています。
 
-それでは、`epic-game`ディレクトリ上で、下記を実行し、テストを行いましょう。
+それではターミナル上で下記を実行し、テストを行いましょう。
 
 ```bash
-npx hardhat run scripts/run.js
+yarn contract run:script
 ```
 
 下記のような結果が出力されていれば、テストは成功です。
