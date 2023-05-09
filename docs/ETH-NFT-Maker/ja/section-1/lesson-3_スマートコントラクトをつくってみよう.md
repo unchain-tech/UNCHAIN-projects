@@ -203,12 +203,21 @@ console.log("Contract deployed to:", nftContract.address);
 
 ### 💨 実行してみよう!
 
-では、実行してみましょう。
+まずは`packages/contract/package.json`の`script`部分を以下のように編集してください。
 
-ターミナルを開いて`ipfs-nfts`ディレクトリへ移動し、下記を実行してください。
+```
+"scripts": {
+    "run:script":"npx hardhat run scripts/run.js",
+    "test": "npx hardhat test",
+    "deploy": "npx hardhat run scripts/deploy.js --network sepolia",
+    "start":"npx hardhat node",
+  },
+```
+
+ターミナルを開いて下記を実行してください。
 
 ```bash
-npx hardhat run scripts/run.js
+yarn contract run:script
 ```
 
 コントラクト内から`console.log`が実行され、さらにコントラクトのアドレスがプリントアウトされるのが確認できるはずです!
