@@ -166,10 +166,10 @@ return (
 
     👉 WEBアプリ上に、"Connect Wallet to Get Started" ボタンを表示します。
 
-まず、ターミナル上で`nft-game-starter-project`ディレクトリに移動し、下記を実行しましょう。
+まず、ターミナル上で下記を実行しましょう。
 
 ```bash
-npm run start
+yarn client start
 ```
 
 ローカルサーバーでWebサイトを立ち上げたら、ブラウザのMetaMaskのプラグインをクリックし、あなたのウォレットアドレスの接続状況を確認しましょう。

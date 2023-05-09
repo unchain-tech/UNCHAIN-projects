@@ -59,17 +59,17 @@ runMain();
 
 **1 \. 再度、コントラクトをデプロイする。**
 
-- `npx hardhat run scripts/deploy.js --network sepolia`を実行する必要があります。
+- `yarn contract deploy`を実行する必要があります。
 
 **2 \. フロントエンド( `constants.js`)の`CONTRACT_ADDRESS`を更新する。**
 
 **3 \. の ABI ファイルを更新する。**
 
-- `epic-game/artifacts/contracts/MyEpicGame.sol/MyEpicGame.json`の中身を新しく作成する`nft-game-starter-project/src/utils/MyEpicGame.json`の中に貼り付ける必要があります。
+- `contract/artifacts/contracts/MyEpicGame.sol/MyEpicGame.json`の中身を新しく作成する`client/src/utils/MyEpicGame.json`の中に貼り付ける必要があります。
 
 ### ♻️ `index.js`を更新する
 
-`nft-game-starter-project/src/Components/SelectCharacter`にある`index.js`は、プログラムの中で何度も登場する変数や関数をまとめているファイルです。
+`client/src/Components/SelectCharacter`にある`index.js`は、プログラムの中で何度も登場する変数や関数をまとめているファイルです。
 
 これから、`index.js`の中身を更新していきます。
 
