@@ -111,12 +111,12 @@ MetaMaskウォレットに`Sepolia Test Network`が設定されたら、下記�
 
 これは、スマートコントラクトプロジェクトのルートディレクトリにあります。
 
-- 今回は、`my-wave-portal`ディレクトリの直下に`hardhat.config.js`が存在するはずです。
+- 今回は、`contract`ディレクトリの直下に`hardhat.config.js`が存在するはずです。
 
-例)ターミナル上で`my-wave-portal`に移動し、`ls`を実行した結果
+例)ターミナル上で`contract`に移動し、`ls`を実行した結果
 
 ```
-yukis4san@Yukis-MacBook-Pro my-wave-portal % ls
+yukis4san@Yukis-MacBook-Pro contract % ls
 README.md			package-lock.json
 artifacts			package.json
 cache				scripts
@@ -233,7 +233,7 @@ git rm --cached hardhat.config.js
 
 `hardhat.config.js`の更新が完了したら、Sepolia Test Networkにコントラクトをデプロイしてみましょう。
 
-ターミナル上で`my-wave-portal`ディレクトリに移動し、下記のコマンドを実行しましょう。
+ターミナル上で`contract`ディレクトリに移動し、下記のコマンドを実行しましょう。
 
 ```bash
 npx hardhat run scripts/deploy.js --network sepolia

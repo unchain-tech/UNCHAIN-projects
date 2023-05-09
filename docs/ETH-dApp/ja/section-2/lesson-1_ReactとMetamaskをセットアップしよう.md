@@ -1,33 +1,27 @@
-### 🍽 フロントエンドのファイルをあなたの GitHub にフォークする
+### 💻 クライアントを設定する
 
-このセクションでは、Webサイトの構築を通して、フロントエンドがスマートコントラクトとどのように関連するのか学びます。
+このセクションでは、Webサイトの構築を通して、クライアントとスマートコントラクトの連携方法について学びます。
+
+実装は下記をイメージしてください。
+
+- クライアント＝フロントエンド
+
+- スマートコントラクト＝バックエンド
+
+それでは、始めましょう 🚀
+
+### 🍽 Git リポジトリをあなたの GitHub にフォークする
 
 まだGitHubのアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
-GitHubのアカウントをお持ちの方は、[こちら](https://github.com/shiftbase-xyz/dApp-starter-project) から、フロントエンドの基盤`dApp-starter-project `をあなたのGitHubにフォークしましょう。
+GitHubのアカウントをお持ちの方は、[スターターキット](https://github.com/shiftbase-xyz/nft-maker-starter-project) から、フロントエンドの基盤となるリポジトリをあなたのGitHubにフォークしましょう。フォークの方法は、[こちら](https://denno-sekai.com/github-fork/) を参照してください。
 
-フォークの方法は、[こちら](https://docs.github.com/ja/get-started/quickstart/fork-a-repo) を参照してください。
+あなたのGitHubアカウントにフォークした`nft-maker-starter-project`リポジトリを、ローカル環境にクローンしてください。
 
-ご自身のGitHubアカウントにフォークした`dApp-starter-project`リポジトリをあなたのローカル環境にクローンしましょう。
+まず、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
 
-下図のように、`Code`ボタンをクリックした後、`SSH`を選択し、Gitリンクをコピーしましょう。
 
-![](/public/images/ETH-dApp/section-2/2_1_1.png)
-
-> ✍️: SSH の設定を行う
->
-> Github のレポジトリをクローンする際に、SSHKey を作成し、GitHub に公開鍵を登録する必要があります。
->
-> SSH（Secure SHell）はネットワークを経由してマシンを遠隔操作する仕組みのことで、通信が暗号化されているのが特徴的です。
->
-> 主にクライアント（ローカル）からサーバー（リモート）に接続をするときに使われます。この SSH の暗号化について、仕組みを見ていく上で重要になるのが秘密鍵と公開鍵です。
->
-> まずはクライアントのマシンで秘密鍵と公開鍵を作り、公開鍵をサーバーに渡します。そしてサーバー側で「この公開鍵はこのユーザー」というように、紐付けを行っていきます。
->
-> 自分で管理して必ず見せてはいけない秘密鍵と、サーバーに渡して見せても良い公開鍵の 2 つが SSH の通信では重要になってきます。
-> Github における SSH の設定は、[こちら](https://docs.github.com/ja/authentication/connecting-to-github-with-ssh) を参照してください!
-
-ターミナルで先ほど作成した`ETH-dApp`ディレクトリに移動し、先ほどコピーしたリンクを貼り付け、下記を実行してください。
+ターミナル上で`ETH-NFT-Maker/packages`ディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
 
 ```bash
 git clone コピーした_github_リンク
@@ -35,24 +29,26 @@ git clone コピーした_github_リンク
 
 この段階で、フォルダ構造は下記のようになっているはずです。
 
-```
-ETH-dApp
-   |_ my-wave-portal
-   |_ dApp-starter-project
+```diff
+ETH-NFT-Maker
+ ├── package.json
+ └── packages/
++    ├── client/
+     └── contract/
 ```
 
-ターミナル上で`dApp-starter-project`に移動して下記を実行しましょう。
+ターミナル上で`ETH-NFT-Maker`ディレクトリ下に移動して下記を実行しましょう。
 
 ```bash
-npm install
+yarn install
 ```
 
-`npm`コマンドを実行することで、JavaScriptライブラリのインストールが行われます。
+`yarn`コマンドを実行することで、JavaScriptライブラリのインストールが行われます。
 
 次に、下記を実行してみましょう。
 
 ```bash
-npm run start
+yarn client start
 ```
 
 あなたのローカル環境で、Webサイトのフロントエンドが立ち上がりましたか？
@@ -62,8 +58,6 @@ npm run start
 ![](/public/images/ETH-dApp/section-2/2_1_2.png)
 
 上記のような形でフロントエンドが確認できれば成功です。
-
-これからフロントエンドの表示を確認する際は、`dApp-starter-project`ディレクトリ上で、`npm run start`を実行します。
 
 ターミナルを閉じるときは、以下のコマンドが使えます ✍️
 
