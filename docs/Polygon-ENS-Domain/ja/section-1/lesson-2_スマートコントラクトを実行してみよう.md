@@ -225,7 +225,7 @@ console.log("Contract deployed to:", domainContract.address);
 "scripts": {
     "run:script":"npx hardhat run scripts/run.js",
     "test": "npx hardhat test",
-    "deploy": "npx hardhat run scripts/deploy.js --network sepolia"
+    "deploy": "npx hardhat run scripts/deploy.js --network mumbai"
   },
 ```
 その後、ターミナル上で、下記を実行してみましょう。
