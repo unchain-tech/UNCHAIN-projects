@@ -69,10 +69,10 @@ export default App;
 
 `window.ethereum`は、あなたのWebアプリケーションに参加するユーザーがMetaMaskを持っているか確認し、結果を`Console log`に出力します。
 
-ターミナルで`nft-game-starter-project`に移動し、下記を実行してみましょう。
+ターミナルで下記を実行してみましょう。
 
 ```bash
-npm run start
+yarn client start
 ```
 
 ローカルサーバーでWebサイトを立ち上げたら、サイトの上で右クリックを行い、`Inspect`を選択します。
