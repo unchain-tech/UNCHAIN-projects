@@ -103,11 +103,10 @@ function register(string calldata name) public payable {
 
 できました!
 
-試しに長い文字列を登録してみてください!以下のようなエラーが出力されるでしょうか？
+試しに長い文字列を登録して、run.jsを実行してみてください!以下のようなエラーが出力されるでしょうか？
 （deploy.jsを元にした試行用のファイルを作成して使用した結果です）。
 
 ```
-% npx hardhat run scripts/run_S3_L2.js
 ninja name service deployed
 Contract deployed to: 0xXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 Error: VM Exception while processing transaction: reverted with custom error 'InvalidName("banana_aaaaaaaaaaaaaaaaaaaa")'
