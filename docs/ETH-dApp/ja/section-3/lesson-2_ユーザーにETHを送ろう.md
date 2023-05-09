@@ -207,10 +207,10 @@ console.log("Contract balance:", hre.ethers.utils.formatEther(contractBalance));
 
 ### ⭐️ テストを実行する
 
-それでは、ターミナル上で`my-wave-portal`に移動し、下記を実行し、テストを行いましょう。
+それでは、ターミナル上で下記を実行し、テストを行いましょう。
 
 ```bash
-npx hardhat run scripts/run.js
+yarn contract run:script
 ```
 
 下記のような結果がターミナルで出力されているか確認してください。
@@ -303,12 +303,10 @@ const waveContract = await waveContractFactory.deploy({
 
 復習もかねて、丁寧に実行していきましょう。
 
-1 \. ターミナル上で`my-wave-portal`に移動します。
-
-下記を実行し、コントラクトを再度デプロイしましょう。
+1 \. ターミナル上で下記を実行し、コントラクトを再度デプロイしましょう。
 
 ```
-npx hardhat run scripts/deploy.js --network sepolia
+yarn contract deploy
 ```
 
 ターミナルに下記のような出力結果が表示されていれば、デプロイは成功です。
@@ -351,21 +349,19 @@ WavePortal address:  0x550925E923Cb1734de73B3a843A21b871fe2a673
 
 `wave`を送ったユーザーに0.0001ETHが送られているか確認してみましょう。
 
-1\. ターミナル上で`dApp-starter-project`に移動する。
-
-2\. 下記を実行する。
+1\. 下記を実行する。
 
 > ```
-> npm run start
+> yarn client start
 > ```
 
-3\. ローカル環境でWebアプリケーションを開き、`wave`を送る。
+2\. ローカル環境でWebアプリケーションを開き、`wave`を送る。
 
 例)このような結果がWebアプリケーションに反映されていること確認してください。コントラクトを新しくしたので、既存の`wave`はリセットされています。
 
 > ![](/public/images/ETH-dApp/section-3/3_2_2.png)
 
-4\. [Etherscan](https://sepolia.etherscan.io/) にアクセスして、コントラクトアドレスを貼り付ける。
+3\. [Etherscan](https://sepolia.etherscan.io/) にアクセスして、コントラクトアドレスを貼り付ける。
 
 > 下記のように、`Balance`が`0.0009 Ether`となっていることを確認してください。
 >

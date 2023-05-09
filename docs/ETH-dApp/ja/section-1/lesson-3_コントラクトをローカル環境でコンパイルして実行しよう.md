@@ -115,10 +115,19 @@ console.log("WavePortal address:", wavePortal.address);
 
 ### 🪄 実行してみよう
 
-ターミナル上で、下記を実行してみましょう。
+`packages/contract/package.json`の`script`部分を以下のように編集してください。
+
+```
+"scripts": {
+    "run:script":"npx hardhat run scripts/run.js",
+    "test": "npx hardhat test",
+    "deploy": "npx hardhat run scripts/deploy.js --network sepolia"
+  },
+```
+その後、ターミナル上で、下記を実行してみましょう。
 
 ```bash
-npx hardhat run scripts/run.js
+yarn contract run:script
 ```
 
 ターミナル上で`console.log`の中身とコントラクトアドレスが表示されていることを確認してください。
