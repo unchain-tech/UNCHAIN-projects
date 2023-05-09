@@ -1,8 +1,8 @@
 ### 🙉 GitHub に関する注意点
 
-**GitHub にコントラクト( `epic-game`)のコードをアップロードする際は、秘密鍵を含むハードハット構成ファイルをリポジトリにアップロードしないよう注意しましょう**
+**GitHub にコントラクト( `contract`)のコードをアップロードする際は、秘密鍵を含むハードハット構成ファイルをリポジトリにアップロードしないよう注意しましょう**
 
-秘密鍵などのファイルを隠すために、ターミナルで`epic-game`に移動して、下記を実行してください。
+秘密鍵などのファイルを隠すために、ターミナルで`contract`に移動して、下記を実行してください。
 
 ```bash
 npm install --save dotenv
@@ -18,7 +18,7 @@ npm install --save dotenv
 
 操作されては困るファイルについては、このように「不可視」の属性を持たせて、一般の人が触れられないようにします。
 
-ターミナル上で`epic-game`ディレクトリにいることを確認し、下記を実行しましょう。VS Codeから`.env`ファイルを開きます。
+ターミナル上で`contract`ディレクトリにいることを確認し、下記を実行しましょう。VS Codeから`.env`ファイルを開きます。
 
 ```
 code .env
@@ -135,7 +135,7 @@ https://cloudflare-ipfs.com/ipfs/あなたのCIDコードを貼り付けます
 
 ![](/public/images/ETH-NFT-Game/section-4/4_2_2.png)
 
-次に、`epic-game/scripts/run.js`と`epic-game/scripts/deploy.js`の`imgur`リンクを`CID`（＝ IPFSハッシュ）に変更していきましょう。
+次に、`contract/scripts/run.js`と`contract/scripts/deploy.js`の`imgur`リンクを`CID`（＝ IPFSハッシュ）に変更していきましょう。
 
 ```javascript
 // run.js
