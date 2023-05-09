@@ -114,6 +114,142 @@ Error: VM Exception while processing transaction: reverted with custom error 'In
 
 このように機能を追加してデプロイすると、以前よりも多くのことを行うことができます。
 
+
+### 🧙‍♂️ テストを作成・実行する
+
+ここまでの作業でコントラクトには基本機能として以下の機能が追加されました。
+* ドメインの登録機能
+* トークンの総量を確認する機能
+* トークンへのアクセスはオーナーのみに制限する機能
+* ドメインの長さによってドメインの登録料が変化する機能
+
+これらの基本機能をテストスクリプトとして記述していきましょう。
+ではpackages/contract/testに`test.js`という名前でファイルを作成して、以下のように記述しましょう。
+```
+const { loadFixture } = require('@nomicfoundation/hardhat-network-helpers');
+const hre = require('hardhat');
+const { expect } = require('chai');
+
+describe('ENS-Domain', () => {
+  // デプロイ＋ドメインの登録までを行う関数
+  async function deployTextFixture() {
+    const [owner, superCoder] = await hre.ethers.getSigners();
+    const domainContractFactory = await hre.ethers.getContractFactory(
+      'Domains',
+    );
+    const domainContract = await domainContractFactory.deploy('ninja');
+    await domainContract.deployed();
+
+    let txn = await domainContract.register('abc', {
+      value: hre.ethers.utils.parseEther('1234'),
+    });
+    await txn.wait();
+
+    txn = await domainContract.register('defg', {
+      value: hre.ethers.utils.parseEther('2000'),
+    });
+
+    return {
+      owner,
+      superCoder,
+      domainContract,
+    };
+  }
+
+  // コントラクトが所有するトークンの総量を確認
+  it('Token amount contract has is correct!', async () => {
+    const { domainContract } = await loadFixture(deployTextFixture);
+
+    // コントラクトにいくらあるかを確認しています。
+    const balance = await hre.ethers.provider.getBalance(
+      domainContract.address,
+    );
+    expect(hre.ethers.utils.formatEther(balance)).to.equal('3234.0');
+  });
+
+  // オーナー以外はコントラクトからトークンを引き出せないか確認
+  it('someone not owenr cannot withdraw token', async () => {
+    const { owner, superCoder, domainContract } = await loadFixture(
+      deployTextFixture,
+    );
+
+    let txn;
+
+    const ownerBeforeBalance = await hre.ethers.provider.getBalance(
+      owner.address,
+    );
+    // スーパーコーダーとしてコントラクトから資金を奪おうとします。
+    try {
+      txn = await domainContract.connect(superCoder).withdraw();
+      await txn.wait();
+    } catch (error) {
+      console.log('robber could not withdraw token');
+    }
+
+    const ownerAfterBalance = await hre.ethers.provider.getBalance(
+      owner.address,
+    );
+    expect(hre.ethers.utils.formatEther(ownerBeforeBalance)).to.equal(
+      hre.ethers.utils.formatEther(ownerAfterBalance),
+    );
+  });
+
+  // コントラクトのオーナーはコントラクトからトークンを引き出せることを確認
+  it('contract owner can withdrawl token from conteract!', async () => {
+    const { owner, domainContract } = await loadFixture(deployTextFixture);
+
+    const ownerBeforeBalance = await hre.ethers.provider.getBalance(
+      owner.address,
+    );
+
+    const txn = await domainContract.connect(owner).withdraw();
+    await txn.wait();
+
+    const ownerAfterBalance = await hre.ethers.provider.getBalance(
+      owner.address,
+    );
+
+    expect(hre.ethers.utils.formatEther(ownerAfterBalance)).to.not.equal(
+      hre.ethers.utils.formatEther(ownerBeforeBalance),
+    );
+  });
+
+  // ドメインの長さによって価格が変化することを確認
+  it('Domain value is depend on how long it is', async () => {
+    const { domainContract } = await loadFixture(deployTextFixture);
+
+    const price1 = await domainContract.price('abc');
+    const price2 = await domainContract.price('defg');
+
+    expect(hre.ethers.utils.formatEther(price1)).to.not.equal(
+      hre.ethers.utils.formatEther(price2),
+    );
+  });
+});
+
+```
+
+では下のコマンドを実行することでコントラクトのテストをしていきましょう！
+
+```
+yarn test
+```
+
+最後に下のような結果がでいれば成功です！
+
+```
+    ✔ Token amount contract has is correct! (4986ms)
+robber could not withdraw token
+    ✔ someone not owenr cannot withdraw token (68ms)
+    ✔ contract owner can withdrawl token from conteract!
+    ✔ Domain value is depend on how long it is (38ms)
+
+
+  4 passing (5s)
+
+✨  Done in 8.83s.
+```
+
 ### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discordの`#polygon`で質問をしてください。
