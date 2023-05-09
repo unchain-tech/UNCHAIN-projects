@@ -237,7 +237,7 @@ const wave = async () => {
 
 今回のレッスンでは実装する機能が多いので、追加する機能3つに対してテストを行います。
 
-`App.js`を更新したら、ターミナル上で`dApp-starter-project`に移動し、`npm run start`を実行してください。
+`App.js`を更新したら、ターミナル上で`yarn client start`を実行してください。
 
 ローカルサーバーを介して表示されているWebアプリケーションから右クリック → `Inspect`を選択し、Consoleの出力結果を確認してみましょう。
 

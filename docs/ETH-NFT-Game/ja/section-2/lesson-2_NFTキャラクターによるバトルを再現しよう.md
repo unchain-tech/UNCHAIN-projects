@@ -60,10 +60,10 @@ const runMain = async () => {
 runMain();
 ```
 
-次に、ターミナルに向かい、`epic-game`ディレクトリ上で下記を実行して、テストネットに再びコントラクトをデプロイしていきましょう。
+次に、ターミナルに向かいテストネットに再びコントラクトをデプロイしていきましょう。
 
 ```bash
-npx hardhat run scripts/deploy.js --network sepolia
+yarn contract deploy
 ```
 
 下記のような結果がターミナルに表示されていることを確認してください。

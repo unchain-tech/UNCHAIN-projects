@@ -2,18 +2,12 @@
 
 「👋（wave）」の総数をトラッキングするスマートコントラクトを作成します。ここで作成するスマートコントラクトは、後でユースケースに合わせて自由に変更できます。
 
-`contracts`ディレクトリの下に`WavePortal.sol`という名前のファイルを作成します。
-
-ターミナル上で新しくファイルを作成する場合は、下記のコマンドが役立ちます。
-
-1. `my-wave-portal`ディレクトリに移動: `cd my-wave-portal`
-2. `contracts`ディレクトリに移動: `cd contracts`
-3. `WavePortal.sol`ファイルを作成: `touch WavePortal.sol`
+`contracts`ディレクトリの下に`WavePortal.sol`という名前のファイルを作成してください。
 
 Hardhatを使用する場合、ファイル構造は非常に重要ですので、注意する必要があります。ファイル構造が下記のようになっていれば大丈夫です 😊
 
 ```bash
-my-wave-portal
+contract
     |_ contracts
            |_  WavePortal.sol
 ```

@@ -18,7 +18,7 @@
 
     	- 「Arena Component」は、プレイヤーがボスと戦う場所です。
 
-まず、ターミナル上で`nft-game-starter-project/src/Components/Arena`フォルダに移動して、`index.js`という名前の新しいファイルを作成しましょう。
+まず、ターミナル上で`client/src/Components/Arena`フォルダに移動して、`index.js`という名前の新しいファイルを作成しましょう。
 
 `Arena`フォルダには`Arena.css`ファイルが含まれています。
 
@@ -26,7 +26,7 @@ Webアプリケーションの構築が完了したら、CSSのスタイリン�
 
 ### 🏰 `Arena`を作成する
 
-次に、`nft-game-starter-project/src/Components/Arena/index.js`を開き、下記のコードを貼り付けましょう。
+次に、`client/src/Components/Arena/index.js`を開き、下記のコードを貼り付けましょう。
 
 ```javascript
 // index.js
@@ -324,7 +324,7 @@ const [attackState, setAttackState] = useState("");
 
 - `''` : デフォルトの状態
 
-`nft-game-starter-project/src/Components/Arena/Arena.css`を開いて、`attacking`や`hit`を調べてみてください。
+`client/src/Components/Arena/Arena.css`を開いて、`attacking`や`hit`を調べてみてください。
 
 - アニメーションのためのCSSが設定されています ✨
 

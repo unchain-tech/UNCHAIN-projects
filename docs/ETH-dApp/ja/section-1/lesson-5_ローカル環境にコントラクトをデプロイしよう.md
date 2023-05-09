@@ -12,10 +12,20 @@
 
 ターミナルで、**新しい**ウィンドウを作成します。
 
-`my-wave-portal`ディレクトリに移動して、下記を実行してください。
+`packages/contract/package.json`の`script`部分を以下のように編集してください。
 
+```
+"scripts": {
+    "run:script":"npx hardhat run scripts/run.js",
+    "test": "npx hardhat test",
+    "deploy": "npx hardhat run scripts/deploy.js --network sepolia",
+    "start":"npx hardhat node",
+  },
+```
+
+では下のコマンドを実行してみましょう。
 ```bash
-npx hardhat node
+yarn contract start
 ```
 
 これにより、ローカルネットワークでイーサリアムネットワークを立ち上がります。
@@ -64,10 +74,22 @@ runMain();
 
 ### 🎉 デプロイする
 
-**新しくターミナルのウィンドウを立ち上げ**、ターミナル上で`ETH-dApp/my-wave-portal`に移動したら、下記のコマンドを実行しましょう。あなたのスマートコントラクトを、ローカルネットワークにデプロイします。
+`packages/contract/package.json`の`script`部分を以下のように編集してください。
+
+```
+"scripts": {
+    "run:script":"npx hardhat run scripts/run.js",
+    "test": "npx hardhat test",
+    "deploy": "npx hardhat run scripts/deploy.js --network sepolia",
+    "deploy:localhost": "npx hardhat run scripts/deploy.js --network localhost",
+    "start":"npx hardhat node",
+  },
+```
+
+**新しくターミナルのウィンドウを立ち上げ**、下記のコマンドを実行しましょう。あなたのスマートコントラクトを、ローカルネットワークにデプロイします。
 
 ```bash
-npx hardhat run scripts/deploy.js --network localhost
+yarn contract deploy:localhost
 ```
 
 下記のような出力結果がターミナルに表示されたでしょうか？
