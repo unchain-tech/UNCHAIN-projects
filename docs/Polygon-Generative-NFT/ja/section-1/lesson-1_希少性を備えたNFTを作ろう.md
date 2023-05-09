@@ -18,7 +18,7 @@
 
 今回のレッスンでは、CryptopunksやBAYCのような希少性を備えたGenerative ArtのNFTコレクションを作成する方法を学びます。
 
-✍️: NFTに関する詳しい説明は、[こちら](https://github.com/unchain-dev/UNCHAIN-projects/blob/main/docs/ETH-NFT-Collection/ja/section-1/lesson-1_NFT%E3%81%A8%E3%81%AF%E4%BD%95%E3%81%8B%EF%BC%9F.md) をご覧ください。
+✍️: NFTに関する詳しい説明は、[こちら](https://github.com/unchain-dev/UNCHAIN-projects/blob/main/docs/Polygon-Generative-NFT/ja/section-1/lesson-1_NFT%E3%81%A8%E3%81%AF%E4%BD%95%E3%81%8B%EF%BC%9F.md) をご覧ください。
 
 ### 💻 Python と pip をインストールする
 
@@ -85,9 +85,110 @@ pip install Pillow pandas progressbar2
 
 - [Progressbar](https://progressbar-2.readthedocs.io/en/latest/): 画像生成の進捗状況を表示するライブラリです。
 
+まず、`node` / `yarn`を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスしてください。
+
+`node v16`をインストールすることを推奨しています。
+
+それでは本プロジェクトで使用するフォルダーを作成してきましょう。作業を始めるディレクトリに移動したら、次のコマンドを実行します。
+
+```bash
+mkdir Polygon-Generative-NFT
+cd Polygon-Generative-NFT
+yarn init --private -y
+```
+
+Polygon-Generative-NFTディレクトリ内に、package.jsonファイルが生成されます。
+
+```bash
+Polygon-Generative-NFT
+ └── package.json
+```
+
+それでは、`package.json`ファイルを以下のように更新してください。
+
+```json
+{
+  "name": "polygon-generative-nft",
+  "version": "1.0.0",
+  "description": "Creating NFT Collections",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "contract": "yarn workspace contract",
+    "client": "yarn workspace client",
+    "library": "yarn workspace library",
+    "test": "yarn workspace contract test"
+  }
+}
+```
+
+`package.json`ファイルの内容を確認してみましょう。
+
+モノレポを作成するにあたり、パッケージマネージャーの機能である[Workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/)を利用しています。
+
+この機能により、yarn installを一度だけ実行すれば、すべてのパッケージ（今回はコントラクトのパッケージとクライアントのパッケージ）を一度にインストールできるようになります。
+
+**workspaces**の定義をしている部分は以下になります。
+
+```json
+"workspaces": {
+  "packages": [
+    "packages/*"
+  ]
+},
+```
+
+また、ワークスペース内の各パッケージにアクセスするためのコマンドを以下の部分で定義しています。
+
+```json
+"scripts": {
+  "contract": "yarn workspace contract",
+  "client": "yarn workspace client",
+  "library": "yarn workspace library",
+  "test": "yarn workspace contract test"
+}
+```
+
+これにより、各パッケージのディレクトリへ階層を移動しなくてもプロジェクトのルート直下から以下のようにコマンドを実行することが可能となります（ただし、各パッケージ内に`package.json`ファイルが存在し、その中にコマンドが定義されていないと実行できません。そのため、現在は実行してもエラーとなります。ファイルは後ほど作成します）。
+
+```bash
+yarn <パッケージ名> <実行したいコマンド>
+```
+
+それでは、ワークスペースのパッケージを格納するディレクトリを作成しましょう。
+
+以下のようなフォルダー構成となるように、`packages`ディレクトリとその中に`clientとcontract`ディレクトリを作成してください。
+
+```diff
+Polygon-Generative-NFT
+ ├── package.json
++└── packages/
++    └── client/
++    └── contract/
+```
+
+最終的に以下のようなフォルダー構成となっていることを確認してください。
+
+```bash
+Polygon-Generative-NFT
+ ├── .gitignore
+ ├── package.json
+ └── packages/
+     └── client/
+     └── contract/
+```
+
+これでモノレポの雛形が完成しました！
+
 ### 🍽 Git リポジトリをあなたの GitHub にフォークする
 
 まだGitHubのアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
+
+その後`packages`ディレクトリに移動します。
 
 GitHubのアカウントをお持ちの方は、[こちら](https://github.com/shiftbase-xyz/generative-nft-library) から、`generative-nft-library`リポジトリをあなたのGitHubにフォークしましょう。
 
@@ -106,6 +207,36 @@ git clone コピーした_github_リンク
 下記のように、あなたのローカル環境に、ライブラリがクローンされたことが確認できたら、次のステップに進みましょう。
 
 ![](/public/images/Polygon-Generative-NFT/section-1/1_1_4.png)
+
+その後packagesディレクトリにある`generative-nft-library`の名前を`library`に変更してください。最終的に以下のようなフォルダー構成となっていることを確認してください。
+
+```bash
+Polygon-Generative-NFT
+ ├── .gitignore
+ ├── package.json
+ └── packages/
+     └── client/
+     └── contract/
+     └── library/
+```
+
+またlibraryディレクトリの下に`package.json`という名前のファイルを作成して下のように記述してください。
+
+```
+{
+  "name": "library",
+  "version": "1.0.0",
+  "description": "\"generative nft library\"",
+  "private": true,
+  "scripts":{
+    "generate:NFT":"python3 nft.py",
+    "generate:JSON":"python3 metadata.py"
+  }
+}
+
+```
+
+これでNFTの画像を作成するlibraryの準備は整いました！
 
 ### 🐿 Scrappy Squirrels を生成する
 
@@ -151,12 +282,12 @@ git clone コピーした_github_リンク
 
 ![](/public/images/Polygon-Generative-NFT/section-1/1_1_8.png)
 
-今回使用する特徴カテゴリとそれに付随する画像は、あなたのローカル環境に`git clone`した`generative-nft-library`の`asset`フォルダの中にあります。
+今回使用する特徴カテゴリとそれに付随する画像は、あなたのローカル環境に`git clone`した`library`の`asset`フォルダの中にあります。
 
 下記のディレクトリ構造を参考に、中身を確認してみてください。
 
 ```
-generative-nft-library
+library
 		|_ assets
 			  |_ Background
 			  |_ Expressions
@@ -166,7 +297,7 @@ generative-nft-library
 
 ### 🪄 `config.py`ファイルを設定する
 
-アバターコレクションを生成する最後のステップです。`generative-nft-library/config.py`を開き、以下の説明に従ってファイルを埋めていきましょう。
+アバターコレクションを生成する最後のステップです。`library/config.py`を開き、以下の説明に従ってファイルを埋めていきましょう。
 
 まず、`config.py`の中身が下記のように始まることを確認してください。
 
@@ -393,7 +524,7 @@ Pythonリストは、`rarity_weights`の重みを割り当てる最も一般的�
 ここで、以下のコマンドを実行します。
 
 ```
-python3 nft.py
+yarn library generate:NFT
 ```
 
 このコマンドを実行すると、画像生成プログラムが起動します。
