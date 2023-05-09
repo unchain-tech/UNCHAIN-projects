@@ -217,10 +217,10 @@ const runMain = async () => {
 runMain();
 ```
 
-それでは、ターミナル上で`my-wave-portal`に移動し、下記のコードを実行してみましょう。
+それでは、ターミナル上で下記のコードを実行してみましょう。
 
 ```
-npx hardhat run scripts/run.js
+yarn contract run:script
 ```
 
 次のような結果が、ターミナルに出力されたでしょうか？
@@ -499,6 +499,12 @@ describe('Wave Contract', function () {
     );
   });
 });
+```
+
+ターミナル上で下記のコマンドを実行してみましょう。
+
+```
+yarn contract test
 ```
 
 下記のようなメッセージが出力されていればテスト成功です！
