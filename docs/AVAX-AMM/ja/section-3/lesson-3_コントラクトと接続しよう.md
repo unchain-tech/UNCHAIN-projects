@@ -347,16 +347,15 @@ deploy()
 
 このスクリプトを実行する際に先ほど`hardhat.config.ts`で設定したネットワークを指定すると, `ethers.getSigners()`の返す初めのアカウントの値はあなたのアカウントのアドレスになります。
 
-それでは`AVAX-AMM`ディレクトリ直下で下記のコマンドを実行してデプロイします！
+ターミナル上で以下のコマンドを実行してください。
 
 ```
-$ npm run contract deploy
+yarn contract deploy
 ```
 
 このような出力結果が出たら成功です！
 
 ```
-$ npm run contract deploy
 > AVAX-AMM@1.0.0 contract
 > npm run --workspace=contract deploy
 
@@ -417,7 +416,7 @@ ABIファイルは,コントラクトがコンパイルされた時に生成さ�
 `AVAX-AMM`直下からターミナルでコピーを行う場合, このようなコマンドになります。
 
 ```
-npm run contract cp:artifacts
+yarn contract cp:artifacts
 ```
 
 📽️ 型定義ファイルを取得する
@@ -432,7 +431,7 @@ TypeScriptは静的型付け言語なので, 外部から取ってきたオブ�
 `AVAX-AMM`直下からターミナルでコピーを行う場合, このようなコマンドになります。
 
 ```
-npm run contract cp:typechain
+yarn contract cp:typechain
 ```
 
 以上でコントラクトの情報を反映することができました。
@@ -867,10 +866,10 @@ const updateDetails = () => {
 
 🖥️ 画面で確認しましょう
 
-`AVAX-AMM`ディレクトリ直下で以下のコマンドを実行してください。
+ターミナル上で以下のコマンドを実行してください。
 
 ```
-$ npm run cilent dev
+yarn client dev
 ```
 
 ブラウザで`http://localhost:3000 `へアクセスしてください。
