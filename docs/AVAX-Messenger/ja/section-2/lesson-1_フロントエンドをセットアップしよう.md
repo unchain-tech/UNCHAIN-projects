@@ -46,7 +46,7 @@
 
 ### 🛠️ 　フロントエンドのセットアップをしよう
 
-プロジェクトのルートディレクトリである`Avax-Messenger`ディレクトリに移動し,以下のコードを実行して下さい。
+`packages`ディレクトリに移動し,以下のコードを実行して下さい。
 
 ```
 $ npx create-next-app client  --ts --use-npm
@@ -56,19 +56,10 @@ $ npx create-next-app client  --ts --use-npm
 `--ts`は`typescript`を使用することの指定, `--use-npm`は`npm`を使用してアプリの立ち上げを行うこと指定しています。
 `client`ディレクトリには`Next.js`を使ったプロジェクト開発に最低限必要なものがあらかじめ作成されます。
 
-この段階で,フォルダ構造は下記のようになっているはずです。
-
-```
-Avax-Messenger
-   |_ client
-   |_ contract
-```
-
-ターミナル上で`client`に移動して下記を実行しましょう。
+ターミナル上で下記を実行しましょう。
 
 ```bash
-$ cd client
-$ npm run dev
+yarn client dev
 ```
 
 あなたのお使いのブラウザで
@@ -118,8 +109,8 @@ client
 続いて`client`ディレクトリ直下で以下のコマンドを実行して必要なパッケージをインストールしてください。
 
 ```
-$ npm install ethers
-$ npm install @metamask/providers
+yarn add ethers
+yarn add @metamask/providers
 ```
 
 - `ethers`: スマートコントラクトとの連携に使用します。
