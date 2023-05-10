@@ -63,15 +63,15 @@ npm install -g near-cli
 それでは本プロジェクトで使用するフォルダーを作成してきましょう。作業を始めるディレクトリに移動したら、次のコマンドを実行します。
 
 ```bash
-mkdir ETH-NFT-Collection
-cd ETH-NFT-Collection
+mkdir NEAR-Election-dApp
+cd NEAR-Election-dApp
 yarn init --private -y
 ```
 
-ETH-NFT-collectionディレクトリ内に、package.jsonファイルが生成されます。
+NEAR-Election-dAppディレクトリ内に、package.jsonファイルが生成されます。
 
 ```bash
-ETH-NFT-Collection
+NEAR-Election-dApp
  └── package.json
 ```
 
@@ -79,7 +79,7 @@ ETH-NFT-Collection
 
 ```json
 {
-  "name": "ETH-NFT-Collection",
+  "name": "NEAR-Election-dApp",
   "version": "1.0.0",
   "description": "Creating NFT Collections",
   "private": true,
@@ -133,7 +133,7 @@ yarn <パッケージ名> <実行したいコマンド>
 以下のようなフォルダー構成となるように、`packages`ディレクトリとその中に`contract`ディレクトリを作成してください（`client`ディレクトリは、後ほどのレッスンでスターターコードをクローンする際に作成したいと思います）。
 
 ```diff
-ETH-NFT-Collection
+NEAR-Election-dApp
  ├── package.json
 +└── packages/
 +    └── contract/
@@ -141,7 +141,7 @@ ETH-NFT-Collection
 
 `contract`ディレクトリには、スマートコントラクトを構築するためのファイルを作成していきます。
 
-最後に、ETH-NFT-collectionディレクトリ下に`.gitignore`ファイルを作成して以下の内容を書き込みます。
+最後に、NEAR-Election-dAppディレクトリ下に`.gitignore`ファイルを作成して以下の内容を書き込みます。
 
 ```bash
 **/yarn-error.log*
@@ -156,7 +156,7 @@ ETH-NFT-Collection
 最終的に以下のようなフォルダー構成となっていることを確認してください。
 
 ```bash
-ETH-NFT-Collection
+NEAR-Election-dApp
  ├── .gitignore
  ├── package.json
  └── packages/
