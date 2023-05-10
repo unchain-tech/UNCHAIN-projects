@@ -132,10 +132,9 @@ const runMain = async () => {
 runMain();
 ```
 
-このスクリプトを`npx hardhat run scripts/run.js`で実行すると、盗み取ろうとしたことがブロックされてcatch errorが作用したことがわかると思います。
+このスクリプトを`yarn contract run:script`で実行すると、盗み取ろうとしたことがブロックされてcatch errorが作用したことがわかると思います。
 
 ```
-% npx hardhat run scripts/run.js
 Compiled 1 Solidity file successfully
 ninja name service deployed
 Contract owner: 0x---------
