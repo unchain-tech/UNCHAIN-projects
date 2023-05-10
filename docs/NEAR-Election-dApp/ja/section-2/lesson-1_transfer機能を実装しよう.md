@@ -290,15 +290,17 @@ transferの実装は成功したので、それが機能しているのかテス
 
 まずはNFTを送る別のwalletを作成しましょう。NEARの管理画面の右上のAccont IDの部分をクリックすると`+ Create New Account`というボタンがあると思います。そこから新しいWallet IDを作成してください。
 
-次に、編集したコードを反映させるためにコードのコンパイル＋デプロイでコントラクトを更新してみましょう。下のコマンドをターミナルで実行してください（うまくいかない場合は新しくwalletを作ってそのアドレスを使ってdeployしてみましょう）。
+次に、編集したコードを反映させるためにコードのコンパイル＋デプロイでコントラクトを更新してみましょう。
 
-コントラクトディレクトリの名前を変えた方は`near_election_dapp_contract`の部分を自分が変えたディレクトリの名前に変えないとエラーがでてしまいますので気をつけてください！
+下のコマンドを`NEAR-Election-dApp`にいる状態で実行してください（うまくいかない場合は新しくwalletを作ってそのアドレスを使ってdeployしてみましょう）。
+
 
 ```bash
-set -e && RUSTFLAGS='-C link-arg=-s' cargo build --target wasm32-unknown-unknown --release && near deploy --wasm-file target/wasm32-unknown-unknown/release/near_election_dapp_contract.wasm --accountId $NFT_CONTRACT_ID
+yarn contract build
+yarn contract deploy
 ```
 
-コントラクトの更新ができたので、次は下のコマンドを実行し、新しくNFTをmintしてみましょう。
+コントラクトの更新ができたので、次は`packages/contract`へ移動して下のコマンドを実行し新しくNFTをmintしてみましょう。
 
 ```bash
 near call $NFT_CONTRACT_ID nft_mint '{"metadata": {"title": "Tonny(candidate)", "description": "Fifth Token", "media": "https://gateway.pinata.cloud/ipfs/QmTGtuh3c1qaMdiBUnbiF9k2M3Yr4gZn8yixtAQuVvZueW", "media_CID": "QmTGtuh3c1qaMdiBUnbiF9k2M3Yr4gZn8yixtAQuVvZueW", "candidate_name": "Tonny", "candidate_manifest": "Be yourself everyone else is already taken.", "token_kind": "candidate"}, "receiver_id": "'$NFT_CONTRACT_ID'"}' --accountId $NFT_CONTRACT_ID --amount 0.1
