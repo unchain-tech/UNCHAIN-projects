@@ -10,8 +10,10 @@
 
 これから行うフロントエンド側のデプロイには秘密鍵は含まれていませんが、後々のためにここでは`dotenv`というパッケージを使用して秘密鍵をより安全に扱う方法を挙げておきます。
 
+`contract`ディレクトリにいどうして下のコマンドを実行しましょう。
+
 ```bash
-npm install --save dotenv
+yarn add --dev dotenv
 ```
 
 `hardhat.config.js`を変更します。

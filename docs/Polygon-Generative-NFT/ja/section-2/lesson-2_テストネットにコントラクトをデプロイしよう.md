@@ -112,7 +112,7 @@ MetaMaskウォレットに`Sepolia Test Network`が設定されたら、下記�
 
 まず、`dotenv`ライブラリを使用して、先ほど作成した`Alchemy URL`とあなたのMetaMaskの秘密鍵を隠していきます。
 
-`.env`というファイルを`nft-collectible`ディレクトリ内に作成し、下記のように編集しましょう。
+`.env`というファイルを`contract`ディレクトリ内に作成し、下記のように編集しましょう。
 
 ```
 API_URL="YOUR_ALCHEMY_API_URL"
@@ -161,11 +161,11 @@ PRIVATE_KEY="YOUR_PRIVATE_SEPOLIA_ACCOUNT_KEY"
 
 これは、スマートコントラクトプロジェクトのルートディレクトリにあります。
 
-- `nft-collectible/hardhat.config.js`
+- `contract/hardhat.config.js`
 
-- 今回は、`nft-collectible`ディレクトリの直下に`hardhat.config.js`が存在するはずです。
+- 今回は、`contract`ディレクトリの直下に`hardhat.config.js`が存在するはずです。
 
-例)ターミナル上で`nft-collectible`に移動し、`ls`を実行した結果
+例)ターミナル上で`contract`に移動し、`ls`を実行した結果
 ```
 README.md			package-lock.json
 artifacts			package.json
