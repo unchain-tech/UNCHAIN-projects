@@ -329,7 +329,7 @@ android {
 これ以降も、UIを確認する際は同じ手順で行います。
 
 ```
-flutter run
+yarn client start
 ```
 
 下のような画面が表示されていれば成功です。
