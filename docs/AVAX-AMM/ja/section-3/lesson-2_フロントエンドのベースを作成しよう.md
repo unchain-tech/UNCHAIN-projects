@@ -667,10 +667,10 @@ client
 
 🖥️ 画面で確認しましょう
 
-それでは`AVAX-AMM`ディレクトリ直下で以下のコマンドを実行してください！
+ターミナル上で以下のコマンドを実行してください。
 
 ```
-$ npm run client dev
+yarn contract test
 ```
 
 そしてブラウザで`http://localhost:3000 `へアクセスしてください。
