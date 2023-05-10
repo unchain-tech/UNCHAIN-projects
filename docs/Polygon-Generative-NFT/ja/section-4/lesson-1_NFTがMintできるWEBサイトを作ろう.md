@@ -14,10 +14,10 @@
 
 まず、Reactのプロジェクトを作成していきます。
 
-ターミナルを開いて、`Polygon-Generative-NFT`ディレクトリに移動し、以下のコマンドを実行してください。
+ターミナルを開いて、`packages`ディレクトリに移動し、以下のコマンドを実行してください。
 
 ```
-npx create-react-app nft-collectible-frontend
+npx create-react-app client
 ```
 
 インストールには2 ～ 10分ほどかかります。
@@ -31,11 +31,10 @@ npx create-react-app nft-collectible-frontend
 > npm install npm --global # Upgrade npm to the latest version
 > ```
 >
-> インストールが完了したら、ターミナルで以下を実行して、すべてがうまくいっていることを確認してください。
+> インストールが完了したら、`Polygon-Generative-NFT`ディレクトリに移動します。その後ターミナルで以下を実行して、すべてがうまくいっていることを確認してください。
 
 ```
-cd nft-collectible-frontend
-npm start
+yarn client start
 ```
 
 うまくいくと、ブラウザで`localhost://3000`に新しいタブが開き、以下のような画面が表示されるはずです。
@@ -46,7 +45,7 @@ npm start
 
 では、フロントエンドを構築するファイルの中身を整理していきましょう。
 
-`nft-collectible-frontend/public/index.html`を開いて、タイトルとメタディスクリプションを変更します。このステップは任意です。
+`client/public/index.html`を開いて、タイトルとメタディスクリプションを変更します。このステップは任意です。
 
 下記に、今回のプロジェクトのために用意したテンプレートを紹介します。
 
@@ -74,7 +73,7 @@ npm start
 </html>
 ```
 
-次に、`nft-collectible-frontend/src`フォルダに移動して、`App.test.js` , `logo.svg` , `setupTests.js`ファイルを削除してください。
+次に、`client/src`フォルダに移動して、`App.test.js` , `logo.svg` , `setupTests.js`ファイルを削除してください。
 
 このレッスンでは、これらのファイルは必要ありません。
 
@@ -111,7 +110,7 @@ ABI（またはApplication Binary Interface）は、コントラクトのコン�
 
 これがまさにABIファイルの役割です。
 
-`/nft-collectible/artifacts/contracts/NFTCollectible.sol/NFTCollectible.json`をVS Codeで開き中身を確認してみましょう。
+`/contract/artifacts/contracts/NFTCollectible.sol/NFTCollectible.json`をVS Codeで開き中身を確認してみましょう。
 
 ![](/public/images/Polygon-Generative-NFT/section-4/4_1_2.png)
 
@@ -119,7 +118,7 @@ ABI（またはApplication Binary Interface）は、コントラクトのコン�
 
 まず、JSONファイルをReactプロジェクトにコピーする必要があります。
 
-`nft-collectible-frontend/src`フォルダに`contracts`という新しいフォルダを作成し、`NFTCollectible.json`ファイルをコピーして貼り付けましょう。
+`client/src`フォルダに`contracts`という新しいフォルダを作成し、`NFTCollectible.json`ファイルをコピーして貼り付けましょう。
 
 次に、前回のレッスンでPolygonテストネットにデプロイしたスマートコントラクトのアドレスを取得してください。
 
@@ -535,10 +534,10 @@ setCurrentAccount(account);
 
 これをフロントエンドで行うには、スマートコントラクトに含まれる`ethers`ライブラリが必要です。
 
-ターミナルで、`nft-collectible-frontend`に移動し、以下のコマンドを実行してください。
+ターミナルで、`client`に移動し、以下のコマンドを実行してください。
 
 ```
-npm install ethers
+yarn add ethers
 ```
 
 次に、`App.js`で`ethers`ライブラリをインポートしましょう。
