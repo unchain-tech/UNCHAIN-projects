@@ -124,10 +124,21 @@ main()
 
 - `tokensOfOwner`の呼び出しは、単にブロックチェーンからデータを読み込んでいるので、ガス代はかかりません。
 
-これをローカルで実行してみましょう。
+まずは、`packages/contract/package.json`の`script`部分を以下のように編集してください。
+
+```
+"scripts": {
+    "run:script":"npx hardhat run scripts/run.js",
+    "test": "npx hardhat test",
+    "deploy": "npx hardhat run scripts/deploy.js --network sepolia",
+    "start":"npx hardhat node",
+  },
+```
+
+次にターミナル上で下記を実行してみましょう。
 
 ```bash
-npx hardhat run scripts/run.js
+yarn contract run:script
 ```
 
 ターミナルに下記のような出力結果が表示されていればテストは成功です。
@@ -169,7 +180,7 @@ Owner has tokens:  [
 `deploy.js`が作成できたら、ターミナル上で`nft-collectible`ディレクトリに移動し、下記のコマンドを実行しましょう。
 
 ```bash
-npx hardhat run scripts/deploy.js --network sepolia
+yarn contract deploy
 ```
 
 下記のような結果がターミナルに出力されていることを確認してください。
