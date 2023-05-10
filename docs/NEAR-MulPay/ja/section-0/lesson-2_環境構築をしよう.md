@@ -279,7 +279,8 @@ NEAR-Mulpay
     "typechain": "^8.1.1"
   },
 +  "scripts": {
-+    "test": "npx hardhat test"
++    "test": "npx hardhat test",
++    "deploy":"npx hardhat run scripts/deploy.ts --network testnet_aurora",
 +  }
 }
 ```
@@ -364,6 +365,24 @@ Greeter deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 flutter create client
 ```
 
+次に下のコマンドを実行して`package.json`を作成してください。
+
+```bash
+yarn init --private -y
+```
+
+その後作成したpackage.jsonファイルを下のように編集してください。
+
+```
+{
+  "name": "client",
+  "version": "1.0.0",
+  "scripts":{
+    "start": "flutter run"
+  }
+}
+```
+
 プロジェクトが完成したら`client`ディレクトリに移動して、ディレクトリ構造が以下のようになっていることを確認してください。
 
 末尾が`/`となっているものはディレクトリ、それ以外はファイルであることを示しています
@@ -378,6 +397,7 @@ client
 ├── linux/
 ├── macos/
 ├── payment_dapp.iml
+├── package.json
 ├── pubspec.lock
 ├── pubspec.yaml
 ├── test/
