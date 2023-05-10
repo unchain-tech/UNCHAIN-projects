@@ -670,7 +670,7 @@ client
 ターミナル上で以下のコマンドを実行してください。
 
 ```
-yarn contract test
+yarn client dev
 ```
 
 そしてブラウザで`http://localhost:3000 `へアクセスしてください。
