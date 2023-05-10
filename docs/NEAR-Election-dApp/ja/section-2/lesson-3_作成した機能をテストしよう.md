@@ -374,10 +374,10 @@ fn transfer_test() {
     }
 ```
 
-それでは下のコマンドをターミナルで実行しテストをしてみましょう！
+それでは`NEAR-Election-dApp`ディレクトリにいる状態で、下のコマンドをターミナルで実行しテストをしてみましょう！
 
 ```bash
-cargo test
+yarn contract test
 ```
 
 下のような結果が返ってきていれば成功です！
@@ -411,7 +411,7 @@ section1-lesson4で行った`new_default_meta関数をターミナルで走ら�
 
 具体的には`export...`から`near call $NFT_CONTRACT_ID new_default_meta...`のところまでやりましょう！
 
-それが完了したら下のコマンドをターミナルで実行させて、候補者のNFTをmintしてみましょう！
+それが完了したら`packages/contract`へ移動して下のコマンドをターミナルで実行させ、候補者のNFTをmintしてみましょう！
 
 画像のCID（IPFSで保存された画像のURI）やtitleは自由に変えてもらって大丈夫です！
 
