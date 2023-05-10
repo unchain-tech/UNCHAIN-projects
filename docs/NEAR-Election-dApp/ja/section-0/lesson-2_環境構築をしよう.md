@@ -54,37 +54,137 @@ npm install -g near-cli
 
 これで環境構築は完了です！
 
-### 🗂 ディレクトリを作成しよう
+ここからはプロジェクトを作成していきます。
+
+まず、`node` / `yarn`を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスしてください。
+
+`node v16`をインストールすることを推奨しています。
+
+それでは本プロジェクトで使用するフォルダーを作成してきましょう。作業を始めるディレクトリに移動したら、次のコマンドを実行します。
+
+```bash
+mkdir NEAR-Election-dApp
+cd NEAR-Election-dApp
+yarn init --private -y
+```
+
+NEAR-Election-dAppディレクトリ内に、package.jsonファイルが生成されます。
+
+```bash
+NEAR-Election-dApp
+ └── package.json
+```
+
+それでは、`package.json`ファイルを以下のように更新してください。
+
+```json
+{
+  "name": "NEAR-Election-dApp",
+  "version": "1.0.0",
+  "description": "Creating NFT Collections",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "contract": "yarn workspace contract",
+    "client": "yarn workspace client",
+    "test": "yarn workspace contract test"
+  }
+}
+```
+
+`package.json`ファイルの内容を確認してみましょう。
+
+モノレポを作成するにあたり、パッケージマネージャーの機能である[Workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/)を利用しています。
+
+この機能により、yarn installを一度だけ実行すれば、すべてのパッケージ（今回はコントラクトのパッケージとクライアントのパッケージ）を一度にインストールできるようになります。
+
+**workspaces**の定義をしている部分は以下になります。
+
+```json
+"workspaces": {
+  "packages": [
+    "packages/*"
+  ]
+},
+```
+
+また、ワークスペース内の各パッケージにアクセスするためのコマンドを以下の部分で定義しています。
+
+```json
+"scripts": {
+  "contract": "yarn workspace contract",
+  "client": "yarn workspace client",
+  "test": "yarn workspace contract test"
+}
+```
+
+これにより、各パッケージのディレクトリへ階層を移動しなくてもプロジェクトのルート直下から以下のようにコマンドを実行することが可能となります（ただし、各パッケージ内に`package.json`ファイルが存在し、その中にコマンドが定義されていないと実行できません。そのため、現在は実行してもエラーとなります。ファイルは後ほど作成します）。
+
+```bash
+yarn <パッケージ名> <実行したいコマンド>
+```
+
+それでは、ワークスペースのパッケージを格納するディレクトリを作成しましょう。
+
+以下のようなフォルダー構成となるように、`packages`ディレクトリとその中に`contract`ディレクトリを作成してください（`client`ディレクトリは、後ほどのレッスンでスターターコードをクローンする際に作成したいと思います）。
+
+```diff
+NEAR-Election-dApp
+ ├── package.json
++└── packages/
++    └── contract/
+```
+
+`contract`ディレクトリには、スマートコントラクトを構築するためのファイルを作成していきます。
+
+最後に、NEAR-Election-dAppディレクトリ下に`.gitignore`ファイルを作成して以下の内容を書き込みます。
+
+```bash
+**/yarn-error.log*
+
+# dependencies
+**/node_modules
+
+# misc
+**/.DS_Store
+```
+
+最終的に以下のようなフォルダー構成となっていることを確認してください。
+
+```bash
+NEAR-Election-dApp
+ ├── .gitignore
+ ├── package.json
+ └── packages/
+     └── contract/
+```
+
+これでモノレポの雛形が完成しました！
+
+### 🗂 プロジェクトを作成しよう
 
 **コントラクト用のディレクトリ作成**
 
-それでは新しいプロジェクトを作成していきましょう。まずは任意の場所にプロジェクト用のディレクトリを作成します。
-
-このプロジェクトでは`near-election-dapp`というディレクトリを作成します。
+`packages`のディレクトリに移動して下のコマンドをターミナルで実行させましょう。
 
 ```bash
-mkdir near-election-dapp
-cd  near-election-dapp
-```
-
-`near-election-dapp`のディレクトリに移動して下のコマンドをターミナルで実行させましょう。
-
-```bash
-cargo new near-election-dapp-contract --lib
+cargo new contract --lib
 ```
 
 始めの`cargo`はrustのパッケージを管理してくれるもので、JavaScriptで使っていたnpmのrust版と考えていただければOKです。
-
-次の`new`は新しいプロジェクトということを表しており、その次の`near-election-dapp-contract`はプロジェクト名を表しています。ここは自分の好きな名前に変えてもらって大丈夫です（ただし、この後もここで使った名前を使うので、同じ名前にしておいた方がスムーズに進めることができるかと思います）。
 
 最後の`--lib`はライブラリということを意味しています。これは、スマートコントラクトがライブラリだからです。これを付け忘れるとスマートコントラクトとして機能しないので忘れないように気をつけてください！
 
 **フロントエンドのディレクトリ作成**
 
-次にフロントエンドのセッティングもしていきます。`near-election-dapp`ディレクトリにいることを確認して以下のコードを実行しましょう。
+次にフロントエンドのセッティングもしていきます。`packages`ディレクトリにいることを確認して以下のコードを実行しましょう。
 
 ```bash
-npx create-near-app@3.1.0 --frontend=react --contract=rust near-election-dapp-frontend
+npx create-near-app@3.1.0 --frontend=react --contract=rust client
 ```
 
 コードを入力すると、2回ほどYes、Noを問われると思うので、全てYesを選択するで大丈夫です。
@@ -92,8 +192,6 @@ npx create-near-app@3.1.0 --frontend=react --contract=rust near-election-dapp-fr
 これによってコントラクトとフロントの接続をすでにコーディングしてくれている状態のプロジェクトを作成してくれます。
 
 このコードが意味しているのは`フロント=react`で、`コントラクト=Rust `で記述されているプロジェクトであるということです。
-
-最後の`near-election-dapp-frontend`はプロジェクト名なので自分の好きな名前に変えてもらって大丈夫です（ただし、この後もここで使った名前を使うので同じ名前にしておいた方がスムーズに進めることができるかと思います）。
 
 ここまででファイル構造は下のようなものになっているはずです。
 
@@ -106,11 +204,11 @@ tree -L 2 -F
 末尾が`/`となっているものはディレクトリ、それ以外はファイルであることを示しています
 
 ```
-near-election-dapp/
-├── near-election-dapp-contract/
+NEAR-Election-dApp/
+├── contract/
 │   ├── Cargo.toml
 │   └── src/
-└── near-election-dapp-frontend/
+└── client/
     ├── README.md
     ├── ava.config.cjs
     ├── contract/
@@ -127,10 +225,10 @@ near-election-dapp/
 https://dot-blog.jp/news/mac-zsh-tree/
 https://dot-blog.jp/news/homebrew-how-to-install/
 
-ここで`near-election-dapp-frontend`へ移って下のコマンドをターミナルで実行すると、あらかじめ用意されているコントラクトのコンパイルとデプロイがされた後にフロントエンドが起動されます！
+下のコマンドをターミナルで実行すると、あらかじめ用意されているコントラクトのコンパイルとデプロイがされた後にフロントエンドが起動されます！
 
 ```bash
-yarn dev
+yarn client dev
 ```
 
 その結果下のようになっているはずです。
@@ -144,15 +242,13 @@ https://asapoon.com/error/2795/command-not-found-yarn/
 
 次に`Tailwind`の設定をしていきましょう
 
-まずは下のコマンドをターミナルで実行し、Tailwindのインストールとconfigファイルの生成をします。
-
-注意点として、このコマンドをターミナルで実行するのは先ほど作成したフロントエンドのディレクトリである`near-election-dapp-frontend`です（名前を変えた方はその名前）。
+まずは`client`ディレクトリに移動して下のコマンドをターミナルで実行し、Tailwindのインストールとconfigファイルの生成をします。
 
 ```bash
-npm install -D tailwindcss postcss &&  npx tailwindcss init
+yarn add -D tailwindcss postcss &&  npx tailwindcss init
 ```
 
-次に上のディレクトリのnear-election-dapp-frontend/frontend/assets/css/global.cssの一番上に下のコードを追加してください
+次に上のディレクトリのclient/frontend/assets/css/global.cssの一番上に下のコードを追加してください
 
 [global.css]
 
@@ -192,9 +288,9 @@ module.exports = {
 
 これでtailwindの設定は完了したのできちんと機能しているか確認してみましょう。
 
-まずnear-election-dapp-frontend/frontend/App.jsの58行目を下のようにかえます。
+まずclient/frontend/App.jsの58行目を下のようにかえます。
 
-次にターミナル上で`near-election-dapp-frontend`に移動して、`yarn dev`を実行してみましょう！
+次にターミナル上で`client`に移動して、`yarn dev`を実行してみましょう！
 
 [App.js]
 
@@ -205,20 +301,20 @@ module.exports = {
 下のように一部分が赤字に変わっていれば成功です！
 ![](/public/images/NEAR-Election-dApp/section-0/0_2_2.png)
 
-では最後に、コントラクトのディレクトリ（ここではnear-election-dapp-frontend）内にある`contract`というディレクトリは削除してください。
+では最後に、コントラクトのディレクトリ（ここではclient）内にある`contract`というディレクトリは削除してください。
 
-先ほど`npx create-near-app@3.1.0 --frontend=react --contract=rust near-election-dapp-frontend`を実行させることによってコントラクトも同時に作られましたが、一からスマートコントラクトを作る練習ということでフロントとコントラクトを別々に作っており、ややこしくなる可能性があるのでこの作業を行います。
+先ほど`npx create-near-app@3.1.0 --frontend=react --contract=rust client`を実行させることによってコントラクトも同時に作られましたが、一からスマートコントラクトを作る練習ということでフロントとコントラクトを別々に作っており、ややこしくなる可能性があるのでこの作業を行います。
 
 最終的なファイル構造は以下のようになっていればOKです
 
 末尾が`/`となっているものはディレクトリ、それ以外はファイルであることを示しています
 
 ```bash
-near-election-dapp/
-├── near-election-dapp-contract/
+contract/
+├── contract-contract/
 │   ├── Cargo.toml
 │   ├── src/
-└── near-election-dapp-frontend/
+└── client/
     ├── README.md
     ├── ava.config.cjs
     ├── dist/

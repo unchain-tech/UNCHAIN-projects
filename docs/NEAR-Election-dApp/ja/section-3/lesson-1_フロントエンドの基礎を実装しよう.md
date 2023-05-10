@@ -4,12 +4,12 @@
 
 注意してほしいところは次の2つです
 
-1. `near-election-dapp-frontend/frontend`というディレクトリの中に作成
+1. `client/frontend`というディレクトリの中に作成
 2. `AppRouter.js`はpagesの中ではなくassetsの中に作成
 
 です。import時のPATHに関わってくるのでこれと同じように作らないと動かなくなります（もし実行時エラーなどが起きたときはこのファイルのPATHが正しいか確認してみてください）。
 
-次にフロントエンドで使う画像（下の4つの画像）をダウンロードしてnear-election-dapp-frontend/frontend/assets/imgの中にそれぞれ画像の上に示してある名前で保存しましょう。
+次にフロントエンドで使う画像（下の4つの画像）をダウンロードしてclient/frontend/assets/imgの中にそれぞれ画像の上に示してある名前で保存しましょう。
 
 `cross.png`
 
@@ -62,7 +62,7 @@
 
 ディレクトリ構造が整理できたら次は下のコマンドで必要なライブラリをインストールしましょう。
 
-この時、フロントエンドのディレクトリ(ここでは`near-election-dapp-frontend`)にいることを確認して行ってください。
+この時、フロントエンドのディレクトリ(ここでは`client`)にいることを確認して行ってください。
 
 ```bash
 npm install react-ipfs-image react-router-dom
@@ -640,7 +640,7 @@ html {
 
 なので`package.json`に移動して以下のように編集しましょう。
 
-これにより`yarn dev`が呼び出すコマンドが変わり、`neardev/dev-account.env`に記載したwallet idにdeployされているコントラクトを読みにいけるようになりました
+これにより`yarn client dev`が呼び出すコマンドが変わり、`neardev/dev-account.env`に記載したwallet idにdeployされているコントラクトを読みにいけるようになりました
 
 ```diff
 {
@@ -699,7 +699,7 @@ html {
 それでは準備は整ったので下のコマンドをターミナルで実行させてみましょう
 
 ```bash
-yarn dev
+yarn client dev
 ```
 
 ![](/public/images/NEAR-Election-dApp/section-3/3_1_5.png)
