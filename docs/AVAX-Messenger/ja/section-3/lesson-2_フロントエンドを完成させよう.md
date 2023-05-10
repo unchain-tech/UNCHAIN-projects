@@ -372,10 +372,10 @@ export default Home;
 
 ### 🖥️ web アプリを立ち上げましょう
 
-それでは`client`ディレクトリ直下で以下のコマンドを走らせ, webアプリを立ち上げてください。
+それではターミナル上で以下のコマンドを走らせ, webアプリを立ち上げてください。
 
 ```
-$ npm run dev
+yarn client start
 ```
 
 ブラウザで http://localhost:3000 へアクセスします。
