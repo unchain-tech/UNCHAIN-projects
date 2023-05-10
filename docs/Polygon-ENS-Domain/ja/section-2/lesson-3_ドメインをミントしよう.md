@@ -380,7 +380,7 @@ ABIファイルというものがあり、これはWebアプリがコントラ�
 
 ABIファイルの内容は、HardhatプロジェクトのJSONファイルにあります。
 
-前のsectionで作成したバックエンド側`cool-domains`をご覧ください。
+前のsectionで作成したバックエンド側`contract`ディレクトリをご覧ください。
 
 `artifacts/contracts/Domains.sol/Domains.json`
 
