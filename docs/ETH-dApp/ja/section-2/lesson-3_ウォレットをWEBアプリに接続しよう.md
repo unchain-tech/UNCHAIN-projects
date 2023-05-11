@@ -4,7 +4,7 @@ Webアプリケーション上で、ユーザーがイーサリアムネット�
 
 これから、あなたのWebアプリケーションにウォレットを接続したユーザーに、スマートコントラクトを呼び出す権限を付与する機能を実装していきます。これは、Webサイトへの認証機能です。
 
-ターミナル上で、`dApp-starter-project/src`に移動し、その中にある`App.js`をVS Codeで開きましょう。
+ターミナル上で、`packages/client/src`に移動し、その中にある`App.js`をVS Codeで開きましょう。
 
 下記のように、`App.js`の中身を更新します。
 
@@ -65,10 +65,10 @@ export default App;
 
 `window.ethereum`は、あなたのWebサイトを訪問したユーザーがMetaMaskを持っているか確認し、結果を`Console log`に出力します。
 
-ターミナルで`dApp-starter-project`に移動し、下記を実行してみましょう。
+ターミナルで下記を実行してみましょう。
 
 ```bash
-npm run start
+yarn client start
 ```
 
 ローカルサーバーでWebサイトを立ち上げたら、サイトの上で右クリックを行い、`Inspect`を選択します。
@@ -174,10 +174,10 @@ if (accounts.length !== 0) {
 
 ユーザーのウォレットアカウントへのアクセスが許可されている場合は、 `Found an authorized account`とConsoleに出力されます。
 
-ターミナルで再度`dApp-starter-project`に移動し、下記を実行してみましょう。
+ターミナルで再度下記を実行してみましょう。
 
 ```bash
-npm run start
+yarn client start
 ```
 
 ローカルサーバーでWebサイトを立ち上げたら、サイトの上で右クリックを行い、`Inspect`を選択します。
@@ -373,10 +373,10 @@ const connectWallet = async () => {
 
 ### 🌐 ウォレットコネクトのテストを実行する
 
-上記のコードをすべて`App.js`に反映させたら、ターミナルで`dApp-starter-project`に移動し、下記を実行しましょう。
+上記のコードをすべて`App.js`に反映させたら、ターミナルで下記を実行しましょう。
 
 ```bash
-npm run start
+yarn client start
 ```
 
 ローカルサーバーでWebサイトを立ち上げたら、MetaMaskのプラグインをクリックし、あなたのウォレットアドレスの接続状況を確認しましょう。

@@ -547,7 +547,7 @@ Owner of domain mortal: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
 Contract balance: 0.1
 ```
 
-`npx hardhat run scripts/run.js`を実行します。 大きな違いは、コンソールの出力です。 私の外観です（このスクリーンショットのURIは短縮してあります）：
+`yarn contract run:script`を実行します。 大きな違いは、コンソールの出力です。 私の外観です（このスクリーンショットのURIは短縮してあります）：
 
 ![](/public/images/Polygon-ENS-Domain/section-1/1_4_4.png)
 

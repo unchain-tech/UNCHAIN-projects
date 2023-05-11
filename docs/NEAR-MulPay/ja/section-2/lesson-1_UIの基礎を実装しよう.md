@@ -185,7 +185,7 @@ flutter:
 ![](/public/images/NEAR-MulPay/section-2/2_1_19.png)
 ![](/public/images/NEAR-MulPay/section-2/2_1_20.png)
 
-その後、下のコマンドをターミナルで実行しましょう。
+その後、`client`ディレクトリに移動して下のコマンドをターミナルで実行しましょう。
 
 ```
 flutter pub get

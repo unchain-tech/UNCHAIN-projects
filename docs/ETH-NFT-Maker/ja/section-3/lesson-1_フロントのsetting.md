@@ -21,7 +21,7 @@ GitHubのアカウントをお持ちの方は、[スターターキット](https
 まず、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
 
 
-ターミナルで先ほど作成した`NFT-Maker`ディレクトリに移動し、先ほどコピーしたリンクを貼り付け、下記を実行してください。
+ターミナル上で`ETH-NFT-Maker/packages`ディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
 
 ```bash
 git clone コピーした_github_リンク
@@ -29,24 +29,26 @@ git clone コピーした_github_リンク
 
 この段階で、フォルダ構造は下記のようになっているはずです。
 
-```
-NFT-Maker
-	|_ ipfs-nfts
-	|_ nft-maker-starter-project
+```diff
+ETH-NFT-Maker
+ ├── package.json
+ └── packages/
++    ├── client/
+     └── contract/
 ```
 
-ターミナル上で`nft-maker-starter-project`に移動して下記を実行しましょう。
+ターミナル上で`ETH-NFT-Maker`ディレクトリ下に移動して下記を実行しましょう。
 
 ```bash
-npm install
+yarn install
 ```
 
-`npm`コマンドを実行することで、JavaScriptライブラリのインストールが行われます。
+`yarn`コマンドを実行することで、JavaScriptライブラリのインストールが行われます。
 
 次に、下記を実行してみましょう。
 
 ```bash
-npm start
+yarn client start
 ```
 
 あなたのローカル環境で、Webサイトのフロントエンドが立ち上がりましたか？

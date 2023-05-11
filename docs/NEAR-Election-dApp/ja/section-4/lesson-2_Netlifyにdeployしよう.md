@@ -31,7 +31,7 @@ netlify login
 +   status = 200
 ```
 
-最後にnear-election-dapp-frontendディレクトリにいることを確認しnetlifyにコードをデプロイするために下のコマンドを実行しましょう。
+最後に`client`ディレクトリにいることを確認しnetlifyにコードをデプロイするために下のコマンドを実行しましょう。
 
 ```bash
 netlify deploy --prod

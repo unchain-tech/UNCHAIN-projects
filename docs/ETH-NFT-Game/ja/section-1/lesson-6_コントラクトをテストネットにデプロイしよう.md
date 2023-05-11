@@ -119,7 +119,7 @@ MetaMaskウォレットに`Sepolia Test Network`が設定されたら、下記�
 
 今までは、ローカル環境でスマートコントラクトのテストを行う際に、`run.js`スクリプトを使用してきました。
 
-`epic-game/scripts`ディレクトリに、`scripts`ディレクトリの中にある`deploy.js`を以下のとおり更新します。
+`contract/scripts`ディレクトリに、`scripts`ディレクトリの中にある`deploy.js`を以下のとおり更新します。
 
 内容は、既存の`run.js`に、`mintCharacterNFT`関数の呼び出しを追加しただけです。
 
@@ -184,12 +184,12 @@ runMain();
 
 これは、スマートコントラクトプロジェクトのルートディレクトリにあります。
 
-- 今回は、`epic-game`ディレクトリの直下に`hardhat.config.js`が存在するはずです。
+- 今回は、`contract`ディレクトリの直下に`hardhat.config.js`が存在するはずです。
 
-例)`epic-game`で`ls`を実行した結果
+例)`contract`で`ls`を実行した結果
 
 ```
-yukis4san@Yukis-MacBook-Pro epic-game % ls
+yukis4san@Yukis-MacBook-Pro contract % ls
 README.md			package-lock.json
 artifacts			package.json
 cache				scripts
@@ -288,10 +288,10 @@ hardhat.config.js
 
 `hardhat.config.js`の更新が完了したら、Sepolia Test Networkにコントラクトをデプロイしてみましょう。
 
-ターミナル上で`epic-game`ディレクトリに移動し、下記のコマンドを実行しましょう。
+ターミナル上で下記のコマンドを実行しましょう。
 
 ```bash
-npx hardhat run scripts/deploy.js --network sepolia
+yarn contract deploy
 ```
 
 ターミナルに、下記のような結果が出力されていることを確認してください。

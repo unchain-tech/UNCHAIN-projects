@@ -147,7 +147,7 @@ IPFS URLの中身をブラウザで確認する場合は、下記のリンクの
 
 次に、画像ごとにJSONファイルを作成し、OpenSeaなどのプラットフォームに準拠した形式にデータを形成していきます。
 
-`generative-nft-library`に向かい、`metadata.py`を開き下記のように中身を更新してください。
+`library`に向かい、`metadata.py`を開き下記のように中身を更新してください。
 
 ```javascript
 // metadata.py
@@ -174,10 +174,10 @@ BASE_JSON = {
 
 `description`にはあなたのコレクションの説明を記載しましょう。
 
-`metadata.py`の更新が完了したら、ターミナルを開き、`generative-nft-library`ディレクトリ上で、次のコマンドを実行してください。
+`metadata.py`の更新が完了したら、ターミナルを開き、`library`ディレクトリ上で、次のコマンドを実行してください。
 
 ```
-python3 metadata.py
+yarn library generate:JSON
 ```
 
 プログラムは、メタデータを生成する`edition`を要求します。
@@ -188,7 +188,7 @@ python3 metadata.py
 
 > ✍️: わたしの場合、`first collection`と入力します。
 
-プログラムが完了したら、`generative-nft-library/output/あなたのedition/json`フォルダに移動して中身を確認しましょう。
+プログラムが完了したら、`library/output/あなたのedition/json`フォルダに移動して中身を確認しましょう。
 
 下記のように、NFT画像それぞれに対してJSONファイルが生成されていれば成功です。
 
@@ -198,7 +198,7 @@ python3 metadata.py
 
 最後に、生成されたJSONファイルをIPFSにアップロードしていきましょう。
 
-`generative-nft-library/output/あなたのedition/json`フォルダを`images`フォルダをアップロードしたときと同じ要領で、IPFSにアップロードしてください。
+`library/output/あなたのedition/json`フォルダを`images`フォルダをアップロードしたときと同じ要領で、IPFSにアップロードしてください。
 
 PinataにアップロードされたJSONファイルは下記のように表示されます。
 ![](/public/images/Polygon-Generative-NFT/section-1/1_2_5.png)

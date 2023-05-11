@@ -38,7 +38,7 @@ AVAX-AMM
 それでは,開発に必要なパッケージをインストールしましょう。先ほど生成された`client`ディレクトリに移動し,以下のコマンドを実行してください。
 
 ```
-npm install ethers@5.7.1 @metamask/providers@9.1.0 react-icons
+yarn add ethers@5.7.1 @metamask/providers@9.1.0 react-icons
 ```
 
 - `ethers`: スマートコントラクトとの連携に使用します。
@@ -48,8 +48,8 @@ npm install ethers@5.7.1 @metamask/providers@9.1.0 react-icons
 ここで,開発環境がきちんと動作するか確認したいと思います。`client`ディレクトリ内に`node_modules/`や`package-lock.json`が生成されている場合は,いったん削除してください。次に,`AVAX-AMM`直下で下記を実行しましょう。
 
 ```
-npm install
-npm run client dev
+yarn install
+yarn client dev
 ```
 
 あなたのお使いのブラウザで

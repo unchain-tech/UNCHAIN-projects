@@ -393,10 +393,10 @@ const runMain = async () => {
 runMain();
 ```
 
-`run.js`を更新したら、ターミナル上で`my-wave-portal`に移動し、下記を実行します。
+`run.js`を更新したら、ターミナル上で下記を実行します。
 
 ```
-npx hardhat run scripts/run.js
+yarn contract run:script
 ```
 
 下記のような結果がターミナルに表示されていればテストは成功です。
@@ -455,10 +455,10 @@ We have 0 total waves!
 
 それでは、復習も兼ねて、下記を実行していきましょう。
 
-**1 \. ターミナル上で`my-wave-portal`に移動し、下記を実行し、コントラクトを再度デプロイする。**
+**1 \. ターミナル上で下記を実行し、コントラクトを再度デプロイする。**
 
 ```
-npx hardhat run scripts/deploy.js --network sepolia
+yarn contract deploy
 ```
 
 ターミナルに下記のような出力結果が表示されていれば、デプロイは成功です。
@@ -922,8 +922,7 @@ const [allWaves, setAllWaves] = useState([]);
 
 ### ⭐️ ローカルサーバーの立ち上げ
 
-- ターミナル上で`dApp-starter-project`に移動
-- `npm run start`を実行
+- `yarn client start`を実行
 - `localhost`でWebアプリケーションを参照
 
 こちらが、フロントエンドの実装結果の例になります。

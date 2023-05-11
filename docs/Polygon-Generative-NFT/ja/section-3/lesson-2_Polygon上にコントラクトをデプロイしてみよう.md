@@ -4,7 +4,7 @@
 
 手順はほかのイーサリアムのサイドチェーン(例：[Plasma](https://aire-voice.com/blockchain/4479/))とほぼ同じです。
 
-まず、`nft-collectible`ディレクトリに向かい、下記を修正していきましょう。
+まず、`contract`ディレクトリに向かい、下記を修正していきましょう。
 
 1 \. `.env`ファイルを下記のように修正してください。
 
@@ -57,13 +57,84 @@ module.exports = {
 };
 ```
 
-3 \. 最後に、ターミナルに向かい、`nft-collectible`ディレクトリ上で以下のコマンドを実行します。
+3 \. 最後に、ターミナルに向かい、`contract`ディレクトリ上で以下のコマンドを実行します。
 
 ```
-npx hardhat run scripts/run.js
+yarn contract run:script
 ```
 
 ターミナル上で、上記がエラーなく実行されれば、Polygonネットワークにコントラクトをデプロイする準備は完了です。
+
+
+### 🧙‍♂️ テストを作成・実行する
+
+ここまでの作業でコントラクトには基本機能として以下の機能が追加されました。
+* NFTをmintする機能
+* nftをコントラクト所有者にためにキープする機能
+* コントラクトにETHを送金できる機能
+これらの基本機能をテストスクリプトとして記述していきましょう。
+ではpackages/contract/testに`test.js`という名前でファイルを作成して、以下のように記述しましょう。
+```
+const hre = require('hardhat');
+const { expect } = require('chai');
+
+describe('Generative-NFT', () => {
+  it('mint is successed', async () => {
+    // あなたのコレクションの Base Token URI（JSON の CID）に差し替えてください
+    const baseTokenURI =
+      'ipfs.io/ipfs/QmZbWNKJPAjxXuNFSEaksCJVd1M6DaKQViJBYPK2BdpDEP/';
+
+    // オーナー/デプロイヤーのウォレットアドレスを取得する
+    const [owner] = await hre.ethers.getSigners();
+
+    // デプロイしたいコントラクトを取得
+    const contractFactory = await hre.ethers.getContractFactory(
+      'NFTCollectible',
+    );
+
+    // 正しいコンストラクタ引数（baseTokenURI）でコントラクトをデプロイします。
+    const contract = await contractFactory.deploy(baseTokenURI);
+
+    // このトランザクションがマイナーに承認（mine）されるのを待つ
+    await contract.deployed();
+
+    // NFTを 10 点、コントラクト所有者のためにキープできているかチェック
+    let txn = await contract.reserveNFTs();
+    await txn.wait();
+    let tokens = await contract.tokensOfOwner(owner.address);
+    expect(tokens.length).to.equal(10);
+
+    // 0.03 ETH を送信して3つ NFT を mint できるかチェック
+    txn = await contract.mintNFTs(3, {
+      value: hre.ethers.utils.parseEther('0.03'),
+    });
+    await txn.wait();
+    tokens = await contract.tokensOfOwner(owner.address);
+    expect(tokens.length).to.equal(13);
+  });
+});
+```
+
+では下のコマンドを実行することでコントラクトのテストをしていきましょう！
+
+```
+yarn test
+```
+
+下のような結果がでいれば成功です！
+
+```
+Compiled 17 Solidity files successfully
+
+
+  Generative-NFT
+    ✔ mint is successed (1552ms)
+
+
+  1 passing (2s)
+
+✨  Done in 5.30s.
+```
 
 ### 🕵️‍♂️ NFT 価格の再設定
 
@@ -186,7 +257,7 @@ Hardhatを使用する場合、AlchemyのカスタムRPC URLが必要です。
 
 ![](/public/images/Polygon-Generative-NFT/section-3/3_2_6.png)
 
-それでは、`nft-collectible/.env`ファイルを開き、コピーした`HTTP` URLを下記の`Alchemy Polygon URL`の部分に貼り付けていきます。
+それでは、`contract/.env`ファイルを開き、コピーした`HTTP` URLを下記の`Alchemy Polygon URL`の部分に貼り付けていきます。
 
 ```javascript
 // .env
@@ -221,7 +292,7 @@ Sepoliaとは異なり、これらのトークンの取得にそれほど問題�
 
 準備完了です!
 
-`nft-collectible/scripts`に向かい、`deploy.js`を下記のように更新してください。
+`contract/scripts`に向かい、`deploy.js`を下記のように更新してください。
 
 ```javascript
 // deploy.js
@@ -258,10 +329,22 @@ main()
   });
 ```
 
-ターミナルで`nft-collectible`ディレクトリに移動し、以下のコマンドを実行します。
+まずは、`packages/contract/package.json`の`script`部分を以下のように編集してください。
 
 ```
-npx hardhat run scripts/deploy.js --network mumbai
+"scripts": {
+    "run:script":"npx hardhat run scripts/run.js",
+    "test": "npx hardhat test",
+    "deploy:sepolia": "npx hardhat run scripts/deploy.js --network sepolia",
+    "deploy:mumbai": "npx hardhat run scripts/deploy.js --network mumbai",
+    "start":"npx hardhat node",
+  },
+```
+
+ターミナル上で下記を実行してみましょう。
+
+```
+yarn contract deploy:mumbai
 ```
 
 下記のような結果がターミナルに出力されていることを確認してください。
@@ -294,7 +377,7 @@ APIを作成したら、そのAPIの`Edit`ボタンをクリックしてくだ�
 
 ![](/public/images/Polygon-Generative-NFT/section-3/3_2_11.png)
 
-最後にもう一度`nft-collectible/.env`ファイルを開き、下記にコピーした`Polygon-API-Key`の値を貼り付けます。
+最後にもう一度`contract/.env`ファイルを開き、下記にコピーした`Polygon-API-Key`の値を貼り付けます。
 
 ```javascript
 // .env
