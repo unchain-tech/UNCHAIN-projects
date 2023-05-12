@@ -302,10 +302,10 @@ expect(await amm.totalShare()).to.eql(BigNumber.from(0));
 
 ### ⭐ テストを実行しましょう
 
-`AVAX-AMM`ディレクトリ直下で以下のコマンドを実行してください。
+ターミナル上で以下のコマンドを実行してください。
 
 ```
-$ npm run test
+yarn contract test
 ```
 
 以下のような表示がされます。
