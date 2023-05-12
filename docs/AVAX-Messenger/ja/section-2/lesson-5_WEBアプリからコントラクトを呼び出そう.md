@@ -413,7 +413,6 @@ useEffect(() => {
 前回のレッスンでコントラクトをデプロイし, このような出力がターミナルに表示されたのを覚えていますか？
 
 ```
-$ npx hardhat run scripts/deploy.ts --network fuji
 Deploying contract with the account: 0xdf90d78042C8521073422a7107262D61243a21D0
 Contract deployed at: 0xf531A6BCF3cD579f5A367cf45ff996dB1FC3beA1
 Contract's fund is: BigNumber { value: "100" }
@@ -563,10 +562,10 @@ export default function SendMessagePage() {
 前回まで`SendMessageForm`に渡していた関数の処理は空でしたが,
 `useMessengerContract`から`sendMessage`関数を取得することで, コントラクトの関数(`post`)を呼び出す処理を入れることができました。
 
-それでは`client`ディレクトリ直下で以下のコマンドを走らせ, webアプリを立ち上げてください。
+それではターミナル上でwebアプリを立ち上げてください。
 
 ```
-$ npm run dev
+yarn client dev
 ```
 
 ブラウザで http://localhost:3000 へアクセスすると以下のようにホーム画面が表示されます（ウォレットを接続している場合）
@@ -773,10 +772,10 @@ export default function ConfirmMessagePage() {
 
 🖥️ 画面で確認しましょう
 
-それでは`client`ディレクトリ直下で以下のコマンドを走らせ, webアプリを立ち上げてください。
+それではターミナル上でwebアプリを立ち上げてください。
 
 ```
-$ npm run dev
+yarn client dev
 ```
 
 ブラウザで http://localhost:3000 へアクセスして先ほど送信された自分宛のメッセージを`accept`してみましょう！

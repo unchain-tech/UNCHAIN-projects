@@ -141,16 +141,15 @@ console.log(
 
 またデプロイの処理後もログを出力するようにしています。
 
-それでは`contract`ディレクトリ直下で下記のコマンドを実行してデプロイします！
+それではターミナル上で下記のコマンドを実行してデプロイします！
 
 ```
-$ npx hardhat run scripts/deploy.ts --network fuji
+yarn contract deploy
 ```
 
 このような出力結果が出たら成功です！
 
 ```
-$ npx hardhat run scripts/deploy.ts --network fuji
 Deploying contract with the account: 0xdf90d78042C8521073422a7107262D61243a21D0
 Contract deployed at: 0xf531A6BCF3cD579f5A367cf45ff996dB1FC3beA1
 Contract's fund is: BigNumber { value: "100" }

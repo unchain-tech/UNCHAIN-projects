@@ -521,11 +521,10 @@ describe("Post", function () {
 `getOwnMessages`を呼び出すアカウントはメッセージの受信者である必要があり、`messenger.connect(otherAccount)`を呼び出すことでそれを指定できます。
 取り出したメッセージの内容が正しいかを確かめます。
 
-それではテストを実行しましょう！
-`contract`ディレクトリ直下で以下のコマンドを実行してください。
+それではテストを実行しましょう！　ターミナル上で以下のコマンドを実行してください。
 
 ```
-$ npx hardhat test
+yarn contract test
 ```
 
 以下のような表示がされたらテスト成功です！
