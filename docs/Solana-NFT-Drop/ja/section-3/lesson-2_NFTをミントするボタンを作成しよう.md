@@ -163,7 +163,7 @@ const mintToken = async () => {
 
 ### ✨ NFT をミントしよう!
 
-`CandyMachine`コンポーネントで、"Mint" ボタンをクリックしたときに`mintToken`関数を呼び出すよう設定します。return文を下記の通り修正してください。
+`CandyMachine`コンポーネントで、[Mint NFT]ボタンをクリックしたときに`mintToken`関数を呼び出すよう設定します。return文を下記の通り修正してください。
 
 ```jsx
 // CandyMachine/index.tsx
