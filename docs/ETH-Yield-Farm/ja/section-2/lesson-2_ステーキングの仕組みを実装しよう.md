@@ -175,229 +175,88 @@ hasStaked[msg.sender] = true;
 // 10. 投資家の最新のステイタスを記録するマッピングを作成
 mapping (address => bool) public isStaking;
 ```
+最後に、Yield Farmingを完成させるために、残り2つの機能を実装していきます。
+1. コミュニティのトークン発行機能
+2. ステーキングしたトークンを手元に戻す機能（アンステーキング機能）
 
-以上で、`TokenFarm.sol`の更新は終了です。次に、テストコードを更新していきます。
-### 💪 テストを更新する
+それでは早速`TokenFarm.sol`を下のように更新していきましょう!
 
-`packages/contract/contracts/test.js`を下のように更新していきましょう。
+```solidity
+pragma solidity ^0.5.0;
 
-```javascript
-// test.js
-const hre = require('hardhat');
-const { assert, expect } = require('chai');
-const web3 = require('web3');
-const { loadFixture } = require('@nomicfoundation/hardhat-network-helpers');
+import "./DappToken.sol";
+import "./MockDaiToken.sol";
 
-function tokens(n) {
-  return web3.utils.toWei(n, 'ether');
+contract TokenFarm{
+    string public name = "Dapp Token Farm";
+    address public owner;
+    DappToken public dappToken;
+    DaiToken public daiToken;
+
+    address[] public stakers;
+    mapping (address => uint) public stakingBalance;
+    mapping (address => bool) public hasStaked;
+    mapping (address => bool) public isStaking;
+
+    constructor(DappToken _dappToken, DaiToken _daiToken) public {
+        dappToken = _dappToken;
+        daiToken = _daiToken;
+        owner = msg.sender;
+    }
+
+
+    //1.ステーキング機能
+    function stakeTokens(uint _amount) public {
+        require(_amount > 0, "amount can't be 0");
+        daiToken.transferFrom(msg.sender, address(this), _amount);
+
+        stakingBalance[msg.sender] = stakingBalance[msg.sender] + _amount;
+
+        if(!hasStaked[msg.sender]){
+            stakers.push(msg.sender);
+        }
+
+        isStaking[msg.sender] = true;
+        hasStaked[msg.sender] = true;
+    }
+
+    // ----- 追加する機能 ------ //
+    //2.トークンの発行機能
+    function issueTokens() public {
+        // Dapp トークンを発行できるのはあなたのみであることを確認する
+        require(msg.sender == owner, "caller must be the owner");
+
+        // 投資家が預けた偽Daiトークンの数を確認し、同量のDappトークンを発行する
+        for(uint i=0; i<stakers.length; i++){
+            // recipient は Dapp トークンを受け取る投資家
+            address recipient = stakers[i];
+            uint balance = stakingBalance[recipient];
+            if(balance > 0){
+                dappToken.transfer(recipient, balance);
+            }
+        }
+    }
+
+    //　3.アンステーキング機能
+    // * 投資家は、預け入れた Dai を引き出すことができる
+    function unstakeTokens(uint _amount) public {
+        // 投資家がステーキングした金額を取得する
+        uint balance = stakingBalance[msg.sender];
+        // 投資家がステーキングした金額が0以上であることを確認する
+        require(balance > _amount, "staking balance should be more than unstaked amount");
+        // 偽の Dai トークンを投資家に返金する
+        daiToken.transfer(msg.sender, _amount);
+        // 返金した分のdappTokenを利子として付与する
+        dappToken.transfer(msg.sender, _amount);
+        // 投資家のステーキング残高を0に更新する
+        stakingBalance[msg.sender] = balance - _amount;
+        // 投資家のステーキング状態を更新する
+        isStaking[msg.sender] = false;
+    }
 }
-
-// eslint-disable-next-line no-undef
-describe('TokenFarm', () => {
-  async function deployTokenFixture() {
-    const [owner, investor] = await hre.ethers.getSigners();
-
-    // コントラクトのdeploy
-    const daitokenContractFactory = await hre.ethers.getContractFactory(
-      'DaiToken',
-    );
-    const dapptokenContractFactory = await hre.ethers.getContractFactory(
-      'DappToken',
-    );
-    const tokenfarmContractFactory = await hre.ethers.getContractFactory(
-      'TokenFarm',
-    );
-    const daiToken = await daitokenContractFactory.deploy();
-    const dappToken = await dapptokenContractFactory.deploy();
-    const tokenFarm = await tokenfarmContractFactory.deploy(
-      dappToken.address,
-      daiToken.address,
-    );
-
-    // 全てのDappトークンをファームに移動する(1 million)
-    await dappToken.transfer(tokenFarm.address, tokens('1000000'));
-
-    await daiToken.transfer(investor.address, tokens('100'));
-
-    return {
-      owner,
-      investor,
-      daiToken,
-      dappToken,
-      tokenFarm,
-    };
-  }
-
-  // テスト1
-  describe('Mock DAI deployment', () => {
-    it('has a name', async () => {
-      const { daiToken } = await loadFixture(deployTokenFixture);
-      const name = await daiToken.name();
-      assert.equal(name, 'Mock DAI Token');
-    });
-  });
-  // テスト2
-  describe('Dapp Token deployment', async () => {
-    it('has a name', async () => {
-      const { dappToken } = await loadFixture(deployTokenFixture);
-      const name = await dappToken.name();
-      assert.equal(name, 'DApp Token');
-    });
-  });
-
-  describe('Token Farm deployment', async () => {
-    // テスト3
-    it('has a name', async () => {
-      const { tokenFarm } = await loadFixture(deployTokenFixture);
-      const name = await tokenFarm.name();
-      assert.equal(name, 'Dapp Token Farm');
-    });
-    // テスト4
-    it('contract has tokens', async () => {
-      const { dappToken, tokenFarm } = await loadFixture(deployTokenFixture);
-      const balance = await dappToken.balanceOf(tokenFarm.address);
-      assert.equal(balance.toString(), tokens('1000000'));
-    });
-  });
-
-  describe('Farming tokens', async () => {
-    it('rewards investors for staking mDai tokens', async () => {
-      const { daiToken, dappToken, tokenFarm, investor, owner } =
-        await loadFixture(deployTokenFixture);
-      let result;
-
-      // テスト5. ステーキングの前に投資家の残高を確認する
-      result = await daiToken.balanceOf(investor.address);
-      assert.equal(
-        result.toString(),
-        tokens('100'),
-        'investor Mock DAI wallet balance correct before staking',
-      );
-
-      // テスト6. 偽のDAIトークンを確認する
-      await daiToken
-        .connect(investor)
-        .approve(tokenFarm.address, tokens('100'));
-      await tokenFarm.connect(investor).stakeTokens(tokens('100'));
-
-      // テスト7. ステーキング後の投資家の残高を確認する
-      result = await daiToken.balanceOf(investor.address);
-      assert.equal(
-        result.toString(),
-        tokens('0'),
-        'investor Mock DAI wallet balance correct after staking',
-      );
-
-      // テスト8. ステーキング後のTokenFarmの残高を確認する
-      result = await daiToken.balanceOf(tokenFarm.address);
-      assert.equal(
-        result.toString(),
-        tokens('100'),
-        'Token Farm Mock DAI balance correct after staking',
-      );
-
-      // テスト9. 投資家がTokenFarmにステーキングした残高を確認する
-      result = await tokenFarm.stakingBalance(investor.address);
-      assert.equal(
-        result.toString(),
-        tokens('100'),
-        'investor staking balance correct after staking',
-      );
-
-      // テスト10. ステーキングを行った投資家の状態を確認する
-      result = await tokenFarm.isStaking(investor.address);
-      assert.equal(
-        result.toString(),
-        'true',
-        'investor staking status correct after staking',
-      );
-
-      // ----- 追加するテストコード ------ //
-
-      // トークンを発行する
-      await tokenFarm.issueTokens();
-
-      // トークンを発行した後の投資家の Dapp 残高を確認する
-      result = await dappToken.balanceOf(investor.address);
-      assert.equal(
-        result.toString(),
-        tokens('100'),
-        'investor DApp Token wallet balance correct after staking',
-      );
-
-      // あなた（owner）のみがトークンを発行できることを確認する（もしあなた以外の人がトークンを発行しようとした場合、却下される）
-      await expect(tokenFarm.connect(investor).issueTokens()).to.be.reverted;
-
-      // トークンをアンステーキングする
-      await tokenFarm.connect(investor).unstakeTokens(tokens('60'));
-
-      // テスト11. アンステーキングの結果を確認する
-      result = await daiToken.balanceOf(investor.address);
-      assert.equal(
-        result.toString(),
-        tokens('60'),
-        'investor Mock DAI wallet balance correct after staking',
-      );
-
-      // テスト12.投資家がアンステーキングした後の Token Farm 内に存在する偽の Dai 残高を確認する
-      result = await daiToken.balanceOf(tokenFarm.address);
-      assert.equal(
-        result.toString(),
-        tokens('40'),
-        'Token Farm Mock DAI balance correct after staking',
-      );
-
-      // テスト13. 投資家がアンステーキングした後の投資家の残高を確認する
-      result = await tokenFarm.stakingBalance(investor.address);
-      assert.equal(
-        result.toString(),
-        tokens('40'),
-        'investor staking status correct after staking',
-      );
-
-      // テスト14. 投資家がアンステーキングした後の投資家の状態を確認する
-      result = await tokenFarm.isStaking(investor.address);
-      assert.equal(
-        result.toString(),
-        'false',
-        'investor staking status correct after staking',
-      );
-    });
-  });
-});
 ```
 
-`追加するテストコード`の中身をよく見てみてください。
-
-ここでのポイントは、`approve`関数を呼び出して、`investor`を`TokenFarm`の承認済みユーザとして登録している点です。
-- `approve`関数について復習したい方は、section 1のlesson 2を参照してください!
-
-`approve`関数が実行されることにより、`investor`は自身のトークンをToken Farmにステークできるようになります。
-### 🔥 テストを実行する
-
-それでは、ターミナルで下記のコマンドを実行しすることでテストしていきましょう！
-
-```bash
-truffle test
-```
-
-以下のような結果がターミナルに出力されていれば成功です🎉
-
-```bash
-Contract: TokenFarm
-    Mock DAI deployment
-      ✓ has a name (39ms)
-    Dapp Token deployment
-      ✓ has a name (43ms)
-    Token Farm deployment
-      ✓ has a name (40ms)
-      ✓ contract has tokens (51ms)
-    Farming tokens
-      ✓ rewards investors for staking mDai tokens (467ms)
-
-
-  5 passing (1s)
-```
+以上で、`TokenFarm.sol`にYield Farmingを実装する上で必要な機能が全て備わりました!
 
 ### 🙋‍♂️ 質問する
 
