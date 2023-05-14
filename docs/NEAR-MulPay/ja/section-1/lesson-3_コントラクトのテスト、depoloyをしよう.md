@@ -227,7 +227,7 @@ it("Get value ETH/DAI", async function () {
 これでtestのためのコードは書けたので、下のコマンドを実行しチェックしてみましょう。
 
 ```
-npx hardhat test
+yarn test
 ```
 
 これによって以下のような結果が返ってくるはずです。
@@ -338,7 +338,7 @@ main().catch((error) => {
 faucetでトークンをてにいれたら、下のコマンドを実行することでdeployを行いましょう！
 
 ```
-npx hardhat run scripts/deploy.ts --network testnet_aurora
+yarn contract deploy
 ```
 
 deployが正常に完了していたら下のようなメッセージが返ってくるはずです。

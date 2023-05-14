@@ -3,13 +3,7 @@
 メッセージを管理するスマートコントラクトを作成します。
 ここで作成するスマートコントラクトは,後でユースケースに合わせて自由に変更できます。
 
-`contracts`ディレクトリの下に`Messenger.sol`という名前のファイルを作成します。
-
-ターミナル上で新しくファイルを作成する場合は,下記のコマンドが役立ちます。
-
-1. `contract`ディレクトリに移動: `cd contract`
-2. `contracts`ディレクトリに移動: `cd contracts`
-3. `Messenger.sol`ファイルを作成: `touch Messenger.sol`
+`packages/contract/contracts`ディレクトリの下に`Messenger.sol`という名前のファイルを作成します。
 
 Hardhatを使用する場合,ファイル構造は非常に重要ですので,注意する必要があります。ファイル構造が下記のようになっていれば大丈夫です 😊
 
@@ -225,10 +219,8 @@ expect(await 関数呼び出し).to.equal(期待する値);
 
 ### ⭐ テストを実行しましょう
 
-`contract`ディレクトリ直下で以下のコマンドを実行してください。
-
 ```
-$ npx hardhat test
+yarn test
 ```
 
 以下のような表示がされます。
