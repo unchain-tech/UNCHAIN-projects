@@ -347,6 +347,66 @@ Greeter deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 >
 > - これは、認証作業のようなものです。
 
+### 💎 Alchemy でネットワークを作成
+
+Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押してください。
+
+![](/public/images/ETH-dApp/section-2/2_2_17.png)
+Ecosystem選択欄が出てきた場合は`Ethereum`を選択しましょう。
+
+![](/public/images/ETH-dApp/section-2/2_2_1.png)
+次に、下記の項目を埋めていきます。下図を参考にしてください。
+
+![](/public/images/ETH-dApp/section-2/2_2_2.png)
+
+- `NAME`: プロジェクトの名前(例: `WavePortal`)
+- `DESCRIPTION`: プロジェクトの概要
+- `CHAIN`: `Ethereum`を選択
+- `NETWORK`: `Sepolia`を選択
+
+それから、作成したAppの`VIEW DETAILS`をクリックします。
+![](/public/images/ETH-dApp/section-2/2_2_3.png)
+
+プロジェクトを開いたら、`VIEW KEY`ボタンをクリックします。
+![](/public/images/ETH-dApp/section-2/2_2_4.png)
+ポップアップが開くので、`HTTP`のリンクをコピーしてください。
+
+これがあなたが本番環境のネットワークに接続する際に使用する`API Key`になります。
+
+- **`API Key`は、今後必要になるので、PC 上のわかりやすいところに保存しておきましょう。**
+
+### 💻 ネットワーク情報の編集
+
+では`contract`ディレクトリにある`hardhat.config.js`というファイルを下のように編集しましょう。
+
+```
+require('@nomicfoundation/hardhat-toolbox');
+require('dotenv').config();
+
+const { PRIVATE_KEY, STAGING_ALCHEMY_KEY } = process.env;
+
+module.exports = {
+  solidity: '0.8.18',
+  networks: {
+    sepolia: {
+      url: STAGING_ALCHEMY_KEY || '',
+      accounts: PRIVATE_KEY ? [PRIVATE_KEY] : ['0'.repeat(64)],
+      allowUnlimitedContractSize: true,
+    },
+  },
+};
+```
+次に`contract`ディレクトリに`.env`ファイルを作成し下の変数を追加しましょう。
+
+`PRIVATE_KEY`にはmetamaskで作成したウォレットのPrivate Keyを、`STAGING_ALCHEMY_KEY`にはAlchemyのHTTP Keyを代入しましょう！
+
+```
+PRIVATE_KEY=
+STAGING_ALCHEMY_KEY=
+```
+
+これでSepoliaのテストネットをdeployする準備ができました!
+
 ### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discordの`#ethereum`で質問をしてください。
