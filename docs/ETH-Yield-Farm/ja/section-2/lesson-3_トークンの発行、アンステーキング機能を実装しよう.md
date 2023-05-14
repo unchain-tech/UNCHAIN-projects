@@ -231,6 +231,61 @@ Contract: TokenFarm
   5 passing (1s)
 ```
 
+### コントラクトをデプロイしよう
+
+コントラクト編の最後に、作成したコントラクトをデプロイしましょう！
+
+ではpackages/contract/scriptsに`deploy.js`という名前でファイルを作成して、以下のように記述しましょう。
+
+```
+const hre = require('hardhat');
+const web3 = require('web3');
+
+async function main() {
+  // コントラクトをdeployしているアドレスの取得
+  const [deployer] = await hre.ethers.getSigners();
+
+  // コントラクトのdeploy
+  const daitokenContractFactory = await hre.ethers.getContractFactory(
+    'DaiToken',
+  );
+  const dapptokenContractFactory = await hre.ethers.getContractFactory(
+    'DappToken',
+  );
+  const tokenfarmContractFactory = await hre.ethers.getContractFactory(
+    'TokenFarm',
+  );
+  const daiToken = await daitokenContractFactory.deploy();
+  const dappToken = await dapptokenContractFactory.deploy();
+  const tokenFarm = await tokenfarmContractFactory.deploy(
+    dappToken.address,
+    daiToken.address,
+  );
+
+  // 全てのDappトークンをファームに移動する(1 million)
+  await dappToken.transfer(
+    tokenFarm.address,
+    web3.utils.toWei('1000000', 'ether'),
+  );
+
+  console.log('Deploying contracts with account: ', deployer.address);
+  console.log('Dai Token Contract has been deployed to: ', daiToken.address);
+  console.log('Dapp Token Contract has been deployed to: ', dappToken.address);
+  console.log('TokenFarm Contract has been deployed to: ', tokenFarm.address);
+}
+
+// We recommend this pattern to be able to use async/await everywhere
+// and properly handle errors.
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
+```
+
+ここで行っていることは単純なことで、各コントラクトをデプロイしたのちにトークンファームにdApp用のトークンを全て移動しているというものです。
+
+dApp用のトークンはアンステーキングのときに投資家の方に自動的に配布される必要があるのでコントラクトに移されています。
+
 ### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discordの`#ethereum`で質問をしてください。
