@@ -139,7 +139,6 @@ const mintToken = async () => {
 // CandyMachine/index.tsx
 const CandyMachine = (props: CandyMachineProps) => {
 
-  const [startDate, setStartDate] = useState<Date | null>(null);
   // mintToken関数が実行中かどうかを管理するステートを追加する。
   const [isMinting, setIsMinting] = useState(false);
 ```

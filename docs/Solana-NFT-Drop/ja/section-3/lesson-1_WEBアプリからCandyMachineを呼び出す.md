@@ -97,11 +97,11 @@ NEXT_PUBLIC_SOLANA_RPC_HOST=https://explorer-api.devnet.solana.com
 
 4\. `sugar upload`コマンドを実行して、NFTをアップロードする
 
-5\. `sugar deploy`コマンドを実行して、新しいCandy Machineを作成してデプロイする
+5\. `sugar deploy`コマンドを実行して、新しいCandy Machineを作成してデプロイする (確認は`sugar verify`)
 
-6\. `sugar verify`コマンドを実行し、NFTがアップロードされ、Candy Machineが構成されていることを確認する
+6\. config.jsonファイルにGuardの設定を記述し、`sugar guard add`コマンドを実行して設定を反映させる (確認は`sugar guard show`)
 
-7\. `.env`ファイルを新しいアドレスで更新する
+7\. `.env`ファイルを新しいCandy Machineのアドレスで更新する
 
 これらの手順を踏まずに変更してしまうとバグの原因になるので気を付けてください。
 
@@ -306,7 +306,6 @@ const CandyMachine = (props: CandyMachineProps) => {
     CandyMachineType | undefined
   >(undefined);
   const [candyGuard, setCandyGuard] = useState<CandyGuardType | null>(null);
-  const [startDate, setStartDate] = useState<Date | null>(null);
 
   const getCandyMachineState = async () => {
     try {
@@ -319,8 +318,6 @@ const CandyMachine = (props: CandyMachineProps) => {
 
           const startDateString = new Date(Number(candyGuard?.guards.startDate.value.date) * 1000);
           console.log(`startDateString: ${startDateString}`);
-          // 取得したデータをstate変数に保存します。
-          setStartDate(startDateString);
         }
 
         // 取得したデータをstate変数に保存します。

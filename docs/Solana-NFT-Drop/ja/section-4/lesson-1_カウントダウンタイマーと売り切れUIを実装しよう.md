@@ -103,10 +103,15 @@ import CountdownTimer from '@/components/CountdownTimer';
 ```jsx
 // CandyMachine/index.tsx
 // レンダリング関数を作成します。
-const renderDropField = (candyMachine: CandyMachineType, startDate: Option<StartDateType>) => {
+const renderDropField = (
+  candyMachine: CandyMachineType,
+  candyGuard: CandyGuardType,
+) => {
+  const startDate: Option<StartDateType> = candyGuard.guards.startDate;
   if (startDate.__option === 'None') {
     return;
   }
+
   // JavaScriptのDateオブジェクトで現在の日付とDropDateを取得します。
   const currentDate = new Date();
   const dropDate = new Date(Number(startDate.value.date) * 1000);
@@ -124,15 +129,13 @@ const renderDropField = (candyMachine: CandyMachineType, startDate: Option<Start
         {' '}
         {`Items Minted: ${candyMachine.itemsRedeemed} / ${candyMachine.data.itemsAvailable}`}
       </p>
-      {
-        <button
-          className={`${styles.ctaButton} ${styles.mintButton}`}
-          onClick={mintToken}
-          disabled={isMinting}
-        >
-          Mint NFT
-        </button>
-      }
+      <button
+        className={`${styles.ctaButton} ${styles.mintButton}`}
+        onClick={() => mintToken(candyMachine, candyGuard)}
+        disabled={isMinting}
+      >
+        Mint NFT
+      </button>
     </>
   );
 };
@@ -232,20 +235,17 @@ const renderDropField = (candyMachine: CandyMachineType, startDate: Option<Start
         {' '}
         {`Items Minted: ${candyMachine.itemsRedeemed} / ${candyMachine.data.itemsAvailable}`}
       </p>
-      {
-        {/* プロパティが等しいかチェックします */}
-        candyMachine.itemsRedeemed === candyMachine.data.itemsAvailable ? (
-          <p className={styles.subText}>Sold Out 🙊</p>
-        ) : (
-          <button
-            className={`${styles.ctaButton} ${styles.mintButton}`}
-            onClick={mintToken}
-            disabled={isMinting}
-          >
-            Mint NFT
-          </button>
-        )
-      }
+      {candyMachine.itemsRedeemed === candyMachine.data.itemsAvailable ? (
+        <p className={styles.subText}>Sold Out 🙊</p>
+      ) : (
+        <button
+          className={`${styles.ctaButton} ${styles.mintButton}`}
+          onClick={() => mintToken(candyMachine, candyGuard)}
+          disabled={isMinting}
+        >
+          Mint NFT
+        </button>
+      )}
     </>
   );
 };
@@ -272,4 +272,4 @@ const renderDropField = (candyMachine: CandyMachineType, startDate: Option<Start
 
 ---
 
-次のレッスンに進んで、ほかの機能をWebアプリケーションを完成させましょう 🎉
+次のレッスンに進んで、VercelにWebアプリケーションをデプロイしましょう 🎉

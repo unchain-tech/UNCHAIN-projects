@@ -63,13 +63,13 @@ Phantom Wallet拡張機能がインストールされている場合は、`windo
 // index.tsx
 import Head from 'next/head';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import twitterLogo from '@/public/twitter-logo.svg';
 import styles from '@/styles/Home.module.css';
 
 // 定数の宣言
-const TWITTER_HANDLE = "あなたのTwitterハンドル";
+const TWITTER_HANDLE = 'あなたのTwitterハンドル';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const Home = () => {
@@ -100,8 +100,7 @@ const Home = () => {
     const onLoad = async () => {
       await checkIfWalletIsConnected();
     };
-    window.addEventListener('load', onLoad);
-    return () => window.removeEventListener('load', onLoad);
+    onLoad();
   }, []);
 
   return (
@@ -169,8 +168,7 @@ useEffect(() => {
   const onLoad = async () => {
     await checkIfWalletIsConnected();
   };
-  window.addEventListener("load", onLoad);
-  return () => window.removeEventListener("load", onLoad);
+  onLoad();
 }, []);
 ```
 
