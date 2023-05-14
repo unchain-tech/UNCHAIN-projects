@@ -253,7 +253,8 @@ ETH-Yield-Farm
     "hardhat": "^2.13.0",
     "hardhat-gas-reporter": "^1.0.9",
     "solidity-coverage": "^0.8.2",
-    "typechain": "^8.1.1"
+    "typechain": "^8.1.1",
+    "dotenv": "^16.0.3"
   },
 +  "scripts": {
 +    "test": "npx hardhat test"
