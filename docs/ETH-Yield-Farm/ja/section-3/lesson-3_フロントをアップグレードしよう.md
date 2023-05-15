@@ -1,450 +1,362 @@
 ###  🖥 このレッスンの参考動画URL
 [Dapp University](https://youtu.be/CgXQC4dbGUE?t=7594)
 
-### 🔥 バックエンドとフロントエンドの接続部分の残りを完成させる
+### 🔥 コントラクトとフロントエンドの接続部分の残りを完成させる
 
-前のレッスンで作成させたものに加えて仕上げをしてバックエンドとフロントエンドの接続部分を完成させましょう!
+前のレッスンで作成させたものに加えてコントラクトとフロントエンドの接続部分を完成させましょう!
 
-`App.js`を以下のように更新してください。
+まずはコントラクトとやりとりをするためにABIファイルをフロントの方に追加していきます。`packages/client/src`に`abis`ディレクトリを作成して、以下のようにファイルを３つ作成しましょう。
+
+```
+abis
+├── DaiToken.json
+├── DappToken.json
+└── TokenFarm.json
+```
+その後`packages/contract/artifacts/contracts`下にあるそれぞれのコントラクトのディレクトリ下にある.jsonファイルの内容をコピーして先ほど作成したファイルにそれぞれ貼り付けましょう。
+
+これでディレクトリ構造は整いました。
+
+次に`App.js`を以下のように更新してください。
+
+23~25行目の部分には、コントラクトのデプロイ時に出てくるアドレスをそれぞれ対応する変数に代入してください。
 
 ```javascript
 // App.js
-// フロントエンドを構築する上で必要なファイルやライブラリをインポートする
-import React, { Component } from 'react'
-import Web3 from 'web3'
-import DaiToken from '../abis/DaiToken.json'
-import DappToken from '../abis/DappToken.json'
-import TokenFarm from '../abis/TokenFarm.json'
-import Navbar from './Navbar'
-import Main from './Main'
-import './App.css'
+import { ethers } from 'ethers';
+import React, { useEffect, useState } from 'react';
 
-class App extends Component {
-  // componentWillMount(): 主にサーバーへのAPIコールを行うなど、実際のレンダリングが行われる前にサーバーサイドのロジックを実装するために使用。
-  async componentWillMount() {
-    await this.loadWeb3()
-    await this.loadBlockchainData()
-  }
-  // loadBlockchainData(): ブロックチェーン上のデータとやり取りするための関数
-  // MetaMask との接続によって得られた情報とコントラクトとの情報を使って描画に使う情報を取得。
-  async loadBlockchainData() {
-    const web3 = window.web3
-    // ユーザーの Metamask の一番最初のアカウント（複数アカウントが存在する場合）取得
-    const accounts = await web3.eth.getAccounts()
-    // ユーザーの Metamask アカウントを設定
-    // この機能により、App.js に記載されている constructor() 内の account（デフォルト: '0x0'）が更新される
-    this.setState({ account: accounts[0] })
-    // ユーザーが Metamask を介して接続しているネットワークIDを取得
-    const networkId = await web3.eth.net.getId()
+/* ABIファイルをインポートする */
+import daiAbi from './abis/DaiToken.json';
+import dappAbi from './abis/DappToken.json';
+import tokenfarmAbi from './abis/TokenFarm.json';
+import './App.css';
 
-    // DaiToken のデータを取得
-    const daiTokenData = DaiToken.networks[networkId]
-    if (daiTokenData) {
-      // DaiToken の情報を daiToken に格納する
-      const daiToken = new web3.eth.Contract(DaiToken.abi, daiTokenData.address)
-      // constructor() 内の daiToken の情報を更新する
-      this.setState({ daiToken })
-      // ユーザーの Dai トークンの残高を取得する
-      let daiTokenBalance = await daiToken.methods.balanceOf(this.state.account).call()
-      // daiTokenBalance（ユーザーの Dai トークンの残高）をストリング型に変更する
-      this.setState({ daiTokenBalance: daiTokenBalance.toString() })
-      // ユーザーの Dai トークンの残高をフロントエンドの Console に出力する
-      console.log(daiTokenBalance.toString())
-    } else {
-      window.alert('DaiToken contract not deployed to detected network.')
-    }
-    // ↓ --- 1. 追加するコード ---- ↓
-    // DappToken のデータを取得
-    const dappTokenData = DappToken.networks[networkId]
-    if (dappTokenData) {
-      // DappToken の情報を dappToken に格納する
-      const dappToken = new web3.eth.Contract(DappToken.abi, dappTokenData.address)
-      // constructor() 内の dappToken の情報を更新する
-      this.setState({ dappToken })
-      // ユーザーの Dapp トークンの残高を取得する
-      let dappTokenBalance = await dappToken.methods.balanceOf(this.state.account).call()
-      // dappTokenBalance（ユーザーの Dapp トークンの残高）をストリング型に変更する
-      this.setState({ dappTokenBalance: dappTokenBalance.toString() })
-      // ユーザーの Dapp トークンの残高をフロントエンドの Console に出力する
-      console.log(dappTokenBalance.toString())
-    } else {
-      window.alert('DappToken contract not deployed to detected network.')
-    }
+function App() {
+  /* ユーザーのパブリックウォレットを保存するために使用する状態変数を定義 */
+  const [currentAccount, setCurrentAccount] = useState('');
 
-    // tokenFarmData のデータを取得
-    const tokenFarmData = TokenFarm.networks[networkId]
-    if (tokenFarmData) {
-      // TokenFarm の情報を tokenFarm に格納する
-      const tokenFarm = new web3.eth.Contract(TokenFarm.abi, tokenFarmData.address)
-      // constructor() 内の tokenFarm の情報を更新する
-      this.setState({ tokenFarm })
-      // tokenFarm 内にステーキングされている Dai トークンの残高を取得する
-      let tokenFarmBalance = await tokenFarm.methods.stakingBalance(this.state.account).call()
-      // tokenFarmBalance をストリング型に変更する
-      this.setState({ stakingBalance: tokenFarmBalance.toString() })
-      // ユーザーの tokenFarmBalance をフロントエンドの Console に出力する
-      console.log(tokenFarmBalance.toString())
-    } else {
-      window.alert('TokenFarm contract not deployed to detected network.')
-    }
-    // ↑ --- 1. 追加するコード ---- ↑
-  }
-  // loadWeb3(): ユーザーが Metamask アカウントを持っているか確認する関数
-  async loadWeb3() {
-    // ユーザーが Metamask のアカウントを持っていた場合は、アドレスを取得
-    if (window.ethereum) {
-      window.web3 = new Web3(window.ethereum)
-      await window.ethereum.enable()
-    }
-    else if (window.web3) {
-      window.web3 = new Web3(window.web3.currentProvider)
-    }
-    // ユーザーが Metamask のアカウントを持っていなかった場合は、エラーを返す
-    else {
-      window.alert('Non ethereum browser detected. You should consider trying to install metamask')
-    }
+  // 各トークンの残高を保存するために使用する状態変数を定義
+  const [currentDaiBalance, setDaiBalance] = useState('0');
+  const [currentDappBalance, setDappBalance] = useState('0');
 
-    this.setState({ loading: false })
-  }
-  // ↓ --- 2. 追加するコード ---- ↓
-  // TokenFarm.sol に記載されたステーキング機能を呼び出す
-  stakeTokens = (amount) => {
-    this.setState({ loading: true })
-    this.state.daiToken.methods.approve(this.state.tokenFarm._address, amount).send({ from: this.state.account }).on('transactionHash', (hash) => {
-      this.state.tokenFarm.methods.stakeTokens(amount).send({ from: this.state.account }).on('transactionHash', (hash) => {
-        this.setState({ loading: false })
-      })
-    })
-  }
-  // TokenFarm.sol に記載されたアンステーキング機能を呼び出す
-  unstakeTokens = (amount) => {
-    this.setState({ loading: true })
-    this.state.tokenFarm.methods.unstakeTokens(amount).send({ from: this.state.account }).on('transactionHash', (hash) => {
-      this.setState({ loading: false })
-    })
-  }
-  // ↑ --- 2. 追加するコード ---- ↑
+  // フォームの入力値を保存するために使用する状態変数を定義
+  const [stakedToken, setStakedToken] = useState('0');
+  const [transferAddress, setTransferAddress] = useState('');
 
-  // constructor(): ブロックチェーンから読み込んだデータ + ユーザーの状態を更新する関数
-  constructor(props) {
-    super(props)
-    this.state = {
-      account: '0x0',
-      daiToken: {},
-      dappToken: {},
-      tokenFarm: {},
-      daiTokenBalance: '0',
-      dappTokenBalance: '0',
-      stakingBalance: '0',
-      loading: true
-    }
+  // コントラクトアドレスを記載
+  const daiTokenAddress = '0x30F80dd46e82Ec3A3cd0fe5aF29b378525F7e693';
+  const dappTokenAddress = '0xe9eF0ccF59a3A5E255d6270A8BAF8e9bC5502756';
+  const tokenfarmAddress = '0xb17c21AFD8775357b4a65b234081bddd87F825f7';
+
+  //ウォレットアドレス(コントラクトの保持者)を記載
+  const walletAddress = '0x04CD057E4bAD766361348F26E847B546cBBc7946';
+
+  /* ABIの内容を参照する変数を作成 */
+  const daiTokenABI = daiAbi.abi;
+  const dappTokenABI = dappAbi.abi;
+  const tokenfarmABI = tokenfarmAbi.abi;
+
+  // コントラクトのインスタンスを格納する変数
+  let daiContract;
+  let dappContract;
+  let tokenfarmContract;
+
+  // ETHに変換する関数
+  function convertToEth(n) {
+    return n / 10 ** 18;
   }
 
-  // フロントエンドのレンダリングが以下で実行される
-  render() {
-    let content
-    if (this.state.loading) {
-      content = <p id='loader' className='text-center'>Loading...</p>
-    } else {
-      content = <Main
-        daiTokenBalance={this.state.daiTokenBalance}
-        dappTokenBalance={this.state.dappTokenBalance}
-        stakingBalance={this.state.stakingBalance}
-        stakeTokens={this.stakeTokens}
-        unstakeTokens={this.unstakeTokens}
-      />
+  // WEIに変換する関数
+  function convertToWei(n) {
+    return n * 10 ** 18;
+  }
+
+  // 各トークンの残高を取得する関数
+  const getBalance = async () => {
+    const { ethereum } = window;
+    try {
+      if (ethereum) {
+        // コントラクトのインスタンスを作成
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+        console.log(signer);
+
+        daiContract = new ethers.Contract(daiTokenAddress, daiTokenABI, signer);
+        dappContract = new ethers.Contract(
+          dappTokenAddress,
+          dappTokenABI,
+          signer,
+        );
+        tokenfarmContract = new ethers.Contract(
+          tokenfarmAddress,
+          tokenfarmABI,
+          signer,
+        );
+
+        // 各トークンの残高を格納
+        let daiBalance = await daiContract.balanceOf(currentAccount);
+        let dappBalance = await dappContract.balanceOf(currentAccount);
+        setDaiBalance(convertToEth(daiBalance));
+        setDappBalance(convertToEth(dappBalance));
+      }
+    } catch (error) {
+      console.log(error);
     }
-    return (
-      <div>
-        <Navbar account={this.state.account} />
-        <div className="container-fluid mt-5">
-          <div className="row">
-            <main role="main" className="col-lg-12 ml-auto mr-auto" style={{ maxWidth: '600px' }}>
-              <div className="content mr-auto ml-auto">
-                <a
-                  href="http://www.dappuniversity.com/bootcamp"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                </a>
+  };
 
-                {content}
+  // stakeする値を格納する関数
+  const handleStakeChange = (event) => {
+    setStakedToken(event.target.value);
+    console.log('staked token is:', event.target.value);
+  };
 
-              </div>
-            </main>
+  // stake関数
+  const stake = async () => {
+    try {
+      if (currentAccount !== '') {
+        await daiContract.approve(
+          tokenfarmContract.address,
+          convertToWei(stakedToken).toString(),
+        );
+        await tokenfarmContract.stakeTokens(
+          convertToWei(stakedToken).toString(),
+        );
+        console.log('value is:', stakedToken);
+      }
+      console.log('Connect Wallet');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // unstake関数
+  const unStake = async () => {
+    try {
+      if (currentAccount !== '') {
+        await tokenfarmContract.unstakeTokens(
+          convertToWei(stakedToken).toString(),
+        );
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // transferする先のアドレスを格納する関数
+  const handleTransferChange = (event) => {
+    setTransferAddress(event.target.value);
+    console.log('staked token is:', event.target.value);
+  };
+
+  // transfer関数
+  const transfer = async (event) => {
+    try {
+      if (currentAccount !== '') {
+        await daiContract.transfer(
+          transferAddress,
+          convertToWei(100).toString(),
+        );
+        console.log('Successed to transfer DAI token to:', transferAddress);
+      }
+      console.log('Connect Wallet');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // ウォレット接続を確認する関数
+  const checkIfWalletIsConnected = async () => {
+    try {
+      const { ethereum } = window;
+      if (!ethereum) {
+        console.log('Make sure you have MetaMask!');
+        return;
+      } else {
+        console.log('We have the ethereum object', ethereum);
+      }
+      /* ユーザーのウォレットへのアクセスが許可されているかどうかを確認 */
+      const accounts = await ethereum.request({ method: 'eth_accounts' });
+      if (accounts.length !== 0) {
+        const account = accounts[0];
+        console.log('Found an authorized account:', account);
+        setCurrentAccount(account);
+        getBalance();
+      } else {
+        console.log('No authorized account found');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // ウォレットに接続する関数
+  const connectWallet = async () => {
+    try {
+      const { ethereum } = window;
+      if (!ethereum) {
+        console.error('Get MetaMask!');
+        return;
+      }
+      const accounts = await ethereum.request({
+        method: 'eth_requestAccounts',
+      });
+      console.log('Connected: ', accounts[0]);
+      setCurrentAccount(accounts[0]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // リロードごとにウォレット接続を確認する
+  useEffect(() => {
+    checkIfWalletIsConnected();
+  });
+
+  return (
+    <div className="h-screen w-screen flex-col flex">
+      <div className="text-ellipsis h-20 w-full flex items-center justify-between bg-black">
+        <div className="flex items-center">
+          <img src={'farmer.png'} alt="Logo" className="px-5" />;
+          <div className="text-white text-3xl">ETH Yield Farm</div>
+        </div>
+        {currentAccount === '' ? (
+          <button
+            className="text-white mr-10 px-3 py-1 text-2xl border-solid border-2 border-white flex items-center justify-center"
+            onClick={connectWallet}
+          >
+            Connect Wallet
+          </button>
+        ) : (
+          <div className="text-gray-400 text-lg pr-5">{currentAccount}</div>
+        )}
+      </div>
+      <div className=" w-screen h-full flex-1 items-center justify-center flex flex-col">
+        <div className="w-1/2 h-1/3 flex justify-center items-center pt-36">
+          <div className="w-1/2 h-1/2 flex justify-center items-center flex-col">
+            <div>Staking Balance</div>
+            <div>{currentDaiBalance} DAI</div>
+          </div>
+          <div className="w-1/2 h-1/2 flex justify-center items-center flex-col">
+            <div>Reward Balance</div>
+            <div>{currentDappBalance} DAPP</div>
           </div>
         </div>
+        <div className="h-1/2 w-1/2 flex justify-start items-center flex-col">
+          <div className="flex-row flex justify-between items-end w-full px-20">
+            <div className="text-xl">Stake Tokens</div>
+            <div className="text-gray-300">
+              Balance: {currentDaiBalance} DAI
+            </div>
+          </div>
+          <div className="felx-row w-full flex justify-between items-end px-20 py-3">
+            <input
+              placeholder="0"
+              className="flex items-center justify-start border-solid border-2 border-black w-full h-10 pl-3"
+              type="text"
+              id="stake"
+              name="stake"
+              value={stakedToken}
+              onChange={handleStakeChange}
+            />
+            <div className="flex-row flex justify-between items-end">
+              <img src={'dai.png'} alt="Logo" className="px-5 h-9 w-18" />
+              <div>DAI</div>
+            </div>
+          </div>
+          <div
+            className="w-full h-14 bg-blue-500 text-white m-3 flex justify-center items-center"
+            onClick={stake}
+          >
+            Stake!
+          </div>
+          <div className="text-blue-400" onClick={unStake}>
+            UN-STAKE..
+          </div>
+          {currentAccount.toUpperCase() === walletAddress.toUpperCase() ? (
+            <>
+              <div className="text-xl pt-20">Transfer 100 DAI</div>
+              <div className="felx-row w-full flex justify-between items-end px-20 py-3">
+                <input
+                  placeholder="0x..."
+                  className="flex items-center justify-start border-solid border-2 border-black w-full h-10 pl-3"
+                  type="text"
+                  id="transfer"
+                  name="transfer"
+                  value={transferAddress}
+                  onChange={handleTransferChange}
+                />
+              </div>
+              <div
+                className="w-full h-14 bg-blue-500 text-white m-3 flex justify-center items-center"
+                onClick={transfer}
+              >
+                Transfer!
+              </div>
+            </>
+          ) : (
+            <></>
+          )}
+        </div>
+        <div className="flex-1"></div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default App;
-
 ```
 
-まずは以下のインポート部分を見ていきましょう。
+これでコントラクトとフロントの接続が完成しました！
 
-```javascript
-// App.js
-import React, { Component } from 'react'
-import Web3 from 'web3'
-import DaiToken from '../abis/DaiToken.json'
-import DappToken from '../abis/DappToken.json'
-import TokenFarm from '../abis/TokenFarm.json'
-import Navbar from './Navbar'
-import Main from './Main'
-import './App.css'
-```
+次の部分でフロントから動作確認をしてみましょう。
 
-ここで注目していただきたいのは、`DappToken.json`、`TokenFarm.json`、`Main.js`をインポートしている点です。
+### 動作確認をしよう
 
-`Main.js`は、ユーザーの状態に応じてフロントエンドの表示（UI）を変えたいときに、if文が多すぎてコードが読みづらくならないように、コードを分割して保存するために使うファイルです。このレッスンの最後に作成します🔥
+まずはブラウザ上でのmetamaskのアカウントをコントラクトをdeployするときに使用したアドレスに変更してください。
 
-つまり、ロード時以外のフロントエンドでレンダリングされるデザインは、`Main.js`にあるのです!
-
-次に、`dappTokenData`と`tokenFarmData`を使用し、スマートコントラクトのデータをWebアプリに読み込むコードを見ていきましょう。
-
-```javascript
-// App.js
-// ↓ --- 1. 追加するコード ---- ↓
-// DappToken のデータを取得
-const dappTokenData = DappToken.networks[networkId]
-if(dappTokenData){
-  // DappToken の情報を dappToken に格納する
-  const dappToken = new web3.eth.Contract(DappToken.abi, dappTokenData.address)
-  // constructor() 内の dappToken の情報を更新する
-  this.setState({dappToken})
-  // ユーザーの Dapp トークンの残高を取得する
-  let dappTokenBalance = await dappToken.methods.balanceOf(this.state.account).call()
-  // dappTokenBalance（ユーザーの Dapp トークンの残高）をストリング型に変更する
-  this.setState({dappTokenBalance: dappTokenBalance.toString()})
-  // ユーザーの Dapp トークンの残高をフロントエンドの Console に出力する
-  console.log(dappTokenBalance.toString())
-}else{
-  window.alert('DappToken contract not deployed to detected network.')
-}
-
-// tokenFarmData のデータを取得
-const tokenFarmData = TokenFarm.networks[networkId]
-if(tokenFarmData){
-  // TokenFarm の情報を tokenFarm に格納する
-  const tokenFarm = new web3.eth.Contract(TokenFarm.abi, tokenFarmData.address)
-  // constructor() 内の tokenFarm の情報を更新する
-  this.setState({tokenFarm})
-  // tokenFarm 内にステーキングされている Dai トークンの残高を取得する
-  let tokenFarmBalance = await tokenFarm.methods.stakingBalance(this.state.account).call()
-  // tokenFarmBalance をストリング型に変更する
-  this.setState({stakingBalance: tokenFarmBalance.toString()})
-  // ユーザーの tokenFarmBalance をフロントエンドの Console に出力する
-  console.log(tokenFarmBalance.toString())
-}else{
-  window.alert('TokenFarm contract not deployed to detected network.')
-}
-// ↑ --- 1. 追加するコード ---- ↑
-```
-
-実際に、フロントエンドをブラウザで確認する際に、右クリック → `Inspect` → `Console`を選択して、`console.log`で出力される結果を確認してみてください。
-
-次に`stakeTokens`、`unstakeTokens`メソッドについて書かれた部分を見ていきましょう。
-
-```javascript
-// App.js
-// ↓ --- 2. 追加するコード ---- ↓
-// TokenFarm.sol に記載されたステーキング機能を呼び出す
-stakeTokens = (amount) => {
-  this.setState({loading: true})
-  this.state.daiToken.methods.approve(this.state.tokenFarm._address, amount).send({from: this.state.account}).on('transactionHash', (hash)=> {
-    this.state.tokenFarm.methods.stakeTokens(amount).send({from: this.state.account}).on('transactionHash', (hash) => {
-      this.setState({loading: false})
-    })
-  })
-}
-// TokenFarm.sol に記載されたアンステーキング機能を呼び出す
-unstakeTokens = (amount) => {
-  this.setState({loading: true})
-  this.state.tokenFarm.methods.unstakeTokens(amount).send({from: this.state.account}).on('transactionHash', (hash) => {
-    this.setState({loading: false})
-  })
-}
-// ↑ --- 2. 追加するコード ---- ↑
-```
-
-ここでは`TokenFarm.sol`で作成されたメソッドを呼び出して、フロントエンド上でユーザーがステーキングとアンステーキングを行うための処理が記述されています。
-
-最後に`render`メソッドの中で`return`の前に書かれている処理を見ていきましょう。
-
-```javascript
-// App.js
-let content
-    if(this.state.loading){
-      content = <p id='loader' className='text-center'>Loading...</p>
-    }else{
-      content = <Main
-        daiTokenBalance = {this.state.daiTokenBalance}
-        dappTokenBalance = {this.state.dappTokenBalance}
-        stakingBalance = {this.state.stakingBalance}
-        stakeTokens = {this.stakeTokens}
-        unstakeTokens={this.unstakeTokens}
-      />
-    }
-```
-
-ここでは、`render`メソッドを使用することで、フロントエンドの状態により、描画するコンポーネントを切り替える処理が記載されています。
-
-`App.js`の中に以下のようなコードが記載されていることにお気づきでしょうか？
-
-```javascript
-// App.js
-this.setState({loading: true})
-```
-```javascript
-// App.js
-this.setState({loading: false})
-```
-
-`this.setState()`は、フロントエンドがローディング状態であるか否か設定する関数です。この関数により、フロントエンドに異なるコンポーネントが表示されます。
-- `loading`が`true`の場合にはフロントエンド画面に`loading`と表示されます。
-- `loading`が`false`の場合は`Main`コンポーネントに変数を受け渡して、`Main`コンポーネントに書かれているデザインがフロントエンドに描画されます。
-
-### 👨‍🎨 `Main.js`を作成する
-
-それでは、仕上げに`Main.js`を`Components`ディレクトリに作成していきます。
-
-ターミナルを開いて`yield-farm-starter-project`にいることを確認したら、下記のコードを実行してください。
+ではフロントを立ち上げてみて、機能しているかを確認してみましょう。
 
 ```bash
-touch src/components/Main.js
-```
-
-ファイルが完成したら`Main.js`に以下のコードを記述してください。
-
-```javascript
-// Main.js
-import React, { Component } from 'react'
-import dai from '../dai.png'
-class Main extends Component {
-    render() {
-        return (
-            <div id='content' className='mt-3'>
-                <table className='table table-borderless text-muted text-center'>
-                    <thead>
-                        <tr>
-                            <th scope='col'>Staking Balance</th>
-                            <th scope='col'>Reward Balance</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{window.web3.utils.fromWei(this.props.stakingBalance, 'Ether')} mDAI</td>
-                            <td>{window.web3.utils.fromWei(this.props.dappTokenBalance, 'Ether')} DAPP</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div className='card mb-4'>
-                    <div className='card-body'>
-                        <form className='mb-3' onSubmit={(event) => {
-                            event.preventDefault()
-                            let amount
-                            amount = this.input.value.toString()
-                            amount = window.web3.utils.toWei(amount, 'Ether')
-                            this.props.stakeTokens(amount)
-                        }}>
-                            <div>
-                                <label className='float-left'><b>Stake Tokens</b></label>
-                                <span className='float-right text-muted'>
-                                    Balance: {window.web3.utils.fromWei(this.props.daiTokenBalance, 'Ether')}
-                                </span>
-                            </div>
-                            <div className='input-group mb-4'>
-                                <input
-                                    type="text"
-                                    ref={(input) => { this.input = input }}
-                                    className="form-control form-control-lg"
-                                    placeholder='0'
-                                    required
-                                    id='value'
-                                />
-                                <div className='input-group-append'>
-                                    <img src={dai} height='32' alt="" />
-                                    &nbsp;&nbsp;&nbsp; mDai
-                                </div>
-                            </div>
-                            <button type='submit' className='btn btn-primary btn-block btn-lg'>STAKE!</button>
-                        </form>
-                        <button
-                            type='submit'
-                            className='btn btn-link btn-block btn-sm'
-                            onClick={(event) => {
-                                event.preventDefault()
-                                this.props.unstakeTokens(window.web3.utils.toWei(document.getElementById('value').value.toString(), 'Ether'))
-                            }}
-                        >
-                            UN-STAKE...
-                        </button>
-                    </div>
-                </div>
-            </div>
-        );
-    }
-}
-
-export default Main;
-```
-
-`Main.js`には、Token Farmのアプリの標準のUIが記述されています。
-
-これでフロントエンドとバックエンド、その接続部分は完成になります!
-
-では早速、動かしていきましょう。
-
-ターミナルを開いて`yield-farm-starter-project`にいることを確認してから下記のコードを順番に実行してみましょう。
-
-```bash
-npm run start
+yarn start
 ```
 
 するとしたのような画面が出てくるはずです。
-![](/public/images/ETH-Yield-Farm/section-3/3_3_1.png)
+![](/public/images/ETH-Yield-Farm/section-3/3_3_6.png)
 
-ここで入力欄に100以下の数字を打ち込んで`STAKE!`ボタンを押してみてください。
+deployの時にDAIトークンを100万トークン作成したので、残高もそのようになっています。
 
-その後下の画像のようにMetaMaskの画面が2回出てくるのでその2つを承認します。
-![](/public/images/ETH-Yield-Farm/section-3/3_3_2.png)
-![](/public/images/ETH-Yield-Farm/section-3/3_3_3.png)
+ではまず他のアドレスにトークンを送信しましょう。Metamaskで2つ以上アドレスがない方は作成してみてください。またそのアドレスでsepoliaテストネットのトークンを取得しておいてください。
 
-最後にページをリロードしたら、下の画像のようにStaking残高が増えて、残高が減っているはずです。
+コントラクトをdeployしたアドレス以外のアドレスを下の入力欄にコピぺしてしてtranserボタンを押してみてください。
 
-![](/public/images/ETH-Yield-Farm/section-3/3_3_4.png)
+![](/public/images/ETH-Yield-Farm/section-3/3_3_7.png)
 
-これでステーキングが成功しました🎉
+すると下のように100DAIトークン送るようにMetamask上で許可を求められるのでそれに従ってください。
 
-一方でトークンの発行はどうでしょうか？
+では次にアドレスを変更してリロードしてみてください。そうすると下の画像のようにDAIトークンの残高が100になっているはずです。
 
-Reward残高は変わっていませんね。
+トークンを送信するための欄はコントラクトアドレスに接続していない場合は表示されないようになっています。
 
-それもそのはずです👍 トークンの発行は手動で行うことにしているのであなたが操作する必要があります。
+![](/public/images/ETH-Yield-Farm/section-3/3_3_8.png)
 
-ということで`npm run start`を実行したターミナルとは別のターミナルを開いて、`yield-farm-starter-project`にいることを確認してから下記のコードを実行してみましょう。
+ではこのアドレスでステーキングしてみましょう。20を入力欄に入力して、`STAKE!`ボタンを押してみましょう。
 
-```bash
-truffle exec scripts/issue-token.js
-```
+Metamaskが起動して数字を入力するように出てくるので20を入力してウォレットからDAIトークンが送信されることを許可します。その後stake関数を実行するための許可を求めらるので許可しましょう。
 
-ターミナルに以下のような結果が返ってくれば`issue`メソッドの実行は成功です!
+その後しばらく待ちリロードすると下のような画像になっているはずです。
 
-```bash
-Using network 'development'.
+DAIトークンの残高が20減っているでしょう。
 
-Tokens issued!
-```
+![](/public/images/ETH-Yield-Farm/section-3/3_3_9.png)
 
-では最後に`Dapp Token Farm`の画面に移ってみましょう。
-下のように報酬として`Reward Balance`が`Staking Balance`と同じ数になっているはずです。
+では最後にインステーキングをしてみましょう。
 
-![](/public/images/ETH-Yield-Farm/section-3/3_3_5.png)
+20と入力欄に入力して、`UN-STAKE`ボタンを押してみましょう。そしてMetamask上で許可をしてしばらく待ち、リロードすると下のようにDAIトークンが返金されていて、かつ報酬としてDAPPトークンが貰えているはずです。
 
-また、`unstake`機能もステーキング機能同様に`UN-STAKE...`ボタンを押せば実行できるので試してみてください!
+![](/public/images/ETH-Yield-Farm/section-3/3_3_11.png)
+
+これで動作確認が完了しました。
 
 ### 🙋‍♂️ 質問する
 
