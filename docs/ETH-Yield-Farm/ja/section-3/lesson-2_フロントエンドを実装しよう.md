@@ -1,170 +1,330 @@
 ###  🖥 このレッスンの参考動画URL
 [Dapp University](https://youtu.be/CgXQC4dbGUE?t=6809)
 
-### 🤙 フロントとバックの接続部分を作成する
+### 🤙  UI部分、フロントとウォレットの接続部分を作成する
 
-UIの作成の前にフロントとバックエンドをつなげる必要があるので、その部分を仕上げていこうと思います。
+まずはUI部分を作成しましょう。
+
+一番下の`return`部分を以下のように編集してみましょう。
+
+```
+return (
+    <div className="h-screen w-screen flex-col flex">
+      <div className="text-ellipsis h-20 w-full flex items-center justify-between bg-black">
+        <div className="flex items-center">
+          <img src={'farmer.png'} alt="Logo" className="px-5" />;
+          <div className="text-white text-3xl">ETH Yield Farm</div>
+        </div>
+        {currentAccount === '' ? (
+          <button
+            className="text-white mr-10 px-3 py-1 text-2xl border-solid border-2 border-white flex items-center justify-center"
+            onClick={}
+          >
+            Connect Wallet
+          </button>
+        ) : (
+          <div className="text-gray-400 text-lg pr-5">{}</div>
+        )}
+      </div>
+      <div className=" w-screen h-full flex-1 items-center justify-center flex flex-col">
+        <div className="w-1/2 h-1/3 flex justify-center items-center pt-36">
+          <div className="w-1/2 h-1/2 flex justify-center items-center flex-col">
+            <div>Staking Balance</div>
+            <div>0 DAI</div>
+          </div>
+          <div className="w-1/2 h-1/2 flex justify-center items-center flex-col">
+            <div>Reward Balance</div>
+            <div>DAPP</div>
+          </div>
+        </div>
+        <div className="h-1/2 w-1/2 flex justify-start items-center flex-col">
+          <div className="flex-row flex justify-between items-end w-full px-20">
+            <div className="text-xl">Stake Tokens</div>
+            <div className="text-gray-300">
+              Balance: 0 DAI
+            </div>
+          </div>
+          <div className="felx-row w-full flex justify-between items-end px-20 py-3">
+            <input
+              placeholder="0"
+              className="flex items-center justify-start border-solid border-2 border-black w-full h-10 pl-3"
+              type="text"
+              id="stake"
+              name="stake"
+              value={}
+              onChange={}
+            />
+            <div className="flex-row flex justify-between items-end">
+              <img src={'dai.png'} alt="Logo" className="px-5 h-9 w-18" />
+              <div>DAI</div>
+            </div>
+          </div>
+          <div
+            className="w-full h-14 bg-blue-500 text-white m-3 flex justify-center items-center"
+            onClick={}
+          >
+            Stake!
+          </div>
+          <div className="text-blue-400" onClick={}>
+            UN-STAKE..
+          </div>
+        </div>
+        <div className="flex-1"></div>
+      </div>
+    </div>
+  );
+```
+
+編集が終わったら、ターミナルで下のコマンドを実行してみましょう。
+
+```
+yarn client start
+```
+
+下のような見た目になっていれば成功です！
+![](/public/images/ETH-Yield-Farm/section-3/3_2_2.png)
+
+次にフロントとウォレットの接続を作成していこうと思います。
 
 `App.js`ファイルを以下のように更新してください。
 
 ```javascript
-// App.js
-// フロントエンドを構築する上で必要なファイルやライブラリをインポートする
-import React, { Component } from 'react'
-import Web3 from 'web3'
-import DaiToken from '../abis/DaiToken.json'
-import Navbar from './Navbar'
-import './App.css'
+import { ethers } from 'ethers';
+import React, { useEffect, useState } from 'react';
 
-class App extends Component {
-  // componentWillMount(): 主にサーバーへのAPIコールを行うなど、実際のレンダリングが行われる前にサーバーサイドのロジックを実装するために使用。
-  async componentWillMount() {
-    await this.loadWeb3()
-    await this.loadBlockchainData()
-  }
-  // loadBlockchainData(): ブロックチェーン上のデータとやり取りするための関数
-  // MetaMask との接続によって得られた情報とコントラクトとの情報を使って描画に使う情報を取得。
-  async loadBlockchainData() {
-    const web3 = window.web3
-    // ユーザーの Metamask の一番最初のアカウント（複数アカウントが存在する場合）取得
-    const accounts = await web3.eth.getAccounts()
-    // ユーザーの Metamask アカウントを設定
-    // この機能により、App.js に記載されている constructor() 内の account（デフォルト: '0x0'）が更新される
-    this.setState({ account: accounts[0]})
-    // ユーザーが Metamask を介して接続しているネットワークIDを取得
-    const networkId = await web3.eth.net.getId()
-    // DaiToken のデータを取得
-    const daiTokenData = DaiToken.networks[networkId]
-    if(daiTokenData){
-      // DaiToken の情報を daiToken に格納する
-      const daiToken = new web3.eth.Contract(DaiToken.abi, daiTokenData.address)
-      // constructor() 内の daiToken の情報を更新する
-      this.setState({daiToken})
-      // ユーザーの Dai トークンの残高を取得する
-      let daiTokenBalance = await daiToken.methods.balanceOf(this.state.account).call()
-      // daiTokenBalance（ユーザーの Dai トークンの残高）をストリング型に変更する
-      this.setState({daiTokenBalance: daiTokenBalance.toString()})
-      // ユーザーの Dai トークンの残高をフロントエンドの Console に出力する
-      console.log(daiTokenBalance.toString())
-    }else{
-      window.alert('DaiToken contract not deployed to detected network.')
-    }
+/* ABIファイルをインポートする */
+import daiAbi from './abis/DaiToken.json';
+import dappAbi from './abis/DappToken.json';
+import tokenfarmAbi from './abis/TokenFarm.json';
+import './App.css';
 
+function App() {
+  /* ユーザーのパブリックウォレットを保存するために使用する状態変数を定義 */
+  const [currentAccount, setCurrentAccount] = useState('');
+
+  // 各トークンの残高を保存するために使用する状態変数を定義
+  const [currentDaiBalance, setDaiBalance] = useState('0');
+  const [currentDappBalance, setDappBalance] = useState('0');
+
+  // フォームの入力値を保存するために使用する状態変数を定義
+  const [stakedToken, setStakedToken] = useState('0');
+  const [transferAddress, setTransferAddress] = useState('');
+
+  //ウォレットアドレス(コントラクトの保持者)を記載
+  const walletAddress = '0x04CD057E4bAD766361348F26E847B546cBBc7946';
+
+  // ETHに変換する関数
+  function convertToEth(n) {
+    return n / 10 ** 18;
   }
 
-  // loadWeb3(): ユーザーが Metamask アカウントを持っているか確認する関数
-  async loadWeb3() {
-    // ユーザーが Metamask のアカウントを持っていた場合は、アドレスを取得
-    if (window.ethereum) {
-      window.web3 = new Web3(window.ethereum)
-      await window.ethereum.enable()
-    }
-    else if (window.web3) {
-      window.web3 = new Web3(window.web3.currentProvider)
-    }
-    // ユーザーが Metamask のアカウントを持っていなかった場合は、エラーを返す
-    else {
-      window.alert('Non ethereum browser detected. You should consider trying to install metamask')
-    }
-
-    this.setState({ loading: false})
+  // WEIに変換する関数
+  function convertToWei(n) {
+    return n * 10 ** 18;
   }
 
-  // constructor(): ブロックチェーンから読み込んだデータ + ユーザーの状態を更新する関数
-  constructor(props) {
-    super(props)
-    this.state = {
-      account: '0x0',
-      daiToken: {},
-      dappToken: {},
-      tokenFarm: {},
-      daiTokenBalance: '0',
-      dappTokenBalance: '0',
-      stakingBalance: '0',
-      loading: true
+  // ウォレット接続を確認する関数
+  const checkIfWalletIsConnected = async () => {
+    try {
+      const { ethereum } = window;
+      if (!ethereum) {
+        console.log('Make sure you have MetaMask!');
+        return;
+      } else {
+        console.log('We have the ethereum object', ethereum);
+      }
+      /* ユーザーのウォレットへのアクセスが許可されているかどうかを確認 */
+      const accounts = await ethereum.request({ method: 'eth_accounts' });
+      if (accounts.length !== 0) {
+        const account = accounts[0];
+        console.log('Found an authorized account:', account);
+        setCurrentAccount(account);
+      } else {
+        console.log('No authorized account found');
+      }
+    } catch (error) {
+      console.log(error);
     }
-  }
-  // フロントエンドのレンダリングが以下で実行される
-  render() {
-    return (
-      <div>
-        <Navbar account={this.state.account} />
-        <div className="container-fluid mt-5">
-          <div className="row">
-            <main role="main" className="col-lg-12 ml-auto mr-auto" style={{ maxWidth: '600px' }}>
-              <div className="content mr-auto ml-auto">
-                <a
-                  href="http://www.dappuniversity.com/bootcamp"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                </a>
+  };
 
-                <h1>Hello, World!</h1>
+  // ウォレットに接続する関数
+  const connectWallet = async () => {
+    try {
+      const { ethereum } = window;
+      if (!ethereum) {
+        console.error('Get MetaMask!');
+        return;
+      }
+      const accounts = await ethereum.request({
+        method: 'eth_requestAccounts',
+      });
+      console.log('Connected: ', accounts[0]);
+      setCurrentAccount(accounts[0]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-              </div>
-            </main>
+  // リロードごとにウォレット接続を確認する
+  useEffect(() => {
+    checkIfWalletIsConnected();
+  });
+
+  return (
+    <div className="h-screen w-screen flex-col flex">
+      <div className="text-ellipsis h-20 w-full flex items-center justify-between bg-black">
+        <div className="flex items-center">
+          <img src={'farmer.png'} alt="Logo" className="px-5" />;
+          <div className="text-white text-3xl">ETH Yield Farm</div>
+        </div>
+        {currentAccount === '' ? (
+          <button
+            className="text-white mr-10 px-3 py-1 text-2xl border-solid border-2 border-white flex items-center justify-center"
+            onClick={connectWallet}
+          >
+            Connect Wallet
+          </button>
+        ) : (
+          <div className="text-gray-400 text-lg pr-5">{currentAccount}</div>
+        )}
+      </div>
+      <div className=" w-screen h-full flex-1 items-center justify-center flex flex-col">
+        <div className="w-1/2 h-1/3 flex justify-center items-center pt-36">
+          <div className="w-1/2 h-1/2 flex justify-center items-center flex-col">
+            <div>Staking Balance</div>
+            <div>0 DAI</div>
+          </div>
+          <div className="w-1/2 h-1/2 flex justify-center items-center flex-col">
+            <div>Reward Balance</div>
+            <div>0 DAPP</div>
           </div>
         </div>
+        <div className="h-1/2 w-1/2 flex justify-start items-center flex-col">
+          <div className="flex-row flex justify-between items-end w-full px-20">
+            <div className="text-xl">Stake Tokens</div>
+            <div className="text-gray-300">
+              Balance: 0 DAI
+            </div>
+          </div>
+          <div className="felx-row w-full flex justify-between items-end px-20 py-3">
+            <input
+              placeholder="0"
+              className="flex items-center justify-start border-solid border-2 border-black w-full h-10 pl-3"
+              type="text"
+              id="stake"
+              name="stake"
+            />
+            <div className="flex-row flex justify-between items-end">
+              <img src={'dai.png'} alt="Logo" className="px-5 h-9 w-18" />
+              <div>DAI</div>
+            </div>
+          </div>
+          <div
+            className="w-full h-14 bg-blue-500 text-white m-3 flex justify-center items-center"
+          >
+            Stake!
+          </div>
+          <div className="text-blue-400">
+            UN-STAKE..
+          </div>
+          {currentAccount.toUpperCase() === walletAddress.toUpperCase() ? (
+            <>
+              <div className="text-xl pt-20">Transfer 100 DAI</div>
+              <div className="felx-row w-full flex justify-between items-end px-20 py-3">
+                <input
+                  placeholder="0x..."
+                  className="flex items-center justify-start border-solid border-2 border-black w-full h-10 pl-3"
+                  type="text"
+                  id="transfer"
+                  name="transfer"
+                />
+              </div>
+              <div
+                className="w-full h-14 bg-blue-500 text-white m-3 flex justify-center items-center"
+              >
+                Transfer!
+              </div>
+            </>
+          ) : (
+            <></>
+          )}
+        </div>
+        <div className="flex-1"></div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default App;
+
 ```
 
-フロントエンドのコードの説明は、コメント欄に記載されています。
+これでウォレット接続がフロントでできるようになりました。
 
-いくつか重要なコンセプトがあるので、みていきましょう。
-
-まずは、`App.js`の先頭に記載されているインポートの部分に注目してください。
+では接続の確認部分を解説していきます。
 
 ```javascript
-// App.js
-import React, { Component } from 'react'
-import Web3 from 'web3'
-import DaiToken from '../abis/DaiToken.json'
-import Navbar from './Navbar'
-import './App.css'
+const checkIfWalletIsConnected = async () => {
+    try {
+      const { ethereum } = window;
+      if (!ethereum) {
+        console.log('Make sure you have MetaMask!');
+        return;
+      } else {
+        console.log('We have the ethereum object', ethereum);
+      }
+      /* ユーザーのウォレットへのアクセスが許可されているかどうかを確認 */
+      const accounts = await ethereum.request({ method: 'eth_accounts' });
+      if (accounts.length !== 0) {
+        const account = accounts[0];
+        console.log('Found an authorized account:', account);
+        setCurrentAccount(account);
+      } else {
+        console.log('No authorized account found');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 ```
 
-ここでは、フロントエンドを実装するのに必要なファイルをインポートしています。
+まずはmetamaskと接続できているのかを確認しています。
 
-ポイントとなるのは、Walletとフロントエンドの接続を可能にするための`web3`ライブラリとフロントエンドから`DaiToken`コントラクトとやりとりするための`DaiToken.json`をインポートしている点です。
-- `web3` / `web3.js`は、クライアントサイドアプリケーションがブロックチェーンと対話するためのJavaScriptライブラリです。
+次に接続したmetamaskにアカウントが存在しているかを確認します。
 
-次は`constructor()`を見ていきます。ここでは、Metamaskを介してユーザーがアプリにログインした際に、更新される変数を宣言しています。
+アカウントが存在している場合はコンソールに`Found an authorized account:<YOUR_ACCOUNT>`が表示されるようにします。
+
+次にウォレット接続部分を確認しましょう。
 
 ```javascript
-// App.js
-constructor(props) {
-  super(props)
-  this.state = {
-    account: '0x0',
-    daiToken: {},
-    dappToken: {},
-    tokenFarm: {},
-    daiTokenBalance: '0',
-    dappTokenBalance: '0',
-    stakingBalance: '0',
-    loading: true
-  }
-}
+// ウォレットに接続する関数
+  const connectWallet = async () => {
+    try {
+      const { ethereum } = window;
+      if (!ethereum) {
+        console.error('Get MetaMask!');
+        return;
+      }
+      const accounts = await ethereum.request({
+        method: 'eth_requestAccounts',
+      });
+      console.log('Connected: ', accounts[0]);
+      setCurrentAccount(accounts[0]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 ```
 
-`account`や`daiTokenBalance`などユーザーの操作によって変化しうるようなものはここで宣言しておきます。
+この部分では接続したmetamaskのウォレットのアドレスを取得します。
 
+きちんと接続できていればコンソールに`Connected:<YOUR_ACCOUNT>`が表示されるようになります。
 
 では、フロントエンドを確認してみましょう。ファイルを上書きして保存すると、フロントエンドに反映されます。
 
-実際にはフロントエンドのUIは変更されていないので、右クリックして　`Inspect`　を選択し、ブラウザ側のConsoleを確認します。
+実際にはフロントエンドのUIは変更されていないのですが、右上にある`Connect Wallet`ボタンをクリックしてみましょう。それによってMetamaskが起動して接続できていれば成功です！ 
 
-以下のような画像が出てくれば、フロントエンドの更新は成功です!
-
-![](/public/images/ETH-Yield-Farm/section-3/3_2_1.png)
-
-もしフロントエンドに変更が反映されていなかったら、ページをリフレッシュしてみたり、ターミナルで`^C`を入力してもう一度`npm run start`を実行してみてください。
+もしフロントエンドに変更が反映されていなかったら、ページをリフレッシュしてみたり、ターミナルで`^C`を入力してもう一度`yarn client start`を実行してみてください。
 
 ### 🙋‍♂️ 質問する
 
