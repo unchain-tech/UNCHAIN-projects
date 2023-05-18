@@ -66,11 +66,11 @@ const CreateProduct = () => {
         },
         body: JSON.stringify(product),
       });
-      const data = await response.json();
       if (response.status === 200) {
         alert("Product added!");
       }
       else{
+        const data = await response.json();
         alert("Unable to add product: ", data.error);
       }
 
