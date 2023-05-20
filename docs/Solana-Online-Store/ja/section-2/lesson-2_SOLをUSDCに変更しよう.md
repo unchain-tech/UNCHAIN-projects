@@ -103,7 +103,6 @@ const createTransaction = async (req, res) => {
     console.error(err);
 
     res.status(500).json({ error: "error creating transaction" });
-    return;
   }
 };
 
