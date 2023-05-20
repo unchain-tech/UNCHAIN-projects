@@ -353,10 +353,11 @@ await expect(関数呼び出し).to.be.revertedWith("リバート時のメッセ
 続く`Deny`に関するテストも`Accept`と同じようなテストを実装しています。
 
 それではテストを実行しましょう！
-`contract`ディレクトリ直下で以下のコマンドを実行してください。
+
+ターミナル上で以下のコマンドを実行してください。
 
 ```
-$ npx hardhat test
+yarn contract test
 ```
 
 以下のような表示がされたらテスト成功です！

@@ -237,10 +237,11 @@ describe("Messenger", function () {
 `for loop`をしようして上限値までメッセージを送り続けることで, `numOfPendingLimits`による制限が働いているかを確認しています。
 
 それではテストを実行しましょう！
-`contract`ディレクトリ直下で以下のコマンドを実行してください。
+
+ターミナル上で以下のコマンドを実行してください。
 
 ```
-$ npx hardhat test
+yarn contract test
 ```
 
 以下のような表示がされたらテスト成功です！
@@ -456,10 +457,10 @@ describe("Messenger", function () {
 をそれぞれ確認しています。
 
 それではテストを実行しましょう！
-`contract`ディレクトリ直下で以下のコマンドを実行してください。
+ターミナル上で以下のコマンドを実行してください。
 
 ```
-$ npx hardhat test
+yarn contract test
 ```
 
 以下のような表示がされたらテスト成功です！
@@ -521,10 +522,10 @@ deploy()
 
 **1 \. 再度コントラクトをデプロイする**
 
-`contract`ディレクトリ直下で下記のコマンドを実行します。
+ターミナル上で下記のコマンドを実行します。
 
 ```
-$ npx hardhat run scripts/deploy.ts --network fuji
+yarn contract deploy
 ```
 
 出力結果の例

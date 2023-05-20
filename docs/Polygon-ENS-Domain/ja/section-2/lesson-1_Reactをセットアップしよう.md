@@ -6,32 +6,71 @@
 
 Reactの経験がない場合は、検索して簡単なチュートリアルでも目を通しておくといいかもしれません。
 
-### 🚀 プロジェクトをクローンする
+### 💻 クライアントを設定する
 
-[こちら](https://github.com/shiftbase-xyz/domain-starter-project) からフロントエンドのテンプレートを任意のディレクトにクローンしてプロジェクトを始めましょう。
+このセクションでは、Webサイトの構築を通して、クライアントとスマートコントラクトの連携方法について学びます。
 
-ターミナルに向かい、以下のコマンドを実行しましょう!
+実装は下記をイメージしてください。
+
+- クライアント＝フロントエンド
+
+- スマートコントラクト＝バックエンド
+
+それでは、始めましょう 🚀
+
+### 🍽 Git リポジトリをあなたの GitHub にフォークする
+
+まだGitHubのアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
+
+GitHubのアカウントをお持ちの方は、[スターターキット](https://github.com/shiftbase-xyz/nft-maker-starter-project) から、フロントエンドの基盤となるリポジトリをあなたのGitHubにフォークしましょう。フォークの方法は、[こちら](https://denno-sekai.com/github-fork/) を参照してください。
+
+あなたのGitHubアカウントにフォークした`nft-maker-starter-project`リポジトリを、ローカル環境にクローンしてください。
+
+まず、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
+
+
+ターミナル上で`ETH-NFT-Maker/packages`ディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
 
 ```bash
-git clone YOUR_FORKED_LINK
-cd domain-starter-project
+git clone コピーした_github_リンク
 ```
 
-`domain-starter-project`フォルダに移動したら`npm install`を行います。
+この段階で、フォルダ構造は下記のようになっているはずです。
+
+```diff
+ETH-NFT-Maker
+ ├── package.json
+ └── packages/
++    ├── client/
+     └── contract/
+```
+
+ターミナル上で`ETH-NFT-Maker`ディレクトリ下に移動して下記を実行しましょう。
 
 ```bash
-npm install
+yarn install
 ```
 
-`npm start`します。
+`yarn`コマンドを実行することで、JavaScriptライブラリのインストールが行われます。
+
+次に、下記を実行してみましょう。
 
 ```bash
-npm start
+yarn client start
 ```
+
+あなたのローカル環境で、Webサイトのフロントエンドが立ち上がりましたか？
 
 `localhost:3000`がブラウザ上で開き次のような画面が表示されます。
 
 ![](/public/images/Polygon-ENS-Domain/section-2/2_1_1.png)
+
+上記のような形でフロントエンドが確認できれば成功です。
+
+ターミナルを閉じるときは、以下のコマンドが使えます ✍️
+
+- Mac: `ctrl + c`
+- Windows: `ctrl + shift + w`
 
 まだアプリは空の状態です。
 

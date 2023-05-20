@@ -287,19 +287,23 @@ runMain();
 上記を`run.js`に反映させえたら、下記をターミナル上で実行しましょう。
 
 ```bash
-npx hardhat run scripts/run.js
+yarn contract run:script
 ```
 
 エラーが発生した場合は、`pwd`を実行して、 `ipfs-nfts`ディレクトリにいることを確認して、もう一度上記のコードを実行してみてください。
 下記のような結果が、ターミナルに出力されれば、テストは成功です。
 
 ```
-Compiling 1 file with 0.8.9
-Solidity compilation finished successfully
+Web3Mint
 This is my NFT contract.
-Contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 An NFT w/ ID 0 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-An NFT w/ ID 1 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+An NFT w/ ID 1 has been minted to 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+    ✔ Should return the nft (2360ms)
+
+
+  1 passing (2s)
+
+✨  Done in 4.56s.
 ```
 
 現在、ユーザーがこのスマートコントラクトにアクセスしてNFTを発行するたび、データは常に同じ`Tanya`です!　 🐱。

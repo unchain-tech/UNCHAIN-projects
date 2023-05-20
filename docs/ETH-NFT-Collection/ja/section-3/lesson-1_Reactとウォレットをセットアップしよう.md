@@ -14,40 +14,54 @@
 
 まだGitHubのアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
-GitHubのアカウントをお持ちの方は、[こちら](https://github.com/shiftbase-xyz/nft-collection-starter-project) から、フロントエンドの基盤となるリポジトリをあなたのGitHubにフォークしましょう。フォークの方法は、[こちら](https://denno-sekai.com/github-fork/) を参照してください。
+GitHubのアカウントをお持ちの方は、下記の手順に沿ってフロントエンドの基盤となるリポジトリをあなたのGitHubに[フォーク](https://denno-sekai.com/github-fork/)しましょう。
 
-あなたのGitHubアカウントにフォークした`nft-collection-starter-project`リポジトリを、ローカル環境にクローンしてください。
+1. [こちら](https://github.com/unchain-tech/ETH-NFT-Collection)からunchain-tech/ETH-NFT-Collectionリポジトリにアクセスをして、ページ右上の`Fork`ボタンをクリックします。
+
+![](/public/images/ETH-NFT-Collection/section-3/3_1_3.png)
+
+2. Create a new forkページが開くので、以下2つの項目を設定します。
+- Repository name: `ETH-NFT-Collection-starter`に変更します。
+- Copy the `main` branch only: **チェックが入っていることを必ず確認します**。
+
+![](/public/images/ETH-NFT-Collection/section-3/3_1_4.png)
+
+設定が完了したら`Create fork`ボタンをクリックします。あなたのGitHubアカウントに`ETH-NFT-Collection`リポジトリのフォークが作成されたことを確認してください。
+
+それでは、フォークしたリポジトリをローカル環境にクローンしましょう。
 
 まず、下図のように、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
 
 ![](/public/images/ETH-NFT-Collection/section-3/3_1_1.png)
 
-ターミナルで先ほど作成した`ETH-NFT-collection`ディレクトリに移動し、先ほどコピーしたリンクを貼り付け、下記を実行してください。
+ターミナル上で`ETH-NFT-Collection/packages`ディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
 
 ```bash
-git clone コピーした_github_リンク
+git clone コピーした_github_リンク client
 ```
 
 この段階で、フォルダ構造は下記のようになっているはずです。
 
-```
-ETH-NFT-collection
-	|_ epic-nfts
-	|_ nft-collection-starter-project
+```diff
+ETH-NFT-Collection
+ ├── package.json
+ └── packages/
++    ├── client/
+     └── contract/
 ```
 
-ターミナル上で`nft-collection-starter-project`に移動して下記を実行しましょう。
+ターミナル上で`ETH-NFT-Collection`ディレクトリ下に移動して下記を実行しましょう。
 
 ```bash
-npm install
+yarn install
 ```
 
-`npm`コマンドを実行することで、JavaScriptライブラリのインストールが行われます。
+`yarn`コマンドを実行することで、JavaScriptライブラリのインストールが行われます。
 
 次に、下記を実行してみましょう。
 
 ```bash
-npm run start
+yarn client start
 ```
 
 あなたのローカル環境で、Webサイトのフロントエンドが立ち上がりましたか？
@@ -58,7 +72,7 @@ npm run start
 
 上記のような形でフロントエンドが確認できれば成功です。
 
-これからフロントエンドの表示を確認したい時は、ターミナルに向かい、`nft-collection-starter-project`ディレクトリ上で、`npm run start`を実行します。これからも必要となる作業ですので、よく覚えておいてください。
+これからフロントエンドの表示を確認したい時は、ターミナルに向かい、`ETH-NFT-Collection`ディレクトリ上で、`yarn client start`を実行します。これからも必要となる作業ですので、よく覚えておいてください。
 
 ターミナルを閉じるときは、以下のコマンドが使えます ✍️
 

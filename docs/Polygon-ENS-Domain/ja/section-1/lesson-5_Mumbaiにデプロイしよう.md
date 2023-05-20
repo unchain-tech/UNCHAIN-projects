@@ -198,10 +198,10 @@ module.exports = {
 
 configのセットアップが完了すると、前に作成した`deploy.js`スクリプトを使用してデプロイするように設定されます。
 
-このコマンドは、`cool-domains`のルートディレクトリから実行します。
+このコマンドは、`Polygon-ENS-Domain`のルートディレクトリから実行します。
 
 ```
-npx hardhat run scripts/deploy.js --network mumbai
+yarn contract deploy
 ```
 
 通常、デプロイには20〜40秒かかります。 デプロイしているだけではありません。`deploy.js`ではNFTも作成しているので、これにも時間がかかります。 実際には、トランザクションが「マイニング」されてノードによって取得されるのを待つ必要があります。 その1つのコマンドですべてを実行できます。 問題なければ、次のような結果が表示されます。
@@ -211,7 +211,6 @@ Mumbaiもストップしていることがまれにありますのでその場�
 こちらの[Mumbai Polygonscan](https://mumbai.polygonscan.com/)から正常に作動しているか確認してみると良いでしょう。
 
 ```
-% npx hardhat run scripts/deploy.js --network mumbai
 Contract deployed to: 0x6C45313E2F7e4Fd85f56E66c559bfFc23E726c1d
 Minted domain banana.ninja
 Set record for banana.ninja

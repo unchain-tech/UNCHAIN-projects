@@ -2,10 +2,10 @@
 
 **GitHub にコントラクト( `ipfs-nfts`)のコードをアップロードする際は、秘密鍵を含むハードハット構成ファイルをリポジトリにアップロードしないよう注意しましょう。**
 
-秘密鍵などのファイルを隠すために、ターミナルで`ipfs-nfts`に移動して、下記を実行してください。
+秘密鍵などのファイルを隠すために`dotenv`というパッケージを追加します。ターミナルで`packages/contract`に移動して、下記を実行してください。
 
 ```bash
-npm install --save dotenv
+yarn add --dev dotenv
 ```
 
 `dotenv`モジュールに関する詳しい説明は、[こちら](https://maku77.github.io/nodejs/env/dotenv.html)を参照してください。
@@ -18,7 +18,7 @@ npm install --save dotenv
 
 操作されては困るファイルについては、このように「不可視」の属性を持たせて、一般の人が触れられないようにします。
 
-ターミナル上で`ipfs-nfts`ディレクトリにいることを確認し、下記を実行しましょう。VS Codeから`.env`ファイルを開きます。
+ターミナル上で`packages/contract`ディレクトリにいることを確認し、下記を実行しましょう。VS Codeから`.env`ファイルを開きます。
 
 ```
 code .env
