@@ -306,6 +306,7 @@ const CandyMachine = (props: CandyMachineProps) => {
     CandyMachineType | undefined
   >(undefined);
   const [candyGuard, setCandyGuard] = useState<CandyGuardType | null>(null);
+  const [startDateString, setStartDateString] = useState<Date | undefined>(undefined);
 
   const getCandyMachineState = async () => {
     try {
@@ -318,6 +319,8 @@ const CandyMachine = (props: CandyMachineProps) => {
 
           const startDateString = new Date(Number(candyGuard?.guards.startDate.value.date) * 1000);
           console.log(`startDateString: ${startDateString}`);
+          // 取得したデータをstate変数に保存します。
+          setStartDateString(startDateString);
         }
 
         // 取得したデータをstate変数に保存します。
@@ -338,27 +341,23 @@ const CandyMachine = (props: CandyMachineProps) => {
 
 ```jsx
 // CandyMachine/index.tsx
-// candyMachineが利用可能な場合のみ表示されます
-return (
-  candyMachine && (
-    <div className={candyMachineStyles.machineContainer}>
-      {startDate && <p>{`Drop Date: ${startDate}}`}</p>}
-      <p>
-        {`Items Minted: ${candyMachine.itemsRedeemed} / ${candyMachine.data.itemsAvailable}`}
-      </p>
-      <button
-        className={`${styles.ctaButton} ${styles.mintButton}`}
-      >
-        Mint NFT
-      </button>
-    </div >
-  )
-);
+// Candy Machine、Candy Guardが有効な場合にのみ表示されます
+return candyMachine && candyGuard ? (
+  <div className={candyMachineStyles.machineContainer}>
+    <p>{`Drop Date: ${startDateString}`}</p>
+    <p>
+      {`Items Minted: ${candyMachine.itemsRedeemed} / ${candyMachine.data.itemsAvailable}`}
+    </p>
+    <button className={`${styles.ctaButton} ${styles.mintButton}`}>
+      Mint NFT
+    </button>
+  </div>
+) : null;
 ```
 
 これで、Webアプリケーションに適切にレンダリングされたすべてのデータが表示されます。
 
-最低限のスタイルを加えた`CandyMachine.css`ファイルを提供しています。色やフォントを変えるだけでもよいので、CSSを触ってみてください。くれぐれもデフォルトのままで終わらないように!
+最低限のスタイルを加えた`CandyMachine.css`ファイルを提供しています。色やフォントを変えるだけでもよいので、CSSを触ってみてください。
 
 本レッスンは終了です。
 

@@ -71,7 +71,7 @@ const transaction = transactionBuilder()
 await transaction.sendAndConfirm(umi).then((response) => {
   const transactionResult = response.result.value;
   if (transactionResult.err) {
-    console.error(`Failed mint: ${transactionResult.err}`);
+    throw new Error(`Failed mint: ${transactionResult.err}`);
   }
 })
 ```
@@ -82,19 +82,16 @@ await transaction.sendAndConfirm(umi).then((response) => {
 
 ```jsx
 // CandyMachine/index.tsx
-const mintToken = async () => {
+const mintToken = async (
+  candyMachine: CandyMachineType,
+  candyGuard: CandyGuardType,
+) => {
   try {
     if (umi === undefined) {
       throw new Error('Umi context was not initialized.');
     }
-    if (candyMachine === undefined) {
-      throw new Error('Candy Machine was not initialized.');
-    }
-    if (candyGuard === null) {
-      throw new Error('Candy Guard was not initialized.');
-    }
     if (candyGuard.guards.solPayment.__option === 'None') {
-      throw new Error('Destination of solPayment is not set..')
+      throw new Error('Destination of solPayment is not set.');
     }
 
     const nftSigner = generateSigner(umi);
@@ -183,6 +180,22 @@ return (
     </div >
   )
 );
+
+return candyMachine && candyGuard ? (
+  <div className={candyMachineStyles.machineContainer}>
+    <p>{`Drop Date: ${startDateString}`}</p>
+    <p>
+      {`Items Minted: ${candyMachine.itemsRedeemed} / ${candyMachine.data.itemsAvailable}`}
+    </p>
+    <button
+      className={`${styles.ctaButton} ${styles.mintButton}`}
+      onClick={() => mintToken(candyMachine, candyGuard)}
+      disabled={isMinting}
+    >
+      Mint NFT
+    </button>
+  </div>
+) : null;
 ```
 
 `Mint NFT`をクリックする前に、PhantomWalletにDevnetSOLがあることを確認する必要があります。これはとても簡単です。
