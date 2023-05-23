@@ -2,7 +2,7 @@
 
 セクション2の目標は、ユーザーが**ウォレットを接続し、ミントをクリックして、ウォレット内のコレクションから NFT を受け取ることができる Web アプリケーションを作成することです。**
 
-これを実行するには、SolanaCLIとCandy Machine CLIをインストールする必要があります。
+これを実行するには、Solana CLIとCandy Machine CLIをインストールする必要があります。
 
 Solana CLIを使用すると、実際の [バリデーター](https://solana.com/validators) によって実行される実際のブロックチェーンであるdevnetにデプロイできます。
 

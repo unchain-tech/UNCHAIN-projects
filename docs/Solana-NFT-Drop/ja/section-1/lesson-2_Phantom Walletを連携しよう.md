@@ -52,7 +52,6 @@ Phantom WalletのネットワークをDevnetに変更してください。
 
 エディタより、`pages/index.tsx`ファイルを開いてください。これはアプリケーションのメインのエントリポイントになるファイルです。
 
-<!-- TODO: Typescriptではwindow.d.tsファイルにWindowオブジェクトのインタフェースを定義していることを明記 -->
 Phantom Wallet拡張機能がインストールされている場合は、`window`オブジェクトに`solana`という名前の特別なオブジェクトが自動的に代入されます。
 
 ミントする前に、`solana`が代入されているか確認する必要があります。存在しない場合はダウンロードするようにユーザーに指示しましょう。
@@ -182,7 +181,7 @@ Reactでは、2番目のパラメータ( `[]` )が空の場合、コンポーネ
 
 ```jsx
 // index.tsx
-const TWITTER_HANDLE = "あなたのTwitterハンドル";
+const TWITTER_HANDLE = 'あなたのTwitterハンドル';
 ```
 
 ### 🔒 ユーザーのアカウントにアクセスする
