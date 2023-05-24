@@ -143,7 +143,10 @@ const CandyMachine = (props: CandyMachineProps) => {
 次に、mintToken関数の最初と最後に`setIsMinting`を呼んで実行中かどうかを設定します。try-catch文の最後に`finally`を追加しましょう。正常に処理が進んだ場合とエラーが発生してcatch文に進んでしまった場合、どちらの場合でも`setIsMinting(false)`が実行されるようにします。
 
 ```jsx
-const mintToken = async () => {
+const mintToken = async (
+  candyMachine: CandyMachineType,
+  candyGuard: CandyGuardType,
+) => {
   // 関数実行中なので`true`を設定します。
   setIsMinting(true);
   try {
@@ -163,24 +166,6 @@ const mintToken = async () => {
 
 ```jsx
 // CandyMachine/index.tsx
-return (
-  candyMachine && (
-    <div className={candyMachineStyles.machineContainer}>
-      {startDate && <p>{`Drop Date: ${startDate}}`}</p>}
-      <p>
-        {`Items Minted: ${candyMachine.itemsRedeemed} / ${candyMachine.data.itemsAvailable}`}
-      </p>
-      <button
-        className={`${styles.ctaButton} ${styles.mintButton}`}
-        onClick={mintToken}
-        disabled={isMinting}
-      >
-        Mint NFT
-      </button>
-    </div >
-  )
-);
-
 return candyMachine && candyGuard ? (
   <div className={candyMachineStyles.machineContainer}>
     <p>{`Drop Date: ${startDateString}`}</p>
