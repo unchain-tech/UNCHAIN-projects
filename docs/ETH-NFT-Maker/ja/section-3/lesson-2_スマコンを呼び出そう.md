@@ -400,10 +400,10 @@ const renderNotConnectedContainer = () => (
 
 ### 🌐 ウォレットコネクトのテストを実行する
 
-上記のコードをすべて`NftUploader.jsx`に反映させたら、ターミナル上で`nft-maker-starter-project`ディレクトリに移動し、下記を実行しましょう。
+上記のコードをすべて`NftUploader.jsx`に反映させたら、ターミナル上で下記を実行しましょう。
 
 ```bash
-npm start
+yarn client start
 ```
 
 ローカルサーバーでWebサイトを立ち上げたら、MetaMaskのプラグインをクリックし、あなたのウォレットアドレスの接続状況を確認しましょう。
