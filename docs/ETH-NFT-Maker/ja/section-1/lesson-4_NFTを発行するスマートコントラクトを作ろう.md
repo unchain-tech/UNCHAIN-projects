@@ -473,7 +473,7 @@ module.exports = {
 > 2\. `YOUR_PRIVATE_SEPOLIA_ACCOUNT_KEY`の取得
 > 1\. お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを`Sepolia Test Network`に変更します。
 >
-> ![](/public/images/ETH-NFT-Maker/section-1/1_4_11.png)
+> ![](/public/images/ETH-NFT-Maker/section-1/1_4_10.png)
 >
 > 2\. それから、`Account details`を選択してください。
 >
