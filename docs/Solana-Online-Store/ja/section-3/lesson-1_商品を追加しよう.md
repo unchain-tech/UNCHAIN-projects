@@ -17,14 +17,14 @@ NEXT_PUBLIC_OWNER_PUBLIC_KEY=2TmQsWGFh5vhqJdDrG6uA2MRstGrUwUCiiThyHL9HaMe
 >
 > Next.js には [dotenv](https://www.dotenv.org/) が組み込まれていますが、env 変数名を`NEXT_PUBLIC`からはじめる必要があります。
 >
-> また、`.env`への変更を反映させるためには、Next.js を再起動（`CTR + C`で一旦停止させ、`npx next dev`で再び立ち上げる）する必要があることに注意してください。
+> また、`.env`への変更を反映させるためには、Next.js を再起動（`CTR + C`で一旦停止させ、`yarn dev`で再び立ち上げる）する必要があることに注意してください。
 
 それでは、`components`フォルダに`CreateProduct.js`ファイルを作成して以下のコードを貼り付けてください。
 
 ```jsx
 // CreateProduct.js
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { create } from "ipfs-http-client";
 import styles from "../styles/CreateProduct.module.css";
 
@@ -66,11 +66,11 @@ const CreateProduct = () => {
         },
         body: JSON.stringify(product),
       });
-      const data = await response.json();
       if (response.status === 200) {
         alert("Product added!");
       }
       else{
+        const data = await response.json();
         alert("Unable to add product: ", data.error);
       }
 
@@ -152,12 +152,104 @@ const CreateProduct = () => {
 export default CreateProduct;
 ```
 
+### ✅ コンポーネントの動作確認
+
+`CreateProduct`コンポーネントを実装したので、テストスクリプトを実行してみましょう。
+
+簡単にテスト内容を説明します。`__tests__/CreateProduct.test.js`では、**アイテム追加の成功・失敗に応じて期待するアラートが実行されるか**をテストしています。
+
+Buyコンポーネントのテスト同様、動作確認を行いたいステータスに対応する戻り値を定義します。
+
+```javascript
+// __tests__/CreateProduct.test.js
+const addedProductMock = () => {
+  return Promise.resolve({
+    status: 200,
+    json: () => Promise.resolve({}),
+  });
+};
+
+const errorAddedProductMock = () => {
+  return Promise.resolve({
+    status: 500,
+    json: () => Promise.resolve({ error: 'error' }),
+  });
+};
+```
+
+成功ステータスをテストする場合は、下記のようにフォーム要素を取得して、値を入力後にボタンをクリックする動作をシミュレートします。
+
+```javascript
+// __tests__/CreateProduct.test.js
+const formFileElement = screen.getByPlaceholderText(/Images/i);
+const formNameElement = screen.getByPlaceholderText(/Product Name/i);
+const formPriceElement = screen.getByPlaceholderText(/0.01 USDC/i);
+const formImageUrlElement = screen.getByPlaceholderText(/Image URL/i);
+const formDescriptionElement = screen.getByPlaceholderText(/Description/i);
+const btnElement = screen.getByRole('button', {
+  name: /Create Product/i,
+});
+
+/** 実行 */
+await userEvent.type(formFileElement, 'file');
+await userEvent.type(formNameElement, 'name');
+await userEvent.type(formPriceElement, 'price');
+await userEvent.type(formImageUrlElement, 'imageUrl');
+await userEvent.type(formDescriptionElement, 'description');
+await userEvent.click(btnElement);
+```
+
+確認部分では、fetch関数とalert関数が期待する引数で実行されているかを確認しています。
+
+```javascript
+// __tests__/CreateProduct.test.js
+/** 確認 */
+expect(fetch).toBeCalledWith('../api/addProduct', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    name: 'name',
+    price: 'price',
+    imageUrl: 'imageUrl',
+    description: 'description',
+  }),
+});
+expect(window.alert).toBeCalledWith('Product added!');
+```
+
+エラーステータスをテストする場合は、fetch関数の戻り値に`errorAddedProductMock`を設定して、alert関数が期待する引数で実行されているかを確認しています。
+
+それでは、テストスクリプトを実行してみましょう。`package.json`ファイルのjestコマンドを更新します。
+
+```json
+// package.json
+"scripts": {
+  // 下記に更新
+  "test": "jest"
+}
+```
+
+jestコマンドを更新したら、ターミナルで`yarn test`を実行してみましょう。
+
+```bash
+yarn test
+```
+
+テストがパスしたら、CreateProductコンポーネントの実装は完了です。
+
+![](/public/images/Solana-Online-Store/section-3/3_1_2.png)
+
+
+### 🛒 商品追加ボタンの表示
+
 次に、`index.js`を以下のとおり更新して、登録したアドレスとメッセージ送信者のアドレスが一致するのを確認できるようにしましょう（ここでショップのオーナーを確認します）。
 
 ```jsx
 // index.js
 
-import React, { useState, useEffect} from "react";
+import { useState, useEffect} from "react";
 import CreateProduct from "../components/CreateProduct";
 import Product from "../components/Product";
 import HeadComponent from '../components/Head';
@@ -275,7 +367,6 @@ export default function handler(req, res){
     } catch (error) {
       console.error(error);
       res.status(500).json({error: "error adding product"});
-      return;
     }
   }
   else {

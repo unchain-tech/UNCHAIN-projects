@@ -43,7 +43,7 @@ export const hasPurchased = async (publicKey, itemID) => {
 ```jsx
 // Buy.js
 
-import React, { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Keypair, Transaction } from '@solana/web3.js';
 import { findReference, FindReferenceError } from '@solana/pay';
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
@@ -168,7 +168,7 @@ export default function Buy({ itemID }) {
           className="buy-button"
           onClick={processTransaction}
         >
-          Buy now 🠚
+          Buy now →
         </button>
       )}
     </div>
@@ -254,7 +254,7 @@ export const fetchItem = async (itemID) => {
 ```jsx
 // Buy.js
 
-import React, { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { Keypair, Transaction } from "@solana/web3.js";
 import { findReference, FindReferenceError } from "@solana/pay";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
@@ -383,7 +383,7 @@ export default function Buy({ itemID }) {
         <IPFSDownload hash={item.hash} filename={item.filename} />
       ) : (
         <button disabled={loading} className="buy-button" onClick={processTransaction}>
-          Buy now 🠚
+          Buy now →
         </button>
       )}
     </div>
@@ -391,10 +391,97 @@ export default function Buy({ itemID }) {
 }
 ```
 
+### ✅ コンポーネントの動作確認
+
+`Buy`コンポーネントを実装したので、テストスクリプトを実行してみましょう。
+
+簡単にテスト内容を説明します。`__tests__/Buy.test.js`では、**アイテムの購入状態に応じてレンダリングされる内容が変わるか**、**ボタンを押したときに期待する関数が実行されるか**をテストしています。
+
+アイテムの購入状態は、`lib/api.js`の`hasPurchased`関数をモック化することで設定しています。
+
+```javascript
+// __tests__/Buy.test.js
+
+// 各テストの状況に合わせて戻り値を設定します。
+describe('Buy', () => {
+  it('should render buy button when product is not purchased', async () => {
+    /** hasPurchased関数をモックして、未購入を示す`false`を返すようにする */
+    hasPurchased.mockResolvedValue(false);
+
+  ...
+
+  it('should not render buy button when product is purchased', async () => {
+    /** hasPurchased関数をモックして、購入済みを示す`true`を返すようにする */
+    hasPurchased.mockResolvedValue(true);
+```
+
+Buy nowボタンを押したときの挙動は、fetch関数をモックして成功ステータスを返す・sendTransaction関数が期待する引数を受け取るかどうかを確認することでテストしています。
+
+```javascript
+// __tests__/Buy.test.js
+
+// 下記のように成功ステータスを含むレスポンスを定義します。
+const createTransactionMock = () => {
+  return Promise.resolve({
+    status: 200,
+    json: () =>
+      Promise.resolve({
+        transaction: 'transaction',
+      }),
+  });
+};
+
+// テスト内でfetch関数の戻り値を設定します。
+global.fetch = jest.fn(() => createTransactionMock());
+```
+
+関数が期待する引数を受け取るかどうかは、下記の部分で確認しています。
+
+```javascript
+// __tests__/Buy.test.js
+
+/** 確認 */
+/** 期待する引数で関数が実行されているかを確認します */
+expect(fetch).toBeCalledWith('../api/createTransaction', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    buyer: 'publicKey',
+    orderID: 'orderID',
+    itemID: 1,
+  }),
+});
+expect(sendTransactionMock).toBeCalledWith('mockTx', 'connection');
+```
+
+それでは、テストスクリプトを実行してみましょう。`package.json`ファイルのjestコマンドを更新してBuyコンポーネントのテスト実行を追加します。
+
+```json
+// package.json
+
+"scripts": {
+  // 下記に更新
+  "test": "jest IpfsDownload.test.js Buy.test.js"
+}
+```
+
+jestコマンドを更新したら、ターミナルで`yarn test`を実行してみましょう。
+
+```bash
+yarn test
+```
+
+テストがパスしたら、Buyコンポーネントの実装は完了です。
+
+![](/public/images/Solana-Online-Store/section-2/2_4_1.png)
+
+ブラウザ上で実際に操作してみましょう。
+
 おめでとうございます!
 
 これで購入ボタンと商品データ、注文情報などをすべてリンクさせることができました🤣🤣🤣
-
 
 ### 🙋‍♂️ 質問する
 
