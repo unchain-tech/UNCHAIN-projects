@@ -91,10 +91,10 @@ const { ethereum } = window;
 
 `window.ethereum`は、あなたのWebサイトを訪問したユーザーがMetaMaskを持っているか確認し、結果を`Console log`に出力します。
 
-ターミナルで`nft-maker-starter-project`に移動し、下記を実行してみましょう。
+ターミナルで下記を実行してみましょう。
 
 ```bash
-npm start
+yarn client start
 ```
 
 ローカルサーバーでWebサイトを立ち上げたら、サイトの上で右クリックを行い、`Inspect`を選択します。
