@@ -4,7 +4,7 @@ lesson2,3で行うことは、今までunchain projectをやってきた方々�
 
 まだGitHubのアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
-GitHubのアカウントをお持ちの方は、[スターターキット](https://github.com/shiftbase-xyz/ETH-NFT-Maker) から、フロントエンドの基盤となるリポジトリをあなたのGitHubにフォークしましょう。フォークの方法は、[こちら](https://denno-sekai.com/github-fork/) を参照してください。
+GitHubのアカウントをお持ちの方は、[スターターキット](https://github.com/unchain-tech/ETH-NFT-Maker) から、フロントエンドの基盤となるリポジトリをあなたのGitHubにフォークしましょう。フォークの方法は、[こちら](https://denno-sekai.com/github-fork/) を参照してください。
 
 あなたのGitHubアカウントにフォークした`ETH-NFT-Maker`リポジトリを、ローカル環境にクローンしてください。
 
