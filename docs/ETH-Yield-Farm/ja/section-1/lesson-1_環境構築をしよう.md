@@ -45,7 +45,7 @@ ETH-Yield-Farm
 {
   "name": "ETH-Yield-Farm",
   "version": "1.0.0",
-  "description": "Creating NFT Collections",
+  "description": "yield farm",
   "private": true,
   "workspaces": {
     "packages": [
