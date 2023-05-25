@@ -10,32 +10,33 @@
 
 それでは早速、`src/scripts/11-revoke-roles.ts`を作成し、以下のとおりコードを変更します。
 
-※ あなたのアドレスを設定することを忘れないでください！
-
 ```typescript
-import sdk from "./1-initialize-sdk.js";
+import sdk from './1-initialize-sdk.js';
+import { ERCTokenAddress } from './module.js';
 
-const token = sdk.getContract("INSERT_TOKEN_ADDRESS", "token");
+const token = sdk.getContract(ERCTokenAddress, 'token');
 
 (async () => {
   try {
     // 現在のロールを記録します
     const allRoles = await (await token).roles.getAll();
 
-    console.log("👀 Roles that exist right now:", allRoles);
+    console.log('👀 Roles that exist right now:', allRoles);
 
     // ERC-20 のコントラクトに関して、あなたのウォレットが持っている権限をすべて取り消します
     await (await token).roles.setAll({ admin: [], minter: [] });
     console.log(
-      "🎉 Roles after revoking ourselves",
-      await (await token).roles.getAll()
+      '🎉 Roles after revoking ourselves',
+      await (await token).roles.getAll(),
     );
-    console.log("✅ Successfully revoked our superpowers from the ERC-20 contract");
-
+    console.log(
+      '✅ Successfully revoked our superpowers from the ERC-20 contract',
+    );
   } catch (error) {
-    console.error("Failed to revoke ourselves from the DAO treasury", error);
+    console.error('Failed to revoke ourselves from the DAO treasury', error);
   }
 })();
+
 ```
 
 それでは、ターミナルに移動し、下記コマンドを実行してみましょう。
@@ -158,7 +159,7 @@ const Home: NextPage = () => {
 
     const checkIfUserHasVoted = async () => {
       try {
-        const hasVoted = await vote!.hasVoted(proposals[0].proposalId.toString(), address);
+        const hasVoted = await vote!.hasVoted(proposals[0].proposalchainId.toString(), address);
         setHasVoted(hasVoted);
         if (hasVoted) {
           console.log("🥵 User has already voted");
@@ -179,7 +180,7 @@ const Home: NextPage = () => {
       return;
     }
 
-    // 先ほどエアドロップしたユーザーがここで取得できます（発行された tokenID 0 のメンバーシップ NFT）
+    // 先ほどエアドロップしたユーザーがここで取得できます（発行された tokenchainID 0 のメンバーシップ NFT）
     const getAllAddresses = async () => {
       try {
         const memberAddresses = await editionDrop?.history.getAllClaimerAddresses(
@@ -284,9 +285,9 @@ const Home: NextPage = () => {
     );
   }
   // テストネットが Sepolia ではなかった場合に警告を表示
-  else if (address && network && network?.data?.chain?.id !== 11155111) {
+  else if (address && network && network?.data?.chain?.chainId !== 11155111) {
     console.log("wallet address: ", address);
-    console.log("network: ", network?.data?.chain?.id);
+    console.log("network: ", network?.data?.chain?.chainId);
 
     return (
       <div className={styles.container}>
@@ -341,12 +342,12 @@ const Home: NextPage = () => {
                   // フォームから値を取得します
                   const votes = proposals.map((proposal) => {
                     const voteResult = {
-                      proposalId: proposal.proposalId,
+                      proposalchainId: proposal.proposalchainId,
                       vote: 2,
                     };
                     proposal.votes.forEach((vote) => {
-                      const elem = document.getElementById(
-                        proposal.proposalId + "-" + vote.type
+                      const elem = document.getElementBychainId(
+                        proposal.proposalchainId + "-" + vote.type
                       ) as HTMLInputElement;
 
                       if (elem!.checked) {
@@ -368,12 +369,12 @@ const Home: NextPage = () => {
                     // 提案に対する投票を行います
                     try {
                       await Promise.all(
-                        votes.map(async ({ proposalId, vote: _vote }) => {
+                        votes.map(async ({ proposalchainId, vote: _vote }) => {
                           // 提案に投票可能かどうかを確認します
-                          const proposal = await vote!.get(proposalId);
+                          const proposal = await vote!.get(proposalchainId);
                           // 提案が投票を受け付けているかどうかを確認します
                           if (proposal.state === 1) {
-                            return vote!.vote(proposalId.toString(), _vote);
+                            return vote!.vote(proposalchainId.toString(), _vote);
                           }
                           return;
                         })
@@ -381,12 +382,12 @@ const Home: NextPage = () => {
                       try {
                         // 提案が実行可能であれば実行する
                         await Promise.all(
-                          votes.map(async ({ proposalId }) => {
-                            const proposal = await vote!.get(proposalId);
+                          votes.map(async ({ proposalchainId }) => {
+                            const proposal = await vote!.get(proposalchainId);
 
                             // state が 4 の場合は実行可能と判断する
                             if (proposal.state === 4) {
-                              return vote!.execute(proposalId.toString());
+                              return vote!.execute(proposalchainId.toString());
                             }
                           })
                         );
@@ -407,20 +408,20 @@ const Home: NextPage = () => {
                 }}
               >
                 {proposals.map((proposal) => (
-                  <div key={proposal.proposalId.toString()} className="card">
+                  <div key={proposal.proposalchainId.toString()} className="card">
                     <h5>{proposal.description}</h5>
                     <div>
                       {proposal.votes.map(({ type, label }) => (
                         <div key={type}>
                           <input
                             type="radio"
-                            id={proposal.proposalId + "-" + type}
-                            name={proposal.proposalId.toString()}
+                            chainId={proposal.proposalchainId + "-" + type}
+                            name={proposal.proposalchainId.toString()}
                             value={type}
                             // デフォルトで棄権票をチェックする
                             defaultChecked={type === 2}
                           />
-                          <label htmlFor={proposal.proposalId + "-" + type}>
+                          <label htmlFor={proposal.proposalchainId + "-" + type}>
                             {label}
                           </label>
                         </div>
@@ -468,6 +469,262 @@ const Home: NextPage = () => {
 export default Home;
 ```
 
+### 🧙‍♂️ テストを作成・実行する
+
+ここまでの作業でコントラクトには基本機能として以下の機能が追加されました。
+* NFTをmintする機能
+* トークン,ガバナンストークンをデプロイする機能
+* NFT,トークン,ガバナンストークンの情報を取得する機能
+* NFT,トークン,ガバナンストークンに操作を加える機能
+
+これらの基本機能をテストスクリプトとして記述していきましょう。
+ではtestディレクトリを作成し、その中に`test.ts`という名前でファイルを作成して、以下のように記述しましょう。
+```
+import { AddressZero } from '@ethersproject/constants';
+import nextEnv from '@next/env';
+import { ThirdwebSDK } from '@thirdweb-dev/sdk';
+import assert from 'assert';
+import ethers from 'ethers';
+import { describe, it } from 'node:test';
+
+import {
+  editionDropAddress,
+  ERCTokenAddress,
+  gavananceAddress,
+  ownerWalletAddress,
+} from '../src/scripts/module.js';
+
+const { loadEnvConfig } = nextEnv;
+// 環境変数を env ファイルから読み込む
+const { PRIVATE_KEY, ALCHEMY_API_URL, WALLET_ADDRESS } = loadEnvConfig(
+  process.cwd(),
+).combinedEnv;
+
+describe('ETH-DAO test', function () {
+  // 環境変数が取得できてとれているか確認
+  if (!PRIVATE_KEY || PRIVATE_KEY === '') {
+    // process.
+    throw new Error('🛑 Private key not found.');
+  }
+
+  if (!ALCHEMY_API_URL || ALCHEMY_API_URL === '') {
+    throw new Error('🛑 Alchemy API URL not found.');
+  }
+
+  if (!WALLET_ADDRESS || WALLET_ADDRESS === '') {
+    throw new Error('🛑 Wallet Address not found.');
+  }
+
+  const sdk = new ThirdwebSDK(
+    new ethers.Wallet(PRIVATE_KEY!, ethers.getDefaultProvider(ALCHEMY_API_URL)),
+  );
+
+  // 1-initialize-sdk.tsのテスト
+  it('sdk is working', async function () {
+    // sdkからアドレスを取得
+    const address = await sdk.getSigner()?.getAddress();
+
+    // sdkを初期化したアドレスが自分のウォレットアドレスと一致しているか確認
+    assert.equal(address, WALLET_ADDRESS);
+  });
+
+  // edition-drop, ERC1155-token, gavanance-tokenの3つのコントラクトを取得
+  const editionDrop = sdk.getContract(editionDropAddress, 'edition-drop');
+  const token = sdk.getContract(ERCTokenAddress, 'token');
+  const vote = sdk.getContract(gavananceAddress, 'vote');
+
+  // 2-deploy-drop.tsのテスト
+  it('metadata is set', async function () {
+    // メタデータを取得
+    const metadata = await (await editionDrop).metadata.get();
+
+    // メタデータがsetされているかテスト
+    assert.notEqual(metadata, null);
+
+    // メタデータの内容の一部が一致しているかチェック
+    assert.equal(metadata.fee_recipient, AddressZero);
+  });
+
+  // 3-config-nft.tsのテスト
+  it('NFT is minted', async function () {
+    // 最初にmintされたNFTの情報を取得する
+    const NFTInfo = await (await editionDrop).get(0);
+
+    // NFTの情報が空ではないことを確認する
+    assert.notEqual(NFTInfo, null);
+  });
+
+  // 4-set-claim-condition.tsのテスト
+  it('NFT condition is set', async function () {
+    // トークンに与えられた条件を取得する
+    const condition = await (
+      await editionDrop
+    ).erc1155.claimConditions.getActive('0');
+
+    // 条件として与えられたものの一つであるNFTの価格が0であることを確認する
+    assert.equal(condition.price.toNumber(), 0);
+  });
+
+  // 5-deploy-token.tsのテスト
+  it('token contract is deployed', async function () {
+    // トークンに与えられた情報を取得する
+    const tokenInfo = await (await token).balance();
+
+    // トークンのシンボルがTSCとなっているか確認する
+    assert.equal(tokenInfo.symbol, 'TSC');
+  });
+
+  // 6-print-money.tsのテスト
+  it('token is minted', async function () {
+    // トークンの情報を取得する
+    const tokenInfo = await (await token).totalSupply();
+
+    // トークンの合計が1e+24となっているか確認する
+    assert.equal(Number(tokenInfo.value).toString(), '1e+24');
+  });
+
+  // 7-airdrop-token.tsのテスト
+  it('token is transfered', async function () {
+    // このコントラクトのオーナーに与えられているトークンの合計を確認する
+    const balance = await (await token).balanceOf(ownerWalletAddress);
+
+    // コントラクトのトークンの合計を10進数に変換する
+    const fixedBalance = Number(balance.value).toString();
+
+    // コントラクトのトークンの合計が1e+22となっているか確認
+    assert.equal(fixedBalance, '1e+22');
+  });
+
+  // 8-deploy-vote.tsのテスト
+  it('vote contract has right info', async function () {
+    // 投票コントラクトのメタデータを取得
+    const metadata = await (await vote).metadata.get();
+
+    // 投票コントラクトに正しく情報が入っているか確認
+    assert.equal(metadata.name, 'My amazing DAO');
+  });
+
+  // 9-setup-vote.tsのテスト
+  it('vote contract has as 9 times much tokens as owner has', async function () {
+    // ウォレットのトークン残高を取得します
+    const ownedTokenBalance = (
+      await (await token).balanceOf(ownerWalletAddress)
+    ).value;
+
+    // ウォレットのトークン残高を取得します
+    const contractTokenBalance = (
+      await (await token).balanceOf((await vote).getAddress())
+    ).value;
+
+    // オーナーが所有するトークンの9倍のトークン量をコントラクトが所有していることを確認
+    assert.equal(Number(ownedTokenBalance) * 9, Number(contractTokenBalance));
+  });
+
+  // 10-create-vote-proposals.tsのテスト
+  it('vote contract has proposal', async function () {
+    // 投票コントラクトに挙げられた提案を取得します
+    const proposal = (await (await vote).getAll())[0];
+
+    // 投票コントラクトへ提案がされているか確認する
+    assert.equal(
+      proposal.description,
+      'Should the DAO mint an additional 420000 tokens into the treasury?',
+    );
+  });
+
+  // 11-revoke-roles.tsのテスト
+  it('token role is passed to contract', async function () {
+    // 投票コントラクトに挙げられた提案を取得します
+    const roles = await (await token).roles.getAll();
+
+    // adminの権限が誰にも与えられていないlことを確認する。
+    assert.equal(roles.admin, [].toString());
+  });
+
+  console.log('test');
+});
+```
+
+では下のコマンドを実行することでコントラクトのテストをしていきましょう！
+
+```
+yarn test
+```
+
+下のような結果がでいれば成功です！
+
+```
+# Subtest: ETH-DAO test
+    # Subtest: sdk is working
+    ok 1 - sdk is working
+      ---
+      duration_ms: 0.512959
+      ...
+    # Subtest: metadata is set
+    ok 2 - metadata is set
+      ---
+      duration_ms: 8049.745916
+      ...
+    # Subtest: NFT is minted
+    ok 3 - NFT is minted
+      ---
+      duration_ms: 1770.656584
+      ...
+    # Subtest: NFT condition is set
+    ok 4 - NFT condition is set
+      ---
+      duration_ms: 3851.25
+      ...
+    # Subtest: token contract is deployed
+    ok 5 - token contract is deployed
+      ---
+      duration_ms: 1713.385542
+      ...
+    # Subtest: token is minted
+    ok 6 - token is minted
+      ---
+      duration_ms: 1683.686541
+      ...
+    # Subtest: token is transfered
+    ok 7 - token is transfered
+      ---
+      duration_ms: 1075.365209
+      ...
+    # Subtest: vote contract has right info
+    ok 8 - vote contract has right info
+      ---
+      duration_ms: 592.601458
+      ...
+    # Subtest: vote contract has as 9 times much tokens as owner has
+    ok 9 - vote contract has as 9 times much tokens as owner has
+      ---
+      duration_ms: 2624.013792
+      ...
+    # Subtest: vote contract has proposal
+    ok 10 - vote contract has proposal
+      ---
+      duration_ms: 2237.117125
+      ...
+    # Subtest: token role is passed to contract
+    ok 11 - token role is passed to contract
+      ---
+      duration_ms: 2768.723583
+      ...
+    1..11
+ok 1 - ETH-DAO test
+  ---
+  duration_ms: 26372.588292
+  ...
+1..1
+# tests 1
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 26438.270417
+✨  Done in 30.81s.
+```
 
 ### 🙋‍♂️ 質問する
 

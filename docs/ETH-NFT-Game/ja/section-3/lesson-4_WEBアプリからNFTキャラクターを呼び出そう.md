@@ -26,7 +26,7 @@
 
 このアドレスは、さまざまなタイミングで使用する予定ですので、簡単にアクセスできるようにしましょう。
 
-`nft-game-starter-project/src`の中に`constants.js`ファイルを作成し、以下のコードを追加してください。
+`client/src`の中に`constants.js`ファイルを作成し、以下のコードを追加してください。
 
 ```javascript
 // constants.js
@@ -82,9 +82,9 @@ ABIファイルの中身は、`MyEpicGame.json`というファイルに格納さ
 
 次に、下記を実行して、ABIファイルをWebアプリケーションから呼び出せるようにしましょう。
 
-1\. ターミナル上で`nft-game-starter-project`にいることを確認する（もしくは移動する）。
+1\. ターミナル上で`client`にいることを確認する（もしくは移動する）。
 
-2\. 下記を実行して、`nft-game-starter-project/src/`の中に`utils`ディレクトリを作成する。
+2\. 下記を実行して、`client/src/`の中に`utils`ディレクトリを作成する。
 
 > ```bash
 > mkdir src/utils
@@ -99,10 +99,10 @@ ABIファイルの中身は、`MyEpicGame.json`というファイルに格納さ
 4\. 下記を実行して、`MyEpicGame.json`ファイルをVS Codeで開く。
 
 > ```bash
-> code nft-game-starter-project/src/utils/MyEpicGame.json
+> code client/src/utils/MyEpicGame.json
 > ```
 
-5\. **先ほどコピーした`epic-game/artifacts/contracts/MyEpicGame.sol/MyEpicGame.json`の中身を新しく作成した`nft-game-starter-project/src/utils/MyEpicGame.json`の中に貼り付けてください。**
+5\. **先ほどコピーした`contract/artifacts/contracts/MyEpicGame.sol/MyEpicGame.json`の中身を新しく作成した`client/src/utils/MyEpicGame.json`の中に貼り付けてください。**
 
 ABIファイルの準備ができたので、`App.js`にインポートしましょう。
 
@@ -121,13 +121,13 @@ import myEpicGame from "./utils/MyEpicGame.json";
 
 1\. 再度、コントラクトをデプロイする。
 
-- `npx hardhat run scripts/deploy.js --network sepolia`を実行する必要があります。
+- `yarn contract deploy`を実行する必要があります。
 
 2\. フロントエンド(`App.js`)の`CONTRACT_ADDRESS`を更新する。
 
 3\. ABIファイルを更新する。
 
-`epic-game/artifacts/contracts/MyEpicGame.sol/MyEpicGame.json`の中身を新しく作成する`nft-game-starter-project/src/utils/MyEpicGame.json`の中に貼り付ける必要があります。
+`contract/artifacts/contracts/MyEpicGame.sol/MyEpicGame.json`の中身を新しく作成する`client/src/utils/MyEpicGame.json`の中に貼り付ける必要があります。
 
 **コントラクトを更新する際、必ずこの 3 つのステップを実行してください。**
 
@@ -421,7 +421,7 @@ useEffect(() => {
 
 ### ⏫ `constants.js`を更新する
 
-それでは、`nft-game-starter-project/src`に移動し、コントラクトアドレスを保持するために作成した`constants.js`ファイルの中身を下記のように更新しましょう。
+それでは、`contract/src`に移動し、コントラクトアドレスを保持するために作成した`constants.js`ファイルの中身を下記のように更新しましょう。
 
 ```javascript
 // constants.js
@@ -460,10 +460,10 @@ import { CONTRACT_ADDRESS, transformCharacterData } from "./constants";
 
 最後に、すべてのロジックが正確にWebアプリケーションにレンダリングされているかテストしていきましょう。
 
-ターミナルに向かい、`nft-game-starter-project`上で下記を実行し、ローカルサーバーでWebサイトを立ち上げてください。
+ターミナルに向かいローカルサーバーでWebサイトを立ち上げてください。
 
 ```
-npm run start
+yarn client start
 ```
 
 次に、ブラウザのMetaMaskのプラグインをクリックし、あなたのウォレットアドレスの接続状況を確認しましょう。

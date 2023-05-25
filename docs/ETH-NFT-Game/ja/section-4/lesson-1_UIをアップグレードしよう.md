@@ -10,7 +10,7 @@ NFTキャラクターをMintしたり、ボスのデータを取得したりす�
 
 3\. `Arena`コンポーネント : 攻撃が終了するのをフロントエンドが待機している状況
 
-`nft-game-starter-project/src/Components`フォルダに`LoadingIndicator`コンポーネントが格納されています。
+`client/src/Components`フォルダに`LoadingIndicator`コンポーネントが格納されています。
 
 このレッスンでは、この`LoadingIndicator`コンポーネントを使っていきます。
 
@@ -137,7 +137,7 @@ const checkIfWalletIsConnected = async () => {
 
 2つ目のケース、「ユーザーがNFTキャラクターをMintするのをフロントエンドが待機している状況」で、Webアプリケーションにローディングマークを表示していきましょう。
 
-まず、`nft-game-starter-project/src/Components/SelectCharacter/index.js`の先頭に、下記を追加しましょう。
+まず、`client/src/Components/SelectCharacter/index.js`の先頭に、下記を追加しましょう。
 
 ```javascript
 // SelectCharacter/index.js
@@ -217,7 +217,7 @@ return (
 
 `SelectCharacter.css`にも下記のCSSを追加しましょう。
 
-- `nft-game-starter-project/src/Components/SelectCharacter`フォルダの中に`SelectCharacter.css`が格納されています。
+- `client/src/Components/SelectCharacter`フォルダの中に`SelectCharacter.css`が格納されています。
 
 ```css
 /* SelectCharacter.css */
@@ -249,7 +249,7 @@ return (
 
 3つ目のケース、「攻撃が終了するのをフロントエンドが待機している状況」で、Webアプリケーションにローディングマークを表示していきましょう。
 
-まず、`nft-game-starter-project/src/Components/Arena/index.js`の先頭に、下記を追加しましょう。
+まず、`client/src/Components/Arena/index.js`の先頭に、下記を追加しましょう。
 
 ```javascript
 // Arena/index.js
@@ -293,7 +293,7 @@ import LoadingIndicator from "../LoadingIndicator";
 
 最後に、下記のCSSを、`Arena.css`ファイルに追加してください。
 
-- `nft-game-starter-project/src/Components/Arena`フォルダの中に`Arena.css`が格納されています。
+- `client/src/Components/Arena`フォルダの中に`Arena.css`が格納されています。
 
 ```css
 /* Arena.css */
@@ -320,7 +320,7 @@ import LoadingIndicator from "../LoadingIndicator";
 まず、下記のCSSを`Arena.css`ファイルに追加しましょう。
 
 ```css
-/* nft-game-starter-project/src/Components/Arena/Arena.css */
+/* client/src/Components/Arena/Arena.css */
 /* Toast */
 #toast {
   visibility: hidden;
@@ -447,7 +447,7 @@ import LoadingIndicator from "../LoadingIndicator";
 }
 ```
 
-次に、`nft-game-starter-project/src/Components/Arena/index.js`を開き、HTMLが記載されている`return();`の中身を下記のように更新しましょう。
+次に、`client/src/Components/Arena/index.js`を開き、HTMLが記載されている`return();`の中身を下記のように更新しましょう。
 
 ```javascript
 // Arena/index.js
@@ -523,7 +523,7 @@ return (
 `Arena.css`の中に下記のような`show`クラスが存在することを確認してください。
 
 ```css
-/* nft-game-starter-project/src/Components/Arena/Arena.css */
+/* client/src/Components/Arena/Arena.css */
 #toast.show {
   visibility: visible;
   -webkit-animation: fadein 0.5s, expand 0.5s 0.5s, stay 3s 1s, shrink 0.5s 2s,

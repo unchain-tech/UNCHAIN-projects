@@ -10,44 +10,12 @@
 
 それでは、始めましょう 🚀
 
-### 🍽 Git リポジトリをあなたの GitHub にフォークする
+### 🏁 Web アプリケーションを起動する
 
-まだGitHubのアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
-
-GitHubのアカウントをお持ちの方は、[こちら](https://github.com/shiftbase-xyz/nft-collection-starter-project) から、フロントエンドの基盤となるリポジトリをあなたのGitHubにフォークしましょう。フォークの方法は、[こちら](https://denno-sekai.com/github-fork/) を参照してください。
-
-あなたのGitHubアカウントにフォークした`nft-collection-starter-project`リポジトリを、ローカル環境にクローンしてください。
-
-まず、下図のように、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
-
-![](/public/images/ETH-NFT-Collection/section-3/3_1_1.png)
-
-ターミナルで先ほど作成した`ETH-NFT-collection`ディレクトリに移動し、先ほどコピーしたリンクを貼り付け、下記を実行してください。
+ターミナル上で`ETH-NFT-Collection`ディレクトリ直下に移動して下記を実行しましょう。
 
 ```bash
-git clone コピーした_github_リンク
-```
-
-この段階で、フォルダ構造は下記のようになっているはずです。
-
-```
-ETH-NFT-collection
-	|_ epic-nfts
-	|_ nft-collection-starter-project
-```
-
-ターミナル上で`nft-collection-starter-project`に移動して下記を実行しましょう。
-
-```bash
-npm install
-```
-
-`npm`コマンドを実行することで、JavaScriptライブラリのインストールが行われます。
-
-次に、下記を実行してみましょう。
-
-```bash
-npm run start
+yarn client start
 ```
 
 あなたのローカル環境で、Webサイトのフロントエンドが立ち上がりましたか？
@@ -58,7 +26,7 @@ npm run start
 
 上記のような形でフロントエンドが確認できれば成功です。
 
-これからフロントエンドの表示を確認したい時は、ターミナルに向かい、`nft-collection-starter-project`ディレクトリ上で、`npm run start`を実行します。これからも必要となる作業ですので、よく覚えておいてください。
+これからフロントエンドの表示を確認したい時は、ターミナルに向かい、`ETH-NFT-Collection`ディレクトリ上で、`yarn client start`を実行します。これからも必要となる作業ですので、よく覚えておいてください。
 
 ターミナルを閉じるときは、以下のコマンドが使えます ✍️
 

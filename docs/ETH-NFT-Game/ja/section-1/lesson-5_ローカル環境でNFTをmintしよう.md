@@ -477,10 +477,10 @@ console.log("Token URI:", returnedTokenUri);
 
 `gameContract.tokenURI(1)`が呼び出されると、`returnedTokenUri`には、`tokenId` ＝ `1`のNFTキャラクターのデータ（キャラクターの名前、HPなど）が格納されます。
 
-それでは、ターミナル上で`epic-game`ディレクトリに移動して、下記を実行してみましょう。
+それでは、ターミナル上で下記を実行してみましょう。
 
 ```bash
-npx hardhat run scripts/run.js
+yarn contract run:script
 ```
 
 下記のような結果がターミナルに出力されていれば、テストは成功です。
@@ -504,12 +504,12 @@ Token URI:
 
 `tokenURI`には、NFTデータを **JSON** 形式で渡す必要があります。
 
-まず、`epic-game/contracts`ディレクトリの下に`libraries`というディレクトリを作成しましょう。
+まず、`contract/contracts`ディレクトリの下に`libraries`というディレクトリを作成しましょう。
 
 下記のディレクトリ構図を参考にしてください。
 
 ```
-epic-game
+contract
    |_ contracts
 		  |_ libraries
 ```
@@ -713,10 +713,10 @@ abi.encodePacked("data:application/json;base64,", json);
 
 ここでは、文字列`data:application/json;base64,`と`json`の中身を結合して、`tokenURI`を作成しています。
 
-それでは、ターミナル上で`epic-game`ディレクトリに移動して、下記を実行してみましょう。
+それでは、ターミナル上で下記を実行してみましょう。
 
 ```bash
-npx hardhat run scripts/run.js
+yarn contract run:script
 ```
 
 下記のような結果がターミナルに出力されていれば、テストは成功です。

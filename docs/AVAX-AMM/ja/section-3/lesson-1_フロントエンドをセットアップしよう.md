@@ -13,7 +13,7 @@
 
 ### 🛠️ 　フロントエンドのセットアップをしよう
 
-プロジェクトのルートディレクトリである`Avax-AMM`ディレクトリに移動し,以下のコードを実行して下さい。
+`AVAX-AMM/packages`ディレクトリに移動し,以下のコードを実行して下さい。
 
 ```
 npx create-next-app client --ts --use-npm
@@ -25,17 +25,31 @@ npx create-next-app client --ts --use-npm
 
 この段階で,フォルダ構造は下記のようになっているはずです。
 
-```
-Avax-AMM
-   |_ client
-   |_ contract
+```diff
+AVAX-AMM
+ ├── package.json
+ └── packages/
++    ├── client/
+     └── contract/
 ```
 
-ターミナル上で`client`に移動して下記を実行しましょう。
+`client`ディレクトリ内に生成された`package.json`の設定を確認します。contractディレクトリの`package.json`と同様に,`"private": true`となっていることを確認し,設定されていない場合は記述しておきます。
+
+それでは,開発に必要なパッケージをインストールしましょう。先ほど生成された`client`ディレクトリに移動し,以下のコマンドを実行してください。
 
 ```
-cd client
-npm run dev
+yarn add ethers@5.7.1 @metamask/providers@9.1.0 react-icons
+```
+
+- `ethers`: スマートコントラクトとの連携に使用します。
+- `@metamask/providers`: metamaskとの連携の際にオブジェクトの型を取得するために使用します。
+- `react-icons`: reactが用意するアイコンを使用できます。
+
+ここで,開発環境がきちんと動作するか確認したいと思います。`client`ディレクトリ内に`node_modules/`や`package-lock.json`が生成されている場合は,いったん削除してください。次に,`AVAX-AMM`直下で下記を実行しましょう。
+
+```
+yarn install
+yarn client dev
 ```
 
 あなたのお使いのブラウザで
@@ -50,7 +64,7 @@ npm run dev
 
 上記のような形でフロントエンドが確認できれば成功です。
 
-これからフロントエンドの表示を確認する際は,`client`ディレクトリ上で,`npm run dev`を実行します。
+これからフロントエンドの表示を確認する際は,`AVAX-AMM`ディレクトリ上で,`npm run client dev`を実行します。
 
 webサイトの立ち上げを終了する場合は以下のコマンドが使えます ✍️
 
@@ -58,15 +72,12 @@ webサイトの立ち上げを終了する場合は以下のコマンドが使�
 - Windows: `ctrl + shift + w`
 
 `client`ディレクトリのフォルダ構造は以下のようになっています。
-※`node_modules`は内部ファイルの表示を省略しています。
 
 ```
 client
 ├── README.md
 ├── next-env.d.ts
 ├── next.config.js
-├── node_modules
-├── package-lock.json
 ├── package.json
 ├── pages
 │   ├── _app.tsx
@@ -81,16 +92,6 @@ client
 │   └── globals.css
 └── tsconfig.json
 ```
-
-続いて`client`ディレクトリ直下で以下のコマンドを実行して必要なパッケージをインストールしてください。
-
-```
-npm install ethers @metamask/providers react-icons
-```
-
-- `ethers`: スマートコントラクトとの連携に使用します。
-- `@metamask/providers`: metamaskとの連携の際にオブジェクトの型を取得するために使用します。
-- `react-icons`: reactが用意するアイコンを使用できます。
 
 ### 🦊 MetaMask をダウンロードする
 

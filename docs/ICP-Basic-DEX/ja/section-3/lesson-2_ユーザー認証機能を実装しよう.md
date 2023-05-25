@@ -61,10 +61,9 @@ mkdir ./src/icp_basic_dex_frontend/src/components && touch ./src/icp_basic_dex_f
 [Header.jsx]
 
 ```javascript
-import React from "react";
-import { AuthClient } from "@dfinity/auth-client";
-import { HttpAgent } from "@dfinity/agent";
-import { canisterId as IICanisterID } from "../../../declarations/internet_identity_div";
+import { canisterId as IICanisterID } from '../../../declarations/internet_identity_div';
+import { HttpAgent } from '@dfinity/agent';
+import { AuthClient } from '@dfinity/auth-client';
 
 export const Header = (props) => {
   const { setUserPrincipal } = props;
@@ -130,9 +129,8 @@ URLを設定したら、`AuthClient`の関数を実行していきます。こ�
 [App.jsx]
 
 ```javascript
-import React, { useState } from "react";
 import "./App.css";
-
+import { useState } from "react";
 import { Header } from "./components/Header";
 
 const App = () => {

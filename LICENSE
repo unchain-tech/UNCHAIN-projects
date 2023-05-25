@@ -1,6 +1,6 @@
 # UNCHAIN License 1.0
 
-License text copyright (c) 2022 shiftbase, Inc., All Rights Reserved.
+License text copyright (c) 2023 shiftbase, Inc., All Rights Reserved.
 "UNCHAIN License" is a trademark of shiftbase, Inc.
 
 ## Parameters
@@ -17,6 +17,7 @@ License text copyright (c) 2022 shiftbase, Inc., All Rights Reserved.
   - ETH-Yield-Farm
   - ICP-Basic-DEX
   - ICP-Static-Site
+  - ICP-Encrypted-Notes
   - NEAR-BikeShare
   - NEAR-Election-dApp
   - NEAR-Hotel-Booking-dApp
@@ -24,6 +25,7 @@ License text copyright (c) 2022 shiftbase, Inc., All Rights Reserved.
   - Polygon-Generative-NFT
   - Polygon-Mobile-dApp
   - Solana-Wallet
+  - XRPL-NFT-Maker
 - Exempted Work: All contents in the following repositories in the UNCHAIN-projects repository.
   - ETH-dApp
   - ETH-NFT-Collection

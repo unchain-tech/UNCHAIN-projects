@@ -1,4 +1,4 @@
-section1のこれから先の作業は, `Avax-AMM/contract`ディレクトリをルートディレクトリとして話を進めます。 🙌
+section1のこれから先の作業は, `AVAX-AMM/packages/contract`ディレクトリ内のファイルを操作していきます。🙌
 
 ### 👩‍💻 実装する内容の確認
 
@@ -60,7 +60,7 @@ Hardhatを使用する場合ファイル構造は非常に重要ですので, �
 
 ```bash
 contract
-    |_ contracts
+    └── contracts
            ├── AMM.sol
            └── ERC20Tokens.sol
 ```
@@ -141,11 +141,10 @@ contract USDCToken is ERC20 {
 pragma solidity ^0.8.17;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "hardhat/console.sol";
 
 contract AMM {
-    IERC20 tokenX; // ERC20を実装したコントラクト
-    IERC20 tokenY; // ERC20を実装したコントラクト
+    IERC20 private _tokenX; // ERC20を実装したコントラクト
+    IERC20 private _tokenY; // ERC20を実装したコントラクト
     uint256 public totalShare; // シェアの総量
     mapping(address => uint256) public share; // 各ユーザのシェア
     mapping(IERC20 => uint256) public totalAmount; // プールにロックされた各トークンの量
@@ -153,9 +152,9 @@ contract AMM {
     uint256 public constant PRECISION = 1_000_000; // シェアの精度に使用する定数(= 6桁)
 
     // プールに使えるトークンを指定します。
-    constructor(IERC20 _tokenX, IERC20 _tokenY) {
-        tokenX = _tokenX;
-        tokenY = _tokenY;
+    constructor(IERC20 tokenX, IERC20 tokenY) {
+        _tokenX = tokenX;
+        _tokenY = tokenY;
     }
 }
 ```
@@ -166,8 +165,8 @@ contract AMM {
 
 ```solidity
 contract AMM {
-    IERC20 tokenX; // ERC20を実装したコントラクト
-    IERC20 tokenY; // ERC20を実装したコントラクト
+    IERC20 private _tokenX; // ERC20を実装したコントラクト
+    IERC20 private _tokenY; // ERC20を実装したコントラクト
     ...
 }
 ```
@@ -303,10 +302,10 @@ expect(await amm.totalShare()).to.eql(BigNumber.from(0));
 
 ### ⭐ テストを実行しましょう
 
-`contract`ディレクトリ直下で以下のコマンドを実行してください。
+ターミナル上で以下のコマンドを実行してください。
 
 ```
-$ npx hardhat test
+yarn contract test
 ```
 
 以下のような表示がされます。

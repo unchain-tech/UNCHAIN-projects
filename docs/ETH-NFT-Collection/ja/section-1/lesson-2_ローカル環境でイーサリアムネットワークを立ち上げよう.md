@@ -1,4 +1,106 @@
-### ✨ Hardhat をインストールする
+### 🗂 環境構築をしよう
+
+まず、`node` / `yarn`を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスしてください。
+
+`node v16`をインストールすることを推奨しています。
+
+
+### 🍽 Git リポジトリをあなたの GitHub にフォークする
+
+まだGitHubのアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
+
+GitHubのアカウントをお持ちの方は、下記の手順に沿ってプロジェクトの基盤となるリポジトリをあなたのGitHubに[フォーク](https://denno-sekai.com/github-fork/)しましょう。
+
+1. [こちら](https://github.com/unchain-tech/ETH-NFT-Collection)からunchain-tech/ETH-NFT-Collectionリポジトリにアクセスをして、ページ右上の`Fork`ボタンをクリックします。
+
+![](/public/images/ETH-NFT-Collection/section-3/3_1_3.png)
+
+2. Create a new forkページが開くので、「Copy the `main` branch only」という項目に**チェックが入っていることを確認します**。
+
+![](/public/images/ETH-NFT-Collection/section-3/3_1_4.png)
+
+設定が完了したら`Create fork`ボタンをクリックします。あなたのGitHubアカウントに`ETH-NFT-Collection`リポジトリのフォークが作成されたことを確認してください。
+
+それでは、フォークしたリポジトリをローカル環境にクローンしましょう。
+
+まず、下図のように、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
+
+![](/public/images/ETH-NFT-Collection/section-3/3_1_1.png)
+
+ターミナル上で作業を行う任意のディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
+
+```bash
+git clone コピーした_github_リンク
+```
+
+無事に複製されたらローカル開発環境の準備は完了です。
+
+### 🔍 フォルダ構成を確認する
+
+実装に入る前に、フォルダ構成を確認しておきましょう。クローンしたスタータープロジェクトは下記のようになっているはずです。
+
+```bash
+ETH-NFT-Collection
+├── .git/
+├── .gitignore
+├── LICENSE
+├── README.md
+├── package.json
+├── packages/
+│   ├── client/
+│   └── contract/
+└── yarn.lock
+```
+
+スタータープロジェクトは、モノレポ構成となっています。モノレポとは、コントラクトとクライアント（またはその他構成要素）の全コードをまとめて1つのリポジトリで管理する方法です。
+
+packagesディレクトリの中には、`client`と`contract`という2つのディレクトリがあります。
+
+`package.json`ファイルの内容を確認してみましょう。
+
+モノレポを作成するにあたり、パッケージマネージャーの機能である[Workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/)を利用しています。
+
+**workspaces**の定義をしている部分は以下になります。
+
+```json
+// package.json
+"workspaces": {
+  "packages": [
+    "packages/*"
+  ]
+},
+```
+
+この機能により、yarn installを一度だけ実行すれば、すべてのパッケージ（今回はコントラクトのパッケージとクライアントのパッケージ）を一度にインストールできるようになります。
+
+ターミナル上で`ETH-NFT-Collection`ディレクトリ直下に移動して下記を実行してみましょう。
+
+```bash
+yarn install
+```
+
+`packages`ディレクトリ下の`contract/`と`client/`がそれぞれ保有するpackage.jsonに定義されている依存関係がインストールされます。
+
+また、ワークスペース内の各パッケージにアクセスするためのコマンドを以下の部分で定義しています。
+
+```json
+// package.json
+"scripts": {
+  "contract": "yarn workspace contract",
+  "client": "yarn workspace client",
+  "test": "yarn workspace contract test"
+}
+```
+
+これにより、各パッケージのディレクトリへ階層を移動しなくてもプロジェクトのルート直下から以下のようにコマンドを実行することが可能となります（ただし、各パッケージ内に`package.json`ファイルが存在し、その中にコマンドが定義されていないと実行できません）。
+
+```bash
+yarn <パッケージ名> <実行したいコマンド>
+```
+
+### 👏 サンプルプロジェクトを開始する
+
+ここからは、コントラクトの構築を行います。packages/contractディレクトリ下を編集していきます。
 
 スマートコントラクトをすばやくコンパイルし、ローカル環境にてテストを行うために、**Hardhat** というツールを使用します。
 
@@ -6,77 +108,82 @@
 
 - 「サーバー」がブロックチェーンであることを除けば、Hardhatはローカルサーバーと同じです。
 
-まず、`node` / `npm`を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスしてください。
+それでは、Hardhatを使用して、サンプルプロジェクトを作成しましょう。
 
-`node v16`をインストールすることを推奨しています。
-
-次に、ターミナルに向かいましょう。
-
-作業を始めるディレクトリに移動したら、次のコマンドを実行します。
-
-```bash
-mkdir ETH-NFT-collection
-cd ETH-NFT-collection
-mkdir epic-nfts
-cd epic-nfts
-npm init -y
-npm install --save-dev hardhat
-```
-
-この段階で、フォルダ構造は下記のようになっていることを確認してください。
-
-```
-ETH-NFT-collection
-	|_ epic-nfts
-```
-
-`epic-nfts`の中にスマートコントラクトを構築するためのファイルを作成していきます。
-
-> ✍️: `warning`について
-> 最後のコマンドを実行して Hardhat をインストールすると、脆弱性に関するメッセージが表示される場合があります。
->
-> 基本的に`warning`は無視して問題ありません。
->
-> NPM から何かをインストールするたびに、インストールしているライブラリに脆弱性が報告されているかどうかを確認するためにセキュリティチェックが行われます。
-
-### 👏 サンプルプロジェクトを開始する
-
-次に、Hardhatを実行します。
-
-ターミナルで`epic-nfts`ディレクトリに移動し、下記を実行します：
+`packages/contract`ディレクトリに移動し、次のコマンドを実行します。
 
 ```bash
 npx hardhat
+```
+
+`hardhat`がターミナル上で立ち上がったら、それぞれの質問を以下のように答えていきます。
+
+```
+・What do you want to do? →「Create a JavaScript project」を選択
+・Hardhat project root: →「'Enter'を押す」 (自動で現在いるディレクトリが設定されます。)
+・Do you want to add a .gitignore? (Y/n) → 「y」
+```
+
+（例）
+```bash
+$ npx hardhat
+
+888    888                      888 888               888
+888    888                      888 888               888
+888    888                      888 888               888
+8888888888  8888b.  888d888 .d88888 88888b.   8888b.  888888
+888    888     "88b 888P"  d88" 888 888 "88b     "88b 888
+888    888 .d888888 888    888  888 888  888 .d888888 888
+888    888 888  888 888    Y88b 888 888  888 888  888 Y88b.
+888    888 "Y888888 888     "Y88888 888  888 "Y888888  "Y888
+
+👷 Welcome to Hardhat v2.13.0 👷‍
+
+✔ What do you want to do? · Create a JavaScript project
+✔ Hardhat project root: · /ETH-NFT-Collection/packages/contract
+✔ Do you want to add a .gitignore? (Y/n) · y
+
+✨ Project created ✨
+
+See the README.md file for some example tasks you can run
+
+Give Hardhat a star on Github if you're enjoying it! 💞✨
+
+     https://github.com/NomicFoundation/hardhat
 ```
 
 > ⚠️: 注意 #1
 >
 > Windows で Git Bash を使用してハードハットをインストールしている場合、このステップ (HH1) でエラーが発生する可能性があります。問題が発生した場合は、WindowsCMD（コマンドプロンプト）を使用して HardHat のインストールを実行してみてください。
 
-> ⚠️: 注意 #2
->
-> `npm`と一緒に`yarn`をインストールしている場合、`npm ERR! could not determine executable to run`などのエラーが発生する可能性があります。
->
-> - この場合、`yarn add hardhat`のコマンドを実行しましょう。
+この段階で、フォルダー構造は下記のようになっていることを確認してください。
 
-> ⚠️: 注意 #3
->
-> `npx hardhat`が実行されなかった場合、以下をターミナルで実行してください。
->
-> ```bash
-> npm install --save-dev @nomicfoundation/hardhat-toolbox
-> ```
-
-`hardhat`がターミナル上で立ち上がったら、`Create a JavaScript project`を選択します。
-
-- プロジェクトのルートディレクトリを設定し、`.gitignore`を追加する選択肢で`yes`を選んでください。
+```diff
+ ETH-NFT-Collection
+ ├── .git/
+ ├── .gitignore
+ ├── LICENSE
+ ├── README.md
+ ├── package.json
+ ├── packages/
+ │   ├── client/
+ │   └── contract/
++│        ├── .gitignore
++│        ├── README.md
++│        ├── contracts/
++│        ├── hardhat.config.js
+ │        ├── package.json
++│        ├── scripts/
++│        └── test/
+ └── yarn.lock
+```
 
 次に、安全なスマートコントラクトを開発するために使用されるライブラリ **OpenZeppelin** をインストールします。
 
-ターミナル上で下記を実行してください。
+`packages/contract`ディレクトリにいることを確認し、以下のコマンドを実行してください。
 
 ```bash
-npm install @openzeppelin/contracts
+yarn add --dev @openzeppelin/contracts@4.8.2
 ```
 
 [OpenZeppelin](https://github.com/OpenZeppelin/openzeppelin-contracts) はイーサリアムネットワーク上で安全なスマートコントラクトを実装するためのフレームワークです。
@@ -93,14 +200,6 @@ npx hardhat compile
 
 次に、以下を実行します。
 
-> ⚠️: 注意 #1
->
-> `npx hardhat compile`が実行されなかった場合、以下をターミナルで実行してください。
->
-> ```bash
-> npm install --save-dev @nomicfoundation/hardhat-toolbox
-> ```
-
 ```
 npx hardhat test
 ```
@@ -109,13 +208,11 @@ npx hardhat test
 
 ![](/public/images/ETH-NFT-Collection/section-1/1_2_2.png)
 
-ターミナル上で`epic-nfts`に移動し、`ls`と入力してみて、下記のフォルダーとファイルが表示されていたら成功です。
+ターミナル上で`ls`と入力してみて、下記のフォルダーとファイルが表示されていたら成功です。
 
-```
-README.md		hardhat.config.js	scripts
-artifacts		node_modules		test
-cache			package-lock.json .gitignore
-contracts		package.json
+```bash
+README.md         cache             hardhat.config.js package.json      test
+artifacts         contracts         node_modules      scripts
 ```
 
 ここまできたら、フォルダーの中身を整理しましょう。

@@ -42,17 +42,17 @@
 
 次に、あなたが作成したAPIの横の`Edit`ボタンを選択してください。ポップアップが表示されるので、`apiKey`を取得しましょう。
 
-次に、ターミナルで`nft-collectible`ディレクトリに移動して、次のコマンドを実行してください。
+次に、ターミナルで`nft-contract`ディレクトリに移動して、次のコマンドを実行してください。
 
 Etherscanでverificationを行うために必要なツールをインストールします。
 
 ```bash
-npm install @nomiclabs/hardhat-etherscan
+yarn add @nomiclabs/hardhat-etherscan
 ```
 
 ![](/public/images/Polygon-Generative-NFT/section-2/2_4_4.png)
 
-次に、`nft-collectible`ディレクトリにある`.env`を開きます。
+次に、`contract`ディレクトリにある`.env`を開きます。
 
 `YOUR ETHERSCAN apiKey HERE`の部分にEtherscanから取得した`apiKey`を貼り付けたら、下記のコードを`.env`に追加しましょう。
 
@@ -60,7 +60,7 @@ npm install @nomiclabs/hardhat-etherscan
 ETHERSCAN_API = "YOUR ETHERSCAN apiKey HERE"
 ```
 
-最後に、`nft-collectible/hardhat.config.js`を下記のように更新しましょう。
+最後に、`contract/hardhat.config.js`を下記のように更新しましょう。
 
 ```javascript
 // hardhat.config.js

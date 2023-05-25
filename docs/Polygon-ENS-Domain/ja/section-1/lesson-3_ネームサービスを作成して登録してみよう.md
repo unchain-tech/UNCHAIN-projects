@@ -159,10 +159,10 @@ console.log("Owner of domain:", domainOwner);
 
 これらを実行してみましょう。
 
-通常どおりスクリプトを実行します。
+ターミナル上で、下記を実行してみましょう。
 
 ```bash
-npx hardhat run scripts/run.js
+yarn contract run:script
 ```
 
 次のような画面になります。
@@ -314,7 +314,7 @@ runMain();
 スクリプトを実行します。
 
 ```
-npx hardhat run scripts/run.js
+yarn contract run:script
 ```
 次のような画面になります。
 
@@ -374,7 +374,7 @@ runMain();
 スクリプトを実行します。
 
 ```
-npx hardhat run scripts/run.js
+yarn contract run:script
 ```
 
 

@@ -22,19 +22,18 @@ DAOの運営のために使われるガバナンストークンは素晴らし�
 
 それでは早速、`src/scripts/8-deploy-vote.ts`を作成し、以下のコードを追加しましょう。
 
-※ あなたのアドレスを設定することを忘れないでください！
-
 ```typescript
-import sdk from "./1-initialize-sdk.js";
+import sdk from './1-initialize-sdk.js';
+import { ERCTokenAddress } from './module.js';
 
 (async () => {
   try {
     const voteContractAddress = await sdk.deployer.deployVote({
       // ガバナンス用のコントラクトに名前を付けます
-      name: "My amazing DAO",
+      name: 'My amazing DAO',
 
       // ERC-20 トークンのコントラクトアドレスを設定します
-      voting_token_address: "INSERT_TOKEN_ADDRESS",
+      voting_token_address: ERCTokenAddress,
 
       // 以下の 2 つのパラメータはブロックチェーンのブロック数を指定します（Ethereum の場合、ブロックタイムを 13-14 秒と仮定）
       // 提案が作成された後、メンバーがすぐに投票できるよう 0 ブロックを設定する
@@ -51,11 +50,11 @@ import sdk from "./1-initialize-sdk.js";
     });
 
     console.log(
-      "✅ Successfully deployed vote contract, address:",
+      '✅ Successfully deployed vote contract, address:',
       voteContractAddress,
     );
   } catch (err) {
-    console.error("Failed to deploy vote contract", err);
+    console.error('Failed to deploy vote contract', err);
   }
 })();
 ```
@@ -145,52 +144,49 @@ ENSでは、供給量の50％ がコミュニティ、25％ はエアドロッ�
 
 それでは、`src/scripts/9-setup-vote.ts`を作成し、以下のコードを追加しましょう。
 
-※ あなたのアドレスを設定することを忘れないでください！
-
 ```typescript
-import sdk from "./1-initialize-sdk.js";
+import sdk from './1-initialize-sdk.js';
+import { ERCTokenAddress, gavananceAddress } from './module.js';
 
 // ガバナンスコントラクトのアドレスを設定します
-const vote = sdk.getContract("INSERT_VOTE_ADDRESS", "vote");
+const vote = sdk.getContract(gavananceAddress, 'vote');
 
 // ERC-20 コントラクトのアドレスを設定します。
-const token = sdk.getContract("INSERT_TOKEN_ADDRESS", "token");
+const token = sdk.getContract(ERCTokenAddress, 'token');
 
 (async () => {
   try {
     // 必要に応じて追加のトークンを作成する権限をトレジャリーに与えます
-    await (await token).roles.grant("minter", (await vote).getAddress());
+    await (await token).roles.grant('minter', (await vote).getAddress());
 
     console.log(
-      "Successfully gave vote contract permissions to act on token contract"
+      'Successfully gave vote contract permissions to act on token contract',
     );
   } catch (error) {
     console.error(
-      "failed to grant vote contract permissions on token contract",
-      error
+      'failed to grant vote contract permissions on token contract',
+      error,
     );
-    process.exit(1);
   }
 
   try {
     // ウォレットのトークン残高を取得します
-    const ownedTokenBalance = await (await token).balanceOf(
-      process.env.WALLET_ADDRESS!
-    );
+    const ownedTokenBalance = await (
+      await token
+    ).balanceOf(process.env.WALLET_ADDRESS!);
 
     // 保有する供給量の 90% を取得します
     const ownedAmount = ownedTokenBalance.displayValue;
-    const percent90 = Number(ownedAmount) / 100 * 90;
+    const percent90 = (Number(ownedAmount) / 100) * 90;
 
     // 供給量の 90% をガバナンスコントラクトへ移動します
-    await (await token).transfer(
-      (await vote).getAddress(),
-      percent90
-    );
+    await (await token).transfer((await vote).getAddress(), percent90);
 
-    console.log("✅ Successfully transferred " + percent90 + " tokens to vote contract");
+    console.log(
+      '✅ Successfully transferred ' + percent90 + ' tokens to vote contract',
+    );
   } catch (err) {
-    console.error("failed to transfer tokens to vote contract", err);
+    console.error('failed to transfer tokens to vote contract', err);
   }
 })();
 ```

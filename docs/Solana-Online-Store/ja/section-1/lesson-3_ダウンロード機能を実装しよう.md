@@ -14,7 +14,7 @@ IPFSに保存されたデータは一定期間内にアクセスがないと消�
 
 それでは、Pinataを利用してIPFSに画像をアップロードしてください。
 
-※アップロードするためには`+ Upload`ボタンを押下して進めます。
+※アップロードするためにはPinataにログイン後、ページ右上の`+ Add Files`-> `File`と進みます。
 
 ![pinata](/public/images/Solana-Online-Store/section-1/1_3_1.png)
 
@@ -38,7 +38,6 @@ https://cloudflare-ipfs.com/ipfs/"あなたの画像ファイルのCID"
 ```jsx
 // IpfsDownload.js
 
-import React  from 'react';
 import useIPFS from '../hooks/useIPFS';
 
 const IPFSDownload = ({ hash, filename }) => {
@@ -63,6 +62,77 @@ export default IPFSDownload;
 
 ダウンロードリンクを描画するだけのシンプルなコンポーネントです。
 
+では、テストスクリプトを実行して模擬的に動作確認をしてみましょう。
+
+簡単にテストの内容を説明します。`__tests__/IpfsDownload.test.js`では、コンポーネントに仮の値を渡して期待する結果がDownloadリンクに設定されているかをテストしています。
+
+最初に、テストで使用する仮の値を設定します。
+
+```javascript
+// __tests__/IpfsDownload.test.js
+
+/** 準備 */
+/** IPFSDownloadコンポーネントに渡す引数と、useIPFSフックの戻り値を定義します */
+const mockHash = 'hash';
+const mockFilename = 'filename';
+const mockFile = `https://gateway.ipfscdn.io/ipfs/${mockHash}?filename=${mockFilename}`;
+useIPFS.mockReturnValue(mockFile);
+```
+
+モック（Mock）という言葉は、実際のものや状況を「模倣」するものを指します。
+
+テストにおいては、実際のオブジェクトや関数の代わりに使用される模擬的なオブジェクトや関数を指します。上記のテストスクリプトでは、コンポーネントに渡す引数・useIPFSフックをモックしています。これにより、テスト対象のコードとそれ以外の部分（コンポーネントの外から渡されるデータや外部モジュールなど）を分離し、テスト対象のコードのみを独立してテストできるようになります。
+
+次に、対象コンポーネントのレンダリングを行います。ここで、先ほど定義した値を渡しています。
+
+```javascript
+// __tests__/IpfsDownload.test.js
+
+/** 実行 */
+render(<IPFSDownload hash={mockHash} filename={mockFilename} />);
+```
+
+最後に、テスト対象のコンポーネントが期待する結果を返しているかをテストします。
+
+```javascript
+// __tests__/IpfsDownload.test.js
+
+/** 確認 */
+const linkElement = screen.getByRole('link', {
+  name: /Download/i,
+});
+/** useIPFSフックが呼び出され、ダウンロードリンクが適切に設定されていることを確認します */
+expect(linkElement).toBeInTheDocument();
+expect(linkElement).toHaveAttribute('href', mockFile);
+expect(linkElement).toHaveAttribute('download', mockFilename);
+```
+
+`screen.getByRole()`は、指定された`role`属性を持つ要素を返します。今回テスト対象のコンポーネントでは、下記の要素が該当します。
+
+```jsx
+<a className="download-button" href={file} download={filename}>Download</a>
+```
+
+それではテストスクリプトを実行してみましょう。`package.json`ファイルのjestコマンドを更新してIPFSDownloadコンポーネントのテストのみ実行されるようにします。
+
+```json
+// package.json
+
+"scripts": {
+  // 下記に更新
+  "test": "jest IpfsDownload.test.js"
+}
+```
+
+jestコマンドを更新したら、ターミナルで`yarn test`を実行してみましょう。
+
+```bash
+yarn test
+```
+
+テストがパスしたら、IPFSDownloadコンポーネントの実装は完了です。
+
+![](/public/images/Solana-Online-Store/section-1/1_3_2.png)
 
 ### 😔 ダウンロード機能の実装
 
@@ -95,7 +165,6 @@ export default IPFSDownload;
 ```jsx
 // Product.js
 
-import React from "react";
 import styles from "../styles/Product.module.css";
 import IPFSDownload from './IpfsDownload';
 
@@ -158,7 +227,7 @@ export default function handler(req, res) {
 ```jsx
 // index.js
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Product from "../components/Product";
 import HeadComponent from '../components/Head';
 
@@ -244,7 +313,7 @@ IPFS上のファイルは複数のノードにキャッシュされるため、�
 以下のコマンドでWebアプリケーションを動かしてみましょう。
 
 ```bash
-npx next dev
+yarn dev
 ```
 
 ウォレット接続後の画面でかわいく名付けられた商品が並べられているはずです。

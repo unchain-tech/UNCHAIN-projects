@@ -688,10 +688,10 @@ client
         └── SendMessagePage.tsx
 ```
 
-それでは`client`ディレクトリ直下で以下のコマンドを実行してください！
+それではターミナル上で以下のコマンドを実行してください！
 
 ```
-$ npm run dev
+yarn client dev
 ```
 
 そしてブラウザで`http://localhost:3000 `へアクセスしてください。
