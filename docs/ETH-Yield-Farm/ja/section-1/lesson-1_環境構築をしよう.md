@@ -24,138 +24,52 @@
 
 `node v16`をインストールすることを推奨しています。
 
-それでは本プロジェクトで使用するフォルダーを作成してきましょう。作業を始めるディレクトリに移動したら、次のコマンドを実行します。
+### 🍽 Git リポジトリをあなたの GitHub にフォークする
+
+まだGitHubのアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
+
+GitHubのアカウントをお持ちの方は、[スターターキット](https://github.com/unchain-tech/ETH-Yield-Farm) から、フロントエンドの基盤となるリポジトリをあなたのGitHubにフォークしましょう。フォークの方法は、[こちら](https://denno-sekai.com/github-fork/) を参照してください。
+
+あなたのGitHubアカウントにフォークした`ETH-Yield-Farm`リポジトリを、ローカル環境にクローンしてください。
+
+まず、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
+
+ターミナル上で`ETH-Yield-Farm/packages`ディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
 
 ```bash
-mkdir ETH-Yield-Farm
-cd ETH-Yield-Farm
-yarn init --private -y
+git clone コピーした_github_リンク
 ```
 
-ETH-Yield-Farmディレクトリ内に、package.jsonファイルが生成されます。
+ターミナル上で`ETH-Yield-Farm`ディレクトリ下に移動して下記を実行しましょう。
 
 ```bash
-ETH-Yield-Farm
- └── package.json
+yarn install
 ```
 
-それでは、`package.json`ファイルを以下のように更新してください。
+`yarn`コマンドを実行することで、JavaScriptライブラリのインストールが行われます。
 
-```json
-{
-  "name": "ETH-Yield-Farm",
-  "version": "1.0.0",
-  "description": "yield farm",
-  "private": true,
-  "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
-  },
-  "scripts": {
-    "contract": "yarn workspace contract",
-    "client": "yarn workspace client",
-    "test": "yarn workspace contract test"
-  }
-}
-```
-
-`package.json`ファイルの内容を確認してみましょう。
-
-モノレポを作成するにあたり、パッケージマネージャーの機能である[Workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/)を利用しています。
-
-この機能により、yarn installを一度だけ実行すれば、すべてのパッケージ（今回はコントラクトのパッケージとクライアントのパッケージ）を一度にインストールできるようになります。
-
-**workspaces**の定義をしている部分は以下になります。
-
-```json
-"workspaces": {
-  "packages": [
-    "packages/*"
-  ]
-},
-```
-
-また、ワークスペース内の各パッケージにアクセスするためのコマンドを以下の部分で定義しています。
-
-```json
-"scripts": {
-  "contract": "yarn workspace contract",
-  "client": "yarn workspace client",
-  "test": "yarn workspace contract test"
-}
-```
-
-これにより、各パッケージのディレクトリへ階層を移動しなくてもプロジェクトのルート直下から以下のようにコマンドを実行することが可能となります（ただし、各パッケージ内に`package.json`ファイルが存在し、その中にコマンドが定義されていないと実行できません。そのため、現在は実行してもエラーとなります。ファイルは後ほど作成します）。
+次に、下記を実行してみましょう。
 
 ```bash
-yarn <パッケージ名> <実行したいコマンド>
+yarn client start
 ```
 
-それでは、ワークスペースのパッケージを格納するディレクトリを作成しましょう。
+あなたのローカル環境で、Webサイトのフロントエンドが立ち上がりましたか？
 
-以下のようなフォルダー構成となるように、`packages`ディレクトリとその中に`contract`ディレクトリを作成してください（`client`ディレクトリは、後ほどのレッスンでスターターコードをクローンする際に作成したいと思います）。
+例)ローカル環境で表示されているWebサイト
 
-```diff
-ETH-Yield-Farm
- ├── package.json
-+└── packages/
-+    └── contract/
-```
+![](/public/images/ETH-Yield-Farm/section-3/3_1_8.png)
 
-`contract`ディレクトリには、スマートコントラクトを構築するためのファイルを作成していきます。
+上記のような形でフロントエンドが確認できれば成功です。
 
-最後に、ETH-Yield-Farmディレクトリ下に`.gitignore`ファイルを作成して以下の内容を書き込みます。
+これからフロントエンドの表示を確認したい時は、ターミナルに向かい、`ETH-Yield-Farm`ディレクトリ上で、`npm start`を実行します。これからも必要となる作業ですので、よく覚えておいてください。
 
-```bash
-**/yarn-error.log*
+ターミナルを閉じるときは、以下のコマンドが使えます ✍️
 
-# dependencies
-**/node_modules
+- Mac: `ctrl + c`
+- Windows: `ctrl + shift + w`
 
-# misc
-**/.DS_Store
-```
-
-最終的に以下のようなフォルダー構成となっていることを確認してください。
-
-```bash
-ETH-Yield-Farm
- ├── .gitignore
- ├── package.json
- └── packages/
-     └── contract/
-```
-
-これでモノレポの雛形が完成しました！
-
-### ✨ Hardhat をインストールする
-
-スマートコントラクトをすばやくコンパイルし、ローカル環境にてテストを行うために、**Hardhat** というツールを使用します。
-
-- Hardhatにより、ローカル環境でイーサリアムネットワークを簡単に起動し、テストネットでイーサリアムを利用できます。
-
-- 「サーバー」がブロックチェーンであることを除けば、Hardhatはローカルサーバーと同じです。
-
-それでは、先ほど作成した`packages/contract`ディレクトリ内にファイルを作成します。ターミナルに向かい、packages/contract`ディレクトリ内で以下のコマンドを実行します。
-
-```bash
-cd packages/contract
-yarn init --private -y
-# Hardhatのインストール
-yarn add --dev hardhat
-# スマートコントラクトの開発に必要なプラグインのインストール
-yarn add --dev @nomicfoundation/hardhat-toolbox @nomicfoundation/hardhat-network-helpers @nomicfoundation/hardhat-chai-matchers @nomiclabs/hardhat-ethers @nomiclabs/hardhat-etherscan chai ethers@^5.4.7 hardhat-gas-reporter solidity-coverage @typechain/hardhat typechain @typechain/ethers-v5 @ethersproject/abi @ethersproject/providers
-```
-
-> ✍️: `warning`について
-> Hardhat をインストールすると、脆弱性に関するメッセージが表示される場合があります。
->
-> 基本的に`warning`は無視して問題ありません。
->
-> YARN から何かをインストールするたびに、インストールしているライブラリに脆弱性が報告されているかどうかを確認するためにセキュリティチェックが行われます。
-
-### 👏 サンプルプロジェクトを開始する
+### 👏 Hardhatのサンプルプロジェクトを開始する
 
 次に、Hardhatを実行します。
 
@@ -220,8 +134,8 @@ ETH-Yield-Farm
  ├── .gitignore
  ├── package.json
  └── packages/
-     ├── client/
-     └── contract/
+     ├── client/
+     └── contract/
 +        ├── .gitignore
 +        ├── README.md
 +        ├── contracts/
@@ -231,7 +145,7 @@ ETH-Yield-Farm
 +        └── test/
 ```
 
-それでは、`contract`ディレクトリ内に生成された`package.json`ファイルを以下を参考に更新をしましょう。
+それでは、`contract`ディレクトリ内の`package.json`ファイルを以下を参考に更新をしましょう。
 
 ```diff
 {
@@ -253,8 +167,7 @@ ETH-Yield-Farm
     "hardhat": "^2.13.0",
     "hardhat-gas-reporter": "^1.0.9",
     "solidity-coverage": "^0.8.2",
-    "typechain": "^8.1.1",
-    "dotenv": "^16.0.3"
+    "typechain": "^8.1.1"
   },
 +  "scripts": {
 +    "test": "npx hardhat test"
@@ -292,7 +205,7 @@ npx hardhat test
 
 次のように表示されます。
 
-![](/public/images/ETH-Yield-Farm/section-1/1_1_2.png)
+![](/public/images/ETH-Yield-Farm/section-1/1_2_1.png)
 
 ターミナル上で`ls`と入力してみて、下記のフォルダーとファイルが表示されていたら成功です。
 
