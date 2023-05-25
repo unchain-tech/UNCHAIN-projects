@@ -21,7 +21,7 @@
 
 まだGitHubのアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
-GitHubのアカウントをお持ちの方は、[スターターキット](https://github.com/shiftbase-xyz/ETH-dApp) から、フロントエンドの基盤となるリポジトリをあなたのGitHubにフォークしましょう。フォークの方法は、[こちら](https://denno-sekai.com/github-fork/) を参照してください。
+GitHubのアカウントをお持ちの方は、[スターターキット](https://github.com/unchain-tech/ETH-dApp) から、フロントエンドの基盤となるリポジトリをあなたのGitHubにフォークしましょう。フォークの方法は、[こちら](https://denno-sekai.com/github-fork/) を参照してください。
 
 あなたのGitHubアカウントにフォークした`ETH-dApp`リポジトリを、ローカル環境にクローンしてください。
 
