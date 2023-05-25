@@ -41,7 +41,7 @@ GitHubのアカウントをお持ちの方は、[スターターキット](https
 まず、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
 
 
-ターミナル上で`ETH-NFT-Game/packages`ディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
+ターミナル上で任意のディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
 
 ```bash
 git clone コピーした_github_リンク
@@ -53,8 +53,8 @@ git clone コピーした_github_リンク
 ETH-NFT-Game
  ├── package.json
  └── packages/
-+    ├── client/
-     └── contract/
+   ├── client/
+   └── contract/
 ```
 
 ターミナル上で`ETH-NFT-Game`ディレクトリ下に移動して下記を実行しましょう。
