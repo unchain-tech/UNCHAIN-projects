@@ -1,5 +1,51 @@
 lesson2,3で行うことは、今までunchain projectをやってきた方々には当たり前のことかもしれないので、環境構築だけぱっぱとやってしまいましょう!
 
+### 🍽 Git リポジトリをあなたの GitHub にフォークする
+
+まだGitHubのアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
+
+GitHubのアカウントをお持ちの方は、[スターターキット](https://github.com/shiftbase-xyz/nft-maker-starter-project) から、フロントエンドの基盤となるリポジトリをあなたのGitHubにフォークしましょう。フォークの方法は、[こちら](https://denno-sekai.com/github-fork/) を参照してください。
+
+あなたのGitHubアカウントにフォークした`nft-Maker-starter-project`リポジトリを、ローカル環境にクローンしてください。
+
+まず、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
+
+
+ターミナル上で`ETH-NFT-Maker/packages`ディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
+
+```bash
+git clone コピーした_github_リンク
+```
+
+ターミナル上で`ETH-NFT-Maker`ディレクトリ下に移動して下記を実行しましょう。
+
+```bash
+yarn install
+```
+
+`yarn`コマンドを実行することで、JavaScriptライブラリのインストールが行われます。
+
+次に、下記を実行してみましょう。
+
+```bash
+yarn client start
+```
+
+あなたのローカル環境で、Webサイトのフロントエンドが立ち上がりましたか？
+
+例)ローカル環境で表示されているWebサイト
+
+![](/public/images/ETH-NFT-Maker/section-3/3_1_1.png)
+
+上記のような形でフロントエンドが確認できれば成功です。
+
+これからフロントエンドの表示を確認したい時は、ターミナルに向かい、`nft-maker-starter-project`ディレクトリ上で、`npm start`を実行します。これからも必要となる作業ですので、よく覚えておいてください。
+
+ターミナルを閉じるときは、以下のコマンドが使えます ✍️
+
+- Mac: `ctrl + c`
+- Windows: `ctrl + shift + w`
+
 ### ✨ Hardhat をインストールする
 
 スマートコントラクトをすばやくコンパイルし、ローカル環境にてテストを行うために、**Hardhat** というツールを使用します。
@@ -11,14 +57,6 @@ lesson2,3で行うことは、今までunchain projectをやってきた方々�
 まず、`node` / `yarn`を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスしてください。
 
 `node v16`をインストールすることを推奨しています。
-
-### ✨ Hardhat をインストールする
-
-スマートコントラクトをすばやくコンパイルし、ローカル環境にてテストを行うために、**Hardhat** というツールを使用します。
-
-- Hardhatにより、ローカル環境でイーサリアムネットワークを簡単に起動し、テストネットでイーサリアムを利用できます。
-
-- 「サーバー」がブロックチェーンであることを除けば、Hardhatはローカルサーバーと同じです。
 
 それでは、`packages/contract`ディレクトリ内にファイルを作成します。ターミナルに向かい、packages/contract`ディレクトリ内で以下のコマンドを実行します。
 
