@@ -30,6 +30,60 @@
 
 `node v16`をインストールすることを推奨しています。
 
+### 🍽 Git リポジトリをあなたの GitHub にフォークする
+
+まだGitHubのアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
+
+GitHubのアカウントをお持ちの方は、[スターターキット](https://github.com/unchain-tech/ETH-NFT-Game) から、フロントエンドの基盤となるリポジトリをあなたのGitHubにフォークしましょう。フォークの方法は、[こちら](https://denno-sekai.com/github-fork/) を参照してください。
+
+あなたのGitHubアカウントにフォークした`ETH-NFT-Game`リポジトリを、ローカル環境にクローンしてください。
+
+まず、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
+
+
+ターミナル上で`ETH-NFT-Game/packages`ディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
+
+```bash
+git clone コピーした_github_リンク
+```
+
+この段階で、フォルダ構造は下記のようになっているはずです。
+
+```diff
+ETH-NFT-Game
+ ├── package.json
+ └── packages/
++    ├── client/
+     └── contract/
+```
+
+ターミナル上で`ETH-NFT-Game`ディレクトリ下に移動して下記を実行しましょう。
+
+```bash
+yarn install
+```
+
+`yarn`コマンドを実行することで、JavaScriptライブラリのインストールが行われます。
+
+次に、下記を実行してみましょう。
+
+```bash
+yarn client start
+```
+
+あなたのローカル環境で、Webサイトのフロントエンドが立ち上がりましたか？
+
+例)ローカル環境で表示されているWebサイト
+
+![](/public/images/ETH-NFT-Game/section-3/3_1_2.png)
+
+上記のような形でフロントエンドが確認できれば成功です。
+
+ターミナルを閉じるときは、以下のコマンドが使えます ✍️
+
+- Mac: `ctrl + c`
+- Windows: `ctrl + shift + w`
+
 ### 👏 サンプルプロジェクトを開始する
 
 次に、Hardhatを実行します。
