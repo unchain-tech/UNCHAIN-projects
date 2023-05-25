@@ -4,9 +4,9 @@ lesson2,3で行うことは、今までunchain projectをやってきた方々�
 
 まだGitHubのアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
-GitHubのアカウントをお持ちの方は、[スターターキット](https://github.com/shiftbase-xyz/nft-maker-starter-project) から、フロントエンドの基盤となるリポジトリをあなたのGitHubにフォークしましょう。フォークの方法は、[こちら](https://denno-sekai.com/github-fork/) を参照してください。
+GitHubのアカウントをお持ちの方は、[スターターキット](https://github.com/shiftbase-xyz/ETH-NFT-Maker) から、フロントエンドの基盤となるリポジトリをあなたのGitHubにフォークしましょう。フォークの方法は、[こちら](https://denno-sekai.com/github-fork/) を参照してください。
 
-あなたのGitHubアカウントにフォークした`nft-Maker-starter-project`リポジトリを、ローカル環境にクローンしてください。
+あなたのGitHubアカウントにフォークした`ETH-NFT-Maker`リポジトリを、ローカル環境にクローンしてください。
 
 まず、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
 
@@ -39,7 +39,7 @@ yarn client start
 
 上記のような形でフロントエンドが確認できれば成功です。
 
-これからフロントエンドの表示を確認したい時は、ターミナルに向かい、`nft-maker-starter-project`ディレクトリ上で、`npm start`を実行します。これからも必要となる作業ですので、よく覚えておいてください。
+これからフロントエンドの表示を確認したい時は、ターミナルに向かい、`ETH-NFT-Maker`ディレクトリ上で、`npm start`を実行します。これからも必要となる作業ですので、よく覚えておいてください。
 
 ターミナルを閉じるときは、以下のコマンドが使えます ✍️
 
