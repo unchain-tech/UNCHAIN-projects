@@ -127,7 +127,7 @@ TEST_ACCOUNT_PRIVATE_KEY="YOUR_PRIVATE_KEY"
 >
 > 「ログイン」には公開アドレスと秘密鍵の情報が必要となります。
 
-次に`contract`ディレクトリ直下にある`hardhat.config.ts`中身を以下のコードに書き換えてください。
+次に`packages/contract`ディレクトリ直下にある`hardhat.config.ts`中身を以下のコードに書き換えてください。
 ※ solidityのバージョンの部分(`solidity: "0.8.17",`)は元々記載されているものを使用してください。
 
 ```ts
@@ -189,7 +189,7 @@ deploy()
 
 このスクリプトを実行する際に先ほど`hardhat.config.ts`で設定したネットワークを指定すると, `ethers.getSigners()`の返す初めのアカウントの値はあなたのアカウントのアドレスになります。
 
-それでは`contract`ディレクトリ直下で下記のコマンドを実行してデプロイします！
+それでは`packages/contract`ディレクトリ直下で下記のコマンドを実行してデプロイします！
 
 ```
 $ npx hardhat run scripts/deploy.ts --network fuji
@@ -219,7 +219,7 @@ account address that deploy contract: 0xf6DA2F11E8f1faC2a13ac847d52FaF5Ce6e39954
 assetTokenization address: 0x4E2F5941e079EcE9c1927fd7b9fc92fDB58E04cD
 ```
 
-を`client`ディレクトリ内, `hooks/useContract.ts`の中の以下の部分に貼り付けてください。
+を`packages/client`ディレクトリ内, `hooks/useContract.ts`の中の以下の部分に貼り付けてください。
 
 ```ts
 export const Asset-TokenizationAddress =

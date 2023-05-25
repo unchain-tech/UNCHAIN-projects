@@ -4,18 +4,17 @@
 
 このレッスンでは残りのコンポーネントを実装してフロントエンドを完成させましょう。
 
-各コンポーネント作成ごとにUIを確認していくので,
-`client`ディレクトリ直下で以下のコマンドを実行して, Webサイトを立ち上げておくと楽かもしれません。
+各コンポーネント作成ごとにUIを確認していくので,Webサイトを立ち上げておくと楽かもしれません。
 
-```
-$ npm run dev
+```bash
+yarn client dev
 ```
 
 ### 📁 `components`ディレクトリ
 
 📁 `Form`ディレクトリ
 
-ここでは貼り付けるコード量が多いので, [本プロジェクトの client/components](https://github.com/unchain-dev/AVAX-Asset-Tokenization/tree/main/client/components)を参照します。
+ここでは貼り付けるコード量が多いので, [本プロジェクトの packages/client/components](https://github.com/unchain-dev/AVAX-Asset-Tokenization/tree/main/packages/client/components)を参照します。
 
 `components/Form`ディレクトリのファイルの内容をコピーしてください。
 既にあるファイルの場合は上書きしてください。
@@ -76,10 +75,10 @@ const [expirationDate, setExpirationDate] = useState("");
 
 🖥️ 画面で確認しましょう
 
-それでは`client`ディレクトリ直下で以下のコマンドを実行してください！
+それでは`AVAX-Asset-Tokenization`ディレクトリ直下で以下のコマンドを実行してください！
 
 ```
-$ npm run dev
+yarn client dev
 ```
 
 そしてブラウザで`http://localhost:3000 `へアクセスしてください。

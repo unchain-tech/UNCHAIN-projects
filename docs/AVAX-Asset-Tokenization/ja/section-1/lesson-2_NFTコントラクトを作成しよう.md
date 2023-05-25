@@ -1,4 +1,4 @@
-`section1`のこれから先の作業は, `AVAX-Asset-Tokenization/contract`ディレクトリをルートディレクトリとして話を進めます。 🙌
+`section1`のこれから先の作業は, `AVAX-Asset-Tokenization/packages/contract`ディレクトリをルートディレクトリとして話を進めます。 🙌
 
 ### 👩‍💻 実装する内容の確認
 
@@ -40,10 +40,10 @@ NFTの機能を持つスマートコントラクトです。
 Hardhatを使用する場合ファイル構造は非常に重要ですので, 注意する必要があります。
 ファイル構造が下記のようになっていれば大丈夫です 😊
 
-```bash
-contract
-    |_ contracts
-           └── FarmNft.sol
+```diff
+ contract/
+  └── contracts/
++     └── FarmNft.sol
 ```
 
 次に, コードエディタでプロジェクトのコードを開きます。
@@ -290,7 +290,7 @@ openseaなどのNFTマーケットサービスは, このtokenURI関数のデー
 
 テストコードは詳細な説明を省きますが, コード自体は量が多いのでGit hub上からコピーして頂きたいです。
 
-`test`ディレクトの下に`FarmNft.ts`を作成し, [こちら](https://github.com/unchain-dev/AVAX-Asset-Tokenization/blob/main/contract/test/FarmNft.ts)のファイル内のコードをコピーして貼り付けてください。
+`test`ディレクトの下に`FarmNft.ts`を作成し, [こちら](https://github.com/unchain-dev/AVAX-Asset-Tokenization/blob/main/packages/contract/test/FarmNft.ts)のファイル内のコードをコピーして貼り付けてください。
 
 また, ここでテストに関わる参考文献を紹介しますのでこの先の説明でわからない時は参考にしてください。
 

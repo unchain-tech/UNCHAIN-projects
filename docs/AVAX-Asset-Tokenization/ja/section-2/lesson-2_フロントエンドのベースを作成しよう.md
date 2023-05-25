@@ -343,7 +343,7 @@ export default MyApp;
 
 📁 `Button`ディレクトリ
 
-ここでは貼り付けるコード量が多いので, [本プロジェクトの client/components](https://github.com/unchain-dev/AVAX-Asset-Tokenization/tree/main/client/components)を参照します。
+ここでは貼り付けるコード量が多いので, [本プロジェクトの packages/client/components](https://github.com/unchain-dev/AVAX-Asset-Tokenization/tree/main/packages/client/components)を参照します。
 
 `components`ディレクトリ内から`Button`ディレクトリをそのままコピーして貼り付けてください。
 [本レポジトリ](https://github.com/unchain-dev/AVAX-Asset-Tokenization/tree/main)自体をローカルにクローンしてからコピーしたほうがやりやすいかもしれません。
@@ -376,7 +376,7 @@ client
 
 📁 `Container`ディレクトリ
 
-同じく[本プロジェクトの client/components](https://github.com/unchain-dev/AVAX-Asset-Tokenization/tree/main/client/components)を参照します。
+同じく[本プロジェクトの packages/client/components](https://github.com/unchain-dev/AVAX-Asset-Tokenization/tree/main/packages/client/components)を参照します。
 
 `components`ディレクトリ内から`Container`ディレクトリをそのままコピーして貼り付けてください。
 
@@ -401,7 +401,7 @@ client
 
 📁 `Layout`ディレクトリ
 
-同じく[本プロジェクトの client/components](https://github.com/unchain-dev/AVAX-Asset-Tokenization/tree/main/client/components)を参照します。
+同じく[本プロジェクトの packages/client/components](https://github.com/unchain-dev/AVAX-Asset-Tokenization/tree/main/packages/client/components)を参照します。
 
 `components`ディレクトリ内から`Layout`ディレクトリをそのままコピーして貼り付けてください。
 

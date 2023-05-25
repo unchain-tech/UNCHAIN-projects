@@ -99,10 +99,10 @@ cp -r typechain-types/* ../client/types/
 
 ここで`Upkeep`が動くことを簡単に確認します。
 
-既にフロントエンドに新コントラクトの情報は反映してあるので, `client`ディレクトリ直下で以下のコマンドを実行してください！
+既にフロントエンドに新コントラクトの情報は反映してあるので, `AVAX-Asset-Tokenization`ディレクトリ直下で以下のコマンドを実行してください！
 
 ```
-$ npm run dev
+yarn client dev
 ```
 
 そしてブラウザで`http://localhost:3000`へアクセスしてください。

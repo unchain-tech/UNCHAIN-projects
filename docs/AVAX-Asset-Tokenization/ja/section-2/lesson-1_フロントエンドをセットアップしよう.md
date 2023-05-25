@@ -12,29 +12,34 @@
 
 ### 🛠️ 　フロントエンドのセットアップをしよう
 
-プロジェクトのルートディレクトリである`AVAX-Asset-Tokenization`ディレクトリに移動し,以下のコードを実行して下さい。
+`AVAX-Asset-Tokenization/packages`ディレクトリに移動し,以下のコマンドを実行して下さい。
 
-```
-npx create-next-app client --ts --use-npm
+```bash
+yarn create next-app client --ts
 ```
 
 ここでは`create-next-app`というパッケージを利用して`client`という名前のプロジェクトを作成しました。
-`--ts`は`typescript`を使用することの指定, `--use-npm`は`npm`を使用してアプリの立ち上げを行うこと指定しています。
+`--ts`は`typescript`を使用することの指定しています。
 `client`ディレクトリには`Next.js`を使ったプロジェクト開発に最低限必要なものがあらかじめ作成されます。
 
 この段階で, フォルダ構造は下記のようになっているはずです。
 
-```
-AVAX-Asset-Tokenization
-   |_ client
-   |_ contract
+```diff
+ AVAX-Asset-Tokenization
+  ├── .gitignore
+  ├── package.json
+  └── packages/
++     ├── client/
+      └── contract/
 ```
 
-ターミナル上で`client`に移動して下記を実行しましょう。
+clientディレクトリ内に生成されたpackage.jsonの設定を確認します。contractディレクトリのpackage.jsonと同様に,`"private": true`となっていることを確認し,設定されていない場合は記述しておきます。
+
+ここで,開発環境がきちんと動作するか確認したいと思います。clientディレクトリ内に`node_modules/`や`yarn.lock`が生成されている場合は,いったん削除してください。次に,ターミナル上で`AVAX-Asset-Tokenization`直下に移動し下記を実行しましょう。
 
 ```
-cd client
-npm run dev
+yarn install
+yarn client dev
 ```
 
 あなたのお使いのブラウザで`http://localhost:3000`へアクセスするとWebサイトのフロントエンドが表示されるはずです。
@@ -47,7 +52,7 @@ npm run dev
 
 上記のような形でフロントエンドが確認できれば成功です。
 
-これからフロントエンドの表示を確認する際は,`client`ディレクトリ上で,`npm run dev`を実行します。
+これからフロントエンドの表示を確認する際は,`AVAX-Asset-Tokenization`上で`yarn client dev`(`client`ディレクトリ上では`yarn dev`)を実行します。
 
 Webサイトの立ち上げを終了する場合は以下のコマンドが使えます ✍️
 
@@ -63,7 +68,6 @@ client
 ├── next-env.d.ts
 ├── next.config.js
 ├── node_modules
-├── package-lock.json
 ├── package.json
 ├── pages
 │   ├── _app.tsx
@@ -79,10 +83,10 @@ client
 └── tsconfig.json
 ```
 
-続いて`client`ディレクトリ直下で以下のコマンドを実行して必要なパッケージをインストールしてください。
+続いて`packages/client`ディレクトリ直下で以下のコマンドを実行して必要なパッケージをインストールしてください。
 
 ```
-npm install ethers @metamask/providers react-icons
+yarn add ethers @metamask/providers react-icons
 ```
 
 - `ethers`: スマートコントラクトとの連携に使用します。

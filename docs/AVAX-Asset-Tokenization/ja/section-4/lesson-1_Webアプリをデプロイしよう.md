@@ -10,7 +10,7 @@ Vercelに関する詳しい説明は,[こちら](https://zenn.dev/lollipop_onl/a
 
 まず, ローカルファイルをGitHubへアップロードしましょう。
 
-まだアップロードをしていない方は, ターミナル上で`Asset-Tokenization`に移動して,下記を実行しましょう。
+まだアップロードをしていない方は, ターミナル上で`AVAX-Asset-Tokenization`に移動して,下記を実行しましょう。
 ⚠️ `.gitignore`ファイル内に`.env`が記載されていることを確認していください。
 
 ```
@@ -19,7 +19,7 @@ git commit -m "upload to github"
 git push
 ```
 
-次に, ローカル環境に存在する`Asset-Tokenization`のファイルとディレクトリがGitHub上の`Asset-Tokenization`に反映されていることを確認してください。
+次に, ローカル環境に存在する`AVAX-Asset-Tokenization`のファイルとディレクトリがGitHub上の`AVAX-Asset-Tokenization`に反映されていることを確認してください。
 
 Vercelのアカウントを取得したら,下記を実行しましょう。
 
