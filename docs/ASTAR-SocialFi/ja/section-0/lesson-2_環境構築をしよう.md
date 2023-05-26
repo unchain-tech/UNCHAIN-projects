@@ -135,7 +135,7 @@ ASTAR-SocialFi
 yarn <パッケージ名> <実行したいコマンド>
 ```
 
-最後に、ASTAR-SocialFiディレクトリ下に`.gitignore`ファイルを作成して以下の内容を書き込みます。
+次に、ASTAR-SocialFiディレクトリ下に`.gitignore`ファイルを作成して以下の内容を書き込みます。
 
 ```bash
 **/yarn-error.log*
@@ -146,6 +146,8 @@ yarn <パッケージ名> <実行したいコマンド>
 # misc
 **/.DS_Store
 ```
+
+最後にpackagesフォルダーを作成しましょう。
 
 最終的に以下のようなフォルダー構成となっていることを確認してください。
 
@@ -335,7 +337,7 @@ npx create-next-app@latest client --typescript
 まずは先ほど作成したプロジェクトの一番上のディレクトリにいることを確認して下のコマンドをターミナルで実行しましょう。
 
 ```
-npm install -D tailwindcss@latest postcss@latest autoprefixer@latest
+yarn add -D tailwindcss@latest postcss@latest autoprefixer@latest
 ```
 
 ```
