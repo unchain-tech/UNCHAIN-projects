@@ -2,7 +2,7 @@
 
 ローカル環境で、Sepoliaテストネットワークにコントラクトをデプロイするための準備をしましょう。
 
-`nft-collectible/scripts`ディレクトリに移動し、`run.js`という名前のファイルを作成してください。
+`contract/scripts`ディレクトリに移動し、`run.js`という名前のファイルを作成してください。
 
 **`run.js`はローカル環境でスマートコントラクトのテストを行うためのテストプログラムです。**
 
@@ -167,7 +167,7 @@ Owner has tokens:  [
 
 それでは、Sepolia Test Networkにコントラクトをデプロイしましょう。
 
-`nft-collectible/scripts`の中にある`deploy.js`に、`run.js`の中身と同じにしてください。
+`contract/scripts`の中にある`deploy.js`に、`run.js`の中身と同じにしてください。
 
 > ⚠️: 注意
 >
@@ -177,7 +177,7 @@ Owner has tokens:  [
 >
 > `run.js`と`deploy.js`は分けて管理することをおすすめします。
 
-`deploy.js`が作成できたら、ターミナル上で`nft-collectible`ディレクトリに移動し、下記のコマンドを実行しましょう。
+`deploy.js`が作成できたら、ターミナル上で下記のコマンドを実行しましょう。
 
 ```bash
 yarn contract deploy
