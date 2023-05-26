@@ -135,19 +135,6 @@ ASTAR-SocialFi
 yarn <パッケージ名> <実行したいコマンド>
 ```
 
-それでは、ワークスペースのパッケージを格納するディレクトリを作成しましょう。
-
-以下のようなフォルダー構成となるように、`packages`ディレクトリとその中に`contract`ディレクトリを作成してください（`client`ディレクトリは、後ほどのレッスンでスターターコードをクローンする際に作成したいと思います）。
-
-```diff
-ASTAR-SocialFi
- ├── package.json
-+└── packages/
-+    └── contract/
-```
-
-`contract`ディレクトリには、スマートコントラクトを構築するためのファイルを作成していきます。
-
 最後に、ASTAR-SocialFiディレクトリ下に`.gitignore`ファイルを作成して以下の内容を書き込みます。
 
 ```bash
@@ -167,7 +154,6 @@ ASTAR-SocialFi
  ├── .gitignore
  ├── package.json
  └── packages/
-     └── contract/
 ```
 
 これでモノレポの雛形が完成しました！
@@ -179,26 +165,50 @@ ASTAR-SocialFi
 `packages`のディレクトリに移動して下のコマンドをターミナルで実行させましょう。
 
 ```
-cargo contract new contract
+cargo contract new aster_sns_contract
 ```
 
-作成が完了したら、`contract`ディレクトリに移動しましょう。
+作成が完了したら、packagesディレクトリ直下にある`astar_sns_contract`というディレクトリ名を`contract`という名前に変更しましょう。
+
+次に下のコマンドを順番に実行してコントラクトディレクトリを編集していきましょう。
+
+```bash
+cd packages/contract
+yarn init --private -y
+```
+
+その後`contract`ディレクトリ内で作成されたpackage.jsonを以下のように編集しましょう。
+
+```
+{
+  "name": "contract",
+  "version": "1.0.0",
+  "description": "contract directory",
+  "private": true,
+  "scripts": {
+    "start": "./astar-collator --dev",
+    "build": "cargo +nightly-2023-05-24 build",
+    "test": "cargo test"
+  }
+}
+
+```
 
 では作成されたコントラクトをローカルのチェーンにデプロイしてみましょう。
 
 最初に、作成したプロジェクトのabiファイルとwasm形式で記述されたファイルを作成していきます。
 
-下のコマンドを実行してみましょう。
+`packages/contract`にいることを確認して、下のコマンドを実行してみましょう。
 
 ```
-cargo contract build
+cargo aster_sns_contract build
 ```
 
 このようなメッセージが返ってきていればOKです！
 
 ```
-  - contract.contract (code + metadata)
-  - contract.wasm (the contract's code)
+  - aster_sns_contract.contract (code + metadata)
+  - aster_sns_contract.wasm (the contract's code)
   - metadata.json (the contract's metadata)
 ```
 
@@ -314,8 +324,10 @@ tar xvf astar-collator-v4.24.0-macOS-x86_64.tar.gz
 
 今回はtypescriptを使用していくのでその指定もしておきます。
 
+`packages`ディレクトリにいることを確認して下のコマンドを実行しましょう。
+
 ```
-npx create-next-app@latest astar-sns-frontend --typescript
+npx create-next-app@latest client --typescript
 ```
 
 次に`Tailwind CSS`を導入していきます。Tailwind CSSを使用することで簡単に自由なCSSを記述することができます。
@@ -362,10 +374,10 @@ module.exports = {
 @tailwind utilities;
 ```
 
-では下のコマンドをターミナルで実行してローカルでアプリを動かせるか確認しましょう。
+では一番上のディレクトリにいることを確認して、下のコマンドをターミナルで実行してローカルでアプリを動かせるか確認しましょう。
 
 ```
-yarn dev
+yarn client dev
 ```
 
 下のようにターミナルに表示されていればきちんとノードが立てられているので、 ターミナルに表示されているローカルのページurlをブラウザにコピー&ペーストしてみてみましょう。
