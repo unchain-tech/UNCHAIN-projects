@@ -32,8 +32,8 @@ source "$HOME/.cargo/env"
 ```
 rustup default stable
 rustup update
-rustup update nightly
-rustup target add wasm32-unknown-unknown --toolchain nightly
+rustup update nightly-2023-05-25
+rustup target add wasm32-unknown-unknown --toolchain nightly-2023-05-25
 ```
 
 次に`cargo-contracts CLI`を使用できるようにするための準備をします。下のコマンドを順番にターミナルで実行してください。
@@ -47,19 +47,18 @@ cargo install cargo-dylint dylint-link
 cargo install --force --locked cargo-contract
 ```
 
-では次に下の３つのコマンドを順番にターミナルで実行することによって`rust nightly`を最新版にしましょう。
-※もし新たに最新版が出ている場合はそちらをインストールする必要があるかも知れません 😥
+では次に下の３つのコマンドを順番にターミナルで実行することによって`rust nightly`を指定のバージョンにしましょう。
 
 ```
-rustup toolchain install nightly-2022-08-15
-```
-
-```
-rustup target add wasm32-unknown-unknown --toolchain nightly-2022-08-15
+rustup toolchain install nightly-2023-05-25
 ```
 
 ```
-rustup component add rust-src --toolchain nightly-2022-08-15
+rustup target add wasm32-unknown-unknown --toolchain nightly-2023-05-25
+```
+
+```
+rustup component add rust-src --toolchain nightly-2023-05-25
 ```
 
 これでコントラクトをデプロイする準備が完了しました！
@@ -81,7 +80,7 @@ cargo contract new astar_sns_contract
 下のコマンドを実行してみましょう。
 
 ```
-cargo +nightly-2022-08-15 contract build
+cargo contract build
 ```
 
 このようなメッセージが返ってきていればOKです！
