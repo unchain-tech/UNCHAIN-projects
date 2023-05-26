@@ -110,9 +110,9 @@ Vercelはサーバーレス機能のホスティングを提供するクラウ�
 
 Vercelに関する詳しい説明は、[こちら](https://zenn.dev/lollipop_onl/articles/eoz-vercel-pricing-2020)をご覧ください。
 
-まず、GitHubの`nft-maker-starter-project`にローカルファイルをアップロードしていきます。
+まず、GitHubの`NFT-Maker`にローカルファイルをアップロードしていきます。
 
-ターミナル上で`nft-maker-starter-project`に移動して、下記を実行しましょう。
+ターミナル上で`NFT-Maker`に移動して、下記を実行しましょう。
 
 ```
 git add .
@@ -120,7 +120,7 @@ git commit -m "upload to github"
 git push
 ```
 
-次に、GitHub上の`nft-maker-starter-project`に、ローカル環境に存在する`nft-maker-starter-project`のファイルとディレクトリが反映されていることを確認してください。
+次に、GitHub上の`NFT-Maker`に、ローカル環境に存在する`NFT-Maker`のファイルとディレクトリが反映されていることを確認してください。
 
 Vercelのアカウントを取得したら、下記を実行しましょう。
 
@@ -128,7 +128,7 @@ Vercelのアカウントを取得したら、下記を実行しましょう。
 
 ![](/public/images/ETH-NFT-Maker/section-4/4_2_1.png)
 
-2\. `Import Git Repository`で自分のGitHubアカウントを接続したら、`nft-maker-starter-project`を選択し、`Import`してください。
+2\. `Import Git Repository`で自分のGitHubアカウントを接続したら、`NFT-Maker`を選択し、`Import`してください。
 
 ![](/public/images/ETH-NFT-Maker/section-4/4_2_2.png)
 

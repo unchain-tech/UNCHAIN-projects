@@ -4,11 +4,14 @@ Metaplex CLIは、Candy Machineに利用可能な、NFTを発行するための�
 
 まずはすべてのNFTデータを格納するフォルダを作成することから始めましょう。
 
-`app`が含まれているフォルダを開き、`assets`という名前の新しいディレクトリを作成します。ディレクトリ構造の一例です。
+`Solana-NFT-Drop`の中に、`assets`という名前の新しいディレクトリを作成します。
 
-![無題](/public/images/Solana-NFT-Drop/section-2/2_2_1.png)
+```diff
+ Solana-NFT-Drop/
++└── assets/
+```
 
-`assets`の中には、実際のNFTのアセット（ここでは画像）と、Metaplexが設定する際に必要となる特定のNFTのメタデータを記述したjsonファイルという、互いに関連付けられたファイルのペアがあります。
+`assets`の中には、実際のNFTのアセット（ここでは画像）と、Metaplexが設定する際に必要となる特定のNFTのメタデータを記述したjsonファイルという、互いに関連付けられたファイルのペアを格納していきます。
 
 ここにはいくつでもNFTをロードできますが、まずは3つのNFTをロードして、必要なものをすべて理解していきましょう。
 
@@ -20,27 +23,55 @@ Metaplex CLIは、Candy Machineに利用可能な、NFTを発行するための�
 
 - ネーミングに空白があってはいけません。
 
-`assets`ディレクトリに、下記の通りファイルを作成してください。
+`assets`ディレクトリに、下記の通りファイルを作成してください。`0.json`は`0.png`に、 `1.json`は`1.png`にというようにです。ここで、ゼロから始まる3つのNFTの他に、`collection`という名前のファイルのペアが必要なことに注意してください。
 
-```txt
-// NFT #1
-0.png
-0.json
-
-// NFT #2
-1.png
-1.json
-
-// NFT #3
-2.png
-2.json
+```diff
+ Solana-NFT-Drop/
+ └── assets/
++    ├── collection.json
++    ├── collection.png
++    ├── 0.json
++    ├── 0.png
++    ├── 1.json
++    ├── 1.png
++    ├── 2.json
++    └── 2.png
 ```
 
-![無題](/public/images/Solana-NFT-Drop/section-2/2_2_2.png)
+コレクションNFTとその他の3つのNFTの違いは、前者がNFTのグループを定義するために使用されるのに対し、後者はNFTそのものを定義するために使用されることです。コレクションNFTによりグループ化されたNFTは、以下のメリットを持ちます。
 
-`0.json`は`0.png`に、 `1.json`は`1.png`にというようにです。
+- オンチェーンコールを追加することなく、任意のNFTがどのコレクションに属しているかを簡単に特定できる。
+- 特定のコレクションに属するすべてのNFTを検索することが可能。
+- コレクション名、説明、画像などのメタデータを容易に管理できる。
 
 それでは、`json`ファイルを実際に作っていきましょう。
+
+以下をコピーして`collection.json`に貼り付けてください。
+
+```json
+// collection.json
+{
+  "name": "NAME_OF_NFT",
+  "symbol": "SYMBPL_OF_NFT",
+  "description": "Collection of NFT.",
+  "image": "collection.png",
+  "properties": {
+    "files": [
+      {
+        "uri": "collection.png",
+        "type": "image/png"
+      }
+    ],
+    "creators": [
+      {
+        "address": "DA5p4vhRpNNT17Tdi5SWgiNpV4THQMPSztjZikJMeooQ",
+        "share": 100
+      }
+    ]
+  }
+}
+
+```
 
 以下をコピーして`0.json`に貼り付けてください。
 
@@ -48,7 +79,8 @@ Metaplex CLIは、Candy Machineに利用可能な、NFTを発行するための�
 // 0.json
 {
   "name": "NAME_OF_NFT",
-  "symbol": "",
+  "symbol": "SYMBPL_OF_NFT",
+  "description": "Collection of NFT.",
   "image": "0.png",
   "properties": {
     "files": [
@@ -73,17 +105,19 @@ Metaplexはこのデータを、あなたに代わってオンチェーンで保
 
 上記と同様に、`1.json`、`2.json`にも貼り付けましょう。
 
-"name"、 "image" 、"uri"、 "address" を変更することをお忘れなく!
+"name"、"symbol"、"description" を変更することをお忘れなく!
 
 さて、ここからはクリエイティブな作業が必要になります。
 
-コレクションを作成するため、3つのランダムなNFTを考えてみてください。
+コレクションを作成するため、3つのランダムなNFTとコレクションNFTを考えてみてください。
 
 まずは、あなたが好きなPNGを3枚選んでみてください。
 
 好きなアルバムのカバー、好きなアニメのキャラクター、好きな映画のポスターなど、何でもかまいません。
 
 **お気に入りのものを 3 つ選んでください。**
+
+次に、それらを象徴するようなPNGを1枚選んでみてください（難しい場合は、PNGを4つ選びそのうち1つをコレクションNFTとしてみてください）。
 
 ※ 現在、CLIでサポートされているのはPNGのみです。
 
