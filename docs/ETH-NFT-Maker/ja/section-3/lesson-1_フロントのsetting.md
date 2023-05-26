@@ -1,43 +1,6 @@
-### 💻 クライアントを設定する
+### 🎬フロントエンドを起動してみよう
 
-このセクションでは、Webサイトの構築を通して、クライアントとスマートコントラクトの連携方法について学びます。
-
-実装は下記をイメージしてください。
-
-- クライアント＝フロントエンド
-
-- スマートコントラクト＝バックエンド
-
-それでは、始めましょう 🚀
-
-### 🍽 Git リポジトリをあなたの GitHub にフォークする
-
-まだGitHubのアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
-
-GitHubのアカウントをお持ちの方は、[スターターキット](https://github.com/shiftbase-xyz/nft-maker-starter-project) から、フロントエンドの基盤となるリポジトリをあなたのGitHubにフォークしましょう。フォークの方法は、[こちら](https://denno-sekai.com/github-fork/) を参照してください。
-
-あなたのGitHubアカウントにフォークした`nft-maker-starter-project`リポジトリを、ローカル環境にクローンしてください。
-
-まず、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
-
-
-ターミナル上で`ETH-NFT-Maker/packages`ディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
-
-```bash
-git clone コピーした_github_リンク
-```
-
-この段階で、フォルダ構造は下記のようになっているはずです。
-
-```diff
-ETH-NFT-Maker
- ├── package.json
- └── packages/
-+    ├── client/
-     └── contract/
-```
-
-ターミナル上で`ETH-NFT-Maker`ディレクトリ下に移動して下記を実行しましょう。
+ターミナル上で下記を実行しましょう。
 
 ```bash
 yarn install
