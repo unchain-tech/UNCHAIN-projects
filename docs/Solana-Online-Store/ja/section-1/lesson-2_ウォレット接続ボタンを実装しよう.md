@@ -9,7 +9,7 @@
 ```jsx
 // _app.js
 
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import { ConnectionProvider, WalletProvider } from "@solana/wallet-adapter-react";
@@ -99,7 +99,6 @@ React Appコンポーネント内のreturnステートメントでは、子（�
 ```jsx
 // index.js
 
-import React from 'react';
 import { PublicKey } from '@solana/web3.js';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
