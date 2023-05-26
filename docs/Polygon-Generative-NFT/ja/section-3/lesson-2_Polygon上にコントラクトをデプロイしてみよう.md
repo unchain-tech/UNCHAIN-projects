@@ -57,7 +57,7 @@ module.exports = {
 };
 ```
 
-3 \. 最後に、ターミナルに向かい、`contract`ディレクトリ上で以下のコマンドを実行します。
+3 \. 最後に、ターミナルで以下のコマンドを実行します。
 
 ```
 yarn contract run:script
