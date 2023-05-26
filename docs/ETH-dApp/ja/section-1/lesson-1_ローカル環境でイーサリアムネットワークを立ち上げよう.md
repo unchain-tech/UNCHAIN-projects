@@ -17,120 +17,50 @@
 - ユーザーはWebサイトを介して、ブロックチェーン上に展開されているあなたのスマートコントラクトと簡単にやりとりできます。
 - スマートコントラクトの実装 + フロントエンドユーザー・インタフェースの作成 👉 dAppの完成を目指しましょう 🎉
 
-### ✨ Hardhat をインストールする
+### 🍽 Git リポジトリをあなたの GitHub にフォークする
 
-スマートコントラクトをすばやくコンパイルし、ローカル環境でテストするために、**Hardhat** というツールを使用します。
+まだGitHubのアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
-- Hardhatにより、ローカル環境でイーサリアムネットワークを簡単に起動し、テストネットでイーサリアムを利用できます。
-- 「サーバー」がブロックチェーンであることを除けば、Hardhatはローカルサーバーと同じです。
+GitHubのアカウントをお持ちの方は、[スターターキット](https://github.com/unchain-tech/ETH-dApp) から、フロントエンドの基盤となるリポジトリをあなたのGitHubにフォークしましょう。フォークの方法は、[こちら](https://denno-sekai.com/github-fork/) を参照してください。
 
-まず、`node` / `yarn`を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスしてください。
+あなたのGitHubアカウントにフォークした`ETH-dApp`リポジトリを、ローカル環境にクローンしてください。
 
-`node v16`をインストールすることを推奨しています。
+まず、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
 
-それでは本プロジェクトで使用するフォルダーを作成してきましょう。作業を始めるディレクトリに移動したら、次のコマンドを実行します。
-
-```
-mkdir ETH-dApp
-cd ETH-dApp
-yarn init --private -y
-```
-ETH-dAppディレクトリ内に、package.jsonファイルが生成されます。
+ターミナル上で任意のディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
 
 ```bash
-ETH-dApp
- └── package.json
+git clone コピーした_github_リンク
 ```
 
-それでは、`package.json`ファイルを以下のように更新してください。
-
-```json
-{
-  "name": "ETH-dApp",
-  "version": "1.0.0",
-  "description": "Waving dApp",
-  "private": true,
-  "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
-  },
-  "scripts": {
-    "contract": "yarn workspace contract",
-    "client": "yarn workspace client",
-    "test": "yarn workspace contract test"
-  }
-}
-```
-
-`package.json`ファイルの内容を確認してみましょう。
-
-モノレポを作成するにあたり、パッケージマネージャーの機能である[Workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/)を利用しています。
-
-この機能により、yarn installを一度だけ実行すれば、すべてのパッケージ（今回はコントラクトのパッケージとクライアントのパッケージ）を一度にインストールできるようになります。
-
-**workspaces**の定義をしている部分は以下になります。
-
-```json
-"workspaces": {
-  "packages": [
-    "packages/*"
-  ]
-},
-```
-
-また、ワークスペース内の各パッケージにアクセスするためのコマンドを以下の部分で定義しています。
-
-```json
-"scripts": {
-  "contract": "yarn workspace contract",
-  "client": "yarn workspace client",
-  "test": "yarn workspace contract test"
-}
-```
-
-これにより、各パッケージのディレクトリへ階層を移動しなくてもプロジェクトのルート直下から以下のようにコマンドを実行することが可能となります（ただし、各パッケージ内に`package.json`ファイルが存在し、その中にコマンドが定義されていないと実行できません。そのため、現在は実行してもエラーとなります。ファイルは後ほど作成します）。
+ターミナル上で`ETH-dApp`ディレクトリ下に移動して下記を実行しましょう。
 
 ```bash
-yarn <パッケージ名> <実行したいコマンド>
+yarn install
 ```
 
-それでは、ワークスペースのパッケージを格納するディレクトリを作成しましょう。
+`yarn`コマンドを実行することで、JavaScriptライブラリのインストールが行われます。
 
-以下のようなフォルダー構成となるように、`packages`ディレクトリとその中に`contract`ディレクトリを作成してください（`client`ディレクトリは、後ほどのレッスンでスターターコードをクローンする際に作成したいと思います）。
-
-```diff
-ETH-dApp
- ├── package.json
-+└── packages/
-+    └── contract/
-```
-
-`contract`ディレクトリには、スマートコントラクトを構築するためのファイルを作成していきます。
-
-最後に、ETH-dAppディレクトリ下に`.gitignore`ファイルを作成して以下の内容を書き込みます。
+次に、下記を実行してみましょう。
 
 ```bash
-**/yarn-error.log*
-
-# dependencies
-**/node_modules
-
-# misc
-**/.DS_Store
+yarn client start
 ```
 
-最終的に以下のようなフォルダー構成となっていることを確認してください。
+あなたのローカル環境で、Webサイトのフロントエンドが立ち上がりましたか？
 
-```bash
-ETH-dApp
- ├── .gitignore
- ├── package.json
- └── packages/
-     └── contract/
-```
+例)ローカル環境で表示されているWebサイト
 
-これでモノレポの雛形が完成しました！
+![](/public/images/ETH-dApp/section-2/2_1_2.png)
+
+上記のような形でフロントエンドが確認できれば成功です。
+
+これからフロントエンドの表示を確認したい時は、ターミナルに向かい、`ETH-dApp`ディレクトリ上で、`yarn client start`を実行します。これからも必要となる作業ですので、よく覚えておいてください。
+
+ターミナルを閉じるときは、以下のコマンドが使えます ✍️
+
+- Mac: `ctrl + c`
+- Windows: `ctrl + shift + w`
 
 ### ✨ Hardhat をインストールする
 
@@ -140,23 +70,9 @@ ETH-dApp
 
 - 「サーバー」がブロックチェーンであることを除けば、Hardhatはローカルサーバーと同じです。
 
-それでは、先ほど作成した`packages/contract`ディレクトリ内にファイルを作成します。ターミナルに向かい、packages/contract`ディレクトリ内で以下のコマンドを実行します。
+まず、`node` / `yarn`を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスしてください。
 
-```bash
-cd packages/contract
-yarn init --private -y
-# Hardhatのインストール
-yarn add --dev hardhat
-# スマートコントラクトの開発に必要なプラグインのインストール
-yarn add --dev @nomicfoundation/hardhat-toolbox @nomicfoundation/hardhat-network-helpers @nomicfoundation/hardhat-chai-matchers @nomiclabs/hardhat-ethers @nomiclabs/hardhat-etherscan chai ethers@^5.4.7 hardhat-gas-reporter solidity-coverage @typechain/hardhat typechain @typechain/ethers-v5 @ethersproject/abi @ethersproject/providers
-```
-
-> ✍️: `warning`について
-> Hardhat をインストールすると、脆弱性に関するメッセージが表示される場合があります。
->
-> 基本的に`warning`は無視して問題ありません。
->
-> YARN から何かをインストールするたびに、インストールしているライブラリに脆弱性が報告されているかどうかを確認するためにセキュリティチェックが行われます。
+`node v16`をインストールすることを推奨しています。
 
 ### 👏 サンプルプロジェクトを開始する
 
@@ -266,6 +182,18 @@ ETH-dApp
 
 不要な定義を削除し、hardhatの自動テストを実行するためのコマンドを追加しました。
 
+次に、安全なスマートコントラクトを開発するために使用されるライブラリ **OpenZeppelin** をインストールします。
+
+`packages/contract`ディレクトリにいることを確認し、以下のコマンドを実行してください。
+
+```bash
+yarn add --dev @openzeppelin/contracts
+```
+
+[OpenZeppelin](https://github.com/OpenZeppelin/openzeppelin-contracts) はイーサリアムネットワーク上で安全なスマートコントラクトを実装するためのフレームワークです。
+
+OpenZeppelinには非常に多くの機能が実装されておりインポートするだけで安全にその機能を使うことができます。
+
 ### ⭐️ 実行する
 
 すべてが機能していることを確認するには、以下を実行します。
@@ -282,7 +210,7 @@ npx hardhat test
 
 次のように表示されます。
 
-![](/public/images/ETH-dApp/section-1/1_1_3.png)
+![](/public/images/ETH-dApp/section-1/1_2_1.png)
 
 ターミナル上で`ls`と入力してみて、下記のフォルダーとファイルが表示されていたら成功です。
 
