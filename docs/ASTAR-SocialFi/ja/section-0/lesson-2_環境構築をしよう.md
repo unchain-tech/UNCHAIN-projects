@@ -2,6 +2,10 @@
 
 ではプロジェクトを作成するにあたって環境構築をしていきましょう！
 
+まず、`node` / `yarn`を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスしてください。
+
+`node v16`をインストールすることを推奨しています。
+
 ### 🌚 バックエンドの環境構築
 
 まずはスマートコントラクトを作成するための環境を整えていきましょう！
@@ -63,15 +67,122 @@ rustup component add rust-src --toolchain nightly-2023-05-25
 
 これでコントラクトをデプロイする準備が完了しました！
 
-では下のコマンドを使用することで新しくプロジェクトを作成して行きましょう。
+それでは本プロジェクトで使用するフォルダーを作成してきましょう。作業を始めるディレクトリに移動したら、次のコマンドを実行します。
 
-コマンドの実行はプロジェクトを保存したいディレクトリに移動してから行いましょう。
+```bash
+mkdir ASTAR-SocialFi
+cd ASTAR-SocialFi
+yarn init --private -y
+```
+
+ASTAR-SocialFiディレクトリ内に、package.jsonファイルが生成されます。
+
+```bash
+ASTAR-SocialFi
+ └── package.json
+```
+
+それでは、`package.json`ファイルを以下のように更新してください。
+
+```json
+{
+  "name": "ASTAR-SocialFi",
+  "version": "1.0.0",
+  "description": "ASTAR SNS dApp",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "contract": "yarn workspace contract",
+    "client": "yarn workspace client",
+    "test": "yarn workspace contract test"
+  }
+}
+```
+
+`package.json`ファイルの内容を確認してみましょう。
+
+モノレポを作成するにあたり、パッケージマネージャーの機能である[Workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/)を利用しています。
+
+この機能により、yarn installを一度だけ実行すれば、すべてのパッケージ（今回はコントラクトのパッケージとクライアントのパッケージ）を一度にインストールできるようになります。
+
+**workspaces**の定義をしている部分は以下になります。
+
+```json
+"workspaces": {
+  "packages": [
+    "packages/*"
+  ]
+},
+```
+
+また、ワークスペース内の各パッケージにアクセスするためのコマンドを以下の部分で定義しています。
+
+```json
+"scripts": {
+  "contract": "yarn workspace contract",
+  "client": "yarn workspace client",
+  "test": "yarn workspace contract test"
+}
+```
+
+これにより、各パッケージのディレクトリへ階層を移動しなくてもプロジェクトのルート直下から以下のようにコマンドを実行することが可能となります（ただし、各パッケージ内に`package.json`ファイルが存在し、その中にコマンドが定義されていないと実行できません。そのため、現在は実行してもエラーとなります。ファイルは後ほど作成します）。
+
+```bash
+yarn <パッケージ名> <実行したいコマンド>
+```
+
+それでは、ワークスペースのパッケージを格納するディレクトリを作成しましょう。
+
+以下のようなフォルダー構成となるように、`packages`ディレクトリとその中に`contract`ディレクトリを作成してください（`client`ディレクトリは、後ほどのレッスンでスターターコードをクローンする際に作成したいと思います）。
+
+```diff
+ASTAR-SocialFi
+ ├── package.json
++└── packages/
++    └── contract/
+```
+
+`contract`ディレクトリには、スマートコントラクトを構築するためのファイルを作成していきます。
+
+最後に、ASTAR-SocialFiディレクトリ下に`.gitignore`ファイルを作成して以下の内容を書き込みます。
+
+```bash
+**/yarn-error.log*
+
+# dependencies
+**/node_modules
+
+# misc
+**/.DS_Store
+```
+
+最終的に以下のようなフォルダー構成となっていることを確認してください。
+
+```bash
+ASTAR-SocialFi
+ ├── .gitignore
+ ├── package.json
+ └── packages/
+     └── contract/
+```
+
+これでモノレポの雛形が完成しました！
+
+### 🗂 プロジェクトを作成しよう
+
+**コントラクト用のディレクトリ作成**
+
+`packages`のディレクトリに移動して下のコマンドをターミナルで実行させましょう。
 
 ```
-cargo contract new astar_sns_contract
+cargo contract new contract
 ```
 
-作成が完了したら、`astar_sns_contract`ディレクトリに移動しましょう。
+作成が完了したら、`contract`ディレクトリに移動しましょう。
 
 では作成されたコントラクトをローカルのチェーンにデプロイしてみましょう。
 
@@ -86,12 +197,12 @@ cargo contract build
 このようなメッセージが返ってきていればOKです！
 
 ```
-  - astar_sns_contract.contract (code + metadata)
-  - astar_sns_contract.wasm (the contract's code)
+  - contract.contract (code + metadata)
+  - contract.wasm (the contract's code)
   - metadata.json (the contract's metadata)
 ```
 
-これで`astar-sns-contract/target/ink`の直下に`metadata.json`と`astar_sns_contract.wasm`が作成されていれば成功です。
+これで`astar-sns-contract/target/ink`の直下に`metadata.json`と`contract.wasm`が作成されていれば成功です。
 
 次にローカルのノードを立ててローカルでコントラクトのデプロイができる環境を作っていくのですが、そのために必要なツールを下のコマンドをターミナルで実行してインストールしていきましょう。
 
