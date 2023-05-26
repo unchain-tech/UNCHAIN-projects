@@ -1,182 +1,186 @@
 ### 🎩 `mintToken`関数を実装する
 
-`CandyMachine`コンポーネントには、`mintToken`という名前の関数があります。これはMetaplexのフロントエンドライブラリの一部です。
+[Mint NFT]ボタンが押されたときに実行するミント機能を実装していきましょう。
 
-この関数はかなり複雑なため、ここでは詳細な説明は省きますが、一度コードを読んでみてください。
+Solanaではプログラムで状態を保持しません。コントラクトで状態を保持するEthereumとは大きく異なります。詳細は [こちら](https://docs.solana.com/developing/programming-model/accounts) をご覧ください。
 
-お勧めとして、commandキー（macOS）やCTRLキー（Windows）を使って関数をクリックし、その関数がどのように動作するか確認してみてください。
+Solanaでは、トランザクションの中に命令をひとまとめにしています。Metaplexは、トランザクションを作成するためのメソッドをモジュールとして提供しており、既に複数のメソッドが`CandyMachine/index.tsx`にインポートされています。それらの機能を確認しながら、ミントを行うためのトランザクションを作成していきましょう。
 
-ではざっくりとチャンクごとにコードを見ていきます。
+前回のレッスンで登場した`Umi`ライブラリは、トランザクションの構築を容易にするためのクラス[`TransactionBuilder`](https://umi-docs.vercel.app/classes/umi.TransactionBuilder.html)を提供しています。ここでは、このクラスを用いてトランザクションを構築していきたいと思います。
 
-```jsx
-const mint = web3.Keypair.generate();
+TransactionBuilderクラスには`add`というメソッドがあり、これにより命令をトランザクションに追加することができます。
 
-const userTokenAccountAddress = (
-  await getAtaForMint(mint.publicKey, walletAddress.publicKey)
-)[0];
+```javascript
+const transaction = transactionBuilder()
+  .add(/* トランザクションに追加したい命令 */)
+  .add(/* ... */)
+  .add(/* ... */)
 ```
 
-ここでは、NFTのアカウントを作成しています。
+ここで追加する命令は2つあります。1つはミントの実行、もう1つは計算ユニット（Compute unit）の上限設定です。
 
-Solanaではプログラムで状態を保持しません。
+Solanaは現在、計算ユニットのデフォルト値を200k（200,000）と設定しています（[参照](https://docs.solana.com/developing/programming-model/runtime#prioritization-fees)）。しかし、NFTのミントのような複雑なトランザクションでは許容されたリソースを超えてしまう可能性があります。試しに計算ユニットの上限設定を行わずにミントを実行すると、下記のようなエラーが発生すると思います。後ほど試してみてください。
 
-コントラクトで状態を保持するEthereumとは大きく異なります。詳細は [こちら](https://docs.solana.com/developing/programming-model/accounts) をご覧ください。
+**[Phantom Walletの表示]**
 
-> ✍️: `Cannot read properties of undefined`エラーが発生した場合
->
-> 下記のコードを`const mint = web3.Keypair.generate();`の直下に追加してみてください。
->
-> ```
-> if (!mint || !candyMachine?.state) return;
-> ```
->
-> これにより`mint`や`candyMachine`が未定義の場合でも、問題なくコードが走ります。
+![無題](/public/images/Solana-NFT-Drop/section-3/3_2_4.png)
 
-```jsx
-const userPayingAccountAddress = candyMachine.state.tokenMint
-  ? (
-      await getAtaForMint(candyMachine.state.tokenMint, walletAddress.publicKey)
-    )[0]
-  : walletAddress.publicKey;
+**[Approve後のコンソール出力]**
 
-const candyMachineAddress = candyMachine.id;
-const remainingAccounts = [];
-const signers = [mint];
+```console
+Error: failed to send transaction: Transaction simulation failed: Error processing Instruction 0: Computational budget exceeded
 ```
 
-Candy MachineがNFTを作成するために必要なすべてのパラメータです。
+それでは、計算ユニットの上限設定を行いましょう。Metaplexの[公式ドキュメント](https://docs.metaplex.com/programs/candy-machine/minting)でミント機能の実装を確認すると、`setComputeUnitLimit`というメソッドが使用されています。こちらは`mpl-essentials`ライブラリが提供するメソッドです。
 
-`userPayingAccountAddress`（NFT費用を支払い、受け取りを行う人）から、作成するNFTのアカウントアドレスである`mint`（mintするNFTアカウントアドレス）まですべて必要です。
+今回は`600_000`と設定したいと思います。
 
-```jsx
-const instructions = [
-  web3.SystemProgram.createAccount({
-    fromPubkey: walletAddress.publicKey,
-    newAccountPubkey: mint.publicKey,
-    space: MintLayout.span,
-    lamports:
-      await candyMachine.program.provider.connection.getMinimumBalanceForRentExemption(
-        MintLayout.span
-      ),
-    programId: TOKEN_PROGRAM_ID,
-  }),
-  Token.createInitMintInstruction(
-    TOKEN_PROGRAM_ID,
-    mint.publicKey,
-    0,
-    walletAddress.publicKey,
-    walletAddress.publicKey
-  ),
-  createAssociatedTokenAccountInstruction(
-    userTokenAccountAddress,
-    walletAddress.publicKey,
-    walletAddress.publicKey,
-    mint.publicKey
-  ),
-  Token.createMintToInstruction(
-    TOKEN_PROGRAM_ID,
-    mint.publicKey,
-    userTokenAccountAddress,
-    walletAddress.publicKey,
-    [],
-    1
-  ),
-];
+```javascript
+const transaction = transactionBuilder()
+        .add(setComputeUnitLimit(umi, { units: 600_000 }))
 ```
 
-Solanaでは、トランザクションの中に命令をひとまとめにしています。ここではいくつかの命令をまとめていますが、私たちが作成したCandy Machineに存在する関数であり、Metaplexの標準関数です。
-そのため、ゼロから関数を書く必要はありません。
+続いて、ミントの実行を追加しましょう。再度Metaplexの公式ドキュメントを確認してみると、[`mintV2`](https://mpl-candy-machine-js-docs.vercel.app/functions/mintV2.html)というメソッドが使用されています。`mpl-candy-machine`ライブラリが提供するメソッドで、Candy Machineのデータを用いてミントを行います。
 
-```jsx
-if (candyMachine.state.gatekeeper) {
-}
+mintV2メソッドの引数を確認すると、`MintV2InstructionAccounts`というオブジェクトを受け取ることがわかります。オブジェクトの中にはたくさんのプロパティが定義されていますが、ここでは必須のものとCandy Guardの設定を指定したいと思います。
 
-if (candyMachine.state.whitelistMintSettings) {
-}
-
-if (candyMachine.state.tokenMint) {
-}
+```javascript
+const transaction = transactionBuilder()
+        .add(setComputeUnitLimit(umi, { units: 600_000 }))
+        .add(
+          mintV2(umi, {
+            candyGuard: candyGuard.publicKey,
+            candyMachine: candyMachine.publicKey,
+            collectionMint: candyMachine.collectionMint,
+            collectionUpdateAuthority: candyMachine.authority,
+            mintArgs: {
+              solPayment: some({ destination: destination }),
+            },
+            nftMint: nftSigner,
+          }),
+        );
 ```
 
-ここでは、キャンディマシンがbotを防ぐためにキャプチャーを使用しているかどうか(`gatekeeper`)、ホワイトリストが設定されているかどうか、ミントがトークンゲートであるかどうかをチェックしています。
+`solPayment`は、Candy GuardにNFTの価格とその受け取るアドレスを設定した場合に必須の設定となります。
 
-これらはユーザーのアカウントごとにパスすべきチェック項目が異なります。if文を抜けると次の処理に進みます。
+これで、トランザクションをどのように構築するか確認ができました。次に、トランザクションの送信方法を確認してみましょう。
 
-```jsx
-const metadataAddress = await getMetadata(mint.publicKey);
-const masterEdition = await getMasterEdition(mint.publicKey);
+再度[`TransactionBuilder`](https://umi-docs.vercel.app/classes/umi.TransactionBuilder.html)クラスのメソッドを見てみます。すると、`sendAndConfirm`というメソッドが提供されていることが確認できます。このメソッドを使ってトランザクションの送信と結果の確認を行うのが良さそうです。
 
-const [candyMachineCreator, creatorBump] = await getCandyMachineCreator(
-  candyMachineAddress
-);
-
-instructions.push(
-  await candyMachine.program.instruction.mintNft(creatorBump, {
-    accounts: {
-      candyMachine: candyMachineAddress,
-      candyMachineCreator,
-      payer: walletAddress.publicKey,
-      wallet: candyMachine.state.treasury,
-      mint: mint.publicKey,
-      metadata: metadataAddress,
-      masterEdition,
-      mintAuthority: walletAddress.publicKey,
-      updateAuthority: walletAddress.publicKey,
-      tokenMetadataProgram: TOKEN_METADATA_PROGRAM_ID,
-      tokenProgram: TOKEN_PROGRAM_ID,
-      systemProgram: SystemProgram.programId,
-      rent: web3.SYSVAR_RENT_PUBKEY,
-      clock: web3.SYSVAR_CLOCK_PUBKEY,
-      recentBlockhashes: web3.SYSVAR_RECENT_BLOCKHASHES_PUBKEY,
-      instructionSysvarAccount: web3.SYSVAR_INSTRUCTIONS_PUBKEY,
-    },
-    remainingAccounts:
-      remainingAccounts.length > 0 ? remainingAccounts : undefined,
-  })
-);
+```javascript
+await transaction.sendAndConfirm(umi).then((response) => {
+  const transactionResult = response.result.value;
+  if (transactionResult.err) {
+    throw new Error(`Failed mint: ${transactionResult.err}`);
+  }
+})
 ```
 
-最後に、すべてのチェックを通過した後、実際にNFTをミントするための命令をします。
+戻り値の定義を見てみると、Promiseで2つの値が返ってくることがわかります。そのうち`result`の方を確認してみると、トランザクションで何かしらエラーが発生した場合は`string`型のデータが返ってくるようです。そのため、sendAndConfirmメソッドの戻り値を取得してエラーチェックを行うようにします。
+
+それでは、ここまでの情報をもとに実際に`mintToken`関数を実装していきましょう。下記のコードを`getCandyMachineState`関数の下に追加すると良いでしょう。
 
 ```jsx
-try {
-  return (
-    await sendTransactions(
-      candyMachine.program.provider.connection,
-      candyMachine.program.provider.wallet,
-      [instructions, cleanupInstructions],
-      [signers, []]
-    )
-  ).txs.map((t) => t.txid);
-} catch (e) {
-  console.log(e);
-}
+// CandyMachine/index.tsx
+const mintToken = async (
+  candyMachine: CandyMachineType,
+  candyGuard: CandyGuardType,
+) => {
+  try {
+    if (umi === undefined) {
+      throw new Error('Umi context was not initialized.');
+    }
+    if (candyGuard.guards.solPayment.__option === 'None') {
+      throw new Error('Destination of solPayment is not set.');
+    }
+
+    const nftSigner = generateSigner(umi);
+    const destination = candyGuard.guards.solPayment.value.destination;
+
+    // トランザクションの構築を行います。
+    const transaction = transactionBuilder()
+      .add(setComputeUnitLimit(umi, { units: 600_000 }))
+      .add(
+        mintV2(umi, {
+          candyGuard: candyGuard.publicKey,
+          candyMachine: candyMachine.publicKey,
+          collectionMint: candyMachine.collectionMint,
+          collectionUpdateAuthority: candyMachine.authority,
+          mintArgs: {
+            solPayment: some({ destination: destination }),
+          },
+          nftMint: nftSigner,
+        }),
+      );
+
+    // トランザクションを送信して、ネットワークによる確認を待ちます。
+    await transaction.sendAndConfirm(umi).then((response) => {
+      const transactionResult = response.result.value;
+      if (transactionResult.err) {
+        console.error(`Failed mint: ${transactionResult.err}`);
+      }
+    })
+  } catch (error) {
+    console.error(error);
+  }
+};
 ```
 
-プロバイダ、ウォレット、すべての命令を用いて、ブロックチェーンと対話する関数である`sendTransactions`を呼び出します。
+`try`文の最初に、ステート変数に値が保存されていることを確認します。値が保存されていない場合は、ミントが実行できないのでエラーとして処理をします。
 
-私たちが実際にキャンディマシンをたたき、NFTをミントするように指示する、おまじないコードです。
+ここで、mintToken関数を少し更新して関数の実行が終わるまで[Mint NFT]ボタンを押せないようにしたいと思います。`button`タグに`disable`属性を指定することで解決しましょう。関数の実行中は`true`、そうでない場合は`false`として実行中かどうかをステートで管理し、その値をdisable属性に渡しましょう。
 
-ざっくりとした説明は以上です。できる限り自分で読み解いてみてくださいね。メンバーと一緒に読み合わせするのもよいでしょう。また、誰かがこのコードを素敵な`npm`モジュールにしてくれることを夢見ています...。
+まずは、Booleanを保持するステートを定義します。これまでに定義してきたステートの下に追加しましょう。
+
+```jsx
+// CandyMachine/index.tsx
+const CandyMachine = (props: CandyMachineProps) => {
+
+  // mintToken関数が実行中かどうかを管理するステートを追加する。
+  const [isMinting, setIsMinting] = useState(false);
+```
+
+次に、mintToken関数の最初と最後に`setIsMinting`を呼んで実行中かどうかを設定します。try-catch文の最後に`finally`を追加しましょう。正常に処理が進んだ場合とエラーが発生してcatch文に進んでしまった場合、どちらの場合でも`setIsMinting(false)`が実行されるようにします。
+
+```jsx
+const mintToken = async (
+  candyMachine: CandyMachineType,
+  candyGuard: CandyGuardType,
+) => {
+  // 関数実行中なので`true`を設定します。
+  setIsMinting(true);
+  try {
+
+  } catch (error) {
+      console.error(error);
+  } finally {
+    // 関数が終了するので`false`を設定します。
+    setIsMinting(false);
+  }
+};
+```
 
 ### ✨ NFT をミントしよう!
 
-`CandyMachine`コンポーネントで、"Mint" ボタンをクリックしたときに`mintToken`関数を呼び出すよう設定します。`index.js`を下記の通り修正してください。
+`CandyMachine`コンポーネントで、[Mint NFT]ボタンをクリックしたときに`mintToken`関数を呼び出すよう設定します。return文を下記の通り修正してください。
 
 ```jsx
-// index.js
-return (
-  // candyMachineが利用可能な場合のみ表示されます
-  candyMachine && candyMachine.state ? (
-      <div className="machine-container">
-        <p>{`Drop Date: ${candyMachine.state.goLiveDateTimeString}`}</p>
-        <p>{`Items Minted: ${candyMachine.state.itemsRedeemed} / ${candyMachine.state.itemsAvailable}`}</p>
-        <button className="cta-button mint-button" onClick={mintToken}>
-            Mint NFT
-        </button>
-      </div>
-    ) : null
-  );
+// CandyMachine/index.tsx
+return candyMachine && candyGuard ? (
+  <div className={candyMachineStyles.machineContainer}>
+    <p>{`Drop Date: ${startDateString}`}</p>
+    <p>
+      {`Items Minted: ${candyMachine.itemsRedeemed} / ${candyMachine.data.itemsAvailable}`}
+    </p>
+    <button
+      className={`${styles.ctaButton} ${styles.mintButton}`}
+      onClick={() => mintToken(candyMachine, candyGuard)}
+      disabled={isMinting}
+    >
+      Mint NFT
+    </button>
+  </div>
+) : null;
 ```
 
 `Mint NFT`をクリックする前に、PhantomWalletにDevnetSOLがあることを確認する必要があります。これはとても簡単です。
@@ -195,21 +199,15 @@ solana airdrop 2 INSERT_YOUR_PHANTOM_WALLET_ADDRESS
 
 ![無題](/public/images/Solana-NFT-Drop/section-3/3_2_2.png)
 
-[承認]をクリックして取引手数料を支払うと、キャンディーマシンにNFTを作成するように指示されます。
+[承認]をクリックして取引手数料を支払うと、Candy MachineにNFTを作成するように指示されます。
 
-ログを確認するために、ブラウザのコンソールを開いたままにしておきましょう。3〜10秒ほどかかります。
-
-NFTが正常にミントすると、コンソールに次のようなものが表示されます。
-
-![無題](/public/images/Solana-NFT-Drop/section-3/3_2_3.png)
-
-NFTをmintできました!
+NFTが正常にミントされると、アプリケーションに表示されている`Items Minted`の数が更新されます。また、この値はコンソールのログ出力からも確認できるでしょう。
 
 Phantom Walletを開き、`[]`セクションに表示されるかどうかを確認します。
 
 Phantom Walletの左から2つ目のタブに切り替えてみましょう 👀
 
-![無題](/public/images/Solana-NFT-Drop/section-3/3_2_4.png)
+![無題](/public/images/Solana-NFT-Drop/section-3/3_2_3.png)
 
 ### 🙋‍♂️ 質問する
 

@@ -2,9 +2,15 @@
 
 ※ GitHubアカウントの初期設定がお済みでない方は、アカウント設定を行ってから先へお進みください。
 
-まず、 [この GitHub リンク](https://github.com/shiftbase-xyz/nft-drop-starter-project) にアクセスして、ページの右上にある[Fork]ボタンを押してください。
+まず、 [この GitHub リンク](https://github.com/unchain-tech/Solana-NFT-Drop) にアクセスして、ページの右上にある[Fork]ボタンを押してください。このリポジトリをフォークすると、自分のGitHubに同一のリポジトリがコピーされます。
 
-このリポジトリをフォークすると、自分のGitHubに同一のリポジトリがコピーされます。
+Create a new forkページが開くので、以下の項目を設定します。
+
+- Copy the `main` branch only: **チェックが入っている**ことを確認します。
+
+  ![](/public/images/Solana-NFT-Drop/section-1/1_2_1.png)
+
+設定が完了したら[Create fork]ボタンをクリックします。あなたのGitHubアカウントに`Solana-NFT-Drop`リポジトリのフォークが作成されたことを確認してください。
 
 次に新しくフォークされたリポジトリをローカルに保存します。
 
@@ -15,10 +21,16 @@
 最後に、ターミナルに移動し、`cd`コマンドでプロジェクトが存在するディレクトリまでいき、次のコマンドを実行します。
 
 ```txt
-git clone YOUR_FORKED_LINK
+git clone コピーした_github_リンク
 ```
 
 これでローカル開発環境の準備は完了です。
+
+### ✅ テストスクリプトについて
+
+このプロジェクトには、コンポーネントのテストスクリプトが`__tests__/コンポーネント名.test.js`として格納されています。これらは、期待するMVPの機能が実装されているかをテストする内容となっており、テストフレームワークとして[Jest](https://jestjs.io/ja/)を、UIコンポーネントのテストを行うために[Testing Library](https://testing-library.com/)を導入しています。Solanaネットワークとやり取りを行う機能をモック（模擬）しているため、ブラウザ上で実際に動作確認を行うよりもより迅速に機能テストを行うことが可能です。対象コンポーネントの実装が完成したら、テストを実行してみましょう!
+
+ただし、あくまでも模擬的なので、各コンポーネントの実装ができたら実際にSolanaネットワークを使用した動作確認をブラウザ上で行いましょう 🚀
 
 ### 🔌 Phantom Wallet を使用してウォレット接続ボタンを作成する
 
@@ -44,25 +56,28 @@ Phantom WalletのネットワークをDevnetに変更してください。
 
 ユーザーのPhantom Walletを、作成するWebアプリケーションと接続する必要があります。
 
-エディタより、`src/App.js`ファイルを開いてください。これはアプリケーションのメインのエントリポイントになるファイルです。
+エディタより、`pages/index.tsx`ファイルを開いてください。これはアプリケーションのメインのエントリポイントになるファイルです。
 
 Phantom Wallet拡張機能がインストールされている場合は、`window`オブジェクトに`solana`という名前の特別なオブジェクトが自動的に代入されます。
 
 ミントする前に、`solana`が代入されているか確認する必要があります。存在しない場合はダウンロードするようにユーザーに指示しましょう。
 
-`App.js`を下記の通り変更します。
+`index.tsx`を下記の通り変更します。
 
 ```jsx
-// App.js
-import React, { useEffect } from "react";
-import "./App.css";
-import twitterLogo from "./assets/twitter-logo.svg";
+// index.tsx
+import Head from 'next/head';
+import Image from 'next/image';
+import { useEffect } from 'react';
+
+import twitterLogo from '@/public/twitter-logo.svg';
+import styles from '@/styles/Home.module.css';
 
 // 定数の宣言
-const TWITTER_HANDLE = "あなたのTwitterハンドル";
+const TWITTER_HANDLE = 'あなたのTwitterハンドル';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
-const App = () => {
+const Home = () => {
   // Actions
 
   /*
@@ -73,9 +88,9 @@ const App = () => {
       const { solana } = window;
 
       if (solana && solana.isPhantom) {
-        console.log("Phantom wallet found!");
+        console.log('Phantom wallet found!');
       } else {
-        alert("Solana object not found! Get a Phantom Wallet 👻");
+        alert('Solana object not found! Get a Phantom Wallet 👻');
       }
     } catch (error) {
       console.error(error);
@@ -90,46 +105,57 @@ const App = () => {
     const onLoad = async () => {
       await checkIfWalletIsConnected();
     };
-    window.addEventListener("load", onLoad);
-    return () => window.removeEventListener("load", onLoad);
+    onLoad();
   }, []);
 
   return (
-    <div className="App">
-      <div className="container">
-        <div className="header-container">
-          <p className="header">🍭 Candy Drop</p>
-          <p className="sub-text">NFT drop machine with fair mint</p>
+    <>
+      <Head>
+        <title>Candy Drop</title>
+        <meta name="description" content="Generated by create next app" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <main className={styles.main}>
+        <div className={styles.container}>
+          <div>
+            <p className={styles.header}>🍭 Candy Drop</p>
+            <p className={styles.subText}>NFT drop machine with fair mint</p>
+          <div className={styles.footerContainer}>
+            <Image
+              alt="Twitter Logo"
+              className={styles.twitterLogo}
+              src={twitterLogo}
+            />
+            <a
+              className={styles.footerText}
+              href={TWITTER_LINK}
+              target="_blank"
+              rel="noreferrer"
+            >{`built on @${TWITTER_HANDLE}`}</a>
+          </div>
         </div>
-        <div className="footer-container">
-          <img alt="Twitter Logo" className="twitter-logo" src={twitterLogo} />
-          <a
-            className="footer-text"
-            href={TWITTER_LINK}
-            target="_blank"
-            rel="noreferrer"
-          >{`built on @${TWITTER_HANDLE}`}</a>
-        </div>
-      </div>
-    </div>
+      </main>
+    </>
   );
 };
 
-export default App;
+export default Home;
+
 ```
 
-`App.js`を分解して説明します。
+`index.tsx`を分解して説明します。
 
 ```jsx
-// App.js
+// index.tsx
 const checkIfWalletIsConnected = async () => {
   try {
     const { solana } = window;
 
     if (solana && solana.isPhantom) {
-      console.log("Phantom wallet found!");
+      console.log('Phantom wallet found!');
     } else {
-      alert("Solana object not found! Get a Phantom Wallet 👻");
+      alert('Solana object not found! Get a Phantom Wallet 👻');
     }
   } catch (error) {
     console.error(error);
@@ -142,13 +168,12 @@ const checkIfWalletIsConnected = async () => {
 `solana`オブジェクトが存在しているか、またそれがPhantom Walletであるかどうかを確認しています。
 
 ```jsx
-// App.js
+// index.tsx
 useEffect(() => {
   const onLoad = async () => {
     await checkIfWalletIsConnected();
   };
-  window.addEventListener("load", onLoad);
-  return () => window.removeEventListener("load", onLoad);
+  onLoad();
 }, []);
 ```
 
@@ -161,19 +186,19 @@ Reactでは、2番目のパラメータ( `[]` )が空の場合、コンポーネ
 最後に、あなたのTwitterハンドルを以下に貼り付けるのをお忘れなく!
 
 ```jsx
-// App.js
-const TWITTER_HANDLE = "あなたのTwitterハンドル";
+// index.tsx
+const TWITTER_HANDLE = 'あなたのTwitterハンドル';
 ```
 
 ### 🔒 ユーザーのアカウントにアクセスする
 
 一度、ブラウザでインタフェースを確認してみましょう。
 
-1\. ターミナルを開き、`cd`で`app`フォルダまで移動します。
+1\. ターミナルを開き、`Solana-NFT-Drop`フォルダまで移動します。
 
-2\. `npm install`を実行します。
+2\. `yarn install`を実行します。
 
-3\. `npm run start`を実行します。
+3\. `yarn dev`を実行します。
 
 これを実行すると、Webアプリケーションのコンソールに`Phantom Wallet found!`という行が表示されるはずです。
 
@@ -190,13 +215,13 @@ Webアプリケーションで最初に行う必要があるのは、ユーザ�
 ここで`checkIfWalletIsConnected`関数にもう1行追加する必要があります。以下のコードを修正してください。
 
 ```jsx
-// App.js
+// index.tsx
 const checkIfWalletIsConnected = async () => {
   try {
     const { solana } = window;
 
     if (solana && solana.isPhantom) {
-      console.log("Phantom wallet found!");
+      console.log('Phantom wallet found!');
 
       /*
        * "solana"オブジェクトは、ユーザーのウォレットに直接
@@ -204,9 +229,12 @@ const checkIfWalletIsConnected = async () => {
        * 下記からコードを修正してください。
        */
       const response = await solana.connect({ onlyIfTrusted: true });
-      console.log("Connected with Public Key:", response.publicKey.toString());
+      console.log(
+        'Connected with Public Key:',
+        response.publicKey.toString(),
+      );
     } else {
-      alert("Solana object not found! Get a Phantom Wallet 👻");
+      alert('Solana object not found! Get a Phantom Wallet 👻');
     }
   } catch (error) {
     console.error(error);
