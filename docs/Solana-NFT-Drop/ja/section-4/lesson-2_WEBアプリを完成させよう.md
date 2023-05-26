@@ -8,7 +8,7 @@ Vercelのアカウントをお持ちでない方は、上記のリンクにア�
 
 デプロイ方法を簡単に説明します。
 
-1 \. 最新のコードをGitHubにプッシュします。`.cache`をコミットしないでください。
+1 \. 最新のコードをGitHubにプッシュします。`cache.json`をコミットしないでください。
 
 2 \. Vercelのダッシュボードから、`New Project`をクリックしてください。
 
@@ -18,9 +18,9 @@ Vercelのアカウントをお持ちでない方は、上記のリンクにア�
 
 ![無題](/public/images/Solana-NFT-Drop/section-4/4_2_2.png)
 
-4 \. 必要項目を埋めていきます。**FRAMEWORK PRESET** には`Create React App`、**ROOT DIRECTORY** は`app`を入力してください。
+4 \. 必要項目を埋めていきます。**FRAMEWORK PRESET** には`Next.js`、**ROOT DIRECTORY** は`./`を入力してください。
 
-5 \. **Environment Variables** には環境変数を直接入力してください。GitHubには`.env`ファイルを保存していないため、`Vercel`に直接記載する必要があります。`プロジェクト名/app/.env`に記載されている3つの環境変数と、追加で`CI=false`をVercelに登録してください。
+5 \. **Environment Variables** には環境変数を直接入力してください。GitHubには`.env.local`ファイルを保存していないため、`Vercel`に直接記載する必要があります。`プロジェクト名/.env.local`に記載されている3つの環境変数と、追加で`CI=false`をVercelに登録してください。
 
 ![無題](/public/images/Solana-NFT-Drop/section-4/4_2_3.png)
 
