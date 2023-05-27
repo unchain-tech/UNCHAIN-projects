@@ -7,11 +7,11 @@
 まずはフロントエンドの開発に必要なライブラリをインポートしましょう。次のコマンドをターミナルで実行してください。
 
 ```
-npm install react-icons --save
+yarn add react-icons --save
 ```
 
 ```
-npm install --save react-modal @types/react-modal
+yarn add --save react-modal @types/react-modal
 ```
 
 次に環境変数として必要な値を登録しましょう。
@@ -265,7 +265,7 @@ export const connectToContract = async (props: Props) => {
 まずは必要なライブラリを下のコマンドをターミナルで実行することによりインストールしましょう。
 
 ```
-npm install @polkadot/api @polkadot/extension-inject @polkadot/extension-dapp
+yarn add @polkadot/api @polkadot/extension-inject @polkadot/extension-dapp
 ```
 
 順番に見て行きましょう。
