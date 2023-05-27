@@ -101,39 +101,9 @@ yarn client start
 - Mac: `ctrl + c`
 - Windows: `ctrl + shift + w`
 
-### ✨ Hardhat をインストールする
+### 👏 コントラクトを作成する準備をする
 
-スマートコントラクトをすばやくコンパイルし、ローカル環境にてテストを行うために、**Hardhat** というツールを使用します。
-
-- Hardhatにより、ローカル環境でイーサリアムネットワークを簡単に起動し、テストネットでイーサリアムを利用できます。
-
-- 「サーバー」がブロックチェーンであることを除けば、Hardhatはローカルサーバーと同じです。
-
-まず、`node` / `yarn`を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスしてください。
-
-`node v16`をインストールすることを推奨しています。
-
-それでは、`packages/contract`ディレクトリ内にファイルを作成します。ターミナルに向かい、packages/contract`ディレクトリ内で以下のコマンドを実行します。
-
-```bash
-cd packages/contract
-yarn init --private -y
-# Hardhatのインストール
-yarn add --dev hardhat
-# スマートコントラクトの開発に必要なプラグインのインストール
-yarn add --dev @nomicfoundation/hardhat-toolbox @nomicfoundation/hardhat-network-helpers @nomicfoundation/hardhat-chai-matchers @nomiclabs/hardhat-ethers @nomiclabs/hardhat-etherscan chai ethers@^5.4.7 hardhat-gas-reporter solidity-coverage @typechain/hardhat typechain @typechain/ethers-v5 @ethersproject/abi @ethersproject/providers
-```
-
-> ✍️: `warning`について
-> Hardhat をインストールすると、脆弱性に関するメッセージが表示される場合があります。
->
-> 基本的に`warning`は無視して問題ありません。
->
-> YARN から何かをインストールするたびに、インストールしているライブラリに脆弱性が報告されているかどうかを確認するためにセキュリティチェックが行われます。
-
-### 👏 サンプルプロジェクトを開始する
-
-次に、Hardhatを実行します。
+本プロジェクトではコントラクトを作成する際に`Hardhat`というフレームワークを使用します。
 
 `packages/contract`ディレクトリにいることを確認し、次のコマンドを実行します。
 
@@ -165,7 +135,7 @@ $ npx hardhat
 👷 Welcome to Hardhat v2.13.0 👷‍
 
 ✔ What do you want to do? · Create a JavaScript project
-✔ Hardhat project root: · /ETH-NFT-Maker/packages/contract
+✔ Hardhat project root: · /ETH-dApp/packages/contract
 ✔ Do you want to add a .gitignore? (Y/n) · y
 
 ✨ Project created ✨
@@ -192,7 +162,7 @@ Give Hardhat a star on Github if you're enjoying it! 💞✨
 この段階で、フォルダー構造は下記のようになっていることを確認してください。
 
 ```diff
-ETH-NFT-Maker
+ETH-dApp
  ├── .gitignore
  ├── package.json
  └── packages/
@@ -267,7 +237,7 @@ npx hardhat test
 
 次のように表示されます。
 
-![](/public/images/ETH-NFT-Maker/section-1/1_2_1.png)
+![](/public/images/ETH-dApp/section-1/1_2_1.png)
 
 ターミナル上で`ls`と入力してみて、下記のフォルダーとファイルが表示されていたら成功です。
 
