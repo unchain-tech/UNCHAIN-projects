@@ -708,7 +708,7 @@ mod astar_sns_contract {
 では下のコマンドをターミナルで実行してテストを行いましょう。
 
 ```
-cargo +nightly-2022-08-15 test -- --nocapture
+cargo test -- --nocapture
 ```
 
 結果が下のようになっていれば成功です。
