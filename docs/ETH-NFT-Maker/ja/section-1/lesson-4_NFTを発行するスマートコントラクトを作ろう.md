@@ -290,7 +290,7 @@ runMain();
 yarn contract run:script
 ```
 
-エラーが発生した場合は、`pwd`を実行して、 `ipfs-nfts`ディレクトリにいることを確認して、もう一度上記のコードを実行してみてください。
+エラーが発生した場合は、`pwd`を実行して、 `ETH-NFT-Maker`ディレクトリにいることを確認して、もう一度上記のコードを実行してみてください。
 下記のような結果が、ターミナルに出力されれば、テストは成功です。
 
 ```
@@ -439,8 +439,8 @@ runMain();
 `hardhat.config.js`ファイルを変更する必要があります。
 これは、スマートコントラクトプロジェクトのルートディレクトリにあります。
 
-- 今回は、`ipfs-nfts`ディレクトリの直下に`hardhat.config.js`が存在するはずです。
-  例)`ipfs-nfts`で`ls`を実行した結果
+- 今回は、`contract`ディレクトリの直下に`hardhat.config.js`が存在するはずです。
+  例)`contract`で`ls`を実行した結果
 
 ```
 README.md			package-lock.json
@@ -539,7 +539,7 @@ hardhat.config.js
 ### ⭐️ 実行する
 
 構成のセットアップが完了すると、前に作成したデプロイスクリプトを使用してデプロイするように設定されます。
-`ipfs-nfts`のルートディレクトリからこのコマンドを実行します 。
+`contract`のルートディレクトリからこのコマンドを実行します 。
 
 ```bash
 npx hardhat run scripts/deploy.js --network sepolia
