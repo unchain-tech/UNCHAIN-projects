@@ -297,7 +297,7 @@ const waveContract = await waveContractFactory.deploy({
 
 2. フロントエンドのコントラクトアドレスを更新する(更新するファイル: `App.js`)
 
-3. フロントエンドのABIファイルを更新する(更新するファイル: `dApp-starter-project/src/utils/WavePortal.json`)
+3. フロントエンドのABIファイルを更新する(更新するファイル: `client/src/utils/WavePortal.json`)
 
 **コントラクトを更新するたび、これらの 3 つのステップを実行する必要があります。**
 
@@ -343,7 +343,7 @@ WavePortal address:  0x550925E923Cb1734de73B3a843A21b871fe2a673
 >
 > 3\. VS Code で`WavePortal.json`ファイルが開かれるので、中身を全てコピーしましょう。※ VS Code のファインダーを使って、直接`WavePortal.json`を開くことも可能です。
 >
-> 4\. **コピーした`contract/artifacts/contracts/WavePortal.sol/WavePortal.json`の中身で`dApp-starter-project/src/utils/WavePortal.json`の中身を上書きしてください。**
+> 4\. **コピーした`contract/artifacts/contracts/WavePortal.sol/WavePortal.json`の中身で`client/src/utils/WavePortal.json`の中身を上書きしてください。**
 
 **繰り返しますが、コントラクトを更新するたびにこれを行う必要があります。**
 
