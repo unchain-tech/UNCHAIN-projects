@@ -22,10 +22,6 @@
 
 ### 💻 Python と pip をインストールする
 
-Generative Artを作成するために、[こちら](https://github.com/shiftbase-xyz/generative-nft-library) のライブラリを使用します。
-
-このライブラリはPythonで書かれているので、あなたのコンピュータにPythonをインストールする必要があります。また、Pythonで使用するパッケージをインストールしてくれるpipも必要です。
-
 > 🤩: 注意
 > **このレッスンを進めるのに、Python やその他のプログラミング言語を知る必要はありません。**
 
@@ -91,159 +87,66 @@ pip install Pillow pandas progressbar2
 
 それでは本プロジェクトで使用するフォルダーを作成してきましょう。作業を始めるディレクトリに移動したら、次のコマンドを実行します。
 
-```bash
-mkdir Polygon-Generative-NFT
-cd Polygon-Generative-NFT
-yarn init --private -y
-```
-
-Polygon-Generative-NFTディレクトリ内に、package.jsonファイルが生成されます。
-
-```bash
-Polygon-Generative-NFT
- └── package.json
-```
-
-それでは、`package.json`ファイルを以下のように更新してください。
-
-```json
-{
-  "name": "polygon-generative-nft",
-  "version": "1.0.0",
-  "description": "Creating NFT Collections",
-  "private": true,
-  "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
-  },
-  "scripts": {
-    "contract": "yarn workspace contract",
-    "client": "yarn workspace client",
-    "library": "yarn workspace library",
-    "test": "yarn workspace contract test"
-  }
-}
-```
-
-`package.json`ファイルの内容を確認してみましょう。
-
-モノレポを作成するにあたり、パッケージマネージャーの機能である[Workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/)を利用しています。
-
-この機能により、yarn installを一度だけ実行すれば、すべてのパッケージ（今回はコントラクトのパッケージとクライアントのパッケージ）を一度にインストールできるようになります。
-
-**workspaces**の定義をしている部分は以下になります。
-
-```json
-"workspaces": {
-  "packages": [
-    "packages/*"
-  ]
-},
-```
-
-また、ワークスペース内の各パッケージにアクセスするためのコマンドを以下の部分で定義しています。
-
-```json
-"scripts": {
-  "contract": "yarn workspace contract",
-  "client": "yarn workspace client",
-  "library": "yarn workspace library",
-  "test": "yarn workspace contract test"
-}
-```
-
-これにより、各パッケージのディレクトリへ階層を移動しなくてもプロジェクトのルート直下から以下のようにコマンドを実行することが可能となります（ただし、各パッケージ内に`package.json`ファイルが存在し、その中にコマンドが定義されていないと実行できません。そのため、現在は実行してもエラーとなります。ファイルは後ほど作成します）。
-
-```bash
-yarn <パッケージ名> <実行したいコマンド>
-```
-
-それでは、ワークスペースのパッケージを格納するディレクトリを作成しましょう。
-
-以下のようなフォルダー構成となるように、`packages`ディレクトリとその中に`contract`ディレクトリを作成してください。
-
-```diff
-Polygon-Generative-NFT
- ├── package.json
-+└── packages/
-+    └── contract/
-```
-
-最終的に以下のようなフォルダー構成となっていることを確認してください。
-
-```bash
-Polygon-Generative-NFT
- ├── .gitignore
- ├── package.json
- └── packages/
-     └── contract/
-```
-
-最後に、ETH-NFT-collectionディレクトリ下に`.gitignore`ファイルを作成して以下の内容を書き込みます。
-
-```bash
-**/yarn-error.log*
-
-# dependencies
-**/node_modules
-
-# misc
-**/.DS_Store
-```
-
-これでモノレポの雛形が完成しました！
-
 ### 🍽 Git リポジトリをあなたの GitHub にフォークする
 
 まだGitHubのアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
 その後`packages`ディレクトリに移動します。
 
-GitHubのアカウントをお持ちの方は、[こちら](https://github.com/shiftbase-xyz/generative-nft-library) から、`generative-nft-library`リポジトリをあなたのGitHubにフォークしましょう。
+GitHubのアカウントをお持ちの方は、下記の手順に沿ってプロジェクトの基盤となるリポジトリをあなたのGitHubに[フォーク](https://denno-sekai.com/github-fork/)しましょう。
 
-あなたのGitHubアカウントにフォークした`generative-nft-library`リポジトリを、あなたのローカル環境にクローンしてください。
+1. [こちら](https://github.com/unchain-tech/Polygon-Generative-NFT)からunchain-tech/ETH-NFT-Collectionリポジトリにアクセスをして、ページ右上の`Fork`ボタンをクリックします。
 
-まず、下図のように`Code`ボタンをクリックして、`SSH`を選択し、Gitリンクをコピーしましょう。
+![](/public/images/ETH-NFT-Collection/section-3/3_1_3.png)
 
-![](/public/images/Polygon-Generative-NFT/section-1/1_1_3.png)
+2. Create a new forkページが開くので、「Copy the `main` branch only」という項目に**チェックが入っていることを確認します**。
 
-ターミナルで任意のディレクトリに移動し、先ほどコピーしたリンクを貼り付け、下記を実行してください。
+![](/public/images/ETH-NFT-Collection/section-3/3_1_4.png)
+
+設定が完了したら`Create fork`ボタンをクリックします。あなたのGitHubアカウントに`Polygon-Generative-NFT`リポジトリのフォークが作成されたことを確認してください。
+
+それでは、フォークしたリポジトリをローカル環境にクローンしましょう。
+
+まず、下図のように、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
+
+![](/public/images/ETH-NFT-Collection/section-3/3_1_1.png)
+
+ターミナル上で作業を行う任意のディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
 
 ```bash
 git clone コピーした_github_リンク
 ```
 
-下記のように、あなたのローカル環境に、ライブラリがクローンされたことが確認できたら、次のステップに進みましょう。
+無事に複製されたらローカル開発環境の準備は完了です。
 
-![](/public/images/Polygon-Generative-NFT/section-1/1_1_4.png)
-
-その後packagesディレクトリにある`generative-nft-library`の名前を`library`に変更してください。最終的に以下のようなフォルダー構成となっていることを確認してください。
+ターミナル上で`Polygon-Generative-NFT`ディレクトリ下に移動して下記を実行しましょう。
 
 ```bash
-Polygon-Generative-NFT
- ├── .gitignore
- ├── package.json
- └── packages/
-     └── contract/
-     └── library/
+yarn install
 ```
 
-またlibraryディレクトリの下に`package.json`という名前のファイルを作成して下のように記述してください。
+`yarn`コマンドを実行することで、JavaScriptライブラリのインストールが行われます。
 
-```
-{
-  "name": "library",
-  "version": "1.0.0",
-  "description": "\"generative nft library\"",
-  "private": true,
-  "scripts":{
-    "generate:NFT":"python3 nft.py",
-    "generate:JSON":"python3 metadata.py"
-  }
-}
+次に、下記を実行してみましょう。
 
+```bash
+yarn client start
 ```
+
+あなたのローカル環境で、Webサイトのフロントエンドが立ち上がりましたか？
+
+例)ローカル環境で表示されているWebサイト
+
+![](/public/images/Polygon-Generative-NFT/section-1/1_2_6.png)
+
+上記のような形でフロントエンドが確認できれば成功です。
+
+これからフロントエンドの表示を確認したい時は、ターミナルに向かい、`Polygon-Generative-NFT`ディレクトリ上で、`yarn client start`を実行します。これからも必要となる作業ですので、よく覚えておいてください。
+
+ターミナルを閉じるときは、以下のコマンドが使えます ✍️
+
+- Mac: `ctrl + c`
+- Windows: `ctrl + shift + w`
 
 これでNFTの画像を作成するlibraryの準備は整いました！
 
@@ -291,7 +194,7 @@ Polygon-Generative-NFT
 
 ![](/public/images/Polygon-Generative-NFT/section-1/1_1_8.png)
 
-今回使用する特徴カテゴリとそれに付随する画像は、あなたのローカル環境に`git clone`した`library`の`asset`フォルダの中にあります。
+今回使用する特徴カテゴリとそれに付随する画像は、`packages/library`の`asset`フォルダの中にあります。
 
 下記のディレクトリ構造を参考に、中身を確認してみてください。
 
