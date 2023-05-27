@@ -1,127 +1,138 @@
-### 🐣 ローカル環境でコントラクトをコンパイルしてデプロイする
+### 🐣 テストネットにデプロイする
 
-前のセクションでスマートコントラクトが書けたので、次はそれをコンパイルします。
+前のセクションでスマートコントラクトが書けたので、次はそれをデプロイします。
 
-ターミナルを`todo-dApp-contract`ディレクトリで開き、以下のコマンドを実行します。
 
-```bash
-truffle compile
+### 🦊 MetaMask に Polygon Network を追加する
+
+MetaMaskウォレットにMatic MainnetとPolygon Mumbai-Testnetを追加してみましょう。
+
+**1 \. Matic Mainnet を MetaMask に接続する**
+
+Matic MainnetをMetaMaskに追加するには、次の手順に従ってください。
+
+まず、[Polygonscan](https://polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Polygon Network`ボタンをクリックします。
+
+![](/public/images/Polygon-Mobile-dApp/section-3/3_1_1.png)
+
+下記のようなポップアップが立ち上がったら、`Switch Network`をクリックしましょう。
+
+![](/public/images/Polygon-Mobile-dApp/section-3/3_1_2.png)
+
+`Matic Mainnet`があなたのMetaMaskにセットアップされました。
+
+![](/public/images/Polygon-Mobile-dApp/section-3/3_1_3.png)
+
+**2 \. Polygon Mumbai-Testnet を MetaMask に接続する**
+
+Polygon Mumbai-TestnetをMetaMaskに追加するには、次の手順に従ってください。
+
+まず、[mumbai.polygonscan.com](https://mumbai.polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Mumbai Network`ボタンをクリックします。
+
+`Matic Mainnet`を設定した時と同じ要領で`Polygon Testnet`をあなたのMetaMaskに設定してください。
+
+### 🚰 偽 MATIC を入手する
+
+MetaMaskでPolygonネットワークの設定が完了したら、偽のMATICを取得していきましょう。
+
+[こちら](https://faucet.polygon.technology/) にアクセスして、下記のように偽MATICをリクエストしてください。
+
+![](/public/images/Polygon-Mobile-dApp/section-3/3_1_4.png)
+
+Sepoliaとは異なり、これらのトークンの取得にそれほど問題はないはずです。
+
+1回のリクエストで0.5 MATIC（偽）が手に入るので、2回リクエストして、1 MATIC入手しましょう。
+
+**⚠️: Polygon のメインネットワークにコントラクトをデプロイする際の注意事項**
+
+> Polygon のメインネットワークにコントラクトをデプロイする準備ができたら、本物の MATIC を入手する必要があります。
+>
+> これには 2 つの方法があります。
+>
+> 1. イーサリアムのメインネットで MATIC を購入し、Polygon のネットワークにブリッジする。
+>
+> 2. 仮想通貨の取引所（ WazirX や Coinbase など）で MATIC を購入し、それを直接 MetaMask に転送する。
+>
+> Polygon のようなサイドチェーンの場合、`2`の方が簡単で安く済みます。
+
+
+### ✨ スマートコントラクトを Mumbai testnet に公開する
+
+上記の`providerOrUrl: process.env.ALCHEMY_API_KEY,`の`process.env.ALCHEMY_API_KEY`の部分を、[alchemy.com](https://www.alchemy.com/)で作成したPolygon用のデプロイ先の`API key`に設定します。
+
+手順は下記のとおりです。
+
+まず、先ほどのリンクからログインして、`Create App`を選択し、下記のように設定してください。
+
+![](/public/images/Polygon-Mobile-dApp/section-3/3_1_5.png)
+
+下の画像で示す部分をクリックすると、`HTTP`を確認できます。
+
+![](/public/images/Polygon-Mobile-dApp/section-3/3_1_6.jpg)
+
+次に下記のコマンドを`todo-dApp-contract`フォルダ上でターミナルを開いて実行してください。
+
+`Alchemy Polygon URL`の部分に、先ほど確認した`HTTP`を貼り付けてください。
+
+次に、`.gitignore`ファイルを以下のように更新してください。
+
+```
+node_modules
+.env
 ```
 
-`truffle compile`でエラーが出た場合は下記をお試しください。
+次に`hardhat-config.js`の既存の内容をすべて削除し、以下のコードに置き換えてください。
 
-```bash
-npx truffle compile
-```
-
-下のようにターミナルに表示されていれば成功です。
-
-![](/public/images/Polygon-Mobile-dApp/section-1/1_3_1.png)
-
-ブロックチェーンにコントラクトを移行します。`migrations`ディレクトリに移動し、`2_todo_contract_migration.js`というファイルを新規作成し、以下のコードを追加してください。
+solidityのバージョンはあなたが使用しているものに合わせて変更してください。
 
 ```js
-// 2_todo_contract_migration.js
-const TodoContract = artifacts.require("TodoContract");
+//hardhat-config.js
+require('@nomicfoundation/hardhat-toolbox');
+require('dotenv').config();
 
-module.exports = function (deployer) {
-    deployer.deploy(TodoContract);
-};
-```
+const { PRIVATE_KEY, STAGING_ALCHEMY_KEY } = process.env;
 
-移行作業を開始する前に、`Ganache`がインストールされていることを確認してください。システムで`Ganache GUI`アプリを起動します。
-
-`truffle-config.js`の既存の内容をすべて削除し、以下のコードに置き換えてください。
-
-```js
-//truffle-config.js
+/** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
+  solidity: '0.8.17',
   networks: {
-    development: {
-      host: "localhost",
-      port: 7545,
-      network_id: "*",
+    mumbai: {
+      url: STAGING_ALCHEMY_KEY || '',
+      accounts: PRIVATE_KEY ? [PRIVATE_KEY] : ['0'.repeat(64)],
     },
-  },
-  contracts_directory: "./contracts",
-  compilers: {
-    solc: {
-      optimizer: {
-        enabled: true,
-        runs: 200,
-      },
-    },
-  },
-
-  db: {
-    enabled: false,
   },
 };
 ```
 
-少し説明します。
+次に`.env`ファイルを`contract`ディレクトリに作成して次のように値を入れましょう。
 
-`truffle-config.js`では、Truffleの基本的な構成を定義しています。
+`<YOUR_ALCHEMY_KEY>`にはAlchemyで作成したHTTP_KEYを、`<YOUR_PRIVATE_KEY>`にはmetamaskで作成したウォレットのプライベートキーを代入しましょう。
 
-```js
-//truffle-config.js
-  networks: {
-    development: {
-      host: "localhost",
-      port: 7545,
-      network_id: "*",
-    },
-  },
+```
+STAGING_ALCHEMY_KEY=<YOUR_ALCHEMY_KEY>
+PRIVATE_KEY=<YOUR_PRIVATE_KEY>
 ```
 
-現在、Ganacheブロックチェーンが稼働している`localhost:7545`にスマートコントラクトをデプロイするよう指定しています。
-
-それでは、Ganache上にスマートコントラクトをデプロイするために、コマンドを実行していきます。
+では早速デプロイ作業に移りましょう。ターミナルで以下のコマンドを実行します。
 
 ```bash
-truffle migrate
+yarn contract deploy
 ```
 
-`truffle migrate`でエラーが出た場合は下記をお試しください。
+下のようになっていれば成功です！
 
-```bash
-npx truffle migrate
+```
+$ yarn workspace contract deploy
+warning package.json: No license field
+$ npx hardhat run scripts/deploy.js --network mumbai
+Deploying contracts with account:  0x04CD057E4bAD766361348F26E847B546cBBc7946
+Account balance:  287212753772831574
+TodoContract address:  0x14479CaB58EB7B2AF847FCb2DbFD5F7e1bB17A08
+✨  Done in 21.27s.
 ```
 
-こちらでもエラーが出た場合は、`truffle-config.js`ファイルを下記に変更して、もう一度上記の操作を行ってください。
-
-```js
-//truffle-config.js
-module.exports = {
-  networks: {
-    development: {
-      host: "localhost",
-      port: 7545,
-      network_id: "*",
-    },
-  },
-  contracts_directory: "./contracts",
-
-  compilers: {
-    solc: {
-      version: "0.8.11",
-      optimizer: {
-        enabled: true,
-        runs: 200,
-      },
-    }
-  },
-  db: {
-    enabled: false,
-  },
-};
-```
-下のようにターミナルに表示されていれば成功です。
-
-![](/public/images/Polygon-Mobile-dApp/section-1/1_3_2.png)
-
-ローカルネットワークへのコンパイルとデプロイの作業は以上で完了です。
 次は、Flutterアプリケーションへ接続していきましょう。
+
 ### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discordの`#polygon`で質問をしてください。

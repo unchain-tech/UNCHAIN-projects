@@ -107,6 +107,7 @@ Polygon-Mobile-dApp
 
 これでモノレポの雛形が完成しました！
 
+<!-- TODO change how to install hardhat -->
 ### ✨ Hardhat をインストールする
 
 スマートコントラクトをすばやくコンパイルし、ローカル環境にてテストを行うために、**Hardhat** というツールを使用します。
