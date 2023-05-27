@@ -379,7 +379,7 @@ $ npx hardhat test test/FarmNft.ts
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は, Discordの`#avax-asset-tokenization`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は, Discordの`#avalanche`で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので, エラーレポートには下記の3点を記載してください ✨
 
