@@ -47,11 +47,11 @@ const { assetTokenization } = useContract({ currentAccount });
 農家がNFTを作成するにあたって入力した情報を保存します。
 
 ```ts
-const [farmerName, setFarmerName] = useState("");
-const [description, setDescription] = useState("");
-const [totalMint, setTotalMint] = useState("");
-const [price, setPrice] = useState("");
-const [expirationDate, setExpirationDate] = useState("");
+const [farmerName, setFarmerName] = useState('');
+const [description, setDescription] = useState('');
+const [totalMint, setTotalMint] = useState('');
+const [price, setPrice] = useState('');
+const [expirationDate, setExpirationDate] = useState('');
 ```
 
 `onClickGenerateNFT`は, 農家がNFTを作成する際に動かす関数です。

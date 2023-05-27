@@ -146,19 +146,19 @@ contract AssetTokenization {
 `test`ディレクトの下に`AssetTokenization.ts`を作成し, 以下のコードを貼り付けてください。
 
 ```ts
-import { ethers } from "hardhat";
-import { BigNumber, Overrides } from "ethers";
-import { expect } from "chai";
-import { loadFixture } from "@nomicfoundation/hardhat-network-helpers";
+import { loadFixture, time } from '@nomicfoundation/hardhat-network-helpers';
+import { expect } from 'chai';
+import { BigNumber, Overrides } from 'ethers';
+import { ethers } from 'hardhat';
 
-describe("AssetTokenization", function () {
+describe('AssetTokenization', function () {
   const oneWeekInSecond = 60 * 60 * 24 * 7;
 
   async function deployContract() {
     const accounts = await ethers.getSigners();
 
     const AssetTokenization = await ethers.getContractFactory(
-      "AssetTokenization"
+      'AssetTokenization',
     );
     const assetTokenization = await AssetTokenization.deploy();
 
@@ -169,14 +169,14 @@ describe("AssetTokenization", function () {
     };
   }
 
-  describe("basic", function () {
-    it("generate NFT contract and check details", async function () {
+  describe('basic', function () {
+    it('generate NFT contract and check details', async function () {
       const { userAccounts, assetTokenization } = await loadFixture(
-        deployContract
+        deployContract,
       );
 
-      const farmerName = "farmer";
-      const description = "description";
+      const farmerName = 'farmer';
+      const description = 'description';
       const totalMint = BigNumber.from(5);
       const price = BigNumber.from(100);
       const expirationDate = BigNumber.from(Date.now())
@@ -193,7 +193,7 @@ describe("AssetTokenization", function () {
           description,
           totalMint,
           price,
-          expirationDate
+          expirationDate,
         );
 
       await assetTokenization
@@ -203,11 +203,11 @@ describe("AssetTokenization", function () {
           description,
           totalMint,
           price,
-          expirationDate
+          expirationDate,
         );
 
       const details1 = await assetTokenization.getNftContractDetails(
-        farmer1.address
+        farmer1.address,
       );
       expect(details1.farmerAddress).to.equal(farmer1.address);
       expect(details1.farmerName).to.equal(farmerName);
@@ -218,7 +218,7 @@ describe("AssetTokenization", function () {
       expect(details1.expirationDate).to.equal(expirationDate);
 
       const details2 = await assetTokenization.getNftContractDetails(
-        farmer2.address
+        farmer2.address,
       );
       expect(details2.farmerAddress).to.equal(farmer2.address);
       expect(details2.farmerName).to.equal(farmerName);
@@ -230,14 +230,14 @@ describe("AssetTokenization", function () {
     });
   });
 
-  describe("buyNFT", function () {
-    it("balance should be change", async function () {
+  describe('buyNFT', function () {
+    it('balance should be change', async function () {
       const { userAccounts, assetTokenization } = await loadFixture(
-        deployContract
+        deployContract,
       );
 
-      const farmerName = "farmer";
-      const description = "description";
+      const farmerName = 'farmer';
+      const description = 'description';
       const totalMint = BigNumber.from(5);
       const price = BigNumber.from(100);
       const expirationDate = BigNumber.from(Date.now())
@@ -254,7 +254,7 @@ describe("AssetTokenization", function () {
           description,
           totalMint,
           price,
-          expirationDate
+          expirationDate,
         );
 
       await expect(
@@ -269,10 +269,10 @@ describe("AssetTokenization", function () {
 
 `deployContract`関数は`farmNft`のテストで記入したものとほとんど同じものです。
 
-`describe("basic", function () { ...`に続くテストでは, `generateNftContract`によって`farmNft`が正しくデプロイされているのかを確認しております。
+`describe('basic', function () { ...`に続くテストでは, `generateNftContract`によって`farmNft`が正しくデプロイされているのかを確認しております。
 `generateNftContract`を2度呼び出し, それぞれについて`getNftContractDetails`で`farmNft`の情報を取得し正しい値かどうかをテストしています。
 
-`describe("buyNFT", function () { ...`に続くテストでは, `buyNFT`を呼び出した際に正しい量のAVAXが購入者から農家へ支払われているのかを確認しています。
+`describe('buyNFT', function () { ...`に続くテストでは, `buyNFT`を呼び出した際に正しい量のAVAXが購入者から農家へ支払われているのかを確認しています。
 これは`farmNft`でも同じようなテストをしましたが, `AssetTokenization`は購入者と`farmNft`を仲介してNFTの購入を行っているので, ここではその仲介が正しく機能しているのかを確認しています。
 <br>
 <br>

@@ -86,7 +86,7 @@ client
 `ethereum.ts`の中に以下のコードを記述してください。
 
 ```ts
-import { MetaMaskInpageProvider } from "@metamask/providers";
+import { MetaMaskInpageProvider } from '@metamask/providers';
 
 // window に ethereum を追加します。
 declare global {
@@ -96,7 +96,7 @@ declare global {
 }
 
 export const getEthereum = (): MetaMaskInpageProvider | null => {
-  if (typeof window !== "undefined" && typeof window.ethereum !== "undefined") {
+  if (typeof window !== 'undefined' && typeof window.ethereum !== 'undefined') {
     const { ethereum } = window;
     return ethereum;
   }
@@ -118,7 +118,7 @@ export const getEthereum = (): MetaMaskInpageProvider | null => {
 `formatter.ts`の中に以下のコードを記述してください。
 
 ```ts
-import { BigNumber, ethers } from "ethers";
+import { BigNumber, ethers } from 'ethers';
 
 export const weiToAvax = (wei: BigNumber) => {
   return ethers.utils.formatEther(wei);
@@ -145,7 +145,7 @@ export const blockTimeStampToDate = (timeStamp: BigNumber) => {
 const regValidNumber = /^[0-9]+[.]?[0-9]*$/;
 
 export const validAmount = (amount: string): boolean => {
-  if (amount === "") {
+  if (amount === '') {
     return false;
   }
   if (!regValidNumber.test(amount)) {
@@ -165,8 +165,9 @@ export const validAmount = (amount: string): boolean => {
 `hooks`ディレクトリ内に`useWallet.ts`というファイルを作成し, 以下のコードを記述してください。
 
 ```ts
-import { useCallback, useEffect, useState } from "react";
-import { getEthereum } from "../utils/ethereum";
+import { useCallback, useEffect, useState } from 'react';
+
+import { getEthereum } from '../utils/ethereum';
 
 type ReturnUseWallet = {
   currentAccount: string | undefined;
@@ -180,15 +181,15 @@ export const useWallet = (): ReturnUseWallet => {
   const connectWallet = async () => {
     try {
       if (!ethereum) {
-        alert("Get Wallet!");
+        alert('Get Wallet!');
         return;
       }
       const accounts = await ethereum.request({
-        method: "eth_requestAccounts",
+        method: 'eth_requestAccounts',
       });
       if (!Array.isArray(accounts)) return;
-      console.log("Connected: ", accounts[0]);
-      setCurrentAccount(accounts[0]); //簡易実装のため, 配列の初めのアドレスを使用します。
+      console.log('Connected: ', accounts[0]);
+      setCurrentAccount(accounts[0]); // 簡易実装のため, 配列の初めのアドレスを使用します。
     } catch (error) {
       console.log(error);
     }
@@ -197,19 +198,19 @@ export const useWallet = (): ReturnUseWallet => {
   const checkIfWalletIsConnected = useCallback(async () => {
     try {
       if (!ethereum) {
-        console.log("Make sure you have Wallet!");
+        console.log('Make sure you have Wallet!');
         return;
       } else {
-        console.log("We have the ethereum object", ethereum);
+        console.log('We have the ethereum object', ethereum);
       }
-      const accounts = await ethereum.request({ method: "eth_accounts" });
+      const accounts = await ethereum.request({ method: 'eth_accounts' });
       if (!Array.isArray(accounts)) return;
       if (accounts.length !== 0) {
         const account = accounts[0];
-        console.log("Found an authorized account:", account);
+        console.log('Found an authorized account:', account);
         setCurrentAccount(account);
       } else {
-        console.log("No authorized account found");
+        console.log('No authorized account found');
       }
     } catch (error) {
       console.log(error);
@@ -253,11 +254,12 @@ client
 `context`ディレクトリ内に`CurrentAccountProvider.tsx`というファイルを作成し, 以下のコードを記述してください。
 
 ```ts
-import { createContext, ReactNode } from "react";
-import { useWallet } from "../hooks/useWallet";
+import { createContext, ReactNode } from 'react';
+
+import { useWallet } from '../hooks/useWallet';
 
 const CurrentAccountContext = createContext<[string | undefined, () => void]>([
-  "",
+  '',
   () => {},
 ]);
 
@@ -310,9 +312,10 @@ client
 `_app.tsx`内に以下のコードを記述してください。
 
 ```tsx
-import "../styles/globals.css";
-import { CurrentAccountProvider } from "../context/CurrentAccountProvider";
-import type { AppProps } from "next/app";
+import type { AppProps } from 'next/app';
+
+import { CurrentAccountProvider } from '../context/CurrentAccountProvider';
+import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

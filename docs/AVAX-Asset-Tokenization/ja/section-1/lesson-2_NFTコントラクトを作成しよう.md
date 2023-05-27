@@ -131,12 +131,12 @@ constructorでは, 引数で受け取った値を元に状態変数に値を代�
                     abi.encodePacked(
                         '{"name": "',
                         name(),
-                        " -- NFT #: ",
+                        ' -- NFT #: ',
                         Strings.toString(_tokenId),
                         '", "description": "',
                         description,
                         '", "image": "',
-                        "https://i.imgur.com/GZCdtXu.jpg",
+                        'https://i.imgur.com/GZCdtXu.jpg',
                         '"}'
                     )
                 )
@@ -215,12 +215,12 @@ mint後にidのインクリメントやmint可能なNFTの数を更新します�
                     abi.encodePacked(
                         '{"name": "',
                         name(),
-                        " -- NFT #: ",
+                        ' -- NFT #: ',
                         Strings.toString(_tokenId),
                         '", "description": "',
                         description,
                         '", "image": "',
-                        "https://i.imgur.com/GZCdtXu.jpg",
+                        'https://i.imgur.com/GZCdtXu.jpg',
                         '"}'
                     )
                 )
@@ -305,7 +305,7 @@ openseaなどのNFTマーケットサービスは, このtokenURI関数のデー
 以下のように, 各テストで呼び出される`deployContract`とその後に続くテストコードが記述されているかと思います。
 
 ```ts
-describe("farmNft", function () {
+describe('farmNft', function () {
   const oneWeekInSecond = 60 * 60 * 24 * 7;
 
   async function deployContract() {
@@ -323,20 +323,20 @@ describe("farmNft", function () {
 次に以下のような形で`mint`に関するテストが4つ記述されているかと思います。
 
 ```ts
-describe("mint", function () {
-  it("NFT should be minted", async function () {
+describe('mint', function () {
+  it('NFT should be minted', async function () {
     // テストコード
   });
 
-  it("balance should be change", async function () {
+  it('balance should be change', async function () {
     // テストコード
   });
 
-  it("revert when not enough nft to mint", async function () {
+  it('revert when not enough nft to mint', async function () {
     // テストコード
   });
 
-  it("revert when not enough currency to mint", async function () {
+  it('revert when not enough currency to mint', async function () {
     // テストコード
   });
 });
@@ -347,13 +347,13 @@ describe("mint", function () {
 3つ目のテストでは上限までNFTがmintされている場合にmintNFTの呼び出しが失敗することを確認しています。
 4つ目のテストでは関数呼び出しに付与したAVAXが足りない場合に, mintNFTの呼び出しが失敗することを確認しています。
 
-その下の`describe("tokenURI", function () { ...`に続くテストでは, `tokeURI`の挙動を確認しています。
+その下の`describe('tokenURI', function () { ...`に続くテストでは, `tokeURI`の挙動を確認しています。
 `tokeURI`は本プロジェクトでは使用しないため, 返り値を出力することのみしています。
 
-その下の`describe("burnNFT", function () { ...`に続くテストでは, `burnNFT`の挙動を確認しています。
+その下の`describe('burnNFT', function () { ...`に続くテストでは, `burnNFT`の挙動を確認しています。
 `mintNFT`後に`burnNFT`を呼び出し, NFTがバーンされていることを確認しています。
 
-最後に`describe("getTokenOwners", function () { ...`に続くテストでは, `getTokenOwners`の挙動を確認しています。
+最後に`describe('getTokenOwners', function () { ...`に続くテストでは, `getTokenOwners`の挙動を確認しています。
 `mintNFT`後に`burnNFT`を呼び出し, NFTがバーンされていることを確認しています。
 
 ### ⭐ テストを実行しましょう
