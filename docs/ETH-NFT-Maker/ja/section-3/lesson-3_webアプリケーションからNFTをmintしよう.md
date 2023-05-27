@@ -17,7 +17,7 @@ import { ethers } from "ethers";
 
 まだ`ethers`のライブラリをインストールしてなかったので
 ```
-npm install --save ethers
+yarn add --dev ethers
 ```
 これでインストールしましょう。ethersをもっと詳しく知りたい方は、[こちら](https://www.npmjs.com/package/ethers)をどうぞ。
 
@@ -143,7 +143,7 @@ console.log(
 すべての変更を`NftUploader.jsx`に反映させた後、ターミナルで`nft-maker-starter-project`ディレクトリに移動して下記を実行しみてください。
 
 ```bash
-npm start
+yarn client start
 ```
 
 ローカルサーバーで、Webサイトが立ち上がり、下記のようなエラーがターミナルに出力されていれば、ここまでの実装は成功です。
@@ -231,7 +231,7 @@ import Web3Mint from "../../utils/Web3Mint.json";
 まずは、`Web3.storage`のライブラリをインストールしましょう!このライブラリを使うことで先ほど手作業で行ったIPFSに画像をアップロードする作業をプログラムで実装できるようになります。
 
 ```
-npm install web3.storage
+yarn add web3.storage
 ```
 
 そして`NftUploader.jsx`の冒頭に一行を加えましょう。
@@ -345,7 +345,7 @@ const rootCid = await client.put(image.files, {
 それでは、ターミナル上で`nft-maker-starter-project`ディレクトリに移動して下記を実行し、ローカル環境でWebアプリケーションをホストしてみましょう。
 
 ```bash
-npm start
+yarn client start
 ```
 
 Webアプリケーションで画像を選択して、下記のようなポップアップが立ち上がったら、`Confirm`を押してください。
