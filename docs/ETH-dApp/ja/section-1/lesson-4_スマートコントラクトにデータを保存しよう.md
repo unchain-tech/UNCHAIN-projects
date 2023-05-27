@@ -279,7 +279,7 @@ waveCount = await waveContract.getTotalWaves();
 
 ### 🧙‍♀️ テストを実行しよう
 
-`my-wave-portal`ディレクトリに移動し、下記を実行してみましょう。
+`contract`ディレクトリに移動し、下記を実行してみましょう。
 
 ```bash
 npx hardhat run scripts/run.js
