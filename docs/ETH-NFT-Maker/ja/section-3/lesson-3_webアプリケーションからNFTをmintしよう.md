@@ -140,7 +140,7 @@ console.log(
 `askContractToMintNft`関数を呼び出すコードはこの後実装していくので、今は気にしないでください。
 
 
-すべての変更を`NftUploader.jsx`に反映させた後、ターミナルで`nft-maker-starter-project`ディレクトリに移動して下記を実行しみてください。
+すべての変更を`NftUploader.jsx`に反映させた後、ターミナルで下記を実行しみてください。
 
 ```bash
 yarn client start
@@ -192,9 +192,9 @@ ABIファイルの中身は、`Web3Mint.json`というファイルに格納さ�
 
 次に、下記を実行して、ABIファイルをWebアプリケーションから呼び出せるようにしましょう。
 
-1\. ターミナル上で`nft-maker-starter-project`にいることを確認する（もしくは移動する）。
+1\. ターミナル上で`client`にいることを確認する（もしくは移動する）。
 
-2\. 下記を実行して、`nft-maker-starter-project/src/`の中に`utils`ディレクトリを作成する。
+2\. 下記を実行して、`client/src/`の中に`utils`ディレクトリを作成する。
 
 > ```bash
 > mkdir src/utils
@@ -207,9 +207,9 @@ ABIファイルの中身は、`Web3Mint.json`というファイルに格納さ�
 4\. 下記を実行して、`Web3Mint.json`ファイルをVS Codeで開く。
 
 > ```bash
-> code nft-maker-starter-project/src/utils/Web3Mint.json
+> code client/src/utils/Web3Mint.json
 > ```
-5\. **先ほどコピーした`contract/artifacts/contracts/Web3Mint.sol/Web3Mint.json`の中身を新しく作成した`nft-maker-starter-project/src/utils/MyEpicNFT.json`の中に貼り付けてください。**
+5\. **先ほどコピーした`contract/artifacts/contracts/Web3Mint.sol/Web3Mint.json`の中身を新しく作成した`client/src/utils/MyEpicNFT.json`の中に貼り付けてください。**
 
 ABIファイルの準備ができたので、`NftUploader.jsx`にインポートしましょう。
 
@@ -342,7 +342,7 @@ const rootCid = await client.put(image.files, {
 
 ### 🥳 NFT を Mint する
 
-それでは、ターミナル上で`nft-maker-starter-project`ディレクトリに移動して下記を実行し、ローカル環境でWebアプリケーションをホストしてみましょう。
+それでは、ターミナル上で`client`ディレクトリに移動して下記を実行し、ローカル環境でWebアプリケーションをホストしてみましょう。
 
 ```bash
 yarn client start
