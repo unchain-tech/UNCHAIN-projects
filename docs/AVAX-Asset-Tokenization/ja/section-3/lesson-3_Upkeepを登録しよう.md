@@ -36,7 +36,7 @@ $ npx hardhat run scripts/deploy.ts --network fuji
 その後`assetTokenization address:`に続くコントラクトのアドレスを`client`ディレクトリ内, `hooks/useContract.ts`の中の以下の部分に貼り付けてください。
 
 ```
-export const Asset-TokenizationAddress =
+export const AssetTokenizationAddress =
   "コントラクトのデプロイ先アドレス";
 ```
 
@@ -44,7 +44,7 @@ export const Asset-TokenizationAddress =
 ターミナルから取得する場合は`contract`直下に移動し次のようなコマンドを使用します。
 
 ```
-cp artifacts/contracts/Asset-Tokenization.sol/Asset-Tokenization.json ../client/artifacts/
+cp artifacts/contracts/AssetTokenization.sol/AssetTokenization.json ../client/artifacts/
 ```
 
 そして最後に型定義ファイルの取得を行います。

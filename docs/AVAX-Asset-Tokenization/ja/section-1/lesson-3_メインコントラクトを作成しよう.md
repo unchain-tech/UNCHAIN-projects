@@ -1,23 +1,22 @@
-### 🥮 `Asset-Tokenization`コントラクトを作成する
+### 🥮 `AssetTokenization`コントラクトを作成する
 
-フロントエンドとのデータのやりとり、FarmNftのデプロイと管理をする機能を持つ`Asset-Tokenization`コントラクトを作成します。
+フロントエンドとのデータのやりとり、FarmNftのデプロイと管理をする機能を持つ`AssetTokenization`コントラクトを作成します。
 
-`contracts`ディレクトリの下に`Asset-Tokenization.sol`という名前のファイルを作成します。
+`contracts`ディレクトリの下に`AssetTokenization.sol`という名前のファイルを作成します。
 
-`Asset-Tokenization.sol`の中に以下のコードを貼り付けてください。
+`AssetTokenization.sol`の中に以下のコードを貼り付けてください。
 
 ```solidity
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.17;
 
 import "./FarmNft.sol";
-import "hardhat/console.sol";
 
-contract Asset-Tokenization {
-    address[] farmers; // 農家のアドレスを保存します。
-    mapping(address => FarmNft) farmerToNftContract; // 農家のアドレスとデプロイしたFarmNftをマッピングします。
+contract AssetTokenization {
+    address[] private _farmers; // 農家のアドレスを保存します。
+    mapping(address => FarmNft) private _farmerToNftContract; // 農家のアドレスとデプロイしたFarmNftをマッピングします。
 
-    struct nftContractDetails {
+    struct NftContractDetails {
         address farmerAddress;
         string farmerName;
         string description;
@@ -32,23 +31,23 @@ contract Asset-Tokenization {
 もし,`hardhat.config.ts`の中に記載されているSolidityのバージョンが`0.8.17`でなかった場合は,`FarmNft.sol`の中身を`hardhat.config.ts`に記載されているバージョンに変更しましょう。
 
 コントラクトのはじめに状態変数を定義しています。
-その次には`nftContractDetails`という構造体を定義しています。
-`nftContractDetails`は, フロントエンドへ`farmNft`の情報を渡すために使用する型になります。
+その次には`NftContractDetails`という構造体を定義しています。
+`NftContractDetails`は, フロントエンドへ`farmNft`の情報を渡すために使用する型になります。
 
-次に`Asset-Tokenization`の最後の行に以下のコードを貼り付けてください。
+次に`AssetTokenization`の最後の行に以下のコードを貼り付けてください。
 
 ```solidity
     function availableContract(address farmer) public view returns (bool) {
-        return address(farmerToNftContract[farmer]) != address(0);
+        return address(_farmerToNftContract[farmer]) != address(0);
     }
 
-    function addFarmer(address newFarmer) internal {
-        for (uint256 index = 0; index < farmers.length; index++) {
-            if (newFarmer == farmers[index]) {
+    function _addFarmer(address newFarmer) internal {
+        for (uint256 index = 0; index < _farmers.length; index++) {
+            if (newFarmer == _farmers[index]) {
                 return;
             }
         }
-        farmers.push(newFarmer);
+        _farmers.push(newFarmer);
     }
 
     function generateNftContract(
@@ -65,7 +64,7 @@ contract Asset-Tokenization {
             "Your token is already deployed"
         );
 
-        addFarmer(farmerAddress);
+        _addFarmer(farmerAddress);
 
         FarmNft newNft = new FarmNft(
             farmerAddress,
@@ -76,38 +75,38 @@ contract Asset-Tokenization {
             _expirationDate
         );
 
-        farmerToNftContract[farmerAddress] = newNft;
+        _farmerToNftContract[farmerAddress] = newNft;
     }
 ```
 
 `availableContract`では,（農家の）アドレスをもとに`farmNft`がデプロイされているのかを確認しています。
 `farmNft`がデプロイされていない場合, または期限が切れマッピングからdeleteされた場合は, address()で表現すると`0x0`になります。
 
-`addFarmer`は農家のアドレスが新規だった場合に状態変数に保存します。
+`_addFarmer`は農家のアドレスが新規だった場合に状態変数に保存します。
 
 `generateNftContract`は農家がNFTを作成する(=`farmNft`をデプロイする)際に使用する関数です。
 `new FarmNft()`により新しく`farmNft`をデプロイします。
-そして`farmerToNftContract`のマッピングに追加します。
+そして`_farmerToNftContract`のマッピングに追加します。
 
-次に`Asset-Tokenization`の最後の行に以下のコードを貼り付けてください。
+次に`AssetTokenization`の最後の行に以下のコードを貼り付けてください。
 
 ```solidity
     function getNftContractDetails(address farmerAddress)
         public
         view
-        returns (nftContractDetails memory)
+        returns (NftContractDetails memory)
     {
         require(availableContract(farmerAddress), "not available");
 
-        nftContractDetails memory details;
-        details = nftContractDetails(
-            farmerToNftContract[farmerAddress].farmerAddress(),
-            farmerToNftContract[farmerAddress].farmerName(),
-            farmerToNftContract[farmerAddress].description(),
-            farmerToNftContract[farmerAddress].totalMint(),
-            farmerToNftContract[farmerAddress].availableMint(),
-            farmerToNftContract[farmerAddress].price(),
-            farmerToNftContract[farmerAddress].expirationDate()
+        NftContractDetails memory details;
+        details = NftContractDetails(
+            _farmerToNftContract[farmerAddress].farmerAddress(),
+            _farmerToNftContract[farmerAddress].farmerName(),
+            _farmerToNftContract[farmerAddress].description(),
+            _farmerToNftContract[farmerAddress].totalMint(),
+            _farmerToNftContract[farmerAddress].availableMint(),
+            _farmerToNftContract[farmerAddress].price(),
+            _farmerToNftContract[farmerAddress].expirationDate()
         );
 
         return details;
@@ -117,7 +116,7 @@ contract Asset-Tokenization {
         require(availableContract(farmerAddress), "Not yet deployed");
 
         address buyerAddress = msg.sender;
-        farmerToNftContract[farmerAddress].mintNFT{value: msg.value}(
+        _farmerToNftContract[farmerAddress].mintNFT{value: msg.value}(
             buyerAddress
         );
     }
@@ -127,15 +126,15 @@ contract Asset-Tokenization {
 
         require(availableContract(farmerAddress), "Not yet deployed");
 
-        return farmerToNftContract[farmerAddress].getTokenOwners();
+        return _farmerToNftContract[farmerAddress].getTokenOwners();
     }
 
     function getFarmers() public view returns (address[] memory) {
-        return farmers;
+        return _farmers;
     }
 ```
 
-`getNftContractDetails`は指定された`farmNft`の情報を`nftContractDetails`型の変数に格納して返却する関数です。
+`getNftContractDetails`は指定された`farmNft`の情報を`NftContractDetails`型の変数に格納して返却する関数です。
 
 `buyNft`は指定された`farmNft`のNFTを購入する関数です。
 この関数は購入者から（NFTの価格分の）AVAXを付与して呼び出されることを想定しているので, `msg.value`によってその量の取得できます。さらにその量のAVAXを付与して指定された`farmNft`の`mintNFT`を呼び出しています。
@@ -144,7 +143,7 @@ contract Asset-Tokenization {
 
 ### 🧪 テストを追加しましょう
 
-`test`ディレクトの下に`Asset-Tokenization.ts`を作成し, 以下のコードを貼り付けてください。
+`test`ディレクトの下に`AssetTokenization.ts`を作成し, 以下のコードを貼り付けてください。
 
 ```ts
 import { ethers } from "hardhat";
@@ -152,16 +151,16 @@ import { BigNumber, Overrides } from "ethers";
 import { expect } from "chai";
 import { loadFixture } from "@nomicfoundation/hardhat-network-helpers";
 
-describe("Asset-Tokenization", function () {
+describe("AssetTokenization", function () {
   const oneWeekInSecond = 60 * 60 * 24 * 7;
 
   async function deployContract() {
     const accounts = await ethers.getSigners();
 
-    const Asset-Tokenization = await ethers.getContractFactory(
-      "Asset-Tokenization"
+    const AssetTokenization = await ethers.getContractFactory(
+      "AssetTokenization"
     );
-    const assetTokenization = await Asset-Tokenization.deploy();
+    const assetTokenization = await AssetTokenization.deploy();
 
     return {
       deployAccount: accounts[0],
@@ -274,7 +273,7 @@ describe("Asset-Tokenization", function () {
 `generateNftContract`を2度呼び出し, それぞれについて`getNftContractDetails`で`farmNft`の情報を取得し正しい値かどうかをテストしています。
 
 `describe("buyNFT", function () { ...`に続くテストでは, `buyNFT`を呼び出した際に正しい量のAVAXが購入者から農家へ支払われているのかを確認しています。
-これは`farmNft`でも同じようなテストをしましたが, `Asset-Tokenization`は購入者と`farmNft`を仲介してNFTの購入を行っているので, ここではその仲介が正しく機能しているのかを確認しています。
+これは`farmNft`でも同じようなテストをしましたが, `AssetTokenization`は購入者と`farmNft`を仲介してNFTの購入を行っているので, ここではその仲介が正しく機能しているのかを確認しています。
 <br>
 <br>
 ※
@@ -287,7 +286,7 @@ describe("Asset-Tokenization", function () {
 
 ```
 
-$ npx hardhat test test/Asset-Tokenization.ts
+$ npx hardhat test test/AssetTokenization.ts
 
 ```
 

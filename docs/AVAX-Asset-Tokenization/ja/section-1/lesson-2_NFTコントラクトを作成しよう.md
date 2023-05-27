@@ -20,14 +20,14 @@ NFTの機能を持つスマートコントラクトです。
 このコントラクトには有効期限を設けます。
 デプロイ時に指定された有効期限の日時を過ぎるとNFTのmintができなくなります。
 
-**Asset-Tokenization**
+**AssetTokenization**
 
 フロントエンドとのデータのやりとり, `FarmNft`のデプロイと管理をする機能を持つスマートコントラクトです。
-`Asset-Tokenization`は1つで, `FarmNft`は農家の数だけ存在することができます。
+`AssetTokenization`は1つで, `FarmNft`は農家の数だけ存在することができます。
 
 作成する2つのスマートコントラクトとフロントエンドとの関係図は以下です。
 
-ここでは`Asset-Tokenization`がフロントエンドとやり取りをすることと, 複数の`FarmNft`を管理しているという関係性が掴めれば十分です！
+ここでは`AssetTokenization`がフロントエンドとやり取りをすることと, 複数の`FarmNft`を管理しているという関係性が掴めれば十分です！
 
 ![](/public/images/AVAX-Asset-Tokenization/section-1/1_1_2.png)
 
@@ -108,7 +108,7 @@ constructorでは, 引数で受け取った値を元に状態変数に値を代�
     function mintNFT(address to) public payable {
         require(availableMint > 0, "Not enough nft");
         require(isExpired() == false, "Already expired");
-        require(msg.value == price);
+        require(msg.value == price, "Incorrect amount of tokens");
 
         uint256 newItemId = _tokenIds.current();
         _safeMint(to, newItemId);
@@ -178,7 +178,7 @@ constructorでは, 引数で受け取った値を元に状態変数に値を代�
     function mintNFT(address to) public payable {
         require(availableMint > 0, "Not enough nft");
         require(isExpired() == false, "Already expired");
-        require(msg.value == price);
+        require(msg.value == price, "Incorrect amount of tokens");
 
         uint256 newItemId = _tokenIds.current();
         _safeMint(to, newItemId);

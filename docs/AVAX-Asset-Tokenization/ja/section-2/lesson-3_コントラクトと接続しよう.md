@@ -14,11 +14,11 @@
 ```ts
 import { useState, useEffect, useCallback } from "react";
 import { ethers } from "ethers";
-import Asset-TokenizationArtifact from "../artifacts/Asset-Tokenization.json";
-import { Asset-Tokenization as Asset-TokenizationType } from "../types";
+import AssetTokenizationArtifact from "../artifacts/AssetTokenization.json";
+import { AssetTokenization as AssetTokenizationType } from "../types";
 import { getEthereum } from "../utils/ethereum";
 
-export const Asset-TokenizationAddress =
+export const AssetTokenizationAddress =
   "コントラクトのデプロイ先アドレス";
 
 type PropsUseContract = {
@@ -26,14 +26,14 @@ type PropsUseContract = {
 };
 
 type ReturnUseContract = {
-  assetTokenization: Asset-TokenizationType | undefined;
+  assetTokenization: AssetTokenizationType | undefined;
 };
 
 export const useContract = ({
   currentAccount,
 }: PropsUseContract): ReturnUseContract => {
-  const [assetTokenization, setAsset-Tokenization] =
-    useState<Asset-TokenizationType>();
+  const [assetTokenization, setAssetTokenization] =
+    useState<AssetTokenizationType>();
   const ethereum = getEthereum();
 
   const getContract = useCallback(
@@ -67,10 +67,10 @@ export const useContract = ({
 
   useEffect(() => {
     getContract(
-      Asset-TokenizationAddress,
-      Asset-TokenizationArtifact.abi,
+      AssetTokenizationAddress,
+      AssetTokenizationArtifact.abi,
       (Contract: ethers.Contract) => {
-        setAsset-Tokenization(Contract as Asset-TokenizationType);
+        setAssetTokenization(Contract as AssetTokenizationType);
       }
     );
   }, [ethereum, currentAccount, getContract]);
@@ -168,11 +168,11 @@ async function deploy() {
   // コントラクトをデプロイするアカウントのアドレスを取得します。
   const [deployer] = await ethers.getSigners();
 
-  // Asset-Tokenizationコントラクトをデプロイします。
-  const Asset-Tokenization = await ethers.getContractFactory(
-    "Asset-Tokenization"
+  // AssetTokenizationコントラクトをデプロイします。
+  const AssetTokenization = await ethers.getContractFactory(
+    "AssetTokenization"
   );
-  const assetTokenization = await Asset-Tokenization.deploy();
+  const assetTokenization = await AssetTokenization.deploy();
   await assetTokenization.deployed();
 
   console.log("assetTokenization address:", assetTokenization.address);
@@ -222,14 +222,14 @@ assetTokenization address: 0x4E2F5941e079EcE9c1927fd7b9fc92fDB58E04cD
 を`packages/client`ディレクトリ内, `hooks/useContract.ts`の中の以下の部分に貼り付けてください。
 
 ```ts
-export const Asset-TokenizationAddress =
+export const AssetTokenizationAddress =
   "コントラクトのデプロイ先アドレス";
 ```
 
 例:
 
 ```ts
-export const Asset-TokenizationAddress =
+export const AssetTokenizationAddress =
   "0x4E2F5941e079EcE9c1927fd7b9fc92fDB58E04cD";
 ```
 
@@ -244,7 +244,7 @@ ABIファイルは,コントラクトがコンパイルされた時に生成さ�
 `contract`直下からターミナルでコピーを行う場合, このようなコマンドになります。
 
 ```
-cp artifacts/contracts/Asset-Tokenization.sol/Asset-Tokenization.json ../client/artifacts/
+cp artifacts/contracts/AssetTokenization.sol/AssetTokenization.json ../client/artifacts/
 ```
 
 📽️ 型定義ファイルを取得する

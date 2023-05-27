@@ -9,11 +9,11 @@ chainlinkの自動化には以下の2つの起動方法があります。
 
 ### `Custom logic trigger`の実装
 
-ここで行うことは, `Custom logic trigger`に必要な実装を`Asset-Tokenization`コントラクトに実装します。
+ここで行うことは, `Custom logic trigger`に必要な実装を`AssetTokenization`コントラクトに実装します。
 そしてchainlinkに`Custom logic trigger`で実行してもらう旨をタスクとして登録します。
 このタスクのことを`Upkeep`と呼びます。
 
-`Asset-Tokenization.sol`の中に以下のimport文を追加し, さらに`AutomationCompatibleInterface`を継承するようにしてください。
+`AssetTokenization.sol`の中に以下のimport文を追加し, さらに`AutomationCompatibleInterface`を継承するようにしてください。
 ※ 継承を記述した時点ではコードエディタにより`AutomationCompatibleInterface`を実装できていない警告が出るかもしれませんが, この時点では無視して構いません。
 
 ```solidity
@@ -21,13 +21,13 @@ import "@chainlink/contracts/src/v0.8/AutomationCompatible.sol";
 ```
 
 ```solidity
-contract Asset-Tokenization is AutomationCompatibleInterface {
+contract AssetTokenization is AutomationCompatibleInterface {
     ...
 ```
 
 `AutomationCompatibleInterface`はchainlinkが用意したインタフェースで, これを実装することによりUpkeepはどの条件を確認し, 何を実行するのか判別することができます。
 
-次に`Asset-Tokenization`の最後の行に以下の関数を貼り付けてください。
+次に`AssetTokenization`の最後の行に以下の関数を貼り付けてください。
 
 ```solidity
     // For upkeep that chainlink automation function.
@@ -44,12 +44,12 @@ contract Asset-Tokenization is AutomationCompatibleInterface {
             bytes memory /* optional data. return initial value in this code */
         )
     {
-        for (uint256 index = 0; index < farmers.length; index++) {
-            address farmer = farmers[index];
+        for (uint256 index = 0; index < _farmers.length; index++) {
+            address farmer = _farmers[index];
             if (!availableContract(farmer)) {
                 continue;
             }
-            if (farmerToNftContract[farmer].isExpired()) {
+            if (_farmerToNftContract[farmer].isExpired()) {
                 return (true, "");
             }
         }
@@ -61,14 +61,14 @@ contract Asset-Tokenization is AutomationCompatibleInterface {
     function performUpkeep(
         bytes calldata /* optional data. don't use in this code */
     ) external override {
-        for (uint256 index = 0; index < farmers.length; index++) {
-            address farmer = farmers[index];
+        for (uint256 index = 0; index < _farmers.length; index++) {
+            address farmer = _farmers[index];
             if (!availableContract(farmer)) {
                 continue;
             }
-            if (farmerToNftContract[farmer].isExpired()) {
-                farmerToNftContract[farmer].burnNFT();
-                delete farmerToNftContract[farmer];
+            if (_farmerToNftContract[farmer].isExpired()) {
+                _farmerToNftContract[farmer].burnNFT();
+                delete _farmerToNftContract[farmer];
             }
         }
     }
@@ -84,7 +84,7 @@ contract Asset-Tokenization is AutomationCompatibleInterface {
 
 ### 🧪 テストを追加しましょう
 
-`Asset-Tokenization.ts`のimport文のところにtimeを追加してください。
+`AssetTokenization.ts`のimport文のところにtimeを追加してください。
 
 ```ts
 import { time, loadFixture } from "@nomicfoundation/hardhat-network-helpers";
@@ -153,7 +153,7 @@ describe("upkeep", function () {
 timeの使用はテスト環境全体の時間に影響するため, 複数のテストファイルを同時にテストすると予期せぬ挙動を起こす場合があります。よって以下のコマンドではテストをする対象ファイルを引数によって指定しています。
 
 ```
-$ npx hardhat test test/Asset-Tokenization.ts
+$ npx hardhat test test/AssetTokenization.ts
 ```
 
 以下のような表示がされたらテスト成功です！
