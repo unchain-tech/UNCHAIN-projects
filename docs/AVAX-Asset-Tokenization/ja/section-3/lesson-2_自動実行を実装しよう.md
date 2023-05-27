@@ -5,16 +5,16 @@ chainlinkの自動化には以下の2つの起動方法があります。
 - `Time-based trigger`: あらかじめ指定した時間でコントラクトを実行します。定期実行です。
 - `Custom logic trigger`: あらかじめ用意した条件に合致した場合にコントラクトを実行します。
 
-今回は,「有効期限が切れた`farmNft`がないかどうかの確認, あった場合は削除処理をする」ので`Custom logic trigger`を使用します。
+今回は、「有効期限が切れた`farmNft`がないかどうかの確認、 あった場合は削除処理をする」ので`Custom logic trigger`を使用します。
 
 ### `Custom logic trigger`の実装
 
-ここで行うことは, `Custom logic trigger`に必要な実装を`AssetTokenization`コントラクトに実装します。
+ここで行うことは、 `Custom logic trigger`に必要な実装を`AssetTokenization`コントラクトに実装します。
 そしてchainlinkに`Custom logic trigger`で実行してもらう旨をタスクとして登録します。
 このタスクのことを`Upkeep`と呼びます。
 
-`AssetTokenization.sol`の中に以下のimport文を追加し, さらに`AutomationCompatibleInterface`を継承するようにしてください。
-※ 継承を記述した時点ではコードエディタにより`AutomationCompatibleInterface`を実装できていない警告が出るかもしれませんが, この時点では無視して構いません。
+`AssetTokenization.sol`の中に以下のimport文を追加し、 さらに`AutomationCompatibleInterface`を継承するようにしてください。
+※ 継承を記述した時点ではコードエディタにより`AutomationCompatibleInterface`を実装できていない警告が出るかもしれませんが、 この時点では無視して構いません。
 
 ```solidity
 import "@chainlink/contracts/src/v0.8/AutomationCompatible.sol";
@@ -25,7 +25,7 @@ contract AssetTokenization is AutomationCompatibleInterface {
     ...
 ```
 
-`AutomationCompatibleInterface`はchainlinkが用意したインタフェースで, これを実装することによりUpkeepはどの条件を確認し, 何を実行するのか判別することができます。
+`AutomationCompatibleInterface`はchainlinkが用意したインタフェースで、 これを実装することによりUpkeepはどの条件を確認し、 何を実行するのか判別することができます。
 
 次に`AssetTokenization`の最後の行に以下の関数を貼り付けてください。
 
@@ -77,10 +77,10 @@ contract AssetTokenization is AutomationCompatibleInterface {
 `checkUpkeep`と`performUpkeep`をにより`AutomationCompatibleInterface`を実装することができました。
 
 `checkUpkeep`は条件に合致したかどうかの論理値を返却します。
-今回は期限切れの`farmNft`があるかどうかを条件とし, ある場合は`true`を返却します。
+今回は期限切れの`farmNft`があるかどうかを条件とし、 ある場合は`true`を返却します。
 
 `performUpkeep`は`checkUpkeep`が`true`を返却した場合に何を実行するのかを記述します。
-今回は期限切れの`farmNft`に対して`burnNFT`を実行し, マッピングからdeleteします。
+今回は期限切れの`farmNft`に対して`burnNFT`を実行し、 マッピングからdeleteします。
 
 ### 🧪 テストを追加しましょう
 
@@ -126,7 +126,7 @@ describe('upkeep', function () {
     // この時点では期限切れのnftコントラクトがないのでfalse
     expect(return1).to.equal(false);
 
-    // ブロックチェーンのタイムスタンプを変更(期限の1s後のタイムスタンプを含んだブロックを生成)し, nftコントラクトの期限が切れるようにします。
+    // ブロックチェーンのタイムスタンプを変更(期限の1s後のタイムスタンプを含んだブロックを生成)し、 nftコントラクトの期限が切れるようにします。
     await time.increaseTo(expirationDate.add(1));
 
     const [return2] = await assetTokenization.checkUpkeep('0x00');
@@ -150,7 +150,7 @@ describe('upkeep', function () {
 `packages/contract`ディレクトリ直下で以下のコマンドを実行してください。
 
 ⚠️ 追加したテストコードではテストヘルパーパッケージのtimeを使用しています。
-timeの使用はテスト環境全体の時間に影響するため, 複数のテストファイルを同時にテストすると予期せぬ挙動を起こす場合があります。よって以下のコマンドではテストをする対象ファイルを引数によって指定しています。
+timeの使用はテスト環境全体の時間に影響するため、 複数のテストファイルを同時にテストすると予期せぬ挙動を起こす場合があります。よって以下のコマンドではテストをする対象ファイルを引数によって指定しています。
 
 ```
 $ npx hardhat test test/AssetTokenization.ts
@@ -167,9 +167,9 @@ $ npx hardhat test test/AssetTokenization.ts
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は,Discordの`#avalanche`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#avalanche`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので,エラーレポートには下記の3点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

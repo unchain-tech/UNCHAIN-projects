@@ -28,11 +28,11 @@ contract AssetTokenization {
 }
 ```
 
-もし,`hardhat.config.ts`の中に記載されているSolidityのバージョンが`0.8.17`でなかった場合は,`FarmNft.sol`の中身を`hardhat.config.ts`に記載されているバージョンに変更しましょう。
+もし、`hardhat.config.ts`の中に記載されているSolidityのバージョンが`0.8.17`でなかった場合は、`FarmNft.sol`の中身を`hardhat.config.ts`に記載されているバージョンに変更しましょう。
 
 コントラクトのはじめに状態変数を定義しています。
 その次には`NftContractDetails`という構造体を定義しています。
-`NftContractDetails`は, フロントエンドへ`farmNft`の情報を渡すために使用する型になります。
+`NftContractDetails`は、 フロントエンドへ`farmNft`の情報を渡すために使用する型になります。
 
 次に`AssetTokenization`の最後の行に以下のコードを貼り付けてください。
 
@@ -79,8 +79,8 @@ contract AssetTokenization {
     }
 ```
 
-`availableContract`では,（農家の）アドレスをもとに`farmNft`がデプロイされているのかを確認しています。
-`farmNft`がデプロイされていない場合, または期限が切れマッピングからdeleteされた場合は, address()で表現すると`0x0`になります。
+`availableContract`では、（農家の）アドレスをもとに`farmNft`がデプロイされているのかを確認しています。
+`farmNft`がデプロイされていない場合、 または期限が切れマッピングからdeleteされた場合は、address()で表現すると`0x0`になります。
 
 `_addFarmer`は農家のアドレスが新規だった場合に状態変数に保存します。
 
@@ -137,13 +137,13 @@ contract AssetTokenization {
 `getNftContractDetails`は指定された`farmNft`の情報を`NftContractDetails`型の変数に格納して返却する関数です。
 
 `buyNft`は指定された`farmNft`のNFTを購入する関数です。
-この関数は購入者から（NFTの価格分の）AVAXを付与して呼び出されることを想定しているので, `msg.value`によってその量の取得できます。さらにその量のAVAXを付与して指定された`farmNft`の`mintNFT`を呼び出しています。
+この関数は購入者から（NFTの価格分の）AVAXを付与して呼び出されることを想定しているので、 `msg.value`によってその量の取得できます。さらにその量のAVAXを付与して指定された`farmNft`の`mintNFT`を呼び出しています。
 
 `getBuyers`は指定された`farmNft`の購入者のアドレスを返却する関数です。
 
 ### 🧪 テストを追加しましょう
 
-`test`ディレクトの下に`AssetTokenization.ts`を作成し, 以下のコードを貼り付けてください。
+`test`ディレクトの下に`AssetTokenization.ts`を作成し、 以下のコードを貼り付けてください。
 
 ```ts
 import { loadFixture, time } from '@nomicfoundation/hardhat-network-helpers';
@@ -269,11 +269,11 @@ describe('AssetTokenization', function () {
 
 `deployContract`関数は`farmNft`のテストで記入したものとほとんど同じものです。
 
-`describe('basic', function () { ...`に続くテストでは, `generateNftContract`によって`farmNft`が正しくデプロイされているのかを確認しております。
-`generateNftContract`を2度呼び出し, それぞれについて`getNftContractDetails`で`farmNft`の情報を取得し正しい値かどうかをテストしています。
+`describe('basic', function () { ...`に続くテストでは、 `generateNftContract`によって`farmNft`が正しくデプロイされているのかを確認しております。
+`generateNftContract`を2度呼び出し、 それぞれについて`getNftContractDetails`で`farmNft`の情報を取得し正しい値かどうかをテストしています。
 
-`describe('buyNFT', function () { ...`に続くテストでは, `buyNFT`を呼び出した際に正しい量のAVAXが購入者から農家へ支払われているのかを確認しています。
-これは`farmNft`でも同じようなテストをしましたが, `AssetTokenization`は購入者と`farmNft`を仲介してNFTの購入を行っているので, ここではその仲介が正しく機能しているのかを確認しています。
+`describe('buyNFT', function () { ...`に続くテストでは、 `buyNFT`を呼び出した際に正しい量のAVAXが購入者から農家へ支払われているのかを確認しています。
+これは`farmNft`でも同じようなテストをしましたが、 `AssetTokenization`は購入者と`farmNft`を仲介してNFTの購入を行っているので、 ここではその仲介が正しく機能しているのかを確認しています。
 <br>
 <br>
 ※
@@ -301,9 +301,9 @@ $ npx hardhat test test/AssetTokenization.ts
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は, Discordの`#avalanche`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#avalanche`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので, エラーレポートには下記の3点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、 エラーレポートには下記の3点を記載してください ✨
 
 ```
 

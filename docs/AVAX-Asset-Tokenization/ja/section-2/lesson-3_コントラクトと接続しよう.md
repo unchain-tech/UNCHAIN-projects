@@ -1,6 +1,6 @@
-これまでフロントエンドにUIを用意し, ウォレットとの接続も出来ました！
+これまでフロントエンドにUIを用意し、 ウォレットとの接続も出来ました！
 
-このレッスンではあなたのスマートコントラクトをデプロイし, フロントエンドと連携します。
+このレッスンではあなたのスマートコントラクトをデプロイし、 フロントエンドと連携します。
 
 ### 🌵 コントラクトとの接続部分を実装しましょう
 
@@ -8,7 +8,7 @@
 
 ### 📁 `hooks`ディレクトリ
 
-`hooks`ディレクトリ内に`useContract.ts`というファイルを作成し, 以下のコードを記述してください。
+`hooks`ディレクトリ内に`useContract.ts`というファイルを作成し、 以下のコードを記述してください。
 💁 現時点ではまだ用意していないファイルからimportしている箇所があるためエラーメッセージが出ても無視して大丈夫です。
 
 ```ts
@@ -57,7 +57,7 @@ export const useContract = ({
         const provider = new ethers.providers.Web3Provider(
           ethereum as unknown as ethers.providers.ExternalProvider,
         );
-        const signer = provider.getSigner(); // 簡易実装のため, 引数なし = 初めのアカウント(account#0)を使用する
+        const signer = provider.getSigner(); // 簡易実装のため、引数なし = 初めのアカウント(account#0)を使用する
         const Contract = new ethers.Contract(contractAddress, abi, signer);
         storeContract(Contract);
       } catch (error) {
@@ -83,15 +83,15 @@ export const useContract = ({
 };
 ```
 
-主な関数は`getContract`で, 接続している`currentAccount`やコントラクトのアドレス・ABIを元にコントラクトに接続し, stateに保存します。
+主な関数は`getContract`で、 接続している`currentAccount`やコントラクトのアドレス・ABIを元にコントラクトに接続し、stateに保存します。
 
 ### 💥 コントラクトをテストネットにデプロイしましょう
 
-コントラクトとの接続部分を作成したので, コントラクトを使用するために, テストネットへデプロイします。
+コントラクトとの接続部分を作成したので、 コントラクトを使用するために、 テストネットへデプロイします。
 
 `contract`ディレクトリへ移動してください。
 
-`.env`という名前のファイルを作成し, 以下を記入してください。
+`.env`という名前のファイルを作成し、 以下を記入してください。
 
 `"YOUR_PRIVATE_KEY"`の部分をあなたのアカウントの秘密鍵と入れ替えてください。
 
@@ -123,9 +123,9 @@ TEST_ACCOUNT_PRIVATE_KEY="YOUR_PRIVATE_KEY"
 ⚠️gitignoreファイルに`.env`が記述されていることを確認して下さい。
 秘密鍵は外部に漏れないようにGitHubに上げません。
 
-> **✍️: スマートコントラクトをデプロイするのに秘密鍵が必要な理由** > **新しくスマートコントラクトをブロックチェーン上にデプロイすること**も,トランザクションの一つです。
+> **✍️: スマートコントラクトをデプロイするのに秘密鍵が必要な理由** > **新しくスマートコントラクトをブロックチェーン上にデプロイすること**も、トランザクションの一つです。
 >
-> トランザクションを行うためには,ブロックチェーンに「ログイン」する必要があります。
+> トランザクションを行うためには、ブロックチェーンに「ログイン」する必要があります。
 >
 > 「ログイン」には公開アドレスと秘密鍵の情報が必要となります。
 
@@ -161,7 +161,7 @@ const config: HardhatUserConfig = {
 export default config;
 ```
 
-続いて, `scripts`ディレクトリ内にある`deploy.ts`を以下のコードに書き換えてください。
+続いて、 `scripts`ディレクトリ内にある`deploy.ts`を以下のコードに書き換えてください。
 
 ```ts
 import { ethers } from 'hardhat';
@@ -189,7 +189,7 @@ deploy()
   });
 ```
 
-このスクリプトを実行する際に先ほど`hardhat.config.ts`で設定したネットワークを指定すると, `ethers.getSigners()`の返す初めのアカウントの値はあなたのアカウントのアドレスになります。
+このスクリプトを実行する際に先ほど`hardhat.config.ts`で設定したネットワークを指定すると、 `ethers.getSigners()`の返す初めのアカウントの値はあなたのアカウントのアドレスになります。
 
 それでは`packages/contract`ディレクトリ直下で下記のコマンドを実行してデプロイします！
 
@@ -205,13 +205,13 @@ assetTokenization address: 0x4E2F5941e079EcE9c1927fd7b9fc92fDB58E04cD
 account address that deploy contract: 0xf6DA2F11E8f1faC2a13ac847d52FaF5Ce6e39954
 ```
 
-`assetTokenization address:`に続くコントラクトのアドレスは, 次の項目で必要になるのでどこかに保存しておいてください。
+`assetTokenization address:`に続くコントラクトのアドレスは、 次の項目で必要になるのでどこかに保存しておいてください。
 
 最後に`.gitignore`に`.env`が含まれていることを確認してください!
 
 ### 🌵 スマートコントラクトの情報をフロントエンドに反映しましょう
 
-コントラクトをデプロイしたので, 実際に使えるようにスマートコントラクトの情報をフロントエンドに渡します。
+コントラクトをデプロイしたので、 実際に使えるようにスマートコントラクトの情報をフロントエンドに渡します。
 
 📽️ コントラクトのアドレスをコピーする
 
@@ -221,7 +221,7 @@ account address that deploy contract: 0xf6DA2F11E8f1faC2a13ac847d52FaF5Ce6e39954
 assetTokenization address: 0x4E2F5941e079EcE9c1927fd7b9fc92fDB58E04cD
 ```
 
-を`packages/client`ディレクトリ内, `hooks/useContract.ts`の中の以下の部分に貼り付けてください。
+を`packages/client`ディレクトリ内、 `hooks/useContract.ts`の中の以下の部分に貼り付けてください。
 
 ```ts
 export const AssetTokenizationAddress =
@@ -237,13 +237,13 @@ export const AssetTokenizationAddress =
 
 📽️ ABIファイルを取得する
 
-ABIファイルは,コントラクトがコンパイルされた時に生成され,`artifacts`ディレクトリに自動的に格納されます。
+ABIファイルは、コントラクトがコンパイルされた時に生成され、`artifacts`ディレクトリに自動的に格納されます。
 
-`contract`からパスを追っていくと, `contract/artifacts/contracts/~.sol/~.json`というファイルがそれぞれのコントラクトに対して生成されているはずです。
+`contract`からパスを追っていくと、 `contract/artifacts/contracts/~.sol/~.json`というファイルがそれぞれのコントラクトに対して生成されているはずです。
 
-`client`の中に`artifacts`ディレクトリを作成し, その中にコピーしてください。
+`client`の中に`artifacts`ディレクトリを作成し、 その中にコピーしてください。
 
-`contract`直下からターミナルでコピーを行う場合, このようなコマンドになります。
+`contract`直下からターミナルでコピーを行う場合、 このようなコマンドになります。
 
 ```
 cp artifacts/contracts/AssetTokenization.sol/AssetTokenization.json ../client/artifacts/
@@ -251,15 +251,15 @@ cp artifacts/contracts/AssetTokenization.sol/AssetTokenization.json ../client/ar
 
 📽️ 型定義ファイルを取得する
 
-TypeScriptは静的型付け言語なので, 外部から取ってきたオブジェクトの情報として型を知りたい場合があります。
+TypeScriptは静的型付け言語なので、 外部から取ってきたオブジェクトの情報として型を知りたい場合があります。
 その時に役に立つのが型定義ファイルです。
 
-コントラクトの型定義ファイルは, コントラクトがコンパイルされた時に生成され, `typechain-types`ディレクトリに自動的に格納されます。
-これは`npx hardhat`実行時にtypescriptを選択したため, 初期設定が済んでいるためです。
+コントラクトの型定義ファイルは、 コントラクトがコンパイルされた時に生成され、 `typechain-types`ディレクトリに自動的に格納されます。
+これは`npx hardhat`実行時にtypescriptを選択したため、 初期設定が済んでいるためです。
 
-`client`の中に`types`ディレクトリを作成し, その中にコピーしてください。
+`client`の中に`types`ディレクトリを作成し、 その中にコピーしてください。
 
-`contract`直下からターミナルでコピーを行う場合, このようなコマンドになります。
+`contract`直下からターミナルでコピーを行う場合、 このようなコマンドになります。
 
 ```
 cp -r typechain-types/* ../client/types/
@@ -267,7 +267,7 @@ cp -r typechain-types/* ../client/types/
 
 以上でコントラクトの情報を反映することができました。
 
-必要なファイルを用意したので, `client/hooks/useContract.ts`内ファイル上部のimport文で出ていたエラーが消えているはずです。
+必要なファイルを用意したので、 `client/hooks/useContract.ts`内ファイル上部のimport文で出ていたエラーが消えているはずです。
 
 ### 🌔 参考リンク
 
@@ -276,9 +276,9 @@ cp -r typechain-types/* ../client/types/
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は, Discordの`#avalanche`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#avalanche`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので, エラーレポートには下記の3点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、 エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
