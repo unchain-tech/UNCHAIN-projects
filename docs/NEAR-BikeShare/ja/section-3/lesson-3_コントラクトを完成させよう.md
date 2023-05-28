@@ -14,20 +14,20 @@
 1. ユーザが`ftコントラクト`のft転送メソッドを呼ぶ。
 2. `ftコントラクト`が`bikeコントラクト`へftの転送をするメソッドを実行。
 3. ft転送のメソッドをトリガーに,
-   `bikeコントラクト`は受信したftの確認, バイクの使用手続きをするメソッドを実行。
+   `bikeコントラクト`は受信したftの確認、バイクの使用手続きをするメソッドを実行。
 
-あるコントラクトのメソッドの実行が, 他のコントラクトのメソッドの実行に繋がるような機能を
+あるコントラクトのメソッドの実行が、他のコントラクトのメソッドの実行に繋がるような機能を
 `cross contract call`の`event pattern`で実装することができます。
 2つのコントラクトにそのように動作するメソッドをあらかじめ用意しておくのです。
 例えば`ftコントラクト`には`ft_transfer_call`というメソッドが存在します。
-このメソッドはftの転送を行いますが, 同時にftの転送をする相手のアカウントに
+このメソッドはftの転送を行いますが、同時にftの転送をする相手のアカウントに
 `ft_on_transfer`というメソッドを実装したコントラクトがあることを期待します。
 そしてftの転送と共に`ft_on_transfer`の実行を`cross contract call`で行います。
 つまり先ほどの処理フローはこのように書き換えることができます。
 
 1. ユーザが`ftコントラクト`の`ft_transfer_call`メソッドを呼ぶ。
 2. `ftコントラクト`が`bikeコントラクト`へ`ft_transfer_call`メソッドを実行。
-3. `bikeコントラクト`は`ft_on_transfer`にてftの確認, バイクの使用手続きを進めます。
+3. `bikeコントラクト`は`ft_on_transfer`にてftの確認、バイクの使用手続きを進めます。
 
 `ft_transfer_call`について詳しくは[こちら](https://nomicon.io/Standards/Tokens/FungibleToken/Core)をご覧ください。
 それでは`bikeコントラクト`に`ft_on_transfer`を実装しましょう！
@@ -59,7 +59,7 @@ const AMOUNT_TO_USE_BIKE: u128 = 30; // <- 追加！
 impl Contract {
     // ...
 
-    /* use_bikeを削除して, 以降のコードを挿入してください！
+    /* use_bikeを削除して、以降のコードを挿入してください！
     pub fn use_bike(&mut self, index: usize) {
         // env::predecessor_account_id(): このメソッドを呼び出しているアカウント名を取得
         let user_id = env::predecessor_account_id();
@@ -73,7 +73,7 @@ impl Contract {
     */
 
     /// AMOUNT_TO_USE_BIKEを返却します。
-    // コントラクト内の変数にアクセスしていませんが, viewメソッドにするためには&selfを明記します.
+    // コントラクト内の変数にアクセスしていませんが、viewメソッドにするためには&selfを明記します.
     pub fn amount_to_use_bike(&self) -> U128 {
         json_types::U128::from(AMOUNT_TO_USE_BIKE)
     }
@@ -103,7 +103,7 @@ impl Contract {
         // 使用するバイク: msgによってindexを指定してもらうことを期待
         // sender_id.try_into().unwrap(): String型からAccountId型へ変換しています。
         self.use_bike(msg.parse().unwrap(), sender_id.try_into().unwrap());
-        // 受信したFTは全て受け取るので, 返却する残金は0.
+        // 受信したFTは全て受け取るので、返却する残金は0.
         PromiseOrValue::Value(U128::from(0))
     }
 
@@ -124,14 +124,14 @@ impl Contract {
 
 - `AMOUNT_TO_USE_BIKE`という定数を用意。
   フロント側からその値を取得できるように`amount_to_use_bike`メソッドを実装。
-- `ft_on_transfer`を実装し, `use_bike`はそのヘルパー関数として編集。
+- `ft_on_transfer`を実装し、`use_bike`はそのヘルパー関数として編集。
 
 `ft_on_transfer`のプロトタイプ宣言を[ドキュメント](https://nomicon.io/Standards/Tokens/FungibleToken/Core#reference-level-explanation)や[ソースコード](https://github.dev/near-examples/FT)を参考に実装しています。
 `ft_on_transfer`の引数について整理しましょう。
 
 - `sender_id`: `ft_transfer_call`を呼び出した（つまりユーザの）アカウントID
 - `amount` : ftの量
-- `msg` : 何かを伝えるためのメッセージ, オプション
+- `msg` : 何かを伝えるためのメッセージ、オプション
 
 `msg`は`ft_transfer_call`によって実行したい関数が複数存在する場合にどれを実行するのかを指定するなど用途は自由です。
 今回は実行する関数が`use_bike`と決まっているので,
