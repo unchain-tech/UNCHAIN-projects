@@ -10,7 +10,7 @@
 
 1. バイクを点検中のユーザがバイクの返却を`bikeコントラクト`に申請する。
 2. `bikeコントラクト`はユーザのアカウントIDを照合し報酬としてftをユーザへ転送。
-3. `bikeコントラクト`はftの転送後, バイクの返却手続きを進める。
+3. `bikeコントラクト`はftの転送後、バイクの返却手続きを進める。
 
 これを実現するには以下の処理を同期的に行う必要があります。
 
@@ -82,7 +82,7 @@ impl Contract {
     }
 
     /// 点検中から返却に変更する際の挙動を定義します。
-    /// 点検をしてくれたユーザに報酬(ft)を支払い, コールバックで返却処理をします。
+    /// 点検をしてくれたユーザに報酬(ft)を支払い、コールバックで返却処理をします。
     pub fn return_inspected_bike(index: usize) -> Promise {
         let contract_id = FT_CONTRACT_ACCOUNT.parse().unwrap();
         let amount = AMOUNT_REWARD_FOR_INSPECTIONS.to_string();
@@ -109,7 +109,7 @@ impl Contract {
 
     /// cross contract call の結果を元に処理を条件分岐します。
     // #[private]: predecessor(このメソッドを呼び出しているアカウント)とcurrent_account(このコントラクトのアカウント)が同じことをチェックするマクロです.
-    // callbackの場合, コントラクトが自身のメソッドを呼び出すことを期待しています.
+    // callbackの場合、コントラクトが自身のメソッドを呼び出すことを期待しています.
     #[private]
     pub fn callback_return_bike(&mut self, index: usize) {
         assert_eq!(env::promise_results_count(), 1, "This is a callback method");
@@ -126,7 +126,7 @@ impl Contract {
 ```
 
 変更点を見ていきましょう。
-`cross contract call`を使用するには, 呼び出す外部コントラクトのメソッドをトレイトで定義しておきます。
+`cross contract call`を使用するには、呼び出す外部コントラクトのメソッドをトレイトで定義しておきます。
 今回はftコントラクトの`ft_transfer`メソッドを呼び出すので[ドキュメント](https://nomicon.io/Standards/Tokens/FungibleToken/Core#reference-level-explanation)や[ソースコード](https://github.com/near-examples/FT)を参考に`ft_transfer`のプロトタイプ宣言をここで記述します。
 トレイトの注釈には`#[ext_contract(ext_ft)]`をつけます。
 `ext_ft`は後でメソッド呼び出しに使用する略称で任意の名前です。
@@ -163,7 +163,7 @@ impl Contract {
     }
 
     /// 点検中から返却に変更する際の挙動を定義します。
-    /// 点検をしてくれたユーザに報酬(ft)を支払い, コールバックで返却処理をします。
+    /// 点検をしてくれたユーザに報酬(ft)を支払い、コールバックで返却処理をします。
     pub fn return_inspected_bike(index: usize) -> Promise {
         let contract_id = FT_CONTRACT_ACCOUNT.parse().unwrap();
         let amount = AMOUNT_REWARD_FOR_INSPECTIONS.to_string();
@@ -195,22 +195,22 @@ impl Contract {
 `return_inspected_bike`関数は`cross contract call`によってftをreceiver_idへ送信,
 その後の処理を`callback`関数で行っています。
 `cross contract call`を実行するためには先ほど定義した`ext_ft`を使用して外部メソッドの呼び出しを行います。
-そして`then`で, 外部コントラクトのメソッド呼び出し後に実行するアクションとして`callback`関数を待機させます。
+そして`then`で、外部コントラクトのメソッド呼び出し後に実行するアクションとして`callback`関数を待機させます。
 
 > `cross contract call`の裏で起きていることについて
 > コントラクト A での`cross contract call`の呼び出しを受け付けたランタイム(コントラクトを実行するレイヤ)は,
-> `callback`関数のアクションを待機させつつ, 外部コントラクト B のメソッドを呼び出すことを[receipt](https://nomicon.io/RuntimeSpec/Receipts)を通して次のブロックに知らせます。
+> `callback`関数のアクションを待機させつつ、外部コントラクト B のメソッドを呼び出すことを[receipt](https://nomicon.io/RuntimeSpec/Receipts)を通して次のブロックに知らせます。
 > 次のブロックでは`receipt`により(コントラクト B を含んだシャードにて)メソッドが実行されます。
 > そしてその実行結果はまた`receipt`を通して次のブロックへ伝えられます。
 > 次のブロックでは(コントラクト A を含んだシャードにて)待機されていた`callback`関数の実行が行われます。
 
 文法に関して詳しくは[こちら](https://www.near-sdk.io/cross-contract/callbacks)を参照してください。
 
-最後に, `callback`関数では`cross contract call`の結果をenvを通して取得し処理をしています。
+最後に、`callback`関数では`cross contract call`の結果をenvを通して取得し処理をしています。
 
 ### 💁 コントラクトをアップデートしよう
 
-ここで, コントラクトを少しアップデートします。
+ここで、コントラクトを少しアップデートします。
 今までコントラクトの初期化には`default`関数を使用していました。
 コード内該当箇所。
 
@@ -234,9 +234,9 @@ impl Default for Contract {
 }
 ```
 
-ですが, 初期値を引数で渡したい時もあります。
+ですが、初期値を引数で渡したい時もあります。
 その時は`#[init]`の注釈をつけたメソッドをストラクトに定義することで可能です。
-用意していた`Default`の実装を削除し, 以下のようなメソッドを追加します。
+用意していた`Default`の実装を削除し、以下のようなメソッドを追加します。
 (`PanicOnDefault`は`Default`の実装をしないことを明記するものです)
 
 ```rust
@@ -326,7 +326,7 @@ mod tests {
 
 `DEFAULT_NUM_OF_BIKES`は使用しなくなったので削除しましょう。
 
-これまでの編集の結果, ファイルの中身はこのようになります。
+これまでの編集の結果、ファイルの中身はこのようになります。
 
 ```rust
 // lib.rs
@@ -446,7 +446,7 @@ impl Contract {
     }
 
     /// 点検中から返却に変更する際の挙動を定義します。
-    /// 点検をしてくれたユーザに報酬(ft)を支払い, コールバックで返却処理をします。
+    /// 点検をしてくれたユーザに報酬(ft)を支払い、コールバックで返却処理をします。
     pub fn return_inspected_bike(index: usize) -> Promise {
         let contract_id = FT_CONTRACT_ACCOUNT.parse().unwrap();
         let amount = AMOUNT_REWARD_FOR_INSPECTIONS.to_string();
@@ -473,7 +473,7 @@ impl Contract {
 
     /// cross contract call の結果を元に処理を条件分岐します。
     // #[private]: predecessor(このメソッドを呼び出しているアカウント)とcurrent_account(このコントラクトのアカウント)が同じことをチェックするマクロです.
-    // callbackの場合, コントラクトが自身のメソッドを呼び出すことを期待しています.
+    // callbackの場合、コントラクトが自身のメソッドを呼び出すことを期待しています.
     #[private]
     pub fn callback_return_bike(&mut self, index: usize) {
         assert_eq!(env::promise_results_count(), 1, "This is a callback method");
@@ -569,7 +569,7 @@ init関数と共にコントラクトをデプロイする際はオプション�
 $ near deploy [contractID] --wasmFile [wasm file path] --initFunction '[func name]'  --initArgs '{"arg_name": "arg_value"}'
 ```
 
-また, ftをやり取りする機能を`bikeコントラクト`に搭載したので, `bikeコントラクト`はアプリ起動前にftをある程度持っている必要があります。
+また、ftをやり取りする機能を`bikeコントラクト`に搭載したので、`bikeコントラクト`はアプリ起動前にftをある程度持っている必要があります。
 以上を踏まえて`near_bike_share_dapp`内の`package.json`を編集します。
 `package.json`の以下
 
@@ -582,7 +582,7 @@ $ near deploy [contractID] --wasmFile [wasm file path] --initFunction '[func nam
   }
 ```
 
-`deploy`, `start`の2行を以下の4行に変更しましょう。
+`deploy`、`start`の2行を以下の4行に変更しましょう。
 
 ```js
  "deploy": "npm run build:contract && near dev-deploy --initFunction 'new' --initArgs '{\"num_of_bikes\": 5}'",
@@ -599,7 +599,7 @@ $ near deploy [contractID] --wasmFile [wasm file path] --initFunction '[func nam
 
 - `deploy`: init関数の実行を追加
 - `reset` : 既存の開発アカウントを削除
-  init関数を2度実行しようとするとパニックを起こすので, 毎度新しいアカウントを作るようにするために使用します。
+  init関数を2度実行しようとするとパニックを起こすので、毎度新しいアカウントを作るようにするために使用します。
 - `init` : `bikeコントラクト`に100ftを用意(`FT_OWNER`から`CONTRACT_NAME`にftを転送)
   `FT_CONTRACT`を`ftコントラクト`のデプロイされているアカウント名に変更してください。
   `FT_OWNER`をftのowner_idに指定したアカウントに変更してください。
@@ -614,13 +614,13 @@ $ near deploy [contractID] --wasmFile [wasm file path] --initFunction '[func nam
 $ yarn test:unit
 ```
 
-テストが成功すれば, 次にブラウザ上で確認します。
+テストが成功すれば、次にブラウザ上で確認します。
 
 ```
 $ yarn dev
 ```
 
-適当なユーザでサインインしてから, バイクの点検によってftが支払われているかを確かめましょう。
+適当なユーザでサインインしてから、バイクの点検によってftが支払われているかを確かめましょう。
 
 点検前
 

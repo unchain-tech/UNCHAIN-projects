@@ -142,7 +142,7 @@ export default function App() {
 
   // useBikeThenUpdateInfoを削除した代わりに以下の関数を追加！
 
-  /** バイクを使用, バイク情報を更新します。 */
+  /** バイクを使用、バイク情報を更新します。 */
   const transferFtToUseBike = async (index) => {
     console.log("Transfer ft to use bike");
 
@@ -228,7 +228,7 @@ $ yarn dev
 
 ![](/public/images/NEAR-BikeShare/section-4/4_1_3.png)
 
-ブラウザ上で`Console`を開き, ログの最後に表示されたURL（コントラクトアカウントIDに関するURL）をブラウザに貼り付けてトランザクション履歴などを確認しましょう！
+ブラウザ上で`Console`を開き、ログの最後に表示されたURL（コントラクトアカウントIDに関するURL）をブラウザに貼り付けてトランザクション履歴などを確認しましょう！
 
 ### 🙋‍♂️ 質問する
 
