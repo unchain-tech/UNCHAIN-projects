@@ -1,69 +1,76 @@
-### ✅ 環境構築を行う
-
-このプロジェクトの全体像は次のとおりです。
-
-1 \. **スマートコントラクトを作成します。**
-
-- コントラクトには、ゲームに関するすべてのロジックが含まれています。
-
-- **スマートコントラクトはサーバーコードのようなものです。**
-
-2 \. **スマートコントラクトをブロックチェーンに展開します。**
-
-- 世界中の誰もがあなたのスマートコントラクトにアクセスして、ゲームをプレイできます。
-
-- **ブロックチェーンは、サーバーの役割を果たします。**
-
-3 \. **Web ゲームアプリケーション（dApp）を構築します**。
-
-- ユーザーはWebサイトを介して、ブロックチェーン上に展開されているあなたのスマートコントラクトと簡単にやりとりできます。
-
-- スマートコントラクト + フロントエンドユーザー・インタフェース = dAppの完成 🎉
-
-スマートコントラクトをすばやくコンパイルし、ローカル環境にてテストを行うために、**Hardhat** というツールを使用します。
-
-- Hardhatにより、ローカル環境でイーサリアムネットワークを簡単に起動し、テストネットでイーサリアムを利用できます。
-
-- 「サーバー」がブロックチェーンであることを除けば、Hardhatはローカルサーバーと同じです。
-
-まず、`node` / `yarn`を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスしてください。
-
-`node v16`をインストールすることを推奨しています。
+lesson2,3で行うことは、今までunchain projectをやってきた方々には当たり前のことかもしれないので、環境構築だけぱっぱとやってしまいましょう!
 
 ### 🍽 Git リポジトリをあなたの GitHub にフォークする
 
 まだGitHubのアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
-GitHubのアカウントをお持ちの方は、[スターターキット](https://github.com/unchain-tech/ETH-NFT-Game) から、フロントエンドの基盤となるリポジトリをあなたのGitHubにフォークしましょう。フォークの方法は、[こちら](https://denno-sekai.com/github-fork/) を参照してください。
+その後`packages`ディレクトリに移動します。
 
-あなたのGitHubアカウントにフォークした`ETH-NFT-Game`リポジトリを、ローカル環境にクローンしてください。
+GitHubのアカウントをお持ちの方は、下記の手順に沿ってプロジェクトの基盤となるリポジトリをあなたのGitHubに[フォーク](https://denno-sekai.com/github-fork/)しましょう。
 
-まず、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
+1. [こちら](https://github.com/unchain-tech/ETH-NFT-Game)からunchain-tech/ETH-NFT-Gameリポジトリにアクセスをして、ページ右上の`Fork`ボタンをクリックします。
 
+![](/public/images/ETH-NFT-Collection/section-3/3_1_3.png)
 
-ターミナル上で任意のディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
+2. Create a new forkページが開くので、「Copy the `main` branch only」という項目に**チェックが入っていることを確認します**。
+
+![](/public/images/ETH-NFT-Collection/section-3/3_1_4.png)
+
+設定が完了したら`Create fork`ボタンをクリックします。あなたのGitHubアカウントに`ETH-NFT-Game`リポジトリのフォークが作成されたことを確認してください。
+
+それでは、フォークしたリポジトリをローカル環境にクローンしましょう。
+
+まず、下図のように、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
+
+![](/public/images/ETH-NFT-Collection/section-3/3_1_1.png)
+
+ターミナル上で作業を行う任意のディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
 
 ```bash
 git clone コピーした_github_リンク
 ```
 
-この段階で、フォルダ構造は下記のようになっているはずです。
+無事に複製されたらローカル開発環境の準備は完了です。
 
-```diff
-ETH-NFT-Game
- ├── package.json
- └── packages/
-   ├── client/
-   └── contract/
-```
+### 🔍 フォルダ構成を確認する
 
-ターミナル上で`ETH-NFT-Game`ディレクトリ下に移動して下記を実行しましょう。
+実装に入る前に、フォルダ構成を確認しておきましょう。クローンしたスタータープロジェクトは下記のようになっているはずです。
 
 ```bash
-yarn install
+ETH-NFT-Game
+├── .git/
+├── .gitignore
+├── LICENSE
+├── README.md
+├── package.json
+├── packages/
+│   ├── client/
+│   └── contract/
+└── yarn.lock
 ```
 
-`yarn`コマンドを実行することで、JavaScriptライブラリのインストールが行われます。
+スタータープロジェクトは、モノレポ構成となっています。モノレポとは、コントラクトとクライアント（またはその他構成要素）の全コードをまとめて1つのリポジトリで管理する方法です。
+
+packagesディレクトリの中には、`client`と`contract`という2つのディレクトリがあります。
+
+`package.json`ファイルの内容を確認してみましょう。
+
+モノレポを作成するにあたり、パッケージマネージャーの機能である[Workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/)を利用しています。
+
+**workspaces**の定義をしている部分は以下になります。
+
+```json
+// package.json
+"workspaces": {
+  "packages": [
+    "packages/*"
+  ]
+},
+```
+
+この機能により、yarn installを一度だけ実行すれば、すべてのパッケージ（今回はコントラクトのパッケージとクライアントのパッケージ）を一度にインストールできるようになります。
+
+### 📺 フロントエンドの動きを確認する
 
 次に、下記を実行してみましょう。
 
@@ -79,14 +86,16 @@ yarn client start
 
 上記のような形でフロントエンドが確認できれば成功です。
 
+これからフロントエンドの表示を確認したい時は、ターミナルに向かい、`ETH-NFT-Game`ディレクトリ上で、`yarn client start`を実行します。これからも必要となる作業ですので、よく覚えておいてください。
+
 ターミナルを閉じるときは、以下のコマンドが使えます ✍️
 
 - Mac: `ctrl + c`
 - Windows: `ctrl + shift + w`
 
-### 👏 サンプルプロジェクトを開始する
+### 👏 コントラクトを作成する準備をする
 
-次に、Hardhatを実行します。
+本プロジェクトではコントラクトを作成する際に`Hardhat`というフレームワークを使用します。
 
 `packages/contract`ディレクトリにいることを確認し、次のコマンドを実行します。
 
@@ -118,7 +127,7 @@ $ npx hardhat
 👷 Welcome to Hardhat v2.13.0 👷‍
 
 ✔ What do you want to do? · Create a JavaScript project
-✔ Hardhat project root: · /ETH-NFT-Game/packages/contract
+✔ Hardhat project root: · /ETH-dApp/packages/contract
 ✔ Do you want to add a .gitignore? (Y/n) · y
 
 ✨ Project created ✨
@@ -145,12 +154,12 @@ Give Hardhat a star on Github if you're enjoying it! 💞✨
 この段階で、フォルダー構造は下記のようになっていることを確認してください。
 
 ```diff
-ETH-NFT-Game
+ETH-dApp
  ├── .gitignore
  ├── package.json
  └── packages/
-     ├── client/
-     └── contract/
+     ├── client/
+     └── contract/
 +        ├── .gitignore
 +        ├── README.md
 +        ├── contracts/
@@ -275,4 +284,4 @@ Greeter deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 
 ---
 
-次のレッスンに進んで、コントラクトの実装を開始しましょう 🎉
+次のレッスンに進んで、独自のNFTコントラクトの実装を開始しましょう 🎉
