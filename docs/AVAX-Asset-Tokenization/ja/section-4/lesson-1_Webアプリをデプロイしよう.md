@@ -33,8 +33,7 @@ Vercelのアカウントを取得したら、下記を実行しましょう。
 
 3\. プロジェクトを作成します。
 
-`Framework Preset`に`Next.js`を選択してください。
-`Root directory`に(`Edit`ボタンをクリックし)`client`を選択します。
+`Framework Preset`に`Next.js`を、`Root directory`に`packages/client`を選択してください。
 
 ![](/public/images/AVAX-Asset-Tokenization/section-4/4_1_3.png)
 
