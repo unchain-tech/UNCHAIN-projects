@@ -63,7 +63,7 @@ const CONTRACT_NAME = process.env.CONTRACT_NAME || "sub.bike_account.testnet";
 ※ `near_bike_share_dapp`のルートディレクトリで実行してください。
 
 ```
-$ npx parcel frontend/index.html
+$ yarn parcel frontend/index.html
 ```
 
 実行結果
@@ -85,7 +85,7 @@ Netlifyのアカウントをお持ちでない方は、上記のリンクにア�
 次にnetlifyをローカルで実行するために以下のコマンドを実行してください。
 
 ```
-$ npm install netlify-cli -g
+$ yarn add netlify-cli --dev
 ```
 
 ログインします。
@@ -100,7 +100,7 @@ $ netlify login
 netlify deploy --prod
 ```
 
-コマンド実行後, 対話形式でいくつか質問に答えます。
+コマンド実行後、対話形式でいくつか質問に答えます。
 
 `Create & configure a new site`を選択します。
 
@@ -150,12 +150,12 @@ Website URL:       https://near-bikeshare-dapp.netlify.app
 
 ### ⭐ 好きな機能を追加しよう
 
-ご自身の好きなように, またより良いと思うようにアプリをアップデートしましょう！
+ご自身の好きなように、またより良いと思うようにアプリをアップデートしましょう！
 機能追加の例
 
 - フロントエンドの変更
 - 1ユーザにつき1つのバイクのみ利用できるようにする
-- `bikeコントラクト`にも`owner_id`属性を追加し, `owner_id`はバイクの数を増やせるなど管理者機能をつける
+- `bikeコントラクト`にも`owner_id`属性を追加し、`owner_id`はバイクの数を増やせるなど管理者機能をつける
 - ftのやり取りにルールを追加する
 
 ### 🙋‍♂️ 質問する
