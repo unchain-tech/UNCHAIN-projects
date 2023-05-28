@@ -35,22 +35,23 @@ TEST_ACCOUNT_PRIVATE_KEY="YOUR_PRIVATE_KEY"
 ※ solidityのバージョンの部分(`solidity: "0.8.17",`)は元々記載されているものを使用してください。
 
 ```ts
-import { HardhatUserConfig } from "hardhat/config";
-import "@nomicfoundation/hardhat-toolbox";
-import * as dotenv from "dotenv"; // 環境構築時にこのパッケージはインストールしてあります。
+// 環境構築時にこのパッケージはインストールしてあります。
+import * as dotenv from 'dotenv';
+import '@nomicfoundation/hardhat-toolbox';
+import { HardhatUserConfig } from 'hardhat/config';
 
 // .envファイルから環境変数をロードします。
 dotenv.config();
 
 if (process.env.TEST_ACCOUNT_PRIVATE_KEY === undefined) {
-  console.log("private key is missing");
+  console.log('private key is missing');
 }
 
 const config: HardhatUserConfig = {
-  solidity: "0.8.17",
+  solidity: '0.8.17',
   networks: {
     local: {
-      url: "RPC URL",
+      url: 'RPC URL',
       gasPrice: 225000000000,
       chainId: 321123,
       accounts:
@@ -64,7 +65,7 @@ const config: HardhatUserConfig = {
 export default config;
 ```
 
-`"RPC URL"`の部分に, section1のLesson_3で保存したRPC URLを貼り付けます。
+`'RPC URL'`の部分に, section1のLesson_3で保存したRPC URLを貼り付けます。
 
 > RPCの確認は`avalanche network status`を実行すると`Custom VM information`の欄にrpcの情報が表示されるので, いずれか1つのURLをコピーして使用してください。  
 > (※ ネットワークが起動してない場合は`avalanche network start`を実行してください。)
@@ -72,7 +73,7 @@ export default config;
 例えば, このように書き換えます。
 
 ```
-      url: "http://127.0.0.1:9654/ext/bc/2vVjEw8dH2SVtkuC75CgofJNj5DKqJBfoc1ez3cYnvyu5kywWH/rpc",
+      url: 'http://127.0.0.1:9654/ext/bc/2vVjEw8dH2SVtkuC75CgofJNj5DKqJBfoc1ez3cYnvyu5kywWH/rpc',
 ```
 
 また, chainIdなども事前に設定したものと同じか確認してください。
@@ -80,22 +81,22 @@ export default config;
 続いて, `scripts`ディレクトリ内にある`deploy.ts`を以下のコードに書き換えてください。
 
 ```ts
-import { ethers } from "hardhat";
-import { Overrides } from "ethers";
+import { Overrides } from 'ethers';
+import { ethers } from 'hardhat';
 
 async function deploy() {
   const [deployer] = await ethers.getSigners();
 
-  const fund = ethers.utils.parseEther("200");
+  const fund = ethers.utils.parseEther('200');
 
-  const Bank = await ethers.getContractFactory("Bank");
+  const Bank = await ethers.getContractFactory('Bank');
   const bank = await Bank.deploy({
     value: fund,
   } as Overrides);
   await bank.deployed();
 
-  console.log("bank address:", bank.address);
-  console.log("deployer address:", deployer.address);
+  console.log('bank address:', bank.address);
+  console.log('deployer address:', deployer.address);
 }
 
 deploy()

@@ -12,29 +12,34 @@
 
 ### 🛠️ 　フロントエンドのセットアップをしよう
 
-プロジェクトのルートディレクトリである`AVAX-Subnet`ディレクトリに移動し,以下のコードを実行して下さい。
+`AVAX-Subnet/packages`ディレクトリに移動し, 以下のコマンドを実行して下さい。
 
 ```
-npx create-next-app client --ts --use-npm
+yarn create next-app client --ts
 ```
 
 ここでは`create-next-app`というパッケージを利用して`client`という名前のプロジェクトを作成しました。  
-`--ts`は`typescript`を使用することの指定, `--use-npm`は`npm`を使用してアプリの立ち上げを行うこと指定しています。  
-`client`ディレクトリには`Next.js`を使ったプロジェクト開発に最低限必要なものがあらかじめ作成されます。
+`--ts`は`typescript`を使用することを指定しています。`client`ディレクトリには`Next.js`を使ったプロジェクト開発に最低限必要なものがあらかじめ作成されます。
 
 この段階で, フォルダ構造は下記のようになっているはずです。
 
-```
-AVAX-Subnet
-   |_ client
-   |_ contract
+```diff
+ AVAX-Subnet
+  ├── .gitignore
+  ├── genesis/
+  ├── package.json
+  └── packages/
++     ├── client/
+      └── contract/
 ```
 
-ターミナル上で`client`に移動して下記を実行しましょう。
+clientディレクトリ内に生成されたpackage.jsonの設定を確認します。contractディレクトリのpackage.jsonと同様に、`"private": true`となっていることを確認し、設定されていない場合は記述しておきます。
+
+ここで、開発環境がきちんと動作するか確認したいと思います。clientディレクトリ内に`node_modules/`や`yarn.lock`が生成されている場合は、いったん削除してください。次に、ターミナル上で`AVAX-Subnet`直下に移動し下記を実行しましょう。
 
 ```
-cd client
-npm run dev
+yarn install
+yarn client dev
 ```
 
 あなたのお使いのブラウザで`http://localhost:3000`へアクセスするとWebサイトのフロントエンドが表示されるはずです。
@@ -50,11 +55,14 @@ npm run dev
 
 上記のような形でフロントエンドが確認できれば成功です。
 
-これからフロントエンドの表示を確認する際は,`client`ディレクトリ上で,`npm run dev`を実行します。
+これからフロントエンドの表示を確認する際は,`AVAX-Asset-Tokenization`上で`yarn client dev`(`client`ディレクトリ上では`yarn dev`)を実行します。
 
-Webサイトの立ち上げを終了する場合は以下の`ctrl + c`が使えます ✍️
+Webサイトの立ち上げを終了する場合は以下のコマンドが使えます ✍️
 
-現在のディレクトリ構造は以下のようになっています。  
+- Mac: `ctrl + c`
+- Windows: `ctrl + shift + w`
+
+`client`ディレクトリのフォルダ構造は以下のようになっています。
 ※`node_modules`は内部ファイルの表示を省略しています。
 
 ```
@@ -82,7 +90,7 @@ client
 続いて`client`ディレクトリ直下で以下のコマンドを実行して必要なパッケージをインストールしてください。
 
 ```
-npm install ethers @metamask/providers
+yarn add ethers@^5.7.2 @metamask/providers@^10.0.0
 ```
 
 - `ethers`: スマートコントラクトとの連携に使用します。
@@ -99,7 +107,7 @@ npm install ethers @metamask/providers
 `client`ディレクトリ直下で以下のコマンドを実行します。
 
 ```
-npm install -D tailwindcss postcss autoprefixer
+yarn add --dev tailwindcss@^3.2.4 postcss@^8.4.20 autoprefixer@^10.4.13
 npx tailwindcss init -p
 ```
 
@@ -111,8 +119,8 @@ vscodeがエラーを出す可能性もありますが, 気にせず進めて問
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {},
@@ -134,7 +142,7 @@ tailwindの初期設定が終了したので, 挙動を確認します。
 `pages/index.tsx`内を以下のコードで上書きしてください。
 
 ```tsx
-import type { NextPage } from "next";
+import type { NextPage } from 'next';
 
 const Home: NextPage = () => {
   return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
@@ -143,7 +151,7 @@ const Home: NextPage = () => {
 export default Home;
 ```
 
-`client`ディレクトリ直下で`npm run dev`を実行し, ブラウザで`http://localhost:3000`へアクセスします。
+`AVAX-Subnet`ディレクトリ直下で`yarn client dev`を実行し, ブラウザで`http://localhost:3000`へアクセスします。
 
 以下のようなフロントエンドが確認できれば成功です。
 

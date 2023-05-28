@@ -11,7 +11,7 @@
 コントラクトをデプロイし, そのアドレスをフロントエンドにコピーします。
 
 ここでもう一度コントラクトをデプロイしますが,  
-PreCompileである`TransactionAllowList`の型定義ファイルもフロントエンド側で必要なので`contract/contracts`ディレクトリ内に`IAllowList.sol`ファイルを作成し, 中に以下のコードを貼り付けてください。
+PreCompileである`TransactionAllowList`の型定義ファイルもフロントエンド側で必要なので`packages/contract/contracts`ディレクトリ内に`IAllowList.sol`ファイルを作成し, 中に以下のコードを貼り付けてください。
 
 ```
 //SPDX-License-Identifier: MIT
@@ -41,7 +41,7 @@ interface IAllowList {
 > コントラクトの型定義ファイルは, コントラクトがコンパイルされた時に生成され, `typechain-types`ディレクトリに自動的に格納されます。  
 > これは`npx hardhat`実行時にtypescriptを選択したため, 初期設定が済んでいるためです。
 
-それでは`contract`ディレクトリ直下で下記のコマンドを実行してデプロイします！
+それでは`packages/contract`ディレクトリ直下で下記のコマンドを実行してデプロイします！
 
 ```
 % npx hardhat run scripts/deploy.ts --network local
@@ -56,7 +56,7 @@ deployer address: 0x9726A1976148789be35a4EEb6AEfBBF4927b04AC
 bank address: 0xFD6866b81c681ba8127b5fbB874d971744774208
 ```
 
-を`client`ディレクトリ内, `hooks/useContract.ts`の中の以下の部分に貼り付けてください。
+を`packages/client`ディレクトリ内, `hooks/useContract.ts`の中の以下の部分に貼り付けてください。
 
 ```ts
 export const BankAddress = '0x8C6dFbFC0b3e83cBBB82E4b5A187Bc9C0EcE0630';
@@ -125,10 +125,10 @@ cp -r typechain-types/* ../client/types/
 
 🖥️ 画面で確認しましょう
 
-それでは`client`ディレクトリ直下で以下のコマンドを実行し, ブラウザで`http://localhost:3000 `へアクセスします。
+それでは`AVAX-Subnet`ディレクトリ直下で以下のコマンドを実行し, ブラウザで`http://localhost:3000 `へアクセスします。
 
 ```
-$ npm run dev
+$ yarn client dev
 ```
 
 アプリにユーザアカウントでアクセスします。

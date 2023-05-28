@@ -1,6 +1,6 @@
 ### 🚅 フロントエンドのベースを実装しましょう
 
-コード量が多く貼り付ける作業が大変になってしまうのを防ぐため, [本プロジェクト](https://github.com/unchain-dev/AVAX-Subnet)の`client`ディレクトリからファイルやディレクトリごとコピーしてフロントエンドを構築していきます。
+コード量が多く貼り付ける作業が大変になってしまうのを防ぐため, [本プロジェクト](https://github.com/unchain-dev/AVAX-Subnet)の`packages/client`ディレクトリからファイルやディレクトリごとコピーしてフロントエンドを構築していきます。
 
 [本レポジトリ](https://github.com/unchain-dev/AVAX-Subnet/tree/main)自体をローカルにクローンしてからコピーしたほうが作業が楽かもしれません。
 
@@ -23,7 +23,7 @@ client
 そのためソースコード内で画像のURLを`/image.png`と指定した場合,  
 `Next.js`は自動的に`public`ディレクトリをルートとした`プロジェクトルート/public/image.png`を参照してくれます。
 
-このディレクトリを[本プロジェクト](https://github.com/unchain-dev/AVAX-Subnet)の`client/public`ディレクトリと置き換えてください。
+このディレクトリを[本プロジェクト](https://github.com/unchain-dev/AVAX-Subnet)の`packages/client/public`ディレクトリと置き換えてください。
 
 `favicon.ico`: ファビコンになります。お好きな画像で設定したい場合は同じファイル名で保存するとファビコンに設定できます。
 
@@ -62,7 +62,7 @@ client
 
 ### 📁 `types`ディレクトリ
 
-`types`ディレクトリを[本プロジェクト](https://github.com/unchain-dev/AVAX-Subnet)の`client`ディレクトリからコピーして貼り付けてください。
+`types`ディレクトリを[本プロジェクト](https://github.com/unchain-dev/AVAX-Subnet)の`packages/client`ディレクトリからコピーして貼り付けてください。
 
 中身に関しては次のセクションで触れます。
 
@@ -74,7 +74,7 @@ client
 
 ### 📁 `artifacts`ディレクトリ
 
-`artifacts`ディレクトリを[本プロジェクト](https://github.com/unchain-dev/AVAX-Subnet)の`client`ディレクトリからコピーして貼り付けてください。
+`artifacts`ディレクトリを[本プロジェクト](https://github.com/unchain-dev/AVAX-Subnet)の`packages/client`ディレクトリからコピーして貼り付けてください。
 
 中身に関しては次のセクションで触れます。
 
@@ -87,7 +87,7 @@ client
 
 ### 📁 `utils`ディレクトリ
 
-`utils`ディレクトリを[本プロジェクト](https://github.com/unchain-dev/AVAX-Subnet)の`client`ディレクトリからコピーして貼り付けてください。
+`utils`ディレクトリを[本プロジェクト](https://github.com/unchain-dev/AVAX-Subnet)の`packages/client`ディレクトリからコピーして貼り付けてください。
 
 🐬 `ethereum.ts`
 
@@ -124,7 +124,7 @@ client
 
 ### 📁 `hooks`ディレクトリ
 
-`hooks`ディレクトリを[本プロジェクト](https://github.com/unchain-dev/AVAX-Subnet)の`client`ディレクトリからコピーして貼り付けてください。
+`hooks`ディレクトリを[本プロジェクト](https://github.com/unchain-dev/AVAX-Subnet)の`packages/client`ディレクトリからコピーして貼り付けてください。
 
 ウォレットやコントラクトの状態を扱うようなカスタムフック(独自で作った[フック](https://ja.reactjs.org/docs/hooks-overview.html))を実装したファイルを保存します。
 
@@ -181,7 +181,7 @@ client
 
 ### 📁 `context`ディレクトリ
 
-`context`ディレクトリを[本プロジェクト](https://github.com/unchain-dev/AVAX-Subnet)の`client`ディレクトリからコピーして貼り付けてください。
+`context`ディレクトリを[本プロジェクト](https://github.com/unchain-dev/AVAX-Subnet)の`packages/client`ディレクトリからコピーして貼り付けてください。
 
 🐬 `CurrentAccountProvider.tsx`
 
@@ -216,7 +216,7 @@ client
 
 ### 📁 `components`ディレクトリ
 
-`components`ディレクトリを[本プロジェクト](https://github.com/unchain-dev/AVAX-Subnet)の`client`ディレクトリからコピーして貼り付けてください。
+`components`ディレクトリを[本プロジェクト](https://github.com/unchain-dev/AVAX-Subnet)の`packages/client`ディレクトリからコピーして貼り付けてください。
 
 こちらにはコンポーネントを実装したファイルを保存していきます。
 
@@ -351,7 +351,7 @@ client
 
 `pages`ディレクトリの中にはページ単位のコンポーネントが入ります。
 
-このディレクトリを[本プロジェクト](https://github.com/unchain-dev/AVAX-Subnet)の`client`ディレクトリからコピーして貼り付けてください。
+このディレクトリを[本プロジェクト](https://github.com/unchain-dev/AVAX-Subnet)の`packages/client`ディレクトリからコピーして貼り付けてください。
 
 🐬 `_app.tsx`
 
@@ -382,10 +382,10 @@ client
 
 🖥️ 画面で確認しましょう
 
-それでは`client`ディレクトリ直下で以下のコマンドを実行してください！
+それでは`AVAX-Subnet`ディレクトリ直下で以下のコマンドを実行してください！
 
 ```
-$ npm run dev
+$ yarn client dev
 ```
 
 そしてブラウザで`http://localhost:3000 `へアクセスしてください。

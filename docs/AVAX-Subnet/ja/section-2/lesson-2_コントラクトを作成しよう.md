@@ -37,7 +37,7 @@ Subnetでは,「許可されたユーザーのみがコントラクトの展開�
 
 ### 🥮 `Bank`コントラクトを作成する
 
-`section1`のこれから先の作業は, `AVAX-Subnet/contract`ディレクトリをルートディレクトリとして話を進めます。 🙌
+`section1`のこれから先の作業は, `AVAX-Subnet/packages/contract`ディレクトリをルートディレクトリとして話を進めます。 🙌
 
 `contracts`ディレクトリの下に`Bank.sol`という名前のファイルを作成します。
 
@@ -46,8 +46,8 @@ Hardhatを使用する場合ファイル構造は非常に重要ですので, �
 
 ```bash
 contract
-    |_ contracts
-        └── Bank.sol
+ └── contracts
+     └── Bank.sol
 ```
 
 次に, コードエディタでプロジェクトのコードを開きます。
@@ -275,7 +275,7 @@ contract Bank {
 以下のように, 各テストで呼び出される`deployContract`とその後に続くテストコードが記述されているかと思います。
 
 ```ts
-describe("Bank", function () {
+describe('Bank', function () {
   enum BillStatus {
     // status
   }
@@ -300,8 +300,8 @@ describe("Bank", function () {
 コメントを参考にしてください。
 
 ```ts
-  describe("issueBill", function () {
-    it("Correct bill issued.", async function () {
+  describe('issueBill', function () {
+    it('Correct bill issued.', async function () {
       const { bank, userAccounts } = await loadFixture(deployContract);
 
       const issuer = userAccounts[0];
@@ -330,8 +330,8 @@ describe("Bank", function () {
 各コメントを参考にしてください。
 
 ```ts
-  describe("cashBill", function () {
-    it("Token is transferred correctly.", async function () {
+  describe('cashBill', function () {
+    it('Token is transferred correctly.', async function () {
       const { bank, userAccounts } = await loadFixture(deployContract);
 
       const issuer = userAccounts[0];
@@ -352,7 +352,7 @@ describe("Bank", function () {
       ).to.changeEtherBalances([bank, recipient], [-amount, amount]);
     });
 
-    it("Discounted amount of token is transferred correctly.", async function () {
+    it('Discounted amount of token is transferred correctly.', async function () {
       const { bank, userAccounts } = await loadFixture(deployContract);
 
       const issuer = userAccounts[0];
@@ -375,7 +375,7 @@ describe("Bank", function () {
       );
     });
 
-    it("Revert if call twice.", async function () {
+    it('Revert if call twice.', async function () {
       const { bank, userAccounts } = await loadFixture(deployContract);
 
       const issuer = userAccounts[0];
@@ -391,7 +391,7 @@ describe("Bank", function () {
       await expect(bank.connect(recipient).cashBill(newId)).to.be.reverted;
     });
 
-    it("Revert if different user call.", async function () {
+    it('Revert if different user call.', async function () {
       const { bank, userAccounts } = await loadFixture(deployContract);
 
       const issuer = userAccounts[0];
@@ -412,8 +412,8 @@ describe("Bank", function () {
 コメントを参考にしてください。
 
 ```ts
-    describe("lockToken", function () {
-    it("Token is transferred correctly.", async function () {
+    describe('lockToken', function () {
+    it('Token is transferred correctly.', async function () {
       const { bank, userAccounts } = await loadFixture(deployContract);
 
       const issuer = userAccounts[0];
@@ -444,8 +444,8 @@ describe("Bank", function () {
 コメントを参考にしてください。
 
 ```ts
-  describe("completeBill", function () {
-    it("Revert if call before due date", async function () {
+  describe('completeBill', function () {
+    it('Revert if call before due date', async function () {
       const { bank, userAccounts } = await loadFixture(deployContract);
 
       const issuer = userAccounts[0];
@@ -460,7 +460,7 @@ describe("Bank", function () {
       await expect(bank.completeBill(newId)).to.be.reverted;
     });
 
-    it("Bill is properly completed", async function () {
+    it('Bill is properly completed', async function () {
       const { bank, userAccounts } = await loadFixture(deployContract);
 
       const issuer = userAccounts[0];
@@ -493,7 +493,7 @@ describe("Bank", function () {
       );
     });
 
-    it("Bill is properly dishonored.", async function () {
+    it('Bill is properly dishonored.', async function () {
       const { bank, userAccounts } = await loadFixture(deployContract);
 
       const issuer = userAccounts[0];
