@@ -38,10 +38,9 @@ Vercelのアカウントを取得したら、下記を実行しましょう。
 2\. `Import Git Repository`で自分のGitHubアカウントを接続したら、`ETH-Yield-Farm`を選択し、`Import`してください。
 ![](/public/images/ETH-Yield-Farm/section-4/4_1_2.png)
 
-3\. プロジェクトを作成します。Environment Variableに下記を追加します。
+3\. プロジェクトを作成します。`Root Directory`が「packages/client」となっていることを確認してください。
 
-`NAME`＝`CI`、`VALUE`＝`false`（下図参照）。
-![](/public/images/ETH-Yield-Farm/section-4/4_1_3.png)
+![](/public/images/ETH-NFT-Collection/section-4/4_2_9.png)
 
 4\. `Deploy`ボタンを押しましょう。
 
