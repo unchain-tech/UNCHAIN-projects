@@ -39,8 +39,8 @@ vscodeがエラーを出す可能性もありますが, 気にせず進めて問
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
@@ -124,7 +124,7 @@ client
 
 ### 📁 `hooks`ディレクトリ
 
-`utils`ディレクトリを[本プロジェクト](https://github.com/unchain-dev/AVAX-Subnet)の`client`ディレクトリからコピーして貼り付けてください。
+`hooks`ディレクトリを[本プロジェクト](https://github.com/unchain-dev/AVAX-Subnet)の`client`ディレクトリからコピーして貼り付けてください。
 
 ウォレットやコントラクトの状態を扱うようなカスタムフック(独自で作った[フック](https://ja.reactjs.org/docs/hooks-overview.html))を実装したファイルを保存します。
 

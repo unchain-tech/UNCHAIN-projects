@@ -59,13 +59,13 @@ bank address: 0xFD6866b81c681ba8127b5fbB874d971744774208
 を`client`ディレクトリ内, `hooks/useContract.ts`の中の以下の部分に貼り付けてください。
 
 ```ts
-export const BankAddress = "0x8C6dFbFC0b3e83cBBB82E4b5A187Bc9C0EcE0630";
+export const BankAddress = '0x8C6dFbFC0b3e83cBBB82E4b5A187Bc9C0EcE0630';
 ```
 
 例:
 
 ```ts
-export const BankAddress = "0xFD6866b81c681ba8127b5fbB874d971744774208";
+export const BankAddress = '0xFD6866b81c681ba8127b5fbB874d971744774208';
 ```
 
 📽️ ABIファイルを取得する
