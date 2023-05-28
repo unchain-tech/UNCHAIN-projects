@@ -85,16 +85,16 @@ contract Bank {
     address[] public dishonoredAddresses;
 
     // 各アドレスがコントラクトにロックしたトークンの数を保有します。
-    mapping(address => uint256) private balance;
+    mapping(address => uint256) private _balance;
 
     // 手形の期間を定数で用意します。
-    uint256 public constant term = 1 days * 60;
+    uint256 public constant TERM = 1 days * 60;
 
     // 割引金利
-    uint256 public constant discountRate = 10;
+    uint256 public constant DISCOUNT_RATE = 10;
 
     // 手形手数料
-    uint256 public constant interestRate = 10;
+    uint256 public constant INTEREST_RATE = 10;
 
     constructor() payable {}
 }
@@ -106,18 +106,18 @@ contract Bank {
 
 その下に状態変数を定義しています。
 
-`balance`: 発行者が手形の金額をスマートコントラクトに支払った際にその金額を記録するためのものです。
+`_balance`: 発行者が手形の金額をスマートコントラクトに支払った際にその金額を記録するためのものです。
 
-`discountRate`: 期限に達していない手形を受取人が現金化する際に, 10％割引で現金化します。
+`DISCOUNT_RATE`: 期限に達していない手形を受取人が現金化する際に, 10％割引で現金化します。
 
-`interestRate`: 発行者が手形の支払いをする際は, 手形の代金の10％を手数料としてスマートコントラクトに支払う必要があります。
+`INTEREST_RATE`: 発行者が手形の支払いをする際は, 手形の代金の10％を手数料としてスマートコントラクトに支払う必要があります。
 
 `Bank`のデプロイ時にはある程度のトークンを渡したいため, constructorには`payable`を指定しています。
 
 次に`Bank`の最後の行に以下のコードを貼り付けてください。
 
 ```solidity
-    function sendToken(address payable _to, uint256 _amount) private {
+    function _sendToken(address payable _to, uint256 _amount) private {
         (bool success, ) = (_to).call{value: _amount}("");
         require(success, "Failed to send token");
     }
@@ -131,13 +131,13 @@ contract Bank {
     }
 
     function getBalance() public view returns (uint256) {
-        return balance[msg.sender];
+        return _balance[msg.sender];
     }
 
     function beforeDueDate(uint256 _id) public view returns (bool) {
         Bill memory bill = allBills[_id];
 
-        if (block.timestamp <= bill.timestamp + term) {
+        if (block.timestamp <= bill.timestamp + TERM) {
             return true;
         } else {
             return false;
@@ -148,7 +148,7 @@ contract Bank {
         Bill memory bill = allBills[_id];
 
         if (beforeDueDate(_id)) {
-            return (bill.amount * (100 - discountRate)) / 100;
+            return (bill.amount * (100 - DISCOUNT_RATE)) / 100;
         }
 
         return bill.amount;
@@ -156,11 +156,11 @@ contract Bank {
 
     function getAmountToPayBill(uint256 _id) public view returns (uint256) {
         Bill memory bill = allBills[_id];
-        return (bill.amount * (100 + discountRate)) / 100;
+        return (bill.amount * (100 + DISCOUNT_RATE)) / 100;
     }
 ```
 
-`sendToken`はネイティブトークンを_toへ_amount分送信する関数です。
+`_sendToken`はネイティブトークンを_toへ_amount分送信する関数です。
 
 `beforeDueDate`は現在のタイムスタンプと手形の期限を比較して, 期限に達しているかどうかを返却します。
 
@@ -208,7 +208,7 @@ contract Bank {
 
         uint256 amount = getAmountToCashBill(_id);
 
-        sendToken(payable(msg.sender), amount);
+        _sendToken(payable(msg.sender), amount);
     }
 
     function lockToken(uint256 _id) public payable {
@@ -219,7 +219,7 @@ contract Bank {
 
         bill.status = BillStatus.Paid;
 
-        balance[msg.sender] += msg.value;
+        _balance[msg.sender] += msg.value;
     }
 
     function completeBill(uint256 _id) public payable {
@@ -236,8 +236,8 @@ contract Bank {
 
         uint256 amount = getAmountToPayBill(_id);
 
-        if (amount <= balance[bill.issuer]) {
-            balance[bill.issuer] -= amount;
+        if (amount <= _balance[bill.issuer]) {
+            _balance[bill.issuer] -= amount;
             bill.status = BillStatus.Completed;
         } else {
             bill.status = BillStatus.Dishonored;
@@ -250,7 +250,7 @@ contract Bank {
 
 `cashBill`: 受取人が使用します。指定したidのBillを現金化します。
 
-`lockToken`: 発行者が手形の支払いに使用します。送付されたトークン量を`balance`に記録します。
+`lockToken`: 発行者が手形の支払いに使用します。送付されたトークン量を`_balance`に記録します。
 
 `completeBill`: 銀行の管理者が利用します。期限に達したBillを処理します。発行者が手形の金額分を納めていない場合は手形の状態を不渡りとし, 発行者のアドレスを`dishonoredAddresses`に追加します。
 
@@ -343,7 +343,7 @@ describe("Bank", function () {
       const newId = 0;
 
       // ブロックチェーン上の時間を手形の期限分進めます。
-      const term = await bank.term();
+      const term = await bank.TERM();
       await time.increase(term);
 
       // 期限に達した手形を現金化した際にトークンが正しく移動していることを確認
@@ -359,7 +359,7 @@ describe("Bank", function () {
       const recipient = userAccounts[1];
       const amount = BigNumber.from(100);
 
-      const discountRate = await bank.discountRate();
+      const discountRate = await bank.DISCOUNT_RATE();
       const discountedAmount = amount.sub(amount.mul(discountRate).div(100));
 
       // Billの発行
@@ -423,7 +423,7 @@ describe("Bank", function () {
       await bank.connect(issuer).issueBill(amount, recipient.address);
       const newId = 0;
 
-      const interestRate = await bank.interestRate();
+      const interestRate = await bank.INTEREST_RATE();
       const amountWithFee = amount.add(amount.mul(interestRate).div(100));
 
       // トークンが正しく移動していることを確認
@@ -471,7 +471,7 @@ describe("Bank", function () {
       await bank.connect(issuer).issueBill(amount, recipient.address);
       const newId = 0;
 
-      const interestRate = await bank.interestRate();
+      const interestRate = await bank.INTEREST_RATE();
       const amountWithFee = amount.add(amount.mul(interestRate).div(100));
 
       // 手形の支払い
@@ -480,7 +480,7 @@ describe("Bank", function () {
       } as Overrides);
 
       // ブロックチェーン上の時間を手形の期限分進めます。
-      const term = await bank.term();
+      const term = await bank.TERM();
       await time.increase(term);
 
       // 手形の処理
@@ -505,7 +505,7 @@ describe("Bank", function () {
       const newId = 0;
 
       // ブロックチェーン上の時間を手形の期限分進めます。
-      const term = await bank.term();
+      const term = await bank.TERM();
       await time.increase(term);
 
       // 手形の処理
