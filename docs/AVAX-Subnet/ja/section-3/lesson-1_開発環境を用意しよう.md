@@ -1,6 +1,6 @@
 ### 🍽 フロントエンドを作成しよう
 
-このセクションでは, スマートコントラクトと連携するフロントエンドを構築します。
+このセクションでは、スマートコントラクトと連携するフロントエンドを構築します。
 
 今回は`typescript` + `React.js` + `Next.js`を使ってフロントエンド開発を進めていきます。
 
@@ -8,11 +8,11 @@
 - `React.js`: ライブラリ
 - `Next.js`: `React.js`のフレームワーク
 
-それぞれの概要については[LEARNコンテンツ](https://app.unchain.tech/learn)内の`AVAX-Messenger/section2/lesson1`に説明を載せていますので, 初めて触れる方はご参照ください 💁
+それぞれの概要については[LEARNコンテンツ](https://app.unchain.tech/learn)内の`AVAX-Messenger/section2/lesson1`に説明を載せていますので、初めて触れる方はご参照ください 💁
 
 ### 🛠️ 　フロントエンドのセットアップをしよう
 
-`AVAX-Subnet/packages`ディレクトリに移動し, 以下のコマンドを実行して下さい。
+`AVAX-Subnet/packages`ディレクトリに移動し、以下のコマンドを実行して下さい。
 
 ```
 yarn create next-app client --ts
@@ -21,7 +21,7 @@ yarn create next-app client --ts
 ここでは`create-next-app`というパッケージを利用して`client`という名前のプロジェクトを作成しました。  
 `--ts`は`typescript`を使用することを指定しています。`client`ディレクトリには`Next.js`を使ったプロジェクト開発に最低限必要なものがあらかじめ作成されます。
 
-この段階で, フォルダ構造は下記のようになっているはずです。
+この段階で、フォルダ構造は下記のようになっているはずです。
 
 ```diff
  AVAX-Subnet
@@ -44,12 +44,12 @@ yarn client dev
 
 あなたのお使いのブラウザで`http://localhost:3000`へアクセスするとWebサイトのフロントエンドが表示されるはずです。
 
-⚠️ 本手順では`Chromeブラウザ`を使用しておりますので, 何か不具合が生じた場合はブラウザを合わせるのも1つの解決策かもしれません。
+⚠️ 本手順では`Chromeブラウザ`を使用しておりますので、何か不具合が生じた場合はブラウザを合わせるのも1つの解決策かもしれません。
 
 例)ローカル環境で表示されているWebサイト  
 
-> ここでのcreate-next-appは`version 13.1.1`を使用しています（`npx create-next-app --version`で確認できます）。  
-> versionの違いによりここで表示されるフロントエンドが別のものでも, この後のディレクトリ構成などに大きな違いがなければ問題ありません。
+> ここでのcreate-next-appは`version 13.1.1`を使用しています（`yarn create next-app --version`で確認できます）。  
+> versionの違いによりここで表示されるフロントエンドが別のものでも、この後のディレクトリ構成などに大きな違いがなければ問題ありません。
 
 ![](/public/images/AVAX-Subnet/section-3/3_1_1.png)
 
@@ -111,9 +111,9 @@ yarn add --dev tailwindcss@^3.2.4 postcss@^8.4.20 autoprefixer@^10.4.13
 npx tailwindcss init -p
 ```
 
-続いて, `tailwind.config.js`内に以下のコードを貼り付けてtailwindを使用するファイルへのパスを記述します。
+続いて、`tailwind.config.js`内に以下のコードを貼り付けてtailwindを使用するファイルへのパスを記述します。
 
-vscodeがエラーを出す可能性もありますが, 気にせず進めて問題ありません。
+vscodeがエラーを出す可能性もありますが、気にせず進めて問題ありません。
 
 ```js
 /** @type {import('tailwindcss').Config} */
@@ -137,7 +137,7 @@ module.exports = {
 @tailwind utilities;
 ```
 
-tailwindの初期設定が終了したので, 挙動を確認します。
+tailwindの初期設定が終了したので、挙動を確認します。
 
 `pages/index.tsx`内を以下のコードで上書きしてください。
 
@@ -151,7 +151,7 @@ const Home: NextPage = () => {
 export default Home;
 ```
 
-`AVAX-Subnet`ディレクトリ直下で`yarn client dev`を実行し, ブラウザで`http://localhost:3000`へアクセスします。
+`AVAX-Subnet`ディレクトリ直下で`yarn client dev`を実行し、ブラウザで`http://localhost:3000`へアクセスします。
 
 以下のようなフロントエンドが確認できれば成功です。
 
@@ -159,9 +159,9 @@ export default Home;
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は, Discordの`#avalanche`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#avalanche`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので, エラーレポートには下記の3点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
