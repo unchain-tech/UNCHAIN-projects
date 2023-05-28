@@ -6,7 +6,7 @@
 
 ### 👀 `deploy.js`を整理する
 
-Webアプリケーションの開発を進める前に、`epic-game/scripts`にある、`deploy.js`ファイルを整理しましょう。
+Webアプリケーションの開発を進める前に、`contract/scripts`にある、`deploy.js`ファイルを整理しましょう。
 
 `mintCharacterNFT`や`attackBoss`関数を排除していきます。
 
