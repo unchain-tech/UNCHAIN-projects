@@ -24,9 +24,9 @@
 
 ### 🧱 `SelectCharacter`コンポーネントを作る
 
-ターミナルに向かい、`nft-game-starter-project/src/Components/SelectCharacter`フォルダに移動してください。
+ターミナルに向かい、`client/src/Components/SelectCharacter`フォルダに移動してください。
 
-`nft-game-starter-project`ディレクトリ上で下記を実行すると、スムーズに移動できます。
+`client`ディレクトリ上で下記を実行すると、スムーズに移動できます。
 
 ```bash
 cd src/Components/SelectCharacter
@@ -63,7 +63,7 @@ export default SelectCharacter;
 
 ### 👁 レンダリングロジックを構築してシナリオを実装する
 
-まず、`nft-game-starter-project/src/App.js`ファイルをVS Codeで開き、新しく作成したコンポーネントをインポートしていきましょう。
+まず、`client/src/App.js`ファイルをVS Codeで開き、新しく作成したコンポーネントをインポートしていきましょう。
 
 `import './App.css';`の直下に下記を追加してください。
 
