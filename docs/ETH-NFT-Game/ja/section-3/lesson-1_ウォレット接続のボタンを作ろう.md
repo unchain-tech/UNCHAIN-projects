@@ -6,7 +6,7 @@ Webアプリケーション上で、ユーザーがイーサリアムネット�
 
 - これは、Webサイトへの認証機能です。
 
-ターミナル上で、`nft-game-starter-project/src`に移動し、その中にある`App.js`をVS Codeで開きましょう。
+ターミナル上で、`packages/client/src`に移動し、その中にある`App.js`をVS Codeで開きましょう。
 
 下記のように、`App.js`の中身を更新します。
 
