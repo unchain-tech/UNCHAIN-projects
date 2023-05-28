@@ -63,7 +63,7 @@ const CONTRACT_NAME = process.env.CONTRACT_NAME || "sub.bike_account.testnet";
 ※ `near_bike_share_dapp`のルートディレクトリで実行してください。
 
 ```
-$ npx parcel frontend/index.html
+$ yarn parcel frontend/index.html
 ```
 
 実行結果
@@ -85,7 +85,7 @@ Netlifyのアカウントをお持ちでない方は、上記のリンクにア�
 次にnetlifyをローカルで実行するために以下のコマンドを実行してください。
 
 ```
-$ npm install netlify-cli -g
+$ yarn add netlify-cli --dev
 ```
 
 ログインします。
