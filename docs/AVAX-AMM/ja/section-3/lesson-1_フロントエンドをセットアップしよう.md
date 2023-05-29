@@ -16,17 +16,18 @@
 `AVAX-AMM/packages`ディレクトリに移動し,以下のコードを実行して下さい。
 
 ```
-npx create-next-app client --ts --use-npm
+yarn create next-app client --ts
 ```
 
 ここでは`create-next-app`というパッケージを利用して`client`という名前のプロジェクトを作成しました。
-`--ts`は`typescript`を使用することの指定, `--use-npm`は`npm`を使用してアプリの立ち上げを行うこと指定しています。
+`--ts`は`typescript`を使用することの指定しています。
 `client`ディレクトリには`Next.js`を使ったプロジェクト開発に最低限必要なものがあらかじめ作成されます。
 
 この段階で,フォルダ構造は下記のようになっているはずです。
 
 ```diff
 AVAX-AMM
+ ├── .gitignore
  ├── package.json
  └── packages/
 +    ├── client/
@@ -45,7 +46,7 @@ yarn add ethers@5.7.1 @metamask/providers@9.1.0 react-icons
 - `@metamask/providers`: metamaskとの連携の際にオブジェクトの型を取得するために使用します。
 - `react-icons`: reactが用意するアイコンを使用できます。
 
-ここで,開発環境がきちんと動作するか確認したいと思います。`client`ディレクトリ内に`node_modules/`や`package-lock.json`が生成されている場合は,いったん削除してください。次に,`AVAX-AMM`直下で下記を実行しましょう。
+ここで,開発環境がきちんと動作するか確認したいと思います。`client`ディレクトリ内に`node_modules/`や`yarn.lock`が生成されている場合は,いったん削除してください。次に,`AVAX-AMM`直下で下記を実行しましょう。
 
 ```
 yarn install
@@ -64,7 +65,7 @@ yarn client dev
 
 上記のような形でフロントエンドが確認できれば成功です。
 
-これからフロントエンドの表示を確認する際は,`AVAX-AMM`ディレクトリ上で,`npm run client dev`を実行します。
+これからフロントエンドの表示を確認する際は、`AVAX-AMM`ディレクトリ上で`yarn client dev`(`client`ディレクトリ上では`yarn dev`)を実行します。
 
 webサイトの立ち上げを終了する場合は以下のコマンドが使えます ✍️
 

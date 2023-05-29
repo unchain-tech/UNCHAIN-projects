@@ -355,13 +355,10 @@ yarn contract deploy
 
 このような出力結果が出たら成功です！
 
-```
-> AVAX-AMM@1.0.0 contract
-> npm run --workspace=contract deploy
-
-
-> contract@1.0.0 deploy
-> npx hardhat run scripts/deploy.ts --network fuji
+```bash
+yarn run v1.22.19
+$ yarn workspace contract deploy
+$ npx hardhat run scripts/deploy.ts --network fuji
 
 usdc address: 0x5aC2B0744ACD8567c1c33c5c8644C43147645770
 joe address: 0x538589242114BCBcD0f12B1990865E57b3344448
