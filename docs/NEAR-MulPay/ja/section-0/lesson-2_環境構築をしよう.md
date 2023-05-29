@@ -189,6 +189,10 @@ yarn init --private -y
     "solidity-coverage": "^0.8.2",
     "typechain": "^8.1.1"
   },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.8.2",
+    "dotenv": "^16.0.3"
+  },
 }
 ```
 
