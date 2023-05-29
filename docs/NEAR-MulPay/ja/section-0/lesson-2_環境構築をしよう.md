@@ -165,10 +165,37 @@ NEAR-Mulpay
 ```bash
 cd packages/contract
 yarn init --private -y
-# Hardhatのインストール
-yarn add --dev hardhat
-# スマートコントラクトの開発に必要なプラグインのインストール
-yarn add --dev @nomicfoundation/hardhat-toolbox @nomicfoundation/hardhat-network-helpers @nomicfoundation/hardhat-chai-matchers @nomiclabs/hardhat-ethers @nomiclabs/hardhat-etherscan chai ethers@^5.4.7 hardhat-gas-reporter solidity-coverage @typechain/hardhat typechain @typechain/ethers-v5 @ethersproject/abi @ethersproject/providers
+```
+
+`package.json`の内容を以下のように書き換えてください。
+
+```d
+{
+  "name": "contract",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "@nomicfoundation/hardhat-chai-matchers": "^1.0.6",
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.8",
+    "@nomicfoundation/hardhat-toolbox": "^2.0.2",
+    "@nomiclabs/hardhat-ethers": "^2.2.2",
+    "@nomiclabs/hardhat-etherscan": "^3.1.7",
+    "@typechain/ethers-v5": "^10.2.0",
+    "@typechain/hardhat": "^6.1.5",
+    "chai": "^4.3.7",
+    "ethers": "^6.1.0",
+    "hardhat": "^2.13.0",
+    "hardhat-gas-reporter": "^1.0.9",
+    "solidity-coverage": "^0.8.2",
+    "typechain": "^8.1.1"
+  },
+}
+```
+
+その後以下のコマンドを実行して必要なパッケージをインストールしてください。
+
+```
+yarn install
 ```
 
 > ✍️: `warning`について
@@ -359,7 +386,7 @@ Greeter deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 
 次にフロントエンドのプロジェクトを作成していきます。
 
-`NEAR-Mulpay`ディレクトリに移動して下のコマンドをターミナルで実行しましょう。
+`NEAR-Mulpay/packages`ディレクトリに移動して下のコマンドをターミナルで実行しましょう。
 
 ```bash
 flutter create client
