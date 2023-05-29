@@ -1,27 +1,76 @@
-### 🤖 ローカル開発環境を設定する
+### 🍽 Git リポジトリをあなたの GitHub にフォークする
 
-※ GitHubアカウントの初期設定がお済みでない方は、アカウント設定を行ってからお進みください。
+まだGitHubのアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
-まず、 [この GitHub リンク](https://github.com/shiftbase-xyz/solana-gif-portal-starter-project) にアクセスして、ページの右上にある[Fork]ボタンを押してください。
+GitHubのアカウントをお持ちの方は、下記の手順に沿ってプロジェクトの基盤となるリポジトリをあなたのGitHubに[フォーク](https://denno-sekai.com/github-fork/)しましょう。
 
-このリポジトリをフォークすると、自分のGitHubに同一のリポジトリがコピーされます。
+1. [こちら](https://github.com/unchain-tech/Solana-dApp)からunchain-tech/Solana-dAppリポジトリにアクセスをして、ページ右上の`Fork`ボタンをクリックします。
 
-次に、新しくフォークされたリポジトリをローカルに保存します。
+![](/public/images/ETH-NFT-Collection/section-3/3_1_3.png)
 
-`Code`ボタンをクリックして、コピーしたリポジトリのリンクをコピーしてください。
+2. Create a new forkページが開くので、「Copy the `main` branch only」という項目に**チェックが入っていることを確認します**。
 
-![github code button](/public/images/Solana-dApp/section-1/1_1_1.png)
+![](/public/images/ETH-NFT-Collection/section-3/3_1_4.png)
 
-最後に、ターミナルで`cd`コマンドを実行してプロジェクトが存在するディレクトリまで移動し、次のコマンドを実行します。
+設定が完了したら`Create fork`ボタンをクリックします。あなたのGitHubアカウントに`Solana-dApp`リポジトリのフォークが作成されたことを確認してください。
 
-※ `YOUR_FORKED_LINK`に先ほどコピーしたリポジトリのリンクを張り付けましょう。
+それでは、フォークしたリポジトリをローカル環境にクローンしましょう。
+
+まず、下図のように、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
+
+![](/public/images/ETH-NFT-Collection/section-3/3_1_1.png)
+
+ターミナル上で作業を行う任意のディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
 
 ```bash
-git clone YOUR_FORKED_LINK
+git clone コピーした_github_リンク
+```
+
+ではプロジェクトに必要なパッケージをインストールするために以下のコマンドを実行しましょう。
+
+```bash
+yarn install
 ```
 
 無事に複製されたらローカル開発環境の準備は完了です。
 
+### 🔍 フォルダ構成を確認する
+
+実装に入る前に、フォルダ構成を確認しておきましょう。クローンしたスタータープロジェクトは下記のようになっているはずです。
+
+```bash
+Solana-dApp
+├── .git/
+├── .gitignore
+├── LICENSE
+├── README.md
+├── package.json
+├── packages/
+│   ├── client/
+│   └── contract/
+└── yarn.lock
+```
+
+スタータープロジェクトは、モノレポ構成となっています。モノレポとは、コントラクトとクライアント（またはその他構成要素）の全コードをまとめて1つのリポジトリで管理する方法です。
+
+packagesディレクトリの中には、`client`と`contract`という2つのディレクトリがあります。
+
+`package.json`ファイルの内容を確認してみましょう。
+
+モノレポを作成するにあたり、パッケージマネージャーの機能である[Workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/)を利用しています。
+
+**workspaces**の定義をしている部分は以下になります。
+
+```json
+// package.json
+"workspaces": {
+  "packages": [
+    "packages/*"
+  ]
+},
+```
+
+この機能により、yarn installを一度だけ実行すれば、すべてのパッケージ（今回はコントラクトのパッケージとクライアントのパッケージ）を一度にインストールできるようになります。
 
 ### 🔌 Phantom Wallet をインストールする
 
@@ -50,7 +99,7 @@ WebアプリケーションがSolanaブロックチェーンと通信するた�
 
 これは、通常のWebサイトへのログインと同じく、Solanaブロックチェーンと通信するために必要な **認証** のようなものです。
 
-それでは、まずは`src/App.js`ファイルを開き、 `App.js`を以下のとおり変更しましょう( `App.js`はアプリケーションのメインエントリポイントとなるファイルです)。
+それでは、まずは`paclages/client/src/App.js`ファイルを開き、 `App.js`を以下のとおり変更しましょう( `App.js`はアプリケーションのメインエントリポイントとなるファイルです)。
 
 ```jsx
 // App.js
@@ -173,9 +222,7 @@ const TWITTER_HANDLE = "あなたのTwitterハンドル";
 
 1\. ターミナルを開き、`cd`でプロジェクトのルートディレクトリまで移動します。
 
-2\. `npm install`を実行します。
-
-3\. `npm run start`を実行します。
+2\. `yarn client start`を実行します。
 
 これらを実行すると、ローカルサーバーでWebアプリケーションが立ち上がり、ブラウザのコンソール上に`Phantom Wallet found!`が表示されるはずです。
 
