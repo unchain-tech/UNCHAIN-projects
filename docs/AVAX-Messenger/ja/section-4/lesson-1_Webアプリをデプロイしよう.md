@@ -54,12 +54,9 @@ Vercelのアカウントを取得したら,下記を実行しましょう。
 
 ![](/public/images/AVAX-Messenger/section-4/4_1_2.png)
 
-3\. プロジェクトを作成します。
+3\. プロジェクトを作成します。`Root Directory`が「packages/client」となっていることを確認してください。
 
-`Framework Preset`に`Next.js`を選択してください。  
-`Root directory`に(`Edit`ボタンをクリックし)`client`を選択します。
-
-![](/public/images/AVAX-Messenger/section-4/4_1_3.png)
+![](/public/images/ETH-NFT-Collection/section-4/4_2_9.png)
 
 4\. `Deploy`ボタンをクリックしましょう。
 
