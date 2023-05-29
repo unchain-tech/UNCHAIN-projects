@@ -126,11 +126,11 @@ Vercelのアカウントを取得したら、下記を実行しましょう。
 
 1\. `Dashboard`へ進んで、`New Project`を選択してください。
 
-![](/public/images/ETH-ETH-NFT-Maker/section-4/4_2_1.png)
+![](/public/images/ETH-NFT-Maker/section-4/4_2_1.png)
 
 2\. `Import Git Repository`で自分のGitHubアカウントを接続したら、`ETH-NFT-Maker`を選択し、`Import`してください。
 
-![](/public/images/ETH-ETH-NFT-Maker/section-4/4_2_2.png)
+![](/public/images/ETH-NFT-Maker/section-4/4_2_2.png)
 
 3\. プロジェクトを作成します。`Root Directory`が「packages/client」となっていることを確認してください。
 
@@ -144,7 +144,7 @@ VercelはGitHubと連動しているので、GitHubが更新されるたびに�
 
 基本的に`warning`は無視して問題ありません。
 
-![](/public/images/ETH-ETH-NFT-Maker/section-4/4_2_4.png)
+![](/public/images/ETH-NFT-Maker/section-4/4_2_4.png)
 
 
 ### 🙋‍♂️ 質問する
