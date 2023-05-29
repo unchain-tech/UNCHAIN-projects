@@ -127,7 +127,7 @@ $ npx hardhat
 👷 Welcome to Hardhat v2.13.0 👷‍
 
 ✔ What do you want to do? · Create a JavaScript project
-✔ Hardhat project root: · /ETH-dApp/packages/contract
+✔ Hardhat project root: · /ETH-NFT-Game/packages/contract
 ✔ Do you want to add a .gitignore? (Y/n) · y
 
 ✨ Project created ✨
@@ -154,7 +154,7 @@ Give Hardhat a star on Github if you're enjoying it! 💞✨
 この段階で、フォルダー構造は下記のようになっていることを確認してください。
 
 ```diff
-ETH-dApp
+ETH-NFT-Game
  ├── .gitignore
  ├── package.json
  └── packages/
