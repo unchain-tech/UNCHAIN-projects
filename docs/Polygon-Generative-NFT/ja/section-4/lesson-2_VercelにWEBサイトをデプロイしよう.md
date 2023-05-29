@@ -56,7 +56,7 @@ ETHがいくら必要で、いくら足りないかをユーザーに知らせ�
 
 - 実際にNFTをMintして、あなたのWebWebサイトとの違いを検証してみてください。
 
-- あなたのGitHubアカウントにこの[レポジトリ](https://github.com/yukis4san/nft-collectible-frontend-git)をフォークしましょう。
+- あなたのGitHubアカウントにこの[レポジトリ](https://github.com/yukis4san/Polygon-Generative-NFT-git)をフォークしましょう。
 
 - クローンしたリポジトリをあなたのローカル環境にダウンロードしてください。
 
@@ -95,7 +95,7 @@ Vercelに関する詳しい説明は、[こちら](https://zenn.dev/lollipop_onl
 
 ![](/public/images/Polygon-Generative-NFT/section-4/4_2_4.png)
 
-リポジトリに、`nft-collectible-frontend-git`と名前を付け足ら、`Create repository`ボタンを押してください。
+リポジトリに、`Polygon-Generative-NFT-git`と名前を付け足ら、`Create repository`ボタンを押してください。
 
 次に、ディレクトリのリンクをコピーしましょう。
 
@@ -107,13 +107,11 @@ Vercelに関する詳しい説明は、[こちら](https://zenn.dev/lollipop_onl
 git clone コピーしたリンクを貼り付け
 ```
 
-次に、`nft-collectible-frontend`を開き、中に入っているフォルダとファイルをすべて`nft-collectible-frontend-git`に移動させましょう。
+次に、`Polygon-Generative-NFT`を開き、中に入っているフォルダとファイルをすべて`Polygon-Generative-NFT-git`に移動させましょう。
 
-`nft-collectible-frontend`は排除してください。
+それでは、GitHubの`Polygon-Generative-NFT-git`にローカルファイルをアップロードしていきます。
 
-それでは、GitHubの`nft-collectible-frontend-git`にローカルファイルをアップロードしていきます。
-
-ターミナル上で`nft-collectible-frontend-git`に移動して、下記を実行しましょう。
+ターミナル上で`Polygon-Generative-NFT-git`に移動して、下記を実行しましょう。
 
 ```
 git add .
@@ -127,15 +125,13 @@ git push
 
 ![](/public/images/Polygon-Generative-NFT/section-4/4_2_7.png)
 
-2\. `Import Git Repository`で自分のGitHubアカウントを接続したら、`nft-collectible-frontend-git`を選択し、`Import`してください。
+2\. `Import Git Repository`で自分のGitHubアカウントを接続したら、`Polygon-Generative-NFT-git`を選択し、`Import`してください。
 
 ![](/public/images/Polygon-Generative-NFT/section-4/4_2_8.png)
 
-3\. プロジェクトを作成します。Environment Variableに下記を追加します。
+3\. プロジェクトを作成します。`Root Directory`が「packages/client」となっていることを確認してください。
 
-`NAME`＝`CI`、`VALUE`＝`false`（下図参照）
-
-![](/public/images/Polygon-Generative-NFT/section-4/4_2_9.png)
+![](/public/images/ETH-NFT-Collection/section-4/4_2_9.png)
 
 4\. `Deploy`ボタンを推しましょう。
 
