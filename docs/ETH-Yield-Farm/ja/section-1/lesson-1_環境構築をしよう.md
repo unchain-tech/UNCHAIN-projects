@@ -28,8 +28,6 @@
 
 まだGitHubのアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
-その後`packages`ディレクトリに移動します。
-
 GitHubのアカウントをお持ちの方は、下記の手順に沿ってプロジェクトの基盤となるリポジトリをあなたのGitHubに[フォーク](https://denno-sekai.com/github-fork/)しましょう。
 
 1. [こちら](https://github.com/unchain-tech/ETH-Yield-Farm)からunchain-tech/ETH-Yield-Farmリポジトリにアクセスをして、ページ右上の`Fork`ボタンをクリックします。
@@ -151,7 +149,7 @@ $ npx hardhat
 👷 Welcome to Hardhat v2.13.0 👷‍
 
 ✔ What do you want to do? · Create a JavaScript project
-✔ Hardhat project root: · /ETH-dApp/packages/contract
+✔ Hardhat project root: · /ETH-Yield-Farm/packages/contract
 ✔ Do you want to add a .gitignore? (Y/n) · y
 
 ✨ Project created ✨
@@ -178,7 +176,7 @@ Give Hardhat a star on Github if you're enjoying it! 💞✨
 この段階で、フォルダー構造は下記のようになっていることを確認してください。
 
 ```diff
-ETH-dApp
+ETH-Yield-Farm
  ├── .gitignore
  ├── package.json
  └── packages/
@@ -253,7 +251,7 @@ npx hardhat test
 
 次のように表示されます。
 
-![](/public/images/ETH-dApp/section-1/1_2_1.png)
+![](/public/images/ETH-Yield-Farm/section-1/1_2_1.png)
 
 ターミナル上で`ls`と入力してみて、下記のフォルダーとファイルが表示されていたら成功です。
 
@@ -312,13 +310,13 @@ Greeter deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 
 Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押してください。
 
-![](/public/images/ETH-dApp/section-2/2_2_17.png)
+![](/public/images/ETH-Yield-Farm/section-2/2_2_17.png)
 Ecosystem選択欄が出てきた場合は`Ethereum`を選択しましょう。
 
-![](/public/images/ETH-dApp/section-2/2_2_1.png)
+![](/public/images/ETH-Yield-Farm/section-2/2_2_1.png)
 次に、下記の項目を埋めていきます。下図を参考にしてください。
 
-![](/public/images/ETH-dApp/section-2/2_2_2.png)
+![](/public/images/ETH-Yield-Farm/section-2/2_2_2.png)
 
 - `NAME`: プロジェクトの名前(例: `WavePortal`)
 - `DESCRIPTION`: プロジェクトの概要
@@ -326,10 +324,10 @@ Ecosystem選択欄が出てきた場合は`Ethereum`を選択しましょう。
 - `NETWORK`: `Sepolia`を選択
 
 それから、作成したAppの`VIEW DETAILS`をクリックします。
-![](/public/images/ETH-dApp/section-2/2_2_3.png)
+![](/public/images/ETH-Yield-Farm/section-2/2_2_3.png)
 
 プロジェクトを開いたら、`VIEW KEY`ボタンをクリックします。
-![](/public/images/ETH-dApp/section-2/2_2_4.png)
+![](/public/images/ETH-Yield-Farm/section-2/2_2_4.png)
 ポップアップが開くので、`HTTP`のリンクをコピーしてください。
 
 これがあなたが本番環境のネットワークに接続する際に使用する`API Key`になります。
