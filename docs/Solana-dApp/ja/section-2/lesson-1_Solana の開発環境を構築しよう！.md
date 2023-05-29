@@ -84,7 +84,7 @@ sh -c "$(curl -sSfL https://release.solana.com/stable/install)"
 solana --version
 ```
 
-次に、以下の2つのコマンドを別々に実行してください。
+では`packages/contract`ディレクトリへ移動しましょう。その後、以下の2つのコマンドを別々に実行してください。
 
 ```bash
 solana config set --url localhost
@@ -164,29 +164,7 @@ npm i -g @project-serum/anchor-cli
 anchor --version
 ```
 
-バージョン情報が出力されていればOKです。
-
-また、AnchorのnpmモジュールとSolana web3.jsを使用するため、こちらも併せてインストールしておきましょう。
-
-以下のコマンドを実行します。
-
-```bash
-npm install @project-serum/anchor @solana/web3.js
-```
-
-ここまででAnchorを使用するための準備が整いました。
-
-
-### 🏃‍♂️ Solana プロジェクトを作成する
-
-以下のコマンドを実行してSolanaプロジェクトのテンプレートを作成します。
-
-```bash
-anchor init myepicproject --javascript
-```
-
-まるでReactのcreate-react-appのように、実行したディレクトリ内に様々なファイルやディレクトリが作成されます。
-
+バージョン情報が出力されていればOKです。ここまででAnchorを使用するための準備が整いました。
 
 ### 🔑 ローカルキーペアを作成する
 
@@ -221,10 +199,10 @@ solana address
 
 実は、Anchorを利用することでこれらの手順を1つステップで実行できます。
 
-以下のコマンドを実行してみてください。
+では`Solana-dApp`ディレクトリへ戻って、以下のコマンドを実行してみてください。
 
 ```bash
-anchor test
+yarn contract test
 ```
 
 ※ 初めて実行するときはしばらく時間がかかる場合があります。
