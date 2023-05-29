@@ -1,86 +1,31 @@
 ###  🖥 このレッスンの参考動画URL
 [Dapp University](https://youtu.be/CgXQC4dbGUE?t=473)
 
-### 🍽 テンプレートをあなたの GitHub にフォークする
+### 👀 `contract`ディレクトリにファイルを作成する
 
-このセクションでは、Webサイトの構築を通して、フロントエンドがスマートコントラクトとどのように関連するのか学びます。
+次に`packages/contract/contracts`にスマートコントラクトを記述するためのファイルを作成しましょう。
 
-まず、ターミナルに向かいましょう。
+作成するファイルは以下の4つです。
 
-作業したいディレクトリに移動したら、次のコマンドを実行します。
+* DappToken.sol
+* MockDaiToken.sol
+* TokenFarm.sol
 
-```bash
-mkdir Yield-Farm
-cd Yield-Farm
-```
-
-次にテンプレートをフォークしたのちに、それをローカル環境にクローンします。
-
-まだGitHubのアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
-
-GitHubのアカウントをお持ちの方は、[こちら](https://github.com/shiftbase-xyz/yield-farm-starter-project) から、テンプレートである`yield-farm-starter-project`をあなたのGitHubにフォークしましょう。
-
-フォークの方法は、[こちら](https://docs.github.com/ja/get-started/quickstart/fork-a-repo) を参照してください。
-
-ご自身のGitHubアカウントにフォークした`yield-farm-starter-project`リポジトリをあなたのローカル環境にクローンしましょう。
-
-下図のように、`Code`ボタンをクリックした後、`SSH`を選択し、Gitリンクをコピーしましょう。
-
-![](/public/images/ETH-dApp/section-2/2_1_1.png)
-
-> ✍️: SSH の設定を行う
->
-> Github のレポジトリをクローンする際に、SSHKey を作成し、GitHub に公開鍵を登録する必要があります。
->
-> SSH（Secure SHell）はネットワークを経由してマシンを遠隔操作する仕組みのことで、通信が暗号化されているのが特徴的です。
->
-> 主にクライアント（ローカル）からサーバー（リモート）に接続をするときに使われます。この SSH の暗号化について、仕組みを見ていく上で重要になるのが秘密鍵と公開鍵です。
->
-> まずはクライアントのマシンで秘密鍵と公開鍵を作り、公開鍵をサーバーに渡します。そしてサーバー側で「この公開鍵はこのユーザー」というように、紐付けを行っていきます。
->
-> 自分で管理して必ず見せてはいけない秘密鍵と、サーバーに渡して見せても良い公開鍵の 2 つが SSH の通信では重要になってきます。
-> Github における SSH の設定は、[こちら](https://docs.github.com/ja/authentication/connecting-to-github-with-ssh) を参照してください!
-ターミナルで先ほど作成した`yield-farm-starter-project`ディレクトリに移動し、先ほどコピーしたリンクを貼り付け、下記を実行してください。
-
-```bash
-git clone コピーした_github_リンク
-```
-
-この段階で、フォルダ構造は下記のようになっているはずです。
+下のようにディレクトリ構造になっていればOKです。
 
 ```
-Yield-Farm
-   |_ yield-farm-starter-project
+contracts
+├── DappToken.sol
+├── MockDaiToken.sol
+└── TokenFarm.sol
 ```
-
-ターミナル上で`yield-farm-starter-project`に移動して下記を実行しましょう。
-
-```bash
-npm install
-```
-
-`npm`コマンドを実行することで、JavaScriptライブラリのインストールが行われます。
-
-### 💻 ネットワーク情報の編集
-
-テンプレートファイルの中にある`truffle-config.js`というファイルを見てみましょう。ここにはテストに使うGanacheの情報を打ち込む必要があります。
-
-下のGanacheの画像の`NETWORK ID`と書いてある部分の４桁の数字を`truffle.config.js`の`network_id`というところに打ち込んでください。
-
-![](/public/images/ETH-Yield-Farm/section-1/1_2_1.png)
-![](/public/images/ETH-Yield-Farm/section-1/1_2_2.png)
-
-これでGanacheのネットワークを使ってテストができるようになりました!
-
-### 👀 `contracts`フォルダの中身の確認する
-
-次に`src/contracts`にあるスマートコントラクトのコードが書かれているファイルの確認を行いましょう。
 
 このファイルには`MockDaiToken.sol`と`DappToken.sol`が含まれています。
 
-これらのファイルには、それぞれトークンのコードが含まれています。MockDaiトークンは、AstarやLinkなど、既存の仮想通貨を模したトークンです。
+`MockDaiToken.sol`は、AstarやLinkなど、既存の仮想通貨を模したトークンです。
 
-一方、Dappトークンは、ユーザーがステークしたコインやトークンに対して付与されるコミュニティ・トークンを表します。
+一方、`DappToken.sol`は、ユーザーがステークしたコインやトークンに対して付与されるコミュニティ・トークンを表します。
+
 ### 🪙 ERC-20トークンのしくみ
 
 ERC-20は、イーサリアムトークンの構築方法に関するAPI仕様です。これは、トークンを様々なユースケースでサポートできるようにするために、Ethereumコミュニティによって採用された規格です。
@@ -101,7 +46,136 @@ ERC-20標準規格を使用することで、トークンは以下のユース�
 
 `DappToken.sol`と`MockDaiToken.sol`に記述されている機能はほぼ同じです。
 
-ERC-20規格に準拠した機能を理解するために、`DappToken.sol`の内容を見てみましょう。
+ERC-20規格に準拠した機能を実装するために、`DappToken.sol`を下のように編集しましょう。
+
+```
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.18;
+
+contract DappToken {
+  // トークン名を格納
+  string public name = 'DApp Token';
+  // 暗号通貨交換用のトークンシンボルを格納
+  string public symbol = 'DAPP';
+  // 存在するトークンの総供給量を格納
+  uint256 public totalSupply = 1000000000000000000000000; // 1 million tokensを供給
+  uint8 public decimals = 18;
+
+  event Transfer(address indexed _from, address indexed _to, uint256 _value);
+
+  event Approval(
+    address indexed _owner,
+    address indexed _spender,
+    uint256 _value
+  );
+
+  // Solidityマッピングを使用して、トークンを所有する各アカウントの残高を保存
+  mapping(address => uint256) public balanceOf;
+  mapping(address => mapping(address => uint256)) public allowance;
+
+  constructor() {
+    balanceOf[msg.sender] = totalSupply;
+  }
+
+  // ユーザーがトークンを別のアカウントに送信できるようにする機能を実装
+  function transfer(address _to, uint256 _value) public returns (bool success) {
+    require(balanceOf[msg.sender] >= _value);
+    balanceOf[msg.sender] -= _value;
+    balanceOf[_to] += _value;
+    emit Transfer(msg.sender, _to, _value);
+    return true;
+  }
+
+  // 暗号通貨交換のように、別のアカウントがトークンを使用できるようにする機能を実装
+  // これにより、allowanceマッピングが更新され、アカウントが使用できる金額を確認できる
+  function approve(
+    address _spender,
+    uint256 _value
+  ) public returns (bool success) {
+    allowance[msg.sender][_spender] = _value;
+    emit Approval(msg.sender, _spender, _value);
+    return true;
+  }
+
+  // 別のアカウントからトークンを転送できるようにする
+  function transferFrom(
+    address _from,
+    address _to,
+    uint256 _value
+  ) public returns (bool success) {
+    require(_value <= balanceOf[_from]);
+    require(_value <= allowance[_from][msg.sender]);
+    balanceOf[_from] -= _value;
+    balanceOf[_to] += _value;
+    allowance[_from][msg.sender] -= _value;
+    emit Transfer(_from, _to, _value);
+    return true;
+  }
+}
+```
+
+次に`MockDaiToken.sol`を以下のように編集しましょう。
+```
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.18;
+
+contract DaiToken {
+  string public name = 'Mock DAI Token';
+  string public symbol = 'mDAI';
+  uint256 public totalSupply = 1000000000000000000000000; // 1 million tokens
+  uint8 public decimals = 18;
+
+  event Transfer(address indexed _from, address indexed _to, uint256 _value);
+
+  event Approval(
+    address indexed _owner,
+    address indexed _spender,
+    uint256 _value
+  );
+
+  mapping(address => uint256) public balanceOf;
+  mapping(address => mapping(address => uint256)) public allowance;
+
+  constructor() {
+    balanceOf[msg.sender] = totalSupply;
+  }
+
+  function transfer(address _to, uint256 _value) public returns (bool success) {
+    require(balanceOf[msg.sender] >= _value);
+    balanceOf[msg.sender] -= _value;
+    balanceOf[_to] += _value;
+    emit Transfer(msg.sender, _to, _value);
+    return true;
+  }
+
+  function approve(
+    address _spender,
+    uint256 _value
+  ) public returns (bool success) {
+    allowance[msg.sender][_spender] = _value;
+    emit Approval(msg.sender, _spender, _value);
+    return true;
+  }
+
+  function transferFrom(
+    address _from,
+    address _to,
+    uint256 _value
+  ) public returns (bool success) {
+    require(_value <= balanceOf[_from]);
+    require(_value <= allowance[_from][msg.sender]);
+    balanceOf[_from] -= _value;
+    balanceOf[_to] += _value;
+    allowance[_from][msg.sender] -= _value;
+    emit Transfer(_from, _to, _value);
+    return true;
+  }
+}
+```
+
+これでトークンの準備は完了しました。これら2つのファイルはほとんど同じ記述をしています。
+
+ではトークンのコントラクトがどのような構成になっているのかみていきましょう！
 
 まず、`DappToken.sol`の4-10行目に注目してください。
 

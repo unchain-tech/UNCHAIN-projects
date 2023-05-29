@@ -1,5 +1,51 @@
 lesson2,3で行うことは、今までunchain projectをやってきた方々には当たり前のことかもしれないので、環境構築だけぱっぱとやってしまいましょう!
 
+### 🍽 Git リポジトリをあなたの GitHub にフォークする
+
+まだGitHubのアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
+
+GitHubのアカウントをお持ちの方は、[スターターキット](https://github.com/unchain-tech/ETH-NFT-Maker) から、フロントエンドの基盤となるリポジトリをあなたのGitHubにフォークしましょう。フォークの方法は、[こちら](https://denno-sekai.com/github-fork/) を参照してください。
+
+あなたのGitHubアカウントにフォークした`ETH-NFT-Maker`リポジトリを、ローカル環境にクローンしてください。
+
+まず、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
+
+
+ターミナル上で`ETH-NFT-Maker/packages`ディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
+
+```bash
+git clone コピーした_github_リンク
+```
+
+ターミナル上で`ETH-NFT-Maker`ディレクトリ下に移動して下記を実行しましょう。
+
+```bash
+yarn install
+```
+
+`yarn`コマンドを実行することで、JavaScriptライブラリのインストールが行われます。
+
+次に、下記を実行してみましょう。
+
+```bash
+yarn client start
+```
+
+あなたのローカル環境で、Webサイトのフロントエンドが立ち上がりましたか？
+
+例)ローカル環境で表示されているWebサイト
+
+![](/public/images/ETH-NFT-Maker/section-3/3_1_1.png)
+
+上記のような形でフロントエンドが確認できれば成功です。
+
+これからフロントエンドの表示を確認したい時は、ターミナルに向かい、`ETH-NFT-Maker`ディレクトリ上で、`npm start`を実行します。これからも必要となる作業ですので、よく覚えておいてください。
+
+ターミナルを閉じるときは、以下のコマンドが使えます ✍️
+
+- Mac: `ctrl + c`
+- Windows: `ctrl + shift + w`
+
 ### ✨ Hardhat をインストールする
 
 スマートコントラクトをすばやくコンパイルし、ローカル環境にてテストを行うために、**Hardhat** というツールを使用します。
@@ -12,120 +58,7 @@ lesson2,3で行うことは、今までunchain projectをやってきた方々�
 
 `node v16`をインストールすることを推奨しています。
 
-それでは本プロジェクトで使用するフォルダーを作成してきましょう。作業を始めるディレクトリに移動したら、次のコマンドを実行します。
-
-```bash
-mkdir ETH-NFT-Maker
-cd ETH-NFT-Maker
-yarn init --private -y
-```
-
-ETH-NFT-Makerディレクトリ内に、package.jsonファイルが生成されます。
-
-```bash
-ETH-NFT-Maker
- └── package.json
-```
-
-それでは、`package.json`ファイルを以下のように更新してください。
-
-```json
-{
-  "name": "ETH-NFT-Maker",
-  "version": "1.0.0",
-  "description": "Creating NFT Makers",
-  "private": true,
-  "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
-  },
-  "scripts": {
-    "contract": "yarn workspace contract",
-    "client": "yarn workspace client",
-    "test": "yarn workspace contract test"
-  }
-}
-```
-
-`package.json`ファイルの内容を確認してみましょう。
-
-モノレポを作成するにあたり、パッケージマネージャーの機能である[Workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/)を利用しています。
-
-この機能により、yarn installを一度だけ実行すれば、すべてのパッケージ（今回はコントラクトのパッケージとクライアントのパッケージ）を一度にインストールできるようになります。
-
-**workspaces**の定義をしている部分は以下になります。
-
-```json
-"workspaces": {
-  "packages": [
-    "packages/*"
-  ]
-},
-```
-
-また、ワークスペース内の各パッケージにアクセスするためのコマンドを以下の部分で定義しています。
-
-```json
-"scripts": {
-  "contract": "yarn workspace contract",
-  "client": "yarn workspace client",
-  "test": "yarn workspace contract test"
-}
-```
-
-これにより、各パッケージのディレクトリへ階層を移動しなくてもプロジェクトのルート直下から以下のようにコマンドを実行することが可能となります（ただし、各パッケージ内に`package.json`ファイルが存在し、その中にコマンドが定義されていないと実行できません。そのため、現在は実行してもエラーとなります。ファイルは後ほど作成します）。
-
-```bash
-yarn <パッケージ名> <実行したいコマンド>
-```
-
-それでは、ワークスペースのパッケージを格納するディレクトリを作成しましょう。
-
-以下のようなフォルダー構成となるように、`packages`ディレクトリとその中に`contract`ディレクトリを作成してください（`client`ディレクトリは、後ほどのレッスンでスターターコードをクローンする際に作成したいと思います）。
-
-```diff
-ETH-NFT-Maker
- ├── package.json
-+└── packages/
-+    └── contract/
-```
-
-`contract`ディレクトリには、スマートコントラクトを構築するためのファイルを作成していきます。
-
-最後に、ETH-NFT-Makerディレクトリ下に`.gitignore`ファイルを作成して以下の内容を書き込みます。
-
-```bash
-**/yarn-error.log*
-
-# dependencies
-**/node_modules
-
-# misc
-**/.DS_Store
-```
-
-最終的に以下のようなフォルダー構成となっていることを確認してください。
-
-```bash
-ETH-NFT-Maker
- ├── .gitignore
- ├── package.json
- └── packages/
-     └── contract/
-```
-
-これでモノレポの雛形が完成しました！
-
-### ✨ Hardhat をインストールする
-
-スマートコントラクトをすばやくコンパイルし、ローカル環境にてテストを行うために、**Hardhat** というツールを使用します。
-
-- Hardhatにより、ローカル環境でイーサリアムネットワークを簡単に起動し、テストネットでイーサリアムを利用できます。
-
-- 「サーバー」がブロックチェーンであることを除けば、Hardhatはローカルサーバーと同じです。
-
-それでは、先ほど作成した`packages/contract`ディレクトリ内にファイルを作成します。ターミナルに向かい、packages/contract`ディレクトリ内で以下のコマンドを実行します。
+それでは、`packages/contract`ディレクトリ内にファイルを作成します。ターミナルに向かい、packages/contract`ディレクトリ内で以下のコマンドを実行します。
 
 ```bash
 cd packages/contract
