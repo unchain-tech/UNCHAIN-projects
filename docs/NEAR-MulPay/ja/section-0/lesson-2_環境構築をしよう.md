@@ -318,18 +318,6 @@ NEAR-Mulpay
 
 不要な定義を削除し、hardhatの自動テストを実行するためのコマンドを追加しました。
 
-次に、安全なスマートコントラクトを開発するために使用されるライブラリ **OpenZeppelin** をインストールします。
-
-`packages/contract`ディレクトリにいることを確認し、以下のコマンドを実行してください。
-
-```bash
-yarn add --dev @openzeppelin/contracts
-```
-
-[OpenZeppelin](https://github.com/OpenZeppelin/openzeppelin-contracts) はイーサリアムネットワーク上で安全なスマートコントラクトを実装するためのフレームワークです。
-
-OpenZeppelinには非常に多くの機能が実装されておりインポートするだけで安全にその機能を使うことができます。
-
 ### ⭐️ 実行する
 
 すべてが機能していることを確認するには、以下を実行します。
