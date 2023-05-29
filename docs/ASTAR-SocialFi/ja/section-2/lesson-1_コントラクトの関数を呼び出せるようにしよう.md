@@ -262,7 +262,9 @@ export const connectToContract = async (props: Props) => {
 };
 ```
 
-まずは必要なライブラリを下のコマンドをターミナルで実行することによりインストールしましょう。
+まずは必要なライブラリをインストールしましょう。
+
+`packages/client`ディレクトリへ移動して下記のコマンドを実行しましょう。
 
 ```
 yarn add @polkadot/api @polkadot/extension-inject @polkadot/extension-dapp
@@ -444,7 +446,7 @@ export const getLastMessage = async (props: PropsGLM) => {
 まずは必要なライブラリを下のコマンドをターミナルで実行することによってインストールしましょう。
 
 ```
-npm install @polkadot/api-contract
+yarn add @polkadot/api-contract
 ```
 
 次に`metadata.json`については先ほど作成した`astar_sns_contract`プロジェクトの`metadata.json`をディレクトリ構造の一番上の階層にコピー&ペーストしましょう。
