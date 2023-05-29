@@ -81,7 +81,7 @@ NEAR-Election-dApp
 {
   "name": "NEAR-Election-dApp",
   "version": "1.0.0",
-  "description": "Creating NFT Collections",
+  "description": "Create election dapp",
   "private": true,
   "workspaces": {
     "packages": [
