@@ -25,8 +25,6 @@
 
 まだGitHubのアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
-その後`packages`ディレクトリに移動します。
-
 GitHubのアカウントをお持ちの方は、下記の手順に沿ってプロジェクトの基盤となるリポジトリをあなたのGitHubに[フォーク](https://denno-sekai.com/github-fork/)しましょう。
 
 1. [こちら](https://github.com/unchain-tech/ETH-DAO)からunchain-tech/ETH-DAOリポジトリにアクセスをして、ページ右上の`Fork`ボタンをクリックします。
