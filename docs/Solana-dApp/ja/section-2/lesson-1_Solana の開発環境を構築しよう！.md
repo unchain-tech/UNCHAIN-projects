@@ -207,7 +207,7 @@ wallet = "/Users/{YOUR_USERNAME}/.config/solana/id.json" # YOUR_USERNAMEは自�
 
 実は、Anchorを利用することでこれらの手順を1つステップで実行できます。
 
-では`Solana-dApp`ディレクトリへ戻って、以下のコマンドを実行してみてください。
+ではルートディレクトリへ戻って、以下のコマンドを実行してみてください。
 
 ```bash
 yarn contract test
