@@ -241,25 +241,25 @@ ethereumトークンにおける`ether`と`wei`の関係のようなものです
 `test`ディレクトリの下に`AMM.ts`を作成し, 以下のコードを記述してください。
 
 ```ts
-import { ethers } from "hardhat";
-import { BigNumber } from "ethers";
-import { expect } from "chai";
-import { loadFixture } from "@nomicfoundation/hardhat-network-helpers";
+import { ethers } from 'hardhat';
+import { BigNumber } from 'ethers';
+import { expect } from 'chai';
+import { loadFixture } from '@nomicfoundation/hardhat-network-helpers';
 
-describe("AMM", function () {
+describe('AMM', function () {
   async function deployContract() {
     const [owner, otherAccount] = await ethers.getSigners();
 
-    const amountForOther = ethers.utils.parseEther("5000");
-    const USDCToken = await ethers.getContractFactory("USDCToken");
+    const amountForOther = ethers.utils.parseEther('5000');
+    const USDCToken = await ethers.getContractFactory('USDCToken');
     const usdc = await USDCToken.deploy();
     await usdc.faucet(otherAccount.address, amountForOther);
 
-    const JOEToken = await ethers.getContractFactory("JOEToken");
+    const JOEToken = await ethers.getContractFactory('JOEToken');
     const joe = await JOEToken.deploy();
     await joe.faucet(otherAccount.address, amountForOther);
 
-    const AMM = await ethers.getContractFactory("AMM");
+    const AMM = await ethers.getContractFactory('AMM');
     const amm = await AMM.deploy(usdc.address, joe.address);
 
     return {
@@ -271,8 +271,8 @@ describe("AMM", function () {
     };
   }
 
-  describe("init", function () {
-    it("init", async function () {
+  describe('init', function () {
+    it('init', async function () {
       const { amm } = await loadFixture(deployContract);
 
       expect(await amm.totalShare()).to.eql(BigNumber.from(0));

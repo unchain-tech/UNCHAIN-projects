@@ -71,8 +71,8 @@
 `test/AMM.ts`内のテストの最後の行に以下のコードを追加してください。
 
 ```ts
-describe("getWithdrawEstimate", function () {
-  it("Should get the right number of estimated amount", async function () {
+describe('getWithdrawEstimate', function () {
+  it('Should get the right number of estimated amount', async function () {
     const {
       amm,
       token0,
@@ -104,8 +104,8 @@ otherAccountは`amountOtherProvided0`と`amountOtherProvided1`だけそれぞれ
 続いてその下に以下のテストを追加しましょう。
 
 ```ts
-describe("withdraw", function () {
-  it("Token should be moved", async function () {
+describe('withdraw', function () {
+  it('Token should be moved', async function () {
     const {
       amm,
       token0,
@@ -139,7 +139,7 @@ describe("withdraw", function () {
     );
   });
 
-  it("Should set the right number of amm details", async function () {
+  it('Should set the right number of amm details', async function () {
     const {
       amm,
       token0,
@@ -155,7 +155,7 @@ describe("withdraw", function () {
     await amm.connect(otherAccount).withdraw(share);
 
     const precision = await amm.PRECISION();
-    const BN100 = BigNumber.from("100");
+    const BN100 = BigNumber.from('100');
 
     expect(await amm.totalShare()).to.equal(BN100.mul(precision));
     expect(await amm.share(owner.address)).to.equal(BN100.mul(precision));

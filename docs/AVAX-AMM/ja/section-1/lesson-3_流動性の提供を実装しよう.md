@@ -291,8 +291,8 @@ TokenX.transferFrom(Aのアドレス, Bのアドレス, 30);
 - 変更すると環境によって赤の波線が表示される箇所があるかもしれませんが,テストを実行すると消えますので,一旦気にせず進めてください。
 
 ```ts
-describe("provide", function () {
-  it("Token should be moved", async function () {
+describe('provide', function () {
+  it('Token should be moved', async function () {
     const { amm, token0, token1, owner } = await loadFixture(deployContract);
 
     const ownerBalance0Before = await token0.balanceOf(owner.address);
@@ -303,8 +303,8 @@ describe("provide", function () {
 
     // 今回使用する2つのトークンはETHと同じ単位を使用するとしているので,
     // 100 ether (= 100 * 10^18) 分をprovideするという意味です。
-    const amountProvide0 = ethers.utils.parseEther("100");
-    const amountProvide1 = ethers.utils.parseEther("200");
+    const amountProvide0 = ethers.utils.parseEther('100');
+    const amountProvide1 = ethers.utils.parseEther('200');
 
     await token0.approve(amm.address, amountProvide0);
     await token1.approve(amm.address, amountProvide1);
@@ -368,8 +368,8 @@ async function deployContractWithLiquidity() {
     deployContract
   );
 
-  const amountOwnerProvided0 = ethers.utils.parseEther("100");
-  const amountOwnerProvided1 = ethers.utils.parseEther("200");
+  const amountOwnerProvided0 = ethers.utils.parseEther('100');
+  const amountOwnerProvided1 = ethers.utils.parseEther('200');
 
   await token0.approve(amm.address, amountOwnerProvided0);
   await token1.approve(amm.address, amountOwnerProvided1);
@@ -380,8 +380,8 @@ async function deployContractWithLiquidity() {
     amountOwnerProvided1
   );
 
-  const amountOtherProvided0 = ethers.utils.parseEther("10");
-  const amountOtherProvided1 = ethers.utils.parseEther("20");
+  const amountOtherProvided0 = ethers.utils.parseEther('10');
+  const amountOtherProvided1 = ethers.utils.parseEther('20');
 
   await token0.connect(otherAccount).approve(amm.address, amountOtherProvided0);
   await token1.connect(otherAccount).approve(amm.address, amountOtherProvided1);
@@ -408,8 +408,8 @@ async function deployContractWithLiquidity() {
 }
 
 // deployContractWithLiquidity 後の初期値のチェックをします。
-describe("Deploy with liquidity", function () {
-  it("Should set the right number of amm details", async function () {
+describe('Deploy with liquidity', function () {
+  it('Should set the right number of amm details', async function () {
     const {
       amm,
       token0,
@@ -423,8 +423,8 @@ describe("Deploy with liquidity", function () {
     } = await loadFixture(deployContractWithLiquidity);
 
     const precision = await amm.PRECISION();
-    const BN100 = BigNumber.from("100"); // ownerのシェア: 最初の流動性提供者なので100
-    const BN10 = BigNumber.from("10"); // otherAccountのシェア: ownerに比べて10分の1だけ提供しているので10
+    const BN100 = BigNumber.from('100'); // ownerのシェア: 最初の流動性提供者なので100
+    const BN10 = BigNumber.from('10'); // otherAccountのシェア: ownerに比べて10分の1だけ提供しているので10
 
     expect(await amm.totalShare()).to.equal(BN100.add(BN10).mul(precision));
     expect(await amm.share(owner.address)).to.equal(BN100.mul(precision));
@@ -465,15 +465,15 @@ ammから取得したownerのシェアはPRECISIONの値だけ大きいので,
 最後に以下のコードを`Deploy with liquidity`テストの後に追加してください。
 
 ```ts
-describe("getEquivalentToken", function () {
-  it("Should get the right number of equivalent token", async function () {
+describe('getEquivalentToken', function () {
+  it('Should get the right number of equivalent token', async function () {
     const { amm, token0, token1 } = await loadFixture(
       deployContractWithLiquidity
     );
 
     const totalToken0 = await amm.totalAmount(token0.address);
     const totalToken1 = await amm.totalAmount(token1.address);
-    const amountProvide0 = ethers.utils.parseEther("10");
+    const amountProvide0 = ethers.utils.parseEther('10');
     // totalToken0 : totalToken1 = amountProvide0 : equivalentToken1
     const equivalentToken1 = amountProvide0.mul(totalToken1).div(totalToken0);
 
