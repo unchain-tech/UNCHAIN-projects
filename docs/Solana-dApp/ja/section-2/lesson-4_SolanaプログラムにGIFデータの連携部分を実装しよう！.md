@@ -174,7 +174,7 @@ runMain();
 それでは、以下のコマンドを実行してテストを行いましょう。
 
 ```bash
-anchor test
+yarn contract test
 ```
 
 以下のように表示されていればOKです。

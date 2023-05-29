@@ -50,7 +50,7 @@ let baseAccount = Keypair.generate();
 
 これを修正するためには、すべてのユーザーが共有する1つのキーペアを用意してあげる必要があります。
 
-そのために、`src`ディレクトリの下に`createKeyPair.js`という名前のファイルを作成し、以下のコードを貼り付けてください。
+そのために、`packages/client/src`ディレクトリの下に`createKeyPair.js`という名前のファイルを作成し、以下のコードを貼り付けてください。
 
 ```javascript
 // createKeyPair.js
@@ -69,14 +69,14 @@ fs.writeFileSync('./keypair.json', JSON.stringify(account))
 
 `createKeyPair.js`の準備ができたら以下のコマンドをそれぞれ実行してください。
 
-※ `src`ディレクトリ内に移動したことを確認してから`node createKeyPair.js`コマンドを実行してください。
+※ `paclages/client/src`ディレクトリ内に移動したことを確認してから`node createKeyPair.js`コマンドを実行してください。
 
 ```bash
-cd src
+cd paclages/client/src
 node createKeyPair.js
 ```
 
-無事に実行されると、`src`内に`keypair.json`という名前の共有キーペアができあがります。
+無事に実行されると、`paclages/client/src`内に`keypair.json`という名前の共有キーペアができあがります。
 
 次に、`App.js`を少し変更します。
 

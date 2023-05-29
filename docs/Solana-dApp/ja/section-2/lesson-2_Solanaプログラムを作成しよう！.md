@@ -10,7 +10,7 @@
 
 VS Codeで`myepicproject`を開きましょう。
 
-そして、`programs/myepicproject/src/lib.rs`と`tests/myepicproject.js`の中身を **削除** します。
+そして、`programs/myepicproject/src/lib.rs`と`tests/myepicproject.js`の **中身を削除** します。
 
 実際にファイルを削除するのではなく、ファイルの中のコードだけを削除してください。
 
@@ -170,7 +170,7 @@ test = "node tests/myepicproject.js"
 ※ VS Codeを使用している場合は、変更したファイルを全て保存してから実行してください。
 
 ```bash
-anchor test
+yarn contract test
 ```
 
 以下のように出力されていればOKです。

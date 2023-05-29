@@ -192,7 +192,7 @@ console.log('👀 GIF Count', account.totalGifs.toString())
 
 ここでは、作成したアカウントを取得して、`totalGifs`にアクセスしています。
 
-`anchor test`コマンドを実行すると以下のように表示されます。
+`yarn contract test`コマンドを実行すると以下のように表示されます。
 
 ```bash
 🚀 Starting test...
@@ -345,7 +345,7 @@ runMain();
 以下のコマンドを実行してみましょう。
 
 ```bash
-anchor test
+yarn contract test
 ```
 
 以下のように表示されればOKです。
@@ -361,9 +361,9 @@ anchor test
 
 > ⚠️ 注意
 >
-> `anchor test`を再度実行すると GIF カウンターが 0 から始まります。
+> `yarn contract test`を再度実行すると GIF カウンターが 0 から始まります。
 >
-> これは、`anchor.web3.Keypair.generate()`によって、`anchor test`のたびにアカウントのキーペアが生成されるためです。
+> これは、`anchor.web3.Keypair.generate()`によって、`yarn contract test`のたびにアカウントのキーペアが生成されるためです。
 >
 > Web アプリケーションではこの対処を行いますが、テスト時には毎回はじめから確認できるので便利です。
 
