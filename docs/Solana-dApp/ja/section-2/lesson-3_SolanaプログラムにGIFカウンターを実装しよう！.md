@@ -363,7 +363,7 @@ yarn contract test
 >
 > `yarn contract test`を再度実行すると GIF カウンターが 0 から始まります。
 >
-> これは、`anchor.web3.Keypair.generate()`によって、`yarn contract test`のたびにアカウントのキーペアが生成されるためです。
+> これは、`anchor.web3.Keypair.generate()`によって、`anchor test`のたびにアカウントのキーペアが生成されるためです。
 >
 > Web アプリケーションではこの対処を行いますが、テスト時には毎回はじめから確認できるので便利です。
 
