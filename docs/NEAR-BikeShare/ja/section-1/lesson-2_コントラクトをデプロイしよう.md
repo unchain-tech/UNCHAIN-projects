@@ -31,11 +31,11 @@ $ cp target/wasm32-unknown-unknown/release/fungible_token.wasm ../res
 **サプアカウントの作成**
 
 NEARではコントラクトを**アカウントへデプロイ**するという形をとります。
-なのでコントラクトをデプロイするには, デプロイ先のアカウントがあることが前提となります。
+なのでコントラクトをデプロイするには、デプロイ先のアカウントがあることが前提となります。
 そしてNEARのアカウントにはサブアカウントを作ることができます。
 サブアカウントを作る際は既存のアカウントの前に追加する名前と`.`をつけます。
-既存のアカウント名が`alice.testnet`とすると, `bob.alice.testnet`や`mike.alice.testnet`のようなサブアカウントを作成することができます。
-さらに`bob.alice.testnet`には`mike.bob.alice.testnet`というように, `.`と追加する名前を既存のアカウントの先頭につけることでサブアカウントを増やしていくことができます。
+既存のアカウント名が`alice.testnet`とすると、`bob.alice.testnet`や`mike.alice.testnet`のようなサブアカウントを作成することができます。
+さらに`bob.alice.testnet`には`mike.bob.alice.testnet`というように、`.`と追加する名前を既存のアカウントの先頭につけることでサブアカウントを増やしていくことができます。
 
 サブアカウントは作成と削除が容易なので,
 コントラクトをサブアカウントにデプロイしておき,
@@ -50,7 +50,7 @@ $ export ID=ft_account.testnet
 
 ※`echo $ID`でexportできているか確認しましょう!
 
-サブアカウント名は好きなもので良いですが, ここでは`sub.ft_account.testnet`で進めていきます。
+サブアカウント名は好きなもので良いですが、ここでは`sub.ft_account.testnet`で進めていきます。
 以下のコマンドで`ft_account.testnet`にサブアカウントを作成します。
 
 ```
@@ -65,7 +65,7 @@ Account sub.ft_account.testnet for network "testnet" was created.
 
 `--initialBalance`でサブアカウントに持たせるNEAR tokenの量を指定しています。
 アカウントは作成時に200NEARを受け取れるのでそこから30 NEAR分けているということです。
-もし既存のアカウントの所持するtokenの量が足りずにエラーが出る場合は, [NEAR faucet](https://near-faucet.io/)からNEARを受け取る,
+もし既存のアカウントの所持するtokenの量が足りずにエラーが出る場合は、[NEAR faucet](https://near-faucet.io/)からNEARを受け取る,
 またはアカウントを再作成してからやり直しましょう。
 
 **デプロイ**
@@ -90,9 +90,9 @@ Done deploying to sub.ft_account.testnet
 > $ near delete sub.$ID $ID
 > ```
 >
-> でサブアカウントごと削除した後, もう一度サブアカウント作成~デプロイまでの流れを実行することで可能です。
+> でサブアカウントごと削除した後、もう一度サブアカウント作成~デプロイまでの流れを実行することで可能です。
 
-うまくいかない方は, アカウントの再作成（作成時にNEARがもらえます）, `near login`での再ログインを試してみましょう。
+うまくいかない方は、アカウントの再作成（作成時にNEARがもらえます）、`near login`での再ログインを試してみましょう。
 
 ### 🙋‍♂️ 質問する
 

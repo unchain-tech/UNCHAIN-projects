@@ -125,9 +125,9 @@ Vercelはサーバーレス機能のホスティングを提供するクラウ�
 
 Vercelに関する詳しい説明は、[こちら](https://zenn.dev/lollipop_onl/articles/eoz-vercel-pricing-2020)をご覧ください。
 
-まず、GitHubの`dApp-starter-project`にローカルファイルをアップロードしていきます。
+まず、GitHubの`ETH-dApp`にローカルファイルをアップロードしていきます。
 
-ターミナル上で`dApp-starter-project`に移動して、下記を実行しましょう。
+ターミナル上で`ETH-dApp`に移動して、下記を実行しましょう。
 
 ```
 git add .
@@ -135,7 +135,7 @@ git commit -m "upload to github"
 git push
 ```
 
-次に、GitHub上の`dApp-starter-project`にローカル環境に存在する`dApp-starter-project`のファイルとディレクトリが反映されていることを確認してください。
+次に、GitHub上の`ETH-dApp`にローカル環境に存在する`ETH-dApp`のファイルとディレクトリが反映されていることを確認してください。
 
 Vercelのアカウントを取得したら、下記を実行しましょう。
 
@@ -143,18 +143,13 @@ Vercelのアカウントを取得したら、下記を実行しましょう。
 
 ![](/public/images/ETH-dApp/section-4/4_2_4.png)
 
-2\. `Import Git Repository`で自分のGitHubアカウントを接続したら、`dApp-starter-project`を選択し、`Import`してください。
+2\. `Import Git Repository`で自分のGitHubアカウントを接続したら、`ETH-dApp`を選択し、`Import`してください。
 
 ![](/public/images/ETH-dApp/section-4/4_2_5.png)
 
-3\. プロジェクトを作成します。
+3\. プロジェクトを作成します。`Root Directory`が「packages/client」となっていることを確認してください。
 
-`Environment Variable`に下記を追加します。
-
-- `NAME`＝`CI`
-- `VALUE`＝`false`（下図参照）
-
-![](/public/images/ETH-dApp/section-4/4_2_6.png)
+![](/public/images/ETH-NFT-Collection/section-4/4_2_9.png)
 
 4\. `Deploy`ボタンを推しましょう。
 
@@ -173,13 +168,13 @@ VercelはGitHubと連動しているので、GitHubが更新されるたびに�
 
 ### 🙉 GitHub に関するメモ
 
-**※今回は`dApp-starter-project`のみをアップロードするため、以下の作業は必要ありません**
-**GitHub にコントラクト( `my-wave-portal`)のコードをアップロードする際は、秘密鍵を含むハードハット構成ファイルをリポジトリにアップロードしないよう注意しましょう**
+**※今回は`ETH-dApp`のみをアップロードするため、以下の作業は必要ありません**
+**GitHub にコントラクト( `contract`)のコードをアップロードする際は、秘密鍵を含むハードハット構成ファイルをリポジトリにアップロードしないよう注意しましょう**
 
-秘密鍵などのファイルを隠すために、ターミナルで`my-wave-portal`に移動して、下記を実行してください。
+秘密鍵などのファイルを隠すために、ターミナルで`contract`に移動して、下記を実行してください。
 
 ```bash
-npm install --save dotenv
+yarn install --save dotenv
 ```
 
 `dotenv`モジュールに関する詳しい説明は、[こちら](https://maku77.github.io/nodejs/env/dotenv.html)を参照してください。
@@ -192,7 +187,7 @@ npm install --save dotenv
 
 操作されては困るファイルについては、このように「不可視」の属性を持たせて、一般の人が触れられないようにします。
 
-ターミナル上で`my-wave-portal`ディレクトリにいることを確認し、下記を実行しましょう。VS Codeから`.env`ファイルを開きます。
+ターミナル上で`contract`ディレクトリにいることを確認し、下記を実行しましょう。VS Codeから`.env`ファイルを開きます。
 
 ```
 code .env
