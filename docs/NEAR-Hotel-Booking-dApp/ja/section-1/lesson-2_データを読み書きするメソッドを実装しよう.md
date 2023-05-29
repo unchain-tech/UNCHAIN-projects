@@ -35,7 +35,7 @@ impl Default for Contract
 ```
 
 関数の中では、`rooms_per_owner`と`rooms_by_id`のインスタンスを`new()`で生成しています。
-<!-- TODO: newの引数について説明を入れる（違い）。-->
+
 `LookupMap`は`new()`に`b"m"`を引数に渡します。これは、`new()`が`LookupMap`のインスタンスを生成する際に、キーの一意なプレフィックスを設置するためです。`b"..."`は、バイト文字列リテラルを生成する`Rust`のキーワードです。
 
 ```rust
