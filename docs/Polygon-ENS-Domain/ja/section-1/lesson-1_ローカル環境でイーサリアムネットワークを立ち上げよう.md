@@ -150,7 +150,7 @@ $ npx hardhat
 👷 Welcome to Hardhat v2.13.0 👷‍
 
 ✔ What do you want to do? · Create a JavaScript project
-✔ Hardhat project root: · /ETH-dApp/packages/contract
+✔ Hardhat project root: · /Polygon-ENS-Domain/packages/contract
 ✔ Do you want to add a .gitignore? (Y/n) · y
 
 ✨ Project created ✨
@@ -177,7 +177,7 @@ Give Hardhat a star on Github if you're enjoying it! 💞✨
 この段階で、フォルダー構造は下記のようになっていることを確認してください。
 
 ```diff
-ETH-dApp
+Polygon-ENS-Domain
  ├── .gitignore
  ├── package.json
  └── packages/
@@ -252,7 +252,7 @@ npx hardhat test
 
 次のように表示されます。
 
-![](/public/images/ETH-dApp/section-1/1_2_1.png)
+![](/public/images/Polygon-ENS-Domain/section-1/1_2_1.png)
 
 ターミナル上で`ls`と入力してみて、下記のフォルダーとファイルが表示されていたら成功です。
 
