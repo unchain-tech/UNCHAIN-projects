@@ -260,7 +260,7 @@ Contract deployed to:  0x3610145E4c6C801bBf2F926DFd8FDd2cE1103493
 
 `Contract deployed to`に続く出力結果をどこかにメモしていた場合は、このままレッスンを進めましょう。
 
-再度この結果を出力する場合は、ターミナル上で`my-wave-portal`ディレクトリに移動し、下記を実行してください。
+再度この結果を出力する場合は、ターミナル上で`contract`ディレクトリに移動し、下記を実行してください。
 
 ```
 npx hardhat run scripts/deploy.js --network sepolia
@@ -298,7 +298,7 @@ Webアプリケーションがコントラクトと通信するために必要�
 
 ABIファイルは、コントラクトがコンパイルされた時に生成され、`artifacts`ディレクトリに自動的に格納されます。
 
-ターミナルで`my-wave-portal`ディレクトリに移動し、`ls`を実行しましょう。
+ターミナルで`contract`ディレクトリに移動し、`ls`を実行しましょう。
 
 `artifacts`ディレクトリの存在を確認してください。
 
@@ -306,7 +306,7 @@ ABIファイルの中身は、`WavePortal.json`というファイルに格納さ
 
 下記を実行して、ABIファイルをコピーしましょう。
 
-1. ターミナル上で`my-wave-portal`にいることを確認する（もしくは移動する）。
+1. ターミナル上で`contract`にいることを確認する（もしくは移動する）。
 
 2. ターミナル上で下記を実行し、`WavePortal.json`を開きましょう。※ ファインダーから直接開くことも可能です。
 
@@ -318,9 +318,9 @@ ABIファイルの中身は、`WavePortal.json`というファイルに格納さ
 
 次に、下記を実行して、ABIファイルをWebアプリケーションから呼び出せるようにしましょう。
 
-1. ターミナル上で`dApp-starter-project/src`に移動する。
+1. ターミナル上で`client/src`に移動する。
 
-2. 下記を実行して、`dApp-starter-project/src/`の中に`utils`ディレクトリを作成する。
+2. 下記を実行して、`client/src/`の中に`utils`ディレクトリを作成する。
 
 > ```bash
 > mkdir utils
@@ -335,10 +335,10 @@ ABIファイルの中身は、`WavePortal.json`というファイルに格納さ
 1. 下記を実行して、`WavePortal.json`ファイルをVS Codeで開く。
 
 > ```bash
-> code dApp-starter-project/src/utils/WavePortal.json
+> code client/src/utils/WavePortal.json
 > ```
 
-5. **先ほどコピーした`my-wave-portal/artifacts/contracts/WavePortal.sol/WavePortal.json`の中身を新しく作成した`dApp-starter-project/src/utils/WavePortal.json`の中に貼り付けてください。**
+5. **先ほどコピーした`contract/artifacts/contracts/WavePortal.sol/WavePortal.json`の中身を新しく作成した`client/src/utils/WavePortal.json`の中に貼り付けてください。**
 
 ABIファイルの準備ができたので、`App.js`にインポートしましょう。
 
@@ -601,10 +601,10 @@ const wave = async () => {
 
 ### 🚀 テストを実行する
 
-ターミナル上で`dApp-starter-project`に移動し、下記を実行しましょう。
+ターミナル上で、下記を実行しましょう。
 
 ```
-npm run start
+yarn client start
 ```
 
 ローカルサーバー上で表示されているWebアプリケーションで`Inspect`を実行し、以下を試してみましょう。

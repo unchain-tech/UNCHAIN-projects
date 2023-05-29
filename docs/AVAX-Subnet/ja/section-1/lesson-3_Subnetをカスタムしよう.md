@@ -2,12 +2,12 @@
 
 このレッスンではSubnetをカスタムします。
 
-`genesis file`を作成し, それを元にSubnetを作成することで独自のカスタムを加えることができます。
+`genesis file`を作成し、それを元にSubnetを作成することで独自のカスタムを加えることができます。
 
 > 📓 genesis file  
 > Subnetの初期設定を含むファイルです。  
-> Subnetを作成する際, Avalancheはパラメータに基づいてジェネシスファイルを自動で生成します。  
-> また, 独自のgenesis fileを作成することもできます。これにより, Subnetの構成をより詳細に制御することができます。
+> Subnetを作成する際、Avalancheはパラメータに基づいてジェネシスファイルを自動で生成します。  
+> また、独自のgenesis fileを作成することもできます。これにより、Subnetの構成をより詳細に制御することができます。
 
 前回のレッスンで作成したmySubnetのgenesis fileは以下のコマンドで内容を確認することができます。
 
@@ -71,7 +71,7 @@ avalanche subnet describe mySubnet --genesis
 }
 ```
 
-以下, 主要部分にコメントをつけたので簡単にgenesis fileの中身を確認します。
+以下、主要部分にコメントをつけたので簡単にgenesis fileの中身を確認します。
 
 ```
 {
@@ -96,7 +96,7 @@ avalanche subnet describe mySubnet --genesis
 }
 ```
 
-genesis fileの中身について, 詳しくは[こちら](https://docs.avax.network/subnets/customize-a-subnet), または[こちら](https://docs.avax.network/community/tutorials-contest/2022/avax-subnet-customization)をご覧ください。
+genesis fileの中身について、詳しくは[こちら](https://docs.avax.network/subnets/customize-a-subnet)、または[こちら](https://docs.avax.network/community/tutorials-contest/2022/avax-subnet-customization)をご覧ください。
 
 
 ### ✅ 環境構築を行う
@@ -105,10 +105,10 @@ genesis fileを作成する前に作業用ディレクトリを用意しまし�
 
 あなたのコンピュータのお好きな場所に`AVAX-Subnet`というディレクトリを作成してください。
 
-⚠️ 本プロジェクトは全てのレッスンを終えたら, この`AVAX-Subnet`ディレクトリをルートとしたリポジトリを提出します。  
+⚠️ 本プロジェクトは全てのレッスンを終えたら、この`AVAX-Subnet`ディレクトリをルートとしたリポジトリを提出します。  
 今後ディレクトリ構成をレッスンと同じ構成にするよう気をつけてください。 💁
 
-また, 前回作成したmySubnetがローカルネットワーク上で起動している場合, `avalanche network status`をターミナルで実行すると以下のような表示がされると思います。
+また、前回作成したmySubnetがローカルネットワーク上で起動している場合、`avalanche network status`をターミナルで実行すると以下のような表示がされると思います。
 
 ![](/public/images/AVAX-Subnet/section-1/1_3_1.png)
 
@@ -122,12 +122,12 @@ genesis fileを作成する前に作業用ディレクトリを用意しまし�
 Process terminated.
 ```
 
-再び`avalanche network status`を実行し, ローカルネットワーク上にサブネットがなければ以下のような表示がされます。
+再び`avalanche network status`を実行し、ローカルネットワーク上にサブネットがなければ以下のような表示がされます。
 
 ```
 % avalanche network status
 Requesting network status...
-Error: timed out trying to contact backend controller, it is most probably not running
+Error: timed out trying to contact backend controller、it is most probably not running
 ```
 
 次に`avalanche subnet list --deployed`を実行すると以下のように作成されたsubnetの状態が表示されます。  
@@ -143,9 +143,9 @@ Error: timed out trying to contact backend controller, it is most probably not r
 +----------+----------+----------+-----------+-----------+-------+----------+---------+
 ```
 
-先ほどローカルネットワークから削除したので, `DEPLOYED`項目の`Local`が`No`になっています。
+先ほどローカルネットワークから削除したので、`DEPLOYED`項目の`Local`が`No`になっています。
 
-さらに, `avalanche subnet delete mySubnet`を実行して作成したサブネットを削除してください。
+さらに、`avalanche subnet delete mySubnet`を実行して作成したサブネットを削除してください。
 
 ```
 % avalanche subnet delete mySubnet
@@ -166,7 +166,7 @@ Error: timed out trying to contact backend controller, it is most probably not r
 
 ### 🦀 genesis fileの作成
 
-`AVAX-Subnet`ディレクトリ直下に`genesis`というディレクトリを作成し, その中に`mygenesis.json`という名前のファイルを作成してください。
+`AVAX-Subnet`ディレクトリ直下に`genesis`というディレクトリを作成し、その中に`mygenesis.json`という名前のファイルを作成してください。
 
 ディレクトリ構成。
 
@@ -257,11 +257,11 @@ AVAX-Subnet
     },
 ```
 
-ここでは, Subnetのデプロイ時にネイティブトークンを送信するアカウントを定義しています。  
+ここでは、Subnetのデプロイ時にネイティブトークンを送信するアカウントを定義しています。  
 
 `balance`は送信するトークンの量（16進数表記）を表しています。
 
-本プロジェクトでは, アドレス`0x9726A1976148789be35a4EEb6AEfBBF4927b04AC`を使用するため以下のようになります。  
+本プロジェクトでは、アドレス`0x9726A1976148789be35a4EEb6AEfBBF4927b04AC`を使用するため以下のようになります。  
 ⚠️ 接頭辞の`0x`を除いてください。
 
 ```
@@ -276,7 +276,7 @@ AVAX-Subnet
 
 最後にPreCompileの定義を追加します。
 
-PreCompileとは, Avalancheが事前に用意したコンパイル済みのコントラクトであり, ネットワークへのアクセス制限などに利用できます。
+PreCompileとは、Avalancheが事前に用意したコンパイル済みのコントラクトであり、ネットワークへのアクセス制限などに利用できます。
 
 PreCompileは以下の3つが用意されています。
 
@@ -286,7 +286,7 @@ PreCompileは以下の3つが用意されています。
 
 `TransactionAllowList`: トランザクションを提出できるアカウントを制御できます。
 
-全てのPreCompileは以下のインタフェースを実装しているので, コントラクトを使用する場合は以下のインタフェースにある関数を呼び出すことで可能です。
+全てのPreCompileは以下のインタフェースを実装しているので、コントラクトを使用する場合は以下のインタフェースにある関数を呼び出すことで可能です。
 
 ```
 //SPDX-License-Identifier: MIT
@@ -317,7 +317,7 @@ enum BillStatus {
 }
 ```
 
-PreCompileを使用するには, genesis fileに定義する必要があります。
+PreCompileを使用するには、genesis fileに定義する必要があります。
 
 以下のように`feeConfig`の下に各PreCompileを使用する定義を追加してください。
 
@@ -339,7 +339,7 @@ PreCompileを使用するには, genesis fileに定義する必要がありま�
       }
 ```
 
-本プロジェクトでは, アドレス`0x9726A1976148789be35a4EEb6AEfBBF4927b04AC`を使用するため, `adminAddress`の項目はそれぞれ以下のようになります。
+本プロジェクトでは、アドレス`0x9726A1976148789be35a4EEb6AEfBBF4927b04AC`を使用するため、`adminAddress`の項目はそれぞれ以下のようになります。
 
 ```
 "adminAddresses": ["0x9726A1976148789be35a4EEb6AEfBBF4927b04AC"]
@@ -406,7 +406,7 @@ genesis fileの完成形は以下のようになっています。
 
 ### 🚜 カスタムSubnetの作成
 
-※ どこかしらでエラーが発生し, Subnetを作り直す時には下にあるTipsのセクションをご参照ください。
+※ どこかしらでエラーが発生し、Subnetを作り直す時には下にあるTipsのセクションをご参照ください。
 
 それではgenesis fileを使ってSubnetを作成します。
 
@@ -414,7 +414,7 @@ genesis fileの完成形は以下のようになっています。
 
 ```avalanche subnet create mySubnet --genesis genesis/mygenesis.json```
 
-その後のプロンプトで`SubnetEVM`, `Use latest version`を選択します。
+その後のプロンプトで`SubnetEVM`、`Use latest version`を選択します。
 
 ```
 % avalanche subnet create mySubnet --genesis genesis/mygenesis.json
@@ -465,7 +465,7 @@ Chain ID:         321123
 Currency Symbol:  TEST
 ```
 
-💁 前回のレッスンでMetamaskに追加したmySubnetのネットワークを削除し, 同じステップで新たに今回のネットワークをMetamaskに追加してください。
+💁 前回のレッスンでMetamaskに追加したmySubnetのネットワークを削除し、同じステップで新たに今回のネットワークをMetamaskに追加してください。
 
 上記のデータの中にあるRPC URLは後ほど使うのでどこかに保存しておいてください。
 
@@ -481,7 +481,7 @@ Subnetを作り直す時の手順
 2. `avalanche subnet delete mySubnet`
 3. `avalanche subnet create mySubnet --genesis genesis/mygenesis.json`
 4. `avalanche subnet deploy mySubnet`
-5. Metamaskの以前のネットワークを削除し, 新たなネットワークを接続
+5. Metamaskの以前のネットワークを削除し、新たなネットワークを接続
 6. コントラクトを再デプロイする場合は`hardhat.config`のRPC URLを更新（この先のsectionで扱います）
 
 以下にavalancheコマンドの一覧をまとめます。  
@@ -519,23 +519,23 @@ avalanche network start
 avalanche network clean
 ```
 
-本プロジェクトはローカルネットワークにデプロイしましたが, テストネットやメインネットへのデプロイ方法は[こちら](https://docs.avax.network/subnets/create-a-fuji-subnet)や[こちら](https://docs.avax.network/subnets/create-a-mainnet-subnet)をご覧ください。
+本プロジェクトはローカルネットワークにデプロイしましたが、テストネットやメインネットへのデプロイ方法は[こちら](https://docs.avax.network/subnets/create-a-fuji-subnet)や[こちら](https://docs.avax.network/subnets/create-a-mainnet-subnet)をご覧ください。
 
-また, プライベートブロックチェーン（特定のバリデータのみがブロックチェーン上の情報を読み取ることができる）の作成については[こちら](https://docs.avax.network/nodes/maintain/subnet-configs#private-subnet)をご覧ください。
+また、プライベートブロックチェーン（特定のバリデータのみがブロックチェーン上の情報を読み取ることができる）の作成については[こちら](https://docs.avax.network/nodes/maintain/subnet-configs#private-subnet)をご覧ください。
 
-### 🐊 `github`にソースコードをアップロードしよう
+### 🐊 `GitHub`にソースコードをアップロードしよう
 
-本プロジェクトは全てのレッスンを終えたら, 完成物を提出するために`github`へソースコードをアップロードする必要があります。
+本プロジェクトは全てのレッスンを終えたら、完成物を提出するために`GitHub`へソースコードをアップロードする必要があります。
 
 **AVAX-Subnet**全体を対象としてアップロードしましょう。
 
-今後の開発にも役に立つと思いますので, 今のうちに以下にアップロード方法をおさらいしておきます。
+今後の開発にも役に立つと思いますので、今のうちに以下にアップロード方法をおさらいしておきます。
 
 `GitHub`のアカウントをお持ちでない方は,[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
 `GitHub`へソースコードをアップロードをしたことがない方は以下を参考にしてください。
 
-[新しいレポジトリを作成](https://docs.github.com/ja/get-started/quickstart/create-a-repo)（リポジトリ名などはご自由に）した後,  
+[新しいレポジトリを作成](https://docs.github.com/ja/get-started/quickstart/create-a-repo)（リポジトリ名などはご自由に）した後、 
 手順に従いターミナルからアップロードを済ませます。  
 以下ターミナルで実行するコマンドの参考です。(`AVAX-Subnet`直下で実行することを想定しております)
 
@@ -568,9 +568,9 @@ $ git push -u origin main
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は, `Discord`の`#avalanche`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、`Discord`の`#avalanche`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので, エラーレポートには下記の三点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の三点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

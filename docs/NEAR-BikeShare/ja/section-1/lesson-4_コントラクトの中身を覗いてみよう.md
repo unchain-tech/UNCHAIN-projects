@@ -1,9 +1,9 @@
 ### 👀 コントラクトの中身を覗いてみましょう
 
 最後にコントラクトに何が書かれているのかと簡単に見ていきたいと思います。
-詳細に関しては次のセクションから触れてゆくので, ここでわからないことは次のセクションを終えた後に改めて理解しに戻りましょう。
+詳細に関しては次のセクションから触れてゆくので、ここでわからないことは次のセクションを終えた後に改めて理解しに戻りましょう。
 
-NEARのコントラクトを書く上で, Rustの基本的なコードはこのようになります。
+NEARのコントラクトを書く上で、Rustの基本的なコードはこのようになります。
 
 ```rust
 pub struct struct_name {
@@ -17,13 +17,13 @@ impl struct_name {
 }
 ```
 
-`pub struct`という構文でストラクト（構造体）を用意し, その中にコントラクト内で扱う値を保持します。
+`pub struct`という構文でストラクト（構造体）を用意し、その中にコントラクト内で扱う値を保持します。
 `impl`という構文でストラクトに関するメソッドを定義してゆきます。
 
 それでは実際の中身を見ます。
 お気に入りのコードエディタ（お持ちでない方はVSCodeをインストールしましょう）でプロジェクトのディレクトリを開きます。
 そして`ft/src/lib.rs`を開きます。
-コードを上から見てゆくと, ストラクトの定義が途中に見つけられます。
+コードを上から見てゆくと、ストラクトの定義が途中に見つけられます。
 
 ```rust
 // lib.rs
@@ -75,9 +75,9 @@ impl Contract {
 ```
 
 ここではトークンの発行時に使用した`new`メソッドが実装されていることがわかります。
-引数に`owner_id`, `total_supply`, `metadata`をとっています。
+引数に`owner_id`、`total_supply`、`metadata`をとっています。
 
-それでは, 前レッスンで呼び出していた`ft_transfer`や`storage_deposit`メソッドはどこで実装されているのでしょう。
+それでは、前レッスンで呼び出していた`ft_transfer`や`storage_deposit`メソッドはどこで実装されているのでしょう。
 答えはコード内のこの部分です。
 
 ```rust
@@ -96,7 +96,7 @@ NEARが用意したライブラリ(`near_contract_standards`)を使用してい�
 
 - `impl_fungible_token_core`
   [NEP-141](https://nomicon.io/Standards/Tokens/FungibleToken/Core#reference-level-explanation)（fungible tokenの規約）に則ったメソッドをストラクトに実装します。
-  例えば`ft_transfer`, `ft_balance_of`メソッドなどです。
+  例えば`ft_transfer`、`ft_balance_of`メソッドなどです。
 - `impl_fungible_token_storage`
   [NEP-145](https://nomicon.io/Standards/StorageManagement)（ストレージマネジメントの規約）に則ったメソッドをストラクトに実装します。
   例えば`storage_deposit`メソッドなどです。

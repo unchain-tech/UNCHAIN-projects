@@ -17,23 +17,81 @@
 - ユーザーはWebサイトを介して、ブロックチェーン上に展開されているあなたのスマートコントラクトと簡単にやりとりできます。
 - スマートコントラクトの実装 + フロントエンドユーザー・インタフェースの作成 👉 dAppの完成を目指しましょう 🎉
 
+まず、`node` / `yarn`を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスしてください。
+
+`node v16`をインストールすることを推奨しています。
+
 ### 🍽 Git リポジトリをあなたの GitHub にフォークする
 
 まだGitHubのアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
-GitHubのアカウントをお持ちの方は、[スターターキット](https://github.com/unchain-tech/ETH-dApp) から、フロントエンドの基盤となるリポジトリをあなたのGitHubにフォークしましょう。フォークの方法は、[こちら](https://denno-sekai.com/github-fork/) を参照してください。
+その後`packages`ディレクトリに移動します。
 
-あなたのGitHubアカウントにフォークした`ETH-dApp`リポジトリを、ローカル環境にクローンしてください。
+GitHubのアカウントをお持ちの方は、下記の手順に沿ってプロジェクトの基盤となるリポジトリをあなたのGitHubに[フォーク](https://denno-sekai.com/github-fork/)しましょう。
 
-まず、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
+1. [こちら](https://github.com/unchain-tech/ETH-dApp)からunchain-tech/ETH-NFT-Collectionリポジトリにアクセスをして、ページ右上の`Fork`ボタンをクリックします。
 
-ターミナル上で任意のディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
+![](/public/images/ETH-NFT-Collection/section-3/3_1_3.png)
+
+2. Create a new forkページが開くので、「Copy the `main` branch only」という項目に**チェックが入っていることを確認します**。
+
+![](/public/images/ETH-NFT-Collection/section-3/3_1_4.png)
+
+設定が完了したら`Create fork`ボタンをクリックします。あなたのGitHubアカウントに`ETH-dApp`リポジトリのフォークが作成されたことを確認してください。
+
+それでは、フォークしたリポジトリをローカル環境にクローンしましょう。
+
+まず、下図のように、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
+
+![](/public/images/ETH-NFT-Collection/section-3/3_1_1.png)
+
+ターミナル上で作業を行う任意のディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
 
 ```bash
 git clone コピーした_github_リンク
 ```
 
-ターミナル上で`ETH-dApp`ディレクトリ下に移動して下記を実行しましょう。
+無事に複製されたらローカル開発環境の準備は完了です。
+
+### 🔍 フォルダ構成を確認する
+
+実装に入る前に、フォルダ構成を確認しておきましょう。クローンしたスタータープロジェクトは下記のようになっているはずです。
+
+```bash
+ETH-dApp
+├── .git/
+├── .gitignore
+├── LICENSE
+├── README.md
+├── package.json
+├── packages/
+│   ├── client/
+│   └── contract/
+└── yarn.lock
+```
+
+スタータープロジェクトは、モノレポ構成となっています。モノレポとは、コントラクトとクライアント（またはその他構成要素）の全コードをまとめて1つのリポジトリで管理する方法です。
+
+packagesディレクトリの中には、`client`と`contract`という2つのディレクトリがあります。
+
+`package.json`ファイルの内容を確認してみましょう。
+
+モノレポを作成するにあたり、パッケージマネージャーの機能である[Workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/)を利用しています。
+
+**workspaces**の定義をしている部分は以下になります。
+
+```json
+// package.json
+"workspaces": {
+  "packages": [
+    "packages/*"
+  ]
+},
+```
+
+この機能により、yarn installを一度だけ実行すれば、すべてのパッケージ（今回はコントラクトのパッケージとクライアントのパッケージ）を一度にインストールできるようになります。
+
+ではターミナル上で`ETH-dApp`ディレクトリ下に移動して下記を実行しましょう。
 
 ```bash
 yarn install
@@ -41,42 +99,30 @@ yarn install
 
 `yarn`コマンドを実行することで、JavaScriptライブラリのインストールが行われます。
 
+### 📺 フロントエンドの動きを確認する
+
 次に、下記を実行してみましょう。
 
 ```bash
 yarn client start
 ```
-
 あなたのローカル環境で、Webサイトのフロントエンドが立ち上がりましたか？
 
 例)ローカル環境で表示されているWebサイト
-
 ![](/public/images/ETH-dApp/section-2/2_1_2.png)
 
 上記のような形でフロントエンドが確認できれば成功です。
+これからフロントエンドの表示を確認したい時は、ターミナルに向かい、`ETH-dApp`ディレクトリ上で、`yarn client start`を実行します。
 
-これからフロントエンドの表示を確認したい時は、ターミナルに向かい、`ETH-dApp`ディレクトリ上で、`yarn client start`を実行します。これからも必要となる作業ですので、よく覚えておいてください。
-
+これからも必要となる作業ですので、よく覚えておいてください。
 ターミナルを閉じるときは、以下のコマンドが使えます ✍️
 
 - Mac: `ctrl + c`
 - Windows: `ctrl + shift + w`
 
-### ✨ Hardhat をインストールする
+### 👏 コントラクトを作成する準備をする
 
-スマートコントラクトをすばやくコンパイルし、ローカル環境にてテストを行うために、**Hardhat** というツールを使用します。
-
-- Hardhatにより、ローカル環境でイーサリアムネットワークを簡単に起動し、テストネットでイーサリアムを利用できます。
-
-- 「サーバー」がブロックチェーンであることを除けば、Hardhatはローカルサーバーと同じです。
-
-まず、`node` / `yarn`を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスしてください。
-
-`node v16`をインストールすることを推奨しています。
-
-### 👏 サンプルプロジェクトを開始する
-
-次に、Hardhatを実行します。
+本プロジェクトではコントラクトを作成する際に`Hardhat`というフレームワークを使用します。
 
 `packages/contract`ディレクトリにいることを確認し、次のコマンドを実行します。
 
