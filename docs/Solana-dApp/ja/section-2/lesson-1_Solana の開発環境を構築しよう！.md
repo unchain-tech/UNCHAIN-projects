@@ -186,6 +186,14 @@ solana address
 
 作成したローカルウォレットのパブリックアドレスが表示されればOKです。
 
+最後に`packages/contract/Anchor.toml`の12行目を編集しましょう。
+
+`{}Your_USERNAME}`の部分に自分のPCのユーザー名を入れてください。
+
+```
+wallet = "/Users/{YOUR_USERNAME}/.config/solana/id.json" # YOUR_USERNAMEは自分のPCのユーザー名に置き換えてください
+```
+
 
 ### 🥳 テストプログラムを実行する
 
