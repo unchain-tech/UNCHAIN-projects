@@ -162,7 +162,7 @@ VercelはGitHubと連動しているので、GitHubが更新されるたびに�
 
 ![](/public/images/ETH-dApp/section-4/4_2_7.png)
 
-こちらが、今回のプロジェクトで作成されるWebアプリケーションのデモは、[こちら](https://my-wave-portal2-nine.vercel.app/) です。
+こちらが、今回のプロジェクトで作成されるWebアプリケーションのデモは、[こちら](https://eth-dapp-three.vercel.app/) です。
 
 これはMVP（=最小機能のついたプロダクト）です。
 
