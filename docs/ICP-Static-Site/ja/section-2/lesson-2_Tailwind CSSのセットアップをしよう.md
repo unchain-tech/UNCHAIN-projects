@@ -2,10 +2,10 @@
 
 このレッスンでは、Tailwind CSSを使用するための準備を行います。
 
-`ic-static-website/`にいることを確認して、以下のコマンドを実行します。
+`icp-static-site/`にいることを確認して、以下のコマンドを実行します。
 
 ```bash
-npm install -D tailwindcss postcss autoprefixer
+npm install -D tailwindcss@3.1.8 postcss@8.4.16 autoprefixer@10.4.8
 ```
 
 次に、設定ファイルを作成します。
@@ -48,7 +48,7 @@ module.exports = {
 
 これでTailwind CSSの設定は完了です。きちんと機能しているか確認してみましょう。
 
-`./src/App.svelte`ファイルの15行目を、以下のように書き換えます。
+`./src/App.svelte`ファイルの15行目`h1`タグを、以下のように書き換えます。
 
 [App.svelte]
 
