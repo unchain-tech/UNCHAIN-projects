@@ -18,7 +18,7 @@
 // WavePortal.sol
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 
 import "hardhat/console.sol";
 
@@ -279,10 +279,10 @@ waveCount = await waveContract.getTotalWaves();
 
 ### 🧙‍♀️ テストを実行しよう
 
-`contract`ディレクトリに移動し、下記を実行してみましょう。
+ルートディレクトリにいることを確認して、ターミナルで下記を実行してみましょう。
 
 ```bash
-npx hardhat run scripts/run.js
+ yarn contract run:script
 ```
 
 例)ターミナルの出力結果

@@ -135,12 +135,9 @@ yarn contract run:script
 例)ターミナル上でのアウトプット:
 
 ```
-$ yarn workspace contract run:script
-$ npx hardhat run scripts/run.js
 Compiled 2 Solidity files successfully
 Here is my first smart contract!
 WavePortal address:  0x5FbDB2315678afecb367f032d93F642f64180aa3
-✨  Done in 5.68s.
 ```
 
 上記のようなアウトプットターミナルに表示されていればテストは成功です。
