@@ -10,7 +10,7 @@
 // WavePortal.sol
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 
 import "hardhat/console.sol";
 
@@ -226,7 +226,7 @@ yarn contract run:script
 次のような結果が、ターミナルに出力されたでしょうか？
 
 ```bash
-Compiling 1 file with 0.8.9
+Compiling 1 file with 0.8.17
 Solidity compilation finished successfully
 We have been constructed!
 Contract deployed to:  0x5FbDB2315678afecb367f032d93F642f64180aa3
@@ -295,7 +295,7 @@ Contract balance: 0.0999
 // WavePortal.sol
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 
 import "hardhat/console.sol";
 
@@ -433,6 +433,9 @@ lastWavedAt[msg.sender] = block.timestamp;
 
 これらの基本機能をテストスクリプトとして記述していきましょう。
 
+`run.js`ではconsole.logメソッドなどを用いて結果がどのようになるかを具体的な値を
+出力することで確認していましたが、`test.js`では期待される値と一致するかを確認します。いわば最終確認のようなものです。
+
 ではpackages/contract/testに`test.js`という名前でファイルを作成して、以下のように記述しましょう。
 
 ```
@@ -506,6 +509,10 @@ describe('Wave Contract', function () {
 ```
 yarn contract test
 ```
+
+`WavePortal.sol`の39~42行目の`require文`によってエラーが出るでしょう。なぜなら15分の間隔を空けることなくwaveを送ろうとしたからです。
+
+ではこちらをコメントアウトして再度テストコマンドを実行してみてください。
 
 下記のようなメッセージが出力されていればテスト成功です！
 ```
