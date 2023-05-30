@@ -10,7 +10,7 @@
 ```solidity
 // Web3Mint.sol
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 // いくつかの OpenZeppelin のコントラクトをインポートします。
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
@@ -456,7 +456,7 @@ hardhat.config.js
 // hardhat.config.js
 require("@nomicfoundation/hardhat-toolbox");
 module.exports = {
-  solidity: "0.8.9",
+  solidity: "0.8.17",
   networks: {
     sepolia: {
       url: "YOUR_ALCHEMY_API_URL",
@@ -539,10 +539,10 @@ hardhat.config.js
 ### ⭐️ 実行する
 
 構成のセットアップが完了すると、前に作成したデプロイスクリプトを使用してデプロイするように設定されます。
-`contract`のルートディレクトリからこのコマンドを実行します 。
+ルートディレクトリからこのコマンドを実行します 。
 
 ```bash
-npx hardhat run scripts/deploy.js --network sepolia
+yarn contract deploy
 ```
 
 `deploy.js`を実行すると、実際にNFTを作成します。
