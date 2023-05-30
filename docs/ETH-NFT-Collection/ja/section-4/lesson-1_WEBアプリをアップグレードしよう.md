@@ -300,7 +300,7 @@ const setupEventListener = async () => {
 // MyEpicNFT.sol
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.18;
 
 // いくつかの OpenZeppelin のコントラクトをインポートします。
 import "@openzeppelin/contracts/utils/Strings.sol";

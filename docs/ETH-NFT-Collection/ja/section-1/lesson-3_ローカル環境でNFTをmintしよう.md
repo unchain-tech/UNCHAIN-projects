@@ -25,7 +25,7 @@ packages/
 ```solidity
 // MyEpicNFT.sol
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.18;
 import "hardhat/console.sol";
 contract MyEpicNFT {
     constructor() {
@@ -57,16 +57,16 @@ contract MyEpicNFT {
 
 ```solidity
 // MyEpicNFT.sol
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.18;
 ```
 
 これは、コントラクトで使用するSolidityコンパイラのバージョンです。
 
-上記の場合「このコントラクトを実行するときは、Solidityコンパイラのバージョン0.8.9のみを使用し、それ以下のものは使用しません」という意味です。
+上記の場合「このコントラクトを実行するときは、Solidityコンパイラのバージョン0.8.18のみを使用し、それ以下のものは使用しません」という意味です。
 
 コンパイラのバージョンが`hardhat.config.js`で同じであることを確認してください。
 
-もし、`hardhat.config.js`の中に記載されているSolidityのバージョンが`0.8.9`でなかった場合は、`MyEpicNFT.sol`の中身を`hardhat.config.js`に記載されているバージョンに変更しましょう。
+もし、`hardhat.config.js`の中に記載されているSolidityのバージョンが`0.8.18`でなかった場合は、`MyEpicNFT.sol`の中身を`hardhat.config.js`に記載されているバージョンに変更しましょう。
 
 ```solidity
 // MyEpicNFT.sol
@@ -212,8 +212,7 @@ npx hardhat run scripts/deploy.js
 以下、出力結果のサンプルです。
 
 ```
-Compiling 1 file with 0.8.9
-Solidity compilation finished successfully
+Compiled 2 Solidity files successfully
 This is my NFT contract.
 Contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 ```

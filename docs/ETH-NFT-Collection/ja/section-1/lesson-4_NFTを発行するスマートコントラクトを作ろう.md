@@ -7,7 +7,7 @@
 ```solidity
 // MyEpicNFT.sol
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.18;
 // いくつかの OpenZeppelin のコントラクトをインポートします。
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
@@ -17,35 +17,35 @@ import "hardhat/console.sol";
 // 継承したコントラクトのメソッドにアクセスできるようになります。
 contract MyEpicNFT is ERC721URIStorage {
 
-  // OpenZeppelin が tokenIds を簡単に追跡するために提供するライブラリを呼び出しています
-  using Counters for Counters.Counter;
+    // OpenZeppelin が tokenIds を簡単に追跡するために提供するライブラリを呼び出しています
+    using Counters for Counters.Counter;
 
-  // _tokenIdsを初期化（_tokenIds = 0）
-  Counters.Counter private _tokenIds;
+    // _tokenIdsを初期化（_tokenIds = 0）
+    Counters.Counter private _tokenIds;
 
-  // NFT トークンの名前とそのシンボルを渡します。
-  constructor() ERC721 ("TanyaNFT", "TANYA") {
-    console.log("This is my NFT contract.");
-  }
+    // NFT トークンの名前とそのシンボルを渡します。
+    constructor() ERC721 ("TanyaNFT", "TANYA") {
+      console.log("This is my NFT contract.");
+    }
 
-  // ユーザーが NFT を取得するために実行する関数です。
-  function makeAnEpicNFT() public {
+    // ユーザーが NFT を取得するために実行する関数です。
+    function makeAnEpicNFT() public {
 
-    // NFT が Mint されるときのカウンターをインクリメントします。
-    _tokenIds.increment();
+      // NFT が Mint されるときのカウンターをインクリメントします。
+      _tokenIds.increment();
 
-    // 現在のtokenIdを取得します。tokenIdは1から始まります。
-    uint256 newItemId = _tokenIds.current();
+      // 現在のtokenIdを取得します。tokenIdは1から始まります。
+      uint256 newItemId = _tokenIds.current();
 
-     // msg.sender を使って NFT を送信者に Mint します。
-    _safeMint(msg.sender, newItemId);
+       // msg.sender を使って NFT を送信者に Mint します。
+      _safeMint(msg.sender, newItemId);
 
-    // NFT データを設定します。
-    _setTokenURI(newItemId, "Valuable data!");
+      // NFT データを設定します。
+      _setTokenURI(newItemId, "Valuable data!");
 
-    // NFTがいつ誰に作成されたかを確認します。
-    console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
-  }
+      // NFTがいつ誰に作成されたかを確認します。
+      console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
+    }
 }
 ```
 
@@ -54,7 +54,7 @@ contract MyEpicNFT is ERC721URIStorage {
 ```solidity
 // MyEpicNFT.sol
 contract MyEpicNFT is ERC721URIStorage {
-	:
+  :
 ```
 
 ここでは、コントラクトを宣言する際に、`is ERC721URIStorage`を使用してOpenZeppelinのコントラクトを「継承」しています。
@@ -129,16 +129,16 @@ constructor() ERC721 ("TanyaNFT", "TANYA") {
 // MyEpicNFT.sol
 // ユーザーが NFT を取得するために実行する関数です。
 function makeAnEpicNFT() public {
-  // NFT が Mint されるときのカウンターをインクリメントします。
-  _tokenIds.increment();
-  // 現在のtokenIdを取得します。tokenIdは1から始まります。
-  uint256 newItemId = _tokenIds.current();
-   // msg.sender を使って NFT を送信者に Mint します。
-  _safeMint(msg.sender, newItemId);
-  // NFT データを設定します。
-  _setTokenURI(newItemId, "Valuable data!");
-  // NFTがいつ誰に作成されたかを確認します。
-  console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
+    // NFT が Mint されるときのカウンターをインクリメントします。
+    _tokenIds.increment();
+    // 現在のtokenIdを取得します。tokenIdは1から始まります。
+    uint256 newItemId = _tokenIds.current();
+     // msg.sender を使って NFT を送信者に Mint します。
+    _safeMint(msg.sender, newItemId);
+    // NFT データを設定します。
+    _setTokenURI(newItemId, "Valuable data!");
+    // NFTがいつ誰に作成されたかを確認します。
+    console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
 }
 ```
 
@@ -286,8 +286,8 @@ _setTokenURI(newItemId, "Valuable data!");
 ```solidity
 // MyEpicNFT.sol
 _setTokenURI(
-  newItemId,
-  "こちらに、JSON ファイルへのリンクを貼り付けてください"
+    newItemId,
+    "こちらに、JSON ファイルへのリンクを貼り付けてください"
 );
 ```
 
@@ -320,7 +320,7 @@ main().catch((error) => {
 });
 ```
 
-上記を`deploy.js`に反映させたら、下記をターミナル上で実行しましょう。
+上記を`deploy.js`に反映させたら、ターミナル上で`packages/contract`ディレクトリにいることを確認し下記を実行しましょう。
 
 ```bash
 npx hardhat run scripts/deploy.js
@@ -331,12 +331,11 @@ npx hardhat run scripts/deploy.js
 下記のような結果が、ターミナルに出力されれば、テストは成功です。
 
 ```
-Compiling 1 file with 0.8.9
-Solidity compilation finished successfully
+Compiled 17 Solidity files successfully
 This is my NFT contract.
 Contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
-An NFT w/ ID 0 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
 An NFT w/ ID 1 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+An NFT w/ ID 2 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
 ```
 
 現在、ユーザーがこのスマートコントラクトにアクセスしてNFTを発行するたび、データは常に同じ`Tanya`です!　 🐱
@@ -466,6 +465,7 @@ contracts			test
 ```javascript
 // hardhat.config.js
 require("@nomicfoundation/hardhat-toolbox");
+
 module.exports = {
   solidity: '0.8.18',
   defaultNetwork: 'hardhat',
