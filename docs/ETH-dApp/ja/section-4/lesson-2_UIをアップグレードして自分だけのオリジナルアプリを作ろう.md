@@ -76,9 +76,11 @@ console.log("Retrieved total wave count...", count.toNumber());
 
 ```javascript
 // App.js
+let contractBalance = await provider.getBalance(wavePortalContract.address);
 let contractBalance_post = await provider.getBalance(
   wavePortalContract.address
 );
+console.log("Contract balance:", ethers.utils.formatEther(contractBalance));
 /* コントラクトの残高が減っていることを確認 */
 if (contractBalance_post.lt(contractBalance)) {
   /* 減っていたら下記を出力 */
