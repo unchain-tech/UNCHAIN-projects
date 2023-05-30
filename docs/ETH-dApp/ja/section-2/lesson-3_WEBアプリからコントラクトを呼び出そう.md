@@ -260,10 +260,10 @@ Contract deployed to:  0x3610145E4c6C801bBf2F926DFd8FDd2cE1103493
 
 `Contract deployed to`に続く出力結果をどこかにメモしていた場合は、このままレッスンを進めましょう。
 
-再度この結果を出力する場合は、ターミナル上で`contract`ディレクトリに移動し、下記を実行してください。
+再度この結果を出力する場合は、ルートディレクトリにいることを確認してターミナル上で下記を実行してください。
 
 ```
-npx hardhat run scripts/deploy.js --network sepolia
+yarn contract deploy
 ```
 
 コントラクトのデプロイ先のアドレスを取得できたら、`App.js`に`contractAddress`という新規の変数を追加しましょう。`Contract deployed to`の出力結果(`0x..`)を設定していきます。
@@ -320,25 +320,13 @@ ABIファイルの中身は、`WavePortal.json`というファイルに格納さ
 
 1. ターミナル上で`client/src`に移動する。
 
-2. 下記を実行して、`client/src/`の中に`utils`ディレクトリを作成する。
-
-> ```bash
-> mkdir utils
-> ```
-
-1. `utils`ディレクトリに移動して`WavePortal.json`ファイルを作成する。
-
-> ```bash
-> touch WavePortal.json
-> ```
-
-1. 下記を実行して、`WavePortal.json`ファイルをVS Codeで開く。
+2. 下記を実行して、`WavePortal.json`ファイルをVS Codeで開く。
 
 > ```bash
 > code client/src/utils/WavePortal.json
 > ```
 
-5. **先ほどコピーした`contract/artifacts/contracts/WavePortal.sol/WavePortal.json`の中身を新しく作成した`client/src/utils/WavePortal.json`の中に貼り付けてください。**
+3. **先ほどコピーした`contract/artifacts/contracts/WavePortal.sol/WavePortal.json`の中身を新しく作成した`client/src/utils/WavePortal.json`の中に貼り付けてください。**
 
 ABIファイルの準備ができたので、`App.js`にインポートしましょう。
 
