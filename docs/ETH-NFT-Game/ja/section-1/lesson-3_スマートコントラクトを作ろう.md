@@ -25,7 +25,7 @@ VS Codeをターミナルから起動する方法は[こちら](https://maku.blo
 ```solidity
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 
 import "hardhat/console.sol";
 
@@ -51,12 +51,12 @@ contract MyEpicGame {
 
 ```solidity
 // MyEpicGame.sol
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 ```
 
-これは、コントラクトで使用するSolidityコンパイラのバージョンです。上記の場合「このコントラクトを実行するときは、Solidityコンパイラのバージョン0.8.9のみを使用し、それ以下のものは使用しません」という意味です。コンパイラのバージョンが`hardhat.config.js`で同じであることを確認してください。
+これは、コントラクトで使用するSolidityコンパイラのバージョンです。上記の場合「このコントラクトを実行するときは、Solidityコンパイラのバージョン0.8.17のみを使用し、それ以下のものは使用しません」という意味です。コンパイラのバージョンが`hardhat.config.js`で同じであることを確認してください。
 
-もし、`hardhat.config.js`の中に記載されているSolidityのバージョンが`0.8.9`でなかった場合は、`MyEpicGame.sol`の中身を`hardhat.config.js`に記載されているバージョンに変更しましょう。
+もし、`hardhat.config.js`の中に記載されているSolidityのバージョンが`0.8.17`でなかった場合は、`MyEpicGame.sol`の中身を`hardhat.config.js`に記載されているバージョンに変更しましょう。
 
 ```solidity
 // MyEpicGame.sol
@@ -223,7 +223,7 @@ yarn contract run:script
 例)ターミナル上でのアウトプット:
 
 ```
-Compiling 1 file with 0.8.9
+Compiling 1 file with 0.8.17
 Solidity compilation finished successfully
 THIS IS MY GAME CONTRACT.
 Contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
