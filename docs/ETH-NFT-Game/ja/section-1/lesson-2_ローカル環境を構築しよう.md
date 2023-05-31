@@ -179,19 +179,20 @@ ETH-NFT-Game
 -  "license": "MIT",
   "private": true,
   "devDependencies": {
-    "@nomicfoundation/hardhat-chai-matchers": "^1.0.6",
-    "@nomicfoundation/hardhat-network-helpers": "^1.0.8",
-    "@nomicfoundation/hardhat-toolbox": "^2.0.2",
-    "@nomiclabs/hardhat-ethers": "^2.2.2",
-    "@nomiclabs/hardhat-etherscan": "^3.1.7",
-    "@typechain/ethers-v5": "^10.2.0",
-    "@typechain/hardhat": "^6.1.5",
-    "chai": "^4.3.7",
-    "ethers": "^6.1.0",
-    "hardhat": "^2.13.0",
-    "hardhat-gas-reporter": "^1.0.9",
-    "solidity-coverage": "^0.8.2",
-    "typechain": "^8.1.1"
+    "@nomicfoundation/hardhat-chai-matchers": "1.0.6",
+    "@nomicfoundation/hardhat-network-helpers": "1.0.8",
+    "@nomicfoundation/hardhat-toolbox": "2.0.2",
+    "@nomiclabs/hardhat-ethers": "2.2.2",
+    "@nomiclabs/hardhat-etherscan": "3.1.7",
+    "@openzeppelin/contracts": "4.9.0",
+    "@typechain/ethers-v5": "10.2.0",
+    "@typechain/hardhat": "6.1.5",
+    "chai": "4.3.7",
+    "ethers": "6.1.0",
+    "hardhat": "2.13.0",
+    "hardhat-gas-reporter": "1.0.9",
+    "solidity-coverage": "0.8.2",
+    "typechain": "8.1.1"
   },
 +  "scripts": {
 +    "test": "npx hardhat test"
