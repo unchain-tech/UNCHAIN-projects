@@ -23,7 +23,6 @@
 - `attackBoss`関数のコードブロック直下がお勧めです。
 
 ```solidity
-// MyEpicGame.sol
 function checkIfUserHasNFT() public view returns (CharacterAttributes memory) {
 	// ユーザーの tokenId を取得します。
 	uint256 userNftTokenId = nftHolders[msg.sender];
@@ -43,7 +42,6 @@ function checkIfUserHasNFT() public view returns (CharacterAttributes memory) {
 上記のコードを詳しく見ていきましょう。
 
 ```solidity
-// MyEpicGame.sol
 function checkIfUserHasNFT() public view returns (CharacterAttributes memory) {
 	// ユーザーの tokenId を取得します。
 	uint256 userNftTokenId = nftHolders[msg.sender];
@@ -57,7 +55,6 @@ function checkIfUserHasNFT() public view returns (CharacterAttributes memory) {
 次に、下記のコードを見ていきましょう。
 
 ```solidity
-// MyEpicGame.sol
 // ユーザーがすでにtokenIdを持っている場合、そのキャラクターの属性情報を返します。
 if (userNftTokenId > 0) {
 	return nftHolderAttributes[userNftTokenId];
@@ -86,7 +83,6 @@ Webアプリケーションに、「キャラクター選択画面」を作成�
 - `checkIfUserHasNFT`関数のコードブロック直下がお勧めです。
 
 ```solidity
-// MyEpicGame.sol
 function getAllDefaultCharacters() public view returns (CharacterAttributes[] memory) {
   return defaultCharacters;
 }
@@ -101,7 +97,6 @@ function getAllDefaultCharacters() public view returns (CharacterAttributes[] me
 - `getAllDefaultCharacters`関数のコードブロック直下がお勧めです。
 
 ```solidity
-// MyEpicGame.sol
 function getBigBoss() public view returns (BigBoss memory) {
   return bigBoss;
 }
@@ -122,7 +117,6 @@ Solidityの`event`はバックエンドであるスマートコントラクト�
 それでは、`mapping(address => uint256) public nftHolders`の直下に下記2つのイベントを宣言しましょう。
 
 ```solidity
-// MyEpicGame.sol
 // ユーザーが NFT を Mint したこと示すイベント
 event CharacterNFTMinted(address sender, uint256 tokenId, uint256 characterIndex);
 // ボスへの攻撃が完了したことを示すイベント
@@ -142,7 +136,6 @@ event AttackComplete(uint newBossHp, uint newPlayerHp);
 次に、`mintCharacterNFT`関数の一番下 (`_tokenIds.increment();`の直下) に、次の行を追加していきましょう。
 
 ```solidity
-// MyEpicGame.sol
 // ユーザーが NFT を Mint したことをフロントエンドに伝えます。
 emit CharacterNFTMinted(msg.sender, newItemId, _characterIndex);
 ```
@@ -150,7 +143,6 @@ emit CharacterNFTMinted(msg.sender, newItemId, _characterIndex);
 それから、`attackBoss`関数の一番下に次の行を追加しましょう。
 
 ```solidity
-// MyEpicGame.sol
 // ボスへの攻撃が完了したことをフロントエンドに伝えます。
 emit AttackComplete(bigBoss.hp, player.hp);
 ```
