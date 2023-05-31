@@ -68,7 +68,7 @@ NFTにおける「Mint（ミント）」とは、スマートコントラクト�
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 import "hardhat/console.sol";
 contract MyEpicGame {
   // キャラクターのデータを格納する CharacterAttributes 型の 構造体（`struct`）を作成しています。
@@ -277,7 +277,7 @@ yarn contract run:script
 例)ターミナル上でのアウトプット:
 
 ```
-Compiling 1 file with 0.8.9
+Compiling 1 file with 0.8.17
 Solidity compilation finished successfully
 Done initializing ZORO w/ HP 100, img https://i.imgur.com/TZEhCTX.png
 Done initializing NAMI w/ HP 200, img https://i.imgur.com/WVAaMPA.png
