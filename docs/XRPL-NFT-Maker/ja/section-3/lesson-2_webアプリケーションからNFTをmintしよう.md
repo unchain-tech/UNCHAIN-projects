@@ -41,6 +41,14 @@ export const NftMinter = () => {
   };
 ```
 
+次に、Reactが提供するフックをインポートします。
+
+`import "./index.css";`の下に次のコードを追加してください。
+
+```js
+import { useEffect, useState } from "react";
+```
+
 １つずつ見ていきましょう。
 
 - アカウントアドレスを格納するための`account`という変数を定義しています。
@@ -250,9 +258,9 @@ const mint = async () => {
 
 次に、この関数内で使うライブラリをインポートします。
 
-まずはコンソールで`npm install buffer xrpl-client nft.storage @xrplkit/txmeta`を実行してください。
+まずはコンソールで`npm install buffer@^6.0.3 xrpl-client@^2.0.11 nft.storage@^7.0.3 @xrplkit/txmeta@^1.2.0`を実行してください。
 
-`import "./index.css";`の下に次のコードを追加してください。
+`import { useEffect, useState } from "react";`の下に次のコードを追加してください。
 
 ```js
 import { Buffer } from "buffer";
@@ -266,7 +274,6 @@ NFT.Storageに画像とメタデータをアップロードするために必要
 APIキーは[NFT.Storage](https://nft.storage)のサイトから取得できます。
 
 [このページ](https://nft-guide.jp/2022/03/17/post-2977/#outline__2)を参考に取得してください。
-
 
 ```js
 const nftStorage = new NFTStorage({ token: "api-key",});
