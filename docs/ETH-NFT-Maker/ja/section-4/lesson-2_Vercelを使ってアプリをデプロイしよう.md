@@ -148,6 +148,8 @@ VercelはGitHubと連動しているので、GitHubが更新されるたびに�
 
 [こちら](https://eth-nft-maker-client.vercel.app/)が完成版のURLです！
 
+mintされた画像は[こちら](https://gemcase.vercel.app/view/evm/sepolia/0xe380122a59930a7ef893d2046cae208a11cf2931)で確認することができます。
+
 
 ### 🙋‍♂️ 質問する
 
