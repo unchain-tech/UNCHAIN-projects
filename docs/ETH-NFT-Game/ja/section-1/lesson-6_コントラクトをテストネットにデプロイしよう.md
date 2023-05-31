@@ -203,7 +203,7 @@ hardhat.config.js
 // hardhat.config.js
 require("@nomicfoundation/hardhat-toolbox");
 module.exports = {
-  solidity: "0.8.9",
+  solidity: "0.8.17",
   networks: {
     sepolia: {
       url: "YOUR_ALCHEMY_API_URL",
