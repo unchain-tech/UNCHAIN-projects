@@ -10,11 +10,11 @@ GitHubのアカウントをお持ちの方は、下記の手順に沿ってプ�
 
 1. [こちら](https://github.com/unchain-tech/ETH-NFT-Game)からunchain-tech/ETH-NFT-Gameリポジトリにアクセスをして、ページ右上の`Fork`ボタンをクリックします。
 
-![](/public/images/ETH-NFT-Collection/section-3/3_1_3.png)
+![](/public/images/ETH-NFT-Game/section-1/1_2_1.png)
 
 2. Create a new forkページが開くので、「Copy the `main` branch only」という項目に**チェックが入っていることを確認します**。
 
-![](/public/images/ETH-NFT-Collection/section-3/3_1_4.png)
+![](/public/images/ETH-NFT-Game/section-1/1_2_2.png)
 
 設定が完了したら`Create fork`ボタンをクリックします。あなたのGitHubアカウントに`ETH-NFT-Game`リポジトリのフォークが作成されたことを確認してください。
 
@@ -22,7 +22,7 @@ GitHubのアカウントをお持ちの方は、下記の手順に沿ってプ�
 
 まず、下図のように、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
 
-![](/public/images/ETH-NFT-Collection/section-3/3_1_1.png)
+![](/public/images/ETH-NFT-Game/section-1/1_2_3.png)
 
 ターミナル上で作業を行う任意のディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
 
@@ -82,7 +82,7 @@ yarn client start
 
 例)ローカル環境で表示されているWebサイト
 
-![](/public/images/ETH-NFT-Game/section-3/3_1_2.png)
+![](/public/images/ETH-NFT-Game/section-1/1_2_4.png)
 
 上記のような形でフロントエンドが確認できれば成功です。
 
@@ -201,18 +201,6 @@ ETH-NFT-Game
 
 不要な定義を削除し、hardhatの自動テストを実行するためのコマンドを追加しました。
 
-次に、安全なスマートコントラクトを開発するために使用されるライブラリ **OpenZeppelin** をインストールします。
-
-`packages/contract`ディレクトリにいることを確認し、以下のコマンドを実行してください。
-
-```bash
-yarn add --dev @openzeppelin/contracts
-```
-
-[OpenZeppelin](https://github.com/OpenZeppelin/openzeppelin-contracts) はイーサリアムネットワーク上で安全なスマートコントラクトを実装するためのフレームワークです。
-
-OpenZeppelinには非常に多くの機能が実装されておりインポートするだけで安全にその機能を使うことができます。
-
 ### ⭐️ 実行する
 
 すべてが機能していることを確認するには、以下を実行します。
@@ -229,7 +217,26 @@ npx hardhat test
 
 次のように表示されます。
 
-![](/public/images/ETH-NFT-Game/section-1/1_2_1.png)
+```
+  Lock
+    Deployment
+      ✔ Should set the right unlockTime (1281ms)
+      ✔ Should set the right owner
+      ✔ Should receive and store the funds to lock
+      ✔ Should fail if the unlockTime is not in the future
+    Withdrawals
+      Validations
+        ✔ Should revert with the right error if called too soon
+        ✔ Should revert with the right error if called from another account
+        ✔ Shouldn't fail if the unlockTime has arrived and the owner calls it
+      Events
+        ✔ Should emit an event on withdrawals
+      Transfers
+        ✔ Should transfer the funds to the owner
+
+
+  9 passing (1s)
+```
 
 ターミナル上で`ls`と入力してみて、下記のフォルダーとファイルが表示されていたら成功です。
 
@@ -260,14 +267,6 @@ Hardhatは段階的に下記を実行しています。
 2\. **Hardhat は、あなたのコンピュータ上でテスト用の「ローカルイーサリアムネットワーク」を起動しています。**
 
 3\. **Hardhat は、コンパイルされたスマートコントラクトをローカルイーサリアムネットワークに「デプロイ」します。**
-
-ターミナルに出力されたアドレスを確認してみましょう。
-
-```bash
-Greeter deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
-```
-
-これは、イーサリアムネットワークのテスト環境でデプロイされたスマートコントラクトのアドレスです。
 
 ### 🙋‍♂️ 質問する
 
