@@ -47,7 +47,7 @@ STAGING_ALCHEMY_KEY = https://...
 require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
 module.exports = {
-  solidity: "0.8.9",
+  solidity: "0.8.17",
   networks: {
     sepolia: {
       url: process.env.STAGING_ALCHEMY_KEY,
@@ -145,6 +145,8 @@ VercelはGitHubと連動しているので、GitHubが更新されるたびに�
 基本的に`warning`は無視して問題ありません。
 
 ![](/public/images/ETH-NFT-Maker/section-4/4_2_4.png)
+
+[こちら](https://eth-nft-maker-client.vercel.app/)が完成版のURLです！
 
 
 ### 🙋‍♂️ 質問する
