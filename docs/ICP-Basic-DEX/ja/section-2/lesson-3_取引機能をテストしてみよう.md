@@ -228,13 +228,14 @@ bash ./scripts/test.sh
 実行結果を確認してみましょう。
 
 ```bash
+# キャニスターデプロイの出力結果は省略しています...
+
+Using identity: "user1".
 ===== getToken =====
 return 1_000: OK
 return Err AlreadyGiven: OK
 ===== deposit =====
-[Canister rno2w-sqaaa-aaaaa-aaacq-cai] Message caller: rclnc-aonng-g2cn6-uk2g5-7r3gv-3jge3-bi5qz-qgrbs-bdzel-gaw47-3ae| Deposit Token: rrkah-fqaaa-aaaaa-aaaaq-cai
 return 1_000: OK
-[Canister rno2w-sqaaa-aaaaa-aaacq-cai] Message caller: rclnc-aonng-g2cn6-uk2g5-7r3gv-3jge3-bi5qz-qgrbs-bdzel-gaw47-3ae| Deposit Token: rrkah-fqaaa-aaaaa-aaaaq-cai
 return Err BalanceLow: OK
 ===== placeOrder =====
 return order details: OK
@@ -248,8 +249,6 @@ Using identity: "user2".
 return Err NotAllowed: OK
 Using identity: "user2".
 (variant { Ok = 1_000 : nat })
-[Canister rno2w-sqaaa-aaaaa-aaacq-cai] Message caller: wpasg-2oe3l-ct4yn-lhkvw-n5kto-yanmv-xybeo-mt56y-ijwwt-krrge-mqe| Deposit Token: r7inp-6aaaa-aaaaa-aaabq-cai
-[Canister rno2w-sqaaa-aaaaa-aaacq-cai] Success Trade !
 return null: OK
 ===== getBalance =====
 return 100: OK
@@ -264,7 +263,7 @@ return Err BalanceLow: OK
 Using identity: "default".
 Removed identity "user1".
 Removed identity "user2".
-Using the default definition for the 'local' shared network because /Users/user/.config/dfx/networks.json does not exist.
+Using the default definition for the 'local' shared network because /任意のパス/.config/dfx/networks.json does not exist.
 Stopping canister http adapter...
 Stopped.
 Stopping the replica...

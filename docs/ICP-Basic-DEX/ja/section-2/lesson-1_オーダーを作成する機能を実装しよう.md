@@ -9,7 +9,56 @@
 
 また、オーダーを保存する際に、既に保存されているオーダーの中で取引が成立するものがあれば、取引を実行するようにしたいと思います。
 
-それでは実装していきましょう。まずは、`Exchange`メソッドを定義する`exchange.mo`ファイルを作成します。
+それでは実装していきましょう。
+
+まずは、`src/icp_basic_dex_backend`ディレクトリにある`types.mo`ファイルを編集します。
+
+以下のように、`Exchange`メソッドで使用するデータ型を追加してください。ここでは、`public type Balance = {...};`の直下に追加しています。
+
+[types.mo]
+
+```diff
+module {
+  // 省略
+
+  // ====== DEPOSIT / WITHDRAW =====
+  public type DepositReceipt = {
+    #Ok : Nat;
+    #Err : {
+      #BalanceLow;
+      #TransferFailure;
+    };
+  };
+
+  public type WithdrawReceipt = {
+    #Ok : Nat;
+    #Err : {
+      #BalanceLow;
+      #TransferFailure;
+      #DeleteOrderFailure;
+    };
+  };
+
+  public type Balance = {
+    owner : Principal;
+    token : Principal;
+    amount : Nat;
+  };
+
++  // ====== ORDER =====
++  public type OrderId = Nat32;
++
++  public type Order = {
++    id : OrderId;
++    owner : Principal;
++    from : Token;
++    fromAmount : Nat;
++    to : Token;
++    toAmount : Nat;
++  };
+};
+
+次に、`Exchange`メソッドを定義する`exchange.mo`ファイルを作成します。
 
 ```bash
 touch ./src/icp_basic_dex_backend/exchange.mo

@@ -122,13 +122,14 @@ bash ./scripts/test.sh
 `deposit`と`withdraw`の結果を見てみましょう。
 
 ```bash
+# キャニスターデプロイの出力結果は省略しています...
+
+Using identity: "user1".
 ===== getToken =====
 return 1_000: OK
 return Err AlreadyGiven: OK
 ===== deposit =====
-[Canister rno2w-sqaaa-aaaaa-aaacq-cai] Message caller: 2izpv-ryrye-dgnz6-sizfb-auzfn-6roh7-c5v7r-leipv-jhtwb-lmerd-eae| Deposit Token: rrkah-fqaaa-aaaaa-aaaaq-cai
 return 1_000: OK
-[Canister rno2w-sqaaa-aaaaa-aaacq-cai] Message caller: 2izpv-ryrye-dgnz6-sizfb-auzfn-6roh7-c5v7r-leipv-jhtwb-lmerd-eae| Deposit Token: rrkah-fqaaa-aaaaa-aaaaq-cai
 return Err BalanceLow: OK
 ===== withdraw =====
 return 500: OK
@@ -136,7 +137,7 @@ return Err BalanceLow: OK
 Using identity: "default".
 Removed identity "user1".
 Removed identity "user2".
-Using the default definition for the 'local' shared network because /User/user/.config/dfx/networks.json does not exist.
+Using the default definition for the 'local' shared network because /任意のパス/.config/dfx/networks.json does not exist.
 Stopping canister http adapter...
 Stopped.
 Stopping the replica...
@@ -146,8 +147,6 @@ Stopped.
 ===== Result =====
 "PASS"
 ```
-
-`[Canister rno2w-sqaaa-aaaaa-aaacq-cai] Message caller:...`と出力されている部分は、キャニスターからログに出力された結果となります。ここではcompare_result関数の実行には直接関係していないので、無視していただいて大丈夫です。
 
 各テストに通過し、期待する結果が得られていることを確認しましょう。
 
