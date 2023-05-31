@@ -15,11 +15,13 @@ import { ethers } from "ethers";
 
 ここでは、フロントエンドとコントラクトを連携させるライブラリ`ethers`をインポートしています。
 
-まだ`ethers`のライブラリをインストールしてなかったので
+まだ`ethers`のライブラリをインストールしてなかったので`packages/client`へ移動して以下のコマンドを実行してください。
+
 ```
 yarn add --dev ethers
 ```
-これでインストールしましょう。ethersをもっと詳しく知りたい方は、[こちら](https://www.npmjs.com/package/ethers)をどうぞ。
+
+ethersをもっと詳しく知りたい方は、[こちら](https://www.npmjs.com/package/ethers)をどうぞ。
 
 次に、下記のコードを`NftUploader.jsx`の`connectWallet`関数の下に`askContractToMintNft`関数を追加してください。
 
@@ -66,10 +68,10 @@ const CONTRACT_ADDRESS =
 
 ここでは、コントラクトのアドレスを`CONTRACT_ADDRESS`に格納しています。
 
-**`contract`ディレクトリ上で、もう一度下記を実行し、コントラクトのアドレスを取得してください。**
+**ルーディレクトリでもう一度下記を実行し、コントラクトのアドレスを取得してください。**
 
 ```bash
-npx hardhat run scripts/deploy.js --network Sepolia
+yarn contract deploy
 ```
 
 貼り付けるアドレスの例は、以下のようになります。
@@ -171,9 +173,9 @@ Webアプリケーションがコントラクトと通信するために必要�
 
 3. 関数の実行結果に対して返るデータ型の種類
 
-ABIファイルは、コントラクトがコンパイルされた時に生成され、`contract/artifacts`ディレクトリに自動的に格納されます。
+ABIファイルは、コントラクトがコンパイルされた時に生成され、`packages/contract/artifacts`ディレクトリに自動的に格納されます。
 
-ターミナルで`contract`ディレクトリに移動し、`ls`を実行しましょう。
+ターミナルで`packages/contract`ディレクトリに移動し、`ls`を実行しましょう。
 
 `artifacts`ディレクトリの存在を確認してください。
 
@@ -181,7 +183,7 @@ ABIファイルの中身は、`Web3Mint.json`というファイルに格納さ�
 
 下記を実行して、ABIファイルをコピーしましょう。
 
-1\. ターミナル上で`contract`にいることを確認する（もしくは移動する）。
+1\. ターミナル上で`packges/contract`にいることを確認する（もしくは移動する）。
 
 2\. ターミナル上で下記を実行する。
 
@@ -209,7 +211,7 @@ ABIファイルの中身は、`Web3Mint.json`というファイルに格納さ�
 > ```bash
 > code client/src/utils/Web3Mint.json
 > ```
-5\. **先ほどコピーした`contract/artifacts/contracts/Web3Mint.sol/Web3Mint.json`の中身を新しく作成した`client/src/utils/MyEpicNFT.json`の中に貼り付けてください。**
+5\. **先ほどコピーした`packages/contract/artifacts/contracts/Web3Mint.sol/Web3Mint.json`の中身を新しく作成した`packages/client/src/utils/MyEpicNFT.json`の中に貼り付けてください。**
 
 ABIファイルの準備ができたので、`NftUploader.jsx`にインポートしましょう。
 
@@ -229,6 +231,8 @@ import Web3Mint from "../../utils/Web3Mint.json";
 そうです!受け取った画像をIPFSにアップロードしてCIDを返してもらう機能が足りませんね。
 
 まずは、`Web3.storage`のライブラリをインストールしましょう!このライブラリを使うことで先ほど手作業で行ったIPFSに画像をアップロードする作業をプログラムで実装できるようになります。
+
+`packages/client`ディレクトリに移動して下記を実行してください。
 
 ```
 yarn add web3.storage
