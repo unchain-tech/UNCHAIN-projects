@@ -21,7 +21,7 @@ Internet Identityは、ICPがサポートするユーザー認証のフレーム
 },
 "internet_identity_div": {
   "type": "custom",
-  "wasm": "https://github.com/dfinity/internet-identity/releases/latest/download/internet_identity_dev.wasm",
+  "wasm": "https://github.com/dfinity/internet-identity/releases/latest/download/internet_identity_dev.wasm.gz",
   "candid": "https://github.com/dfinity/internet-identity/releases/latest/download/internet_identity.did"
 },
 "icp_basic_dex_frontend": {
