@@ -9,22 +9,25 @@
 ```jsx
 // _app.js
 
-import { useMemo } from "react";
-import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
-import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
-import { ConnectionProvider, WalletProvider } from "@solana/wallet-adapter-react";
+import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
+import {
+  ConnectionProvider,
+  WalletProvider
+} from '@solana/wallet-adapter-react';
+import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
+import '@solana/wallet-adapter-react-ui/styles.css';
 import {
   GlowWalletAdapter,
   PhantomWalletAdapter,
   SlopeWalletAdapter,
   SolflareWalletAdapter,
   TorusWalletAdapter,
-} from "@solana/wallet-adapter-wallets";
-import { clusterApiUrl } from "@solana/web3.js";
+} from '@solana/wallet-adapter-wallets';
+import { clusterApiUrl } from '@solana/web3.js';
+import { useMemo } from 'react';
 
-import "@solana/wallet-adapter-react-ui/styles.css";
-import "../styles/globals.css";
-import "../styles/App.css";
+import '../styles/globals.css';
+import '../styles/App.css';
 
 const App = ({ Component, pageProps }) => {
   // networkはdevnet、testnet、またはmainnet-betaに設定できます。
@@ -99,12 +102,12 @@ React Appコンポーネント内のreturnステートメントでは、子（�
 ```jsx
 // index.js
 
-import { PublicKey } from '@solana/web3.js';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import { PublicKey } from '@solana/web3.js';
 
 // 定数を宣言します。
-const TWITTER_HANDLE = "あなたのTwitterハンドル";
+const TWITTER_HANDLE = 'あなたのTwitterハンドル';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const App = () => {
@@ -157,7 +160,7 @@ export default App;
 ※ Twitterハンドルを忘れずに更新してくださいね!
 
 ```jsx
-const TWITTER_HANDLE = "あなたのTwitterハンドル";
+const TWITTER_HANDLE = 'あなたのTwitterハンドル';
 ```
 
 さて、これで画像の下に`Select Wallet`ボタンが表示されるようになったはずです。

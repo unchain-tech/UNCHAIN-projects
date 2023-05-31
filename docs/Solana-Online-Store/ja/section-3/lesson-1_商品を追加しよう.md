@@ -4,12 +4,12 @@
 
 さいごに、ショップのオーナーであるあなたが **フロントエンドから** ショップにアイテムを追加できる機能を追加します。
 
-まず、プロジェクトのルートディレクトリに`.env`ファイルを作成し、そこにアドレスを追加します。
+まず、プロジェクトのルートディレクトリに`.env.local`ファイルを作成し、そこにアドレスを追加します。
 
-私の場合、`.env`ファイルは以下のようになります。
+私の場合、`.env.local`ファイルは以下のようになります。
 
 ```code
-// .env
+// .env.local
 NEXT_PUBLIC_OWNER_PUBLIC_KEY=2TmQsWGFh5vhqJdDrG6uA2MRstGrUwUCiiThyHL9HaMe
 ```
 
@@ -17,26 +17,27 @@ NEXT_PUBLIC_OWNER_PUBLIC_KEY=2TmQsWGFh5vhqJdDrG6uA2MRstGrUwUCiiThyHL9HaMe
 >
 > Next.js には [dotenv](https://www.dotenv.org/) が組み込まれていますが、env 変数名を`NEXT_PUBLIC`からはじめる必要があります。
 >
-> また、`.env`への変更を反映させるためには、Next.js を再起動（`CTR + C`で一旦停止させ、`yarn dev`で再び立ち上げる）する必要があることに注意してください。
+> また、`.env.local`への変更を反映させるためには、Next.js を再起動（`CTR + C`で一旦停止させ、`yarn dev`で再び立ち上げる）する必要があることに注意してください。
 
 それでは、`components`フォルダに`CreateProduct.js`ファイルを作成して以下のコードを貼り付けてください。
 
 ```jsx
 // CreateProduct.js
 
-import { useState } from "react";
-import { create } from "ipfs-http-client";
-import styles from "../styles/CreateProduct.module.css";
+import { create } from 'ipfs-http-client';
+import { useState } from 'react';
 
-const client = create("https://ipfs.infura.io:5001/api/v0");
+import styles from '../styles/CreateProduct.module.css';
+
+const client = create('https://ipfs.infura.io:5001/api/v0');
 
 const CreateProduct = () => {
 
   const [newProduct, setNewProduct] = useState({
-    name: "",
-    price: "",
-    image_url: "",
-    description: "",
+    name: '',
+    price: '',
+    imageUrl: '',
+    description: '',
   });
   const [file, setFile] = useState({});
   const [uploading, setUploading] = useState(false);
@@ -49,7 +50,7 @@ const CreateProduct = () => {
       const added = await client.add(files[0]);
       setFile({ filename: files[0].name, hash: added.path });
     } catch (error) {
-      console.log("Error uploading file: ", error);
+      console.log('Error uploading file: ', error);
     }
     setUploading(false);
   }
@@ -58,20 +59,20 @@ const CreateProduct = () => {
     try {
       // 商品データとfile.nameを結合します。
       const product = { ...newProduct, ...file };
-      console.log("Sending product to api",product);
-      const response = await fetch("../api/addProduct", {
-        method: "POST",
+      console.log('Sending product to api',product);
+      const response = await fetch('../api/addProduct', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(product),
       });
       if (response.status === 200) {
-        alert("Product added!");
+        alert('Product added!');
       }
       else{
         const data = await response.json();
-        alert("Unable to add product: ", data.error);
+        alert('Unable to add product: ', data.error);
       }
 
     } catch (error) {
@@ -121,7 +122,7 @@ const CreateProduct = () => {
                 type="url"
                 placeholder="Image URL ex: https://media.giphy.com/media/FWAcpJsFT9mvrv0e7a/giphy.gif"
                 onChange={(e) => {
-                  setNewProduct({ ...newProduct, image_url: e.target.value });
+                  setNewProduct({ ...newProduct, imageUrl: e.target.value });
                 }}
               />
             </div>
@@ -249,28 +250,33 @@ yarn test
 ```jsx
 // index.js
 
-import { useState, useEffect} from "react";
-import CreateProduct from "../components/CreateProduct";
-import Product from "../components/Product";
-import HeadComponent from '../components/Head';
+import { useWallet } from '@solana/wallet-adapter-react';
+import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import { useEffect, useState } from 'react';
 
-import { useWallet } from "@solana/wallet-adapter-react";
-import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import CreateProduct from '../components/CreateProduct';
+import HeadComponent from '../components/Head';
+import Product from '../components/Product';
+
 
 // 定数を宣言します。
-const TWITTER_HANDLE = "あなたのTwitterハンドル";
+const TWITTER_HANDLE = 'あなたのTwitterハンドル';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const App = () => {
   const { publicKey } = useWallet();
-  const isOwner = ( publicKey ? publicKey.toString() === process.env.NEXT_PUBLIC_OWNER_PUBLIC_KEY : false );
+  const isOwner = publicKey
+    ? publicKey.toString() === process.env.NEXT_PUBLIC_OWNER_PUBLIC_KEY
+    : false;
   const [creating, setCreating] = useState(false);
   const [products, setProducts] = useState([]);
 
   const renderNotConnectedContainer = () => (
     <div>
-      <img src="https://media.giphy.com/media/FWAcpJsFT9mvrv0e7a/giphy.gif" alt="anya" />
-
+      <img
+        src="https://media.giphy.com/media/FWAcpJsFT9mvrv0e7a/giphy.gif"
+        alt="anya"
+      />
       <div className="button-container">
         <WalletMultiButton className="cta-button connect-wallet-button" />
       </div>
@@ -283,7 +289,7 @@ const App = () => {
         .then(response => response.json())
         .then(data => {
           setProducts(data);
-          console.log("Products", data);
+          console.log('Products', data);
         });
     }
   }, [publicKey]);
@@ -302,11 +308,16 @@ const App = () => {
       <div className="container">
         <header className="header-container">
           <p className="header"> 😳 UNCHAIN Image Store 😈</p>
-          <p className="sub-text">The only Image store that accepts shitcoins</p>
+          <p className="sub-text">
+            The only Image store that accepts shitcoins
+          </p>
 
           {isOwner && (
-            <button className="create-product-button" onClick={() => setCreating(!creating)}>
-              {creating ? "Close" : "Create Product"}
+            <button
+              className="create-product-button"
+              onClick={() => setCreating(!creating)}
+            >
+              {creating ? 'Close' : 'Create Product'}
             </button>
           )}
         </header>
@@ -317,7 +328,11 @@ const App = () => {
         </main>
 
         <div className="footer-container">
-          <img alt="Twitter Logo" className="twitter-logo" src="twitter-logo.svg" />
+          <img
+            alt="Twitter Logo"
+            className="twitter-logo"
+            src="twitter-logo.svg"
+          />
           <a
             className="footer-text"
             href={TWITTER_LINK}
@@ -342,31 +357,38 @@ export default App;
 ```jsx
 // addProduct.js
 
+import fs from 'fs';
+
 import products from './products.json';
-import fs from "fs";
 
 export default function handler(req, res){
-  if (req.method === "POST"){
+  if (req.method === 'POST'){
     try {
-      console.log("body is ", req.body)
-      const { name, price, image_url, description, filename, hash } = req.body;
+      console.log('body is ', req.body)
+      const { name, price, imageUrl, description, filename, hash } = req.body;
 
       // 前回のプロダクトIDを元に新しいプロダクトIDを作成します。
-      const maxID = products.reduce((max, product) => Math.max(max, product.id), 0);
+      const maxID = products.reduce(
+        (max, product) => Math.max(max, product.id),
+        0,
+      );
       products.push({
         id: maxID + 1,
         name,
         price,
-        image_url,
+        imageUrl,
         description,
         filename,
         hash,
       });
-      fs.writeFileSync("./pages/api/products.json", JSON.stringify(products, null, 2));
-      res.status(200).send({ status: "ok" });
+      fs.writeFileSync(
+        './pages/api/products.json',
+        JSON.stringify(products, null, 2),
+      );
+      res.status(200).send({ status: 'ok' });
     } catch (error) {
       console.error(error);
-      res.status(500).json({error: "error adding product"});
+      res.status(500).json({ error: 'error adding product' });
     }
   }
   else {
