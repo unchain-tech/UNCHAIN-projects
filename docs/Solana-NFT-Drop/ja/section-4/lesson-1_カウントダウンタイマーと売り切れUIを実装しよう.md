@@ -143,25 +143,23 @@ const renderDropField = (
 
 [Mint NFT]ボタンのレンダリングを、ドロップ日になったら表示するようにしました。
 
-return文を下記の内容で更新して、`renderDropField`関数を呼び出すようにしましょう。
+CandyMachineコンポーネントのreturn文を下記の内容で更新して、`renderDropField`関数を呼び出すようにしましょう。
 
 ```jsx
 // CandyMachine/index.tsx
-return (
-  candyMachine && (
-    candyGuard && (
-      <div className={candyMachineStyles.machineContainer}>
-        {renderDropField(candyMachine, candyGuard.guards.startDate)}
-      </div>
-    )
-  )
-);
+return candyMachine && candyGuard ? (
+  <div className={candyMachineStyles.machineContainer}>
+    {renderDropField(candyMachine, candyGuard)}
+  </div>
+) : null;
 ```
 
 条件付きレンダリングを使用して、コンポーネントのレンダリング関数を
 呼び出しています。
 
 ページを更新して、UIが反映されているか確認しましょう。
+
+![](/public/images/Solana-NFT-Drop/section-4/4_1_5.png)
 
 `CountdownTimer`コンポーネントに戻って、残りのロジックを実装します。タイマーのカウントダウンをリアルタイムで確認できるようにしましょう。
 
