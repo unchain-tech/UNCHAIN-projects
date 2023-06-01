@@ -103,8 +103,15 @@ React Appコンポーネント内のreturnステートメントでは、子（�
 // index.js
 
 import { useWallet } from '@solana/wallet-adapter-react';
-import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import dynamic from 'next/dynamic';
 import { PublicKey } from '@solana/web3.js';
+
+// 参照: https://github.com/solana-labs/wallet-adapter/issues/648
+const WalletMultiButtonDynamic = dynamic(
+  async () =>
+    (await import('@solana/wallet-adapter-react-ui')).WalletMultiButton,
+  { ssr: false },
+);
 
 // 定数を宣言します。
 const TWITTER_HANDLE = 'あなたのTwitterハンドル';
@@ -118,7 +125,7 @@ const App = () => {
     <div>
       <img src="https://media.giphy.com/media/FWAcpJsFT9mvrv0e7a/giphy.gif" alt="anya" />
       <div className="button-container">
-        <WalletMultiButton className="cta-button connect-wallet-button" />
+        <WalletMultiButtonDynamic className="cta-button connect-wallet-button" />
       </div>
     </div>
   );

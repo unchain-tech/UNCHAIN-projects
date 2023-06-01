@@ -251,13 +251,19 @@ yarn test
 // index.js
 
 import { useWallet } from '@solana/wallet-adapter-react';
-import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 
 import CreateProduct from '../components/CreateProduct';
 import HeadComponent from '../components/Head';
 import Product from '../components/Product';
 
+// 参照: https://github.com/solana-labs/wallet-adapter/issues/648
+const WalletMultiButtonDynamic = dynamic(
+  async () =>
+    (await import('@solana/wallet-adapter-react-ui')).WalletMultiButton,
+  { ssr: false },
+);
 
 // 定数を宣言します。
 const TWITTER_HANDLE = 'あなたのTwitterハンドル';
@@ -278,7 +284,7 @@ const App = () => {
         alt="anya"
       />
       <div className="button-container">
-        <WalletMultiButton className="cta-button connect-wallet-button" />
+        <WalletMultiButtonDynamic className="cta-button connect-wallet-button" />
       </div>
     </div>
   );
