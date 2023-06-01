@@ -154,7 +154,7 @@ await refreshBalance();
 
 ### 送金機能を完成させよう
 
-以上を踏まえて、 送金機能を完成させていきましょう!
+以上を踏まえて、 送金機能を完成させていきましょう!それでは、`components/Transfer/index.js`を更新していきます。
 
 まず、必要な関数やクラスをインポートします。
 
@@ -166,11 +166,13 @@ import {
   SystemProgram,
   Transaction,
 } from '@solana/web3.js';
+import { useState } from 'react';
 ```
 
 これまで同様、実装に必要なデータを`Home`コンポーネントから引数として受け取るようにします。そして、トランザクションの結果を保存しておくステートと、フォームに入力された送信先アドレスを保存しておくステートを定義します。
 
 ```javascript
+// `Transfer()`に引数を追加
 export default function Transfer({ account, network, refreshBalance }) {
   // 下記を追加
   const [transactionSig, setTransactionSig] = useState('');
@@ -259,11 +261,13 @@ return (
 
 `Transfer`コンポーネントの実装が完了したので、テストスクリプトを実行して模擬的に動作確認をしてみましょう。
 
+ターミナル上で`npm run test`を実行します。
+
 components/Transfer/index.test.jsが`PASS`し、以下のようになっていたらOKです！
 
 ![](/public/images/Solana-Wallet/section-3/3_2_6.png)
 
-それでは、`Transfer`コンポーネントを`Home`コンポーネントに組み込んで送信フォームを表示しましょう。
+それでは、`Transfer`コンポーネントを`Home`コンポーネントに組み込んで送信フォームを表示しましょう。`pages/index.js`を更新していきます。
 
 インポート文を追加します。
 

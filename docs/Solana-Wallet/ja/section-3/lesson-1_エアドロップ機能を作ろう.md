@@ -4,36 +4,44 @@
 
 アカウントをテストするために実際のお金を送金する必要があるのかと思うかもしれませんが、前回説明したように、ブロックチェーンの`Devnet`は通常、実際の経済価値を危険にさらすことなく取引をテストする方法を提供します。
 
-このセクションでは、ユーザーが`SOL`トークンを`Devnet`アカウントに「エアドロップ」できるようにする機能を構築します。暗号の世界では、エアドロップとは、プロトコルがアカウント所有者に無料でトークンを配布する方法のことを言います。
+このレッスンでは、ユーザーが`SOL`トークンを`Devnet`アカウントに「エアドロップ」できるようにする機能を構築します。暗号の世界では、エアドロップとは、プロトコルがアカウント所有者に無料でトークンを配布する方法のことを言います。
 
 この場合、私たちはSolanaに組み込まれたネイティブな`Devnet`エアドロップ機能を利用して、アカウントに資金を供給することになります。これは、ブロックチェーン・プロトコルや暗号プロジェクトが行うメインネット・エアドロップとは対照的で、通常、アーリーアダプターや貢献者に報いるために発行されるものです。
 
-このセクションを完了すると、`Airdrop`ボタンを押下したときに、自動的に残高が増えるようになります。次のセクションでは資金の送金機能をつくるため、ここで自分のアカウントの資金を増やしておきましょう。
+このレッスンを完了すると、`Airdrop`ボタンを押下したときに、自動的に残高が増えるようになります。次のレッスンでは資金の送金機能をつくるため、ここで自分のアカウントの資金を増やしておきましょう。
 
 ### 🛫 導入
 
 ここからは`components/Airdrop/index.js`を更新していきます。
 
-前のセクションで、Solanaのネットワークの1つへの接続をインスタンス化する方法と、アカウントの公開鍵プロパティを変数に代入する方法を学びました。同じコードをここで適用して、 `handleAirdrop`関数をつくっていきましょう。
+前のセクションで、Solanaのネットワークの1つへの接続をインスタンス化する方法と、アカウントの公開鍵プロパティを変数に代入する方法を学びました。同じコードをここで適用して、`handleAirdrop`関数をつくっていきましょう。
 
-まずは、これまでに作成したコンポーネント同様`Home`コンポーネントが保持しているデータのうち、実装に必要なデータを引数として受け取るようにします。
+まずは、エアドロップの実装に必要なメソッドをインポートし、これまでに作成したコンポーネント同様`Home`コンポーネントが保持しているデータのうち、実装に必要なデータを引数として受け取るようにします。
 
 ```javascript
 import { Connection, LAMPORTS_PER_SOL } from '@solana/web3.js';
 
 export default function Airdrop({ account, network, refreshBalance }) {
-  const handleAirdrop = async () => {
-  };
-  return ();
-}
 ```
 
-それでは、`handleAirdrop`関数の内部を実装していきます。
+次に、`handleAirdrop`関数を定義していきましょう。`export default function Airdrop({ account, network, refreshBalance }) {`の直下に、下記のコードを追加してください。
+
+```javascript
+const handleAirdrop = async () => {
+  try {
+
+  } catch (error) {
+    console.error(error);
+  }
+};
+```
+
+それでは、`handleAirdrop`関数の内部を実装していきましょう。`try-catch`文の`try{}`内にコードを追加していきます。
 
 ```javascript
 const connection = new Connection(network, 'confirmed');
 
-console.log(connection);
+// console.log(connection);
 // > Connection {_commitment: 'confirmed', _confirmTransactionInitialTimeout: undefined, _rpcEndpoint: 'https://api.devnet.solana.com', _rpcWsEndpoint: 'wss://api.devnet.solana.com/', _rpcClient: ClientBrowser, …}
 ```
 
@@ -45,7 +53,7 @@ console.log(connection);
 
 ```javascript
 const signature = await connection.requestAirdrop(
-  account.publicKey;
+  account.publicKey,
   1 * LAMPORTS_PER_SOL,
 );
 ```
@@ -89,13 +97,15 @@ await connection
   });
 ```
 
-ここで確認に変数を代入する必要がないことに注意してください。ウォレットは、ネットワークによってトランザクションが確認されたことを知ると、refresh残高を呼び出してアカウントの残高を更新することができます。
+ここで、残高確認のため変数を代入する必要がないことに注意してください。ウォレットは、ネットワークによってトランザクションが確認されたことを知ると、`refreshBalance`関数を呼び出してアカウントの残高を更新することができます。
+
+下記のコードをtry{}内の最後に追加します。
 
 ```javascript
 await refreshBalance();
 ```
 
-最後に、 `Airdrop`ボタンを実装しましょう!
+最後に、 `Airdrop`ボタンを実装しましょう！ return文を下記のコードで更新してください。
 
 ```javascript
 return (
@@ -110,13 +120,15 @@ return (
 
 `Airdrop`コンポーネントの実装が完了したので、テストスクリプトを実行して模擬的に動作確認をしてみましょう。
 
+ターミナル上で`npm run test`を実行します。
+
 components/Airdrop/index.test.jsが`PASS`し、`Test Suites`が下記のようになっていたらOKです！
 
 ```bash
 Test Suites: 1 failed, 4 passed, 5 total
 ```
 
-それでは、`Airdrop`コンポーネントを`Home`コンポーネントに組み込んで`Airdrop`ボタンを表示しましょう。
+それでは、`Airdrop`コンポーネントを`Home`コンポーネントに組み込んで`Airdrop`ボタンを表示しましょう。`pages/index.js`を更新していきます。
 
 インポート文を追加します。
 

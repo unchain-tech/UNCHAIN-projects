@@ -14,16 +14,16 @@ IPFSに保存されたデータは一定期間内にアクセスがないと消�
 
 それでは、Pinataを利用してIPFSに画像をアップロードしてください。
 
-※アップロードするためにはPinataにログイン後、ページ右上の`+ Add Files`-> `File`と進みます。
+※アップロードするためにはPinataにログイン後、ページ右上の`+ Add Files` -> `File`と進みます。
 
 ![pinata](/public/images/Solana-Online-Store/section-1/1_3_1.png)
 
-つづいて、アップロードした画像の「CID（コンテンツID）」の欄に記載されたIDハッシュをコピーしておきましょう。
+続いて、アップロードした画像の「Content Identifier（CID）」の欄に記載されたIDハッシュをコピーしておきましょう。
 
 CIDはIPFS上でコンテンツにアクセスするためのアドレスで、以下のようなリンクを作成してアクセスすることができます。
 
 ```html
-https://cloudflare-ipfs.com/ipfs/"あなたの画像ファイルのCID"
+https://cloudflare-ipfs.com/ipfs/あなたの画像ファイルのCID
 ```
 
 
@@ -165,7 +165,7 @@ yarn test
 ```jsx
 // Product.js
 
-import styles from "../styles/Product.module.css";
+import styles from '../styles/Product.module.css';
 import IPFSDownload from './IpfsDownload';
 
 export default function Product({ product }) {
@@ -201,10 +201,10 @@ export default function Product({ product }) {
 ```jsx
 // fetchProducts.js
 
-import products from "./products.json"
+import products from './products.json'
 
 export default function handler(req, res) {
-  if (req.method === "GET") {
+  if (req.method === 'GET') {
     // リクエストを受け取った場合、ハッシュとファイル名を除いた製品のコピーを作成します。（配列）
     const productsNoHashes = products.map((product) => {
 
@@ -227,15 +227,22 @@ export default function handler(req, res) {
 ```jsx
 // index.js
 
-import { useEffect, useState } from 'react';
-import Product from "../components/Product";
-import HeadComponent from '../components/Head';
-
 import { useWallet } from '@solana/wallet-adapter-react';
-import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import dynamic from 'next/dynamic';
+import { useEffect, useState } from 'react';
+
+import HeadComponent from '../components/Head';
+import Product from '../components/Product';
+
+// 参照: https://github.com/solana-labs/wallet-adapter/issues/648
+const WalletMultiButtonDynamic = dynamic(
+  async () =>
+    (await import('@solana/wallet-adapter-react-ui')).WalletMultiButton,
+  { ssr: false },
+);
 
 // 定数を宣言します。
-const TWITTER_HANDLE = "あなたのTwitterハンドル";
+const TWITTER_HANDLE = 'あなたのTwitterハンドル';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const App = () => {
@@ -248,7 +255,7 @@ const App = () => {
         .then(response => response.json())
         .then(data => {
           setProducts(data);
-          console.log("Products", data);
+          console.log('Products', data);
         });
     }
   }, [publicKey]);
@@ -257,7 +264,7 @@ const App = () => {
     <div>
       <img src="https://media.giphy.com/media/FWAcpJsFT9mvrv0e7a/giphy.gif" alt="anya" />
       <div className="button-container">
-        <WalletMultiButton className="cta-button connect-wallet-button" />
+        <WalletMultiButtonDynamic className="cta-button connect-wallet-button" />
       </div>
     </div>
   );
