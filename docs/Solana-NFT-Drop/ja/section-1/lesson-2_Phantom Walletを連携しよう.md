@@ -72,13 +72,15 @@ Phantom Walletは **Chrome**、 **Brave**、 **Firefox**、および **Edge** �
 
 Chromeの方は[ こちら ](https://chrome.google.com/webstore/detail/phantom/bfnaelmomeimhlpmgjnjophhpkkoljpa)からPhantom Walletをインストールすることがきます。
 
-Phantom WalletのネットワークをDevnetに変更してください。
+Phantom WalletのネットワークをDevnetに変更してください。今回作成するCandy MachineはDevnet上にあるので、ウォレットもDevnetに変更する必要があります。
 
-- 「設定」→「ネットワークの変更」→「Devnet」から変更できます。
+Phantom Wallet左上のメニューを開き、「Settings」に進みます。
 
-今回作成するCandy MachineはDevnet上にあるので、ウォレットもDevnetに変更する必要があります。
+![](/public/images/Solana-NFT-Drop/section-1/1_2_6.png)
 
-![無題](/public/images/Solana-NFT-Drop/section-3/3_1_1.png)
+「Developer Settings」に進み、`Testnet Mode`をオンにします。Solanaのテストネットが表示されるので、Devnetを選択します。
+
+![](/public/images/Solana-NFT-Drop/section-1/1_2_7.png)
 
 ※ 本プロジェクトではBraveとChromeでのみ動作が確認できます。
 
@@ -151,6 +153,7 @@ const Home = () => {
           <div>
             <p className={styles.header}>🍭 Candy Drop</p>
             <p className={styles.subText}>NFT drop machine with fair mint</p>
+          </div>
           <div className={styles.footerContainer}>
             <Image
               alt="Twitter Logo"
@@ -224,15 +227,9 @@ const TWITTER_HANDLE = 'あなたのTwitterハンドル';
 
 一度、ブラウザでインタフェースを確認してみましょう。
 
-1\. ターミナルを開き、`Solana-NFT-Drop`フォルダまで移動します。
+Webアプリケーションのコンソールに`Phantom Wallet found!`という行が表示されるはずです。
 
-2\. `yarn install`を実行します。
-
-3\. `yarn dev`を実行します。
-
-これを実行すると、Webアプリケーションのコンソールに`Phantom Wallet found!`という行が表示されるはずです。
-
-![無題](/public/images/Solana-NFT-Drop/section-1/1_1_2.png)
+![無題](/public/images/Solana-NFT-Drop/section-1/1_2_5.png)
 
 次に、ユーザーのウォレットにアクセスすることが**許可**されているか確認する必要があります。アクセスが許可されていると、Solanaプログラムの関数にアクセスできます。
 
@@ -286,12 +283,7 @@ const checkIfWalletIsConnected = async () => {
 
 現段階のみの問題で、`connect`メソッド内に`onlyIfTrusted：true`パラメータを追加したためです。
 
-`onlyIfTrusted`パラメータが`true`に設定された`connect`メソッドは 、ユーザーがウォレットとWebアプリケーション間の接続をすでに承認している場合にのみ実行されます。次のセクションで修正します。
-
-ターミナルを閉じるときは、以下のコマンドが使えます ✍️
-
-- Mac: `ctrl + c`
-- Windows: `ctrl + shift + w`
+`onlyIfTrusted`パラメータが`true`に設定された`connect`メソッドは 、ユーザーがウォレットとWebアプリケーション間の接続をすでに承認している場合にのみ実行されます。次のレッスンで修正します。
 
 ### 🙋‍♂️ 質問する
 
