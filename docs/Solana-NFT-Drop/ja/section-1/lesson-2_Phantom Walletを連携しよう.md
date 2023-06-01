@@ -1,30 +1,60 @@
 ### 🤖 ローカル開発環境を設定する
 
-※ GitHubアカウントの初期設定がお済みでない方は、アカウント設定を行ってから先へお進みください。
+まずはアプリの雛形であるスタータープロジェクトをもとに、ローカル環境を作成します。
 
-まず、 [この GitHub リンク](https://github.com/unchain-tech/Solana-NFT-Drop) にアクセスして、ページの右上にある[Fork]ボタンを押してください。このリポジトリをフォークすると、自分のGitHubに同一のリポジトリがコピーされます。
+まだ`GitHub`のアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
-Create a new forkページが開くので、以下の項目を設定します。
+`GitHub`のアカウントをお持ちの方は、下記の手順に沿ってフロントエンドの基盤となるリポジトリをあなたのGitHubに[フォーク](https://denno-sekai.com/github-fork/)しましょう。
 
-- Copy the `main` branch only: **チェックが入っている**ことを確認します。
+1\. [こちら](https://github.com/unchain-tech/Solana-NFT-Drop)からunchain-tech/Solana-NFT-Dropリポジトリにアクセスをして、ページ右上の`Fork`ボタンをクリックします。
 
-  ![](/public/images/Solana-NFT-Drop/section-1/1_2_1.png)
+![](/public/images/Solana-NFT-Drop/section-1/1_2_1.png)
 
-設定が完了したら[Create fork]ボタンをクリックします。あなたのGitHubアカウントに`Solana-NFT-Drop`リポジトリのフォークが作成されたことを確認してください。
+2\. Create a new forkページが開くので、「Copy the `main` branch only」という項目に**チェックが入っていることを確認します**。
 
-次に新しくフォークされたリポジトリをローカルに保存します。
+![](/public/images/Solana-NFT-Drop/section-1/1_2_2.png)
 
-「Code」ボタンをクリックして、そのリンクをコピーしてください。
+3\. 設定が完了したら`Create fork`ボタンをクリックします。あなたのGitHubアカウントに`Solana-NFT-Drop`リポジトリのフォークが作成されたことを確認してください。
 
-![](/public/images/Solana-NFT-Drop/section-1/1_1_1.png)
+それでは、フォークしたリポジトリをローカル環境にクローンしましょう。
 
-最後に、ターミナルに移動し、`cd`コマンドでプロジェクトが存在するディレクトリまでいき、次のコマンドを実行します。
+`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
 
-```txt
+![](/public/images/Solana-NFT-Drop/section-1/1_2_3.png)
+
+ターミナルで任意の作業ディレクトリに移動し、先ほどコピーしたリンクを貼り付け、下記を実行してください。
+
+```bash
 git clone コピーした_github_リンク
 ```
 
-これでローカル開発環境の準備は完了です。
+クローンしたプロジェクトに移動し、パッケージのインストールを行いましょう。
+
+```bash
+cd Solana-NFT-Drop/
+yarn install
+```
+
+次に、下記を実行してみましょう。
+
+```bash
+yarn dev
+```
+
+ターミナルに表示されたURLにアクセスをしましょう。あなたのローカル環境で、Webサイトのフロントエンドが立ち上がりましたか？
+
+**ローカル環境で表示されている Web サイト**
+
+![](/public/images/Solana-NFT-Drop/section-1/1_2_4.png)
+
+上記のような形でフロントエンドが確認できれば成功です。
+
+これからフロントエンドの表示を確認したい時は、ターミナルに向かい、`Solana-NFT-Drop`ディレクトリ上で、`yarn dev`を実行します。これからも必要となる作業ですので、よく覚えておいてください。
+
+ターミナルを閉じるときは、以下のコマンドが使えます ✍️
+
+- Mac: `ctrl + c`
+- Windows: `ctrl + shift + w`
 
 ### ✅ テストスクリプトについて
 
