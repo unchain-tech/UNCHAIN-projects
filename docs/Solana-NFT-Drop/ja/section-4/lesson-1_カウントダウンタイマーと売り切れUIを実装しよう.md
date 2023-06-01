@@ -147,15 +147,11 @@ CandyMachineコンポーネントのreturn文を下記の内容で更新して�
 
 ```jsx
 // CandyMachine/index.tsx
-return (
-  candyMachine && (
-    candyGuard && (
-      <div className={candyMachineStyles.machineContainer}>
-        {renderDropField(candyMachine, candyGuard)}
-      </div>
-    )
-  )
-);
+return candyMachine && candyGuard ? (
+  <div className={candyMachineStyles.machineContainer}>
+    {renderDropField(candyMachine, candyGuard)}
+  </div>
+) : null;
 ```
 
 条件付きレンダリングを使用して、コンポーネントのレンダリング関数を
