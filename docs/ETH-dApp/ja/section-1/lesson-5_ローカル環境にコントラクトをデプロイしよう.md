@@ -41,7 +41,6 @@ yarn contract start
 - `run.js`がテスト用のプログラムなら、`deploy.js`は本番用です。
 
 ```javascript
-// deploy.js
 const main = async () => {
   const [deployer] = await hre.ethers.getSigners();
   const accountBalance = await deployer.getBalance();

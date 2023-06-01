@@ -138,7 +138,6 @@ artifacts               contracts               node_modules            scripts
 `hardhat.config.js`をVS Codeで開いて、中身を編集していきます。
 
 ```javascript
-// hardhat.config.js
 require("@nomicfoundation/hardhat-toolbox");
 module.exports = {
   solidity: "0.8.17",

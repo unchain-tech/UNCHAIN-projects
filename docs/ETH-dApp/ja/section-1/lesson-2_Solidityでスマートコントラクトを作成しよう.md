@@ -31,7 +31,6 @@ VS Codeをターミナルから起動する方法は [こちら](https://maku.bl
 `WavePortal.sol`をVS Codeで開き、下記を入力します。
 
 ```solidity
-// WavePortal.sol
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.17;
@@ -48,7 +47,6 @@ contract WavePortal {
 コードを詳しくみていきましょう。
 
 ```solidity
-// WavePortal.sol
 // SPDX-License-Identifier: MIT
 ```
 
@@ -57,7 +55,6 @@ contract WavePortal {
 詳細については、[こちら](https://www.skyarch.net/blog/?p=15940) を参照してみてください。
 
 ```solidity
-// WavePortal.sol
 pragma solidity ^0.8.17;
 ```
 
@@ -70,7 +67,6 @@ pragma solidity ^0.8.17;
 もし、`hardhat.config.js`の中に記載されているSolidityのバージョンが`0.8.17`でなかった場合は、`WavePortal.sol`の中身を`hardhat.config.js`に記載されているバージョンに変更しましょう。
 
 ```solidity
-// WavePortal.sol
 import "hardhat/console.sol";
 ```
 
@@ -79,7 +75,6 @@ import "hardhat/console.sol";
 これは、今後スマートコントラクトのデバッグが発生した場合に、とても役立つツールです。
 
 ```solidity
-// WavePortal.sol
 contract WavePortal {
     constructor() {
         console.log("Here is my first smart contract!");

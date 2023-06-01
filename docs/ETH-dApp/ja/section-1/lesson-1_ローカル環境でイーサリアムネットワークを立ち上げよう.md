@@ -27,7 +27,7 @@
 
 GitHubのアカウントをお持ちの方は、下記の手順に沿ってプロジェクトの基盤となるリポジトリをあなたのGitHubに[フォーク](https://denno-sekai.com/github-fork/)しましょう。
 
-1. [こちら](https://github.com/unchain-tech/ETH-dApp)からunchain-tech/ETH-NFT-Collectionリポジトリにアクセスをして、ページ右上の`Fork`ボタンをクリックします。
+1. [こちら](https://github.com/unchain-tech/ETH-dApp)からETH-dAppリポジトリにアクセスをして、ページ右上の`Fork`ボタンをクリックします。
 
 ![](/public/images/ETH-dApp/section-1/1_1_1.png)
 

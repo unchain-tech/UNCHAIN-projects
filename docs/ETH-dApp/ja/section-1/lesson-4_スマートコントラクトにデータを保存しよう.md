@@ -15,7 +15,6 @@
 それでは、「👋（wave）」を保存するために、`WavePortal.sol`を更新していきましょう。
 
 ```solidity
-// WavePortal.sol
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.17;
@@ -45,7 +44,6 @@ contract WavePortal {
 新しく追加されたコードの理解を深めましょう。
 
 ```solidity
-// WavePortal.sol
 uint256 totalWaves;
 ```
 
@@ -56,7 +54,6 @@ uint256 totalWaves;
 ### 🎁 Solidity のアクセス修飾子について
 
 ```solidity
-// WavePortal.sol
 function wave() public {
     totalWaves += 1;
     console.log("%s has waved!", msg.sender);
@@ -88,7 +85,6 @@ Solidityには、4つのアクセス修飾子が存在します。
 ### 🔍 `msg.sender`について
 
 ```solidity
-// WavePortal.sol
 function wave() public {
     totalWaves += 1;
     console.log("%s has waved!", msg.sender);
@@ -128,7 +124,6 @@ Solidity開発では関数修飾子を意識しておかないとデータを記
 `WavePortal.sol`に追加された下記の関数を見ていきましょう。
 
 ```solidity
-// WavePortal.sol
 function wave() public {
     totalWaves += 1;
     console.log("%s has waved!", msg.sender);
@@ -143,7 +138,6 @@ function wave() public {
 それでは、下記のコードも見ていきましょう。
 
 ```solidity
-// WavePortal.sol
 function getTotalWaves() public view returns (uint256) {
     console.log("We have %d total waves!", totalWaves);
     return totalWaves;
@@ -157,7 +151,6 @@ function getTotalWaves() public view returns (uint256) {
 次に、`run.js`を以下のように更新していきます。
 
 ```javascript
-// run.js
 const main = async () => {
   const [owner, randomPerson] = await hre.ethers.getSigners();
   const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
@@ -201,7 +194,6 @@ runMain();
 更新された部分を1行ずつ見ていきましょう。
 
 ```javascript
-// run.js
 const [owner, randomPerson] = await hre.ethers.getSigners();
 ```
 
@@ -216,14 +208,12 @@ const [owner, randomPerson] = await hre.ethers.getSigners();
 次に、下記のコードを見ていきましょう。
 
 ```javascript
-// run.js
 console.log("Contract deployed to:", wavePortal.address);
 ```
 
 ここでは、あなたのスマートコントラクトのデプロイ先のアドレス(＝ `wavePortal.address`)をターミナルに出力しています。
 
 ```javascript
-// run.js
 console.log("Contract deployed by:", owner.address);
 ```
 
@@ -232,7 +222,6 @@ console.log("Contract deployed by:", owner.address);
 最後に、下記のコードを見ていきましょう。
 
 ```javascript
-// run.js
 let waveCount;
 waveCount = await waveContract.getTotalWaves();
 
@@ -245,7 +234,6 @@ waveCount = await waveContract.getTotalWaves();
 ここでは、通常のAPIと同じように、関数を手動で呼び出しています。1行ずつ見ていきましょう。
 
 ```javascript
-// run.js
 let waveCount;
 waveCount = await waveContract.getTotalWaves();
 ```
@@ -255,7 +243,6 @@ waveCount = await waveContract.getTotalWaves();
 次に、`waveContract.getTotalWaves()`で`WavePortal.sol`に記載された`getTotalWaves()`を呼び出し、既存の「👋（wave）」の総数を取得します。
 
 ```javascript
-// run.js
 let waveTxn = await waveContract.wave();
 await waveTxn.wait();
 ```
@@ -271,7 +258,6 @@ MetaMaskを使っていて、取引を承認するために数秒手間どった
 承認が終わったら、`await waveTxn.wait()`が実行され、トランザクションの結果を取得します。コードが冗長に感じるかもしれませんが、大事な処理です。
 
 ```javascript
-// run.js
 waveCount = await waveContract.getTotalWaves();
 ```
 
@@ -318,7 +304,6 @@ We have 1 total waves!
 下記を`run.js`に反映させて、ターミナルにどのような結果がでるかテストしてみましょう。
 
 ```javascript
-// run.js
 const main = async () => {
   const [owner, randomPerson] = await hre.ethers.getSigners();
   const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
@@ -358,7 +343,6 @@ runMain();
 `run.js`に追加されたコードは以下になります。確認していきましょう。
 
 ```javascript
-// run.js
 waveTxn = await waveContract.connect(randomPerson).wave();
 await waveTxn.wait();
 waveCount = await waveContract.getTotalWaves();
@@ -370,14 +354,12 @@ waveCount = await waveContract.getTotalWaves();
 - `randomPerson`は、このシミュレーションのために存在していたのです。
 
 ```javascript
-// run.js
 waveTxn = await waveContract.connect(randomPerson).wave();
 ```
 
 ここでは、`.connect(randomPerson)`を用いて、ほかのユーザーがあなたに「👋（wave）」を送った状態をシミュレーションしています。
 
 ```javascript
-// run.js
 await waveTxn.wait();
 waveCount = await waveContract.getTotalWaves();
 ```
@@ -414,7 +396,6 @@ We have 2 total waves!
 下記のように`run.js`に`randomPerson`を追加すると、さらにもう一人追加して、シミュレーションを行うこともできます。
 
 ```javascript
-// run.js
 const [owner, randomPerson1, randomPerson2] = await hre.ethers.getSigners();
 ```
 

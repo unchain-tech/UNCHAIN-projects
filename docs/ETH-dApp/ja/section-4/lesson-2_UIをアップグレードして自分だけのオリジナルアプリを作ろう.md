@@ -34,7 +34,6 @@ CSSや文章を変更したり、画像や動画を自分のWebアプリケー�
 まず、`App.js`の中にある下記のコードを確認します。
 
 ```javascript
-// App.js
 /* ABIを参照 */
 const wavePortalContract = new ethers.Contract(
   contractAddress,
@@ -48,7 +47,6 @@ console.log("Retrieved total wave count...", count.toNumber());
 このコードの直下に下記を追加しましょう。
 
 ```javascript
-// App.js
 let contractBalance = await provider.getBalance(wavePortalContract.address);
 console.log("Contract balance:", ethers.utils.formatEther(contractBalance));
 ```
@@ -60,7 +58,6 @@ console.log("Contract balance:", ethers.utils.formatEther(contractBalance));
 次に、`App.js`の中にある下記のコードを確認します。
 
 ```javascript
-// App.js
 /* コントラクトに👋（wave）を書き込む */
 const waveTxn = await wavePortalContract.wave(messageValue, {
   gasLimit: 300000,
@@ -75,7 +72,6 @@ console.log("Retrieved total wave count...", count.toNumber());
 このコードの直下に下記を追加しましょう。
 
 ```javascript
-// App.js
 let contractBalance = await provider.getBalance(wavePortalContract.address);
 let contractBalance_post = await provider.getBalance(
   wavePortalContract.address

@@ -5,7 +5,6 @@
 `WavePortal.sol`に実装した`getTotalWaves`関数を覚えていますか？
 
 ```solidity
-// WavePortal.sol
   function getTotalWaves() public view returns (uint256) {
       console.log("We have %d total waves!", totalWaves);
       return totalWaves;
@@ -15,7 +14,6 @@
 `App.js`を以下のように更新して、フロントエンドから`getTotalWaves`関数へアクセスできるようにします。
 
 ```javascript
-// App.js
 import React, { useEffect, useState } from "react";
 import "./App.css";
 /* ethers 変数を使えるようにする*/
@@ -136,7 +134,6 @@ export default App;
 **1 \. ethers 変数を使えるようにする**
 
 ```javascript
-// App.js
 import { ethers } from "ethers";
 ```
 
@@ -145,7 +142,6 @@ import { ethers } from "ethers";
 **2 \. wave の回数をカウントする関数を実装する**
 
 ```javascript
-// App.js
 const wave = async () => {
   try {
     // ユーザーがMetaMaskを持っているか確認
@@ -175,7 +171,6 @@ const wave = async () => {
 **I\. `provider`**
 
 > ```javascript
-> // App.js
 > const provider = new ethers.providers.Web3Provider(ethereum);
 > ```
 >
@@ -188,7 +183,6 @@ const wave = async () => {
 **II\. `signer`**
 
 > ```javascript
-> // App.js
 > const signer = provider.getSigner();
 > ```
 >
@@ -201,7 +195,6 @@ const wave = async () => {
 **III\. コントラクトインスタンス**
 
 > ```javascript
-> // App.js
 > const wavePortalContract = new ethers.Contract(
 >   contractAddress,
 >   contractABI,
@@ -228,7 +221,7 @@ const wave = async () => {
 **3 \. wave ボタンに wave 関数を連動させる**
 
 ```html
-// App.js <button className="waveButton" onClick={wave}>Wave at Me</button>
+<button className="waveButton" onClick={wave}>Wave at Me</button>
 ```
 
 `onClick`プロップを`null`から`wave`に更新して、`wave()`関数を`waveButton`に接続しています。
@@ -271,7 +264,6 @@ yarn contract deploy
 `const [currentAccount, setCurrentAccount] = useState("")`の直下に`contractAddress`を作成しましょう。以下のようになります。
 
 ```javascript
-// App.js
 const [currentAccount, setCurrentAccount] = useState("");
 /*
  * デプロイされたコントラクトのアドレスを保持する変数を作成
@@ -333,7 +325,6 @@ ABIファイルの準備ができたので、`App.js`にインポートしまし
 下記のように`App.js`を更新します。
 
 ```javascript
-// App.js
 import React, { useEffect, useState } from "react";
 import "./App.css";
 /* ethers 変数を使えるようにする*/
@@ -491,7 +482,6 @@ export default App;
 コントラクトアドレスをご自身のものに更新するのをお忘れなく!
 
 ```javascript
-// App.js
 const contractAddress = "あなたのコントラクトアドレスを貼り付けてください";
 ```
 
@@ -500,21 +490,18 @@ const contractAddress = "あなたのコントラクトアドレスを貼り付�
 **1 \. ABI ファイルを含む WavePortal.json ファイルをインポートする**
 
 ```javascript
-// App.js
 import abi from "./utils/WavePortal.json";
 ```
 
 **2 \. ABI の内容を参照する変数を作成**
 
 ```javascript
-// App.js
 const contractABI = abi.abi;
 ```
 
 ABIの参照先を確認しましょう。`wave`関数の中に実装されています。
 
 ```javascript
-// App.js
 const wave = async () => {
   try {
     const { ethereum } = window;
@@ -547,7 +534,6 @@ ABIファイルを`App.js`に追加すると、フロントエンドで`Wave`ボ
 コントラクトにデータを書き込むためのコードを実装しました。
 
 ```javascript
-// App.js
 const wave = async () => {
   try {
     const { ethereum } = window;
