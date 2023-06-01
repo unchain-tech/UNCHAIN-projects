@@ -1,6 +1,6 @@
 ### 🔥 トークンの引き出し機能を実装しましょう
 
-前回のレッスンではトークンの提供機能を実装しましたが,
+前回のレッスンではトークンの提供機能を実装しましたが、
 このレッスンでは流動性の提供者が預けたトークンを引き出す機能を実装します。
 
 ユーザは自身のシェアの分だけプールに預けたトークンを引き出すことができます。
@@ -44,13 +44,13 @@
     }
 ```
 
-`getWithdrawEstimate`関数では, 指定されたシェアの分に応じたトークンの量を算出します。
+`getWithdrawEstimate`関数では、指定されたシェアの分に応じたトークンの量を算出します。
 
 シェアの総量(`totalShare`)に対する指定されたシェア(`share`)の割合は
 
 ![](/public/images/AVAX-AMM/section-1/1_4_2.png)
 
-で表されるので,
+で表されるので、
 シェアの分に応じたトークンの量は
 
 ![](/public/images/AVAX-AMM/section-1/1_4_3.png)
@@ -61,9 +61,9 @@
 
 初めに`getWithdrawEstimate`により各トークンのAMMから引き出す量を算出します。
 
-引き出す分だけシェアとトークン量の状態変数の調整を行い, トークンを関数を呼び出したユーザへ送信します。
+引き出す分だけシェアとトークン量の状態変数の調整を行い、トークンを関数を呼び出したユーザへ送信します。
 
-ここではAMMコントラクトからユーザへトークンを送信するので, `transfer`関数を使用すれば良いです。
+ここではAMMコントラクトからユーザへトークンを送信するので、`transfer`関数を使用すれば良いです。
 
 ### 🧪 テストを追加しましょう
 
@@ -71,8 +71,8 @@
 `test/AMM.ts`内のテストの最後の行に以下のコードを追加してください。
 
 ```ts
-describe("getWithdrawEstimate", function () {
-  it("Should get the right number of estimated amount", async function () {
+describe('getWithdrawEstimate', function () {
+  it('Should get the right number of estimated amount', async function () {
     const {
       amm,
       token0,
@@ -98,14 +98,14 @@ describe("getWithdrawEstimate", function () {
 `getWithdrawEstimate`テストではotherAccountのシェアを引数に指定した場合の
 `getWithdrawEstimate`関数の返り値をテストしています。
 
-otherAccountは`amountOtherProvided0`と`amountOtherProvided1`だけそれぞれプールに預けているので, シェアの分だけ引き出せる量を計算すると
+otherAccountは`amountOtherProvided0`と`amountOtherProvided1`だけそれぞれプールに預けているので、シェアの分だけ引き出せる量を計算すると
 預けている量と同じ量が返ってくるはずです。
 
 続いてその下に以下のテストを追加しましょう。
 
 ```ts
-describe("withdraw", function () {
-  it("Token should be moved", async function () {
+describe('withdraw', function () {
+  it('Token should be moved', async function () {
     const {
       amm,
       token0,
@@ -139,7 +139,7 @@ describe("withdraw", function () {
     );
   });
 
-  it("Should set the right number of amm details", async function () {
+  it('Should set the right number of amm details', async function () {
     const {
       amm,
       token0,
@@ -155,7 +155,7 @@ describe("withdraw", function () {
     await amm.connect(otherAccount).withdraw(share);
 
     const precision = await amm.PRECISION();
-    const BN100 = BigNumber.from("100");
+    const BN100 = BigNumber.from('100');
 
     expect(await amm.totalShare()).to.equal(BN100.mul(precision));
     expect(await amm.share(owner.address)).to.equal(BN100.mul(precision));
@@ -170,10 +170,10 @@ describe("withdraw", function () {
 });
 ```
 
-`Token should be moved`テストでは, `withdraw`関数を実行する前後でトークンが正しく移動しているかを確認しています。
+`Token should be moved`テストでは、`withdraw`関数を実行する前後でトークンが正しく移動しているかを確認しています。
 ロジックは`provide`に関するテストで行ったトークンの移動の確認と同じです。
 
-続く`Should set the right number of amm details`テストでは, otherAccountが自身のシェアの分トークンを引き出した場合に,
+続く`Should set the right number of amm details`テストでは、otherAccountが自身のシェアの分トークンを引き出した場合に、
 AMMコントラクトの状態変数が正しく変更されているかを確認しています。
 
 ### ⭐ テストを実行しましょう
@@ -197,9 +197,9 @@ yarn contract test
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は,Discordの`#avalanche`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#avalanche`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので,エラーレポートには下記の3点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

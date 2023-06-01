@@ -1,7 +1,7 @@
 ### 🗂 サンプルプロジェクトを作成しよう
 
 ```bash
-npm create vite@latest
+npm create vite@3
 ```
 
 いくつかの質問に答えて、プロジェクトの設定を行います。
@@ -9,13 +9,13 @@ npm create vite@latest
 最初にプロジェクト名は、好きな名前に変えていただいて大丈夫です（ただし、この後もここで使った名前を使うので同じ名前にしておいた方がスムーズに進めることができるかと思います）。
 
 ```bash
-? Project name: › ic-static-website
+? Project name: › icp-static-site
 ```
 
 パッケージ名はデフォルトでプロジェクト名が入るので、そのままEnterを押します。
 
 ```bash
-? Package name: › ic-static-website
+? Package name: › icp-static-site
 ```
 
 フレームワークは`svelte`を選択します。
@@ -41,8 +41,8 @@ npm create vite@latest
 ターミナルに以下のような出力があり、プロジェクトが作成されます。
 
 ```bash
-✔ Project name: … ic-static-website
-✔ Package name: … ic-static-website
+✔ Project name: … icp-static-site
+✔ Package name: … icp-static-site
 ✔ Select a framework: › svelte
 ✔ Select a variant: › svelte
 
@@ -50,7 +50,7 @@ Scaffolding project in /Users/user/Desktop/div/IC-static-website...
 
 Done. Now run:
 
-  cd IC-static-website
+  cd icp-static-website
   npm install
   npm run dev
 
@@ -61,13 +61,13 @@ Done. Now run:
 ここでは、`tree`コマンドを実行して確認したいと思います。`-L 1`は1つ下の階層まで、`-F`はディレクトリを`/`で表現する、`-a`は隠しファイル（.ファイル）を表示するという意味です。
 
 ```bash
-tree -L 1 -F -a ic-static-website
+tree -L 1 -F -a icp-static-site
 ```
 
 以下のような構成になっていることを確認してください。
 
 ```bash
-ic-static-website/
+icp-static-site/
 ├── .gitignore
 ├── .vscode/
 ├── README.md
@@ -82,7 +82,7 @@ ic-static-website/
 それでは、プロジェクトへ移動して実際に起動してみましょう。
 
 ```bash
-cd ic-static-website
+cd icp-static-site
 npm install
 npm run dev
 ```
@@ -103,7 +103,7 @@ npm run dev
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの`#internet-computer`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#icp`で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
