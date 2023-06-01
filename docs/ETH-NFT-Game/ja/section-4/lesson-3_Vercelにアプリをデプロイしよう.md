@@ -30,7 +30,7 @@ Vercelのアカウントを取得したら、下記を実行しましょう。
 
 3\. プロジェクトを作成します。`Root Directory`が「packages/client」となっていることを確認してください。
 
-![](/public/images/ETH-NFT-Collection/section-4/4_2_9.png)
+![](/public/images/ETH-NFT-Game/section-4/4_3_3.png)
 
 4\. `Deploy`ボタンを推しましょう。
 
@@ -38,11 +38,10 @@ VercelはGitHubと連動しているので、GitHubが更新されるたびに�
 
 下記のように、`Building`ログが出力されます。
 基本的に`warning`は無視して問題ありません。
+
 ![](/public/images/ETH-NFT-Game/section-4/4_3_4.png)
 
-こちらが、今回のプロジェクトで作成されるWebアプリケーションのデモです。
-
-https://my-nft-game-nine.vercel.app/
+[こちら](https://eth-nft-game-client.vercel.app/)が、今回のプロジェクトで作成されるWebアプリケーションのデモです。
 
 ### 🙋‍♂️ 質問する
 

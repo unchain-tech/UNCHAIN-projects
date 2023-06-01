@@ -15,7 +15,6 @@ Webアプリケーションの開発を進める前に、`contract/scripts`に�
 `deploy.js`が下記のようになっていることを確認したら、次に進みましょう。
 
 ```javascript
-// deploy.js
 const main = async () => {
   const gameContractFactory = await hre.ethers.getContractFactory("MyEpicGame");
 
@@ -76,7 +75,6 @@ runMain();
 まず、`index.js`の`import`の部分を下記のように更新してください。
 
 ```javascript
-// index.js
 import React, { useEffect, useState } from "react";
 import "./SelectCharacter.css";
 import { ethers } from "ethers";
@@ -87,7 +85,6 @@ import myEpicGame from "../../utils/MyEpicGame.json";
 次に、`SelectCharacter`を下記のように更新しましょう。
 
 ```javascript
-// index.js
 // SelectCharacter コンポーネントを定義しています。
 const SelectCharacter = ({ setCharacterNFT }) => {
   const [characters, setCharacters] = useState([]);
@@ -124,7 +121,6 @@ export default SelectCharacter;
 追加したコードを詳しく見ていきましょう。
 
 ```javascript
-// index.js
 const [characters, setCharacters] = useState([]);
 const [gameContract, setGameContract] = useState(null);
 ```
@@ -144,7 +140,6 @@ const [gameContract, setGameContract] = useState(null);
 次に、下記のコードを見ていきましょう。
 
 ```javascript
-// index.js
 // ページがロードされた瞬間に下記を実行します。
 useEffect(() => {
   const { ethereum } = window;
@@ -178,7 +173,6 @@ NFTキャラクターのデータをスマートコントラクトから取得�
 
 
 ```javascript
-// index.js
 useEffect(() => {
 	const { ethereum } = window;
 
@@ -201,7 +195,6 @@ useEffect(() => {
 この関数の直下に、下記を追加していきましょう。
 
 ```javascript
-// index.js
 useEffect(() => {
   // NFT キャラクターのデータをスマートコントラクトから取得します。
   const getCharacters = async () => {
@@ -233,7 +226,6 @@ useEffect(() => {
 コードの中身を見ていきましょう。
 
 ```javascript
-// index.js
 // ミント可能な全 NFT キャラクター をコントラクトをから呼び出します。
 const charactersTxn = await gameContract.getAllDefaultCharacters();
 ```
@@ -245,7 +237,6 @@ const charactersTxn = await gameContract.getAllDefaultCharacters();
 次に、下記のコードを見ていきましょう。
 
 ```javascript
-// index.js
 // すべてのNFTキャラクターのデータを変換します。
 const characters = charactersTxn.map((characterData) =>
   transformCharacterData(characterData)
@@ -261,7 +252,6 @@ const characters = charactersTxn.map((characterData) =>
 次に下記のコードを見ていきましょう。
 
 ```javascript
-// index.js
 // ミント可能なすべてのNFTキャラクターの状態を設定します。
 setCharacters(characters);
 ```
@@ -273,7 +263,6 @@ setCharacters(characters);
 最後に、下記のコードを見ていきましょう。
 
 ```javascript
-// index.js
 // gameContractの準備ができたら、NFT キャラクターを読み込みます。
 if (gameContract) {
   getCharacters();
@@ -313,7 +302,6 @@ length: 3
 - 2つ目に作成した、`useEffect`関数の直下に、下記を貼り付けてください。
 
 ```javascript
-// index.js
 // NFT キャラクターをフロントエンドにレンダリングするメソッドです。
 const renderCharacters = () =>
   characters.map((character, index) => (
@@ -339,7 +327,6 @@ const renderCharacters = () =>
 次に、`index.js`の中の`return();`の中身を下記のように更新してください。
 
 ```javascript
-// index.js
 return (
   <div className="select-character-container">
     <h2>⏬ 一緒に戦う NFT キャラクターを選択 ⏬</h2>
@@ -362,7 +349,6 @@ return (
 `index.js`を開き、`const [gameContract, setGameContract] = useState(null);`の直下に下記を追加しましょう。
 
 ```javascript
-// index.js
 // NFT キャラクターを Mint します。
 const mintCharacterNFTAction = (characterId) => async () => {
   try {
@@ -397,7 +383,6 @@ NFTキャラクターがMintされたことをフロントエンドに伝える`
 `index.js`内で`getCharacters`関数を定義した`useEffect`のコードブロックを下記のように編集してください。
 
 ```javascript
-// index.js
 useEffect(() => {
   // NFT キャラクターのデータをスマートコントラクトから取得します。
   const getCharacters = async () => {
@@ -453,7 +438,6 @@ useEffect(() => {
 新しく追加したコードを詳しく見ていきましょう。
 
 ```javascript
-//index.js
 // イベントを受信したときに起動するコールバックメソッド onCharacterMint を追加します。
 const onCharacterMint = async (sender, tokenId, characterIndex) => {
   console.log(
@@ -483,7 +467,6 @@ const onCharacterMint = async (sender, tokenId, characterIndex) => {
 次に、下記のコードを詳しく見ていきましょう。
 
 ```javascript
-// index.js, onCharacterMint()
 // NFT キャラクターが Mint されたら、コントラクトからメタデータを受け取り、アリーナ（ボスとのバトルフィールド）に移動するための状態に設定します。
 if (gameContract) {
   const characterNFT = await gameContract.checkIfUserHasNFT();
@@ -503,7 +486,6 @@ if (gameContract) {
 次に、下記のコードを見ていきましょう。
 
 ```javascript
-// index.js
 if (gameContract) {
   getCharacters();
   // リスナーの設定：NFT キャラクターが Mint された通知を受け取ります。
@@ -522,7 +504,6 @@ if (gameContract) {
 最後に、下記のコードを見ていきましょう。
 
 ```javascript
-// index.js
 return () => {
   // コンポーネントがマウントされたら、リスナーを停止する。
   if (gameContract) {
@@ -580,7 +561,6 @@ https://gemcase.vercel.app/view/evm/sepolia/CONTRACT_ADDRES/TOKEN_ID
 - `setCharacterNFT(transformCharacterData(characterNFT));`の直下に下記を追加しましょう。
 
 ```javascript
-// index.js
 alert(
   `NFT キャラクターが Mint されました -- リンクはこちらです: https://gemcase.vercel.app/view/evm/sepolia/${
     gameContract.address
