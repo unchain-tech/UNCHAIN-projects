@@ -177,7 +177,6 @@ const [currentAccount, setCurrentAccount] = useState(null);
 以下で`currentAccount`を更新しています。
 
 ```javascript
-// App.js
 // accountsにWEBサイトを訪れたユーザーのウォレットアカウントを格納する（複数持っている場合も加味、よって account's' と変数を定義している）
 const accounts = await ethereum.request({ method: "eth_accounts" });
 // もしアカウントが一つでも存在したら、以下を実行。

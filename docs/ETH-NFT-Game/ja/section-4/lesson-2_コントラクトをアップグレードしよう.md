@@ -452,7 +452,6 @@ Boss CROCODILE has 50 HP and 50 AD
 `App.js`の下記をあなたのTwitterハンドルに更新しましょう。
 
 ```javascript
-// App.js
 const TWITTER_HANDLE = "あなたのTwitterハンドル";
 ```
 

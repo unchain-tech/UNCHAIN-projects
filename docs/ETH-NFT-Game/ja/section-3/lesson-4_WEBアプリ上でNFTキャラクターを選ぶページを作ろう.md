@@ -455,7 +455,6 @@ const onCharacterMint = async (sender, tokenId, characterIndex) => {
 下記は、`MyEpicGame.sol`に記載したNFTキャラクターがMintされた`event`をフロントエンドに知らせる(`emit`)コードです。
 
 > ```solidity
-> // MyEpicGame.sol
 > // ユーザーが NFT を Mint したこと示すイベント
 > event CharacterNFTMinted(address sender, uint256 tokenId, uint256 characterIndex);
 > // ユーザーが NFT を Mint したことをフロントエンドに伝えます。

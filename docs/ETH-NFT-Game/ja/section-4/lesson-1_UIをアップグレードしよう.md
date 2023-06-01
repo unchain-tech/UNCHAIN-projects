@@ -78,7 +78,6 @@ import LoadingIndicator from "./Components/LoadingIndicator";
 次に、`renderContent`関数の先頭に、下記を追加しましょう。
 
 ```javascript
-// App.js
 // アプリがロード中の場合は、LoadingIndicator をレンダリングします。
 if (isLoading) {
   return <LoadingIndicator />;
