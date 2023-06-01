@@ -6,9 +6,7 @@ Webアプリケーション上で、ユーザーがイーサリアムネット�
 
 - これは、Webサイトへの認証機能です。
 
-ターミナル上で、`nft-maker-starter-project/src/components/NftUploader`に移動し、その中にある`NftUploader.jsx`をVS Codeで開きましょう。
-
-下記のように、`NftUploader.jsx`の中身を更新します。
+下記のように、`client/src/components/NftUploader.jsx`の中身を更新します。
 
 - `NftUploader.jsx`はあなたのWebアプリケーションのフロントエンド機能を果たします。
 
