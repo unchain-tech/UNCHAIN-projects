@@ -30,7 +30,7 @@
 
 GitHubのアカウントをお持ちの方は、下記の手順に沿ってプロジェクトの基盤となるリポジトリをあなたのGitHubに[フォーク](https://denno-sekai.com/github-fork/)しましょう。
 
-1. [こちら](https://github.com/unchain-tech/ETH-Yield-Farm)からunchain-tech/ETH-Yield-Farmリポジトリにアクセスをして、ページ右上の`Fork`ボタンをクリックします。
+1. [こちら](https://github.com/unchain-tech/ETH-Yield-Farm)からETH-Yield-Farmリポジトリにアクセスをして、ページ右上の`Fork`ボタンをクリックします。
 
 ![](/public/images/ETH-NFT-Collection/section-3/3_1_3.png)
 
@@ -82,7 +82,6 @@ packagesディレクトリの中には、`client`と`contract`という2つの�
 **workspaces**の定義をしている部分は以下になります。
 
 ```json
-// package.json
 "workspaces": {
   "packages": [
     "packages/*"
@@ -91,6 +90,8 @@ packagesディレクトリの中には、`client`と`contract`という2つの�
 ```
 
 この機能により、yarn installを一度だけ実行すれば、すべてのパッケージ（今回はコントラクトのパッケージとクライアントのパッケージ）を一度にインストールできるようになります。
+
+では早速`yarn install`をターミナルで実行して必要なパッケージをインストールしましょう。
 
 ### 📺 フロントエンドの動きを確認する
 
@@ -223,18 +224,6 @@ ETH-Yield-Farm
 
 不要な定義を削除し、hardhatの自動テストを実行するためのコマンドを追加しました。
 
-次に、安全なスマートコントラクトを開発するために使用されるライブラリ **OpenZeppelin** をインストールします。
-
-`packages/contract`ディレクトリにいることを確認し、以下のコマンドを実行してください。
-
-```bash
-yarn add --dev @openzeppelin/contracts
-```
-
-[OpenZeppelin](https://github.com/OpenZeppelin/openzeppelin-contracts) はイーサリアムネットワーク上で安全なスマートコントラクトを実装するためのフレームワークです。
-
-OpenZeppelinには非常に多くの機能が実装されておりインポートするだけで安全にその機能を使うことができます。
-
 ### ⭐️ 実行する
 
 すべてが機能していることを確認するには、以下を実行します。
@@ -251,7 +240,26 @@ npx hardhat test
 
 次のように表示されます。
 
-![](/public/images/ETH-Yield-Farm/section-1/1_2_1.png)
+```
+ Lock
+    Deployment
+      ✔ Should set the right unlockTime (1636ms)
+      ✔ Should set the right owner
+      ✔ Should receive and store the funds to lock
+      ✔ Should fail if the unlockTime is not in the future
+    Withdrawals
+      Validations
+        ✔ Should revert with the right error if called too soon
+        ✔ Should revert with the right error if called from another account
+        ✔ Shouldn't fail if the unlockTime has arrived and the owner calls it
+      Events
+        ✔ Should emit an event on withdrawals
+      Transfers
+        ✔ Should transfer the funds to the owner
+
+
+  9 passing (2s)
+```
 
 ターミナル上で`ls`と入力してみて、下記のフォルダーとファイルが表示されていたら成功です。
 
@@ -282,14 +290,6 @@ Hardhatは段階的に下記を実行しています。
 2\. **Hardhat は、あなたのコンピュータ上でテスト用の「ローカルイーサリアムネットワーク」を起動しています。**
 
 3\. **Hardhat は、コンパイルされたスマートコントラクトをローカルイーサリアムネットワークに「デプロイ」します。**
-
-ターミナルに出力されたアドレスを確認してみましょう。
-
-```bash
-Greeter deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
-```
-
-これは、イーサリアムネットワークのテスト環境でデプロイされたスマートコントラクトのアドレスです。
 
 ### 🦊 MetaMask をダウンロードする
 
@@ -363,6 +363,8 @@ module.exports = {
 PRIVATE_KEY=
 STAGING_ALCHEMY_KEY=
 ```
+
+その後
 
 これでSepoliaのテストネットをdeployする準備ができました!
 
