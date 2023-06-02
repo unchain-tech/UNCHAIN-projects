@@ -32,11 +32,12 @@ GitHubのアカウントをお持ちの方は、下記の手順に沿ってプ�
 
 1. [こちら](https://github.com/unchain-tech/ETH-Yield-Farm)からETH-Yield-Farmリポジトリにアクセスをして、ページ右上の`Fork`ボタンをクリックします。
 
-![](/public/images/ETH-NFT-Collection/section-3/3_1_3.png)
+![](/public/images/ETH-Yield-Farm/section-1/1_1_3.png)
 
 2. Create a new forkページが開くので、「Copy the `main` branch only」という項目に**チェックが入っていることを確認します**。
 
-![](/public/images/ETH-NFT-Collection/section-3/3_1_4.png)
+![](/public/images/ETH-Yield-Farm/section-1/1_1_4.png)
+
 
 設定が完了したら`Create fork`ボタンをクリックします。あなたのGitHubアカウントに`ETH-Yield-Farm`リポジトリのフォークが作成されたことを確認してください。
 
@@ -44,7 +45,7 @@ GitHubのアカウントをお持ちの方は、下記の手順に沿ってプ�
 
 まず、下図のように、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
 
-![](/public/images/ETH-NFT-Collection/section-3/3_1_1.png)
+![](/public/images/ETH-Yield-Farm/section-1/1_1_5.png)
 
 ターミナル上で作業を行う任意のディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
 
@@ -306,31 +307,23 @@ Hardhatは段階的に下記を実行しています。
 >
 > - これは、認証作業のようなものです。
 
-### 💎 Alchemy でネットワークを作成
+### 💎 Alchemy でネットワークを作成する
 
 Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押してください。
-
-![](/public/images/ETH-Yield-Farm/section-2/2_2_17.png)
-Ecosystem選択欄が出てきた場合は`Ethereum`を選択しましょう。
-
-![](/public/images/ETH-Yield-Farm/section-2/2_2_1.png)
+![](/public/images/ETH-Yield-Farm/section-1/1_1_6.png)
 次に、下記の項目を埋めていきます。下図を参考にしてください。
+![](/public/images/ETH-Yield-Farm/section-1/1_1_7.png)
 
-![](/public/images/ETH-Yield-Farm/section-2/2_2_2.png)
-
-- `NAME`: プロジェクトの名前(例: `WavePortal`)
-- `DESCRIPTION`: プロジェクトの概要
-- `CHAIN`: `Ethereum`を選択
-- `NETWORK`: `Sepolia`を選択
-
-それから、作成したAppの`VIEW DETAILS`をクリックします。
-![](/public/images/ETH-Yield-Farm/section-2/2_2_3.png)
-
-プロジェクトを開いたら、`VIEW KEY`ボタンをクリックします。
-![](/public/images/ETH-Yield-Farm/section-2/2_2_4.png)
-ポップアップが開くので、`HTTP`のリンクをコピーしてください。
-
-これがあなたが本番環境のネットワークに接続する際に使用する`API Key`になります。
+- `NAME` : プロジェクトの名前(例: `Yield-Farm`)
+- `DESCRIPTION` : プロジェクトの概要（任意）
+- `CHAIN` : `Ethereum`を選択。
+- `NETWORK` : `Sepolia`を選択。
+  それから、作成したAppの`VIEW DETAILS`をクリックします。
+  ![](/public/images/ETH-Yield-Farm/section-1/1_1_8.png)
+  プロジェクトを開いたら、`VIEW KEY`ボタンをクリックします。
+  ![](/public/images/ETH-Yield-Farm/section-1/1_1_9.png)
+  ポップアップが開くので、`HTTP`のリンクをコピーしてください。
+  これがあなたが本番環境のネットワークに接続する際に使用する`API Key`になります。
 
 - **`API Key`は、今後必要になるので、PC 上のわかりやすいところに保存しておきましょう。**
 

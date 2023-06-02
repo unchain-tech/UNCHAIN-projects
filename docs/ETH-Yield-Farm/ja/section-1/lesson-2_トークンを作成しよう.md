@@ -5,7 +5,7 @@
 
 次に`packages/contract/contracts`にスマートコントラクトを記述するためのファイルを作成しましょう。
 
-作成するファイルは以下の4つです。
+作成するファイルは以下の3つです。
 
 * DappToken.sol
 * MockDaiToken.sol
@@ -22,7 +22,7 @@ contracts
 
 `TokenFarm.sol`はYield-Farmを管理するためのコントラクトです。
 
-`MockDaiToken.sol`, `DappToken/sol`は、AstarやLinkなど、既存の仮想通貨を模したトークンです。
+`MockDaiToken.sol`は、AstarやLinkなど、既存の仮想通貨を模したトークンです。
 
 一方、`DappToken.sol`は、ユーザーがステークしたコインやトークンに対して付与されるコミュニティ・トークンを表します。
 
