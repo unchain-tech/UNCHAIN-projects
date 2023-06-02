@@ -14,7 +14,7 @@
 
 それでは、作業していきましょう！
 
-[こちら](https://anv4y-qiaaa-aaaal-qaqxq-cai.ic0.app/)にアクセスをして、`REQUEST CYCLES`ボタンを押し、 `DFINITY DEV OFFICIAL`というDiscodeサーバー に接続をしましょう。
+[こちら](https://anv4y-qiaaa-aaaal-qaqxq-cai.ic0.app/)にアクセスをして、`REQUEST CYCLES`ボタンを押し、 `DFINITY DEV OFFICIAL`というDiscordサーバー に接続をしましょう。
 
 ![](/public/images/ICP-Static-Site/section-1/1_1_1.png)
 
@@ -26,32 +26,17 @@
 
 この後は、
 
-1. サーバー内の`FOUNDATION`の方がメッセージを確認（スタンプが押されます）
-2. DMが届き、質問に答える
-3. クーポンコードを受け取る
+1. サーバー内の`FOUNDATION`の方がメッセージを確認（スタンプが押されます）し、DMが送られてくる
+2. 質問フォームへのリンクが送られてくるので、アクセスをして回答する
+3. 回答が完了したことを返信すると、クーポンコードが送られてくる
 
 という流れになります。
-
-クーポンコードの取得がスムーズに行えるよう、2. で実際に受けた質問と返答のテンプレートを以下に掲示します。ぜひご活用ください！
-
-> Hi, I'm working as a Solution Architect at the Dfinity Foundation. Can I ask you a few questions before I'll get you a coupon code for a cycles wallet?
-
-    Hello. Yes, please.
-
-> How do you know about the IC and is the first blockchain platform you're working with?
-
-    I heard about IC from the web3 community. I have used Ethereum.
-
-> Any plans what you want to build already? And what are you most excited about with the IC?
-
-    First, I want to create a simple website and host it on IC.
-    I'm interested in completing everything by hosting it on the IC without worrying about the existing IT stack.
 
 なお、クーポンコードは発行されてから2週間の有効期限付きです。注意しましょう。
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの`#internet-computer`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#icp`で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 

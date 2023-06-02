@@ -19,8 +19,8 @@
     "run:script":"npx hardhat run scripts/run.js",
     "test": "npx hardhat test",
     "deploy": "npx hardhat run scripts/deploy.js --network sepolia",
-    "start":"npx hardhat node",
-  },
+    "start":"npx hardhat node"
+  }
 ```
 
 では下のコマンドを実行してみましょう。
@@ -41,7 +41,6 @@ yarn contract start
 - `run.js`がテスト用のプログラムなら、`deploy.js`は本番用です。
 
 ```javascript
-// deploy.js
 const main = async () => {
   const [deployer] = await hre.ethers.getSigners();
   const accountBalance = await deployer.getBalance();
@@ -82,8 +81,8 @@ runMain();
     "test": "npx hardhat test",
     "deploy": "npx hardhat run scripts/deploy.js --network sepolia",
     "deploy:localhost": "npx hardhat run scripts/deploy.js --network localhost",
-    "start":"npx hardhat node",
-  },
+    "start":"npx hardhat node"
+  }
 ```
 
 **新しくターミナルのウィンドウを立ち上げ**、下記のコマンドを実行しましょう。あなたのスマートコントラクトを、ローカルネットワークにデプロイします。

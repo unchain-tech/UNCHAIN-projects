@@ -5,13 +5,13 @@
 まずは必要なパッケージのインストールから行っていきましょう。プロジェクトのルートディレクトリにいることを確認して、以下のコマンドを実行します。
 
 ```bash
-npm install --save react react-dom
+npm install --save react@18.2.0 react-dom@18.2.0
 ```
 
 続いて、以下のコマンドを実行しましょう。
 
 ```bash
-npm install --save-dev @babel/core babel-loader @babel/preset-react style-loader css-loader
+npm install --save-dev @babel/core@^7.19.6 babel-loader@^9.0.0 @babel/preset-react@^7.18.6 style-loader@^3.3.1 css-loader@^6.7.1
 ```
 
 次に、`icp_basic_dex_frontend/src`ディレクトリ内のファイルを編集していきます。
@@ -438,14 +438,14 @@ module.exports = {
 **dfinity**が提供する、パッケージをインストールしておきます。これらは、以降のレッスンでIC上のキャニスターとやり取りを行うフロントエンドの機能を実装するために使われます。
 
 ```bash
-npm install --save @dfinity/agent @dfinity/auth-client
+npm install --save-dev @dfinity/auth-client@^0.14.0
 ```
 
 ここまでで、フロントエンドの環境構築が完了しました！
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの`#internet-computer`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#icp`で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 

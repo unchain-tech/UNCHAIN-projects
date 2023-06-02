@@ -52,7 +52,7 @@ Metaplex CLIは、Candy Machineに利用可能な、NFTを発行するための�
 // collection.json
 {
   "name": "NAME_OF_NFT",
-  "symbol": "SYMBPL_OF_NFT",
+  "symbol": "SYMBOL_OF_NFT",
   "description": "Collection of NFT.",
   "image": "collection.png",
   "properties": {
@@ -64,7 +64,7 @@ Metaplex CLIは、Candy Machineに利用可能な、NFTを発行するための�
     ],
     "creators": [
       {
-        "address": "DA5p4vhRpNNT17Tdi5SWgiNpV4THQMPSztjZikJMeooQ",
+        "address": "INSERT_YOUR_WALLET_ADDRESS_HERE",
         "share": 100
       }
     ]
@@ -119,9 +119,9 @@ Metaplexはこのデータを、あなたに代わってオンチェーンで保
 
 次に、それらを象徴するようなPNGを1枚選んでみてください（難しい場合は、PNGを4つ選びそのうち1つをコレクションNFTとしてみてください）。
 
-※ 現在、CLIでサポートされているのはPNGのみです。
-
-MP4、MP3、HTMLなどのほかのファイルタイプについては、カスタムスクリプトを作成する必要があります。[こちら](https://github.com/metaplex-foundation/metaplex/issues/511) を参照してください。
+※ 現在、CLIでは様々なカテゴリーのデジタルデータに対応しています。画像（PNG, GIF, JPG）以外のカテゴリーに関しては下記ドキュメントを参照してください。
+- [URI JSON Schema - Metaplex Docs](https://docs.metaplex.com/programs/token-metadata/changelog/v1.0#uri-json-schema)
+- [Verifying assets - Metaplex Docs](https://docs.metaplex.com/deprecated/candy-machine-js-cli/preparing-assets#verifying-assets)
 
 最後に、`INSERT_YOUR_WALLET_ADDRESS_HERE`をあなたのPhantom walletアドレスに置き換えてください(引用符「`""`」を忘れずに)。
 
