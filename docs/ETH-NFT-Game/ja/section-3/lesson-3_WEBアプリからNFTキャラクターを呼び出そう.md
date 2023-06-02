@@ -29,7 +29,6 @@
 `client/src`の中に`constants.js`ファイルを作成し、以下のコードを追加してください。
 
 ```javascript
-// constants.js
 const CONTRACT_ADDRESS = "YOUR_CONTRACT_ADDRESS_GOES_HERE";
 
 export { CONTRACT_ADDRESS };
@@ -40,7 +39,6 @@ export { CONTRACT_ADDRESS };
 次に、`App.js`ファイルに戻り、ファイルの先頭に下記をインポートして、`constants.js`にアクセスできるようにしましょう。
 
 ```javascript
-// App.js
 import { CONTRACT_ADDRESS } from "./constants";
 ```
 
@@ -58,9 +56,9 @@ Webアプリケーションがコントラクトと通信するために必要�
 
 3\. 関数の実行結果に対して返るデータ型の種類
 
-ABIファイルは、コントラクトがコンパイルされた時に生成され、`epic-game/artifacts`ディレクトリに自動的に格納されます。
+ABIファイルは、コントラクトがコンパイルされた時に生成され、`contract/artifacts`ディレクトリに自動的に格納されます。
 
-ターミナルで`epic-game`ディレクトリに移動し、`ls`を実行しましょう。
+ターミナルで`contract`ディレクトリに移動し、`ls`を実行しましょう。
 
 `artifacts`ディレクトリの存在を確認してください。
 
@@ -68,7 +66,7 @@ ABIファイルの中身は、`MyEpicGame.json`というファイルに格納さ
 
 下記を実行して、ABIファイルをコピーしましょう。
 
-1\. ターミナル上で`epic-game`にいることを確認する（もしくは移動する）。
+1\. ターミナル上で`contract`にいることを確認する（もしくは移動する）。
 
 2\. ターミナル上で下記を実行する。
 
@@ -109,7 +107,6 @@ ABIファイルの準備ができたので、`App.js`にインポートしまし
 下記を`App.js`の1行目に追加しましょう。
 
 ```javascript
-// App.js
 import myEpicGame from "./utils/MyEpicGame.json";
 ```
 
@@ -150,7 +147,6 @@ import myEpicGame from "./utils/MyEpicGame.json";
 - `import { CONTRACT_ADDRESS } from './constants'`の直下に下記を追加しましょう。
 
 ```javascript
-// App.js
 import { ethers } from "ethers";
 ```
 
@@ -163,7 +159,6 @@ import { ethers } from "ethers";
 `checkNetwork`関数を`const [characterNFT, setCharacterNFT] = useState(null);`の直下に追加してください。
 
 ```javascript
-// App.js
 // ユーザーがSepolia Network に接続されているか確認します。
 // '11155111' は Sepolia のネットワークコードです。
 const checkNetwork = async () => {
@@ -192,7 +187,6 @@ const checkNetwork = async () => {
 - `connectWalletAction`関数を下記のように更新します。
 
 > ```javascript
-> // App.js
 > // connectWallet メソッドを実装します。
 > const connectWalletAction = async () => {
 >   try {
@@ -249,7 +243,6 @@ const checkNetwork = async () => {
 - `checkIfWalletIsConnected();`を呼び出している`useEffect()`関数の直下に、新しい`useEffect()`関数（下記）を追加してください。
 
 ```javascript
-// App.js
 // ページがロードされたときに useEffect()内の関数が呼び出されます。
 useEffect(() => {
   // スマートコントラクトを呼び出す関数です。
@@ -290,7 +283,6 @@ useEffect(() => {
 追加されたコードを見ながら、新しい概念について学びましょう。
 
 ```javascript
-// App.js
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 ```
 
@@ -303,7 +295,6 @@ MetaMaskが提供するイーサリアムノードを使用して、デプロイ
 次に、下記のコードを見ていきましょう。
 
 ```javascript
-// App.js
 const signer = provider.getSigner();
 ```
 
@@ -316,7 +307,6 @@ const signer = provider.getSigner();
 次に、下記のコードを見ていきましょう。
 
 ```javascript
-// App.js
 const gameContract = new ethers.Contract(
   CONTRACT_ADDRESS,
   myEpicGame.abi,
@@ -337,7 +327,6 @@ const gameContract = new ethers.Contract(
 `gameContract`が設定されたら、`checkIfUserHasNFT`メソッドを呼び出すことができます。
 
 ```javascript
-// App.js
 const txn = await gameContract.checkIfUserHasNFT();
 ```
 
@@ -346,8 +335,6 @@ const txn = await gameContract.checkIfUserHasNFT();
 `MyEpicGame.sol`に記載されている`checkIfUserHasNFT()`メソッドは、下記のような内容になります。
 
 ```solidity
-// MyEpicGame.sol
-
 // ユーザーがすでに NFT キャラクターを持っているかどうかを確認します。
 // ユーザーのウォレットに NFT キャラクターがすでに存在する場合は、その属性を取得情報（ HP など）を取得します。
 function checkIfUserHasNFT() public view returns (CharacterAttributes memory) {
@@ -369,7 +356,6 @@ function checkIfUserHasNFT() public view returns (CharacterAttributes memory) {
 次に、下記のコードを見ていきましょう。
 
 ```javascript
-// App.js
 if (txn.name) {
   console.log("User has character NFT");
   setCharacterNFT(transformCharacterData(txn));
@@ -393,7 +379,6 @@ if (txn.name) {
 次に、下記のコードを見ていきましょう。
 
 ```javascript
-// App.js
 if (currentAccount) {
   console.log("CurrentAccount:", currentAccount);
   fetchNFTMetadata();
@@ -407,7 +392,6 @@ if (currentAccount) {
 最後に下記のコードを見ていきましょう。
 
 ```javascript
-// App.js
 useEffect(() => {
 	...
 }, [currentAccount]);
@@ -424,7 +408,6 @@ useEffect(() => {
 それでは、`contract/src`に移動し、コントラクトアドレスを保持するために作成した`constants.js`ファイルの中身を下記のように更新しましょう。
 
 ```javascript
-// constants.js
 // CONTRACT_ADDRESSに、コントラクトアドレスを保存します。
 const CONTRACT_ADDRESS = "YOUR_CONTRACT_ADDRESS_GOES_HERE";
 
@@ -448,7 +431,6 @@ export { CONTRACT_ADDRESS, transformCharacterData };
 次に、`App.js`に向かい、`import { ethers } from 'ethers';`の直下に下記を追加してください。
 
 ```javascript
-// App.js
 import { CONTRACT_ADDRESS, transformCharacterData } from "./constants";
 ```
 
