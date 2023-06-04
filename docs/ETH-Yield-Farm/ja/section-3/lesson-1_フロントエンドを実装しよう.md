@@ -3,12 +3,31 @@
 
 ### 🤙  UI部分、フロントとウォレットの接続部分を作成する
 
-まずはUI部分を作成しましょう。
+まずは必要となる画像を挿入していきましょう。`packages/client/src/public`に以下の画像を指定された名前で保存していってください。
 
-一番下の`return`部分を以下のように編集してみましょう。
+`dai.png`
+
+![](/public/images/ETH-Yield-Farm/section-3/3_1_1.png)
+
+`farmer.png`
+
+
+![](/public/images/ETH-Yield-Farm/section-3/3_1_2.png)
+
+`token-logo.png`
+
+![](/public/images/ETH-Yield-Farm/section-3/3_1_3.png)
+
+次にUI部分を作成しましょう。
+
+`packages/client/src/App.js`を以下のように編集してみましょう。
 
 ```
-return (
+import './App.css';
+
+function App() {
+  let currentAccount;
+  return (
     <div className="h-screen w-screen flex-col flex">
       <div className="text-ellipsis h-20 w-full flex items-center justify-between bg-black">
         <div className="flex items-center">
@@ -18,12 +37,12 @@ return (
         {currentAccount === '' ? (
           <button
             className="text-white mr-10 px-3 py-1 text-2xl border-solid border-2 border-white flex items-center justify-center"
-            onClick={}
+            onClick={() => { }}
           >
             Connect Wallet
           </button>
         ) : (
-          <div className="text-gray-400 text-lg pr-5">{}</div>
+          <div className="text-gray-400 text-lg pr-5">{ }</div>
         )}
       </div>
       <div className=" w-screen h-full flex-1 items-center justify-center flex flex-col">
@@ -51,8 +70,8 @@ return (
               type="text"
               id="stake"
               name="stake"
-              value={}
-              onChange={}
+              value={1}
+              onChange={() => { }}
             />
             <div className="flex-row flex justify-between items-end">
               <img src={'dai.png'} alt="Logo" className="px-5 h-9 w-18" />
@@ -61,11 +80,11 @@ return (
           </div>
           <div
             className="w-full h-14 bg-blue-500 text-white m-3 flex justify-center items-center"
-            onClick={}
+            onClick={() => { }}
           >
             Stake!
           </div>
-          <div className="text-blue-400" onClick={}>
+          <div className="text-blue-400" onClick={() => { }}>
             UN-STAKE..
           </div>
         </div>
@@ -73,6 +92,9 @@ return (
       </div>
     </div>
   );
+}
+
+export default App;
 ```
 
 編集が終わったら、ターミナルで下のコマンドを実行してみましょう。
@@ -86,7 +108,11 @@ yarn client start
 
 次にフロントとウォレットの接続を作成していこうと思います。
 
-`App.js`ファイルを以下のように更新してください。
+まずはコントラクトのABIファイルを追加します。`client/src`にabisディレクトリを追加しましょう。
+
+そして、`contract/artifacts/contracts`にある各コントラクトに対応したディレクトリの中にあるjsonファイルをコピーして先ほど作成したabisディレクトリに貼り付けましょう。名前はそのままで大丈夫です。
+
+jsonファイルのコピー　& ペーストが完了したら、`App.js`ファイルを以下のように更新してください。
 
 ```javascript
 import { ethers } from 'ethers';
