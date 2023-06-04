@@ -14,7 +14,7 @@
 
 それでは`ftコントラクト`を接続するために
 再び`near_bike_share_dapp`の中にある`frontend`ディレクトリの中身を変更していきます。
-以降のセクションでは, 今回作成したオリジナルftのことをftと便宜上呼ぶことにします。
+以降のセクションでは、今回作成したオリジナルftのことをftと便宜上呼ぶことにします。
 
 初めに`frontend/assets/js/near/config.js`を次のように変更しましょう！
 
@@ -94,7 +94,7 @@ function getConfig(env) {
 module.exports = getConfig;
 ```
 
-変更点は, `FT_CONTRACT_NAME`を追加しています。
+変更点は、`FT_CONTRACT_NAME`を追加しています。
 `"sub.ft_account.testnet"`の部分はあなたが`ftコントラクト`をデプロイした先のアカウントIDを入力してください。
 また`getConfig`が返却するオブジェクトに`ftContractName`フィールドを追加しています。
 
@@ -108,7 +108,7 @@ import getConfig from "./config";
 
 const nearConfig = getConfig(process.env.NODE_ENV || "development");
 
-/** コントラクトを初期化し, グローバル変数(window)をセットします. */
+/** コントラクトを初期化し、グローバル変数(window)をセットします. */
 export async function initContract() {
   // ...
 
@@ -143,7 +143,7 @@ export async function ft_balance_of(account_id) {
 
 /**
  * account_idのストレージの使用状況を表すデータ構造を取得します。
- * account_idが登録されていない場合はnullが返るので, 登録されているかどうかの判断にこの関数を使用します。
+ * account_idが登録されていない場合はnullが返るので、登録されているかどうかの判断にこの関数を使用します。
  */
 export async function storage_balance_of(account_id) {
   const balance = await window.ftContract.storage_balance_of({
@@ -166,7 +166,7 @@ export async function storage_deposit() {
 // 今回は簡単のため強制的に解除する方法を引数指定でとっています。
 export async function storage_unregister() {
   const response = await window.ftContract.storage_unregister(
-    { force: true }, // アカウントの情報に関わらず登録を解除する, 所持しているftはバーンされる
+    { force: true }, // アカウントの情報に関わらず登録を解除する、所持しているftはバーンされる
     "300000000000000",
     "1"
   );
@@ -188,7 +188,7 @@ export async function ft_transfer(receiver_id, amount) {
 //ファイル終端
 ```
 
-`window`変数に`ftContract`を追加し, `ftコントラクト`上のメソッドをいくつか呼び出すようにしています。
+`window`変数に`ftContract`を追加し、`ftコントラクト`上のメソッドをいくつか呼び出すようにしています。
 各メソッドの意味はコード内コメントにて記載しています。
 詳しくは[こちら](https://nomicon.io/Standards/Tokens/FungibleToken/Core)と[こちら](https://nomicon.io/Standards/StorageManagement)を参照してください。
 ここに注目しましょう。
@@ -204,16 +204,16 @@ export async function storage_deposit() {
 }
 ```
 
-メソッド呼び出し後, ガス量の制限とデポジットの付与を上記のような形でつけることができます。
+メソッド呼び出し後、ガス量の制限とデポジットの付与を上記のような形でつけることができます。
 
 - ガス量の制限
   メソッド呼び出しにガス量が[デフォルト値](https://github.com/near/near-api-js/blob/336bdf51311b75d86f5080d7918848ae7d774b72/src/account.ts#L35)を超えるような場合は明示的にガス量の制限を加えます。
   ガス代はガス量とガス料金を掛け合わせたものです。詳しくは[こちら](https://docs.near.org/concepts/basics/transactions/gas#how-do-i-buy-gas)をご覧ください。
 - デポジット
   コントラクトに支払う料金をここで指定します。
-  トークンの転送などのメソッド呼び出しに`"1"`を指定する場合がありますが, これはセキュリティ上の理由です。
+  トークンの転送などのメソッド呼び出しに`"1"`を指定する場合がありますが、これはセキュリティ上の理由です。
   デポジットの支払いは最小単位の`"1"`であっても[フルアクセスキー](https://docs.near.org/concepts/basics/accounts/access-keys)を持つアカウントによるサインを求めます。
-  資産価値のあるトークンの転送などの重要なメソッド呼び出しは, フルアクセスキーを持たないアカウントによる呼び出しを防ぐためにこのようなことをしています。
+  資産価値のあるトークンの転送などの重要なメソッド呼び出しは、フルアクセスキーを持たないアカウントによる呼び出しを防ぐためにこのようなことをしています。
   詳しくは[こちら](https://docs.near.org/tutorials/nfts/core#transfer-call-function)をご覧ください。
 
 それでは`frontend/App.js`で各メソッドを利用するコードを書きましょう！
@@ -310,7 +310,7 @@ const newUserRegister = async () => {
   }
 };
 
-/** account_idのft残高を取得し, 残高表示用オブジェクトbalanceInfoにセットします。 */
+/** account_idのft残高を取得し、残高表示用オブジェクトbalanceInfoにセットします。 */
 const prepareBalanceInfo = async (account_id) => {
   const balance = await ft_balance_of(account_id);
 
@@ -463,14 +463,14 @@ const transferFt = () => {
 $ yarn dev
 ```
 
-ブラウザで立ち上がったら, `check my balance`などのボタンを押して挙動を確認してみてください。
+ブラウザで立ち上がったら、`check my balance`などのボタンを押して挙動を確認してみてください。
 
 ![](/public/images/NEAR-BikeShare/section-3/3_1_1.png)
 
-また, 一度サインアウト(※ftをたくさん持っているアカウントで`Unregister`を押さないように気をつけてください。)し,
+また、一度サインアウト(※ftをたくさん持っているアカウントで`Unregister`を押さないように気をつけてください。)し,
 新たに作成したアカウントでサインインすると,
 `ftコントラクト`に未登録なので登録画面が表示されます。
-ここでは[testnet wallet](https://wallet.testnet.near.org/)を利用して, `new_ft_user.testnet`という新規アカウントを作成しました。
+ここでは[testnet wallet](https://wallet.testnet.near.org/)を利用して、`new_ft_user.testnet`という新規アカウントを作成しました。
 
 サインインを行います。
 
@@ -481,7 +481,7 @@ $ yarn dev
 
 ![](/public/images/NEAR-BikeShare/section-3/3_1_3.png)
 
-再びサインアウトし, `ft_account.testnet`(ftの`owner id`, ftをたくさん持っていればどんなアカウントでも良いです)で入り直します。
+再びサインアウトし、`ft_account.testnet`(ftの`owner id`、ftをたくさん持っていればどんなアカウントでも良いです)で入り直します。
 `ft_account.testnet`から`new_ft_user.testnet`へftの送信を行ってみます。
 事前に`new_ft_user.testnet`の残高を調べると0ftです。
 

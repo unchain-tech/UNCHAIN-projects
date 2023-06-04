@@ -208,6 +208,6 @@ false
 
 おめでとうございます！ セクション1は終了です ✨
 
-`near view contract.hotel_booking.testnet exists '{"owner_id": "hotel_booking.testnet", "room_name": "Sun Room"}' --accountId hotel_booking.testnet`の結果を`#section-1`に投稿して、あなたの成功をコミュニティで祝いましょう 🎉
+`near view contract.hotel_booking.testnet exists '{"owner_id": "hotel_booking.testnet", "room_name": "Sun Room"}' --accountId hotel_booking.testnet`の結果を`#near`に投稿して、あなたの成功をコミュニティで祝いましょう 🎉
 
 次のセクションに進み、スマートコントラクトの機能を拡張しましょう 🚀

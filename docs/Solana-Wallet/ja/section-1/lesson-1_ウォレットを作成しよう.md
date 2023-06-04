@@ -14,6 +14,8 @@
 
 ### ⏬ BIP39ライブラリを追加する
 
+ここからは、`components/GenerateWallet/index.js`ファイルを更新してGenerateWalletコンポーネントを作成していきます。
+
 フレーズを生成するには、決定論的なキーのフレーズ生成の標準を設定した`BIP39仕様`を満たす外部ライブラリを活用する必要があります。
 
 JavaScriptには [`BIP39`](https://github.com/bitcoinjs/bip39) と呼ばれるライブラリがあるのでこれを利用していきましょう。
@@ -23,7 +25,7 @@ JavaScriptには [`BIP39`](https://github.com/bitcoinjs/bip39) と呼ばれる�
 - `BIP39`ライブラリを`npm install`する
 
 ```bash
-npm install bip39
+npm install bip39@^3.1.0
 ```
 
 - importする
@@ -31,7 +33,7 @@ npm install bip39
 ライブラリのインストールが完了したら、 ファイルの先頭でライブラリを読み込みましょう。
 
 ```javascript
-import * as bip39 from "bip39";
+import * as bip39 from 'bip39';
 ```
 
 ### 🏭 ニーモニックフレーズを生成する
@@ -77,9 +79,6 @@ console.log(seed);
 正しい形式のシードがあれば、`Keypair`の`fromSeed`メソッドを使って、アカウントのキーペアを生成することができます。
 
 ```javascript
-// ファイルの先頭で Keypair クラスを読み込んでおく
-import { Keypair } from "@solana/web3.js";
-
 const newAccount = Keypair.fromSeed(new Uint8Array(seed));
 
 console.log('newAccount', newAccount.publicKey.toString());
@@ -89,6 +88,15 @@ console.log('newAccount', newAccount.publicKey.toString());
 ### 👛 ウォレット生成関数を定義する
 
 これまでの説明を踏まえて、ウォレットを生成するための関数`generateWallet`を定義します。それでは、`components/GenerateWallet/index.js`を更新していきましょう。
+
+まずは、下記のインポート文を追加します。
+
+```javascript
+import { Keypair } from '@solana/web3.js';
+import { useState } from 'react';
+```
+
+次に、`export default function GenerateWallet() {`の下に下記のコードを追加します。
 
 ```javascript
 const generateWallet = () => {
@@ -110,6 +118,7 @@ const generateWallet = () => {
 GenerateWalletコンポーネントの引数に`setAccount`を記述し、`export default function GenerateWallet() {`の直下に、`mnemonic`を保持する状態変数を定義しましょう。
 
 ```javascript
+// `{ setAccount }`を引数に追加
 export default function GenerateWallet({ setAccount }) {
   // 下記を追加
   const [mnemonic, setMnemonic] = useState(null);
@@ -117,11 +126,10 @@ export default function GenerateWallet({ setAccount }) {
 
 ### 🎨 ウォレット生成ボタンをレンダリングする
 
-さきほど定義した`generateWallet`関数を呼び出すためのボタンを用意しましょう。
+さきほど定義した`generateWallet`関数を呼び出すためのボタンを用意しましょう。return文を下記のコードで更新してください。
 
 ```javascript
 return (
-  {/* 下記を追加 */}
   <>
     <button
       className="p-2 my-6 text-white bg-indigo-500 focus:ring focus:ring-indigo-300 rounded-lg cursor-pointer"
@@ -226,12 +234,15 @@ components/GenerateWallet/index.test.jsが`PASS`していることを確認で�
 まずは、`GenerateWallet`コンポーネントをインポートしましょう。
 
 ```javascript
-import GenerateWallet from "../components/GenerateWallet";
+import GenerateWallet from '../components/GenerateWallet';
 ```
 
-`export default function Home() {`の直下に、アカウントを保時する状態変数を定義しましょう。
+`useState`のインポート文を追加し、`export default function Home() {`の直下に、アカウントを保時する状態変数を定義しましょう。
 
 ```javascript
+// `useState`のインポート文を追加
+import { useState } from 'react';
+
 export default function Home() {
   // 下記を追加
   const [account, setAccount] = useState(null);

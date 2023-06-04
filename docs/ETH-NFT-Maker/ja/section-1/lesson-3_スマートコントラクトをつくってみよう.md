@@ -24,7 +24,7 @@ contract
 ```solidity
 // Web3Mint.sol
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 import "hardhat/console.sol";
 contract Web3Mint {
     constructor() {
@@ -55,16 +55,16 @@ contract Web3Mint {
 
 ```solidity
 // Web3Mint.sol
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 ```
 
 これは、コントラクトで使用するSolidityコンパイラのバージョンです。
 
-上記の場合「このコントラクトを実行するときは、Solidityコンパイラのバージョン0.8.9のみを使用し、それ以下のものは使用しません」という意味です。
+上記の場合「このコントラクトを実行するときは、Solidityコンパイラのバージョン0.8.17のみを使用し、それ以下のものは使用しません」という意味です。
 
 コンパイラのバージョンが`hardhat.config.js`で同じであることを確認してください。
 
-もし、`hardhat.config.js`の中に記載されているSolidityのバージョンが`0.8.9`でなかった場合は、`Web3Mint.sol`の中身を`hardhat.config.js`に記載されているバージョンに変更しましょう。
+もし、`hardhat.config.js`の中に記載されているSolidityのバージョンが`0.8.17`でなかった場合は、`Web3Mint.sol`の中身を`hardhat.config.js`に記載されているバージョンに変更しましょう。
 
 ```solidity
 // Web3Mint.sol
@@ -225,7 +225,7 @@ yarn contract run:script
 以下、出力結果のサンプルです。
 
 ```
-Compiling 1 file with 0.8.9
+Compiling 1 file with 0.8.17
 Solidity compilation finished successfully
 This is my NFT contract.
 Contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3

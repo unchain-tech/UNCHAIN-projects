@@ -21,7 +21,6 @@ NFTキャラクターをMintしたり、ボスのデータを取得したりす�
 まず、`App.js`を開き、`const [characterNFT, setCharacterNFT] = useState(null);`の直下に下記を追加しましょう。
 
 ```javascript
-// App.js
 // ロード状態を初期化します。
 const [isLoading, setIsLoading] = useState(false);
 ```
@@ -31,7 +30,6 @@ const [isLoading, setIsLoading] = useState(false);
 `setIsLoading(true);`を、下記2つの`useEffects`に追加しましょう。
 
 ```javascript
-// App.js
 // ページがロードされたときに useEffect()内の関数が呼び出されます。
 useEffect(() => {
   // ページがロードされたら、即座にロード状態を設定するようにします。
@@ -74,14 +72,12 @@ useEffect(() => {
 次に、`App.js`の先頭に下記を追加して、`LoadingIndicator`をインポートしてください。
 
 ```javascript
-// App.js
 import LoadingIndicator from "./Components/LoadingIndicator";
 ```
 
 次に、`renderContent`関数の先頭に、下記を追加しましょう。
 
 ```javascript
-// App.js
 // アプリがロード中の場合は、LoadingIndicator をレンダリングします。
 if (isLoading) {
   return <LoadingIndicator />;
@@ -93,7 +89,6 @@ if (isLoading) {
 次に、`checkIfWalletIsConnected`に下記のように更新して、フロントエンドがユーザーがMetaMaskを持っているか確認している際に、ローディングマークを表示させましょう。
 
 ```javascript
-// App.js
 // ユーザーが MetaMask を持っているか確認します。
 const checkIfWalletIsConnected = async () => {
   try {
@@ -140,7 +135,6 @@ const checkIfWalletIsConnected = async () => {
 まず、`client/src/Components/SelectCharacter/index.js`の先頭に、下記を追加しましょう。
 
 ```javascript
-// SelectCharacter/index.js
 import LoadingIndicator from "../../Components/LoadingIndicator";
 ```
 
@@ -149,7 +143,6 @@ import LoadingIndicator from "../../Components/LoadingIndicator";
 - 下記を参照してください。
 
 ```javascript
-// SelectCharacter/index.js
 //NFT キャラクターのメタデータを保存する状態変数を初期化します。
 const [characters, setCharacters] = useState([]);
 
@@ -167,7 +160,6 @@ const [mintingCharacter, setMintingCharacter] = useState(false);
 - 下記を参考にしてください。
 
 ```javascript
-// SelectCharacter/index.js
 // NFT を Mint します。
 const mintCharacterNFTAction = (characterId) => async () => {
   try {
@@ -195,7 +187,6 @@ const mintCharacterNFTAction = (characterId) => async () => {
 - `SelectCharacter/index.js`の中にある`return();`の中身を下記のように更新してください。
 
 ```javascript
-// SelectCharacter/index.js
 return (
   <div className="select-character-container">
     <h2>⏬ 一緒に戦う NFT キャラクターを選択 ⏬</h2>
@@ -220,7 +211,6 @@ return (
 - `client/src/Components/SelectCharacter`フォルダの中に`SelectCharacter.css`が格納されています。
 
 ```css
-/* SelectCharacter.css */
 .select-character-container .loading {
   display: flex;
   flex-direction: column;
@@ -252,14 +242,12 @@ return (
 まず、`client/src/Components/Arena/index.js`の先頭に、下記を追加しましょう。
 
 ```javascript
-// Arena/index.js
 import LoadingIndicator from "../LoadingIndicator";
 ```
 
 次に、`Arena/index.js`に記載されている`return();`の中身に着目し、`{boss ..}`の中身を下記のように更新してください。
 
 ```javascript
-// Arena/index.js
 {
   boss && (
     <div className="boss-container">
@@ -296,7 +284,6 @@ import LoadingIndicator from "../LoadingIndicator";
 - `client/src/Components/Arena`フォルダの中に`Arena.css`が格納されています。
 
 ```css
-/* Arena.css */
 .boss-container .loading-indicator {
   display: flex;
   justify-content: center;
@@ -320,7 +307,6 @@ import LoadingIndicator from "../LoadingIndicator";
 まず、下記のCSSを`Arena.css`ファイルに追加しましょう。
 
 ```css
-/* client/src/Components/Arena/Arena.css */
 /* Toast */
 #toast {
   visibility: hidden;
@@ -450,7 +436,6 @@ import LoadingIndicator from "../LoadingIndicator";
 次に、`client/src/Components/Arena/index.js`を開き、HTMLが記載されている`return();`の中身を下記のように更新しましょう。
 
 ```javascript
-// Arena/index.js
 return (
   <div className="arena-container">
     {/* 攻撃ダメージの通知を追加します */}
@@ -523,7 +508,6 @@ return (
 `Arena.css`の中に下記のような`show`クラスが存在することを確認してください。
 
 ```css
-/* client/src/Components/Arena/Arena.css */
 #toast.show {
   visibility: visible;
   -webkit-animation: fadein 0.5s, expand 0.5s 0.5s, stay 3s 1s, shrink 0.5s 2s,
@@ -540,7 +524,6 @@ return (
 まず、`const [attackState, setAttackState] = useState('');`の直下に下記を追加しましょう。
 
 ```javascript
-// Arena/index.js
 // 攻撃ダメージの表示形式を保存する変数を初期化します。
 const [showToast, setShowToast] = useState(false);
 ```
@@ -548,7 +531,6 @@ const [showToast, setShowToast] = useState(false);
 次に、下記のように、`runAttackAction`関数に`setShowToast`を設定していきましょう。
 
 ```javascript
-// Arena/index.js
 const runAttackAction = async () => {
   try {
     // コントラクトが呼び出されたことを確認します。
