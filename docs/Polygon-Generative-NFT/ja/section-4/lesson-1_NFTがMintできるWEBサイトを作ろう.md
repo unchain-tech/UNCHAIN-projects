@@ -13,7 +13,6 @@
 では下記に、今回のプロジェクトのために用意したテンプレートを紹介します。
 
 ```html
-// index.html
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -43,7 +42,6 @@
 次に、`src`フォルダの中にある`App.js`ファイルを開き、内容を、以下の定型文に置き換えます。
 
 ```javascript
-// App.js
 import "./App.css";
 function App() {
   return <h1>Hello World</h1>;
@@ -92,7 +90,6 @@ ABI（またはApplication Binary Interface）は、コントラクトのコン�
 それでは、コントラクトABIをインポートして、`App.js`ファイルにコントラクトアドレスを定義していきましょう。
 
 ```javascript
-// App.js
 import "./App.css";
 import contract from "./contracts/NFTCollectible.json";
 
@@ -121,7 +118,6 @@ export default App;
 以下の内容を、`App.js`ファイルにコピーしてください。
 
 ```javascript
-// App.js
 import { useEffect } from "react";
 import "./App.css";
 import contract from "./contracts/NFTCollectible.json";
@@ -173,7 +169,6 @@ export default App;
 `App.js`の5行目であなたのコントラクトアドレスを設定してください。
 
 ```javascript
-// App.js
 const contractAddress = "あなたのコントラクトアドレスを貼り付けましょう";
 ```
 
@@ -234,7 +229,6 @@ CSSスタイルや静的要素（画像、ヘッダ、フッタ、ソーシャ�
 MetaMaskウォレットが存在するかどうかを確認するロジックを、`checkWalletIsConnected`関数に入力しましょう。
 
 ```javascript
-// App.js
 const checkWalletIsConnected = async () => {
   const { ethereum } = window;
 
@@ -274,14 +268,12 @@ MetaMaskは`window.ethereum.request`メソッドでこのプロセスシンプ�
 まず、Reactから`useState`をインポートするために、`App.js`ファイルの1行目`import from 'react'`の中身を下記のように更新してください。
 
 ```javascript
-// App.js
 import { useEffect, useState } from "react";
 ```
 
 それから、下記を`checkWalletIsConnected`関数の真上に追加してください。
 
 ```javascript
-// App.js
 const [currentAccount, setCurrentAccount] = useState(null);
 ```
 
@@ -294,7 +286,6 @@ const [currentAccount, setCurrentAccount] = useState(null);
 次に、`connectWalletHandler`関数を定義しましょう。
 
 ```javascript
-// App.js
 const connectWalletHandler = async () => {
   const { ethereum } = window;
 
@@ -319,7 +310,6 @@ const connectWalletHandler = async () => {
 インストールされていない場合は、MetaMaskのインストールを促すポップアップが表示されます。
 
 ```javascript
-// App.js
 const { ethereum } = window;
 
 if (!ethereum) {
@@ -330,7 +320,6 @@ if (!ethereum) {
 MetaMaskにユーザーのウォレット接続を促し、アドレスの取得を試みます。
 
 ```javascript
-// App.js
 const accounts = await ethereum.request({ method: "eth_requestAccounts" });
 console.log("Found an account! Address: ", accounts[0]);
 ```
@@ -338,14 +327,12 @@ console.log("Found an account! Address: ", accounts[0]);
 ユーザーがWebサイトとの接続に同意すると、最初に利用可能なウォレットアドレスを取得し、それを`currentAccount`変数の値として設定します。
 
 ```javascript
-// App.js
 setCurrentAccount(accounts[0]);
 ```
 
 何か問題が発生した場合（ユーザーが接続を拒否したなど）、処理を中断してコンソールにエラーメッセージが表示されます。
 
 ```javascript
-// App.js
 } catch (err) {
 	console.log(err)
 }
@@ -380,7 +367,6 @@ MetaMaskがWebサイトとの接続を促してきますので、同意しまし
 `return ()`の中身を下記のように変更してください。
 
 ```javascript
-// App.js
 return (
   <div className="main-app">
     <h1>Scrappy Squirrels Tutorial</h1>
@@ -410,7 +396,6 @@ Reactに慣れている人なら、なぜこのようなことが起こるのか
 下記のように、`checkWalletIsConnected`関数を更新してください。
 
 ```javascript
-// App.js
 const checkWalletIsConnected = async () => {
   const { ethereum } = window;
 
@@ -440,7 +425,7 @@ const checkWalletIsConnected = async () => {
 - MetaMaskがインストールされているかどうかをチェックし、結果をコンソールに出力します。
 
   ```javascript
-  // App.js
+
   if (!ethereum) {
     console.log("Make sure you have MetaMask installed!");
     return;
@@ -452,14 +437,12 @@ const checkWalletIsConnected = async () => {
 - Webサイトに接続中のアカウントに対してMetaMaskのリクエストを試みます。
 
 ```javascript
-// App.js
 const accounts = await ethereum.request({ method: "eth_accounts" });
 ```
 
 - MetaMaskがすでにWebサイトに接続されている場合は、この関数にアカウントのリストを渡して要求を出します。
 
 ```javascript
-// App.js
 if (accounts.length !== 0) {
   const account = accounts[0];
   console.log("Found an authorized account: ", account);
@@ -468,14 +451,12 @@ if (accounts.length !== 0) {
 - リストが空でない場合、`checkWalletIsConnected`関数はMetaMaskから取得した最初のアカウントアドレスを選び、それを`currentAccount`に設定します。
 
 ```javascript
-// App.js
 setCurrentAccount(account);
 ```
 
 - リストが空の場合は、空のリストが返され、結果をコンソールに出力します。
 
 ```javascript
-// App.js
 } else {
   console.log("No authorized account found");
 }
@@ -497,10 +478,25 @@ setCurrentAccount(account);
 
 これをフロントエンドで行うには、スマートコントラクトに含まれる`ethers`ライブラリが必要です。
 
-ターミナルで、`client`に移動し、以下のコマンドを実行してください。
+次に`packages/client`にあるpackage.jsonの`dependencies`を以下のように編集しましょう。
 
 ```
-yarn add ethers
+"dependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4",
+    "ethers": "5.7.2"
+  },
+```
+
+そして下の下のコマンドを実行することでインストールをしましょう。
+
+```
+yarn
 ```
 
 次に、`App.js`で`ethers`ライブラリをインポートしましょう。
@@ -508,14 +504,12 @@ yarn add ethers
 `import contract from './contracts/NFTCollectible.json';`の直下に、下記を追加してください。
 
 ```javascript
-// App.js
 import { ethers } from "ethers";
 ```
 
 最後に、下記のように`mintNftHandler`関数を更新しましょう。
 
 ```javascript
-// App.js
 const mintNftHandler = async () => {
   try {
     const { ethereum } = window;
@@ -550,7 +544,6 @@ const mintNftHandler = async () => {
 1\. MetaMaskから投入された`ethereum`オブジェクトにアクセスしようとします。
 
 ```javascript
-// App.js
 const { ethereum } = window;
 ```
 
@@ -558,7 +551,6 @@ const { ethereum } = window;
 これは、MetaMaskのウォレットを使ってマイナーにリクエストを発行することを意味します。
 
 ```javascript
-// App.js
   if (ethereum) {
     const provider = new ethers.providers.Web3Provider(ethereum);
 	:
@@ -567,14 +559,12 @@ const { ethereum } = window;
 3\. リクエストを発行するためには、ユーザーは自分の秘密鍵を使ってトランザクションに署名する必要があります。このために`signer`にアクセスします。
 
 ```javascript
-// App.js
 const signer = provider.getSigner();
 ```
 
 4\. 次に、デプロイされたコントラクトのアドレス、コントラクトABI、および`signer`を使用して、`ethers`のコントラクトインスタンスを開始します。
 
 ```javascript
-// App.js
 const nftContract = new ethers.Contract(contractAddress, abi, signer);
 console.log("Initialize payment");
 ```
@@ -582,7 +572,6 @@ console.log("Initialize payment");
 5\. これで、前述のコントラクトオブジェクトを通じてコントラクト上の関数を呼び出すことができます。`mintNFT`関数を呼び出し、MetaMaskに`0.01 ETH`（これはNFTに設定した価格）を送信するよう依頼します。
 
 ```javascript
-// App.js
 let nftTxn = await nftContract.mintNFTs(1, {
   value: ethers.utils.parseEther("0.01"),
 });
@@ -592,7 +581,6 @@ console.log("Mining... please wait");
 6\. トランザクションが処理されるのを待ち、処理が完了したら、トランザクションのハッシュをコンソールに出力します。
 
 ```javascript
-// App.js
 await nftTxn.wait();
 console.log(`Mined, see transaction: ${nftTxn.hash}`);
 ```
@@ -604,7 +592,6 @@ console.log(`Mined, see transaction: ${nftTxn.hash}`);
 <!-- textlint-enable -->
 
 ```javascript
-// App.js
   } catch (err) {
     console.log(err);
   }
@@ -617,7 +604,6 @@ console.log(`Mined, see transaction: ${nftTxn.hash}`);
 `App.js`の最終盤はこちらです。
 
 ```javascript
-// App.js
 
 import { useEffect, useState } from "react";
 import "./App.css";

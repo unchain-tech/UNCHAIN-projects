@@ -121,7 +121,7 @@ git push
 
 次に、[Vercel](https://vercel.com/) のアカウントを取得して、下記を実行していきます。
 
-1\. `Dashboard`へ進んで、`New Project`を選択してください。
+1\. `Dashboard`へ進んで、`Project`を選択してください。
 
 ![](/public/images/Polygon-Generative-NFT/section-4/4_2_7.png)
 

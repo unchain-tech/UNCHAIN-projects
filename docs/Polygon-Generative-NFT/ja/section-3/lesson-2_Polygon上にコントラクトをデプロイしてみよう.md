@@ -24,28 +24,15 @@ POLYGON_URL = ""
 2 \. `hardhat.config.js`を開き、コードを下記のように更新しましょう。
 
 ```javascript
-// hardhat.config.js
 require("@nomicfoundation/hardhat-toolbox");
 require("@nomiclabs/hardhat-etherscan");
 require("dotenv").config();
 
 const { API_URL, PRIVATE_KEY, ETHERSCAN_API, POLYGON_URL } = process.env;
 
-task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
-  const accounts = await hre.ethers.getSigners();
-
-  for (const account of accounts) {
-    console.log(account.address);
-  }
-});
-
 module.exports = {
-  solidity: "0.8.9",
+  solidity: "0.8.17",
   networks: {
-    sepolia: {
-      url: API_URL,
-      accounts: [PRIVATE_KEY],
-    },
     mumbai: {
       url: POLYGON_URL,
       accounts: [PRIVATE_KEY],
@@ -141,7 +128,6 @@ Compiled 17 Solidity files successfully
 私たちは、NFTの基本価格を0.01 ETHに設定しました。
 
 ```solidity
-// NFTCollectible.sol
 uint public constant PRICE = 0.01 ether;
 ```
 
@@ -207,7 +193,6 @@ Polygonでは、`10¹⁸ Wei`が`1 MATIC`です。
 **下記のように、`NFTCollectible.sol`の価格をもう一度書き換えてください。**
 
 ```solidity
-// NFTCollectible.sol
 uint public constant PRICE = 0.01 ether;
 ```
 
@@ -260,7 +245,6 @@ Hardhatを使用する場合、AlchemyのカスタムRPC URLが必要です。
 それでは、`contract/.env`ファイルを開き、コピーした`HTTP` URLを下記の`Alchemy Polygon URL`の部分に貼り付けていきます。
 
 ```javascript
-// .env
 POLYGON_URL = "Alchemy Polygon URL";
 ```
 
@@ -295,7 +279,6 @@ Sepoliaとは異なり、これらのトークンの取得にそれほど問題�
 `contract/scripts`に向かい、`deploy.js`を下記のように更新してください。
 
 ```javascript
-// deploy.js
 async function main() {
   // あなたのコレクションの Base Token URI（JSON の CID）に差し替えてください
   // 注: 十分な NFT を確保するために、下記のサンプル Token URI を使用しても問題ありません。
@@ -380,7 +363,6 @@ APIを作成したら、そのAPIの`Edit`ボタンをクリックしてくだ�
 最後にもう一度`contract/.env`ファイルを開き、下記にコピーした`Polygon-API-Key`の値を貼り付けます。
 
 ```javascript
-// .env
 ETHERSCAN_API = "Polygonscan-API-key";
 ```
 
@@ -407,9 +389,9 @@ npx hardhat verify --network mumbai 0xF899DeB963208560a7c667FA78376ecaFF684b8E "
 下記のような結果がターミナルに出力されていることを確認してください。
 
 ```
-Compiling 15 files with 0.8.9
+Compiling 15 files with 0.8.17
 Solidity compilation finished successfully
-Compiling 1 file with 0.8.9
+Compiling 1 file with 0.8.17
 Successfully submitted source code for contract
 contracts/NFTCollectible.sol:NFTCollectible at 0xF899DeB963208560a7c667FA78376ecaFF684b8E
 for verification on the block explorer. Waiting for verification result...

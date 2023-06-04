@@ -95,11 +95,11 @@ GitHubのアカウントをお持ちの方は、下記の手順に沿ってプ�
 
 1. [こちら](https://github.com/unchain-tech/Polygon-Generative-NFT)からunchain-tech/ETH-NFT-Collectionリポジトリにアクセスをして、ページ右上の`Fork`ボタンをクリックします。
 
-![](/public/images/ETH-NFT-Collection/section-3/3_1_3.png)
+![](/public/images/Polygon-Generative-NFT/section-1/1_1_14.png)
 
 2. Create a new forkページが開くので、「Copy the `main` branch only」という項目に**チェックが入っていることを確認します**。
 
-![](/public/images/ETH-NFT-Collection/section-3/3_1_4.png)
+![](/public/images/Polygon-Generative-NFT/section-1/1_1_15.png)
 
 設定が完了したら`Create fork`ボタンをクリックします。あなたのGitHubアカウントに`Polygon-Generative-NFT`リポジトリのフォークが作成されたことを確認してください。
 
@@ -107,7 +107,7 @@ GitHubのアカウントをお持ちの方は、下記の手順に沿ってプ�
 
 まず、下図のように、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
 
-![](/public/images/ETH-NFT-Collection/section-3/3_1_1.png)
+![](/public/images/Polygon-Generative-NFT/section-1/1_1_16.png)
 
 ターミナル上で作業を行う任意のディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
 
@@ -290,24 +290,13 @@ Polygon-Generative-NFT
     "typechain": "^8.1.1"
   },
 +  "scripts": {
-+    "test": "npx hardhat test"
++   "run:script":"npx hardhat run scripts/run.js",
++   "test": "npx hardhat test",
++   "deploy": "npx hardhat run scripts/deploy.js --network sepolia",
++   "start":"npx hardhat node",
 +  }
 }
 ```
-
-不要な定義を削除し、hardhatの自動テストを実行するためのコマンドを追加しました。
-
-次に、安全なスマートコントラクトを開発するために使用されるライブラリ **OpenZeppelin** をインストールします。
-
-`packages/contract`ディレクトリにいることを確認し、以下のコマンドを実行してください。
-
-```bash
-yarn add --dev @openzeppelin/contracts
-```
-
-[OpenZeppelin](https://github.com/OpenZeppelin/openzeppelin-contracts) はイーサリアムネットワーク上で安全なスマートコントラクトを実装するためのフレームワークです。
-
-OpenZeppelinには非常に多くの機能が実装されておりインポートするだけで安全にその機能を使うことができます。
 
 ### ⭐️ 実行する
 
@@ -356,14 +345,6 @@ Hardhatは段階的に下記を実行しています。
 2\. **Hardhat は、あなたのコンピュータ上でテスト用の「ローカルイーサリアムネットワーク」を起動しています。**
 
 3\. **Hardhat は、コンパイルされたスマートコントラクトをローカルイーサリアムネットワークに「デプロイ」します。**
-
-ターミナルに出力されたアドレスを確認してみましょう。
-
-```bash
-Greeter deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
-```
-
-これは、イーサリアムネットワークのテスト環境でデプロイされたスマートコントラクトのアドレスです。
 
 これでプロジェクトの準備は整いました！
 

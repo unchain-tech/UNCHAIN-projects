@@ -25,10 +25,9 @@ VS Codeをターミナルから起動する方法は[こちら](https://maku.blo
 それでは、これから`NFTCollectible.sol`の中身の作成していきます。`NFTCollectible.sol`をVS Codeで開き、下記を入力します。
 
 ```solidity
-// NFTCollectible.sol
 //SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 
 import "hardhat/console.sol";
 
@@ -48,35 +47,30 @@ contract NFTCollectible is ERC721Enumerable, Ownable {
 コードを詳しくみていきましょう。
 
 ```solidity
-// NFTCollectible.sol
 // SPDX-License-Identifier: MIT
 ```
 
 これは「SPDXライセンス識別子」と呼ばれ、ソフトウェア・ライセンスの種類が一目でわかるようにするための識別子です。
 
 ```solidity
-// NFTCollectible.sol
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 ```
 
-これは、コントラクトで使用するSolidityコンパイラのバージョンです。上記の場合「このコントラクトを実行するときは、Solidityコンパイラのバージョン0.8.9のみを使用し、それ以下のものは使用しません」という意味です。コンパイラのバージョンが`hardhat.config.js`で同じであることを確認してください。
+これは、コントラクトで使用するSolidityコンパイラのバージョンです。上記の場合「このコントラクトを実行するときは、Solidityコンパイラのバージョン0.8.17のみを使用し、それ以下のものは使用しません」という意味です。コンパイラのバージョンが`hardhat.config.js`で同じであることを確認してください。
 
-もし、`hardhat.config.js`の中に記載されているSolidityのバージョンが`0.8.9`でなかった場合は、`NFTCollectible.sol`の中身を`hardhat.config.js`に記載されているバージョンに変更しましょう。
+もし、`hardhat.config.js`の中に記載されているSolidityのバージョンが`0.8.17`でなかった場合は、`NFTCollectible.sol`の中身を`hardhat.config.js`に記載されているバージョンに変更しましょう。
 
 ```solidity
-// NFTCollectible.sol
 import "hardhat/console.sol";
 ```
 
 コントラクトを実行する際、コンソールログをターミナルに出力するためにHardhatの`console.sol`のファイルをインポートしています。これは、今後スマートコントラクトのデバッグが発生した場合に、とても役立つツールです。
 
 ```solidity
-// NFTCollectible.sol
 import "hardhat/console.sol";
 ```
 
 ```solidity
-// NFTCollectible.sol
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
@@ -98,7 +92,6 @@ contract NFTCollectible is ERC721Enumerable, Ownable {
 `NFTCollectible.sol`の中の`Counters.Counter private _tokenIds;`の直下に以下のコードを追加しましょう。
 
 ```solidity
-// NFTCollectible.sol
 uint public constant MAX_SUPPLY = 30;
 uint public constant PRICE = 0.01 ether;
 uint public constant MAX_PER_MINT = 3;
@@ -145,7 +138,6 @@ string public baseTokenURI;
 `NFTCollectible.sol`の中の`string public baseTokenURI;`の直下に以下のコードを追加しましょう。
 
 ```solidity
-// NFTCollectible.sol
 constructor(string memory baseURI) ERC721("NFT Collectible", "NFTC") {
      setBaseURI(baseURI);
 }
@@ -176,7 +168,6 @@ constructor(string memory baseURI) ERC721("NFT Collectible", "NFTC") {
 下記を、`constructor`のコードブロック直下に追加しましょう。
 
 ```solidity
-// NFTCollectible.sol
 function reserveNFTs() public onlyOwner {
      uint totalMinted = _tokenIds.current();
      require(
@@ -230,7 +221,6 @@ https://gateway.pinata.cloud/ipfs/QmSvw119ALMN9SkP89Xj37jvqJik8jZrSjU5c1vgBhkhz8
 上記を踏まえ、下記を`reserveNFTs`のコードブロック直下に追加しましょう。
 
 ```solidity
-// NFTCollectible.sol
 function _baseURI() internal
                     view
                     virtual
@@ -269,7 +259,6 @@ NFTのJSONメタデータは、IPFSの次のURLで入手できます： ipfs://Q
 下記を`setBaseURI`関数のコードブロック直下に追加しましょう。
 
 ```solidity
-// NFTCollectible.sol
 function mintNFTs(uint _count) public payable {
      uint totalMinted = _tokenIds.current();
      require(
@@ -300,7 +289,6 @@ function mintNFTs(uint _count) public payable {
 下記を参考に、Mintが実行される前に以下3点のチェックを行います。
 
 ```solidity
-// NFTCollectible.sol
 uint public constant MAX_SUPPLY = 30;
 uint public constant PRICE = 0.01 ether;
 uint public constant MAX_PER_MINT = 3;
@@ -319,7 +307,6 @@ uint public constant MAX_PER_MINT = 3;
 下記を`mintNFTs`関数のコードブロック直下に追加しましょう。
 
 ```solidity
-// NFTCollectible.sol
 function _mintSingleNFT() private {
       uint newTokenID = _tokenIds.current();
       _safeMint(msg.sender, newTokenID);
@@ -352,7 +339,6 @@ NFT保有者に何らかの実用性を提供する場合、各ユーザーが�
 下記を`_mintSingleNFT`関数のコードブロック直下に追加しましょう。
 
 ```solidity
-// NFTCollectible.sol
 function tokensOfOwner(address _owner)
          external
          view
@@ -382,7 +368,6 @@ ERC721 Enumerableの`balanceOf`と`tokenOfOwnerByIndex`関数を使用してい�
 - `onlyOwner`修飾子をつけていきます。
 
 ```solidity
-// NFTCollectible.sol
 function withdraw() public payable onlyOwner {
      uint balance = address(this).balance;
      require(balance > 0, "No ether left to withdraw");
@@ -398,9 +383,8 @@ function withdraw() public payable onlyOwner {
 下記が最終的なコードです。
 
 ```solidity
-// NTCollectible.sol
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";

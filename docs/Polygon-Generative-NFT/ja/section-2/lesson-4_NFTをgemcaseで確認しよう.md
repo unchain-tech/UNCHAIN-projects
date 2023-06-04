@@ -63,23 +63,14 @@ ETHERSCAN_API = "YOUR ETHERSCAN apiKey HERE"
 最後に、`contract/hardhat.config.js`を下記のように更新しましょう。
 
 ```javascript
-// hardhat.config.js
 require("@nomicfoundation/hardhat-toolbox");
 require("@nomiclabs/hardhat-etherscan");
 require("dotenv").config();
 
 const { API_URL, PRIVATE_KEY, ETHERSCAN_API } = process.env;
 
-task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
-  const accounts = await hre.ethers.getSigners();
-
-  for (const account of accounts) {
-    console.log(account.address);
-  }
-});
-
 module.exports = {
-  solidity: "0.8.9",
+  solidity: "0.8.17",
   defaultNetwork: "sepolia",
   networks: {
     sepolia: {
@@ -95,7 +86,7 @@ module.exports = {
 
 これでコントラクトを検証する準備は整いました。
 
-下記の`DEPLOYED_CONTRACT_ADDRESS`と`"BASE_TOKEN_URI"`をあなたのものに更新したら、ターミナルで実行していきましょう。
+下記の`DEPLOYED_CONTRACT_ADDRESS`と`"BASE_TOKEN_URI"`をあなたのものに更新したら、`packages/contract`へ移動してターミナルで実行していきましょう。
 
 ```bash
 npx hardhat clean
@@ -116,7 +107,7 @@ npx hardhat verify --network sepolia 0x94E614a7D82d9dD24CBED7607a40eBE4243491dF 
 ターミナルに、下記のような結果が表示されていることを確認してください。
 
 ```
-Compiling 1 file with 0.8.9
+Compiling 1 file with 0.8.17
 Successfully submitted source code for contract
 contracts/NFTCollectible.sol:NFTCollectible at 0x94E614a7D82d9dD24CBED7607a40eBE4243491dF
 for verification on the block explorer. Waiting for verification result...
