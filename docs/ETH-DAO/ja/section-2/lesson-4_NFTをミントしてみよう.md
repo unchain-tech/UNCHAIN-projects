@@ -110,7 +110,7 @@ export default Home;
 
 ### ✨ "Mint NFT" ボタンをつくろう
 
-それでは、`src/pages/index.tsx`へ移動しメンバーシップNFTをミントできるようにしていきましょう。
+それでは、`pages/index.tsx`へ移動しメンバーシップNFTをミントできるようにしていきましょう。
 
 下記のとおりコードを変更してください。
 
