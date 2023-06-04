@@ -150,7 +150,6 @@ IPFS URLの中身をブラウザで確認する場合は、下記のリンクの
 `packages/library`に向かい、`metadata.py`を開き下記のように中身を更新してください。
 
 ```javascript
-// metadata.py
 BASE_IMAGE_URL = "ipfs://ここにあなたのCIDを貼り付けます";
 BASE_NAME = "ここにあなたのコレクションの名前を記入します";
 ```
@@ -158,7 +157,6 @@ BASE_NAME = "ここにあなたのコレクションの名前を記入します"
 私の`metadata.py`は下記のようになります。
 
 ```javascript
-// metadata.py
 BASE_IMAGE_URL = "ipfs://Qman4YbTQHsLDSJvjV5MMnGmF7kmWujVeFhAxUoisHifZF";
 BASE_NAME = "First Collection #";
 

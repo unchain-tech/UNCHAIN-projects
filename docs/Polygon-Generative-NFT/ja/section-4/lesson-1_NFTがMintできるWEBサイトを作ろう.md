@@ -478,27 +478,6 @@ setCurrentAccount(account);
 
 これをフロントエンドで行うには、スマートコントラクトに含まれる`ethers`ライブラリが必要です。
 
-次に`packages/client`にあるpackage.jsonの`dependencies`を以下のように編集しましょう。
-
-```
-"dependencies": {
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4",
-    "ethers": "5.7.2"
-  },
-```
-
-そして下の下のコマンドを実行することでインストールをしましょう。
-
-```
-yarn
-```
-
 次に、`App.js`で`ethers`ライブラリをインポートしましょう。
 
 `import contract from './contracts/NFTCollectible.json';`の直下に、下記を追加してください。

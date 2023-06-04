@@ -146,7 +146,6 @@ packagesディレクトリの中には、`client`と`contract`と`library`とい
 **workspaces**の定義をしている部分は以下になります。
 
 ```json
-// package.json
 "workspaces": {
   "packages": [
     "packages/*"
@@ -575,7 +574,6 @@ Pythonリストは、`rarity_weights`の重みを割り当てる最も一般的�
 次に、`config.py`の`Wristbands`に定義した`rarity_weights`を見てみましょう。
 
 ```javascript
-// config.py
 {
 	'id': 8,
 	'name': 'wristband',
