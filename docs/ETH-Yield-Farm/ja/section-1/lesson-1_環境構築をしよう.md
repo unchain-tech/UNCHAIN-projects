@@ -357,8 +357,6 @@ PRIVATE_KEY=
 STAGING_ALCHEMY_KEY=
 ```
 
-その後
-
 これでSepoliaのテストネットをdeployする準備ができました!
 
 ### 🙋‍♂️ 質問する

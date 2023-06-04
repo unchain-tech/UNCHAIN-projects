@@ -285,6 +285,16 @@ main().catch((error) => {
 
 dApp用のトークンはアンステーキングのときに投資家の方に自動的に配布される必要があるのでコントラクトに移されています。
 
+ここで、`packages/contract/package.json`の`script`部分を以下のように編集してください。
+
+```
+"scripts": {
+    "test": "npx hardhat test",
+    "deploy": "npx hardhat run scripts/deploy.js --network sepolia"
+  },
+```
+その後ルートディレクトリにいることを確認して、ターミナル上で下記を実行してみましょう。
+
 では下記のコマンドを実行してコントラクトをdeployしましょう！
 
 ```
