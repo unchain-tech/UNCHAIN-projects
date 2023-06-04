@@ -104,7 +104,7 @@ yarn client start
 
 例)ローカル環境で表示されているWebサイト
 
-![](/public/images/ETH-Yield-Farm/section-1/1_1_1.png)
+![](/public/images/Polygon-ENS-Domain/section-1/1_1_6.png)
 
 上記のような形でフロントエンドが確認できれば成功です。
 
