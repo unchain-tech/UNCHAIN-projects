@@ -6,18 +6,21 @@
 
 `GitHub`のアカウントをお持ちの方は、下記の手順に沿ってフロントエンドの基盤となるリポジトリをあなたのGitHubに[フォーク](https://denno-sekai.com/github-fork/)しましょう。
 
-1. [こちら](https://github.com/unchain-tech/Solana-Wallet.git)からunchain-tech/Solana-Walletリポジトリにアクセスをして、ページ右上の`Fork`ボタンをクリックします。
+1\. [こちら](https://github.com/unchain-tech/Solana-Wallet.git)からunchain-tech/Solana-Walletリポジトリにアクセスをして、ページ右上の`Fork`ボタンをクリックします。
 
-2. Create a new forkページが開くので、以下のように設定します。
-- Copy the `main` branch only: **チェックが入っていることを必ず確認します**。
+![](/public/images/Solana-Wallet/section-0/0_2_2.png)
 
-  ![](/public/images/Solana-Wallet/section-0/0_2_2.png)
+2\. Create a new forkページが開くので、「Copy the `main` branch only」という項目に**チェックが入っていることを確認します**。
 
-設定が完了したら`Create fork`ボタンをクリックします。あなたのGitHubアカウントに`Solana-Wallet`リポジトリのフォークが作成されたことを確認してください。
+![](/public/images/Solana-Wallet/section-0/0_2_3.png)
+
+3\. 設定が完了したら`Create fork`ボタンをクリックします。あなたのGitHubアカウントに`Solana-Wallet`リポジトリのフォークが作成されたことを確認してください。
 
 それでは、フォークしたリポジトリをローカル環境にクローンしましょう。
 
 `Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
+
+![](/public/images/Solana-Wallet/section-0/0_2_4.png)
 
 ターミナルで任意の作業ディレクトリに移動し、先ほどコピーしたリンクを貼り付け、下記を実行してください。
 

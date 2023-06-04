@@ -21,7 +21,6 @@
 次のコードを`MyEpicGame.sol`の`struct CharacterAttributes`コードブロックの直下に追加しましょう。
 
 ```solidity
-// MyEpicGame.sol
 struct BigBoss {
   string name;
   string imageURI;
@@ -36,38 +35,68 @@ BigBoss public bigBoss;
 
 次に、ボスを初期化するために、下記のように`MyEpicGame.sol`を更新していきましょう。
 
-- `constructor`の中身に下記を追加していきます。
+- `constructor`の中身を下記のように編集していきます。
 
 ```solidity
-// MyEpicGame.sol
 constructor(
-  string[] memory characterNames,
-  string[] memory characterImageURIs,
-  uint[] memory characterHp,
-  uint[] memory characterAttackDmg,
-  // これらの新しい変数は、run.js や deploy.js を介して渡されます。
-  string memory bossName,
-  string memory bossImageURI,
-  uint bossHp,
-  uint bossAttackDamage
-)
-  ERC721("OnePiece", "ONEPIECE")
-{
-  // ボスを初期化します。ボスの情報をグローバル状態変数 "bigBoss"に保存します。
-  bigBoss = BigBoss({
-    name: bossName,
-    imageURI: bossImageURI,
-    hp: bossHp,
-    maxHp: bossHp,
-    attackDamage: bossAttackDamage
-  });
-  console.log("Done initializing boss %s w/ HP %s, img %s", bigBoss.name, bigBoss.hp, bigBoss.imageURI);
+    string[] memory characterNames,
+    string[] memory characterImageURIs,
+    uint[] memory characterHp,
+    uint[] memory characterAttackDmg,
+    // これらの新しい変数は、run.js や deploy.js を介して渡されます。
+    string memory bossName,
+    string memory bossImageURI,
+    uint bossHp,
+    uint bossAttackDamage
+  ) ERC721('OnePiece', 'ONEPIECE') {
+    // ゲームで扱う全てのキャラクターをループ処理で呼び出し、それぞれのキャラクターに付与されるデフォルト値をコントラクトに保存します。
+    // 後でNFTを作成する際に使用します。
+    for (uint i = 0; i < characterNames.length; i += 1) {
+      defaultCharacters.push(
+        CharacterAttributes({
+          characterIndex: i,
+          name: characterNames[i],
+          imageURI: characterImageURIs[i],
+          hp: characterHp[i],
+          maxHp: characterHp[i],
+          attackDamage: characterAttackDmg[i]
+        })
+      );
+
+      CharacterAttributes memory character = defaultCharacters[i];
+
+      //  ハードハットのconsole.log()では、任意の順番で最大4つのパラメータを指定できます。
+      // 使用できるパラメータの種類: uint, string, bool, address
+      console.log(
+        'Done initializing %s w/ HP %s, img %s',
+        character.name,
+        character.hp,
+        character.imageURI
+      );
+    }
+
+    // 次の NFT が Mint されるときのカウンターをインクリメントします。
+    _tokenIds.increment();
+    // ボスを初期化します。ボスの情報をグローバル状態変数 "bigBoss"に保存します。
+    bigBoss = BigBoss({
+      name: bossName,
+      imageURI: bossImageURI,
+      hp: bossHp,
+      maxHp: bossHp,
+      attackDamage: bossAttackDamage
+    });
+    console.log(
+      'Done initializing boss %s w/ HP %s, img %s',
+      bigBoss.name,
+      bigBoss.hp,
+      bigBoss.imageURI
+    );
+  }
 ```
 
-最後に、`run.js`と`deploy.js`を変更して、ボスに渡すパラメータを変更しましょう。
+最後に、`run.js`と`deploy.js`のdeploy部分を以下のように変更して、ボスに渡すパラメータを変更しましょう。
 
 ```javascript
-// run.js, deploy.js
 const gameContract = await gameContractFactory.deploy(
   ["ZORO", "NAMI", "USOPP"], // キャラクターの名前
   [
@@ -99,7 +128,6 @@ const gameContract = await gameContractFactory.deploy(
 - `mintCharacterNFT`関数のコードブロック直下に下記を追加してください。
 
 ```solidity
-// MyEpicGame.sol
 function attackBoss() public {
 	// 1. プレイヤーのNFTの状態を取得します。
 	uint256 nftTokenIdOfPlayer = nftHolders[msg.sender];
@@ -149,8 +177,6 @@ function attackBoss() public {
 以前記述した下記のコードを覚えているでしょうか？
 
 ```solidity
-// MyEpicGame.sol
-
 // ユーザーのアドレスと NFT の tokenId を紐づける mapping を作成しています。
 mapping(address => uint256) public nftHolders;
 
@@ -166,7 +192,6 @@ nftHolders[msg.sender] = newItemId;
 下記のコードブロックでは、`nftHolders`を使用しています。詳しく見ていきましょう。
 
 ```solidity
-// MyEpicGame.sol
 function attackBoss() public {
   // 1. プレイヤーのNFTの状態を取得します。
   uint256 nftTokenIdOfPlayer = nftHolders[msg.sender];
@@ -179,7 +204,6 @@ function attackBoss() public {
 まず、下記のコードに注目してください。
 
 ```solidity
-// MyEpicGame.sol
 uint256 nftTokenIdOfPlayer = nftHolders[msg.sender];
 ```
 
@@ -190,7 +214,6 @@ uint256 nftTokenIdOfPlayer = nftHolders[msg.sender];
 次に、下記のコードを見ていきましょう。
 
 ```solidity
-// MyEpicGame.sol
 CharacterAttributes storage player = nftHolderAttributes[nftTokenIdOfPlayer];
 ```
 
@@ -214,7 +237,6 @@ CharacterAttributes storage player = nftHolderAttributes[nftTokenIdOfPlayer];
 最後に、下記のコードを見ていきましょう。
 
 ```solidity
-// MyEpicGame.sol
 console.log(
   "\nPlayer w/ character %s about to attack. Has %s HP and %s AD",
   player.name,
@@ -239,7 +261,6 @@ console.log(
 次に、**プレイヤーの HP が 0 以上であることを確認していきます。**
 
 ```solidity
-// MyEpicGame.sol
 // 2. プレイヤーのHPが0以上であることを確認する。
 require(player.hp > 0, "Error: character must have HP to attack boss.");
 ```
@@ -263,7 +284,6 @@ require(
 ステップ2と同じように、**ボスの HP も 0 以上であることを確認していきます。**
 
 ```solidity
-// MyEpicGame.sol
 // 3. ボスのHPが0以上であることを確認する。
 require(bigBoss.hp > 0, "Error: boss must have HP to attack boss.");
 ```
@@ -281,7 +301,6 @@ require(bigBoss.hp > 0, "Error: boss must have HP to attack boss.");
 次に、**プレイヤーがボスを攻撃するターンを実装していきます。**
 
 ```solidity
-// MyEpicGame.sol
 // 4. プレイヤーがボスを攻撃できるようにする。
 if (bigBoss.hp < player.attackDamage) {
   bigBoss.hp = 0;
@@ -313,7 +332,6 @@ if (bigBoss.hp < player.attackDamage) {
 **5️⃣ \. ボスがプレイヤーを攻撃できるようにする**
 
 ```solidity
-// MyEpicGame.sol
 // 5. ボスがプレイヤーを攻撃できるようにする。
 if (player.hp < bigBoss.attackDamage) {
   player.hp = 0;
@@ -327,7 +345,6 @@ if (player.hp < bigBoss.attackDamage) {
 最後に、下記のコードを見ていきましょう。
 
 ```solidity
-// MyEpicGame.sol
 // プレイヤーの攻撃をターミナルに出力する。
 console.log("Player attacked boss. New boss hp: %s", bigBoss.hp);
 // ボスの攻撃をターミナルに出力する。
@@ -343,7 +360,6 @@ console.log("Boss attacked player. New player hp: %s\n", player.hp);
 - `attackBoss`関数のコードブロックを2回`txn = await gameContract.mintCharacterNFT(2)`の直下に追加します。
 
 ```javascript
-// run.js
 let txn;
 txn = await gameContract.mintCharacterNFT(2);
 await txn.wait();
@@ -360,7 +376,6 @@ await txn.wait();
 コードを詳しく見ていきましょう。
 
 ```javascript
-// run.js
 txn = await gameContract.mintCharacterNFT(2);
 await txn.wait();
 ```
@@ -380,7 +395,6 @@ await txn.wait();
 次に、下記のコードを見ていきましょう。
 
 ```javascript
-// run.js
 // 1回目の攻撃: attackBoss 関数を追加
 txn = await gameContract.attackBoss();
 await txn.wait();

@@ -83,6 +83,7 @@ sugar config create
 いくつかの質問に答えていきます。下記の例は質問とその入力例になります。詳しくは[公式ドキュメント](https://docs.metaplex.com/programs/candy-machine/how-to-guides/my-first-candy-machine-part1#create-a-config-file)を参考にしてください。
 
 ```bash
+# 入力例
 ✔ Found 3 file pairs in "assets". Is this how many NFTs you will have in your candy machine? #「y」を入力
 ✔ Found no symbol in your metadata file. Is this value correct? #「y」を入力
 ✔ What is the seller fee basis points? #「500」を入力
@@ -111,7 +112,11 @@ Successfully generated the config file. 🎉
 sugar upload
 ```
 
-assetsディレクトリの各アセットがArweaveにアップロードされ、そのURIがキャッシュファイルに保存されました。アップロード終了時に生成される`cache.log`ファイル内の`image_link`や`metadata_link`にアクセスしてみましょう（この時点では、logファイルの最初に記載されているcandyMachineに関する値は空です）。
+assetsディレクトリの各アセットがArweaveにアップロードされ、そのURIがキャッシュファイルに保存されました。
+
+アップロード終了時に生成される`cache.log`ファイル内の`image_link`や`metadata_link`にアクセスしてみましょう。前のレッスンで準備したNFT画像やメタデータが表示されたでしょうか？
+
+なお、この時点では、cache.jsonファイルの最初に記載されているcandyMachineに関する値は空です。
 
 次に、Candh Machineをデプロイします。
 
@@ -120,6 +125,7 @@ sugar deploy
 ```
 
 ```bash
+# 実行例
 sugar deploy
 
 [1/3] 📦 Creating collection NFT for candy machine
@@ -135,7 +141,7 @@ Sending config line(s) in 1 transaction(s): (Ctrl+C to abort)
 ✅ Command successful.
 ```
 
-デプロイ完了後、再度`cache.json`ファイルを開いてみましょう。デプロイ前は空だったcandyMachineの値が設定されていることが確認できます。
+デプロイ完了後、再度`cache.json`ファイルを開いてみましょう。デプロイ前は空だったcandyMachineの値が設定されていることが確認できます。なお、この時点では、candyGuardの値は空です。
 
 また、以下のコマンドを実行するとCandy Machineのデプロイに成功したかを再確認することができます。
 
@@ -162,13 +168,17 @@ sugar verify
 ```
 
 - `solPayment`は、宛先のウォレット（destination）に0.1 SOL（value）の支払いを要求します。
-- `startDate`は、2023年01月01日00:00:00（日付）より前のミントを許可しないように制限します。
+- `startDate`は、設定した日付（ここでは2023年01月01日00:00:00）より前のミントを許可しないように制限します。
+
+`destination`の値は、SOLを受け取るアドレスを設定しましょう。
 
 これでドロップ開始時刻を設定することができました。それでは、以下のコマンドを実行してガードの設定を適用しましょう。
 
 ```bash
 sugar guard add
 ```
+
+コマンド実行後、再度`cache.json`ファイルを開いてみましょう。candyGuardの値が設定されていることが確認できます。
 
 現在のガード設定を確認するには、以下のコマンドを実行します。
 
