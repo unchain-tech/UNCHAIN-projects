@@ -2,7 +2,10 @@
 
 ※ GitHubアカウントの初期設定がお済みでない方は、アカウント設定を行ってからお進みください。
 
-まず、 [この GitHub リンク](https://github.com/shiftbase-xyz/solana-gif-portal-starter-project) にアクセスして、ページの右上にある[Fork]ボタンを押してください。
+まず、 [この GitHub リンク](https://github.com/unchain-tech/Solana-dApp) にアクセスして、ページの右上にある[Fork]ボタンを押してください。
+
+![](/public/images/Solana-dApp/section-1/1_1_4.png)
+![](/public/images/Solana-dApp/section-1/1_1_5.png)
 
 このリポジトリをフォークすると、自分のGitHubに同一のリポジトリがコピーされます。
 
@@ -53,8 +56,6 @@ WebアプリケーションがSolanaブロックチェーンと通信するた�
 それでは、まずは`src/App.js`ファイルを開き、 `App.js`を以下のとおり変更しましょう( `App.js`はアプリケーションのメインエントリポイントとなるファイルです)。
 
 ```jsx
-// App.js
-
 // Reactを使用します。
 import React, { useEffect } from 'react';
 import twitterLogo from './assets/twitter-logo.svg';
@@ -121,8 +122,6 @@ export default App;
 `App.js`を分解して説明していきます。
 
 ```javascript
-// App.js
-
 const checkIfWalletIsConnected = async () => {
   try {
     const { solana } = window;
@@ -143,8 +142,6 @@ const checkIfWalletIsConnected = async () => {
 `checkIfWalletIsConnected`関数では、`window`オブジェクトをチェックして`solana`オブジェクトが存在しているか、また、それがPhantom Walletであるかどうかを確認し、存在しない場合はPhantom Walletをダウンロードするようにアラートを表示します。
 
 ```javascript
-// App.js
-
 useEffect(() => {
   const onLoad = async () => {
     await checkIfWalletIsConnected();
@@ -173,9 +170,9 @@ const TWITTER_HANDLE = "あなたのTwitterハンドル";
 
 1\. ターミナルを開き、`cd`でプロジェクトのルートディレクトリまで移動します。
 
-2\. `npm install`を実行します。
+2\. `yarn install`を実行します。
 
-3\. `npm run start`を実行します。
+3\. `yarn client start`を実行します。
 
 これらを実行すると、ローカルサーバーでWebアプリケーションが立ち上がり、ブラウザのコンソール上に`Phantom Wallet found!`が表示されるはずです。
 
@@ -194,8 +191,6 @@ Webアプリケーションでは、ユーザーがWebアプリケーション�
 それでは、`checkIfWalletIsConnected`関数を以下のように修正してください。
 
 ```javascript
-// App.js
-
 const checkIfWalletIsConnected = async () => {
   try {
     const { solana } = window;

@@ -17,8 +17,6 @@ GIPHYで気に入った画像を選択したら、`Share`をクリックし、`C
 `App.js`の定数を宣言している場所に下記を追加します。
 
 ```javascript
-// App.js
-
 const TEST_GIFS = [
 	'https://media.giphy.com/media/ZqlvCTNHpqrio/giphy.gif',
 	'https://media.giphy.com/media/bC9czlgCMtw4cj8RgH/giphy.gif',
@@ -32,8 +30,6 @@ const TEST_GIFS = [
 また、使用するGIFにあわせ、以下のようにWebサイトのタイトルと説明を変更しておきましょう。
 
 ```jsx
-// App.js
-
 <p className="header">🖼 GIF Portal</p>
 <p className="sub-text">
   View your GIF collection ✨
@@ -47,8 +43,6 @@ const TEST_GIFS = [
 それでは`renderNotConnectedContainer`関数のすぐ下に、以下のとおり`renderConnectedContainer`関数を追加しましょう。
 
 ```jsx
-// App.js
-
 const renderConnectedContainer = () => (
   <div className="connected-container">
     <div className="gif-grid">
@@ -71,8 +65,6 @@ const renderConnectedContainer = () => (
 `return`文の中身を以下のとおり変更します。
 
 ```jsx
-// App.js
-
 return (
   <div className="App">
     <div className="container">
@@ -119,8 +111,6 @@ Webアプリケーションのスタイルは`App.css`で設定済みですが�
 `renderConnectedContainer`関数を以下のように修正しましょう。
 
 ```jsx
-// App.js
-
 const renderConnectedContainer = () => (
   <div className="connected-container">
     <form
@@ -151,8 +141,6 @@ const renderConnectedContainer = () => (
 `const [walletAddress, setWalletAddress] = useState(null);`が記述されているすぐ下に以下のコードを追加します。
 
 ```javascript
-// App.js
-
 const [inputValue, setInputValue] = useState('');
 ```
 
@@ -163,8 +151,6 @@ GIFリンクは`inputValue`に設定され、管理されます。
 続いて、`connectWallet`関数のすぐ下に以下のコードを追加します。
 
 ```javascript
-// App.js
-
 const onInputChange = (event) => {
   const { value } = event.target;
   setInputValue(value);
@@ -176,8 +162,6 @@ const onInputChange = (event) => {
 続いて、`renderConnectedContainer`関数の`input`タグの中身を以下のとおり変更しましょう。
 
 ```jsx
-// App.js
-
 <input
   type="text"
   placeholder="Enter gif link!"
@@ -193,8 +177,6 @@ const onInputChange = (event) => {
 `onInputChange`関数の下に以下のコードを追加します。
 
 ```javascript
-// App.js
-
 const sendGif = async () => {
   if (inputValue.length > 0) {
     console.log('Gif link:', inputValue);
@@ -215,8 +197,6 @@ Solanaプログラムとの接続中にWebアプリケーション側で他の�
 それでは最後に、`sendGif`関数を機能させるため、`renderConnectedContainer`関数の`form`タグを以下のとおり変更しましょう。
 
 ```jsx
-// App.js
-
 <form
   onSubmit={(event) => {
     event.preventDefault();
@@ -249,8 +229,6 @@ Solanaプログラムと接続する前に、もう1つ設定するものがあ�
 それでは、他の`useState`宣言をしたすぐ下に`gifList`の状態を管理するコードを以下のように追加しましょう。
 
 ```javascript
-// App.js
-
 const [walletAddress, setWalletAddress] = useState(null);
 const [inputValue, setInputValue] = useState('');
 const [gifList, setGifList] = useState([]);
@@ -263,8 +241,6 @@ const [gifList, setGifList] = useState([]);
 既存の`useEffect`のすぐ下に、フェッチ用のコードを追加します。
 
 ```javascript
-// App.js
-
 useEffect(() => {
   const onLoad = async () => {
     await checkIfWalletIsConnected();
@@ -292,8 +268,6 @@ useEffect(() => {
 それでは、設定された`gifList`を利用するために、`renderConnectedContainer`関数を以下のとおり修正しましょう。
 
 ```jsx
-// App.js
-
 const renderConnectedContainer = () => (
     <div className="connected-container">
       <form
@@ -329,8 +303,6 @@ const renderConnectedContainer = () => (
 `sendGif`関数を以下のとおり修正します。
 
 ```javascript
-// App.js
-
 const sendGif = async () => {
   if (inputValue.length > 0) {
     console.log('Gif link:', inputValue);
