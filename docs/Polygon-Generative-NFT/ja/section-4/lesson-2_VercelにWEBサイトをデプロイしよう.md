@@ -56,7 +56,7 @@ ETHがいくら必要で、いくら足りないかをユーザーに知らせ�
 
 - 実際にNFTをMintして、あなたのWebWebサイトとの違いを検証してみてください。
 
-- あなたのGitHubアカウントにこの[レポジトリ](https://github.com/yukis4san/Polygon-Generative-NFT-git)をフォークしましょう。
+- あなたのGitHubアカウントにこの[レポジトリ](https://github.com/yukis4san/nft-collectible-frontend-git)をフォークしましょう。
 
 - クローンしたリポジトリをあなたのローカル環境にダウンロードしてください。
 
