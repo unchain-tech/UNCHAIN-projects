@@ -11,11 +11,11 @@
 
 - スマートコントラクトを`Avalanche`の`Fuji C-Chain`へデプロイします。
 - 世界中の誰もがあなたのスマートコントラクトにアクセスできます。
-- **ブロックチェーンは,サーバーの役割を果たします。**
+- **ブロックチェーンは、サーバーの役割を果たします。**
 
 3 \. **Web アプリケーション（dApp）を構築します**。
 
-- ユーザーはWebサイトを介して,ブロックチェーン上に展開されているあなたのスマートコントラクトと簡単にやりとりできます。
+- ユーザーはWebサイトを介して、ブロックチェーン上に展開されているあなたのスマートコントラクトと簡単にやりとりできます。
 - スマートコントラクトの実装 + フロントエンドユーザー・インタフェースの作成 👉 dAppの完成を目指しましょう 🎉
 
 まず、`node` / `yarn`を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスしてください。
@@ -92,7 +92,7 @@ yarn <パッケージ名> <実行したいコマンド>
 
 それでは、ワークスペースのパッケージを格納するディレクトリを作成しましょう。
 
-以下のようなフォルダー構成となるように、`packages`ディレクトリとその中に`contract`ディレクトリを作成してください（`client`ディレクトリは、後ほどのレッスンでスターターコードをクローンする際に作成したいと思います）。
+以下のようなフォルダー構成となるように、`packages`ディレクトリとその中に`contract`ディレクトリを作成してください（`client`ディレクトリは、後ほどのレッスンでフロントエンド構築の際に作成したいと思います）。
 
 ```diff
 AVAX-AMM
@@ -141,10 +141,19 @@ AVAX-AMM
 cd packages/contract
 yarn init --private -y
 # Hardhatのインストール
-yarn add --dev hardhat
+yarn add --dev hardhat@^2.11.2
 # スマートコントラクトの開発に必要なプラグインのインストール
-yarn add --dev @nomicfoundation/hardhat-toolbox @nomicfoundation/hardhat-network-helpers @nomicfoundation/hardhat-chai-matchers @nomiclabs/hardhat-ethers @nomiclabs/hardhat-etherscan chai ethers@^5.4.7 hardhat-gas-reporter solidity-coverage @typechain/hardhat typechain @typechain/ethers-v5 @ethersproject/abi @ethersproject/providers
+yarn add --dev @nomicfoundation/hardhat-network-helpers@^1.0.0 @nomicfoundation/hardhat-chai-matchers@^1.0.0 @nomicfoundation/hardhat-toolbox@^2.0.0 @nomiclabs/hardhat-ethers@^2.0.0 @nomiclabs/hardhat-etherscan@^3.0.0 @types/chai@^4.2.0 @types/mocha@>=9.1.0 @typechain/ethers-v5@^10.1.0 @typechain/hardhat@^6.1.2 hardhat-gas-reporter@^1.0.8 solidity-coverage@^0.8.1 ts-node@^10.9.1 typechain@^8.1.0
+
+yarn add dotenv@^16.0.2 @openzeppelin/contracts@^4.7.3
 ```
+
+以下は主要なパッケージの説明です。
+
+- `hardhat`: `solidity`を使った開発をサポートします。
+- `@openzeppelin/test-helpers`: テストを支援するライブラリです。コントラクトのテストを書く際に利用します。
+- `dotenv`: 環境変数の設定で必要になります。コントラクトをデプロイする際に利用します。
+- `@openzeppelin/contracts`: [openzeppelin](https://www.openzeppelin.com/)が提供するコードを使用します。イーサリアムネットワーク上で安全なスマートコントラクトを実装するためのフレームワークです。OpenZeppelinには非常に多くの機能が実装されておりインポートするだけで安全にその機能を使うことができます。
 
 > ✍️: `warning`について
 > Hardhat をインストールすると、脆弱性に関するメッセージが表示される場合があります。
@@ -203,14 +212,6 @@ Give Hardhat a star on Github if you're enjoying it! 💞✨
 >
 > Windows で Git Bash を使用してハードハットをインストールしている場合、このステップ (HH1) でエラーが発生する可能性があります。問題が発生した場合は、WindowsCMD（コマンドプロンプト）を使用して HardHat のインストールを実行してみてください。
 
-> ⚠️: 注意 #2
->
-> `npx hardhat`が実行されなかった場合、以下をターミナルで実行してください。
->
-> ```bash
-> yarn add --dev @nomicfoundation/hardhat-toolbox
-> ```
-
 この段階で、フォルダー構造は下記のようになっていることを確認してください。
 
 ```diff
@@ -218,7 +219,6 @@ AVAX-AMM
  ├── .gitignore
  ├── package.json
  └── packages/
-     ├── client/
      └── contract/
 +        ├── .gitignore
 +        ├── README.md
@@ -239,39 +239,36 @@ AVAX-AMM
 -  "license": "MIT",
   "private": true,
   "devDependencies": {
-    "@nomicfoundation/hardhat-chai-matchers": "^1.0.6",
-    "@nomicfoundation/hardhat-network-helpers": "^1.0.8",
-    "@nomicfoundation/hardhat-toolbox": "^2.0.2",
-    "@nomiclabs/hardhat-ethers": "^2.2.2",
-    "@nomiclabs/hardhat-etherscan": "^3.1.7",
-    "@typechain/ethers-v5": "^10.2.0",
-    "@typechain/hardhat": "^6.1.5",
-    "chai": "^4.3.7",
-    "ethers": "^6.1.0",
-    "hardhat": "^2.13.0",
-    "hardhat-gas-reporter": "^1.0.9",
-    "solidity-coverage": "^0.8.2",
-    "typechain": "^8.1.1"
+    "@nomicfoundation/hardhat-chai-matchers": "^1.0.0",
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.0",
+    "@nomicfoundation/hardhat-toolbox": "^2.0.0",
+    "@nomiclabs/hardhat-ethers": "^2.0.0",
+    "@nomiclabs/hardhat-etherscan": "^3.0.0",
+    "@typechain/ethers-v5": "^10.1.0",
+    "@typechain/hardhat": "^6.1.2",
+    "@types/chai": "^4.2.0",
+    "@types/mocha": ">=9.1.0",
+    "hardhat": "^2.11.2",
+    "hardhat-gas-reporter": "^1.0.8",
+    "solidity-coverage": "^0.8.1",
+    "ts-node": "^10.9.1",
+    "typechain": "^8.1.0"
   },
-+  "scripts": {
-+    "test": "npx hardhat test"
-+  }
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.7.3",
+    "dotenv": "^16.0.2"
+  },
++ "scripts": {
++   "deploy": "npx hardhat run scripts/deploy.ts --network fuji",
++   "cp": "yarn cp:typechain && yarn cp:artifact",
++   "cp:typechain": "cp -r typechain-types ../client/",
++   "cp:artifact": "cp artifacts/contracts/ERC20Tokens.sol/USDCToken.json artifacts/contracts/ERC20Tokens.sol/JOEToken.json artifacts/contracts/AMM.sol/AMM.json ../client/utils/",
++   "test": "npx hardhat test"
++ },
 }
 ```
 
-不要な定義を削除し、hardhatの自動テストを実行するためのコマンドを追加しました。
-
-次に、安全なスマートコントラクトを開発するために使用されるライブラリ **OpenZeppelin** をインストールします。
-
-`packages/contract`ディレクトリにいることを確認し、以下のコマンドを実行してください。
-
-```bash
-yarn add --dev @openzeppelin/contracts
-```
-
-[OpenZeppelin](https://github.com/OpenZeppelin/openzeppelin-contracts) はイーサリアムネットワーク上で安全なスマートコントラクトを実装するためのフレームワークです。
-
-OpenZeppelinには非常に多くの機能が実装されておりインポートするだけで安全にその機能を使うことができます。
+不要な定義を削除し、scriptsに複数のコマンドを定義しました。hardhatによる自動テストの実行やデプロイを行うためのコマンドを定義しています。また、ファイル操作のミスを減らすためにコピーを行うコマンドも定義しています。
 
 ### ⭐️ 実行する
 
@@ -308,7 +305,6 @@ artifacts         contracts         node_modules      scripts
 
 次に、上記の手順を参考にして`contracts`の下の`Lock.sol`を削除してください。実際のフォルダは削除しないように注意しましょう。
 
-
 ### ☀️ Hardhat の機能について
 
 Hardhatは段階的に下記を実行しています。
@@ -329,19 +325,19 @@ Greeter deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 
 これは、イーサリアムネットワークのテスト環境でデプロイされたスマートコントラクトのアドレスです。
 
-### 🐊 `github`にソースコードをアップロードしよう
+### 🐊 `GitHub`にソースコードをアップロードしよう
 
-本プロジェクトの最後では, アプリをデプロイするために`github`へソースコードをアップロードする必要があります。
+本プロジェクトの最後では、アプリをデプロイするために`GitHub`へソースコードをアップロードする必要があります。
 
 **AVAX-AMM**全体を対象としてアップロードしましょう。
 
-今後の開発にも役に立つと思いますので, 今のうちに以下にアップロード方法をおさらいしておきます。
+今後の開発にも役に立つと思いますので、今のうちに以下にアップロード方法をおさらいしておきます。
 
-`GitHub`のアカウントをお持ちでない方は,[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
+`GitHub`のアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
 `GitHub`へソースコードをアップロードをしたことがない方は以下を参考にしてください。
 
-[新しいレポジトリを作成](https://docs.github.com/ja/get-started/quickstart/create-a-repo)（リポジトリ名などはご自由に）した後,  
+[新しいレポジトリを作成](https://docs.github.com/ja/get-started/quickstart/create-a-repo)（リポジトリ名などはご自由に）した後、 
 手順に従いターミナルからアップロードを済ませます。  
 以下ターミナルで実行するコマンドの参考です。(`AVAX-AMM`直下で実行することを想定しております)
 
@@ -356,22 +352,22 @@ $ git push -u origin main
 
 > ✍️: SSH の設定を行う
 >
-> Github のレポジトリをクローン・プッシュする際に,SSHKey を作成し,GitHub に公開鍵を登録する必要があります。
+> Github のレポジトリをクローン・プッシュする際に、SSHKey を作成し、GitHub に公開鍵を登録する必要があります。
 >
-> SSH（Secure SHell）はネットワークを経由してマシンを遠隔操作する仕組みのことで,通信が暗号化されているのが特徴的です。
+> SSH（Secure SHell）はネットワークを経由してマシンを遠隔操作する仕組みのことで、通信が暗号化されているのが特徴的です。
 >
-> 主にクライアント（ローカル）からサーバー（リモート）に接続をするときに使われます。この SSH の暗号化について,仕組みを見ていく上で重要になるのが秘密鍵と公開鍵です。
+> 主にクライアント（ローカル）からサーバー（リモート）に接続をするときに使われます。この SSH の暗号化について、仕組みを見ていく上で重要になるのが秘密鍵と公開鍵です。
 >
-> まずはクライアントのマシンで秘密鍵と公開鍵を作り,公開鍵をサーバーに渡します。そしてサーバー側で「この公開鍵はこのユーザー」というように,紐付けを行っていきます。
+> まずはクライアントのマシンで秘密鍵と公開鍵を作り、公開鍵をサーバーに渡します。そしてサーバー側で「この公開鍵はこのユーザー」というように、紐付けを行っていきます。
 >
-> 自分で管理して必ず見せてはいけない秘密鍵と,サーバーに渡して見せても良い公開鍵の 2 つが SSH の通信では重要になってきます。
-> Github における SSH の設定は,[こちら](https://docs.github.com/ja/authentication/connecting-to-github-with-ssh) を参照してください!
+> 自分で管理して必ず見せてはいけない秘密鍵と、サーバーに渡して見せても良い公開鍵の 2 つが SSH の通信では重要になってきます。
+> Github における SSH の設定は、[こちら](https://docs.github.com/ja/authentication/connecting-to-github-with-ssh) を参照してください!
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は,Discordの`#avalanche`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#avalanche`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので,エラーレポートには下記の3点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -382,4 +378,4 @@ $ git push -u origin main
 
 ---
 
-環境設定が完了したら,次のレッスンに進んでください 🎉
+環境設定が完了したら、次のレッスンに進んでください 🎉

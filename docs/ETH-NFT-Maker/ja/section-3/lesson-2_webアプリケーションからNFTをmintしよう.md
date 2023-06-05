@@ -15,11 +15,13 @@ import { ethers } from "ethers";
 
 ここでは、フロントエンドとコントラクトを連携させるライブラリ`ethers`をインポートしています。
 
-まだ`ethers`のライブラリをインストールしてなかったので
+まだ`ethers`のライブラリをインストールしてなかったので`packages/client`へ移動して以下のコマンドを実行してください。
+
 ```
-npm install --save ethers
+yarn add --dev ethers
 ```
-これでインストールしましょう。ethersをもっと詳しく知りたい方は、[こちら](https://www.npmjs.com/package/ethers)をどうぞ。
+
+ethersをもっと詳しく知りたい方は、[こちら](https://www.npmjs.com/package/ethers)をどうぞ。
 
 次に、下記のコードを`NftUploader.jsx`の`connectWallet`関数の下に`askContractToMintNft`関数を追加してください。
 
@@ -66,10 +68,10 @@ const CONTRACT_ADDRESS =
 
 ここでは、コントラクトのアドレスを`CONTRACT_ADDRESS`に格納しています。
 
-**`ipfs-nfts`ディレクトリ上で、もう一度下記を実行し、コントラクトのアドレスを取得してください。**
+**ルーディレクトリでもう一度下記を実行し、コントラクトのアドレスを取得してください。**
 
 ```bash
-npx hardhat run scripts/deploy.js --network Sepolia
+yarn contract deploy
 ```
 
 貼り付けるアドレスの例は、以下のようになります。
@@ -140,10 +142,10 @@ console.log(
 `askContractToMintNft`関数を呼び出すコードはこの後実装していくので、今は気にしないでください。
 
 
-すべての変更を`NftUploader.jsx`に反映させた後、ターミナルで`nft-maker-starter-project`ディレクトリに移動して下記を実行しみてください。
+すべての変更を`NftUploader.jsx`に反映させた後、ターミナルで下記を実行しみてください。
 
 ```bash
-npm start
+yarn client start
 ```
 
 ローカルサーバーで、Webサイトが立ち上がり、下記のようなエラーがターミナルに出力されていれば、ここまでの実装は成功です。
@@ -171,9 +173,9 @@ Webアプリケーションがコントラクトと通信するために必要�
 
 3. 関数の実行結果に対して返るデータ型の種類
 
-ABIファイルは、コントラクトがコンパイルされた時に生成され、`ipfs-nfts/artifacts`ディレクトリに自動的に格納されます。
+ABIファイルは、コントラクトがコンパイルされた時に生成され、`packages/contract/artifacts`ディレクトリに自動的に格納されます。
 
-ターミナルで`ipfs-nfts`ディレクトリに移動し、`ls`を実行しましょう。
+ターミナルで`packages/contract`ディレクトリに移動し、`ls`を実行しましょう。
 
 `artifacts`ディレクトリの存在を確認してください。
 
@@ -181,7 +183,7 @@ ABIファイルの中身は、`Web3Mint.json`というファイルに格納さ�
 
 下記を実行して、ABIファイルをコピーしましょう。
 
-1\. ターミナル上で`ipfs-nfts`にいることを確認する（もしくは移動する）。
+1\. ターミナル上で`packges/contract`にいることを確認する（もしくは移動する）。
 
 2\. ターミナル上で下記を実行する。
 
@@ -192,9 +194,9 @@ ABIファイルの中身は、`Web3Mint.json`というファイルに格納さ�
 
 次に、下記を実行して、ABIファイルをWebアプリケーションから呼び出せるようにしましょう。
 
-1\. ターミナル上で`nft-maker-starter-project`にいることを確認する（もしくは移動する）。
+1\. ターミナル上で`client`にいることを確認する（もしくは移動する）。
 
-2\. 下記を実行して、`nft-maker-starter-project/src/`の中に`utils`ディレクトリを作成する。
+2\. 下記を実行して、`client/src/`の中に`utils`ディレクトリを作成する。
 
 > ```bash
 > mkdir src/utils
@@ -207,9 +209,9 @@ ABIファイルの中身は、`Web3Mint.json`というファイルに格納さ�
 4\. 下記を実行して、`Web3Mint.json`ファイルをVS Codeで開く。
 
 > ```bash
-> code nft-maker-starter-project/src/utils/Web3Mint.json
+> code client/src/utils/Web3Mint.json
 > ```
-5\. **先ほどコピーした`ipfs-nfts/artifacts/contracts/Web3Mint.sol/Web3Mint.json`の中身を新しく作成した`nft-maker-starter-project/src/utils/MyEpicNFT.json`の中に貼り付けてください。**
+5\. **先ほどコピーした`packages/contract/artifacts/contracts/Web3Mint.sol/Web3Mint.json`の中身を新しく作成した`packages/client/src/utils/MyEpicNFT.json`の中に貼り付けてください。**
 
 ABIファイルの準備ができたので、`NftUploader.jsx`にインポートしましょう。
 
@@ -230,8 +232,10 @@ import Web3Mint from "../../utils/Web3Mint.json";
 
 まずは、`Web3.storage`のライブラリをインストールしましょう!このライブラリを使うことで先ほど手作業で行ったIPFSに画像をアップロードする作業をプログラムで実装できるようになります。
 
+`packages/client`ディレクトリに移動して下記を実行してください。
+
 ```
-npm install web3.storage
+yarn add web3.storage
 ```
 
 そして`NftUploader.jsx`の冒頭に一行を加えましょう。
@@ -342,10 +346,10 @@ const rootCid = await client.put(image.files, {
 
 ### 🥳 NFT を Mint する
 
-それでは、ターミナル上で`nft-maker-starter-project`ディレクトリに移動して下記を実行し、ローカル環境でWebアプリケーションをホストしてみましょう。
+それでは、ターミナル上で`client`ディレクトリに移動して下記を実行し、ローカル環境でWebアプリケーションをホストしてみましょう。
 
 ```bash
-npm start
+yarn client start
 ```
 
 Webアプリケーションで画像を選択して、下記のようなポップアップが立ち上がったら、`Confirm`を押してください。

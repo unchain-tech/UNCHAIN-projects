@@ -19,17 +19,18 @@
 ```jsx
 // createTransaction.js
 
-import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
+import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import {
   clusterApiUrl,
   Connection,
-  PublicKey,
-  Transaction,
-  SystemProgram,
   LAMPORTS_PER_SOL,
-} from "@solana/web3.js";
-import BigNumber from "bignumber.js";
-import products from "./products.json";
+  PublicKey,
+  SystemProgram,
+  Transaction,
+} from '@solana/web3.js';
+import BigNumber from 'bignumber.js';
+
+import products from './products.json';
 
 // このアドレスを販売者のウォレットアドレスに置き換えてください。（ここでは販売者＝あなたです。）
 const sellerAddress = 'あなたのウォレットアドレス'
@@ -43,13 +44,13 @@ const createTransaction = async (req, res) => {
     // 必要なものがない場合は中止します。
     if (!buyer) {
       return res.status(400).json({
-        message: "Missing buyer address",
+        message: 'Missing buyer address',
       });
     }
 
     if (!orderID) {
       return res.status(400).json({
-        message: "Missing order ID",
+        message: 'Missing order ID',
       });
     }
 
@@ -58,7 +59,7 @@ const createTransaction = async (req, res) => {
 
     if (!itemPrice) {
       return res.status(404).json({
-        message: "Item not found. please check item ID",
+        message: 'Item not found. please check item ID',
       });
     }
 
@@ -70,7 +71,7 @@ const createTransaction = async (req, res) => {
     const connection = new Connection(endpoint);
 
     // 各ブロックを識別するblockhashはblockのIDのようなものです。
-    const { blockhash } = await connection.getLatestBlockhash("finalized");
+    const { blockhash } = await connection.getLatestBlockhash('finalized');
 
     // トランザクションには直近のブロックIDと料金支払者の公開鍵の2つが必要です。
     const tx = new Transaction({
@@ -100,7 +101,7 @@ const createTransaction = async (req, res) => {
     const serializedTransaction = tx.serialize({
       requireAllSignatures: false,
     });
-    const base64 = serializedTransaction.toString("base64");
+    const base64 = serializedTransaction.toString('base64');
 
     res.status(200).json({
       transaction: base64,
@@ -108,12 +109,12 @@ const createTransaction = async (req, res) => {
   } catch (error) {
     console.error(error);
 
-    res.status(500).json({ error: "error creating tx" });
+    res.status(500).json({ error: 'error creating tx' });
   }
 }
 
 export default function handler(req, res) {
-  if (req.method === "POST") {
+  if (req.method === 'POST') {
     createTransaction(req, res);
   } else {
     res.status(405).end();
@@ -132,16 +133,17 @@ export default function handler(req, res) {
 ```jsx
 // Buy.js
 
-import { useState, useMemo } from "react";
-import { Keypair, Transaction } from "@solana/web3.js";
-import { useConnection, useWallet } from "@solana/wallet-adapter-react";
-import { InfinitySpin } from "react-loader-spinner";
-import IPFSDownload from "./IpfsDownload";
+import { useConnection, useWallet } from '@solana/wallet-adapter-react';
+import { Keypair, Transaction } from '@solana/web3.js';
+import { useMemo, useState } from 'react';
+import { InfinitySpin } from 'react-loader-spinner';
+
+import IPFSDownload from './IpfsDownload';
 
 export default function Buy({ itemID }) {
   const { connection } = useConnection();
   const { publicKey, sendTransaction } = useWallet();
-  const orderID = useMemo(() => Keypair.generate().publicKey, []);   // 注文を識別するために使用される公開鍵を設定します。
+  const orderID = useMemo(() => Keypair.generate().publicKey, []); // 注文を識別するために使用される公開鍵を設定します。
 
   const [paid, setPaid] = useState(null);
   const [loading, setLoading] = useState(false); // 上記全てのロード状態を設定します。
@@ -159,18 +161,18 @@ export default function Buy({ itemID }) {
   // サーバーからトランザクションオブジェクトを取得します。
   const processTransaction = async () => {
     setLoading(true);
-    const txResponse = await fetch("../api/createTransaction", {
-      method: "POST",
+    const txResponse = await fetch('../api/createTransaction', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(order),
     });
     const txData = await txResponse.json();
 
     // トランザクションオブジェクトを作成します。
-    const tx = Transaction.from(Buffer.from(txData.transaction, "base64"));
-    console.log("Tx data is", tx);
+    const tx = Transaction.from(Buffer.from(txData.transaction, 'base64'));
+    console.log('Tx data is', tx);
 
     try {
       // ネットワークにトランザクションを送信します。
@@ -220,8 +222,8 @@ export default function Buy({ itemID }) {
 ```jsx
 // Product.js
 
-import styles from "../styles/Product.module.css";
-import Buy from "./Buy";
+import styles from '../styles/Product.module.css';
+import Buy from './Buy';
 
 export default function Product({ product }) {
   const { id, name, price, description, image_url } = product;

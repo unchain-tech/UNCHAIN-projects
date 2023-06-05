@@ -5,7 +5,6 @@
 `WavePortal.sol`に実装した`getTotalWaves`関数を覚えていますか？
 
 ```solidity
-// WavePortal.sol
   function getTotalWaves() public view returns (uint256) {
       console.log("We have %d total waves!", totalWaves);
       return totalWaves;
@@ -15,7 +14,6 @@
 `App.js`を以下のように更新して、フロントエンドから`getTotalWaves`関数へアクセスできるようにします。
 
 ```javascript
-// App.js
 import React, { useEffect, useState } from "react";
 import "./App.css";
 /* ethers 変数を使えるようにする*/
@@ -136,7 +134,6 @@ export default App;
 **1 \. ethers 変数を使えるようにする**
 
 ```javascript
-// App.js
 import { ethers } from "ethers";
 ```
 
@@ -145,7 +142,6 @@ import { ethers } from "ethers";
 **2 \. wave の回数をカウントする関数を実装する**
 
 ```javascript
-// App.js
 const wave = async () => {
   try {
     // ユーザーがMetaMaskを持っているか確認
@@ -175,7 +171,6 @@ const wave = async () => {
 **I\. `provider`**
 
 > ```javascript
-> // App.js
 > const provider = new ethers.providers.Web3Provider(ethereum);
 > ```
 >
@@ -188,7 +183,6 @@ const wave = async () => {
 **II\. `signer`**
 
 > ```javascript
-> // App.js
 > const signer = provider.getSigner();
 > ```
 >
@@ -201,7 +195,6 @@ const wave = async () => {
 **III\. コントラクトインスタンス**
 
 > ```javascript
-> // App.js
 > const wavePortalContract = new ethers.Contract(
 >   contractAddress,
 >   contractABI,
@@ -228,7 +221,7 @@ const wave = async () => {
 **3 \. wave ボタンに wave 関数を連動させる**
 
 ```html
-// App.js <button className="waveButton" onClick={wave}>Wave at Me</button>
+<button className="waveButton" onClick={wave}>Wave at Me</button>
 ```
 
 `onClick`プロップを`null`から`wave`に更新して、`wave()`関数を`waveButton`に接続しています。
@@ -260,10 +253,10 @@ Contract deployed to:  0x3610145E4c6C801bBf2F926DFd8FDd2cE1103493
 
 `Contract deployed to`に続く出力結果をどこかにメモしていた場合は、このままレッスンを進めましょう。
 
-再度この結果を出力する場合は、ターミナル上で`my-wave-portal`ディレクトリに移動し、下記を実行してください。
+再度この結果を出力する場合は、ルートディレクトリにいることを確認してターミナル上で下記を実行してください。
 
 ```
-npx hardhat run scripts/deploy.js --network sepolia
+yarn contract deploy
 ```
 
 コントラクトのデプロイ先のアドレスを取得できたら、`App.js`に`contractAddress`という新規の変数を追加しましょう。`Contract deployed to`の出力結果(`0x..`)を設定していきます。
@@ -271,7 +264,6 @@ npx hardhat run scripts/deploy.js --network sepolia
 `const [currentAccount, setCurrentAccount] = useState("")`の直下に`contractAddress`を作成しましょう。以下のようになります。
 
 ```javascript
-// App.js
 const [currentAccount, setCurrentAccount] = useState("");
 /*
  * デプロイされたコントラクトのアドレスを保持する変数を作成
@@ -298,7 +290,7 @@ Webアプリケーションがコントラクトと通信するために必要�
 
 ABIファイルは、コントラクトがコンパイルされた時に生成され、`artifacts`ディレクトリに自動的に格納されます。
 
-ターミナルで`my-wave-portal`ディレクトリに移動し、`ls`を実行しましょう。
+ターミナルで`contract`ディレクトリに移動し、`ls`を実行しましょう。
 
 `artifacts`ディレクトリの存在を確認してください。
 
@@ -306,7 +298,7 @@ ABIファイルの中身は、`WavePortal.json`というファイルに格納さ
 
 下記を実行して、ABIファイルをコピーしましょう。
 
-1. ターミナル上で`my-wave-portal`にいることを確認する（もしくは移動する）。
+1. ターミナル上で`contract`にいることを確認する（もしくは移動する）。
 
 2. ターミナル上で下記を実行し、`WavePortal.json`を開きましょう。※ ファインダーから直接開くことも可能です。
 
@@ -318,34 +310,21 @@ ABIファイルの中身は、`WavePortal.json`というファイルに格納さ
 
 次に、下記を実行して、ABIファイルをWebアプリケーションから呼び出せるようにしましょう。
 
-1. ターミナル上で`dApp-starter-project/src`に移動する。
+1. ターミナル上で`client/src`に移動する。
 
-2. 下記を実行して、`dApp-starter-project/src/`の中に`utils`ディレクトリを作成する。
-
-> ```bash
-> mkdir utils
-> ```
-
-1. `utils`ディレクトリに移動して`WavePortal.json`ファイルを作成する。
+2. 下記を実行して、`WavePortal.json`ファイルをVS Codeで開く。
 
 > ```bash
-> touch WavePortal.json
+> code client/src/utils/WavePortal.json
 > ```
 
-1. 下記を実行して、`WavePortal.json`ファイルをVS Codeで開く。
-
-> ```bash
-> code dApp-starter-project/src/utils/WavePortal.json
-> ```
-
-5. **先ほどコピーした`my-wave-portal/artifacts/contracts/WavePortal.sol/WavePortal.json`の中身を新しく作成した`dApp-starter-project/src/utils/WavePortal.json`の中に貼り付けてください。**
+3. **先ほどコピーした`contract/artifacts/contracts/WavePortal.sol/WavePortal.json`の中身を新しく作成した`client/src/utils/WavePortal.json`の中に貼り付けてください。**
 
 ABIファイルの準備ができたので、`App.js`にインポートしましょう。
 
 下記のように`App.js`を更新します。
 
 ```javascript
-// App.js
 import React, { useEffect, useState } from "react";
 import "./App.css";
 /* ethers 変数を使えるようにする*/
@@ -503,7 +482,6 @@ export default App;
 コントラクトアドレスをご自身のものに更新するのをお忘れなく!
 
 ```javascript
-// App.js
 const contractAddress = "あなたのコントラクトアドレスを貼り付けてください";
 ```
 
@@ -512,21 +490,18 @@ const contractAddress = "あなたのコントラクトアドレスを貼り付�
 **1 \. ABI ファイルを含む WavePortal.json ファイルをインポートする**
 
 ```javascript
-// App.js
 import abi from "./utils/WavePortal.json";
 ```
 
 **2 \. ABI の内容を参照する変数を作成**
 
 ```javascript
-// App.js
 const contractABI = abi.abi;
 ```
 
 ABIの参照先を確認しましょう。`wave`関数の中に実装されています。
 
 ```javascript
-// App.js
 const wave = async () => {
   try {
     const { ethereum } = window;
@@ -559,7 +534,6 @@ ABIファイルを`App.js`に追加すると、フロントエンドで`Wave`ボ
 コントラクトにデータを書き込むためのコードを実装しました。
 
 ```javascript
-// App.js
 const wave = async () => {
   try {
     const { ethereum } = window;
@@ -601,10 +575,10 @@ const wave = async () => {
 
 ### 🚀 テストを実行する
 
-ターミナル上で`dApp-starter-project`に移動し、下記を実行しましょう。
+ターミナル上で、下記を実行しましょう。
 
 ```
-npm run start
+yarn client start
 ```
 
 ローカルサーバー上で表示されているWebアプリケーションで`Inspect`を実行し、以下を試してみましょう。
