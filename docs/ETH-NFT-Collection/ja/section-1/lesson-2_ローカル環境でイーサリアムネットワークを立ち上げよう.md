@@ -1,9 +1,11 @@
 ### 🗂 環境構築をしよう
 
-まず、`node` / `yarn`を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスしてください。
+まず、`node` / `yarn`を取得する必要があります。お持ちでない場合は、下記のリンクにアクセスをしてインストールしてください。
 
 `node v16`をインストールすることを推奨しています。
 
+- [Node.js](https://hardhat.org/tutorial/setting-up-the-environment#installing-node.js)
+- [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable)
 
 ### 🍽 Git リポジトリをあなたの GitHub にフォークする
 
@@ -11,11 +13,11 @@
 
 GitHubのアカウントをお持ちの方は、下記の手順に沿ってプロジェクトの基盤となるリポジトリをあなたのGitHubに[フォーク](https://denno-sekai.com/github-fork/)しましょう。
 
-1. [こちら](https://github.com/unchain-tech/ETH-NFT-Collection)からunchain-tech/ETH-NFT-Collectionリポジトリにアクセスをして、ページ右上の`Fork`ボタンをクリックします。
+1\. [こちら](https://github.com/unchain-tech/ETH-NFT-Collection)からunchain-tech/ETH-NFT-Collectionリポジトリにアクセスをして、ページ右上の`Fork`ボタンをクリックします。
 
 ![](/public/images/ETH-NFT-Collection/section-3/3_1_3.png)
 
-2. Create a new forkページが開くので、「Copy the `main` branch only」という項目に**チェックが入っていることを確認します**。
+2\. Create a new forkページが開くので、「Copy the `main` branch only」という項目に**チェックが入っていることを確認します**。
 
 ![](/public/images/ETH-NFT-Collection/section-3/3_1_4.png)
 
@@ -152,7 +154,7 @@ Give Hardhat a star on Github if you're enjoying it! 💞✨
      https://github.com/NomicFoundation/hardhat
 ```
 
-> ⚠️: 注意 #1
+> ⚠️: 注意
 >
 > Windows で Git Bash を使用してハードハットをインストールしている場合、このステップ (HH1) でエラーが発生する可能性があります。問題が発生した場合は、WindowsCMD（コマンドプロンプト）を使用して HardHat のインストールを実行してみてください。
 
@@ -237,14 +239,6 @@ Hardhatは段階的に下記を実行しています。
 2\. **Hardhat は、あなたのコンピュータ上でテスト用の「ローカルイーサリアムネットワーク」を起動しています。**
 
 3\. **Hardhat は、コンパイルされたスマートコントラクトをローカルイーサリアムネットワークに「デプロイ」します。**
-
-ターミナルに出力されたアドレスを確認してみましょう。
-
-```bash
-Greeter deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
-```
-
-これは、イーサリアムネットワークのテスト環境でデプロイされたスマートコントラクトのアドレスです。
 
 ### 🙋‍♂️ 質問する
 
