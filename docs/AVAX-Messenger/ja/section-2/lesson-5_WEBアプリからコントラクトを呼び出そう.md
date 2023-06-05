@@ -10,13 +10,14 @@
 💁 現時点ではまだ用意していないファイルからimportしている箇所があるためエラーメッセージが出ても無視して大丈夫です。
 
 ```ts
-import { useState, useEffect } from "react";
-import { BigNumber, ethers } from "ethers";
-import abi from "../utils/Messenger.json";
-import { getEthereum } from "../utils/ethereum";
-import { Messenger as MessengerType } from "../typechain-types";
+import { BigNumber, ethers } from 'ethers';
+import { useEffect, useState } from 'react';
 
-const contractAddress = "あなたのコントラクトのデプロイ先アドレス";
+import { Messenger as MessengerType } from '../typechain-types';
+import { getEthereum } from '../utils/ethereum';
+import abi from '../utils/Messenger.json';
+
+const contractAddress = 'あなたのコントラクトのデプロイ先アドレス';
 const contractABI = abi.abi;
 
 export type Message = {
@@ -63,8 +64,9 @@ export const useMessengerContract = ({
   function getMessengerContract() {
     try {
       if (ethereum) {
-        // @ts-ignore: ethereum as ethers.providers.ExternalProvider
-        const provider = new ethers.providers.Web3Provider(ethereum);
+        const provider = new ethers.providers.Web3Provider(
+          ethereum as unknown as ethers.providers.ExternalProvider,
+        );
         const signer = provider.getSigner();
         const MessengerContract = new ethers.Contract(
           contractAddress,
@@ -109,7 +111,7 @@ export const useMessengerContract = ({
     try {
       const tokenInWei = ethers.utils.parseEther(tokenInEther);
       console.log(
-        "call post with receiver:[%s], token:[%s]",
+        'call post with receiver:[%s], token:[%s]',
         receiver,
         tokenInWei.toString()
       );
@@ -117,10 +119,10 @@ export const useMessengerContract = ({
         gasLimit: 300000,
         value: tokenInWei,
       });
-      console.log("Processing...", txn.hash);
+      console.log('Processing...', txn.hash);
       setProcessing(true);
       await txn.wait();
-      console.log("Done -- ", txn.hash);
+      console.log('Done -- ', txn.hash);
       setProcessing(false);
     } catch (error) {
       console.log(error);
@@ -143,7 +145,7 @@ export const useMessengerContract = ({
       text: string,
       isPending: boolean
     ) => {
-      console.log("NewMessage from %s to %s", sender, receiver);
+      console.log('NewMessage from %s to %s', sender, receiver);
       // 自分宛のメッセージの場合ownMessagesを編集します。
       // 各APIの使用によりアドレス英字が大文字小文字の違いが出る場合がありますが, その違いはアドレス値において区別されません。
       if (receiver.toLocaleLowerCase() === currentAccount) {
@@ -163,13 +165,13 @@ export const useMessengerContract = ({
 
     /* イベントリスナの登録をします */
     if (messengerContract) {
-      messengerContract.on("NewMessage", onNewMessage);
+      messengerContract.on('NewMessage', onNewMessage);
     }
 
     /* イベントリスナの登録を解除します */
     return () => {
       if (messengerContract) {
-        messengerContract.off("NewMessage", onNewMessage);
+        messengerContract.off('NewMessage', onNewMessage);
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -197,8 +199,9 @@ export const useMessengerContract = ({
   function getMessengerContract() {
     try {
       if (ethereum) {
-        // @ts-ignore: ethereum as ethers.providers.ExternalProvider
-        const provider = new ethers.providers.Web3Provider(ethereum);
+        const provider = new ethers.providers.Web3Provider(
+          ethereum as unknown as ethers.providers.ExternalProvider,
+        );
         const signer = provider.getSigner();
         const MessengerContract = new ethers.Contract(
           contractAddress,
@@ -310,7 +313,7 @@ async function sendMessage({ text, receiver, tokenInEther }: PropsSendMessage) {
   try {
     const tokenInWei = ethers.utils.parseEther(tokenInEther);
     console.log(
-      "call post with receiver:[%s], token:[%s]",
+      'call post with receiver:[%s], token:[%s]',
       receiver,
       tokenInWei.toString()
     );
@@ -318,10 +321,10 @@ async function sendMessage({ text, receiver, tokenInEther }: PropsSendMessage) {
       gasLimit: 300000,
       value: tokenInWei,
     });
-    console.log("Processing...", txn.hash);
+    console.log('Processing...', txn.hash);
     setProcessing(true);
     await txn.wait();
-    console.log("Done -- ", txn.hash);
+    console.log('Done -- ', txn.hash);
     setProcessing(false);
   } catch (error) {
     console.log(error);
@@ -362,7 +365,7 @@ useEffect(() => {
     text: string,
     isPending: boolean
   ) => {
-    console.log("NewMessage from %s to %s", sender, receiver);
+    console.log('NewMessage from %s to %s', sender, receiver);
     // 自分宛のメッセージの場合ownMessagesを編集します。
     // 各APIの使用によりアドレス英字が大文字小文字の違いが出る場合がありますが, その違いはアドレス値において区別されません。
     if (receiver.toLocaleLowerCase() === currentAccount) {
@@ -382,13 +385,13 @@ useEffect(() => {
 
   /* イベントリスナの登録をします */
   if (messengerContract) {
-    messengerContract.on("NewMessage", onNewMessage);
+    messengerContract.on('NewMessage', onNewMessage);
   }
 
   /* イベントリスナの登録を解除します */
   return () => {
     if (messengerContract) {
-      messengerContract.off("NewMessage", onNewMessage);
+      messengerContract.off('NewMessage', onNewMessage);
     }
   };
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -399,7 +402,7 @@ useEffect(() => {
 
 引数で渡された各要素を元にフロントエンドで扱うデータ構造を作成し, `ownMessages`に追加しています。
 
-`Contract.on("イベント名", イベントリスナ)`とすることでイベントリスナを登録することができます。
+`Contract.on('イベント名', イベントリスナ)`とすることでイベントリスナを登録することができます。
 (🔗 参考リンク -> [ethers contract](https://docs.ethers.io/v5/api/contract/contract/#Contract--events))
 
 登録が繰り返されることを防ぐため, クリーンアップ関数として解除を行っています。
@@ -422,13 +425,13 @@ Contract's fund is: BigNumber { value: "100" }
 `client`ディレクトリ内, `hooks/useMessengerContract.ts`の中の以下の部分に貼り付けてください。
 
 ```ts
-const contractAddress = "あなたのコントラクトのデプロイ先アドレス";
+const contractAddress = 'あなたのコントラクトのデプロイ先アドレス';
 ```
 
 例:
 
 ```ts
-const contractAddress = "0xf531A6BCF3cD579f5A367cf45ff996dB1FC3beA1";
+const contractAddress = '0xf531A6BCF3cD579f5A367cf45ff996dB1FC3beA1';
 ```
 
 📽️ ABIファイルを取得する
@@ -480,11 +483,11 @@ $ cp -r contract/typechain-types client/
 `ConfirmMessagePage.tsx`内を以下のコードに変更してください。
 
 ```tsx
-import MessageCard from "../../components/card/MessageCard";
-import Layout from "../../components/layout/Layout";
-import RequireWallet from "../../components/layout/RequireWallet";
-import { useMessengerContract } from "../../hooks/useMessengerContract";
-import { useWallet } from "../../hooks/useWallet";
+import MessageCard from '../../components/card/MessageCard';
+import Layout from '../../components/layout/Layout';
+import RequireWallet from '../../components/layout/RequireWallet';
+import { useMessengerContract } from '../../hooks/useMessengerContract';
+import { useWallet } from '../../hooks/useWallet';
 
 export default function ConfirmMessagePage() {
   const { currentAccount, connectWallet } = useWallet();
@@ -522,11 +525,11 @@ export default function ConfirmMessagePage() {
 `SendMessagePage.tsx`内を以下のコードに変更してください。
 
 ```tsx
-import Layout from "../../components/layout/Layout";
-import RequireWallet from "../../components/layout/RequireWallet";
-import { useWallet } from "../../hooks/useWallet";
-import { useMessengerContract } from "../../hooks/useMessengerContract";
-import SendMessageForm from "../../components/form/SendMessageForm";
+import SendMessageForm from '../../components/form/SendMessageForm';
+import Layout from '../../components/layout/Layout';
+import RequireWallet from '../../components/layout/RequireWallet';
+import { useMessengerContract } from '../../hooks/useMessengerContract';
+import { useWallet } from '../../hooks/useWallet';
 
 export default function SendMessagePage() {
   const { currentAccount, connectWallet } = useWallet();
@@ -632,14 +635,14 @@ export const useMessengerContract = ({
   async function acceptMessage(index: BigNumber) {
     if (!messengerContract) return;
     try {
-      console.log("call accept with index [%d]", index);
+      console.log('call accept with index [%d]', index);
       const txn = await messengerContract.accept(index, {
         gasLimit: 300000,
       });
-      console.log("Processing...", txn.hash);
+      console.log('Processing...', txn.hash);
       setProcessing(true);
       await txn.wait();
-      console.log("Done -- ", txn.hash);
+      console.log('Done -- ', txn.hash);
       setProcessing(false);
     } catch (error) {
       console.log(error);
@@ -650,14 +653,14 @@ export const useMessengerContract = ({
   async function denyMessage(index: BigNumber) {
     if (!messengerContract) return;
     try {
-      console.log("call deny with index [%d]", index);
+      console.log('call deny with index [%d]', index);
       const txn = await messengerContract.deny(index, {
         gasLimit: 300000,
       });
-      console.log("Processing...", txn.hash);
+      console.log('Processing...', txn.hash);
       setProcessing(true);
       await txn.wait();
-      console.log("Done -- ", txn.hash);
+      console.log('Done -- ', txn.hash);
       setProcessing(false);
     } catch (error) {
       console.log(error);
@@ -679,7 +682,7 @@ useEffect(() => {
   // MessageConfirmedのイベントリスナの追加
   const onMessageConfirmed = (receiver: string, index: BigNumber) => {
     console.log(
-      "MessageConfirmed index:[%d] receiver: [%s]",
+      'MessageConfirmed index:[%d] receiver: [%s]',
       index.toNumber(),
       receiver
     );
@@ -694,15 +697,15 @@ useEffect(() => {
 
   /* イベントリスナーの登録をします */
   if (messengerContract) {
-    messengerContract.on("NewMessage", onNewMessage);
-    messengerContract.on("MessageConfirmed", onMessageConfirmed); // <- 追加
+    messengerContract.on('NewMessage', onNewMessage);
+    messengerContract.on('MessageConfirmed', onMessageConfirmed); // <- 追加
   }
 
   /* イベントリスナーの登録を解除します */
   return () => {
     if (messengerContract) {
-      messengerContract.off("NewMessage", onNewMessage);
-      messengerContract.off("MessageConfirmed", onMessageConfirmed); // <- 追加
+      messengerContract.off('NewMessage', onNewMessage);
+      messengerContract.off('MessageConfirmed', onMessageConfirmed); // <- 追加
     }
   };
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -727,12 +730,13 @@ return {
 `ConfirmMessagePage.tsx`内を以下のコードに書き換えてください。
 
 ```ts
-import { BigNumber } from "ethers";
-import MessageCard from "../../components/card/MessageCard";
-import Layout from "../../components/layout/Layout";
-import RequireWallet from "../../components/layout/RequireWallet";
-import { useMessengerContract } from "../../hooks/useMessengerContract";
-import { useWallet } from "../../hooks/useWallet";
+import { BigNumber } from 'ethers';
+
+import MessageCard from '../../components/card/MessageCard';
+import Layout from '../../components/layout/Layout';
+import RequireWallet from '../../components/layout/RequireWallet';
+import { useMessengerContract } from '../../hooks/useMessengerContract';
+import { useWallet } from '../../hooks/useWallet';
 
 export default function ConfirmMessagePage() {
   const { currentAccount, connectWallet } = useWallet();

@@ -61,7 +61,7 @@ export const useMessengerContract = ({
   async function getOwner() {
     if (!messengerContract) return;
     try {
-      console.log("call getter of owner");
+      console.log('call getter of owner');
       const owner = await messengerContract.owner();
       setOwner(owner.toLocaleLowerCase());
     } catch (error) {
@@ -73,7 +73,7 @@ export const useMessengerContract = ({
   async function getNumOfPendingLimits() {
     if (!messengerContract) return;
     try {
-      console.log("call getter of numOfPendingLimits");
+      console.log('call getter of numOfPendingLimits');
       const limits = await messengerContract.numOfPendingLimits();
       setNumOfPendingLimits(limits);
     } catch (error) {
@@ -85,14 +85,14 @@ export const useMessengerContract = ({
   async function changeNumOfPendingLimits(limits: BigNumber) {
     if (!messengerContract) return;
     try {
-      console.log("call changeNumOfPendingLimits with [%d]", limits.toNumber());
+      console.log('call changeNumOfPendingLimits with [%d]', limits.toNumber());
       const txn = await messengerContract.changeNumOfPendingLimits(limits, {
         gasLimit: 300000,
       });
-      console.log("Processing...", txn.hash);
+      console.log('Processing...', txn.hash);
       setProcessing(true);
       await txn.wait();
-      console.log("Done -- ", txn.hash);
+      console.log('Done -- ', txn.hash);
       setProcessing(false);
     } catch (error) {
       console.log(error);
@@ -138,7 +138,7 @@ export const useMessengerContract = ({
     // NumOfPendingLimitsChangedのイベントリスナ
     const onNumOfPendingLimitsChanged = (limitsChanged: BigNumber) => {
       console.log(
-        "NumOfPendingLimitsChanged limits:[%d]",
+        'NumOfPendingLimitsChanged limits:[%d]',
         limitsChanged.toNumber()
       );
       setNumOfPendingLimits(limitsChanged);
@@ -146,12 +146,12 @@ export const useMessengerContract = ({
 
     /* イベントリスナーの登録をします */
     if (messengerContract) {
-      messengerContract.on("NewMessage", onNewMessage);
-      messengerContract.on("MessageConfirmed", onMessageConfirmed);
+      messengerContract.on('NewMessage', onNewMessage);
+      messengerContract.on('MessageConfirmed', onMessageConfirmed);
 
       // 追加
       messengerContract.on(
-        "NumOfPendingLimitsChanged",
+        'NumOfPendingLimitsChanged',
         onNumOfPendingLimitsChanged
       );
     }
@@ -159,12 +159,12 @@ export const useMessengerContract = ({
     /* イベントリスナーの登録を解除します */
     return () => {
       if (messengerContract) {
-        messengerContract.off("NewMessage", onNewMessage);
-        messengerContract.off("MessageConfirmed", onMessageConfirmed);
+        messengerContract.off('NewMessage', onNewMessage);
+        messengerContract.off('MessageConfirmed', onMessageConfirmed);
 
         // 追加
         messengerContract.off(
-          "NumOfPendingLimitsChanged",
+          'NumOfPendingLimitsChanged',
           onNumOfPendingLimitsChanged
         );
       }
@@ -201,9 +201,10 @@ return {
 `ChangeOwnerValueForm.tsx`内に以下のコードを記述してください。
 
 ```tsx
-import styles from "./Form.module.css";
-import { BigNumber } from "ethers";
-import { useState } from "react";
+import { BigNumber } from 'ethers';
+import { useState } from 'react';
+
+import styles from './Form.module.css';
 
 type Props = {
   processing: boolean;
@@ -216,7 +217,7 @@ export default function ChangeOwnerValueForm({
   currentValue,
   changeValue,
 }: Props) {
-  const [limits, setLimits] = useState<string>("0");
+  const [limits, setLimits] = useState<string>('0');
 
   return (
     <div className={styles.container}>
@@ -246,7 +247,7 @@ export default function ChangeOwnerValueForm({
               changeValue(BigNumber.from(limits));
             }}
           >
-            change{" "}
+            change{' '}
           </button>
         </div>
       </div>
@@ -268,11 +269,11 @@ export default function ChangeOwnerValueForm({
 `pages`ディレクトリ内に`OwnerPage.tsx`という名前のファイルを作成し, 以下のコードを記述してください。
 
 ```tsx
-import Layout from "../components/layout/Layout";
-import RequireWallet from "../components/layout/RequireWallet";
-import { useWallet } from "../hooks/useWallet";
-import { useMessengerContract } from "../hooks/useMessengerContract";
-import ChangeOwnerValueForm from "../components/form/ChangeOwnerValueForm";
+import ChangeOwnerValueForm from '../components/form/ChangeOwnerValueForm';
+import Layout from '../components/layout/Layout';
+import RequireWallet from '../components/layout/RequireWallet';
+import { useMessengerContract } from '../hooks/useMessengerContract';
+import { useWallet } from '../hooks/useWallet';
 
 export default function OwnerPage() {
   const { currentAccount, connectWallet } = useWallet();
@@ -312,13 +313,14 @@ export default function OwnerPage() {
 最後に`pages`ディレクトリ内の`index.tsx`を以下のように編集しましょう。
 
 ```tsx
-import type { NextPage } from "next";
-import styles from "../styles/Home.module.css";
-import Link from "next/link";
-import RequireWallet from "../components/layout/RequireWallet";
-import Layout from "../components/layout/Layout";
-import { useWallet } from "../hooks/useWallet";
-import { useMessengerContract } from "../hooks/useMessengerContract";
+import type { NextPage } from 'next';
+import Link from 'next/link';
+
+import Layout from '../components/layout/Layout';
+import RequireWallet from '../components/layout/RequireWallet';
+import { useMessengerContract } from '../hooks/useMessengerContract';
+import { useWallet } from '../hooks/useWallet';
+import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {
   const { currentAccount, connectWallet } = useWallet();

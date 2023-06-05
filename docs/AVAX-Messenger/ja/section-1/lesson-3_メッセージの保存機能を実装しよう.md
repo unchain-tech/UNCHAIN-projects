@@ -339,10 +339,10 @@ testディレクトリの中の`Messenger.ts`ファイルを以下のように�
 - 変更すると環境によって赤の波線が表示される箇所があるかもしれませんが、テストを実行すると消えますので、一旦気にせず進めてください。
 
 ```ts
-import hre, { ethers } from 'hardhat';
-import { Overrides } from 'ethers';
-import { expect } from 'chai';
 import { loadFixture } from '@nomicfoundation/hardhat-network-helpers';
+import { expect } from 'chai';
+import { Overrides } from 'ethers';
+import hre, { ethers } from 'hardhat';
 
 describe('Messenger', function () {
   async function deployContract() {

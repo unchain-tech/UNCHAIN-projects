@@ -156,7 +156,7 @@ client
 まだ具体的な実装はしませんが, `useMessengerContract.ts`という名前のファイルを作成し, 以下のコードを記述してください。
 
 ```ts
-import { BigNumber } from "ethers";
+import { BigNumber } from 'ethers';
 
 export type Message = {
   sender: string;
@@ -232,9 +232,10 @@ p.text {
 `MessageCard.tsx`内に以下のコードを記述してください。
 
 ```tsx
-import { ethers } from "ethers";
-import { Message } from "../../hooks/useMessengerContract";
-import styles from "./MessageCard.module.css";
+import { ethers } from 'ethers';
+
+import { Message } from '../../hooks/useMessengerContract';
+import styles from './MessageCard.module.css';
 
 type Props = {
   message: Message;
@@ -371,17 +372,17 @@ solidityでは小数点を扱わないのでトークンの量は`Wei`を使用�
 `SendMessageForm.tsx`内に以下のコードを記述してください。
 
 ```tsx
-import styles from "./Form.module.css";
-import { useState } from "react";
+import styles from './Form.module.css';
+import { useState } from 'react';
 
 type Props = {
   sendMessage: (text: string, receiver: string, tokenInEther: string) => void;
 };
 
 export default function SendMessageForm({ sendMessage }: Props) {
-  const [textValue, setTextValue] = useState("");
-  const [receiverAccountValue, setReceiverAccountValue] = useState("");
-  const [tokenValue, setTokenValue] = useState("0");
+  const [textValue, setTextValue] = useState('');
+  const [receiverAccountValue, setReceiverAccountValue] = useState('');
+  const [tokenValue, setTokenValue] = useState('0');
 
   return (
     <div className={styles.container}>
@@ -419,7 +420,7 @@ export default function SendMessageForm({ sendMessage }: Props) {
               sendMessage(textValue, receiverAccountValue, tokenValue);
             }}
           >
-            send{" "}
+            send{' '}
           </button>
         </div>
       </div>
@@ -466,9 +467,10 @@ export default function SendMessageForm({ sendMessage }: Props) {
 `Layout.tsx`内に以下のコードを記述してください。
 
 ```tsx
-import Head from "next/head";
-import styles from "./Layout.module.css";
-import Link from "next/link";
+import Head from 'next/head';
+import Link from 'next/link';
+
+import styles from './Layout.module.css';
 
 type Props = {
   children: React.ReactNode;
@@ -547,8 +549,8 @@ Next.jsでは,pagesディレクトリのファイルからエクスポートさ�
 `SendMessagePage.tsx`内に以下のコードを記述してください。
 
 ```tsx
-import Layout from "../../components/layout/Layout";
-import SendMessageForm from "../../components/form/SendMessageForm";
+import SendMessageForm from '../../components/form/SendMessageForm';
+import Layout from '../../components/layout/Layout';
 
 export default function SendMessagePage() {
   return (
@@ -572,19 +574,20 @@ export default function SendMessagePage() {
 `ConfirmMessagePage.tsx`内に以下のコードを記述してください。
 
 ```tsx
-import { BigNumber } from "ethers";
-import MessageCard from "../../components/card/MessageCard";
-import Layout from "../../components/layout/Layout";
-import { Message } from "../../hooks/useMessengerContract";
+import { BigNumber } from 'ethers';
+
+import MessageCard from '../../components/card/MessageCard';
+import Layout from '../../components/layout/Layout';
+import { Message } from '../../hooks/useMessengerContract';
 
 export default function ConfirmMessagePage() {
   const message: Message = {
-    depositInWei: BigNumber.from("1000000000000000000"),
+    depositInWei: BigNumber.from('1000000000000000000'),
     timestamp: new Date(1),
-    text: "message",
+    text: 'message',
     isPending: true,
-    sender: "0x~",
-    receiver: "0x~",
+    sender: '0x~',
+    receiver: '0x~',
   };
   let ownMessages: Message[] = [message, message];
 
@@ -623,8 +626,9 @@ export default function ConfirmMessagePage() {
 ※初期設定のままなので編集箇所がない場合があります。
 
 ```tsx
-import "../styles/globals.css";
-import type { AppProps } from "next/app";
+import type { AppProps } from 'next/app';
+
+import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />;
@@ -640,10 +644,11 @@ export default MyApp;
 `index.tsx`内に以下のコードを記述してください。
 
 ```tsx
-import type { NextPage } from "next";
-import styles from "../styles/Home.module.css";
-import Link from "next/link";
-import Layout from "../components/layout/Layout";
+import type { NextPage } from 'next';
+import Link from 'next/link';
+
+import Layout from '../components/layout/Layout';
+import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {
   return (

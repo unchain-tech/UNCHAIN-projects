@@ -142,8 +142,8 @@ classの概念については,[こちら](https://aiacademy.jp/media/?p=131) を
 `Messenger.ts`に以下のコードを記述してください。
 
 ```ts
-import hre from 'hardhat';
 import { expect } from 'chai';
+import hre from 'hardhat';
 
 describe('Messenger', function () {
   it('construct', async function () {
@@ -158,8 +158,8 @@ describe('Messenger', function () {
 中身を見ていきましょう。
 
 ```ts
-import hre from 'hardhat';
 import { expect } from 'chai';
+import hre from 'hardhat';
 ```
 
 テストに必要なライブラリをimportしています。

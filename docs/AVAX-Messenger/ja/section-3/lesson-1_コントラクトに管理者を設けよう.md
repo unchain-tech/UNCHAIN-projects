@@ -167,12 +167,12 @@ contract Messenger {
 - `Post`テスト内の最後にテストケースを追加
 
 ```ts
-import hre, { ethers } from "hardhat";
-import { Overrides } from "ethers";
-import { expect } from "chai";
-import { loadFixture } from "@nomicfoundation/hardhat-network-helpers";
+import { loadFixture } from '@nomicfoundation/hardhat-network-helpers';
+import { expect } from 'chai';
+import { Overrides } from 'ethers';
+import hre, { ethers } from 'hardhat';
 
-describe("Messenger", function () {
+describe('Messenger', function () {
   async function deployContract() {
     // 初めのアドレスはコントラクトのデプロイに使用されます。
     const [owner, otherAccount] = await ethers.getSigners();
@@ -180,7 +180,7 @@ describe("Messenger", function () {
     const numOfPendingLimits = 10;
     const funds = 100;
 
-    const Messenger = await hre.ethers.getContractFactory("Messenger");
+    const Messenger = await hre.ethers.getContractFactory('Messenger');
     const messenger = await Messenger.deploy(numOfPendingLimits, {
       value: funds,
     } as Overrides);
@@ -188,8 +188,8 @@ describe("Messenger", function () {
     return { messenger, numOfPendingLimits, funds, owner, otherAccount };
   }
 
-  describe("Deployment", function () {
-    it("Should set the right number of pending message limits", async function () {
+  describe('Deployment', function () {
+    it('Should set the right number of pending message limits', async function () {
       const { messenger, numOfPendingLimits } = await loadFixture(
         deployContract
       );
@@ -198,32 +198,32 @@ describe("Messenger", function () {
     });
   });
 
-  describe("Post", function () {
+  describe('Post', function () {
     // ...
 
-    it("Should revert with the right error if exceed number of pending limits", async function () {
+    it('Should revert with the right error if exceed number of pending limits', async function () {
       const { messenger, otherAccount, numOfPendingLimits } = await loadFixture(
         deployContract
       );
 
       // メッセージ保留数の上限まで otherAccount へメッセージを送信します。
       for (let cnt = 1; cnt <= numOfPendingLimits; cnt++) {
-        await messenger.post("dummy", otherAccount.address);
+        await messenger.post('dummy', otherAccount.address);
       }
       // 次に送信するメッセージはキャンセルされます。
       await expect(
-        messenger.post("exceed", otherAccount.address)
+        messenger.post('exceed', otherAccount.address)
       ).to.be.revertedWith(
-        "The receiver has reached the number of pending limits"
+        'The receiver has reached the number of pending limits'
       );
     });
   });
 
-  describe("Accept", function () {
+  describe('Accept', function () {
     // ...
   });
 
-  describe("Deny", function () {
+  describe('Deny', function () {
     // ...
   });
 });
@@ -394,25 +394,25 @@ import "hardhat/console.sol";
 ```ts
 // ...
 
-describe("Messenger", function () {
+describe('Messenger', function () {
   async function deployContract() {
     // ...
   }
 
-  describe("Deployment", function () {
-    it("Should set the right number of pending message limits", async function () {
+  describe('Deployment', function () {
+    it('Should set the right number of pending message limits', async function () {
       // ...
     });
 
-    it("Should set the right owner", async function () {
+    it('Should set the right owner', async function () {
       const { messenger, owner } = await loadFixture(deployContract);
 
       expect(await messenger.owner()).to.equal(owner.address);
     });
   });
 
-  describe("Change limits", function () {
-    it("Should revert with the right error if called by other account", async function () {
+  describe('Change limits', function () {
+    it('Should revert with the right error if called by other account', async function () {
       const { messenger, otherAccount } = await loadFixture(deployContract);
 
       await expect(
@@ -420,7 +420,7 @@ describe("Messenger", function () {
       ).to.be.revertedWith("You aren't the owner");
     });
 
-    it("Should set the right number of pending limits after change", async function () {
+    it('Should set the right number of pending limits after change', async function () {
       const { messenger, numOfPendingLimits } = await loadFixture(
         deployContract
       );
@@ -430,12 +430,12 @@ describe("Messenger", function () {
       expect(await messenger.numOfPendingLimits()).to.equal(newLimits);
     });
 
-    it("Should emit an event on change limits", async function () {
+    it('Should emit an event on change limits', async function () {
       const { messenger } = await loadFixture(deployContract);
 
       await expect(messenger.changeNumOfPendingLimits(10)).to.emit(
         messenger,
-        "NumOfPendingLimitsChanged"
+        'NumOfPendingLimitsChanged'
       );
     });
   });
@@ -475,19 +475,19 @@ yarn contract test
 主にデプロイ時の引数を増やした部分が変わっています。
 
 ```ts
-import { ethers } from "hardhat";
-import { Overrides } from "ethers";
+import { Overrides } from 'ethers';
+import { ethers } from 'hardhat';
 
 async function deploy() {
   // コントラクトをデプロイするアカウントのアドレスを取得します。
   const [deployer] = await ethers.getSigners();
-  console.log("Deploying contract with the account:", deployer.address);
+  console.log('Deploying contract with the account:', deployer.address);
 
   const numOfPendingLimits = 10;
   const funds = 100;
 
   // コントラクトのインスタンスを作成します。
-  const Messenger = await ethers.getContractFactory("Messenger");
+  const Messenger = await ethers.getContractFactory('Messenger');
 
   // The deployed instance of the contract
   const messenger = await Messenger.deploy(numOfPendingLimits, {
@@ -496,7 +496,7 @@ async function deploy() {
 
   await messenger.deployed();
 
-  console.log("Contract deployed at:", messenger.address);
+  console.log('Contract deployed at:', messenger.address);
   console.log("Contract's owner is:", await messenger.owner());
   console.log(
     "Contract's number of pending message limits is:",
@@ -545,7 +545,7 @@ Contract's fund is: BigNumber { value: "100" }
 例:
 
 ```ts
-const contractAddress = "0xFCb785b459f0c701ca4019B23EFc66B5f481daA9";
+const contractAddress = '0xFCb785b459f0c701ca4019B23EFc66B5f481daA9';
 ```
 
 **2 \. フロントエンドの ABI ファイルを更新する**
