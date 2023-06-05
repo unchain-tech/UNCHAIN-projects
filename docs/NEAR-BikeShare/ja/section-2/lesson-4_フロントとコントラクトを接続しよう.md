@@ -1,7 +1,7 @@
 ### 🛠️ フロントエンドとコントラクトを接続しよう
 
 前レッスンではバイクを管理するコントラクトを作成しました 🌟
-このレッスンではフロントエンドを本プロジェクト用に編集し, コントラクトと接続してみましょう！
+このレッスンではフロントエンドを本プロジェクト用に編集し、コントラクトと接続してみましょう！
 
 `near_bike_share_dapp`の中にある`frontend`ディレクトリの中身を変更します。
 `frontend`のフォルダ構成を以下に示します。
@@ -26,8 +26,8 @@ frontend
 └── index.js
 ```
 
-注目するのは`App.js`, `global.css`, `config.js`, `utils.js`, ファイルです。
-また, `img`ディレクトリには使用する画像を追加します。
+注目するのは`App.js`、`global.css`、`config.js`、`utils.js`、ファイルです。
+また、`img`ディレクトリには使用する画像を追加します。
 
 初めに以下の画像をダウンロードし,`bike.png`という名前で`frontend/assets/img/`内に保存してください。
 
@@ -248,7 +248,7 @@ function getConfig(env) {
 このファイルはコントラクトとの接続に必要な設定をオブジェクトとして返却する`getConfig`関数を記述しています。
 
 さらに接続するコントラクト（のデプロイしているアカウント名）の指定を`CONTRACT_NAME`で行っています。
-プロセスの環境変数として`CONTRACT_NAME`を設定（後に行います）するか, `new-awesome-project`を適切なアカウント名に変更します。
+プロセスの環境変数として`CONTRACT_NAME`を設定（後に行います）するか、`new-awesome-project`を適切なアカウント名に変更します。
 このファイルは編集せずに先に進みましょう。
 
 次は`utils.js`ファイルを見ていきます。
@@ -271,7 +271,7 @@ export async function initContract() {
 
 `near-api-js`というライブラリを`import`してコントラクトとの接続に使用します。
 `near-api-js`の使い方に関しては[こちら](https://docs.near.org/develop/integrate/frontend)を参照してください。
-また, `config.js`ファイルから`import`した`getConfig`関数を使用して設定を取得しています。
+また、`config.js`ファイルから`import`した`getConfig`関数を使用して設定を取得しています。
 その後に`initContract`関数でコントラクトとの接続を初期化,
 さらにその後に`コントラクトAPI`（コントラクトの機能を使用するための関数）の実装が続いています。
 
@@ -309,7 +309,7 @@ window.contract = await new Contract(
 );
 ```
 
-そして`コントラクトAPI`の以下の部分についても`get_greeting`, `set_greeting`を使用している状態です。
+そして`コントラクトAPI`の以下の部分についても`get_greeting`、`set_greeting`を使用している状態です。
 
 ```js
 export async function set_greeting(message) {
@@ -325,7 +325,7 @@ export async function get_greeting() {
 }
 ```
 
-こちらも削除して, あなたが作ったメソッドを使用するように関数を追加・変更しましょう！
+こちらも削除して、あなたが作ったメソッドを使用するように関数を追加・変更しましょう！
 
 ```js
 export async function num_of_bikes() {
@@ -533,13 +533,13 @@ export default function App() {
     return { account_id: "", balance: 0 };
   };
 
-  /** コントラクト側で定義されている, バイクを使うのに必要なftを保持します */
+  /** コントラクト側で定義されている、バイクを使うのに必要なftを保持します */
   const [amountToUseBike, setAmountToUseBike] = useState(0);
 
   const bikeImg = require("./assets/img/bike.png");
 
   // 初回レンダリング時の処理.
-  // サイン後にもブラウザのページがリロードされるので, この内容が実行されます.
+  // サイン後にもブラウザのページがリロードされるので、この内容が実行されます.
   useEffect(() => {
     /** renderingStateを初期化します */
     const initRenderingState = async () => {
@@ -598,7 +598,7 @@ export default function App() {
     return bike;
   };
 
-  /** バイクを使用, バイク情報を更新します。 */
+  /** バイクを使用、バイク情報を更新します。 */
   const useBikeThenUpdateInfo = async (index) => {
     console.log("Use bike");
     // 処理中は画面を切り替えるためにrenderingStatesを変更します。
@@ -614,7 +614,7 @@ export default function App() {
     setRenderingState(RenderingStates.HOME);
   };
 
-  /** バイクを点検, バイク情報を更新します。 */
+  /** バイクを点検、バイク情報を更新します。 */
   const inspectBikeThenUpdateInfo = async (index) => {
     console.log("Inspect bike");
     setRenderingState(RenderingStates.TRANSACTION);
@@ -629,7 +629,7 @@ export default function App() {
     setRenderingState(RenderingStates.HOME);
   };
 
-  /** バイクを返却, バイク情報を更新します。 */
+  /** バイクを返却、バイク情報を更新します。 */
   const returnBikeThenUpdateInfo = async (index) => {
     console.log("Return bike");
     setRenderingState(RenderingStates.TRANSACTION);
@@ -891,7 +891,7 @@ export default function App() {
 少し長いので読むのが大変かと思いますが,
 Webサイトがブラウザ上で起動してからの`App.js`内の処理フローをここで簡単に整理します。
 
-- 起動時, `useEffect`内で定義した`allBikeInfo`と`renderingState`の初期化が実行されます。
+- 起動時、`useEffect`内で定義した`allBikeInfo`と`renderingState`の初期化が実行されます。
 - 次にファイル下部にある`switch`文が実行されます。
 - `renderingState`が`RenderingStates.SIGN_IN`の場合はサインイン画面を表示します。
 - `renderingState`が`RenderingStates.HOME`の場合はホーム画面を表示します。
@@ -928,7 +928,7 @@ $ yarn dev
 
 ![](/public/images/NEAR-BikeShare/section-2/2_4_1.png)
 
-`use`, `inspect`, `return`ボタンを押してみて挙動を確かめましょう。
+`use`、`inspect`、`return`ボタンを押してみて挙動を確かめましょう。
 
 サイトの上で右クリックを行い、`Inspect`を選択 -> `Console`を選択し出力結果を確認してみましょう。
 
@@ -938,8 +938,8 @@ $ yarn dev
 
 ![](/public/images/NEAR-BikeShare/section-2/2_4_3.png)
 
-それぞれユーザのアカウント情報, コントラクトのアカウント情報を検索することができます。
-クリックして参照してみましょう, トランザクションの履歴などが確認できます。
+それぞれユーザのアカウント情報、コントラクトのアカウント情報を検索することができます。
+クリックして参照してみましょう、トランザクションの履歴などが確認できます。
 
 ### 🙋‍♂️ 質問する
 

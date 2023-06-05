@@ -2,7 +2,6 @@
 
 実際に支払いを完了させるために必要なことは次のとおりです。
 
-
 ### 🤔 トランザクションを確認する
 
 まず、`components`フォルダの`Buy.js`ファイルを以下のとおり更新します。
@@ -10,17 +9,18 @@
 ```jsx
 // Buy.js
 
-import { useState, useEffect, useMemo } from "react";
-import { Keypair, Transaction } from "@solana/web3.js";
-import { findReference, FindReferenceError } from "@solana/pay";
-import { useConnection, useWallet } from "@solana/wallet-adapter-react";
-import { InfinitySpin } from "react-loader-spinner";
-import IPFSDownload from "./IpfsDownload";
+import { findReference, FindReferenceError } from '@solana/pay';
+import { useConnection, useWallet } from '@solana/wallet-adapter-react';
+import { Keypair, Transaction } from '@solana/web3.js';
+import { useEffect, useMemo, useState } from 'react';
+import { InfinitySpin } from 'react-loader-spinner';
+
+import IPFSDownload from './IpfsDownload';
 
 const STATUS = {
-  Initial: "Initial",
-  Submitted: "Submitted",
-  Paid: "Paid",
+  Initial: 'Initial',
+  Submitted: 'Submitted',
+  Paid: 'Paid',
 };
 
 export default function Buy({ itemID }) {
@@ -44,17 +44,17 @@ export default function Buy({ itemID }) {
 
   const processTransaction = async () => {
     setLoading(true);
-    const txResponse = await fetch("../api/createTransaction", {
-      method: "POST",
+    const txResponse = await fetch('../api/createTransaction', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(order),
     });
     const txData = await txResponse.json();
 
-    const tx = Transaction.from(Buffer.from(txData.transaction, "base64"));
-    console.log("Tx data is", tx);
+    const tx = Transaction.from(Buffer.from(txData.transaction, 'base64'));
+    console.log('Tx data is', tx);
 
     try {
       const txHash = await sendTransaction(tx, connection);
@@ -74,18 +74,18 @@ export default function Buy({ itemID }) {
       const interval = setInterval(async () => {
         try {
           const result = await findReference(connection, orderID);
-          console.log("Finding tx reference", result.confirmationStatus);
-          if (result.confirmationStatus === "confirmed" || result.confirmationStatus === "finalized") {
+          console.log('Finding tx reference', result.confirmationStatus);
+          if (result.confirmationStatus === 'confirmed' || result.confirmationStatus === 'finalized') {
             clearInterval(interval);
             setStatus(STATUS.Paid);
             setLoading(false);
-            alert("Thank you for your purchase!");
+            alert('Thank you for your purchase!');
           }
         } catch (e) {
           if (e instanceof FindReferenceError) {
             return null;
           }
-          console.error("Unknown error", e);
+          console.error('Unknown error', e);
         } finally {
           setLoading(false);
         }
@@ -133,20 +133,20 @@ export default function Buy({ itemID }) {
         try {
           // ブロックチェーン上でorderIDを探します。
           const result = await findReference(connection, orderID);
-          console.log("Finding tx reference", result.confirmationStatus);
+          console.log('Finding tx reference', result.confirmationStatus);
 
           // トランザクションがconfirmedまたはfinalizedした場合、支払いは成功となります。
-          if (result.confirmationStatus === "confirmed" || result.confirmationStatus === "finalized") {
+          if (result.confirmationStatus === 'confirmed' || result.confirmationStatus === 'finalized') {
             clearInterval(interval);
             setStatus(STATUS.Paid);
             setLoading(false);
-            alert("Thank you for your purchase!");
+            alert('Thank you for your purchase!');
           }
         } catch (e) {
           if (e instanceof FindReferenceError) {
             return null;
           }
-          console.error("Unknown error", e);
+          console.error('Unknown error', e);
         } finally {
           setLoading(false);
         }
@@ -220,8 +220,9 @@ const result = await findReference(connection, orderID);
 // orders.js
 
 // このAPIエンドポイントでは、ユーザーがレコードを追加するためにデータをPOSTし、レコードを取得するためにGETします。
-import orders from "./orders.json";
-import { writeFile } from "fs/promises";
+import orders from './orders.json';
+
+import { writeFile } from 'fs/promises';
 
 function get(req, res) {
   const { buyer } = req.query;
@@ -237,18 +238,26 @@ function get(req, res) {
 }
 
 async function post(req, res) {
-  console.log("Received add order request", req.body);
+  console.log('Received add order request', req.body);
   // 新しい注文をorders.jsonに追加します。
   try {
     const newOrder = req.body;
 
     // このアドレスが対象の商品を購入していない場合は、orders.jsonに注文を追加します。
-    if (!orders.find((order) => order.buyer === newOrder.buyer.toString() && order.itemID === newOrder.itemID)) {
+    if (
+      !orders.find(
+        (order) => order.buyer === newOrder.buyer.toString() &&
+        order.itemID === newOrder.itemID,
+      )
+    ) {
       orders.push(newOrder);
-      await writeFile("./pages/api/orders.json", JSON.stringify(orders, null, 2));
+      await writeFile(
+        './pages/api/orders.json',
+        JSON.stringify(orders, null, 2)
+      );
       res.status(200).json(orders);
     } else {
-      res.status(400).send("Order already exists");
+      res.status(400).send('Order already exists');
     }
   } catch (err) {
     res.status(400).send(err);
@@ -257,10 +266,10 @@ async function post(req, res) {
 
 export default async function handler(req, res) {
   switch (req.method) {
-    case "GET":
+    case 'GET':
       get(req, res);
       break;
-    case "POST":
+    case 'POST':
       await post(req, res);
       break;
     default:
@@ -285,31 +294,32 @@ export default async function handler(req, res) {
 // api.js
 
 export const addOrder = async (order) => {
-  console.log("adding order ", order, "To DB");
-  await fetch("../api/orders", {
-    method: "POST",
+  console.log('adding order ', order, 'To DB');
+  await fetch('../api/orders', {
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(order),
   });
 };
 ```
 
-これを使用するためには、 `addOrder`関数をインポートして、トランザクションが確認された直後に`Buy.js`で呼び出す必要があります。
+これを使用するためには、`addOrder`関数をインポートして、トランザクションが確認された直後に`Buy.js`で呼び出す必要があります。
 
 それでは早速`Buy.js`を更新しましょう。
 
 ```jsx
 // Buy.js
 
-import { useState, useEffect, useMemo } from 'react';
-import { Keypair, Transaction } from '@solana/web3.js';
 import { findReference, FindReferenceError } from '@solana/pay';
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
+import { Keypair, Transaction } from '@solana/web3.js';
+import { useEffect, useMemo, useState } from 'react';
 import { InfinitySpin } from 'react-loader-spinner';
-import IPFSDownload from './IpfsDownload';
+
 import { addOrder } from '../lib/api';
+import IPFSDownload from './IpfsDownload';
 
 const STATUS = {
   Initial: 'Initial',

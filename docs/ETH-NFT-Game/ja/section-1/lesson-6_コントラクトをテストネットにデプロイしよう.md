@@ -124,7 +124,6 @@ MetaMaskウォレットに`Sepolia Test Network`が設定されたら、下記�
 内容は、既存の`run.js`に、`mintCharacterNFT`関数の呼び出しを追加しただけです。
 
 ```javascript
-// deploy.js
 const main = async () => {
   // これにより、`MyEpicGame` コントラクトがコンパイルされます。
   // コントラクトがコンパイルされたら、コントラクトを扱うために必要なファイルが artifacts ディレクトリの直下に生成されます。
@@ -200,10 +199,9 @@ hardhat.config.js
 `hardhat.config.js`をVS Codeで開いて、中身を編集していきます。
 
 ```javascript
-// hardhat.config.js
 require("@nomicfoundation/hardhat-toolbox");
 module.exports = {
-  solidity: "0.8.9",
+  solidity: "0.8.17",
   networks: {
     sepolia: {
       url: "YOUR_ALCHEMY_API_URL",
@@ -320,7 +318,7 @@ Done deploying and minting!
 
 下記のような結果が、Sepolia Etherscan上で確認できれば、テストネットへのデプロイは成功です 🎉
 
-![無題](/public/images/ETH-NFT-Game/section-1/1_5_15.png)
+![](/public/images/ETH-NFT-Game/section-1/1_5_15.png)
 
 **デプロイのデバッグに Sepolia Etherscan 使うことに慣れましょう。**
 

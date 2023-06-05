@@ -8,78 +8,19 @@
 
 ```diff
 module {
-  // ===== DIP20 TOKEN INTERFACE =====
-  public type TxReceipt = {
-    #Ok : Nat;
-    #Err : {
-      #InsufficientAllowance;
-      #InsufficientBalance;
-      #ErrorOperationStyle;
-      #Unauthorized;
-      #LedgerTrap;
-      #ErrorTo;
-      #Other : Text;
-      #BlockUsed;
-      #AmountTooSmall;
-    };
-  };
+  // 省略
 
-  public type Metadata = {
-    logo : Text;
-    name : Text;
-    symbol : Text;
-    decimals : Nat8;
-    totalSupply : Nat;
+  // ====== ORDER =====
+  public type OrderId = Nat32;
+
+  public type Order = {
+    id : OrderId;
     owner : Principal;
-    fee : Nat;
+    from : Token;
+    fromAmount : Nat;
+    to : Token;
+    toAmount : Nat;
   };
-
-  public type DIPInterface = actor {
-    allowance : (owner : Principal, spender : Principal) -> async Nat;
-    balanceOf : (who : Principal) -> async Nat;
-    getMetadata : () -> async Metadata;
-    mint : (to : Principal, value : Nat) -> async TxReceipt;
-    transfer : (to : Principal, value : Nat) -> async TxReceipt;
-    transferFrom : (from : Principal, to : Principal, value : Nat) -> async TxReceipt;
-  };
-
-  public type Token = Principal;
-
-  // ====== DEPOSIT / WITHDRAW =====
-  public type DepositReceipt = {
-    #Ok : Nat;
-    #Err : {
-      #BalanceLow;
-      #TransferFailure;
-    };
-  };
-
-  public type WithdrawReceipt = {
-    #Ok : Nat;
-    #Err : {
-      #BalanceLow;
-      #TransferFailure;
-      #DeleteOrderFailure;
-    };
-  };
-
-  public type Balance = {
-    owner : Principal;
-    token : Principal;
-    amount : Nat;
-  };
-
-+  // ====== ORDER =====
-+  public type OrderId = Nat32;
-+
-+  public type Order = {
-+    id : OrderId;
-+    owner : Principal;
-+    from : Token;
-+    fromAmount : Nat;
-+    to : Token;
-+    toAmount : Nat;
-+  };
 +
 +  public type PlaceOrderReceipt = {
 +    #Ok : ?Order;
@@ -294,7 +235,7 @@ if (balance_book.hasEnoughBalance(msg.caller, token, order.fromAmount) == false)
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの`#internet-computer`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#icp`で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
