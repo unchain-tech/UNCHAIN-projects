@@ -121,7 +121,6 @@ MetaMaskとHardhatの両方でPolygonネットワークの設定が完了した�
 `run.js`とは別でファイルを作成します。`scripts`ディレクトリの中にある`deploy.js`を以下のとおり更新します。`console.log`ステートメントが多いことを除けば、`run.js`ファイルと非常によく似ています。
 
 ```javascript
-// deploy.js
 const main = async () => {
   const domainContractFactory = await hre.ethers.getContractFactory("Domains");
   const domainContract = await domainContractFactory.deploy("ninja");
@@ -169,11 +168,10 @@ runMain();
 `hardhat.config.js`ファイルを編集します。 これは、スマートコントラクトプロジェクトのルートディレクトリにあります。 ここでは、使用しているネットワークと秘密鍵を追加します。
 
 ```javascript
-// hardhat.config.js
 require("@nomicfoundation/hardhat-toolbox");
 
 module.exports = {
-  solidity: "0.8.9",
+  solidity: "0.8.17",
   networks: {
     mumbai: {
       url: "YOUR_ALCHEMY_MUMBAI_URL",

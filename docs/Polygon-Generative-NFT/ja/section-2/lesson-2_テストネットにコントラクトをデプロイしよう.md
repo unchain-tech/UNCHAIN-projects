@@ -177,23 +177,13 @@ hardhat.config.js
 `hardhat.config.js`をVS Codeで開いて、中身を下記のように更新しましょう。
 
 ```javascript
-// hardhat.config.js
-
 require("@nomicfoundation/hardhat-toolbox");
 require('dotenv').config();
 
 const { API_URL, PRIVATE_KEY } = process.env;
 
-task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
-  const accounts = await hre.ethers.getSigners();
-
-  for (const account of accounts) {
-    console.log(account.address);
-  }
-});
-
 module.exports = {
-  solidity: "0.8.9",
+  solidity: "0.8.17",
   defaultNetwork: "sepolia",
   networks: {
     sepolia: {

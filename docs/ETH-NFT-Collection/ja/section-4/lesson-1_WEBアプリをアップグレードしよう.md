@@ -158,12 +158,12 @@ An NFT w/ ID 0 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
 
 復習もかねて、丁寧に実行していきましょう。
 
-**1\. ターミナル上で`packages/contract`ディレクトリに移動します。**
+**1\. ターミナル上で`ETH-NFT-Collection`ディレクトリ直下に移動します。**
 
 下記を実行し、コントラクトを再度デプロイしましょう。
 
 ```
-npx hardhat run scripts/deploy.js --network sepolia
+yarn contract deploy:sepolia
 ```
 
 下記のように、ターミナルに出力されたコントラクトアドレス(`0x..`)をコピーしましょう。
@@ -300,7 +300,7 @@ const setupEventListener = async () => {
 // MyEpicNFT.sol
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.18;
 
 // いくつかの OpenZeppelin のコントラクトをインポートします。
 import "@openzeppelin/contracts/utils/Strings.sol";
