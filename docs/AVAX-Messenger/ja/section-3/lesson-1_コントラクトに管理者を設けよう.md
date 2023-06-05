@@ -19,7 +19,7 @@
 ```diff
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 
 import "hardhat/console.sol";
 
@@ -38,9 +38,9 @@ contract Messenger {
     }
 
     // メッセージの受取人アドレスをkeyにメッセージを保存します。
-    mapping(address => Message[]) private messagesAtAddress;
+    mapping(address => Message[]) private _messagesAtAddress;
 +    // ユーザが保留中のメッセージの数を保存します。
-+    mapping(address => uint256) private numOfPendingAtAddress;
++    mapping(address => uint256) private _numOfPendingAtAddress;
 
     event NewMessage(
         address sender,
@@ -66,12 +66,12 @@ contract Messenger {
     {
 +        // メッセージ受取人の保留できるメッセージが上限に達しているかを確認します。
 +        require(
-+            numOfPendingAtAddress[_receiver] < numOfPendingLimits,
++            _numOfPendingAtAddress[_receiver] < numOfPendingLimits,
 +            "The receiver has reached the number of pending limits"
 +        );
 +
 +        // 保留中のメッセージの数をインクリメントします。
-+        numOfPendingAtAddress[_receiver] += 1;
++        _numOfPendingAtAddress[_receiver] += 1;
 
         console.log(
             "%s posts text:[%s] token:[%d]",
@@ -80,7 +80,7 @@ contract Messenger {
             msg.value
         );
 
-        messagesAtAddress[_receiver].push(
+        _messagesAtAddress[_receiver].push(
             Message(
                 payable(msg.sender),
                 _receiver,
@@ -114,7 +114,7 @@ contract Messenger {
 
 ```solidity
     // ユーザが保留中のメッセージの数を保存します。
-    mapping(address => uint256) private numOfPendingAtAddress;
+    mapping(address => uint256) private _numOfPendingAtAddress;
 ```
 
 上記の2つはメッセージ保留数の上限値と, 各アドレス宛のメッセージがどのくらい保留されているかを保持する状態変数です。
@@ -138,12 +138,12 @@ contract Messenger {
     {
         // メッセージ受取人の保留できるメッセージが上限に達しているかを確認します。
         require(
-            numOfPendingAtAddress[_receiver] < numOfPendingLimits,
+            _numOfPendingAtAddress[_receiver] < numOfPendingLimits,
             "The receiver has reached the number of pending limits"
         );
 
         // 保留中のメッセージの数をインクリメントします。
-        numOfPendingAtAddress[_receiver] += 1;
+        _numOfPendingAtAddress[_receiver] += 1;
 
         // ...
     }
@@ -238,10 +238,10 @@ describe('Messenger', function () {
 
 それではテストを実行しましょう！
 
-ターミナル上で以下のコマンドを実行してください。
+ターミナル上で`AVAX-Messenger/`直下にいることを確認して、以下のコマンドを実行してください。
 
 ```
-yarn contract test
+yarn test
 ```
 
 以下のような表示がされたらテスト成功です！
@@ -266,7 +266,7 @@ contracts
 ```solidity
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 
 contract Ownable {
     address public owner;
@@ -282,7 +282,7 @@ contract Ownable {
 }
 ```
 
-このファイルはopenzeppelinライブラリの[ownable](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol) というコントラクトを簡単にしたものです。
+このファイルはopenzeppelinライブラリの[Ownable](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol) というコントラクトを簡単にしたものです。
 
 コンストラクタ内ではコンストラクタを呼び出した（デプロイした）アドレスで状態変数の`owner`を初期化しています。
 
@@ -297,7 +297,7 @@ contract Ownable {
 ```diff
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 
 import "hardhat/console.sol";
 + import "./Ownable.sol";
@@ -317,9 +317,9 @@ import "hardhat/console.sol";
     }
 
     // メッセージの受取人アドレスをkeyにメッセージを保存します。
-    mapping(address => Message[]) private messagesAtAddress;
+    mapping(address => Message[]) private _messagesAtAddress;
     // ユーザが保留中のメッセージの数を保存します。
-    mapping(address => uint256) private numOfPendingAtAddress;
+    mapping(address => uint256) private _numOfPendingAtAddress;
 
     event NewMessage(
         address sender,
@@ -378,7 +378,7 @@ import "hardhat/console.sol";
 > 気になる部分については、すべてのソースコードに目を通して、オーナーに特別な力がないことを確認する必要があります。
 > 開発者としてバグを修正するように DApp をコントロールする権限が必要な一方で、オーナーの数を少なくしてユーザーのデータの安全性を確保できるようなプラットフォームを開発をすることも重要であり、両者のバランスに常に気をつける必要があります。
 
-是非openzeppelinの [ownable](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol) コントラクトを見てみてください!
+是非openzeppelinの [Ownable](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol) コントラクトを見てみてください!
 
 ### 🧪 テストを追加しましょう
 
@@ -460,7 +460,7 @@ describe('Messenger', function () {
 ターミナル上で以下のコマンドを実行してください。
 
 ```
-yarn contract test
+yarn test
 ```
 
 以下のような表示がされたらテスト成功です！
@@ -522,7 +522,7 @@ deploy()
 
 **1 \. 再度コントラクトをデプロイする**
 
-ターミナル上で下記のコマンドを実行します。
+ターミナル上で`AVAX-Messenger/`直下にいることを確認して、下記のコマンドを実行します。
 
 ```
 yarn contract deploy
@@ -531,6 +531,8 @@ yarn contract deploy
 出力結果の例
 
 ```
+yarn run v1.22.19
+$ yarn workspace contract deploy
 $ npx hardhat run scripts/deploy.ts --network fuji
 Deploying contract with the account: 0xdf90d78042C8521073422a7107262D61243a21D0
 Contract deployed at: 0xFCb785b459f0c701ca4019B23EFc66B5f481daA9
@@ -550,18 +552,18 @@ const contractAddress = '0xFCb785b459f0c701ca4019B23EFc66B5f481daA9';
 
 **2 \. フロントエンドの ABI ファイルを更新する**
 
-`Avax-Messenger`直下からターミナルでコピーを行う場合, このようなコマンドになります。
+`AVAX-Messenger`直下からターミナルでコピーを行う場合, このようなコマンドになります。
 
 ```
-$ cp contract/artifacts/contracts/Messenger.sol/Messenger.json client/utils/
+$ cp ./packages/contract/artifacts/contracts/Messenger.sol/Messenger.json ./packages/client/utils/
 ```
 
 **3 \. 型定義ファイルを更新する**
 
-`Avax-Messenger`直下からターミナルでコピーを行う場合, このようなコマンドになります。
+`AVAX-Messenger`直下からターミナルでコピーを行う場合, このようなコマンドになります。
 
 ```
-$ cp -r contract/typechain-types client/
+$ cp -r ./packages/contract/typechain-types ./packages/client/
 ```
 
 **コントラクトを更新するたび,これらの 3 つのステップを実行する必要があります。**

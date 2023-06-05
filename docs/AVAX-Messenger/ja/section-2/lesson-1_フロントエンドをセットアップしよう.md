@@ -49,14 +49,14 @@
 `packages`ディレクトリに移動し,以下のコードを実行して下さい。
 
 ```
-$ npx create-next-app client  --ts --use-npm
+yarn create next-app client --ts
 ```
 
 ここでは`create-next-app`というパッケージを利用して`client`という名前のプロジェクトを作成しました。
-`--ts`は`typescript`を使用することの指定, `--use-npm`は`npm`を使用してアプリの立ち上げを行うこと指定しています。
+`--ts`は`typescript`を使用することを指定しています。
 `client`ディレクトリには`Next.js`を使ったプロジェクト開発に最低限必要なものがあらかじめ作成されます。
 
-ターミナル上で下記を実行しましょう。
+ターミナル上で`AVAX-Messenger/`直下にいることを確認して、下記を実行しましょう。
 
 ```bash
 yarn client dev
@@ -74,7 +74,7 @@ yarn client dev
 
 上記のような形でフロントエンドが確認できれば成功です。
 
-これからフロントエンドの表示を確認する際は,`client`ディレクトリ上で,`npm run dev`を実行します。
+これからフロントエンドの表示を確認する際は,`AVAX-Messenger/`直下で,`yarn client dev`を実行します。
 
 ターミナルを閉じるときは,以下のコマンドが使えます ✍️
 
@@ -90,7 +90,6 @@ client
 ├── next-env.d.ts
 ├── next.config.js
 ├── node_modules
-├── package-lock.json
 ├── package.json
 ├── pages
 │   ├── _app.tsx
@@ -106,11 +105,11 @@ client
 └── tsconfig.json
 ```
 
-続いて`client`ディレクトリ直下で以下のコマンドを実行して必要なパッケージをインストールしてください。
+続いて`packages/client`ディレクトリ直下で以下のコマンドを実行して必要なパッケージをインストールしてください。
 
 ```
-yarn add ethers
-yarn add @metamask/providers
+yarn add ethers@5.7.2
+yarn add @metamask/providers@9.1.0
 ```
 
 - `ethers`: スマートコントラクトとの連携に使用します。

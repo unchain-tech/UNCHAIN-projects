@@ -372,8 +372,9 @@ solidityでは小数点を扱わないのでトークンの量は`Wei`を使用�
 `SendMessageForm.tsx`内に以下のコードを記述してください。
 
 ```tsx
-import styles from './Form.module.css';
 import { useState } from 'react';
+
+import styles from './Form.module.css';
 
 type Props = {
   sendMessage: (text: string, receiver: string, tokenInEther: string) => void;
@@ -704,7 +705,7 @@ yarn client dev
 
 ### 🌔 参考リンク
 
-> [こちら](https://github.com/unchain-dev/avalanche_messenger_dapp)に本プロジェクトの完成形のレポジトリがあります。
+> [こちら](https://github.com/unchain-tech/AVAX-Messenger)に本プロジェクトの完成形のレポジトリがあります。
 >
 > 期待通り動かない場合は参考にしてみてください。
 

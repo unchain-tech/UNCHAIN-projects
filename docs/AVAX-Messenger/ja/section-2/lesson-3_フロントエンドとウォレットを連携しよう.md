@@ -449,7 +449,7 @@ MetaMaskの承認が終わると, 画面が切り替わり, 画面上部にあ�
 
 ### 🌔 参考リンク
 
-> [こちら](https://github.com/unchain-dev/avalanche_messenger_dapp)に本プロジェクトの完成形のレポジトリがあります。
+> [こちら](https://github.com/unchain-tech/AVAX-Messenger)に本プロジェクトの完成形のレポジトリがあります。
 >
 > 期待通り動かない場合は参考にしてみてください。
 

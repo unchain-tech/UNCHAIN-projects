@@ -227,7 +227,9 @@ export const useMessengerContract = ({
 **I\. `provider`**
 
 > ```ts
-> const provider = new ethers.providers.Web3Provider(ethereum);
+> const provider = new ethers.providers.Web3Provider(
+>   ethereum as unknown as ethers.providers.ExternalProvider,
+> );
 > ```
 >
 > ここでは, `provider` (= MetaMask) を設定しています。
@@ -449,10 +451,10 @@ ABIファイルは,コントラクトがコンパイルされた時に生成さ�
 
 `contract`からパスを追っていくと, `contract/artifacts/contracts/Messenger.sol/Messenger.json`というファイルが生成されているはずです。
 これを`client`の中の`utils`ディレクトリ内にコピーしてください。
-`Avax-Messenger`直下からターミナルでコピーを行う場合, このようなコマンドになります。
+`AVAX-Messenger`直下からターミナルでコピーを行う場合, このようなコマンドになります。
 
 ```
-$ cp contract/artifacts/contracts/Messenger.sol/Messenger.json client/utils/
+$ cp ./packages/contract/artifacts/contracts/Messenger.sol/Messenger.json ./packages/client/utils/
 ```
 
 📽️ 型定義ファイルを取得する
@@ -464,10 +466,10 @@ TypeScriptは静的型付け言語なので, 外部から取ってきたオブ�
 これは`npx hardhat`実行時にtypescriptを選択したため, 初期設定が済んでいるためです。
 
 `contract`内の`typechain-types`ディレクトリをそのまま`client`にコピーしてください。
-`Avax-Messenger`直下からターミナルでコピーを行う場合, このようなコマンドになります。
+`AVAX-Messenger`直下からターミナルでコピーを行う場合, このようなコマンドになります。
 
 ```
-$ cp -r contract/typechain-types client/
+$ cp -r ./packages/contract/typechain-types ./packages/client/
 ```
 
 以上でコントラクトの情報を反映することができました。
@@ -811,7 +813,7 @@ Done --
 
 ### 🌔 参考リンク
 
-> [こちら](https://github.com/unchain-dev/avalanche_messenger_dapp)に本プロジェクトの完成形のレポジトリがあります。
+> [こちら](https://github.com/unchain-tech/AVAX-Messenger)に本プロジェクトの完成形のレポジトリがあります。
 >
 > 期待通り動かない場合は参考にしてみてください。
 

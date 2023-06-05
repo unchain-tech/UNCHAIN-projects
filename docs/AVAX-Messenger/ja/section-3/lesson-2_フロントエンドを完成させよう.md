@@ -377,7 +377,7 @@ export default Home;
 それではターミナル上で以下のコマンドを走らせ, webアプリを立ち上げてください。
 
 ```
-yarn client start
+yarn client dev
 ```
 
 ブラウザで http://localhost:3000 へアクセスします。
@@ -399,7 +399,7 @@ yarn client start
 
 ### 🌔 参考リンク
 
-> [こちら](https://github.com/unchain-dev/avalanche_messenger_dapp)に本プロジェクトの完成形のレポジトリがあります。
+> [こちら](https://github.com/unchain-tech/AVAX-Messenger)に本プロジェクトの完成形のレポジトリがあります。
 >
 > 期待通り動かない場合は参考にしてみてください。
 
