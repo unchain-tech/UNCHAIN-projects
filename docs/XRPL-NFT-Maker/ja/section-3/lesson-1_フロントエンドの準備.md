@@ -12,18 +12,29 @@ Webアプリ（フロントエンド）↔︎ Xumm（ウォレット）↔︎ XR
 
 まだGitHubのアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
-GitHubのアカウントをお持ちの方は、[スターターキット](https://github.com/unchain-tech/XRPL-NFT-Maker) から、フロントエンドの基盤となるリポジトリをあなたのGitHubにフォークしましょう。フォークの方法は、[こちら](https://denno-sekai.com/github-fork/) を参照してください。
+GitHubのアカウントをお持ちの方は、下記の手順に沿ってプロジェクトの基盤となるリポジトリをあなたのGitHubに[フォーク](https://denno-sekai.com/github-fork/)しましょう。
 
-あなたのGitHubアカウントにフォークした`XRPL-NFT-Maker`リポジトリを、ローカル環境にクローンしてください。
+1\. [こちら](https://github.com/unchain-tech/XRPL-NFT-Maker)からunchain-tech/XRPL-NFT-Makerリポジトリにアクセスをして、ページ右上の`Fork`ボタンをクリックします。
 
-まず、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
+![](/public/images/XRPL-NFT-Maker/section-3/3_1_2.png)
+
+2\. Create a new forkページが開くので、「Copy the `main` branch only」という項目に**チェックが入っていることを確認します**。
+
+![](/public/images/XRPL-NFT-Maker/section-3/3_1_3.png)
+
+3\. 設定が完了したら`Create fork`ボタンをクリックします。あなたのGitHubアカウントに`XRPL-NFT-Maker`リポジトリのフォークが作成されたことを確認してください。
+
+それでは、フォークしたリポジトリをローカル環境にクローンしましょう。
+
+まず、下図のように、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
+
+![](/public/images/XRPL-NFT-Maker/section-3/3_1_4.png)
 
 ターミナルで任意のディレクトリに移動し、先ほどコピーしたリンクを貼り付け、下記を実行してください。
 
 ```bash
 git clone コピーした_github_リンク
 ```
-
 
 ターミナル上で`XRPL-NFT-Maker`に移動して下記を実行しましょう。
 
@@ -52,6 +63,16 @@ npm start
 - Mac: `ctrl + c`
 - Windows: `ctrl + shift + w`
 
+### ✅ テストスクリプトについて
+
+このプロジェクトには、これから実装を行うNftMinterコンポーネントのテストスクリプトが`components/NftMinter/index.test.jsx`として格納されています。これは、期待するMVPの機能が実装されているかをテストする内容となっており、テストフレームワークとして[Jest](https://jestjs.io/ja/)を、UIコンポーネントのテストを行うために[Testing Library](https://testing-library.com/)を活用しています。XRP Ledgerのネットワークとやり取りを行う機能をモック（模擬）しているため、ブラウザ上で実際に動作確認を行うよりもより迅速に機能テストを行うことが可能です。ただし、あくまでも模擬的なので、コンポーネントの実装ができたら実際にXRP Ledgerネットワークを使用した動作確認をブラウザ上で行いましょう！
+
+**モック（Mock）**
+モック（Mock）という言葉は、実際のものや状況を「模倣」するものを指します。
+
+テストにおいては、実際のオブジェクトや関数の代わりに使用される模擬的なオブジェクトや関数を指します。今回のプロジェクトでは、コード内で使用する外部モジュールの機能をモックして仮の動作を定義しています。これにより、テスト対象のコードとそれ以外の部分（コンポーネントの外から渡されるデータや外部モジュールなど）を分離し、テスト対象のコードのみを独立してテストできるようになります。
+
+モックの具体的な定義は、`src/__test__/__mock__/`内の各ファイルで確認できます。
 
 ### 🙋‍♂️ 質問する
 

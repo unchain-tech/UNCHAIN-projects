@@ -28,25 +28,73 @@
 
 まだGitHubのアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
-GitHubのアカウントをお持ちの方は、[スターターキット](https://github.com/unchain-tech/ETH-Yield-Farm) から、フロントエンドの基盤となるリポジトリをあなたのGitHubにフォークしましょう。フォークの方法は、[こちら](https://denno-sekai.com/github-fork/) を参照してください。
+GitHubのアカウントをお持ちの方は、下記の手順に沿ってプロジェクトの基盤となるリポジトリをあなたのGitHubに[フォーク](https://denno-sekai.com/github-fork/)しましょう。
 
-あなたのGitHubアカウントにフォークした`ETH-Yield-Farm`リポジトリを、ローカル環境にクローンしてください。
+1. [こちら](https://github.com/unchain-tech/ETH-Yield-Farm)からETH-Yield-Farmリポジトリにアクセスをして、ページ右上の`Fork`ボタンをクリックします。
 
-まず、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
+![](/public/images/ETH-Yield-Farm/section-1/1_1_3.png)
 
-ターミナル上で`ETH-Yield-Farm/packages`ディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
+2. Create a new forkページが開くので、「Copy the `main` branch only」という項目に**チェックが入っていることを確認します**。
+
+![](/public/images/ETH-Yield-Farm/section-1/1_1_4.png)
+
+
+設定が完了したら`Create fork`ボタンをクリックします。あなたのGitHubアカウントに`ETH-Yield-Farm`リポジトリのフォークが作成されたことを確認してください。
+
+それでは、フォークしたリポジトリをローカル環境にクローンしましょう。
+
+まず、下図のように、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
+
+![](/public/images/ETH-Yield-Farm/section-1/1_1_5.png)
+
+ターミナル上で作業を行う任意のディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
 
 ```bash
 git clone コピーした_github_リンク
 ```
 
-ターミナル上で`ETH-Yield-Farm`ディレクトリ下に移動して下記を実行しましょう。
+無事に複製されたらローカル開発環境の準備は完了です。
+
+### 🔍 フォルダ構成を確認する
+
+実装に入る前に、フォルダ構成を確認しておきましょう。クローンしたスタータープロジェクトは下記のようになっているはずです。
 
 ```bash
-yarn install
+ETH-Yield-Farm
+├── .git/
+├── .gitignore
+├── LICENSE
+├── README.md
+├── package.json
+├── packages/
+│   ├── client/
+│   └── contract/
+└── yarn.lock
 ```
 
-`yarn`コマンドを実行することで、JavaScriptライブラリのインストールが行われます。
+スタータープロジェクトは、モノレポ構成となっています。モノレポとは、コントラクトとクライアント（またはその他構成要素）の全コードをまとめて1つのリポジトリで管理する方法です。
+
+packagesディレクトリの中には、`client`と`contract`という2つのディレクトリがあります。
+
+`package.json`ファイルの内容を確認してみましょう。
+
+モノレポを作成するにあたり、パッケージマネージャーの機能である[Workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/)を利用しています。
+
+**workspaces**の定義をしている部分は以下になります。
+
+```json
+"workspaces": {
+  "packages": [
+    "packages/*"
+  ]
+},
+```
+
+この機能により、yarn installを一度だけ実行すれば、すべてのパッケージ（今回はコントラクトのパッケージとクライアントのパッケージ）を一度にインストールできるようになります。
+
+では早速`yarn install`をターミナルで実行して必要なパッケージをインストールしましょう。
+
+### 📺 フロントエンドの動きを確認する
 
 次に、下記を実行してみましょう。
 
@@ -62,16 +110,16 @@ yarn client start
 
 上記のような形でフロントエンドが確認できれば成功です。
 
-これからフロントエンドの表示を確認したい時は、ターミナルに向かい、`ETH-Yield-Farm`ディレクトリ上で、`npm start`を実行します。これからも必要となる作業ですので、よく覚えておいてください。
+これからフロントエンドの表示を確認したい時は、ターミナルに向かい、`ETH-Yield-Farm`ディレクトリ上で、`yarn client start`を実行します。これからも必要となる作業ですので、よく覚えておいてください。
 
 ターミナルを閉じるときは、以下のコマンドが使えます ✍️
 
 - Mac: `ctrl + c`
 - Windows: `ctrl + shift + w`
 
-### 👏 Hardhatのサンプルプロジェクトを開始する
+### 👏 コントラクトを作成する準備をする
 
-次に、Hardhatを実行します。
+本プロジェクトではコントラクトを作成する際に`Hardhat`というフレームワークを使用します。
 
 `packages/contract`ディレクトリにいることを確認し、次のコマンドを実行します。
 
@@ -145,7 +193,7 @@ ETH-Yield-Farm
 +        └── test/
 ```
 
-それでは、`contract`ディレクトリ内の`package.json`ファイルを以下を参考に更新をしましょう。
+それでは、`contract`ディレクトリ内に生成された`package.json`ファイルを以下を参考に更新をしましょう。
 
 ```diff
 {
@@ -177,18 +225,6 @@ ETH-Yield-Farm
 
 不要な定義を削除し、hardhatの自動テストを実行するためのコマンドを追加しました。
 
-次に、安全なスマートコントラクトを開発するために使用されるライブラリ **OpenZeppelin** をインストールします。
-
-`packages/contract`ディレクトリにいることを確認し、以下のコマンドを実行してください。
-
-```bash
-yarn add --dev @openzeppelin/contracts
-```
-
-[OpenZeppelin](https://github.com/OpenZeppelin/openzeppelin-contracts) はイーサリアムネットワーク上で安全なスマートコントラクトを実装するためのフレームワークです。
-
-OpenZeppelinには非常に多くの機能が実装されておりインポートするだけで安全にその機能を使うことができます。
-
 ### ⭐️ 実行する
 
 すべてが機能していることを確認するには、以下を実行します。
@@ -205,7 +241,26 @@ npx hardhat test
 
 次のように表示されます。
 
-![](/public/images/ETH-Yield-Farm/section-1/1_2_1.png)
+```
+ Lock
+    Deployment
+      ✔ Should set the right unlockTime (1636ms)
+      ✔ Should set the right owner
+      ✔ Should receive and store the funds to lock
+      ✔ Should fail if the unlockTime is not in the future
+    Withdrawals
+      Validations
+        ✔ Should revert with the right error if called too soon
+        ✔ Should revert with the right error if called from another account
+        ✔ Shouldn't fail if the unlockTime has arrived and the owner calls it
+      Events
+        ✔ Should emit an event on withdrawals
+      Transfers
+        ✔ Should transfer the funds to the owner
+
+
+  9 passing (2s)
+```
 
 ターミナル上で`ls`と入力してみて、下記のフォルダーとファイルが表示されていたら成功です。
 
@@ -237,14 +292,6 @@ Hardhatは段階的に下記を実行しています。
 
 3\. **Hardhat は、コンパイルされたスマートコントラクトをローカルイーサリアムネットワークに「デプロイ」します。**
 
-ターミナルに出力されたアドレスを確認してみましょう。
-
-```bash
-Greeter deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
-```
-
-これは、イーサリアムネットワークのテスト環境でデプロイされたスマートコントラクトのアドレスです。
-
 ### 🦊 MetaMask をダウンロードする
 
 次に、イーサリアムウォレットをダウンロードしましょう。
@@ -260,31 +307,23 @@ Greeter deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 >
 > - これは、認証作業のようなものです。
 
-### 💎 Alchemy でネットワークを作成
+### 💎 Alchemy でネットワークを作成する
 
 Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押してください。
-
-![](/public/images/ETH-dApp/section-2/2_2_17.png)
-Ecosystem選択欄が出てきた場合は`Ethereum`を選択しましょう。
-
-![](/public/images/ETH-dApp/section-2/2_2_1.png)
+![](/public/images/ETH-Yield-Farm/section-1/1_1_6.png)
 次に、下記の項目を埋めていきます。下図を参考にしてください。
+![](/public/images/ETH-Yield-Farm/section-1/1_1_7.png)
 
-![](/public/images/ETH-dApp/section-2/2_2_2.png)
-
-- `NAME`: プロジェクトの名前(例: `WavePortal`)
-- `DESCRIPTION`: プロジェクトの概要
-- `CHAIN`: `Ethereum`を選択
-- `NETWORK`: `Sepolia`を選択
-
-それから、作成したAppの`VIEW DETAILS`をクリックします。
-![](/public/images/ETH-dApp/section-2/2_2_3.png)
-
-プロジェクトを開いたら、`VIEW KEY`ボタンをクリックします。
-![](/public/images/ETH-dApp/section-2/2_2_4.png)
-ポップアップが開くので、`HTTP`のリンクをコピーしてください。
-
-これがあなたが本番環境のネットワークに接続する際に使用する`API Key`になります。
+- `NAME` : プロジェクトの名前(例: `Yield-Farm`)
+- `DESCRIPTION` : プロジェクトの概要（任意）
+- `CHAIN` : `Ethereum`を選択。
+- `NETWORK` : `Sepolia`を選択。
+  それから、作成したAppの`VIEW DETAILS`をクリックします。
+  ![](/public/images/ETH-Yield-Farm/section-1/1_1_8.png)
+  プロジェクトを開いたら、`VIEW KEY`ボタンをクリックします。
+  ![](/public/images/ETH-Yield-Farm/section-1/1_1_9.png)
+  ポップアップが開くので、`HTTP`のリンクをコピーしてください。
+  これがあなたが本番環境のネットワークに接続する際に使用する`API Key`になります。
 
 - **`API Key`は、今後必要になるので、PC 上のわかりやすいところに保存しておきましょう。**
 

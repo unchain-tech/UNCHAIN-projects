@@ -21,7 +21,7 @@ Internet Identityは、ICPがサポートするユーザー認証のフレーム
 },
 "internet_identity_div": {
   "type": "custom",
-  "wasm": "https://github.com/dfinity/internet-identity/releases/latest/download/internet_identity_dev.wasm",
+  "wasm": "https://github.com/dfinity/internet-identity/releases/latest/download/internet_identity_dev.wasm.gz",
   "candid": "https://github.com/dfinity/internet-identity/releases/latest/download/internet_identity.did"
 },
 "icp_basic_dex_frontend": {
@@ -273,7 +273,7 @@ User Principal: 42iew-bwtbo-6ug3n-k7vur-fzjgy-b33z5-ctdd7-kcqby-3lwee-hsd2s-rqe
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの`#internet-computer`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#icp`で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 

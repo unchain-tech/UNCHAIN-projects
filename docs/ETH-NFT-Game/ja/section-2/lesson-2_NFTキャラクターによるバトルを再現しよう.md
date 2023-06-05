@@ -7,7 +7,6 @@
 `deploy.js`を下記のように更新していきましょう。
 
 ```javascript
-// deploy.js
 const main = async () => {
   // これにより、`MyEpicGame` コントラクトがコンパイルされます。
   // コントラクトがコンパイルされたら、コントラクトを扱うために必要なファイルが

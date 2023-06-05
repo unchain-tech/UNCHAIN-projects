@@ -258,7 +258,7 @@ const Home: NextPage = () => {
       setIsClaiming(true);
       await editionDrop!.claim("0", 1);
       console.log(
-        `🌊 Successfully Minted! Check it out on OpenSea: https://testnets.opensea.io/assets/${editionDrop!.getAddress()}/0`
+        `🌊Successfully Minted! Check it out on etherscan: https://sepolia.etherscan.io/address/${editionDrop!.getAddress()}/0`
       );
       setHasClaimedNFT(true);
     } catch (error) {

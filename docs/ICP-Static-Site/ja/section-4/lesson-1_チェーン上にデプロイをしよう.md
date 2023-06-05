@@ -2,7 +2,7 @@
 
 前回のセクションで、IC上にデプロイするための準備が完了しました。
 
-以下のコマンドを実行しましょう。必ず、`ic-static-website/`下で実行してください。
+以下のコマンドを実行しましょう。必ず、`icp-static-site/`下で実行してください。
 
 ```bash
 dfx deploy --network ic --with-cycles 1000000000000
@@ -18,12 +18,12 @@ Caused by: Failed while trying to deploy canisters.
       The post-build step failed for canister 'CANISTER_ID' (website) with an embedded error: Failed to build frontend for network 'ic'.: The command '"npm" "run" "build"' failed with exit status 'exit status: 1'.
 Stdout:
 
-> ic-static-website@0.0.0 build
+> icp-static-site@0.0.0 build
 > vite build
 
 
 Stderr:
-failed to load config from ../ic-static-website/vite.config.js
+failed to load config from ../icp-static-site/vite.config.js
 error during build:
 Error:
 You installed esbuild on another platform than the one you're currently using.
@@ -107,7 +107,7 @@ Webサイトが確認できたらデプロイ完了です！
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの`#internet-computer`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#icp`で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
