@@ -69,7 +69,7 @@ OS情報、エラーのスクリーンショットなど、できるだけ多く
 
 ### 🤩 Sugar をインストールする
 
-Metaplex Docsを参考に、Sugarのインストールを行います。
+[Metaplex Docs](https://docs.metaplex.com/developer-tools/sugar/overview/installation)を参考に、Sugarのインストールを行います。
 
 ```bash
 bash <(curl -sSf https://sugar.metaplex.com/install.sh)

@@ -195,7 +195,7 @@ return candyMachine && candyGuard ? (
 solana airdrop 2 INSERT_YOUR_PHANTOM_WALLET_ADDRESS
 ```
 
-`Mint NFT`をクリックすると、次のようなポップアップが表示されます。
+トークンが取得できたら、ブラウザを操作してみましょう。`Mint NFT`をクリックすると、次のようなポップアップが表示されます。
 
 ![無題](/public/images/Solana-NFT-Drop/section-3/3_2_2.png)
 
@@ -203,7 +203,7 @@ solana airdrop 2 INSERT_YOUR_PHANTOM_WALLET_ADDRESS
 
 NFTが正常にミントされると、アプリケーションに表示されている`Items Minted`の数が更新されます。また、この値はコンソールのログ出力からも確認できるでしょう。
 
-Phantom Walletを開き、`[]`セクションに表示されるかどうかを確認します。
+Phantom Walletを開き、所有NFT一覧に表示されるかどうかを確認します。
 
 Phantom Walletの左から2つ目のタブに切り替えてみましょう 👀
 

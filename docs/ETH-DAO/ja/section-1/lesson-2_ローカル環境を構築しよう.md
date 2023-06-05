@@ -21,22 +21,35 @@
 ※ このプロジェクトではSolidityは必要ありません。TypeScriptだけでスマートコントラクトを扱うことができる、[thirdweb](https://thirdweb.com/) というツールを使用します。
 
 
-### 🤖 ローカル開発環境を設定する
+### 🍽 Git リポジトリをあなたの GitHub にフォークする
 
-まず、プロジェクトのルートディレクトリに移動し、以下のコマンドによりthirdwebのスタータープロジェクトを作成します。
+まだGitHubのアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
+
+GitHubのアカウントをお持ちの方は、下記の手順に沿ってプロジェクトの基盤となるリポジトリをあなたのGitHubに[フォーク](https://denno-sekai.com/github-fork/)しましょう。
+
+1. [こちら](https://github.com/unchain-tech/ETH-DAO)からunchain-tech/ETH-DAOリポジトリにアクセスをして、ページ右上の`Fork`ボタンをクリックします。
+
+![](/public/images/ETH-NFT-Collection/section-3/3_1_3.png)
+
+2. Create a new forkページが開くので、「Copy the `main` branch only」という項目に**チェックが入っていることを確認します**。
+
+![](/public/images/ETH-NFT-Collection/section-3/3_1_4.png)
+
+設定が完了したら`Create fork`ボタンをクリックします。あなたのGitHubアカウントに`ETH-DAO`リポジトリのフォークが作成されたことを確認してください。
+
+それでは、フォークしたリポジトリをローカル環境にクローンしましょう。
+
+まず、下図のように、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
+
+![](/public/images/ETH-NFT-Collection/section-3/3_1_1.png)
+
+ターミナル上で作業を行う任意のディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
 
 ```bash
-npx thirdweb create -t next-typescript-starter
+git clone コピーした_github_リンク
 ```
 
-コマンドを実行すると、`Ok to proceed?`と聞かれるので`y`を入力してエンターを押します。
-
-続いて、`? What is your project named?`でプロジェクト名を入力し、エンターを押します(今回は`eth-dao-starter-project`とします)。
-
-![](/public/images/ETH-DAO/section-1/1_2_1.png)
-
-これでローカル開発環境の準備は完了です。
-
+無事に複製されたらローカル開発環境の準備は完了です。
 
 ### 🙋‍♂️ 質問する
 

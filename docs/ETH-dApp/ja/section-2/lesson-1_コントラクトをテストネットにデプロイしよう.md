@@ -130,22 +130,17 @@ MetaMaskウォレットに`Sepolia Test Network`が設定されたら、下記�
 例)ターミナル上で`contract`に移動し、`ls`を実行した結果
 
 ```
-yukis4san@Yukis-MacBook-Pro contract % ls
-README.md			package-lock.json
-artifacts			package.json
-cache				scripts
-contracts			test
-hardhat.config.js node_modules
-.gitignore
+toshi@ToshiBook contract % ls
+README.md               cache                   hardhat.config.js       package.json            test
+artifacts               contracts               node_modules            scripts
 ```
 
 `hardhat.config.js`をVS Codeで開いて、中身を編集していきます。
 
 ```javascript
-// hardhat.config.js
 require("@nomicfoundation/hardhat-toolbox");
 module.exports = {
-  solidity: "0.8.9",
+  solidity: "0.8.17",
   networks: {
     sepolia: {
       url: "YOUR_ALCHEMY_API_URL",
@@ -247,10 +242,10 @@ git rm --cached hardhat.config.js
 
 `hardhat.config.js`の更新が完了したら、Sepolia Test Networkにコントラクトをデプロイしてみましょう。
 
-ターミナル上で`contract`ディレクトリに移動し、下記のコマンドを実行しましょう。
+ではルートディレクトリにいることを確認して、ターミナル上で下記のコマンドを実行しましょう。
 
 ```bash
-npx hardhat run scripts/deploy.js --network sepolia
+yarn contract deploy
 ```
 
 下記のような結果が出力されていれば成功です 🎉

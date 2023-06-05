@@ -8,10 +8,11 @@
 - [画像のアップロードを実装しよう](#画像のアップロードを実装しよう)
 - [NFTのMint処理を実装しよう](#nftのmint処理を実装しよう)
 
-
 ### 🏃 Xummでのログインを実装しよう
 
 アプリケーションがアカウント情報を取得するために、Xummでのログイン処理を作成しましょう！
+
+ここからは、`src/components/NftMinter`ディレクトリ内の`index.jsx`ファイルを更新していきます。
 
 まずは次のコメントアウトを解除し、`api-key`の箇所をsection-1のlesson-2で取得したXummのAPI Keyに置き換えてください。
 
@@ -39,6 +40,14 @@ export const NftMinter = () => {
   const connect = () => {
     xumm.authorize();
   };
+```
+
+次に、Reactが提供するフックをインポートします。
+
+`import "./index.css";`の下に次のコードを追加してください。
+
+```js
+import { useEffect, useState } from "react";
 ```
 
 １つずつ見ていきましょう。
@@ -84,6 +93,18 @@ const [account, setAccount] = useState(undefined);
 ```
 
 現在ログイン中のアカウントアドレスである`account`とXummと接続するためのConnectボタンを配置しました。
+
+> **✅ テストを実行してみよう**
+>
+> ログイン機能を実装したので、ここで`npm run test`を実行してみましょう！
+>
+> ![test1](/public/images/XRPL-NFT-Maker/section-3/3_2_5.png)
+>
+> **not connected**（未ログイン）と**connected**（ログイン済み）、それぞれの状況においてテストを行なっており、合計5つのテストにパスすることが期待されます。
+>
+> **not connected**のテストに注目してみます。connectボタンが表示されるかだけではなく、ボタンのクリック操作を行なった結果`authorize`関数が呼び出されているかを確認することもできます。
+>
+> なお、テスト実行時には実際の`Xumm`が呼び出されないようにモックしています。
 
 この時点で`npm start`からアプリケーションを起動してみましょう！
 
@@ -146,6 +167,18 @@ const [file, setFile] = useState(undefined);
 ```js
   {file && <img src={window.URL.createObjectURL(file)} alt="nft" className="nft-image" />}
 ```
+
+> **✅ テストを実行してみよう**
+>
+> 画像のアップロード機能を実装したので、再度テスト結果を確認してみましょう。
+>
+> ![test2](/public/images/XRPL-NFT-Maker/section-3/3_2_6.png)
+>
+> ここまでで合計6つのテストにパスすることが期待されます。
+>
+> `should exists img tag when select img`に注目してみます。このテストは、ファイルのアップロード操作を行なった結果画像が表示されるか（`<img>`要素が取得できるか）を確認しています。
+
+実際にブラウザから操作してみましょう。
 
 アプリケーションを起動後ファイルを選択ボタンを押して好きな画像を選択してみましょう。
 
@@ -250,9 +283,9 @@ const mint = async () => {
 
 次に、この関数内で使うライブラリをインポートします。
 
-まずはコンソールで`npm install buffer xrpl-client nft.storage @xrplkit/txmeta`を実行してください。
+まずはコンソールで`npm install buffer@^6.0.3 xrpl-client@^2.0.11 nft.storage@^7.0.3 @xrplkit/txmeta@^1.2.0`を実行してください。
 
-`import "./index.css";`の下に次のコードを追加してください。
+`import { useEffect, useState } from "react";`の下に次のコードを追加してください。
 
 ```js
 import { Buffer } from "buffer";
@@ -266,7 +299,6 @@ NFT.Storageに画像とメタデータをアップロードするために必要
 APIキーは[NFT.Storage](https://nft.storage)のサイトから取得できます。
 
 [このページ](https://nft-guide.jp/2022/03/17/post-2977/#outline__2)を参考に取得してください。
-
 
 ```js
 const nftStorage = new NFTStorage({ token: "api-key",});
@@ -349,6 +381,18 @@ mint関数の処理を1つずつ説明していきます。
     alert('NFTトークンが発行されました！')
     window.open(`https://test.bithomp.com/nft/${nftoken.NFTokenID}`, "_blank");
 ```
+
+> **✅ テストを実行してみよう**
+>
+> ミント機能を実装したので、再度テスト結果を確認してみましょう。
+>
+> ![test3](/public/images/XRPL-NFT-Maker/section-3/3_2_7.png)
+>
+> `should mint success`に注目してみます。このテストは、ミントボタンのクリック操作を行なった結果、期待するNFTの詳細ページが開かれるか（`window.open関数`が期待するNFTのIDを含んだ引数で実行されるか）を確認しています。
+>
+> ここまでで全てのテストにパスすることが期待されます。
+
+実際にブラウザから操作してみましょう。
 
 画像を選択しミント・Xummでのトランザクションの署名を行うと、Bithompのページが開きます。
 
