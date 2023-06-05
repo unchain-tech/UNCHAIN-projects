@@ -33,8 +33,8 @@ Vercelに関する詳しい説明は,[こちら](https://zenn.dev/lollipop_onl/a
 
 まず, ローカルファイルをGitHubへアップロードしましょう。
 
-まだアップロードをしていない方は, ターミナル上で`Avalanche-Messenger`に移動して,下記を実行しましょう。  
-⚠️ `.gitignore`ファイル内に`.env`が記載されていることを確認していください。
+まだアップロードをしていない方は, ターミナル上で`AVAX-Messenger`に移動して,下記を実行しましょう。  
+⚠️ `packages/contract/.gitignore`ファイル内に`.env`が記載されていることを確認していください。
 
 ```
 git add .
@@ -42,7 +42,7 @@ git commit -m "upload to github"
 git push
 ```
 
-次に, ローカル環境に存在する`Avalanche-Messenger`のファイルとディレクトリがGitHub上の`Avalanche-Messenger`に反映されていることを確認してください。
+次に, ローカル環境に存在する`AVAX-Messenger`のファイルとディレクトリがGitHub上の`AVAX-Messenger`に反映されていることを確認してください。
 
 Vercelのアカウントを取得したら,下記を実行しましょう。
 
@@ -56,8 +56,7 @@ Vercelのアカウントを取得したら,下記を実行しましょう。
 
 3\. プロジェクトを作成します。
 
-`Framework Preset`に`Next.js`を選択してください。  
-`Root directory`に(`Edit`ボタンをクリックし)`client`を選択します。
+`Framework Preset`は`Next.js`、`Root Directory`は「packages/client」となっていることを確認してください。
 
 ![](/public/images/AVAX-Messenger/section-4/4_1_3.png)
 
@@ -95,7 +94,7 @@ NFTを取得する条件は,以下のようになります。
 
 3. このページの最後にリンクされているProject Completion Formに記入する
 
-4. Discordの`AVAX-Messenger`チャンネルに,あなたのWebサイトをシェアしてください 😉🎉 Discordに投稿する際に,追加実装した機能とその概要も教えていただけると幸いです!
+4. Discordの`#post-your-project`チャンネルに,あなたのWebサイトをシェアしてください 😉🎉 Discordに投稿する際に,追加実装した機能とその概要も教えていただけると幸いです!
 
 プロジェクトを完成させていただいた方には,NFTをお送りします。
 
