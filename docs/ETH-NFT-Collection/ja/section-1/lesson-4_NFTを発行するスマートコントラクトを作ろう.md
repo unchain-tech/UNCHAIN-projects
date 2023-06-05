@@ -320,10 +320,10 @@ main().catch((error) => {
 });
 ```
 
-上記を`deploy.js`に反映させたら、ターミナル上で`packages/contract`ディレクトリにいることを確認し下記を実行しましょう。
+上記を`deploy.js`に反映させたら、ターミナル上で`ETH-NFT-Collection`ディレクトリ直下にいることを確認し下記を実行しましょう。
 
 ```bash
-npx hardhat run scripts/deploy.js
+yarn contract deploy
 ```
 
 エラーが発生した場合は、`pwd`を実行して、 `packages/contract`ディレクトリにいることを確認して、もう一度上記のコードを実行してみてください。
@@ -558,10 +558,10 @@ hardhat.config.js
 
 構成のセットアップが完了すると、前に作成したデプロイスクリプトを使用してデプロイするように設定されます。
 
-`packages/contract`ディレクトリ下でこのコマンドを実行します 。
+`ETH-NFT-Collection`ディレクトリ直下でこのコマンドを実行します。
 
 ```bash
-npx hardhat run scripts/deploy.js --network sepolia
+yarn contract deploy:sepolia
 ```
 
 `deploy.js`を実行すると、実際にNFTを作成します。

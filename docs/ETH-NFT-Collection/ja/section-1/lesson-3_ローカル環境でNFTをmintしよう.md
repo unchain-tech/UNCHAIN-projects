@@ -201,10 +201,10 @@ console.log("Contract deployed to:", nftContract.address);
 
 では、実行してみましょう。
 
-ターミナルを開いて`packages/contract`ディレクトリ下にいることを確認して、以下のコマンドを実行してください。
+ターミナルを開いて`ETH-NFT-Collection`ディレクトリ直下にいることを確認して、以下のコマンドを実行してください。
 
 ```bash
-npx hardhat run scripts/deploy.js
+yarn contract deploy
 ```
 
 コントラクト内から`console.log`が実行され、さらにコントラクトのアドレスがプリントアウトされるのが確認できるはずです!

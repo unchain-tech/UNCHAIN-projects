@@ -426,7 +426,7 @@ rand - first word:  0
 自動テストを全て通過したことが確認できたら、次にデプロイスクリプトを実行してどのような生成物となるのか、`console.log`の出力を確認してみましょう。
 
 ```bash
-npx hardhat run scripts/deploy.js
+yarn contract deploy
 ```
 
 下記のような結果がターミナルに出力されていれば成功です。
@@ -766,10 +766,10 @@ _setTokenURI(newItemId, finalTokenUri);
 
 ### ⭐️ 実行する
 
-それでは、ターミナルに向かい、`packages/contract`ディレクトリ上で、下記を実行しましょう。
+それでは、ターミナルに向かい、`ETH-NFT-Collection`ディレクトリ直下で、下記を実行しましょう。
 
 ```bash
-npx hardhat run scripts/deploy.js
+yarn contract deploy
 ```
 
 ターミナルに下記のような結果が出力されていることを確認しましょう。
@@ -852,7 +852,7 @@ main().catch((error) => {
 続いて、デプロイコマンドを実行します。
 
 ```bash
-npx hardhat run scripts/deploy.js --network sepolia
+yarn contract deploy:sepolia
 ```
 
 下記のような結果がターミナルに表示されていれば、テストネットへのデプロイは成功です。

@@ -146,10 +146,10 @@ constructor() ERC721 ("SquareNFT", "SQUARE") {
 
 トークンの名前を`"SquareNFT"`に、トークンのシンボルを`"SQUARE"`に変更しましょう。
 
-次に、ターミナル上で`packages/contract`ディレクトリにいることを確認し、以下のコマンドを実行してみましょう。
+次に、ターミナル上で`ETH-NFT-Collection`ディレクトリ直下にいることを確認し、以下のコマンドを実行してみましょう。
 
 ```bash
-npx hardhat run scripts/deploy.js --network sepolia
+yarn contract deploy:sepolia
 ```
 
 ターミナルに下記のような結果が表示されていたら、デプロイ成功です。
