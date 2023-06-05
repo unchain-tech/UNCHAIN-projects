@@ -39,7 +39,7 @@ TEST_ACCOUNT_PRIVATE_KEY="YOUR_PRIVATE_KEY"
 
 > - `.env`の`YOUR_PRIVATE_KEY`の部分をここで取得した秘密鍵とを入れ替えます。
 
-⚠️gitignoreファイルに.envが記述されていることを確認して下さい。
+⚠️packages/contract/.gitignoreファイルに.envが記述されていることを確認して下さい。
 秘密鍵は外部に漏れないようにGitHub上に上げません。
 
 > **✍️: スマートコントラクトをデプロイするのに秘密鍵が必要な理由** > **新しくスマートコントラクトをブロックチェーン上にデプロイすること**も,トランザクションの一つです。
@@ -162,7 +162,7 @@ Contract's fund is: BigNumber { value: "100" }
 
 実際のブロックチェーン上には,すでに何百万ものスマートコントラクトがデプロイされています。
 
-最後に`.gitignore`に`.env`が含まれていることを確認してください!
+最後に`packages/contract/.gitignore`に`.env`が含まれていることを確認してください!
 
 ### 🙋‍♂️ 質問する
 
