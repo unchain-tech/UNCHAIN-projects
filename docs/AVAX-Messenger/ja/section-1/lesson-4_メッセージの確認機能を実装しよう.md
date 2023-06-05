@@ -1,9 +1,9 @@
 ### 🚀 コントラクトにメッセージの確認機能を加えましょう
 
-ここまででメッセージの投稿と, 投稿されたメッセージを参照するところまで実装をしました。
+ここまででメッセージの投稿と、投稿されたメッセージを参照するところまで実装をしました。
 このレッスンではメッセージの確認機能を追加します。
 確認とは
-「メッセージトークンの受け取りを承諾する, または拒否する」
+「メッセージトークンの受け取りを承諾する、または拒否する」
 ことを意味します。
 
 それでは`Messenger.sol`内に以下の機能を追加してください。
@@ -19,12 +19,12 @@ import "hardhat/console.sol";
 contract Messenger {
     // ...
 
-    // ユーザからメッセージを受け取り, 状態変数に格納します。
+    // ユーザからメッセージを受け取り、状態変数に格納します。
     function post(string memory _text, address payable _receiver){
 		// ...
     }
 
-+    // メッセージ受け取りを承諾して, AVAXを受け取ります。
++    // メッセージ受け取りを承諾して、AVAXを受け取ります。
 +    function accept(uint256 _index) public {
 +        //指定インデックスのメッセージを確認します。
 +        _confirmMessage(_index);
@@ -35,7 +35,7 @@ contract Messenger {
 +        _sendAvax(message.receiver, message.depositInWei);
 +    }
 +
-+    // メッセージ受け取りを却下して, AVAXをメッセージ送信者へ返却します。
++    // メッセージ受け取りを却下して、AVAXをメッセージ送信者へ返却します。
 +    function deny(uint256 _index) public payable {
 +        _confirmMessage(_index);
 +
@@ -79,7 +79,7 @@ contract Messenger {
 それでは追加した部分を見ていきましょう。
 
 ```solidity
-    // メッセージ受け取りを承諾して, AVAXを受け取ります。
+    // メッセージ受け取りを承諾して、AVAXを受け取ります。
     function accept(uint256 _index) public {
         //指定インデックスのメッセージを確認します。
         _confirmMessage(_index);
@@ -92,20 +92,20 @@ contract Messenger {
 ```
 
 ここではメッセージの承諾を行っています。
-あなたがこの関数を呼び出す場合,
-あなた宛のメッセージが格納された配列(`_messagesAtAddress[あなたのアドレス]`で取得できるもの)の中のどのメッセージを承諾するかを, 配列のインデックス番号を引数として指定することで伝えます。
+あなたがこの関数を呼び出す場合、
+あなた宛のメッセージが格納された配列(`_messagesAtAddress[あなたのアドレス]`で取得できるもの)の中のどのメッセージを承諾するかを、配列のインデックス番号を引数として指定することで伝えます。
 
-`_index`を受け取った後, `_confirmMessage`でメッセージの確認作業に必要な処理を済ませます。
+`_index`を受け取った後、`_confirmMessage`でメッセージの確認作業に必要な処理を済ませます。
 
-次に, メッセージの受取人(ここでは`msg.sender`)と`_index`を指定し該当メッセージを取得します。
+次に、メッセージの受取人(ここでは`msg.sender`)と`_index`を指定し該当メッセージを取得します。
 
 取得したメッセージの情報を元にメッセージトークンを送信するため`_sendAvax`を呼び出します。
-メッセージトークンはメッセージの投稿時に既にコントラクトへ送信されているため,
+メッセージトークンはメッセージの投稿時に既にコントラクトへ送信されているため、
 ここではコントラクトからメッセージの受取人に対してメッセージトークンを送信します。
 
-`_confirmMessage`, `_sendAvax`に関してはこの後処理を見ていきます。
+`_confirmMessage`、`_sendAvax`に関してはこの後処理を見ていきます。
 
-メッセージを拒否する関数`deny`に関しても`accept`とほとんど同じ処理をしていますが,
+メッセージを拒否する関数`deny`に関しても`accept`とほとんど同じ処理をしていますが、
 メッセージトークンの送信先がメッセージの送信者となっている部分が違います。
 該当箇所 -> `_sendAvax(message.sender, message.depositInWei);`
 
@@ -137,12 +137,12 @@ contract Messenger {
 `storage`はブロックチェーン上に永久に格納される変数を表します。
 変数の内容を変更してブロックチェーン上に反映させたい場合は`storage`を使ってアクセスします。
 
-2つの`require`を使用して, メッセージの確認条件を確かめています。
-条件を確かめた後, メッセージを保留していない状態に変更します。
+2つの`require`を使用して、メッセージの確認条件を確かめています。
+条件を確かめた後、メッセージを保留していない状態に変更します。
 
 > 📓 `require`とは
 > 何らかの条件が`true`もしくは`false`であることを確認する`if`文のような役割を果たします。
-> もし`require`の結果が`false`の場合（＝コントラクトが持つ資金が足りない場合）は,トランザクションをキャンセルします。
+> もし`require`の結果が`false`の場合（＝コントラクトが持つ資金が足りない場合）は、トランザクションをキャンセルします。
 
 ```solidity
     function _sendAvax(address payable _to, uint256 _amountInWei) private {
@@ -194,7 +194,7 @@ describe('Messenger', function () {
 +        value: test_deposit,
 +      });
 +
-+      // メッセージをacceptした場合は, コントラクト(messenger)から受取人(otherAccount)へ送金されます。
++      // メッセージをacceptした場合は、コントラクト(messenger)から受取人(otherAccount)へ送金されます。
 +      const first_index = 0;
 +      await expect(
 +        messenger.connect(otherAccount).accept(first_index)
@@ -239,7 +239,7 @@ describe('Messenger', function () {
 +        value: test_deposit,
 +      });
 +
-+      // メッセージをdenyした場合は, コントラクト(messenger)から送信者(owner)へ送金されます。
++      // メッセージをdenyした場合は、コントラクト(messenger)から送信者(owner)へ送金されます。
 +      const first_index = 0;
 +      await expect(
 +        messenger.connect(otherAccount).deny(first_index)
@@ -290,8 +290,8 @@ describe('Accept', function () {
 });
 ```
 
-はじめにコントラクトがデプロイされたチェーンの用意と, `owner`から`otherAccount`に対してメッセージの`post`を行います。
-`otherAccount`が自分宛のメッセージに対して`accept`をした後, メッセージの`isPending`の内容が正しく変更されているかを確認しています。
+はじめにコントラクトがデプロイされたチェーンの用意と、`owner`から`otherAccount`に対してメッセージの`post`を行います。
+`otherAccount`が自分宛のメッセージに対して`accept`をした後、メッセージの`isPending`の内容が正しく変更されているかを確認しています。
 
 ```ts
 describe('Accept', function () {
@@ -305,7 +305,7 @@ describe('Accept', function () {
       value: test_deposit,
     });
 
-    // メッセージをacceptした場合は, コントラクト(messenger)から受取人(otherAccount)へ送金されます。
+    // メッセージをacceptした場合は、コントラクト(messenger)から受取人(otherAccount)へ送金されます。
     const first_index = 0;
     await expect(
       messenger.connect(otherAccount).accept(first_index)
@@ -338,7 +338,7 @@ describe('Accept', function () {
 });
 ```
 
-こちらは`otherAccount`がメッセージを2度`accept`した際に,
+こちらは`otherAccount`がメッセージを2度`accept`した際に、
 正しくリバートするか（トランザクションがキャンセルされるか）を確認しています。
 2度`accept`ができてしまうとメッセージの受取人が1つのメッセージから複数回トークンを受け取ることができてしまうためサービスとして成立しません。
 このテストは`Messenger`コントラクトの`_confirmMessage`関数内の`require`が正しく機能しているかを確認しています。
@@ -348,7 +348,7 @@ await expect(関数呼び出し).to.be.revertedWith('リバート時のメッセ
 ```
 
 とすることでトランザクションがキャンセルされた際のメッセージも検証することができます。
-実際に`'This message has already been confirmed'`は, `_confirmMessage`関数内で既に指定してします。
+実際に`'This message has already been confirmed'`は、`_confirmMessage`関数内で既に指定してします。
 
 続く`Deny`に関するテストも`Accept`と同じようなテストを実装しています。
 
@@ -366,9 +366,9 @@ yarn test
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は,Discordの`#avalanche`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#avalanche`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので,エラーレポートには下記の3点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

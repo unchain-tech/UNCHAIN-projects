@@ -1,6 +1,6 @@
 ### フロントエンドで管理者画面を設けよう
 
-コントラクトに管理者機能をつけたので, フロントエンドでも利用できるようにしましょう。
+コントラクトに管理者機能をつけたので、フロントエンドでも利用できるようにしましょう。
 
 追加するコードのロジックは今までと同じです。
 
@@ -8,8 +8,8 @@
 
 ### 📁 `hooks`ディレクトリ
 
-コントラクトに追加した機能を利用できるように, `useMessengerContract.ts`の中身を編集してきましょう。
-基本的にコントラクトに追加した`owner`機能や`numOfPendingLimits`, `changeNumOfPendingLimits`を使用できるように変更しています。
+コントラクトに追加した機能を利用できるように、`useMessengerContract.ts`の中身を編集してきましょう。
+基本的にコントラクトに追加した`owner`機能や`numOfPendingLimits`、`changeNumOfPendingLimits`を使用できるように変更しています。
 
 `ReturnUseMessengerContract`の返り値の型を変更します。
 
@@ -45,7 +45,7 @@ export const useMessengerContract = ({
 };
 ```
 
-`useMessengerContract`内, 関数の定義と実行を追加します。
+`useMessengerContract`内、関数の定義と実行を追加します。
 
 ```ts
 export const useMessengerContract = ({
@@ -113,7 +113,7 @@ export const useMessengerContract = ({
 };
 ```
 
-`useMessengerContract`内, イベントリスナの追加します。
+`useMessengerContract`内、イベントリスナの追加します。
 
 ```ts
 export const useMessengerContract = ({
@@ -176,7 +176,7 @@ export const useMessengerContract = ({
 };
 ```
 
-`useMessengerContract`内, 返り値の変更をします。
+`useMessengerContract`内、返り値の変更をします。
 
 ```ts
 return {
@@ -195,7 +195,7 @@ return {
 
 📁 `form`ディレクトリ
 
-`components/form`ディレクトリ内,
+`components/form`ディレクトリ内、
 その中に`ChangeOwnerValueForm.tsx`という名前のファイルを作成してください。
 
 `ChangeOwnerValueForm.tsx`内に以下のコードを記述してください。
@@ -259,14 +259,14 @@ export default function ChangeOwnerValueForm({
 ここでは同じフォルダ内の`SendMessageForm.tsx`と同じようなフォームコンポーネントを作成しています。
 管理者ページで使用されます。
 
-引数で受け取る`currentValue`と`changeValue`は, それぞれ管理者が変更する値の, 現在の値と値を変更をする関数です。
-今回, 管理者が変更する値はメッセージの保留数を指します。
+引数で受け取る`currentValue`と`changeValue`は、それぞれ管理者が変更する値の、現在の値と値を変更をする関数です。
+今回、管理者が変更する値はメッセージの保留数を指します。
 
-後で実際に表示する画面を見ると, このフォームの構成する部分がわかりやすいと思います。
+後で実際に表示する画面を見ると、このフォームの構成する部分がわかりやすいと思います。
 
 ### 📁 `pages`ディレクトリ
 
-`pages`ディレクトリ内に`OwnerPage.tsx`という名前のファイルを作成し, 以下のコードを記述してください。
+`pages`ディレクトリ内に`OwnerPage.tsx`という名前のファイルを作成し、以下のコードを記述してください。
 
 ```tsx
 import ChangeOwnerValueForm from '../components/form/ChangeOwnerValueForm';
@@ -308,7 +308,7 @@ export default function OwnerPage() {
 `useMessengerContract`から取得した`numOfPendingLimits`と`changeNumOfPendingLimits`を
 先ほど作成した`ChangeOwnerValueForm`に渡しています。
 
-また, `owner`が現在接続しているアカウントと違う場合は`Unauthorized`というメッセージを表示します。
+また、`owner`が現在接続しているアカウントと違う場合は`Unauthorized`というメッセージを表示します。
 
 最後に`pages`ディレクトリ内の`index.tsx`を以下のように編集しましょう。
 
@@ -369,12 +369,12 @@ const Home: NextPage = () => {
 export default Home;
 ```
 
-`OwnerPage.tsx`と同じように`owner`とユーザアカウントを照合して,
+`OwnerPage.tsx`と同じように`owner`とユーザアカウントを照合して、
 `owner`の場合は管理者画面である`OwnerPage`へリンクを表示します。
 
 ### 🖥️ web アプリを立ち上げましょう
 
-それではターミナル上で以下のコマンドを走らせ, webアプリを立ち上げてください。
+それではターミナル上で以下のコマンドを走らせ、webアプリを立ち上げてください。
 
 ```
 yarn client dev
@@ -382,18 +382,18 @@ yarn client dev
 
 ブラウザで http://localhost:3000 へアクセスします。
 
-管理者のアカウントで接続した場合, 以下のように画面が出力されるはずです。
+管理者のアカウントで接続した場合、以下のように画面が出力されるはずです。
 `owner`リンクが増えています。
 
 ![](/public/images/AVAX-Messenger/section-3/3_2_1.png)
 
-`owner`リンクをクリックし, 管理者ページで値を入力し, メッセージの保留数上限を変更してみましょう。
+`owner`リンクをクリックし、管理者ページで値を入力し、メッセージの保留数上限を変更してみましょう。
 
 ![](/public/images/AVAX-Messenger/section-3/3_2_2.png)
 
-トランザクションが完了し, `current limits`が変更したら
-ブラウザのコンソールから, `Done`ではじまる行の値をコピーして, [AVASCAN testnet](https://testnet.avascan.info/blockchain/c/home)で履歴を確認してみましょう。
-💁 コンソールを表示するには, ブラウザ上で`右クリック` -> `検証` -> `コンソール`を開きます。
+トランザクションが完了し、`current limits`が変更したら
+ブラウザのコンソールから、`Done`ではじまる行の値をコピーして、[AVASCAN testnet](https://testnet.avascan.info/blockchain/c/home)で履歴を確認してみましょう。
+💁 コンソールを表示するには、ブラウザ上で`右クリック` -> `検証` -> `コンソール`を開きます。
 
 ![](/public/images/AVAX-Messenger/section-3/3_2_3.png)
 
@@ -406,9 +406,9 @@ yarn client dev
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は,Discordの`#avalanche`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#avalanche`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので,エラーレポートには下記の3点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -421,5 +421,5 @@ yarn client dev
 
 おめでとうございます!
 セクション3が終了しました!
-`#avalanche`にあなたのAVASCANのリンクを貼り付けて,コミュニティで進捗を祝いましょう 🎉
-webアプリが完成したら,次のレッスンに進みましょう 🎉
+`#avalanche`にあなたのAVASCANのリンクを貼り付けて、コミュニティで進捗を祝いましょう 🎉
+webアプリが完成したら、次のレッスンに進みましょう 🎉
