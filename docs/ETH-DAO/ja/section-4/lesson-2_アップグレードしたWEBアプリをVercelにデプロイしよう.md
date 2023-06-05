@@ -84,6 +84,8 @@ VercelはGitHubと連動しているので、GitHubが更新されるたびに�
 
 ![](/public/images/ETH-DAO/section-4/4_2_4.png)
 
+[こちら](https://eth-dao-mu.vercel.app/)が見本となるサイトです！
+
 ### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discordの`#ethereum`で質問をしてください。

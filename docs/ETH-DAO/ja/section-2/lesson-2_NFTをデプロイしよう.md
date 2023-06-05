@@ -17,20 +17,20 @@ const { PRIVATE_KEY, ALCHEMY_API_URL, WALLET_ADDRESS } = loadEnvConfig(
 ).combinedEnv;
 
 // 環境変数が取得できてとれているか確認
-if (!process.env.PRIVATE_KEY || process.env.PRIVATE_KEY === "") {
+if (!PRIVATE_KEY || PRIVATE_KEY === "") {
   console.log("🛑 Private key not found.");
 }
 
-if (!process.env.ALCHEMY_API_URL || process.env.ALCHEMY_API_URL === "") {
+if (!ALCHEMY_API_URL || ALCHEMY_API_URL === "") {
   console.log("🛑 Alchemy API URL not found.");
 }
 
-if (!process.env.WALLET_ADDRESS || process.env.WALLET_ADDRESS === "") {
+if (!WALLET_ADDRESS || WALLET_ADDRESS === "") {
   console.log("🛑 Wallet Address not found.");
 }
 
 const sdk = new ThirdwebSDK(
-  new ethers.Wallet(process.env.PRIVATE_KEY!, ethers.getDefaultProvider(process.env.ALCHEMY_API_URL))
+  new ethers.Wallet(PRIVATE_KEY!, ethers.getDefaultProvider(ALCHEMY_API_URL))
 );
 
 // ここでスクリプトを実行
@@ -58,14 +58,6 @@ export default sdk;
 
 
 ### 🍬 SDK の初期化を実行する
-
-ここではts-nodeを使ってターミナル上で実行結果を取得します。
-
-以下のコマンドを実行してts-nodeをインストールしましょう。
-
-```bash
-yarn add ts-node
-```
 
 次に、以下を参考に`package.json`に`"type": "module",`の記述を追加してESModulesを有効化してts-nodeを使用できるように設定を変更します。
 
@@ -198,7 +190,7 @@ Done in 40.59s.
 
 **1 つは、ERC-1155 のコントラクトを Sepolia にデプロイしたこと**です。
 
-実際に`https://sepolia.etherscan.io/`にアクセスし、`editionDrop`コントラクトのアドレス(出力の`✅ Successfully deployed editionDrop contract, address:`以下のアドレス)を貼り付けると、スマートコントラクトがデプロイされたことが分かります。
+実際に[こちら](https://sepolia.etherscan.io/)にアクセスし、`editionDrop`コントラクトのアドレス(出力の`✅ Successfully deployed editionDrop contract, address:`以下のアドレス)を貼り付けると、スマートコントラクトがデプロイされたことが分かります。
 
 このコントラクトはあなたが所有し、あなたのウォレットからデプロイされました。
 
