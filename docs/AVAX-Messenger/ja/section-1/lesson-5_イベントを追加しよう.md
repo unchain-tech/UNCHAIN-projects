@@ -25,7 +25,7 @@ contract Messenger {
     }
 
     // メッセージの受取人アドレスをkeyにメッセージを保存します。
-    mapping(address => Message[]) private messagesAtAddress;
+    mapping(address => Message[]) private _messagesAtAddress;
 
 +    event NewMessage(
 +        address sender,
@@ -69,7 +69,7 @@ contract Messenger {
             msg.value
         );
 
-        messagesAtAddress[_receiver].push(
+        _messagesAtAddress[_receiver].push(
             Message(
                 payable(msg.sender),
                 _receiver,
@@ -95,12 +95,12 @@ contract Messenger {
     // メッセージ受け取りを承諾して, AVAXを受け取ります。
     function accept(uint256 _index) public {
         //指定インデックスのメッセージを確認します。
-        confirmMessage(_index);
+        _confirmMessage(_index);
 
-        Message memory message = messagesAtAddress[msg.sender][_index];
+        Message memory message = _messagesAtAddress[msg.sender][_index];
 
         // メッセージの受取人にavaxを送信します。
-        sendAvax(message.receiver, message.depositInWei);
+        _sendAvax(message.receiver, message.depositInWei);
 
 +        emit MessageConfirmed(message.receiver, _index);
     }
@@ -109,12 +109,12 @@ contract Messenger {
 ```diff
     // メッセージ受け取りを却下して, AVAXをメッセージ送信者へ返却します。
     function deny(uint256 _index) public payable {
-        confirmMessage(_index);
+        _confirmMessage(_index);
 
-        Message memory message = messagesAtAddress[msg.sender][_index];
+        Message memory message = _messagesAtAddress[msg.sender][_index];
 
         // メッセージの送信者にavaxを返却します。
-        sendAvax(message.sender, message.depositInWei);
+        _sendAvax(message.sender, message.depositInWei);
 
 +        emit MessageConfirmed(message.receiver, _index);
     }
@@ -130,82 +130,82 @@ contract Messenger {
 各`Post`, `Accept`, `Deny`のテストケースに以下のテストを追加してください。
 
 ```diff
-  describe("Post", function () {
-+    it("Should emit an event on post", async function () {
+  describe('Post', function () {
++    it('Should emit an event on post', async function () {
 +      const { messenger, otherAccount } = await loadFixture(deployContract);
 +
 +      await expect(
-+        messenger.post("text", otherAccount.address, { value: 1 })
-+      ).to.emit(messenger, "NewMessage");
++        messenger.post('text', otherAccount.address, { value: 1 })
++      ).to.emit(messenger, 'NewMessage');
 +    });
 
-    it("Should send the correct amount of tokens", async function () {
+    it('Should send the correct amount of tokens', async function () {
       // ...
     });
 
-    it("Should set the right Message", async function () {
+    it('Should set the right Message', async function () {
       // ...
 	});
   });
 ```
 
 ```diff
-  describe("Accept", function () {
-+    it("Should emit an event on accept", async function () {
+  describe('Accept', function () {
++    it('Should emit an event on accept', async function () {
 +      const { messenger, otherAccount } = await loadFixture(deployContract);
 +      const test_deposit = 1;
 +
-+      await messenger.post("text", otherAccount.address, {
++      await messenger.post('text', otherAccount.address, {
 +        value: test_deposit,
 +      });
 +
 +      const first_index = 0;
 +      await expect(messenger.connect(otherAccount).accept(first_index)).to.emit(
 +        messenger,
-+        "MessageConfirmed"
++        'MessageConfirmed'
 +      );
 +    });
 
-    it("isPending must be changed", async function () {
+    it('isPending must be changed', async function () {
       // ...
     });
 
-    it("Should send the correct amount of tokens", async function () {
+    it('Should send the correct amount of tokens', async function () {
       // ...
     });
 
-    it("Should revert with the right error if called in duplicate", async function () {
+    it('Should revert with the right error if called in duplicate', async function () {
       // ...
 	});
   });
 ```
 
 ```diff
- describe("Deny", function () {
-+    it("Should emit an event on deny", async function () {
+ describe('Deny', function () {
++    it('Should emit an event on deny', async function () {
 +      const { messenger, otherAccount } = await loadFixture(deployContract);
 +      const test_deposit = 1;
 +
-+      await messenger.post("text", otherAccount.address, {
++      await messenger.post('text', otherAccount.address, {
 +        value: test_deposit,
 +      });
 +
 +      const first_index = 0;
 +      await expect(messenger.connect(otherAccount).deny(first_index)).to.emit(
 +        messenger,
-+        "MessageConfirmed"
++        'MessageConfirmed'
 +      );
 +    });
 
-    it("isPending must be changed", async function () {
+    it('isPending must be changed', async function () {
       // ...
     });
 
-    it("Should send the correct amount of tokens", async function () {
+    it('Should send the correct amount of tokens', async function () {
       // ...
     });
 
-    it("Should revert with the right error if called in duplicate", async function () {
+    it('Should revert with the right error if called in duplicate', async function () {
       // ...
     });
   });
@@ -214,16 +214,16 @@ contract Messenger {
 それぞれ正しくイベントが発生したかどうかについて確認をしています。
 
 ```ts
-expect(関数実行).to.emit(コントラクト, "イベント名");
+expect(関数実行).to.emit(コントラクト, 'イベント名');
 ```
 
 とすることで指定したイベントが発生したのかをテストをすることができます。
 
 それではテストを実行しましょう！
-ターミナル上で以下のコマンドを実行してください。
+ターミナル上で`AVAX-Messenger/`直下にいることを確認し、以下のコマンドを実行してください。
 
 ```
-yarn contract test
+yarn test
 ```
 
 以下のような表示がされたらテスト成功です！

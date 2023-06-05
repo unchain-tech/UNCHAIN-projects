@@ -58,7 +58,7 @@
 // Messenger.sol
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 
 import "hardhat/console.sol";
 
@@ -74,7 +74,7 @@ contract Messenger {
     }
 
     // メッセージの受取人アドレスをkeyにメッセージを保存します。
-    mapping(address => Message[]) private messagesAtAddress;
+    mapping(address => Message[]) private _messagesAtAddress;
 
     constructor() payable {
         console.log("Here is my first smart contract!");
@@ -126,7 +126,7 @@ contract Messenger {
 
 ```solidity
     // メッセージの受取人アドレスをkeyにメッセージを保存します。
-    mapping(address => Message[]) private messagesAtAddress;
+    mapping(address => Message[]) private _messagesAtAddress;
 ```
 
 ここではメッセージの情報を`mapping`というデータ構造を利用して格納できるように定義しています。
@@ -166,7 +166,7 @@ contract Messenger {
 ```diff
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 
 import "hardhat/console.sol";
 
@@ -182,7 +182,7 @@ contract Messenger {
     }
 
     // メッセージの受取人アドレスをkeyにメッセージを保存します。
-    mapping(address => Message[]) private messagesAtAddress;
+    mapping(address => Message[]) private _messagesAtAddress;
 
     constructor() payable {
         console.log("Here is my first smart contract!");
@@ -200,7 +200,7 @@ contract Messenger {
 +            msg.value
 +        );
 +
-+        messagesAtAddress[_receiver].push(
++        _messagesAtAddress[_receiver].push(
 +            Message(
 +                payable(msg.sender),
 +                _receiver,
@@ -214,7 +214,7 @@ contract Messenger {
 +
 +    // ユーザのアドレス宛のメッセージを全て取得します。
 +    function getOwnMessages() public view returns (Message[] memory) {
-+        return messagesAtAddress[msg.sender];
++        return _messagesAtAddress[msg.sender];
 +    }
 }
 
@@ -234,7 +234,7 @@ function post(string memory _text, address payable _receiver)
         msg.value
     );
 
-    messagesAtAddress[_receiver].push(
+    _messagesAtAddress[_receiver].push(
         Message(
             payable(msg.sender),
             _receiver,
@@ -255,7 +255,7 @@ function post(string memory _text, address payable _receiver)
 関数内ではログの出力と, メッセージ情報を格納しています。
 
 ```solidity
-messagesAtAddress[_receiver].push(
+_messagesAtAddress[_receiver].push(
     Message(
         payable(msg.sender), // 関数を呼び出したアドレス値をメッセージ送信者として記録します。
         _receiver,
@@ -267,7 +267,7 @@ messagesAtAddress[_receiver].push(
 );
 ```
 
-ここでは`messagesAtAddress[_receiver]`により, 受信者アドレス(`_receiver`)に紐ついたメッセージ配列(`Message[]`)を取り出しています。
+ここでは`_messagesAtAddress[_receiver]`により, 受信者アドレス(`_receiver`)に紐ついたメッセージ配列(`Message[]`)を取り出しています。
 `push`メソッドにより配列に新たなメッセージ情報を追加します。
 
 `msg`はグローバルな変数で,
@@ -279,12 +279,12 @@ messagesAtAddress[_receiver].push(
 ```solidity
     // ユーザのアドレス宛のメッセージを全て取得します。
     function getOwnMessages() public view returns (Message[] memory) {
-        return messagesAtAddress[msg.sender];
+        return _messagesAtAddress[msg.sender];
     }
 ```
 
 `getOwnMessages`関数は
-関数を呼び出したユーザのアドレス宛のメッセージを`messagesAtAddress[msg.sender]`にアクセスすることで取得できるようにしています。
+関数を呼び出したユーザのアドレス宛のメッセージを`_messagesAtAddress[msg.sender]`にアクセスすることで取得できるようにしています。
 
 ### 🎁 Solidity の関数修飾子について
 
@@ -339,19 +339,19 @@ testディレクトリの中の`Messenger.ts`ファイルを以下のように�
 - 変更すると環境によって赤の波線が表示される箇所があるかもしれませんが、テストを実行すると消えますので、一旦気にせず進めてください。
 
 ```ts
-import hre, { ethers } from "hardhat";
-import { Overrides } from "ethers";
-import { expect } from "chai";
-import { loadFixture } from "@nomicfoundation/hardhat-network-helpers";
+import hre, { ethers } from 'hardhat';
+import { Overrides } from 'ethers';
+import { expect } from 'chai';
+import { loadFixture } from '@nomicfoundation/hardhat-network-helpers';
 
-describe("Messenger", function () {
+describe('Messenger', function () {
   async function deployContract() {
     // 初めのアドレスはコントラクトのデプロイに使用されます。
     const [owner, otherAccount] = await ethers.getSigners();
 
     const funds = 100;
 
-    const Messenger = await hre.ethers.getContractFactory("Messenger");
+    const Messenger = await hre.ethers.getContractFactory('Messenger');
     const messenger = await Messenger.deploy({
       value: funds,
     } as Overrides);
@@ -359,8 +359,8 @@ describe("Messenger", function () {
     return { messenger, funds, owner, otherAccount };
   }
 
-  describe("Post", function () {
-    it("Should send the correct amount of tokens", async function () {
+  describe('Post', function () {
+    it('Should send the correct amount of tokens', async function () {
       const { messenger, owner, otherAccount } = await loadFixture(
         deployContract
       );
@@ -368,7 +368,7 @@ describe("Messenger", function () {
 
       // メッセージをpostした場合は, 送り主(owner)からコントラクト(messenger)へ送金されます。
       await expect(
-        messenger.post("text", otherAccount.address, {
+        messenger.post('text', otherAccount.address, {
           value: test_deposit,
         })
       ).to.changeEtherBalances(
@@ -377,12 +377,12 @@ describe("Messenger", function () {
       );
     });
 
-    it("Should set the right Message", async function () {
+    it('Should set the right Message', async function () {
       const { messenger, owner, otherAccount } = await loadFixture(
         deployContract
       );
       const test_deposit = 1;
-      const test_text = "text";
+      const test_text = 'text';
 
       await messenger.post(test_text, otherAccount.address, {
         value: test_deposit,
@@ -412,7 +412,7 @@ async function deployContract() {
 
   const funds = 100;
 
-  const Messenger = await hre.ethers.getContractFactory("Messenger");
+  const Messenger = await hre.ethers.getContractFactory('Messenger');
   const messenger = await Messenger.deploy({
     value: funds,
   } as Overrides);
@@ -448,8 +448,8 @@ const messenger = await Messenger.deploy({
 続いてテスト内の1つ目の関数を確認しましょう。
 
 ```ts
-describe("Post", function () {
-  it("Should send the correct amount of tokens", async function () {
+describe('Post', function () {
+  it('Should send the correct amount of tokens', async function () {
     const { messenger, owner, otherAccount } = await loadFixture(
       deployContract
     );
@@ -457,7 +457,7 @@ describe("Post", function () {
 
     // メッセージをpostした場合は, 送り主(owner)からコントラクト(messenger)へ送金されます。
     await expect(
-      messenger.post("text", otherAccount.address, {
+      messenger.post('text', otherAccount.address, {
         value: test_deposit,
       })
     ).to.changeEtherBalances([owner, messenger], [-test_deposit, test_deposit]);
@@ -492,15 +492,15 @@ describe("Post", function () {
 最後にもう1つのテスト内容を確認しましょう。
 
 ```ts
-describe("Post", function () {
+describe('Post', function () {
   // ...
 
-  it("Should set the right Message", async function () {
+  it('Should set the right Message', async function () {
     const { messenger, owner, otherAccount } = await loadFixture(
       deployContract
     );
     const test_deposit = 1;
-    const test_text = "text";
+    const test_text = 'text';
 
     await messenger.post(test_text, otherAccount.address, {
       value: test_deposit,
@@ -521,10 +521,10 @@ describe("Post", function () {
 `getOwnMessages`を呼び出すアカウントはメッセージの受信者である必要があり、`messenger.connect(otherAccount)`を呼び出すことでそれを指定できます。
 取り出したメッセージの内容が正しいかを確かめます。
 
-それではテストを実行しましょう！　ターミナル上で以下のコマンドを実行してください。
+それではテストを実行しましょう！　ターミナル上で`AVAX-Messenger/`直下にいることを確認し、以下のコマンドを実行してください。
 
 ```
-yarn contract test
+yarn test
 ```
 
 以下のような表示がされたらテスト成功です！

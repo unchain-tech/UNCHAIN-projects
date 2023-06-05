@@ -8,9 +8,9 @@
 Hardhatを使用する場合,ファイル構造は非常に重要ですので,注意する必要があります。ファイル構造が下記のようになっていれば大丈夫です 😊
 
 ```bash
-contract
-    |_ contracts
-           |_  Messenger.sol
+contract/
+└── contracts/
+    └── Messenger.sol
 ```
 
 次に,コードエディタでプロジェクトのコードを開きます。
@@ -35,7 +35,7 @@ VS Codeをターミナルから起動する方法は [こちら](https://maku.bl
 // Messenger.sol
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 
 import "hardhat/console.sol";
 
@@ -63,12 +63,12 @@ contract Messenger {
 
 ```solidity
 // Messenger.sol
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 ```
 
 これは,コントラクトで使用するSolidityコンパイラのバージョンです。
 
-上記のコードでは,このコントラクトを実行するときはSolidityコンパイラのバージョンが`0.8.9`以上`1.0.0`未満を使用しそれ以外のものは使用しません,という宣言をしています。
+上記のコードでは,このコントラクトを実行するときはSolidityコンパイラのバージョンが`0.8.17`以上`1.0.0`未満を使用しそれ以外のものは使用しません,という宣言をしています。
 
 Solidityは [Semantic Versioning](https://semver.org/) を採用しているため, バージョン表記の見方は
 
@@ -77,12 +77,12 @@ MAJOR.MINOR.PATCH
 ```
 
 となり, MAJOR（一番左の番号）は互換性がない修正・変更がSolidityに加わった場合に変わります。
-つまり, `0.8.9`から`1.0.0`までの範囲は修正が加わっても互換性がある（コンパイルが可能）変更なので, `^`を先頭につけることで,
+つまり, `0.8.17`から`1.0.0`未満までの範囲は修正が加わっても互換性がある（コンパイルが可能）変更なので, `^`を先頭につけることで,
 その範囲のバージョンの違いは許容するということです。
 
-`0.8.9`が`hardhat.config.ts`でも記載されていることを確認してください。
+`0.8.17`が`hardhat.config.ts`でも記載されていることを確認してください。
 
-もし,`hardhat.config.ts`の中に記載されているSolidityのバージョンが`0.8.9`でなかった場合は,`Messenger.sol`の中身を`hardhat.config.ts`に記載されているバージョンに変更しましょう。
+もし,`hardhat.config.ts`の中に記載されているSolidityのバージョンが`0.8.17`でなかった場合は,`Messenger.sol`の中身を`hardhat.config.ts`に記載されているバージョンに変更しましょう。
 
 ```solidity
 // Messenger.sol
@@ -142,12 +142,12 @@ classの概念については,[こちら](https://aiacademy.jp/media/?p=131) を
 `Messenger.ts`に以下のコードを記述してください。
 
 ```ts
-import hre from "hardhat";
-import { expect } from "chai";
+import hre from 'hardhat';
+import { expect } from 'chai';
 
-describe("Messenger", function () {
-  it("construct", async function () {
-    const Messenger = await hre.ethers.getContractFactory("Messenger");
+describe('Messenger', function () {
+  it('construct', async function () {
+    const Messenger = await hre.ethers.getContractFactory('Messenger');
     const messenger = await Messenger.deploy();
 
     expect(await messenger.state()).to.equal(1);
@@ -158,15 +158,15 @@ describe("Messenger", function () {
 中身を見ていきましょう。
 
 ```ts
-import hre from "hardhat";
-import { expect } from "chai";
+import hre from 'hardhat';
+import { expect } from 'chai';
 ```
 
 テストに必要なライブラリをimportしています。
 
 ```ts
-describe("Messenger", function () {
-  it("construct", async function () {
+describe('Messenger', function () {
+  it('construct', async function () {
     // テストコード
   });
 });
@@ -180,8 +180,8 @@ describe("Messenger", function () {
 さらに複数の`it`関数を`describe`の引数（の関数）内に渡すことで, 個々のテストを1つの`describe`でグループ化します。
 
 ```ts
-it("construct", async function () {
-  const Messenger = await hre.ethers.getContractFactory("Messenger");
+it('construct', async function () {
+  const Messenger = await hre.ethers.getContractFactory('Messenger');
   const messenger = await Messenger.deploy();
 
   expect(await messenger.state()).to.equal(1);
@@ -190,7 +190,7 @@ it("construct", async function () {
 
 実際のテストコードです。
 
-`hre.ethers.getContractFactory("Messenger")`で`Messenger`コントラクトとデプロイをサポートするライブラリの連携を行い,
+`hre.ethers.getContractFactory('Messenger')`で`Messenger`コントラクトとデプロイをサポートするライブラリの連携を行い,
 `Messenger.deploy()`でデプロイを行っています。
 
 `expect`は [chai](https://www.chaijs.com/) ライブラリの機能で,
@@ -213,11 +213,13 @@ expect(await 関数呼び出し).to.equal(期待する値);
 > これを使うと,`await`が先頭についている処理が終わるまで,関数内の他の処理は行われません。
 > `await`を使用する関数は`async`をつける必要があります。
 >
-> つまり,`hre.ethers.getContractFactory("Messenger")`の処理が終わるまで,`async function`関数の中に記載されている他の処理は実行されないということです。
+> つまり,`hre.ethers.getContractFactory('Messenger')`の処理が終わるまで,`async function`関数の中に記載されている他の処理は実行されないということです。
 
 💁 hardhatで行うテストに関して詳しくは[こちら](https://hardhat.org/hardhat-runner/docs/guides/test-contracts)を参考にしてください。
 
 ### ⭐ テストを実行しましょう
+
+`AVAX-Messenger/`直下から次のコマンドを実行しましょう。
 
 ```
 yarn test
