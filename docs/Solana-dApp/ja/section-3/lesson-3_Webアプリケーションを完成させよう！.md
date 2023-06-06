@@ -5,8 +5,6 @@
 `addGif`関数を呼び出し、`getGifList`関数を呼び出すことで、Webアプリケーションをリフレッシュして最新のGIF画像を表示しましょう。
 
 ```javascript
-// App.js
-
 const sendGif = async () => {
   if (inputValue.length === 0) {
     console.log("No gif link given!")
@@ -50,11 +48,9 @@ let baseAccount = Keypair.generate();
 
 これを修正するためには、すべてのユーザーが共有する1つのキーペアを用意してあげる必要があります。
 
-そのために、`packages/client/src`ディレクトリの下に`createKeyPair.js`という名前のファイルを作成し、以下のコードを貼り付けてください。
+そのために、`src`ディレクトリの下に`createKeyPair.js`という名前のファイルを作成し、以下のコードを貼り付けてください。
 
 ```javascript
-// createKeyPair.js
-
 const fs = require('fs')
 const anchor = require("@project-serum/anchor")
 
@@ -69,14 +65,14 @@ fs.writeFileSync('./keypair.json', JSON.stringify(account))
 
 `createKeyPair.js`の準備ができたら以下のコマンドをそれぞれ実行してください。
 
-※ `paclages/client/src`ディレクトリ内に移動したことを確認してから`node createKeyPair.js`コマンドを実行してください。
+※ `src`ディレクトリ内に移動したことを確認してから`node createKeyPair.js`コマンドを実行してください。
 
 ```bash
-cd paclages/client/src
+cd src
 node createKeyPair.js
 ```
 
-無事に実行されると、`paclages/client/src`内に`keypair.json`という名前の共有キーペアができあがります。
+無事に実行されると、`src`内に`keypair.json`という名前の共有キーペアができあがります。
 
 次に、`App.js`を少し変更します。
 

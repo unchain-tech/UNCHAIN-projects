@@ -7,7 +7,7 @@ Anchorの設定がDevnetになっているため、Devnet上で直接テスト�
 まずは、以下のコマンドを実行しましょう。
 
 ```bash
-yarn contract test
+anchor test
 ```
 
 問題なく実行されると、以下のように表示されます。
@@ -34,6 +34,10 @@ Deploy success
 [Solana Explorer](https://explorer.solana.com/?cluster=Devnet)にアクセスしてトランザクション履歴を確認してみましょう。
 
 上記で実行したテストのトランザクションが確認できるはずです。
+
+ここで、とても大切なことをお伝えします。
+
+`anchor test`コマンドを実行すると、プログラムが再デプロイされ、スクリプト上の全ての関数が実行されます。
 
 実は、Solanaプログラムは[アップグレード可能](https://docs.solana.com/cli/deploy-a-program#redeploy-a-program)です。
 
@@ -64,7 +68,7 @@ SolanaプログラムはDevnetにデプロイされました。
 
 これは、Webアプリケーションが接続するプログラムを指定するものです。
 
-`target/idl/myepicproject.json`の中身をすべてコピーし、Webアプリケーションを構築したディレクトリの下にある`packages/client/src`の直下に`idl.json`ファイルを作成してください( `App.js`と同じディレクトリです)。
+`target/idl/myepicproject.json`の中身をすべてコピーし、Webアプリケーションを構築したディレクトリの下にある`src`の直下に`idl.json`ファイルを作成してください( `App.js`と同じディレクトリです)。
 
 そこに`target/idl/myepicproject.json`の中身をすべて張り付けてください。
 
@@ -73,8 +77,6 @@ SolanaプログラムはDevnetにデプロイされました。
 追加する場所は`import './App.css';`のすぐ下でOKです。
 
 ```javascript
-//App.js
-
 import idl from './idl.json';
 ```
 
@@ -102,11 +104,21 @@ Phantom Walletを確認し、Devnetで2 SOLが入っていることを確認で�
 
 ### 🍔 Web アプリケーションで Solana プロバイダをセットアップする
 
+Solanaプロバイダーを設定するにあたり、Webアプリケーションに2つのパッケージをインストールする必要があります。
+
+Anchorプロジェクトでもインストールしていますが、同じものをWebアプリケーションにもインストールしましょう。
+
+ルートディレクトリで以下のコマンドを実行します。
+
+```bash
+npm install @project-serum/anchor @solana/web3.js
+```
+
+インストールしたパッケージをWebアプリケーションにインポートしましょう。
+
 `App.js`の`import idl from './idl.json';`のすぐ下に以下のコードを追加します。
 
 ```javascript
-//App.js
-
 import { Connection, PublicKey, clusterApiUrl } from '@solana/web3.js';
 import { Program, Provider, web3 } from '@project-serum/anchor';
 ```
@@ -116,8 +128,6 @@ import { Program, Provider, web3 } from '@project-serum/anchor';
 以下のコードを`onInputChange`関数のすぐ下に追加します。
 
 ```javascript
-//App.js
-
 const getProvider = () => {
   const connection = new Connection(network, opts.preflightCommitment);
   const provider = new Provider(
@@ -144,8 +154,6 @@ Phantom WalletはSolana上のプログラムと通信するためのプロバイ
 `App.js`を以下のとおり更新します。
 
 ```javascript
-// App.js
-
 import React, { useEffect, useState } from 'react';
 import twitterLogo from './assets/twitter-logo.svg';
 import './App.css';
@@ -201,8 +209,6 @@ const opts = {
 `App.js`の以下の記述を覚えていますか？
 
 ```javascript
-// App.js
-
 useEffect(() => {
   if (walletAddress) {
     console.log('Fetching GIF list...');
@@ -218,8 +224,6 @@ useEffect(() => {
 この記述を以下のように変更しましょう。
 
 ```javascript
-// App.js
-
 const getGifList = async() => {
   try {
     const provider = getProvider();
@@ -280,8 +284,6 @@ const createGifAccount = async () => {
 2\. ウォレットを接続しているが、`BaseAccount`が存在していたので、`gifList`をレンダリングして、ユーザーがGitデータを送信できるようにする。
 
 ```jsx
-// App.js
-
 const renderConnectedContainer = () => {
 // プログラムアカウントが初期化されているかどうかチェックします。
   if (gifList === null) {

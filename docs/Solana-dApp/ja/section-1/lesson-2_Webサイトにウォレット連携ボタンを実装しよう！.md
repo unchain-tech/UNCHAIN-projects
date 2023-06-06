@@ -7,8 +7,6 @@ web3の世界では、ウォレット接続ボタンは「ログイン」ボタ�
 `App.js`ファイルを以下のとおり変更しましょう。
 
 ```jsx
-// App.js
-
 import React, { useEffect } from 'react';
 import twitterLogo from './assets/twitter-logo.svg';
 import './App.css';
@@ -110,16 +108,12 @@ Webアプリケーションに「Connect to Wallet」ボタンが表示されて
 まずは、`App.js`の1行目で`useState`をインポートします。
 
 ```jsx
-// App.js
-
 import React, { useEffect, useState } from "react";
 ```
 
 次に、`checkIfWalletIsConnected`関数のすぐ下に`state`の宣言を追加します。
 
 ```jsx
-// App.js
-
 const [walletAddress, setWalletAddress] = useState(null);
 ```
 
@@ -128,8 +122,6 @@ const [walletAddress, setWalletAddress] = useState(null);
 続いて、`App.js`を以下のとおり修正していきましょう。
 
 ```jsx
-//App.js
-
 import React, { useEffect, useState } from 'react';
 import twitterLogo from './assets/twitter-logo.svg';
 import './App.css';
@@ -224,8 +216,6 @@ export default App;
 簡単に修正点を確認しましょう。
 
 ```javascript
-// App.js
-
 const checkIfWalletIsConnected = async () => {
   try {
     const { solana } = window;
@@ -255,8 +245,6 @@ Phantom WalletがWebアプリケーションに接続されていた場合、ユ
 更新された`state`は以下で利用します。
 
 ```jsx
-// App.js
-
 {!walletAddress && renderNotConnectedContainer()}
 ```
 
@@ -274,8 +262,6 @@ Phantom WalletがWebアプリケーションに接続されていた場合、ユ
 `App.js`の`connectWallet`関数を下記のとおり修正しましょう。
 
 ```javascript
-// App.js
-
 const connectWallet = async () => {
   const { solana } = window;
 

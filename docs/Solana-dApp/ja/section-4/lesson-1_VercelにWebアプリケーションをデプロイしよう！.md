@@ -46,8 +46,6 @@ SOLANA_NETWORK=devnet
 ※ `require('dotenv').config();`はimport文の直下に追加し、`clusterApiUrl`の引数を`process.env.SOLANA_NETWORK`に変更してください。
 
 ```javascript
-// App.js
-
 require('dotenv').config();
 
 // ネットワークをdevnetに設定します。

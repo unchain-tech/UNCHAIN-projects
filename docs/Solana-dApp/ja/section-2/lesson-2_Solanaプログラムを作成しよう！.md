@@ -10,15 +10,13 @@
 
 VS Codeで`myepicproject`を開きましょう。
 
-そして、`programs/myepicproject/src/lib.rs`と`tests/myepicproject.js`の **中身を削除** します。
+そして、`programs/myepicproject/src/lib.rs`と`tests/myepicproject.js`の中身を **削除** します。
 
 実際にファイルを削除するのではなく、ファイルの中のコードだけを削除してください。
 
 そして、以下のとおり`lib.rs`ファイルの中身を追加します。
 
 ```rust
-// lib.rs
-
 use anchor_lang::prelude::*;
 
 declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
@@ -109,8 +107,6 @@ pub struct StartStuffOff {}
 そのために、`tests/myepicproject.js`を以下のとおり変更します。
 
 ```javascript
-// myepicproject.js
-
 const anchor = require('@project-serum/anchor');
 
 const main = async() => {
@@ -159,8 +155,6 @@ const tx = await program.rpc.startStuffOff();
 続いて、`myepicproject/Anchor.toml`の`[scripts]`タグを少し変更します。
 
 ```bash
-// Anchor.toml
-
 [scripts]
 test = "node tests/myepicproject.js"
 ```
@@ -170,7 +164,7 @@ test = "node tests/myepicproject.js"
 ※ VS Codeを使用している場合は、変更したファイルを全て保存してから実行してください。
 
 ```bash
-yarn contract test
+anchor test
 ```
 
 以下のように出力されていればOKです。

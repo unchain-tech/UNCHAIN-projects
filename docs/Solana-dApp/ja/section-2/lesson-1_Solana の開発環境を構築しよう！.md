@@ -84,7 +84,7 @@ sh -c "$(curl -sSfL https://release.solana.com/stable/install)"
 solana --version
 ```
 
-では`packages/contract`ディレクトリへ移動しましょう。その後、以下の2つのコマンドを別々に実行してください。
+次に、以下の2つのコマンドを別々に実行してください。
 
 ```bash
 solana config set --url localhost
@@ -107,7 +107,7 @@ Commitment: confirmed
 
 また、プログラムのテスト用に、ローカルコンピューターにバリデーターを設定することもできます。
 
-以下のコマンドを実行しましょう。
+`packages/contractに移動して、以下のコマンドを実行しましょう。
 
 ```bash
 solana-test-validator
@@ -164,7 +164,9 @@ npm i -g @project-serum/anchor-cli
 anchor --version
 ```
 
-バージョン情報が出力されていればOKです。ここまででAnchorを使用するための準備が整いました。
+バージョン情報が出力されていればOKです。
+
+ここまででAnchorを使用するための準備が整いました。
 
 ### 🔑 ローカルキーペアを作成する
 
@@ -186,9 +188,7 @@ solana address
 
 作成したローカルウォレットのパブリックアドレスが表示されればOKです。
 
-最後に`packages/contract/Anchor.toml`の12行目を編集しましょう。
-
-`{}Your_USERNAME}`の部分に自分のPCのユーザー名を入れてください。
+最後に`packages/contract/Anchor.toml`の12行目にあるパスを自身のPCのものに置き換えてください。
 
 ```
 wallet = "/Users/{YOUR_USERNAME}/.config/solana/id.json" # YOUR_USERNAMEは自分のPCのユーザー名に置き換えてください
@@ -207,10 +207,10 @@ wallet = "/Users/{YOUR_USERNAME}/.config/solana/id.json" # YOUR_USERNAMEは自�
 
 実は、Anchorを利用することでこれらの手順を1つステップで実行できます。
 
-ではルートディレクトリへ戻って、以下のコマンドを実行してみてください。
+以下のコマンドを実行してみてください。
 
 ```bash
-yarn contract test
+anchor test
 ```
 
 ※ 初めて実行するときはしばらく時間がかかる場合があります。
