@@ -128,19 +128,6 @@ NEAR-Election-dApp
 yarn <パッケージ名> <実行したいコマンド>
 ```
 
-それでは、ワークスペースのパッケージを格納するディレクトリを作成しましょう。
-
-以下のようなフォルダー構成となるように、`packages`ディレクトリとその中に`contract`ディレクトリを作成してください（`client`ディレクトリは、後ほどのレッスンでスターターコードをクローンする際に作成したいと思います）。
-
-```diff
-NEAR-Election-dApp
- ├── package.json
-+└── packages/
-+    └── contract/
-```
-
-`contract`ディレクトリには、スマートコントラクトを構築するためのファイルを作成していきます。
-
 最後に、NEAR-Election-dAppディレクトリ下に`.gitignore`ファイルを作成して以下の内容を書き込みます。
 
 ```bash
@@ -160,7 +147,6 @@ NEAR-Election-dApp
  ├── .gitignore
  ├── package.json
  └── packages/
-     └── contract/
 ```
 
 これでモノレポの雛形が完成しました！
@@ -190,6 +176,12 @@ npx create-near-app@3.1.0 --frontend=react --contract=rust client
 コードを入力すると、2回ほどYes、Noを問われると思うので、全てYesを選択するで大丈夫です。
 
 これによってコントラクトとフロントの接続をすでにコーディングしてくれている状態のプロジェクトを作成してくれます。
+
+ではフロントエンド用のファイルが格納された`client`ディレクトリ内にある`package.json`の中の`name`欄を以下のように変更しましょう。
+
+```
+"name": "client",
+```
 
 このコードが意味しているのは`フロント=react`で、`コントラクト=Rust `で記述されているプロジェクトであるということです。
 
