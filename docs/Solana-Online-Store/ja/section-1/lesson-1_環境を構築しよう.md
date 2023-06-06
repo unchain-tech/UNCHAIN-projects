@@ -34,27 +34,34 @@ Chromeの方は[こちら](https://chrome.google.com/webstore/detail/phantom/bfn
 
 ※ GitHubアカウントの初期設定がお済みでない方は、アカウント設定を行ってからお進みください。
 
-まず、 [この GitHub リンク](https://github.com/unchain-tech/Solana-Online-Store) にアクセスして、ページの右上にある[Fork]ボタンを押してください。
+まだ`GitHub`のアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
-Create a new forkページが開くので、「Copy the `main` branch only」という項目に**チェックが入っていることを確認します**。設定に問題がなければ、[Create fork]ボタンを押してフォークを行います。
+`GitHub`のアカウントをお持ちの方は、下記の手順に沿ってフロントエンドの基盤となるリポジトリをあなたのGitHubに[フォーク](https://denno-sekai.com/github-fork/)しましょう。
 
-このリポジトリをフォークすると、自分のGitHubに同一のリポジトリがコピーされます。
+1\. [こちら](https://github.com/unchain-tech/Solana-Online-Store)からunchain-tech/Solana-Online-Storeリポジトリにアクセスをして、ページ右上の`Fork`ボタンをクリックします。
 
-次に、新しくフォークされたリポジトリをローカルに保存します。
+![](/public/images/Solana-Online-Store/section-1/1_1_2.png)
 
-`Code`ボタンをクリックして、コピーしたリポジトリのリンクをコピーしてください。
+2\. Create a new forkページが開くので、「Copy the `main` branch only」という項目に**チェックが入っていることを確認します**。
 
-![github code button](/public/images/Solana-Online-Store/section-1/1_1_2.png)
+![](/public/images/Solana-Online-Store/section-1/1_1_3.png)
 
-最後に、ターミナルで`cd`コマンドを実行してプロジェクトが存在するディレクトリまで移動し、次のコマンドを実行します。
+3\. 設定が完了したら`Create fork`ボタンをクリックします。あなたのGitHubアカウントに`Solana-Online-Store`リポジトリのフォークが作成されたことを確認してください。
 
-※ `YOUR_FORKED_LINK`に先ほどコピーしたリポジトリのリンクを張り付けましょう。
+それでは、フォークしたリポジトリをローカル環境にクローンしましょう。
+
+`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
+
+![](/public/images/Solana-Online-Store/section-1/1_1_4.png)
+
+ターミナルで任意の作業ディレクトリに移動し、先ほどコピーしたリンクを貼り付け、下記を実行してください。
 
 ```bash
-git clone YOUR_FORKED_LINK
+git clone コピーした_github_リンク
 ```
 
 無事に複製されたらローカル開発環境の準備は完了です。
+
 ### 🏁 Web アプリケーションを起動する
 
 今回のWebアプリケーションは **Next.js** を使用しています。
@@ -75,7 +82,7 @@ git clone YOUR_FORKED_LINK
 
 ※自動的にWebアプリケーションが立ち上がらない場合は、ブラウザに`http://localhost:3000`と入力してWebアプリケーションを確認しましょう!
 
-![stater project](/public/images/Solana-Online-Store/section-1/1_1_3.png)
+![](/public/images/Solana-Online-Store/section-1/1_1_5.jpg)
 
 ### ✅ テストスクリプトについて
 

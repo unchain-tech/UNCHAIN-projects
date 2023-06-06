@@ -29,7 +29,6 @@ Webアプリケーションの構築が完了したら、CSSのスタイリン�
 次に、`client/src/Components/Arena/index.js`を開き、下記のコードを貼り付けましょう。
 
 ```javascript
-// index.js
 import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import { CONTRACT_ADDRESS, transformCharacterData } from "../../constants";
@@ -78,14 +77,12 @@ export default Arena;
 まず、`Arena`をインポートするため、`App.js`の先頭に、下記を追加しましょう。
 
 ```javascript
-// App.js
 import Arena from "./Components/Arena";
 ```
 
 次に、`renderContent`関数を下記のように更新しましょう。
 
 ```javascript
-// App.js
 // レンダリングメソッド
 const renderContent = () => {
   // シナリオ1.
@@ -130,7 +127,6 @@ Webアプリケーションを更新すると、「アリーナ」コンポー�
 まず、`Arena`コンポーネントの中の`const [gameContract, setGameContract] = useState(null);`の直下に下記を追記してください。
 
 ```javascript
-// Arena/index.js
 // ボスのメタデータを保存する状態変数を初期化します。
 const [boss, setBoss] = useState(null);
 
@@ -156,7 +152,6 @@ useEffect(() => {
 まず、`Arena/index.js`に向かい、`const [boss, setBoss] = useState(null);`の直下に下記を追加しましょう。
 
 ```javascript
-// Arena/index.js
 // NFTキャラクターがボスを攻撃する際に使用する関数を定義します。
 const runAttackAction = async () => {};
 ```
@@ -164,8 +159,6 @@ const runAttackAction = async () => {};
 次に、`Arena/index.js`の`return();`の中身を下記のように更新しましょう。
 
 ```javascript
-// Arena/index.js
-
 return (
   <div className="arena-container">
     {/* ボスをレンダリングします */}
@@ -205,7 +198,6 @@ return (
 `Arena/index.js`の`return();`の中身を下記のように更新しましょう。
 
 ```javascript
-// Arena/index.js
 return (
   <div className="arena-container">
     {/* ボスをレンダリングします */}
@@ -267,8 +259,6 @@ return (
 `Arena/index.js`を下記のように更新していきましょう。
 
 ```javascript
-// Arena/index.js
-
 // コントラクトのデータを保有する状態変数を初期化します。
 const [gameContract, setGameContract] = useState(null);
 
@@ -309,7 +299,6 @@ const runAttackAction = async () => {
 **1 \. `const [boss, setBoss] = useState(null);`の直下に、下記を追加。**
 
 ```javascript
-// Arena/index.js
 // 攻撃の状態を保存する変数を初期化します。
 const [attackState, setAttackState] = useState("");
 ```
@@ -337,7 +326,6 @@ const [attackState, setAttackState] = useState("");
 - `{boss ..}`の中身を下記のように更新しましょう。
 
 ```javascript
-// Arena/index.js
 return (
   <div className="arena-container">
     {/* ボスをレンダリングします */}
@@ -392,7 +380,6 @@ return (
 まず、`Arena/index.js`の中にある`Arena`コンポーネントを下記のように更新してください。
 
 ```javascript
-// Arena/index.js
 // NFT キャラクターの情報を更新するため、setCharacterNFT を引数として追加します。
 const Arena = ({ characterNFT, setCharacterNFT }) => {
 ```
@@ -400,7 +387,6 @@ const Arena = ({ characterNFT, setCharacterNFT }) => {
 次に、`fetchBoss`関数が記載されている`useEffect`の中身を下記のように更新しましょう。
 
 ```javascript
-// Arena/index.js
 // ページがロードされると下記が実行されます。
 useEffect(() => {
   // ボスのデータをコントラクトから読み込む関数を設定します。
@@ -450,7 +436,6 @@ useEffect(() => {
 - `Arena/index.js`で`Arena`コンポーネントの引数に、`setCharacterNFT`を追加したので、`App.js`にも更新を反映させます。
 
 ```javascript
-// App.js
 <Arena characterNFT={characterNFT} setCharacterNFT={setCharacterNFT} />
 ```
 
@@ -459,7 +444,6 @@ useEffect(() => {
 1つだけReactの手法 [`prevState`](https://ratio.ym-tane.com/development/react-prevstate/) を使用したので、下記のコードを見ていきましょう。
 
 ```javascript
-// Arena/index.js
 setBoss((prevState) => {
   return { ...prevState, hp: bossHp };
 });

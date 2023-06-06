@@ -19,12 +19,11 @@ yarn add --dev dotenv
 `hardhat.config.js`を変更します。
 
 ```javascript
-// hardhat.config.js
 require("@nomicfoundation/hardhat-toolbox");
 require('dotenv').config();
 
 module.exports = {
-  solidity: '0.8.9',
+  solidity: '0.8.17',
   networks: {
     mumbai: {
       url: process.env.STAGING_ALCHEMY_KEY,
@@ -80,9 +79,10 @@ Vercelに関する説明は、[こちら](https://zenn.dev/lollipop_onl/articles
 - 設定を入力（下の注を参照）したらデプロイします。
 - 完成です。
 
-注：Vercelでは、環境変数`CI=false`を追加する必要があります。 これにより、`warning`が原因でビルドが失敗しないようになります。
+注：Vercelでは、環境変数`CI=false`を追加する必要があります。 これにより、`warning`が原因でビルドが失敗しないようになります。また、ルートディレクトリは`packages/client`に設定してください。
 
 ![](/public/images/Polygon-ENS-Domain/section-4/4_3_1.png)
+![](/public/images/Polygon-ENS-Domain/section-4/4_3_3.png)
 
 
 設定を入力したら`deploy`ボタンを押してください。
@@ -100,8 +100,9 @@ Vercelに関する説明は、[こちら](https://zenn.dev/lollipop_onl/articles
 
 これで、ドメインサービスについてはもう習熟されています🎉
 
-
 ![](/public/images/Polygon-ENS-Domain/section-4/4_3_2.png)
+
+[こちら](https://polygon-ens-domain-client.vercel.app/)が見本のプロジェクトとなります！
 
 
 ### 🎉 おつかれさまでした!

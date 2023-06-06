@@ -8,8 +8,7 @@
 まず、`TokenFarm.sol`を以下のように更新していきましょう。
 
 ```solidity
-// TokenFarm.sol
-pragma solidity ^0.5.0;
+pragma solidity ^0.8.18;
 
 import "./DappToken.sol";
 import "./MockDaiToken.sol";
@@ -31,7 +30,7 @@ contract TokenFarm{
     // 10. 投資家の最新のステイタスを記録するマッピングを作成
     mapping (address => bool) public isStaking;
 
-    constructor(DappToken _dappToken, DaiToken _daiToken) public {
+    constructor(DappToken _dappToken, DaiToken _daiToken){
         dappToken = _dappToken;
         daiToken = _daiToken;
     }
@@ -61,7 +60,6 @@ contract TokenFarm{
 まず、新しく追加された　`stakeTokens()`関数に注目してください。
 
 ```solidity
-// TokenFarm.sol
 // 1.ステーキング機能を作成する
 function stakeTokens(uint _amount) public {
 ：
@@ -77,7 +75,6 @@ function stakeTokens(uint _amount) public {
 更に詳しく見ていきましょう。
 
 ```solidity
-// TokenFarm.sol
 // 1. ステーキング機能を作成する
 function stakeTokens(uint _amount) public {
     // 2. ステーキングされるトークンが0以上あることを確認
@@ -106,7 +103,6 @@ function stakeTokens(uint _amount) public {
 そのために、まず、投資家のアドレスと彼らのステーキングしたトークンの量を紐づけるマッピングを作成します。
 
 ```solidity
-// TokenFarm.sol
 // 4.投資家のアドレスと彼らのステーキングしたトークンの量を紐づける mapping を作成
 mapping (address => uint) public stakingBalance;
 ```
@@ -117,7 +113,6 @@ mapping (address => uint) public stakingBalance;
 次に、`stakeTokens()`の中で、`stakingBalance`マッピングを使用し、ステーキングされたトークンの残高が更新されるようにします。
 
 ```solidity
-// TokenFarm.sol
 // 5. ステーキングされたトークンの残高を更新する
 stakingBalance[msg.sender] = stakingBalance[msg.sender] + _amount;
 ```
@@ -125,7 +120,6 @@ stakingBalance[msg.sender] = stakingBalance[msg.sender] + _amount;
 次に、投資家がステーキングを行ったことを記録していきます。そのために、別のマッピングを作成します。
 
 ```solidity
-// TokenFarm.sol
 // 6. 投資家のアドレスをもとに彼らがステーキングを行ったか否かを紐づける mapping を作成
 mapping (address => bool) public hasStaked;
 ```
@@ -133,7 +127,6 @@ mapping (address => bool) public hasStaked;
 また、これまでにステークしたことのあるすべてのアドレスを追跡する配列(`stakers`)も作成します。
 
 ```solidity
-// TokenFarm.sol
 // 7. これまでにステーキングを行ったすべてのアドレスを追跡する配列を作成
 address[] public stakers;
 ```
@@ -149,7 +142,6 @@ Solidityの配列はリストなので、`stakers`の中身は、以下のよう
 それでは、`stakeTokens()`に戻り、投資家を`stakers`配列に追加する機能をみていきましょう。
 
 ```solidity
-// TokenFarm.sol
 // 8. 投資家がまだステークしていない場合のみ、彼らをstakers配列に追加する
 if(!hasStaked[msg.sender]){
     stakers.push(msg.sender);
@@ -164,14 +156,12 @@ if(!hasStaked[msg.sender]){
 最後に、投資家のステーキングに関する状態を更新するコードを追加します。
 
 ```solidity
-// TokenFarm.sol
 // 9. ステーキングステータスの更新
 isStaking[msg.sender] = true;
 hasStaked[msg.sender] = true;
 ```
 
 ```solidity
-// TokenFarm.sol
 // 10. 投資家の最新のステイタスを記録するマッピングを作成
 mapping (address => bool) public isStaking;
 ```
@@ -182,7 +172,8 @@ mapping (address => bool) public isStaking;
 それでは早速`TokenFarm.sol`を下のように更新していきましょう!
 
 ```solidity
-pragma solidity ^0.5.0;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.18;
 
 import "./DappToken.sol";
 import "./MockDaiToken.sol";
@@ -198,7 +189,7 @@ contract TokenFarm{
     mapping (address => bool) public hasStaked;
     mapping (address => bool) public isStaking;
 
-    constructor(DappToken _dappToken, DaiToken _daiToken) public {
+    constructor(DappToken _dappToken, DaiToken _daiToken){
         dappToken = _dappToken;
         daiToken = _daiToken;
         owner = msg.sender;
