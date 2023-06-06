@@ -7,7 +7,7 @@ IPFSに写真をアップロードできたところで、その写真を使っ�
 ```solidity
 // Web3Mint.sol
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
 //OpenZeppelinが提供するヘルパー機能をインポートします。
@@ -74,17 +74,19 @@ import "./libraries/Base64.sol";
 ```
 
 `tokenURI`には、NFTデータをJSON形式で渡さなければいけません。
-Base64のやり方は、[project3](https://unchain-portal.netlify.app/projects/104-ETH-NFT-game/section-1-lesson-5) のやり方を参考にしています。
+Base64のやり方は、[project3](https://app.unchain.tech/learn/ETH-NFT-Game/ja/1/5/) のやり方を参考にしています。
 
 なぜ、Base64で渡す必要があるのかを調べてみてください!
 
-`libraries`ディレクトリの下に`Base64.sol`ファイルを作成して、下記のコードを貼り付けてください
+まずは`packages/contract/contracts`ディレクトリの直下に`libraries`ディレクトリを作成します。
+
+その`libraries`ディレクトリの下に`Base64.sol`ファイルを作成して、下記のコードを貼り付けてください
 
 ```solidity
 // Base64.sol
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 
 /// [MIT License]
 /// @title Base64

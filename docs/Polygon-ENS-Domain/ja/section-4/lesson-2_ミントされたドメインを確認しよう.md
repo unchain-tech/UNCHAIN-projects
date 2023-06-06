@@ -3,7 +3,6 @@
 スマートコントラクトではドメインレコードを更新可能にしましたが、アプリでその機能を構築していません。これを実装してみましょう。`App.js`の`mintDomain`関数の次にこの関数を追加しましょう。
 
 ```javascript
-// App.js
 const updateDomain = async () => {
   if (!record || !domain) { return }
   setLoading(true);
@@ -41,7 +40,6 @@ const updateDomain = async () => {
 
 
 ```javascript
-// App.js
   const App = () => {
   // 新しい状態変数を定義しています。これまでのものの下に追加しましょう。
   const [editing, setEditing] = useState(false);
@@ -106,7 +104,6 @@ const updateDomain = async () => {
 それを行うための関数をコントラクトに追加しました。
 
 ```javascript
-// App.js
 // 状態を管理する mints を定義します。初期状態は空の配列です。
 const [mints, setMints] = useState([]);
 
@@ -160,7 +157,6 @@ useEffect(() => {
 `mintDomain`関数の下部にも追加したので、ドメインを自分で作成するとアプリが更新されます。 トランザクションがマイニングされていることを確認するために2秒待っています。 これで、ユーザーは自分のミントをリアルタイムで見ることができます。
 
 ```javascript
-// App.js
 const mintDomain = async () => {
   // domain の存在確認です。
   if (!domain) { return }
@@ -219,7 +215,6 @@ const mintDomain = async () => {
 ほぼ完了です。レンダリング関数を設定します。
 
 ```javascript
-// App.js
 // 他のレンダリング関数の次に追加しましょう。
 const renderMints = () => {
   if (currentAccount && mints.length > 0) {

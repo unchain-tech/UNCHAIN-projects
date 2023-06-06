@@ -18,9 +18,9 @@ Vercelはサーバーレス機能のホスティングを提供するクラウ�
 
 Vercelに関する詳しい説明は、[こちら](https://zenn.dev/lollipop_onl/articles/eoz-vercel-pricing-2020)をご覧ください。
 
-まず、GitHubの`yield-farm-starter-project`にローカルファイルをアップロードしていきます。
+まず、GitHubの`ETH-Yield-Farm`にローカルファイルをアップロードしていきます。
 
-ターミナル上で`yield-farm-starter-project`に移動して、下記を実行しましょう。
+ターミナル上で`ETH-Yield-Farm`に移動して、下記を実行しましょう。
 
 ```
 git add .
@@ -28,19 +28,18 @@ git commit -m "upload to github"
 git push
 ```
 
-次に、GitHub上の`yield-farm-starter-project`に、ローカル環境に存在する`yield-farm-starter-project`のファイルとディレクトリが反映されていることを確認してください。
+次に、GitHub上の`ETH-Yield-Farm`に、ローカル環境に存在する`ETH-Yield-Farm`のファイルとディレクトリが反映されていることを確認してください。
 
 Vercelのアカウントを取得したら、下記を実行しましょう。
 
 1\. `Dashboard`へ進んで、`New Project`を選択してください。
 ![](/public/images/ETH-Yield-Farm/section-4/4_1_1.png)
 
-2\. `Import Git Repository`で自分のGitHubアカウントを接続したら、`yield-farm-starter-project`を選択し、`Import`してください。
+2\. `Import Git Repository`で自分のGitHubアカウントを接続したら、`ETH-Yield-Farm`を選択し、`Import`してください。
 ![](/public/images/ETH-Yield-Farm/section-4/4_1_2.png)
 
-3\. プロジェクトを作成します。Environment Variableに下記を追加します。
+3\. プロジェクトを作成します。`Root Directory`が「packages/client」となっていることを確認してください。
 
-`NAME`＝`CI`、`VALUE`＝`false`（下図参照）。
 ![](/public/images/ETH-Yield-Farm/section-4/4_1_3.png)
 
 4\. `Deploy`ボタンを押しましょう。

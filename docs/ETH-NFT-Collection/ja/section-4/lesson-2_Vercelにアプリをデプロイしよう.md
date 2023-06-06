@@ -10,7 +10,7 @@ yarn add --dev dotenv
 
 `dotenv`モジュールに関する詳しい説明は、[こちら](https://maku77.github.io/nodejs/env/dotenv.html)を参照してください。
 
-`dotenv`をインストールしたら、`.env`ファイルを更新します。
+`dotenv`をインストールしたら、`.env`ファイルを作成します。
 
 ファイルの先頭に`.`がついているファイルは、「不可視ファイル」です。
 
@@ -18,10 +18,12 @@ yarn add --dev dotenv
 
 操作されては困るファイルについては、このように「不可視」の属性を持たせて、一般の人が触れられないようにします。
 
-ターミナル上で`packages/contract`ディレクトリにいることを確認し、下記を実行しましょう。VS Codeから`.env`ファイルを開きます。
+`packages/contract`ディレクトリ直下に、`.env`ファイルを作成します。
 
-```
-code .env
+```diff
+packages/
+ └── contract/
++    └── .env
 ```
 
 そして、`.env`ファイルを下記のように更新します。
@@ -44,7 +46,6 @@ STAGING_ALCHEMY_KEY = https://...
 
 ```javascript
 // hardhat.config.js
-require('@nomiclabs/hardhat-etherscan');
 require('@nomicfoundation/hardhat-toolbox');
 require('dotenv').config();
 
@@ -124,13 +125,7 @@ Etherscanの **コントラクトの Verification（検証）** を行いまし�
 
 ![](/public/images/ETH-NFT-Collection/section-4/4_2_3.png)
 
-次に、ターミナルで`epic-nfts`ディレクトリに移動して、次のコマンドを実行してください。Etherscanでverificationを行うために必要なツールをインストールします。
-
 ⚠️：Ethereum API keyは誰にも教えてはいけません!
-
-```bash
-npm install @nomiclabs/hardhat-etherscan
-```
 
 まず、`.env`ファイルを開き、先ほどEtherscanから取得した`apiKey`を`Your_Etherscan_apiKey`に貼り付けてください。
 
@@ -144,7 +139,7 @@ ETHERSCAN_API_KEY = Your_Etherscan_apiKey
 そして、`packages/contract/hardhat.config.js`を編集していきます。
 
 
-`require("@nomiclabs/hardhat-etherscan");`を含むのも忘れないようにしましょう。
+`require("@nomiclabs/hardhat-etherscan");`を含むのも忘れないようにしましょう。Etherscanでverificationを行うために必要なパッケージです（こちらはスタータープロジェクトに含まれており、既にインストール済みです）。
 
 ```javascript
 // hardhat.config.js

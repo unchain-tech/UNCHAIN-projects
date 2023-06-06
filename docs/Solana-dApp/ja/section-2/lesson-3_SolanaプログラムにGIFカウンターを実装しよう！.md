@@ -24,8 +24,6 @@ Solanaの「アカウント」は「プログラムが読み書きできるフ�
 それでは、`lib.rs`を以下のとおり修正していきましょう。
 
 ```rust
-// lib.rs
-
 use anchor_lang::prelude::*;
 
 declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
@@ -132,8 +130,6 @@ pub fn start_stuff_off(ctx: Context<StartStuffOff>) -> Result <()> {
 JavaScriptの世界でもアカウントデータを取得できるようになったので、`myepicproject.js`を以下のとおり更新しましょう。
 
 ```javascript
-// myepicproject.js
-
 const anchor = require('@project-serum/anchor');
 
 // 以下の処理に必要なSystemProgramモジュールを用意します。
@@ -212,8 +208,6 @@ console.log('👀 GIF Count', account.totalGifs.toString())
 `lib.rs`を以下のとおり更新します。
 
 ```rust
-// lib.rs
-
 use anchor_lang::prelude::*;
 
 declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
@@ -291,8 +285,6 @@ pub fn add_gif(ctx: Context<AddGif>) -> Result <()> {
 `myepicproject.js`を以下のとおり更新して`add_gif`を呼び出してみましょう。
 
 ```javascript
-// myepicproject.js
-
 const anchor = require('@project-serum/anchor');
 const { SystemProgram } = anchor.web3;
 

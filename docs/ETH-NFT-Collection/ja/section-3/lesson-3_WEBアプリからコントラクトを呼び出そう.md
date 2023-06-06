@@ -61,10 +61,10 @@ const CONTRACT_ADDRESS =
 
 ここでは、コントラクトのアドレスを`CONTRACT_ADDRESS`に格納しています。
 
-**`epic-nfts`ディレクトリ上で、もう一度下記を実行し、コントラクトのアドレスを取得してください。**
+**`ETH-NFT-Collection`ディレクトリ直下で、もう一度下記を実行し、コントラクトのアドレスを取得してください。**
 
 ```bash
-npx hardhat run scripts/deploy.js --network sepolia
+yarn contract deploy:sepolia
 ```
 
 貼り付けるアドレスの例は、以下のようになります。
@@ -347,7 +347,7 @@ Consoleに出力された`https://sepolia.etherscan.io/...`のアドレスをク
 
 **1 \. 再度、コントラクトをデプロイする。**
 
-- `npx hardhat run scripts/deploy.js --network sepolia`を実行する必要があります。
+- `yarn contract deploy:sepolia`を実行する必要があります。
 
 2 \. フロントエンド(`App.js`)の`CONTRACT_ADDRESS`を更新する。
 
