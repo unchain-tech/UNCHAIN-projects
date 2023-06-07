@@ -136,7 +136,7 @@ NEAR-Mulpay
 # dependencies
 **/node_modules
 
-# misc
+# miscpackages
 **/.DS_Store
 ```
 
@@ -160,7 +160,7 @@ NEAR-Mulpay
 
 - 「サーバー」がブロックチェーンであることを除けば、Hardhatはローカルサーバーと同じです。
 
-それでは、先ほど作成した`packages/contract`ディレクトリ内にファイルを作成します。ターミナルに向かい、packages/contract`ディレクトリ内で以下のコマンドを実行します。
+それでは、先ほど作成した`packages/contract`ディレクトリ内にファイルを作成します。ターミナルに向かい、`packages/contract`ディレクトリ内で以下のコマンドを実行します。
 
 ```bash
 cd packages/contract
@@ -169,7 +169,7 @@ yarn init --private -y
 
 `package.json`の内容を以下のように書き換えてください。
 
-```d
+```
 {
   "name": "contract",
   "version": "1.0.0",
@@ -274,7 +274,6 @@ NEAR-Mulpay
  ├── .gitignore
  ├── package.json
  └── packages/
-     ├── client/
      └── contract/
 +        ├── .gitignore
 +        ├── README.md
@@ -366,14 +365,6 @@ Hardhatは段階的に下記を実行しています。
 
 3\. **Hardhat は、コンパイルされたスマートコントラクトをローカルイーサリアムネットワークに「デプロイ」します。**
 
-ターミナルに出力されたアドレスを確認してみましょう。
-
-```bash
-Greeter deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
-```
-
-これは、イーサリアムネットワークのテスト環境でデプロイされたスマートコントラクトのアドレスです。
-
 **フロントエンドのプロジェクト作成**
 
 次にフロントエンドのプロジェクトを作成していきます。
@@ -431,8 +422,6 @@ tree -L 1 -F
 ```
 
 ではこの中の`lib`ディレクトリの中身を編集して以下のような構造にしてください。
-
-その結果下のようになっているはずです。
 
 ```bash
 lib/

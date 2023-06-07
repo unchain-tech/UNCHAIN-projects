@@ -10,7 +10,7 @@
 
 ```
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.17;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
@@ -123,7 +123,7 @@ etherの最小単位`wei`は`10の-18乗`であり、発行数の単位はweiな
 
 ```
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.17;
 
 // Import this file to use console.log
 import "hardhat/console.sol";
