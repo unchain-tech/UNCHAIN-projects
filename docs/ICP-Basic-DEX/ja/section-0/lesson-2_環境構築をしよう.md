@@ -10,10 +10,10 @@ IC SDKとはDFINITYが提供する、ICPブロックチェーン上でキャニ�
 
 [公式ドキュメント](https://internetcomputer.org/docs/current/developer-docs/setup/install/)を参考に、インストールをしていきましょう。
 
-今回は、バージョン`0.14.0`を指定してインストールをしたいと思います。ターミナルで以下のコマンドを実行しましょう。
+今回は、バージョン`0.14.1`を指定してインストールをしたいと思います。ターミナルで以下のコマンドを実行しましょう。
 
 ```bash
-DFX_VERSION=0.14.0 sh -ci "$(curl -sSL https://internetcomputer.org/install.sh)"
+DFX_VERSION=0.14.1 sh -ci "$(curl -sSL https://internetcomputer.org/install.sh)"
 ```
 
 正しくインストールされたことを確認するために、以下を実行します。
@@ -22,10 +22,10 @@ DFX_VERSION=0.14.0 sh -ci "$(curl -sSL https://internetcomputer.org/install.sh)"
 dfx --version
 ```
 
-バージョン`0.14.0`が表示されたら完了です。
+バージョン`0.14.1`が表示されたら完了です。
 
 ```bash
-dfx 0.14.0
+dfx 0.14.1
 ```
 
 ### 🛠 VS Code の拡張機能をインストールする
@@ -92,7 +92,7 @@ dfx start --clean --background
 ターミナル上に出力された最後の行に、`Dashboard: http://localhost:58635/_/dashboard`と表示があれば起動成功です。
 
 ```bash
-Running dfx start for version 0.14.0
+Running dfx start for version 0.14.1
 Using the default definition for the 'local' shared network because /任意のパス/.config/dfx/networks.json does not exist.
 Dashboard: http://localhost:58635/_/dashboard
 ```
