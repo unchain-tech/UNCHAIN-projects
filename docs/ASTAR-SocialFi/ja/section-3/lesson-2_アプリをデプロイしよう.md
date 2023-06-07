@@ -83,7 +83,7 @@ contract_addressには先ほど`Shibuya Testnet`へデプロイした時に取�
 
 また、`Root Directory`が「packages/client」となっていることを確認してください。
 
-![](/public/images/ETH-NFT-Collection/section-4/4_2_9.png)
+![](/public/images/ASTAR-SocialFi/section-3/3_2_15.png)
 
 4\. `Deploy`ボタンを推しましょう。
 
@@ -92,7 +92,7 @@ VercelはGitHubと連動しているので、GitHubが更新されるたびに�
 下記のように、`Building`ログが出力されます。
 基本的に`warning`は無視して問題ありません。
 
-![](/public/images/ASTAR-SocialFi/section-2/2_3_1.png)
+![](/public/images/ASTAR-SocialFi/section-3/3_2_16.png)
 
 これでデプロイは成功しました！
 
