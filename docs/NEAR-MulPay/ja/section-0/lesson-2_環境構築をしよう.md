@@ -222,7 +222,7 @@ npx hardhat
 `hardhat`がターミナル上で立ち上がったら、それぞれの質問を以下のように答えていきます。
 
 ```
-・What do you want to do? →「Create a JavaScript project」を選択
+・What do you want to do? →「Create a TypeScript project」を選択
 ・Hardhat project root: →「'Enter'を押す」 (自動で現在いるディレクトリが設定されます。)
 ・Do you want to add a .gitignore? (Y/n) → 「y」
 ```
@@ -278,7 +278,7 @@ NEAR-Mulpay
 +        ├── .gitignore
 +        ├── README.md
 +        ├── contracts/
-+        ├── hardhat.config.js
++        ├── hardhat.config.ts
 +        ├── package.json
 +        ├── scripts/
 +        └── test/
@@ -338,7 +338,7 @@ npx hardhat test
 ターミナル上で`ls`と入力してみて、下記のフォルダーとファイルが表示されていたら成功です。
 
 ```bash
-README.md         cache             hardhat.config.js package.json      test
+README.md         cache             hardhat.config.ts package.json      test
 artifacts         contracts         node_modules      scripts
 ```
 
