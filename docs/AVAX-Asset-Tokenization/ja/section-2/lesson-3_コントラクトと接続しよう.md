@@ -91,7 +91,7 @@ export const useContract = ({
 
 `contract`ディレクトリへ移動してください。
 
-`.env.local`という名前のファイルを作成し、 以下を記入してください。
+`.env`という名前のファイルを作成し、 以下を記入してください。
 
 `"YOUR_PRIVATE_KEY"`の部分をあなたのアカウントの秘密鍵と入れ替えてください。
 
@@ -118,9 +118,9 @@ TEST_ACCOUNT_PRIVATE_KEY="YOUR_PRIVATE_KEY"
 >
 > ![](/public/images/AVAX-Asset-Tokenization/section-2/3_3_4.png)
 
-> - `.env.local`の`YOUR_PRIVATE_KEY`の部分をここで取得した秘密鍵とを入れ替えます。
+> - `.env`の`YOUR_PRIVATE_KEY`の部分をここで取得した秘密鍵とを入れ替えます。
 
-⚠️gitignoreファイルに`.env.local`が記述されていることを確認して下さい。
+⚠️gitignoreファイルに`.env`が記述されていることを確認して下さい。
 秘密鍵は外部に漏れないようにGitHubに上げません。
 
 > **✍️: スマートコントラクトをデプロイするのに秘密鍵が必要な理由** > **新しくスマートコントラクトをブロックチェーン上にデプロイすること**も、トランザクションの一つです。
@@ -137,7 +137,7 @@ import * as dotenv from 'dotenv'; // 環境構築時にこのパッケージは�
 import '@nomicfoundation/hardhat-toolbox';
 import { HardhatUserConfig } from 'hardhat/config';
 
-// .env.localファイルから環境変数をロードします。
+// .envファイルから環境変数をロードします。
 dotenv.config();
 
 if (process.env.TEST_ACCOUNT_PRIVATE_KEY === undefined) {
@@ -208,8 +208,6 @@ account address that deploy contract: 0xf6DA2F11E8f1faC2a13ac847d52FaF5Ce6e39954
 ```
 
 `assetTokenization address:`に続くコントラクトのアドレスは、 次の項目で必要になるのでどこかに保存しておいてください。
-
-最後に`.gitignore`に`.env.local`が含まれていることを確認してください!
 
 ### 🌵 スマートコントラクトの情報をフロントエンドに反映しましょう
 
