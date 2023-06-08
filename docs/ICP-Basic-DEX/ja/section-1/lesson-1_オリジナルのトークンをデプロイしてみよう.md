@@ -11,7 +11,7 @@
 
 [Psychedelic](https://psychedelic.ooo/)という組織が作成したトークン標準になります。これは、ERC-20のトークン標準をICP上でも利用できるようにMotokoとRustで実装されています。
 
-インターネット・コンピュータのLedger & Tokenizationワーキンググループによって開発されているFTの規格[ICRC-1](https://github.com/dfinity/ICRC-1/blob/main/standards/ICRC-1/README.md)も存在するのですが、現在の`ICRC-1`では、今回のプロジェクトに使用したい機能(`Approve, Transfer From`)が実装されていません。ICRC-1を拡張した次の標準[ICRC-2](https://github.com/dfinity/ICRC-1/tree/main/standards/ICRC-2)では実装予定なのですが、2022年11月現在ではまだDraft中のため選択しませんでした。
+インターネット・コンピュータのLedger & Tokenizationワーキンググループによって開発されているFTの規格[ICRC-1](https://github.com/dfinity/ICRC-1/blob/main/standards/ICRC-1/README.md)も存在するのですが、現在の`ICRC-1`では、今回のプロジェクトに使用したい機能(`Approve, Transfer From`)が実装されていません。ICRC-1を拡張した次の標準[ICRC-2](https://github.com/dfinity/ICRC-1/tree/main/standards/ICRC-2)では実装予定なのですが、2023年6月現在ではまだDraft中のため使用を見送ることにします。
 
 今回は、GithubのサブモジュールとしてDIP20をプロジェクトに組み込み、オリジナルのトークンキャニスターをデプロイしたいと思います。
 
@@ -19,23 +19,34 @@
 
 ### 🐈‍⬛ DIP20 のサブモジュールを取り込もう
 
-`icp_basic_dex/src/`下に取り込みたいので、ディレクトリを移動します。
+ターミナルで`icp_basic_dex/src/`下に移動し、DIP20リポジトリをサブモジュールとして取り込みましょう。
 
 ```bash
-cd ./icp_basic_dex/src
-```
-
-移動後、以下のコマンドでサブモジュールを取り込みましょう。
-
-```bash
+cd src/
 git submodule add https://github.com/Psychedelic/DIP20.git
 ```
 
-`ls`コマンドで確認をし、DIP20が表示されていれば準備完了です。
+src/化にDIP20が追加され、プロジェクトのルートディレクトリに`.gitmodules`ファイルが生成されたら準備完了です。
 
-```bash
-$ ls
-DIP20                  declarations           icp_basic_dex_backend  icp_basic_dex_frontend
+[.gitmodules](https://git-scm.com/docs/gitmodules)は、サブモジュールのプロパティを定義するファイルです。
+
+```diff
+ icp_basic_dex/
+ ├── .env
+ ├── .git/
+ ├── .gitignore
++├── .gitmodules
+ ├── README.md
+ ├── dfx.json
+ ├── node_modules/
+ ├── package-lock.json
+ ├── package.json
+ ├── src/
++│   ├── DIP20/
+ │   ├── declarations/
+ │   ├── icp_basic_dex_backend/
+ │   └── icp_basic_dex_frontend/
+ └── webpack.config.js
 ```
 
 ### 📝 設定ファイル dfx.json を編集しよう
@@ -52,19 +63,21 @@ DIP20                  declarations           icp_basic_dex_backend  icp_basic_d
 {
   "canisters": {
     "icp_basic_dex_backend": {
-      "type": "motoko",
-      "main": "src/icp_basic_dex_backend/main.mo"
+      "main": "src/icp_basic_dex_backend/main.mo",
+      "type": "motoko"
     },
     "GoldDIP20": {
-      "type": "motoko",
-      "main": "src/DIP20/motoko/src/token.mo"
+      "main": "src/DIP20/motoko/src/token.mo",
+      "type": "motoko"
     },
     "SilverDIP20": {
-      "type": "motoko",
-      "main": "src/DIP20/motoko/src/token.mo"
+      "main": "src/DIP20/motoko/src/token.mo",
+      "type": "motoko"
     },
     "icp_basic_dex_frontend": {
-      "dependencies": ["icp_basic_dex_backend"],
+      "dependencies": [
+        "icp_basic_dex_backend"
+      ],
       "frontend": {
         "entrypoint": "src/icp_basic_dex_frontend/src/index.html"
       },
@@ -81,6 +94,7 @@ DIP20                  declarations           icp_basic_dex_backend  icp_basic_d
       "packtool": ""
     }
   },
+  "output_env_file": ".env",
   "version": 1
 }
 ```
