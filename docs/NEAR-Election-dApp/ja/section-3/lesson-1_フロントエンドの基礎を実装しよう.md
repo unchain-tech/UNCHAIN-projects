@@ -65,7 +65,7 @@
 この時、フロントエンドのディレクトリ(ここでは`client`)にいることを確認して行ってください。
 
 ```bash
-npm install react-ipfs-image react-router-dom
+yarn add react-ipfs-image react-router-dom
 ```
 
 その後`frontend/neardev/dev-account.env`にある変数を以下のように書き換えましょう。`YOUR_WALLET_ID`というのは変数にあなたがdeployしたWalletのIdを入れましょう。
@@ -640,18 +640,24 @@ html {
 
 なので`package.json`に移動して以下のように編集しましょう。
 
+その後下のコマンドを実行することによって必要なパッケージをインストールしましょう。
+
+```
+yarn install
+```
+
 これにより`yarn client dev`が呼び出すコマンドが変わり、`neardev/dev-account.env`に記載したwallet idにdeployされているコントラクトを読みにいけるようになりました
 
 ```diff
 {
-  "name": "greeter",
+  "name": "client",
   "version": "1.0.0",
   "license": "(MIT AND Apache-2.0)",
 
-+ "scripts": {
-+   "start": "env-cmd -f ./neardev/dev-account.env parcel frontend/index.html --open",
-+   "dev": "nodemon --watch contract -e ts --exec \"npm run start\""
-+ },
+  "scripts": {
+    "start": "env-cmd -f ./neardev/dev-account.env parcel frontend/index.html --open",
+    "dev": "nodemon --watch contract -e ts --exec \"npm run start\""
+  },
   "devDependencies": {
     "@babel/core": "~7.18.2",
     "@babel/preset-env": "~7.18.2",

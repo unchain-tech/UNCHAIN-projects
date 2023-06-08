@@ -8,7 +8,7 @@
 - `React.js`: ライブラリ
 - `Next.js`: `React.js`のフレームワーク
 
-それぞれの概要については[LEARN コンテンツ](https://app.unchain.tech/learn)内の`AVAX-Messenger/section2/lesson1`説明を載せていますので、 初めて触れる方はご参照ください 💁
+それぞれの概要については[こちら](https://app.unchain.tech/learn/AVAX-Messenger/ja/2/1/)に説明を載せていますので、初めて触れる方はご参照ください 💁
 
 ### 🛠️ 　フロントエンドのセットアップをしよう
 
@@ -28,14 +28,15 @@ yarn create next-app client --ts
  AVAX-Asset-Tokenization
   ├── .gitignore
   ├── package.json
-  └── packages/
-+     ├── client/
-      └── contract/
+  ├── packages/
++ │   ├── client/
+  │   └── contract/
+  └── tsconfig.json
 ```
 
 clientディレクトリ内に生成されたpackage.jsonの設定を確認します。contractディレクトリのpackage.jsonと同様に、`"private": true`となっていることを確認し、設定されていない場合は記述しておきます。
 
-ここで、開発環境がきちんと動作するか確認したいと思います。clientディレクトリ内に`node_modules/`や`yarn.lock`が生成されている場合は、いったん削除してください。次に、ターミナル上で`AVAX-Asset-Tokenization`直下に移動し下記を実行しましょう。
+ここで、開発環境がきちんと動作するか確認したいと思います。clientディレクトリ内に`node_modules/`や`yarn.lock`が生成されている場合は、いったん削除してください。次に、ターミナル上で`AVAX-Asset-Tokenization/`直下に移動し下記を実行しましょう。
 
 ```
 yarn install
@@ -86,7 +87,7 @@ client
 続いて`packages/client`ディレクトリ直下で以下のコマンドを実行して必要なパッケージをインストールしてください。
 
 ```
-yarn add ethers @metamask/providers react-icons
+yarn add ethers@^5.7.2 @metamask/providers@^10.0.0 react-icons@^4.6.0
 ```
 
 - `ethers`: スマートコントラクトとの連携に使用します。
@@ -112,7 +113,7 @@ yarn add ethers @metamask/providers react-icons
 
 MetaMaskを設定できたら、Avalancheのテストネットワークを追加しましょう。
 
-MetaMaskの上部のネットワークタブを開き、 `Add Network`をクリックします。
+MetaMaskの上部のネットワークタブを開き、`Add Network`をクリックします。
 
 ![](/public/images/AVAX-Asset-Tokenization/section-2/3_1_2.png)
 

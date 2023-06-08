@@ -15,9 +15,9 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart';
-import 'package:mulpay_frontend/model/contract_model.dart';
-import 'package:mulpay_frontend/view/screens/home.dart';
-import 'package:mulpay_frontend/view/widgets/navbar.dart';
+import 'package:client/model/contract_model.dart';
+import 'package:client/view/screens/home.dart';
+import 'package:client/view/widgets/navbar.dart';
 import 'package:provider/provider.dart';
 import 'package:web3_connect/web3_connect.dart';
 import 'package:web3dart/web3dart.dart';
@@ -143,9 +143,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:mulpay_frontend/model/contract_model.dart';
-import 'package:mulpay_frontend/view/screens/signin.dart';
-import 'package:mulpay_frontend/view/widgets/navbar.dart';
+import 'package:client/model/contract_model.dart';
+import 'package:client/view/screens/signin.dart';
+import 'package:client/view/widgets/navbar.dart';
 import 'package:provider/provider.dart';
 
 Future main() async {
@@ -303,7 +303,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.mulpay_frontend"
+        applicationId "com.example.client"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
         minSdkVersion 20
@@ -346,9 +346,9 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:mulpay_frontend/model/contract_model.dart';
-import 'package:mulpay_frontend/view/widgets/qr_code.dart';
-import 'package:mulpay_frontend/view/widgets/coin.dart';
+import 'package:client/model/contract_model.dart';
+import 'package:client/view/widgets/qr_code.dart';
+import 'package:client/view/widgets/coin.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 

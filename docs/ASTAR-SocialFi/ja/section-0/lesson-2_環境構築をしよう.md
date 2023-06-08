@@ -36,8 +36,8 @@ source "$HOME/.cargo/env"
 ```
 rustup default stable
 rustup update
-rustup update nightly-2023-05-25
-rustup target add wasm32-unknown-unknown --toolchain nightly-2023-05-25
+rustup update nightly-2023-01-01
+rustup target add wasm32-unknown-unknown --toolchain nightly-2023-01-01
 ```
 
 次に`cargo-contracts CLI`を使用できるようにするための準備をします。下のコマンドを順番にターミナルで実行してください。
@@ -54,15 +54,15 @@ cargo install --force --locked cargo-contract
 では次に下の３つのコマンドを順番にターミナルで実行することによって`rust nightly`を指定のバージョンにしましょう。
 
 ```
-rustup toolchain install nightly-2023-05-25
+rustup toolchain install nightly-2023-01-01
 ```
 
 ```
-rustup target add wasm32-unknown-unknown --toolchain nightly-2023-05-25
+rustup target add wasm32-unknown-unknown --toolchain nightly-2023-01-01
 ```
 
 ```
-rustup component add rust-src --toolchain nightly-2023-05-25
+rustup component add rust-src --toolchain nightly-2023-01-01
 ```
 
 これでコントラクトをデプロイする準備が完了しました！
@@ -136,7 +136,7 @@ yarn <パッケージ名> <実行したいコマンド>
 ```
 
 次に、ASTAR-SocialFiディレクトリ下に`.gitignore`ファイルを作成して以下の内容を書き込みます。
-
+package
 ```bash
 **/yarn-error.log*
 
@@ -189,7 +189,7 @@ yarn init --private -y
   "private": true,
   "scripts": {
     "start": "./astar-collator --dev",
-    "build": "cargo +nightly-2023-05-24 build",
+    "build": "cargo +nightly-2023-01-01 contract build",
     "test": "cargo test"
   }
 }
@@ -203,7 +203,7 @@ yarn init --private -y
 `packages/contract`にいることを確認して、下のコマンドを実行してみましょう。
 
 ```
-cargo aster_sns_contract build
+cargo +nightly-2023-01-01 contract build
 ```
 
 このようなメッセージが返ってきていればOKです！
@@ -270,7 +270,9 @@ tar xvf astar-collator-v4.24.0-macOS-x86_64.tar.gz
 ![](/public/images/ASTAR-SocialFi/section-0/0_2_4.png)
 ![](/public/images/ASTAR-SocialFi/section-0/0_2_5.png)
 
-すると下のような画面が出てくるはずです
+すると下のような画面が出てくるはずです。
+
+※`Brave`を使用している方で想定した動きにならない場合、`Google Chrome`を用いて開いてください。
 
 ![](/public/images/ASTAR-SocialFi/section-0/0_2_6.png)
 この画面ではすでにデプロイがされているので`recent block`という部分にblockのハッシュ値がありますが、みなさんの画面には何もないかもしれません。
@@ -314,7 +316,7 @@ tar xvf astar-collator-v4.24.0-macOS-x86_64.tar.gz
 
 次にフロントエンドに取り掛かっていきます
 
-#### `Next,js`
+#### `Next.js`
 
 今回フロントで使用するのは`Next.js`です。Next.jsとは、JavaScriptでwebアプリを開発できるフレームワークです。
 

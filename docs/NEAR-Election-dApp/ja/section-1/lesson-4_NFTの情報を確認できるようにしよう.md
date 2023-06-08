@@ -196,6 +196,8 @@ pub fn nft_tokens_for_owner(
 mintをしたいところですが、mintができているかを確認するためにまずはNEARのTestnetで自分のWalletを作成する必要があります。
 [こちら](https://wallet.testnet.near.org/)から作成してください。
 
+まず、`packages/contract`に移動します。
+
 walletのidをコピーして下のコマンドの`YOUR_WALLET_ID`に入れてターミナルで実行させてください。
 
 ```bash

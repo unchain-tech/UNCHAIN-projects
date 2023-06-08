@@ -130,8 +130,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   provider: ^6.0.3
   fluid_bottom_nav_bar: ^1.3.0
-  hexcolor: ^2.0.7
-  google_fonts: ^3.0.1
+  hexcolor: ^3.0.1
+  google_fonts: ^4.0.0
   flutter_svg: ^0.22.0
   dropdown_button2: ^1.7.1
   fluttertoast: ^8.0.9
@@ -1034,9 +1034,9 @@ Widget Coins(double displayWidth, displayHeight, String imagePath, symbol, name,
 ```
 import 'package:fluid_bottom_nav_bar/fluid_bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:mulpay_frontend/view/screens/home.dart';
-import 'package:mulpay_frontend/view/screens/send.dart';
-import 'package:mulpay_frontend/view/screens/wallet.dart';
+import 'package:client/view/screens/home.dart';
+import 'package:client/view/screens/send.dart';
+import 'package:client/view/screens/wallet.dart';
 import 'package:provider/provider.dart';
 import 'package:hexcolor/hexcolor.dart';
 
