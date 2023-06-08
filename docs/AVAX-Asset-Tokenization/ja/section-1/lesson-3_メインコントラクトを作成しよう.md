@@ -282,12 +282,10 @@ describe('AssetTokenization', function () {
 
 ### ⭐ テストを実行しましょう
 
-`contract`ディレクトリ直下で以下のコマンドを実行してください。
+以下のコマンドを実行してください。
 
 ```
-
-$ npx hardhat test test/AssetTokenization.ts
-
+yarn test
 ```
 
 以下のような表示がされたらテスト成功です！
