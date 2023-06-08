@@ -11,7 +11,7 @@ Vercelに関する詳しい説明は、[こちら](https://zenn.dev/lollipop_onl
 まず、 ローカルファイルをGitHubへアップロードしましょう。
 
 まだアップロードをしていない方は、 ターミナル上で`AVAX-Asset-Tokenization`に移動して、下記を実行しましょう。
-⚠️ `.gitignore`ファイル内に`.env.local`が記載されていることを確認していください。
+⚠️ `packages/contract/.gitignore`ファイル内に`.env`が記載されていることを確認していください。
 
 ```
 git add .
