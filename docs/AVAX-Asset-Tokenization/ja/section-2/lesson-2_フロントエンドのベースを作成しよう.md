@@ -479,7 +479,7 @@ client
 
 ※ `_app.tsx`は既にコンテキストのところで編集しています。
 
-`_app.tsx`以外のファイルに関して、 [こちら](https://github.com/unchain-dev/AVAX-Asset-Tokenization/tree/main/client/pages)に以下の3つのファイルがあるのでコピーしてください。
+`_app.tsx`以外のファイルに関して、 [こちら](https://github.com/unchain-tech/AVAX-Asset-Tokenization/tree/main/packages/client/pages)に以下の3つのファイルがあるのでコピーしてください。
 
 - `BuyerPage.tsx`
 - `FarmerPage.tsx`
@@ -502,10 +502,10 @@ client
 
 🖥️ 画面で確認しましょう
 
-それでは`client`ディレクトリ直下で以下のコマンドを実行してください！
+ターミナル上で以下のコマンドを実行してください！
 
 ```
-$ npm run dev
+yarn client dev
 ```
 
 そしてブラウザで`http://localhost:3000 `へアクセスしてください。
