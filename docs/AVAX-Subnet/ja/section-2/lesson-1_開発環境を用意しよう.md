@@ -94,6 +94,16 @@ AVAX-Subnetディレクトリ内に、package.jsonファイルが生成されま
 yarn <パッケージ名> <実行したいコマンド>
 ```
 
+次に、TypeScriptの設定ファイル`tsconfig.json`を作成しましょう。今回のプロジェクトは、contractとclientどちらもTypeScriptを使用するため、それぞれのパッケージにtsconfig.jsonが存在します。そのため、ルートディレクトリにもtsconfig.jsonを配置することでパッケージ間で共通したい設定を記述することができます。
+
+それでは、AVAX-AMMディレクトリ直下にいることを確認し、下記のコマンドを実行しましょう。
+
+```bash
+tsc --init
+```
+
+`tsconfig.json`ファイルが生成されたことを確認してください。設定はデフォルトのままにしておきます。
+
 それでは、ワークスペースのパッケージを格納するディレクトリを作成しましょう。
 
 以下のようなフォルダ構成となるように、`packages`ディレクトリとその中に`contract`ディレクトリを作成してください（`client`ディレクトリは、後ほどのレッスンでフロントエンド構築の際に作成したいと思います）。
@@ -102,8 +112,9 @@ yarn <パッケージ名> <実行したいコマンド>
 AVAX-Subnet
  ├── genesis/
  ├── package.json
-+└── packages/
-+    └── contract/
++├── packages/
++│   └── contract/
+ └── tsconfig.json
 ```
 
 `contract`ディレクトリには、スマートコントラクトを構築するためのファイルを作成していきます。
@@ -129,8 +140,9 @@ AVAX-Subnet
 ├── .gitignore
 ├── genesis/
 ├── package.json
-└── packages/
-    └── contract/
+├── packages/
+│   └── contract/
+└── tsconfig.json
 ```
 
 これでモノレポの雛形が完成しました！
@@ -185,9 +197,6 @@ npx hardhat
 
 ・Do you want to add a .gitignore? (Y/n)
 → y
-
-・Do you want to install this sample project's dependencies with npm (@nomicfoundation/hardhat-toolbox)? (Y/n)
-→ n
 ```
 
 （例）
@@ -207,12 +216,8 @@ $npx hardhat
 👷 Welcome to Hardhat v2.12.6 👷‍
 
 ✔ What do you want to do? · Create a TypeScript project
-✔ Hardhat project root: · /任意のディレクトリ
+✔ Hardhat project root: · /任意のディレクトリ/AVAX-Subnet/packages/contract
 ✔ Do you want to add a .gitignore? (Y/n) · y
-✔ Do you want to install this sample project's dependencies with npm (hardhat @nomicfoundation/hardhat-toolbox)? (Y/n) · n
-
-You need to install these dependencies to run the sample project:
-  npm install --save-dev "hardhat@^2.12.6" "@nomicfoundation/hardhat-toolbox@^2.0.0"
 
 ✨ Project created ✨
 
@@ -230,80 +235,20 @@ AVAX-Subnet
  ├── .gitignore
  ├── genesis/
  ├── package.json
- └── packages/
-     └── contract/
-+        ├── .gitignore
-+        ├── README.md
-+        ├── contracts/
-+        ├── hardhat.config.js
-+        ├── package.json
-+        ├── scripts/
-+        └── test/
+ ├── packages/
+ │   └── contract/
++│       ├── .gitignore
++│       ├── README.md
++│       ├── contracts/
++│       ├── hardhat.config.ts
++│       ├── package.json
++│       ├── scripts/
++│       ├── test/
++│       └── tsconfig.json
+ └── tsconfig.json
 ```
 
----
-
-📓 `TypeScript`について
-
-初めて`TypeScript`を触れる方向けに少し解説を入れさせて頂きます。
-
-`TypeScript`のコードはコンパイルにより`JavaScript`のコードに変換されてから実行されます。
-
-最終的には`JavaScript`のコードとなるので、処理能力など`JavaScript`と変わることはありません。  
-ですが`TypeScript`には静的型付け機能を搭載しているという特徴があります。
-
-静的型付けとは、ソースコード内の値やオブジェクトの型をコンパイル時に解析し、安全性が保たれているかを検証するシステム・方法のことです。
-
-`JavaScript`では明確に型を指定する必要がないため、コード内で型の違う値を誤って操作している場合は実行時にそのエラーが判明することがあります。
-
-`TypeScript`はそれらのエラーはコンパイル時に判明するためバグの早期発見に繋がります。
-バグの早期発見は開発コストを下げることにつながります。
-
-本プロジェクトでは、コントラクトのテストとフロントエンドの構築に`TypeScript`を使用します。  
-フロントエンドの実装の方では自ら型の指定をする部分が多いのでより型について認識できるかもしれません。  
-（コントラクのテスト実装の方では、自動的に型を判別する機能を使用しているので自ら型を指定する部分が少ないです）。
-
-ひとまず、オブジェクトの型がわかっていないと実行できないような`JavaScript`コード、という認識でまずは進めてみてください。
-
----
-
-### ⭐️ 実行する
-
-すべてが機能していることを確認するには,以下を実行します。
-
-```
-$ npx hardhat test
-```
-
-次のように表示されたら成功です! 🎉
-
-![](/public/images/AVAX-Subnet/section-2/1_1_1.png)
-
-ここまできたら,フォルダーの中身を整理しましょう。
-
-`contract`内は以下のようなフォルダ構成になっているはずです。
-
-```
-contract
-├── README.md
-├── artifacts
-├── cache
-├── contracts
-├── hardhat.config.ts
-├── node_modules
-├── package-lock.json
-├── package.json
-├── scripts
-├── test
-├── tsconfig.json
-└── typechain-types
-```
-
-1\. `test`の下のファイル`Lock.ts`と`contracts`の下のファイル`Lock.sol`を削除してください。
-
-ディレクトリ自体は削除しないように注意しましょう。
-
-2\. `package.json`ファイルを以下のように更新しましょう。
+それでは、`contract`ディレクトリ内に生成された`package.json`ファイルを以下を参考に更新をしましょう。
 
 ```diff
 {
@@ -339,6 +284,70 @@ contract
 ```
 
 不要な定義を削除し、hardhatの自動テストを実行するためのコマンドを追加しました。
+
+---
+
+📓 `TypeScript`について
+
+初めて`TypeScript`を触れる方向けに少し解説を入れさせて頂きます。
+
+`TypeScript`のコードはコンパイルにより`JavaScript`のコードに変換されてから実行されます。
+
+最終的には`JavaScript`のコードとなるので、処理能力など`JavaScript`と変わることはありません。  
+ですが`TypeScript`には静的型付け機能を搭載しているという特徴があります。
+
+静的型付けとは、ソースコード内の値やオブジェクトの型をコンパイル時に解析し、安全性が保たれているかを検証するシステム・方法のことです。
+
+`JavaScript`では明確に型を指定する必要がないため、コード内で型の違う値を誤って操作している場合は実行時にそのエラーが判明することがあります。
+
+`TypeScript`はそれらのエラーはコンパイル時に判明するためバグの早期発見に繋がります。
+バグの早期発見は開発コストを下げることにつながります。
+
+本プロジェクトでは、コントラクトのテストとフロントエンドの構築に`TypeScript`を使用します。  
+フロントエンドの実装の方では自ら型の指定をする部分が多いのでより型について認識できるかもしれません。  
+（コントラクのテスト実装の方では、自動的に型を判別する機能を使用しているので自ら型を指定する部分が少ないです）。
+
+ひとまず、オブジェクトの型がわかっていないと実行できないような`JavaScript`コード、という認識でまずは進めてみてください。
+
+---
+
+### ⭐️ 実行する
+
+すべてが機能していることを確認するには、AVAX-Subnet/直下から以下を実行します。
+
+```
+yarn test
+```
+
+次のように表示されたら成功です! 🎉
+
+![](/public/images/AVAX-Subnet/section-2/1_1_1.png)
+
+ここまできたら,フォルダーの中身を整理しましょう。
+
+これからテストの実行を行う際は、`AVAX-Subnet/`直下で`yarn test`を実行します。
+
+`contract`内は以下のようなフォルダ構成になっているはずです。
+
+```
+contract
+├── README.md
+├── artifacts
+├── cache
+├── contracts
+├── hardhat.config.ts
+├── node_modules
+├── package-lock.json
+├── package.json
+├── scripts
+├── test
+├── tsconfig.json
+└── typechain-types
+```
+
+`test`の下のファイル`Lock.ts`と`contracts`の下のファイル`Lock.sol`を削除してください。
+
+ディレクトリ自体は削除しないように注意しましょう。
 
 ### 🌔 参考リンク
 

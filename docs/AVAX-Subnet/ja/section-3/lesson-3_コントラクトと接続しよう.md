@@ -128,7 +128,7 @@ cp -r typechain-types/* ../client/types/
 それでは`AVAX-Subnet`ディレクトリ直下で以下のコマンドを実行し、ブラウザで`http://localhost:3000 `へアクセスします。
 
 ```
-$ yarn client dev
+yarn client dev
 ```
 
 アプリにユーザアカウントでアクセスします。

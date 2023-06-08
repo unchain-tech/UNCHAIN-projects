@@ -43,7 +43,7 @@ NFTを取得する条件は,以下のようになります。
 3. このページの最後にリンクされているProject Completion Formに記入する  
 ※今回Vercelリンクは無いので、提出フォームのVercelリンク欄にはあなたが作成したプロジェクトのGithubリンクを載せてください。
 
-4. Discordの`avalanche-post-projects`チャンネルに、あなたが作成したプロジェクトのGithubリンクを載せてください。
+4. Discordの`#post-your-project`チャンネルに、あなたが作成したプロジェクトのGithubリンクを載せてください。
 
 😉🎉 Discordに投稿する際に,追加実装した機能があれば、その概要も教えていただけると幸いです!
 
