@@ -10,7 +10,7 @@ Vercelのアカウントをお持ちでない方は、上記のリンクにア�
 
 1 \. 最新のコードをGitHubにプッシュします。
 
-2 \. Vercelのダッシュボードから、`New Project`をクリックしてください。
+2 \. Vercelのダッシュボードから、`Add New...`をクリックし、`Project`を選択します。
 
 ![](/public/images/Solana-Wallet/section-3/3_3_1.png)
 

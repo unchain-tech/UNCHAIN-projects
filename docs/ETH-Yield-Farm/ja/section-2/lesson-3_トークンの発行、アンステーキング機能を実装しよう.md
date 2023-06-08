@@ -14,7 +14,6 @@
 ではpackages/contract/testに`test.js`という名前でファイルを作成して、以下のように記述しましょう。
 
 ```javascript
-// test.js
 const hre = require('hardhat');
 const { assert, expect } = require('chai');
 const web3 = require('web3');
@@ -285,6 +284,34 @@ main().catch((error) => {
 ここで行っていることは単純なことで、各コントラクトをデプロイしたのちにトークンファームにdApp用のトークンを全て移動しているというものです。
 
 dApp用のトークンはアンステーキングのときに投資家の方に自動的に配布される必要があるのでコントラクトに移されています。
+
+ここで、`packages/contract/package.json`の`script`部分を以下のように編集してください。
+
+```
+"scripts": {
+    "test": "npx hardhat test",
+    "deploy": "npx hardhat run scripts/deploy.js --network sepolia"
+  },
+```
+その後ルートディレクトリにいることを確認して、ターミナル上で下記を実行してみましょう。
+
+では下記のコマンドを実行してコントラクトをdeployしましょう！
+
+```
+yarn contract deploy
+```
+
+ターミナルには下のような結果が返ってきているはずです。
+
+```
+Compiled 3 Solidity files successfully
+Deploying contracts with account:  0x04CD057E4bAD766361348F26E847B546cBBc7946
+Dai Token Contract has been deployed to:  0x899277E309A644554da3977d5C509Feb93D3A627
+Dapp Token Contract has been deployed to:  0xe2c10c09d9F0DCaab07678054B13a8837B99f612
+TokenFarm Contract has been deployed to:  0x3f8237063F68F034BF25Cf096B164486eCD043ad
+```
+
+これらのコントラクトアドレスは後ほど使用するのでどこかに保存しておきましょう。
 
 ### 🙋‍♂️ 質問する
 

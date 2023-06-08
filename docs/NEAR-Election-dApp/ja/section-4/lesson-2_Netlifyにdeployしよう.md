@@ -11,7 +11,7 @@ Netlifyのアカウントをお持ちでない方は、上記のリンクにア�
 まずはターミナルで下のコマンドを実行しましょう。これはnetlifyとやりとりをするためのものです。
 
 ```diff
-npm install netlify-cli -g
+yarn add netlify-cli -g
 ```
 
 次に下のコードでログインしましょう。
@@ -20,7 +20,7 @@ npm install netlify-cli -g
 netlify login
 ```
 
-次にNetlifyでのページ遷移がうまく行くように`near-election-dapp/near-election-dapp-frontend`の直下（.gitignoreやpackage.jsonと同じ階層）に`netlify.toml`というファイルを作成して下のコードを加えましょう。
+次にNetlifyでのページ遷移がうまく行くように`Near-Election-dApp/packages/client`の直下（.gitignoreやpackage.jsonと同じ階層）に`netlify.toml`というファイルを作成して下のコードを加えましょう。
 
 [netlify.toml]
 

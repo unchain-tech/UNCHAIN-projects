@@ -35,11 +35,11 @@ export ROOT_PRINCIPAL=$(dfx identity get-principal)
 
 # `||（OR演算子）`：左側のコマンドが失敗（終了ステータス0以外）した場合、右側のコマンドが実行される
 ## 既にuser1が存在する場合、`dfx identity new user1`コマンドは実行エラーとなってしまうので、対策として`|| true`を使用
-dfx identity new user1 --disable-encryption || true
+dfx identity new user1 --storage-mode=plaintext || true
 dfx identity use user1
 export USER1_PRINCIPAL=$(dfx identity get-principal)
 
-dfx identity new user2 --disable-encryption || true
+dfx identity new user2 --storage-mode=plaintext || true
 dfx identity use user2
 export USER2_PRINCIPAL=$(dfx identity get-principal)
 
@@ -228,13 +228,14 @@ bash ./scripts/test.sh
 実行結果を確認してみましょう。
 
 ```bash
+# キャニスターデプロイの出力結果は省略しています...
+
+Using identity: "user1".
 ===== getToken =====
 return 1_000: OK
 return Err AlreadyGiven: OK
 ===== deposit =====
-[Canister rno2w-sqaaa-aaaaa-aaacq-cai] Message caller: rclnc-aonng-g2cn6-uk2g5-7r3gv-3jge3-bi5qz-qgrbs-bdzel-gaw47-3ae| Deposit Token: rrkah-fqaaa-aaaaa-aaaaq-cai
 return 1_000: OK
-[Canister rno2w-sqaaa-aaaaa-aaacq-cai] Message caller: rclnc-aonng-g2cn6-uk2g5-7r3gv-3jge3-bi5qz-qgrbs-bdzel-gaw47-3ae| Deposit Token: rrkah-fqaaa-aaaaa-aaaaq-cai
 return Err BalanceLow: OK
 ===== placeOrder =====
 return order details: OK
@@ -248,8 +249,6 @@ Using identity: "user2".
 return Err NotAllowed: OK
 Using identity: "user2".
 (variant { Ok = 1_000 : nat })
-[Canister rno2w-sqaaa-aaaaa-aaacq-cai] Message caller: wpasg-2oe3l-ct4yn-lhkvw-n5kto-yanmv-xybeo-mt56y-ijwwt-krrge-mqe| Deposit Token: r7inp-6aaaa-aaaaa-aaabq-cai
-[Canister rno2w-sqaaa-aaaaa-aaacq-cai] Success Trade !
 return null: OK
 ===== getBalance =====
 return 100: OK
@@ -264,7 +263,7 @@ return Err BalanceLow: OK
 Using identity: "default".
 Removed identity "user1".
 Removed identity "user2".
-Using the default definition for the 'local' shared network because /Users/user/.config/dfx/networks.json does not exist.
+Using the default definition for the 'local' shared network because /任意のパス/.config/dfx/networks.json does not exist.
 Stopping canister http adapter...
 Stopped.
 Stopping the replica...
@@ -282,7 +281,7 @@ Stopped.
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの`#internet-computer`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#icp`で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 

@@ -1,6 +1,6 @@
-これまでフロントエンドにUIを用意し, ウォレットとの接続も出来ました！
+これまでフロントエンドにUIを用意し、ウォレットとの接続も出来ました！
 
-このレッスンではあなたのスマートコントラクトをデプロイし, フロントエンドと連携します。
+このレッスンではあなたのスマートコントラクトをデプロイし、フロントエンドと連携します。
 
 ### 🌵 コントラクトとの接続部分を実装しましょう
 
@@ -8,24 +8,24 @@
 
 ### 📁 `hooks`ディレクトリ
 
-`hooks`ディレクトリ内に`useContract.ts`というファイルを作成し, 以下のコードを記述してください。
+`hooks`ディレクトリ内に`useContract.ts`というファイルを作成し、以下のコードを記述してください。
 💁 現時点ではまだ用意していないファイルからimportしている箇所があるためエラーメッセージが出ても無視して大丈夫です。
 
 ```ts
-import { BigNumber, ethers } from "ethers";
-import { useEffect, useState } from "react";
+import { BigNumber, ethers } from 'ethers';
+import { useEffect, useState } from 'react';
 
-import { USDCToken as UsdcContractType } from "../typechain-types";
-import { JOEToken as JoeContractType } from "../typechain-types";
-import { AMM as AmmContractType } from "../typechain-types";
-import AmmArtifact from "../utils/AMM.json";
-import { getEthereum } from "../utils/ethereum";
-import UsdcArtifact from "../utils/USDCToken.json";
-import JoeArtifact from "../utils/USDCToken.json";
+import { USDCToken as UsdcContractType } from '../typechain-types';
+import { JOEToken as JoeContractType } from '../typechain-types';
+import { AMM as AmmContractType } from '../typechain-types';
+import AmmArtifact from '../utils/AMM.json';
+import { getEthereum } from '../utils/ethereum';
+import UsdcArtifact from '../utils/USDCToken.json';
+import JoeArtifact from '../utils/USDCToken.json';
 
-export const UsdcAddress = "コントラクトのデプロイ先アドレス";
-export const JoeAddress = "コントラクトのデプロイ先アドレス";
-export const AmmAddress = "コントラクトのデプロイ先アドレス";
+export const UsdcAddress = 'コントラクトのデプロイ先アドレス';
+export const JoeAddress = 'コントラクトのデプロイ先アドレス';
+export const AmmAddress = 'コントラクトのデプロイ先アドレス';
 
 export type TokenType = {
   symbol: string;
@@ -51,31 +51,35 @@ export const useContract = (
   const [amm, setAmm] = useState<AmmType>();
   const ethereum = getEthereum();
 
-  const getContract = (
-    contractAddress: string,
-    abi: ethers.ContractInterface,
-    storeContract: (_: ethers.Contract) => void
-  ) => {
-    if (!ethereum) {
-      console.log("Ethereum object doesn't exist!");
-      return;
-    }
-    if (!currentAccount) {
-      // ログインしていない状態でコントラクトの関数を呼び出すと失敗するため
-      // currentAccountがundefinedの場合はcontractオブジェクトもundefinedにします。
-      console.log("currentAccount doesn't exist!");
-      return;
-    }
-    try {
-      // @ts-ignore: ethereum as ethers.providers.ExternalProvider
-      const provider = new ethers.providers.Web3Provider(ethereum);
-      const signer = provider.getSigner(); // 簡易実装のため, 引数なし = 初めのアカウント(account#0)を使用する
-      const Contract = new ethers.Contract(contractAddress, abi, signer);
-      storeContract(Contract);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const getContract = useCallback(
+    (
+      contractAddress: string,
+      abi: ethers.ContractInterface,
+      storeContract: (_: ethers.Contract) => void
+    ) => {
+      if (!ethereum) {
+        console.log("Ethereum object doesn't exist!");
+        return;
+      }
+      if (!currentAccount) {
+        // ログインしていない状態でコントラクトの関数を呼び出すと失敗するため
+        // currentAccountがundefinedの場合はcontractオブジェクトもundefinedにします。
+        console.log("currentAccount doesn't exist!");
+        return;
+      }
+      try {
+        const provider = new ethers.providers.Web3Provider(
+          ethereum as unknown as ethers.providers.ExternalProvider,
+        );
+        const signer = provider.getSigner(); // 簡易実装のため、引数なし = 初めのアカウント(account#0)を使用する
+        const Contract = new ethers.Contract(contractAddress, abi, signer);
+        storeContract(Contract);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    [ethereum, currentAccount],
+  );
 
   const generateUsdc = async (contract: UsdcContractType) => {
     try {
@@ -114,7 +118,7 @@ export const useContract = (
     getContract(AmmAddress, AmmArtifact.abi, (Contract: ethers.Contract) => {
       generateAmm(Contract as AmmContractType);
     });
-  }, [ethereum, currentAccount]);
+  }, [ethereum, currentAccount, getContract]);
 
   return {
     usdc,
@@ -124,7 +128,7 @@ export const useContract = (
 };
 ```
 
-ファイル上部は必要な関数などのimportと, 型定義をしています。
+ファイル上部は必要な関数などのimportと、型定義をしています。
 💁 現時点ではまだ用意していないファイルからimportしている箇所があるためエラーメッセージが出ても無視して大丈夫です。
 
 ```ts
@@ -150,31 +154,35 @@ export type AmmType = {
 AMMのコントラクトのインスタンスとPRECISIONを保持します。
 
 ```ts
-const getContract = (
-  contractAddress: string,
-  abi: ethers.ContractInterface,
-  storeContract: (_: ethers.Contract) => void
-) => {
-  if (!ethereum) {
-    console.log("Ethereum object doesn't exist!");
-    return;
-  }
-  if (!currentAccount) {
-    // ログインしていない状態でコントラクトの関数を呼び出すと失敗するため
-    // currentAccountがundefinedの場合はcontractオブジェクトもundefinedにします。
-    console.log("currentAccount doesn't exist!");
-    return;
-  }
-  try {
-    // @ts-ignore: ethereum as ethers.providers.ExternalProvider
-    const provider = new ethers.providers.Web3Provider(ethereum);
-    const signer = provider.getSigner(); // 簡易実装のため, 引数なし = 初めのアカウント(account#0)を使用する
-    const Contract = new ethers.Contract(contractAddress, abi, signer);
-    storeContract(Contract);
-  } catch (error) {
-    console.log(error);
-  }
-};
+const getContract = useCallback(
+  (
+    contractAddress: string,
+    abi: ethers.ContractInterface,
+    storeContract: (_: ethers.Contract) => void
+  ) => {
+    if (!ethereum) {
+      console.log("Ethereum object doesn't exist!");
+      return;
+    }
+    if (!currentAccount) {
+      // ログインしていない状態でコントラクトの関数を呼び出すと失敗するため
+      // currentAccountがundefinedの場合はcontractオブジェクトもundefinedにします。
+      console.log("currentAccount doesn't exist!");
+      return;
+    }
+    try {
+      const provider = new ethers.providers.Web3Provider(
+        ethereum as unknown as ethers.providers.ExternalProvider,
+      );
+      const signer = provider.getSigner(); // 簡易実装のため、引数なし = 初めのアカウント(account#0)を使用する
+      const Contract = new ethers.Contract(contractAddress, abi, signer);
+      storeContract(Contract);
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  [ethereum, currentAccount],
+);
 ```
 
 `getContract`は引数で指定されたアドレスとabiのコントラクトのインスタンスを取得する関数です。
@@ -211,7 +219,7 @@ const generateAmm = async (contract: AmmContractType) => {
 };
 ```
 
-それぞれ引数で渡されたコントラクトのインスタンスから, フロントエンドで使用するオブジェクトに変換しています。
+それぞれ引数で渡されたコントラクトのインスタンスから、フロントエンドで使用するオブジェクトに変換しています。
 
 ```ts
 useEffect(() => {
@@ -224,18 +232,18 @@ useEffect(() => {
   getContract(AmmAddress, AmmArtifact.abi, (Contract: ethers.Contract) => {
     generateAmm(Contract as AmmContractType);
   });
-}, [ethereum, currentAccount]);
+}, [ethereum, currentAccount, getContract]);
 ```
 
 各コントラクトの取得からオブジェクトの作成までを行っています。
 
 ### 💥 コントラクトをテストネットにデプロイしましょう
 
-コントラクトとの接続部分を作成したので, コントラクトを使用するために, テストネットへデプロイします。
+コントラクトとの接続部分を作成したので、コントラクトを使用するために、テストネットへデプロイします。
 
 `packages/contract`ディレクトリへ移動してください。
 
-`.env`という名前のファイルを作成し, 以下を記入してください。
+`.env`という名前のファイルを作成し、以下を記入してください。
 
 `"YOUR_PRIVATE_KEY"`の部分をあなたのアカウントの秘密鍵と入れ替えてください。
 
@@ -245,11 +253,11 @@ TEST_ACCOUNT_PRIVATE_KEY="YOUR_PRIVATE_KEY"
 
 > `YOUR_PRIVATE_KEY`の取得
 >
-> 1.  お使いのブラウザから,MetaMask プラグインをクリックして,ネットワークを`Avalanche FUJI C-Chain`に変更します。
+> 1.  お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを`Avalanche FUJI C-Chain`に変更します。
 >
 > ![](/public/images/AVAX-AMM/section-3/3_3_1.png)
 >
-> 2.  それから,`Account details`を選択してください。
+> 2.  それから、`Account details`を選択してください。
 >
 > ![](/public/images/AVAX-AMM/section-3/3_3_2.png)
 >
@@ -257,8 +265,8 @@ TEST_ACCOUNT_PRIVATE_KEY="YOUR_PRIVATE_KEY"
 >
 > ![](/public/images/AVAX-AMM/section-3/3_3_3.png)
 >
-> 4.  MetaMask のパスワードを求められるので,入力したら`Confirm`を押します。
->     あなたの秘密鍵（＝ `Private Key` ）が表示されるので,クリックしてコピーします。
+> 4.  MetaMask のパスワードを求められるので、入力したら`Confirm`を押します。
+>     あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
 >
 > ![](/public/images/AVAX-AMM/section-3/3_3_4.png)
 
@@ -267,32 +275,32 @@ TEST_ACCOUNT_PRIVATE_KEY="YOUR_PRIVATE_KEY"
 ⚠️gitignoreファイルに.envが記述されていることを確認して下さい。
 秘密鍵は外部に漏れないようにGitHub上に上げません。
 
-> **✍️: スマートコントラクトをデプロイするのに秘密鍵が必要な理由** > **新しくスマートコントラクトをブロックチェーン上にデプロイすること**も,トランザクションの一つです。
+> **✍️: スマートコントラクトをデプロイするのに秘密鍵が必要な理由** > **新しくスマートコントラクトをブロックチェーン上にデプロイすること**も、トランザクションの一つです。
 >
-> トランザクションを行うためには,ブロックチェーンに「ログイン」する必要があります。
+> トランザクションを行うためには、ブロックチェーンに「ログイン」する必要があります。
 >
 > 「ログイン」には公開アドレスと秘密鍵の情報が必要となります。
 
 次に`packages/contract`ディレクトリ直下にある`hardhat.config.ts`中身を以下のコードに書き換えてください。
-※ solidityのバージョンの部分(`solidity: "0.8.17",`)は元々記載されているものを使用してください。
+※ solidityのバージョンの部分(`solidity: '0.8.17',`)は元々記載されているものを使用してください。
 
 ```ts
-import * as dotenv from "dotenv"; // 環境構築時にこのパッケージはインストールしてあります。
-import "@nomicfoundation/hardhat-toolbox";
-import { HardhatUserConfig } from "hardhat/config";
+import * as dotenv from 'dotenv'; // 環境構築時にこのパッケージはインストールしてあります。
+import '@nomicfoundation/hardhat-toolbox';
+import { HardhatUserConfig } from 'hardhat/config';
 
 // .envファイルから環境変数をロードします。
 dotenv.config();
 
 if (process.env.TEST_ACCOUNT_PRIVATE_KEY === undefined) {
-  console.log("private key is missing");
+  console.log('private key is missing');
 }
 
 const config: HardhatUserConfig = {
-  solidity: "0.8.17",
+  solidity: '0.8.17',
   networks: {
     fuji: {
-      url: "https://api.avax-test.network/ext/bc/C/rpc",
+      url: 'https://api.avax-test.network/ext/bc/C/rpc',
       chainId: 43113,
       accounts:
         process.env.TEST_ACCOUNT_PRIVATE_KEY !== undefined
@@ -305,34 +313,34 @@ const config: HardhatUserConfig = {
 export default config;
 ```
 
-続いて, `scripts`ディレクトリ内にある`deploy.ts`を以下のコードに書き換えてください。
+続いて、`scripts`ディレクトリ内にある`deploy.ts`を以下のコードに書き換えてください。
 
 ```ts
-import { ethers } from "hardhat";
+import { ethers } from 'hardhat';
 
 async function deploy() {
   // コントラクトをデプロイするアカウントのアドレスを取得します。
   const [deployer] = await ethers.getSigners();
 
   // USDCトークンのコントラクトをデプロイします。
-  const USDCToken = await ethers.getContractFactory("USDCToken");
+  const USDCToken = await ethers.getContractFactory('USDCToken');
   const usdc = await USDCToken.deploy();
   await usdc.deployed();
 
   // JOEトークンのコントラクトをデプロイします。
-  const JOEToken = await ethers.getContractFactory("JOEToken");
+  const JOEToken = await ethers.getContractFactory('JOEToken');
   const joe = await JOEToken.deploy();
   await joe.deployed();
 
   // AMMコントラクトをデプロイします。
-  const AMM = await ethers.getContractFactory("AMM");
+  const AMM = await ethers.getContractFactory('AMM');
   const amm = await AMM.deploy(usdc.address, joe.address);
   await amm.deployed();
 
-  console.log("usdc address:", usdc.address);
-  console.log("joe address:", joe.address);
-  console.log("amm address:", amm.address);
-  console.log("account address that deploy contract:", deployer.address);
+  console.log('usdc address:', usdc.address);
+  console.log('joe address:', joe.address);
+  console.log('amm address:', amm.address);
+  console.log('account address that deploy contract:', deployer.address);
 }
 
 deploy()
@@ -345,7 +353,7 @@ deploy()
 
 `deploy`関数の中身は`test/AMM.ts`内の`deployContract`関数と同じようなことをしています。
 
-このスクリプトを実行する際に先ほど`hardhat.config.ts`で設定したネットワークを指定すると, `ethers.getSigners()`の返す初めのアカウントの値はあなたのアカウントのアドレスになります。
+このスクリプトを実行する際に先ほど`hardhat.config.ts`で設定したネットワークを指定すると、`ethers.getSigners()`の返す初めのアカウントの値はあなたのアカウントのアドレスになります。
 
 ターミナル上で以下のコマンドを実行してください。
 
@@ -355,13 +363,10 @@ yarn contract deploy
 
 このような出力結果が出たら成功です！
 
-```
-> AVAX-AMM@1.0.0 contract
-> npm run --workspace=contract deploy
-
-
-> contract@1.0.0 deploy
-> npx hardhat run scripts/deploy.ts --network fuji
+```bash
+yarn run v1.22.19
+$ yarn workspace contract deploy
+$ npx hardhat run scripts/deploy.ts --network fuji
 
 usdc address: 0x5aC2B0744ACD8567c1c33c5c8644C43147645770
 joe address: 0x538589242114BCBcD0f12B1990865E57b3344448
@@ -377,7 +382,7 @@ account address that deploy contract: 0xdf90d78042C8521073422a7107262D61243a21D0
 
 ### 🌵 スマートコントラクトの情報をフロントエンドに使えるようにしましょう
 
-コントラクトをデプロイしたので, 実際に使えるようにスマートコントラクトの情報をフロントエンドに渡します。
+コントラクトをデプロイしたので、実際に使えるようにスマートコントラクトの情報をフロントエンドに渡します。
 
 📽️ コントラクトのアドレスをコピーする
 
@@ -389,31 +394,31 @@ joe address: 0x538589242114BCBcD0f12B1990865E57b3344448
 amm address: 0x1d09929346a768Ec6919bf89dae36B27D7e39321
 ```
 
-を,
-`packages/client`ディレクトリ内, `hooks/useContract.ts`の中の以下の部分にそれぞれ貼り付けてください。
+を、
+`packages/client`ディレクトリ内、`hooks/useContract.ts`の中の以下の部分にそれぞれ貼り付けてください。
 
 ```ts
-export const UsdcAddress = "コントラクトのデプロイ先アドレス";
-export const JoeAddress = "コントラクトのデプロイ先アドレス";
-export const AmmAddress = "コントラクトのデプロイ先アドレス";
+export const UsdcAddress = 'コントラクトのデプロイ先アドレス';
+export const JoeAddress = 'コントラクトのデプロイ先アドレス';
+export const AmmAddress = 'コントラクトのデプロイ先アドレス';
 ```
 
 例:
 
 ```ts
-export const UsdcAddress = "0x5aC2B0744ACD8567c1c33c5c8644C43147645770";
-export const JoeAddress = "0x538589242114BCBcD0f12B1990865E57b3344448";
-export const AmmAddress = "0x1d09929346a768Ec6919bf89dae36B27D7e39321";
+export const UsdcAddress = '0x5aC2B0744ACD8567c1c33c5c8644C43147645770';
+export const JoeAddress = '0x538589242114BCBcD0f12B1990865E57b3344448';
+export const AmmAddress = '0x1d09929346a768Ec6919bf89dae36B27D7e39321';
 ```
 
 📽️ ABIファイルを取得する
 
-ABIファイルは,コントラクトがコンパイルされた時に生成され,`artifacts`ディレクトリに自動的に格納されます。
+ABIファイルは、コントラクトがコンパイルされた時に生成され、`artifacts`ディレクトリに自動的に格納されます。
 
-`packages/contract`からパスを追っていくと, `packages/contract/artifacts/contracts/~.sol/~.json`というファイルがそれぞれのコントラクトに対して生成されているはずです。
+`packages/contract`からパスを追っていくと、`packages/contract/artifacts/contracts/~.sol/~.json`というファイルがそれぞれのコントラクトに対して生成されているはずです。
 
 これを`client`の中の`utils`ディレクトリ内にコピーしてください。
-`AVAX-AMM`直下からターミナルでコピーを行う場合, このようなコマンドになります。
+`AVAX-AMM`直下からターミナルでコピーを行う場合、このようなコマンドになります。
 
 ```
 yarn contract cp:artifacts
@@ -421,14 +426,14 @@ yarn contract cp:artifacts
 
 📽️ 型定義ファイルを取得する
 
-TypeScriptは静的型付け言語なので, 外部から取ってきたオブジェクトの情報として型を知りたい場合があります。
+TypeScriptは静的型付け言語なので、外部から取ってきたオブジェクトの情報として型を知りたい場合があります。
 その時に役に立つのが型定義ファイルです。
 
-コントラクトの型定義ファイルは, コントラクトがコンパイルされた時に生成され, `typechain-types`ディレクトリに自動的に格納されます。
-これは`npx hardhat`実行時にtypescriptを選択したため, 初期設定が済んでいるためです。
+コントラクトの型定義ファイルは、コントラクトがコンパイルされた時に生成され、`typechain-types`ディレクトリに自動的に格納されます。
+これは`npx hardhat`実行時にtypescriptを選択したため、初期設定が済んでいるためです。
 
 `contract`内の`typechain-types`ディレクトリをそのまま`client`にコピーしてください。
-`AVAX-AMM`直下からターミナルでコピーを行う場合, このようなコマンドになります。
+`AVAX-AMM`直下からターミナルでコピーを行う場合、このようなコマンドになります。
 
 ```
 yarn contract cp:typechain
@@ -436,11 +441,11 @@ yarn contract cp:typechain
 
 以上でコントラクトの情報を反映することができました。
 
-必要なファイルを用意したので, `client/hooks/useContract.ts`内ファイル上部のimport文で出ていたエラーが消えているはずです。
+必要なファイルを用意したので、`client/hooks/useContract.ts`内ファイル上部のimport文で出ていたエラーが消えているはずです。
 
 ### 🌴 コントラクトの関数を呼び出しましょう
 
-フロントエンドでコントラクトを使用する準備が整ったので, 実際に関数を呼び出してみます。
+フロントエンドでコントラクトを使用する準備が整ったので、実際に関数を呼び出してみます。
 
 `client`ディレクトリへ移動してください。
 
@@ -448,7 +453,7 @@ yarn contract cp:typechain
 
 📁 `Details`ディレクトリ
 
-`components`ディレクトリ内に`Details`というディレクトリを作成し,
+`components`ディレクトリ内に`Details`というディレクトリを作成し、
 その中に`Details.module.css`と`Details.tsx`という名前のファイルを作成してください。
 
 `Details.module.css`内に以下のコードを記述してください。
@@ -513,12 +518,12 @@ yarn contract cp:typechain
 `Details.tsx`内に以下のコードを記述してください。
 
 ```tsx
-import { ethers } from "ethers";
-import { useCallback, useEffect, useState } from "react";
+import { ethers } from 'ethers';
+import { useCallback, useEffect, useState } from 'react';
 
-import { AmmType, TokenType } from "../../hooks/useContract";
-import { formatWithoutPrecision } from "../../utils/format";
-import styles from "./Details.module.css";
+import { AmmType, TokenType } from '../../hooks/useContract';
+import { formatWithoutPrecision } from '../../utils/format';
+import styles from './Details.module.css';
 
 type Props = {
   token0: TokenType | undefined;
@@ -539,8 +544,8 @@ export default function Details({
   const [amountOfPoolTokens, setAmountOfPoolTokens] = useState<string[]>([]);
   const [tokens, setTokens] = useState<TokenType[]>([]);
 
-  const [userShare, setUserShare] = useState("");
-  const [totalShare, setTotalShare] = useState("");
+  const [userShare, setUserShare] = useState('');
+  const [totalShare, setTotalShare] = useState('');
 
   const DISPLAY_CHAR_LIMIT = 7;
 
@@ -595,7 +600,7 @@ export default function Details({
       shareWithoutPrecision = formatWithoutPrecision(share, amm.sharePrecision);
       setTotalShare(shareWithoutPrecision);
     } catch (err) {
-      console.log("Couldn't Fetch details", err);
+      console.log('Couldn't Fetch details', err);
     }
   }, [amm, currentAccount]);
 
@@ -620,7 +625,7 @@ export default function Details({
             <div key={index} className={styles.detailsRow}>
               <div className={styles.detailsAttribute}>
                 {tokens[index] === undefined
-                  ? "loading..."
+                  ? 'loading...'
                   : tokens[index].symbol}
                 :
               </div>
@@ -641,9 +646,9 @@ export default function Details({
           return (
             <div key={index} className={styles.detailsRow}>
               <div className={styles.detailsAttribute}>
-                Total{" "}
+                Total{' '}
                 {tokens[index] === undefined
-                  ? "loading..."
+                  ? 'loading...'
                   : tokens[index].symbol}
                 :
               </div>
@@ -681,28 +686,28 @@ type Props = {
 
 引数の指定です。
 
-token0, token1にはそれぞれUSDC, JOEのいずれかのオブジェクトが渡されます。
+token0、token1にはそれぞれUSDC、JOEのいずれかのオブジェクトが渡されます。
 
 updateDetailsFlagはこのコンポーネントで表示する情報を更新するトリガーとなります。
-このフラグが変更された時に情報を更新するよう, この後の`useEffect`で依存関係に含めています。
+このフラグが変更された時に情報を更新するよう、この後の`useEffect`で依存関係に含めています。
 
 ```ts
 const [amountOfUserTokens, setAmountOfUserTokens] = useState<string[]>([]);
 const [amountOfPoolTokens, setAmountOfPoolTokens] = useState<string[]>([]);
 const [tokens, setTokens] = useState<TokenType[]>([]);
 
-const [userShare, setUserShare] = useState("");
-const [totalShare, setTotalShare] = useState("");
+const [userShare, setUserShare] = useState('');
+const [totalShare, setTotalShare] = useState('');
 ```
 
 このコンポーネントで扱う情報を格納するための状態変数です。
 
-このコンポーネントでは引数で渡されたtoken0, token1を
+このコンポーネントでは引数で渡されたtoken0、token1を
 扱いやすいように`tokens`の配列に格納します。
 
 他の状態変数でstring型の配列となっているものは　`tokens`と同じ順番で対応しております。
 
-例えば`tokens = [token0, token1]`の順番で格納されている場合,
+例えば`tokens = [token0, token1]`の順番で格納されている場合、
 ユーザの所有するトークンの量を表す`amountOfUserTokens`は以下のように情報を格納します。
 `amountOfUserTokens = [ユーザの所有するtoken0のトークンの量, ユーザの所有するtoken1のトークンの量]`
 
@@ -724,16 +729,16 @@ const getAmountOfUserTokens = useCallback(async () => {
 }, [currentAccount, tokens]);
 ```
 
-各トークンのコントラクトの`balanceOf`関数を呼び出し, ユーザの所有するトークンの量を状態変数へ格納します。
+各トークンのコントラクトの`balanceOf`関数を呼び出し、ユーザの所有するトークンの量を状態変数へ格納します。
 
 > 📓 `useCallBack`について
 > `useCallBack`は関数をメモ化します。
 >
-> 通常コンポーネント(ここでいう`Details`)の再描画が行われる場合は内部の関数が再作成されますが,
-> メモ化をすると, 依存配列(ここでいう`[currentAccount, tokens]`)に変化がない場合は再作成をしません。
+> 通常コンポーネント(ここでいう`Details`)の再描画が行われる場合は内部の関数が再作成されますが、
+> メモ化をすると、依存配列(ここでいう`[currentAccount, tokens]`)に変化がない場合は再作成をしません。
 >
 > 今回はこの後に続く`useEffect`の依存配列に`getAmountOfUserTokens`が含まれていることが原因で`useCallBack`を使用しています。
-> `Details`コンポーネントが描画された際に`getAmountOfUserTokens`を実行したいので, 関数実行と依存配列に関数を入れていますが,
+> `Details`コンポーネントが描画された際に`getAmountOfUserTokens`を実行したいので、関数実行と依存配列に関数を入れていますが、
 > コンポーネント再描画のたびに`getAmountOfUserTokens`が再作成されてしまうと再び`useEffect`が動いてしまうのためです。
 >
 > 参考: https://ja.reactjs.org/docs/hooks-reference.html#usecallback
@@ -746,18 +751,18 @@ const getAmountOfUserTokens = useCallback(async () => {
 `Container.tsx`内を以下のコードに変更してください。
 
 ```tsx
-import { useState } from "react";
+import { useState } from 'react';
 
-import { useContract } from "../../hooks/useContract";
-import Details from "../Details/Details";
-import styles from "./Container.module.css";
+import { useContract } from '../../hooks/useContract';
+import Details from '../Details/Details';
+import styles from './Container.module.css';
 
 type Props = {
   currentAccount: string | undefined;
 };
 
 export default function Container({ currentAccount }: Props) {
-  const [activeTab, setActiveTab] = useState("Swap");
+  const [activeTab, setActiveTab] = useState('Swap');
   const [updateDetailsFlag, setUpdateDetailsFlag] = useState(0);
   const { usdc: token0, joe: token1, amm } = useContract(currentAccount);
 
@@ -777,49 +782,49 @@ export default function Container({ currentAccount }: Props) {
           <div
             className={
               styles.tabStyle +
-              " " +
-              (activeTab === "Swap" ? styles.activeTab : "")
+              ' ' +
+              (activeTab === 'Swap' ? styles.activeTab : '')
             }
-            onClick={() => changeTab("Swap")}
+            onClick={() => changeTab('Swap')}
           >
             Swap
           </div>
           <div
             className={
               styles.tabStyle +
-              " " +
-              (activeTab === "Provide" ? styles.activeTab : "")
+              ' ' +
+              (activeTab === 'Provide' ? styles.activeTab : '')
             }
-            onClick={() => changeTab("Provide")}
+            onClick={() => changeTab('Provide')}
           >
             Provide
           </div>
           <div
             className={
               styles.tabStyle +
-              " " +
-              (activeTab === "Withdraw" ? styles.activeTab : "")
+              ' ' +
+              (activeTab === 'Withdraw' ? styles.activeTab : '')
             }
-            onClick={() => changeTab("Withdraw")}
+            onClick={() => changeTab('Withdraw')}
           >
             Withdraw
           </div>
           <div
             className={
               styles.tabStyle +
-              " " +
-              (activeTab === "Faucet" ? styles.activeTab : "")
+              ' ' +
+              (activeTab === 'Faucet' ? styles.activeTab : '')
             }
-            onClick={() => changeTab("Faucet")}
+            onClick={() => changeTab('Faucet')}
           >
             Faucet
           </div>
         </div>
 
-        {activeTab === "Swap" && <div>swap</div>}
-        {activeTab === "Provide" && <div>provide</div>}
-        {activeTab === "Withdraw" && <div>withdraw</div>}
-        {activeTab === "Faucet" && <div>faucet</div>}
+        {activeTab === 'Swap' && <div>swap</div>}
+        {activeTab === 'Provide' && <div>provide</div>}
+        {activeTab === 'Withdraw' && <div>withdraw</div>}
+        {activeTab === 'Faucet' && <div>faucet</div>}
       </div>
       <Details
         token0={token0}
@@ -879,7 +884,7 @@ yarn client dev
 
 ![](/public/images/AVAX-AMM/section-3/3_3_5.png)
 
-コントラクトのデプロイに使用したアカウントで接続している場合, 所有するトークンの量はそれぞれ`10000`になっているはずです。
+コントラクトのデプロイに使用したアカウントで接続している場合、所有するトークンの量はそれぞれ`10000`になっているはずです。
 
 ### 🌔 参考リンク
 
@@ -890,9 +895,9 @@ yarn client dev
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は,Discordの`#avalanche`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#avalanche`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので,エラーレポートには下記の3点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

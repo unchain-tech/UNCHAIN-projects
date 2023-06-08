@@ -11,16 +11,21 @@
 
 - スマートコントラクトを`Avalanche`の`C-Chain`（のテストネット）へデプロイします。
 - 世界中の誰もがあなたのスマートコントラクトにアクセスできます。
-- **ブロックチェーンは,サーバーの役割を果たします。**
+- **ブロックチェーンは、サーバーの役割を果たします。**
 
 3 \. **Web アプリケーション（dApp）を構築します**。
 
-- ユーザーはWebサイトを介して,ブロックチェーン上に展開されているあなたのスマートコントラクトと簡単にやりとりできます。
+- ユーザーはWebサイトを介して、ブロックチェーン上に展開されているあなたのスマートコントラクトと簡単にやりとりできます。
 - スマートコントラクトの実装 + フロントエンドユーザー・インタフェースの作成 👉 dAppの完成を目指しましょう 🎉
 
-まず、`node` / `yarn`を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスしてください。
+まず、`node` / `yarn`を取得する必要があります。
+お持ちでない場合は、下記のリンクにアクセスをしてインストールしてください。
 
 `node v16`をインストールすることを推奨しています。
+
+- [Node.js](https://hardhat.org/tutorial/setting-up-the-environment#installing-node.js)
+- [yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable)
+
 
 それでは本プロジェクトで使用するフォルダーを作成してきましょう。作業を始めるディレクトリに移動したら、次のコマンドを実行します。
 
@@ -41,9 +46,9 @@ AVAX-Messenger
 
 ```json
 {
-  "name": "AVAX-Messenger",
+  "name": "avax-messenger",
   "version": "1.0.0",
-  "description": "Creating NFT Collections",
+  "description": "Message dapp that allows text and tokens (AVAX) to be exchanged.",
   "private": true,
   "workspaces": {
     "packages": [
@@ -53,12 +58,14 @@ AVAX-Messenger
   "scripts": {
     "contract": "yarn workspace contract",
     "client": "yarn workspace client",
-    "test": "yarn workspace contract test"
+    "test": "yarn contract test"
   }
 }
 ```
 
 `package.json`ファイルの内容を確認してみましょう。
+
+このプロジェクトはモノレポ構成となるようにフォルダを構成してきます。モノレポとは、コントラクトとクライアント（またはその他構成要素）の全コードをまとめて1つのリポジトリで管理する方法です。
 
 モノレポを作成するにあたり、パッケージマネージャーの機能である[Workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/)を利用しています。
 
@@ -80,7 +87,7 @@ AVAX-Messenger
 "scripts": {
   "contract": "yarn workspace contract",
   "client": "yarn workspace client",
-  "test": "yarn workspace contract test"
+  "test": "yarn contract test"
 }
 ```
 
@@ -90,15 +97,26 @@ AVAX-Messenger
 yarn <パッケージ名> <実行したいコマンド>
 ```
 
+次に、TypeScriptの設定ファイル`tsconfig.json`を作成しましょう。今回のプロジェクトは、contractとclientどちらもTypeScriptを使用するため、それぞれのパッケージにtsconfig.jsonが存在します。そのため、ルートディレクトリにもtsconfig.jsonを配置することでパッケージ間で共通したい設定を記述することができます。
+
+それでは、AVAX-Messengerディレクトリ直下にいることを確認し、下記のコマンドを実行しましょう。
+
+```bash
+tsc --init
+```
+
+`tsconfig.json`ファイルが生成されたことを確認してください。設定はデフォルトのままにしておきます。
+
 それでは、ワークスペースのパッケージを格納するディレクトリを作成しましょう。
 
-以下のようなフォルダー構成となるように、`packages`ディレクトリとその中に`contract`ディレクトリを作成してください（`client`ディレクトリは、後ほどのレッスンでスターターコードをクローンする際に作成したいと思います）。
+以下のようなフォルダー構成となるように、`packages`ディレクトリとその中に`contract`ディレクトリを作成してください（`client`ディレクトリは、後ほどのレッスンでフロントエンド構築の際に作成したいと思います）。
 
 ```diff
 AVAX-Messenger
  ├── package.json
-+└── packages/
-+    └── contract/
++├── packages/
++│   └── contract/
+ └── tsconfig.json
 ```
 
 `contract`ディレクトリには、スマートコントラクトを構築するためのファイルを作成していきます。
@@ -121,8 +139,9 @@ AVAX-Messenger
 AVAX-Messenger
  ├── .gitignore
  ├── package.json
- └── packages/
-     └── contract/
+ ├── packages/
+ │   └── contract/
+ └── tsconfig.json
 ```
 
 これでモノレポの雛形が完成しました！
@@ -139,11 +158,14 @@ AVAX-Messenger
 
 ```bash
 cd packages/contract
+
 yarn init --private -y
+
 # Hardhatのインストール
-yarn add --dev hardhat
+yarn add --dev hardhat@^2.10.2
+
 # スマートコントラクトの開発に必要なプラグインのインストール
-yarn add --dev @nomicfoundation/hardhat-toolbox @nomicfoundation/hardhat-network-helpers @nomicfoundation/hardhat-chai-matchers @nomiclabs/hardhat-ethers @nomiclabs/hardhat-etherscan chai ethers@^5.4.7 hardhat-gas-reporter solidity-coverage @typechain/hardhat typechain @typechain/ethers-v5 @ethersproject/abi @ethersproject/providers
+yarn add --dev @nomicfoundation/hardhat-network-helpers@^1.0.0 @nomicfoundation/hardhat-chai-matchers@^1.0.0 @nomicfoundation/hardhat-toolbox@^1.0.2 @nomiclabs/hardhat-ethers@^2.0.0 @nomiclabs/hardhat-etherscan@^3.0.0 @types/chai@^4.2.0 @types/mocha@^9.1.0 @typechain/ethers-v5@^10.1.0 @typechain/hardhat@^6.1.2 hardhat-gas-reporter@^1.0.8 solidity-coverage@^0.7.21  ts-node@^10.9.1 typechain@^8.1.0
 ```
 
 > ✍️: `warning`について
@@ -166,9 +188,10 @@ npx hardhat
 `hardhat`がターミナル上で立ち上がったら、それぞれの質問を以下のように答えていきます。
 
 ```
-・What do you want to do? →「Create a JavaScript project」を選択
+・What do you want to do? →「Create a TypeScript project」を選択
 ・Hardhat project root: →「'Enter'を押す」 (自動で現在いるディレクトリが設定されます。)
 ・Do you want to add a .gitignore? (Y/n) → 「y」
+・Do you want to install this sample project's dependencies with npm (hardhat @nomicfoundation/hardhat-toolbox)? (Y/n) → 「n」
 ```
 
 （例）
@@ -184,11 +207,16 @@ $ npx hardhat
 888    888 888  888 888    Y88b 888 888  888 888  888 Y88b.
 888    888 "Y888888 888     "Y88888 888  888 "Y888888  "Y888
 
-👷 Welcome to Hardhat v2.13.0 👷‍
+👷 Welcome to Hardhat v2.12.6 👷‍
 
-✔ What do you want to do? · Create a JavaScript project
-✔ Hardhat project root: · /AVAX-Messenger/packages/contract
+✔ What do you want to do? · Create a TypeScript project
+✔ Hardhat project root: · /任意のディレクトリ/AVAX-Messenger/packages/contract
 ✔ Do you want to add a .gitignore? (Y/n) · y
+✔ Do you want to install this sample project's dependencies with npm (hardhat @nomicfoundation/hardhat-toolbox)? (Y/n) · n
+
+
+You need to install these dependencies to run the sample project:
+  npm install --save-dev "hardhat@^2.12.6" "@nomicfoundation/hardhat-toolbox@^2.0.0"
 
 ✨ Project created ✨
 
@@ -199,17 +227,9 @@ Give Hardhat a star on Github if you're enjoying it! 💞✨
      https://github.com/NomicFoundation/hardhat
 ```
 
-> ⚠️: 注意 #1
+> ⚠️: 注意
 >
 > Windows で Git Bash を使用してハードハットをインストールしている場合、このステップ (HH1) でエラーが発生する可能性があります。問題が発生した場合は、WindowsCMD（コマンドプロンプト）を使用して HardHat のインストールを実行してみてください。
-
-> ⚠️: 注意 #2
->
-> `npx hardhat`が実行されなかった場合、以下をターミナルで実行してください。
->
-> ```bash
-> yarn add --dev @nomicfoundation/hardhat-toolbox
-> ```
 
 この段階で、フォルダー構造は下記のようになっていることを確認してください。
 
@@ -217,16 +237,17 @@ Give Hardhat a star on Github if you're enjoying it! 💞✨
 AVAX-Messenger
  ├── .gitignore
  ├── package.json
- └── packages/
-     ├── client/
-     └── contract/
-+        ├── .gitignore
-+        ├── README.md
-+        ├── contracts/
-+        ├── hardhat.config.js
-+        ├── package.json
-+        ├── scripts/
-+        └── test/
+ ├── packages/
+ │  └── contract/
++│       ├── .gitignore
++│       ├── README.md
++│       ├── contracts/
++│       ├── hardhat.config.ts
++│       ├── package.json
++│       ├── scripts/
++│       ├── test/
++│       └── tsconfig.json
+ └── tsconfig.json
 ```
 
 それでは、`contract`ディレクトリ内に生成された`package.json`ファイルを以下を参考に更新をしましょう。
@@ -237,68 +258,47 @@ AVAX-Messenger
   "version": "1.0.0",
 -  "main": "index.js",
 -  "license": "MIT",
++  "scripts": {
++    "test": "npx hardhat test",
++    "deploy": "npx hardhat run scripts/deploy.ts --network fuji",
++    "cp": "cp -r typechain-types ../client/typechain-types && cp artifacts/contracts/Messenger.sol/Messenger.json ../client/utils/Messenger.json "
+  },
   "private": true,
   "devDependencies": {
-    "@nomicfoundation/hardhat-chai-matchers": "^1.0.6",
-    "@nomicfoundation/hardhat-network-helpers": "^1.0.8",
-    "@nomicfoundation/hardhat-toolbox": "^2.0.2",
-    "@nomiclabs/hardhat-ethers": "^2.2.2",
-    "@nomiclabs/hardhat-etherscan": "^3.1.7",
-    "@typechain/ethers-v5": "^10.2.0",
-    "@typechain/hardhat": "^6.1.5",
-    "chai": "^4.3.7",
-    "ethers": "^6.1.0",
-    "hardhat": "^2.13.0",
-    "hardhat-gas-reporter": "^1.0.9",
-    "solidity-coverage": "^0.8.2",
-    "typechain": "^8.1.1"
+    "@nomicfoundation/hardhat-chai-matchers": "^1.0.0",
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.0",
+    "@nomicfoundation/hardhat-toolbox": "^1.0.2",
+    "@nomiclabs/hardhat-ethers": "^2.0.0",
+    "@nomiclabs/hardhat-etherscan": "^3.0.0",
+    "@typechain/ethers-v5": "^10.1.0",
+    "@typechain/hardhat": "^6.1.2",
+    "@types/chai": "^4.2.0",
+    "@types/mocha": "^9.1.0",
+    "hardhat": "^2.10.2",
+    "hardhat-gas-reporter": "^1.0.8",
+    "solidity-coverage": "^0.7.21",
+    "ts-node": "^10.9.1",
+    "typechain": "^8.1.0"
   },
-+  "scripts": {
-+    "test": "npx hardhat test"
-+  }
 }
 ```
 
-不要な定義を削除し、hardhatの自動テストを実行するためのコマンドを追加しました。
-
-次に、安全なスマートコントラクトを開発するために使用されるライブラリ **OpenZeppelin** をインストールします。
-
-`packages/contract`ディレクトリにいることを確認し、以下のコマンドを実行してください。
-
-```bash
-yarn add --dev @openzeppelin/contracts
-```
-
-[OpenZeppelin](https://github.com/OpenZeppelin/openzeppelin-contracts) はイーサリアムネットワーク上で安全なスマートコントラクトを実装するためのフレームワークです。
-
-OpenZeppelinには非常に多くの機能が実装されておりインポートするだけで安全にその機能を使うことができます。
+不要な定義を削除し、packages/contractに対してルートディレクトリから実行したいコマンドを追加しました。
 
 ### ⭐️ 実行する
 
-すべてが機能していることを確認するには、以下を実行します。
+すべてが機能していることを確認するには、AVAX-Messenger直下から以下を実行します。
 
 ```
-npx hardhat compile
-```
-
-次に、以下を実行します。
-
-```
-npx hardhat test
+yarn test
 ```
 
 次のように表示されます。
 
 ![](/public/images/AVAX-Messenger/section-1/1_2_2.png)
 
-ターミナル上で`ls`と入力してみて、下記のフォルダーとファイルが表示されていたら成功です。
 
-```bash
-README.md         cache             hardhat.config.js package.json      test
-artifacts         contracts         node_modules      scripts
-```
-
-ここまできたら、フォルダーの中身を整理しましょう。
+ここまできたら、`packages/contract`フォルダーの中身を整理しましょう。
 
 まず、`test`の下のファイル`Lock.js`を削除します。
 
@@ -321,29 +321,21 @@ Hardhatは段階的に下記を実行しています。
 
 3\. **Hardhat は、コンパイルされたスマートコントラクトをローカルイーサリアムネットワークに「デプロイ」します。**
 
-ターミナルに出力されたアドレスを確認してみましょう。
+### 🐊 `GitHub`にソースコードをアップロードしよう
 
-```bash
-Greeter deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
-```
+本プロジェクトの最後では、アプリをデプロイするために`GitHub`へソースコードをアップロードする必要があります。
 
-これは、イーサリアムネットワークのテスト環境でデプロイされたスマートコントラクトのアドレスです。
+**AVAX-Messenger**全体を対象としてアップロードしましょう。
 
-### 🐊 `github`にソースコードをアップロードしよう
+今後の開発にも役に立つと思いますので、今のうちに以下にアップロード方法をおさらいしておきます。
 
-本プロジェクトの最後では, アプリをデプロイするために`github`へソースコードをアップロードする必要があります。
-
-**Avax-Messenger**全体を対象としてアップロードしましょう。
-
-今後の開発にも役に立つと思いますので, 今のうちに以下にアップロード方法をおさらいしておきます。
-
-`GitHub`のアカウントをお持ちでない方は,[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
+`GitHub`のアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
 `GitHub`へソースコードをアップロードをしたことがない方は以下を参考にしてください。
 
-[新しいレポジトリを作成](https://docs.github.com/ja/get-started/quickstart/create-a-repo)（リポジトリ名などはご自由に）した後,  
+[新しいレポジトリを作成](https://docs.github.com/ja/get-started/quickstart/create-a-repo)（リポジトリ名などはご自由に）した後、 
 手順に従いターミナルからアップロードを済ませます。  
-以下ターミナルで実行するコマンドの参考です。(`Avax-Messenger`直下で実行することを想定しております)
+以下ターミナルで実行するコマンドの参考です。(`AVAX-Messenger`直下で実行することを想定しております)
 
 ```
 $ git init
@@ -356,22 +348,22 @@ $ git push -u origin main
 
 > ✍️: SSH の設定を行う
 >
-> Github のレポジトリをクローン・プッシュする際に,SSHKey を作成し,GitHub に公開鍵を登録する必要があります。
+> Github のレポジトリをクローン・プッシュする際に、SSHKey を作成し、GitHub に公開鍵を登録する必要があります。
 >
-> SSH（Secure SHell）はネットワークを経由してマシンを遠隔操作する仕組みのことで,通信が暗号化されているのが特徴的です。
+> SSH（Secure SHell）はネットワークを経由してマシンを遠隔操作する仕組みのことで、通信が暗号化されているのが特徴的です。
 >
-> 主にクライアント（ローカル）からサーバー（リモート）に接続をするときに使われます。この SSH の暗号化について,仕組みを見ていく上で重要になるのが秘密鍵と公開鍵です。
+> 主にクライアント（ローカル）からサーバー（リモート）に接続をするときに使われます。この SSH の暗号化について、仕組みを見ていく上で重要になるのが秘密鍵と公開鍵です。
 >
-> まずはクライアントのマシンで秘密鍵と公開鍵を作り,公開鍵をサーバーに渡します。そしてサーバー側で「この公開鍵はこのユーザー」というように,紐付けを行っていきます。
+> まずはクライアントのマシンで秘密鍵と公開鍵を作り、公開鍵をサーバーに渡します。そしてサーバー側で「この公開鍵はこのユーザー」というように、紐付けを行っていきます。
 >
-> 自分で管理して必ず見せてはいけない秘密鍵と,サーバーに渡して見せても良い公開鍵の 2 つが SSH の通信では重要になってきます。
-> Github における SSH の設定は,[こちら](https://docs.github.com/ja/authentication/connecting-to-github-with-ssh) を参照してください!
+> 自分で管理して必ず見せてはいけない秘密鍵と、サーバーに渡して見せても良い公開鍵の 2 つが SSH の通信では重要になってきます。
+> Github における SSH の設定は、[こちら](https://docs.github.com/ja/authentication/connecting-to-github-with-ssh) を参照してください!
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は,Discordの`#avalanche`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#avalanche`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので,エラーレポートには下記の3点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -382,4 +374,4 @@ $ git push -u origin main
 
 ---
 
-環境設定が完了したら,次のレッスンに進んでください 🎉
+環境設定が完了したら、次のレッスンに進んでください 🎉

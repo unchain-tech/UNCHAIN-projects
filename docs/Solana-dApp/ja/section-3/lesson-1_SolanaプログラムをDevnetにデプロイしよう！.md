@@ -11,7 +11,7 @@ Devnetにデプロイするのはかなり大変です。
 
 必要なステップを見逃さないように注意しながら進めてください。
 
-まず、Devnetへの切り替えを行います。
+まず、Devnetへの切り替えを行います。`packages/contract`ディレクトリへ移動してください。
 
 ```bash
 solana config set --url devnet

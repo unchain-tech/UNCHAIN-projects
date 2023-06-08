@@ -668,7 +668,6 @@ export default Footer;
 それぞれの画面の上にあるヘッダーです。プロフィール画面に遷移した時は`Disconnect`ボタンが表示されるようになっています。
 
 ```ts
-// call ppLogo to left upper area
 import type { Dispatch, FC } from "react";
 
 import AppLogo from "../atoms/appLogo";

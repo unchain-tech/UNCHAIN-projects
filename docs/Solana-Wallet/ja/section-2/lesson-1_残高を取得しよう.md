@@ -4,7 +4,7 @@
 
 残高とは、あるアカウントで保有している暗号通貨やトークンの一定量を表します。ブロックチェーンを所有者記録を保持するデータベースと考え、公開鍵を所有者IDと考えるなら、残高は各所有者が特定のトークンをどれだけ保持しているかを追跡するデータベースの整数カラムと考えることができます。
 
-本セクションで、Solanaのネットワークの1つに接続し、作成したアカウントの残高を取得してみましょう。
+本レッスンで、Solanaのネットワークの1つに接続し、作成したアカウントの残高を取得してみましょう。
 
 また、次のセクションではエアドロップ機能を実装し、テストトークンをアカウントに付与できるようにします。
 
@@ -49,6 +49,8 @@ console.log(connection);
 それでは実際に、接続先URLを取得する機能を実装してみましょう。下記を参考に、`pages/index.js`を更新しましょう。
 
 ```javascript
+// 残高の取得に必要なメソッドのインポートを追加
+import { clusterApiUrl, Connection, LAMPORTS_PER_SOL } from '@solana/web3.js';
 // useEffectのインポートを追加
 import { useState, useEffect } from 'react';
 
@@ -97,7 +99,7 @@ SOLはSolanaのネイティブトークンの名前ですが、マイクロペ�
 残高がlamportで返ってくるため、それをSOLに変換したいと思います。
 `@solana/web3.js`から`LAMPORTS_PER_SOL`定数を読み込み、 `balance / LAMPORTS_PER_SOL`とすればSOLになります。
 
-Connectionインスタンスの作成と、残高の取得の処理をまとめて`refreshBalance`関数を定義します。取得した残高は`useState`で値を保持しておきます。
+Connectionインスタンスの作成と、残高の取得の処理をまとめて`refreshBalance`関数を定義します。取得した残高は`useState`で値を保持しておきます。下記を参考に、`pages/index.js`を更新しましょう。
 
 ```javascript
 const [balance, setBalance] = useState(null);
@@ -126,7 +128,7 @@ const refreshBalance = async () => {
 
 ### 🧱 コンポーネントを作成する
 
-残高を取得する`refreshBalance`関数を作成したので、それを実行するボタンを実装していきましょう。ここからは、`componentsGetBalance/index.js`を更新していきます。
+残高を取得する`refreshBalance`関数を作成したので、それを実行するボタンを実装していきましょう。ここからは、`components/GetBalance/index.js`を更新していきます。
 
 先ほど作成した`refreshBalance`関数を引数として受け取り、[残高を取得]ボタンがクリックされた時に実行するようにします。
 
@@ -145,6 +147,8 @@ export default function GetBalance({ refreshBalance }) {
 
 実装はシンプルですが、ここでもテストスクリプトを実行して模擬的に動作確認をしてみましょう。
 
+ターミナル上で`npm run test`を実行します。
+
 components/GetBalance/index.test.jsが`PASS`し、`Test Suites`が下記のようになっていたらOKです！
 
 ```bash
@@ -153,7 +157,7 @@ Test Suites: 2 failed, 3 passed, 5 total
 
 ### 👀 フロントで残高を表示する
 
-それでは、`GetBalance`コンポーネントを`Home`コンポーネントに組み込み、残高の表示を実装していきましょう。
+それでは、`GetBalance`コンポーネントを`Home`コンポーネントに組み込み、残高の表示を実装していきましょう。再度、`pages/index.js`を更新していきます。
 
 まずは、`GetBalance`コンポーネントをインポートしましょう。
 

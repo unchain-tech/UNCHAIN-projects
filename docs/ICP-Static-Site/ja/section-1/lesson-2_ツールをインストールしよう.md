@@ -3,14 +3,16 @@
 このレッスンでは、開発の準備をしていきます。
 それでは早速、ターミナルを開いて始めていきましょう！
 
-### 🦄 DFX をインストールする
+### 🦄 IC SDK をインストールする
 
-DFXとはDFINITYが提供する、開発したプロジェクトをICにデプロイ、管理するための主要なツールです。
+IC SDKとはDFINITYが提供する、ICPブロックチェーン上でキャニスター・スマートコントラクトを作成・管理するために使用されるソフトウェア開発キットです。
 
-以下のコマンドを実行し、インストールをします。
+[公式ドキュメント](https://internetcomputer.org/docs/current/developer-docs/setup/install/)を参考に、インストールをしていきましょう。
+
+今回は、バージョン`0.11.1`を指定してインストールをしたいと思います。ターミナルで以下のコマンドを実行しましょう。
 
 ```bash
-sh -ci "$(curl -fsSL https://smartcontracts.org/install.sh)"
+DFX_VERSION=0.11.1 sh -ci "$(curl -sSL https://internetcomputer.org/install.sh)"
 ```
 
 正しくインストールされたことを確認するために、以下を実行します。
@@ -19,7 +21,7 @@ sh -ci "$(curl -fsSL https://smartcontracts.org/install.sh)"
 dfx --version
 ```
 
-ターミナルにインストール時の最新バージョンが表示されたら完了です[（SDK リリースノートを参照）](https://internetcomputer.org/docs/current/developer-docs/updates/release-notes/)。
+バージョン`0.11.1`が表示されたら完了です。
 
 ```bash
 dfx 0.11.1
@@ -49,7 +51,7 @@ dfx 0.11.1
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの`#internet-computer`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#icp`で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 
