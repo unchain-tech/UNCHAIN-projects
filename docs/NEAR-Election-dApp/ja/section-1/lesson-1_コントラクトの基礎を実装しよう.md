@@ -78,7 +78,6 @@ Lesson1では1. の情報の格納を実装していきます！
 [Cargo.toml]
 
 ```
-//　以下のように書き換えてください
 [package]
 name = "contract"
 version = "0.1.0"
@@ -109,7 +108,6 @@ overflow-checks = true
 [lib.rs]
 
 ```rust
-//　以下のように書き換えてください
 use near_sdk::borsh::{self, BorshDeserialize, BorshSerialize};
 use near_sdk::collections::{LazyOption, LookupMap, UnorderedMap, UnorderedSet};
 use near_sdk::json_types::U128;
