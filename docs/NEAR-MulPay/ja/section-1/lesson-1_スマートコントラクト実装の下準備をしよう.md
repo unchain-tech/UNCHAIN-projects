@@ -55,7 +55,7 @@ import "@typechain/hardhat";
 require("dotenv").config();
 
 const config: HardhatUserConfig = {
-  solidity: "0.8.0",
+  solidity: "0.8.17",
   networks: {
     testnet_aurora: {
       url: "https://testnet.aurora.dev",
