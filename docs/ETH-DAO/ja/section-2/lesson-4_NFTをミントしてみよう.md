@@ -57,9 +57,9 @@ const Home: NextPage = () => {
     checkBalance();
   }, [address, editionDrop]);
 
-  if (address && network && network?.data?.chain?.chainId !== 11155111) {
+  if (address && network && network?.data?.chain?.id !== 11155111) {
     console.log("wallet address: ", address);
-    console.log("network: ", network?.data?.chain?.chainId);
+    console.log("network: ", network?.data?.chain?.id);
 
     return (
       <div className={styles.container}>
@@ -110,7 +110,7 @@ export default Home;
 
 ### ✨ "Mint NFT" ボタンをつくろう
 
-それでは、`src/pages/index.tsx`へ移動しメンバーシップNFTをミントできるようにしていきましょう。
+それでは、`pages/index.tsx`へ移動しメンバーシップNFTをミントできるようにしていきましょう。
 
 下記のとおりコードを変更してください。
 
@@ -168,7 +168,7 @@ const Home: NextPage = () => {
       setIsClaiming(true);
       await editionDrop!.claim("0", 1);
       console.log(
-        `🌊 Successfully Minted! Check it out on OpenSea: https://testnets.opensea.io/assets/${editionDrop!.getAddress()}/0`
+        `🌊 Successfully Minted! Check it out on etherscan: https://sepolia.etherscan.io/address/${editionDrop!.getAddress()}`
       );
       setHasClaimedNFT(true);
     } catch (error) {
@@ -195,9 +195,9 @@ const Home: NextPage = () => {
     );
   }
   // テストネットが Sepolia ではなかった場合に警告を表示
-  else if (address && network && network?.data?.chain?.chainId !== 11155111) {
+  else if (address && network && network?.data?.chain?.id !== 11155111) {
     console.log("wallet address: ", address);
-    console.log("network: ", network?.data?.chain?.chainId);
+    console.log("network: ", network?.data?.chain?.id);
 
     return (
       <div className={styles.container}>
@@ -247,23 +247,19 @@ export default Home;
 
 MetaMaskのポップアップが表示され、ガスを支払うことでNFTがMintされます。
 
-NFTのミントが完了すると、以下のとおりコンソールにTestnet OpenSeaのリンクが表示されます。
-
-※ `testnets.opensea.io`では、テストネット上にミントされたNFTを実際に見ることができます。
+NFTのミントが完了すると、以下のとおりコンソールにEtherscanのリンクが表示されます。
 
 ```bash
-🌊 Successfully Minted! Check it out on OpenSea: https://testnets.opensea.io/assets/0xaA73b3045D7960ad23C522a6670Fe7a3D6117D33/0
+🌊 Successfully Minted! Check it out on etherscan: https://sepolia.etherscan.io/address/0xcB5F0888d059eE9957816b40B149c499909891b7
 ```
 
 リンクにアクセスすると、このように表示されます。
 
 ![](/public/images/ETH-DAO/section-2/2_4_3.png)
 
-上記画面の`Make offer`ボタンを押すと、どれくらいミントされているかがわかります。
+一番最新のトランザクションにアクセスするとしたのようにERC-1155がclaimできていることがわかります。
 
-私が制作したメンバーシップNFTは "1 item" と表示されています。
-
-![](/public/images/ETH-DAO/section-2/2_4_4.png)
+![](/public/images/ETH-DAO/section-2/2_4_8.png)
 
 このメンバーシップNFTはERC-1155なので、誰もが同じNFTの持ち主です。
 
@@ -308,9 +304,9 @@ NFTのミント画面を描画する前に、以下のコメント`DAO ダッシ
     );
   }
   // テストネットが Sepolia ではなかった場合に警告を表示
-  else if (address && network && network?.data?.chain?.chainId !== 11155111) {
+  else if (address && network && network?.data?.chain?.id !== 11155111) {
     console.log("wallet address: ", address);
-    console.log("network: ", network?.data?.chain?.chainId);
+    console.log("network: ", network?.data?.chain?.id);
 
     return (
       <div className={styles.container}>

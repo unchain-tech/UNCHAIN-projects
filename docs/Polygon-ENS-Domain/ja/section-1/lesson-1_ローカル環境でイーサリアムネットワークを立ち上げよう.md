@@ -25,47 +25,60 @@ Webアプリで作業するには、ローカル環境をどのように起動�
 
 `node v16`をインストールすることを推奨しています。
 
-それでは本プロジェクトで使用するフォルダーを作成してきましょう。作業を始めるディレクトリに移動したら、次のコマンドを実行します。
+### 🍽 Git リポジトリをあなたの GitHub にフォークする
+
+まだGitHubのアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
+
+GitHubのアカウントをお持ちの方は、下記の手順に沿ってプロジェクトの基盤となるリポジトリをあなたのGitHubに[フォーク](https://denno-sekai.com/github-fork/)しましょう。
+
+1. [こちら](https://github.com/unchain-tech/Polygon-ENS-Domain)からunchain-tech/Polygon-ENS-Domainリポジトリにアクセスをして、ページ右上の`Fork`ボタンをクリックします。
+
+![](/public/images/Polygon-ENS-Domain/section-1/1_1_3.png)
+
+2. Create a new forkページが開くので、「Copy the `main` branch only」という項目に**チェックが入っていることを確認します**。
+
+![](/public/images/Polygon-ENS-Domain/section-1/1_1_4.png)
+
+設定が完了したら`Create fork`ボタンをクリックします。あなたのGitHubアカウントに`Polygon-ENS-Domain`リポジトリのフォークが作成されたことを確認してください。
+
+それでは、フォークしたリポジトリをローカル環境にクローンしましょう。
+
+まず、下図のように、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
+
+![](/public/images/Polygon-ENS-Domain/section-1/1_1_5.png)
+
+ターミナル上で作業を行う任意のディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
 
 ```bash
-mkdir Polygon-ENS-Domain
-cd Polygon-ENS-Domain
-yarn init --private -y
+git clone コピーした_github_リンク
 ```
 
-Polygon-ENS-Domainディレクトリ内に、package.jsonファイルが生成されます。
+無事に複製されたらローカル開発環境の準備は完了です。
+
+### 🔍 フォルダ構成を確認する
+
+実装に入る前に、フォルダ構成を確認しておきましょう。クローンしたスタータープロジェクトは下記のようになっているはずです。
 
 ```bash
 Polygon-ENS-Domain
- └── package.json
+├── .git/
+├── .gitignore
+├── LICENSE
+├── README.md
+├── package.json
+├── packages/
+│   ├── client/
+│   └── contract/
+└── yarn.lock
 ```
 
-それでは、`package.json`ファイルを以下のように更新してください。
+スタータープロジェクトは、モノレポ構成となっています。モノレポとは、コントラクトとクライアント（またはその他構成要素）の全コードをまとめて1つのリポジトリで管理する方法です。
 
-```json
-{
-  "name": "polygon-ens-domain",
-  "version": "1.0.0",
-  "description": "Creating ens domain",
-  "private": true,
-  "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
-  },
-  "scripts": {
-    "contract": "yarn workspace contract",
-    "client": "yarn workspace client",
-    "test": "yarn workspace contract test"
-  }
-}
-```
+packagesディレクトリの中には、`client`と`contract`という2つのディレクトリがあります。
 
 `package.json`ファイルの内容を確認してみましょう。
 
 モノレポを作成するにあたり、パッケージマネージャーの機能である[Workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/)を利用しています。
-
-この機能により、yarn installを一度だけ実行すれば、すべてのパッケージ（今回はコントラクトのパッケージとクライアントのパッケージ）を一度にインストールできるようになります。
 
 **workspaces**の定義をしている部分は以下になります。
 
@@ -77,88 +90,34 @@ Polygon-ENS-Domain
 },
 ```
 
-また、ワークスペース内の各パッケージにアクセスするためのコマンドを以下の部分で定義しています。
+この機能により、yarn installを一度だけ実行すれば、すべてのパッケージ（今回はコントラクトのパッケージとクライアントのパッケージ）を一度にインストールできるようになります。
 
-```json
-"scripts": {
-  "contract": "yarn workspace contract",
-  "client": "yarn workspace client",
-  "test": "yarn workspace contract test"
-}
-```
+### 📺 フロントエンドの動きを確認する
 
-これにより、各パッケージのディレクトリへ階層を移動しなくてもプロジェクトのルート直下から以下のようにコマンドを実行することが可能となります（ただし、各パッケージ内に`package.json`ファイルが存在し、その中にコマンドが定義されていないと実行できません。そのため、現在は実行してもエラーとなります。ファイルは後ほど作成します）。
+次に、下記を実行してみましょう。
 
 ```bash
-yarn <パッケージ名> <実行したいコマンド>
+yarn client start
 ```
 
-それでは、ワークスペースのパッケージを格納するディレクトリを作成しましょう。
+あなたのローカル環境で、Webサイトのフロントエンドが立ち上がりましたか？
 
-以下のようなフォルダー構成となるように、`packages`ディレクトリとその中に`contract`ディレクトリを作成してください（`client`ディレクトリは、後ほどのレッスンでスターターコードをクローンする際に作成したいと思います）。
+例)ローカル環境で表示されているWebサイト
 
-```diff
-Polygon-ENS-Domain
- ├── package.json
-+└── packages/
-+    └── contract/
-```
+![](/public/images/Polygon-ENS-Domain/section-1/1_1_6.png)
 
-`contract`ディレクトリには、スマートコントラクトを構築するためのファイルを作成していきます。
+上記のような形でフロントエンドが確認できれば成功です。
 
-最後に、Polygon-ENS-Domainディレクトリ下に`.gitignore`ファイルを作成して以下の内容を書き込みます。
+これからフロントエンドの表示を確認したい時は、ターミナルに向かい、`Polygon-ENS-Domain`ディレクトリ上で、`yarn client start`を実行します。これからも必要となる作業ですので、よく覚えておいてください。
 
-```bash
-**/yarn-error.log*
+ターミナルを閉じるときは、以下のコマンドが使えます ✍️
 
-# dependencies
-**/node_modules
+- Mac: `ctrl + c`
+- Windows: `ctrl + shift + w`
 
-# misc
-**/.DS_Store
-```
+### 👏 コントラクトを作成する準備をする
 
-最終的に以下のようなフォルダー構成となっていることを確認してください。
-
-```bash
-Polygon-ENS-Domain
- ├── .gitignore
- ├── package.json
- └── packages/
-     └── contract/
-```
-
-これでモノレポの雛形が完成しました！
-
-### ✨ Hardhat をインストールする
-
-スマートコントラクトをすばやくコンパイルし、ローカル環境にてテストを行うために、**Hardhat** というツールを使用します。
-
-- Hardhatにより、ローカル環境でイーサリアムネットワークを簡単に起動し、テストネットでイーサリアムを利用できます。
-
-- 「サーバー」がブロックチェーンであることを除けば、Hardhatはローカルサーバーと同じです。
-
-それでは、先ほど作成した`packages/contract`ディレクトリ内にファイルを作成します。ターミナルに向かい、packages/contract`ディレクトリ内で以下のコマンドを実行します。
-
-```bash
-cd packages/contract
-yarn init --private -y
-# Hardhatのインストール
-yarn add --dev hardhat
-# スマートコントラクトの開発に必要なプラグインのインストール
-yarn add --dev @nomicfoundation/hardhat-toolbox @nomicfoundation/hardhat-network-helpers @nomicfoundation/hardhat-chai-matchers @nomiclabs/hardhat-ethers @nomiclabs/hardhat-etherscan chai ethers@^5.4.7 hardhat-gas-reporter solidity-coverage @typechain/hardhat typechain @typechain/ethers-v5 @ethersproject/abi @ethersproject/providers
-```
-
-> ✍️: `warning`について
-> Hardhat をインストールすると、脆弱性に関するメッセージが表示される場合があります。
->
-> 基本的に`warning`は無視して問題ありません。
->
-> YARN から何かをインストールするたびに、インストールしているライブラリに脆弱性が報告されているかどうかを確認するためにセキュリティチェックが行われます。
-
-### 👏 サンプルプロジェクトを開始する
-
-次に、Hardhatを実行します。
+本プロジェクトではコントラクトを作成する際に`Hardhat`というフレームワークを使用します。
 
 `packages/contract`ディレクトリにいることを確認し、次のコマンドを実行します。
 
@@ -221,8 +180,8 @@ Polygon-ENS-Domain
  ├── .gitignore
  ├── package.json
  └── packages/
-     ├── client/
-     └── contract/
+     ├── client/
+     └── contract/
 +        ├── .gitignore
 +        ├── README.md
 +        ├── contracts/
@@ -264,18 +223,6 @@ Polygon-ENS-Domain
 
 不要な定義を削除し、hardhatの自動テストを実行するためのコマンドを追加しました。
 
-次に、安全なスマートコントラクトを開発するために使用されるライブラリ **OpenZeppelin** をインストールします。
-
-`packages/contract`ディレクトリにいることを確認し、以下のコマンドを実行してください。
-
-```bash
-yarn add --dev @openzeppelin/contracts
-```
-
-[OpenZeppelin](https://github.com/OpenZeppelin/openzeppelin-contracts) はイーサリアムネットワーク上で安全なスマートコントラクトを実装するためのフレームワークです。
-
-OpenZeppelinには非常に多くの機能が実装されておりインポートするだけで安全にその機能を使うことができます。
-
 ### ⭐️ 実行する
 
 すべてが機能していることを確認するには、以下を実行します。
@@ -292,7 +239,26 @@ npx hardhat test
 
 次のように表示されます。
 
-![](/public/images/Polygon-ENS-Domain/section-1/1_2_2.png)
+```
+Lock
+    Deployment
+      ✔ Should set the right unlockTime (2737ms)
+      ✔ Should set the right owner
+      ✔ Should receive and store the funds to lock
+      ✔ Should fail if the unlockTime is not in the future (44ms)
+    Withdrawals
+      Validations
+        ✔ Should revert with the right error if called too soon
+        ✔ Should revert with the right error if called from another account (44ms)
+        ✔ Shouldn't fail if the unlockTime has arrived and the owner calls it (48ms)
+      Events
+        ✔ Should emit an event on withdrawals (71ms)
+      Transfers
+        ✔ Should transfer the funds to the owner (93ms)
+
+
+  9 passing (3s)
+```
 
 ターミナル上で`ls`と入力してみて、下記のフォルダーとファイルが表示されていたら成功です。
 
@@ -323,14 +289,6 @@ Hardhatは段階的に下記を実行しています。
 2\. **Hardhat は、あなたのコンピュータ上でテスト用の「ローカルイーサリアムネットワーク」を起動しています。**
 
 3\. **Hardhat は、コンパイルされたスマートコントラクトをローカルイーサリアムネットワークに「デプロイ」します。**
-
-ターミナルに出力されたアドレスを確認してみましょう。
-
-```bash
-Greeter deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
-```
-
-これは、イーサリアムネットワークのテスト環境でデプロイされたスマートコントラクトのアドレスです。
 
 ### 🙋‍♂️ 質問する
 

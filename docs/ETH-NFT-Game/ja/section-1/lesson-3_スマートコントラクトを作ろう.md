@@ -25,7 +25,7 @@ VS Codeをターミナルから起動する方法は[こちら](https://maku.blo
 ```solidity
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 
 import "hardhat/console.sol";
 
@@ -41,7 +41,6 @@ contract MyEpicGame {
 一行ずつコードを見ていきましょう。
 
 ```solidity
-// MyEpicGame.sol
 // SPDX-License-Identifier: MIT
 ```
 
@@ -50,23 +49,20 @@ contract MyEpicGame {
 詳細については、[ここ](https://www.skyarch.net/blog/?p=15940)を参照してみてください。
 
 ```solidity
-// MyEpicGame.sol
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 ```
 
-これは、コントラクトで使用するSolidityコンパイラのバージョンです。上記の場合「このコントラクトを実行するときは、Solidityコンパイラのバージョン0.8.9のみを使用し、それ以下のものは使用しません」という意味です。コンパイラのバージョンが`hardhat.config.js`で同じであることを確認してください。
+これは、コントラクトで使用するSolidityコンパイラのバージョンです。上記の場合「このコントラクトを実行するときは、Solidityコンパイラのバージョン0.8.17のみを使用し、それ以下のものは使用しません」という意味です。コンパイラのバージョンが`hardhat.config.js`で同じであることを確認してください。
 
-もし、`hardhat.config.js`の中に記載されているSolidityのバージョンが`0.8.9`でなかった場合は、`MyEpicGame.sol`の中身を`hardhat.config.js`に記載されているバージョンに変更しましょう。
+もし、`hardhat.config.js`の中に記載されているSolidityのバージョンが`0.8.17`でなかった場合は、`MyEpicGame.sol`の中身を`hardhat.config.js`に記載されているバージョンに変更しましょう。
 
 ```solidity
-// MyEpicGame.sol
 import "hardhat/console.sol";
 ```
 
 コントラクトを実行する際、コンソールログをターミナルに出力するためにHardhatの`console.sol`のファイルをインポートしています。これは、今後スマートコントラクトのデバッグが発生した場合に、とても役立つツールです。
 
 ```solidity
-// MyEpicGame.sol
 contract MyEpicGame {
     constructor() {
         console.log("THIS IS MY GAME CONTRACT.");
@@ -115,7 +111,6 @@ classの概念については、[ここ](https://aiacademy.jp/media/?p=131)を�
 `run.js`の中身に、以下を記入しましょう。
 
 ```javascript
-// run.js
 const main = async () => {
   const gameContractFactory = await hre.ethers.getContractFactory("MyEpicGame");
   const gameContract = await gameContractFactory.deploy();
@@ -138,7 +133,6 @@ runMain();
 それでは、1行ずつコードの理解を深めましょう。
 
 ```javascript
-// run.js
 const gameContractFactory = await hre.ethers.getContractFactory("MyEpicGame");
 ```
 
@@ -162,7 +156,6 @@ const gameContractFactory = await hre.ethers.getContractFactory("MyEpicGame");
 次に、下記の処理を見ていきましょう。
 
 ```javascript
-// run.js
 const gameContract = await gameContractFactory.deploy();
 ```
 
@@ -175,7 +168,6 @@ HardhatがローカルのEthereumネットワークを、コントラクトの�
 次に下記の処理を見ていきましょう。
 
 ```javascript
-// run.js
 const nftGame = await gameContract.deployed();
 ```
 
@@ -185,7 +177,6 @@ Hardhatは実際にあなたのマシン上に「マイナー」を作成し、�
 私たちの`constructor`は、私たちが実際に完全にデプロイされたときに実行されます!
 
 ```javascript
-// run.js
 console.log("Contract deployed to:", gameContract.address);
 ```
 
@@ -223,7 +214,7 @@ yarn contract run:script
 例)ターミナル上でのアウトプット:
 
 ```
-Compiling 1 file with 0.8.9
+Compiling 1 file with 0.8.17
 Solidity compilation finished successfully
 THIS IS MY GAME CONTRACT.
 Contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3

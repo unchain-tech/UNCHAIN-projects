@@ -17,16 +17,26 @@ USDCを手に入れたら、`pages/api`フォルダ内の`createTransaction.js`�
 ```jsx
 // createTransaction.js
 
-import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
-import { clusterApiUrl, Connection, PublicKey, Transaction } from "@solana/web3.js";
-import { createTransferCheckedInstruction, getAssociatedTokenAddress, getMint } from "@solana/spl-token";
-import BigNumber from "bignumber.js";
-import products from "./products.json";
+import {
+  createTransferCheckedInstruction,
+  getAssociatedTokenAddress,
+  getMint
+} from '@solana/spl-token';
+import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
+import {
+  clusterApiUrl,
+  Connection,
+  PublicKey,
+  Transaction
+} from '@solana/web3.js';
+import BigNumber from 'bignumber.js';
+
+import products from './products.json';
 
 // devネット上のUSDCトークンのアドレスを設定します。
-const usdcAddress = new PublicKey("Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr");
+const usdcAddress = new PublicKey('Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr');
 // このウォレットアドレスを書き換えましょう!
-const sellerAddress = "あなたのウォレットアドレス";
+const sellerAddress = 'あなたのウォレットアドレス';
 const sellerPublicKey = new PublicKey(sellerAddress);
 
 const createTransaction = async (req, res) => {
@@ -34,13 +44,13 @@ const createTransaction = async (req, res) => {
     const { buyer, orderID, itemID } = req.body;
     if (!buyer) {
       res.status(400).json({
-        message: "Missing buyer address",
+        message: 'Missing buyer address',
       });
     }
 
     if (!orderID) {
       res.status(400).json({
-        message: "Missing order ID",
+        message: 'Missing order ID',
       });
     }
 
@@ -48,7 +58,7 @@ const createTransaction = async (req, res) => {
 
     if (!itemPrice) {
       res.status(404).json({
-        message: "Item not found. please check item ID",
+        message: 'Item not found. please check item ID',
       });
     }
 
@@ -61,7 +71,7 @@ const createTransaction = async (req, res) => {
 
     const buyerUsdcAddress = await getAssociatedTokenAddress(usdcAddress, buyerPublicKey);
     const shopUsdcAddress = await getAssociatedTokenAddress(usdcAddress, sellerPublicKey);
-    const { blockhash } = await connection.getLatestBlockhash("finalized");
+    const { blockhash } = await connection.getLatestBlockhash('finalized');
 
     // 転送するトークンのミントアドレスを取得しています。
     const usdcMint = await getMint(connection, usdcAddress);
@@ -94,7 +104,7 @@ const createTransaction = async (req, res) => {
       requireAllSignatures: false,
     });
 
-    const base64 = serializedTransaction.toString("base64");
+    const base64 = serializedTransaction.toString('base64');
 
     res.status(200).json({
       transaction: base64,
@@ -102,12 +112,12 @@ const createTransaction = async (req, res) => {
   } catch (err) {
     console.error(err);
 
-    res.status(500).json({ error: "error creating transaction" });
+    res.status(500).json({ error: 'error creating transaction' });
   }
 };
 
 export default function handler(req, res) {
-  if (req.method === "POST") {
+  if (req.method === 'POST') {
     createTransaction(req, res);
   } else {
     res.status(405).end();
@@ -118,7 +128,7 @@ export default function handler(req, res) {
 最初に追加したのはfaucetから取得（記載のある）したdevnet上に存在するUSDCトークンのトークンアドレスです。
 
 ```jsx
-const usdcAddress = new PublicKey("Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr");
+const usdcAddress = new PublicKey('Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr');
 ```
 
 このアドレスを使用して、USDCトークンアカウントのアドレスを探して扱えるようにします。

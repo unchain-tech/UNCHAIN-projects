@@ -11,7 +11,6 @@
 `WavePortal.sol`の`wave`関数を下記のように更新していきます。
 
 ```solidity
-// WavePortal.sol
 function wave(string memory _message) public {
 	totalWaves += 1;
 	console.log("%s waved w/ message %s", msg.sender, _message);
@@ -41,14 +40,12 @@ function wave(string memory _message) public {
 > まず、下記で`prizeAmount`という変数を定義し、`0.0001` ETH を指定しています。
 >
 > ```solidity
-> // WavePortal.sol
 > uint256 prizeAmount = 0.0001 ether;
 > ```
 >
 > そして、下記では、ユーザーに送る ETH の額が**コントラクトが持つ残高**より下回っていることを確認しています。
 >
 > ```solidity
-> // WavePortal.sol
 > require(
 > 	prizeAmount <= address(this).balance,
 > 	"Trying to withdraw more money than the contract has."
@@ -65,14 +62,12 @@ function wave(string memory _message) public {
 > 下記のコードはユーザーに送金を行うために実装されています。
 >
 > ```solidity
-> // WavePortal.sol
 > (bool success, ) = (msg.sender).call{value：prizeAmount}("")
 > ```
 >
 > 下記のコードは、トランザクション（＝送金）が成功したことを確認しています。
 >
 > ```solidity
-> // WavePortal.sol
 > require(success, "Failed to withdraw money from contract.");
 > ```
 >
@@ -81,7 +76,6 @@ function wave(string memory _message) public {
 次に、`WavePortal.sol`の`constructor`を下記のように変更します。
 
 ```solidity
-// WavePortal.sol
 constructor() payable {
   console.log("We have been constructed!");
 }
@@ -99,7 +93,6 @@ constructor() payable {
 - `run.js`はコントラクトのコア機能のテストを行うためのスクリプトです。
 
 ```javascript
-// run.js
 const main = async () => {
   const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
   /*
@@ -159,7 +152,6 @@ runMain();
 **1 \. 0.1ETH をコントラクトに提供する**
 
 ```javascript
-// run.js
 const waveContract = await waveContractFactory.deploy({
   value: hre.ethers.utils.parseEther("0.1"),
 });
@@ -168,7 +160,6 @@ const waveContract = await waveContractFactory.deploy({
 `hre.ethers.utils.parseEther("0.1")`によって、コントラクトがデプロイされた際に、コントラクトに0.1 ETHの資金を提供することを宣言しています。
 
 ```javascript
-// run.js
 let contractBalance = await hre.ethers.provider.getBalance(
   waveContract.address
 );
@@ -181,7 +172,6 @@ let contractBalance = await hre.ethers.provider.getBalance(
 **2 \. コントラクトの資金を確認する**
 
 ```javascript
-// run.js
 console.log("Contract balance:", hre.ethers.utils.formatEther(contractBalance));
 ```
 
@@ -190,7 +180,6 @@ console.log("Contract balance:", hre.ethers.utils.formatEther(contractBalance));
 **3 \. `wave`したあとのコントラクトの残高を確認する**
 
 ```javascript
-// run.js
 /*
  * Wave
  */
@@ -240,7 +229,6 @@ Contract balance: 0.0999
 本番環境でコントラクトに資金を提供するため、下記のように`deploy.js`を更新します。
 
 ```javascript
-// deploy.js
 const main = async () => {
   const [deployer] = await hre.ethers.getSigners();
   const accountBalance = await deployer.getBalance();
@@ -275,7 +263,6 @@ runMain();
 更新したコードは下記です。
 
 ```javascript
-// deploy.js
 const waveContract = await waveContractFactory.deploy({
   value: hre.ethers.utils.parseEther("0.001"),
 });

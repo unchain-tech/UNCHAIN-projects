@@ -427,11 +427,11 @@ export ROOT_PRINCIPAL=$(dfx identity get-principal)
 
 # `||（OR演算子）`：左側のコマンドが失敗（終了ステータス0以外）した場合、右側のコマンドが実行される
 ## 既にuser1が存在する場合、`dfx identity new user1`コマンドは実行エラーとなってしまうので、対策として`|| true`を使用
-dfx identity new user1 --disable-encryption || true
+dfx identity new user1 --storage-mode=plaintext || true
 dfx identity use user1
 export USER1_PRINCIPAL=$(dfx identity get-principal)
 
-dfx identity new user2 --disable-encryption || true
+dfx identity new user2 --storage-mode=plaintext || true
 dfx identity use user2
 export USER2_PRINCIPAL=$(dfx identity get-principal)
 
@@ -526,7 +526,7 @@ Stopped.
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は、Discordの`#internet-computer`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#icp`で質問をしてください。
 
 ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
 

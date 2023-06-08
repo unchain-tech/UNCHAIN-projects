@@ -34,7 +34,6 @@ CSSや文章を変更したり、画像や動画を自分のWebアプリケー�
 まず、`App.js`の中にある下記のコードを確認します。
 
 ```javascript
-// App.js
 /* ABIを参照 */
 const wavePortalContract = new ethers.Contract(
   contractAddress,
@@ -48,7 +47,6 @@ console.log("Retrieved total wave count...", count.toNumber());
 このコードの直下に下記を追加しましょう。
 
 ```javascript
-// App.js
 let contractBalance = await provider.getBalance(wavePortalContract.address);
 console.log("Contract balance:", ethers.utils.formatEther(contractBalance));
 ```
@@ -60,7 +58,6 @@ console.log("Contract balance:", ethers.utils.formatEther(contractBalance));
 次に、`App.js`の中にある下記のコードを確認します。
 
 ```javascript
-// App.js
 /* コントラクトに👋（wave）を書き込む */
 const waveTxn = await wavePortalContract.wave(messageValue, {
   gasLimit: 300000,
@@ -75,10 +72,11 @@ console.log("Retrieved total wave count...", count.toNumber());
 このコードの直下に下記を追加しましょう。
 
 ```javascript
-// App.js
+let contractBalance = await provider.getBalance(wavePortalContract.address);
 let contractBalance_post = await provider.getBalance(
   wavePortalContract.address
 );
+console.log("Contract balance:", ethers.utils.formatEther(contractBalance));
 /* コントラクトの残高が減っていることを確認 */
 if (contractBalance_post.lt(contractBalance)) {
   /* 減っていたら下記を出力 */
@@ -160,7 +158,7 @@ VercelはGitHubと連動しているので、GitHubが更新されるたびに�
 
 ![](/public/images/ETH-dApp/section-4/4_2_7.png)
 
-こちらが、今回のプロジェクトで作成されるWebアプリケーションのデモは、[こちら](https://my-wave-portal2-nine.vercel.app/) です。
+こちらが、今回のプロジェクトで作成されるWebアプリケーションのデモは、[こちら](https://eth-dapp-three.vercel.app/) です。
 
 これはMVP（=最小機能のついたプロダクト）です。
 
@@ -174,7 +172,7 @@ VercelはGitHubと連動しているので、GitHubが更新されるたびに�
 秘密鍵などのファイルを隠すために、ターミナルで`contract`に移動して、下記を実行してください。
 
 ```bash
-yarn install --save dotenv
+yarn add --dev dotenv
 ```
 
 `dotenv`モジュールに関する詳しい説明は、[こちら](https://maku77.github.io/nodejs/env/dotenv.html)を参照してください。
@@ -209,7 +207,7 @@ require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
 
 module.exports = {
-  solidity: "0.8.9",
+  solidity: "0.8.17",
   networks: {
     sepolia: {
       url: process.env.STAGING_ALCHEMY_KEY,
