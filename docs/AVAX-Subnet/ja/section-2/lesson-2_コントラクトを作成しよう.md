@@ -46,8 +46,8 @@ Hardhatを使用する場合ファイル構造は非常に重要ですので、�
 
 ```bash
 contract
- └── contracts
-     └── Bank.sol
+└── contracts
+    └── Bank.sol
 ```
 
 次に、コードエディタでプロジェクトのコードを開きます。
@@ -523,10 +523,10 @@ describe('Bank', function () {
 
 ### ⭐ テストを実行しましょう
 
-`contract`ディレクトリ直下で以下のコマンドを実行してください。
+以下のコマンドを実行してください。
 
 ```
-$ npx hardhat test
+yarn test
 ```
 
 以下のような表示がされます。  
