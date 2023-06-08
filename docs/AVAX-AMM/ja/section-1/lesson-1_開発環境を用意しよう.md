@@ -18,9 +18,13 @@
 - ユーザーはWebサイトを介して、ブロックチェーン上に展開されているあなたのスマートコントラクトと簡単にやりとりできます。
 - スマートコントラクトの実装 + フロントエンドユーザー・インタフェースの作成 👉 dAppの完成を目指しましょう 🎉
 
-まず、`node` / `yarn`を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスしてください。
+まず、`node` / `yarn`を取得する必要があります。
+お持ちでない場合は、下記のリンクにアクセスをしてインストールしてください。
 
 `node v16`をインストールすることを推奨しています。
+
+- [Node.js](https://hardhat.org/tutorial/setting-up-the-environment#installing-node.js)
+- [yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable)
 
 それでは本プロジェクトで使用するフォルダーを作成してきましょう。作業を始めるディレクトリに移動したら、次のコマンドを実行します。
 
@@ -53,7 +57,7 @@ AVAX-AMM
   "scripts": {
     "contract": "yarn workspace contract",
     "client": "yarn workspace client",
-    "test": "yarn workspace contract test"
+    "test": "yarn contract test"
   }
 }
 ```
@@ -80,7 +84,7 @@ AVAX-AMM
 "scripts": {
   "contract": "yarn workspace contract",
   "client": "yarn workspace client",
-  "test": "yarn workspace contract test"
+  "test": "yarn contract test"
 }
 ```
 
@@ -90,6 +94,16 @@ AVAX-AMM
 yarn <パッケージ名> <実行したいコマンド>
 ```
 
+次に、TypeScriptの設定ファイル`tsconfig.json`を作成しましょう。今回のプロジェクトは、contractとclientどちらもTypeScriptを使用するため、それぞれのパッケージにtsconfig.jsonが存在します。そのため、ルートディレクトリにもtsconfig.jsonを配置することでパッケージ間で共通したい設定を記述することができます。
+
+それでは、AVAX-AMMディレクトリ直下にいることを確認し、下記のコマンドを実行しましょう。
+
+```bash
+tsc --init
+```
+
+`tsconfig.json`ファイルが生成されたことを確認してください。設定はデフォルトのままにしておきます。
+
 それでは、ワークスペースのパッケージを格納するディレクトリを作成しましょう。
 
 以下のようなフォルダー構成となるように、`packages`ディレクトリとその中に`contract`ディレクトリを作成してください（`client`ディレクトリは、後ほどのレッスンでフロントエンド構築の際に作成したいと思います）。
@@ -97,8 +111,9 @@ yarn <パッケージ名> <実行したいコマンド>
 ```diff
 AVAX-AMM
  ├── package.json
-+└── packages/
-+    └── contract/
++├── packages/
++│   └── contract/
+ └── tsconfig.json
 ```
 
 `contract`ディレクトリには、スマートコントラクトを構築するためのファイルを作成していきます。
@@ -121,8 +136,9 @@ AVAX-AMM
 AVAX-AMM
  ├── .gitignore
  ├── package.json
- └── packages/
-     └── contract/
+ ├── packages/
+ │   └── contract/
+ └── tsconfig.json
 ```
 
 これでモノレポの雛形が完成しました！
@@ -175,9 +191,10 @@ npx hardhat
 `hardhat`がターミナル上で立ち上がったら、それぞれの質問を以下のように答えていきます。
 
 ```
-・What do you want to do? →「Create a JavaScript project」を選択
+・What do you want to do? →「Create a TypeScript project」を選択
 ・Hardhat project root: →「'Enter'を押す」 (自動で現在いるディレクトリが設定されます。)
 ・Do you want to add a .gitignore? (Y/n) → 「y」
+・Do you want to install this sample project's dependencies with npm (hardhat @nomicfoundation/hardhat-toolbox)? (Y/n) → 「n」
 ```
 
 （例）
@@ -195,9 +212,14 @@ $ npx hardhat
 
 👷 Welcome to Hardhat v2.13.0 👷‍
 
-✔ What do you want to do? · Create a JavaScript project
-✔ Hardhat project root: · /AVAX-AMM/packages/contract
+✔ What do you want to do? · Create a TypeScript project
+✔ Hardhat project root: · /任意のディレクトリ/AVAX-AMM/packages/contract
 ✔ Do you want to add a .gitignore? (Y/n) · y
+✔ Do you want to install this sample project's dependencies with npm (hardhat @nomicfoundation/hardhat-toolbox)? (Y/n) · n
+
+
+You need to install these dependencies to run the sample project:
+  npm install --save-dev "hardhat@^2.12.6" "@nomicfoundation/hardhat-toolbox@^2.0.0"
 
 ✨ Project created ✨
 
@@ -218,15 +240,17 @@ Give Hardhat a star on Github if you're enjoying it! 💞✨
 AVAX-AMM
  ├── .gitignore
  ├── package.json
- └── packages/
-     └── contract/
-+        ├── .gitignore
-+        ├── README.md
-+        ├── contracts/
-+        ├── hardhat.config.js
-+        ├── package.json
-+        ├── scripts/
-+        └── test/
+ ├── packages/
+ │   └── contract/
++│       ├── .gitignore
++│       ├── README.md
++│       ├── contracts/
++│       ├── hardhat.config.ts
++│       ├── package.json
++│       ├── scripts/
++│       ├── test/
++│       └── tsconfig.json
+ └── tsconfig.json
 ```
 
 それでは、`contract`ディレクトリ内に生成された`package.json`ファイルを以下を参考に更新をしましょう。
@@ -272,28 +296,17 @@ AVAX-AMM
 
 ### ⭐️ 実行する
 
-すべてが機能していることを確認するには、以下を実行します。
+すべてが機能していることを確認するには、AVAX-AMM/直下から以下を実行します。
 
 ```
-npx hardhat compile
-```
-
-次に、以下を実行します。
-
-```
-npx hardhat test
+yarn test
 ```
 
 次のように表示されます。
 
 ![](/public/images/AVAX-AMM/section-1/1_2_2.png)
 
-ターミナル上で`ls`と入力してみて、下記のフォルダーとファイルが表示されていたら成功です。
-
-```bash
-README.md         cache             hardhat.config.js package.json      test
-artifacts         contracts         node_modules      scripts
-```
+これからテストの実行を行う際は、`AVAX-AMM/`直下で`yarn test`を実行します。
 
 ここまできたら、フォルダーの中身を整理しましょう。
 

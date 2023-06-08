@@ -181,7 +181,7 @@ AMMコントラクトの状態変数が正しく変更されているかを確�
 ターミナル上で以下のコマンドを実行してください。
 
 ```
-yarn contract test
+yarn test
 ```
 
 以下のような表示がされたらテスト成功です！
@@ -190,7 +190,7 @@ yarn contract test
 
 ### 🌔 参考リンク
 
-> [こちら](https://github.com/unchain-dev/avalanche-amm-dapp)に本プロジェクトの完成形のレポジトリがあります。
+> [こちら](https://github.com/unchain-tech/AVAX-AMM)に本プロジェクトの完成形のレポジトリがあります。
 >
 > 期待通り動かない場合は参考にしてみてください。
 

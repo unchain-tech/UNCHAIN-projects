@@ -1098,7 +1098,7 @@ export default function Container({ currentAccount }: Props) {
 }
 ```
 
-ブラウザで`http://localhost:3000 `へアクセスします。
+ブラウザで`http://localhost:3000`へアクセスします。
 
 `Withdraw`タブをクリックすると以下のような表示がされます。
 
@@ -1123,7 +1123,7 @@ export default function Container({ currentAccount }: Props) {
 
 ### 🌔 参考リンク
 
-> [こちら](https://github.com/unchain-dev/avalanche-amm-dapp)に本プロジェクトの完成形のレポジトリがあります。
+> [こちら](https://github.com/unchain-tech/AVAX-AMM)に本プロジェクトの完成形のレポジトリがあります。
 >
 > 期待通り動かない場合は参考にしてみてください。
 

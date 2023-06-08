@@ -33,8 +33,7 @@ Vercelのアカウントを取得したら、下記を実行しましょう。
 
 3\. プロジェクトを作成します。
 
-`Framework Preset`に`Next.js`を選択してください。  
-`Root directory`に(`Edit`ボタンをクリックし)`packages/client`を選択します。
+`Framework Preset`は`Next.js`、`Root Directory`は`packages/client`となっていることを確認してください。
 
 ![](/public/images/AVAX-AMM/section-4/4_1_3.png)
 
@@ -72,7 +71,7 @@ NFTを取得する条件は、以下のようになります。
 
 3. このページの最後にリンクされているProject Completion Formに記入する
 
-4. Discordの`#post-your-projects`チャンネルに、あなたのWebサイトをシェアしてください
+4. Discordの`#post-your-project`チャンネルに、あなたのWebサイトをシェアしてください
 
 😉🎉 Discordに投稿する際に、追加実装した機能とその概要も教えていただけると幸いです!
 
