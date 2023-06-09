@@ -17,7 +17,6 @@
 `Domains.sol`に以下を追加します。
 
 ```solidity
-// Domains.sol
 modifier onlyOwner() {
   require(isOwner());
   _;
@@ -58,7 +57,6 @@ function withdraw() public onlyOwner {
 厄介な`owner`エラーを修正するには、コントラクトの先頭にグローバルな`owner`変数を作成し、次のようにコンストラクターに設定するだけです。
 
 ```solidity
-// Domains.sol
 address payable public owner;
 
 constructor(string memory _tld) ERC721 ("Ninja Name Service", "NNS") payable {
@@ -78,7 +76,6 @@ constructor(string memory _tld) ERC721 ("Ninja Name Service", "NNS") payable {
 `run.js`スクリプトを設定します。
 
 ```javascript
-// run.js
 const main = async () => {
   const [owner, superCoder] = await hre.ethers.getSigners();
   const domainContractFactory = await hre.ethers.getContractFactory('Domains');

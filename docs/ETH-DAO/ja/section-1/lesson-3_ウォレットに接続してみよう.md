@@ -15,15 +15,13 @@
 ```typescript
 import type { AppProps } from "next/app";
 import {ThirdwebProvider } from "@thirdweb-dev/react";
+import { Sepolia } from '@thirdweb-dev/chains';
 import "../styles/globals.css";
 import HeadComponent from '../components/head';
 
-// アプリケーションが動作するチェーン（ Sepolia）を取得し、定義します。
-const activeChainId = 11155111;
-
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ThirdwebProvider activeChainId={activeChainId}>
+    <ThirdwebProvider activeChain={Sepolia}>
       <HeadComponent/>
       <Component {...pageProps} />
     </ThirdwebProvider>
@@ -42,7 +40,6 @@ Next.jsにおいてAppコンポーネント (`_app.tsx`) で全ページ共通�
 続いて、ヘッダー部分のコードを準備しましょう。
 
 ルートディレクトリの直下に`components/head.tsx`を作成し、以下のコードを追加します。
-
 ```typescript
 import * as React from 'react';
 import Head from 'next/head';

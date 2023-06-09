@@ -122,8 +122,6 @@ const [walletAddress, setWalletAddress] = useState(null);
 続いて、`App.js`を以下のとおり修正していきましょう。
 
 ```jsx
-//App.js
-
 import React, { useEffect, useState } from 'react';
 import twitterLogo from './assets/twitter-logo.svg';
 import './App.css';

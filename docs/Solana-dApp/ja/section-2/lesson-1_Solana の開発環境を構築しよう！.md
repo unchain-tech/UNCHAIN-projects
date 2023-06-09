@@ -107,7 +107,7 @@ Commitment: confirmed
 
 また、プログラムのテスト用に、ローカルコンピューターにバリデーターを設定することもできます。
 
-以下のコマンドを実行しましょう。
+`packages/contractに移動して、以下のコマンドを実行しましょう。
 
 ```bash
 solana-test-validator
@@ -166,27 +166,7 @@ anchor --version
 
 バージョン情報が出力されていればOKです。
 
-また、AnchorのnpmモジュールとSolana web3.jsを使用するため、こちらも併せてインストールしておきましょう。
-
-以下のコマンドを実行します。
-
-```bash
-npm install @project-serum/anchor @solana/web3.js
-```
-
 ここまででAnchorを使用するための準備が整いました。
-
-
-### 🏃‍♂️ Solana プロジェクトを作成する
-
-以下のコマンドを実行してSolanaプロジェクトのテンプレートを作成します。
-
-```bash
-anchor init myepicproject --javascript
-```
-
-まるでReactのcreate-react-appのように、実行したディレクトリ内に様々なファイルやディレクトリが作成されます。
-
 
 ### 🔑 ローカルキーペアを作成する
 
@@ -207,6 +187,12 @@ solana address
 ```
 
 作成したローカルウォレットのパブリックアドレスが表示されればOKです。
+
+最後に`packages/contract/Anchor.toml`の12行目にあるパスを自身のPCのものに置き換えてください。
+
+```
+wallet = "/Users/{YOUR_USERNAME}/.config/solana/id.json" # YOUR_USERNAMEは自分のPCのユーザー名に置き換えてください
+```
 
 
 ### 🥳 テストプログラムを実行する

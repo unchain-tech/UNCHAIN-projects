@@ -12,8 +12,6 @@ Solanaプログラム上にデータを保存することができました。
 `lib.js`を以下のとおり更新します。
 
 ```rust
-// lib.js
-
 use anchor_lang::prelude::*;
 
 declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
@@ -112,8 +110,6 @@ pub struct ItemStruct {
 では、テストを行う前に`myepicproject.js`を以下のとおり更新しておきましょう。
 
 ```javascript
-//myepicproject.js
-
 const anchor = require('@project-serum/anchor');
 const { SystemProgram } = anchor.web3;
 

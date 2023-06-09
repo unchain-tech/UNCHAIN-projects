@@ -385,7 +385,7 @@ client
 それでは`AVAX-Subnet`ディレクトリ直下で以下のコマンドを実行してください！
 
 ```
-$ yarn client dev
+yarn client dev
 ```
 
 そしてブラウザで`http://localhost:3000 `へアクセスしてください。

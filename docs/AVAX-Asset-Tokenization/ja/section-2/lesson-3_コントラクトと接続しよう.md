@@ -191,23 +191,23 @@ deploy()
 
 このスクリプトを実行する際に先ほど`hardhat.config.ts`で設定したネットワークを指定すると、 `ethers.getSigners()`の返す初めのアカウントの値はあなたのアカウントのアドレスになります。
 
-それでは`packages/contract`ディレクトリ直下で下記のコマンドを実行してデプロイします！
+それでは`AVAX-Asset-Tokenization/`直下で下記のコマンドを実行してデプロイします！
 
 ```
-$ npx hardhat run scripts/deploy.ts --network fuji
+yarn contract deploy
 ```
 
 このような出力結果が出たら成功です！
 
 ```
+yarn run v1.22.19
+$ yarn workspace contract deploy
 $ npx hardhat run scripts/deploy.ts --network fuji
 assetTokenization address: 0x4E2F5941e079EcE9c1927fd7b9fc92fDB58E04cD
 account address that deploy contract: 0xf6DA2F11E8f1faC2a13ac847d52FaF5Ce6e39954
 ```
 
 `assetTokenization address:`に続くコントラクトのアドレスは、 次の項目で必要になるのでどこかに保存しておいてください。
-
-最後に`.gitignore`に`.env`が含まれていることを確認してください!
 
 ### 🌵 スマートコントラクトの情報をフロントエンドに反映しましょう
 

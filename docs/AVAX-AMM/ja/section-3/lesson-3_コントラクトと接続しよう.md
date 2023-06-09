@@ -355,7 +355,7 @@ deploy()
 
 このスクリプトを実行する際に先ほど`hardhat.config.ts`で設定したネットワークを指定すると、`ethers.getSigners()`の返す初めのアカウントの値はあなたのアカウントのアドレスになります。
 
-ターミナル上で以下のコマンドを実行してください。
+ターミナル上で`AVAX-AMM/`直下にいることを確認して、下記を実行しましょう。
 
 ```
 yarn contract deploy
@@ -888,7 +888,7 @@ yarn client dev
 
 ### 🌔 参考リンク
 
-> [こちら](https://github.com/unchain-dev/avalanche-amm-dapp)に本プロジェクトの完成形のレポジトリがあります。
+> [こちら](https://github.com/unchain-tech/AVAX-AMM)に本プロジェクトの完成形のレポジトリがあります。
 >
 > 期待通り動かない場合は参考にしてみてください。
 

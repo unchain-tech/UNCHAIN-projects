@@ -26,7 +26,7 @@
 
 今回は作成したスマートコントラクトを、[FUJI C-Chain](https://docs.avax.network/quickstart/fuji-workflow)へデプロイします。
 
-AvalancheとC-Chainに関する概要は[こちら](https://app.unchain.tech/learn/AVAX-Messenger/section-0_lesson-1)をご覧ください。
+AvalancheとC-Chainに関する概要は[こちら](https://app.unchain.tech/learn/AVAX-Messenger/ja/0/1/)をご覧ください。
 
 ### 🪙 Defi と DEX と AMM
 
@@ -78,7 +78,7 @@ Avalancheネットワークの高速なトランザクションレートと高�
 
 ### 🌍 プロジェクトをアップグレードする
 
-[UNCHAIN](https://app.shiftbase.xyz) のプロジェクトは [UNCHAIN License](https://github.com/unchain-dev/UNCHAIN-projects/blob/main/LICENSE) により運用されています。
+[UNCHAIN](https://unchain.tech/) のプロジェクトは [UNCHAIN License](https://github.com/unchain-dev/UNCHAIN-projects/blob/main/LICENSE) により運用されています。
 
 プロジェクトに参加していて、「こうすればもっと分かりやすいのに!」「これは間違っている!」と思ったら、ぜひ`pull request`を送ってください。
 
@@ -91,11 +91,11 @@ GitHubから直接コードを編集して直接`pull request`を送る方法は
 - プロジェクトを`Fork`する方法は、[こちら](https://docs.github.com/ja/get-started/quickstart/fork-a-repo) を参照してください。
 - `Fork`から`pull request`を作成する方法は、[こちら](https://docs.github.com/ja/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) です。
 
-**👋 `UNCHAIN-projects`に`pull request`を送る! ⏩ [UNCHAIN の GitHub](https://github.com/shiftbase-xyz/UNCHAIN-projects) にアクセス!**
+**👋 `UNCHAIN-projects`に`pull request`を送る! ⏩ [UNCHAIN の GitHub](https://github.com/unchain-tech/UNCHAIN-projects) にアクセス!**
 
 ### ⚡️ `Issue`を作成する
 
-`pull request`送るほどでもないけど、提案を残したい!　と思ったら、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/issues) に`Issue`を作成してみましょう。
+`pull request`送るほどでもないけど、提案を残したい!　と思ったら、[こちら](https://github.com/unchain-tech/UNCHAIN-projects/issues) に`Issue`を作成してみましょう。
 
 `Issue`の作成方法に関しては、[こちら](https://docs.github.com/ja/issues/tracking-your-work-with-issues/creating-an-issue)を参照してください。
 

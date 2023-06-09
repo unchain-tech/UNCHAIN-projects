@@ -87,7 +87,7 @@ AVAX-Asset-Tokenization
 "scripts": {
   "contract": "yarn workspace contract",
   "client": "yarn workspace client",
-  "test": "yarn workspace contract test"
+  "test": "yarn contract test"
 }
 ```
 
@@ -97,6 +97,16 @@ AVAX-Asset-Tokenization
 yarn <パッケージ名> <実行したいコマンド>
 ```
 
+次に、TypeScriptの設定ファイル`tsconfig.json`を作成しましょう。今回のプロジェクトは、contractとclientどちらもTypeScriptを使用するため、それぞれのパッケージにtsconfig.jsonが存在します。そのため、ルートディレクトリにもtsconfig.jsonを配置することでパッケージ間で共通したい設定を記述することができます。
+
+それでは、AVAX-Asset-Tokenizationディレクトリ直下にいることを確認し、下記のコマンドを実行しましょう。
+
+```bash
+tsc --init
+```
+
+`tsconfig.json`ファイルが生成されたことを確認してください。設定はデフォルトのままにしておきます。
+
 それでは、ワークスペースのパッケージを格納するディレクトリを作成しましょう。
 
 以下のようなフォルダー構成となるように、`packages`ディレクトリとその中に`contract`ディレクトリを作成してください（`client`ディレクトリは、後ほどのレッスンでフロントエンド構築の際に作成したいと思います）。
@@ -104,8 +114,9 @@ yarn <パッケージ名> <実行したいコマンド>
 ```diff
  AVAX-Asset-Tokenization
  ├── package.json
-+└── packages/
-+    └── contract/
++├── packages/
++│   └── contract/
+ └── tsconfig.json
 ```
 
 `contract`ディレクトリには、スマートコントラクトを構築するためのファイルを作成していきます。
@@ -130,8 +141,9 @@ yarn <パッケージ名> <実行したいコマンド>
 AVAX-Asset-Tokenization
 ├── .gitignore
 ├── package.json
-└── packages/
-    └── contract/
+├── packages/
+│   └── contract/
+└── tsconfig.json
 ```
 
 これでモノレポの雛形が完成しました！
@@ -154,7 +166,7 @@ AVAX-Asset-Tokenization
 yarn init --private -y
 
 # Hardhatとスマートコントラクトの開発に必要なプラグインのインストール
-yarn add --dev hardhat@^2.12.2 @openzeppelin/test-helpers@^0.5.16 hardhat-gas-reporter@^1.0.8 solidity-coverage@^0.8.1 typechain@^8.1.0 @nomicfoundation/hardhat-network-helpers@^1.0.8 @nomicfoundation/hardhat-chai-matchers@^1.0.6 @nomiclabs/hardhat-ethers@^2.2.3 @nomiclabs/hardhat-etherscan@^3.1.7 @types/chai@^4.3.5 @types/mocha@^10.0.1 @typechain/ethers-v5@^11.0.0 @typechain/hardhat@^7.0.0
+yarn add --dev @nomicfoundation/hardhat-chai-matchers@^1.0.6 @nomicfoundation/hardhat-network-helpers@^1.0.8 @nomicfoundation/hardhat-toolbox@^2.0.0 @nomiclabs/hardhat-ethers@^2.2.3 @nomiclabs/hardhat-etherscan@^3.1.7 @openzeppelin/test-helpers@^0.5.16 @typechain/ethers-v5@^11.0.0 @typechain/hardhat@^7.0.0 @types/chai@^4.3.5 @types/mocha@^10.0.1 hardhat@^2.12.2 hardhat-gas-reporter@^1.0.8 solidity-coverage@^0.8.1 ts-node@^10.9.1 typechain@^8.1.0
 
 yarn add dotenv @openzeppelin/contracts@^4.7.3 @chainlink/contracts@^0.5.1
 ```
@@ -210,7 +222,7 @@ $npx hardhat
 👷 Welcome to Hardhat v2.12.6 👷‍
 
 ✔ What do you want to do? · Create a TypeScript project
-✔ Hardhat project root: · /Users/yukasaito/Desktop/dev
+✔ Hardhat project root: · /任意のディレクトリ/AVAX-Asset-Tokenization/packages/contract
 ✔ Do you want to add a .gitignore? (Y/n) · y
 ✔ Do you want to install this sample project's dependencies with npm (hardhat @nomicfoundation/hardhat-toolbox)? (Y/n) · n
 
@@ -232,16 +244,64 @@ Give Hardhat a star on Github if you're enjoying it! 💞✨
 AVAX-Asset-Tokenization
  ├── .gitignore
  ├── package.json
- └── packages/
-     └── contract/
-+        ├── .gitignore
-+        ├── README.md
-+        ├── contracts/
-+        ├── hardhat.config.js
-+        ├── package.json
-+        ├── scripts/
-+        └── test/
+ ├── packages/
+ │   └── contract/
++│       ├── .gitignore
++│       ├── README.md
++│       ├── contracts/
++│       ├── hardhat.config.ts
++│       ├── package.json
++│       ├── scripts/
++│       ├── test/
++│       └── tsconfig.json
+ └── tsconfig.json
 ```
+
+
+それでは、`contract`ディレクトリ内に生成された`package.json`ファイルを以下を参考に更新をしましょう。
+
+```diff
+{
+  "name": "contract",
+  "version": "1.0.0",
+-  "main": "index.js",
+-  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@nomicfoundation/hardhat-chai-matchers": "^1.0.6",
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.8",
+    "@nomicfoundation/hardhat-toolbox": "^2.0.0",
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@nomiclabs/hardhat-etherscan": "^3.1.7",
+    "@openzeppelin/test-helpers": "^0.5.16",
+    "@typechain/ethers-v5": "^11.0.0",
+    "@typechain/hardhat": "^7.0.0",
+    "@types/chai": "^4.3.5",
+    "@types/mocha": "^10.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.59.7",
+    "@typescript-eslint/parser": "^5.59.7",
+    "eslint": "^8.41.0",
+    "eslint-plugin-node": "^11.1.0",
+    "hardhat": "^2.12.2",
+    "hardhat-gas-reporter": "^1.0.8",
+    "solidity-coverage": "^0.8.1",
+    "ts-node": "^10.9.1",
+    "typechain": "^8.1.0"
+  },
+  "dependencies": {
+    "@chainlink/contracts": "^0.5.1",
+    "@openzeppelin/contracts": "^4.7.3",
+    "dotenv": "^16.0.3"
+  }
++  "scripts": {
++    "deploy": "npx hardhat run scripts/deploy.ts --network fuji",
++    "cp": "cp typechain-types/contracts/AssetTokenization.ts ../client/types/ && cp artifacts/contracts/AssetTokenization.sol/AssetTokenization.json ../client/artifacts/",
++    "test": "npx hardhat test"
++  },
+}
+```
+
+不要な定義を削除し、scriptsに複数のコマンドを定義しました。hardhatによる自動テストの実行やデプロイを行うためのコマンドを定義しています。
 
 ---
 
@@ -271,55 +331,24 @@ AVAX-Asset-Tokenization
 
 ### ⭐️ 実行する
 
-すべてが機能していることを確認するには、以下を実行します。
+すべてが機能していることを確認するには、AVAX-Asset-Tokenization/直下から以下を実行します。
 
 ```
-$ npx hardhat test
+yarn test
 ```
 
 次のように表示されたら成功です! 🎉
 
 ![](/public/images/AVAX-Asset-Tokenization/section-1/1_1_1.png)
 
+これからテストを行う際は、`AVAX-Asset-Tokenization/`直下で`yarn test`を実行します。
+
 ここまできたら、フォルダーの中身を整理しましょう。
 
-1\. `test`の下のファイル`Lock.ts`と
+`test`の下のファイル`Lock.ts`と
 `contracts`の下のファイル`Lock.sol`を削除してください。
 
 ディレクトリ自体は削除しないように注意しましょう。
-
-2\. `package.json`ファイルを以下のように更新しましょう。
-
-```diff
-{
-  "name": "contract",
-  "version": "1.0.0",
--  "main": "index.js",
--  "license": "MIT",
-  "private": true,
-  "devDependencies": {
-    "@nomicfoundation/hardhat-chai-matchers": "^1.0.6",
-    "@nomicfoundation/hardhat-network-helpers": "^1.0.8",
-    "@nomicfoundation/hardhat-toolbox": "^2.0.2",
-    "@nomiclabs/hardhat-ethers": "^2.2.2",
-    "@nomiclabs/hardhat-etherscan": "^3.1.7",
-    "@typechain/ethers-v5": "^10.2.0",
-    "@typechain/hardhat": "^6.1.5",
-    "chai": "^4.3.7",
-    "ethers": "^6.1.0",
-    "hardhat": "^2.13.0",
-    "hardhat-gas-reporter": "^1.0.9",
-    "solidity-coverage": "^0.8.2",
-    "typechain": "^8.1.1"
-  },
-+  "scripts": {
-+    "test": "npx hardhat test"
-+  }
-}
-```
-
-不要な定義を削除し、hardhatの自動テストを実行するためのコマンドを追加しました。
-
 
 ### 🐊 `github`にソースコードをアップロードしよう
 

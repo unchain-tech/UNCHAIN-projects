@@ -13,7 +13,8 @@
 いますべてを理解している必要はありません。  
 わからないことがあったらインターネットで検索したり、 コミュニティで質問しながらプロジェクトを進めていきましょう!
 
-`Avalanche`での開発が初めての方や、 `hardhat`でスマートコントラクトのテストを書いたご経験の無い方は[LEARNコンテンツ](https://app.unchain.tech/learn)内の`AVAX-Messenger`により詳しく解説がありますので先にそちらを進めるとスムーズかと思います。  
+`Avalanche`での開発が初めての方や、 `hardhat`でスマートコントラクトのテストを書いたご経験の無い方は [AVAX-Messenger](https://app.unchain.tech/learn/AVAX-Messenger) により詳しく解説がありますので先にそちらを進めるとスムーズかと思います。
+
 また`NFT`に関して実装が初めての方は`ETH NFT Collection`により詳しく解説があります。
 
 ### 🛠 何を構築するのか？
@@ -38,7 +39,7 @@
 
 今回は作成したスマートコントラクトを、 [FUJI C-Chain](https://docs.avax.network/quickstart/fuji-workflow)へデプロイします。
 
-`Avalanche`と`C-Chain`に関する概要は[LEARNコンテンツ](https://app.unchain.tech/learn)内の`AVAX-Messenger/section0/lesson1`により詳しく解説がありますので先にそちらを進めるとスムーズかと思います。  
+AvalancheとC-Chainに関する概要は[こちら](https://app.unchain.tech/learn/AVAX-Messenger/ja/0/1/)をご覧ください。 
 
 ### 🚀 Avalanche と Tokenization
 
@@ -52,7 +53,7 @@ Avalancheはそのコンセンサスアルゴリズムやサブネット（独�
 
 ### 🌍 プロジェクトをアップグレードする
 
-[UNCHAIN](https://app.shiftbase.xyz) のプロジェクトは [UNCHAIN License](https://github.com/unchain-dev/UNCHAIN-projects/blob/main/LICENSE) により運用されています。
+[UNCHAIN](https://unchain.tech/) のプロジェクトは [UNCHAIN License](https://github.com/unchain-dev/UNCHAIN-projects/blob/main/LICENSE) により運用されています。
 
 プロジェクトに参加していて、「こうすればもっと分かりやすいのに!」「これは間違っている!」と思ったら、ぜひ`pull request`を送ってください。
 
@@ -65,11 +66,11 @@ Avalancheはそのコンセンサスアルゴリズムやサブネット（独�
 - プロジェクトを`Fork`する方法は、[こちら](https://docs.github.com/ja/get-started/quickstart/fork-a-repo) を参照してください。
 - `Fork`から`pull request`を作成する方法は、[こちら](https://docs.github.com/ja/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) です。
 
-**👋 `UNCHAIN-projects`に`pull request`を送る! ⏩ [UNCHAIN の GitHub](https://github.com/shiftbase-xyz/UNCHAIN-projects) にアクセス!**
+**👋 `UNCHAIN-projects`に`pull request`を送る! ⏩ [UNCHAIN の GitHub](https://github.com/unchain-tech/UNCHAIN-projects) にアクセス!**
 
 ### ⚡️ `Issue`を作成する
 
-`pull request`送るほどでもないけど、提案を残したい!　と思ったら、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/issues) に`Issue`を作成してみましょう。
+`pull request`送るほどでもないけど、提案を残したい!　と思ったら、[こちら](https://github.com/unchain-tech/UNCHAIN-projects/issues) に`Issue`を作成してみましょう。
 
 `Issue`の作成方法に関しては、[こちら](https://docs.github.com/ja/issues/tracking-your-work-with-issues/creating-an-issue)を参照してください。
 

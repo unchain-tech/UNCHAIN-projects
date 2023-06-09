@@ -13,7 +13,7 @@
 
 `Code`ボタンをクリックして、コピーしたリポジトリのリンクをコピーしてください。
 
-![github code button](/public/images/Solana-dApp/section-1/1_1_1.png)
+![github code button](/public/images/Solana-dApp/section-1/1_1_6.png)
 
 最後に、ターミナルで`cd`コマンドを実行してプロジェクトが存在するディレクトリまで移動し、次のコマンドを実行します。
 

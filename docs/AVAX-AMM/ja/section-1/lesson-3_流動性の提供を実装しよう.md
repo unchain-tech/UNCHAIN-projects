@@ -495,7 +495,7 @@ token0 10ether分(`amountProvide0`)と同価値のtoken1の量(`equivalentToken1
 ターミナル上で以下のコマンドを実行してください。
 
 ```
-yarn contract test
+yarn test
 ```
 
 以下のような表示がされたらテスト成功です！

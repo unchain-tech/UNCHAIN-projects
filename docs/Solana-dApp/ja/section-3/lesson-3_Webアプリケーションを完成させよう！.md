@@ -5,8 +5,6 @@
 `addGif`関数を呼び出し、`getGifList`関数を呼び出すことで、Webアプリケーションをリフレッシュして最新のGIF画像を表示しましょう。
 
 ```javascript
-// App.js
-
 const sendGif = async () => {
   if (inputValue.length === 0) {
     console.log("No gif link given!")
@@ -53,8 +51,6 @@ let baseAccount = Keypair.generate();
 そのために、`src`ディレクトリの下に`createKeyPair.js`という名前のファイルを作成し、以下のコードを貼り付けてください。
 
 ```javascript
-// createKeyPair.js
-
 const fs = require('fs')
 const anchor = require("@project-serum/anchor")
 

@@ -8,7 +8,7 @@
 - `React.js`: ライブラリ
 - `Next.js`: `React.js`のフレームワーク
 
-それぞれの概要については[LEARNコンテンツ](https://app.unchain.tech/learn)内の`AVAX-Messenger/section2/lesson1`に説明を載せていますので、初めて触れる方はご参照ください 💁
+それぞれの概要については[こちら](https://app.unchain.tech/learn/AVAX-Messenger/ja/2/1/)に説明を載せていますので、初めて触れる方はご参照ください 💁
 
 ### 🛠️ 　フロントエンドのセットアップをしよう
 
@@ -28,9 +28,10 @@ yarn create next-app client --ts
   ├── .gitignore
   ├── genesis/
   ├── package.json
-  └── packages/
-+     ├── client/
-      └── contract/
+  ├── packages/
++ │   ├── client/
+  │   └── contract/
+  └── tsconfig.json
 ```
 
 clientディレクトリ内に生成されたpackage.jsonの設定を確認します。contractディレクトリのpackage.jsonと同様に、`"private": true`となっていることを確認し、設定されていない場合は記述しておきます。
@@ -55,7 +56,7 @@ yarn client dev
 
 上記のような形でフロントエンドが確認できれば成功です。
 
-これからフロントエンドの表示を確認する際は,`AVAX-Asset-Tokenization`上で`yarn client dev`(`client`ディレクトリ上では`yarn dev`)を実行します。
+これからフロントエンドの表示を確認する際は,`AVAX-Subnet`上で`yarn client dev`(`client`ディレクトリ上では`yarn dev`)を実行します。
 
 Webサイトの立ち上げを終了する場合は以下のコマンドが使えます ✍️
 
