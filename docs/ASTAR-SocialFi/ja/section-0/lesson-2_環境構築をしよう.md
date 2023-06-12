@@ -31,13 +31,31 @@ curl --proto '=https' --tlsv1.2 -sSf `https://sh.rustup.rs` | sh
 source "$HOME/.cargo/env"
 ```
 
-これらが終わったら下のコマンドを順番にターミナルで実行します
+次にrustの特定のバージョンを下のコマンドをターミナルで実行することでインストールします。
 
 ```
-rustup default stable
-rustup update
-rustup update nightly-2023-01-01
-rustup target add wasm32-unknown-unknown --toolchain nightly-2023-01-01
+rustup install 1.68.0
+```
+
+その後指定したバージョンがインストールされているか、下のコマンドをターミナルで実行することで確認します。
+```
+rustup toolchain list
+```
+
+すると下のような結果が出てきます。
+
+赤字で囲っているところがインストールしたrustのコンパイラーのバージョンを示すものです。こちらをコピーしましょう。
+
+![](/public/images/ASTAR-SocialFi/section-0/0_2_16.png)
+
+では下のコマンドをターミナルで実行することでrustのコンパイラーとして1.68.0のものを使用できるようにしましょう。
+
+`rustup component add rust-src --toolchain`に続く部分は先ほどコピーしたものと入れ替えてください。筆者はmacを使用しているので`1.68.0-aarch64-apple-darwin`となっています。
+
+
+```
+rustup override set 1.68.0  
+rustup component add rust-src --toolchain 1.68.0-aarch64-apple-darwin
 ```
 
 次に`cargo-contracts CLI`を使用できるようにするための準備をします。下のコマンドを順番にターミナルで実行してください。
@@ -49,20 +67,6 @@ rustup component add rust-src
 (Macの場合のみ)brew install openssl
 cargo install cargo-dylint dylint-link
 cargo install --force --locked cargo-contract
-```
-
-では次に下の３つのコマンドを順番にターミナルで実行することによって`rust nightly`を指定のバージョンにしましょう。
-
-```
-rustup toolchain install nightly-2023-01-01
-```
-
-```
-rustup target add wasm32-unknown-unknown --toolchain nightly-2023-01-01
-```
-
-```
-rustup component add rust-src --toolchain nightly-2023-01-01
 ```
 
 これでコントラクトをデプロイする準備が完了しました！
@@ -189,7 +193,7 @@ yarn init --private -y
   "private": true,
   "scripts": {
     "start": "./astar-collator --dev",
-    "build": "cargo +nightly-2023-01-01 contract build",
+    "build": "cargo contract build",
     "test": "cargo test"
   }
 }
@@ -203,7 +207,7 @@ yarn init --private -y
 `packages/contract`にいることを確認して、下のコマンドを実行してみましょう。
 
 ```
-cargo +nightly-2023-01-01 contract build
+cargo contract build
 ```
 
 このようなメッセージが返ってきていればOKです！
