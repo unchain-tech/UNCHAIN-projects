@@ -702,8 +702,11 @@ class _SendState extends State<Send> {
 
 では早速エミュレータを起動して動かしていきましょう！
 
-正常に動いていれば以下のように表示されるはずです。
+正常に動いていれば、エミュレータの場合下のように表示されるはずです。
 ![](/public/images/NEAR-MulPay/section-2/2_3_1.png)
+
+デスクトップ版であれば下のような画面が表示されていれば成功です。
+![](/public/images/NEAR-MulPay/section-2/2_3_3.png)
 
 この画面では先ほど作成したQRコードから受け取った文字列をFormに入れられるようになります。
 
@@ -1082,9 +1085,11 @@ class _WalletState extends State<Wallet> {
 
 これでwallet画面は完成したので早速エミュレータを起動して動かしてみましょう。
 
-正常に動いていれば以下のように表示されるはずです！
-
+正常に動いていれば、エミュレータの場合下のように表示されるはずです！
 ![](/public/images/NEAR-MulPay/section-2/2_3_2.png)
+
+デスクトップ版であれば下のような画面が表示されていれば成功です。
+![](/public/images/NEAR-MulPay/section-2/2_3_4.png)
 
 wallet address欄には自分のwallet addressの一部が表示されているはずです。また、`display QR code`をタッチするとそのアドレスを表すQRコードが表示されることになります。
 
