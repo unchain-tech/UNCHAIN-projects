@@ -14,7 +14,9 @@
 
 Windows版の方は[こちら](https://blog.css-net.co.jp/entry/2022/05/30/133942)を、Macの方は[こちら](https://zenn.dev/kboy/books/ca6a9c93fd23f3/viewer/5232dc)を参照して環境構築を行なってください。
 
-またAndroidのデバイスがない方は、デバッグで使うエミュレータのセットアップを[こちら](https://docs.flutter.dev/get-started/install/macos#set-up-the-android-emulator)で行ってください。
+ここからはエミュレータを用意するための説明が記述されています。しかし、flutterを使うことでデスクトップ版のwebアプリとしても動作するアプリを開発することができます！ これがflutterのすごいところです。なので無理にエミュレータを用意する必要はありません。モバイル上でアプリをデバッグしたい方はここからの説明に従ってエミュレータの用意をしてみてください。
+
+Androidのデバイスがない方は、デバッグで使うエミュレータのセットアップを[こちら](https://docs.flutter.dev/get-started/install/macos#set-up-the-android-emulator)で行ってください。
 
 上記までが完了したら、次にGoogle Play Storeでmetamaskをインストールした後に、metamaskをセットアップをしましょう。エミュレータの方もエミュレータ内のGoogle Play Storeでmetamaskのインストール＋セットアップ
 

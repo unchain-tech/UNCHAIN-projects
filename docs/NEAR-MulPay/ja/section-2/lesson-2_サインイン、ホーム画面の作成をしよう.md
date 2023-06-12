@@ -15,13 +15,14 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart';
-import 'package:client/model/contract_model.dart';
-import 'package:client/view/screens/home.dart';
-import 'package:client/view/widgets/navbar.dart';
+import 'package:mulpay_frontend/model/contract_model.dart';
+import 'package:mulpay_frontend/view/screens/home.dart';
+import 'package:mulpay_frontend/view/widgets/navbar.dart';
 import 'package:provider/provider.dart';
 import 'package:web3_connect/web3_connect.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:web_socket_channel/io.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class SignIn extends StatelessWidget {
   SignIn({Key? key}) : super(key: key);
@@ -38,14 +39,17 @@ class SignIn extends StatelessWidget {
     final displayHeight = MediaQuery.of(context).size.height;
     final displayWidth = MediaQuery.of(context).size.width;
     var provider = Provider.of<BottomNavigationBarProvider>(context);
+    final isDeskTop = ResponsiveBreakpoints.of(context).largerThan(MOBILE);
+
     return Scaffold(
       body: SafeArea(
         child: SizedBox.expand(
           child: Container(
+            alignment: Alignment.center,
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: const AssetImage("assets/multiple-coins.jpg"),
-                alignment: const Alignment(-0.4, 0.5),
+                alignment: Alignment(isDeskTop ? 0 : -0.3, 0.5),
                 fit: BoxFit.fitHeight,
                 colorFilter: ColorFilter.mode(
                   Colors.black.withOpacity(0.6),
@@ -55,7 +59,6 @@ class SignIn extends StatelessWidget {
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
                   height: displayHeight * 0.1,
@@ -82,7 +85,7 @@ class SignIn extends StatelessWidget {
                   height: displayHeight * 0.03,
                 ),
                 Container(
-                  width: double.infinity,
+                  width: isDeskTop ? displayWidth * 0.4 : displayWidth,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                   margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -102,7 +105,7 @@ class SignIn extends StatelessWidget {
                 ),
                 SizedBox(
                   height: displayHeight * 0.1,
-                  width: displayWidth * 0.7,
+                  width: isDeskTop ? displayWidth * 0.4 : displayWidth * 0.7,
                   child: ElevatedButton(
                     onPressed: () async {
                       connection.enterChainId(1313161555);
@@ -135,6 +138,8 @@ class SignIn extends StatelessWidget {
 }
 ```
 
+エラーが出ていると思いますが、次の実装によって消えるので気にしないでください。
+
 では次に`main.dart`へ移動して下のように変更しましょう。
 
 [`main.dart`]
@@ -143,10 +148,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:client/model/contract_model.dart';
-import 'package:client/view/screens/signin.dart';
-import 'package:client/view/widgets/navbar.dart';
+import 'package:mulpay_frontend/model/contract_model.dart';
+import 'package:mulpay_frontend/view/screens/signin.dart';
+import 'package:mulpay_frontend/view/widgets/navbar.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 Future main() async {
   await dotenv.load(fileName: ".env");
@@ -171,6 +177,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      builder: (context, child) => ResponsiveBreakpoints.builder(
+        child: child!,
+        breakpoints: [
+          const Breakpoint(start: 0, end: 450, name: MOBILE),
+          const Breakpoint(start: 451, end: double.infinity, name: DESKTOP),
+        ],
+      ),
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -187,7 +200,7 @@ class MyApp extends StatelessWidget {
         ),
         fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
         textTheme: TextTheme(
-          headline1: TextStyle(
+          headlineSmall: TextStyle(
             fontFamily: GoogleFonts.baloo2().fontFamily,
             fontSize: 36,
             height: 1.0,
@@ -204,7 +217,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
 ```
 
 flutterでは`main`関数から走り出します。まず`.env`ファイルを読み込み、その後JavaScriptでいうpropsのような`provider`を作成します。
@@ -239,6 +251,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      builder: (context, child) => ResponsiveBreakpoints.builder(
+        child: child!,
+        breakpoints: [
+          const Breakpoint(start: 0, end: 450, name: MOBILE),
+          const Breakpoint(start: 451, end: double.infinity, name: DESKTOP),
+        ],
+      ),
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -272,6 +291,17 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+```
+
+このコードによって画面の横のサイズが450ピクセル以下のものをモバイル、それ以上をデスクトップとして指定しています。
+```
+builder: (context, child) => ResponsiveBreakpoints.builder(
+        child: child!,
+        breakpoints: [
+          const Breakpoint(start: 0, end: 450, name: MOBILE),
+          const Breakpoint(start: 451, end: double.infinity, name: DESKTOP),
+        ],
+      ),
 ```
 
 `MyApp`では`routes`でルートを指定しています。ここでは`/signIn`というルートでは`SignIn`ウィジェットが、`/home`というルートでは`BottomNavigationBarWidget`ウィジェットが表示されることになります。
@@ -332,8 +362,11 @@ android {
 yarn client start
 ```
 
-下のような画面が表示されていれば成功です。
+エミュレータであれば下のような画面が表示されていれば成功です。
 ![](/public/images/NEAR-MulPay/section-2/2_2_1.png)
+
+デスクトップ版であれば下のような画面が表示されていれば成功です。
+![](/public/images/NEAR-MulPay/section-2/2_2_6.png)
 
 次にホーム画面を作成していきましょう。`lib/view/screens/home.dart`へ移動して以下のコードを追加していきましょう！
 
@@ -346,11 +379,12 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:client/model/contract_model.dart';
-import 'package:client/view/widgets/qr_code.dart';
-import 'package:client/view/widgets/coin.dart';
+import 'package:mulpay_frontend/model/contract_model.dart';
+import 'package:mulpay_frontend/view/widgets/qr_code.dart';
+import 'package:mulpay_frontend/view/widgets/coin.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -360,6 +394,7 @@ class Home extends StatelessWidget {
     final displayHeight = MediaQuery.of(context).size.height;
     final displayWidth = MediaQuery.of(context).size.width;
     var contractModel = Provider.of<ContractModel>(context, listen: true);
+    final isDeskTop = ResponsiveBreakpoints.of(context).largerThan(MOBILE);
 
     return Scaffold(
       body: SafeArea(
@@ -368,16 +403,20 @@ class Home extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(
-                height: displayHeight * 0.04,
+                height:
+                    isDeskTop ? (displayHeight * 0.01) : (displayHeight * 0.04),
               ),
               SizedBox(
-                height: displayHeight * 0.04,
+                height:
+                    isDeskTop ? (displayHeight * 0.06) : (displayHeight * 0.04),
                 child: Row(
                   children: [
                     Center(
                       child: Text(
                         'Home',
-                        style: Theme.of(context).textTheme.headline1,
+                        style: isDeskTop
+                            ? const TextStyle(fontSize: 50)
+                            : (Theme.of(context).textTheme.headlineSmall),
                       ),
                     ),
                   ],
@@ -419,10 +458,12 @@ class Home extends StatelessWidget {
                                   SizedBox(
                                     height: displayHeight * 0.027,
                                   ),
-                                  const Text(
+                                  Text(
                                     "Balance",
                                     style: TextStyle(
-                                        color: Colors.white, fontSize: 13),
+                                      color: Colors.white,
+                                      fontSize: isDeskTop ? 35 : 13,
+                                    ),
                                   ),
                                   FutureBuilder(
                                       future: contractModel.getTotalBalance(),
@@ -432,11 +473,11 @@ class Home extends StatelessWidget {
                                             "${(snapshot.data.toString())} ETH",
                                             style: TextStyle(
                                                 color: Colors.white,
-                                                fontSize: 14,
+                                                fontSize: isDeskTop ? 28 : 13,
                                                 fontWeight: FontWeight.bold),
                                           );
                                         } else {
-                                          return Center(
+                                          return const Center(
                                             child: CircularProgressIndicator
                                                 .adaptive(),
                                           );
@@ -446,8 +487,8 @@ class Home extends StatelessWidget {
                               ),
                               const Spacer(),
                               SizedBox(
-                                height: 30,
-                                width: 22,
+                                height: isDeskTop ? 55 : 30,
+                                width: isDeskTop ? 45 : 22,
                                 child: SvgPicture.asset(
                                   'assets/three-dots.svg',
                                   color: Colors.white,
@@ -473,7 +514,7 @@ class Home extends StatelessWidget {
                                       contractModel.account,
                                       style: TextStyle(
                                         color: Colors.grey,
-                                        fontSize: 13,
+                                        fontSize: isDeskTop ? 28 : 13,
                                         fontWeight: FontWeight.w600,
                                       ),
                                       overflow: TextOverflow.ellipsis,
@@ -503,11 +544,11 @@ class Home extends StatelessWidget {
                                             color: Colors.grey,
                                           ),
                                         ),
-                                        const Text(
+                                        Text(
                                           ' display QR code',
                                           style: TextStyle(
                                             color: Colors.grey,
-                                            fontSize: 12,
+                                            fontSize: isDeskTop ? 25 : 12,
                                             fontWeight: FontWeight.w600,
                                           ),
                                         ),
@@ -518,8 +559,8 @@ class Home extends StatelessWidget {
                               ),
                               const Spacer(),
                               SizedBox(
-                                height: 35,
-                                width: 35,
+                                height: isDeskTop ? 55 : 35,
+                                width: isDeskTop ? 55 : 35,
                                 child: Image.asset(
                                   'assets/unchain_logo.png',
                                 ),
@@ -545,17 +586,17 @@ class Home extends StatelessWidget {
                                 itemCount: coinsList.length,
                                 itemBuilder: (context, index) {
                                   return Coins(
-                                    displayWidth,
-                                    displayHeight,
-                                    coinsList[index].imagePath,
-                                    coinsList[index].symbol,
-                                    coinsList[index].name,
-                                    coinsList[index].balance,
-                                    (coinsList[index].ethBalance),
-                                  );
+                                      displayWidth,
+                                      displayHeight,
+                                      coinsList[index].imagePath,
+                                      coinsList[index].symbol,
+                                      coinsList[index].name,
+                                      coinsList[index].balance,
+                                      (coinsList[index].ethBalance),
+                                      isDeskTop);
                                 });
                           } else {
-                            return Center(
+                            return const Center(
                                 child: CircularProgressIndicator.adaptive());
                           }
                         },
@@ -582,8 +623,11 @@ class Home extends StatelessWidget {
 
 では再びエミュレータを立ち上げてきちんと動いているかみていきましょう！
 
-正常に動いている場合は下のように表示されているはずです。
+正常に動いている場合は、エミュレータであれば下のように表示されているはずです。
 ![](/public/images/NEAR-MulPay/section-2/2_2_2.png)
+
+デスクトップ版であれば下のような画面が表示されていれば成功です。
+![](/public/images/NEAR-MulPay/section-2/2_2_3.png)
 
 トークンのリストは上下にスクロールできるようになっていて、トークンの数が増えてもきちんと動くようになっています！
 
