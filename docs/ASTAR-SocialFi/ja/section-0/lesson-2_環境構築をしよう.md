@@ -58,6 +58,22 @@ rustup override set 1.68.0
 rustup component add rust-src --toolchain 1.68.0-aarch64-apple-darwin
 ```
 
+ここで注意点です。Astar-SocialFiで使用しているパッケージの中には、開発環境によってはエラーで動かなくなるものが含まれています。なのでもしどこかでどうしてもエラーが発生して進まないということがあればここから説明するコマンドを使用してrustのコンパイラーのバージョンをnightlyに変更してみてください。
+
+nightlyとは、rustのコンパイラーのバージョンの種類の1つです。毎日rustのコンパイラーは更新されており、それが毎日反映されているのが`nightly`です。
+
+stableバージョンには安定的に動作すると認められたものしか入れられていません。
+
+ではAstar-SocialFiが動く（教材更新日:2023/6/14時点）nightlyのバージョンに切り替えるコマンドを以下に示します。
+
+```
+rustup toolchain install nightly-2023-01-01
+rustup target add wasm32-unknown-unknown --toolchain nightly-2023-01-01
+rustup component add rust-src --toolchain nightly-2023-01-01
+```
+
+これでコンパイラーのバージョンは変更できました。このバージョンのコンパイラーを用いるには`cargo`コマンドの次に`+nightly-2023-01-01`という文字列を入れる必要があります。注意してください。
+
 次に`cargo-contracts CLI`を使用できるようにするための準備をします。下のコマンドを順番にターミナルで実行してください。
 
 その前にmacで開発をされる方は[こちら](https://qiita.com/zaburo/items/29fe23c1ceb6056109fd)を参考に`Homebrew`をインストールしてください。こちらはパッケージをインストールするのに使用します。
