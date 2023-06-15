@@ -269,10 +269,10 @@ ABIファイルの中身は、`MyEpicNFT.json`というファイルに格納さ�
 4\. 下記を実行して、`MyEpicNFT.json`ファイルをVS Codeで開く。
 
 > ```bash
-> code nft-collection-starter-project/src/utils/MyEpicNFT.json
+> code src/utils/MyEpicNFT.json
 > ```
 
-5\. **先ほどコピーした`epic-nfts/artifacts/contracts/MyEpicNFT.sol/MyEpicNFT.json`の中身を新しく作成した`nft-collection-starter-project/src/utils/MyEpicNFT.json`の中に貼り付けてください。**
+5\. **先ほどコピーした`contract/artifacts/contracts/MyEpicNFT.sol/MyEpicNFT.json`の中身を新しく作成した`client/src/utils/MyEpicNFT.json`の中に貼り付けてください。**
 
 ABIファイルの準備ができたので、`App.js`にインポートしましょう。
 
@@ -287,10 +287,10 @@ import myEpicNft from "./utils/MyEpicNFT.json";
 
 ### 🥳 NFT を Mint する
 
-それでは、ターミナル上で`nft-collection-starter-project`ディレクトリに移動して下記を実行し、ローカル環境でWebアプリケーションをホストしてみましょう。
+それでは、ターミナル上で`ETH-NFT-Collection`ディレクトリ直下に移動して下記を実行し、ローカル環境でWebアプリケーションをホストしてみましょう。
 
 ```bash
-npm run start
+yarn client start
 ```
 
 Webアプリケーションの`Mint NFT`ボタンを押して、下記のようなポップアップが立ち上がったら、`Confirm`を押してください。
