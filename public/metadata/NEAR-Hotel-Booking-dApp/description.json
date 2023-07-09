@@ -1,9 +1,9 @@
 {
-    "project_id": 402,
-    "title": "NEAR Hotel Booking dApp",
-    "difficulty": "intermediate",
-    "chain": "NEAR",
-    "description": "👉 Rust と React を使って、ユーザーが宿泊施設を予約できる WEB サービスを構築します。",
-    "total_sections": 4,
-    "total_lessons": 17
+  "project_id": 402,
+  "title": "NEAR Hotel Booking dApp",
+  "difficulty": "intermediate",
+  "chain": "NEAR",
+  "description": "👉 Rust と React を使って、ユーザーが宿泊施設を予約できる WEB サービスを構築します。",
+  "total_sections": 5,
+  "total_lessons": 17
 }

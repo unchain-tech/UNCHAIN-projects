@@ -1,9 +1,9 @@
 {
-    "project_id": 602,
-    "title": "ICP Basic DEX",
-    "difficulty": "intermediate",
-    "chain": "ICP",
-    "description": "👉 Motoko によるスマートコントラクトの作成と React によるフロントエンドの構築により、ICP ネットワーク上にオーダーブック形式の DEX を構築します。",
-    "total_sections": 4,
-    "total_lessons": 17
+  "project_id": 602,
+  "title": "ICP Basic DEX",
+  "difficulty": "intermediate",
+  "chain": "ICP",
+  "description": "👉 Motoko によるスマートコントラクトの作成と React によるフロントエンドの構築により、ICP ネットワーク上にオーダーブック形式の DEX を構築します。",
+  "total_sections": 5,
+  "total_lessons": 17
 }
