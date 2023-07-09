@@ -1,0 +1,33 @@
+name: metadata check
+on: [pull_request]
+jobs:
+  metadata-check:
+    runs-on: ubuntu-latest
+    env:
+      PATH_REGEX: ^.+\/docs\/.+\/(ja|en)\/section\-[0-9]\/lesson\-[0-9]_.+\.md$
+    steps:
+      - uses: actions/checkout@v3
+      - name: check lesson count
+        run: |
+          for dir in docs/*/ja/
+          do
+
+            CONTENT="$(echo $dir | cut -d'/' -f2)"; echo $CONTENT
+
+            MDSECTIONCOUNT=$(jq -c '.total_sections' < public/metadata/$CONTENT/description.json)
+            FSSECTIONCOUNT=$(find docs/$CONTENT/ja/ -type d -iname "section-*" | wc -l)
+            if (( $MDSECTIONCOUNT != $FSSECTIONCOUNT ))
+            then
+              echo "Update section count in public/$CONTENT/description.json"
+              exit 1
+            fi
+
+            MDLESSONCOUNT=$(jq -c '.total_lessons' < public/metadata/$CONTENT/description.json)
+            FSLESSONCOUNT=$(find docs/$CONTENT/ja/ -type f ! -iname '.*' | wc -l)
+            if (( $MDLESSONCOUNT != $FSLESSONCOUNT ))
+            then
+              echo "Update lesson count in public/$CONTENT/description.json"
+              exit 1
+            fi
+
+          done
