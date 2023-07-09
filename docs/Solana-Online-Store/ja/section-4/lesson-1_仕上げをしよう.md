@@ -11,7 +11,7 @@
 1\. `createTransaction.js`で設定したテストネットのUSDC SPLトークンアドレスを以下のとおりメインネットのUSDC SPLトークンアドレスに変更します。
 
 ```jsx
-const usdcAddress = new PublicKey("EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v");
+const usdcAddress = new PublicKey('EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v');
 ```
 
 2\. `_app.js`及び`createTransaction.js`ファイル内の`WalletAdapterNetwork`関数内にある`network`を以下のとおり変更します。
@@ -40,18 +40,18 @@ const network = WalletAdapterNetwork.Mainnet;
 
 ### 🙉 `.gitignore`を確認する
 
-Githubなどにコードをアップロードする際は、秘密鍵や構成ファイル等の見られたくないファイルはアップロードしないように設定する必要があります。
+GitHubなどにコードをアップロードする際は、秘密鍵や構成ファイル等の見られたくないファイルはアップロードしないように設定する必要があります。
 
 前のレッスンでも触れましたが、そういった際には`dotenv`モジュールを使用します。
 
-ただし、Githubにアップロードする場合、`.gitignore`に`.env`が含まれていないと`.env`も一緒にアップロードされてしまうので注意が必要です。
+ただし、GitHubにアップロードする場合、`.gitignore`に`.env.local`が含まれていないと`.env.local`も一緒にアップロードされてしまうので注意が必要です。
 
-`.gitignore`の中身が以下のようなっているかどうか確認しましょう（以下のとおりとなっていなければ以下のように変更します）。
+`.gitignore`の中身に以下のファイルやフォルダが設定されているかを確認しましょう（不足しているものがあれば追加しましょう）。
 
 ```txt
 node_modules
 .DS_STORE
-.env
+.env.local
 ```
 
 > ⚠️ 注意
@@ -75,9 +75,9 @@ Vercelはサーバーレス機能のホスティングを提供するクラウ�
 
 Vercelのアカウントをお持ちでない方は、上記のリンクにアクセスして、アカウントを作成してください。
 
-まず、`solana-pay-starter-project`の最新コードをGitHubにプッシュします。
+まず、`Solana-Online-Store`の最新コードをGitHubにプッシュします。
 
-ターミナルで`solana-pay-starter-project`に移動し、以下のコマンドをそれぞれ実行しましょう。
+ターミナルで`Solana-Online-Store`に移動し、以下のコマンドをそれぞれ実行しましょう。
 
 ```bash
 git add .
@@ -87,7 +87,7 @@ git push
 
 続いて、以下の手順でVercelにデプロイします。
 
-1\. Vercelのダッシュボードから、`New Project`をクリックしてください。
+1\. Vercelのダッシュボードから、`Add New...`をクリックし、`Project`を選択します。
 
 ![new project](/public/images/Solana-Online-Store/section-4/4_1_1.png)
 
@@ -99,11 +99,11 @@ git push
 
 4\. **Environment Variables** に環境変数`CI = false`（NAME: CI、VALUE: false）を追加します（警告が原因でビルドが失敗しないようになります）。
 
-5\. **Environment Variables** に`.env`で設定した環境変数（NAME: NEXT_PUBLIC_OWNER_PUBLIC_KEY、VALUE: `phantom wallet address`）を直接入力してください( GitHubには`.env`ファイルを保存していないため、`Vercel`に直接記載する必要があります)。
+5\. **Environment Variables** に`.env.local`で設定した環境変数（NAME: NEXT_PUBLIC_OWNER_PUBLIC_KEY、VALUE: `phantom wallet address`）を直接入力してください( GitHubには`.env.local`ファイルを保存していないため、`Vercel`に直接記載する必要があります)。
 
 ![Environment Variables1](/public/images/Solana-Online-Store/section-4/4_1_3.png)
 
-6\.[Deploy]ボタンを押してデプロイします（VercelはGitHubと連動しているので、GitHubが更新されるたびに自動でデプロイを行ってくれます）。
+6\.`Deploy`ボタンを押してデプロイします（VercelはGitHubと連動しているので、GitHubが更新されるたびに自動でデプロイを行ってくれます）。
 
 **Vercel へのデプロイが無事完了しました!**
 

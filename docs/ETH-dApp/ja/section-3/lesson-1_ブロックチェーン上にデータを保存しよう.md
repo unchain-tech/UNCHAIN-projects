@@ -14,7 +14,7 @@
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 import "hardhat/console.sol";
 contract WavePortal {
     uint256 totalWaves;
@@ -79,7 +79,6 @@ contract WavePortal {
 下記のコードに注目してください。
 
 ```solidity
-// WavePortal.sol
 event NewWave(address indexed from, uint256 timestamp, string message);
 ```
 
@@ -92,7 +91,6 @@ event NewWave(address indexed from, uint256 timestamp, string message);
 次に下記のコードを見ていきましょう。
 
 ```solidity
-// WavePortal.sol
 emit NewWave(msg.sender, block.timestamp, _message);
 ```
 
@@ -104,7 +102,6 @@ emit NewWave(msg.sender, block.timestamp, _message);
 `const contractABI = abi.abi;`の直下に下記を追加しましょう。
 
 ```javascript
-// App.js
 /* すべてのwavesを保存する状態変数を定義 */
 const [allWaves, setAllWaves] = useState([]);
 
@@ -185,7 +182,6 @@ useEffect(() => {
 `getAllWaves`関数は、`waves`関数とほぼ同じ仕様をしています。
 
 ```javascript
-// App.js
 const getAllWaves = async () => {
   const { ethereum } = window;
 
@@ -223,7 +219,6 @@ const getAllWaves = async () => {
 まずは下記のコードを見ていきましょう。
 
 ```javascript
-// App.js
 const provider = new ethers.providers.Web3Provider(ethereum);
 ```
 
@@ -232,7 +227,6 @@ const provider = new ethers.providers.Web3Provider(ethereum);
 次に、下記のコードを見ていきましょう。
 
 ```javascript
-// App.js
 const signer = provider.getSigner();
 ```
 
@@ -241,7 +235,6 @@ const signer = provider.getSigner();
 次に、下記のコードを見ていきましょう。
 
 ```javascript
-// App.js
 const wavePortalContract = new ethers.Contract(
   contractAddress,
   contractABI,
@@ -261,7 +254,6 @@ const wavePortalContract = new ethers.Contract(
 最後に、下記のコードを見ていきましょう。
 
 ```javascript
-// App.js
 const wavesCleaned = waves.map((wave) => {
   return {
     address: wave.waver,
@@ -280,7 +272,6 @@ const wavesCleaned = waves.map((wave) => {
 それでは、`onNewWave`関数を見ていきましょう。
 
 ```javascript
-// App.js
 const onNewWave = (from, timestamp, message) => {
   console.log("NewWave", from, timestamp, message);
   setAllWaves((prevState) => [
@@ -317,7 +308,6 @@ const onNewWave = (from, timestamp, message) => {
 次に、下記のコードを見ていきましょう。
 
 ```javascript
-// App.js
 if (window.ethereum) {
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
@@ -341,7 +331,6 @@ if (window.ethereum) {
 最後に下記のコードを見ていきましょう。
 
 ```javascript
-// App.js
   return () => {
     if (wavePortalContract) {
     /* ここに注目 */
@@ -362,7 +351,6 @@ if (window.ethereum) {
 下記のように`run.js`を更新してください。
 
 ```javascript
-// run.js
 const main = async () => {
   const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
   const waveContract = await waveContractFactory.deploy();
@@ -393,16 +381,16 @@ const runMain = async () => {
 runMain();
 ```
 
-`run.js`を更新したら、ターミナル上で`my-wave-portal`に移動し、下記を実行します。
+`run.js`を更新したら、ターミナル上で下記を実行します。
 
 ```
-npx hardhat run scripts/run.js
+yarn contract run:script
 ```
 
 下記のような結果がターミナルに表示されていればテストは成功です。
 
 ```bash
-Compiling 1 file with 0.8.9
+Compiling 1 file with 0.8.17
 Solidity compilation finished successfully
 WavePortal - Smart Contract!
 Contract added to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
@@ -440,7 +428,7 @@ We have 0 total waves!
 
 2. フロントエンドのコントラクトアドレスを更新する(更新するファイル: `App.js`)
 
-3. フロントエンドのABIファイルを更新する(更新するファイル: `dApp-starter-project/src/utils/WavePortal.json`)
+3. フロントエンドのABIファイルを更新する(更新するファイル: `client/src/utils/WavePortal.json`)
 
 **コントラクトを更新するたび、これらの 3 つのステップを実行する必要があります。**
 
@@ -455,10 +443,10 @@ We have 0 total waves!
 
 それでは、復習も兼ねて、下記を実行していきましょう。
 
-**1 \. ターミナル上で`my-wave-portal`に移動し、下記を実行し、コントラクトを再度デプロイする。**
+**1 \. ターミナル上で下記を実行し、コントラクトを再度デプロイする。**
 
 ```
-npx hardhat run scripts/deploy.js --network sepolia
+yarn contract deploy
 ```
 
 ターミナルに下記のような出力結果が表示されていれば、デプロイは成功です。
@@ -481,7 +469,7 @@ Contract deployed to: 0x... ← あなたのコントラクトアドレスをコ
 
 **3 \. 以前と同じように`artifacts`から ABI ファイルを取得します。下記のステップを実行してください。**
 
-> 1\. ターミナル上で`my-wave-portal`にいることを確認する（もしくは移動する）。
+> 1\. ターミナル上で`contract`にいることを確認する（もしくは移動する）。
 >
 > 2\. ターミナル上で下記を実行する。
 >
@@ -491,7 +479,7 @@ Contract deployed to: 0x... ← あなたのコントラクトアドレスをコ
 >
 > 3\. VS Code で`WavePortal.json`ファイルが開かれるので、中身を全てコピーしましょう。※ VS Code のファインダーを使って、直接`WavePortal.json`を開くことも可能です。
 >
-> 4\. コピーした`my-wave-portal/artifacts/contracts/WavePortal.sol/WavePortal.json`の中身を新しく作成した`dApp-starter-project/src/utils/WavePortal.json`の中に貼り付けてください。
+> 4\. コピーした`contract/artifacts/contracts/WavePortal.sol/WavePortal.json`の中身を新しく作成した`client/src/utils/WavePortal.json`の中に貼り付けてください。
 
 **繰り返しますが、コントラクトを更新するたびにこの作業する必要があります。**
 
@@ -508,7 +496,6 @@ Contract deployed to: 0x... ← あなたのコントラクトアドレスをコ
 3. Webサイトにそのデータを表示する。
 
 ```javascript
-// App.js
 import React, { useEffect, useState } from "react";
 import "./App.css";
 /* ethers 変数を使えるようにする*/
@@ -761,7 +748,6 @@ export default App;
 下記をReactNodeを返す関数型`App`の中に実装しました。
 
 ```javascript
-// App.js
 /* ユーザーのパブリックウォレットアドレスを保存するために使用する状態変数を定義 */
 const [currentAccount, setCurrentAccount] = useState("");
 /* ユーザーのメッセージを保存するために使用する状態変数を定義 */
@@ -773,7 +759,6 @@ const [allWaves, setAllWaves] = useState([]);
 ここでは、ユーザーの情報を保存するために使用する変数と関数を定義し、初期化しています。
 
 ```javascript
-// App.js
 const [currentAccount, setCurrentAccount] = useState("");
 ```
 
@@ -781,7 +766,6 @@ const [currentAccount, setCurrentAccount] = useState("");
 - ユーザーのパブリックウォレットを更新する関数(＝ `setCurrentAccount`)
 
 ```javascript
-// App.js
 const [messageValue, setMessageValue] = useState("");
 ```
 
@@ -789,7 +773,6 @@ const [messageValue, setMessageValue] = useState("");
 - ユーザーのメッセージを更新する関数(＝ `setMessageValue`)
 
 ```javascript
-//App.js
 const [allWaves, setAllWaves] = useState([]);
 ```
 
@@ -801,7 +784,6 @@ const [allWaves, setAllWaves] = useState([]);
 詳しく見ていきましょう。
 
 > ```javascript
-> // App.js
 > const wavesCleaned = waves.map((wave) => {
 >   return {
 >     address: wave.waver,
@@ -825,7 +807,6 @@ const [allWaves, setAllWaves] = useState([]);
 > 最後に、`AllWaves`の状態を更新しています。
 >
 > ```javascript
-> // App.js
 > setAllWaves(wavesCleaned);
 > ```
 >
@@ -836,7 +817,6 @@ const [allWaves, setAllWaves] = useState([]);
 > 下記を実装して、トランザクションに使用できるガス代（＝`gasLimit`）に制限を設けています。
 >
 > ```javascript
-> // App.js
 > wavePortalContract.wave(messageValue, { gasLimit: 300000 });
 > ```
 >
@@ -874,7 +854,6 @@ const [allWaves, setAllWaves] = useState([]);
 下記をフロントエンドに実装しました。
 
 ```javascript
-// App.js
 {
   currentAccount && (
     <textarea
@@ -894,7 +873,6 @@ const [allWaves, setAllWaves] = useState([]);
 3 \. 送られてきたメッセージをフロントエンドに表示する
 
 ```javascript
-// App.js
 {
   allWaves
     .slice(0)
@@ -922,8 +900,7 @@ const [allWaves, setAllWaves] = useState([]);
 
 ### ⭐️ ローカルサーバーの立ち上げ
 
-- ターミナル上で`dApp-starter-project`に移動
-- `npm run start`を実行
+- `yarn client start`を実行
 - `localhost`でWebアプリケーションを参照
 
 こちらが、フロントエンドの実装結果の例になります。

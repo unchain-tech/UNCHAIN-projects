@@ -2,18 +2,12 @@
 
 「👋（wave）」の総数をトラッキングするスマートコントラクトを作成します。ここで作成するスマートコントラクトは、後でユースケースに合わせて自由に変更できます。
 
-`contracts`ディレクトリの下に`WavePortal.sol`という名前のファイルを作成します。
-
-ターミナル上で新しくファイルを作成する場合は、下記のコマンドが役立ちます。
-
-1. `my-wave-portal`ディレクトリに移動: `cd my-wave-portal`
-2. `contracts`ディレクトリに移動: `cd contracts`
-3. `WavePortal.sol`ファイルを作成: `touch WavePortal.sol`
+`contracts`ディレクトリの下に`WavePortal.sol`という名前のファイルを作成してください。
 
 Hardhatを使用する場合、ファイル構造は非常に重要ですので、注意する必要があります。ファイル構造が下記のようになっていれば大丈夫です 😊
 
 ```bash
-my-wave-portal
+contract
     |_ contracts
            |_  WavePortal.sol
 ```
@@ -37,10 +31,9 @@ VS Codeをターミナルから起動する方法は [こちら](https://maku.bl
 `WavePortal.sol`をVS Codeで開き、下記を入力します。
 
 ```solidity
-// WavePortal.sol
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 
 import "hardhat/console.sol";
 
@@ -54,7 +47,6 @@ contract WavePortal {
 コードを詳しくみていきましょう。
 
 ```solidity
-// WavePortal.sol
 // SPDX-License-Identifier: MIT
 ```
 
@@ -63,20 +55,18 @@ contract WavePortal {
 詳細については、[こちら](https://www.skyarch.net/blog/?p=15940) を参照してみてください。
 
 ```solidity
-// WavePortal.sol
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 ```
 
 これは、コントラクトで使用するSolidityコンパイラのバージョンです。
 
-上記のコードでは、このコントラクトを実行するときはSolidityコンパイラのバージョン`0.8.9`のみを使用しそれ以下のものは使用しません、という宣言をしています。
+上記のコードでは、このコントラクトを実行するときはSolidityコンパイラのバージョン`0.8.17`のみを使用しそれ以下のものは使用しません、という宣言をしています。
 
 コンパイラのバージョンが`hardhat.config.js`で同じであることを確認してください。
 
-もし、`hardhat.config.js`の中に記載されているSolidityのバージョンが`0.8.9`でなかった場合は、`WavePortal.sol`の中身を`hardhat.config.js`に記載されているバージョンに変更しましょう。
+もし、`hardhat.config.js`の中に記載されているSolidityのバージョンが`0.8.17`でなかった場合は、`WavePortal.sol`の中身を`hardhat.config.js`に記載されているバージョンに変更しましょう。
 
 ```solidity
-// WavePortal.sol
 import "hardhat/console.sol";
 ```
 
@@ -85,7 +75,6 @@ import "hardhat/console.sol";
 これは、今後スマートコントラクトのデバッグが発生した場合に、とても役立つツールです。
 
 ```solidity
-// WavePortal.sol
 contract WavePortal {
     constructor() {
         console.log("Here is my first smart contract!");

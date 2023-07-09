@@ -2,6 +2,10 @@
 
 ではプロジェクトを作成するにあたって環境構築をしていきましょう！
 
+まず、`node` / `yarn`を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスしてください。
+
+`node v16`をインストールすることを推奨しています。
+
 ### 🌚 バックエンドの環境構築
 
 まずはスマートコントラクトを作成するための環境を整えていきましょう！
@@ -27,14 +31,48 @@ curl --proto '=https' --tlsv1.2 -sSf `https://sh.rustup.rs` | sh
 source "$HOME/.cargo/env"
 ```
 
-これらが終わったら下のコマンドを順番にターミナルで実行します
+次にrustの特定のバージョンを下のコマンドをターミナルで実行することでインストールします。
 
 ```
-rustup default stable
-rustup update
-rustup update nightly
-rustup target add wasm32-unknown-unknown --toolchain nightly
+rustup install 1.68.0
 ```
+
+その後指定したバージョンがインストールされているか、下のコマンドをターミナルで実行することで確認します。
+```
+rustup toolchain list
+```
+
+すると下のような結果が出てきます。
+
+赤字で囲っているところがインストールしたrustのコンパイラーのバージョンを示すものです。こちらをコピーしましょう。
+
+![](/public/images/ASTAR-SocialFi/section-0/0_2_16.png)
+
+では下のコマンドをターミナルで実行することでrustのコンパイラーとして1.68.0のものを使用できるようにしましょう。
+
+`rustup component add rust-src --toolchain`に続く部分は先ほどコピーしたものと入れ替えてください。筆者はmacを使用しているので`1.68.0-aarch64-apple-darwin`となっています。
+
+
+```
+rustup override set 1.68.0  
+rustup component add rust-src --toolchain 1.68.0-aarch64-apple-darwin
+```
+
+ここで注意点です。Astar-SocialFiで使用しているパッケージの中には、開発環境によってはエラーで動かなくなるものが含まれています。なのでもしどこかでどうしてもエラーが発生して進まないということがあればここから説明するコマンドを使用してrustのコンパイラーのバージョンをnightlyに変更してみてください。
+
+nightlyとは、rustのコンパイラーのバージョンの種類の1つです。毎日rustのコンパイラーは更新されており、それが毎日反映されているのが`nightly`です。
+
+stableバージョンには安定的に動作すると認められたものしか入れられていません。
+
+ではAstar-SocialFiが動く（教材更新日:2023/6/14時点）nightlyのバージョンに切り替えるコマンドを以下に示します。
+
+```
+rustup toolchain install nightly-2023-01-01
+rustup target add wasm32-unknown-unknown --toolchain nightly-2023-01-01
+rustup component add rust-src --toolchain nightly-2023-01-01
+```
+
+これでコンパイラーのバージョンは変更できました。このバージョンのコンパイラーを用いるには`cargo`コマンドの次に`+nightly-2023-01-01`という文字列を入れる必要があります。注意してください。
 
 次に`cargo-contracts CLI`を使用できるようにするための準備をします。下のコマンドを順番にターミナルで実行してください。
 
@@ -47,52 +85,156 @@ cargo install cargo-dylint dylint-link
 cargo install --force --locked cargo-contract
 ```
 
-では次に下の３つのコマンドを順番にターミナルで実行することによって`rust nightly`を最新版にしましょう。
-※もし新たに最新版が出ている場合はそちらをインストールする必要があるかも知れません 😥
-
-```
-rustup toolchain install nightly-2022-08-15
-```
-
-```
-rustup target add wasm32-unknown-unknown --toolchain nightly-2022-08-15
-```
-
-```
-rustup component add rust-src --toolchain nightly-2022-08-15
-```
-
 これでコントラクトをデプロイする準備が完了しました！
 
-では下のコマンドを使用することで新しくプロジェクトを作成して行きましょう。
+それでは本プロジェクトで使用するフォルダーを作成してきましょう。作業を始めるディレクトリに移動したら、次のコマンドを実行します。
 
-コマンドの実行はプロジェクトを保存したいディレクトリに移動してから行いましょう。
+```bash
+mkdir ASTAR-SocialFi
+cd ASTAR-SocialFi
+yarn init --private -y
+```
+
+ASTAR-SocialFiディレクトリ内に、package.jsonファイルが生成されます。
+
+```bash
+ASTAR-SocialFi
+ └── package.json
+```
+
+それでは、`package.json`ファイルを以下のように更新してください。
+
+```json
+{
+  "name": "ASTAR-SocialFi",
+  "version": "1.0.0",
+  "description": "ASTAR SNS dApp",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "contract": "yarn workspace contract",
+    "client": "yarn workspace client",
+    "test": "yarn workspace contract test"
+  }
+}
+```
+
+`package.json`ファイルの内容を確認してみましょう。
+
+モノレポを作成するにあたり、パッケージマネージャーの機能である[Workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/)を利用しています。
+
+この機能により、yarn installを一度だけ実行すれば、すべてのパッケージ（今回はコントラクトのパッケージとクライアントのパッケージ）を一度にインストールできるようになります。
+
+**workspaces**の定義をしている部分は以下になります。
+
+```json
+"workspaces": {
+  "packages": [
+    "packages/*"
+  ]
+},
+```
+
+また、ワークスペース内の各パッケージにアクセスするためのコマンドを以下の部分で定義しています。
+
+```json
+"scripts": {
+  "contract": "yarn workspace contract",
+  "client": "yarn workspace client",
+  "test": "yarn workspace contract test"
+}
+```
+
+これにより、各パッケージのディレクトリへ階層を移動しなくてもプロジェクトのルート直下から以下のようにコマンドを実行することが可能となります（ただし、各パッケージ内に`package.json`ファイルが存在し、その中にコマンドが定義されていないと実行できません。そのため、現在は実行してもエラーとなります。ファイルは後ほど作成します）。
+
+```bash
+yarn <パッケージ名> <実行したいコマンド>
+```
+
+次に、ASTAR-SocialFiディレクトリ下に`.gitignore`ファイルを作成して以下の内容を書き込みます。
+package
+```bash
+**/yarn-error.log*
+
+# dependencies
+**/node_modules
+
+# misc
+**/.DS_Store
+```
+
+最後にpackagesフォルダーを作成しましょう。
+
+最終的に以下のようなフォルダー構成となっていることを確認してください。
+
+```bash
+ASTAR-SocialFi
+ ├── .gitignore
+ ├── package.json
+ └── packages/
+```
+
+これでモノレポの雛形が完成しました！
+
+### 🗂 プロジェクトを作成しよう
+
+**コントラクト用のディレクトリ作成**
+
+`packages`のディレクトリに移動して下のコマンドをターミナルで実行させましょう。
 
 ```
-cargo contract new astar_sns_contract
+cargo contract new aster_sns_contract
 ```
 
-作成が完了したら、`astar_sns_contract`ディレクトリに移動しましょう。
+作成が完了したら、packagesディレクトリ直下にある`astar_sns_contract`というディレクトリ名を`contract`という名前に変更しましょう。
+
+次に下のコマンドを順番に実行してコントラクトディレクトリを編集していきましょう。
+
+```bash
+cd packages/contract
+yarn init --private -y
+```
+
+その後`contract`ディレクトリ内で作成されたpackage.jsonを以下のように編集しましょう。
+
+```
+{
+  "name": "contract",
+  "version": "1.0.0",
+  "description": "contract directory",
+  "private": true,
+  "scripts": {
+    "start": "./astar-collator --dev",
+    "build": "cargo contract build",
+    "test": "cargo test"
+  }
+}
+
+```
 
 では作成されたコントラクトをローカルのチェーンにデプロイしてみましょう。
 
 最初に、作成したプロジェクトのabiファイルとwasm形式で記述されたファイルを作成していきます。
 
-下のコマンドを実行してみましょう。
+`packages/contract`にいることを確認して、下のコマンドを実行してみましょう。
 
 ```
-cargo +nightly-2022-08-15 contract build
+cargo contract build
 ```
 
 このようなメッセージが返ってきていればOKです！
 
 ```
-  - astar_sns_contract.contract (code + metadata)
-  - astar_sns_contract.wasm (the contract's code)
+  - aster_sns_contract.contract (code + metadata)
+  - aster_sns_contract.wasm (the contract's code)
   - metadata.json (the contract's metadata)
 ```
 
-これで`astar-sns-contract/target/ink`の直下に`metadata.json`と`astar_sns_contract.wasm`が作成されていれば成功です。
+これで`astar-sns-contract/target/ink`の直下に`metadata.json`と`contract.wasm`が作成されていれば成功です。
 
 次にローカルのノードを立ててローカルでコントラクトのデプロイができる環境を作っていくのですが、そのために必要なツールを下のコマンドをターミナルで実行してインストールしていきましょう。
 
@@ -148,7 +290,9 @@ tar xvf astar-collator-v4.24.0-macOS-x86_64.tar.gz
 ![](/public/images/ASTAR-SocialFi/section-0/0_2_4.png)
 ![](/public/images/ASTAR-SocialFi/section-0/0_2_5.png)
 
-すると下のような画面が出てくるはずです
+すると下のような画面が出てくるはずです。
+
+※`Brave`を使用している方で想定した動きにならない場合、`Google Chrome`を用いて開いてください。
 
 ![](/public/images/ASTAR-SocialFi/section-0/0_2_6.png)
 この画面ではすでにデプロイがされているので`recent block`という部分にblockのハッシュ値がありますが、みなさんの画面には何もないかもしれません。
@@ -192,7 +336,7 @@ tar xvf astar-collator-v4.24.0-macOS-x86_64.tar.gz
 
 次にフロントエンドに取り掛かっていきます
 
-#### `Next,js`
+#### `Next.js`
 
 今回フロントで使用するのは`Next.js`です。Next.jsとは、JavaScriptでwebアプリを開発できるフレームワークです。
 
@@ -204,8 +348,10 @@ tar xvf astar-collator-v4.24.0-macOS-x86_64.tar.gz
 
 今回はtypescriptを使用していくのでその指定もしておきます。
 
+`packages`ディレクトリにいることを確認して下のコマンドを実行しましょう。
+
 ```
-npx create-next-app@latest astar-sns-frontend --typescript
+npx create-next-app@latest client --typescript
 ```
 
 次に`Tailwind CSS`を導入していきます。Tailwind CSSを使用することで簡単に自由なCSSを記述することができます。
@@ -213,7 +359,7 @@ npx create-next-app@latest astar-sns-frontend --typescript
 まずは先ほど作成したプロジェクトの一番上のディレクトリにいることを確認して下のコマンドをターミナルで実行しましょう。
 
 ```
-npm install -D tailwindcss@latest postcss@latest autoprefixer@latest
+yarn add -D tailwindcss@latest postcss@latest autoprefixer@latest
 ```
 
 ```
@@ -252,10 +398,10 @@ module.exports = {
 @tailwind utilities;
 ```
 
-では下のコマンドをターミナルで実行してローカルでアプリを動かせるか確認しましょう。
+では一番上のディレクトリにいることを確認して、下のコマンドをターミナルで実行してローカルでアプリを動かせるか確認しましょう。
 
 ```
-yarn dev
+yarn client dev
 ```
 
 下のようにターミナルに表示されていればきちんとノードが立てられているので、 ターミナルに表示されているローカルのページurlをブラウザにコピー&ペーストしてみてみましょう。

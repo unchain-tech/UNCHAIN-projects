@@ -1,6 +1,6 @@
 ### 🤔 NFT とは何か？
 
-NFTの概要については、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/blob/main/docs/102-ETH-NFT-Collection/ja/section-1/lesson-1_NFT%E3%81%A8%E3%81%AF%E4%BD%95%E3%81%8B%EF%BC%9F.md) をご覧ください。
+NFTの概要については、[こちら](https://www.bridge-salon.jp/toushi/nft/#back) をご覧ください。
 
 一般的にNFTが何であるかが理解できたら、次のステップに進みましょう。
 
@@ -68,7 +68,7 @@ NFTにおける「Mint（ミント）」とは、スマートコントラクト�
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 import "hardhat/console.sol";
 contract MyEpicGame {
   // キャラクターのデータを格納する CharacterAttributes 型の 構造体（`struct`）を作成しています。
@@ -118,7 +118,6 @@ contract MyEpicGame {
 それでは、一行ずつコードの理解を深めましょう。
 
 ```solidity
-// MyEpicGame.sol
 struct CharacterAttributes {
   uint characterIndex;
   string name;
@@ -145,7 +144,6 @@ uint attackDamage; // キャラクターの攻撃力
 次に、下記のコードを見ていきましょう。
 
 ```solidity
-// MyEpicGame.sol
 CharacterAttributes[] defaultCharacters;
 ```
 
@@ -156,7 +154,6 @@ CharacterAttributes[] defaultCharacters;
 次に下記のコードを見ていきましょう。
 
 ```solidity
-// MyEpicGame.sol
 constructor(
 	string[] memory characterNames,
 	string[] memory characterImageURIs,
@@ -176,7 +173,6 @@ constructor(
 最後に、次のコードを見ていきましょう。
 
 ```solidity
-// MyEpicGame.sol
 for(uint i = 0; i < characterNames.length; i += 1) {
 	defaultCharacters.push(CharacterAttributes({
 	characterIndex: i,
@@ -208,7 +204,6 @@ for(uint i = 0; i < characterNames.length; i += 1) {
 テスト用のスクリプト`run.js`を下記のように更新していきましょう。
 
 ```javascript
-// run.js
 const main = async () => {
   const gameContractFactory = await hre.ethers.getContractFactory("MyEpicGame");
   const gameContract = await gameContractFactory.deploy(
@@ -244,7 +239,6 @@ runMain();
 **上記の`gameContractFactory.deploy()`の中に格納されている情報が、`MyEpicGame.sol`の`constructor`に渡されます。**
 
 ```solidity
-// MyEpicGame.sol
 // 例：["ZORO", "NAMI", "USOPP"] = キャラクターの名前 が `characterNames` 配列に渡されます。
 string[] memory characterNames,
 string[] memory characterImageURIs,
@@ -259,17 +253,16 @@ uint[] memory characterAttackDmg
 ぜひ、`run.js`の中の`https://i.imgur.com/...`の画像のリンクをあなたのオリジナルの画像に差し替えてください 😊
 
 ```javascript
-// run.js
 ["ZORO", "NAMI", "USOPP"], // キャラクターの名前
 ["https://i.imgur.com/TZEhCTX.png",  // キャラクターの画像
  "https://i.imgur.com/WVAaMPA.png",
  "https://i.imgur.com/pCMZeiM.png"],
 ```
 
-それでは、ターミナル上で、`scripts`ディレクトリに移動して下記を実行してみましょう。
+それでは、ターミナル上で下記を実行してみましょう。
 
 ```bash
-npx hardhat run run.js
+yarn contract run:script
 ```
 
 ターミナル上で`console.log`の中身とコントラクトアドレスが表示されていることを確認してください。
@@ -277,7 +270,7 @@ npx hardhat run run.js
 例)ターミナル上でのアウトプット:
 
 ```
-Compiling 1 file with 0.8.9
+Compiling 1 file with 0.8.17
 Solidity compilation finished successfully
 Done initializing ZORO w/ HP 100, img https://i.imgur.com/TZEhCTX.png
 Done initializing NAMI w/ HP 200, img https://i.imgur.com/WVAaMPA.png

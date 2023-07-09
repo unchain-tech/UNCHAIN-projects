@@ -1,11 +1,11 @@
 ### 🛫 コントラクトに機能を追加しましょう
 
-このセクションではコントラクトに機能を追加し, フロントエンドに反映させます 🎉
+このセクションではコントラクトに機能を追加し、フロントエンドに反映させます 🎉
 
 以下の機能を追加していきます。
 
 - メッセージを保留できる数に上限値(`numOfPendingLimits`)を設けます。
-- `numOfPendingLimits`に達した場合, その受取人にメッセージを送ることができません。
+- `numOfPendingLimits`に達した場合、その受取人にメッセージを送ることができません。
 - コントラクトに管理者機能を追加します。
 - コントラクトの管理者は`numOfPendingLimits`を変更することができます。
 
@@ -19,7 +19,7 @@
 ```diff
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 
 import "hardhat/console.sol";
 
@@ -38,9 +38,9 @@ contract Messenger {
     }
 
     // メッセージの受取人アドレスをkeyにメッセージを保存します。
-    mapping(address => Message[]) private messagesAtAddress;
+    mapping(address => Message[]) private _messagesAtAddress;
 +    // ユーザが保留中のメッセージの数を保存します。
-+    mapping(address => uint256) private numOfPendingAtAddress;
++    mapping(address => uint256) private _numOfPendingAtAddress;
 
     event NewMessage(
         address sender,
@@ -59,19 +59,19 @@ contract Messenger {
 +        numOfPendingLimits = _numOfPendingLimits;
 +    }
 
-    // ユーザからメッセージを受け取り, 状態変数に格納します。
+    // ユーザからメッセージを受け取り、状態変数に格納します。
     function post(string memory _text, address payable _receiver)
         public
         payable
     {
 +        // メッセージ受取人の保留できるメッセージが上限に達しているかを確認します。
 +        require(
-+            numOfPendingAtAddress[_receiver] < numOfPendingLimits,
++            _numOfPendingAtAddress[_receiver] < numOfPendingLimits,
 +            "The receiver has reached the number of pending limits"
 +        );
 +
 +        // 保留中のメッセージの数をインクリメントします。
-+        numOfPendingAtAddress[_receiver] += 1;
++        _numOfPendingAtAddress[_receiver] += 1;
 
         console.log(
             "%s posts text:[%s] token:[%d]",
@@ -80,7 +80,7 @@ contract Messenger {
             msg.value
         );
 
-        messagesAtAddress[_receiver].push(
+        _messagesAtAddress[_receiver].push(
             Message(
                 payable(msg.sender),
                 _receiver,
@@ -114,10 +114,10 @@ contract Messenger {
 
 ```solidity
     // ユーザが保留中のメッセージの数を保存します。
-    mapping(address => uint256) private numOfPendingAtAddress;
+    mapping(address => uint256) private _numOfPendingAtAddress;
 ```
 
-上記の2つはメッセージ保留数の上限値と, 各アドレス宛のメッセージがどのくらい保留されているかを保持する状態変数です。
+上記の2つはメッセージ保留数の上限値と、各アドレス宛のメッセージがどのくらい保留されているかを保持する状態変数です。
 
 ```solidity
     constructor(uint256 _numOfPendingLimits) payable {
@@ -127,32 +127,32 @@ contract Messenger {
     }
 ```
 
-コンストラクタは引数により, デプロイ時に上限値を受け取れるようになっています。
+コンストラクタは引数により、デプロイ時に上限値を受け取れるようになっています。
 そして状態変数にセットします。
 
 ```solidity
-    // ユーザからメッセージを受け取り, 状態変数に格納します。
+    // ユーザからメッセージを受け取り、状態変数に格納します。
     function post(string memory _text, address payable _receiver)
         public
         payable
     {
         // メッセージ受取人の保留できるメッセージが上限に達しているかを確認します。
         require(
-            numOfPendingAtAddress[_receiver] < numOfPendingLimits,
+            _numOfPendingAtAddress[_receiver] < numOfPendingLimits,
             "The receiver has reached the number of pending limits"
         );
 
         // 保留中のメッセージの数をインクリメントします。
-        numOfPendingAtAddress[_receiver] += 1;
+        _numOfPendingAtAddress[_receiver] += 1;
 
         // ...
     }
 ```
 
-`post`関数が呼び出された際, 初めにメッセージの受取人のメッセージ保留数が上限に達しているかを確認しています。
-上限に達していた場合, トランザクションをキャンセルします。
+`post`関数が呼び出された際、初めにメッセージの受取人のメッセージ保留数が上限に達しているかを確認しています。
+上限に達していた場合、トランザクションをキャンセルします。
 
-また, 処理を続行する場合は保留数をインクリメントします。
+また、処理を続行する場合は保留数をインクリメントします。
 
 ### 🧪 テストを追加しましょう
 
@@ -167,12 +167,12 @@ contract Messenger {
 - `Post`テスト内の最後にテストケースを追加
 
 ```ts
-import hre, { ethers } from "hardhat";
-import { Overrides } from "ethers";
-import { expect } from "chai";
-import { loadFixture } from "@nomicfoundation/hardhat-network-helpers";
+import { loadFixture } from '@nomicfoundation/hardhat-network-helpers';
+import { expect } from 'chai';
+import { Overrides } from 'ethers';
+import hre, { ethers } from 'hardhat';
 
-describe("Messenger", function () {
+describe('Messenger', function () {
   async function deployContract() {
     // 初めのアドレスはコントラクトのデプロイに使用されます。
     const [owner, otherAccount] = await ethers.getSigners();
@@ -180,7 +180,7 @@ describe("Messenger", function () {
     const numOfPendingLimits = 10;
     const funds = 100;
 
-    const Messenger = await hre.ethers.getContractFactory("Messenger");
+    const Messenger = await hre.ethers.getContractFactory('Messenger');
     const messenger = await Messenger.deploy(numOfPendingLimits, {
       value: funds,
     } as Overrides);
@@ -188,8 +188,8 @@ describe("Messenger", function () {
     return { messenger, numOfPendingLimits, funds, owner, otherAccount };
   }
 
-  describe("Deployment", function () {
-    it("Should set the right number of pending message limits", async function () {
+  describe('Deployment', function () {
+    it('Should set the right number of pending message limits', async function () {
       const { messenger, numOfPendingLimits } = await loadFixture(
         deployContract
       );
@@ -198,49 +198,50 @@ describe("Messenger", function () {
     });
   });
 
-  describe("Post", function () {
+  describe('Post', function () {
     // ...
 
-    it("Should revert with the right error if exceed number of pending limits", async function () {
+    it('Should revert with the right error if exceed number of pending limits', async function () {
       const { messenger, otherAccount, numOfPendingLimits } = await loadFixture(
         deployContract
       );
 
       // メッセージ保留数の上限まで otherAccount へメッセージを送信します。
       for (let cnt = 1; cnt <= numOfPendingLimits; cnt++) {
-        await messenger.post("dummy", otherAccount.address);
+        await messenger.post('dummy', otherAccount.address);
       }
       // 次に送信するメッセージはキャンセルされます。
       await expect(
-        messenger.post("exceed", otherAccount.address)
+        messenger.post('exceed', otherAccount.address)
       ).to.be.revertedWith(
-        "The receiver has reached the number of pending limits"
+        'The receiver has reached the number of pending limits'
       );
     });
   });
 
-  describe("Accept", function () {
+  describe('Accept', function () {
     // ...
   });
 
-  describe("Deny", function () {
+  describe('Deny', function () {
     // ...
   });
 });
 ```
 
-`deployContract`関数では追加した要素である`numOfPendingLimits`を用意して, デプロイ時に渡しています。
+`deployContract`関数では追加した要素である`numOfPendingLimits`を用意して、デプロイ時に渡しています。
 
-追加した`Deployment`テストでは, デプロイ時に渡した`numOfPendingLimits`が正しくセットされているかを確認しています。
+追加した`Deployment`テストでは、デプロイ時に渡した`numOfPendingLimits`が正しくセットされているかを確認しています。
 
-さらに`Post`テスト内で追加したテストケース`it`の中では,
-`for loop`をしようして上限値までメッセージを送り続けることで, `numOfPendingLimits`による制限が働いているかを確認しています。
+さらに`Post`テスト内で追加したテストケース`it`の中では、
+`for loop`をしようして上限値までメッセージを送り続けることで、`numOfPendingLimits`による制限が働いているかを確認しています。
 
 それではテストを実行しましょう！
-`contract`ディレクトリ直下で以下のコマンドを実行してください。
+
+ターミナル上で`AVAX-Messenger/`直下にいることを確認して、以下のコマンドを実行してください。
 
 ```
-$ npx hardhat test
+yarn test
 ```
 
 以下のような表示がされたらテスト成功です！
@@ -249,7 +250,7 @@ $ npx hardhat test
 
 ### 💠 コントラクトに管理者機能を設けましょう
 
-コントラクトに管理者を設けて, 管理者のみ`numOfPendingLimits`を変更してコントラクト内のルールを変更できるようにしましょう。
+コントラクトに管理者を設けて、管理者のみ`numOfPendingLimits`を変更してコントラクト内のルールを変更できるようにしましょう。
 
 それでは`contracts`ディレクトリ内の
 `Messenger.sol`と同じ階層に`Ownable.sol`というファイルを作成しましょう。
@@ -265,7 +266,7 @@ contracts
 ```solidity
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 
 contract Ownable {
     address public owner;
@@ -281,22 +282,22 @@ contract Ownable {
 }
 ```
 
-このファイルはopenzeppelinライブラリの[ownable](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol) というコントラクトを簡単にしたものです。
+このファイルはopenzeppelinライブラリの[Ownable](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol) というコントラクトを簡単にしたものです。
 
 コンストラクタ内ではコンストラクタを呼び出した（デプロイした）アドレスで状態変数の`owner`を初期化しています。
 
-`modifier`はまだ出てきていない関数修飾子の1つで, その使用方法と共にどんなものなのかこの後理解します。
-ここで見て頂きたいのは, `require`を利用して, 関数を実行する人が`owner`と等しいことを確認していること
+`modifier`はまだ出てきていない関数修飾子の1つで、その使用方法と共にどんなものなのかこの後理解します。
+ここで見て頂きたいのは、`require`を利用して、関数を実行する人が`owner`と等しいことを確認していること
 次の行に`_;`を記述しているということです。
 
-`Messenger.sol`に`Ownable`を継承させて, `Ownable`の関数を利用できるようにしましょう。
+`Messenger.sol`に`Ownable`を継承させて、`Ownable`の関数を利用できるようにしましょう。
 
 `Messenger.sol`を以下のように編集してください。
 
 ```diff
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 
 import "hardhat/console.sol";
 + import "./Ownable.sol";
@@ -316,9 +317,9 @@ import "hardhat/console.sol";
     }
 
     // メッセージの受取人アドレスをkeyにメッセージを保存します。
-    mapping(address => Message[]) private messagesAtAddress;
+    mapping(address => Message[]) private _messagesAtAddress;
     // ユーザが保留中のメッセージの数を保存します。
-    mapping(address => uint256) private numOfPendingAtAddress;
+    mapping(address => uint256) private _numOfPendingAtAddress;
 
     event NewMessage(
         address sender,
@@ -350,34 +351,34 @@ import "hardhat/console.sol";
 }
 ```
 
-`contract Messenger is Ownable`のようにコントラクトを宣言することで,
-`Messenger.sol`は`Ownable`を継承するという関係を作れます, すると`Ownable`の関数を`Messenger.sol`も利用できるようになります。
+`contract Messenger is Ownable`のようにコントラクトを宣言することで、
+`Messenger.sol`は`Ownable`を継承するという関係を作れます、すると`Ownable`の関数を`Messenger.sol`も利用できるようになります。
 
 コンストラクタ内で`Ownable`の関数`ownable`を実行しています。
-`ownable`を実行すると, コンストラクタを呼び出した（=デプロイをした）アカウントのアドレスをコントラクトは管理者として記録します。
+`ownable`を実行すると、コンストラクタを呼び出した（=デプロイをした）アカウントのアドレスをコントラクトは管理者として記録します。
 
 新しく追加した`changeNumOfPendingLimits`関数に注目しましょう。
 関数の実行に修飾子の`onlyOwner`を指定しています。
 
 ここで起こる処理の流れを整理します。
 
-- `changeNumOfPendingLimits`が呼び出されると, 修飾子`onlyOwner`の内容が実行されます。
-- `onlyOwner`の内では, 関数を呼び出したアカウントが管理者であるかを確認しています。
-- 確認が取れたら, `_;`の記述された箇所から, 今度は`changeNumOfPendingLimits`の処理が実行されます。
+- `changeNumOfPendingLimits`が呼び出されると、修飾子`onlyOwner`の内容が実行されます。
+- `onlyOwner`の内では、関数を呼び出したアカウントが管理者であるかを確認しています。
+- 確認が取れたら、`_;`の記述された箇所から、今度は`changeNumOfPendingLimits`の処理が実行されます。
 - `numOfPendingLimits`を変更しイベントをemitします。
 
-このように`modifier`を利用した関数修飾子は, 自分でカスタムした処理をある関数の実行前の処理として適用させることができます。
+このように`modifier`を利用した関数修飾子は、自分でカスタムした処理をある関数の実行前の処理として適用させることができます。
 今回のように管理者権限の必要な関数には`onlyOwner`を修飾子としてつけるだけで決まった処理をしてくれるので便利です。
 
-オーナーに特別な権限を与えることは, オーナーの利益のためにルールを変更できるという面で, 濫用される恐れもあります。
+オーナーに特別な権限を与えることは、オーナーの利益のためにルールを変更できるという面で、濫用される恐れもあります。
 
-以下, [CryptoZombies](https://cryptozombies.io/jp/lesson/3/chapter/3)からの引用です。
+以下、[CryptoZombies](https://cryptozombies.io/jp/lesson/3/chapter/3)からの引用です。
 
 > DApp がイーサリアム上にあるというだけで、全てが分散型になっているというわけではないことを、常に念頭に入れておいてください。
 > 気になる部分については、すべてのソースコードに目を通して、オーナーに特別な力がないことを確認する必要があります。
 > 開発者としてバグを修正するように DApp をコントロールする権限が必要な一方で、オーナーの数を少なくしてユーザーのデータの安全性を確保できるようなプラットフォームを開発をすることも重要であり、両者のバランスに常に気をつける必要があります。
 
-是非openzeppelinの [ownable](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol) コントラクトを見てみてください!
+是非openzeppelinの [Ownable](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol) コントラクトを見てみてください!
 
 ### 🧪 テストを追加しましょう
 
@@ -393,25 +394,25 @@ import "hardhat/console.sol";
 ```ts
 // ...
 
-describe("Messenger", function () {
+describe('Messenger', function () {
   async function deployContract() {
     // ...
   }
 
-  describe("Deployment", function () {
-    it("Should set the right number of pending message limits", async function () {
+  describe('Deployment', function () {
+    it('Should set the right number of pending message limits', async function () {
       // ...
     });
 
-    it("Should set the right owner", async function () {
+    it('Should set the right owner', async function () {
       const { messenger, owner } = await loadFixture(deployContract);
 
       expect(await messenger.owner()).to.equal(owner.address);
     });
   });
 
-  describe("Change limits", function () {
-    it("Should revert with the right error if called by other account", async function () {
+  describe('Change limits', function () {
+    it('Should revert with the right error if called by other account', async function () {
       const { messenger, otherAccount } = await loadFixture(deployContract);
 
       await expect(
@@ -419,7 +420,7 @@ describe("Messenger", function () {
       ).to.be.revertedWith("You aren't the owner");
     });
 
-    it("Should set the right number of pending limits after change", async function () {
+    it('Should set the right number of pending limits after change', async function () {
       const { messenger, numOfPendingLimits } = await loadFixture(
         deployContract
       );
@@ -429,12 +430,12 @@ describe("Messenger", function () {
       expect(await messenger.numOfPendingLimits()).to.equal(newLimits);
     });
 
-    it("Should emit an event on change limits", async function () {
+    it('Should emit an event on change limits', async function () {
       const { messenger } = await loadFixture(deployContract);
 
       await expect(messenger.changeNumOfPendingLimits(10)).to.emit(
         messenger,
-        "NumOfPendingLimitsChanged"
+        'NumOfPendingLimitsChanged'
       );
     });
   });
@@ -445,7 +446,7 @@ describe("Messenger", function () {
 
 `Deployment`テスト内に追加したテストケース`it`内ではデプロイ後に`owner`が正しくセットされているかを確認しています。
 
-`ChangeLimits`テスト内では,
+`ChangeLimits`テスト内では、
 
 `owner`以外が`numOfPendingLimits`を変更しようとした場合にトランザクションがキャンセルされるか
 
@@ -456,10 +457,10 @@ describe("Messenger", function () {
 をそれぞれ確認しています。
 
 それではテストを実行しましょう！
-`contract`ディレクトリ直下で以下のコマンドを実行してください。
+ターミナル上で以下のコマンドを実行してください。
 
 ```
-$ npx hardhat test
+yarn test
 ```
 
 以下のような表示がされたらテスト成功です！
@@ -468,25 +469,25 @@ $ npx hardhat test
 
 ### 🛫 デプロイ スクリプトを変更する
 
-コンストラクタを変更したので, デプロイ時のコードも変更する必要があります。
+コンストラクタを変更したので、デプロイ時のコードも変更する必要があります。
 
 `scripts/deploy.ts`内を以下のコードに書き換えてください。
 主にデプロイ時の引数を増やした部分が変わっています。
 
 ```ts
-import { ethers } from "hardhat";
-import { Overrides } from "ethers";
+import { Overrides } from 'ethers';
+import { ethers } from 'hardhat';
 
 async function deploy() {
   // コントラクトをデプロイするアカウントのアドレスを取得します。
   const [deployer] = await ethers.getSigners();
-  console.log("Deploying contract with the account:", deployer.address);
+  console.log('Deploying contract with the account:', deployer.address);
 
   const numOfPendingLimits = 10;
   const funds = 100;
 
   // コントラクトのインスタンスを作成します。
-  const Messenger = await ethers.getContractFactory("Messenger");
+  const Messenger = await ethers.getContractFactory('Messenger');
 
   // The deployed instance of the contract
   const messenger = await Messenger.deploy(numOfPendingLimits, {
@@ -495,7 +496,7 @@ async function deploy() {
 
   await messenger.deployed();
 
-  console.log("Contract deployed at:", messenger.address);
+  console.log('Contract deployed at:', messenger.address);
   console.log("Contract's owner is:", await messenger.owner());
   console.log(
     "Contract's number of pending message limits is:",
@@ -517,19 +518,21 @@ deploy()
 
 ### 🛩 もう一度デプロイする
 
-コントラクトを更新したので,下記を実行する必要があります。
+コントラクトを更新したので、下記を実行する必要があります。
 
 **1 \. 再度コントラクトをデプロイする**
 
-`contract`ディレクトリ直下で下記のコマンドを実行します。
+ターミナル上で`AVAX-Messenger/`直下にいることを確認して、下記のコマンドを実行します。
 
 ```
-$ npx hardhat run scripts/deploy.ts --network fuji
+yarn contract deploy
 ```
 
 出力結果の例
 
 ```
+yarn run v1.22.19
+$ yarn workspace contract deploy
 $ npx hardhat run scripts/deploy.ts --network fuji
 Deploying contract with the account: 0xdf90d78042C8521073422a7107262D61243a21D0
 Contract deployed at: 0xFCb785b459f0c701ca4019B23EFc66B5f481daA9
@@ -544,41 +547,41 @@ Contract's fund is: BigNumber { value: "100" }
 例:
 
 ```ts
-const contractAddress = "0xFCb785b459f0c701ca4019B23EFc66B5f481daA9";
+const contractAddress = '0xFCb785b459f0c701ca4019B23EFc66B5f481daA9';
 ```
 
 **2 \. フロントエンドの ABI ファイルを更新する**
 
-`Avax-Messenger`直下からターミナルでコピーを行う場合, このようなコマンドになります。
+`AVAX-Messenger`直下からターミナルでコピーを行う場合、このようなコマンドになります。
 
 ```
-$ cp contract/artifacts/contracts/Messenger.sol/Messenger.json client/utils/
+$ cp ./packages/contract/artifacts/contracts/Messenger.sol/Messenger.json ./packages/client/utils/
 ```
 
 **3 \. 型定義ファイルを更新する**
 
-`Avax-Messenger`直下からターミナルでコピーを行う場合, このようなコマンドになります。
+`AVAX-Messenger`直下からターミナルでコピーを行う場合、このようなコマンドになります。
 
 ```
-$ cp -r contract/typechain-types client/
+$ cp -r ./packages/contract/typechain-types ./packages/client/
 ```
 
-**コントラクトを更新するたび,これらの 3 つのステップを実行する必要があります。**
+**コントラクトを更新するたび、これらの 3 つのステップを実行する必要があります。**
 
 > **✍️: 上記 3 つのステップが必要な理由**
-> ずばり,スマートコントラクトは一度デプロイされると**変更することができない**からです。
+> ずばり、スマートコントラクトは一度デプロイされると**変更することができない**からです。
 >
-> コントラクトを更新するためには,再びデプロイする必要があります。
+> コントラクトを更新するためには、再びデプロイする必要があります。
 >
-> 再びデプロイされたコントラクトは,完全に新しいコントラクトとして扱われるため,すべての変数は**リセット**されます。
+> 再びデプロイされたコントラクトは、完全に新しいコントラクトとして扱われるため、すべての変数は**リセット**されます。
 >
-> **つまり,コントラクトを一度更新してしまうと,すべての既存のメッセージデータが失われます。**
+> **つまり、コントラクトを一度更新してしまうと、すべての既存のメッセージデータが失われます。**
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は,Discordの`#avalanche`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#avalanche`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので,エラーレポートには下記の3点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -589,4 +592,4 @@ $ cp -r contract/typechain-types client/
 
 ---
 
-コントラクトをアップデートしたら, 次のレッスンに進みましょう 🎉
+コントラクトをアップデートしたら、次のレッスンに進みましょう 🎉

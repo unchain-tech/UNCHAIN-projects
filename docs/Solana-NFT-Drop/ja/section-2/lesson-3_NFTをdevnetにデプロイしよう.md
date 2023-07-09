@@ -2,9 +2,9 @@
 
 本プロジェクトのメインパートです。Candy MachineとNFTをdevnetに持ち込みます。
 
-Candy Machine v2により、このプロセスが大幅に簡素化されました。
+Candy Machine v2から、このプロセスが大幅に簡素化されました。
 
-1つのコマンドで、以下を実行できます。
+`sugar`コマンドで、以下を実行できます。
 
 1\. NFTを [Arweave](https://www.arweave.org)（分散型ファイルストア）にアップロードし、Candy Machineの構成を初期化する
 
@@ -60,7 +60,7 @@ SOLなしではSolanaにデータをデプロイできません。
 
 現在devnet上にいるので、偽のSOLを自分自身に与えることができます。
 
-下記実行します。
+下記コマンドを実行します。
 
 ```txt
 solana airdrop 2
@@ -72,182 +72,127 @@ solana airdrop 2
 
 ### 🎂 Candy Machine を構築する
 
-`Candy Machine`にどのような動作をさせるかを伝えるには、設定が必要です。`Candy MachineV2`はこれを簡単に行うことができます。
+`Candy Machine`にどのような動作をさせるかを伝えるには、設定が必要です。
 
-プロジェクトのルートフォルダ(`assets`フォルダと同じ場所)に`config.json`というファイルを作成し、以下の内容を追加します。
+Section2 Lesson1の環境構築でインストールした`sugar`コマンドを用いて、設定ファイルを作成しましょう。設定ファイルは、アセット数、使用するクリエイター、適用する設定などの値で、キャンディマシンをどのように構成するかをSugarに指示します。それでは、下記コマンドを実行してください。
+
+```bash
+sugar config create
+```
+
+いくつかの質問に答えていきます。下記の例は質問とその入力例になります。詳しくは[公式ドキュメント](https://docs.metaplex.com/programs/candy-machine/how-to-guides/my-first-candy-machine-part1#create-a-config-file)を参考にしてください。
+
+```bash
+# 入力例
+✔ Found 3 file pairs in "assets". Is this how many NFTs you will have in your candy machine? #「y」を入力
+✔ Found no symbol in your metadata file. Is this value correct? #「y」を入力
+✔ What is the seller fee basis points? #「500」を入力
+✔ Do you want to use a sequential mint index generation? We recommend you choose no. #「n」を入力
+✔ How many creator wallets do you have? (max limit of 4) #「1」を入力
+✔ Enter creator wallet address #1 · $ solana address で取得したアドレスを入力
+✔ Enter royalty percentage share for creator #1 (e.g., 70). Total shares must add to 100. · 「100」を入力
+✔ Which extra features do you want to use? (use [SPACEBAR] to select options you want and hit [ENTER] when done) · #「Enter」を押す
+✔ What upload method do you want to use? #「Bundlr」を選択
+✔ Do you want your NFTs to remain mutable? We HIGHLY recommend you choose yes. #「y」を入力
+
+[2/2] 📝 Saving config file
+
+Saving config to file: "config.json"
+
+Successfully generated the config file. 🎉 
+
+✅ Command successful.
+```
+
+`config.json`ファイルがプロジェクトのルートに作成されたことを確認しましょう。
+
+次に、`assets`内のファイルをBundler経由でArweaveにアップロードします。
+
+```bash
+sugar upload
+```
+
+assetsディレクトリの各アセットがArweaveにアップロードされ、そのURIがキャッシュファイルに保存されました。
+
+アップロード終了時に生成される`cache.log`ファイル内の`image_link`や`metadata_link`にアクセスしてみましょう。前のレッスンで準備したNFT画像やメタデータが表示されたでしょうか？
+
+なお、この時点では、cache.jsonファイルの最初に記載されているcandyMachineに関する値は空です。
+
+次に、Candh Machineをデプロイします。
+
+```bash
+sugar deploy
+```
+
+```bash
+# 実行例
+sugar deploy
+
+[1/3] 📦 Creating collection NFT for candy machine
+Collection mint ID: FTE4mtHZPexDUeVsq4Zmc7GoKXx8rCJkceFSK1YAU7DW
+
+[2/3] 🍬 Creating candy machine
+Candy machine ID: 6PLikotuLDHonQanV1Uk8xekSkyTvthYbtSPVTXV2rEU
+
+[3/3] 📝 Writing config lines
+Sending config line(s) in 1 transaction(s): (Ctrl+C to abort)
+[00:00:02] Write config lines successful █████████████████████████████████████████████████████████████████ 1/1
+
+✅ Command successful.
+```
+
+デプロイ完了後、再度`cache.json`ファイルを開いてみましょう。デプロイ前は空だったcandyMachineの値が設定されていることが確認できます。なお、この時点では、candyGuardの値は空です。
+
+また、以下のコマンドを実行するとCandy Machineのデプロイに成功したかを再確認することができます。
+
+```bash
+sugar verify
+```
+
+価格や開始日などのコンフィギュレーションをどこで設定するのか気になりますよね。そこで、キャンディマシンV3では、ガードの出番です。
+
+`config.json`ファイルを更新します。初期設定では`null`が設定されている`"guards"`を以下のように更新しましょう。
 
 ```json
-{
-  "price": 0.1,
-  "number": 3,
-  "gatekeeper": null,
-  "solTreasuryAccount": "<YOUR WALLET ADDRESS>",
-  "splTokenAccount": null,
-  "splToken": null,
-  "goLiveDate": "05 Jan 2021 00:00:00 GMT",
-  "endSettings": null,
-  "whitelistMintSettings": null,
-  "hiddenSettings": null,
-  "storage": "arweave",
-  "ipfsInfuraProjectId": null,
-  "ipfsInfuraSecret": null,
-  "awsS3Bucket": null,
-  "noRetainAuthority": false,
-  "noMutable": false
+"guards": {
+  "default": {
+    "solPayment": {
+      "value": 0.1,
+       "destination": "WALLET_ADDRESS_TO_PAY_TO"
+    },
+    "startDate": {
+      "date": "2023-01-01T00:00:00Z"
+    }
+  }
 }
 ```
 
-最初は少し難しいかもしれませんが、必要なのはこのうち5つだけです。残りのものは今のところ無視します。それでは必要な項目を見ていきましょう。
+- `solPayment`は、宛先のウォレット（destination）に0.1 SOL（value）の支払いを要求します。
+- `startDate`は、設定した日付（ここでは2023年01月01日00:00:00）より前のミントを許可しないように制限します。
 
-- `price`：各NFTの価格
+`destination`の値は、SOLを受け取るアドレスを設定しましょう。
 
-- `number`：デプロイしたいNFTの数。イメージとjsonのペアの数と一致していないとバグが起きます。
+これでドロップ開始時刻を設定することができました。それでは、以下のコマンドを実行してガードの設定を適用しましょう。
 
-- `solTreasuryAccount`：あなたのPhantom Walletのアドレスです。SOL支払いからの手続きが行われるウォレットになります。
-
-- `goLiveDate`：ミントを開始日時を設定します。
-
-- `storage`：あなたのNFTが保存される場所です。
-
-ここでは`solTreasuryAccount`だけ修正します。
-
-`solTreasuryAccount`にはあなたのFantom Walletのアドレスを入力しましょう。
-
-余談ですが、devnetには最大10個のNFTをデプロイできます。
-
-今回はNFTを3つしか上げないのですが、3つ以上あげたい場合は`number`の数字を変更してください。
-
-### 🚀 NFT をアップロードし、Candy Machine を作成する
-
-次に、Metaplexの`upload`コマンドを使用して、`Assets`ディレクトリにあるNFTをアップロードし、Candy Machineを作成します。この作業は一度に行われます。
-
-このコマンドは`assets`ディレクトリの1つ上の階層から実行する必要があります。
-
-※ ターミナルから`ls`を入力して、下記のようなディレクトリになっていれば大丈夫です。
-
-![無題](/public/images/Solana-NFT-Drop/section-2/2_3_1.png)
-
-それでは下記コマンドをターミナルに入力し、NFTをアップロードしましょう。
-
-```txt
-ts-node ~/metaplex/js/packages/cli/src/candy-machine-v2-cli.ts upload -e devnet -k ~/.config/solana/devnet.json -cp config.json ./assets
-
+```bash
+sugar guard add
 ```
 
-`no such file or directory, scandir './assets'`のようなエラーが出た場合は、コマンドの実行場所が間違っていることを意味します。必ず`assets`フォルダがあるのと同じディレクトリで実行してください。
+コマンド実行後、再度`cache.json`ファイルを開いてみましょう。candyGuardの値が設定されていることが確認できます。
 
-`upload`コマンドは下記を実行しています。
+現在のガード設定を確認するには、以下のコマンドを実行します。
 
-- `assets`フォルダ内のすべてのNFTペアを取得する
-
-- ArweaveにNFTをアップロードする
-
-- これらのNFTへのポインタを保持するCandy Machineのconfigを初期化する
-
-- そのconfigをSolanaのdevnetに保存
-
-このコマンドが実行されると、現在どのNFTがアップロードされているか、ターミナルに何らかの出力が表示されるはずです。
-
-```txt
-wallet public key: A1AfJpXEiqiP3twp6CdZCWixpyx6p8E26zej4TNQ12GT
-WARNING: The "arweave" storage option will be going away soon. Please migrate to arweave-bundle or arweave-sol for mainnet.
-
-Beginning the upload for 3 (img+json) pairs
-started at: 1641470635118
-Size 3 { mediaExt: '.png', index: '0' }
-Processing asset: 0
-initializing candy machine
-initialized config for a candy machine with publickey: 5FUh6tm4sATuCA6hth9a4JAuko9GEAhsewULrXa5zS8C
-Processing asset: 0
-Processing asset: 1
-Processing asset: 2
-Writing indices 0-2
-Done. Successful = true.
-ended at: 2022-01-06T12:04:38.862Z. time taken: 00:00:43
+```bash
+sugar guard show
 ```
 
-`initialized config for a candy machine"`と記載されている、`public key`を出力している箇所を見てください。
+なお、ガードの設定を更新したい場合は、ファイルを更新後にアップロードコマンドを実行する必要があります。
 
-そのキーをコピーしてSolanaの [Devnet Explorer](https://explorer.solana.com/?cluster=devnet) に貼り付けると、実際にブロックチェーンにデプロイされたことが確認できます。ぜひやってみてください。
-
-将来的に必要になるので、このアドレスを手元に置いておきましょう。
-
-ここで、NFTを変更して再度`upload`を実行しても、実際には新しいものはアップロードされないことに気付くでしょう。
-
-```txt
-ts-node ~/metaplex/js/packages/cli/src/candy-machine-v2-cli.ts upload -e devnet -k ~/.config/solana/devnet.json -cp config.json ./assets
+```bash
+sugar guard update
 ```
 
-その理由は、このデータを保存する`.cache`フォルダが作成されているからです。
-
-変更したい場合はプロジェクトのルートディレクトリに存在している`.cache`フォルダを削除して、`upload`を再度実行する必要があります。
-
-これにより、Candy Machine構成が初期化されます。
-
-コレクションを公開する前にコレクションに変更を加えたい場合は、必ずこれを行ってください。
-
-### ✅ NFT を確認する
-
-次に進む前に、下記`verify`コマンドを実行して、NFTが実際にアップロードされたことを確認します。
-
-```txt
-ts-node ~/metaplex/js/packages/cli/src/candy-machine-v2-cli.ts verify_upload -e devnet -k ~/.config/solana/devnet.json
-```
-
-うまくいっている場合、出力は次のようになります。
-
-```txt
-wallet public key: A1AfJpXEiqiP3twp6CdZCWixpyx6p8E26zej4TNQ12GT
-Key size 3
-uploaded (3) out of (3)
-ready to deploy!
-```
-
-`/.cache/devnet-temp.json`ファイルを見ると、3つのArweaveリンクがあります。これらはNFTの格納先です。
-
-Arweaveリンクの1つをコピーしてブラウザに貼り付け、NFTのメタデータを確認してください。
-
-Arweaveはデータを**永続的に**保存します。
-
-これは、IPFS / Filecoinの世界とは大きく異なります。
-
-IPFS / Filecoinでは、ファイルを保持することを決定したノードにもとづいてデータがピアツーピアで保存されます。
-
-Arweaveは一度支払うと、**永久に**保存します。
-
-Arweaveでは、ファイルの大きさに応じて、保存に必要なコストを見積もる[ アルゴリズム ](https://arwiki.wiki/#/en/storage-endowment#toc_Transaction_Pricing)を作成し、これを利用しています。
-
-[電卓](https://arweavefees.com/) を使って計算もできます。たとえば1MBを永久に保存するには、約0.0083ドルの費用がかかります。悪くないですね。
-
-「じゃあ、私のものをホストするのに誰がお金を払っているんだよ!」と疑問に思うかもしれませんが、[こちら](https://github.com/metaplex-foundation/metaplex/blob/59ab126e41e6d85b53c79ad7358964dadd12b5f4/js/packages/cli/src/helpers/upload/arweave.ts#L93)のソースコードを見れば、今のところMetaplexがお金を払ってくれていることがわかります。
-
-### 🔨 Candy Machine の構成を更新する
-
-Candy Machineの構成を更新するには、`config.json`ファイルを更新して、次のコマンドを実行するだけです。
-
-```txt
-ts-node ~/metaplex/js/packages/cli/src/candy-machine-v2-cli.ts update_candy_machine -e devnet -k ~/.config/solana/devnet.json -cp config.json
-```
-
-### 😡 注意すべきエラー
-
-以下のようなエラーが発生した場合：
-
-```txt
-/Users/flynn/metaplex-foundation/metaplex/js/packages/cli/src/candy-machine-v2-cli.ts:53
-      return fs.readdirSync(`${val}`).map(file => path.join(val, file));
-                      ^
-TypeError: Cannot read property 'candyMachineAddress' of undefined
-    at /Users/flynn/metaplex-foundation/metaplex/js/packages/cli/src/candy-machine-v2-cli.ts:649:53
-    at step (/Users/flynn/metaplex-foundation/metaplex/js/packages/cli/src/candy-machine-v2-cli.ts:53:23)
-    at Object.next (/Users/flynn/metaplex-foundation/metaplex/js/packages/cli/src/candy-machine-v2-cli.ts:34:53)
-    at fulfilled (/Users/flynn/metaplex-foundation/metaplex/js/packages/cli/src/candy-machine-v2-cli.ts:25:58)
-    at processTicksAndRejections (node:internal/process/task_queues:96:5)
-```
-
-これはCandy MachineやNFTに関するデータが入った`.cache`フォルダにアクセスできないことを意味します。
-
-このエラーが発生した場合は、Candy Machineのコマンドを`.cache`フォルダと`assets`フォルダがある同じディレクトリから実行しているか確認してください。起こりがちなミスなので十分注意してください!
+Candy Machineの構築とデプロイが成功したので、次はブラウザからミントができるようにしましょう！
 
 ### 🙋‍♂️ 質問する
 

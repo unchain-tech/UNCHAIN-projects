@@ -130,8 +130,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   provider: ^6.0.3
   fluid_bottom_nav_bar: ^1.3.0
-  hexcolor: ^2.0.7
-  google_fonts: ^3.0.1
+  hexcolor: ^3.0.1
+  google_fonts: ^4.0.0
   flutter_svg: ^0.22.0
   dropdown_button2: ^1.7.1
   fluttertoast: ^8.0.9
@@ -143,6 +143,7 @@ dependencies:
   flutter_dotenv: ^5.0.2
   url_launcher: ^6.1.2
   web3_connect: ^0.0.3
+  responsive_framework: ^1.0.0
 ```
 
 次に使用する画像やファイルの宣言、アイコンを変更するための記述をしていきます。先ほどの記述の下に書いてあるものを以下のように書き換えましょう。
@@ -185,7 +186,7 @@ flutter:
 ![](/public/images/NEAR-MulPay/section-2/2_1_19.png)
 ![](/public/images/NEAR-MulPay/section-2/2_1_20.png)
 
-その後、下のコマンドをターミナルで実行しましょう。
+その後、`client`ディレクトリに移動して下のコマンドをターミナルで実行しましょう。
 
 ```
 flutter pub get
@@ -941,7 +942,7 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 Widget Coins(double displayWidth, displayHeight, String imagePath, symbol, name,
-    depo, value) {
+    depo, value, bool isDeskTop) {
   return Container(
     height: displayHeight * 0.08,
     width: displayWidth,
@@ -958,8 +959,8 @@ Widget Coins(double displayWidth, displayHeight, String imagePath, symbol, name,
         Row(
           children: [
             SizedBox(
-              height: 37,
-              width: 37,
+              height: isDeskTop ? 55 : 37,
+              width: isDeskTop ? 55 : 37,
               child: Image.asset(imagePath),
             ),
             const SizedBox(
@@ -974,21 +975,22 @@ Widget Coins(double displayWidth, displayHeight, String imagePath, symbol, name,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
-                    fontSize: 14,
+                    fontSize: isDeskTop ? 20 : 14,
                   ),
                 ),
                 Text(
                   name,
                   style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey,
-                      fontSize: 12),
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey,
+                    fontSize: isDeskTop ? 17 : 12,
+                  ),
                 ),
               ],
             ),
           ],
         ),
-        Expanded(
+        const Expanded(
           child: SizedBox(),
         ),
         SizedBox(
@@ -998,18 +1000,19 @@ Widget Coins(double displayWidth, displayHeight, String imagePath, symbol, name,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '${depo} ${symbol}',
+                '$depo $symbol',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 13,
+                  fontSize: isDeskTop ? 20 : 13,
                 ),
               ),
               Text(
-                '${value} ETH',
+                '$value ETH',
                 style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    fontSize: 12),
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  fontSize: isDeskTop ? 18 : 12,
+                ),
               ),
             ],
           ),
@@ -1018,10 +1021,25 @@ Widget Coins(double displayWidth, displayHeight, String imagePath, symbol, name,
     ),
   );
 }
-
 ```
 
 これでそれぞれのトークンについて、ロゴや名前、残高とETH換算した時の価値を表示できるようになりました！
+
+最初の環境構築で、エミュレータとwebのどちらのでも動作すると説明しましたね。flutterでは動作はするのですがそれをUIにも反映させる必要があります。
+
+そこで引数として受け取っている`isDeskTop`で、このアプリが使用されているデバイスの画面がデスクトップの画面なのか、モバイルの画面なのかをこちらのコードで判定しています。
+
+この値をもとに例えばしたのようにトークンのロゴの大きさが変わるようにしています。
+
+```
+SizedBox(
+              height: isDeskTop ? 55 : 37,
+              width: isDeskTop ? 55 : 37,
+              child: Image.asset(imagePath),
+            ),
+```
+
+この`isDesktop`は次のセクションの`main.dart`で記述されている部分で値を取得して、様々な画面で使用することとなります。
 
 次に下に置くナビゲーションバーの実装を行なっていきましょう。
 
@@ -1034,9 +1052,9 @@ Widget Coins(double displayWidth, displayHeight, String imagePath, symbol, name,
 ```
 import 'package:fluid_bottom_nav_bar/fluid_bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:mulpay_frontend/view/screens/home.dart';
-import 'package:mulpay_frontend/view/screens/send.dart';
-import 'package:mulpay_frontend/view/screens/wallet.dart';
+import 'package:client/view/screens/home.dart';
+import 'package:client/view/screens/send.dart';
+import 'package:client/view/screens/wallet.dart';
 import 'package:provider/provider.dart';
 import 'package:hexcolor/hexcolor.dart';
 

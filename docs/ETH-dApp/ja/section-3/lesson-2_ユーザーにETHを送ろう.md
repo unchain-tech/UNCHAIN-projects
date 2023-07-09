@@ -11,7 +11,6 @@
 `WavePortal.sol`の`wave`関数を下記のように更新していきます。
 
 ```solidity
-// WavePortal.sol
 function wave(string memory _message) public {
 	totalWaves += 1;
 	console.log("%s waved w/ message %s", msg.sender, _message);
@@ -41,14 +40,12 @@ function wave(string memory _message) public {
 > まず、下記で`prizeAmount`という変数を定義し、`0.0001` ETH を指定しています。
 >
 > ```solidity
-> // WavePortal.sol
 > uint256 prizeAmount = 0.0001 ether;
 > ```
 >
 > そして、下記では、ユーザーに送る ETH の額が**コントラクトが持つ残高**より下回っていることを確認しています。
 >
 > ```solidity
-> // WavePortal.sol
 > require(
 > 	prizeAmount <= address(this).balance,
 > 	"Trying to withdraw more money than the contract has."
@@ -65,14 +62,12 @@ function wave(string memory _message) public {
 > 下記のコードはユーザーに送金を行うために実装されています。
 >
 > ```solidity
-> // WavePortal.sol
 > (bool success, ) = (msg.sender).call{value：prizeAmount}("")
 > ```
 >
 > 下記のコードは、トランザクション（＝送金）が成功したことを確認しています。
 >
 > ```solidity
-> // WavePortal.sol
 > require(success, "Failed to withdraw money from contract.");
 > ```
 >
@@ -81,7 +76,6 @@ function wave(string memory _message) public {
 次に、`WavePortal.sol`の`constructor`を下記のように変更します。
 
 ```solidity
-// WavePortal.sol
 constructor() payable {
   console.log("We have been constructed!");
 }
@@ -99,7 +93,6 @@ constructor() payable {
 - `run.js`はコントラクトのコア機能のテストを行うためのスクリプトです。
 
 ```javascript
-// run.js
 const main = async () => {
   const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
   /*
@@ -159,7 +152,6 @@ runMain();
 **1 \. 0.1ETH をコントラクトに提供する**
 
 ```javascript
-// run.js
 const waveContract = await waveContractFactory.deploy({
   value: hre.ethers.utils.parseEther("0.1"),
 });
@@ -168,7 +160,6 @@ const waveContract = await waveContractFactory.deploy({
 `hre.ethers.utils.parseEther("0.1")`によって、コントラクトがデプロイされた際に、コントラクトに0.1 ETHの資金を提供することを宣言しています。
 
 ```javascript
-// run.js
 let contractBalance = await hre.ethers.provider.getBalance(
   waveContract.address
 );
@@ -181,7 +172,6 @@ let contractBalance = await hre.ethers.provider.getBalance(
 **2 \. コントラクトの資金を確認する**
 
 ```javascript
-// run.js
 console.log("Contract balance:", hre.ethers.utils.formatEther(contractBalance));
 ```
 
@@ -190,7 +180,6 @@ console.log("Contract balance:", hre.ethers.utils.formatEther(contractBalance));
 **3 \. `wave`したあとのコントラクトの残高を確認する**
 
 ```javascript
-// run.js
 /*
  * Wave
  */
@@ -207,10 +196,10 @@ console.log("Contract balance:", hre.ethers.utils.formatEther(contractBalance));
 
 ### ⭐️ テストを実行する
 
-それでは、ターミナル上で`my-wave-portal`に移動し、下記を実行し、テストを行いましょう。
+それでは、ターミナル上で下記を実行し、テストを行いましょう。
 
 ```bash
-npx hardhat run scripts/run.js
+yarn contract run:script
 ```
 
 下記のような結果がターミナルで出力されているか確認してください。
@@ -240,7 +229,6 @@ Contract balance: 0.0999
 本番環境でコントラクトに資金を提供するため、下記のように`deploy.js`を更新します。
 
 ```javascript
-// deploy.js
 const main = async () => {
   const [deployer] = await hre.ethers.getSigners();
   const accountBalance = await deployer.getBalance();
@@ -275,7 +263,6 @@ runMain();
 更新したコードは下記です。
 
 ```javascript
-// deploy.js
 const waveContract = await waveContractFactory.deploy({
   value: hre.ethers.utils.parseEther("0.001"),
 });
@@ -297,18 +284,16 @@ const waveContract = await waveContractFactory.deploy({
 
 2. フロントエンドのコントラクトアドレスを更新する(更新するファイル: `App.js`)
 
-3. フロントエンドのABIファイルを更新する(更新するファイル: `dApp-starter-project/src/utils/WavePortal.json`)
+3. フロントエンドのABIファイルを更新する(更新するファイル: `client/src/utils/WavePortal.json`)
 
 **コントラクトを更新するたび、これらの 3 つのステップを実行する必要があります。**
 
 復習もかねて、丁寧に実行していきましょう。
 
-1 \. ターミナル上で`my-wave-portal`に移動します。
-
-下記を実行し、コントラクトを再度デプロイしましょう。
+1 \. ターミナル上で下記を実行し、コントラクトを再度デプロイしましょう。
 
 ```
-npx hardhat run scripts/deploy.js --network sepolia
+yarn contract deploy
 ```
 
 ターミナルに下記のような出力結果が表示されていれば、デプロイは成功です。
@@ -335,7 +320,7 @@ WavePortal address:  0x550925E923Cb1734de73B3a843A21b871fe2a673
 
 3 \. 以前と同じように`artifacts`からABIファイルを取得します。下記のステップを実行してください。
 
-> 1\. ターミナル上で`my-wave-portal`にいることを確認する（もしくは移動する）。
+> 1\. ターミナル上で`contract`にいることを確認する（もしくは移動する）。
 >
 > 2\. ターミナル上で下記を実行する。
 >
@@ -345,27 +330,25 @@ WavePortal address:  0x550925E923Cb1734de73B3a843A21b871fe2a673
 >
 > 3\. VS Code で`WavePortal.json`ファイルが開かれるので、中身を全てコピーしましょう。※ VS Code のファインダーを使って、直接`WavePortal.json`を開くことも可能です。
 >
-> 4\. **コピーした`my-wave-portal/artifacts/contracts/WavePortal.sol/WavePortal.json`の中身で`dApp-starter-project/src/utils/WavePortal.json`の中身を上書きしてください。**
+> 4\. **コピーした`contract/artifacts/contracts/WavePortal.sol/WavePortal.json`の中身で`client/src/utils/WavePortal.json`の中身を上書きしてください。**
 
 **繰り返しますが、コントラクトを更新するたびにこれを行う必要があります。**
 
 `wave`を送ったユーザーに0.0001ETHが送られているか確認してみましょう。
 
-1\. ターミナル上で`dApp-starter-project`に移動する。
-
-2\. 下記を実行する。
+1\. 下記を実行する。
 
 > ```
-> npm run start
+> yarn client start
 > ```
 
-3\. ローカル環境でWebアプリケーションを開き、`wave`を送る。
+2\. ローカル環境でWebアプリケーションを開き、`wave`を送る。
 
 例)このような結果がWebアプリケーションに反映されていること確認してください。コントラクトを新しくしたので、既存の`wave`はリセットされています。
 
 > ![](/public/images/ETH-dApp/section-3/3_2_2.png)
 
-4\. [Etherscan](https://sepolia.etherscan.io/) にアクセスして、コントラクトアドレスを貼り付ける。
+3\. [Etherscan](https://sepolia.etherscan.io/) にアクセスして、コントラクトアドレスを貼り付ける。
 
 > 下記のように、`Balance`が`0.0009 Ether`となっていることを確認してください。
 >

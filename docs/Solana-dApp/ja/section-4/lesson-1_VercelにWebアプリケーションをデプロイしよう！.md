@@ -20,7 +20,7 @@ Git hubなどにコードをアップロードする際は、秘密鍵や構成�
 まず、ターミナルでプロジェクトのルートディレクトリまで移動し、以下のコマンドを実行しましょう。
 
 ```bash
-npm install --save dotenv
+yarn add --dev dotenv
 ```
 
 `dotenv`モジュールに関する詳しい説明は、[こちら](https://maku77.github.io/nodejs/env/dotenv.html)を参照してください。
@@ -46,8 +46,6 @@ SOLANA_NETWORK=devnet
 ※ `require('dotenv').config();`はimport文の直下に追加し、`clusterApiUrl`の引数を`process.env.SOLANA_NETWORK`に変更してください。
 
 ```javascript
-// App.js
-
 require('dotenv').config();
 
 // ネットワークをdevnetに設定します。
@@ -81,9 +79,9 @@ Vercelはサーバーレス機能のホスティングを提供するクラウ�
 
 Vercelのアカウントをお持ちでない方は、上記のリンクにアクセスして、アカウントを作成してください。
 
-まず、`gif-portal-starter`の最新コードをGitHubにプッシュします。
+まず、`Solana-dApp`の最新コードをGitHubにプッシュします。
 
-ターミナルで`gif-portal-starter`に移動し、以下のコマンドをそれぞれ実行しましょう。
+ターミナルで`Solana-dApp`に移動し、以下のコマンドをそれぞれ実行しましょう。
 
 ```bash
 git add .
@@ -103,7 +101,9 @@ git push
 
 3\. プロジェクトの設定では、**FRAMEWORK PRESET** に`Create React App`、**ROOT DIRECTORY** に`app`を入力してください。
 
-4\. **Environment Variables** に環境変数`CI = false`（NAME: CI、VALUE: false）を追加します（警告が原因でビルドが失敗しないようになります）。
+4\. プロジェクトを作成します。`Root Directory`が「packages/client」となっていることを確認してください。
+
+![](/public/images/ETH-NFT-Collection/section-4/4_2_9.png)
 
 5\. **Environment Variables** に`.env`で設定した環境変数（NAME: SOLANA_NETWORK、VALUE: devnet）を直接入力してください( GitHubには`.env`ファイルを保存していないため、`Vercel`に直接記載する必要があります)。
 

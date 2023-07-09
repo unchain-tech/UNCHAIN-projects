@@ -1,124 +1,3 @@
-### ✨ Hardhat をインストールする
-
-これから、スマートコントラクトを作成して、ガス代とNFTの価格を支払えば、誰でもNFTコレクションがMintできるしくみを実装していきます。
-
-スマートコントラクトをすばやくコンパイルし、ローカル環境でテストするために、**Hardhat** というツールを使用します。
-
-- Hardhatにより、ローカル環境でイーサリアムネットワークを簡単に起動し、テストネットでイーサリアムを利用できます。
-
-- 「サーバー」がブロックチェーンであることを除けば、Hardhatはローカルサーバーと同じです。
-
-まず、`node` / `npm`を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html) にアクセスしてください。
-`node v16`をインストールすることを推奨しています。
-
-次に、ターミナルに向かいましょう。
-
-作業したいディレクトリに移動したら、次のコマンドを実行して、プロジェクト用の空のフォルダーを作成し、空のディレクトリを作成します。
-
-```bash
-mkdir Polygon-Generative-NFT
-cd Polygon-Generative-NFT
-mkdir nft-collectible
-```
-
-この段階で、フォルダ構造は下記のようになっていることを確認してください。
-
-```
-Polygon-Generative-NFT
-	|_ nft-collectible
-```
-
-`nft-collectible`の中にスマートコントラクトを構築するためのファイルを作成していきます。
-
-下記を実行しましょう。
-
-```
-cd nft-collectible
-npm init -y
-```
-
-この処理により、`nft-collectible`フォルダ内に`package.json`という名前のファイルが作成されます。
-
-次に、`Hardhat`をインストールしましょう。
-
-ターミナル上で、`nft-collectible`フォルダにいることを確認したら、以下のコマンドを実行します。
-
-```
-npm install --save-dev hardhat
-```
-
-次に、下記のコマンドを実行して、Hardhatのサンプルプロジェクトを作成しましょう。
-
-```
-npx hardhat
-```
-
-`hardhat`がターミナル上で立ち上がったら、`Create a JavaScript project`を選択します。
-
-- プロジェクトのルートディレクトリを設定し、`.gitignore`を追加する選択肢で`yes`を選んでください。
-
-> ⚠️: 注意
->
-> `npx hardhat`が実行されなかった場合、以下をターミナルで実行してください。
->
-> ```bash
-> npm install --save-dev @nomicfoundation/hardhat-toolbox
-> ```
->
-> その後、もう一度`npx hardhat`を実行しましょう。
-
-サンプルプロジェクトが正しくインストールされたことを確認するため、下記のコマンドを実行してください。
-
-```
-npx hardhat run scripts/deploy.js
-```
-
-すべてがうまくいけば、次のような出力が表示されるはずです。
-
-```
-Compiled 2 Solidity files successfully
-Lock with 1 ETH and unlock timestamp 1692501171 deployed to 0x5FbDB2315678afecb367f032d93F642f64180aa3
-```
-
-これでhardhatの開発環境は無事構築できました。
-
-次に、下記を実行して、OpenZeppelinのコントラクトパッケージをインストールしましょう。
-
-```
-npm install @openzeppelin/contracts
-```
-
-これにより、ERC 721コントラクト（NFTの標準規格）と、OpenZeppelinが提供するヘルパー・ライブラリにアクセスできます。
-
-GitHubなどのWebサイトでプロジェクトのコードを公開する場合、秘密鍵、Etherscan APIキー、Alchemy URLなどの機密情報をローカル環境にのみ保存し、非公開にする必要があります。
-
-上記を実装する下準備として、下記を実行し、dotenvという別のライブラリをインストールしましょう。
-
-```
-npm install dotenv
-```
-
-以上で、スマートコントラクトの開発を始める環境が整いました。
-
-ターミナル上で`nft-collectible`に移動し、`ls`と入力してみて、下記のフォルダーとファイルが表示されていたら成功です。
-
-```
-README.md		hardhat.config.js	scripts
-artifacts		node_modules		test
-cache			package-lock.json .gitignore
-contracts		package.json
-```
-
-ここまできたら、フォルダーの中身を整理しましょう。
-
-まず、`test`の下のファイル`Lock.js`を削除します。
-
-1. `test`フォルダーに移動: `cd test`
-
-2. `Lock.js`を削除: `rm Lock.js`
-
-次に、上記の手順を参考にして`contracts`の下の`Lock.sol`を削除してください。実際のフォルダは削除しないように注意しましょう。
-
 ### 🖋 コントラクトを作成する
 
 これから、ETHとガス代を支払うことで、誰でもNFTをMintできるスマートコントラクトをSolidityで作成していきます。
@@ -127,18 +6,10 @@ contracts		package.json
 
 `contracts`ディレクトリの下に`NFTCollectible.sol`という名前のファイルを作成します。
 
-ターミナル上で新しくファイルを作成する場合は、下記のコマンドが役立ちます。
-
-1\. `nft-collectible`ディレクトリに移動: `cd nft-collectible`
-
-2\. `contracts`ディレクトリに移動: `cd contracts`
-
-3\. `NFTCollectible.sol`ファイルを作成: `touch NFTCollectible.sol`
-
 Hardhatを使用する場合、ファイル構造は非常に重要ですので、注意する必要があります。ファイル構造が下記のようになっていれば大丈夫です 😊
 
 ```bash
-nft-collectible
+contract
     |_ contracts
            |_  NFTCollectible.sol
 ```
@@ -154,10 +25,9 @@ VS Codeをターミナルから起動する方法は[こちら](https://maku.blo
 それでは、これから`NFTCollectible.sol`の中身の作成していきます。`NFTCollectible.sol`をVS Codeで開き、下記を入力します。
 
 ```solidity
-// NFTCollectible.sol
 //SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 
 import "hardhat/console.sol";
 
@@ -177,35 +47,30 @@ contract NFTCollectible is ERC721Enumerable, Ownable {
 コードを詳しくみていきましょう。
 
 ```solidity
-// NFTCollectible.sol
 // SPDX-License-Identifier: MIT
 ```
 
 これは「SPDXライセンス識別子」と呼ばれ、ソフトウェア・ライセンスの種類が一目でわかるようにするための識別子です。
 
 ```solidity
-// NFTCollectible.sol
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 ```
 
-これは、コントラクトで使用するSolidityコンパイラのバージョンです。上記の場合「このコントラクトを実行するときは、Solidityコンパイラのバージョン0.8.9のみを使用し、それ以下のものは使用しません」という意味です。コンパイラのバージョンが`hardhat.config.js`で同じであることを確認してください。
+これは、コントラクトで使用するSolidityコンパイラのバージョンです。上記の場合「このコントラクトを実行するときは、Solidityコンパイラのバージョン0.8.17のみを使用し、それ以下のものは使用しません」という意味です。コンパイラのバージョンが`hardhat.config.js`で同じであることを確認してください。
 
-もし、`hardhat.config.js`の中に記載されているSolidityのバージョンが`0.8.9`でなかった場合は、`NFTCollectible.sol`の中身を`hardhat.config.js`に記載されているバージョンに変更しましょう。
+もし、`hardhat.config.js`の中に記載されているSolidityのバージョンが`0.8.17`でなかった場合は、`NFTCollectible.sol`の中身を`hardhat.config.js`に記載されているバージョンに変更しましょう。
 
 ```solidity
-// NFTCollectible.sol
 import "hardhat/console.sol";
 ```
 
 コントラクトを実行する際、コンソールログをターミナルに出力するためにHardhatの`console.sol`のファイルをインポートしています。これは、今後スマートコントラクトのデバッグが発生した場合に、とても役立つツールです。
 
 ```solidity
-// NFTCollectible.sol
 import "hardhat/console.sol";
 ```
 
 ```solidity
-// NFTCollectible.sol
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
@@ -220,16 +85,6 @@ contract NFTCollectible is ERC721Enumerable, Ownable {
 
 ここでは、OpenZeppelinのERC721 EnumerableコントラクトとOwnableコントラクトを継承しています。
 
-- ERC721 Enumerableコントラクトには、NFTコレクションを扱うときに便利ないくつかのヘルパー関数が搭載されています。
-
-- Ownableコントラクトでは、コントラクトの特定の側面に管理者権限を追加できます。
-
-上記に加えて、OpenZeppelinのSafeMathライブラリとCountersライブラリを使用して、符号なし整数演算（オーバーフローを防止）とトークンIDの安全に処理を行っていきます。
-
-`contract`は、ほかの言語でいうところの「[class](https://wa3.i-3-i.info/word1120.html)」のようなものなのです。
-
-classの概念については、[こちら](https://aiacademy.jp/media/?p=131) を参照してくさい。
-
 ### 🗃 定数( `constants`)と変数( `variables`)を保存する
 
 これからコントラクトに、特定の変数や定数を保存していきます。
@@ -237,7 +92,6 @@ classの概念については、[こちら](https://aiacademy.jp/media/?p=131) �
 `NFTCollectible.sol`の中の`Counters.Counter private _tokenIds;`の直下に以下のコードを追加しましょう。
 
 ```solidity
-// NFTCollectible.sol
 uint public constant MAX_SUPPLY = 30;
 uint public constant PRICE = 0.01 ether;
 uint public constant MAX_PER_MINT = 3;
@@ -284,7 +138,6 @@ string public baseTokenURI;
 `NFTCollectible.sol`の中の`string public baseTokenURI;`の直下に以下のコードを追加しましょう。
 
 ```solidity
-// NFTCollectible.sol
 constructor(string memory baseURI) ERC721("NFT Collectible", "NFTC") {
      setBaseURI(baseURI);
 }
@@ -315,7 +168,6 @@ constructor(string memory baseURI) ERC721("NFT Collectible", "NFTC") {
 下記を、`constructor`のコードブロック直下に追加しましょう。
 
 ```solidity
-// NFTCollectible.sol
 function reserveNFTs() public onlyOwner {
      uint totalMinted = _tokenIds.current();
      require(
@@ -369,7 +221,6 @@ https://gateway.pinata.cloud/ipfs/QmSvw119ALMN9SkP89Xj37jvqJik8jZrSjU5c1vgBhkhz8
 上記を踏まえ、下記を`reserveNFTs`のコードブロック直下に追加しましょう。
 
 ```solidity
-// NFTCollectible.sol
 function _baseURI() internal
                     view
                     virtual
@@ -408,7 +259,6 @@ NFTのJSONメタデータは、IPFSの次のURLで入手できます： ipfs://Q
 下記を`setBaseURI`関数のコードブロック直下に追加しましょう。
 
 ```solidity
-// NFTCollectible.sol
 function mintNFTs(uint _count) public payable {
      uint totalMinted = _tokenIds.current();
      require(
@@ -439,7 +289,6 @@ function mintNFTs(uint _count) public payable {
 下記を参考に、Mintが実行される前に以下3点のチェックを行います。
 
 ```solidity
-// NFTCollectible.sol
 uint public constant MAX_SUPPLY = 30;
 uint public constant PRICE = 0.01 ether;
 uint public constant MAX_PER_MINT = 3;
@@ -458,7 +307,6 @@ uint public constant MAX_PER_MINT = 3;
 下記を`mintNFTs`関数のコードブロック直下に追加しましょう。
 
 ```solidity
-// NFTCollectible.sol
 function _mintSingleNFT() private {
       uint newTokenID = _tokenIds.current();
       _safeMint(msg.sender, newTokenID);
@@ -491,7 +339,6 @@ NFT保有者に何らかの実用性を提供する場合、各ユーザーが�
 下記を`_mintSingleNFT`関数のコードブロック直下に追加しましょう。
 
 ```solidity
-// NFTCollectible.sol
 function tokensOfOwner(address _owner)
          external
          view
@@ -521,7 +368,6 @@ ERC721 Enumerableの`balanceOf`と`tokenOfOwnerByIndex`関数を使用してい�
 - `onlyOwner`修飾子をつけていきます。
 
 ```solidity
-// NFTCollectible.sol
 function withdraw() public payable onlyOwner {
      uint balance = address(this).balance;
      require(balance > 0, "No ether left to withdraw");
@@ -537,9 +383,8 @@ function withdraw() public payable onlyOwner {
 下記が最終的なコードです。
 
 ```solidity
-// NTCollectible.sol
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";

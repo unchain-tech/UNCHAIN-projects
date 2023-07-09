@@ -7,10 +7,9 @@
 これを防ぐために、これから下記の機能を`WavePortal.sol`に実装していきます。
 
 ```solidity
-// WavePortal.sol
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 
 import "hardhat/console.sol";
 
@@ -87,14 +86,12 @@ contract WavePortal {
 コードを見ていきましょう。
 
 ```solidity
-// WavePortal.sol
 uint256 private seed;
 ```
 
 ここでは、乱数を生成するために使用する初期シード（乱数の種）を定義しています。
 
 ```solidity
-// WavePortal.sol
 constructor() payable {
 	console.log("We have been constructed!");
 	/* 初期シードを設定 */
@@ -115,7 +112,6 @@ constructor() payable {
 次に下記のコードを確認しましょう。
 
 ```solidity
-// WavePortal.sol
 function wave(string memory _message) public {
 	totalWaves += 1;
 	console.log("%s has waved!", msg.sender);
@@ -134,7 +130,6 @@ function wave(string memory _message) public {
 最後に下記のコードを見ていきましょう。
 
 ```solidity
-// WavePortal.sol
 if (seed <= 50) {
 	console.log("%s won!", msg.sender);
 	:
@@ -151,12 +146,11 @@ if (seed <= 50) {
 >
 > 乱数の生成は、一見面倒ではありますが、何百万人ものユーザーがアクセスする dApp を構築する場合は、とても重要な作業となります。
 
-### ☕️ テストを実行する
+### ☕️ 作成した機能の動作確認
 
-下記のように、`run.js`を更新して、ユーザーにランダムにETHを送れるかテストしてみましょう。
+下記のように、`run.js`を更新して、ユーザーにランダムにETHを送れるか確認してみましょう。
 
 ```javascript
-// run.js
 const main = async () => {
   const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
   /*
@@ -217,16 +211,16 @@ const runMain = async () => {
 runMain();
 ```
 
-それでは、ターミナル上で`my-wave-portal`に移動し、下記のコードを実行してみましょう。
+それでは、ターミナル上で下記のコードを実行してみましょう。
 
 ```
-npx hardhat run scripts/run.js
+yarn contract run:script
 ```
 
 次のような結果が、ターミナルに出力されたでしょうか？
 
 ```bash
-Compiling 1 file with 0.8.9
+Compiling 1 file with 0.8.17
 Solidity compilation finished successfully
 We have been constructed!
 Contract deployed to:  0x5FbDB2315678afecb367f032d93F642f64180aa3
@@ -292,10 +286,9 @@ Contract balance: 0.0999
 それでは、下記のように`WavePortal.sol`を更新しましょう。
 
 ```solidity
-// WavePortal.sol
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 
 import "hardhat/console.sol";
 
@@ -378,7 +371,6 @@ contract WavePortal {
 新しく追加したコードを見ていきましょう。
 
 ```solidity
-// WavePortal.sol
 mapping(address => uint256) public lastWavedAt;
 ```
 
@@ -397,7 +389,6 @@ mapping（_Key=> _Value）public mappingName
 理解を深めるために、次のコードを見ていきましょう。
 
 ```solidity
-// WavePortal.sol
 function wave(string memory _message) public {
 	/* 現在ユーザーがwaveを送信している時刻と、前回waveを送信した時刻が15分以上離れていることを確認。*/
 	require(
@@ -415,7 +406,6 @@ function wave(string memory _message) public {
 最後に、下記のコードを確認してください。
 
 ```solidity
-// WavePortal.sol
 lastWavedAt[msg.sender] = block.timestamp;
 ```
 
@@ -423,21 +413,113 @@ lastWavedAt[msg.sender] = block.timestamp;
 
 `mapping(address => uint256) public lastWavedAt`でユーザーのアドレスと`lastWavedAt`を紐づけているので、これで次に同じユーザーが`wave`を送ってきた時に、15分経過しているか検証できます。
 
-### 🧙‍♂️ テストを実行する
+### 🧙‍♂️ テストを作成・実行する
 
-ターミナル上で`my-wave-portal`に移動し、下記を実行してみましょう。
+ここまでの作業でコントラクトには基本機能として以下の機能が追加されました。
+
+* コントラクトにトークンを提供する機能
+* waveを送信する機能
+* ランダムにトークンを送金する機能
+
+これらの基本機能をテストスクリプトとして記述していきましょう。
+
+`run.js`ではconsole.logメソッドなどを用いて結果がどのようになるかを具体的な値を
+出力することで確認していましたが、`test.js`では期待される値と一致するかを確認します。いわば最終確認のようなものです。
+
+ではpackages/contract/testに`test.js`という名前でファイルを作成して、以下のように記述しましょう。
 
 ```
-npx hardhat run scripts/run.js
+const hre = require('hardhat');
+const { expect } = require('chai');
+
+describe('Wave Contract', function () {
+  it('test if wave and token are sent', async function () {
+    const waveContractFactory = await hre.ethers.getContractFactory(
+      'WavePortal',
+    );
+    /*
+     * デプロイする際0.1ETHをコントラクトに提供する
+     */
+    const waveContract = await waveContractFactory.deploy({
+      value: hre.ethers.utils.parseEther('0.1'),
+    });
+    await waveContract.deployed();
+    /*
+     * コントラクトの残高を取得（0.1ETH）
+     */
+    const contractBalanceBefore = hre.ethers.utils.formatEther(
+      await hre.ethers.provider.getBalance(waveContract.address),
+    );
+
+    /*
+     * 2回 waves を送るシミュレーションを行う
+     */
+    const waveTxn = await waveContract.wave('This is wave #1');
+    await waveTxn.wait();
+
+    const waveTxn2 = await waveContract.wave('This is wave #2');
+    await waveTxn2.wait();
+
+    /*
+     * コントラクトの残高を取得し、Waveを取得した後の結果を出力
+     */
+    const contractBalanceAfter = hre.ethers.utils.formatEther(
+      await hre.ethers.provider.getBalance(waveContract.address),
+    );
+
+    /*
+     *勝利した回数に応じてコントラクトから出ていくトークンを計算
+     */
+    const allWaves = await waveContract.getAllWaves();
+    let cost = 0;
+    for (let i = 0; i < allWaves.length; i++) {
+      if (allWaves[i].seed <= 50) {
+        cost += 0.0001;
+      }
+    }
+
+    /*
+     *メッセージの送信をテスト
+     */
+    expect(allWaves[0].message).to.equal('This is wave #1');
+    expect(allWaves[1].message).to.equal('This is wave #2');
+
+    /*
+     *コントラクトのトークン残高がwave時の勝負による減少に連動しているかテスト
+     */
+    expect(parseFloat(contractBalanceAfter)).to.equal(
+      contractBalanceBefore - cost,
+    );
+  });
+});
 ```
 
-下記のようなエラーがターミナルに出力されているでしょうか？
+ターミナル上で下記のコマンドを実行してみましょう。
 
 ```
-Error: VM Exception while processing transaction: reverted with reason string 'Wait 15m'
+yarn contract test
 ```
 
-`WavePortal.sol`に記載されている`15 minutes`を`0 minutes`に変更し、`npx hardhat run scripts/run.js`をもう一度実行すると、エラーはなくなります 😊
+`WavePortal.sol`の39~42行目の`require文`によってエラーが出るでしょう。なぜなら15分の間隔を空けることなくwaveを送ろうとしたからです。
+
+ではこちらをコメントアウトして再度テストコマンドを実行してみてください。
+
+下記のようなメッセージが出力されていればテスト成功です！
+```
+Compiled 2 Solidity files successfully
+
+
+  Wave Contract
+We have been constructed!
+0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 has waved!
+0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 has waved!
+    ✔ test if wave and token are sent (1446ms)
+
+
+  1 passing (1s)
+
+✨  Done in 6.09s.
+```
 
 ### 🧞‍♀️ デプロイする？
 

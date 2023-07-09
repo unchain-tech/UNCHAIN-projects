@@ -1,17 +1,11 @@
 ### 📝 スマートコントラクトを作成する
 
-`contracts`ディレクトリの下に`Web3Mint.sol`という名前のファイルを作成します。
-
-ターミナル上で新しくファイルを作成する場合は、下記のコマンドが役立ちます。もちろん、vscode上で作ってもらってもいいです。
-
-1. `ipfs-nfts`ディレクトリに移動: `cd ipfs-nfts`
-2. `contracts`ディレクトリに移動: `cd contracts`
-3. `Web3Mint.sol`ファイルを作成: `touch Web3Mint.sol`
+`contracts`ディレクトリの下に`Web3Mint.sol`という名前のファイルを作成しましょう。
 
 Hardhatを使用する場合、ファイル構造は非常に重要ですので、注意する必要があります。ファイル構造が下記のようになっていれば大丈夫です 😊
 
 ```bash
-ipfs-nfts
+contract
     |_ contracts
            |_  Web3Mint.sol
 ```
@@ -30,7 +24,7 @@ ipfs-nfts
 ```solidity
 // Web3Mint.sol
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 import "hardhat/console.sol";
 contract Web3Mint {
     constructor() {
@@ -61,16 +55,16 @@ contract Web3Mint {
 
 ```solidity
 // Web3Mint.sol
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 ```
 
 これは、コントラクトで使用するSolidityコンパイラのバージョンです。
 
-上記の場合「このコントラクトを実行するときは、Solidityコンパイラのバージョン0.8.9のみを使用し、それ以下のものは使用しません」という意味です。
+上記の場合「このコントラクトを実行するときは、Solidityコンパイラのバージョン0.8.17のみを使用し、それ以下のものは使用しません」という意味です。
 
 コンパイラのバージョンが`hardhat.config.js`で同じであることを確認してください。
 
-もし、`hardhat.config.js`の中に記載されているSolidityのバージョンが`0.8.9`でなかった場合は、`Web3Mint.sol`の中身を`hardhat.config.js`に記載されているバージョンに変更しましょう。
+もし、`hardhat.config.js`の中に記載されているSolidityのバージョンが`0.8.17`でなかった場合は、`Web3Mint.sol`の中身を`hardhat.config.js`に記載されているバージョンに変更しましょう。
 
 ```solidity
 // Web3Mint.sol
@@ -209,12 +203,21 @@ console.log("Contract deployed to:", nftContract.address);
 
 ### 💨 実行してみよう!
 
-では、実行してみましょう。
+まずは`packages/contract/package.json`の`script`部分を以下のように編集してください。
 
-ターミナルを開いて`ipfs-nfts`ディレクトリへ移動し、下記を実行してください。
+```
+"scripts": {
+    "run:script":"npx hardhat run scripts/run.js",
+    "test": "npx hardhat test",
+    "deploy": "npx hardhat run scripts/deploy.js --network sepolia",
+    "start":"npx hardhat node",
+  },
+```
+
+ターミナルを開いて下記を実行してください。
 
 ```bash
-npx hardhat run scripts/run.js
+yarn contract run:script
 ```
 
 コントラクト内から`console.log`が実行され、さらにコントラクトのアドレスがプリントアウトされるのが確認できるはずです!
@@ -222,7 +225,7 @@ npx hardhat run scripts/run.js
 以下、出力結果のサンプルです。
 
 ```
-Compiling 1 file with 0.8.9
+Compiling 1 file with 0.8.17
 Solidity compilation finished successfully
 This is my NFT contract.
 Contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3

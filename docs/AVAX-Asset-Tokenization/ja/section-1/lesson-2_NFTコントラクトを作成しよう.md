@@ -1,14 +1,14 @@
-`section1`のこれから先の作業は, `AVAX-Asset-Tokenization/contract`ディレクトリをルートディレクトリとして話を進めます。 🙌
+`section1`のこれから先の作業は、 `AVAX-Asset-Tokenization/packages/contract`ディレクトリをルートディレクトリとして話を進めます。 🙌
 
 ### 👩‍💻 実装する内容の確認
 
 本プロジェクトで作成するdappの内容を整理します。
 
-農家とその収穫物を購入する購入者を対象に, NFTの作成と購入ができるアプリを作成します。
+農家とその収穫物を購入する購入者を対象に、NFTの作成と購入ができるアプリを作成します。
 
-農家は収穫物を得る権利をトークンとして購入者に販売することで, 収穫物を直接取引する形態の他にサブスクリプション型など新たな収入形態を実現することができます。
+農家は収穫物を得る権利をトークンとして購入者に販売することで、 収穫物を直接取引する形態の他にサブスクリプション型など新たな収入形態を実現することができます。
 
-購入者はトークンをNFTマーケットで転売したり, トークンを所持している人のみ参加できるイベントに参加したりなど, 体験の幅が広がります。
+購入者はトークンをNFTマーケットで転売したり、 トークンを所持している人のみ参加できるイベントに参加したりなど、 体験の幅が広がります。
 
 今回作成するスマートコントラクトは2種類です。
 
@@ -20,14 +20,14 @@ NFTの機能を持つスマートコントラクトです。
 このコントラクトには有効期限を設けます。
 デプロイ時に指定された有効期限の日時を過ぎるとNFTのmintができなくなります。
 
-**Asset-Tokenization**
+**AssetTokenization**
 
-フロントエンドとのデータのやりとり, `FarmNft`のデプロイと管理をする機能を持つスマートコントラクトです。
-`Asset-Tokenization`は1つで, `FarmNft`は農家の数だけ存在することができます。
+フロントエンドとのデータのやりとり、 `FarmNft`のデプロイと管理をする機能を持つスマートコントラクトです。
+`AssetTokenization`は1つで、 `FarmNft`は農家の数だけ存在することができます。
 
 作成する2つのスマートコントラクトとフロントエンドとの関係図は以下です。
 
-ここでは`Asset-Tokenization`がフロントエンドとやり取りをすることと, 複数の`FarmNft`を管理しているという関係性が掴めれば十分です！
+ここでは`AssetTokenization`がフロントエンドとやり取りをすることと、 複数の`FarmNft`を管理しているという関係性が掴めれば十分です！
 
 ![](/public/images/AVAX-Asset-Tokenization/section-1/1_1_2.png)
 
@@ -37,16 +37,16 @@ NFTの機能を持つスマートコントラクトです。
 
 `contracts`ディレクトリの下に`FarmNft.sol`という名前のファイルを作成します。
 
-Hardhatを使用する場合ファイル構造は非常に重要ですので, 注意する必要があります。
+Hardhatを使用する場合ファイル構造は非常に重要ですので、 注意する必要があります。
 ファイル構造が下記のようになっていれば大丈夫です 😊
 
-```bash
-contract
-    |_ contracts
-           └── FarmNft.sol
+```diff
+ contract/
+ └── contracts/
++    └── FarmNft.sol
 ```
 
-次に, コードエディタでプロジェクトのコードを開きます。
+次に、 コードエディタでプロジェクトのコードを開きます。
 
 `FarmNft.sol`の中に以下のコードを貼り付けてください。
 
@@ -90,17 +90,17 @@ contract FarmNft is ERC721 {
 }
 ```
 
-もし,`hardhat.config.ts`の中に記載されているSolidityのバージョンが`0.8.17`でなかった場合は,`FarmNft.sol`の中身を`hardhat.config.ts`に記載されているバージョンに変更しましょう。
+もし、`hardhat.config.ts`の中に記載されているSolidityのバージョンが`0.8.17`でなかった場合は、`FarmNft.sol`の中身を`hardhat.config.ts`に記載されているバージョンに変更しましょう。
 
-このコントラクトはNFTの機能を持たせたい + 監査の通ったコードを使用したいので, openzeppelinが提供している`ERC721`のコントラクトを継承しています。
+このコントラクトはNFTの機能を持たせたい + 監査の通ったコードを使用したいので、openzeppelinが提供している`ERC721`のコントラクトを継承しています。
 
 ```
 contract FarmNft is ERC721
 ```
 
-その下には, このコントラクトの情報を保存できるように状態変数を用意しています。
+その下には、 このコントラクトの情報を保存できるように状態変数を用意しています。
 
-constructorでは, 引数で受け取った値を元に状態変数に値を代入しています。
+constructorでは、 引数で受け取った値を元に状態変数に値を代入しています。
 
 次に`FarmNft`の最後の行に以下のコードを貼り付けてください。
 
@@ -108,7 +108,7 @@ constructorでは, 引数で受け取った値を元に状態変数に値を代�
     function mintNFT(address to) public payable {
         require(availableMint > 0, "Not enough nft");
         require(isExpired() == false, "Already expired");
-        require(msg.value == price);
+        require(msg.value == price, "Incorrect amount of tokens");
 
         uint256 newItemId = _tokenIds.current();
         _safeMint(to, newItemId);
@@ -131,12 +131,12 @@ constructorでは, 引数で受け取った値を元に状態変数に値を代�
                     abi.encodePacked(
                         '{"name": "',
                         name(),
-                        " -- NFT #: ",
+                        ' -- NFT #: ',
                         Strings.toString(_tokenId),
                         '", "description": "',
                         description,
                         '", "image": "',
-                        "https://i.imgur.com/GZCdtXu.jpg",
+                        'https://i.imgur.com/GZCdtXu.jpg',
                         '"}'
                     )
                 )
@@ -178,7 +178,7 @@ constructorでは, 引数で受け取った値を元に状態変数に値を代�
     function mintNFT(address to) public payable {
         require(availableMint > 0, "Not enough nft");
         require(isExpired() == false, "Already expired");
-        require(msg.value == price);
+        require(msg.value == price, "Incorrect amount of tokens");
 
         uint256 newItemId = _tokenIds.current();
         _safeMint(to, newItemId);
@@ -192,15 +192,15 @@ constructorでは, 引数で受け取った値を元に状態変数に値を代�
 
 `mintNFT`はNFTの購入者(引数`to`に購入者のアドレスが渡されます)にmintする関数です。
 
-はじめにmintのできる条件（mint上限を超えていないか, 期限切れではないか, NFTの価格分のトークンが付与されているか）を`require`により確認しています。
+はじめにmintのできる条件（mint上限を超えていないか、 期限切れではないか、NFTの価格分のトークンが付与されているか）を`require`により確認しています。
 
-今回は実装を簡単にするため, NFTの購入にAvalancheのネイティブトークンである`AVAX`を使用します。
-そのため, `mintNFT`関数の呼び出しに付与された`AVAX`の量を`msg.value`により参照することができます。
+今回は実装を簡単にするため、NFTの購入にAvalancheのネイティブトークンである`AVAX`を使用します。
+そのため、 `mintNFT`関数の呼び出しに付与された`AVAX`の量を`msg.value`により参照することができます。
 
-次に, `_safeMint`により`to`に対してNFTをmintします。
+次に、 `_safeMint`により`to`に対してNFTをmintします。
 mint後にidのインクリメントやmint可能なNFTの数を更新します。
 
-最後に, 農家に`AVAX`を送信します。
+最後に、 農家に`AVAX`を送信します。
 
 ```solidity
     function tokenURI(uint256 _tokenId)
@@ -215,12 +215,12 @@ mint後にidのインクリメントやmint可能なNFTの数を更新します�
                     abi.encodePacked(
                         '{"name": "',
                         name(),
-                        " -- NFT #: ",
+                        ' -- NFT #: ',
                         Strings.toString(_tokenId),
                         '", "description": "',
                         description,
                         '", "image": "',
-                        "https://i.imgur.com/GZCdtXu.jpg",
+                        'https://i.imgur.com/GZCdtXu.jpg',
                         '"}'
                     )
                 )
@@ -234,9 +234,9 @@ mint後にidのインクリメントやmint可能なNFTの数を更新します�
 ```
 
 `tokenURI`はJSON形式にしたNFTの情報をURIにして返却します。
-openseaなどのNFTマーケットサービスは, このtokenURI関数のデータをみています(詳しくは[こちら](https://docs.opensea.io/docs/metadata-standards#implementing-token-uri))。
+openseaなどのNFTマーケットサービスは、 このtokenURI関数のデータをみています(詳しくは[こちら](https://docs.opensea.io/docs/metadata-standards#implementing-token-uri))。
 
-トークン化された資産をNFTマーケットで取引するというような活用方法を想定したため`tokenURI`を実装していますが, 本プロジェクトで実際に利用することはありません。
+トークン化された資産をNFTマーケットで取引するというような活用方法を想定したため`tokenURI`を実装していますが、 本プロジェクトで実際に利用することはありません。
 
 ```solidity
     function isExpired() public view returns (bool) {
@@ -248,14 +248,14 @@ openseaなどのNFTマーケットサービスは, このtokenURI関数のデー
     }
 ```
 
-`isExpired`関数はコントラクトの有効期限が切れている場合true, 切れていない場合はfalseを返却する関数です。
+`isExpired`関数はコントラクトの有効期限が切れている場合true、 切れていない場合はfalseを返却する関数です。
 
 > 📓 `block.timestamp`の使用について
 > スマートコントラクトで時間の参照方法はいくつかあります。
-> `block.timestamp`はブロックチェーンにブロックが書き込まれる際に, バリデータによって操作ができるという懸念点がありますが, 操作のできる範囲は 30 秒ほどです。
+> `block.timestamp`はブロックチェーンにブロックが書き込まれる際に、 バリデータによって操作ができるという懸念点がありますが、 操作のできる範囲は 30 秒ほどです。
 > つまり 30 秒の範囲で実際とは差のある時間をコントラクト内のロジックに使用しても良いのなら`block.timestamp`を使用できます。
 > 今回は簡易的な実装なのでこちらを使います。
-> Ethereum のコントラクトでは, `block.number`を使用した方法([参考](https://zoom-blc.com/solidity-time-logic))などもありますが, Avalanche では定期的にブロックが生成されるという仕組みではないためこちらは使用できなそうです。
+> Ethereum のコントラクトでは、 `block.number`を使用した方法([参考](https://zoom-blc.com/solidity-time-logic))などもありますが、 Avalanche では定期的にブロックが生成されるという仕組みではないためこちらは使用できなそうです。
 > 正確な情報を取得するためにはオラクルを使用する必要があります。
 
 ```solidity
@@ -288,11 +288,11 @@ openseaなどのNFTマーケットサービスは, このtokenURI関数のデー
 
 コントラクトを実装したのでテストを書きます。
 
-テストコードは詳細な説明を省きますが, コード自体は量が多いのでGit hub上からコピーして頂きたいです。
+テストコードは詳細な説明を省きますが、 コード自体は量が多いのでGit hub上からコピーして頂きたいです。
 
-`test`ディレクトの下に`FarmNft.ts`を作成し, [こちら](https://github.com/unchain-dev/AVAX-Asset-Tokenization/blob/main/contract/test/FarmNft.ts)のファイル内のコードをコピーして貼り付けてください。
+`test`ディレクトの下に`FarmNft.ts`を作成し、 [こちら](https://github.com/unchain-dev/AVAX-Asset-Tokenization/blob/main/packages/contract/test/FarmNft.ts)のファイル内のコードをコピーして貼り付けてください。
 
-また, ここでテストに関わる参考文献を紹介しますのでこの先の説明でわからない時は参考にしてください。
+また、 ここでテストに関わる参考文献を紹介しますのでこの先の説明でわからない時は参考にしてください。
 
 💁 hardhatで行うテストの記述方法に関しては[こちら](https://hardhat.org/hardhat-runner/docs/guides/test-contracts)。
 
@@ -302,10 +302,10 @@ openseaなどのNFTマーケットサービスは, このtokenURI関数のデー
 
 それではテストコードを見ていきます。
 
-以下のように, 各テストで呼び出される`deployContract`とその後に続くテストコードが記述されているかと思います。
+以下のように、 各テストで呼び出される`deployContract`とその後に続くテストコードが記述されているかと思います。
 
 ```ts
-describe("farmNft", function () {
+describe('farmNft', function () {
   const oneWeekInSecond = 60 * 60 * 24 * 7;
 
   async function deployContract() {
@@ -317,54 +317,54 @@ describe("farmNft", function () {
 ```
 
 `deployContract`内ではコントラクトのデプロイ作業を実装しています。
-返り値にデプロイに使用したアカウント, その他に使用できるアカウント, デプロイしたコントラクトのオブジェクトがあります。
+返り値にデプロイに使用したアカウント、 その他に使用できるアカウント、 デプロイしたコントラクトのオブジェクトがあります。
 この関数は各テストで最初に呼ばれます。
 
 次に以下のような形で`mint`に関するテストが4つ記述されているかと思います。
 
 ```ts
-describe("mint", function () {
-  it("NFT should be minted", async function () {
+describe('mint', function () {
+  it('NFT should be minted', async function () {
     // テストコード
   });
 
-  it("balance should be change", async function () {
+  it('balance should be change', async function () {
     // テストコード
   });
 
-  it("revert when not enough nft to mint", async function () {
+  it('revert when not enough nft to mint', async function () {
     // テストコード
   });
 
-  it("revert when not enough currency to mint", async function () {
+  it('revert when not enough currency to mint', async function () {
     // テストコード
   });
 });
 ```
 
-1つ目のテストではNFTをmintした後, そのNFTの保有者が指定したアドレスと一致するかをテストしています。
+1つ目のテストではNFTをmintした後、 そのNFTの保有者が指定したアドレスと一致するかをテストしています。
 2つ目のテストではmintNFTの実行時にAVAXの移動が正しく行われているのかを確認しています。
 3つ目のテストでは上限までNFTがmintされている場合にmintNFTの呼び出しが失敗することを確認しています。
-4つ目のテストでは関数呼び出しに付与したAVAXが足りない場合に, mintNFTの呼び出しが失敗することを確認しています。
+4つ目のテストでは関数呼び出しに付与したAVAXが足りない場合に、mintNFTの呼び出しが失敗することを確認しています。
 
-その下の`describe("tokenURI", function () { ...`に続くテストでは, `tokeURI`の挙動を確認しています。
-`tokeURI`は本プロジェクトでは使用しないため, 返り値を出力することのみしています。
+その下の`describe('tokenURI', function () { ...`に続くテストでは、 `tokeURI`の挙動を確認しています。
+`tokeURI`は本プロジェクトでは使用しないため、 返り値を出力することのみしています。
 
-その下の`describe("burnNFT", function () { ...`に続くテストでは, `burnNFT`の挙動を確認しています。
-`mintNFT`後に`burnNFT`を呼び出し, NFTがバーンされていることを確認しています。
+その下の`describe('burnNFT', function () { ...`に続くテストでは、 `burnNFT`の挙動を確認しています。
+`mintNFT`後に`burnNFT`を呼び出し、NFTがバーンされていることを確認しています。
 
-最後に`describe("getTokenOwners", function () { ...`に続くテストでは, `getTokenOwners`の挙動を確認しています。
-`mintNFT`後に`burnNFT`を呼び出し, NFTがバーンされていることを確認しています。
+最後に`describe('getTokenOwners', function () { ...`に続くテストでは、 `getTokenOwners`の挙動を確認しています。
+`mintNFT`後に`burnNFT`を呼び出し、NFTがバーンされていることを確認しています。
 
 ### ⭐ テストを実行しましょう
 
-`contract`ディレクトリ直下で以下のコマンドを実行してください。
+以下のコマンドを実行してください。
 
 ⚠️ 追加したテストコードではテストヘルパーパッケージのtimeを使用しています。
-timeの使用はテスト環境全体の時間に影響するため, 今後複数のテストファイルを同時にテストすると予期せぬ挙動を起こす場合があります。よって以下のコマンドではテストをする対象ファイルを引数によって指定しています。
+timeの使用はテスト環境全体の時間に影響するため、 今後複数のテストファイルを同時にテストすると予期せぬ挙動を起こす場合があります。よって以下のコマンドではテストをする対象ファイルを引数によって指定しています。
 
 ```
-$ npx hardhat test test/FarmNft.ts
+yarn test
 ```
 
 以下のような表示がされます。
@@ -379,9 +379,9 @@ $ npx hardhat test test/FarmNft.ts
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は, Discordの`#avax-asset-tokenization`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#avalanche`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので, エラーレポートには下記の3点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、 エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号
@@ -392,4 +392,4 @@ $ npx hardhat test test/FarmNft.ts
 
 ---
 
-次のレッスンでは, もう1つのスマートコントラクトを作成します！
+次のレッスンでは、 もう1つのスマートコントラクトを作成します！

@@ -60,9 +60,9 @@ ETHがいくら必要で、いくら足りないかをユーザーに知らせ�
 
 - クローンしたリポジトリをあなたのローカル環境にダウンロードしてください。
 
-- ターミナルを開き、ディレクトリのルートで`npm install`を実行します。
+- ターミナルを開き、ディレクトリのルートで`yarn install`を実行します。
 
-- `npm run start`を実行してプロジェクトを開始します。
+- `yarn start`を実行してプロジェクトを開始します。
 
 - `localhost:3000`でWebサイトをホストしながら、コードの中身を調べてみてください。
 
@@ -95,7 +95,7 @@ Vercelに関する詳しい説明は、[こちら](https://zenn.dev/lollipop_onl
 
 ![](/public/images/Polygon-Generative-NFT/section-4/4_2_4.png)
 
-リポジトリに、`nft-collectible-frontend-git`と名前を付け足ら、`Create repository`ボタンを押してください。
+リポジトリに、`Polygon-Generative-NFT-git`と名前を付け足ら、`Create repository`ボタンを押してください。
 
 次に、ディレクトリのリンクをコピーしましょう。
 
@@ -107,13 +107,11 @@ Vercelに関する詳しい説明は、[こちら](https://zenn.dev/lollipop_onl
 git clone コピーしたリンクを貼り付け
 ```
 
-次に、`nft-collectible-frontend`を開き、中に入っているフォルダとファイルをすべて`nft-collectible-frontend-git`に移動させましょう。
+次に、`Polygon-Generative-NFT`を開き、中に入っているフォルダとファイルをすべて`Polygon-Generative-NFT-git`に移動させましょう。
 
-`nft-collectible-frontend`は排除してください。
+それでは、GitHubの`Polygon-Generative-NFT-git`にローカルファイルをアップロードしていきます。
 
-それでは、GitHubの`nft-collectible-frontend-git`にローカルファイルをアップロードしていきます。
-
-ターミナル上で`nft-collectible-frontend-git`に移動して、下記を実行しましょう。
+ターミナル上で`Polygon-Generative-NFT-git`に移動して、下記を実行しましょう。
 
 ```
 git add .
@@ -123,19 +121,17 @@ git push
 
 次に、[Vercel](https://vercel.com/) のアカウントを取得して、下記を実行していきます。
 
-1\. `Dashboard`へ進んで、`New Project`を選択してください。
+1\. `Dashboard`へ進んで、`Project`を選択してください。
 
 ![](/public/images/Polygon-Generative-NFT/section-4/4_2_7.png)
 
-2\. `Import Git Repository`で自分のGitHubアカウントを接続したら、`nft-collectible-frontend-git`を選択し、`Import`してください。
+2\. `Import Git Repository`で自分のGitHubアカウントを接続したら、`Polygon-Generative-NFT-git`を選択し、`Import`してください。
 
 ![](/public/images/Polygon-Generative-NFT/section-4/4_2_8.png)
 
-3\. プロジェクトを作成します。Environment Variableに下記を追加します。
+3\. プロジェクトを作成します。`Root Directory`が「packages/client」となっていることを確認してください。
 
-`NAME`＝`CI`、`VALUE`＝`false`（下図参照）
-
-![](/public/images/Polygon-Generative-NFT/section-4/4_2_9.png)
+![](/public/images/ETH-NFT-Collection/section-4/4_2_9.png)
 
 4\. `Deploy`ボタンを推しましょう。
 

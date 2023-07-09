@@ -1,72 +1,138 @@
-### ✅ 環境構築を行う
+### 🍽 Git リポジトリをあなたの GitHub にフォークする
 
-このプロジェクトの全体像は次のとおりです。
+まだGitHubのアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
-1 \. **スマートコントラクトを作成します。**
+GitHubのアカウントをお持ちの方は、下記の手順に沿ってプロジェクトの基盤となるリポジトリをあなたのGitHubに[フォーク](https://denno-sekai.com/github-fork/)しましょう。
 
-- コントラクトには、ゲームに関するすべてのロジックが含まれています。
+1. [こちら](https://github.com/unchain-tech/ETH-NFT-Game)からunchain-tech/ETH-NFT-Gameリポジトリにアクセスをして、ページ右上の`Fork`ボタンをクリックします。
 
-- **スマートコントラクトはサーバーコードのようなものです。**
+![](/public/images/ETH-NFT-Game/section-1/1_2_1.png)
 
-2 \. **スマートコントラクトをブロックチェーンに展開します。**
+2. Create a new forkページが開くので、「Copy the `main` branch only」という項目に**チェックが入っていることを確認します**。
 
-- 世界中の誰もがあなたのスマートコントラクトにアクセスして、ゲームをプレイできます。
+![](/public/images/ETH-NFT-Game/section-1/1_2_2.png)
 
-- **ブロックチェーンは、サーバーの役割を果たします。**
+設定が完了したら`Create fork`ボタンをクリックします。あなたのGitHubアカウントに`ETH-NFT-Game`リポジトリのフォークが作成されたことを確認してください。
 
-3 \. **Web ゲームアプリケーション（dApp）を構築します**。
+それでは、フォークしたリポジトリをローカル環境にクローンしましょう。
 
-- ユーザーはWebサイトを介して、ブロックチェーン上に展開されているあなたのスマートコントラクトと簡単にやりとりできます。
+まず、下図のように、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
 
-- スマートコントラクト + フロントエンドユーザー・インタフェース = dAppの完成 🎉
+![](/public/images/ETH-NFT-Game/section-1/1_2_3.png)
 
-### ✨ Hardhat をインストールする
+ターミナル上で作業を行う任意のディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
 
-スマートコントラクトをすばやくコンパイルし、ローカル環境にてテストを行うために、**Hardhat** というツールを使用します。
-
-- Hardhatにより、ローカル環境でイーサリアムネットワークを簡単に起動し、テストネットでイーサリアムを利用できます。
-
-- 「サーバー」がブロックチェーンであることを除けば、Hardhatはローカルサーバーと同じです。
-
-まず、`node` / `npm`を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスしてください。
-`node v16`をインストールすることを推奨しています。
-
-次に、ターミナルに向かいましょう。
-作業したいディレクトリに移動したら、次のコマンドを実行します。
-
-```
-mkdir ETH-NFT-game
-cd ETH-NFT-game
-mkdir epic-game
-cd epic-game
-npm init -y
-npm install --save-dev hardhat
+```bash
+git clone コピーした_github_リンク
 ```
 
-この段階で、フォルダ構造は下記のようになっていることを確認してください。
+無事に複製されたらローカル開発環境の準備は完了です。
 
+### 🔍 フォルダ構成を確認する
+
+実装に入る前に、フォルダ構成を確認しておきましょう。クローンしたスタータープロジェクトは下記のようになっているはずです。
+
+```bash
+ETH-NFT-Game
+├── .git/
+├── .gitignore
+├── LICENSE
+├── README.md
+├── package.json
+├── packages/
+│   ├── client/
+│   └── contract/
+└── yarn.lock
 ```
-ETH-NFT-game
-	|_ epic-game
+
+スタータープロジェクトは、モノレポ構成となっています。モノレポとは、コントラクトとクライアント（またはその他構成要素）の全コードをまとめて1つのリポジトリで管理する方法です。
+
+packagesディレクトリの中には、`client`と`contract`という2つのディレクトリがあります。
+
+`package.json`ファイルの内容を確認してみましょう。
+
+モノレポを作成するにあたり、パッケージマネージャーの機能である[Workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/)を利用しています。
+
+**workspaces**の定義をしている部分は以下になります。
+
+```json
+// package.json
+"workspaces": {
+  "packages": [
+    "packages/*"
+  ]
+},
 ```
 
-`epic-game`の中にスマートコントラクトを構築するためのファイルを作成していきます。
+この機能により、yarn installを一度だけ実行すれば、すべてのパッケージ（今回はコントラクトのパッケージとクライアントのパッケージ）を一度にインストールできるようになります。
 
-> ✍️: `warning`について
-> 最後のコマンドを実行して Hardhat をインストールすると、脆弱性に関するメッセージが表示される場合があります。
->
-> 基本的に`warning`は無視して問題ありません。
->
-> NPM から何かをインストールするたびに、インストールしているライブラリに脆弱性が報告されているかどうかを確認するためにセキュリティチェックが行われます。
+### 📺 フロントエンドの動きを確認する
 
-### 👏 サンプルプロジェクトを開始する
+次に、下記を実行してみましょう。
 
-次に、Hardhatを実行します。
+```bash
+yarn client start
+```
 
-ターミナルで`epic-game`ディレクトリに移動し、下記を実行します：
+あなたのローカル環境で、Webサイトのフロントエンドが立ち上がりましたか？
+
+例)ローカル環境で表示されているWebサイト
+
+![](/public/images/ETH-NFT-Game/section-1/1_2_4.png)
+
+上記のような形でフロントエンドが確認できれば成功です。
+
+これからフロントエンドの表示を確認したい時は、ターミナルに向かい、`ETH-NFT-Game`ディレクトリ上で、`yarn client start`を実行します。これからも必要となる作業ですので、よく覚えておいてください。
+
+ターミナルを閉じるときは、以下のコマンドが使えます ✍️
+
+- Mac: `ctrl + c`
+- Windows: `ctrl + shift + w`
+
+### 👏 コントラクトを作成する準備をする
+
+本プロジェクトではコントラクトを作成する際に`Hardhat`というフレームワークを使用します。
+
+`packages/contract`ディレクトリにいることを確認し、次のコマンドを実行します。
 
 ```bash
 npx hardhat
+```
+
+`hardhat`がターミナル上で立ち上がったら、それぞれの質問を以下のように答えていきます。
+
+```
+・What do you want to do? →「Create a JavaScript project」を選択
+・Hardhat project root: →「'Enter'を押す」 (自動で現在いるディレクトリが設定されます。)
+・Do you want to add a .gitignore? (Y/n) → 「y」
+```
+
+（例）
+```bash
+$ npx hardhat
+
+888    888                      888 888               888
+888    888                      888 888               888
+888    888                      888 888               888
+8888888888  8888b.  888d888 .d88888 88888b.   8888b.  888888
+888    888     "88b 888P"  d88" 888 888 "88b     "88b 888
+888    888 .d888888 888    888  888 888  888 .d888888 888
+888    888 888  888 888    Y88b 888 888  888 888  888 Y88b.
+888    888 "Y888888 888     "Y88888 888  888 "Y888888  "Y888
+
+👷 Welcome to Hardhat v2.13.0 👷‍
+
+✔ What do you want to do? · Create a JavaScript project
+✔ Hardhat project root: · /ETH-NFT-Game/packages/contract
+✔ Do you want to add a .gitignore? (Y/n) · y
+
+✨ Project created ✨
+
+See the README.md file for some example tasks you can run
+
+Give Hardhat a star on Github if you're enjoying it! 💞✨
+
+     https://github.com/NomicFoundation/hardhat
 ```
 
 > ⚠️: 注意 #1
@@ -75,57 +141,105 @@ npx hardhat
 
 > ⚠️: 注意 #2
 >
-> `npm`と一緒に`yarn`をインストールしている場合、`npm ERR! could not determine executable to run`などのエラーが発生する可能性があります。
->
-> - この場合、`yarn add hardhat`のコマンドを実行しましょう。
-
-> ⚠️: 注意 #3
->
-> `npx hardhat`が実行されなかった場合、以下をターミナルで実行してください。
+> `npx hardhat`が実行されなかった場合、`packages/contract`に移動して以下をターミナルで実行してください。
 >
 > ```bash
-> npm install --save-dev @nomicfoundation/hardhat-toolbox
+> yarn add --dev @nomicfoundation/hardhat-toolbox
 > ```
 
-`hardhat`がターミナル上で立ち上がったら、`Create a JavaScript project`を選択します。
+この段階で、フォルダー構造は下記のようになっていることを確認してください。
 
-- プロジェクトのルートディレクトリを設定し、`.gitignore`を追加する選択肢で`yes`を選んでください。
-
-次に、安全なスマートコントラクトを開発するために使用されるライブラリ **OpenZeppelin** をインストールします。
-
-ターミナル上で下記を実行してください。
-
-```bash
-npm install @openzeppelin/contracts
+```diff
+ETH-NFT-Game
+ ├── .gitignore
+ ├── package.json
+ └── packages/
+     ├── client/
+     └── contract/
++        ├── .gitignore
++        ├── README.md
++        ├── contracts/
++        ├── hardhat.config.js
++        ├── package.json
++        ├── scripts/
++        └── test/
 ```
 
-OpenZeppelinに関しては、後で詳しく説明します。
+それでは、`contract`ディレクトリ内に生成された`package.json`ファイルを以下を参考に更新をしましょう。
+
+```diff
+{
+  "name": "contract",
+  "version": "1.0.0",
+-  "main": "index.js",
+-  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@nomicfoundation/hardhat-chai-matchers": "1.0.6",
+    "@nomicfoundation/hardhat-network-helpers": "1.0.8",
+    "@nomicfoundation/hardhat-toolbox": "2.0.2",
+    "@nomiclabs/hardhat-ethers": "2.2.2",
+    "@nomiclabs/hardhat-etherscan": "3.1.7",
+    "@openzeppelin/contracts": "4.9.0",
+    "@typechain/ethers-v5": "10.2.0",
+    "@typechain/hardhat": "6.1.5",
+    "chai": "4.3.7",
+    "ethers": "6.1.0",
+    "hardhat": "2.13.0",
+    "hardhat-gas-reporter": "1.0.9",
+    "solidity-coverage": "0.8.2",
+    "typechain": "8.1.1"
+  },
++  "scripts": {
++    "test": "npx hardhat test"
++  }
+}
+```
+
+不要な定義を削除し、hardhatの自動テストを実行するためのコマンドを追加しました。
 
 ### ⭐️ 実行する
 
 すべてが機能していることを確認するには、以下を実行します。
 
 ```
- npx hardhat compile
+npx hardhat compile
 ```
 
 次に、以下を実行します。
 
 ```
- npx hardhat test
+npx hardhat test
 ```
 
 次のように表示されます。
 
-![](/public/images/ETH-NFT-Game/section-1/1_1_2.png)
-
-ターミナル上で`epic-game`に移動し、`ls`と入力してみて、下記のフォルダーとファイルが表示されていたら成功です。
-
 ```
-README.md		hardhat.config.js	scripts
-artifacts		node_modules		test
-cache			package-lock.json .gitignore
-contracts		package.json
+  Lock
+    Deployment
+      ✔ Should set the right unlockTime (1281ms)
+      ✔ Should set the right owner
+      ✔ Should receive and store the funds to lock
+      ✔ Should fail if the unlockTime is not in the future
+    Withdrawals
+      Validations
+        ✔ Should revert with the right error if called too soon
+        ✔ Should revert with the right error if called from another account
+        ✔ Shouldn't fail if the unlockTime has arrived and the owner calls it
+      Events
+        ✔ Should emit an event on withdrawals
+      Transfers
+        ✔ Should transfer the funds to the owner
+
+
+  9 passing (1s)
+```
+
+ターミナル上で`ls`と入力してみて、下記のフォルダーとファイルが表示されていたら成功です。
+
+```bash
+README.md         cache             hardhat.config.js package.json      test
+artifacts         contracts         node_modules      scripts
 ```
 
 ここまできたら、フォルダーの中身を整理しましょう。
@@ -143,19 +257,13 @@ contracts		package.json
 
 Hardhatは段階的に下記を実行しています。
 
-1\. **Hardhat は、スマートコントラクトを Solidity からバイトコードにコンパイルしています。** - バイトコードとは、コンピュータが読み取れるコードの形式のことです。
+1\. **Hardhat は、スマートコントラクトを Solidity からバイトコードにコンパイルしています。**
+
+- バイトコードとは、コンピュータが読み取れるコードの形式のことです。
 
 2\. **Hardhat は、あなたのコンピュータ上でテスト用の「ローカルイーサリアムネットワーク」を起動しています。**
 
 3\. **Hardhat は、コンパイルされたスマートコントラクトをローカルイーサリアムネットワークに「デプロイ」します。**
-
-- ターミナルに出力されたアドレスを確認してみましょう。
-
-> ```bash
-> Greeter deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
-> ```
-
-- これは、イーサリアムネットワークのテスト環境でデプロイされたスマートコントラクトのアドレスです。
 
 ### 🙋‍♂️ 質問する
 
@@ -172,4 +280,4 @@ Hardhatは段階的に下記を実行しています。
 
 ---
 
-次のレッスンに進んで、コントラクトの実装を開始しましょう 🎉
+次のレッスンに進んで、独自のNFTコントラクトの実装を開始しましょう 🎉

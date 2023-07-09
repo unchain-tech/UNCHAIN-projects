@@ -39,7 +39,6 @@
 コンポーネントの先頭に戻り、以下を追加します（全体をコピー/貼り付けしないでください、うまく作動しません）。
 
 ```javascript
-// App.js
 // これまでのimportのあとに追加してください。
 import polygonLogo from './assets/polygonlogo.png';
 import ethLogo from './assets/ethlogo.png';
@@ -96,7 +95,6 @@ Mumbai上にいるときは次のようになります。
 ネットワークをチェックしているので`mumbai`のテストネット上にいない場合は、ミントフォームを無効にする必要があります。 これを`renderInputForm`の先頭に追加します。
 
 ```javascript
-// App.js
 const renderInputForm = () =>{
   // テストネットの Polygon Mumbai 上にいない場合の処理
   if (network !== 'Polygon Mumbai Testnet') {
@@ -133,7 +131,6 @@ MetaMask APIを使用して、実際にネットワークを追加、切り替�
 次のようになります。App.jsで`connectWallet`関数の次に配置します。
 
 ```javascript
-// App.js
 const switchNetwork = async () => {
   if (window.ethereum) {
     try {
@@ -181,7 +178,6 @@ const switchNetwork = async () => {
 この関数はまずチェーンIDを変更しようとします。
 
 ```javascript
-// App.js
 await window.ethereum.request({
   method: 'wallet_switchEthereumChain',
   params: [{ chainId: '0x13881' }], // utilsフォルダの networks.js を確認ください。
@@ -197,7 +193,6 @@ await window.ethereum.request({
 最後に、この関数を呼び出すボタンを`renderInputForm`に追加します。
 
 ```javascript
-// App.js
 const renderInputForm = () =>{
   // Polygon Mumbai Testnet上にいない場合、switchボタンをレンダリングします。
   if (network !== 'Polygon Mumbai Testnet') {

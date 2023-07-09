@@ -1,23 +1,15 @@
-### 👶 Let’s write a contract
-
 ### 👶 スマートコントラクトを作成してみよう
 
 前回、あらかじめ設定されていたテストのコントラクトを実行できました。
 
 ではいよいよ自分でコントラクトを作成していきましょう。
 
-`contracts`ディレクトリの下に`Domains.sol`という名前のファイルを作成します。
-
-ターミナル上で新しくファイルを作成する場合は、下記のコマンドが役立ちます。
-
-1. `cool-domains`ディレクトリに移動: `cd cool-domains`
-2. `contracts`ディレクトリに移動: `cd contracts`
-3. `Domains.sol`ファイルを作成: `touch Domains.sol`
+`packages/contract/contracts`ディレクトリの下に`Domains.sol`という名前のファイルを作成してください。
 
 Hardhatを使用する場合、ファイル構造は非常に重要ですので、注意する必要があります。ファイル構造が下記のようになっていれば大丈夫です 😊
 
 ```bash
-cool-domains
+contract
     |_ contracts
            |_  Domains.sol
 ```
@@ -41,10 +33,9 @@ VS Codeをターミナルから起動する方法は [こちら](https://maku.bl
 `Domains.sol`をVS Codeで開き、下記を入力します。
 
 ```solidity
-// Domains.sol
 // SPDX-License-Identifier: UNLICENSED
 
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 
 import "hardhat/console.sol";
 
@@ -57,7 +48,6 @@ contract Domains {
 コードを詳しくみていきましょう。
 
 ```solidity
-// Domains.sol
 // SPDX-License-Identifier: UNLICENSED
 ```
 
@@ -66,20 +56,18 @@ contract Domains {
 詳細については、[こちら](https://www.skyarch.net/blog/?p=15940) を参照してみてください。
 
 ```solidity
-// Domains.sol
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 ```
 
 これは、コントラクトで使用するSolidityコンパイラのバージョンです。
 
-上記のコードでは、このコントラクトを実行するときはSolidityコンパイラのバージョン`0.8.9`のみを使用しそれ以下のものは使用しません、という宣言をしています。
+上記のコードでは、このコントラクトを実行するときはSolidityコンパイラのバージョン`0.8.17`のみを使用しそれ以下のものは使用しません、という宣言をしています。
 
 コンパイラのバージョンが`hardhat.config.js`で同じであることを確認してください。
 
-もし記載されているSolidityのバージョンが`0.8.9`でなかった場合は、`Domains.sol`の中身を`hardhat.config.js`に記載されているバージョンに変更しましょう。
+もし記載されているSolidityのバージョンが`0.8.17`でなかった場合は、`Domains.sol`の中身を`hardhat.config.js`に記載されているバージョンに変更しましょう。
 
 ```solidity
-// Domains.sol
 import "hardhat/console.sol";
 ```
 コントラクトを実行する際、コンソールログをターミナルに出力するためにHardhatの`console.sol`のファイルをインポートしています。
@@ -88,7 +76,6 @@ import "hardhat/console.sol";
 
 
 ```solidity
-// Domains.sol
 contract Domains{
     constructor() {
         console.log("THIS IS MY DOMAIN CONTRACT. NICE.");
@@ -134,7 +121,6 @@ classの概念については、[こちら](https://aiacademy.jp/media/?p=131) �
 `run.js`の中身に、以下を記入しましょう。
 
 ```javascript
-// run.js
 const main = async () => {
   const domainContractFactory = await hre.ethers.getContractFactory('Domains');
   const domainContract = await domainContractFactory.deploy();
@@ -158,7 +144,6 @@ runMain();
 それでは、1行ずつコードの理解を深めましょう。
 
 ```javascript
-// run.js
 const domainContractFactory = await hre.ethers.getContractFactory('Domains');
 ```
 
@@ -183,7 +168,6 @@ const domainContractFactory = await hre.ethers.getContractFactory('Domains');
 次に、下記の処理を見ていきましょう。
 
 ```javascript
-// run.js
 const domainContract = await domainContractFactory.deploy();
 ```
 
@@ -198,7 +182,6 @@ HardhatがローカルのEthereumネットワークを、コントラクトの�
 次に下記の処理を見ていきましょう。
 
 ```javascript
-// run.js
 await domainContract.deployed();
 ```
 
@@ -209,7 +192,6 @@ Hardhatは実際にあなたのマシン上に「マイナー」を作成し、�
 `constructor`は、スマートコントラクトがデプロイされるときに初めて実行されます。
 
 ```javascript
-// run.js
 console.log("Contract deployed to:", domainContract.address);
 ```
 
@@ -225,10 +207,19 @@ console.log("Contract deployed to:", domainContract.address);
 
 ### 💨 実行してみよう
 
-ターミナル上で、下記を実行してみましょう。
+`packages/contract/package.json`の`script`部分を以下のように編集してください。
+
+```
+"scripts": {
+    "run:script":"npx hardhat run scripts/run.js",
+    "test": "npx hardhat test",
+    "deploy": "npx hardhat run scripts/deploy.js --network mumbai"
+  },
+```
+その後、ターミナル上で、下記を実行してみましょう。
 
 ```bash
-npx hardhat run scripts/run.js
+yarn contract run:script
 ```
 
 ターミナル上で`console.log`の中身とコントラクトアドレスが表示されていることを確認してください。

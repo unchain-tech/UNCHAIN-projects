@@ -2,12 +2,11 @@
 
 ローカル環境で、Sepoliaテストネットワークにコントラクトをデプロイするための準備をしましょう。
 
-`nft-collectible/scripts`ディレクトリに移動し、`run.js`という名前のファイルを作成してください。
+`contract/scripts`ディレクトリに移動し、`run.js`という名前のファイルを作成してください。
 
 **`run.js`はローカル環境でスマートコントラクトのテストを行うためのテストプログラムです。**
 
 ```javascript
-// run.js
 async function main() {
   // あなたのコレクションの Base Token URI（JSON の CID）に差し替えてください
   const baseTokenURI = "ipfs://QmZbWNKJPAjxXuNFSEaksCJVd1M6DaKQViJBYPK2BdpDEP/";
@@ -58,7 +57,6 @@ main()
 - NFTコレクションのメタデータを取得。**`beseTokenURI`のアドレスをあなたの IPSF のアドレスに変更してください。**
 
   ```javascript
-  // run.js
   // あなたのコレクションの Base Token URI（JSON の CID）に差し替えてください
   const baseTokenURI = "ipfs://QmZbWNKJPAjxXuNFSEaksCJVd1M6DaKQViJBYPK2BdpDEP/";
   ```
@@ -66,7 +64,6 @@ main()
 - コントラクトの所有者（あなた）のアドレスを取得。
 
   ```javascript
-  // run.js
   // オーナー/デプロイヤーのウォレットアドレスを取得する
   const [owner] = await hre.ethers.getSigners();
   ```
@@ -74,7 +71,6 @@ main()
 - デプロイしたいコントラクトを取得。
 
   ```javascript
-  // run.js
   // デプロイしたいコントラクトを取得
   const contractFactory = await hre.ethers.getContractFactory("NFTCollectible");
   ```
@@ -82,7 +78,6 @@ main()
 - コントラクトをデプロイするためのリクエストを送り、マイナーがこのリクエストを選んでブロックチェーンに追加するのを待つ（トランザクションの承認待ち）。
 
   ```javascript
-  // run.js
   // 正しいコンストラクタ引数（baseTokenURI）でコントラクトをデプロイします。
   const contract = await contractFactory.deploy(baseTokenURI);
 
@@ -93,7 +88,6 @@ main()
 - トランザクションが承認（mine）されると、コントラクトのアドレスが取得される。
 
   ```javascript
-  // run.js
   // コントラクトアドレスをターミナルに出力
   console.log("Contract deployed to:", contract.address);
   ```
@@ -103,7 +97,6 @@ main()
 - 10 NFTを予約し、コントラクトに0.03 ETHを送信して、3 NFTをMintし、所有するNFTをチェックします。
 
   ```javascript
-  // run.js
   // 1. NFTを 10 点、コントラクト所有者のためにキープする
   let txn = await contract.reserveNFTs();
   await txn.wait();
@@ -124,10 +117,10 @@ main()
 
 - `tokensOfOwner`の呼び出しは、単にブロックチェーンからデータを読み込んでいるので、ガス代はかかりません。
 
-これをローカルで実行してみましょう。
+次にターミナル上で下記を実行してみましょう。
 
 ```bash
-npx hardhat run scripts/run.js
+yarn contract run:script
 ```
 
 ターミナルに下記のような出力結果が表示されていればテストは成功です。
@@ -156,7 +149,7 @@ Owner has tokens:  [
 
 それでは、Sepolia Test Networkにコントラクトをデプロイしましょう。
 
-`nft-collectible/scripts`の中にある`deploy.js`に、`run.js`の中身と同じにしてください。
+`contract/scripts`の中にある`deploy.js`に、`run.js`の中身と同じにしてください。
 
 > ⚠️: 注意
 >
@@ -166,10 +159,10 @@ Owner has tokens:  [
 >
 > `run.js`と`deploy.js`は分けて管理することをおすすめします。
 
-`deploy.js`が作成できたら、ターミナル上で`nft-collectible`ディレクトリに移動し、下記のコマンドを実行しましょう。
+`deploy.js`が作成できたら、ターミナル上で下記のコマンドを実行しましょう。
 
 ```bash
-npx hardhat run scripts/deploy.js --network sepolia
+yarn contract deploy
 ```
 
 下記のような結果がターミナルに出力されていることを確認してください。

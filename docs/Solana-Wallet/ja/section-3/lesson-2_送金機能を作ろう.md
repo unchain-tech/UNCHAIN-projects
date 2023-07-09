@@ -46,8 +46,7 @@
 import { sendAndConfirmTransaction } from "@solana/web3.js";
 
 // これまでと同じように connection インスタンスを作成する
-const NETWORK = 'devnet';
-const connection = new Connection(clusterApiUrl(NETWORK), "confirmed");
+const connection = new Connection(network, 'confirmed');
 
 // sendAndConfirmTransaction 関数を呼び出す
 // connection はすでに用意しているので、transaction と signers をこれから用意していきます
@@ -100,11 +99,12 @@ console.log(transaction);
 
 ```javascript
 // サンプルコード
-const instructions = SystemProgram.transfer({
+const params = {
   fromPubkey: account.publicKey,
-  toPubkey: new PublicKey("受信者のアドレス"),
-  lamports: LAMPORTS_PER_SOL,
-});
+  lamports: 0.5 * LAMPORTS_PER_SOL,
+  toPubkey: toAddress,
+};
+SystemProgram.transfer(params)
 ```
 
 受信者のアドレスは`Html Form`から文字列で受け取ることを想定していますが、`toPubkey`プロパティでは`PublicKey`型を想定しているため、受信者用の`PublicKey`をインスタンス化しなければなりません。
@@ -112,13 +112,7 @@ const instructions = SystemProgram.transfer({
 これらを`Transaction`に組み込むには、addメソッドを使用します。
 
 ```javascript
-transaction.add(instructions);
-```
-
-あるいは、ちょっとしたリファクタリングで、 `instructions`を作成した後に`Transaction`をインスタンス化し、すぐに追加することもできますね!
-
-```javascript
-const transaction = new Transaction().add(instructions);
+transaction.add(SystemProgram.transfer(params));
 ```
 
 `sendAndConfirmTransaction`関数の3つのパラメータのうち、2つ(`connection`と`transaction`)を用意しました
@@ -145,10 +139,10 @@ const signers = [
 これで3つのパラメータがすべて完了したので、最後に`sendAndConfirmTransaction`を呼び出して、その確認を待つことができるようになりました。
 
 ```javascript
-const confirmation = await sendAndConfirmTransaction(
+const transactionSignature = await sendAndConfirmTransaction(
   connection,
   transaction,
-  signers
+  signers,
 );
 ```
 
@@ -160,98 +154,141 @@ await refreshBalance();
 
 ### 送金機能を完成させよう
 
-以上を踏まえて、 送金機能を完成させていきましょう!
+以上を踏まえて、 送金機能を完成させていきましょう!それでは、`components/Transfer/index.js`を更新していきます。
 
 まず、必要な関数やクラスをインポートします。
 
 ```javascript
-import { Keypair, Connection, clusterApiUrl, LAMPORTS_PER_SOL, SystemProgram, PublicKey, Transaction, sendAndConfirmTransaction } from "@solana/web3.js";
+import {
+  Connection,
+  LAMPORTS_PER_SOL,
+  sendAndConfirmTransaction,
+  SystemProgram,
+  Transaction,
+} from '@solana/web3.js';
+import { useState } from 'react';
+```
+
+これまで同様、実装に必要なデータを`Home`コンポーネントから引数として受け取るようにします。そして、トランザクションの結果を保存しておくステートと、フォームに入力された送信先アドレスを保存しておくステートを定義します。
+
+```javascript
+// `Transfer()`に引数を追加
+export default function Transfer({ account, network, refreshBalance }) {
+  // 下記を追加
+  const [transactionSig, setTransactionSig] = useState('');
+  const [toAddress, setToAddress] = useState(null);
 ```
 
 送金処理を行う`handleTransfer`関数を定義し、中身を書いていきましょう。
 
 ```javascript
-const handleTransfer = async (e) => {
-  e.preventDefault();
+  const handleTransfer = async (e) => {
+    e.preventDefault();
 
-  // 受信者のアドレスはフォームに入力された値を使用
-  const toAddress = e.target[0].value;
-  console.log('toAddress', toAddress);
+    try {
+      setTransactionSig('');
 
-  try {
-    console.log('送金中...')
-    setTransactionSig("");
+      const connection = new Connection(network, 'confirmed');
+      const params = {
+        fromPubkey: account.publicKey,
+        lamports: 0.5 * LAMPORTS_PER_SOL,
+        toPubkey: toAddress,
+      };
+      const signers = [
+        {
+          publicKey: account.publicKey,
+          secretKey: account.secretKey,
+        },
+      ];
 
-    const connection = new Connection(clusterApiUrl(NETWORK), "confirmed");
+      // Transactionインスタンスを生成し、`transfer`の指示を追加します。
+      const transaction = new Transaction();
+      transaction.add(SystemProgram.transfer(params));
+      // トランザクションに署名を行い、送信します。
+      const transactionSignature = await sendAndConfirmTransaction(
+        connection,
+        transaction,
+        signers,
+      );
 
-    const instructions = SystemProgram.transfer({
-      fromPubkey: account.publicKey,
-      toPubkey: new PublicKey(toAddress),
-      lamports: LAMPORTS_PER_SOL,
-    });
+      setTransactionSig(transactionSignature);
 
-    const transaction = new Transaction().add(instructions);
-
-    const signers = [
-      {
-        publicKey: account.publicKey,
-        secretKey: account.secretKey,
-      },
-    ];
-
-    const confirmation = await sendAndConfirmTransaction(
-      connection,
-      transaction,
-      signers
-    );
-    console.log('confirmation', confirmation);
-
-    setTransactionSig(confirmation);
-
-    await refreshBalance();
-
-    console.log('送金が完了しました!!!')
-  } catch (error) {
-    console.log('error', error);
-  }
-};
+      // アカウントの残高を更新します。
+      await refreshBalance();
+    } catch (error) {
+      console.error(error);
+    }
+  };
 ```
 
-そして、受信者アドレスを入力するフォームと、送金ボタンをレンダリングします。
+そして、受信者アドレスを入力するフォームと、送金ボタンを実装します。
 ついでに、実際のトランザクションをあとで確認できるように、送金完了したら`Solana Explorer`へのリンクを表示してあげると良さそうです!
 
 ```javascript
+return (
+  <>
+    <form onSubmit={handleTransfer} className="my-6">
+      <div className="flex items-center border-b border-indigo-500 py-2">
+        <input
+          type="text"
+          className="w-full text-gray-700 mr-3 p-1 focus:outline-none"
+          placeholder="送金先のウォレットアドレス"
+          onChange={(e) => setToAddress(e.target.value)}
+        />
+        <input
+          type="submit"
+          className="p-2 text-white bg-indigo-500 focus:ring focus:ring-indigo-300 rounded-lg cursor-pointer"
+          value="送金"
+        />
+      </div>
+    </form>
+    {transactionSig && (
+      <>
+        <span className="text-red-600">送金が完了しました!</span>
+        <a
+          href={`https://explorer.solana.com/tx/${transactionSig}?cluster=${network}`}
+          className="border-double border-b-4 border-b-indigo-600"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Solana Block Explorer でトランザクションを確認する
+        </a>
+      </>
+    )}
+  </>
+);
+```
+
+`Transfer`コンポーネントの実装が完了したので、テストスクリプトを実行して模擬的に動作確認をしてみましょう。
+
+ターミナル上で`npm run test`を実行します。
+
+components/Transfer/index.test.jsが`PASS`し、以下のようになっていたらOKです！
+
+![](/public/images/Solana-Wallet/section-3/3_2_6.png)
+
+それでは、`Transfer`コンポーネントを`Home`コンポーネントに組み込んで送信フォームを表示しましょう。`pages/index.js`を更新していきます。
+
+インポート文を追加します。
+
+```javascript
+import Transfer from '../components/Transfer';
+```
+
+`Transfer`コンポーネントを呼び出すコードを追加して、フォームをレンダリングします。
+
+```javascript
 <div>
-  <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">STEP5: 送金機能を実装する</h2>
+  <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">
+    STEP5: 送金機能を実装する
+  </h2>
+  {/* 下記を追加 */}
   {account && (
-    <>
-      <form onSubmit={handleTransfer} className="my-6">
-        <div className="flex items-center border-b border-indigo-500 py-2">
-          <input
-            type="text"
-            className="w-full text-gray-700 mr-3 p-1 focus:outline-none"
-            placeholder="送金先のウォレットアドレス"
-          />
-          <input
-            type="submit"
-            className="p-2 text-white bg-indigo-500 focus:ring focus:ring-indigo-300 rounded-lg cursor-pointer"
-            value="送金"
-          />
-        </div>
-      </form>
-      {transactionSig && (
-        <>
-          <span className="text-red-600">送金が完了しました!</span>
-          <a
-            href={`https://explorer.solana.com/tx/${transactionSig}?cluster=${NETWORK}`}
-            className="border-double border-b-4 border-b-indigo-600"
-            target='_blank'
-          >
-            Solana Block Explorer でトランザクションを確認する
-          </a>
-        </>
-      )}
-    </>
+    <Transfer
+      account={account}
+      network={network}
+      refreshBalance={refreshBalance}
+    />
   )}
 </div>
 ```
@@ -266,113 +303,150 @@ const handleTransfer = async (e) => {
 
 そうすると、別のポートでアプリケーションが起動されますので、そちらでウォレットの作成をし、アドレスをコピーして１つ目のウォレットから送金を試してみる方法がおすすめです!
 
-※今回の実装では、送金するSOLは`1 SOL`で固定となっていますが、送金する際にガス代と呼ばれる手数料が必要になるため、残高がちょうど`1 SOL`だと、送金が失敗します。そういったエラーが発生することも確かめつつ、残高を`2 SOL`などにしてから送金を試してみてくださいね🥭
+※今回の実装では、送金するSOLは`0.5 SOL`で固定となっていますが、送金する際にガス代と呼ばれる手数料が必要になるため、残高がちょうど`0.5 SOL`だと、送金が失敗します。そういったエラーが発生することも確かめつつ、残高を`1 SOL`などにしてから送金を試してみてくださいね🥭
 
 ### 📝 このセクションで追加したコード
 
+- components/Transfer/index.js
+
+```javascript
+import {
+  Connection,
+  LAMPORTS_PER_SOL,
+  sendAndConfirmTransaction,
+  SystemProgram,
+  Transaction,
+} from '@solana/web3.js';
+import { useState } from 'react';
+
+export default function Transfer({ account, network, refreshBalance }) {
+  const [transactionSig, setTransactionSig] = useState('');
+  const [toAddress, setToAddress] = useState(null);
+
+  const handleTransfer = async (e) => {
+    e.preventDefault();
+
+    try {
+      setTransactionSig('');
+
+      const connection = new Connection(network, 'confirmed');
+      const params = {
+        fromPubkey: account.publicKey,
+        lamports: 0.5 * LAMPORTS_PER_SOL,
+        toPubkey: toAddress,
+      };
+      const signers = [
+        {
+          publicKey: account.publicKey,
+          secretKey: account.secretKey,
+        },
+      ];
+
+      // Transactionインスタンスを生成し、`transfer`の指示を追加します。
+      const transaction = new Transaction();
+      transaction.add(SystemProgram.transfer(params));
+      // トランザクションに署名を行い、送信します。
+      const transactionSignature = await sendAndConfirmTransaction(
+        connection,
+        transaction,
+        signers,
+      );
+
+      setTransactionSig(transactionSignature);
+
+      // アカウントの残高を更新します。
+      await refreshBalance();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return (
+    <>
+      <form onSubmit={handleTransfer} className="my-6">
+        <div className="flex items-center border-b border-indigo-500 py-2">
+          <input
+            type="text"
+            className="w-full text-gray-700 mr-3 p-1 focus:outline-none"
+            placeholder="送金先のウォレットアドレス"
+            onChange={(e) => setToAddress(e.target.value)}
+          />
+          <input
+            type="submit"
+            className="p-2 text-white bg-indigo-500 focus:ring focus:ring-indigo-300 rounded-lg cursor-pointer"
+            value="送金"
+          />
+        </div>
+      </form>
+      {transactionSig && (
+        <>
+          <span className="text-red-600">送金が完了しました!</span>
+          <a
+            href={`https://explorer.solana.com/tx/${transactionSig}?cluster=${network}`}
+            className="border-double border-b-4 border-b-indigo-600"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Solana Block Explorer でトランザクションを確認する
+          </a>
+        </>
+      )}
+    </>
+  );
+}
+```
+
+- `pages/index.js`
+
 ```diff
- import { useState } from "react";
--import { Keypair, Connection, clusterApiUrl, LAMPORTS_PER_SOL } from "@solana/web3.js";
-+import { Keypair, Connection, clusterApiUrl, LAMPORTS_PER_SOL, SystemProgram, PublicKey, Transaction, sendAndConfirmTransaction } from "@solana/web3.js";
- import * as Bip39 from "bip39";
+import { clusterApiUrl, Connection, LAMPORTS_PER_SOL } from '@solana/web3.js';
+import { useEffect, useState } from 'react'; // useEffectの追加
 
- const NETWORK = 'devnet';
-@@ -8,6 +8,7 @@ export default function Home() {
-   const [mnemonic, setMnemonic] = useState(null);
-   const [account, setAccount] = useState(null);
-   const [balance, setBalance] = useState(null);
-+  const [transactionSig, setTransactionSig] = useState("");
+import Airdrop from '../components/Airdrop';
+import GenerateWallet from '../components/GenerateWallet/';
+import GetBalance from '../components/GetBalance';
+import HeadComponent from '../components/Head';
+import ImportWallet from '../components/ImportWallet';
++import Transfer from '../components/Transfer';
 
-   const generateWallet = () => {
-     const generatedMnemonic = Bip39.generateMnemonic();
-@@ -61,6 +62,50 @@ export default function Home() {
-     }
-   };
+export default function Home() {
 
-+
-+  const handleTransfer = async (e) => {
-+    e.preventDefault();
-+    const toAddress = e.target[0].value;
-+    console.log('toAddress', toAddress);
-+
-+    try {
-+      console.log('送金中...')
-+      setTransactionSig("");
-+
-+      const connection = new Connection(clusterApiUrl(NETWORK), "confirmed");
-+
-+      const instructions = SystemProgram.transfer({
-+        fromPubkey: account.publicKey,
-+        toPubkey: new PublicKey(toAddress),
-+        lamports: LAMPORTS_PER_SOL,
-+      });
-+
-+      const transaction = new Transaction().add(instructions);
-+
-+      const signers = [
-+        {
-+          publicKey: account.publicKey,
-+          secretKey: account.secretKey,
-+        },
-+      ];
-+
-+      const confirmation = await sendAndConfirmTransaction(
-+        connection,
-+        transaction,
-+        signers
-+      );
-+      console.log('confirmation', confirmation);
-+
-+      setTransactionSig(confirmation);
-+
-+      await refreshBalance();
-+
-+      console.log('送金が完了しました!!!')
-+    } catch (error) {
-+      console.log('error', error);
-+    }
-+  };
-+
-   return (
-     <div className="p-10">
-       <h1 className="text-5xl font-extrabold tracking-tight text-gray-900">
-@@ -156,6 +201,36 @@ export default function Home() {
+  // ===== 省略 =====
 
-       <div>
-         <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">STEP5: 送金機能を実装する</h2>
-+        {account && (
-+          <>
-+            <form onSubmit={handleTransfer} className="my-6">
-+              <div className="flex items-center border-b border-indigo-500 py-2">
-+                <input
-+                  type="text"
-+                  className="w-full text-gray-700 mr-3 p-1 focus:outline-none"
-+                  placeholder="送金先のウォレットアドレス"
-+                />
-+                <input
-+                  type="submit"
-+                  className="p-2 text-white bg-indigo-500 focus:ring focus:ring-indigo-300 rounded-lg cursor-pointer"
-+                  value="送金"
-+                />
-+              </div>
-+            </form>
-+            {transactionSig && (
-+              <>
-+                <span className="text-red-600">送金が完了しました!</span>
-+                <a
-+                  href={`https://explorer.solana.com/tx/${transactionSig}?cluster=${NETWORK}`}
-+                  className="border-double border-b-4 border-b-indigo-600"
-+                  target='_blank'
-+                >
-+                  Solana Block Explorer でトランザクションを確認する
-+                </a>
-+              </>
-+            )}
-+          </>
-+        )}
-       </div>
-     </div>
-   )
+  return (
+    <div>
+
+      // ===== 省略 =====
+
+        <div>
+          <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">
+            STEP4: エアドロップ機能を実装する
+          </h2>
+          {account && (
+            <Airdrop
+              account={account}
+              network={network}
+              refreshBalance={refreshBalance}
+            />
+          )}
+        </div>
+        <hr className="my-6" />
+        <div>
+          <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">
+            STEP5: 送金機能を実装する
+          </h2>
++          {account && (
++            <Transfer
++              account={account}
++              network={network}
++              refreshBalance={refreshBalance}
++            />
++          )}
+        </div>
+      </div>
+    </div>
+  );
+}
 ```
 
 ### ☕️ 豆知識

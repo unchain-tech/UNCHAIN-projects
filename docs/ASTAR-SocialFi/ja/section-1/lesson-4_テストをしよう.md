@@ -708,7 +708,7 @@ mod astar_sns_contract {
 では下のコマンドをターミナルで実行してテストを行いましょう。
 
 ```
-cargo +nightly-2022-08-15 test -- --nocapture
+cargo test -- --nocapture
 ```
 
 結果が下のようになっていれば成功です。
@@ -865,7 +865,7 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 なのでここでsection-0 lesson-1で行ったように下のコマンドを実行してこの2つのファイルを更新していきましょう！
 
 ```
-cargo +nightly-2022-08-15 contract build
+cargo contract build
 ```
 
 このようなメッセージが返ってきていればOKです！

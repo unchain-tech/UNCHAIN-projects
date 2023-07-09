@@ -32,12 +32,12 @@ touch FILE_NAME
 （2）下のようにワークスペース上でファイルを作るディレクトリを右クリックしてファイル名を記入
 ![](/public/images/NEAR-Election-dApp/section-1/1_1_1.png)
 
-個人的には（2）の方が楽なのでこちらの方法でやることが多いです。このどちらかの方法を用いてコントラクトのディレクトリ(ここでは`near-election-dapp-contract`)に以下のようなファイル構造を作成してみましょう。
+個人的には（2）の方が楽なのでこちらの方法でやることが多いです。このどちらかの方法を用いてコントラクトのディレクトリ(ここでは`contract`)に以下のようなファイル構造を作成してみましょう。
 
 末尾が`/`となっているものはディレクトリ、そうでないものはファイルであることを示しています。
 
 ```diff
-  near-election-dapp-contract/
+  contract/
   ├── Cargo.lock
   ├── Cargo.toml
   ├── src/
@@ -55,7 +55,7 @@ touch FILE_NAME
 
 これでファイルの作成は完了です！
 
-また、ここからはコントラクトの作成をメインに行うのでターミナルで`cd`コマンドを使って`near-election-dapp-contract`へ移動しておきましょう
+また、ここからはコントラクトの作成をメインに行うのでターミナルで`cd`コマンドを使って`contract`へ移動しておきましょう
 
 **NFT に関する情報を格納するためのコードを記述しよう**
 
@@ -78,9 +78,8 @@ Lesson1では1. の情報の格納を実装していきます！
 [Cargo.toml]
 
 ```
-//　以下のように書き換えてください
 [package]
-name = "near-election-dapp-contract"
+name = "contract"
 version = "0.1.0"
 authors = ["YOUR_NAME", "YOUR_MAIL_ADDRESS"]
 edition = "2021"
@@ -109,7 +108,6 @@ overflow-checks = true
 [lib.rs]
 
 ```rust
-//　以下のように書き換えてください
 use near_sdk::borsh::{self, BorshDeserialize, BorshSerialize};
 use near_sdk::collections::{LazyOption, LookupMap, UnorderedMap, UnorderedSet};
 use near_sdk::json_types::U128;

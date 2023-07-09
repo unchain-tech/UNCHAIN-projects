@@ -10,7 +10,7 @@
 ```solidity
 // Web3Mint.sol
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 // いくつかの OpenZeppelin のコントラクトをインポートします。
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
@@ -287,19 +287,23 @@ runMain();
 上記を`run.js`に反映させえたら、下記をターミナル上で実行しましょう。
 
 ```bash
-npx hardhat run scripts/run.js
+yarn contract run:script
 ```
 
-エラーが発生した場合は、`pwd`を実行して、 `ipfs-nfts`ディレクトリにいることを確認して、もう一度上記のコードを実行してみてください。
+エラーが発生した場合は、`pwd`を実行して、 `ETH-NFT-Maker`ディレクトリにいることを確認して、もう一度上記のコードを実行してみてください。
 下記のような結果が、ターミナルに出力されれば、テストは成功です。
 
 ```
-Compiling 1 file with 0.8.9
-Solidity compilation finished successfully
+Web3Mint
 This is my NFT contract.
-Contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 An NFT w/ ID 0 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-An NFT w/ ID 1 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+An NFT w/ ID 1 has been minted to 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+    ✔ Should return the nft (2360ms)
+
+
+  1 passing (2s)
+
+✨  Done in 4.56s.
 ```
 
 現在、ユーザーがこのスマートコントラクトにアクセスしてNFTを発行するたび、データは常に同じ`Tanya`です!　 🐱。
@@ -435,8 +439,8 @@ runMain();
 `hardhat.config.js`ファイルを変更する必要があります。
 これは、スマートコントラクトプロジェクトのルートディレクトリにあります。
 
-- 今回は、`ipfs-nfts`ディレクトリの直下に`hardhat.config.js`が存在するはずです。
-  例)`ipfs-nfts`で`ls`を実行した結果
+- 今回は、`contract`ディレクトリの直下に`hardhat.config.js`が存在するはずです。
+  例)`contract`で`ls`を実行した結果
 
 ```
 README.md			package-lock.json
@@ -452,7 +456,7 @@ hardhat.config.js
 // hardhat.config.js
 require("@nomicfoundation/hardhat-toolbox");
 module.exports = {
-  solidity: "0.8.9",
+  solidity: "0.8.17",
   networks: {
     sepolia: {
       url: "YOUR_ALCHEMY_API_URL",
@@ -469,7 +473,7 @@ module.exports = {
 > 2\. `YOUR_PRIVATE_SEPOLIA_ACCOUNT_KEY`の取得
 > 1\. お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを`Sepolia Test Network`に変更します。
 >
-> ![](/public/images/ETH-NFT-Maker/section-1/1_4_11.png)
+> ![](/public/images/ETH-NFT-Maker/section-1/1_4_10.png)
 >
 > 2\. それから、`Account details`を選択してください。
 >
@@ -535,10 +539,10 @@ hardhat.config.js
 ### ⭐️ 実行する
 
 構成のセットアップが完了すると、前に作成したデプロイスクリプトを使用してデプロイするように設定されます。
-`ipfs-nfts`のルートディレクトリからこのコマンドを実行します 。
+ルートディレクトリからこのコマンドを実行します 。
 
 ```bash
-npx hardhat run scripts/deploy.js --network sepolia
+yarn contract deploy
 ```
 
 `deploy.js`を実行すると、実際にNFTを作成します。

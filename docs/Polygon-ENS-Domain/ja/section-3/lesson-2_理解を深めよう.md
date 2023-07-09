@@ -9,7 +9,6 @@
 以下のロジックを見て、上記を行う方法を確認してください。
 
 ```solidity
-// Domains.sol
 // コントラクトの最初に付け加えてください（他のマッピングに続けて）。
 mapping (uint => string) public names;
 
@@ -33,7 +32,6 @@ function getAllNames() public view returns (string[] memory) {
 これを`register`関数の最後の`_tokenIds.increment()`の直前に追加します。
 
 ```solidity
-// Domains.sol
 names[newRecordId] = name;
 ```
 
@@ -63,7 +61,6 @@ Section-2のLesson-3を参照くださいね👋
 下のように加えてみましょう。
 
 ```solidity
-// Domains.sol
 function valid(string calldata name) public pure returns(bool) {
   return StringUtils.strlen(name) >= 3 && StringUtils.strlen(name) <= 10;
 }
@@ -80,14 +77,12 @@ Solidityの最近のバージョンで追加された機能ですがカスタム
 この機能を使用するためにコントラクトのどこかに追加してください。
 
 ```solidity
-// Domains.sol
 error Unauthorized();
 error AlreadyRegistered();
 error InvalidName(string name);
 ```
 
 ```solidity
-// Domains.sol
 function setRecord(string calldata name, string calldata record) public {
   if (msg.sender != domains[name]) revert Unauthorized();
   records[name] = record;
@@ -103,17 +98,152 @@ function register(string calldata name) public payable {
 
 できました!
 
-試しに長い文字列を登録してみてください!以下のようなエラーが出力されるでしょうか？
+試しに長い文字列を登録して、run.jsを実行してみてください!以下のようなエラーが出力されるでしょうか？
 （deploy.jsを元にした試行用のファイルを作成して使用した結果です）。
 
 ```
-% npx hardhat run scripts/run_S3_L2.js
 ninja name service deployed
 Contract deployed to: 0xXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 Error: VM Exception while processing transaction: reverted with custom error 'InvalidName("banana_aaaaaaaaaaaaaaaaaaaa")'
 ```
 
 このように機能を追加してデプロイすると、以前よりも多くのことを行うことができます。
+
+
+### 🧙‍♂️ テストを作成・実行する
+
+ここまでの作業でコントラクトには基本機能として以下の機能が追加されました。
+* ドメインの登録機能
+* トークンの総量を確認する機能
+* トークンへのアクセスはオーナーのみに制限する機能
+* ドメインの長さによってドメインの登録料が変化する機能
+
+これらの基本機能をテストスクリプトとして記述していきましょう。
+ではpackages/contract/testに`test.js`という名前でファイルを作成して、以下のように記述しましょう。
+```
+const { loadFixture } = require('@nomicfoundation/hardhat-network-helpers');
+const hre = require('hardhat');
+const { expect } = require('chai');
+
+describe('ENS-Domain', () => {
+  // デプロイ＋ドメインの登録までを行う関数
+  async function deployTextFixture() {
+    const [owner, superCoder] = await hre.ethers.getSigners();
+    const domainContractFactory = await hre.ethers.getContractFactory(
+      'Domains',
+    );
+    const domainContract = await domainContractFactory.deploy('ninja');
+    await domainContract.deployed();
+
+    let txn = await domainContract.register('abc', {
+      value: hre.ethers.utils.parseEther('1234'),
+    });
+    await txn.wait();
+
+    txn = await domainContract.register('defg', {
+      value: hre.ethers.utils.parseEther('2000'),
+    });
+
+    return {
+      owner,
+      superCoder,
+      domainContract,
+    };
+  }
+
+  // コントラクトが所有するトークンの総量を確認
+  it('Token amount contract has is correct!', async () => {
+    const { domainContract } = await loadFixture(deployTextFixture);
+
+    // コントラクトにいくらあるかを確認しています。
+    const balance = await hre.ethers.provider.getBalance(
+      domainContract.address,
+    );
+    expect(hre.ethers.utils.formatEther(balance)).to.equal('3234.0');
+  });
+
+  // オーナー以外はコントラクトからトークンを引き出せないか確認
+  it('someone not owenr cannot withdraw token', async () => {
+    const { owner, superCoder, domainContract } = await loadFixture(
+      deployTextFixture,
+    );
+
+    let txn;
+
+    const ownerBeforeBalance = await hre.ethers.provider.getBalance(
+      owner.address,
+    );
+    // スーパーコーダーとしてコントラクトから資金を奪おうとします。
+    try {
+      txn = await domainContract.connect(superCoder).withdraw();
+      await txn.wait();
+    } catch (error) {
+      console.log('robber could not withdraw token');
+    }
+
+    const ownerAfterBalance = await hre.ethers.provider.getBalance(
+      owner.address,
+    );
+    expect(hre.ethers.utils.formatEther(ownerBeforeBalance)).to.equal(
+      hre.ethers.utils.formatEther(ownerAfterBalance),
+    );
+  });
+
+  // コントラクトのオーナーはコントラクトからトークンを引き出せることを確認
+  it('contract owner can withdrawl token from conteract!', async () => {
+    const { owner, domainContract } = await loadFixture(deployTextFixture);
+
+    const ownerBeforeBalance = await hre.ethers.provider.getBalance(
+      owner.address,
+    );
+
+    const txn = await domainContract.connect(owner).withdraw();
+    await txn.wait();
+
+    const ownerAfterBalance = await hre.ethers.provider.getBalance(
+      owner.address,
+    );
+
+    expect(hre.ethers.utils.formatEther(ownerAfterBalance)).to.not.equal(
+      hre.ethers.utils.formatEther(ownerBeforeBalance),
+    );
+  });
+
+  // ドメインの長さによって価格が変化することを確認
+  it('Domain value is depend on how long it is', async () => {
+    const { domainContract } = await loadFixture(deployTextFixture);
+
+    const price1 = await domainContract.price('abc');
+    const price2 = await domainContract.price('defg');
+
+    expect(hre.ethers.utils.formatEther(price1)).to.not.equal(
+      hre.ethers.utils.formatEther(price2),
+    );
+  });
+});
+
+```
+
+では下のコマンドを実行することでコントラクトのテストをしていきましょう！
+
+```
+yarn test
+```
+
+最後に下のような結果がでいれば成功です！
+
+```
+    ✔ Token amount contract has is correct! (4986ms)
+robber could not withdraw token
+    ✔ someone not owenr cannot withdraw token (68ms)
+    ✔ contract owner can withdrawl token from conteract!
+    ✔ Domain value is depend on how long it is (38ms)
+
+
+  4 passing (5s)
+
+✨  Done in 8.83s.
+```
 
 ### 🙋‍♂️ 質問する
 

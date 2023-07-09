@@ -37,15 +37,9 @@ Solidityのコードを書くのに比べて、thirdwebでスマートコント�
 
 thirdwebを使ってSepoliaにコントラクトを作成し、デプロイするためにはスクリプトをいくつか作成する必要があります。
 
-その前に、まずはプロジェクトのルートに以下の`.env.local`ファイルを作成しましょう。
+その前に、まずはプロジェクトのルートに以下の`.env.local`ファイルを作成し以下のように編集しましょう。
 
 ここに記載する情報は誰にも教えてはならない情報なので、取り扱いには十分に注意しましょう。
-
-```plaintext
-PRIVATE_KEY=YOUR_PRIVATE_KEY_HERE
-WALLET_ADDRESS=YOUR_WALLET_ADDRESS
-ALCHEMY_API_URL=YOUR_ALCHEMY_API_URL
-```
 
 > ⚠️ 注意：thirdweb は、あなたに代わってコントラクトをデプロイするために、これらすべての環境変数を必要とします。
 >
@@ -146,6 +140,16 @@ MetaMaskウォレットに`Sepolia Test Network`が設定されたら、下記�
 - [Alchemy](https://sepoliafaucet.com/) - 1 Sepolia ETH（24時間に1度もらうことができる）
   - ウォレットアドレスを入力して`Send Me ETH`ボタンを押下するとその場でもらえます
 
+
+ではここまでで作成した情報を最初に作成した`.env.local`ファイルの中に以下のように記述していきましょう。
+
+```plaintext
+PRIVATE_KEY=YOUR_PRIVATE_KEY_HERE
+WALLET_ADDRESS=YOUR_WALLET_ADDRESS
+ALCHEMY_API_URL=YOUR_ALCHEMY_API_URL
+```
+
+`YOUR_PRIVATE_KEY_HERE`にはMetamaskのPrivate Keyを、`YOUR_WALLET_ADDRESS`にはMetamaskのウォレットアドレスを、`YOUR_ALCHEMY_API_URL`にはAlchemyのHTTP Keyをそれぞれ代入していきましょう。
 
 ### 🙋‍♂️ 質問する
 

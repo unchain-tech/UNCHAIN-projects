@@ -1,8 +1,8 @@
-### ☎️ Web アプリケーションから candy machine を呼び出す
+### ☎️ Web アプリケーションから Candy Machine を呼び出す
 
 ここまでのレッスンで以下3つのことを行いました 🎉
 
-1\. Webアプリケーションをセットアップ行う
+1\. Webアプリケーションのセットアップを行う
 
 2\. ウォレットへの接続機能を構築する
 
@@ -10,7 +10,7 @@
 
 次は、Webアプリケーションから、ユーザーが実際にCandy Machineと通信できるようにします。
 
-まずは`app/src/CandyMachine/index.js`をご覧ください。これはMetaplexのフロントエンド・ライブラリの一部です。
+まずは`components/CandyMachine/index.tsx`をご覧ください。これはMetaplexのフロントエンド・ライブラリの一部です。
 
 このファイルについて詳しく説明しませんが、ぜひコードを読んでみてください。
 
@@ -18,46 +18,45 @@
 
 まずは`.env`プロパティを設定します。
 
-始める前に **ソースコードを GitHub などにコミットする場合は、`.env`ファイルをコミットしないようにしてください**。
+始める前に **ソースコードを GitHub などにコミットする場合は、`.env.local`ファイルをコミットしないようにしてください**。
 
 これは、Webアプリケーションを作成する際の共通の注意点です。
 
 これらのファイルには通常、機密情報が含まれているため、`.gitignore`に登録するなど対処してください。
 
-Webの`app`フォルダ直下に`.env`ファイルを作成してください。フォルダ階層は次のとおりです。
+`Solana-NFT-Drop`フォルダ直下に`.env.local`ファイルを作成してください。フォルダ階層は次のとおりです。
 
-```
-/app/.env
+```diff
+ Solana-NFT-Drop
++└── .env.local
 ```
 
-`.env`ファイルに公開鍵を保存します。記載内容は下記の通りです。
+`.env.local`ファイルに公開鍵を保存します。記載内容は下記の通りです。
 
 ```txt
-REACT_APP_CANDY_MACHINE_ID=
-REACT_APP_SOLANA_NETWORK=
-REACT_APP_SOLANA_RPC_HOST=
+NEXT_PUBLIC_CANDY_MACHINE_ID=
+NEXT_PUBLIC_SOLANA_NETWORK=
+NEXT_PUBLIC_SOLANA_RPC_HOST=
 ```
 
 1つずつ見ていきましょう。(ここでは引用符`""`で囲う必要はありません!　)
 
-※ `.cache/devnet-temp`は、前のステップで`Metaplex`コマンドを実行した後からフォルダのルートにあります。
-
 ```
-REACT_APP_CANDY_MACHINE_ID=
+NEXT_PUBLIC_CANDY_MACHINE_ID=
 ```
 
-`=`のあとに、Candy Machineの公開鍵を記載してください。なくしてしまった場合は、`.cache/devnet-temp.json`ファイルをご覧ください。
+`=`のあとに、Candy Machineの公開鍵を記載してください。なくしてしまった場合は、`cache.json`ファイルをご覧ください。
 
 `candyMachine`の`value`の値が公開鍵です。
 
 ```
-REACT_APP_SOLANA_NETWORK=
+NEXT_PUBLIC_SOLANA_NETWORK=
 ```
 
 `=`のあとに、`devnet`と記載してください。
 
 ```
-REACT_APP_SOLANA_RPC_HOST=
+NEXT_PUBLIC_SOLANA_RPC_HOST=
 ```
 
 `=`のあとに、`https://explorer-api.devnet.solana.com`と記載してください。
@@ -67,34 +66,34 @@ Candy Machineにはdevnetからアクセスしているので、RPCをそのdevn
 記載例
 
 ```
-REACT_APP_CANDY_MACHINE_ID=3EVLt8KbaLGC3AragKvXDNHzWee7y6hkxzgNAuW4E43M
-REACT_APP_SOLANA_NETWORK=devnet
-REACT_APP_SOLANA_RPC_HOST=https://explorer-api.devnet.solana.com
+NEXT_PUBLIC_CANDY_MACHINE_ID=3EVLt8KbaLGC3AragKvXDNHzWee7y6hkxzgNAuW4E43M
+NEXT_PUBLIC_SOLANA_NETWORK=devnet
+NEXT_PUBLIC_SOLANA_RPC_HOST=https://explorer-api.devnet.solana.com
 ```
 
 これらの変数は、WebアプリケーションがどのCandy Machineと通信するか、どのネットワークを利用するかなどを指し示すために使用されます。
 
-※ `.env`を変更する際には、ターミナルでReactのプロセスを強制終了し、`npm run start`を再度行う必要があります。
+※ `.env.local`を変更する際には、ターミナルで開発サーバーのプロセスを強制終了し、再度`yarn dev`を行う必要があります。
 
-最後に、Phantom WalletのネットワークがDevnetに接続されていることを確認してください。
-
-- 「設定」→「ネットワークの変更」→「Devnet」から変更できます。
-
-![無題](/public/images/Solana-NFT-Drop/section-3/3_1_1.png)
+最後に、Phantom WalletのネットワークがSolana Devnetに設定されていることを確認してください。
 
 ### 🤬 NFT の変更に関する注意
 
-テストに使用したNFTコレクションを変更したい場合。以前と同じ手順を踏む必要があります。
+テストに使用したNFTコレクションを変更したい場合は、以前と同じ手順を踏む必要があります。
 
-1\. MetaplexCLIのCandy Machineコマンドによって生成された`.cache`フォルダーを削除する
+1\. MetaplexCLIのSugarコマンドによって生成された`config.json`ファイル、`cache.json`ファイルを削除する
 
 2\. NFTファイルを好きなように変更する
 
-3\. CLIからMetaplexの`upload`コマンドを実行して、NFTをアップロードし、新しいCandy Machineを作成する
+3\. `sugar config create`コマンドを実行して、Candy Machineの設定ファイルを作成する
 
-4\. CLIからMetaplexの`verify`コマンドを実行し、NFTがアップロードされ、Candy Machineが構成されていることを確認する
+4\. `sugar upload`コマンドを実行して、NFTをアップロードする
 
-5\. `.env`ファイルを新しいアドレスで更新する
+5\. `sugar deploy`コマンドを実行して、新しいCandy Machineを作成してデプロイする (確認は`sugar verify`)
+
+6\. config.jsonファイルにGuardの設定を記述し、`sugar guard add`コマンドを実行して設定を反映させる (確認は`sugar guard show`)
+
+7\. `.env.local`ファイルを新しいCandy Machineのアドレスで更新する
 
 これらの手順を踏まずに変更してしまうとバグの原因になるので気を付けてください。
 
@@ -104,150 +103,118 @@ REACT_APP_SOLANA_RPC_HOST=https://explorer-api.devnet.solana.com
 
 このメタデータは、ドロップ日やミントされたアイテムの数、ミントに使用できるアイテムの数などのいくつかの情報が記載されています。
 
-`app/src/CandyMachine/index.js`を開きます。
+`components/CandyMachine/index.tsx`を開きます。
 
 まず、`useEffect`をインポートし、これから設定する`getCandyMachineState`という関数を呼び出す`useEffect`を設定します。
 
-1 \. `index.js`の先頭に下記のコードを追加します。
+1 \. `index.tsx`のインポートに`useEffect`を追加します。
 
 ```jsx
-// index.js
-import React, { useEffect } from "react";
+// CandyMachine/index.tsx
+import { useEffect } from 'react';
 ```
 
-2 \. `index.js`の中にある下記のコードブロックを確認してください。
+2 \. `index.tsx`の中にある下記のコードブロックを確認してください。
 
 ```jsx
-// index.js
+// CandyMachine/index.tsx
 return (
-  <div className="machine-container">
-    :
+  <div className={candyMachineStyles.machineContainer}>
 ```
 
 上記のコードブロックの直前に、下記のコードを追加します。
 
 ```jsx
-// index.js
+// CandyMachine/index.tsx
 useEffect(() => {
   getCandyMachineState();
 }, []);
 ```
 
-`getCandyMachineState`の関数に入る前に、`getProvider`というもう1つの関数を設定する必要があります。
-
-一般的には新しいProviderオブジェクトを作成します。
-
-`provider`は、WebアプリケーションがSolanaブロックチェーンと通信するためのもので、クライアントにSolanaへの接続とウォレットの認証情報を与え、Solana上のプログラムと通信が可能になります。
-
-下記の通り`useEffect`関数の上に`getProvider`を追加します。
+3 \. `getCandyMachineState`関数を実装しましょう。
 
 ```jsx
-// index.js
-const getProvider = () => {
-  const rpcHost = process.env.REACT_APP_SOLANA_RPC_HOST;
-  // connectionオブジェクトを作成
-  const connection = new Connection(rpcHost);
-
-  // 新しくSolanaのprovider オブジェクトを作成する
-  const provider = new Provider(
-    connection,
-    window.solana,
-    opts.preflightCommitment
-  );
-
-  return provider;
-};
-```
-
-さて、`getCandyMachineState`に戻ります。
-
-`getProvider`の下のどこかに作成します。外観は次のとおりです。
-
-```jsx
-// index.js
-// getCandyMachineStateを非同期の関数として宣言する。
+// CandyMachine/index.tsx
 const getCandyMachineState = async () => {
-  const provider = getProvider();
+  try {
+    if (
+      process.env.NEXT_PUBLIC_SOLANA_RPC_HOST &&
+      process.env.NEXT_PUBLIC_CANDY_MACHINE_ID
+    ) {
+      // Candy Machineと対話するためのUmiインスタンスを作成し、必要なプラグインを追加します。
+      const umi = createUmi(process.env.NEXT_PUBLIC_SOLANA_RPC_HOST)
+        .use(walletAdapterIdentity(walletAddress))
+        .use(nftStorageUploader())
+        .use(mplTokenMetadata())
+        .use(mplCandyMachine());
+      // Candy Machineからメタデータを取得します。
+      const candyMachine = await fetchCandyMachine(
+        umi,
+        publicKey(process.env.NEXT_PUBLIC_CANDY_MACHINE_ID),
+      );
+      const candyGuard = await safeFetchCandyGuard(
+        umi,
+        candyMachine.mintAuthority,
+      );
 
-  //  デプロイされたCandy Machineプログラムのメタデータを取得する
-  const idl = await Program.fetchIdl(candyMachineProgram, provider);
+      // 取得したデータをコンソールに出力します。
+      console.log(`items: ${JSON.stringify(candyMachine.items)}`);
+      console.log(`itemsAvailable: ${candyMachine.data.itemsAvailable}`);
+      console.log(`itemsRedeemed: ${candyMachine.itemsRedeemed}`);
+      if (candyGuard?.guards.startDate.__option !== 'None') {
+        console.log(`startDate: ${candyGuard?.guards.startDate.value.date}`);
 
-  // 呼び出し可能なプログラムを作成する
-  const program = new Program(idl, candyMachineProgram, provider);
-
-  // Candy Machineからメタデータを取得する
-  const candyMachine = await program.account.candyMachine.fetch(
-    process.env.REACT_APP_CANDY_MACHINE_ID
-  );
-
-  //メタデータをすべて解析してログアウトする
-  const itemsAvailable = candyMachine.data.itemsAvailable.toNumber();
-  const itemsRedeemed = candyMachine.itemsRedeemed.toNumber();
-  const itemsRemaining = itemsAvailable - itemsRedeemed;
-  const goLiveData = candyMachine.data.goLiveDate.toNumber();
-  const presale =
-    candyMachine.data.whitelistMintSettings &&
-    candyMachine.data.whitelistMintSettings.presale &&
-    (!candyMachine.data.goLiveDate ||
-      candyMachine.data.goLiveDate.toNumber() > new Date().getTime() / 1000);
-
-  // これは後でUIで使用するので、今すぐ生成しましょう
-  const goLiveDateTimeString = `${new Date(goLiveData * 1000).toUTCString()}`;
-
-  console.log({
-    itemsAvailable,
-    itemsRedeemed,
-    itemsRemaining,
-    goLiveData,
-    goLiveDateTimeString,
-    presale,
-  });
+        const startDateString = new Date(Number(candyGuard?.guards.startDate.value.date) * 1000);
+        console.log(`startDateString: ${startDateString}`);
+      }
+    }
+  } catch (error) {
+    console.error(error);
+  }
 };
 ```
 
 詳細を確認していきましょう。
 
 ```jsx
-// index.js
-//デプロイされたCandy Machineプログラムに関するメタデータを取得します
-const idl = await Program.fetchIdl(candyMachineProgram, provider);
-//呼び出すことができるプログラムを作成します
-const program = new Program(idl, candyMachineProgram, provider);
+// Candy Machineと対話するためのUmiインスタンスを作成し、必要なプラグインを追加します。
+const umi = createUmi(process.env.NEXT_PUBLIC_SOLANA_RPC_HOST)
+  .use(walletAdapterIdentity(walletAddress))
+  .use(nftStorageUploader())
+  .use(mplTokenMetadata())
+  .use(mplCandyMachine());
 ```
 
-Candy Machineと通信するためには、**`IDL`と`Program`オブジェクトの 2 つが必要です。**
+Candy Machineと通信するためには、**`Umi`ライブラリが必要です。**
 
-`IDL`には、WebアプリケーションがCandy Machineと通信するために必要な情報が含まれています。
-
-`Program`は、実際にCandy Machineと直接やりとりするためのオブジェクトです。
+`Umi`ライブラリは、JavaScriptクライアント用のSolanaフレームワークで、Solanaのプログラムと対話するために使用されます。
 
 私たちが構築したCandy Machineは、Metaplex上に存在するSolanaのプログラムに過ぎません。
 
-Solana上にあるほかのプログラムと同じように、Candy Machineを操作できます。
+`Umi`ライブラリと、Metaplexが提供するCandy Machineとの対話を可能にするためのUmi互換ライブラリを使用することで、Solana上にあるほかのプログラムと同じように、Candy Machineを操作できます。
 
-Programオブジェクトを作成したら、Candy MachineのIDにもとづいてメタデータを取得します。
+実際には、`createUmi`メソッドでUmiインスタンスを作成し、`use`メソッドでUmiプラグインのインストールを行います。これによりライブラリが提供する様々な関数を使用してCandy Machineとの対話が可能になります。今回インストールしているプラグインはいかになります。
 
-この行では、Candy Machineのプログラムのfetchメソッドを呼び出し、`itemsAvailable`, `itemsRedeemed`, `itemsRemaining`, `goLiveDate`を返しています。
+- `walletAdapterIdentity`: ウォレットアダプタを指定します。ユーザーがトランザクションの承認を行う際に使用されます。
+- `nftStorageUploader`: ストレージプロバイダにJSONデータをアップロードするために使用されます。
+- `mplTokenMetadata`: NFTのメタデータを扱うために使用されます。
+- `mplCandyMachine`: Candy Machineと対話するために使用されます。
+
+Umiインスタンスを作成したら、Metaplexが提供するfetchメソッドを呼び出し、**Solana Devnet** へアクセスしてメタデータを取得します。
 
 ```jsx
-// index.js
-//Candy Machineからメタデータを取得します
-const candyMachine = await program.account.candyMachine.fetch(
-  process.env.REACT_APP_CANDY_MACHINE_ID
+// index.tsx
+// Candy Machineからメタデータを取得します。
+const candyMachine = await fetchCandyMachine(
+  umi,
+  publicKey(process.env.NEXT_PUBLIC_CANDY_MACHINE_ID),
 );
-//すべてのメタデータを解析してログアウトします
-const itemsAvailable = candyMachine.data.itemsAvailable.toNumber();
-const itemsRedeemed = candyMachine.itemsRedeemed.toNumber();
-const itemsRemaining = itemsAvailable - itemsRedeemed;
-const goLiveData = candyMachine.data.goLiveDate.toNumber();
-const presale =
-  candyMachine.data.whitelistMintSettings &&
-  candyMachine.data.whitelistMintSettings.presale &&
-  (!candyMachine.data.goLiveDate ||
-    candyMachine.data.goLiveDate.toNumber() > new Date().getTime() / 1000);
+// Guardの設定を取得します。
+const candyGuard = await safeFetchCandyGuard(
+  umi,
+  candyMachine.mintAuthority,
+);
 ```
-
-ここで`fetch`を実行すると、 **Solana Devnet** へアクセスしてこのデータを取得します。
 
 ### 🧠 CandyMachine コンポーネントをレンダリングする
 
@@ -255,41 +222,50 @@ const presale =
 
 `CandyMachine`コンポーネントの一番下までスクロールすると、`return`の下にたくさんのものがレンダリングされていることがわかります。
 
-`app/src/App.js`に移動し、`CandyMachine`をインポートします。
+`pages/index.tsx`に移動し、`CandyMachine`をインポートします。
 
 ```jsx
-// App.js
-import React, { useEffect, useState } from "react";
-import "./App.css";
-import twitterLogo from "./assets/twitter-logo.svg";
-import CandyMachine from "./CandyMachine";
+// pages/index.tsx
+import CandyMachine from '@/components/CandyMachine';
 ```
 
 下記の通り、ユーザーのウォレットアドレスがstateにあれば、`CandyMachine`をレンダリングするよう記載してください。
 
 ```jsx
-// App.js
+// pages/index.tsx
 return (
-  <div className="App">
-    <div className="container">
-      <div className="header-container">
-        <p className="header">🍭 Candy Drop</p>
-        <p className="sub-text">NFT drop machine with fair mint</p>
-        {!walletAddress && renderNotConnectedContainer()}
+  <>
+    <Head>
+      <title>Candy Drop</title>
+      <meta name="description" content="Generated by create next app" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
+    <main className={styles.main}>
+      <div className={styles.container}>
+        <div>
+          <p className={styles.header}>🍭 Candy Drop</p>
+          <p className={styles.subText}>NFT drop machine with fair mint</p>
+          {!walletAddress && renderNotConnectedContainer()}
+        </div>
+        {/* ウォレットアドレスがステートに保存されていたら、CandyMachineコンポーネントに渡す */}
+        {walletAddress && <CandyMachine walletAddress={window.solana} />}
+        <div className={styles.footerContainer}>
+          <Image
+            alt="Twitter Logo"
+            className={styles.twitterLogo}
+            src={twitterLogo}
+          />
+          <a
+            className={styles.footerText}
+            href={TWITTER_LINK}
+            target="_blank"
+            rel="noreferrer"
+          >{`built on @${TWITTER_HANDLE}`}</a>
+        </div>
       </div>
-      {/* walletAddressを確認してから、walletAddressを渡します*/}
-      {walletAddress && <CandyMachine walletAddress={window.solana} />}
-      <div className="footer-container">
-        <img alt="Twitter Logo" className="twitter-logo" src={twitterLogo} />
-        <a
-          className="footer-text"
-          href={TWITTER_LINK}
-          target="_blank"
-          rel="noreferrer"
-        >{`built on @${TWITTER_HANDLE}`}</a>
-      </div>
-    </div>
-  </div>
+    </main>
+  </>
 );
 ```
 
@@ -297,145 +273,145 @@ return (
 
 ### 🍪 取得したデータをレンダリングする
 
-`index.js`で`CandyMachine`を宣言したコードの直下に下記のコードを追加しましょう。
-
-```jsx
-// index.js
-const CandyMachine = ({ walletAddress }) => {
-  // 追加するコード
-  const [candyMachine, setCandyMachine] = useState(null);
-```
-
-ここでは、`candyMachine`の状態を保持する変数と、状態を更新する関数(`setCandyMachine`)を初期化しています。
-
 ページを更新するとすぐに`CandyMachine`の`useEffect`が起動するはずです。
 
 先に進んでページを更新すると、コンソールに次のようなものが表示されます。
 
-![無題](/public/images/Solana-NFT-Drop/section-3/3_1_2.png)
+![無題](/public/images/Solana-NFT-Drop/section-3/3_1_3.png)
 
 Solanaのdevnetからデータを取得できました。
 
-※` goLiveDateTimeString`は異なって見える場合があります。mintしたユーザーのローカルタイムゾーンでデータをレンダリングする場合は、`index.js`ファイルより、`getCandyMachineState`の` goLiveDateTimeString`を下記のように変更します。
+※` startDateString`は異なって見える場合があります。mintしたユーザーのローカルタイムゾーンでデータをレンダリングする場合は、`CandyMachine/index.tsx`ファイルより、`getCandyMachineState`の` startDateString`を下記のように変更します。
 
 ```jsx
-// index.js
-const goLiveDateTimeString = `${new Date(
-  goLiveData * 1000
-).toLocaleDateString()} @ ${new Date(goLiveData * 1000).toLocaleTimeString()}`;
+// CandyMachine/index.tsx
+const startLocalDateString = new Date(Number(candyGuard?.guards.startDate.value.date) * 1000).toLocaleDateString();
+const startLocalTimeString = new Date(Number(candyGuard?.guards.startDate.value.date) * 1000).toLocaleTimeString();
+console.log(`startLocalDateString: ${startLocalDateString} ${startLocalTimeString}`); // startLocalDateString: 1/1/2023 9:00:00 AM
 ```
 
 Webアプリケーションにアクセスすると、すでにレンダリングされているものがいくつか表示されますが、実際のデータはレンダリングされていません。
 
-したがって、データを表示するために、Candy Machineの統計を状態変数に保持しましょう。
+したがって、データを表示するために、Candy Machineのメタデータを状態変数に保持しましょう。
 
-先に進み、 `app / src / CandyMachine / index.js`の`CandyMachine`コンポーネントに`useState`をインポートしてから、次のコードを追加します。
+先に進み、`components/CandyMachine/index.tsx`の`CandyMachine`コンポーネントを次のように更新します。
 
 ```jsx
-// index.js
-// useStateをインポートする
-import React, { useEffect, useState } from 'react';
-
-...
-
-const CandyMachine({walletAddress}) => {
-  // コンポーネント内にstateプロパティを追加します。
-  const [candyMachine, setCandyMachine] = useState(null);
-
-  ...
-
-  const getCandyMachineState = async () => {
-    const provider = getProvider();
-    const idl = await Program.fetchIdl(candyMachineProgram, provider);
-    const program = new Program(idl, candyMachineProgram, provider);
-    const candyMachine = await program.account.candyMachine.fetch(
-      process.env.REACT_APP_CANDY_MACHINE_ID
-    );
-
-    const itemsAvailable = candyMachine.data.itemsAvailable.toNumber();
-    const itemsRedeemed = candyMachine.itemsRedeemed.toNumber();
-    const itemsRemaining = itemsAvailable - itemsRedeemed;
-    const goLiveData = candyMachine.data.goLiveDate.toNumber();
-
-    const presale =
-    candyMachine.data.whitelistMintSettings &&
-    candyMachine.data.whitelistMintSettings.presale &&
-    (!candyMachine.data.goLiveDate ||
-    candyMachine.data.goLiveDate.toNumber() > new Date().getTime() / 1000);
-
-    const goLiveDateTimeString = `${new Date(
-      goLiveData * 1000
-    ).toUTCString()}`
-
-    // このデータをstateに追加してレンダリングする
-    setCandyMachine({
-      id: process.env.REACT_APP_CANDY_MACHINE_ID,
-      program,
-      state: {
-        itemsAvailable,
-        itemsRedeemed,
-        itemsRemaining,
-        goLiveData,
-        goLiveDateTimeString,
-        isSoldOut: itemsRemaining === 0,
-        isActive:
-          (presale ||
-            candyMachine.data.goLiveDate.toNumber() < new Date().getTime() / 1000) &&
-          (candyMachine.endSettings
-            ? candyMachine.endSettings.endSettingType.date
-              ? candyMachine.endSettings.number.toNumber() > new Date().getTime() / 1000
-              : itemsRedeemed < candyMachine.endSettings.number.toNumber()
-            : true),
-        isPresale: presale,
-        goLiveDate: candyMachine.data.goLiveDate,
-        treasury: candyMachine.wallet,
-        tokenMint: candyMachine.tokenMint,
-        gatekeeper: candyMachine.data.gatekeeper,
-        endSettings: candyMachine.data.endSettings,
-        whitelistMintSettings: candyMachine.data.whitelistMintSettings,
-        hiddenSettings: candyMachine.data.hiddenSettings,
-        price: candyMachine.data.price,
-      },
-    });
-
-    console.log({
-      itemsAvailable,
-      itemsRedeemed,
-      itemsRemaining,
-      goLiveData,
-      goLiveDateTimeString,
-    });
-  };
-}
+// CandyMachine/index.tsx
+// インポートにuseStateを追加します。
+import { useEffect, useState } from 'react';
 ```
 
-状態変数を作成してから、`setCandyMachine`を呼び出してデータを設定しました。
+```jsx
+// CandyMachine/index.tsx
+const CandyMachine = (props: CandyMachineProps) => {
+  const { walletAddress } = props;
+  // コンポーネント内にstateプロパティを追加します。
+  const [umi, setUmi] = useState<UmiType | undefined>(undefined);
+  const [candyMachine, setCandyMachine] = useState<
+    CandyMachineType | undefined
+  >(undefined);
+  const [candyGuard, setCandyGuard] = useState<CandyGuardType | null>(null);
+  const [startDateString, setStartDateString] = useState<Date | undefined>(undefined);
 
-ここでいくつかのデータをレンダリングできます。下記の通りUIコードをレンダリング関数に追加します。( `index.js`ファイルのほぼ最後のreturn部分を修正します!　)
+  const getCandyMachineState = async () => {
+    try {
+      if (
+        process.env.NEXT_PUBLIC_SOLANA_RPC_HOST &&
+        process.env.NEXT_PUBLIC_CANDY_MACHINE_ID
+      ) {
+        // Candy Machineと対話するためのUmiインスタンスを作成し、必要なプラグインを追加します。
+        const umi = createUmi(process.env.NEXT_PUBLIC_SOLANA_RPC_HOST)
+          .use(walletAdapterIdentity(walletAddress))
+          .use(nftStorageUploader())
+          .use(mplTokenMetadata())
+          .use(mplCandyMachine());
+        // Candy Machineからメタデータを取得します。
+        const candyMachine = await fetchCandyMachine(
+          umi,
+          publicKey(process.env.NEXT_PUBLIC_CANDY_MACHINE_ID),
+        );
+        const candyGuard = await safeFetchCandyGuard(
+          umi,
+          candyMachine.mintAuthority,
+        );
+
+        // 取得したデータをコンソールに出力します。
+        console.log(`items: ${JSON.stringify(candyMachine.items)}`);
+        console.log(`itemsAvailable: ${candyMachine.data.itemsAvailable}`);
+        console.log(`itemsRedeemed: ${candyMachine.itemsRedeemed}`);
+        if (candyGuard?.guards.startDate.__option !== 'None') {
+          console.log(`startDate: ${candyGuard?.guards.startDate.value.date}`);
+
+          const startDateString = new Date(Number(candyGuard?.guards.startDate.value.date) * 1000);
+          console.log(`startDateString: ${startDateString}`);
+        }
+        if (candyGuard?.guards.startDate.__option !== 'None') {
+          console.log(`startDate: ${candyGuard?.guards.startDate.value.date}`);
+
+          const startDateString = new Date(Number(candyGuard?.guards.startDate.value.date) * 1000);
+          console.log(`startDateString: ${startDateString}`);
+          // 取得したデータをstate変数に保存します。
+          setStartDateString(startDateString);
+        }
+
+        // 取得したデータをstate変数に保存します。
+        setUmi(umi);
+        setCandyMachine(candyMachine);
+        setCandyGuard(candyGuard);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+    useEffect(() => {
+    getCandyMachineState();
+  }, []);
+
+  return (
+    <div className={candyMachineStyles.machineContainer}>
+      <p>Drop Date:</p>
+      <p>Items Minted:</p>
+      <button
+        className={`${styles.ctaButton} ${styles.mintButton}`}
+      >
+        Mint NFT
+      </button>
+    </div>
+  );
+};
+```
+
+3つの状態変数を作成してから、それぞれのセット関数を呼び出してデータを保存しました。
+
+ここでいくつかのデータをレンダリングできます。下記の通りUIコードをレンダリング関数に追加します。(`index.tsx`ファイルのほぼ最後のreturn部分を修正します!)
 
 ```jsx
-// index.js
-// candyMachineが利用可能な場合のみ表示されます
-return candyMachine ? (
-  <div className="machine-container">
-    <p>{`Drop Date: ${candyMachine.state.goLiveDateTimeString}`}</p>
-    <p>{`Items Minted: ${candyMachine.state.itemsRedeemed} / ${candyMachine.state.itemsAvailable}`}</p>
-    <button className="cta-button mint-button" onClick={null}>
+// CandyMachine/index.tsx
+// Candy Machine、Candy Guardが有効な場合にのみ表示されます
+return candyMachine && candyGuard ? (
+  <div className={candyMachineStyles.machineContainer}>
+    <p>{`Drop Date: ${startDateString}`}</p>
+    <p>
+      {`Items Minted: ${candyMachine.itemsRedeemed} / ${candyMachine.data.itemsAvailable}`}
+    </p>
+    <button className={`${styles.ctaButton} ${styles.mintButton}`}>
       Mint NFT
     </button>
   </div>
-) : null
+) : null;
 ```
 
 これで、Webアプリケーションに適切にレンダリングされたすべてのデータが表示されます。
 
-最低限のスタイルを加えた`CandyMachine.css`ファイルを提供しています。色やフォントを変えるだけでもよいので、CSSを触ってみてください。くれぐれもデフォルトのままで終わらないように!
+最低限のスタイルを加えた`CandyMachine.css`ファイルを提供しています。色やフォントを変えるだけでもよいので、CSSを触ってみてください。
 
 本レッスンは終了です。
 
-現時点では、`MintNFT`ボタンをクリックしても何も起こりません。
+現時点では、[Mint NFT]ボタンをクリックしても何も起こりません。
 
-次レッスンではこのボタンのロジックを構築し、NFTを作成するように設定します。
+次のレッスンではこのボタンのロジックを構築し、NFTを作成するように設定します。
 
 ### 🙋‍♂️ 質問する
 

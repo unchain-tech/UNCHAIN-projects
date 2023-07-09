@@ -4,14 +4,14 @@
 
 本教材の主眼はコントラクトの作成なので、UI部分の解説は簡略化していることをご了承ください 😔
 
-まずはフロントエンドの開発に必要なライブラリをインポートしましょう。次のコマンドをターミナルで実行してください。
+まずはフロントエンドの開発に必要なライブラリをインポートしましょう。次のコマンドを`packages/client`ディレクトリへ移動した後、ターミナルで実行してください。
 
 ```
-npm install react-icons --save
+yarn add react-icons --save
 ```
 
 ```
-npm install --save react-modal @types/react-modal
+yarn add --save react-modal @types/react-modal
 ```
 
 次に環境変数として必要な値を登録しましょう。
@@ -262,10 +262,12 @@ export const connectToContract = async (props: Props) => {
 };
 ```
 
-まずは必要なライブラリを下のコマンドをターミナルで実行することによりインストールしましょう。
+まずは必要なライブラリをインストールしましょう。
+
+`packages/client`ディレクトリへ移動して下記のコマンドを実行しましょう。
 
 ```
-npm install @polkadot/api @polkadot/extension-inject @polkadot/extension-dapp
+yarn add @polkadot/api @polkadot/extension-inject @polkadot/extension-dapp
 ```
 
 順番に見て行きましょう。
@@ -444,7 +446,7 @@ export const getLastMessage = async (props: PropsGLM) => {
 まずは必要なライブラリを下のコマンドをターミナルで実行することによってインストールしましょう。
 
 ```
-npm install @polkadot/api-contract
+yarn add @polkadot/api-contract
 ```
 
 次に`metadata.json`については先ほど作成した`astar_sns_contract`プロジェクトの`metadata.json`をディレクトリ構造の一番上の階層にコピー&ペーストしましょう。

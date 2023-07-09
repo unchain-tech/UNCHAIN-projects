@@ -5,7 +5,7 @@
 フォルダ構成は下のようになっているはずです。
 
 ```
-MulPay_contract/
+contract/
 ├── README.md
 ├── artifacts/
 ├── cache/
@@ -32,7 +32,7 @@ MulPay_contract/
 `Swap.sol`:任意のトークンのペアに対してswapができる、送金ができる。
 `swap.test.ts`:swapが機能しているかをテストする。
 
-次に`MulPay_contract`直下に`.env`ファイルを作成してください。そのファイルに以下の内容を追記してください。
+次に`contract`直下に`.env`ファイルを作成してください。そのファイルに以下の内容を追記してください。
 
 `YOUR_WALLET_PRIVATE_KEY`には自分の持っているウォレットのprivate keyを入れてください。ここには先ほどmetamaskで作成したwalletのprivate keyを入れてください。
 
@@ -55,7 +55,7 @@ import "@typechain/hardhat";
 require("dotenv").config();
 
 const config: HardhatUserConfig = {
-  solidity: "0.8.0",
+  solidity: "0.8.17",
   networks: {
     testnet_aurora: {
       url: "https://testnet.aurora.dev",

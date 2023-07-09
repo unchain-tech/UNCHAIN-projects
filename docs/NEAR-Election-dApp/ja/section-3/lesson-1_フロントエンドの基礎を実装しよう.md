@@ -4,12 +4,12 @@
 
 注意してほしいところは次の2つです
 
-1. `near-election-dapp-frontend/frontend`というディレクトリの中に作成
+1. `client/frontend`というディレクトリの中に作成
 2. `AppRouter.js`はpagesの中ではなくassetsの中に作成
 
 です。import時のPATHに関わってくるのでこれと同じように作らないと動かなくなります（もし実行時エラーなどが起きたときはこのファイルのPATHが正しいか確認してみてください）。
 
-次にフロントエンドで使う画像（下の4つの画像）をダウンロードしてnear-election-dapp-frontend/frontend/assets/imgの中にそれぞれ画像の上に示してある名前で保存しましょう。
+次にフロントエンドで使う画像（下の4つの画像）をダウンロードしてclient/frontend/assets/imgの中にそれぞれ画像の上に示してある名前で保存しましょう。
 
 `cross.png`
 
@@ -62,10 +62,10 @@
 
 ディレクトリ構造が整理できたら次は下のコマンドで必要なライブラリをインストールしましょう。
 
-この時、フロントエンドのディレクトリ(ここでは`near-election-dapp-frontend`)にいることを確認して行ってください。
+この時、フロントエンドのディレクトリ(ここでは`client`)にいることを確認して行ってください。
 
 ```bash
-npm install react-ipfs-image react-router-dom
+yarn add react-ipfs-image react-router-dom
 ```
 
 その後`frontend/neardev/dev-account.env`にある変数を以下のように書き換えましょう。`YOUR_WALLET_ID`というのは変数にあなたがdeployしたWalletのIdを入れましょう。
@@ -640,18 +640,24 @@ html {
 
 なので`package.json`に移動して以下のように編集しましょう。
 
-これにより`yarn dev`が呼び出すコマンドが変わり、`neardev/dev-account.env`に記載したwallet idにdeployされているコントラクトを読みにいけるようになりました
+その後下のコマンドを実行することによって必要なパッケージをインストールしましょう。
+
+```
+yarn install
+```
+
+これにより`yarn client dev`が呼び出すコマンドが変わり、`neardev/dev-account.env`に記載したwallet idにdeployされているコントラクトを読みにいけるようになりました
 
 ```diff
 {
-  "name": "greeter",
+  "name": "client",
   "version": "1.0.0",
   "license": "(MIT AND Apache-2.0)",
 
-+ "scripts": {
-+   "start": "env-cmd -f ./neardev/dev-account.env parcel frontend/index.html --open",
-+   "dev": "nodemon --watch contract -e ts --exec \"npm run start\""
-+ },
+  "scripts": {
+    "start": "env-cmd -f ./neardev/dev-account.env parcel frontend/index.html --open",
+    "dev": "nodemon --watch contract -e ts --exec \"npm run start\""
+  },
   "devDependencies": {
     "@babel/core": "~7.18.2",
     "@babel/preset-env": "~7.18.2",
@@ -699,7 +705,7 @@ html {
 それでは準備は整ったので下のコマンドをターミナルで実行させてみましょう
 
 ```bash
-yarn dev
+yarn client dev
 ```
 
 ![](/public/images/NEAR-Election-dApp/section-3/3_1_5.png)

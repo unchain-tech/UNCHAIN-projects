@@ -34,25 +34,34 @@ Chromeの方は[こちら](https://chrome.google.com/webstore/detail/phantom/bfn
 
 ※ GitHubアカウントの初期設定がお済みでない方は、アカウント設定を行ってからお進みください。
 
-まず、 [この GitHub リンク](https://github.com/unchain-dev/solana-pay-starter-project) にアクセスして、ページの右上にある[Fork]ボタンを押してください。
+まだ`GitHub`のアカウントをお持ちでない方は、[こちら](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0) の手順に沿ってアカウントを作成してください。
 
-このリポジトリをフォークすると、自分のGitHubに同一のリポジトリがコピーされます。
+`GitHub`のアカウントをお持ちの方は、下記の手順に沿ってフロントエンドの基盤となるリポジトリをあなたのGitHubに[フォーク](https://denno-sekai.com/github-fork/)しましょう。
 
-次に、新しくフォークされたリポジトリをローカルに保存します。
+1\. [こちら](https://github.com/unchain-tech/Solana-Online-Store)からunchain-tech/Solana-Online-Storeリポジトリにアクセスをして、ページ右上の`Fork`ボタンをクリックします。
 
-`Code`ボタンをクリックして、コピーしたリポジトリのリンクをコピーしてください。
+![](/public/images/Solana-Online-Store/section-1/1_1_2.png)
 
-![github code button](/public/images/Solana-Online-Store/section-1/1_1_2.png)
+2\. Create a new forkページが開くので、「Copy the `main` branch only」という項目に**チェックが入っていることを確認します**。
 
-最後に、ターミナルで`cd`コマンドを実行してプロジェクトが存在するディレクトリまで移動し、次のコマンドを実行します。
+![](/public/images/Solana-Online-Store/section-1/1_1_3.png)
 
-※ `YOUR_FORKED_LINK`に先ほどコピーしたリポジトリのリンクを張り付けましょう。
+3\. 設定が完了したら`Create fork`ボタンをクリックします。あなたのGitHubアカウントに`Solana-Online-Store`リポジトリのフォークが作成されたことを確認してください。
+
+それでは、フォークしたリポジトリをローカル環境にクローンしましょう。
+
+`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
+
+![](/public/images/Solana-Online-Store/section-1/1_1_4.png)
+
+ターミナルで任意の作業ディレクトリに移動し、先ほどコピーしたリンクを貼り付け、下記を実行してください。
 
 ```bash
-git clone YOUR_FORKED_LINK
+git clone コピーした_github_リンク
 ```
 
 無事に複製されたらローカル開発環境の準備は完了です。
+
 ### 🏁 Web アプリケーションを起動する
 
 今回のWebアプリケーションは **Next.js** を使用しています。
@@ -65,16 +74,21 @@ git clone YOUR_FORKED_LINK
 
 1\. ターミナルを開き、`cd`でプロジェクトのルートディレクトリまで移動します。
 
-2\. `npm install`を実行します。
+2\. `yarn install`を実行します。
 
-3\. `npm run dev`を実行します。
+3\. `yarn dev`を実行します。
 
 これらを実行すると、ローカルサーバーでWebアプリケーションが立ち上がり、中心のあたりにかわいらしい女の子の画像が表示されるはずです。
 
 ※自動的にWebアプリケーションが立ち上がらない場合は、ブラウザに`http://localhost:3000`と入力してWebアプリケーションを確認しましょう!
 
-![stater project](/public/images/Solana-Online-Store/section-1/1_1_3.png)
+![](/public/images/Solana-Online-Store/section-1/1_1_5.jpg)
 
+### ✅ テストスクリプトについて
+
+このプロジェクトには、コンポーネントのテストスクリプトが`__tests__/コンポーネント名.test.js`として格納されています。これらは、期待するMVPの機能が実装されているかをテストする内容となっており、テストフレームワークとして[Jest](https://jestjs.io/ja/)を、UIコンポーネントのテストを行うために[Testing Library](https://testing-library.com/)を導入しています。Solanaネットワークとやり取りを行う機能をモック（模擬）しているため、ブラウザ上で実際に動作確認を行うよりもより迅速に機能テストを行うことが可能です。対象コンポーネントの実装が完成したら、テストを実行してみましょう!
+
+ただし、あくまでも模擬的なので、各コンポーネントの実装ができたら実際にSolanaネットワークを使用した動作確認をブラウザ上で行いましょう 🚀
 
 ### 🙋‍♂️ 質問する
 

@@ -1,11 +1,11 @@
 ### 🙉 GitHub に 関する注意点
 
-**GitHub にコントラクト( `ipfs-nfts`)のコードをアップロードする際は、秘密鍵を含むハードハット構成ファイルをリポジトリにアップロードしないよう注意しましょう。**
+**GitHub にコントラクト( `contract`)のコードをアップロードする際は、秘密鍵を含むハードハット構成ファイルをリポジトリにアップロードしないよう注意しましょう。**
 
-秘密鍵などのファイルを隠すために、ターミナルで`ipfs-nfts`に移動して、下記を実行してください。
+秘密鍵などのファイルを隠すために`dotenv`というパッケージを追加します。ターミナルで`packages/contract`に移動して、下記を実行してください。
 
 ```bash
-npm install --save dotenv
+yarn add --dev dotenv
 ```
 
 `dotenv`モジュールに関する詳しい説明は、[こちら](https://maku77.github.io/nodejs/env/dotenv.html)を参照してください。
@@ -18,7 +18,7 @@ npm install --save dotenv
 
 操作されては困るファイルについては、このように「不可視」の属性を持たせて、一般の人が触れられないようにします。
 
-ターミナル上で`ipfs-nfts`ディレクトリにいることを確認し、下記を実行しましょう。VS Codeから`.env`ファイルを開きます。
+ターミナル上で`packages/contract`ディレクトリにいることを確認し、下記を実行しましょう。VS Codeから`.env`ファイルを開きます。
 
 ```
 code .env
@@ -47,7 +47,7 @@ STAGING_ALCHEMY_KEY = https://...
 require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
 module.exports = {
-  solidity: "0.8.9",
+  solidity: "0.8.17",
   networks: {
     sepolia: {
       url: process.env.STAGING_ALCHEMY_KEY,
@@ -110,9 +110,9 @@ Vercelはサーバーレス機能のホスティングを提供するクラウ�
 
 Vercelに関する詳しい説明は、[こちら](https://zenn.dev/lollipop_onl/articles/eoz-vercel-pricing-2020)をご覧ください。
 
-まず、GitHubの`nft-maker-starter-project`にローカルファイルをアップロードしていきます。
+まず、GitHubの`ETH-NFT-Maker`にローカルファイルをアップロードしていきます。
 
-ターミナル上で`nft-maker-starter-project`に移動して、下記を実行しましょう。
+ターミナル上で`ETH-NFT-Maker`に移動して、下記を実行しましょう。
 
 ```
 git add .
@@ -120,7 +120,7 @@ git commit -m "upload to github"
 git push
 ```
 
-次に、GitHub上の`nft-maker-starter-project`に、ローカル環境に存在する`nft-maker-starter-project`のファイルとディレクトリが反映されていることを確認してください。
+次に、GitHub上の`ETH-NFT-Maker`に、ローカル環境に存在する`ETH-NFT-Maker`のファイルとディレクトリが反映されていることを確認してください。
 
 Vercelのアカウントを取得したら、下記を実行しましょう。
 
@@ -128,15 +128,13 @@ Vercelのアカウントを取得したら、下記を実行しましょう。
 
 ![](/public/images/ETH-NFT-Maker/section-4/4_2_1.png)
 
-2\. `Import Git Repository`で自分のGitHubアカウントを接続したら、`nft-maker-starter-project`を選択し、`Import`してください。
+2\. `Import Git Repository`で自分のGitHubアカウントを接続したら、`ETH-NFT-Maker`を選択し、`Import`してください。
 
 ![](/public/images/ETH-NFT-Maker/section-4/4_2_2.png)
 
-3\. プロジェクトを作成します。Environment Variableに下記を追加します。
+3\. プロジェクトを作成します。`Root Directory`が「packages/client」となっていることを確認してください。
 
-`NAME`＝`CI`、`VALUE`＝`false`（下図参照）
-
-![](/public/images/ETH-NFT-Maker/section-4/4_2_3.png)
+![](/public/images/ETH-NFT-Collection/section-4/4_2_9.png)
 
 4\. `Deploy`ボタンを推しましょう。
 
@@ -147,6 +145,10 @@ VercelはGitHubと連動しているので、GitHubが更新されるたびに�
 基本的に`warning`は無視して問題ありません。
 
 ![](/public/images/ETH-NFT-Maker/section-4/4_2_4.png)
+
+[こちら](https://eth-nft-maker-client.vercel.app/)が完成版のURLです！
+
+mintされた画像は[こちら](https://gemcase.vercel.app/view/evm/sepolia/0xe380122a59930a7ef893d2046cae208a11cf2931)で確認することができます。
 
 
 ### 🙋‍♂️ 質問する

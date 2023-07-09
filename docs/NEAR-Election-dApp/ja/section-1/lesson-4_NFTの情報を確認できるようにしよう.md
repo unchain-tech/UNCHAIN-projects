@@ -196,7 +196,7 @@ pub fn nft_tokens_for_owner(
 mintをしたいところですが、mintができているかを確認するためにまずはNEARのTestnetで自分のWalletを作成する必要があります。
 [こちら](https://wallet.testnet.near.org/)から作成してください。
 
-作成が完了したら、まずターミナルでコントラクトのディレクトリ(ここでは`near-election-dapp-contract`)に移動しましょう。
+まず、`packages/contract`に移動します。
 
 walletのidをコピーして下のコマンドの`YOUR_WALLET_ID`に入れてターミナルで実行させてください。
 
@@ -216,15 +216,23 @@ echo $NFT_CONTRACT_ID
 near login
 ```
 
-次に下のコマンドをターミナルを実行させてコードのコンパイルとdeployをしましょう。
+次に`packages/contract/package.json`の`script`部分を以下のように編集してください。
 
-ただし、コントラクトディレクトリの名前を変えた方は`near_election_dapp_contract`の部分を自分が変えたディレクトリの名前に変えないとエラーがでてしまいますので気をつけてください！
+```
+"scripts": {
+    "build":"set -e && RUSTFLAGS='-C link-arg=-s' cargo build --target wasm32-unknown-unknown --release",
+    "deploy":"near deploy --wasm-file target/wasm32-unknown-unknown/release/near_election_dapp_contract.wasm --accountId $NFT_CONTRACT_ID",
+    "test": "cargo test"
+  },
+```
+その後、ターミナル上で、下記を実行してみましょう。
 
 ```bash
-set -e && RUSTFLAGS='-C link-arg=-s' cargo build --target wasm32-unknown-unknown --release && near deploy --wasm-file target/wasm32-unknown-unknown/release/near_election_dapp_contract.wasm --accountId $NFT_CONTRACT_ID
+yarn contract build
+yarn contract deploy
 ```
 
-では初期化するために作った`new_default_meta`を下のコマンドをターミナルを実行させましょう。
+では`packages/contract`へ移動して、初期化するために作った`new_default_meta`を下のコマンドをターミナルを実行させましょう。
 
 ```bash
 near call $NFT_CONTRACT_ID new_default_meta '{"owner_id": "'$NFT_CONTRACT_ID'"}' --accountId $NFT_CONTRACT_ID

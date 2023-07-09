@@ -9,22 +9,25 @@
 ```jsx
 // _app.js
 
-import React, { useMemo } from "react";
-import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
-import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
-import { ConnectionProvider, WalletProvider } from "@solana/wallet-adapter-react";
+import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
+import {
+  ConnectionProvider,
+  WalletProvider
+} from '@solana/wallet-adapter-react';
+import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
+import '@solana/wallet-adapter-react-ui/styles.css';
 import {
   GlowWalletAdapter,
   PhantomWalletAdapter,
   SlopeWalletAdapter,
   SolflareWalletAdapter,
   TorusWalletAdapter,
-} from "@solana/wallet-adapter-wallets";
-import { clusterApiUrl } from "@solana/web3.js";
+} from '@solana/wallet-adapter-wallets';
+import { clusterApiUrl } from '@solana/web3.js';
+import { useMemo } from 'react';
 
-import "@solana/wallet-adapter-react-ui/styles.css";
-import "../styles/globals.css";
-import "../styles/App.css";
+import '../styles/globals.css';
+import '../styles/App.css';
 
 const App = ({ Component, pageProps }) => {
   // networkはdevnet、testnet、またはmainnet-betaに設定できます。
@@ -99,13 +102,19 @@ React Appコンポーネント内のreturnステートメントでは、子（�
 ```jsx
 // index.js
 
-import React from 'react';
-import { PublicKey } from '@solana/web3.js';
 import { useWallet } from '@solana/wallet-adapter-react';
-import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import dynamic from 'next/dynamic';
+import { PublicKey } from '@solana/web3.js';
+
+// 参照: https://github.com/solana-labs/wallet-adapter/issues/648
+const WalletMultiButtonDynamic = dynamic(
+  async () =>
+    (await import('@solana/wallet-adapter-react-ui')).WalletMultiButton,
+  { ssr: false },
+);
 
 // 定数を宣言します。
-const TWITTER_HANDLE = "あなたのTwitterハンドル";
+const TWITTER_HANDLE = 'あなたのTwitterハンドル';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const App = () => {
@@ -116,7 +125,7 @@ const App = () => {
     <div>
       <img src="https://media.giphy.com/media/FWAcpJsFT9mvrv0e7a/giphy.gif" alt="anya" />
       <div className="button-container">
-        <WalletMultiButton className="cta-button connect-wallet-button" />
+        <WalletMultiButtonDynamic className="cta-button connect-wallet-button" />
       </div>
     </div>
   );
@@ -158,7 +167,7 @@ export default App;
 ※ Twitterハンドルを忘れずに更新してくださいね!
 
 ```jsx
-const TWITTER_HANDLE = "あなたのTwitterハンドル";
+const TWITTER_HANDLE = 'あなたのTwitterハンドル';
 ```
 
 さて、これで画像の下に`Select Wallet`ボタンが表示されるようになったはずです。

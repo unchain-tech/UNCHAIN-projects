@@ -1,11 +1,11 @@
 ### 🙉 GitHub に関する注意点
 
-**GitHub にコントラクト( `epic-game`)のコードをアップロードする際は、秘密鍵を含むハードハット構成ファイルをリポジトリにアップロードしないよう注意しましょう**
+**GitHub にコントラクト( `contract`)のコードをアップロードする際は、秘密鍵を含むハードハット構成ファイルをリポジトリにアップロードしないよう注意しましょう**
 
-秘密鍵などのファイルを隠すために、ターミナルで`epic-game`に移動して、下記を実行してください。
+秘密鍵などのファイルを隠すために、ターミナルで`contract`に移動して、下記を実行してください。
 
 ```bash
-npm install --save dotenv
+yarn add --dev dotenv
 ```
 
 `dotenv`モジュールに関する詳しい説明は、[こちら](https://maku77.github.io/nodejs/env/dotenv.html)を参照してください。
@@ -18,7 +18,7 @@ npm install --save dotenv
 
 操作されては困るファイルについては、このように「不可視」の属性を持たせて、一般の人が触れられないようにします。
 
-ターミナル上で`epic-game`ディレクトリにいることを確認し、下記を実行しましょう。VS Codeから`.env`ファイルを開きます。
+ターミナル上で`contract`ディレクトリにいることを確認し、下記を実行しましょう。VS Codeから`.env`ファイルを開きます。
 
 ```
 code .env
@@ -35,7 +35,6 @@ PROD_ALCHEMY_KEY = イーサリアムメインネットにデプロイする際�
 私の`.env`は、下記のようになります。
 
 ```javascript
-// .env
 PRIVATE_KEY = 0x...
 STAGING_ALCHEMY_KEY = https://...
 PROD_ALCHEMY_KEY = ""
@@ -44,7 +43,6 @@ PROD_ALCHEMY_KEY = ""
 `.env`を更新したら、 `hardhat.config.js`ファイルを次のように更新してください。
 
 ```javascript
-// hardhat.config.js
 require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
 
@@ -135,10 +133,9 @@ https://cloudflare-ipfs.com/ipfs/あなたのCIDコードを貼り付けます
 
 ![](/public/images/ETH-NFT-Game/section-4/4_2_2.png)
 
-次に、`epic-game/scripts/run.js`と`epic-game/scripts/deploy.js`の`imgur`リンクを`CID`（＝ IPFSハッシュ）に変更していきましょう。
+次に、`contract/scripts/run.js`と`contract/scripts/deploy.js`の`imgur`リンクを`CID`（＝ IPFSハッシュ）に変更していきましょう。
 
 ```javascript
-// run.js
 // Hardhat がローカルの Ethereum ネットワークを、コントラクトのためだけに作成します。
 const gameContract = await gameContractFactory.deploy(
   // キャラクターの名前
@@ -159,7 +156,6 @@ const gameContract = await gameContractFactory.deploy(
 ```
 
 ```javascript
-// deploy.js
 const main = async () => {
   const gameContractFactory = await hre.ethers.getContractFactory("MyEpicGame");
 
@@ -200,7 +196,6 @@ runMain();
 - `Base64.encode`の中身を更新してください。
 
 ```solidity
-// MyEpicGame.sol
 string memory json = Base64.encode(
       bytes(
         string(
@@ -244,26 +239,195 @@ string memory json = Base64.encode(
 1 \. `SelectCharacter/index.js`の中に記載されている`renderCharacters`メソッドの中の`<img src={character.imageURI} alt={character.name} />`を下記に更新しましょう。
 
 ```javascript
-// SelectCharacter/index.js
 <img src={`https://cloudflare-ipfs.com/ipfs/${character.imageURI}`} />
 ```
 
 2 \. `Arena/index.js`の中に記載されているHTMLを出力する`return();`に着目してください。
 
 ```javascript
-// Arena/index.js
 <img src={characterNFT.imageURI} alt={`Character ${characterNFT.name}`} />
 ```
 
 上記のコードを下記に更新してください。
 
 ```javascript
-// Arena/index.js
 <img
   src={`https://cloudflare-ipfs.com/ipfs/${characterNFT.imageURI}`}
   alt={`Character ${characterNFT.name}`}
 />
 ```
+
+### 🧙‍♂️ テストを作成・実行する
+
+ここまでの作業でコントラクトには基本機能として以下の機能が追加されました。
+* ボスを含めた複数のキャラクターに性質を持たせ、NFTとしてmintする機能
+* ボスに攻撃をする機能
+* ボスまたは他のキャラクターのhpが無くなった場合は攻撃ができなくなる機能
+
+これらの基本機能をテストスクリプトとして記述していきましょう。
+
+ではpackages/contract/testに`test.js`という名前でファイルを作成して、以下のように記述してください。
+
+```javascript
+const hre = require('hardhat');
+const { expect } = require('chai');
+const { loadFixture } = require('@nomicfoundation/hardhat-network-helpers');
+
+describe('MyEpicGame', () => {
+  async function deployTextFixture() {
+    const gameContractFactory = await hre.ethers.getContractFactory(
+      'MyEpicGame',
+    );
+
+    // Hardhat がローカルの Ethereum ネットワークを、コントラクトのためだけに作成します。
+    const gameContract = await gameContractFactory.deploy(
+      // キャラクターの名前
+      ['ZORO', 'NAMI', 'USOPP'],
+      // キャラクターの画像を IPFS の CID に変更
+      [
+        'QmXxR67ryeUw4xppPLbF2vJmfj1TCGgzANfiEZPzByM5CT',
+        'QmPHX1R4QgvGQrZym5dpWzzopavyNX2WZaVGYzVQQ2QcQL',
+        'QmUGjB7oQLBZdCDNJp9V9ZdjsBECjwcneRhE7bHcs9HwxG',
+      ],
+      [100, 50, 300],
+      [100, 50, 25],
+      'CROCODILE', // Bossの名前
+      'https://i.imgur.com/BehawOh.png', // Bossの画像
+      100, // Bossのhp
+      50, // Bossの攻撃力
+    );
+    await gameContract.deployed();
+
+    return {
+      gameContract,
+    };
+  }
+
+  it('attack was successful', async () => {
+    const { gameContract } = await loadFixture(deployTextFixture);
+
+    // 3体のNFTキャラクターの中から、3番目のキャラクターを Mint しています。
+    let txn = await gameContract.mintCharacterNFT(2);
+
+    // Minting が仮想マイナーにより、承認されるのを待ちます。
+    await txn.wait();
+
+    // mintしたNFTにおける、攻撃前と後のhpを取得する
+    let hpBefore = 0;
+    let hpAfter = 0;
+    // NFTの情報を得る
+    // かつきちんとMintがされているかを確認
+    let NFTInfo = await gameContract.checkIfUserHasNFT();
+    hpBefore = NFTInfo.hp.toNumber();
+
+    // 1回目の攻撃: attackBoss 関数を追加
+    txn = await gameContract.attackBoss();
+    await txn.wait();
+
+    NFTInfo = await gameContract.checkIfUserHasNFT();
+    hpAfter = NFTInfo.hp.toNumber();
+
+    expect(hpBefore - hpAfter).to.equal(50);
+  });
+
+  // ボスのHPがなくなった時に、ボスへの攻撃ができないことを確認
+  it('check boss attack does not happen if boss hp is smaller than 0', async () => {
+    const { gameContract } = await loadFixture(deployTextFixture);
+
+    // 3体のNFTキャラクターの中から、1番目のキャラクターを Mint しています。
+    let txn = await gameContract.mintCharacterNFT(0);
+
+    // Minting が仮想マイナーにより、承認されるのを待ちます。
+    await txn.wait();
+
+    // 1回目の攻撃: attackBoss 関数を追加
+    txn = await gameContract.attackBoss();
+    await txn.wait();
+
+    // 2回目の攻撃: attackBoss 関数を追加
+    // ボスのhpがなくなった時に、エラーが発生することを確認
+    txn = expect(gameContract.attackBoss()).to.be.revertedWith(
+      'Error: boss must have HP to attack characters.',
+    );
+  });
+
+  // キャラクターのHPがなくなった時に、ボスへの攻撃ができないことを確認
+  it('check boss attack does not happen if character hp is smaller than 0', async () => {
+    const { gameContract } = await loadFixture(deployTextFixture);
+
+    // 3体のNFTキャラクターの中から、2番目のキャラクターを Mint しています。
+    let txn = await gameContract.mintCharacterNFT(1);
+
+    // Minting が仮想マイナーにより、承認されるのを待ちます。
+    await txn.wait();
+
+    // 1回目の攻撃: attackBoss 関数を追加
+    txn = await gameContract.attackBoss();
+    await txn.wait();
+
+    // 2回目の攻撃: attackBoss 関数を追加
+    // キャラクターのhpがなくなった時に、エラーが発生することを確認
+    txn = expect(gameContract.attackBoss()).to.be.revertedWith(
+      'Error: character must have HP to attack boss.',
+    );
+  });
+});
+```
+
+では下のコマンドを実行することでコントラクトのテストをしていきましょう！
+
+```
+yarn test
+```
+
+下のような結果がでいれば成功です！
+
+```
+Compiled 14 Solidity files successfully
+
+
+  MyEpicGame
+Done initializing boss CROCODILE w/ HP 100, img https://i.imgur.com/BehawOh.png
+Done initializing ZORO w/ HP 100, img QmXxR67ryeUw4xppPLbF2vJmfj1TCGgzANfiEZPzByM5CT
+Done initializing NAMI w/ HP 50, img QmPHX1R4QgvGQrZym5dpWzzopavyNX2WZaVGYzVQQ2QcQL
+Done initializing USOPP w/ HP 300, img QmUGjB7oQLBZdCDNJp9V9ZdjsBECjwcneRhE7bHcs9HwxG
+Minted NFT w/ tokenId 1 and characterIndex 2
+
+Player w/ character USOPP about to attack. Has 300 HP and 25 AD
+Boss CROCODILE has 100 HP and 50 AD
+Player attacked boss. New boss hp: 75
+Boss attacked player. New player hp: 250
+
+    ✔ attack was successful (2072ms)
+Minted NFT w/ tokenId 1 and characterIndex 0
+
+Player w/ character ZORO about to attack. Has 100 HP and 100 AD
+Boss CROCODILE has 100 HP and 50 AD
+Player attacked boss. New boss hp: 0
+Boss attacked player. New player hp: 50
+
+    ✔ check boss attack does not happen if boss hp is smaller than 0 (62ms)
+
+Player w/ character ZORO about to attack. Has 50 HP and 100 AD
+Boss CROCODILE has 0 HP and 50 AD
+Minted NFT w/ tokenId 1 and characterIndex 1
+
+Player w/ character NAMI about to attack. Has 50 HP and 50 AD
+Boss CROCODILE has 100 HP and 50 AD
+Player attacked boss. New boss hp: 50
+Boss attacked player. New player hp: 0
+
+    ✔ check boss attack does not happen if character hp is smaller than 0 (76ms)
+
+Player w/ character NAMI about to attack. Has 0 HP and 50 AD
+Boss CROCODILE has 50 HP and 50 AD
+
+
+  3 passing (2s)
+
+✨  Done in 5.84s.
+```
+
 
 ### 🤩 Web アプリケーションをアップグレードする
 
@@ -288,7 +452,6 @@ string memory json = Base64.encode(
 `App.js`の下記をあなたのTwitterハンドルに更新しましょう。
 
 ```javascript
-// App.js
 const TWITTER_HANDLE = "あなたのTwitterハンドル";
 ```
 

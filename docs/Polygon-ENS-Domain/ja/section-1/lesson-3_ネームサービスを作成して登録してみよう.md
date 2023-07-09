@@ -14,10 +14,9 @@
 `Domains.sol`に向かいます。
 
 ```solidity
-// Domains.sol
 // SPDX-License-Identifier: UNLICENSED
 
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 
 import "hardhat/console.sol";
 
@@ -91,7 +90,6 @@ APIに詳しい方ならパブリックなAPIのエンドポイントのよう�
 では具体的にテストしたいと思います。
 
 ```javascript
-// run.js
 const main = async () => {
   const [owner, randomPerson] = await hre.ethers.getSigners();
   const domainContractFactory = await hre.ethers.getContractFactory('Domains');
@@ -127,7 +125,6 @@ runMain();
 順番に見ていきましょう。
 
 ```javascript
-// run.js
 const [owner, randomPerson] = await hre.ethers.getSigners();
 ```
 
@@ -138,14 +135,12 @@ const [owner, randomPerson] = await hre.ethers.getSigners();
 コントラクトをデプロイした人のアドレスを出力します。
 
 ```javascript
-// run.js
 console.log("Contract deployed by:", owner.address);
 ```
 
 最後にこれを追加しています。
 
 ```javascript
-// run.js
 const txn = await domainContract.register("doom");
 await txn.wait();
 
@@ -159,10 +154,10 @@ console.log("Owner of domain:", domainOwner);
 
 これらを実行してみましょう。
 
-通常どおりスクリプトを実行します。
+ターミナル上で、下記を実行してみましょう。
 
 ```bash
-npx hardhat run scripts/run.js
+yarn contract run:script
 ```
 
 次のような画面になります。
@@ -186,8 +181,6 @@ Owner of domain: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
 
 たとえば、reddit.comはRedditのサーバーを指していますね。
 
-
-
 ENSを使用すると、前に示したように、さまざまなものを保存できます。
 
 アプリの「ネームサービス」の機能として各ドメインに値を追加します。
@@ -201,9 +194,8 @@ ENSを使用すると、前に示したように、さまざまなものを保�
 `Domains.sol`を変更します。
 
 ```solidity
-// Domains.sol
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 
 import "hardhat/console.sol";
 
@@ -255,7 +247,6 @@ require文の括弧の中の条件が満たされない場合、トランザク�
 順番に見ていきましょう。
 
 ```solidity
-// Domains.sol
 require(domains[name] == address(0));
 ```
 
@@ -268,7 +259,6 @@ Solidityではアドレスマッピングが初期化されると、その中の
 
 
 ```solidity
-// Domains.sol
 require(domains[name] == msg.sender);
 ```
 
@@ -280,7 +270,6 @@ require(domains[name] == msg.sender);
 
 
 ```javascript
-// run.js
 const main = async () => {
   // 1つ目のアドレスは呼び出す人、2つ目のアドレスはランダムです。
   const [owner, randomPerson] = await hre.ethers.getSigners();
@@ -314,7 +303,7 @@ runMain();
 スクリプトを実行します。
 
 ```
-npx hardhat run scripts/run.js
+yarn contract run:script
 ```
 次のような画面になります。
 
@@ -336,7 +325,6 @@ Owner of domain doom: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
 `run.js`に数行付け加えました。
 
 ```javascript
-// run.js
 const main = async () => {
   // 1つ目のアドレスは呼び出す人、2つ目のアドレスはランダムです。
   const [owner, randomPerson] = await hre.ethers.getSigners();
@@ -374,14 +362,12 @@ runMain();
 スクリプトを実行します。
 
 ```
-npx hardhat run scripts/run.js
+yarn contract run:script
 ```
-
 
 **次のスクリプトの箇所でエラーが発生します**
 
 ```javascript
-// run.js
 txn = await domainContract.connect(randomPerson).setRecord("doom", "Haha my domain now!");
 await txn.wait();
 ```

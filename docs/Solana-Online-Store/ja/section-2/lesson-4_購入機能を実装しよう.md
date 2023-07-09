@@ -20,7 +20,10 @@ export const hasPurchased = async (publicKey, itemID) => {
     // 注文が存在した場合の処理です。
     if (json.length > 0) {
       // この購入者とアイテムIDのレコードがあるかどうかを確認します。
-      const order = json.find((order) => order.buyer === publicKey.toString() && order.itemID === itemID);
+      const order = json.find(
+        (order) =>
+          order.buyer === publicKey.toString() && order.itemID === itemID,
+      );
       if (order) {
         return true;
       }
@@ -43,13 +46,14 @@ export const hasPurchased = async (publicKey, itemID) => {
 ```jsx
 // Buy.js
 
-import React, { useState, useEffect, useMemo } from 'react';
-import { Keypair, Transaction } from '@solana/web3.js';
 import { findReference, FindReferenceError } from '@solana/pay';
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
+import { Keypair, Transaction } from '@solana/web3.js';
+import { useEffect, useMemo, useState } from 'react';
 import { InfinitySpin } from 'react-loader-spinner';
-import IPFSDownload from './IpfsDownload';
+
 import { addOrder, hasPurchased } from '../lib/api';
+import IPFSDownload from './IpfsDownload';
 
 const STATUS = {
   Initial: 'Initial',
@@ -107,7 +111,7 @@ export default function Buy({ itemID }) {
       const purchased = await hasPurchased(publicKey, itemID);
       if (purchased) {
         setStatus(STATUS.Paid);
-        console.log("Address has already purchased this item!");
+        console.log('Address has already purchased this item!');
       }
     }
     checkPurchased();
@@ -168,7 +172,7 @@ export default function Buy({ itemID }) {
           className="buy-button"
           onClick={processTransaction}
         >
-          Buy now 🠚
+          Buy now →
         </button>
       )}
     </div>
@@ -187,7 +191,7 @@ export default function Buy({ itemID }) {
       const purchased = await hasPurchased(publicKey, itemID);
       if (purchased) {
         setStatus(STATUS.Paid);
-        console.log("Address has already purchased this item!");
+        console.log('Address has already purchased this item!');
       }
     }
     checkPurchased();
@@ -205,10 +209,10 @@ export default function Buy({ itemID }) {
 // fetchItem.js
 
 // このエンドポイントはユーザーに対して IPFS からファイルハッシュを送信します。
-import products from "./products.json"
+import products from './products.json'
 
 export default async function handler(req, res) {
-  if (req.method === "POST") {
+  if (req.method === 'POST') {
     const { itemID } = req.body;
 
     if (!itemID) {
@@ -221,7 +225,7 @@ export default async function handler(req, res) {
       const { hash, filename } = product;
       return res.status(200).send({ hash, filename });
     } else {
-      return res.status(404).send("Item not found");
+      return res.status(404).send('Item not found');
     }
   } else {
     return res.status(405).send(`Method ${req.method} not allowed`);
@@ -237,10 +241,10 @@ export default async function handler(req, res) {
 // api.js
 
 export const fetchItem = async (itemID) => {
-  const response = await fetch("../api/fetchItem", {
-    method: "POST",
+  const response = await fetch('../api/fetchItem', {
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({ itemID }),
   });
@@ -254,18 +258,19 @@ export const fetchItem = async (itemID) => {
 ```jsx
 // Buy.js
 
-import React, { useEffect, useState, useMemo } from "react";
-import { Keypair, Transaction } from "@solana/web3.js";
-import { findReference, FindReferenceError } from "@solana/pay";
-import { useConnection, useWallet } from "@solana/wallet-adapter-react";
-import { InfinitySpin } from "react-loader-spinner";
-import IPFSDownload from "./IpfsDownload";
-import { addOrder, hasPurchased, fetchItem } from "../lib/api";
+import { findReference, FindReferenceError } from '@solana/pay';
+import { useConnection, useWallet } from '@solana/wallet-adapter-react';
+import { Keypair, Transaction } from '@solana/web3.js';
+import { useEffect, useMemo, useState } from 'react';
+import { InfinitySpin } from 'react-loader-spinner';
+
+import { addOrder, fetchItem, hasPurchased } from '../lib/api';
+import IPFSDownload from './IpfsDownload';
 
 const STATUS = {
-  Initial: "Initial",
-  Submitted: "Submitted",
-  Paid: "Paid",
+  Initial: 'Initial',
+  Submitted: 'Submitted',
+  Paid: 'Paid',
 };
 
 export default function Buy({ itemID }) {
@@ -289,21 +294,23 @@ export default function Buy({ itemID }) {
   // サーバーからトランザクションオブジェクトを取得します。（改ざんを回避するために実行されます。）
   const processTransaction = async () => {
     setLoading(true);
-    const txResponse = await fetch("../api/createTransaction", {
-      method: "POST",
+    const txResponse = await fetch('../api/createTransaction', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(order),
     });
     const txData = await txResponse.json();
 
-    const tx = Transaction.from(Buffer.from(txData.transaction, "base64"));
-    console.log("Tx data is", tx);
+    const tx = Transaction.from(Buffer.from(txData.transaction, 'base64'));
+    console.log('Tx data is', tx);
     // トランザクションをネットワークに送信します。
     try {
       const txHash = await sendTransaction(tx, connection);
-      console.log(`Transaction sent: https://solscan.io/tx/${txHash}?cluster=devnet`);
+      console.log(
+        `Transaction sent: https://solscan.io/tx/${txHash}?cluster=devnet`
+      );
       setStatus(STATUS.Submitted);
     } catch (error) {
       console.error(error);
@@ -332,19 +339,22 @@ export default function Buy({ itemID }) {
       const interval = setInterval(async () => {
         try {
           const result = await findReference(connection, orderID);
-          console.log("Finding tx reference", result.confirmationStatus);
-          if (result.confirmationStatus === "confirmed" || result.confirmationStatus === "finalized") {
+          console.log('Finding tx reference', result.confirmationStatus);
+          if (
+            result.confirmationStatus === 'confirmed' ||
+            result.confirmationStatus === 'finalized'
+          ) {
             clearInterval(interval);
             setStatus(STATUS.Paid);
             addOrder(order);
             setLoading(false);
-            alert("Thank you for your purchase!");
+            alert('Thank you for your purchase!');
           }
         } catch (e) {
           if (e instanceof FindReferenceError) {
             return null;
           }
-          console.error("Unknown error", e);
+          console.error('Unknown error', e);
         } finally {
           setLoading(false);
         }
@@ -383,7 +393,7 @@ export default function Buy({ itemID }) {
         <IPFSDownload hash={item.hash} filename={item.filename} />
       ) : (
         <button disabled={loading} className="buy-button" onClick={processTransaction}>
-          Buy now 🠚
+          Buy now →
         </button>
       )}
     </div>
@@ -391,10 +401,97 @@ export default function Buy({ itemID }) {
 }
 ```
 
+### ✅ コンポーネントの動作確認
+
+`Buy`コンポーネントの全ての機能を実装したので、テストスクリプトを実行してみましょう。
+
+簡単にテスト内容を説明します。`__tests__/Buy.test.js`では、**アイテムの購入状態に応じてレンダリングされる内容が変わるか**、**ボタンを押したときに期待する関数が実行されるか**をテストしています。
+
+アイテムの購入状態は、`lib/api.js`の`hasPurchased`関数をモック化することで設定しています。
+
+```javascript
+// __tests__/Buy.test.js
+
+// 各テストの状況に合わせて戻り値を設定します。
+describe('Buy', () => {
+  it('should render buy button when product is not purchased', async () => {
+    /** hasPurchased関数をモックして、未購入を示す`false`を返すようにする */
+    hasPurchased.mockResolvedValue(false);
+
+  ...
+
+  it('should not render buy button when product is purchased', async () => {
+    /** hasPurchased関数をモックして、購入済みを示す`true`を返すようにする */
+    hasPurchased.mockResolvedValue(true);
+```
+
+Buy nowボタンを押したときの挙動は、fetch関数をモックして成功ステータスを返す・sendTransaction関数が期待する引数を受け取るかどうかを確認することでテストしています。
+
+```javascript
+// __tests__/Buy.test.js
+
+// 下記のように成功ステータスを含むレスポンスを定義します。
+const createTransactionMock = () => {
+  return Promise.resolve({
+    status: 200,
+    json: () =>
+      Promise.resolve({
+        transaction: 'transaction',
+      }),
+  });
+};
+
+// テスト内でfetch関数の戻り値を設定します。
+global.fetch = jest.fn(() => createTransactionMock());
+```
+
+関数が期待する引数を受け取るかどうかは、下記の部分で確認しています。
+
+```javascript
+// __tests__/Buy.test.js
+
+/** 確認 */
+/** 期待する引数で関数が実行されているかを確認します */
+expect(fetch).toBeCalledWith('../api/createTransaction', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    buyer: 'publicKey',
+    orderID: 'orderID',
+    itemID: 1,
+  }),
+});
+expect(sendTransactionMock).toBeCalledWith('mockTx', 'connection');
+```
+
+それでは、テストスクリプトを実行してみましょう。`package.json`ファイルのjestコマンドを更新してBuyコンポーネントのテスト実行を追加します。
+
+```json
+// package.json
+
+"scripts": {
+  // 下記に更新
+  "test": "jest IpfsDownload.test.js Buy.test.js"
+}
+```
+
+jestコマンドを更新したら、ターミナルで`yarn test`を実行してみましょう。
+
+```bash
+yarn test
+```
+
+テストがパスしたら、Buyコンポーネントの実装は完了です。
+
+![](/public/images/Solana-Online-Store/section-2/2_4_1.png)
+
+ブラウザ上で実際に操作してみましょう。
+
 おめでとうございます!
 
 これで購入ボタンと商品データ、注文情報などをすべてリンクさせることができました🤣🤣🤣
-
 
 ### 🙋‍♂️ 質問する
 

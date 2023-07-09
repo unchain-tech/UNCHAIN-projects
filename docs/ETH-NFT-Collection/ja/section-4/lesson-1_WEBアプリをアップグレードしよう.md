@@ -105,10 +105,10 @@ describe('MyEpicNFT', function () {
 
 `to.emit(コントラクト名, イベント名).withArgs(emitされる値)`と定義することで、発行されるイベントの値を確認することができます。今回の`NewEpicNFTMinted`イベントは、第一引数にNFTを受け取るアドレス、第二引数にNFTのIDを設定するので期待する値を上記のようにテストしています。
 
-それでは、自動テストを実行してみましょう。`packages/contract`ディレクトリ下で次のコマンドを実行します。
+それでは、自動テストを実行してみましょう。`ETH-NFT-Collection`ディレクトリ直下で次のコマンドを実行します。
 
 ```bash
-npx hardhat test
+yarn contract test
 ```
 
 以下のような出力があり、全てのテストに通過したことが確認できたら完了です！
@@ -158,12 +158,12 @@ An NFT w/ ID 0 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
 
 復習もかねて、丁寧に実行していきましょう。
 
-**1\. ターミナル上で`packages/contract`ディレクトリに移動します。**
+**1\. ターミナル上で`ETH-NFT-Collection`ディレクトリ直下に移動します。**
 
 下記を実行し、コントラクトを再度デプロイしましょう。
 
 ```
-npx hardhat run scripts/deploy.js --network sepolia
+yarn contract deploy:sepolia
 ```
 
 下記のように、ターミナルに出力されたコントラクトアドレス(`0x..`)をコピーしましょう。
@@ -300,7 +300,7 @@ const setupEventListener = async () => {
 // MyEpicNFT.sol
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.18;
 
 // いくつかの OpenZeppelin のコントラクトをインポートします。
 import "@openzeppelin/contracts/utils/Strings.sol";

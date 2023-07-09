@@ -17,8 +17,6 @@ VS Codeで`myepicproject`を開きましょう。
 そして、以下のとおり`lib.rs`ファイルの中身を追加します。
 
 ```rust
-// lib.rs
-
 use anchor_lang::prelude::*;
 
 declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
@@ -109,8 +107,6 @@ pub struct StartStuffOff {}
 そのために、`tests/myepicproject.js`を以下のとおり変更します。
 
 ```javascript
-// myepicproject.js
-
 const anchor = require('@project-serum/anchor');
 
 const main = async() => {
@@ -159,8 +155,6 @@ const tx = await program.rpc.startStuffOff();
 続いて、`myepicproject/Anchor.toml`の`[scripts]`タグを少し変更します。
 
 ```bash
-// Anchor.toml
-
 [scripts]
 test = "node tests/myepicproject.js"
 ```

@@ -52,9 +52,9 @@ Vercelはサーバーレス機能のホスティングを提供するクラウ�
 
 Vercelに関する詳しい説明は、[こちら](https://zenn.dev/lollipop_onl/articles/eoz-vercel-pricing-2020)をご覧ください。
 
-まず、GitHubの`astar_sns_frontend`にローカルファイルをアップロードしていきます。
+まず、GitHubの`Astar-SocialFi`にローカルファイルをアップロードしていきます。
 
-ターミナル上で`astar_sns_frontend`に移動して、下記を実行しましょう。
+ターミナル上で`Astar-SocialFi`に移動して、下記を実行しましょう。
 
 ```
 git add .
@@ -62,13 +62,13 @@ git commit -m "upload to github"
 git push
 ```
 
-次に、GitHub上の`ASTAR_socialfi_frontend`にローカル環境に存在する`ASTAR_socialfi_frontend`のファイルとディレクトリが反映されていることを確認してください。
+次に、GitHub上の`Astar-SocialFi`にローカル環境に存在する`Astar-SocialFi`のファイルとディレクトリが反映されていることを確認してください。
 
 Vercelのアカウントを取得したら、下記を実行しましょう。
 
 1\. `Dashboard`へ進んで、`New Project`を選択してください。
 
-2\. `Import Git Repository`で自分のGitHubアカウントを接続したら、`ASTAR_socialfi_frontend`を選択し、`Import`してください。
+2\. `Import Git Repository`で自分のGitHubアカウントを接続したら、`Astar-SocialFi`を選択し、`Import`してください。
 
 3\. プロジェクトを作成します。
 
@@ -81,6 +81,10 @@ contract_addressには先ほど`Shibuya Testnet`へデプロイした時に取�
 - `NAME`＝`NEXT_PUBLIC_UNKNOWN_IMAGE_URL`
 - `VALUE`＝`imgUrlForUnknown`
 
+また、`Root Directory`が「packages/client」となっていることを確認してください。
+
+![](/public/images/ASTAR-SocialFi/section-3/3_2_15.png)
+
 4\. `Deploy`ボタンを推しましょう。
 
 VercelはGitHubと連動しているので、GitHubが更新されるたびに自動でデプロイを行ってくれます。
@@ -88,7 +92,7 @@ VercelはGitHubと連動しているので、GitHubが更新されるたびに�
 下記のように、`Building`ログが出力されます。
 基本的に`warning`は無視して問題ありません。
 
-![](/public/images/ASTAR-SocialFi/section-2/2_3_1.png)
+![](/public/images/ASTAR-SocialFi/section-3/3_2_16.png)
 
 これでデプロイは成功しました！
 

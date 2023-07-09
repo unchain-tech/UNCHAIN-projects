@@ -2,9 +2,7 @@
 
 今回のwasmコントラクト開発では`ink!`というrustをベースにした言語を用いて行います。この言語を用いた開発における基礎知識を学んでいきましょう！
 
-では環境構築で作成した`astar_sns_contract`のデフォルトのコードを例にして見ていきましょう！
-
-では`lib.rs`の中身を見ていきます。
+では`packages/contract`にある`lib.rs`のデフォルトのコードを例にして見ていきましょう！
 
 [`lib.rs`]
 
@@ -14,7 +12,7 @@
 use ink_lang as ink;
 
 #[ink::contract]
-mod astar_sns_contract {
+mod contract {
 
    /// コントラクトの状態変数を定義
    #[ink(storage)]
@@ -61,17 +59,17 @@ mod astar_sns_contract {
        // デフォルトのコンストラクタが動いているか確認
        #[ink::test]
        fn default_works() {
-           let astar_sns_contract = AstarSnsContract::default();
-           assert_eq!(astar_sns_contract.get(), false);
+           let contract = AstarSnsContract::default();
+           assert_eq!(contract.get(), false);
        }
 
        // コントラクトの関数がきちんと動いているかを確認
        #[ink::test]
        fn it_works() {
-           let mut astar_sns_contract = AstarSnsContract::new(false);
-           assert_eq!(astar_sns_contract.get(), false);
-           astar_sns_contract.flip();
-           assert_eq!(astar_sns_contract.get(), true);
+           let mut contract = AstarSnsContract::new(false);
+           assert_eq!(contract.get(), false);
+           contract.flip();
+           assert_eq!(contract.get(), true);
        }
    }
 }
@@ -101,7 +99,7 @@ use ink_lang as ink;
 状態変数を宣言するために`#[ink(storage)]`を最初に記述しておき、その後に構造体としてコントラクトを宣言します。
 
 ```rust
-mod astar_sns_contract {
+mod contract {
 
    /// Defines the storage of your contract.
    /// Add new fields to the below struct in order
@@ -170,7 +168,7 @@ impl AstarSnsContract {
 
 最後の部分にはテストコードが書かれています。この中の関数には`#[ink::test]`という記述が添えられていますね。
 
-`default_works関数`ではAstarSnsContractコントラクトのコンストラクタ`default関数`の返り値を`astar_sns_contract`という変数に入れることでコントラクトがデプロイされていることを再現します。
+`default_works関数`ではAstarSnsContractコントラクトのコンストラクタ`default関数`の返り値を`contract`という変数に入れることでコントラクトがデプロイされていることを再現します。
 
 このコントラクトに対して作成した関数を実行して、意図した通りの動きをしているかを確認します。
 
@@ -191,17 +189,17 @@ impl AstarSnsContract {
        /// We test if the default constructor does its job.
        #[ink::test]
        fn default_works() {
-           let astar_sns_contract = AstarSnsContract::default();
-           assert_eq!(astar_sns_contract.get(), false);
+           let contract = AstarSnsContract::default();
+           assert_eq!(contract.get(), false);
        }
 
        /// We test a simple use case of our contract.
        #[ink::test]
        fn it_works() {
-           let mut astar_sns_contract = AstarSnsContract::new(false);
-           assert_eq!(astar_sns_contract.get(), false);
-           astar_sns_contract.flip();
-           assert_eq!(astar_sns_contract.get(), true);
+           let mut contract = AstarSnsContract::new(false);
+           assert_eq!(contract.get(), false);
+           contract.flip();
+           assert_eq!(contract.get(), true);
        }
    }
 ```

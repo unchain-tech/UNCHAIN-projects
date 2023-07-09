@@ -61,10 +61,10 @@ const CONTRACT_ADDRESS =
 
 ここでは、コントラクトのアドレスを`CONTRACT_ADDRESS`に格納しています。
 
-**`epic-nfts`ディレクトリ上で、もう一度下記を実行し、コントラクトのアドレスを取得してください。**
+**`ETH-NFT-Collection`ディレクトリ直下で、もう一度下記を実行し、コントラクトのアドレスを取得してください。**
 
 ```bash
-npx hardhat run scripts/deploy.js --network sepolia
+yarn contract deploy:sepolia
 ```
 
 貼り付けるアドレスの例は、以下のようになります。
@@ -269,10 +269,10 @@ ABIファイルの中身は、`MyEpicNFT.json`というファイルに格納さ�
 4\. 下記を実行して、`MyEpicNFT.json`ファイルをVS Codeで開く。
 
 > ```bash
-> code nft-collection-starter-project/src/utils/MyEpicNFT.json
+> code src/utils/MyEpicNFT.json
 > ```
 
-5\. **先ほどコピーした`epic-nfts/artifacts/contracts/MyEpicNFT.sol/MyEpicNFT.json`の中身を新しく作成した`nft-collection-starter-project/src/utils/MyEpicNFT.json`の中に貼り付けてください。**
+5\. **先ほどコピーした`contract/artifacts/contracts/MyEpicNFT.sol/MyEpicNFT.json`の中身を新しく作成した`client/src/utils/MyEpicNFT.json`の中に貼り付けてください。**
 
 ABIファイルの準備ができたので、`App.js`にインポートしましょう。
 
@@ -287,10 +287,10 @@ import myEpicNft from "./utils/MyEpicNFT.json";
 
 ### 🥳 NFT を Mint する
 
-それでは、ターミナル上で`nft-collection-starter-project`ディレクトリに移動して下記を実行し、ローカル環境でWebアプリケーションをホストしてみましょう。
+それでは、ターミナル上で`ETH-NFT-Collection`ディレクトリ直下に移動して下記を実行し、ローカル環境でWebアプリケーションをホストしてみましょう。
 
 ```bash
-npm run start
+yarn client start
 ```
 
 Webアプリケーションの`Mint NFT`ボタンを押して、下記のようなポップアップが立ち上がったら、`Confirm`を押してください。
@@ -347,7 +347,7 @@ Consoleに出力された`https://sepolia.etherscan.io/...`のアドレスをク
 
 **1 \. 再度、コントラクトをデプロイする。**
 
-- `npx hardhat run scripts/deploy.js --network sepolia`を実行する必要があります。
+- `yarn contract deploy:sepolia`を実行する必要があります。
 
 2 \. フロントエンド(`App.js`)の`CONTRACT_ADDRESS`を更新する。
 

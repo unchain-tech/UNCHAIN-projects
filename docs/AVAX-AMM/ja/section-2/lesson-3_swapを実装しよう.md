@@ -1,6 +1,6 @@
 ### 🔥 swap を実装しましょう
 
-前回のレッスンでは, あるトークンのswapによって, ユーザに送信するトークンの量を求める計算式について理解しました。
+前回のレッスンでは、あるトークンのswapによって、ユーザに送信するトークンの量を求める計算式について理解しました。
 
 このレッスンでは実際にコントラクトにswapを実装します。
 
@@ -50,17 +50,17 @@
 
 `getSwapEstimateOut`関数では前回のレッスンの`シチュエーション 1`を実装しています。
 
-引数で渡されたswapをする元のトークン(`inToken`)と, その量(`amountIn`)から, swapによりプールからユーザに送信されるswap先のトークンの量を返却します。
+引数で渡されたswapをする元のトークン(`inToken`)と、その量(`amountIn`)から、swapによりプールからユーザに送信されるswap先のトークンの量を返却します。
 
-ここ使われているoutという言葉はプールから出ていくトークンに関するものであることを表し, inはプールに入ってくるトークンに関するものであることを表します。
+ここ使われているoutという言葉はプールから出ていくトークンに関するものであることを表し、inはプールに入ってくるトークンに関するものであることを表します。
 
 内部で行っている計算式は前回のレッスンで求めたもの使用しています。
 
-`getSwapEstimateIn`関数についても同様で, 前回のレッスンの`シチュエーション 2`を実装しています。
+`getSwapEstimateIn`関数についても同様で、前回のレッスンの`シチュエーション 2`を実装しています。
 
 スワップ先のトークンの量からプールに必要なスワップ元のトークンの量を返却します。
 
-さらにその下の行に以下の関数を追加し, コントラクトを完成させてください。
+さらにその下の行に以下の関数を追加し、コントラクトを完成させてください。
 
 ```solidity
     function swap(
@@ -80,7 +80,7 @@
     }
 ```
 
-`swap`関数はシンプルで, `getSwapEstimateOut`によりユーザに送信するトークンの量を取得したら,
+`swap`関数はシンプルで、`getSwapEstimateOut`によりユーザに送信するトークンの量を取得したら,
 `inToken`をユーザからコントラクトへ移動させ`outToken`をコントラクトからユーザへ送信します。
 
 ### 🧪 テストを追加しましょう
@@ -89,8 +89,8 @@
 `test/AMM.ts`内のテストの最後の行に以下のコードを追加してください。
 
 ```ts
-describe("getSwapEstimateOut", function () {
-  it("Should get the right number of token", async function () {
+describe('getSwapEstimateOut', function () {
+  it('Should get the right number of token', async function () {
     const { amm, token0, token1 } = await loadFixture(
       deployContractWithLiquidity
     );
@@ -98,7 +98,7 @@ describe("getSwapEstimateOut", function () {
     const totalToken0 = await amm.totalAmount(token0.address);
     const totalToken1 = await amm.totalAmount(token1.address);
 
-    const amountInToken0 = ethers.utils.parseEther("10");
+    const amountInToken0 = ethers.utils.parseEther('10');
     // basic formula: k = x * y
     // fee = 0.3%
     const amountInToken0WithFee = amountInToken0.mul(997);
@@ -112,8 +112,8 @@ describe("getSwapEstimateOut", function () {
   });
 });
 
-describe("getSwapEstimateIn", function () {
-  it("Should get the right number of token", async function () {
+describe('getSwapEstimateIn', function () {
+  it('Should get the right number of token', async function () {
     const { amm, token0, token1 } = await loadFixture(
       deployContractWithLiquidity
     );
@@ -121,7 +121,7 @@ describe("getSwapEstimateIn", function () {
     const totalToken0 = await amm.totalAmount(token0.address);
     const totalToken1 = await amm.totalAmount(token1.address);
 
-    const amountOutToken1 = ethers.utils.parseEther("10");
+    const amountOutToken1 = ethers.utils.parseEther('10');
     // basic formula: k = x * y
     // fee = 0.3%
     const amountInToken0 = totalToken0
@@ -134,7 +134,7 @@ describe("getSwapEstimateIn", function () {
     );
   });
 
-  it("Should revert if the amount of out token exceed the total", async function () {
+  it('Should revert if the amount of out token exceed the total', async function () {
     const { amm, token1, amountOwnerProvided1, amountOtherProvided1 } =
       await loadFixture(deployContractWithLiquidity);
 
@@ -144,21 +144,21 @@ describe("getSwapEstimateIn", function () {
 
     await expect(
       amm.getSwapEstimateIn(token1.address, amountSendToken1)
-    ).to.be.revertedWith("Insufficient pool balance");
+    ).to.be.revertedWith('Insufficient pool balance');
   });
 });
 ```
 
-`getSwapEstimateOut`, `getSwapEstimateIn`テストは共に先ほど実装した
+`getSwapEstimateOut`、`getSwapEstimateIn`テストは共に先ほど実装した
 getSwapEstimateOut/getSwapEstimateInが正しく値を返しているかをテスト側でも計算することで確かめています。
 
-また, `getSwapEstimateIn`テストでは`getSwapEstimateIn`を呼び出す際に指定するトークンの量がプール内の総量を超えていた場合にトランザクションがキャンセルされることを確かめています。
+また、`getSwapEstimateIn`テストでは`getSwapEstimateIn`を呼び出す際に指定するトークンの量がプール内の総量を超えていた場合にトランザクションがキャンセルされることを確かめています。
 
 続いてその下に以下のテストを追加しましょう。
 
 ```ts
-describe("swap", function () {
-  it("Should set the right number of amm details", async function () {
+describe('swap', function () {
+  it('Should set the right number of amm details', async function () {
     const {
       amm,
       token0,
@@ -169,7 +169,7 @@ describe("swap", function () {
       amountOtherProvided1,
     } = await loadFixture(deployContractWithLiquidity);
 
-    const amountSendToken0 = ethers.utils.parseEther("10");
+    const amountSendToken0 = ethers.utils.parseEther('10');
     const amountReceiveToken1 = await amm.getSwapEstimateOut(
       token0.address,
       amountSendToken0
@@ -186,7 +186,7 @@ describe("swap", function () {
     );
   });
 
-  it("Token should be moved", async function () {
+  it('Token should be moved', async function () {
     const { amm, token0, token1, owner } = await loadFixture(
       deployContractWithLiquidity
     );
@@ -197,7 +197,7 @@ describe("swap", function () {
     const ammBalance0Before = await token0.balanceOf(amm.address);
     const ammBalance1Before = await token1.balanceOf(amm.address);
 
-    const amountSendToken0 = ethers.utils.parseEther("10");
+    const amountSendToken0 = ethers.utils.parseEther('10');
     const amountReceiveToken1 = await amm.getSwapEstimateOut(
       token0.address,
       amountSendToken0
@@ -225,16 +225,14 @@ describe("swap", function () {
 
 `swap`のテストを追加しました。
 
-swapによりammの状態変数が正しく変更されているか, トークンの移動が正しく行われているかをそれぞれテストを記述しています。
+swapによりammの状態変数が正しく変更されているか、トークンの移動が正しく行われているかをそれぞれテストを記述しています。
 
 ### ⭐ テストを実行しましょう
 
-`AVAX-AMM`ディレクトリ直下で以下のコマンドを実行してください。
+ターミナル上で以下のコマンドを実行してください。
 
 ```
-
-$ npm run test
-
+yarn test
 ```
 
 以下のような表示がされたらテスト成功です！
@@ -243,16 +241,16 @@ $ npm run test
 
 ### 🌔 参考リンク
 
-> [こちら](https://github.com/unchain-dev/avalanche-amm-dapp)に本プロジェクトの完成形のレポジトリがあります。
+> [こちら](https://github.com/unchain-tech/AVAX-AMM)に本プロジェクトの完成形のレポジトリがあります。
 >
 > 期待通り動かない場合は参考にしてみてください。
 
 
 ### 🙋‍♂️ 質問する
 
-ここまでの作業で何かわからないことがある場合は,Discordの`#avalanche`で質問をしてください。
+ここまでの作業で何かわからないことがある場合は、Discordの`#avalanche`で質問をしてください。
 
-ヘルプをするときのフローが円滑になるので,エラーレポートには下記の3点を記載してください ✨
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の3点を記載してください ✨
 
 ```
 1. 質問が関連しているセクション番号とレッスン番号

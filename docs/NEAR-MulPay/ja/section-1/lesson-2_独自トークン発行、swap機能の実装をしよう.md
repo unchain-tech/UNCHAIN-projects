@@ -2,13 +2,6 @@
 
 ではいよいよスマートコントラクトの実装に移ります。まずはこの送金アプリで使うトークンを発行するためのコントラクトを作成しましょう。
 
-とその前に、使用するライブラリをnpmを使用することでインストールしていきましょう。下のコードを実行することによって行います。
-
-```
-npm install @openzeppelin/contracts
-npm install dotenv
-```
-
 今回はOpenZepplinが公開しているライブラリを使用するのでとても簡略化できます。このライブラリを使用することによってトークンの授受や指定したアドレスの残高照会のための関数を簡単かつ安全に使用することができます。
 
 1つ前のレッスンで作成した`ERC20Tokens.sol`ファイルに以下の内容を追記しましょう。
@@ -17,7 +10,7 @@ npm install dotenv
 
 ```
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.17;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
@@ -130,7 +123,7 @@ etherの最小単位`wei`は`10の-18乗`であり、発行数の単位はweiな
 
 ```
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.17;
 
 // Import this file to use console.log
 import "hardhat/console.sol";

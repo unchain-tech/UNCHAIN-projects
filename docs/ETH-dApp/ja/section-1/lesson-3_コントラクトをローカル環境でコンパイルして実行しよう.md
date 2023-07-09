@@ -21,7 +21,6 @@
 `run.js`の中身に、以下を記入しましょう。
 
 ```javascript
-// run.js
 const main = async () => {
   const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
   const waveContract = await waveContractFactory.deploy();
@@ -46,7 +45,6 @@ runMain();
 それでは、1行ずつコードの理解を深めましょう。
 
 ```javascript
-// run.js
 const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
 ```
 
@@ -71,7 +69,6 @@ const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
 次に、下記の処理を見ていきましょう。
 
 ```javascript
-// run.js
 const waveContract = await waveContractFactory.deploy();
 ```
 
@@ -86,7 +83,6 @@ HardhatがローカルのEthereumネットワークを、コントラクトの�
 次に下記の処理を見ていきましょう。
 
 ```javascript
-// run.js
 const wavePortal = await waveContract.deployed();
 ```
 
@@ -99,7 +95,6 @@ Hardhatは実際にあなたのマシン上に「マイナー」を作成し、�
 最後に、下記の処理を見ていきましょう。
 
 ```javascript
-// run.js
 console.log("WavePortal address:", wavePortal.address);
 ```
 
@@ -115,10 +110,19 @@ console.log("WavePortal address:", wavePortal.address);
 
 ### 🪄 実行してみよう
 
-ターミナル上で、下記を実行してみましょう。
+`packages/contract/package.json`の`script`部分を以下のように編集してください。
+
+```
+"scripts": {
+    "run:script":"npx hardhat run scripts/run.js",
+    "test": "npx hardhat test",
+    "deploy": "npx hardhat run scripts/deploy.js --network sepolia"
+  },
+```
+その後ルートディレクトリにいることを確認して、ターミナル上で下記を実行してみましょう。
 
 ```bash
-npx hardhat run scripts/run.js
+yarn contract run:script
 ```
 
 ターミナル上で`console.log`の中身とコントラクトアドレスが表示されていることを確認してください。
@@ -126,7 +130,7 @@ npx hardhat run scripts/run.js
 例)ターミナル上でのアウトプット:
 
 ```
-Compiled 1 Solidity file successfully
+Compiled 2 Solidity files successfully
 Here is my first smart contract!
 WavePortal address:  0x5FbDB2315678afecb367f032d93F642f64180aa3
 ```
