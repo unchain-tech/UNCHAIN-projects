@@ -1,9 +1,9 @@
 {
-    "project_id": 103,
-    "title": "ETH NFT Maker",
-    "difficulty": "intermediate",
-    "chain": "Ethereum",
-    "description": "👉 Solidity と React で、ユーザーが画像をアップロードしてオリジナルの NFT を Mint できる WEB サイトを構築します。",
-    "total_sections": 4,
-    "total_lessons": 13
+  "project_id": 103,
+  "title": "ETH NFT Maker",
+  "difficulty": "intermediate",
+  "chain": "Ethereum",
+  "description": "👉 Solidity と React で、ユーザーが画像をアップロードしてオリジナルの NFT を Mint できる WEB サイトを構築します。",
+  "total_sections": 5,
+  "total_lessons": 13
 }
