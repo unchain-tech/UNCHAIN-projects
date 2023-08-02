@@ -4,9 +4,10 @@
 
 このレッスンでは、アプリケーションをXummと連携し、NFTのMintトランザクションを実行する方法を学びます。
 
-- [Xummでのログインを実装しよう](#xummでのログインを実装しよう)
-- [画像のアップロードを実装しよう](#画像のアップロードを実装しよう)
-- [NFTのMint処理を実装しよう](#nftのmint処理を実装しよう)
+- [🏃 Xummでのログインを実装しよう](#-xummでのログインを実装しよう)
+- [🌥️ 画像のアップロードを実装しよう](#️-画像のアップロードを実装しよう)
+- [📝 NFTのMint処理を実装しよう](#-nftのmint処理を実装しよう)
+- [🙋‍♂️ 質問する](#️-質問する)
 
 ### 🏃 Xummでのログインを実装しよう
 
@@ -232,9 +233,9 @@ const mint = async () => {
       transaction: txid,
     });
     // トランザクション情報からNFTの情報を取得
-    const nftoken = extractAffectedNFT(txResponse);
-    alert('NFTトークンが発行されました！')
-    window.open(`https://test.bithomp.com/nft/${nftoken.NFTokenID}`, "_blank");
+    const nftokenId = txResponse.meta.nftoken_id
+    alert("NFTトークンが発行されました！");
+    window.open(`https://test.bithomp.com/nft/${nftokenId}`, "_blank");
   };
 ```
 
@@ -283,7 +284,7 @@ const mint = async () => {
 
 次に、この関数内で使うライブラリをインポートします。
 
-まずはコンソールで`npm install buffer@^6.0.3 xrpl-client@^2.0.11 nft.storage@^7.0.3 @xrplkit/txmeta@^1.2.0`を実行してください。
+まずはコンソールで`npm install buffer@^6.0.3 xrpl-client@^2.0.11 nft.storage@^7.0.3`を実行してください。
 
 `import { useEffect, useState } from "react";`の下に次のコードを追加してください。
 
@@ -291,7 +292,6 @@ const mint = async () => {
 import { Buffer } from "buffer";
 import { XrplClient } from 'xrpl-client'
 import { NFTStorage } from "nft.storage";
-import { extractAffectedNFT } from "@xrplkit/txmeta";
 ```
 
 また`const xumm = new Xumm("api-key");`の下に次のコードを追加してください。
@@ -377,9 +377,9 @@ mint関数の処理を1つずつ説明していきます。
       command: "tx",
       transaction: txid,
     });
-    const nftoken = extractAffectedNFT(txResponse);
-    alert('NFTトークンが発行されました！')
-    window.open(`https://test.bithomp.com/nft/${nftoken.NFTokenID}`, "_blank");
+    const nftokenId = txResponse.meta.nftoken_id
+    alert('NFTトークンが発行されました！');
+    window.open(`https://test.bithomp.com/nft/${nftokenId}`, "_blank");
 ```
 
 > **✅ テストを実行してみよう**
