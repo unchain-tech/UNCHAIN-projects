@@ -479,7 +479,8 @@ export default Home;
 
 これらの基本機能をテストスクリプトとして記述していきましょう。
 ではtestディレクトリを作成し、その中に`test.ts`という名前でファイルを作成して、以下のように記述しましょう。
-```
+
+```typescript
 import { AddressZero } from '@ethersproject/constants';
 import nextEnv from '@next/env';
 import { ThirdwebSDK } from '@thirdweb-dev/sdk';
