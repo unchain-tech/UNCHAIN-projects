@@ -87,11 +87,11 @@ export default function HeadComponent(): JSX.Element {
 
 以下のコマンドを実行するとローカルでフロントエンドが立ち上がるので、初期画面を確認してみましょう。
 
-※ `localhost:3000`を開くと表示されます。
-
 ```bash
 yarn dev
 ```
+
+※ `localhost:3000`を開くと表示されます。
 
 ![](/public/images/ETH-DAO/section-1/1_3_3.png)
 

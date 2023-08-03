@@ -106,7 +106,7 @@ ERC-20から、各メンバーが持っているトークンの数を取得し�
 
 この配列は、メンバーのアドレスとトークン残高の両方を含む、すばらしい配列です。
 
-`useMemo`が何をするのか、自由にチェックしてみてください [ここ](https://reactjs.org/docs/hooks-reference.html#usememo)。
+`useMemo`が何をするのか、自由に[ここ](https://reactjs.org/docs/hooks-reference.html#usememo)をチェックしてみてください。
 
 これは、Reactで計算された変数を保存するための便利な方法です。
 

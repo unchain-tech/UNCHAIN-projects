@@ -107,7 +107,7 @@ Done in 40.70s.
 
 新しいトークンコントラクトがデプロイされました。
 
-[https://sepolia.etherscan.io/](https://sepolia.etherscan.io/) にアクセスし、トークンコントラクトのアドレスを検索すると、先ほどデプロイしたばかりのコントラクトを見ることができます。
+[Etherscan](https://sepolia.etherscan.io/) にアクセスし、トークンコントラクトのアドレスを検索すると、先ほどデプロイしたばかりのコントラクトを見ることができます。
 
 ここでも、**あなたのウォレット**からデプロイされたことがわかるので、**あなたがそれを所有している**ことがわかります。
 
@@ -190,7 +190,7 @@ SDK initialized by address: 0x8cB688A30D5Fd6f2e5025d8915eD95e770832933
 Done in 32.95s.
 ```
 
-EtherscanでERC-20コントラクトの画面を表示し、`More Info`から`Token Tracker`のリンクを表示させます。
+[Etherscan](https://sepolia.etherscan.io/) でERC-20コントラクトの画面を表示し、`More Info`から`Token Tracker`のリンクを表示させます。
 
 ![](/public/images/ETH-DAO/section-3/3_1_7.png)
 
