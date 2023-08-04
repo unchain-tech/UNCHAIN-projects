@@ -7,20 +7,23 @@
 まず、`src/pages/index.tsx`へ移動し、`react`のインポート部分のコードを以下のとおり変更します。
 
 ```typescript
-import { useState, useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from 'react';
 ```
 
 ここで変更されたことは`useMemo`をインポートしたところだけです。
 
 `useMemo`はコンポーネントの中で値をメモ化してくれる機能です。
 
-続いて、`const editionDrop = useContract("INSERT_EDITION_DROP_ADDRESS", "edition-drop").contract;`の下にあなたの`token`アドレスを貼り付けてください。
+続いて、`const editionDrop = useContract('INSERT_EDITION_DROP_ADDRESS', 'edition-drop').contract;`の下にあなたの`token`アドレスを貼り付けてください。
 
 ※ あなたのアドレスを設定することを忘れないでください！
 
 ```typescript
-// トークンコントラクトの初期化
-const token = useContract("INSERT_TOKEN_ADDRESS", "token").contract;
+  // トークンコントラクトの初期化
+  const token = useContract(
+    'INSERT_TOKEN_ADDRESS',
+    'token',
+  ).contract;
 ```
 
 これはERC-1155とERC-20の両方とやり取りするために必要なものです。
@@ -40,7 +43,7 @@ ERC-20から、各メンバーが持っているトークンの数を取得し�
 
   // アドレスの長さを省略してくれる便利な関数
   const shortenAddress = (str: string) => {
-    return str.substring(0, 6) + "..." + str.substring(str.length - 4);
+    return str.substring(0, 6) + '...' + str.substring(str.length - 4);
   };
 
   // メンバーシップを保持しているメンバーの全アドレスを取得します
@@ -56,9 +59,9 @@ ERC-20から、各メンバーが持っているトークンの数を取得し�
           0
         );
         setMemberAddresses(memberAddresses);
-        console.log("🚀 Members addresses", memberAddresses);
+        console.log('🚀 Members addresses', memberAddresses);
       } catch (error) {
-        console.error("failed to get member list", error);
+        console.error('failed to get member list', error);
       }
     };
     getAllAddresses();
@@ -74,9 +77,9 @@ ERC-20から、各メンバーが持っているトークンの数を取得し�
       try {
         const amounts = await token?.history.getAllHolderBalances();
         setMemberTokenAmounts(amounts);
-        console.log("👜 Amounts", amounts);
+        console.log('👜 Amounts', amounts);
       } catch (error) {
-        console.error("failed to get member balances", error);
+        console.error('failed to get member balances', error);
       }
     };
     getAllBalances();
@@ -88,11 +91,13 @@ ERC-20から、各メンバーが持っているトークンの数を取得し�
       // memberTokenAmounts 配列でアドレスが見つかっているかどうかを確認します
       // その場合、ユーザーが持っているトークンの量を返します
       // それ以外の場合は 0 を返します
-      const member = memberTokenAmounts?.find(({ holder }: {holder: string}) => holder === address);
+      const member = memberTokenAmounts?.find(
+        ({ holder }: {holder: string}) => holder === address,
+      );
 
       return {
         address,
-        tokenAmount: member?.balance.displayValue || "0",
+        tokenAmount: member?.balance.displayValue || '0',
       };
     });
   }, [memberAddresses, memberTokenAmounts]);

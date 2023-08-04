@@ -140,7 +140,7 @@ const editionDrop = sdk.getContract(editionDropAddress, 'edition-drop');
 
 `waitInSeconds`はトランザクション間の時間です。
 
-最後に、`editionDrop.claimConditions.set("0", claimConditions)`を実行すると、オンチェーンに配置されたコントラクトとやりとりして条件を調整することができます。
+最後に、`editionDrop.claimConditions.set('0', claimConditions)`を実行すると、オンチェーンに配置されたコントラクトとやりとりして条件を調整することができます。
 
 なぜ0を渡すのでしょうか？
 
