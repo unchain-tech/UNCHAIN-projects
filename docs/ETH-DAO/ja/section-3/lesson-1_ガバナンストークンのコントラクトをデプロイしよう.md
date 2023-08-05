@@ -52,27 +52,28 @@ ENSチームは、ネットワークの初期サポーターに報酬を与え�
 `src/scripts/5-deploy-token.ts`を作成し、以下を追加します。
 
 ```tsx
-import { AddressZero } from "@ethersproject/constants";
-import sdk from "./1-initialize-sdk.js";
+import { AddressZero } from '@ethersproject/constants';
+
+import sdk from './1-initialize-sdk.js';
 
 (async () => {
   try {
     // 標準的なERC-20のコントラクトをデプロイする
     const tokenAddress = await sdk.deployer.deployToken({
-      // トークン名 Ex. "Ethereum"
-      name: "Tokyo Sauna Collective Governance Token",
-      // トークンシンボル Ex. "ETH"
-      symbol: "TSC",
+      // トークン名 Ex. 'Ethereum'
+      name: 'Tokyo Sauna Collective Governance Token',
+      // トークンシンボル Ex. 'ETH'
+      symbol: 'TSC',
       // これは、トークンを売却する場合の受け取り先の設定
       // 今回は販売しないので、再び AddressZero に設定
       primary_sale_recipient: AddressZero,
     });
     console.log(
-      "✅ Successfully deployed token module, address:",
+      '✅ Successfully deployed token module, address:',
       tokenAddress
     );
   } catch (error) {
-    console.error("failed to deploy token module", error);
+    console.error('failed to deploy token module', error);
   }
 })();
 ```
@@ -107,7 +108,7 @@ Done in 40.70s.
 
 新しいトークンコントラクトがデプロイされました。
 
-[https://sepolia.etherscan.io/](https://sepolia.etherscan.io/) にアクセスし、トークンコントラクトのアドレスを検索すると、先ほどデプロイしたばかりのコントラクトを見ることができます。
+[Etherscan](https://sepolia.etherscan.io/) にアクセスし、トークンコントラクトのアドレスを検索すると、先ほどデプロイしたばかりのコントラクトを見ることができます。
 
 ここでも、**あなたのウォレット**からデプロイされたことがわかるので、**あなたがそれを所有している**ことがわかります。
 
@@ -190,7 +191,7 @@ SDK initialized by address: 0x8cB688A30D5Fd6f2e5025d8915eD95e770832933
 Done in 32.95s.
 ```
 
-EtherscanでERC-20コントラクトの画面を表示し、`More Info`から`Token Tracker`のリンクを表示させます。
+[Etherscan](https://sepolia.etherscan.io/) でERC-20コントラクトの画面を表示し、`More Info`から`Token Tracker`のリンクを表示させます。
 
 ![](/public/images/ETH-DAO/section-3/3_1_7.png)
 

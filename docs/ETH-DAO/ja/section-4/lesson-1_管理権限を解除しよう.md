@@ -83,28 +83,43 @@ Done in 44.18s.
 参考までに、ここまで修正を重ねた`src/pages/index.tsx`は以下のとおりとなっております。
 
 ```typescript
-import { useState, useEffect, useMemo } from "react";
-import type { NextPage } from "next";
+import { AddressZero } from '@ethersproject/constants';
 // 接続中のネットワークを取得するため useNetwork を新たにインポートします。
-import { ConnectWallet, useNetwork, useAddress, useContract } from "@thirdweb-dev/react";
-import styles from "../styles/Home.module.css";
-import { Proposal } from "@thirdweb-dev/sdk";
-import { AddressZero } from "@ethersproject/constants";
+import {
+  ConnectWallet,
+  useAddress,
+  useContract
+  useNetwork,
+} from '@thirdweb-dev/react';
+import { Proposal } from '@thirdweb-dev/sdk';
+import type { NextPage } from 'next';
+import { useEffect, useMemo, useState} from 'react';
+
+import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {
   const address = useAddress();
-  console.log("👋Wallet Address: ", address);
+  console.log('👋Wallet Address: ', address);
 
   const [network, switchNetwork] = useNetwork();
 
   // editionDrop コントラクトを初期化
-  const editionDrop = useContract("INSERT_EDITION_DROP_ADDRESS", "edition-drop").contract;
+  const editionDrop = useContract(
+    'INSERT_EDITION_DROP_ADDRESS',
+    'edition-drop',
+  ).contract;
 
   // トークンコントラクトの初期化
-  const token = useContract("INSERT_TOKEN_ADDRESS", "token").contract;
+  const token = useContract(
+    'INSERT_TOKEN_ADDRESS',
+    'token',
+  ).contract;
 
   // 投票コントラクトの初期化
-  const vote = useContract("INSERT_VOTE_ADDRESS", "vote").contract;
+  const vote = useContract(
+    'INSERT_VOTE_ADDRESS',
+    'vote',
+  ).contract;
 
   // ユーザーがメンバーシップ NFT を持っているかどうかを知るためのステートを定義
   const [hasClaimedNFT, setHasClaimedNFT] = useState(false);
@@ -124,7 +139,7 @@ const Home: NextPage = () => {
 
   // アドレスの長さを省略してくれる便利な関数
   const shortenAddress = (str: string) => {
-    return str.substring(0, 6) + "..." + str.substring(str.length - 4);
+    return str.substring(0, 6) + '...' + str.substring(str.length - 4);
   };
 
   // コントラクトから既存の提案を全て取得します
@@ -138,9 +153,9 @@ const Home: NextPage = () => {
       try {
         const proposals = await vote!.getAll();
         setProposals(proposals);
-        console.log("🌈 Proposals:", proposals);
+        console.log('🌈 Proposals:', proposals);
       } catch (error) {
-        console.log("failed to get proposals", error);
+        console.log('failed to get proposals', error);
       }
     };
     getAllProposals();
@@ -159,15 +174,15 @@ const Home: NextPage = () => {
 
     const checkIfUserHasVoted = async () => {
       try {
-        const hasVoted = await vote!.hasVoted(proposals[0].proposalchainId.toString(), address);
+        const hasVoted = await vote!.hasVoted(proposals[0].proposalId.toString(), address);
         setHasVoted(hasVoted);
         if (hasVoted) {
-          console.log("🥵 User has already voted");
+          console.log('🥵 User has already voted');
         } else {
-          console.log("🙂 User has not voted yet");
+          console.log('🙂 User has not voted yet');
         }
       } catch (error) {
-        console.error("Failed to check if wallet has voted", error);
+        console.error('Failed to check if wallet has voted', error);
       }
     };
     checkIfUserHasVoted();
@@ -187,9 +202,9 @@ const Home: NextPage = () => {
           0
         );
         setMemberAddresses(memberAddresses);
-        console.log("🚀 Members addresses", memberAddresses);
+        console.log('🚀 Members addresses', memberAddresses);
       } catch (error) {
-        console.error("failed to get member list", error);
+        console.error('failed to get member list', error);
       }
     };
     getAllAddresses();
@@ -205,9 +220,9 @@ const Home: NextPage = () => {
       try {
         const amounts = await token?.history.getAllHolderBalances();
         setMemberTokenAmounts(amounts);
-        console.log("👜 Amounts", amounts);
+        console.log('👜 Amounts', amounts);
       } catch (error) {
-        console.error("failed to get member balances", error);
+        console.error('failed to get member balances', error);
       }
     };
     getAllBalances();
@@ -219,11 +234,13 @@ const Home: NextPage = () => {
       // memberTokenAmounts 配列でアドレスが見つかっているかどうかを確認します
       // その場合、ユーザーが持っているトークンの量を返します
       // それ以外の場合は 0 を返します
-      const member = memberTokenAmounts?.find(({ holder }: {holder: string}) => holder === address);
+      const member = memberTokenAmounts?.find(
+        ({ holder }: {holder: string}) => holder === address,
+      );
 
       return {
         address,
-        tokenAmount: member?.balance.displayValue || "0",
+        tokenAmount: member?.balance.displayValue || '0',
       };
     });
   }, [memberAddresses, memberTokenAmounts]);
@@ -239,14 +256,14 @@ const Home: NextPage = () => {
         const balance = await editionDrop!.balanceOf(address, 0);
         if (balance.gt(0)) {
           setHasClaimedNFT(true);
-          console.log("🌟 this user has a membership NFT!");
+          console.log('🌟 this user has a membership NFT!');
         } else {
           setHasClaimedNFT(false);
           console.log("😭 this user doesn't have a membership NFT.");
         }
       } catch (error) {
         setHasClaimedNFT(false);
-        console.error("Failed to get balance", error);
+        console.error('Failed to get balance', error);
       }
     };
     // 関数を実行
@@ -256,14 +273,14 @@ const Home: NextPage = () => {
   const mintNft = async () => {
     try {
       setIsClaiming(true);
-      await editionDrop!.claim("0", 1);
+      await editionDrop!.claim('0', 1);
       console.log(
         `🌊Successfully Minted! Check it out on etherscan: https://sepolia.etherscan.io/address/${editionDrop!.getAddress()}/0`
       );
       setHasClaimedNFT(true);
     } catch (error) {
       setHasClaimedNFT(false);
-      console.error("Failed to mint NFT", error);
+      console.error('Failed to mint NFT', error);
     } finally {
       setIsClaiming(false);
     }
@@ -285,9 +302,9 @@ const Home: NextPage = () => {
     );
   }
   // テストネットが Sepolia ではなかった場合に警告を表示
-  else if (address && network && network?.data?.chain?.chainId !== 11155111) {
-    console.log("wallet address: ", address);
-    console.log("network: ", network?.data?.chain?.chainId);
+  else if (address && network && network?.data?.chain?.id !== 11155111) {
+    console.log('wallet address: ', address);
+    console.log('network: ', network?.data?.chain?.id);
 
     return (
       <div className={styles.container}>
@@ -342,12 +359,12 @@ const Home: NextPage = () => {
                   // フォームから値を取得します
                   const votes = proposals.map((proposal) => {
                     const voteResult = {
-                      proposalchainId: proposal.proposalchainId,
+                      proposalId: proposal.proposalId,
                       vote: 2,
                     };
                     proposal.votes.forEach((vote) => {
                       const elem = document.getElementBychainId(
-                        proposal.proposalchainId + "-" + vote.type
+                        proposal.proposalId + '-' + vote.type
                       ) as HTMLInputElement;
 
                       if (elem!.checked) {
@@ -369,12 +386,12 @@ const Home: NextPage = () => {
                     // 提案に対する投票を行います
                     try {
                       await Promise.all(
-                        votes.map(async ({ proposalchainId, vote: _vote }) => {
+                        votes.map(async ({ proposalId, vote: _vote }) => {
                           // 提案に投票可能かどうかを確認します
-                          const proposal = await vote!.get(proposalchainId);
+                          const proposal = await vote!.get(proposalId);
                           // 提案が投票を受け付けているかどうかを確認します
                           if (proposal.state === 1) {
-                            return vote!.vote(proposalchainId.toString(), _vote);
+                            return vote!.vote(proposalId.toString(), _vote);
                           }
                           return;
                         })
@@ -382,46 +399,46 @@ const Home: NextPage = () => {
                       try {
                         // 提案が実行可能であれば実行する
                         await Promise.all(
-                          votes.map(async ({ proposalchainId }) => {
-                            const proposal = await vote!.get(proposalchainId);
+                          votes.map(async ({ proposalId }) => {
+                            const proposal = await vote!.get(proposalId);
 
                             // state が 4 の場合は実行可能と判断する
                             if (proposal.state === 4) {
-                              return vote!.execute(proposalchainId.toString());
+                              return vote!.execute(proposalId.toString());
                             }
                           })
                         );
                         // 投票成功と判定する
                         setHasVoted(true);
-                        console.log("successfully voted");
+                        console.log('successfully voted');
                       } catch (err) {
-                        console.error("failed to execute votes", err);
+                        console.error('failed to execute votes', err);
                       }
                     } catch (err) {
-                      console.error("failed to vote", err);
+                      console.error('failed to vote', err);
                     }
                   } catch (err) {
-                    console.error("failed to delegate tokens");
+                    console.error('failed to delegate tokens');
                   } finally {
                     setIsVoting(false);
                   }
                 }}
               >
                 {proposals.map((proposal) => (
-                  <div key={proposal.proposalchainId.toString()} className="card">
+                  <div key={proposal.proposalId.toString()} className="card">
                     <h5>{proposal.description}</h5>
                     <div>
                       {proposal.votes.map(({ type, label }) => (
                         <div key={type}>
                           <input
                             type="radio"
-                            chainId={proposal.proposalchainId + "-" + type}
-                            name={proposal.proposalchainId.toString()}
+                            chainId={proposal.proposalId + '-' + type}
+                            name={proposal.proposalId.toString()}
                             value={type}
                             // デフォルトで棄権票をチェックする
                             defaultChecked={type === 2}
                           />
-                          <label htmlFor={proposal.proposalchainId + "-" + type}>
+                          <label htmlFor={proposal.proposalId + '-' + type}>
                             {label}
                           </label>
                         </div>
@@ -432,10 +449,10 @@ const Home: NextPage = () => {
                 <p></p>
                 <button disabled={isVoting || hasVoted} type="submit">
                   {isVoting
-                    ? "Voting..."
+                    ? 'Voting...'
                     : hasVoted
-                      ? "You Already Voted"
-                      : "Submit Votes"}
+                      ? 'You Already Voted'
+                      : 'Submit Votes'}
                 </button>
                 <p></p>
                 {!hasVoted && (
@@ -458,7 +475,7 @@ const Home: NextPage = () => {
         <main className={styles.main}>
           <h1 className={styles.title}>Mint your free 🍪DAO Membership NFT</h1>
           <button disabled={isClaiming} onClick={mintNft}>
-            {isClaiming ? "Minting..." : "Mint your nft (FREE)"}
+            {isClaiming ? 'Minting...' : 'Mint your nft (FREE)'}
           </button>
         </main>
       </div>
@@ -479,7 +496,8 @@ export default Home;
 
 これらの基本機能をテストスクリプトとして記述していきましょう。
 ではtestディレクトリを作成し、その中に`test.ts`という名前でファイルを作成して、以下のように記述しましょう。
-```
+
+```typescript
 import { AddressZero } from '@ethersproject/constants';
 import nextEnv from '@next/env';
 import { ThirdwebSDK } from '@thirdweb-dev/sdk';

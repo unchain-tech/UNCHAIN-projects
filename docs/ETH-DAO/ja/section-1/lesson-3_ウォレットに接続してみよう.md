@@ -13,11 +13,12 @@
 `pages/_app.tsx`に移動して、以下のようにコードを更新しましょう。
 
 ```typescript
-import type { AppProps } from "next/app";
-import {ThirdwebProvider } from "@thirdweb-dev/react";
 import { Sepolia } from '@thirdweb-dev/chains';
-import "../styles/globals.css";
+import {ThirdwebProvider } from '@thirdweb-dev/react';
+import type { AppProps } from 'next/app';
+
 import HeadComponent from '../components/head';
+import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -87,11 +88,11 @@ export default function HeadComponent(): JSX.Element {
 
 以下のコマンドを実行するとローカルでフロントエンドが立ち上がるので、初期画面を確認してみましょう。
 
-※ `localhost:3000`を開くと表示されます。
-
 ```bash
 yarn dev
 ```
+
+※ `localhost:3000`を開くと表示されます。
 
 ![](/public/images/ETH-DAO/section-1/1_3_3.png)
 
@@ -100,9 +101,10 @@ yarn dev
 `pages/index.tsx`に移動して、コードを以下とおり更新しましょう。
 
 ```typescript
-import { ConnectWallet } from "@thirdweb-dev/react";
-import type { NextPage } from "next";
-import styles from "../styles/Home.module.css";
+import { ConnectWallet } from '@thirdweb-dev/react';
+import type { NextPage } from 'next';
+
+import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {
   return (

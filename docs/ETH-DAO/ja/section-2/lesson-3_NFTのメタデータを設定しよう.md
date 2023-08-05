@@ -16,7 +16,6 @@ import { readFileSync } from 'fs';
 import sdk from './1-initialize-sdk.js';
 import { editionDropAddress } from './module.js';
 
-// 先ほどメモして残していた editionDrop のコントラクトアドレスをこちらに記載してください
 const editionDrop = sdk.getContract(editionDropAddress, 'edition-drop');
 
 (async () => {
@@ -127,8 +126,6 @@ const editionDrop = sdk.getContract(editionDropAddress, 'edition-drop');
 
 ```
 
-ここも前回同様、`INSERT_EDITION_DROP_ADDRESS`を必ずERC-1155であるeditionDropコントラクトアドレスに置き換えてください。
-
 `startTime`は、ユーザーがNFTのミントを開始することができる時間なので、この日付/時間を現在時刻に設定するだけですぐにミントを開始することができます。
 
 `maxQuantity`は、会員制NFTの最大ミント数です。
@@ -143,7 +140,7 @@ const editionDrop = sdk.getContract(editionDropAddress, 'edition-drop');
 
 `waitInSeconds`はトランザクション間の時間です。
 
-最後に、`editionDrop.claimConditions.set("0", claimConditions)`を実行すると、オンチェーンに配置されたコントラクトとやりとりして条件を調整することができます。
+最後に、`editionDrop.claimConditions.set('0', claimConditions)`を実行すると、オンチェーンに配置されたコントラクトとやりとりして条件を調整することができます。
 
 なぜ0を渡すのでしょうか？
 
@@ -171,7 +168,7 @@ Done in 27.07s.
 
 私たちは、デプロイされたスマートコントラクトとうまくやりとりをし、NFTに対してルールを設定することができました。
 
-ターミナルに出力されたアドレスをコピーペーストして、`https://sepolia.etherscan.io/`で検索すれば、私たちがコントラクトとやり取りしているのが分かるはずです。
+ターミナルに出力されたアドレスを[Etherscan](https://sepolia.etherscan.io/)で検索すれば、私たちがコントラクトとやり取りしているのが分かるはずです。
 
 ![](/public/images/ETH-DAO/section-2/2_3_2.png)
 
