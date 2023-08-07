@@ -34,7 +34,7 @@ contract WavePortal {
         /*
          * 初期シードを設定
          */
-        seed = (block.timestamp + block.difficulty) % 100;
+        seed = (block.timestamp + block.prevrandao) % 100;
     }
 
     function wave(string memory _message) public {
@@ -46,7 +46,7 @@ contract WavePortal {
         /*
          * ユーザーのために乱数を生成
          */
-        seed = (block.difficulty + block.timestamp + seed) % 100;
+        seed = (block.prevrandao + block.timestamp + seed) % 100;
 
         console.log("Random # generated: %d", seed);
 
@@ -95,15 +95,15 @@ uint256 private seed;
 constructor() payable {
 	console.log("We have been constructed!");
 	/* 初期シードを設定 */
-	seed = (block.timestamp + block.difficulty) % 100;
+	seed = (block.timestamp + block.prevrandao) % 100;
 }
 ```
 
 ここでは、`constructor`の中にユーザーのために生成された乱数を`seed`に格納しています。
 
-`block.difficulty`と`block.timestamp`の2つは、Solidityから与えられた数値です。
+`block.prevrandao`と`block.timestamp`の2つは、Solidityから与えられた数値です。
 
-- `block.difficulty`は、ブロック承認（＝マイニング）の難易度をマイナーに通知するための値です。ブロック内のトランザクションが多いほど、難易度は高くなります。
+- `block.prevrandao`は、ビーコンチェーン（プルーフ・オブ・ステーク型ブロックチェーン）が提供する乱数です。
 
 - `block.timestamp`は、ブロックが処理されている時のUNIXタイムスタンプです。
 
@@ -119,7 +119,7 @@ function wave(string memory _message) public {
 	waves.push(Wave(msg.sender, _message, block.timestamp));
 
 	/* ユーザーのために乱数を生成 */
-	seed = (block.difficulty + block.timestamp + seed) % 100;
+	seed = (block.prevrandao + block.timestamp + seed) % 100;
 	:
 ```
 
@@ -316,7 +316,7 @@ contract WavePortal {
         /*
          * 初期シードの設定
          */
-        seed = (block.timestamp + block.difficulty) % 100;
+        seed = (block.timestamp + block.prevrandao) % 100;
     }
 
     function wave(string memory _message) public {
@@ -341,7 +341,7 @@ contract WavePortal {
         /*
          *  ユーザーのために乱数を設定
          */
-        seed = (block.difficulty + block.timestamp + seed) % 100;
+        seed = (block.prevrandao + block.timestamp + seed) % 100;
 
         if (seed <= 50) {
             console.log("%s won!", msg.sender);
