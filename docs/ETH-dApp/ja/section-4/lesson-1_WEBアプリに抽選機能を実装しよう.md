@@ -25,6 +25,7 @@ contract WavePortal {
         address waver;
         string message;
         uint256 timestamp;
+        uint256 seed;
     }
 
     Wave[] waves;
@@ -41,12 +42,12 @@ contract WavePortal {
         totalWaves += 1;
         console.log("%s has waved!", msg.sender);
 
-        waves.push(Wave(msg.sender, _message, block.timestamp));
-
         /*
          * ユーザーのために乱数を生成
          */
         seed = (block.prevrandao + block.timestamp + seed) % 100;
+
+        waves.push(Wave(msg.sender, _message, block.timestamp, seed));
 
         console.log("Random # generated: %d", seed);
 
@@ -113,14 +114,17 @@ constructor() payable {
 
 ```solidity
 function wave(string memory _message) public {
-	totalWaves += 1;
-	console.log("%s has waved!", msg.sender);
+    totalWaves += 1;
+    console.log("%s has waved!", msg.sender)
 
-	waves.push(Wave(msg.sender, _message, block.timestamp));
+    /*
+     * ユーザーのために乱数を生成
+     */
+    seed = (block.prevrandao + block.timestamp + seed) % 100
 
-	/* ユーザーのために乱数を生成 */
-	seed = (block.prevrandao + block.timestamp + seed) % 100;
-	:
+    waves.push(Wave(msg.sender, _message, block.timestamp, seed))
+
+    console.log("Random # generated: %d", seed);
 ```
 
 ここで、ユーザーが`wave`を送信するたびに`seed`を更新しています。
@@ -302,6 +306,7 @@ contract WavePortal {
         address waver;
         string message;
         uint256 timestamp;
+        uint256 seed;
     }
 
     Wave[] waves;
@@ -336,12 +341,12 @@ contract WavePortal {
         totalWaves += 1;
         console.log("%s has waved!", msg.sender);
 
-        waves.push(Wave(msg.sender, _message, block.timestamp));
-
         /*
          *  ユーザーのために乱数を設定
          */
-        seed = (block.prevrandao + block.timestamp + seed) % 100;
+        seed = (block.difficulty + block.timestamp + seed) % 100;
+
+        waves.push(Wave(msg.sender, _message, block.timestamp, seed));
 
         if (seed <= 50) {
             console.log("%s won!", msg.sender);
