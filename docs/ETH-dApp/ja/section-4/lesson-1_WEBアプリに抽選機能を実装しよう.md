@@ -9,7 +9,7 @@
 ```solidity
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.17;
+pragma solidity ^0.8.19;
 
 import "hardhat/console.sol";
 
@@ -220,7 +220,7 @@ yarn contract run:script
 次のような結果が、ターミナルに出力されたでしょうか？
 
 ```bash
-Compiling 1 file with 0.8.17
+Compiling 1 file with 0.8.19
 Solidity compilation finished successfully
 We have been constructed!
 Contract deployed to:  0x5FbDB2315678afecb367f032d93F642f64180aa3
@@ -288,7 +288,7 @@ Contract balance: 0.0999
 ```solidity
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.17;
+pragma solidity ^0.8.19;
 
 import "hardhat/console.sol";
 
