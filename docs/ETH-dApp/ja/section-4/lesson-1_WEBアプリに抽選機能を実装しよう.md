@@ -344,7 +344,9 @@ contract WavePortal {
         /*
          *  ユーザーのために乱数を設定
          */
-        seed = (block.difficulty + block.timestamp + seed) % 100;
+        seed = (block.prevrandao + block.timestamp + seed) % 100;
+
+        waves.push(Wave(msg.sender, _message, block.timestamp, seed));
 
         waves.push(Wave(msg.sender, _message, block.timestamp, seed));
 
