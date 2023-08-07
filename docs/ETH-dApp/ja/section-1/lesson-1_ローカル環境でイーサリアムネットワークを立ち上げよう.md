@@ -17,9 +17,22 @@
 - ユーザーはWebサイトを介して、ブロックチェーン上に展開されているあなたのスマートコントラクトと簡単にやりとりできます。
 - スマートコントラクトの実装 + フロントエンドユーザー・インタフェースの作成 👉 dAppの完成を目指しましょう 🎉
 
-まず、`node` / `yarn`を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスしてください。
+まず、`node` / `yarn`を取得する必要があります。お持ちでない場合は、下記のリンクを参照してください。
 
-`node v16`をインストールすることを推奨しています。
+- [Node.js](https://hardhat.org/tutorial/setting-up-the-environment#installing-node.js)
+- [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable)
+
+>**Node.js / Yarnのバージョンについて**
+>
+>以下のバージョンを推奨しています。
+>この先バージョンの違いによるエラーに遭遇する場合があるので参考にしてください。
+>```bash
+># Node.js
+>v20.5.0
+>
+># Yarn
+>3.6.1
+>```
 
 ### 🍽 Git リポジトリをあなたの GitHub にフォークする
 
