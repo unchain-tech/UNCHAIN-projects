@@ -242,17 +242,21 @@ Contract balance: 0.0999
     '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
     'This is wave #1',
     BigNumber { value: "1643887441" },
+    BigNumber { value: "89" },
     waver: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
     message: 'This is wave #1',
     timestamp: BigNumber { value: "1643887441" }
+    seed: BigNumber { value: "89" }
   ],
   [
     '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
     'This is wave #2',
     BigNumber { value: "1643887442" },
+    BigNumber { value: "31" },
     waver: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
     message: 'This is wave #2',
     timestamp: BigNumber { value: "1643887442" }
+    seed: BigNumber { value: "31" }
   ]
 ]
 ```
@@ -603,7 +607,27 @@ describe('WavePortal', function () {
 
 一人のユーザーが立て続けにwave関数を呼び出すことで、上記の`require`文に引っかかることを確認します。
 
-それでは、テストスクリプトを実行してみましょう。
+```javascript
+    context(
+      'when user1 tried to resubmit without waiting 15 mitutes',
+      function () {
+        it('reverts', async function () {
+          /** 準備 */
+          const { wavePortal, user1 } = await loadFixture(deployProjectFixture);
+
+          /** 実行 */
+          await wavePortal.connect(user1).wave('This is wave #1');
+
+          /** 検証 */
+          await expect(
+            wavePortal.connect(user1).wave('This is wave #2'),
+          ).to.be.revertedWith('Wait 15m');
+        });
+      },
+    );
+```
+
+それでは、テストスクリプトを実行してみましょう。テスト結果がわかりやすいように、`WavePortal.sol`内の`console.log`を全てコメントアウトすると良いでしょう。
 
 ```bash
 yarn contract test

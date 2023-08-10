@@ -72,6 +72,7 @@ git clone コピーした_github_リンク
 ETH-dApp
 ├── .git/
 ├── .gitignore
+├── .yarnrc.yml
 ├── LICENSE
 ├── README.md
 ├── package.json
@@ -213,7 +214,7 @@ ETH-dApp
 ```diff
 {
   "name": "contract",
-  "version": "1.0.0",
+  "version": "0.1.0",
 -  "main": "index.js",
 -  "license": "MIT",
   "private": true,
@@ -226,8 +227,8 @@ ETH-dApp
     "@typechain/ethers-v5": "^10.2.0",
     "@typechain/hardhat": "^6.1.5",
     "chai": "^4.3.7",
-    "ethers": "^6.1.0",
-    "hardhat": "^2.13.0",
+    "ethers": "^5.4",
+    "hardhat": "^2.17.0",
     "hardhat-gas-reporter": "^1.0.9",
     "solidity-coverage": "^0.8.2",
     "typechain": "^8.1.1"
