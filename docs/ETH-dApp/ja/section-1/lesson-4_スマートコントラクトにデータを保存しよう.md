@@ -23,20 +23,20 @@ import "hardhat/console.sol";
 
 contract WavePortal {
 
-    uint256 totalWaves;
+    uint256 private _totalWaves;
 
     constructor() {
         console.log("Here is my first smart contract!");
     }
 
     function wave() public {
-        totalWaves += 1;
+        _totalWaves += 1;
         console.log("%s has waved!", msg.sender);
     }
 
     function getTotalWaves() public view returns (uint256) {
-        console.log("We have %d total waves!", totalWaves);
-        return totalWaves;
+        console.log("We have %d total waves!", _totalWaves);
+        return _totalWaves;
     }
 }
 ```
@@ -44,10 +44,10 @@ contract WavePortal {
 新しく追加されたコードの理解を深めましょう。
 
 ```solidity
-uint256 totalWaves;
+uint256 private _totalWaves;
 ```
 
-自動的に`0`に初期化される`totalWaves`変数が追加されました。この変数は「状態変数」と呼ばれ、`WavePortal`コントラクトのストレージに永続的に保存されます。
+自動的に`0`に初期化される`_totalWaves`変数が追加されました。この変数は「状態変数」と呼ばれ、`WavePortal`コントラクトのストレージに永続的に保存されます。
 
 - [uint256](https://www.iuec.co.jp/blockchain/uint256.html) は、非常に大きな数を扱うことができる「符号なし整数のデータ型」を意味します。
 
@@ -55,7 +55,7 @@ uint256 totalWaves;
 
 ```solidity
 function wave() public {
-    totalWaves += 1;
+    _totalWaves += 1;
     console.log("%s has waved!", msg.sender);
 }
 ```
@@ -86,7 +86,7 @@ Solidityには、4つのアクセス修飾子が存在します。
 
 ```solidity
 function wave() public {
-    totalWaves += 1;
+    _totalWaves += 1;
     console.log("%s has waved!", msg.sender);
 }
 ```
@@ -125,22 +125,22 @@ Solidity開発では関数修飾子を意識しておかないとデータを記
 
 ```solidity
 function wave() public {
-    totalWaves += 1;
+    _totalWaves += 1;
     console.log("%s has waved!", msg.sender);
 }
 ```
 
 `wave()`関数には関数修飾子がついていないことをお気付きでしょうか。
 
-- 同一のユーザーが送った「👋（wave）」の回数が`totalWaves += 1`によってカウントされ、ブロックチェーン上にデータが書き込まれます。
+- 同一のユーザーが送った「👋（wave）」の回数が`_totalWaves += 1`によってカウントされ、ブロックチェーン上にデータが書き込まれます。
 - また、この関数が呼び出されると、`console.log("%s has waved!", msg.sender)`によって、あなたに「👋（wave）」を送ったユーザーのアドレスがターミナル上に表示されます。
 
 それでは、下記のコードも見ていきましょう。
 
 ```solidity
 function getTotalWaves() public view returns (uint256) {
-    console.log("We have %d total waves!", totalWaves);
-    return totalWaves;
+    console.log("We have %d total waves!", _totalWaves);
+    return _totalWaves;
 }
 ```
 

@@ -17,7 +17,7 @@
 pragma solidity ^0.8.19;
 import "hardhat/console.sol";
 contract WavePortal {
-    uint256 totalWaves;
+    uint256 private _totalWaves;
     /*
     * NewWaveイベントの作成
     */
@@ -35,7 +35,7 @@ contract WavePortal {
     * 構造体の配列を格納するための変数wavesを宣言。
     * これで、ユーザーが送ってきたすべての「👋（wave）」を保持することができます。
     */
-    Wave[] waves;
+    Wave[] private _waves;
     constructor() {
         console.log("WavePortal - Smart Contract!");
     }
@@ -44,12 +44,12 @@ contract WavePortal {
     * _messageは、ユーザーがフロントエンドから送信するメッセージです。
     */
     function wave(string memory _message) public {
-        totalWaves += 1;
+        _totalWaves += 1;
         console.log("%s waved w/ message %s", msg.sender, _message);
         /*
          * 「👋（wave）」とメッセージを配列に格納。
          */
-        waves.push(Wave(msg.sender, _message, block.timestamp));
+        _waves.push(Wave(msg.sender, _message, block.timestamp));
         /*
          * コントラクト側でemitされたイベントに関する通知をフロントエンドで取得できるようにする。
          */
@@ -60,12 +60,12 @@ contract WavePortal {
      * これで、私たちのWEBアプリからwavesを取得することができます。
      */
     function getAllWaves() public view returns (Wave[] memory) {
-        return waves;
+        return _waves;
     }
     function getTotalWaves() public view returns (uint256) {
         // コントラクトが出力する値をコンソールログで表示する。
-        console.log("We have %d total waves!", totalWaves);
-        return totalWaves;
+        console.log("We have %d total waves!", _totalWaves);
+        return _totalWaves;
     }
 }
 ```

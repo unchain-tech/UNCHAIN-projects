@@ -14,10 +14,10 @@ pragma solidity ^0.8.19;
 import "hardhat/console.sol";
 
 contract WavePortal {
-    uint256 totalWaves;
+    uint256 private _totalWaves;
 
     /* 乱数生成のための基盤となるシード（種）を作成 */
-    uint256 private seed;
+    uint256 private _seed;
 
     event NewWave(address indexed from, uint256 timestamp, string message);
 
@@ -28,33 +28,33 @@ contract WavePortal {
         uint256 seed;
     }
 
-    Wave[] waves;
+    Wave[] private _waves;
 
     constructor() payable {
         console.log("We have been constructed!");
         /*
          * 初期シードを設定
          */
-        seed = (block.timestamp + block.prevrandao) % 100;
+        _seed = (block.timestamp + block.prevrandao) % 100;
     }
 
     function wave(string memory _message) public {
-        totalWaves += 1;
+        _totalWaves += 1;
         console.log("%s has waved!", msg.sender);
 
         /*
          * ユーザーのために乱数を生成
          */
-        seed = (block.prevrandao + block.timestamp + seed) % 100;
+        _seed = (block.prevrandao + block.timestamp + _seed) % 100;
 
-        waves.push(Wave(msg.sender, _message, block.timestamp, seed));
+        _waves.push(Wave(msg.sender, _message, block.timestamp, _seed));
 
-        console.log("Random # generated: %d", seed);
+        console.log("Random # generated: %d", _seed);
 
         /*
          * ユーザーがETHを獲得する確率を50％に設定
          */
-        if (seed <= 50) {
+        if (_seed <= 50) {
             console.log("%s won!", msg.sender);
 
             /*
@@ -75,11 +75,11 @@ contract WavePortal {
     }
 
     function getAllWaves() public view returns (Wave[] memory) {
-        return waves;
+        return _waves;
     }
 
     function getTotalWaves() public view returns (uint256) {
-        return totalWaves;
+        return _totalWaves;
     }
 }
 ```
@@ -87,7 +87,7 @@ contract WavePortal {
 コードを見ていきましょう。
 
 ```solidity
-uint256 private seed;
+uint256 private _seed;
 ```
 
 ここでは、乱数を生成するために使用する初期シード（乱数の種）を定義しています。
@@ -96,11 +96,11 @@ uint256 private seed;
 constructor() payable {
 	console.log("We have been constructed!");
 	/* 初期シードを設定 */
-	seed = (block.timestamp + block.prevrandao) % 100;
+	_seed = (block.timestamp + block.prevrandao) % 100;
 }
 ```
 
-ここでは、`constructor`の中にユーザーのために生成された乱数を`seed`に格納しています。
+ここでは、`constructor`の中にユーザーのために生成された乱数を`_seed`に格納しています。
 
 `block.prevrandao`と`block.timestamp`の2つは、Solidityから与えられた数値です。
 
@@ -114,34 +114,34 @@ constructor() payable {
 
 ```solidity
 function wave(string memory _message) public {
-    totalWaves += 1;
+    _totalWaves += 1;
     console.log("%s has waved!", msg.sender)
 
     /*
      * ユーザーのために乱数を生成
      */
-    seed = (block.prevrandao + block.timestamp + seed) % 100
+    _seed = (block.prevrandao + block.timestamp + _seed) % 100
 
-    waves.push(Wave(msg.sender, _message, block.timestamp, seed))
+    _waves.push(Wave(msg.sender, _message, block.timestamp, _seed))
 
-    console.log("Random # generated: %d", seed);
+    console.log("Random # generated: %d", _seed);
 ```
 
-ここで、ユーザーが`wave`を送信するたびに`seed`を更新しています。
+ここで、ユーザーが`wave`を送信するたびに`_seed`を更新しています。
 
 これにより、ランダム性の担保を行っています。ランダム性を強化することにより、ハッカーからの攻撃を防げます。
 
 最後に下記のコードを見ていきましょう。
 
 ```solidity
-if (seed <= 50) {
+if (_seed <= 50) {
 	console.log("%s won!", msg.sender);
 	:
 ```
 
-ここでは、`seed`の値が、50以下であるかどうかを確認するために、`if`ステートメントを実装しています。
+ここでは、`_seed`の値が、50以下であるかどうかを確認するために、`if`ステートメントを実装しています。
 
-`seed`の値が50以下の場合、ユーザーはETHを獲得できます。
+`_seed`の値が50以下の場合、ユーザーはETHを獲得できます。
 
 > ✍️: 乱数が「ランダムであること」の重要性
 > 「ユーザーに ETH がランダムで配布される」ようなゲーム性のあるサービスにおいて、ハッカーからの攻撃を防ぐことは大変重要です。
@@ -301,8 +301,8 @@ pragma solidity ^0.8.19;
 import "hardhat/console.sol";
 
 contract WavePortal {
-    uint256 totalWaves;
-    uint256 private seed;
+    uint256 private _totalWaves;
+    uint256 private _seed;
 
     event NewWave(address indexed from, uint256 timestamp, string message);
 
@@ -313,7 +313,7 @@ contract WavePortal {
         uint256 seed;
     }
 
-    Wave[] waves;
+    Wave[] private _waves;
 
     /*
      * "address => uint mapping"は、アドレスと数値を関連付ける
@@ -325,7 +325,7 @@ contract WavePortal {
         /*
          * 初期シードの設定
          */
-        seed = (block.timestamp + block.prevrandao) % 100;
+        _seed = (block.timestamp + block.prevrandao) % 100;
     }
 
     function wave(string memory _message) public {
@@ -342,17 +342,17 @@ contract WavePortal {
          */
         lastWavedAt[msg.sender] = block.timestamp;
 
-        totalWaves += 1;
+        _totalWaves += 1;
         console.log("%s has waved!", msg.sender);
 
         /*
          *  ユーザーのために乱数を設定
          */
-        seed = (block.prevrandao + block.timestamp + seed) % 100;
+        _seed = (block.prevrandao + block.timestamp + _seed) % 100;
 
-        waves.push(Wave(msg.sender, _message, block.timestamp, seed));
+        _waves.push(Wave(msg.sender, _message, block.timestamp, _seed));
 
-        if (seed <= 50) {
+        if (_seed <= 50) {
             console.log("%s won!", msg.sender);
 
             uint256 prizeAmount = 0.0001 ether;
@@ -368,11 +368,11 @@ contract WavePortal {
     }
 
     function getAllWaves() public view returns (Wave[] memory) {
-        return waves;
+        return _waves;
     }
 
     function getTotalWaves() public view returns (uint256) {
-        return totalWaves;
+        return _totalWaves;
     }
 }
 ```
