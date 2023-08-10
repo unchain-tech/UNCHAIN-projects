@@ -115,14 +115,14 @@ constructor() payable {
 ```solidity
 function wave(string memory _message) public {
     _totalWaves += 1;
-    console.log("%s has waved!", msg.sender)
+    console.log("%s has waved!", msg.sender);
 
     /*
      * ユーザーのために乱数を生成
      */
     _seed = (block.prevrandao + block.timestamp + _seed) % 100
 
-    _waves.push(Wave(msg.sender, _message, block.timestamp, _seed))
+    _waves.push(Wave(msg.sender, _message, block.timestamp, _seed));
 
     console.log("Random # generated: %d", _seed);
 ```
