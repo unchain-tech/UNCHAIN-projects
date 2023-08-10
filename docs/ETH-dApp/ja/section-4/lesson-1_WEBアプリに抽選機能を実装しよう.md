@@ -344,7 +344,7 @@ contract WavePortal {
         /*
          *  ユーザーのために乱数を設定
          */
-        seed = (block.difficulty + block.timestamp + seed) % 100;
+        seed = (block.prevrandao + block.timestamp + seed) % 100;
 
         waves.push(Wave(msg.sender, _message, block.timestamp, seed));
 
@@ -432,102 +432,203 @@ lastWavedAt[msg.sender] = block.timestamp;
 
 これらの基本機能をテストスクリプトとして記述していきましょう。
 
-`run.js`ではconsole.logメソッドなどを用いて結果がどのようになるかを具体的な値を
-出力することで確認していましたが、`test.js`では期待される値と一致するかを確認します。いわば最終確認のようなものです。
+`run.js`ではconsole.logメソッドなどを用いて、結果がどのようになるかを具体的な値を
+出力することで目視確認していました。これは、機能が増えるほど大変な確認作業となってしまいます。
+
+次に記述するテストは、各関数が期待する動作を行うか、コマンドを実行することで自動で確認されるようにします。
 
 ではpackages/contract/testに`test.js`という名前でファイルを作成して、以下のように記述しましょう。
 
-```
+```javascript
+const { loadFixture } = require('@nomicfoundation/hardhat-network-helpers');
 const hre = require('hardhat');
 const { expect } = require('chai');
+const { ethers } = require('hardhat');
 
-describe('Wave Contract', function () {
-  it('test if wave and token are sent', async function () {
-    const waveContractFactory = await hre.ethers.getContractFactory(
-      'WavePortal',
-    );
-    /*
-     * デプロイする際0.1ETHをコントラクトに提供する
-     */
-    const waveContract = await waveContractFactory.deploy({
+describe('WavePortal', function () {
+  // すべてのテストで同じセットアップを再利用するためにフィクスチャーを定義します。
+  async function deployProjectFixture() {
+    const wavePortalFactory = await ethers.getContractFactory('WavePortal');
+
+    // コントラクトは、デフォルトで最初の署名者/アカウント（ここではuser1）を使用してデプロイされます。
+    const [user1, user2] = await ethers.getSigners();
+
+    const wavePortal = await wavePortalFactory.deploy({
       value: hre.ethers.utils.parseEther('0.1'),
     });
-    await waveContract.deployed();
-    /*
-     * コントラクトの残高を取得（0.1ETH）
-     */
-    const contractBalanceBefore = hre.ethers.utils.formatEther(
-      await hre.ethers.provider.getBalance(waveContract.address),
+
+    await wavePortal.deployed();
+
+    // 現在のコントラクトの残高を取得します。
+    const wavePortalBalance = hre.ethers.utils.formatEther(
+      await hre.ethers.provider.getBalance(wavePortal.address),
     );
 
-    /*
-     * 2回 waves を送るシミュレーションを行う
-     */
-    const waveTxn = await waveContract.wave('This is wave #1');
-    await waveTxn.wait();
+    // waveを2回実行する関数を定義します。
+    const sendTwoWaves = async () => {
+      // user1, user2がそれぞれwaveを送ります。
+      await wavePortal.connect(user1).wave('This is wave #1');
+      await wavePortal.connect(user2).wave('This is wave #2');
+    };
 
-    const waveTxn2 = await waveContract.wave('This is wave #2');
-    await waveTxn2.wait();
+    return { wavePortal, wavePortalBalance, sendTwoWaves, user1, user2 };
+  }
 
-    /*
-     * コントラクトの残高を取得し、Waveを取得した後の結果を出力
-     */
-    const contractBalanceAfter = hre.ethers.utils.formatEther(
-      await hre.ethers.provider.getBalance(waveContract.address),
-    );
+  // テストケース
+  describe('getTotalWaves', function () {
+    it('should return total waves', async function () {
+      /** 準備 */
+      const { wavePortal, sendTwoWaves } = await loadFixture(
+        deployProjectFixture,
+      );
+      await sendTwoWaves();
 
-    /*
-     *勝利した回数に応じてコントラクトから出ていくトークンを計算
-     */
-    const allWaves = await waveContract.getAllWaves();
-    let cost = 0;
-    for (let i = 0; i < allWaves.length; i++) {
-      if (allWaves[i].seed <= 50) {
-        cost += 0.0001;
-      }
-    }
+      /** 実行 */
+      const totalWaves = await wavePortal.getTotalWaves();
 
-    /*
-     *メッセージの送信をテスト
-     */
-    expect(allWaves[0].message).to.equal('This is wave #1');
-    expect(allWaves[1].message).to.equal('This is wave #2');
+      /** 検証 */
+      expect(totalWaves).to.equal(2);
+    });
+  });
 
-    /*
-     *コントラクトのトークン残高がwave時の勝負による減少に連動しているかテスト
-     */
-    expect(parseFloat(contractBalanceAfter)).to.equal(
-      contractBalanceBefore - cost,
+  describe('getAllWaves', function () {
+    it('should return all waves', async function () {
+      /** 準備 */
+      const { wavePortal, sendTwoWaves, user1, user2 } = await loadFixture(
+        deployProjectFixture,
+      );
+      await sendTwoWaves();
+
+      /** 実行 */
+      const allWaves = await wavePortal.getAllWaves();
+
+      /** 検証 */
+      expect(allWaves[0].waver).to.equal(user1.address);
+      expect(allWaves[0].message).to.equal('This is wave #1');
+      expect(allWaves[1].waver).to.equal(user2.address);
+      expect(allWaves[1].message).to.equal('This is wave #2');
+    });
+  });
+
+  describe('wave', function () {
+    context('when user waved', function () {
+      it('should send tokens at random.', async function () {
+        /** 準備 */
+        const { wavePortal, wavePortalBalance, sendTwoWaves } =
+          await loadFixture(deployProjectFixture);
+
+        /** 実行 */
+        await sendTwoWaves();
+
+        /** 検証 */
+        // wave後のコントラクトの残高を取得します。
+        const wavePortalBalanceAfter = hre.ethers.utils.formatEther(
+          await hre.ethers.provider.getBalance(wavePortal.address),
+        );
+
+        // 勝利した回数に応じてコントラクトから出ていくトークンを計算します。
+        const allWaves = await wavePortal.getAllWaves();
+        let cost = 0;
+        for (let i = 0; i < allWaves.length; i++) {
+          if (allWaves[i].seed <= 50) {
+            cost += 0.0001;
+          }
+        }
+
+        // コントラクトのトークン残高がwave時の勝負による減少に連動しているかテストします。
+        expect(parseFloat(wavePortalBalanceAfter)).to.equal(
+          wavePortalBalance - cost,
+        );
+      });
+    });
+    context(
+      'when user1 tried to resubmit without waiting 15 mitutes',
+      function () {
+        it('reverts', async function () {
+          /** 準備 */
+          const { wavePortal, user1 } = await loadFixture(deployProjectFixture);
+
+          /** 実行 */
+          await wavePortal.connect(user1).wave('This is wave #1');
+
+          /** 検証 */
+          await expect(
+            wavePortal.connect(user1).wave('This is wave #2'),
+          ).to.be.revertedWith('Wait 15m');
+        });
+      },
     );
   });
 });
 ```
 
-ターミナル上で下記のコマンドを実行してみましょう。
+簡単にテストの内容を解説します。
 
+ここでは、3つの関数`getTotalWaves`、`getAllWaves`、`wave`をテストしています。
+
+各テストは、3つのステップ「準備」「実行」「検証」で構成されています。
+
+```javascript
+  describe('getTotalWaves', function () {
+    it('should return total waves', async function () {
+      /** 準備 */
+      const { wavePortal, sendTwoWaves } = await loadFixture(
+        deployProjectFixture,
+      );
+      await sendTwoWaves();
+
+      /** 実行 */
+      const totalWaves = await wavePortal.getTotalWaves();
+
+      /** 検証 */
+      expect(totalWaves).to.equal(2);
+    });
+  });
 ```
+
+まずは、「準備」のステップです。ここでは、`deployProjectFixture`を実行しています。deployProjectFixture内部ではWavePortalコントラクトのデプロイ、テストで使用したい機能や値を定義しています。
+
+次に、「実行」のステップです。ここでは、実際に`getTotalWaves`関数を呼び出しています。
+
+最後に、「検証」のステップです。ここでは、`getTotalWaves`関数の戻り値が2であることを検証しています。
+
+ここで、`wave`関数のテストを確認してみましょう。2種類のテストが記述されています。これは、wave関数が正常に実行された際の動作と、期待するエラーが発生するかの動作、2種類の動作を確認したいためです。正常時は、生成されたランダム値に応じてトークンが配布されたかどうかを確認します。期待するエラーとは、最後に追加した「スパムを防ぐためのクールダウン機能」に関するエラーです。
+
+```solidity
+        require(
+            lastWavedAt[msg.sender] + 15 minutes < block.timestamp,
+            "Wait 15m"
+        );
+```
+
+一人のユーザーが立て続けにwave関数を呼び出すことで、上記の`require`文に引っかかることを確認します。
+
+それでは、テストスクリプトを実行してみましょう。
+
+```bash
 yarn contract test
 ```
 
-`WavePortal.sol`の39~42行目の`require文`によってエラーが出るでしょう。なぜなら15分の間隔を空けることなくwaveを送ろうとしたからです。
-
-ではこちらをコメントアウトして再度テストコマンドを実行してみてください。
-
 下記のようなメッセージが出力されていればテスト成功です！
-```
-Compiled 2 Solidity files successfully
+
+```bash
+Compiled 1 Solidity file successfully
 
 
-  Wave Contract
-We have been constructed!
-0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 has waved!
-0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 has waved!
-    ✔ test if wave and token are sent (1446ms)
+  WavePortal
+    getTotalWaves
+      ✔ should return total waves (1349ms)
+    getAllWaves
+      ✔ should return all waves
+    wave
+      when user waved
+        ✔ should send tokens at random. (41ms)
+      when user1 tried to resubmit without waiting 15 mitutes
+        ✔ reverts (50ms)
 
 
-  1 passing (1s)
+  4 passing (1s)
 
-✨  Done in 6.09s.
 ```
 
 ### 🧞‍♀️ デプロイする？
