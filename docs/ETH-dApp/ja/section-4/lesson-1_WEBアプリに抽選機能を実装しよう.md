@@ -274,7 +274,7 @@ Contract balance: 0.1
 
 次に、二人目のユーザーの結果を見てみましょう。
 
-```
+```bash
 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 has waved!
 Random # generated: 31
 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 won!
@@ -352,10 +352,6 @@ contract WavePortal {
 
         waves.push(Wave(msg.sender, _message, block.timestamp, seed));
 
-        waves.push(Wave(msg.sender, _message, block.timestamp, seed));
-
-        waves.push(Wave(msg.sender, _message, block.timestamp, seed));
-
         if (seed <= 50) {
             console.log("%s won!", msg.sender);
 
@@ -394,7 +390,7 @@ Solidityの`mapping`は、ほかの言語におけるハッシュテーブルや
 これらは、下記のように`_Key`と`_Value`のペアの形式でデータを格納するために使用されます。
 
 ```javascript
-mapping（_Key=> _Value）public mappingName
+mapping（_Key => _Value）public mappingName
 ```
 
 今回は、ユーザーのアドレス(= `_Key` = `address`)をそのユーザーが`wave`を送信した時刻(= `_Value` = `uint256`)に関連付けるために`mapping`を使用しました。
