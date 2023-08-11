@@ -9,15 +9,15 @@
 ```solidity
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.17;
+pragma solidity ^0.8.19;
 
 import "hardhat/console.sol";
 
 contract WavePortal {
-    uint256 totalWaves;
+    uint256 private _totalWaves;
 
     /* 乱数生成のための基盤となるシード（種）を作成 */
-    uint256 private seed;
+    uint256 private _seed;
 
     event NewWave(address indexed from, uint256 timestamp, string message);
 
@@ -25,35 +25,36 @@ contract WavePortal {
         address waver;
         string message;
         uint256 timestamp;
+        uint256 seed;
     }
 
-    Wave[] waves;
+    Wave[] private _waves;
 
     constructor() payable {
         console.log("We have been constructed!");
         /*
          * 初期シードを設定
          */
-        seed = (block.timestamp + block.difficulty) % 100;
+        _seed = (block.timestamp + block.prevrandao) % 100;
     }
 
     function wave(string memory _message) public {
-        totalWaves += 1;
+        _totalWaves += 1;
         console.log("%s has waved!", msg.sender);
-
-        waves.push(Wave(msg.sender, _message, block.timestamp));
 
         /*
          * ユーザーのために乱数を生成
          */
-        seed = (block.difficulty + block.timestamp + seed) % 100;
+        _seed = (block.prevrandao + block.timestamp + _seed) % 100;
 
-        console.log("Random # generated: %d", seed);
+        _waves.push(Wave(msg.sender, _message, block.timestamp, _seed));
+
+        console.log("Random # generated: %d", _seed);
 
         /*
          * ユーザーがETHを獲得する確率を50％に設定
          */
-        if (seed <= 50) {
+        if (_seed <= 50) {
             console.log("%s won!", msg.sender);
 
             /*
@@ -74,11 +75,11 @@ contract WavePortal {
     }
 
     function getAllWaves() public view returns (Wave[] memory) {
-        return waves;
+        return _waves;
     }
 
     function getTotalWaves() public view returns (uint256) {
-        return totalWaves;
+        return _totalWaves;
     }
 }
 ```
@@ -86,7 +87,7 @@ contract WavePortal {
 コードを見ていきましょう。
 
 ```solidity
-uint256 private seed;
+uint256 private _seed;
 ```
 
 ここでは、乱数を生成するために使用する初期シード（乱数の種）を定義しています。
@@ -95,15 +96,15 @@ uint256 private seed;
 constructor() payable {
 	console.log("We have been constructed!");
 	/* 初期シードを設定 */
-	seed = (block.timestamp + block.difficulty) % 100;
+	_seed = (block.timestamp + block.prevrandao) % 100;
 }
 ```
 
-ここでは、`constructor`の中にユーザーのために生成された乱数を`seed`に格納しています。
+ここでは、`constructor`の中にユーザーのために生成された乱数を`_seed`に格納しています。
 
-`block.difficulty`と`block.timestamp`の2つは、Solidityから与えられた数値です。
+`block.prevrandao`と`block.timestamp`の2つは、Solidityから与えられた数値です。
 
-- `block.difficulty`は、ブロック承認（＝マイニング）の難易度をマイナーに通知するための値です。ブロック内のトランザクションが多いほど、難易度は高くなります。
+- `block.prevrandao`は、Beacon Chain（proof-of-stake型ブロックチェーン）が提供する乱数です。
 
 - `block.timestamp`は、ブロックが処理されている時のUNIXタイムスタンプです。
 
@@ -113,31 +114,34 @@ constructor() payable {
 
 ```solidity
 function wave(string memory _message) public {
-	totalWaves += 1;
-	console.log("%s has waved!", msg.sender);
+    _totalWaves += 1;
+    console.log("%s has waved!", msg.sender);
 
-	waves.push(Wave(msg.sender, _message, block.timestamp));
+    /*
+     * ユーザーのために乱数を生成
+     */
+    _seed = (block.prevrandao + block.timestamp + _seed) % 100
 
-	/* ユーザーのために乱数を生成 */
-	seed = (block.difficulty + block.timestamp + seed) % 100;
-	:
+    _waves.push(Wave(msg.sender, _message, block.timestamp, _seed));
+
+    console.log("Random # generated: %d", _seed);
 ```
 
-ここで、ユーザーが`wave`を送信するたびに`seed`を更新しています。
+ここで、ユーザーが`wave`を送信するたびに`_seed`を更新しています。
 
 これにより、ランダム性の担保を行っています。ランダム性を強化することにより、ハッカーからの攻撃を防げます。
 
 最後に下記のコードを見ていきましょう。
 
 ```solidity
-if (seed <= 50) {
+if (_seed <= 50) {
 	console.log("%s won!", msg.sender);
 	:
 ```
 
-ここでは、`seed`の値が、50以下であるかどうかを確認するために、`if`ステートメントを実装しています。
+ここでは、`_seed`の値が、50以下であるかどうかを確認するために、`if`ステートメントを実装しています。
 
-`seed`の値が50以下の場合、ユーザーはETHを獲得できます。
+`_seed`の値が50以下の場合、ユーザーはETHを獲得できます。
 
 > ✍️: 乱数が「ランダムであること」の重要性
 > 「ユーザーに ETH がランダムで配布される」ようなゲーム性のあるサービスにおいて、ハッカーからの攻撃を防ぐことは大変重要です。
@@ -220,7 +224,7 @@ yarn contract run:script
 次のような結果が、ターミナルに出力されたでしょうか？
 
 ```bash
-Compiling 1 file with 0.8.17
+Compiling 1 file with 0.8.19
 Solidity compilation finished successfully
 We have been constructed!
 Contract deployed to:  0x5FbDB2315678afecb367f032d93F642f64180aa3
@@ -238,17 +242,21 @@ Contract balance: 0.0999
     '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
     'This is wave #1',
     BigNumber { value: "1643887441" },
+    BigNumber { value: "89" },
     waver: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
     message: 'This is wave #1',
     timestamp: BigNumber { value: "1643887441" }
+    seed: BigNumber { value: "89" }
   ],
   [
     '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
     'This is wave #2',
     BigNumber { value: "1643887442" },
+    BigNumber { value: "31" },
     waver: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
     message: 'This is wave #2',
     timestamp: BigNumber { value: "1643887442" }
+    seed: BigNumber { value: "31" }
   ]
 ]
 ```
@@ -266,7 +274,7 @@ Contract balance: 0.1
 
 次に、二人目のユーザーの結果を見てみましょう。
 
-```
+```bash
 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 has waved!
 Random # generated: 31
 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 won!
@@ -288,13 +296,13 @@ Contract balance: 0.0999
 ```solidity
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.17;
+pragma solidity ^0.8.19;
 
 import "hardhat/console.sol";
 
 contract WavePortal {
-    uint256 totalWaves;
-    uint256 private seed;
+    uint256 private _totalWaves;
+    uint256 private _seed;
 
     event NewWave(address indexed from, uint256 timestamp, string message);
 
@@ -302,9 +310,10 @@ contract WavePortal {
         address waver;
         string message;
         uint256 timestamp;
+        uint256 seed;
     }
 
-    Wave[] waves;
+    Wave[] private _waves;
 
     /*
      * "address => uint mapping"は、アドレスと数値を関連付ける
@@ -316,7 +325,7 @@ contract WavePortal {
         /*
          * 初期シードの設定
          */
-        seed = (block.timestamp + block.difficulty) % 100;
+        _seed = (block.timestamp + block.prevrandao) % 100;
     }
 
     function wave(string memory _message) public {
@@ -333,17 +342,17 @@ contract WavePortal {
          */
         lastWavedAt[msg.sender] = block.timestamp;
 
-        totalWaves += 1;
+        _totalWaves += 1;
         console.log("%s has waved!", msg.sender);
-
-        waves.push(Wave(msg.sender, _message, block.timestamp));
 
         /*
          *  ユーザーのために乱数を設定
          */
-        seed = (block.difficulty + block.timestamp + seed) % 100;
+        _seed = (block.prevrandao + block.timestamp + _seed) % 100;
 
-        if (seed <= 50) {
+        _waves.push(Wave(msg.sender, _message, block.timestamp, _seed));
+
+        if (_seed <= 50) {
             console.log("%s won!", msg.sender);
 
             uint256 prizeAmount = 0.0001 ether;
@@ -359,11 +368,11 @@ contract WavePortal {
     }
 
     function getAllWaves() public view returns (Wave[] memory) {
-        return waves;
+        return _waves;
     }
 
     function getTotalWaves() public view returns (uint256) {
-        return totalWaves;
+        return _totalWaves;
     }
 }
 ```
@@ -381,7 +390,7 @@ Solidityの`mapping`は、ほかの言語におけるハッシュテーブルや
 これらは、下記のように`_Key`と`_Value`のペアの形式でデータを格納するために使用されます。
 
 ```javascript
-mapping（_Key=> _Value）public mappingName
+mapping（_Key => _Value）public mappingName
 ```
 
 今回は、ユーザーのアドレス(= `_Key` = `address`)をそのユーザーが`wave`を送信した時刻(= `_Value` = `uint256`)に関連付けるために`mapping`を使用しました。
@@ -423,102 +432,223 @@ lastWavedAt[msg.sender] = block.timestamp;
 
 これらの基本機能をテストスクリプトとして記述していきましょう。
 
-`run.js`ではconsole.logメソッドなどを用いて結果がどのようになるかを具体的な値を
-出力することで確認していましたが、`test.js`では期待される値と一致するかを確認します。いわば最終確認のようなものです。
+`run.js`ではconsole.logメソッドなどを用いて、結果がどのようになるかを具体的な値を
+出力することで目視確認していました。これは、機能が増えるほど大変な確認作業となってしまいます。
+
+次に記述するテストは、各関数が期待する動作を行うか、コマンドを実行することで自動で確認されるようにします。
 
 ではpackages/contract/testに`test.js`という名前でファイルを作成して、以下のように記述しましょう。
 
-```
+```javascript
+const { loadFixture } = require('@nomicfoundation/hardhat-network-helpers');
 const hre = require('hardhat');
 const { expect } = require('chai');
+const { ethers } = require('hardhat');
 
-describe('Wave Contract', function () {
-  it('test if wave and token are sent', async function () {
-    const waveContractFactory = await hre.ethers.getContractFactory(
-      'WavePortal',
-    );
-    /*
-     * デプロイする際0.1ETHをコントラクトに提供する
-     */
-    const waveContract = await waveContractFactory.deploy({
+describe('WavePortal', function () {
+  // すべてのテストで同じセットアップを再利用するためにフィクスチャーを定義します。
+  async function deployProjectFixture() {
+    const wavePortalFactory = await ethers.getContractFactory('WavePortal');
+
+    // コントラクトは、デフォルトで最初の署名者/アカウント（ここではuser1）を使用してデプロイされます。
+    const [user1, user2] = await ethers.getSigners();
+
+    const wavePortal = await wavePortalFactory.deploy({
       value: hre.ethers.utils.parseEther('0.1'),
     });
-    await waveContract.deployed();
-    /*
-     * コントラクトの残高を取得（0.1ETH）
-     */
-    const contractBalanceBefore = hre.ethers.utils.formatEther(
-      await hre.ethers.provider.getBalance(waveContract.address),
+
+    await wavePortal.deployed();
+
+    // 現在のコントラクトの残高を取得します。
+    const wavePortalBalance = hre.ethers.utils.formatEther(
+      await hre.ethers.provider.getBalance(wavePortal.address),
     );
 
-    /*
-     * 2回 waves を送るシミュレーションを行う
-     */
-    const waveTxn = await waveContract.wave('This is wave #1');
-    await waveTxn.wait();
+    // waveを2回実行する関数を定義します。
+    const sendTwoWaves = async () => {
+      // user1, user2がそれぞれwaveを送ります。
+      await wavePortal.connect(user1).wave('This is wave #1');
+      await wavePortal.connect(user2).wave('This is wave #2');
+    };
 
-    const waveTxn2 = await waveContract.wave('This is wave #2');
-    await waveTxn2.wait();
+    return { wavePortal, wavePortalBalance, sendTwoWaves, user1, user2 };
+  }
 
-    /*
-     * コントラクトの残高を取得し、Waveを取得した後の結果を出力
-     */
-    const contractBalanceAfter = hre.ethers.utils.formatEther(
-      await hre.ethers.provider.getBalance(waveContract.address),
-    );
+  // テストケース
+  describe('getTotalWaves', function () {
+    it('should return total waves', async function () {
+      /** 準備 */
+      const { wavePortal, sendTwoWaves } = await loadFixture(
+        deployProjectFixture,
+      );
+      await sendTwoWaves();
 
-    /*
-     *勝利した回数に応じてコントラクトから出ていくトークンを計算
-     */
-    const allWaves = await waveContract.getAllWaves();
-    let cost = 0;
-    for (let i = 0; i < allWaves.length; i++) {
-      if (allWaves[i].seed <= 50) {
-        cost += 0.0001;
-      }
-    }
+      /** 実行 */
+      const totalWaves = await wavePortal.getTotalWaves();
 
-    /*
-     *メッセージの送信をテスト
-     */
-    expect(allWaves[0].message).to.equal('This is wave #1');
-    expect(allWaves[1].message).to.equal('This is wave #2');
+      /** 検証 */
+      expect(totalWaves).to.equal(2);
+    });
+  });
 
-    /*
-     *コントラクトのトークン残高がwave時の勝負による減少に連動しているかテスト
-     */
-    expect(parseFloat(contractBalanceAfter)).to.equal(
-      contractBalanceBefore - cost,
+  describe('getAllWaves', function () {
+    it('should return all waves', async function () {
+      /** 準備 */
+      const { wavePortal, sendTwoWaves, user1, user2 } = await loadFixture(
+        deployProjectFixture,
+      );
+      await sendTwoWaves();
+
+      /** 実行 */
+      const allWaves = await wavePortal.getAllWaves();
+
+      /** 検証 */
+      expect(allWaves[0].waver).to.equal(user1.address);
+      expect(allWaves[0].message).to.equal('This is wave #1');
+      expect(allWaves[1].waver).to.equal(user2.address);
+      expect(allWaves[1].message).to.equal('This is wave #2');
+    });
+  });
+
+  describe('wave', function () {
+    context('when user waved', function () {
+      it('should send tokens at random.', async function () {
+        /** 準備 */
+        const { wavePortal, wavePortalBalance, sendTwoWaves } =
+          await loadFixture(deployProjectFixture);
+
+        /** 実行 */
+        await sendTwoWaves();
+
+        /** 検証 */
+        // wave後のコントラクトの残高を取得します。
+        const wavePortalBalanceAfter = hre.ethers.utils.formatEther(
+          await hre.ethers.provider.getBalance(wavePortal.address),
+        );
+
+        // 勝利した回数に応じてコントラクトから出ていくトークンを計算します。
+        const allWaves = await wavePortal.getAllWaves();
+        let cost = 0;
+        for (let i = 0; i < allWaves.length; i++) {
+          if (allWaves[i].seed <= 50) {
+            cost += 0.0001;
+          }
+        }
+
+        // コントラクトのトークン残高がwave時の勝負による減少に連動しているかテストします。
+        expect(parseFloat(wavePortalBalanceAfter)).to.equal(
+          wavePortalBalance - cost,
+        );
+      });
+    });
+    context(
+      'when user1 tried to resubmit without waiting 15 mitutes',
+      function () {
+        it('reverts', async function () {
+          /** 準備 */
+          const { wavePortal, user1 } = await loadFixture(deployProjectFixture);
+
+          /** 実行 */
+          await wavePortal.connect(user1).wave('This is wave #1');
+
+          /** 検証 */
+          await expect(
+            wavePortal.connect(user1).wave('This is wave #2'),
+          ).to.be.revertedWith('Wait 15m');
+        });
+      },
     );
   });
 });
 ```
 
-ターミナル上で下記のコマンドを実行してみましょう。
+簡単にテストの内容を解説します。
 
+ここでは、3つの関数`getTotalWaves`、`getAllWaves`、`wave`をテストしています。
+
+各テストは、3つのステップ「準備」「実行」「検証」で構成されています。
+
+```javascript
+  describe('getTotalWaves', function () {
+    it('should return total waves', async function () {
+      /** 準備 */
+      const { wavePortal, sendTwoWaves } = await loadFixture(
+        deployProjectFixture,
+      );
+      await sendTwoWaves();
+
+      /** 実行 */
+      const totalWaves = await wavePortal.getTotalWaves();
+
+      /** 検証 */
+      expect(totalWaves).to.equal(2);
+    });
+  });
 ```
+
+まずは、「準備」のステップです。ここでは、`deployProjectFixture`を実行しています。deployProjectFixture内部ではWavePortalコントラクトのデプロイ、テストで使用したい機能や値を定義しています。
+
+次に、「実行」のステップです。ここでは、実際に`getTotalWaves`関数を呼び出しています。
+
+最後に、「検証」のステップです。ここでは、`getTotalWaves`関数の戻り値が2であることを検証しています。
+
+ここで、`wave`関数のテストを確認してみましょう。2種類のテストが記述されています。これは、wave関数が正常に実行された際の動作と、期待するエラーが発生するかの動作、2種類の動作を確認したいためです。正常時は、生成されたランダム値に応じてトークンが配布されたかどうかを確認します。期待するエラーとは、最後に追加した「スパムを防ぐためのクールダウン機能」に関するエラーです。
+
+```solidity
+        require(
+            lastWavedAt[msg.sender] + 15 minutes < block.timestamp,
+            "Wait 15m"
+        );
+```
+
+一人のユーザーが立て続けにwave関数を呼び出すことで、上記の`require`文に引っかかることを確認します。
+
+```javascript
+    context(
+      'when user1 tried to resubmit without waiting 15 mitutes',
+      function () {
+        it('reverts', async function () {
+          /** 準備 */
+          const { wavePortal, user1 } = await loadFixture(deployProjectFixture);
+
+          /** 実行 */
+          await wavePortal.connect(user1).wave('This is wave #1');
+
+          /** 検証 */
+          await expect(
+            wavePortal.connect(user1).wave('This is wave #2'),
+          ).to.be.revertedWith('Wait 15m');
+        });
+      },
+    );
+```
+
+それでは、テストスクリプトを実行してみましょう。テスト結果がわかりやすいように、`WavePortal.sol`内の`console.log`を全てコメントアウトすると良いでしょう。
+
+```bash
 yarn contract test
 ```
 
-`WavePortal.sol`の39~42行目の`require文`によってエラーが出るでしょう。なぜなら15分の間隔を空けることなくwaveを送ろうとしたからです。
-
-ではこちらをコメントアウトして再度テストコマンドを実行してみてください。
-
 下記のようなメッセージが出力されていればテスト成功です！
-```
-Compiled 2 Solidity files successfully
+
+```bash
+Compiled 1 Solidity file successfully
 
 
-  Wave Contract
-We have been constructed!
-0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 has waved!
-0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 has waved!
-    ✔ test if wave and token are sent (1446ms)
+  WavePortal
+    getTotalWaves
+      ✔ should return total waves (1349ms)
+    getAllWaves
+      ✔ should return all waves
+    wave
+      when user waved
+        ✔ should send tokens at random. (41ms)
+      when user1 tried to resubmit without waiting 15 mitutes
+        ✔ reverts (50ms)
 
 
-  1 passing (1s)
+  4 passing (1s)
 
-✨  Done in 6.09s.
 ```
 
 ### 🧞‍♀️ デプロイする？

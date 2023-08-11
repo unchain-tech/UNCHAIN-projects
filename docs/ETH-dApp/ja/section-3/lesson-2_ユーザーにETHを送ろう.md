@@ -17,7 +17,7 @@ function wave(string memory _message) public {
 	/*
 	* 「👋（wave）」とメッセージを配列に格納。
 	*/
-	waves.push(Wave(msg.sender, _message, block.timestamp));
+	_waves.push(Wave(msg.sender, _message, block.timestamp));
 	/*
 	* コントラクト側でemitされたイベントに関する通知をフロントエンドで取得できるようにする。
 	*/
