@@ -104,7 +104,7 @@ constructor() payable {
 
 `block.prevrandao`と`block.timestamp`の2つは、Solidityから与えられた数値です。
 
-- `block.prevrandao`は、ビーコンチェーン（プルーフ・オブ・ステーク型ブロックチェーン）が提供する乱数です。
+- `block.prevrandao`は、Beacon Chain（proof-of-stake型ブロックチェーン）が提供する乱数です。
 
 - `block.timestamp`は、ブロックが処理されている時のUNIXタイムスタンプです。
 
