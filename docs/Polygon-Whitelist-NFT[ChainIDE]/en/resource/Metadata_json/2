@@ -1,0 +1,9 @@
+{
+    "name": "Silver Shield",
+    "description": "To show our gratitude to ChainIDE users, we're offering this mythical Silver Shield as a gift.",
+    "image": "ipfs://bafybeigpqjtc6dg2aw7up7b6k6lou2rn5vmqnce3sslhgukq4jexwjpuha",
+    "attributes": [{
+        "trait_type": "Rarity",
+        "value": "Mythical"
+    }]
+}

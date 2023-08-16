@@ -1,0 +1,9 @@
+{
+    "name": "Gold Shield",
+    "description": "As a gesture of thanks, ChainIDE is presenting its users with this legendary Gold Shield.",
+    "image": "ipfs://bafybeifj4zvhyegddyerjwwhmzrepa5ogsuo2r73sor2utwjjdkilcdw24",
+    "attributes": [{
+        "trait_type": "Rarity",
+        "value": "Legendary"
+    }]
+}

@@ -1,0 +1,9 @@
+{
+    "name": "Bronze Shield",
+    "description": "As a token of appreciation, ChainIDE is gifting its users with this rare Bronze Shield.",
+    "image": "ipfs://bafybeid25fu5kqfwhy67hryylwiuerobvutztmm24g2yimkpezhf2i76vq",
+    "attributes": [{
+        "trait_type": "Rarity",
+        "value": "Rare"
+    }]
+}

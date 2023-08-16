@@ -1,0 +1,9 @@
+{
+    "name": "Platinum Shield",
+    "description": "ChainIDE is honored to gift its users with this immortal Platinum Shield as a symbol of our appreciation.",
+    "image": "ipfs://bafybeifmjxhldqtvpy2dd26l7syfbhafiqyyylovupvljnqgcmfin2mzsm",
+    "attributes": [{
+        "trait_type": "Rarity",
+        "value": "Immortal"
+    }]
+}
