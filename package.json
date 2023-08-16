@@ -5,8 +5,8 @@
   "repository": "https://github.com/unchain-dev/UNCHAIN-projects.git",
   "author": "SHØ <neila@users.noreply.github.com> (https://akxra.art/)",
   "scripts": {
-    "textlint:check": "textlint docs/**/*.md --ignore-path .textlintignore",
-    "textlint:fix": "textlint --fix docs/**/*.md --ignore-path .textlintignore",
+    "textlint:check": "textlint docs/*/ja/**/*.md --ignore-path .textlintignore",
+    "textlint:fix": "textlint --fix docs/*/ja/**/*.md --ignore-path .textlintignore",
     "prepare": "simple-git-hooks"
   },
   "simple-git-hooks": {
