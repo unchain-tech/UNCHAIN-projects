@@ -237,7 +237,7 @@ impl Contract {
 
 ３つあるテストの関数を1つずつみていきましょう。
 
-まず最初に宣言している`get_context関数`というのはテストをしているのではなく、テストをするための仮想的なチェーン(Virtual Machine)をビルドするためのものです。
+まず最初に宣言している`get_context関数`というのはテストをしているのではなく、テストをするための仮想的なチェーン（Virtual Machine）をビルドするためのものです。
 
 ```rust
 fn get_context(predecessor_account_id: AccountId) -> VMContextBuilder {
