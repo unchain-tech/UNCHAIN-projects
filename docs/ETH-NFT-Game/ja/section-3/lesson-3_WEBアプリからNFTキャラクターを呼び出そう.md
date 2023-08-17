@@ -176,7 +176,7 @@ const checkNetwork = async () => {
 
 `window.ethereum.networkVersion`では、ユーザーがどのイーサリアムネットワークを使用しているか確認しています。
 
-イーサリアムネットワークには異なるチェーン IDが付与されており、SepoliaチェーンのIDは`11155111`です。
+イーサリアムネットワークには異なるチェーンIDが付与されており、SepoliaチェーンのIDは`11155111`です。
 
 したがって、ユーザーがSepolia Test Networkに接続されてないことをWebアプリケーションが検知したら、「Sepolia Test Networkに接続してください!」というアラートがフロントエンドに表示されます。
 
