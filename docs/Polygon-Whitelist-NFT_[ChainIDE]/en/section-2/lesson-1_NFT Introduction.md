@@ -6,7 +6,7 @@ NFT (Non-Fungible Token) is a type of digital asset, typically used to store and
 
 NFTs use smart contracts to record and verify ownership and transaction history on the blockchain, providing transparency and traceability. This has made NFTs increasingly popular in the digital art market and considered as an emerging collectible and investment asset.
 
-![image-20230222182919997](/public/images/Polygon-Whitelist-NFT_[ChainIDE]/section-0/0_1_1.pngimage-20230222182919997.png)
+![image-20230222182919997](/public/images/Polygon-Whitelist-NFT_[ChainIDE]/section-2/2_1_1.png)
 
 BAYC (Bored Ape Yacht Club) is currently a standout in the NFT world. It was launched in April 2021, created by a group of artists and developers. At the initial release, BAYC's price was relatively low, only at 0.08 ETH, but as its popularity and heat continued to rise on social media and the NFT market, its price also experienced explosive growth. Currently, BAYC's holders have formed an active community. They share their avatars on social media and participate in various activities, becoming a highly-attended part of the digital art market.
 
