@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       LEVEL: error
-      FLAGS: docs/**.md
+      FLAGS: docs/*/ja/**/*.md
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3

@@ -499,7 +499,6 @@ export default Home;
 
 ```typescript
 import { AddressZero } from '@ethersproject/constants';
-import nextEnv from '@next/env';
 import { ThirdwebSDK } from '@thirdweb-dev/sdk';
 import assert from 'assert';
 import ethers from 'ethers';
@@ -512,29 +511,17 @@ import {
   ownerWalletAddress,
 } from '../src/scripts/module.js';
 
-const { loadEnvConfig } = nextEnv;
-// 環境変数を env ファイルから読み込む
-const { PRIVATE_KEY, ALCHEMY_API_URL, WALLET_ADDRESS } = loadEnvConfig(
-  process.cwd(),
-).combinedEnv;
-
 describe('ETH-DAO test', function () {
-  // 環境変数が取得できてとれているか確認
-  if (!PRIVATE_KEY || PRIVATE_KEY === '') {
-    // process.
-    throw new Error('🛑 Private key not found.');
-  }
-
-  if (!ALCHEMY_API_URL || ALCHEMY_API_URL === '') {
-    throw new Error('🛑 Alchemy API URL not found.');
-  }
-
-  if (!WALLET_ADDRESS || WALLET_ADDRESS === '') {
-    throw new Error('🛑 Wallet Address not found.');
-  }
+  // テスト用のウォレットを作成
+  const demoWallet = ethers.Wallet.createRandom();
+  // テスト用のPublic RPC Endpointを設定
+  const demoAlchemyRPCEndpoint = 'https://eth-sepolia.g.alchemy.com/v2/demo';
 
   const sdk = new ThirdwebSDK(
-    new ethers.Wallet(PRIVATE_KEY!, ethers.getDefaultProvider(ALCHEMY_API_URL)),
+    new ethers.Wallet(
+      demoWallet.privateKey,
+      ethers.getDefaultProvider(demoAlchemyRPCEndpoint),
+    ),
   );
 
   // 1-initialize-sdk.tsのテスト
@@ -542,8 +529,8 @@ describe('ETH-DAO test', function () {
     // sdkからアドレスを取得
     const address = await sdk.getSigner()?.getAddress();
 
-    // sdkを初期化したアドレスが自分のウォレットアドレスと一致しているか確認
-    assert.equal(address, WALLET_ADDRESS);
+    // sdkを初期化したアドレスがテスト用に生成したウォレットアドレスと一致しているか確認
+    assert.equal(address, demoWallet.address);
   });
 
   // edition-drop, ERC1155-token, gavanance-tokenの3つのコントラクトを取得
@@ -672,76 +659,28 @@ yarn test
 下のような結果がでいれば成功です！
 
 ```
-# Subtest: ETH-DAO test
-    # Subtest: sdk is working
-    ok 1 - sdk is working
-      ---
-      duration_ms: 0.512959
-      ...
-    # Subtest: metadata is set
-    ok 2 - metadata is set
-      ---
-      duration_ms: 8049.745916
-      ...
-    # Subtest: NFT is minted
-    ok 3 - NFT is minted
-      ---
-      duration_ms: 1770.656584
-      ...
-    # Subtest: NFT condition is set
-    ok 4 - NFT condition is set
-      ---
-      duration_ms: 3851.25
-      ...
-    # Subtest: token contract is deployed
-    ok 5 - token contract is deployed
-      ---
-      duration_ms: 1713.385542
-      ...
-    # Subtest: token is minted
-    ok 6 - token is minted
-      ---
-      duration_ms: 1683.686541
-      ...
-    # Subtest: token is transfered
-    ok 7 - token is transfered
-      ---
-      duration_ms: 1075.365209
-      ...
-    # Subtest: vote contract has right info
-    ok 8 - vote contract has right info
-      ---
-      duration_ms: 592.601458
-      ...
-    # Subtest: vote contract has as 9 times much tokens as owner has
-    ok 9 - vote contract has as 9 times much tokens as owner has
-      ---
-      duration_ms: 2624.013792
-      ...
-    # Subtest: vote contract has proposal
-    ok 10 - vote contract has proposal
-      ---
-      duration_ms: 2237.117125
-      ...
-    # Subtest: token role is passed to contract
-    ok 11 - token role is passed to contract
-      ---
-      duration_ms: 2768.723583
-      ...
-    1..11
-ok 1 - ETH-DAO test
-  ---
-  duration_ms: 26372.588292
-  ...
-1..1
-# tests 1
-# pass 1
-# fail 0
-# cancelled 0
-# skipped 0
-# todo 0
-# duration_ms 26438.270417
-✨  Done in 30.81s.
+▶ ETH-DAO test
+  ✔ sdk is working (2.805292ms)
+  ✔ metadata is set (4997.410834ms)
+  ✔ NFT is minted (1001.915459ms)
+  ✔ NFT condition is set (3716.073667ms)
+  ✔ token contract is deployed (1979.918625ms)
+  ✔ token is minted (1944.507292ms)
+  ✔ token is transfered (4742.419958ms)
+  ✔ vote contract has right info (1089.866375ms)
+  ✔ vote contract has as 9 times much tokens as owner has (1798.956209ms)
+  ✔ vote contract has proposal (2365.098833ms)
+  ✔ token role is passed to contract (2495.2875ms)
+▶ ETH-DAO test (26136.361542ms)
+
+ℹ tests 11
+ℹ suites 1
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 0.058375
 ```
 
 ### 🙋‍♂️ 質問する

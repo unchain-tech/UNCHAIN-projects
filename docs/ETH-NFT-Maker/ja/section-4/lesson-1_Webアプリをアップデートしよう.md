@@ -246,7 +246,7 @@ if (chainId !== "11155111") {
 }
 ```
 
-他のブロックチェーン IDは [こちら](https://docs.MetaMask.io/guide/ethereum-provider.html#chain-ids) から見つけることができます。
+他のブロックチェーンIDは [こちら](https://docs.MetaMask.io/guide/ethereum-provider.html#chain-ids) から見つけることができます。
 
 **3\. マイニングアニメーションを作成する**
 
