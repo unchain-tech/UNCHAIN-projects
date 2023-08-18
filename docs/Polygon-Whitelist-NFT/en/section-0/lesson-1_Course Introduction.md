@@ -12,8 +12,8 @@ To elaborate, the dApp will allow users to connect their Metamask wallets, and o
 
 This is the mint page：
 
-![image-20230223171808615](/public/images/Polygon-Whitelist-NFT_[ChainIDE]/section-0/0_1_1.png)
+![image-20230223171808615](/public/images/Polygon-Whitelist-NFT/section-0/0_1_1.png)
 
 This is how it looks like on OpenSea once we finished: 
 
-![image-20230223163620536](/public/images/Polygon-Whitelist-NFT_[ChainIDE]/section-0/0_1_2.png)
+![image-20230223163620536](/public/images/Polygon-Whitelist-NFT/section-0/0_1_2.png)

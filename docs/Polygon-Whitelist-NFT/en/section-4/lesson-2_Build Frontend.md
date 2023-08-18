@@ -4,11 +4,11 @@
 
 Create a new `Frontend` folder in the root directory on the left.
 
-![image-20230223143555437](/public/images/Polygon-Whitelist-NFT_[ChainIDE]/section-4/4_2_1.png)
+![image-20230223143555437](/public/images/Polygon-Whitelist-NFT/section-4/4_2_1.png)
 
 Create a new "index.html` file within the `frontend` directory.
 
-![image-20230223143709220](/public/images/Polygon-Whitelist-NFT_[ChainIDE]/section-4/4_2_2.png)
+![image-20230223143709220](/public/images/Polygon-Whitelist-NFT/section-4/4_2_2.png)
 
 ​	Let's start by pasting the complete code inside it.
 
@@ -189,7 +189,7 @@ Don't rush, we still need to fill in some information.
 
 Here, you need to fill in your `shield` contract address, which you can copy from the `Deploy` panel.
 
-![image-20230223155653780](/public/images/Polygon-Whitelist-NFT_[ChainIDE]/section-4/4_2_3.png)
+![image-20230223155653780](/public/images/Polygon-Whitelist-NFT/section-4/4_2_3.png)
 
 ```javascript
 const abi = ;
@@ -197,7 +197,7 @@ const abi = ;
 
 The ABI is the interface file used for interacting with the blockchain. You can copy it from here.
 
-![image-20230223155913909](/public/images/Polygon-Whitelist-NFT_[ChainIDE]/section-4/4_2_4.png)
+![image-20230223155913909](/public/images/Polygon-Whitelist-NFT/section-4/4_2_4.png)
 
 Therefore, our complete `index.html` looks like this. Remember, each person's version will be different because the `contractAddress` will certainly vary.
 
@@ -374,7 +374,7 @@ This is an `HTML` file composed of `HTML`, `CSS`, and `JavaScript`, three fronte
 
 Let's start by clicking the "Preview" button in the upper-right corner to preview the `HTML` page.
 
-![image-20230223145857748](/public/images/Polygon-Whitelist-NFT_[ChainIDE]/section-4/4_2_5.png)
+![image-20230223145857748](/public/images/Polygon-Whitelist-NFT/section-4/4_2_5.png)
 
 Basically, `HTML` forms the structure of elements like `"value: 0.01"`, `"Connect"`, `"Mint"`, and so on.
 
@@ -382,7 +382,7 @@ Basically, `HTML` forms the structure of elements like `"value: 0.01"`, `"Connec
 
 `JavaScript`, on the other hand, is used to define the actions that occur when these buttons are clicked.
 
-![image-20230223150000311](/public/images/Polygon-Whitelist-NFT_[ChainIDE]/section-4/4_2_6.png)
+![image-20230223150000311](/public/images/Polygon-Whitelist-NFT/section-4/4_2_6.png)
 
 Next, let me explain how the `"Connect"` and `"Mint"` functionalities are implemented. You should be able to extrapolate similar approaches for the other functionalities.
 

@@ -36,13 +36,13 @@ Additionally, we will use an extension of the ERC721 contract called [ERC721 Enu
 
 We will create a folder named "`interfaces`" under the "`contracts`" directory.
 
-![image-20230222235209219](/public/images/Polygon-Whitelist-NFT_[ChainIDE]/section-2/2_2_1.png)
+![image-20230222235209219](/public/images/Polygon-Whitelist-NFT/section-2/2_2_1.png)
 
 Within the "`interfaces`" folder, we'll create a contract named `IWhitelist.sol`.
 
 > Note: Solidity files that contain only interfaces typically have a prefix `I` to indicate that they are just an [interface](https://solidity-by-example.org/interface/).
 
-![image-20230222235330497](/public/images/Polygon-Whitelist-NFT_[ChainIDE]/section-2/2_2_2.png)
+![image-20230222235330497](/public/images/Polygon-Whitelist-NFT/section-2/2_2_2.png)
 
 We'll insert the following code into the `IWhitelist.sol`.
 
@@ -58,7 +58,7 @@ This is an interface file. It makes it convenient for other smart contracts to c
 
 Next, we will create `Shield.sol` under the folder `contracts`.
 
-![image-20230223091938319](/public/images/Polygon-Whitelist-NFT_[ChainIDE]/section-2/2_2_3.png)
+![image-20230223091938319](/public/images/Polygon-Whitelist-NFT/section-2/2_2_3.png)
 
 We insert the code below in `Shield.sol`.
 
@@ -274,8 +274,8 @@ To withdraw the `ether` from the contract, the `withdraw()` function comes into 
 
 Next, let's compile and deploy this smart contract using the `JS VM`. (You can simply stick with the compiler automatically chosen by ChainIDE.)
 
-![image-20230223092112169](/public/images/Polygon-Whitelist-NFT_[ChainIDE]/section-2/2_2_4.png)
+![image-20230223092112169](/public/images/Polygon-Whitelist-NFT/section-2/2_2_4.png)
 
 You can observe that on the `Deploy` page, we are required to input the `baseURI` (the root link for Metadata) and `whitelistContract` (the previous whitelist address). Therefore, the next task is to determine how to generate the root link for Metadata.
 
-![image-20230223092203406](/public/images/Polygon-Whitelist-NFT_[ChainIDE]/section-2/2_2_5.png)
+![image-20230223092203406](/public/images/Polygon-Whitelist-NFT/section-2/2_2_5.png)

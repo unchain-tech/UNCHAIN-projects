@@ -4,7 +4,7 @@
 
 As mentioned earlier, Metadata can be both centralized, such as stored on `AWS S3`, which is convenient for game-type NFTs to easily expand content within the Metadata. It can also be decentralized, stored on `IPFS`, `Ar`, which enhances the immutability of Metadata. In this lesson, I will teach you how to generate the required Metadata on `IPFS`.
 
-![pngVGb7Gkv](/public/images/Polygon-Whitelist-NFT_[ChainIDE]/section-3/3_1_1.png)
+![pngVGb7Gkv](/public/images/Polygon-Whitelist-NFT/section-3/3_1_1.png)
 
 IPFS stands for the **InterPlanetary** File System. It's a distributed peer-to-peer network used for storing and sharing files, websites, applications, and more. Originally released in 2015, it was developed by [Protocol Labs](https://protocol.ai/).
 
@@ -25,7 +25,7 @@ In this way, we can easily access the Metadata content of Bored Ape Yacht Club (
 
 https://cloudflare-ipfs.com/ipfs/QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/
 
-![image-20230223094941448](/public/images/Polygon-Whitelist-NFT_[ChainIDE]/section-3/3_1_2.png)
+![image-20230223094941448](/public/images/Polygon-Whitelist-NFT/section-3/3_1_2.png)
 
 However, uploading files to IPFS requires nodes, and running your own IPFS node might seem challenging.
 
