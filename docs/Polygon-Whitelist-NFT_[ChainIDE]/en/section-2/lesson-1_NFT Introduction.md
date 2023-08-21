@@ -20,5 +20,5 @@ There are now many different NFT protocol standards on ETH, and let me introduce
 
 2. [ERC-1155](https://eips.ethereum.org/EIPS/eip-1155) is a new NFT standard, released by Enjin in 2018. ERC-1155 represents "Fungible/Non-Fungible Tokens," merging both fungible and non-fungible tokens into one standard. This standard allows the creation of a single smart contract to manage multiple types of tokens, which can be either fungible or non-fungible. ERC-1155 tokens can be used to represent digital items, such as weapons, equipment, ornaments in games, and so on.
 
-3. Subsequent NFT protocols such as [ERC-3525](https://eips.ethereum.org/EIPS/eip-3525), [ERC-4907](https://eips.ethereum.org/EIPS/eip-3525) were also developed from the above two NFT standards.
+3. Subsequent NFT protocols such as [ERC-3525](https://eips.ethereum.org/EIPS/eip-3525), [ERC-4907](https://eips.ethereum.org/EIPS/eip-4907) were also developed from the above two NFT standards.
 
