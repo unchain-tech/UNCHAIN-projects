@@ -20,7 +20,7 @@
 
 ![image-20230223101907097](/public/images/Polygon-Whitelist-NFT/section-3/3_2_4.png)
 
-これらの画像をローカルデババイスに保存しましょう。
+これらの画像をローカルデバイスに保存しましょう。
 
 ![image-20230223102231474](/public/images/Polygon-Whitelist-NFT/section-3/3_2_5.png)
 
@@ -199,6 +199,6 @@ https://car.ipfs.io をクリックします。
 
 ![image-20230223120843152](/public/images/Polygon-Whitelist-NFT/section-3/3_2_17.png)
 
-このメタデータCARのCIDをコピーします：`bafybeihuwmkxnqban2ukneymhwctxfqec5ywrdiqyc7vmyegftrrllf7gq`.
+このメタデータCARのCIDをコピーします：`bafybeihuwmkxnqban2ukneymhwctxfqec5ywrdiqyc7vmyegftrrllf7gq`
 
-IPFSのbaseURIに変換します：`ipfs://bafybeihuwmkxnqban2ukneymhwctxfqec5ywrdiqyc7vmyegftrrllf7gq/`.
+IPFSのbaseURIに変換します：`ipfs://bafybeihuwmkxnqban2ukneymhwctxfqec5ywrdiqyc7vmyegftrrllf7gq/`
