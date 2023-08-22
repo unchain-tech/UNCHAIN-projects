@@ -56,7 +56,7 @@ Scan Verifierパネルに切り替え、「Polygon API Key」の隣にあるリ�
 
 ![image-20230114122923433](/public/images/Polygon-Whitelist-NFT/section-4/4_1_11.png)
 
-その後、`API Key`が生成されます（APIキーは他の人と共有しないでください。キーの使用速度には制限があります。私のキーの1つは`98TSWD2C57949VSZVFCZ15WKYDVSCMJKQM`です）。「`Copy`」をクリックします。
+その後、`API Key`が生成されます（APIキーは他の人と共有しないでください。キーの使用速度には制限があります。私のキーの1つは`98TSWD2C57949VSZVFCZ15WKYDVSCMJKQM`です）。生成されたキーをコピーします。
 
 ![image-20230114122953738](/public/images/Polygon-Whitelist-NFT/section-4/4_1_12.png)
 

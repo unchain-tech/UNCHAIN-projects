@@ -197,6 +197,10 @@ https://car.ipfs.io をクリックします。
 
 必要な変更を加えた後、もう一度メタデータをCARファイルとしてアップロードする手順を追ってみましょう。
 
+1〜4すべてのメタデータファイルを更新した後、先ほど画像をCARファイルとしてアップロードした手順を参考に今度はメタデータファイルをアップロードしましょう。
+
+アップロードが完了したら、`ipfs://METADATA_CAR_CID`にアクセスしてみましょう。
+
 ![image-20230223120843152](/public/images/Polygon-Whitelist-NFT/section-3/3_2_17.png)
 
 このメタデータCARのCIDをコピーします：`bafybeihuwmkxnqban2ukneymhwctxfqec5ywrdiqyc7vmyegftrrllf7gq`
