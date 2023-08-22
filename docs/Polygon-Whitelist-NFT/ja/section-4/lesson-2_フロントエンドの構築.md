@@ -1,16 +1,16 @@
-## Create a web frontend page.
+## ウェブフロントエンドページを作成する
 
-### Code generation
+### コード生成
 
-Create a new `Frontend` folder in the root directory on the left.
+左側のルートディレクトリに新しい`frontend`フォルダを作成します。
 
-![image-20230223143555437](/public/images/Polygon-Whitelist-NFT_[ChainIDE]/section-4/4_2_1.png)
+![image-20230223143555437](/public/images/Polygon-Whitelist-NFT/section-4/4_2_1.png)
 
-Create a new "index.html` file within the `frontend` directory.
+`frontend`ディレクトリ内に新しい`index.html`ファイルを作成します。
 
-![image-20230223143709220](/public/images/Polygon-Whitelist-NFT_[ChainIDE]/section-4/4_2_2.png)
+![image-20230223143709220](/public/images/Polygon-Whitelist-NFT/section-4/4_2_2.png)
 
-​	Let's start by pasting the complete code inside it.
+まずは、その中に完全なコードを貼り付けましょう。
 
 ```html
 <!DOCTYPE html>
@@ -181,25 +181,25 @@ Create a new "index.html` file within the `frontend` directory.
 </html>
 ```
 
-Don't rush, we still need to fill in some information.
+急がないでください。まだいくつかの情報を入力する必要があります。
 
 ```javascript
  const contractAddress = ;
 ```
 
-Here, you need to fill in your `shield` contract address, which you can copy from the `Deploy` panel.
+ここに、Deploy & Interactionパネルからコピーできる`Shield`コントラクトのアドレスを入力する必要があります。
 
-![image-20230223155653780](/public/images/Polygon-Whitelist-NFT_[ChainIDE]/section-4/4_2_3.png)
+![image-20230223155653780](/public/images/Polygon-Whitelist-NFT/section-4/4_2_3.png)
 
 ```javascript
 const abi = ;
 ```
 
-The ABI is the interface file used for interacting with the blockchain. You can copy it from here.
+ABIは、ブロックチェーンとのやりとりに使用されるインタフェースファイルです。こちらからコピーできます。
 
-![image-20230223155913909](/public/images/Polygon-Whitelist-NFT_[ChainIDE]/section-4/4_2_4.png)
+![image-20230223155913909](/public/images/Polygon-Whitelist-NFT/section-4/4_2_4.png)
 
-Therefore, our complete `index.html` looks like this. Remember, each person's version will be different because the `contractAddress` will certainly vary.
+したがって、完成した`index.html`は次のようになります。ただし、`contractAddress`は人によって異なるため、皆さんのファイル内容はそれぞれ異なることを忘れないでください。
 
 ```html
 <!DOCTYPE html>
@@ -370,21 +370,21 @@ Therefore, our complete `index.html` looks like this. Remember, each person's ve
 </html>
 ```
 
-This is an `HTML` file composed of `HTML`, `CSS`, and `JavaScript`, three frontend languages. You can delve deeper into these three frontend languages on [MDN](https://developer.mozilla.org/en-US/).
+これは`HTML`、`CSS`、`JavaScript`という3つのフロントエンド言語で構成された`HTML`ファイルです。この3つのフロントエンド言語については[MDN](https://developer.mozilla.org/en-US/)で詳しく解説されています。
 
-Let's start by clicking the "Preview" button in the upper-right corner to preview the `HTML` page.
+それでは、右上の「`Preview`」ボタンをクリックして、`HTML`ページをプレビューしてみましょう。
 
-![image-20230223145857748](/public/images/Polygon-Whitelist-NFT_[ChainIDE]/section-4/4_2_5.png)
+![image-20230223145857748](/public/images/Polygon-Whitelist-NFT/section-4/4_2_5.png)
 
-Basically, `HTML` forms the structure of elements like `"value: 0.01"`, `"Connect"`, `"Mint"`, and so on.
+基本的に`HTML`は`"value: 0.01"`、`"Connect"`、`"Mint"`などの要素の構造を形成する。
 
-`CSS` is responsible for centering these elements on the page.
+`CSS`はこれらの要素をページの中央に配置します。
 
-`JavaScript`, on the other hand, is used to define the actions that occur when these buttons are clicked.
+一方、`JavaScript`はこれらのボタンがクリックされたときに発生するアクションを定義するために使用されます。
 
-![image-20230223150000311](/public/images/Polygon-Whitelist-NFT_[ChainIDE]/section-4/4_2_6.png)
+![image-20230223150000311](/public/images/Polygon-Whitelist-NFT/section-4/4_2_6.png)
 
-Next, let me explain how the `"Connect"` and `"Mint"` functionalities are implemented. You should be able to extrapolate similar approaches for the other functionalities.
+次に、`"Connect"`と`"Mint"`の機能がどのように実装されているかを説明しましょう。他の機能についても同様のアプローチを推定できるはずです。
 
 ```html
  <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"
@@ -392,7 +392,7 @@ Next, let me explain how the `"Connect"` and `"Mint"` functionalities are implem
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 ```
 
-Firstly, we have imported [ether.js](https://docs.ethers.org/v5/). In simple terms, with `ether.js`, `JavaScript` code can interact with Ethereum, Polygon, and other EVM-compatible blockchains.
+まず、[ether.js](https://docs.ethers.org/v5/)をインポートしました。簡単に言うと、`ether.js`を使えば、`JavaScript`のコードはEthereum、Polygon、その他のEVM互換のブロックチェーンとやりとりできます。
 
 ```javascript
     const connectButton = document.getElementById("connectButton");
@@ -458,7 +458,7 @@ Firstly, we have imported [ether.js](https://docs.ethers.org/v5/). In simple ter
 
 ```
 
-When a user clicks the `"Connect"` button, it triggers the `connect` function. Firstly, it requests the account from MetaMask. Then, it checks the chainID to determine if it's connected to the Mumbai testnet (each chain typically has a unique chain ID, like Ethereum's mainnet is 1, and Mumbai's is 4902). If Mumbai is not configured, it will automatically set it up for you. If there are any errors during this process, corresponding error messages will be displayed.
+ユーザーが`"Connect"`ボタンをクリックすると、`connect`関数が起動します。まず、MetaMaskにアカウントを要求します。次に、チェーンIDをチェックしてMumbaiテストネットに接続されているかどうかを判断します（各チェーンには通常、ユニークなチェーンIDがあり、Ethereumのメインネットは1、Mumbaiは4902となっています）。Mumbaiが設定されていない場合は、自動的に設定します。このプロセス中にエラーが発生した場合は、対応するエラーメッセージが表示されます。
 
 ```javascript
     async function mint() {
@@ -483,6 +483,6 @@ When a user clicks the `"Connect"` button, it triggers the `connect` function. F
     }
 ```
 
-When a user clicks the `"Mint"` button, the script first fetches the array from the input field. It then outputs `"Mint..."` to the console. Subsequently, it prompts the user to sign the transaction using their MetaMask extension. The script calls the `mint` function of the contract and sends the corresponding amount of ether. If the minting process is successful, the console will display "Mint succeed!". Otherwise, it will show the corresponding error message.
+ユーザーが`"Mint"`ボタンをクリックすると、入力フィールドから配列を取得することから始めます。そして、コンソールに`"Mint..."`と出力します。続いて、MetaMask拡張子を使用してトランザクションに署名するようユーザーに求めます。スクリプトはコントラクトの`mint`関数を呼び出し、対応する量のetherを送信します。ミント処理が成功すると、コンソールに`"Mint succeed!"`と表示されます。そうでない場合は、対応するエラーメッセージが表示されます。
 
-I believe you can deduce the functionality of the `"withdraw"` function from here, so I won't elaborate further.
+`"withdraw"`関数の機能は、ここから推測できると思いますので、詳しく説明しません。

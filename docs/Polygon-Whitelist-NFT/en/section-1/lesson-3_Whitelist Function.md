@@ -182,16 +182,16 @@ Finally, we need a function to return whether an address belongs to the whitelis
 
 Alright, next we'll compile and deploy this contract using JS VM.
 
-![image-20230222180958479](/public/images/Polygon-Whitelist-NFT_[ChainIDE]/section-1/1_3_1.png)
+![image-20230222180958479](/public/images/Polygon-Whitelist-NFT/section-1/1_3_1.png)
 
 Here, we need to enter an array of addresses, which can be obtained from the JS VM accounts below, and switch accounts as needed.
 
 Like: `["0x5B38Da6a701c568545dCfcB03FcB875f56beddC4","0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2"]`
 
-![image-20230222180944652](/public/images/Polygon-Whitelist-NFT_[ChainIDE]/section-1/1_3_2.png)
+![image-20230222180944652](/public/images/Polygon-Whitelist-NFT/section-1/1_3_2.png)
 
 After deployment is complete, you can call the contract. Try entering some addresses to test it.
 
-![image-20230222181353308](/public/images/Polygon-Whitelist-NFT_[ChainIDE]/section-1/1_3_3.png)
+![image-20230222181353308](/public/images/Polygon-Whitelist-NFT/section-1/1_3_3.png)
 
 Alright, the whitelist contract is now complete. Next, we will move on to the smart contract writing module for the NFT (Non-Fungible Token) part.
