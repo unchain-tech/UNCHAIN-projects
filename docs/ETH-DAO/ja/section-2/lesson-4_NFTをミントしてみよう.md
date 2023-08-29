@@ -13,12 +13,12 @@
 ※ あなたのコントラクトアドレスを設定することを忘れないでください！
 
 ```typescript
-// 接続中のネットワークを取得するため useNetwork を新たにインポートします。
+import { Sepolia } from '@thirdweb-dev/chains';
 import {
   ConnectWallet,
   useAddress,
-  useContract
-  useNetwork,
+  useChain,
+  useContract,
 } from '@thirdweb-dev/react';
 import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
@@ -29,7 +29,7 @@ const Home: NextPage = () => {
   const address = useAddress();
   console.log('👋Wallet Address: ', address);
 
-  const [network, switchNetwork] = useNetwork();
+  const chain = useChain();
 
   // editionDrop コントラクトを初期化
   const editionDrop = useContract(
@@ -66,9 +66,10 @@ const Home: NextPage = () => {
     checkBalance();
   }, [address, editionDrop]);
 
-  if (address && network && network?.data?.chain?.id !== 11155111) {
+  // テストネットが Sepolia ではなかった場合に警告を表示
+  if (chain && chain.chainId !== Sepolia.chainId) {
     console.log('wallet address: ', address);
-    console.log('network: ', network?.data?.chain?.id);
+    console.log('chain name: ', chain.name);
 
     return (
       <div className={styles.container}>
@@ -126,12 +127,12 @@ export default Home;
 ※ あなたのコントラクトアドレスを設定することを忘れないでください！
 
 ```typescript
-// 接続中のネットワークを取得するため useNetwork を新たにインポートします。
+import { Sepolia } from '@thirdweb-dev/chains';
 import {
   ConnectWallet,
   useAddress,
-  useContract
-  useNetwork,
+  useChain,
+  useContract,
 } from '@thirdweb-dev/react';
 import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
@@ -142,7 +143,7 @@ const Home: NextPage = () => {
   const address = useAddress();
   console.log('👋Wallet Address: ', address);
 
-  const [network, switchNetwork] = useNetwork();
+  const chain = useChain();
 
   // editionDrop コントラクトを初期化
   const editionDrop = useContract(
@@ -213,9 +214,9 @@ const Home: NextPage = () => {
     );
   }
   // テストネットが Sepolia ではなかった場合に警告を表示
-  else if (address && network && network?.data?.chain?.id !== 11155111) {
+  else if (chain && chain.chainId !== Sepolia.chainId) {
     console.log('wallet address: ', address);
-    console.log('network: ', network?.data?.chain?.id);
+    console.log('chain name: ', chain.name);
 
     return (
       <div className={styles.container}>
@@ -322,9 +323,10 @@ NFTのミント画面を描画する前に、以下のコメント`DAO ダッシ
     );
   }
   // テストネットが Sepolia ではなかった場合に警告を表示
-  else if (address && network && network?.data?.chain?.id !== 11155111) {
+  else if (chain && chain.chainId !== Sepolia.chainId) {
     console.log('wallet address: ', address);
-    console.log('network: ', network?.data?.chain?.id);
+    console.log('chain name: ', chain.name);
+
 
     return (
       <div className={styles.container}>

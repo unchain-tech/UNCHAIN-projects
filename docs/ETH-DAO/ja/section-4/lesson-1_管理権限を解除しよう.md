@@ -84,12 +84,12 @@ Done in 44.18s.
 
 ```typescript
 import { AddressZero } from '@ethersproject/constants';
-// 接続中のネットワークを取得するため useNetwork を新たにインポートします。
+import { Sepolia } from '@thirdweb-dev/chains';
 import {
   ConnectWallet,
   useAddress,
-  useContract
-  useNetwork,
+  useChain,
+  useContract,
 } from '@thirdweb-dev/react';
 import { Proposal } from '@thirdweb-dev/sdk';
 import type { NextPage } from 'next';
@@ -101,7 +101,7 @@ const Home: NextPage = () => {
   const address = useAddress();
   console.log('👋Wallet Address: ', address);
 
-  const [network, switchNetwork] = useNetwork();
+  const chain = useChain();
 
   // editionDrop コントラクトを初期化
   const editionDrop = useContract(
@@ -302,9 +302,9 @@ const Home: NextPage = () => {
     );
   }
   // テストネットが Sepolia ではなかった場合に警告を表示
-  else if (address && network && network?.data?.chain?.id !== 11155111) {
+  else if (chain && chain.chainId !== Sepolia.chainId) {
     console.log('wallet address: ', address);
-    console.log('network: ', network?.data?.chain?.id);
+    console.log('chain name: ', chain.name);
 
     return (
       <div className={styles.container}>

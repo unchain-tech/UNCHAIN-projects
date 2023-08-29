@@ -7,20 +7,25 @@
 `pages/index.tsx`のコードを以下のとおり更新しましょう。
 
 ```typescript
-// 接続中のネットワークを取得するため useNetwork を新たにインポートします。
-import { ConnectWallet, useNetwork, useAddress } from '@thirdweb-dev/react';
+import { Sepolia } from '@thirdweb-dev/chains';
+import {
+  ConnectWallet,
+  useAddress,
+  useChain,
+  useContract,
+} from '@thirdweb-dev/react';
 import type { NextPage } from 'next';
 
 import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {
   const address = useAddress();
-  const [network, switchNetwork] = useNetwork();
+  const chain = useChain();
 
-  if (address && network && network?.data?.chain?.id !== 11155111) {
+  // テストネットが Sepolia ではなかった場合に警告を表示
+  if (chain && chain.chainId !== Sepolia.chainId) {
     console.log('wallet address: ', address);
-    console.log('network: ', network?.data?.chain?.id);
-
+    console.log('chain name: ', chain.name);
     return (
       <div className={styles.container}>
         <main className={styles.main}>
