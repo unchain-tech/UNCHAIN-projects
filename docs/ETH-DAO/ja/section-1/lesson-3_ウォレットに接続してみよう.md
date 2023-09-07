@@ -10,7 +10,7 @@
 
 今回は、めちゃくちゃ簡単に作れるthirdwebのフロントエンドSDKを使って実装していきます。
 
-`pages/_app.tsx`に移動して、以下のようにコードを更新しましょう。
+`src/pages/_app.tsx`に移動して、以下のようにコードを更新しましょう。
 
 ```typescript
 import { Sepolia } from '@thirdweb-dev/chains';
@@ -40,7 +40,7 @@ Next.jsにおいてAppコンポーネント (`_app.tsx`) で全ページ共通�
 
 続いて、ヘッダー部分のコードを準備しましょう。
 
-ルートディレクトリの直下に`components/head.tsx`を作成し、以下のコードを追加します。
+srcディレクトリの中に`components/head.tsx`を作成し、以下のコードを追加します。
 ```typescript
 import * as React from 'react';
 import Head from 'next/head';
@@ -98,7 +98,7 @@ yarn dev
 
 では、初期画面を更新していきましょう。
 
-`pages/index.tsx`に移動して、コードを以下とおり更新しましょう。
+`src/pages/index.tsx`に移動して、コードを以下とおり更新しましょう。
 
 ```typescript
 import { ConnectWallet } from '@thirdweb-dev/react';

@@ -4,7 +4,7 @@
 
 他の学習コンテンツと同様に、今回も [thirdweb](https://thirdweb.com/) を用いてネットワークの警告を実装していきましょう。
 
-`pages/index.tsx`のコードを以下のとおり更新しましょう。
+`src/pages/index.tsx`のコードを以下のとおり更新しましょう。
 
 ```typescript
 import { Sepolia } from '@thirdweb-dev/chains';

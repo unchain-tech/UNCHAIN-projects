@@ -495,7 +495,7 @@ export default Home;
 * NFT,トークン,ガバナンストークンに操作を加える機能
 
 これらの基本機能をテストスクリプトとして記述していきましょう。
-ではtestディレクトリを作成し、その中に`test.ts`という名前でファイルを作成して、以下のように記述しましょう。
+ではsrcディレクトリの中に`test`ディレクトリを作成し、その中に`test.ts`という名前でファイルを作成して、以下のように記述しましょう。
 
 ```typescript
 import { AddressZero } from '@ethersproject/constants';
@@ -509,7 +509,7 @@ import {
   ERCTokenAddress,
   gavananceAddress,
   ownerWalletAddress,
-} from '../src/scripts/module.js';
+} from '../scripts/module.js';
 
 describe('ETH-DAO test', function () {
   // テスト用のウォレットを作成
