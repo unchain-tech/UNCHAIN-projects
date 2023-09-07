@@ -23,8 +23,8 @@ DAOの運営のために使われるガバナンストークンは素晴らし�
 それでは早速、`src/scripts/8-deploy-vote.ts`を作成し、以下のコードを追加しましょう。
 
 ```typescript
-import sdk from './1-initialize-sdk.js';
-import { ERCTokenAddress } from './module.js';
+import sdk from './1-initialize-sdk';
+import { ERCTokenAddress } from './module';
 
 (async () => {
   try {
@@ -145,8 +145,8 @@ ENSでは、供給量の50％ がコミュニティ、25％ はエアドロッ�
 それでは、`src/scripts/9-setup-vote.ts`を作成し、以下のコードを追加しましょう。
 
 ```typescript
-import sdk from './1-initialize-sdk.js';
-import { ERCTokenAddress, gavananceAddress } from './module.js';
+import sdk from './1-initialize-sdk';
+import { ERCTokenAddress, gavananceAddress } from './module';
 
 // ガバナンスコントラクトのアドレスを設定します
 const vote = sdk.getContract(gavananceAddress, 'vote');

@@ -17,7 +17,7 @@ import { Sepolia } from '@thirdweb-dev/chains';
 import {ThirdwebProvider } from '@thirdweb-dev/react';
 import type { AppProps } from 'next/app';
 
-import HeadComponent from '../components/head';
+import { HeadComponent } from '../components/head';
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -45,7 +45,7 @@ srcディレクトリの中に`components/head.tsx`を作成し、以下のコ�
 import * as React from 'react';
 import Head from 'next/head';
 
-export default function HeadComponent(): JSX.Element {
+export const HeadComponent = () => {
   return (
     <Head>
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -70,7 +70,7 @@ export default function HeadComponent(): JSX.Element {
       <meta property="twitter:image" content="/banner.png" />
     </Head>
   ); 
-}
+};
 ```
 
 続いて、ルートディレクトリ直下にある`public`フォルダの中に以下の画像を`banner.png`という名前で保存します。

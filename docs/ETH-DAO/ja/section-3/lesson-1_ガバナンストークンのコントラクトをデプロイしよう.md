@@ -54,7 +54,7 @@ ENSチームは、ネットワークの初期サポーターに報酬を与え�
 ```tsx
 import { AddressZero } from '@ethersproject/constants';
 
-import sdk from './1-initialize-sdk.js';
+import sdk from './1-initialize-sdk';
 
 (async () => {
   try {
@@ -140,8 +140,8 @@ MetaMask"Import Token" をクリックするだけです。
 `src/scripts/6-print-money.ts`を作成し、下記コードを追加しましょう。
 
 ```typescript
-import sdk from './1-initialize-sdk.js';
-import { ERCTokenAddress } from './module.js';
+import sdk from './1-initialize-sdk';
+import { ERCTokenAddress } from './module';
 
 // これは、前のステップで取得した私たちの ERC-20 コントラクトのアドレスです。
 const token = sdk.getContract(ERCTokenAddress, 'token');
@@ -217,8 +217,8 @@ Done in 32.95s.
 `src/scripts/7-airdrop-token.ts`を作成し、以下のコードを追加してください。
 
 ```typescript
-import sdk from './1-initialize-sdk.js';
-import { editionDropAddress, ERCTokenAddress } from './module.js';
+import sdk from './1-initialize-sdk';
+import { editionDropAddress, ERCTokenAddress } from './module';
 
 // ERC-1155 メンバーシップの NFT コントラクトアドレス
 const editionDrop = sdk.getContract(editionDropAddress, 'edition-drop');

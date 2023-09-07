@@ -115,7 +115,7 @@ _📝 備考: `ExperimentalWarning`のようなランダムな警告が表示さ
 import { AddressZero } from '@ethersproject/constants';
 import { readFileSync } from 'fs';
 
-import sdk from './1-initialize-sdk.js';
+import sdk from './1-initialize-sdk';
 
 (async () => {
   try {

@@ -11,8 +11,8 @@
 それでは早速、`src/scripts/11-revoke-roles.ts`を作成し、以下のとおりコードを変更します。
 
 ```typescript
-import sdk from './1-initialize-sdk.js';
-import { ERCTokenAddress } from './module.js';
+import sdk from './1-initialize-sdk';
+import { ERCTokenAddress } from './module';
 
 const token = sdk.getContract(ERCTokenAddress, 'token');
 
