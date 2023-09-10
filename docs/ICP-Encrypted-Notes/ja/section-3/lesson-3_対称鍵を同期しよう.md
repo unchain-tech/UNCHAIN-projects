@@ -78,7 +78,7 @@
       }
 ```
 
-では、追加したコードを確認しましょう。syncSymmetricKey関数を`window.setInterval`という関数内で呼び出しました。[setInterval](https://developer.mozilla.org/en-US/docs/Web/API/setInterval)は、一定の時間ごとに指定した関数を実行してくれます。今回は5秒ごとにsyncSymmetricKey関数を実行するように設定しました。setIntervalは、作成されたタイマーを識別する数値であるIDを返します。このIDが既に設定されているときは、条件式を通過しないので重複してタイマーが設定されないようになっています。
+では、追加したコードを確認しましょう。syncSymmetricKey関数を`window.setInterval`という関数内で呼び出しました。セクション2でも登場しましたが、[setInterval](https://developer.mozilla.org/en-US/docs/Web/API/setInterval)は一定の時間ごとに指定した関数を実行してくれます。今回は5秒ごとにsyncSymmetricKey関数を実行するように設定しました。setIntervalは、作成されたタイマーを識別する数値であるIDを返します。このIDが既に設定されているときは、条件式を通過しないので重複してタイマーが設定されないようになっています。
 
 ```ts
       if (this.intervalId === null) {

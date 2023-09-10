@@ -78,7 +78,7 @@
 
 ### 🗑 デバイスデータを削除しよう
 
-最後に、デバイスデータの削除機能を実装しましょう。同じコンポーネントにある`deleteDevice`関数内、ログ出力をしている部分を下記のように更新しましょう。
+デバイスデータの削除機能を実装しましょう。同じコンポーネントにある`deleteDevice`関数内、ログ出力をしている部分を下記のように更新しましょう。
 
 ```tsx
   const deleteDevice = async () => {
@@ -109,6 +109,57 @@
 ```tsx
   const [deleteAlias, setDeleteAlias] = useState<string | undefined>(undefined);
 ```
+
+最後に、削除されたデバイスが自身のフロントエンド側で保持するデバイスデータを全て削除し、ログイン後にアクセスができるページからログインページへリダイレクトするようにしましょう。この機能により、削除されたデバイスは再度認証を行わないとアプリケーションの機能が利用できないようになります。
+
+`hooks/useDeviceCheck.ts`は、デバイスデータが削除されたかどうかをチェックするisDeviceRemoved関数を定義しています。バックエンドキャニスターからデバイスエイリアスを取得して、この関数を完成させましょう。下記のように更新してください。
+
+```ts
+  const isDeviceRemoved = useCallback(async () => {
+    if (auth.status !== 'SYNCED') {
+      return false;
+    }
+
+    // バックエンドキャニスターからデバイスエイリアスを取得します。
+    const deviceAlias = await auth.actor.getDeviceAliases();
+    // 自身のデバイスエイリアスが含まれていない場合は、デバイスが削除されたと判断します。
+    return !deviceAlias.includes(auth.cryptoService.deviceAlias);
+  }, [auth]);
+```
+
+isDeviceRemoved関数は、あらかじめNotesコンポーネントとDevicesコンポーネント内で呼び出すようにしています。該当箇所を簡単に確認しましょう。
+
+```tsx
+// routes/notes/index.tsx
+  useEffect(() => {
+    // 1秒ごとにポーリングします。
+    const intervalId = window.setInterval(async () => {
+      console.log('Check device data...');
+
+      const isRemoved = await isDeviceRemoved();
+      if (isRemoved) {
+        try {
+          await logout();
+          showMessage({
+            title: 'This device has been deleted.',
+            status: 'info',
+          });
+          navigate('/');
+        } catch (err) {
+          showMessage({ title: 'Failed to logout', status: 'error' });
+          console.error(err);
+        }
+      }
+    }, 1000);
+
+    // クリーンアップ関数を返します。
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [auth]);
+```
+
+[setInterval](https://developer.mozilla.org/en-US/docs/Web/API/setInterval)は、一定の時間ごとに指定した処理を実行してくれます。ここでは1秒ごとにisDeviceRemoved関数の結果を確認し、デバイスデータが削除されていた場合は、ログアウト処理を行ってログインページへリダイレクトします。
 
 ### ✅ 動作確認をしよう
 
