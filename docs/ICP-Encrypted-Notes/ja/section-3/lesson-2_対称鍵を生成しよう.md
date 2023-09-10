@@ -7,10 +7,10 @@ dfx deploy
 npm run start
 ```
 
-cryptoService.tsファイルのinit関数に対称鍵の生成と登録を行うコードを追加します。`/** STEP4: 対称鍵を生成します。 */`の部分に下記のコードを追加しましょう。
+cryptoService.tsファイルのinit関数に対称鍵の生成と登録を行うコードを追加します。`/** STEP9: 対称鍵を生成します。 */`の部分に下記のコードを追加しましょう。
 
 ```ts
-    /** 対称鍵を生成します。 */
+    /** STEP9: 対称鍵を生成します。 */
     // 対称鍵が生成されているかどうかを確認します。
     const isSymKeyRegistered =
       await this.actor.isEncryptedSymmetricKeyRegistered();
@@ -41,11 +41,11 @@ cryptoService.tsファイルのinit関数に対称鍵の生成と登録を行う
         }
       }
 
-      /** STEP5: 対称鍵を同期します。 */
+      /** STEP10: 対称鍵を同期します。 */
 
       return true;
     } else {
-      /** STEP6: 対称鍵を取得します。 */
+      /** STEP11: 対称鍵を取得します。 */
       return false;
     }
   }
@@ -122,6 +122,87 @@ init関数に戻り、最後は暗号化された対称鍵をバックエンド�
 
 ```console
 Generate symmetric key...
+```
+
+### 📝 このレッスンで追加したコード
+
+- `lib/cryptoService.ts`
+
+```diff
+  public async init(): Promise<boolean> {
+    /** STEP6: 公開鍵・秘密鍵を生成します。 */
+    // データベースから公開鍵・秘密鍵を取得します。
+    this.publicKey = await loadKey('publicKey');
+    this.privateKey = await loadKey('privateKey');
+
+    if (!this.publicKey || !this.privateKey) {
+      // 公開鍵・秘密鍵が存在しない場合は、生成します。
+      const keyPair: CryptoKeyPair = await this.generateKeyPair();
+
+      // 生成した鍵をデータベースに保存します。
+      await storeKey('publicKey', keyPair.publicKey);
+      await storeKey('privateKey', keyPair.privateKey);
+
+      this.publicKey = keyPair.publicKey;
+      this.privateKey = keyPair.privateKey;
+    }
+
+    /** STEP8: デバイスデータを登録します。 */
+    // publicKeyをexportしてBase64に変換します。
+    const exportedPublicKey = await window.crypto.subtle.exportKey(
+      'spki',
+      this.publicKey,
+    );
+    this.exportedPublicKeyBase64 = this.arrayBufferToBase64(exportedPublicKey);
+
+    // バックエンドキャニスターにデバイスエイリアスと公開鍵を登録します。
+    await this.actor.registerDevice(
+      this.deviceAlias,
+      this.exportedPublicKeyBase64,
+    );
+
+    /** STEP9: 対称鍵を生成します。 */
++    // 対称鍵が生成されているかどうかを確認します。
++    const isSymKeyRegistered =
++      await this.actor.isEncryptedSymmetricKeyRegistered();
++    if (!isSymKeyRegistered) {
++      console.log('Generate symmetric key...');
++      // 対称鍵を生成します。
++      this.symmetricKey = await this.generateSymmetricKey();
++      // 対称鍵を公開鍵で暗号化します。
++      const wrappedSymmetricKeyBase64: string = await this.wrapSymmetricKey(
++        this.symmetricKey,
++        this.publicKey,
++      );
++      // 暗号化した対称鍵をバックエンドキャニスターに登録します。
++      const result: RegisterKeyResult =
++        await this.actor.registerEncryptedSymmetricKey(
++          this.exportedPublicKeyBase64,
++          wrappedSymmetricKeyBase64,
++        );
++      if ('Err' in result) {
++        if ('UnknownPublicKey' in result.Err) {
++          throw new Error('Unknown public key');
++        }
++        if ('AlreadyRegistered' in result.Err) {
++          throw new Error('Already registered');
++        }
++        if ('DeviceNotRegistered' in result.Err) {
++          throw new Error('Device not registered');
++        }
++      }
++
++      /** STEP10: 対称鍵を同期します。 */
++
++      return true;
++    } else {
++      /** STEP11: 対称鍵を取得します。 */
++      return false;
++    }
++  }
+
+    return true;
+  }
 ```
 
 ### 🙋‍♂️ 質問する

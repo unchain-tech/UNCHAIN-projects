@@ -1,8 +1,8 @@
 ### 🛢 データベースを作成しよう
 
-まずは、キーペアを保存するデータベースから作成していきましょう。
+まずは、公開鍵と秘密鍵を保存するデータベースから作成していきましょう。
 
-ブラウザ上のローカルストレージは、string型のデータしか保存できません。しかし、このレッスンで生成する鍵は[`CryptoKey`](https://developer.mozilla.org/ja/docs/Web/API/CryptoKey)オブジェクトです。そのため、[idb](https://github.com/jakearchibald/idb#readme)というデータベースを用意したいと思います。
+ブラウザ上のローカルストレージは、string型のデータしか保存できません。しかし、このレッスンで生成する鍵は[`CryptoKey`](https://developer.mozilla.org/ja/docs/Web/API/CryptoKey)オブジェクトです。CryptoKeyオブジェクトをそのまま保存できる[idb](https://github.com/jakearchibald/idb#readme)というデータベースを用意したいと思います。
 
 まずは、必要なパッケージをインストールしましょう。
 
@@ -61,7 +61,7 @@ export async function clearKeys() {
 
 ### 🔑 公開鍵・秘密鍵を生成しよう
 
-次に、キーペアを生成する機能を実装します。`cryptoService.ts`を更新していきます。
+次に、キーペアを生成する機能を実装します。`lib/cryptoService.ts`を更新しましょう。
 
 先ほど作成した`keyStorage.ts`をインポートします。
 
@@ -69,10 +69,11 @@ export async function clearKeys() {
 import { clearKeys, loadKey, storeKey } from './keyStorage';
 ```
 
-鍵を準備して、CryptoServiceクラスのメンバーを更新する関数`init`を定義します。下記のコードを、`constructor(){}`の下に追加しましょう。
+鍵を準備して、CryptoServiceクラスのメンバーを更新する`init`関数を更新します。下記を参考に、`/** STEP6: 公開鍵・秘密鍵を生成します。 */`の部分にコードを追加しましょう。
 
 ```ts
   public async init(): Promise<boolean> {
+    /** STEP6: 公開鍵・秘密鍵を生成します。 */
     // データベースから公開鍵・秘密鍵を取得します。
     this.publicKey = await loadKey('publicKey');
     this.privateKey = await loadKey('privateKey');
@@ -88,6 +89,10 @@ import { clearKeys, loadKey, storeKey } from './keyStorage';
       this.publicKey = keyPair.publicKey;
       this.privateKey = keyPair.privateKey;
     }
+
+    /** STEP8: デバイスデータを登録します。 */
+
+    /** STEP9: 対称鍵を生成します。 */
 
     return true;
   }
@@ -163,10 +168,10 @@ generateKey(algorithm, extractable, keyUsages);
 
 それでは、init関数を呼び出してみましょう。authContext.tsに`const cryptoService = new CryptoService();`を追加しました。このインスタンスを使用してinit関数を呼び出します。
 
-`/** STEP5: デバイスデータの設定を行います。 */`の部分に下記のコードを追加しましょう。
+`/** STEP7: デバイスデータの設定を行います。 */`の部分に下記のコードを追加しましょう。
 
 ```ts
-    /** STEP5: デバイスデータの設定を行います。 */
+    /** STEP7: デバイスデータの設定を行います。 */
     const initialized = await cryptoService.init();
     console.log(`initialized: ${initialized}`);
 ```
@@ -176,6 +181,73 @@ generateKey(algorithm, extractable, keyUsages);
 ログインボタンを押して、認証を行います。認証が完了したら、ストレージを確認してみます。`crypto-store`というデータベースが作成されていることが確認します。
 
 <!-- TODO: 画像を追加（Application->Storage->IndexedDB->crypto-store->keys） -->
+
+### 📝 このレッスンで追加したコード
+
+- `lib/keyStorage.ts`
+
+このレッスン最初の「🛢 データベースを作成しよう」を参照。
+
+- `lib/cryptoService.ts`
+
+```diff
++import { clearKeys, loadKey, storeKey } from './keyStorage';
+
+...
+
+  public async init(): Promise<boolean> {
+    /** STEP6: 公開鍵・秘密鍵を生成します。 */
++    // データベースから公開鍵・秘密鍵を取得します。
++    this.publicKey = await loadKey('publicKey');
++    this.privateKey = await loadKey('privateKey');
++
++    if (!this.publicKey || !this.privateKey) {
++      // 公開鍵・秘密鍵が存在しない場合は、生成します。
++      const keyPair: CryptoKeyPair = await this.generateKeyPair();
++
++      // 生成した鍵をデータベースに保存します。
++      await storeKey('publicKey', keyPair.publicKey);
++      await storeKey('privateKey', keyPair.privateKey);
++
++      this.publicKey = keyPair.publicKey;
++      this.privateKey = keyPair.privateKey;
++    }
+
+    /** STEP8: デバイスデータを登録します。 */
+
+    /** STEP9: 対称鍵を生成します。 */
+
+    return true;
+  }
+
+```
+
+- `hooks/useContext.ts`
+
+```diff
+  const setupService = async (authClient: AuthClient) => {
+    /** STEP2: 認証したユーザーのデータを取得します。 */
+    const identity = authClient.getIdentity();
+
+    /** STEP3: バックエンドキャニスターを呼び出す準備をします。 */
+    // 取得した`identity`を使用して、ICと対話する`agent`を作成します。
+    const newAgent = new HttpAgent({ identity });
+    if (process.env.DFX_NETWORK === 'local') {
+      newAgent.fetchRootKey();
+    }
+    // 認証したユーザーの情報で`actor`を作成します。
+    const options = { agent: newAgent };
+    const actor = createActor(canisterId, options);
+
+    /** STEP5: CryptoServiceクラスのインスタンスを生成します。 */
+    const cryptoService = new CryptoService(actor);
+    /** STEP7: デバイスデータの設定を行います。 */
++    const initialized = await cryptoService.init();
++    console.log(`initialized: ${initialized}`);
+
+    setAuth({ actor, authClient, cryptoService, status: 'SYNCED' });　　
+  }
+```
 
 ### 🙋‍♂️ 質問する
 

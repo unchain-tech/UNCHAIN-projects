@@ -1,16 +1,16 @@
 ### 👤 ユーザー認証機能を実装しよう
 
-前回までのレッスンで、ノートを管理する機能が準備できました。フロントエンドキャニスターでこの機能を直接呼び出す前に、まずはユーザーの認証機能を実装する必要があります。このレッスンでは、アプリケーションのホーム画面にログインボタンを実装していきます。
+前回までのレッスンで、ノートを管理する機能が準備できました。フロントエンドキャニスターでこの機能を呼び出す前に、ユーザーの認証機能を実装する必要があります。ノートはプリンシパルと紐づけて管理するためです。このレッスンでは、アプリケーションのホーム画面にログインボタンを実装していきます。
 
 ### 📁 internet identity キャニスターを準備しよう
 
-ユーザーの認証に使用する、`Internet Identity`を設定していきましょう。
+ユーザーの認証に使用する`Internet Identity`を設定していきましょう。
 
 #### Internet Identity とは
 
 Internet Identityは、WebAuthn対応デバイスを持つ全ての人が、Internet Computer上で稼働するweb3サービスに匿名で認証できるフレームワークです。
 
-Web上では、主にユーザー名とパスワードによる認証が用いられますが、これらは管理が難しくセキュリティの脆弱性でよく知られています。これらの問題を解決するため、Internet Computerブロックチェーンは、より進んでおり、はるかにセキュアな暗号化認証法であるInternet Identityを導入しました。
+Web上では、主にユーザー名とパスワードによる認証が用いられますが、管理が難しくセキュリティの脆弱性でよく知られています。これらの問題を解決するため、Internet Computerブロックチェーンは、より進んでおり、はるかにセキュアな暗号化認証法であるInternet Identityを導入しました。
 
 ユーザーはFaceIDや指紋センサー、またはYubiKeyを使用してデバイスによる認証のロックを解除します。その後、デバイスを利用してさまざまなアプリケーションにサインアップし認証を行うことができます（認証の手順に関する詳細はこちらの[ドキュメント](https://internetcomputer.org/how-it-works/web-authentication-identity/)を参照してください）。
 
@@ -99,16 +99,18 @@ const identity = authClient.getIdentity();
 
 それでは、ここまでの内容をフロントエンドキャニスターに実装していきましょう！ ここからは、`src/encrypted_notes_frontend`ディレクトリ内のファイルを編集していきます。
 
-まずは`src/hooks`ディレクトリ内の`authContext.ts`を更新します。`login`関数の`/** STEP1: 認証機能を実装します。 */`を下記の内容で上書きしましょう。
+まずは`src/hooks`ディレクトリ内の`authContext.ts`を更新します。`login`関数の`/** STEP1: 認証機能を実装します。 */`を下記ように更新しましょう。
 
 ```tsx
   const login = async (): Promise<void> => {
+    /** STEP1: 認証機能を実装します。 */
     const iiUrl = `http://${process.env.INTERNET_IDENTITY_CANISTER_ID}.localhost:4943`;
 
     return new Promise((resolve, reject) => {
-      // ログイン認証を実行します。
+      // AuthClientオブジェクトを作成します。
       AuthClient.create()
         .then((authClient) => {
+          // 認証画面を開きます。
           authClient.login({
             identityProvider: iiUrl,
             onSuccess: async () => {
@@ -129,14 +131,14 @@ const identity = authClient.getIdentity();
   };
 ```
 
-続いて、`authClient.login`が成功した際に呼び出す`setupService`関数を更新しましょう。この関数はlogin関数の上に定義されています。認証が成功したときに行いたいことは、ユーザーのデータを取得することです。`/** STEP2: 認証したユーザーのデータを取得します。 */`を下記の内容で上書きします。
+続いて、`authClient.login`が成功した際に呼び出す`setupService`関数を更新しましょう。この関数はlogin関数の上に定義されています。認証が成功したときに行いたいことは、ユーザーのデータを取得することです。`/** STEP2: 認証したユーザーのデータを取得します。 */`の下に下記のコードを追加します。
 
 ```tsx
-    /** 認証したユーザーのデータを取得します。 */
+    /** STEP2: 認証したユーザーのデータを取得します。 */
     const identity = authClient.getIdentity();
 ```
 
-認証に成功したユーザーのデータ（identity）を取得します。これは後にIC（Internet Computer）との対話に使用されます。
+認証に成功したユーザーのデータ（identity）を取得します。これは後にInternet Computerとの対話で用います。
 
 この戻り値identityは[Identityインタフェース](https://github.com/dfinity/agent-js/blob/b7abf4a9ab43b12e0d0c5d810dbc0336e11c29f4/packages/agent/src/auth.ts#L38-L51)のオブジェクトとなっており、Identityが表すプリンシパルを取得できる`getPrincipal`メソッドを提供しています。下記のようにして、認証したユーザーのプリンシパルを取得することもできます。
 
@@ -200,7 +202,7 @@ npm run start
 
 <!-- TODO: 操作時画面の画像を追加する　 -->
 
-### 📝 このセクションで追加したコード
+### 📝 このレッスンで追加したコード
 
 - `src/hooks/authContext.ts`
 
@@ -210,17 +212,19 @@ export const useAuthProvider = (): AuthState => {
   const [auth, setAuth] = useState<Auth>(initialize.auth);
 
   const setupService = async (authClient: AuthClient) => {
-+    // 認証したユーザーのデータを取得します。
+    /** STEP2: 認証したユーザーのデータを取得します。 */
 +    const identity = authClient.getIdentity();
   };
 
   const login = async (): Promise<void> => {
+    /** STEP1: 認証機能を実装します。 */
 +    const iiUrl = `http://${process.env.INTERNET_IDENTITY_CANISTER_ID}.localhost:4943`;
 +
 +    return new Promise((resolve, reject) => {
-+      // ログイン認証を実行します。
++      // AuthClientオブジェクトを作成します。
 +      AuthClient.create()
 +        .then((authClient) => {
++          // 認証画面を開きます。
 +          authClient.login({
 +            identityProvider: iiUrl,
 +            onSuccess: async () => {

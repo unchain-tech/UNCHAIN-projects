@@ -8,7 +8,7 @@ dfx deploy
 npm run start
 ```
 
-デバイスエイリアスは、[UUID](https://github.com/uuidjs/uuid#readme)でランダムに生成します。新しくターミナルを開き、以下のライブラリをインストールします。
+デバイスエイリアスは、[UUID](https://github.com/uuidjs/uuid#readme)でランダムに生成します。新しくターミナルを開き、以下のコマンドを実行してライブラリをインストールします。
 
 ```bash
 npm install uuid@9.0.0
@@ -21,9 +21,10 @@ npm install --save-dev @types/uuid@9.0.2
 import { v4 as uuidV4 } from 'uuid';
 ```
 
-`/** STEP1: コンストラクタを定義する */`の箇所に、下記のコードを記述します。
+`/** STEP4: コンストラクタを定義します。 */`の箇所に、下記のコードを記述します。
 
 ```ts
+　/** STEP4: コンストラクタを定義します。 */
   constructor(actor: ActorSubclass<_SERVICE>) {
     this.actor = actor;
 
@@ -39,10 +40,10 @@ constructorとは、クラスのインスタンスが生成された際に呼び
 
 では、`hooks/authContext.ts`を更新して、CryptoServiceクラスを呼び出してみましょう。
 
-`/** STEP4: CryptoServiceクラスのインスタンスを生成します。 */`の部分を下記のコードで上書きしましょう。
+`/** STEP5: CryptoServiceクラスのインスタンスを生成します。 */`の部分を下記のコードに更新します。
 
 ```ts
-    // CryptoServiceクラスのインスタンスを生成します。
+    /** STEP5: CryptoServiceクラスのインスタンスを生成します。 */
     const cryptoService = new CryptoService(actor);
 ```
 

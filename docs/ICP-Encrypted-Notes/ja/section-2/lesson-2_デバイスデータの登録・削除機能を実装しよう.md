@@ -25,6 +25,7 @@ use std::collections::HashMap;
 その下に、type文を使用して、既存の方に新しい名前（[エイリアス](https://doc.rust-jp.rs/rust-by-example-ja/types/alias.html)）を付けます。
 
 ```rust
+/// devicesモジュール内のエラーを表す列挙型です。
 #[derive(CandidType, Deserialize, Eq, PartialEq)]
 pub enum DeviceError {
     AlreadyRegistered,
@@ -33,6 +34,7 @@ pub enum DeviceError {
     UnknownPublicKey,
 }
 
+/// 型のエイリアスです。
 pub type DeviceAlias = String;
 pub type PublicKey = String;
 pub type EncryptedSymmetricKey = String;
@@ -45,12 +47,15 @@ pub type SynchronizeKeyResult = Result<EncryptedSymmetricKey, DeviceError>;
 では、`pub type SynchronizeKeyResult = Result<EncryptedSymmetricKey, DeviceError>;`の下にデバイスデータを管理する構造体を定義します。
 
 ```rust
+/// デバイスのエイリアスと鍵を紐付けて保存する構造体です。
 #[derive(CandidType, Clone, Serialize, Deserialize)]
 pub struct DeviceData {
     pub aliases: HashMap<DeviceAlias, PublicKey>,
     pub keys: HashMap<PublicKey, EncryptedSymmetricKey>,
 }
 
+/// devicesモジュール内のデータを管理する構造体です。
+/// * `devices` - Principalとデバイスデータを紐づけて保存します。
 #[derive(Default)]
 pub struct Devices {
     pub devices: HashMap<Principal, DeviceData>,
@@ -63,6 +68,7 @@ pub struct Devices {
 
 ```rust
 impl Devices {
+    /// 指定したPrincipalとデバイスデータを紐付けて登録します。
     pub fn register_device(
         &mut self,
         caller: Principal,
@@ -95,6 +101,7 @@ impl Devices {
         }
     }
 
+    /// 指定したPrincipalが持つデバイスエイリアス一覧を取得します。
     pub fn get_device_aliases(&self, caller: Principal) -> Vec<DeviceAlias> {
         self.devices
             .get(&caller)
@@ -102,6 +109,7 @@ impl Devices {
             .unwrap_or_default()
     }
 
+    /// 指定したPrincipalのデバイスから、エイリアスが一致するデバイスを削除します。
     pub fn delete_device(&mut self, caller: Principal, alias: DeviceAlias) {
         if let Some(device_data) = self.devices.get_mut(&caller) {
             // プリンシパルは、必ず1つ以上のデバイスエイリアスが紐づいているものとします。
@@ -136,7 +144,13 @@ removeは、削除した値を返すので、公開鍵と暗号化された対�
             }
 ```
 
-では、devices.rsの機能を`lib.rs`から呼び出すようにしましょう。
+では、`lib.rs`を更新して、devices.rsの機能を呼び出すようにしましょう。
+
+`use crate::notes::*;`の上に、下記のコードを追加します。
+
+```rust
+use crate::devices::*;
+```
 
 `mod notes;`の上に、下記のコードを追加します。
 
@@ -192,7 +206,7 @@ fn is_caller_registered(caller: Principal) -> bool {
 }
 ```
 
-is_caller_registered関数を、**register_device関数以外のすべての関数**で呼び出します。各関数の`let caller = caller();`の下にアサーションを追加しましょう。
+is_caller_registered関数を、**register_device関数以外のすべての関数**で呼び出します。register_device以外の各関数に定義されている`let caller = caller();`の下に、アサーションを追加しましょう。
 
 例）
 
@@ -204,6 +218,108 @@ fn get_device_aliases() -> Vec<DeviceAlias> {
     assert!(is_caller_registered(caller));
 
     DEVICES.with(|devices| devices.borrow().get_device_aliases(caller))
+}
+```
+
+ここまでで、`lib.rs`はこのようになっているでしょう。
+
+```rust
+// lib.rs
+use crate::devices::*;
+use crate::notes::*;
+use ic_cdk::api::caller as caller_api;
+use ic_cdk::export::Principal;
+use ic_cdk_macros::*;
+use std::cell::RefCell;
+
+mod devices;
+mod notes;
+
+thread_local! {
+    static DEVICES: RefCell<Devices> = RefCell::default();
+static NOTES: RefCell<Notes> = RefCell::default();
+}
+
+// 関数をコールしたユーザーPrincipalを取得します。
+fn caller() -> Principal {
+    let caller = caller_api();
+
+    // 匿名のPrincipalを禁止します(ICキャニスターの推奨されるデフォルトの動作)。
+    if caller == Principal::anonymous() {
+        panic!("Anonymous principal is not allowed");
+    }
+    caller
+}
+
+fn is_caller_registered(caller: Principal) -> bool {
+    DEVICES.with(|devices| devices.borrow().devices.contains_key(&caller))
+}
+
+#[update(name = "registerDevice")]
+fn register_device(alias: DeviceAlias, public_key: PublicKey) {
+    let caller = caller();
+
+    DEVICES.with(|devices| {
+        devices
+            .borrow_mut()
+            .register_device(caller, alias, public_key)
+    })
+}
+
+#[query(name = "getDeviceAliases")]
+fn get_device_aliases() -> Vec<DeviceAlias> {
+    let caller = caller();
+    assert!(is_caller_registered(caller));
+
+    DEVICES.with(|devices| devices.borrow().get_device_aliases(caller))
+}
+
+#[update(name = "deleteDevice")]
+fn delete_device(alias: DeviceAlias) {
+    let caller = caller();
+    assert!(is_caller_registered(caller));
+
+    DEVICES.with(|devices| {
+        devices.borrow_mut().delete_device(caller, alias);
+    })
+}
+
+#[query(name = "getNotes")]
+fn get_notes() -> Vec<EncryptedNote> {
+    let caller = caller();
+    assert!(is_caller_registered(caller));
+
+    NOTES.with(|notes| notes.borrow().get_notes(caller))
+}
+
+#[update(name = "addNote")]
+fn add_note(data: String) {
+    let caller = caller();
+    assert!(is_caller_registered(caller));
+
+    NOTES.with(|notes| {
+        notes.borrow_mut().add_note(caller, data);
+    })
+}
+
+#[update(name = "deleteNote")]
+fn delete_note(id: u128) {
+    let caller = caller();
+    assert!(is_caller_registered(caller));
+
+    NOTES.with(|notes| {
+        notes.borrow_mut().delete_note(caller, id);
+    })
+}
+
+#[update(name = "updateNote")]
+fn update_note(new_note: EncryptedNote) {
+    let caller = caller();
+    assert!(is_caller_registered(caller));
+
+    NOTES.with(|notes| {
+        notes.borrow_mut().update_note(caller, new_note);
+    })
 }
 ```
 

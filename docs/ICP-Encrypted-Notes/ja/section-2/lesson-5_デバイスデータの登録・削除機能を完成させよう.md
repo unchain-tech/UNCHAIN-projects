@@ -2,9 +2,10 @@
 
 デバイスエイリアスとキーペアの生成ができたので、これらをバックエンドキャニスターに登録しましょう。
 
-`cryptoService.ts`内のinit関数を更新します。`/** STEP3: デバイスデータの登録をします。 */`の部分に下記のコードを追加しましょう。
+`cryptoService.ts`内のinit関数を更新します。`/** STEP8: デバイスデータを登録します。 */`の部分に下記のコードを追加しましょう。
 
 ```tsx
+    /** STEP8: デバイスデータを登録します。 */
     // publicKeyをexportしてBase64に変換します。
     const exportedPublicKey = await window.crypto.subtle.exportKey(
       'spki',
@@ -51,7 +52,7 @@
 
 デバイスデータの登録機能が実装できたので、次は登録したデバイスデータを取得しましょう。
 
-`routes/devices/`内の`index.tsx`を更新します。このファイルは、デバイス一覧を表示するページのコンポーネントです。`getDevices`関数を、下記のように更新しましょう。
+`routes/devices/`内の`index.tsx`を更新します。このファイルは、デバイス一覧を表示するページのコンポーネントです。`getDevices`関数内の空配列を設定している`setDeviceAliases([]);`を、下記のように更新しましょう。
 
 ```tsx
   const getDevices = async () => {
@@ -59,7 +60,9 @@
       console.error(`CryptoService is not synced.`);
       return;
     }
+
     try {
+      // バックエンドキャニスターからデバイスエイリアス一覧を取得します。
       const deviceAliases = await auth.actor.getDeviceAliases();
       setDeviceAliases(deviceAliases);
     } catch (err) {
@@ -75,7 +78,7 @@
 
 ### 🗑 デバイスデータを削除しよう
 
-最後に、デバイスデータの削除機能を実装しましょう。同じコンポーネント内の`deleteDevice`関数を、下記のように更新しましょう。
+最後に、デバイスデータの削除機能を実装しましょう。同じコンポーネントにある`deleteDevice`関数内、ログ出力をしている部分を下記のように更新しましょう。
 
 ```tsx
   const deleteDevice = async () => {
@@ -85,6 +88,7 @@
     }
     setIsLoading(true);
     try {
+      // デバイスを削除します。
       await auth.actor.deleteDevice(deleteAlias);
       await getDevices();
     } catch (err) {
@@ -100,7 +104,7 @@
   };
 ```
 
-バックエンドキャニスターの`deleteDevice`関数に、削除したいデバイスエイリアスを渡して呼び出します。この時渡される`deleteAlias`は、ステート変数です。どのように更新されるかは、`setDeleteAlias`関数を辿って確認してみてください！
+バックエンドキャニスターの`deleteDevice`関数に、削除したいデバイスエイリアスを渡して呼び出します。この時渡される`deleteAlias`は、ステート変数です。どのようにステート変数が更新されるかは、`setDeleteAlias`関数を辿って確認してみてください！
 
 ```tsx
   const [deleteAlias, setDeleteAlias] = useState<string | undefined>(undefined);
@@ -129,6 +133,104 @@
 どちらか一方のデバイスを削除します。
 
 <!-- TODO: 画像を追加 -->
+
+### 📝 このレッスンで追加したコード
+
+<!-- TODO: 追加したコードをdiffで示す -->
+
+- `lib/cryptoService.ts`
+
+```diff
+  public async init(): Promise<boolean> {
+    /** STEP6: 公開鍵・秘密鍵を生成します。 */
+    // データベースから公開鍵・秘密鍵を取得します。
+    this.publicKey = await loadKey('publicKey');
+    this.privateKey = await loadKey('privateKey');
+
+    if (!this.publicKey || !this.privateKey) {
+      // 公開鍵・秘密鍵が存在しない場合は、生成します。
+      const keyPair: CryptoKeyPair = await this.generateKeyPair();
+
+      // 生成した鍵をデータベースに保存します。
+      await storeKey('publicKey', keyPair.publicKey);
+      await storeKey('privateKey', keyPair.privateKey);
+
+      this.publicKey = keyPair.publicKey;
+      this.privateKey = keyPair.privateKey;
+    }
+
+    /** STEP8: デバイスデータを登録します。 */
++    // publicKeyをexportしてBase64に変換します。
++    const exportedPublicKey = await window.crypto.subtle.exportKey(
++      'spki',
++      this.publicKey,
++    );
++    this.exportedPublicKeyBase64 = this.arrayBufferToBase64(exportedPublicKey);
++
++    // バックエンドキャニスターにデバイスエイリアスと公開鍵を登録します。
++    await this.actor.registerDevice(
++      this.deviceAlias,
++      this.exportedPublicKeyBase64,
++    );
+
+    /** STEP9: 対称鍵を生成します。 */
+
+    return true;
+  }
+```
+
+- `routes/devices/index.tsx`
+
+```diff
+export const Devices = () => {
+
+...
+
+  const deleteDevice = async () => {
+    if (auth.status !== 'SYNCED') {
+      console.error(`CryptoService is not synced.`);
+      return;
+    }
+    setIsLoading(true);
+    try {
+      // デバイスを削除します。
+-      console.log('delete device');
++      await auth.actor.deleteDevice(deleteAlias);
++      await getDevices();
+    } catch (err) {
+      console.error(err);
+      showMessage({
+        title: 'Failed to delete device',
+        status: 'error',
+      });
+    } finally {
+      onCloseDeleteDialog();
+      setIsLoading(false);
+    }
+  };
+
+  const getDevices = async () => {
+    if (auth.status !== 'SYNCED') {
+      console.error(`CryptoService is not synced.`);
+      return;
+    }
+
+    try {
+      // バックエンドキャニスターからデバイスエイリアス一覧を取得します。
+-      setDeviceAliases([]);
++      const deviceAliases = await auth.actor.getDeviceAliases();
++      setDeviceAliases(deviceAliases);
+    } catch (err) {
+      showMessage({
+        title: 'Failed to get devices',
+        status: 'error',
+      });
+    }
+  };
+
+...
+
+```
 
 ### 🙋‍♂️ 質問する
 

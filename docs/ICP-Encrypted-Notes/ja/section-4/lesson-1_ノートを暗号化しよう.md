@@ -2,7 +2,7 @@
 
 前回のセクションで、アプリケーションの要となる対称鍵の同期処理が完成しました。このレッスンでは、対称鍵を使用してノートを暗号化します。
 
-それでは実際に、ノートを暗号化するためのコードを書いていきましょう。
+それでは実際に、ノートを暗号化するコードを書いていきましょう。
 
 `lib/cryptoService.ts`内に定義されている`encryptNote`関数を下記の内容に更新します。
 
@@ -44,7 +44,7 @@
   }
 ```
 
-追加したコードを確認しましょう。
+コードを確認しましょう。
 
 ノートの暗号化を行う前に、[crypto.getRandomValues](https://developer.mozilla.org/ja/docs/Web/API/Crypto/getRandomValues)メソッドを使用して、乱数を生成します。乱数は、8ビットの整数値（0 ~ 255）を12個生成します。これはノートの暗号化に用いられるもので、同じ鍵で繰り返し暗号化を行う際に、それぞれの暗号文が同じものになることを防ぐために使用します。
 
@@ -73,7 +73,7 @@
     );
 ```
 
-iv（乱数の配列）は暗号文の復号に必要なため、最後に暗号文とivを結合して、これを戻り値とします。
+iv（乱数の配列）は暗号文の復号に必要なため、暗号文とivを結合したものをバックエンドキャニスターに保存する必要があります。そのために、ivと暗号文を結合したものを戻り値とします。
 
 ```ts
     // テキストデータとIVを結合します。
@@ -95,9 +95,11 @@ iv（乱数の配列）は暗号文の復号に必要なため、最後に暗号
       console.error(`CryptoService is not synced.`);
       return;
     }
+
     setIsLoading(true);
+
     try {
-      // テキストの暗号化を行います。
+      // ノートの暗号化を行います。
       const encryptedNote = await auth.cryptoService.encryptNote(
         currentNote.data,
       );
@@ -123,9 +125,11 @@ iv（乱数の配列）は暗号文の復号に必要なため、最後に暗号
       console.error(`CryptoService is not synced.`);
       return;
     }
+
     setIsLoading(true);
+
     try {
-      // テキストの暗号化を行います。
+      // ノートの暗号化を行います。
       const encryptedData = await auth.cryptoService.encryptNote(
         currentNote.data,
       );

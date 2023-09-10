@@ -14,11 +14,12 @@
 2. 取得した公開鍵を用いて、自身の所有する対称鍵を暗号化する
 3. 暗号化された対称鍵を、暗号化に用いた公開鍵とペアにしてバックエンドキャニスターにアップロードする
 
-上記の処理を行う関数の雛形が、`syncSymmetricKey`という名前で定義されています。順番に処理を実装していき、この関数を完成させましょう！
+上記の処理を行う関数の雛形が、cryptoService.ts内に`syncSymmetricKey`という名前で定義されています。順番に処理を実装していき、この関数を完成させましょう！
 
 まずは、バックエンドキャニスターから公開鍵を取得しましょう。syncSymmetricKey関数内`const unsyncedPublicKeys: string[] = [];`の右辺を、下記のように更新します。
 
 ```ts
+    // 暗号化された対称鍵を持たない公開鍵一覧を取得します。
     const unsyncedPublicKeys: string[] =
       await this.actor.getUnsyncedPublicKeys();
 ```
@@ -52,7 +53,7 @@
 すべての公開鍵で暗号化の処理が終わったら、バックエンドキャニスターに公開鍵と暗号化された対称鍵のペアをアップロードします。下記のコードをfor文の下に追加しましょう。
 
 ```ts
-    // `encryptedKeys`をバックエンドキャニスターにアップロードします。
+    // 公開鍵と暗号化された対称鍵のペアをアップロードします。
     const result = await this.actor.uploadEncryptedSymmetricKeys(encryptedKeys);
     if ('Err' in result) {
       if ('UnknownPublicKey' in result.Err) {
@@ -64,10 +65,10 @@
     }
 ```
 
-これで、対称鍵を同期するsyncSymmetricKey関数が完成しました！ それでは、完成したsyncSymmetricKey関数をinit関数から呼び出しましょう。cryptoService.tsファイルのinit関数内、`/** STEP5: 対称鍵を同期します。 */`の部分に下記のコードを記述します。
+これで、対称鍵を同期するsyncSymmetricKey関数が完成しました！ それでは、完成したsyncSymmetricKey関数をinit関数から呼び出しましょう。cryptoService.tsファイルのinit関数内、`/** STEP10: 対称鍵を同期します。 */`の部分に下記のコードを記述します。
 
 ```ts
-      /** STEP5: 対称鍵を同期します。 */
+      /** STEP10: 対称鍵を同期します。 */
       console.log('Synchronizing symmetric keys...');
       if (this.intervalId === null) {
         this.intervalId = window.setInterval(
@@ -154,7 +155,7 @@
       );
 ```
 
-最後に、対称鍵を同期する処理を加えます。次のコードを上記のコードの下に追加してください。
+最後に、対称鍵を同期する処理を加えます。次のコードを上記のコードの下、`return true;`の上に追加してください。
 
 ```ts
       // 対称鍵が取得できたので、このデバイスでも鍵の同期処理を開始します。
@@ -169,10 +170,10 @@
 
 これで、trySyncSymmetricKey関数は完成です！ 
 
-それでは、init関数からtrySyncSymmetricKey関数を呼び出しましょう。を更新します。下記のコードを、`/** STEP6: 対称鍵を取得します。 */`の部分に記述します。
+それでは、init関数からtrySyncSymmetricKey関数を呼び出しましょう。下記のコードを、`/** STEP11: 対称鍵を取得します。 */`の部分に記述します。
 
 ```ts
-      /** STEP6: 対称鍵を取得します。 */
+      /** STEP11: 対称鍵を取得します。 */
       console.log('Get symmetric key...');
       const synced = await this.trySyncSymmetricKey();
 
@@ -212,17 +213,17 @@
 その結果、init関数はfalseを返します。
 
 ```ts
-      /** STEP6: 対称鍵を取得します。 */
+      /** STEP11: 対称鍵を取得します。 */
       console.log('Get symmetric key...');
       const synced = await this.trySyncSymmetricKey();
 
       return synced; // ユーザーが別のデバイスで初めてログインをしたとき`false`が返ります。
 ```
 
-このinit関数の戻り値をチェックして、`false`の場合には暗号化された対称鍵がアップロードされるのを待つという処理を実装しましょう。`hooks/authContext.ts`の中でinit関数を呼び出している`/** STEP5: デバイスデータの設定を行います。 */`の部分を下記のように更新します。
+このinit関数の戻り値をチェックして、`false`の場合には暗号化された対称鍵がアップロードされるのを待つという処理を実装しましょう。`hooks/authContext.ts`の中でinit関数を呼び出している`/** STEP12: デバイスデータの設定を行います。 */`の部分を下記のように更新します。
 
 ```ts
-    /** STEP5: デバイスデータの設定を行います。 */
+    /** STEP12: デバイスデータの設定を行います。 */
     const initialized = await cryptoService.init();
     if (initialized) {
       setAuth({ actor, authClient, cryptoService, status: 'SYNCED' });
@@ -291,9 +292,228 @@ trySyncSymmetricKey関数がtrueを返した時、対称鍵の同期が完了し
 
 これで、ユーザーが別のデバイスで初めてログインをしたときに行う取得処理が完成しました！
 
-✅ 動作確認をしよう
+### ✅ 動作確認をしよう
 
 <!-- TODO: 画像を追加 -->
+
+### 📝 このレッスンで追加したコード
+
+コードの全体像を提示します。
+
+- `lib/cryptoService.ts`
+
+init関数、trySyncSymmetricKey関数、syncSymmetricKey関数を追加・更新しました。
+
+```ts
+  public async init(): Promise<boolean> {
+    /** STEP2: 公開鍵・秘密鍵を生成します。 */
+    // データベースから公開鍵・秘密鍵を取得します。
+    this.publicKey = await loadKey('publicKey');
+    this.privateKey = await loadKey('privateKey');
+
+    if (!this.publicKey || !this.privateKey) {
+      // 公開鍵・秘密鍵が存在しない場合は、生成します。
+      const keyPair: CryptoKeyPair = await this.generateKeyPair();
+
+      // 生成した鍵をデータベースに保存します。
+      await storeKey('publicKey', keyPair.publicKey);
+      await storeKey('privateKey', keyPair.privateKey);
+
+      this.publicKey = keyPair.publicKey;
+      this.privateKey = keyPair.privateKey;
+    }
+
+    /** STEP8: デバイスデータを登録します。 */
+    // publicKeyをexportしてBase64に変換します。
+    const exportedPublicKey = await window.crypto.subtle.exportKey(
+      'spki',
+      this.publicKey,
+    );
+    this.exportedPublicKeyBase64 = this.arrayBufferToBase64(exportedPublicKey);
+
+    // バックエンドキャニスターにデバイスエイリアスと公開鍵を登録します。
+    await this.actor.registerDevice(
+      this.deviceAlias,
+      this.exportedPublicKeyBase64,
+    );
+
+    /** STEP9: 対称鍵を生成します。 */
+    const isSymKeyRegistered =
+      await this.actor.isEncryptedSymmetricKeyRegistered();
+    if (!isSymKeyRegistered) {
+      console.log('Generate symmetric key...');
+      // 対称鍵を生成します。
+      this.symmetricKey = await this.generateSymmetricKey();
+      // 対称鍵を公開鍵で暗号化します。
+      const wrappedSymmetricKeyBase64: string = await this.wrapSymmetricKey(
+        this.symmetricKey,
+        this.publicKey,
+      );
+      // 暗号化した対称鍵をバックエンドキャニスターに登録します。
+      const result: RegisterKeyResult =
+        await this.actor.registerEncryptedSymmetricKey(
+          this.exportedPublicKeyBase64,
+          wrappedSymmetricKeyBase64,
+        );
+      if ('Err' in result) {
+        if ('UnknownPublicKey' in result.Err) {
+          throw new Error('Unknown public key');
+        }
+        if ('AlreadyRegistered' in result.Err) {
+          throw new Error('Already registered');
+        }
+        if ('DeviceNotRegistered' in result.Err) {
+          throw new Error('Device not registered');
+        }
+      }
+
+      /** STEP10: 対称鍵を同期します。 */
+      console.log('Synchronizing symmetric keys...');
+      if (this.intervalId === null) {
+        this.intervalId = window.setInterval(
+          () => this.syncSymmetricKey(),
+          5000,
+        );
+      }
+
+      return true;
+    } else {
+      /** STEP11: 対称鍵を取得します。 */
+      console.log('Get symmetric key...');
+      const synced = await this.trySyncSymmetricKey();
+
+      return synced;
+    }
+  }
+
+  public async trySyncSymmetricKey(): Promise<boolean> {
+    // 対称鍵が同期されているか確認します。
+    const syncedSymmetricKey: SynchronizeKeyResult =
+      await this.actor.getEncryptedSymmetricKey(this.exportedPublicKeyBase64);
+    if ('Err' in syncedSymmetricKey) {
+      // エラー処理を行います。
+      if ('UnknownPublicKey' in syncedSymmetricKey.Err) {
+        throw new Error('Unknown public key');
+      }
+      if ('DeviceNotRegistered' in syncedSymmetricKey.Err) {
+        throw new Error('Device not registered');
+      }
+      if ('KeyNotSynchronized') {
+        console.log('Symmetric key is not synchronized');
+        return false;
+      }
+    } else {
+      // 暗号化された対称鍵を取得して復号します。
+      this.symmetricKey = await this.unwrapSymmetricKey(
+        syncedSymmetricKey.Ok,
+        this.privateKey,
+      );
+      // 対称鍵が取得できたので、このデバイスでも鍵の同期処理を開始します。
+      if (this.intervalId === null) {
+        console.log('Try syncing symmetric keys...');
+        this.intervalId = window.setInterval(
+          () => this.syncSymmetricKey(),
+          5000,
+        );
+      }
+      return true;
+    }
+  }
+
+  private async syncSymmetricKey(): Promise<void> {
+    console.log('Syncing symmetric keys...');
+    if (this.symmetricKey === null) {
+      throw new Error('Symmetric key is not generated');
+    }
+
+    // 同期されていないデバイスの公開鍵を取得します。
+    const unsyncedPublicKeys: string[] =
+      await this.actor.getUnsyncedPublicKeys();
+    const symmetricKey = this.symmetricKey;
+    const encryptedKeys: Array<[string, string]> = [];
+
+    for (const unsyncedPublicKey of unsyncedPublicKeys) {
+      const publicKey: CryptoKey = await window.crypto.subtle.importKey(
+        'spki',
+        this.base64ToArrayBuffer(unsyncedPublicKey),
+        {
+          name: 'RSA-OAEP',
+          hash: 'SHA-256',
+        },
+        true,
+        ['wrapKey'],
+      );
+      const wrappedSymmetricKeyBase64: string = await this.wrapSymmetricKey(
+        symmetricKey,
+        publicKey,
+      );
+      // 公開鍵と暗号化した対称鍵をペアにして保存します。
+      encryptedKeys.push([unsyncedPublicKey, wrappedSymmetricKeyBase64]);
+    }
+    // `encryptedKeys`をバックエンドキャニスターにアップロードします。
+    const result = await this.actor.uploadEncryptedSymmetricKeys(encryptedKeys);
+    if ('Err' in result) {
+      if ('UnknownPublicKey' in result.Err) {
+        throw new Error('Unknown public key');
+      }
+      if ('DeviceNotRegistered' in result.Err) {
+        throw new Error('Device not registered');
+      }
+    }
+  }
+```
+
+- `hooks/authContext.ts`
+
+setupService関数を更新しました。
+
+```ts
+  const setupService = async (authClient: AuthClient) => {
+    /** STEP2: 認証したユーザーのデータを取得します。 */
+    const identity = authClient.getIdentity();
+
+    /** STEP3: バックエンドキャニスターを呼び出す準備をします。 */
+    // 取得した`identity`を使用して、ICと対話する`agent`を作成します。
+    const newAgent = new HttpAgent({ identity });
+    if (process.env.DFX_NETWORK === 'local') {
+      newAgent.fetchRootKey();
+    }
+    // 認証したユーザーの情報で`actor`を作成します。
+    const options = { agent: newAgent };
+    const actor = createActor(canisterId, options);
+
+    /** STEP5: CryptoServiceクラスのインスタンスを生成します。 */
+    const cryptoService = new CryptoService(actor);
+    /** STEP12: デバイスデータの設定を行います。 */
+    const initialized = await cryptoService.init();
+    if (initialized) {
+      setAuth({ actor, authClient, cryptoService, status: 'SYNCED' });
+    } else {
+      setAuth({ status: 'SYNCHRONIZING' });
+      // 対称鍵が同期されるまで待機します。
+      while (true) {
+        // 1秒待機します。
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        try {
+          console.log('Waiting for key sync...');
+          const synced = await cryptoService.trySyncSymmetricKey();
+          if (synced) {
+            console.log('Key sync completed.');
+            setAuth({
+              actor,
+              authClient,
+              cryptoService,
+              status: 'SYNCED',
+            });
+            break;
+          }
+        } catch (err) {
+          throw new Error('Failed to synchronize symmetric key');
+        }
+      }
+    }
+  };
+```
 
 ### 🙋‍♂️ 質問する
 

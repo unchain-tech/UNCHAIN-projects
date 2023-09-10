@@ -1,8 +1,8 @@
 ### 🖋 フロントエンドからノートを編集・削除しよう
 
-前回のレッスンに引き続き、Notesコンポーネントを更新していきましょう。
+前回のレッスンに引き続き、`routes/notes/index.tsx`のNotesコンポーネントを更新していきましょう。
 
-`updateNote`関数を、下記のように更新します。
+`updateNote`関数内でログ出力をしている`console.log('update note');`の部分を下記のように更新します。
 
 ```tsx
   const updateNote = async () => {
@@ -12,7 +12,9 @@
     }
 
     setIsLoading(true);
+
     try {
+      // バックエンドキャニスターにノートを追加します。
       await auth.actor.updateNote(currentNote);
       await getNotes();
     } catch (err) {
@@ -29,7 +31,7 @@
 
 updateNote関数は、前回のレッスンで定義したaddNote関数と仕組みが一緒なので、説明は省略します。
 
-続いて、`deleteNote`関数を下記のように更新します。
+続いて、`deleteNote`関数内でログ出力をしている`console.log('delete note');`の部分を下記のように更新します。
 
 ```tsx
   const deleteNote = async () => {
@@ -39,7 +41,9 @@ updateNote関数は、前回のレッスンで定義したaddNote関数と仕組
     }
 
     setIsLoading(true);
+
     try {
+      // ノートを削除します。
       await auth.actor.deleteNote(deleteId);
       await getNotes();
     } catch (err) {
@@ -77,6 +81,69 @@ const [deleteId, setDeleteId] = useState<bigint | undefined>(undefined);
 <!-- TODO: 画像を追加 -->
 
 <!-- TODO: 画像を追加 -->
+
+### 📝 このレッスンで追加したコード
+
+- `src/routes/notes/index.tsx`
+
+```diff
+export const Notes = () => {
+
+  ...
+
+  const deleteNote = async () => {
+    if (auth.status !== 'SYNCED') {
+      console.error(`CryptoService is not synced.`);
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      // ノートを削除します。
+-      console.log('delete note');
++      await auth.actor.deleteNote(deleteId);
++      await getNotes();
+    } catch (err) {
+      showMessage({
+        title: 'Failed to delete note',
+        status: 'error',
+      });
+    } finally {
+      onCloseDeleteDialog();
+      setIsLoading(false);
+    }
+  };
+
+  ...
+
+  const updateNote = async () => {
+    if (auth.status !== 'SYNCED') {
+      console.error(`CryptoService is not synced.`);
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      // バックエンドキャニスターにノートを追加します。
+-      console.log('update note');
++      await auth.actor.updateNote(currentNote);
++      await getNotes();
+    } catch (err) {
+      showMessage({
+        title: 'Failed to update note',
+        status: 'error',
+      });
+    } finally {
+      onCloseNoteModal();
+      setIsLoading(false);
+    }
+  };
+
+...
+
+```
 
 ### 🙋‍♂️ 質問する
 

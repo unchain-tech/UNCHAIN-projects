@@ -51,43 +51,43 @@ dfx deploy encrypted_notes_backend
 
 # ===== テスト =====
 FUNCTION='addNote'
-echo "===== $FUNCTION ====="
+echo -e "\n===== $FUNCTION ====="
 EXPECT='()'
 RESULT=`dfx canister call encrypted_notes_backend $FUNCTION '("First text!")'`
-compare_result "$FUNCTION" "$EXPECT" "$RESULT" || TEST_STATUS=1
+compare_result "Return none" "$EXPECT" "$RESULT" || TEST_STATUS=1
 
 FUNCTION='getNotes'
-echo "===== $FUNCTION ====="
-EXPECT='(vec { record { id = 0 : nat; encrypted_text = "First text!" } })'
+echo -e "\n===== $FUNCTION ====="
+EXPECT='(vec { record { id = 0 : nat; data = "First text!" } })'
 RESULT=`dfx canister call encrypted_notes_backend $FUNCTION`
-compare_result "$FUNCTION" "$EXPECT" "$RESULT" || TEST_STATUS=1
+compare_result "Return note list" "$EXPECT" "$RESULT" || TEST_STATUS=1
 
 FUNCTION='updateNote'
-echo "===== $FUNCTION ====="
+echo -e "\n===== $FUNCTION ====="
 EXPECT='()'
 RESULT=`dfx canister call encrypted_notes_backend $FUNCTION '(
   record {
     id = 0;
-    encrypted_text = "Updated first text!"
+    data = "Updated first text!"
   }
 )'`
-compare_result "$FUNCTION" "$EXPECT" "$RESULT" || TEST_STATUS=1
+compare_result "Return none" "$EXPECT" "$RESULT" || TEST_STATUS=1
 # 確認
 FUNCTION='getNotes'
-EXPECT='(vec { record { id = 0 : nat; encrypted_text = "Updated first text!" } })'
+EXPECT='(vec { record { id = 0 : nat; data = "Updated first text!" } })'
 RESULT=`dfx canister call encrypted_notes_backend $FUNCTION`
-compare_result "$FUNCTION" "$EXPECT" "$RESULT" || TEST_STATUS=1
+compare_result "Check with $FUNCTION" "$EXPECT" "$RESULT" || TEST_STATUS=1
 
 FUNCTION='deleteNote'
-echo "===== $FUNCTION ====="
+echo -e "\n===== $FUNCTION ====="
 EXPECT='()'
 RESULT=`dfx canister call encrypted_notes_backend $FUNCTION '(0)'`
-compare_result "$FUNCTION" "$EXPECT" "$RESULT" || TEST_STATUS=1
+compare_result "Return none" "$EXPECT" "$RESULT" || TEST_STATUS=1
 # 確認
 FUNCTION='getNotes'
 EXPECT='(vec {})'
 RESULT=`dfx canister call encrypted_notes_backend $FUNCTION`
-compare_result "$FUNCTION" "$EXPECT" "$RESULT" || TEST_STATUS=1
+compare_result "Check with $FUNCTION" "$EXPECT" "$RESULT" || TEST_STATUS=1
 
 # ===== 後始末 =====
 dfx identity use default
@@ -128,10 +128,13 @@ dfx deploy encrypted_notes_backend
 ```bash
 # ===== テスト =====
 FUNCTION='addNote'
-echo "===== $FUNCTION ====="
+echo -e "\n===== $FUNCTION ====="
 EXPECT='()'
 RESULT=`dfx canister call encrypted_notes_backend $FUNCTION '("First text!")'`
-compare_result "$FUNCTION" "$EXPECT" "$RESULT" || TEST_STATUS=1
+compare_result "Return none" "$EXPECT" "$RESULT" || TEST_STATUS=1
+
+...
+
 ```
 
 テストスクリプトの上部に定義されている`compare_result()`は、関数の戻り値と期待する値を比較して一致しているかどうかを確認します。一致している場合は`OK`を出力して`0`を返します。一致していない場合は`ERR`と差分を表示して`1`を返します。
@@ -154,7 +157,7 @@ compare_result() {
 }
 ```
 
-compare_resultを呼び出す部分で、`compare_result "$FUNCTION" "$EXPECT" "$RESULT" || TEST_STATUS=1`と定義していました。これは、compare_resultの戻り値が`0`でない場合（つまり、実行結果と期待値が一致していない場合）には`TEST_STATUS`へ`1`を代入するという意味です。`TEST_STATUS`は、テストの結果を格納する変数です。初期値は`0`で、テストがすべて成功した場合は`0`、失敗した場合は`1`が格納されます。
+compare_resultを呼び出す部分で、`compare_result "Return ..." "$EXPECT" "$RESULT" || TEST_STATUS=1`と定義していました。これは、compare_resultの戻り値が`0`でない場合（つまり、実行結果と期待値が一致していない場合）には`TEST_STATUS`へ`1`を代入するという意味です。`TEST_STATUS`は、テストの結果を格納する変数です。初期値は`0`で、テストがすべて成功した場合は`0`、失敗した場合は`1`が格納されます。
 
 最後に、テスト用に作成したidentityを削除してテスト結果を出力します。`TEST_STATUS`が`0`の場合は`PASS`、`1`の場合は`FAIL`が出力されます。
 
@@ -200,8 +203,8 @@ Motokoでキャニスターを記述した場合、プログラムをコンパ�
 ```javascript
 type EncryptedNote = record {
   "id" : nat;
-  "encrypted_text" : text;
-}
+  "data" : text;
+};
 
 service : {
   "addNote" : (text) -> ();
