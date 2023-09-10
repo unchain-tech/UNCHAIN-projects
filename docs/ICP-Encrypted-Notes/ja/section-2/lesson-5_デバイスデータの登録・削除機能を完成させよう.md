@@ -23,7 +23,7 @@
 
 キーペアを生成する際、`'extractable'`に`true`を指定していたことを覚えていますか（前回のレッスンを参照）？ ここでは、[exportKey](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/exportKey)関数を使用して実際に鍵をエクスポートしています。第一引数にフォーマットを指定します。エクスポートしたい鍵の種類によって指定できるフォーマットが異なります。今回は公開鍵をエクスポートするため、[spki](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/exportKey#parameters)（SubjectPublicKeyInfo）を指定します。
 
-```typescript
+```ts
     const exportedPublicKey = await window.crypto.subtle.exportKey(
       'spki',
       this.publicKey,
@@ -32,7 +32,7 @@
 
 エクスポートされた公開鍵はバイナリデータですが、そのままでは扱いづらいためbase64に変換します。`arrayBufferToBase64`関数は、既に定義されているprivate関数です。
 
-```typescript
+```ts
     this.exportedPublicKeyBase64 = this.arrayBufferToBase64(exportedPublicKey);
 ```
 
@@ -42,7 +42,7 @@
 
 公開鍵の型変換が完了したら、デバイスエイリアスと一緒にバックエンドキャニスターに登録します。
 
-```typescript
+```ts
     await this.actor.registerDevice(
       this.deviceAlias,
       this.exportedPublicKeyBase64,

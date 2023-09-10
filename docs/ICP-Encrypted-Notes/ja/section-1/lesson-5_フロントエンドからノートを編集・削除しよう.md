@@ -1,4 +1,4 @@
-### フロントエンドからノートを編集・削除しよう
+### 🖋 フロントエンドからノートを編集・削除しよう
 
 前回のレッスンに引き続き、Notesコンポーネントを更新していきましょう。
 
@@ -54,43 +54,10 @@ updateNote関数は、前回のレッスンで定義したaddNote関数と仕組
   };
 ```
 
-各ノートには、一意なIDが割り当てられています。このID(`deleteId`)を用いて、バックエンドキャニスターの`deleteNote`関数を呼び出します。deleteIdは、`useState`で定義された状態変数です。
+各ノートには、一意なIDが割り当てられています。このID(`deleteId`)を用いて、バックエンドキャニスターの`deleteNote`関数を呼び出します。deleteIdは、`useState`で定義されたステート変数です。`setDeleteId`関数を辿って、どのタイミングでdeleteIdが更新されるか確認してみましょう。
 
 ```tsx
-// routes/notes/index.tsx
 const [deleteId, setDeleteId] = useState<bigint | undefined>(undefined);
-```
-
-ノート一つ一つは、`NoteCard`コンポーネントで表示されています。NoteCardコンポーネントを見てみると、削除アイコンボタンが押されたときにノートのIDを`handleOpenDeleteDialog`関数に渡しています。これにより、削除対象となるノートのIDを保持してNotesコンポーネント内で使用することができます。
-
-```tsx
-// routes/notes/index.tsx
-// 削除するノートのIDを受け取り、ダイアログの操作を行う関数です。
-const openDeleteDialog = (id: bigint) => {
-  setDeleteId(id);
-  onOpenDeleteDialog();
-};
-```
-
-```tsx
-// routes/notes/index.tsx
-{notes.map((note) => (
-  <NoteCard
-    key={note.id}
-    note={note}
-    handleOpenDeleteDialog={openDeleteDialog} // `openDeleteDialog`関数を渡します。
-    handleOpenEditModal={openEditNoteModal}
-  />
-))}
-```
-
-```tsx
-// components/NoteCard/index.tsx
-<IconButton
-  aria-label="Trash note"
-  icon={<FiTrash2 />}
-  onClick={() => handleOpenDeleteDialog(note.id)} // 削除するノートのIDを渡します。
-/>
 ```
 
 ### ✅ 動作確認をしよう
@@ -109,7 +76,7 @@ const openDeleteDialog = (id: bigint) => {
 
 <!-- TODO: 画像を追加 -->
 
-<!-- TOOD: 画像を追加 -->
+<!-- TODO: 画像を追加 -->
 
 ### 🙋‍♂️ 質問する
 
@@ -123,3 +90,7 @@ const openDeleteDialog = (id: bigint) => {
 3. エラー文をコピー&ペースト
 4. エラー画面のスクリーンショット
 ```
+
+---
+
+次のセクションに進み、ノートを暗号化する方法について考えましょう 🎉

@@ -1,14 +1,10 @@
 ### 🔓 ノートを復号する
 
-前回のレッスンで、ノートを暗号化する機能を実装しました。
+前回のレッスンで、ノートを暗号化する機能を実装しました。このレッスンでは、暗号化されたノートを復号します。
 
-このレッスンでは、暗号化されたノートを復号してみましょう！
+それでは、コードを書いていきましょう。`lib/cryptoService.ts`内に定義されている`decryptNote`関数を下記の内容に更新します。
 
-それでは実際に、暗号化されたノートを復号するためのコードを書いていきましょう。
-
-`lib/cryptoService.ts`内に定義されている`decryptNote`関数を更新します。
-
-```typescript
+```ts
   public async decryptNote(data: string): Promise<string> {
     if (this.symmetricKey === null) {
       throw new Error('Not found symmetric key');
@@ -40,9 +36,41 @@
   }
 ```
 
-<!-- TODO: 最初に説明した仕組みに沿って、簡単にコードを確認していく -->
+追加したコードを確認しましょう。
 
-定義した`decryptNote`関数をコンポーネントから呼び出してみましょう。ノートを復号するタイミングは、ユーザーがノートを取得するときです。
+バックエンドキャニスターには、Base64エンコーディングをしたiv（initialization vector）を一緒に保存しました。ノートの復号を行う前に、ivを切り離して元のデータ型に戻す必要があります。
+
+Base64エンコーディングは、3バイトのバイナリデータを4文字のASCII文字列に変換します。そのため、下記のように計算を行い"iv"と"暗号化したノート"に分けます。
+
+```ts
+    // テキストデータとIVを分離します。
+    const base64IvLength: number = (CryptoService.INIT_VECTOR_LENGTH / 3) * 4;
+    const decodedIv = data.slice(0, base64IvLength);
+    const decodedEncryptedNote = data.slice(base64IvLength);
+```
+
+それぞれを元のデータ型（バイナリデータ）に戻します。
+
+```ts
+    // 一文字ずつ`charCodeAt()`で文字コードに変換します。
+    const encodedIv = this.base64ToArrayBuffer(decodedIv);
+    const encodedEncryptedNote = this.base64ToArrayBuffer(decodedEncryptedNote);
+```
+
+[decrypt](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/decrypt)メソッドを使用して、復号を行います。
+
+```ts
+    const decryptedNote: ArrayBuffer = await window.crypto.subtle.decrypt(
+      {
+        name: 'AES-GCM',
+        iv: encodedIv,
+      },
+      this.symmetricKey,
+      encodedEncryptedNote,
+    );
+```
+
+これで、ノートの復号を行うdecryptNote関数が完成しました。では、この関数をコンポーネントから呼び出してみましょう。ノートを復号するタイミングは、ユーザーがノートを取得するときです。
 
 `routes/notes/index.tsx`のNotesコンポーネントに定義された`getNotes`関数を更新します。
 
@@ -74,7 +102,11 @@
   };
 ```
 
-復号の機能が完成しました！ 実際にノートを取得してみましょう。
+復号の機能が完成しました！ 
+
+✅ 動作確認をしよう
+
+実際にノートを取得してみましょう。
 
 <!-- TODO: 実際にやってみた画像を追加する -->
 
@@ -92,3 +124,5 @@
 ```
 
 ---
+
+アプリケーションの機能が完成しました！ お疲れ様でした 🎉

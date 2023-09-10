@@ -1,17 +1,15 @@
-### フロントエンドからノートを取得・追加しよう
-
 前回のレッスンで、認証機能が完成しました。ここからは、実際にバックエンドキャニスターの関数を呼び出してノートを取得・追加する処理を実装していきましょう！
 
-### バックエンドキャニスターと通信する準備をしよう
+### 📞 バックエンドキャニスターと通信する準備をしよう
 
-`hooks/authContext.ts`のhandleSuccess関数を、下記のように更新します。
+`hooks/authContext.ts`のsetupService関数`/** STEP3: バックエンドキャニスターを呼び出す準備をします。 */`を、下記のように更新します。
 
-```typescript
-  const handleSuccess = async (authClient: AuthClient) => {
+```ts
+  const setupService = async (authClient: AuthClient) => {
     // 認証したユーザーのデータを取得します。
     const identity = authClient.getIdentity();
 
-    // ===== 下記を追加します。 =====
+    // ===== 下記の内容で上書きします。 =====
 
     // 取得した`identity`を使用して、ICと対話する`agent`を作成します。
     const newAgent = new HttpAgent({ identity });
@@ -45,7 +43,7 @@ Internet Identityによる認証で取得したユーザーの情報（identity�
     }
 ```
 
-最後に、アクターを作成します。アクターは、通信でやり取りされるメッセージを処理するオブジェクトのことで、非同期に処理することができます。アクターを作成するには、[`createActor`](https://agent-js.icp.xyz/agent/classes/Actor.html)関数を使用します。
+最後に、アクターを作成します。アクターは、キャニスター間の通信でやり取りされるメッセージを処理するオブジェクトのことで、非同期に処理をすることができます。アクターを作成するには、[`createActor`](https://agent-js.icp.xyz/agent/classes/Actor.html)関数を使用します。
 
 ```ts
     // 認証したユーザーの情報で`actor`を作成します。
@@ -68,7 +66,7 @@ import {
     setAuth({ actor, authClient, status: 'SYNCED' });
 ```
 
-### バックエンドキャニスターの関数を呼び出そう
+### 🎤 バックエンドキャニスターの関数を呼び出そう
 
 バックエンドキャニスターと通信する準備ができたので、次は実際にバックエンドキャニスターの関数を呼び出してみましょう。
 
@@ -120,46 +118,17 @@ getNotes関数は、はじめに`auth.status`を確認しています。この�
   };
 ```
 
-addNote関数は、バックエンドキャニスターのaddNote関数を呼び出します。実行中にエラーが発生した場合の処理も、getNotes関数と同様です。
+バックエンドキャニスターのaddNote関数を呼び出します。実行中にエラーが発生した場合の処理も、getNotes関数と同様です。
 
-addNote関数には、`currentNote`を引数として渡しています。この変数は、`useState`で定義された状態変数です。
+addNote関数には、`currentNote`を引数として渡しています。この変数は、`useState`で定義されたステート変数です。
 
 ```tsx
-// routes/notes/index.tsx
 const [currentNote, setCurrentNote] = useState<EncryptedNote | undefined>(
   undefined,
 );
 ```
 
-この変数の値を更新する`setCurrentNote`関数は、Notesコンポーネント内のreturn文にあるNoteModalコンポーネントに渡されています。NoteModalコンポーネントを見てみると、`onChange`を使用して入力されたテキストを設定しています。これにより、モーダルで入力されたノートの情報を保持してNotesコンポーネント内で使用することができます。
-
-```tsx
-// routes/notes/index.tsx
-<NoteModal
-  isLoading={isLoading}
-  isOpen={isOpenNoteModal}
-  onClose={onCloseNoteModal}
-  title={mode === 'add' ? 'Add Note' : 'Edit Note'}
-  currentNote={currentNote}
-  setCurrentNote={setCurrentNote} // `setCurrentNote`関数を渡します。
-  handleSaveNote={mode === 'add' ? addNote : updateNote}
-/>
-```
-
-```tsx
-// components/NoteModal/index.tsx
-<Textarea
-  placeholder="Write your note here..."
-  value={safeCurrentNote.data}
-  onChange={(e) =>
-    // 入力されたテキストを`setCurrentNote`関数で設定します。
-    setCurrentNote({
-      id: safeCurrentNote.id,
-      data: e.target.value,
-    })
-  }
-/>
-```
+このステート変数の値は`components/NoteModal/index.tsx`に定義されているNoteModalコンポーネントで更新されます。`setCurrentNote`関数を辿ってみてください！
 
 ### ✅ 動作確認をしよう
 
@@ -173,22 +142,6 @@ const [currentNote, setCurrentNote] = useState<EncryptedNote | undefined>(
 
 ノートが追加されたことを確認しましょう。
 
-ここで、ブラウザをリロードするとノート一覧が消えてしまいます。そこで、ノートを取得する関数を`useEffect`で実行するようにします。Notesコンポーネント内のuseEffectを下記のように更新します。
-
-```tsx
-  useEffect(() => {
-    if (auth.status === 'ANONYMOUS') {
-      navigate('/');
-    }
-    // ノート一覧を取得します。
-    (async () => {
-      await getNotes();
-    })();
-  }, [auth.status]);
-```
-
-再度ブラウザをリロードして、ノート一覧が表示されることを確認しましょう。
-
 ### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discordの`#icp`で質問をしてください。
@@ -201,3 +154,7 @@ const [currentNote, setCurrentNote] = useState<EncryptedNote | undefined>(
 3. エラー文をコピー&ペースト
 4. エラー画面のスクリーンショット
 ```
+
+---
+
+次のレッスンに進み、フロントエンドからノートを追加・取得する機能を実装しましょう！

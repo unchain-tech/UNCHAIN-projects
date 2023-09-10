@@ -16,11 +16,9 @@ Web上では、主にユーザー名とパスワードによる認証が用い�
 
 それでは早速、認証機能を構築していきましょう！
 
-Internet Identity用のキャニスター（Wasmモジュール）をGithubの[リリースページ](https://github.com/dfinity/internet-identity/releases)から取得することができます。今回は、`dfx.json`ファイル内にモジュールへのパスを直接指定してInternet Identityキャニスターをデプロイしようと思います。
+Internet Identity用のキャニスター（Wasmモジュール）をGitHubの[リリースページ](https://github.com/dfinity/internet-identity/releases)から取得することができます。今回は、`dfx.json`ファイル内にモジュールへのパスを直接指定してInternet Identityキャニスターをデプロイしようと思います。
 
 新たなキャニスターを追加するので、`dfx.json`を編集します。`"canisters": {}`の中に、`internet_identity`というキャニスター名とその設定を追加しましょう。
-
-<!-- TODO: dfx.jsonの設定を、githubのdeploy-ii-locally.mdでやってみる -->
 
 ```json
 {
@@ -85,18 +83,10 @@ loginメソッドに戻って引数を確認してみましょう。すべてが
 
 ![](/public/images/ICP-Encrypted-Notes/section-1/1_3_5.png)
 
-アプリケーションのデプロイ環境によってアクセスするURLを変えるために、デプロイ環境ごとにURLを切り替えるようにしたいと思います。`.env`ファイルにデプロイ先を指定して、`process.env.DFX_NETWORK`で参照できるようにします。
+ローカル環境にデプロイをする開発用のInternet Identityを使用したいので、下記のようにURLを設定します。
 
 ```tsx
-let iiUrl: string;
-if (process.env.DFX_NETWORK === 'local') {
-  iiUrl = `http://${process.env.INTERNET_IDENTITY_CANISTER_ID}.localhost:4943`;
-} else if (process.env.DFX_NETWORK === 'ic') {
-  iiUrl = `https://${process.env.INTERNET_IDENTITY_CANISTER_ID}.ic0.app`;
-} else {
-  // 他の設定が利用できない場合はローカルを使用します。
-  iiUrl = `http://${process.env.INTERNET_IDENTITY_CANISTER_ID}.localhost:4943`;
-}
+const iiUrl = `http://${process.env.INTERNET_IDENTITY_CANISTER_ID}.localhost:4943`;
 ```
 
 最後に、loginメソッドが成功したときと失敗したときの処理を考えます。成功時にはInternet Identityの値を取得したいので、利用できそうなメソッドを探してみると[`getIdentity`](https://agent-js.icp.xyz/auth-client/classes/AuthClient.html#getIdentity)メソッドが見つかります。
@@ -107,21 +97,13 @@ if (process.env.DFX_NETWORK === 'local') {
 const identity = authClient.getIdentity();
 ```
 
-それでは、ここまでの内容をコードに落とし込んでいきましょう！
+それでは、ここまでの内容をフロントエンドキャニスターに実装していきましょう！ ここからは、`src/encrypted_notes_frontend`ディレクトリ内のファイルを編集していきます。
 
-まずは`src/hooks`ディレクトリ内の`authContext.ts`を更新します。`login`関数を下記のコードで上書きしましょう。
+まずは`src/hooks`ディレクトリ内の`authContext.ts`を更新します。`login`関数の`/** STEP1: 認証機能を実装します。 */`を下記の内容で上書きしましょう。
 
 ```tsx
   const login = async (): Promise<void> => {
-    let iiUrl: string;
-    if (process.env.DFX_NETWORK === 'local') {
-      iiUrl = `http://${process.env.INTERNET_IDENTITY_CANISTER_ID}.localhost:4943`;
-    } else if (process.env.DFX_NETWORK === 'ic') {
-      iiUrl = `https://${process.env.INTERNET_IDENTITY_CANISTER_ID}.ic0.app`;
-    } else {
-      // 他の設定が利用できない場合はローカルを使用します。
-      iiUrl = `http://${process.env.INTERNET_IDENTITY_CANISTER_ID}.localhost:4943`;
-    }
+    const iiUrl = `http://${process.env.INTERNET_IDENTITY_CANISTER_ID}.localhost:4943`;
 
     return new Promise((resolve, reject) => {
       // ログイン認証を実行します。
@@ -131,7 +113,7 @@ const identity = authClient.getIdentity();
             identityProvider: iiUrl,
             onSuccess: async () => {
               try {
-                await handleSuccess(authClient);
+                await setupService(authClient);
                 resolve();
               } catch (err) {
                 reject(err);
@@ -147,7 +129,7 @@ const identity = authClient.getIdentity();
   };
 ```
 
-続いて、`authClient.login`が成功した際に呼び出す`handleSuccess`関数を更新しましょう。認証が成功したときに行いたいことは、ユーザーのデータを取得することです。login関数の上に定義されているhandleSuccess関数の`/** Section1 Lesson3: 認証したユーザーのデータを取得します。 */`を下記の内容で上書きします。
+続いて、`authClient.login`が成功した際に呼び出す`setupService`関数を更新しましょう。この関数はlogin関数の上に定義されています。認証が成功したときに行いたいことは、ユーザーのデータを取得することです。`/** STEP2: 認証したユーザーのデータを取得します。 */`を下記の内容で上書きします。
 
 ```tsx
     /** 認証したユーザーのデータを取得します。 */
@@ -159,6 +141,7 @@ const identity = authClient.getIdentity();
 この戻り値identityは[Identityインタフェース](https://github.com/dfinity/agent-js/blob/b7abf4a9ab43b12e0d0c5d810dbc0336e11c29f4/packages/agent/src/auth.ts#L38-L51)のオブジェクトとなっており、Identityが表すプリンシパルを取得できる`getPrincipal`メソッドを提供しています。下記のようにして、認証したユーザーのプリンシパルを取得することもできます。
 
 ```tsx
+// 例）
     const principal = identity.getPrincipal();
     console.log(`User principal: ${principal.toString()}`);
 ```
@@ -168,22 +151,16 @@ login関数が実装できました。では、ログインボタンを押した
 `routes/home/index.tsx`の`Home`コンポーネントを更新します。まずは下記のインポート文を追加しましょう。
 
 ```tsx
-import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../../hooks/authContext';
 ```
 
-[`useNavigate`](https://reactrouter.com/en/main/hooks/use-navigate)は、特定のURLに移動したり、ページを進んだり戻ったりするための関数を返すフックです。`useAuthContext`は、`hooks/authContext.ts`で定義したユーザーのデータや認証に関する関数を取得するためのフックです。
-
-次に、Homeコンポーネント内に下記を追加します。
+次に、login関数を呼び出すためにHomeコンポーネント内に下記を追加します。
 
 ```tsx
 export const Home = () => {
-  // 下記を追加します。
-  const navigate = useNavigate();
+  // ===== 下記を追加します。=====
   const { login } = useAuthContext();
 ```
-
-先ほどインポートしたフックから、`navigate`関数と`login`関数をそれぞれ取得しています。
 
 では、`handleLogin`関数を更新しましょう。
 
@@ -209,7 +186,7 @@ export const Home = () => {
 
 login関数を呼び出して認証が成功したら、`showMessage`関数を用いてメッセージを表示し、navigate関数を用いて`/notes`に移動します。認証に失敗したら、エラーメッセージを表示します。
 
-おめでとうございます！ これで認証ボタンの機能が実装できました。
+これで認証ボタンの機能が実装できました。
 
 ### ✅ 動作確認をしよう
 
@@ -232,21 +209,13 @@ export const useAuthProvider = (): AuthState => {
   const { showMessage } = useMessage();
   const [auth, setAuth] = useState<Auth>(initialize.auth);
 
-  const handleSuccess = async (authClient: AuthClient) => {
+  const setupService = async (authClient: AuthClient) => {
 +    // 認証したユーザーのデータを取得します。
 +    const identity = authClient.getIdentity();
   };
 
   const login = async (): Promise<void> => {
-+    let iiUrl: string;
-+    if (process.env.DFX_NETWORK === 'local') {
-+      iiUrl = `http://${process.env.INTERNET_IDENTITY_CANISTER_ID}.localhost:4943`;
-+    } else if (process.env.DFX_NETWORK === 'ic') {
-+      iiUrl = `https://${process.env.INTERNET_IDENTITY_CANISTER_ID}.ic0.app`;
-+    } else {
-+      // 他の設定が利用できない場合はローカルを使用します。
-+      iiUrl = `http://${process.env.INTERNET_IDENTITY_CANISTER_ID}.localhost:4943`;
-+    }
++    const iiUrl = `http://${process.env.INTERNET_IDENTITY_CANISTER_ID}.localhost:4943`;
 +
 +    return new Promise((resolve, reject) => {
 +      // ログイン認証を実行します。
@@ -256,7 +225,7 @@ export const useAuthProvider = (): AuthState => {
 +            identityProvider: iiUrl,
 +            onSuccess: async () => {
 +              try {
-+                await handleSuccess(authClient);
++                await setupService(authClient);
 +                resolve();
 +              } catch (err) {
 +                reject(err);
@@ -277,13 +246,13 @@ export const useAuthProvider = (): AuthState => {
 ```diff
 import { Box, Button, Heading, Text } from '@chakra-ui/react';
 import { useState } from 'react';
-+import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useMessage } from '../../hooks';
 +import { useAuthContext } from '../../hooks/authContext';
 
 export const Home = () => {
-+  const navigate = useNavigate();
+  const navigate = useNavigate();
 +  const { login } = useAuthContext();
   const { showMessage } = useMessage();
   const [isLoading, setIsLoading] = useState(false);
@@ -305,6 +274,9 @@ export const Home = () => {
 +      setIsLoading(false);
 +    }
 +  };
+
+...
+
 ```
 
 ### 🙋‍♂️ 質問する
@@ -321,3 +293,5 @@ export const Home = () => {
 ```
 
 ---
+
+次のレッスンに進み、フロントエンドからノートを追加・取得する機能を実装しましょう！

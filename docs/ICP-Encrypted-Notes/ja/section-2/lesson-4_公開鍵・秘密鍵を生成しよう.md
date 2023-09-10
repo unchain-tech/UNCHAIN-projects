@@ -24,7 +24,7 @@ encrypted_notes_frontend/
 
 作成したkeyStorage.tsに下記のコードを記述しましょう。ここで実装する機能は、データベースの作成、データの保存、データの取得、データの削除の4つです。
 
-```typescript
+```ts
 import { DBSchema, openDB } from 'idb'
 
 // データベースの型を定義します。
@@ -65,13 +65,13 @@ export async function clearKeys() {
 
 先ほど作成した`keyStorage.ts`をインポートします。
 
-```typescript
+```ts
 import { clearKeys, loadKey, storeKey } from './keyStorage';
 ```
 
 鍵を準備して、CryptoServiceクラスのメンバーを更新する関数`init`を定義します。下記のコードを、`constructor(){}`の下に追加しましょう。
 
-```typescript
+```ts
   public async init(): Promise<boolean> {
     // データベースから公開鍵・秘密鍵を取得します。
     this.publicKey = await loadKey('publicKey');
@@ -97,14 +97,14 @@ import { clearKeys, loadKey, storeKey } from './keyStorage';
 
 最初に、`loadKey`関数を使用してデータベースから公開鍵・秘密鍵を取得します。
 
-```typescript
+```ts
     this.publicKey = await loadKey('publicKey');
     this.privateKey = await loadKey('privateKey');
 ```
 
 データベースに鍵が存在しない場合は、`generateKeyPair`関数を呼び出して鍵を生成します。
 
-```typescript
+```ts
     if (!this.publicKey || !this.privateKey) {
       // 公開鍵・秘密鍵が存在しない場合は、生成します。
       const keyPair: CryptoKeyPair = await this.generateKeyPair();
@@ -112,7 +112,7 @@ import { clearKeys, loadKey, storeKey } from './keyStorage';
 
 generateKeyPair関数は、private関数としてあらかじめクラス内に定義されています。
 
-```typescript
+```ts
   private async generateKeyPair(): Promise<CryptoKeyPair> {
     const keyPair = await window.crypto.subtle.generateKey(
       {
@@ -146,7 +146,7 @@ generateKey(algorithm, extractable, keyUsages);
 
 最終的に、generateKeyPair関数は、公開鍵・秘密鍵のペア（[CryptoKeyPair](https://developer.mozilla.org/ja/docs/Web/API/CryptoKeyPair)オブジェクト）を返します。CryptoKeyPairオブジェクトは、プロパティとしてpublicKeyとprivateKeyを持つので、`keyPair.publicKey`・`keyPair.privateKey`下記のようにして公開鍵・秘密鍵を取得することができます。生成した鍵はデータベースとクラスのメンバーに保存します。
 
-```typescript
+```ts
       // 生成した鍵をデータベースに保存します。
       await storeKey('publicKey', keyPair.publicKey);
       await storeKey('privateKey', keyPair.privateKey);
@@ -157,16 +157,18 @@ generateKey(algorithm, extractable, keyUsages);
 
 最後にinit関数は`true`を返します。ここではtrueを返すだけとなっていますが今はこのままにしておきます。以降のレッスンで更新していきます。
 
-```typescript
+```ts
     return true;
 ```
 
 それでは、init関数を呼び出してみましょう。authContext.tsに`const cryptoService = new CryptoService();`を追加しました。このインスタンスを使用してinit関数を呼び出します。
 
-`/** STEP5: init関数を呼び出します。 */`の部分を下記のコードで上書きます。
+`/** STEP5: デバイスデータの設定を行います。 */`の部分に下記のコードを追加しましょう。
 
-```typescript
+```ts
+    /** STEP5: デバイスデータの設定を行います。 */
     const initialized = await cryptoService.init();
+    console.log(`initialized: ${initialized}`);
 ```
 
 ### ✅ 動作確認をしよう

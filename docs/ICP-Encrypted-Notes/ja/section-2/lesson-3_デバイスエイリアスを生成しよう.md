@@ -17,13 +17,13 @@ npm install --save-dev @types/uuid@9.0.2
 
 `lib/cryptoService.ts`を更新していきましょう。まずは、下記のインポート文を追加します。
 
-```typescript
+```ts
 import { v4 as uuidV4 } from 'uuid';
 ```
 
 `/** STEP1: コンストラクタを定義する */`の箇所に、下記のコードを記述します。
 
-```typescript
+```ts
   constructor(actor: ActorSubclass<_SERVICE>) {
     this.actor = actor;
 
@@ -41,7 +41,7 @@ constructorとは、クラスのインスタンスが生成された際に呼び
 
 `/** STEP4: CryptoServiceクラスのインスタンスを生成します。 */`の部分を下記のコードで上書きしましょう。
 
-```typescript
+```ts
     // CryptoServiceクラスのインスタンスを生成します。
     const cryptoService = new CryptoService(actor);
 ```

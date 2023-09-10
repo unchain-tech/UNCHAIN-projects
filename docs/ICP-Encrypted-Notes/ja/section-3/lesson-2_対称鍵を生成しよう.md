@@ -1,4 +1,4 @@
-### 対称鍵を生成しよう
+### 🔑 対称鍵を生成しよう
 
 前回のレッスンでバックエンドキャニスターを更新したので、改めてデプロイを行いましょう。
 
@@ -7,10 +7,11 @@ dfx deploy
 npm run start
 ```
 
-cryptoService.tsファイルの`init`関数に対称鍵の生成と登録を行うコードを追加します。`await this.actor.registerDevice()`の下に、下記のコードを追加しましょう。
+cryptoService.tsファイルのinit関数に対称鍵の生成と登録を行うコードを追加します。`/** STEP4: 対称鍵を生成します。 */`の部分に下記のコードを追加しましょう。
 
 ```ts
-    /** Section3 Lesson2: 対称鍵を生成します */
+    /** 対称鍵を生成します。 */
+    // 対称鍵が生成されているかどうかを確認します。
     const isSymKeyRegistered =
       await this.actor.isEncryptedSymmetricKeyRegistered();
     if (!isSymKeyRegistered) {
@@ -40,11 +41,11 @@ cryptoService.tsファイルの`init`関数に対称鍵の生成と登録を行�
         }
       }
 
-      /** Section3 Lesson3: 対称鍵を同期します */
+      /** STEP5: 対称鍵を同期します。 */
 
       return true;
     } else {
-      /** Section3 Lesson3: 対称鍵が同期されるのを待ちます */
+      /** STEP6: 対称鍵を取得します。 */
       return false;
     }
   }
@@ -52,7 +53,21 @@ cryptoService.tsファイルの`init`関数に対称鍵の生成と登録を行�
 
 追加したコードを確認していきましょう。
 
-まず、`isEncryptedSymmetricKeyRegistered`関数を呼び出して、対称鍵が登録されているかを確認します。登録されていない場合は、対称鍵を生成して登録します。
+まず、`isEncryptedSymmetricKeyRegistered`関数を呼び出して、対称鍵が登録されているかを確認します。登録されていない場合は、対称鍵を生成し、既に登録されている場合は何もせずに、今はfalseを返して終了します。
+
+```ts
+    const isSymKeyRegistered =
+      await this.actor.isEncryptedSymmetricKeyRegistered();
+    if (!isSymKeyRegistered) {
+      console.log('Generate symmetric key...');
+
+      ...
+
+      return true;
+    } else {
+      return false;
+    }
+```
 
 対称鍵の生成は、private関数として定義されている`generateSymmetricKey`関数で行います。内部でどのような処理を行なっているか目を通してみてください。生成した対称鍵はそのまま扱わずに、先に生成している公開鍵で暗号化します。対称鍵の暗号化もprivate関数として既に定義されている`wrapSymmetricKey`関数で行います。
 
@@ -66,10 +81,10 @@ cryptoService.tsファイルの`init`関数に対称鍵の生成と登録を行�
       );
 ```
 
-wrapSymmetricKey関数を簡単に解説します。鍵を暗号化するには、[SubtleCrypto](https://developer.mozilla.org/ja/docs/Web/API/SubtleCrypto)オブジェクトの[wrapKey](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/wrapKey)メソッドを使用します。wrapKeyメソッドは、暗号化する鍵の種類によって引数の指定方法が異なります。今回は対称鍵を暗号化するので、第一引数（format）には[raw](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#raw)、第二引数（key）にはラップしたい鍵の対称鍵、第三引数（wrappingKey）には暗号化に使用する鍵の公開鍵、第四引数（wrapAlgo）には暗号化アルゴリズム[RSA-OAEP](https://developer.mozilla.org/en-US/docs/Web/API/RsaOaepParams)を指定します。
+wrapSymmetricKey関数を簡単に解説します。鍵を暗号化するには、[SubtleCrypto](https://developer.mozilla.org/ja/docs/Web/API/SubtleCrypto)オブジェクトの[wrapKey](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/wrapKey)メソッドを使用します。wrapKeyメソッドは、暗号化する鍵の種類によって引数の指定方法が異なります。今回は対称鍵を暗号化するので、第一引数（format）には[raw](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#raw)、第二引数（key）にはラップしたい鍵：対称鍵、第三引数（wrappingKey）には暗号化に使用する鍵：公開鍵、第四引数（wrapAlgo）には暗号化アルゴリズム[RSA-OAEP](https://developer.mozilla.org/en-US/docs/Web/API/RsaOaepParams)を指定します。
 
 ```ts
-// wrapSymmetricKey()
+// lib/cryptoService.ts, wrapSymmetricKey()
     const wrappedSymmetricKey = await window.crypto.subtle.wrapKey(
       'raw',
       symmetricKey,
@@ -78,6 +93,27 @@ wrapSymmetricKey関数を簡単に解説します。鍵を暗号化するには�
         name: 'RSA-OAEP',
       },
     );
+```
+
+init関数に戻り、最後は暗号化された対称鍵をバックエンドキャニスターに登録します。登録時にエラーが返されたら、対応するエラーをスローします。
+
+```ts
+      const result: RegisterKeyResult =
+        await this.actor.registerEncryptedSymmetricKey(
+          this.exportedPublicKeyBase64,
+          wrappedSymmetricKeyBase64,
+        );
+      if ('Err' in result) {
+        if ('UnknownPublicKey' in result.Err) {
+          throw new Error('Unknown public key');
+        }
+        if ('AlreadyRegistered' in result.Err) {
+          throw new Error('Already registered');
+        }
+        if ('DeviceNotRegistered' in result.Err) {
+          throw new Error('Device not registered');
+        }
+      }
 ```
 
 ### ✅ 動作確認をしよう

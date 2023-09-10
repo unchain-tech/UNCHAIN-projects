@@ -4,22 +4,6 @@
 
 ### 🛠 バックエンドキャニスターの実装
 
-まずはノートを管理するデータ構造を考えたいと思います。
-
-各ユーザーはノートを任意の数保存できるものとします。よって、ノートは配列で保存することにしましょう。
-
-```rust
-Vec<EncryptedNote>
-```
-
-さらに、各ユーザーごとにノートを管理したいので、ユーザーの識別情報とノートをマッピングで紐付けるようにしましょう。ユーザーの識別情報には、プリンシパルを使用します。プリンシパルはInternet Computer上のアドレスのようなもので、ユーザーを一意に識別するために使用します。
-
-```rust
-HashMap<Principal, Vec<EncryptedNote>>
-```
-
-それでは、実際にコードを記述していきましょう。
-
 まずは、`encrypted_notes_backend/src/`下に`notes.rs`を作成します。
 
 ```diff
@@ -29,7 +13,7 @@ encrypted_notes_backend/
 +   └── notes.rs
 ```
 
-作成した`notes.rs`の先頭に、[useキーワード](https://doc.rust-lang.org/std/keyword.use.html)でファイル内で使用したい機能をインポートします。
+作成した`notes.rs`の先頭に、[use](https://doc.rust-lang.org/std/keyword.use.html)キーワードでファイル内で使用したい機能をインポートします。
 
 ```rust
 use candid::CandidType;
@@ -61,7 +45,9 @@ pub struct Notes {
 - [ic_cdk](https://docs.rs/ic-cdk/0.7.0/ic_cdk/index.html)は、Internet Computerのキャニスターを開発するための基本的なライブラリを提供します。ここでは、[Principal](https://docs.rs/ic-cdk/0.7.0/ic_cdk/export/struct.Principal.html)（Internet Computer上のID）を扱うための機能をインポートしています。
 - [serde](https://docs.rs/serde/1.0.174/serde/index.html)は、Rustのデータ構造をシリアライズおよびデシリアライズするためのフレームワークです。シリアライズとは、データ構造を適切なフォーマットに変換することで、デシリアライズとはその逆の操作です。データを変換することは、異なるプログラミング言語間でデータの整合性を維持するためにとても大切です。
 
-[#[derive()]](https://doc.rust-jp.rs/rust-by-example-ja/trait/derive.html)は、Rustの構造体やenumといった型にトレイト（機能）を自動的に実装するための構文です。例えばCandidTypeをderiveに設定することで、CandidとRust間のデータの変換に必要なコードを手間なく、かつ型安全に自動生成できるため、開発効率が向上します。
+次に構造体を定義しました。[#[derive()]](https://doc.rust-jp.rs/rust-by-example-ja/trait/derive.html)は、Rustの構造体やenumといった型にトレイト（機能）を自動的に実装するための構文です。例えばCandidTypeをderiveに設定することで、CandidとRust間のデータの変換に必要なコードを手間なく、かつ型安全に自動生成できるため、開発効率が向上します。
+
+各ユーザーがそれぞれノートを保存できるように、マッピングを使って`notes`を定義します。キーに`Principal`を、値に`Vec<EncryptedNote>`を指定して保存します。[Vec]は、可変長の配列を表す型です。配列の中には、`EncryptedNote`という構造体を格納しています。EncryptedNoteは、ノートのIDと暗号化されたテキストを格納する構造体です。
 
 それでは、Notes構造体の下に[impl](https://doc.rust-lang.org/std/keyword.impl.html)キーワードを使用して、Notes構造体を操作する関数を定義しましょう。
 
@@ -104,7 +90,6 @@ impl Notes {
 まずは、`get_notes`関数です。この関数は、ユーザーのプリンシパルを引数として受け取り、そのユーザーが保存しているノート一覧を返します。[get](https://doc.rust-lang.org/stable/std/collections/struct.HashMap.html#method.get)メソッドにHashMapのキー（ここではプリンシパル）を渡すことで、キーに紐づく値（ノート）を取得することができます。HashMapにユーザーがノートを保存していない場合は、空の配列を返します。
 
 ```rust
-// notes.rs
     pub fn get_notes(&self, caller: Principal) -> Vec<EncryptedNote> {
         self.notes.get(&caller).cloned().unwrap_or_default()
     }
@@ -113,7 +98,6 @@ impl Notes {
 次に、`add_note`関数です。この関数は、ユーザーが保存する`Vec<EncryptedNote>`に新たなノートを追加します。[entry](https://doc.rust-lang.org/stable/std/collections/struct.HashMap.html#method.entry)メソッドを使用することで、既存の値への変更可能な参照を取得したり、ユーザーがノートをまだ1つも保存していない場合は、[or_default](https://doc.rust-lang.org/stable/std/collections/hash_map/enum.Entry.html#method.or_default)メソッドでデフォルト値（ここでは空の配列）を取得することができます。ノートを追加した後に、カウンターをインクリメントして次のノートのIDを準備します。
 
 ```rust
-// notes.rs
     pub fn add_note(&mut self, caller: Principal, data: String) {
         let notes_of_caller = self.notes.entry(caller).or_default();
 
@@ -128,7 +112,6 @@ impl Notes {
 次に、`delete_note`関数です。この関数は、ユーザーのプリンシパルとノートのIDを引数として受け取り、ノートを削除します。[get_mut](https://doc.rust-lang.org/stable/std/collections/struct.HashMap.html#method.get_mut)メソッドを使用することで、ユーザーが保存する`Vec<EncryptedNote>`への変更可能な参照を取得することができます。[retain](https://doc.rust-lang.org/stable/std/collections/struct.HashMap.html#method.retain)メソッドは、指定された要素のみを保持します。つまり、ここでは削除したいノートのIDと**一致しない**ノートのみを保持します。
 
 ```rust
-// notes.rs
     pub fn delete_note(&mut self, caller: Principal, id: u128) {
         if let Some(notes_of_caller) = self.notes.get_mut(&caller) {
             notes_of_caller.retain(|n| n.id != id); // 条件式がtrueのものだけ残します。
@@ -139,7 +122,6 @@ impl Notes {
 最後に、`update_note`関数です。この関数は、保存されているノートを引数で受け取ったノートで更新します。更新するノートは[find](https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.find)メソッドを使用して、IDをもとに探します。
 
 ```rust
-// notes.rs
     pub fn update_note(&mut self, caller: Principal, new_note: EncryptedNote) {
         if let Some(current_note) = self
             .notes
@@ -153,7 +135,7 @@ impl Notes {
 
 ここまでで、ノートを管理する構造体とそれを操作する関数が定義できました。
 
-次は`lib.rs`を更新して、notesモジュールの関数を呼び出しましょう。
+次は`lib.rs`を更新して、notesモジュールの関数を呼び出しましょう。下記のコードでlib.rsを上書きします。
 
 ```rust
 use crate::notes::*;
@@ -225,7 +207,11 @@ use crate::notes::*;
 mod notes;
 ```
 
-次に、thread_localマクロを使用して、Notes構造体を格納するRefCellを定義しています。RefCellは、可変性を持つ値を格納するためのコンテナです。RefCellを使用することで、Notes構造体を可変にすることができます。
+次に、[thread_local](https://doc.rust-lang.org/std/macro.thread_local.html)マクロと[RefCell](https://doc.rust-lang.org/std/cell/struct.RefCell.html)を使用して、Notes構造体をグローバルで変更可能なステートとして定義しています。
+
+キャニスターはステートを維持し、複数のリクエストを効率よく処理するために、グローバルで可変なステートが必要です。
+
+Rustでは、これを実現する方法が複数ありますが、いくつかの方法はメモリ破壊につながる可能性があります。thread_local!とCell/RefCellは、可変性とスレッド安全性をバランス良く提供するため、これらを合わせた方法が推奨されています（詳しくは[こちら](https://mmapped.blog/posts/01-effective-rust-canisters.html#use-threadlocal)）。
 
 ```rust
 thread_local! {
@@ -233,9 +219,7 @@ thread_local! {
 }
 ```
 
-その下に、caller関数を定義しています。caller関数は、関数を呼び出したユーザーのプリンシパルを取得するために使用します。プリンシパルは、ユーザーを一意に識別するためのアドレスのようなものです。`caller_api`関数で取得したプリンシパルが匿名である場合は、エラーを返します。
-
-<!-- TODO: 匿名のプリンシパルについて説明を加える -->
+その下に、caller関数を定義しています。caller関数は、関数を呼び出したユーザーのプリンシパルを取得するために使用します。プリンシパルは、ユーザーを一意に識別するためのアドレスのようなものです。`caller_api`関数で取得したプリンシパルが匿名（認証されていないID）である場合、エラーを返します。
 
 ```rust
 fn caller() -> Principal {
@@ -249,7 +233,7 @@ fn caller() -> Principal {
 }
 ```
 
-最後に、各関数の中でNotes構造体を操作する関数を呼び出しています。
+最後に、Notes構造体を操作する関数（ノートの取得・追加・編集・削除）を呼び出す関数をそれぞれ定義しています。
 
 ```rust
 #[query(name = "getNotes")]
@@ -276,4 +260,4 @@ fn get_notes() -> Vec<EncryptedNote> {
 
 ---
 
-次のレッスンに進み、フロントエンドから呼び出すためにインタフェースを作成しましょう！
+次のレッスンに進み、動作確認とインタフェースの作成を行いましょう！
