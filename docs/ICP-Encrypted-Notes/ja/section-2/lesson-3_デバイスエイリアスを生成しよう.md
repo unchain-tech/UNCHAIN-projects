@@ -1,27 +1,31 @@
 ### 📝 デバイスエイリアスを生成しよう
 
-それでは早速、デバイスエイリアスを生成する機能を実装していきましょう。ここからはフロントエンドキャニスターのコードを更新していきます。下記のコマンドを実行して、アプリケーションを起動しましょう。
-
-```bash
-dfx start --clean --background
-dfx deploy
-npm run start
-```
-
-デバイスエイリアスは、[UUID](https://github.com/uuidjs/uuid#readme)でランダムに生成します。新しくターミナルを開き、以下のコマンドを実行してライブラリをインストールします。
+デバイスエイリアスは、[UUID](https://github.com/uuidjs/uuid#readme)でランダムに生成します。以下のコマンドを実行してライブラリをインストールしましょう。
 
 ```bash
 npm install uuid@9.0.0
 npm install --save-dev @types/uuid@9.0.2
 ```
 
-`lib/cryptoService.ts`を更新していきましょう。まずは、下記のインポート文を追加します。
+次に、下記のコマンドを実行して、キャニスターのデプロイを行いアプリケーションを再度起動します。
+
+```bash
+dfx start --clean --background
+npm run deploy:local
+npm run start
+```
+
+それでは、コードを実装していきましょう。ここからは`encrypted_notes_frontend/`内のファイルを更新していきます。
+
+デバイスデータを扱うクラス`CryptoService`を、`lib/cryptoService.ts`に定義しています。このクラスはまだ未完成のため、これから実装を追加していき完成させましょう。
+
+まずは、下記のインポート文を追加します。
 
 ```ts
 import { v4 as uuidV4 } from 'uuid';
 ```
 
-`/** STEP4: コンストラクタを定義します。 */`の箇所に、下記のコードを記述します。
+次に、`/** STEP4: コンストラクタを定義します。 */`の箇所に下記のコードを記述します。
 
 ```ts
 　/** STEP4: コンストラクタを定義します。 */
@@ -36,9 +40,9 @@ import { v4 as uuidV4 } from 'uuid';
   }
 ```
 
-constructorとは、クラスのインスタンスが生成された際に呼び出される関数です。この関数内で、デバイスエイリアスを生成します。[window.localStorage](https://developer.mozilla.org/ja/docs/Web/API/Window/localStorage)は、ブラウザのローカルストレージを操作するためのオブジェクトです。`getItem`関数で、deviceAliasというキーで保存されている値を取得します。まだ保存されていない場合は新たに生成して、`setItem`関数で保存します。
+constructorとは、クラスのインスタンスが生成された際に呼び出される関数です。この関数内で、デバイスエイリアスを生成します。[window.localStorage](https://developer.mozilla.org/ja/docs/Web/API/Window/localStorage)は、ブラウザのローカルストレージを操作するためのオブジェクトです。`getItem`関数で、deviceAliasというキーで保存されている値を取得します。まだ保存されていない場合は新たに生成して、`setItem`関数で保存します。また、constructorの引数に、`actor`を指定しました。クラス内でバックエンドキャニスターの関数を呼ぶために、CryptoServiceクラスのインスタンスを生成するタイミングでactorを渡します。
 
-では、`hooks/authContext.ts`を更新して、CryptoServiceクラスを呼び出してみましょう。
+デバイスエイリアスを生成するコードを追加したので、`hooks/authContext.ts`を更新してCryptoServiceクラスを呼び出してみましょう。
 
 `/** STEP5: CryptoServiceクラスのインスタンスを生成します。 */`の部分を下記のコードに更新します。
 
@@ -53,14 +57,20 @@ constructorとは、クラスのインスタンスが生成された際に呼び
 
 ログイン操作を行なった後、ブラウザのローカルストレージにデバイスエイリアスが保存されているかを確認してみましょう。
 
-<!-- TODO：ブラウザの画像を追加 -->
+認証時に画像のような画面が表示された場合は、「More options」をクリックするとSection1 Lesson3で操作した画面に戻ることができます。
 
-この時、ノート一覧の取得に失敗してエラーが発生していますが、これは`registerDevice`関数をまだ呼び出していないためです。このまま進みましょう。
+![](/public/images/ICP-Encrypted-Notes/section-2/2_3_1.png)
 
-ブラウザのローカルストレージを確認してみましょう。
-Application -> Storage -> Local Storage -> http://localhost:8000 -> key, valueのペアが表示されていることを確認します。
+認証後、アプリケーションに戻るとノート一覧の取得に失敗してエラーが発生しますが、これは`registerDevice`関数を呼び出していないためです。気にせずこのまま進みましょう。
 
-<!-- TODO：ブラウザの画像を追加 -->
+では、ブラウザのローカルストレージを確認してみましょう。ブラウザのデベロッパーツールを開き、
+1\. Applicationをクリック
+2\. Storage → Local Storage → http://localhost:8000 をクリック
+3\. Keyが`deviceAlias`の列を見つける
+
+このとき、ValueにはUUIDで生成されたデバイスエイリアスが保存されていることを確認しましょう。
+
+![](/public/images/ICP-Encrypted-Notes/section-2/2_3_2.png)
 
 ### 🙋‍♂️ 質問する
 

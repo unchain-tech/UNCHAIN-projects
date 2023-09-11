@@ -2,15 +2,15 @@
 
 まずは、公開鍵と秘密鍵を保存するデータベースから作成していきましょう。
 
-ブラウザ上のローカルストレージは、string型のデータしか保存できません。しかし、このレッスンで生成する鍵は[`CryptoKey`](https://developer.mozilla.org/ja/docs/Web/API/CryptoKey)オブジェクトです。CryptoKeyオブジェクトをそのまま保存できる[idb](https://github.com/jakearchibald/idb#readme)というデータベースを用意したいと思います。
+ブラウザ上のローカルストレージは、string型のデータしか保存できません。しかし、このレッスンで生成する鍵は[`CryptoKey`](https://developer.mozilla.org/ja/docs/Web/API/CryptoKey)オブジェクトです。管理を簡単にするため、CryptoKeyオブジェクトをそのまま保存できる[idb](https://github.com/jakearchibald/idb#readme)というデータベースを用意したいと思います。
 
-まずは、必要なパッケージをインストールしましょう。
+まずは、パッケージをインストールしましょう。
 
 ```bash
 npm install idb
 ```
 
-`lib/`内に`keyStorage.ts`を作成します。
+次に、データベースを操作するための関数を定義します。`lib/`内に`keyStorage.ts`を作成しましょう。
 
 ```diff
 encrypted_notes_frontend/
@@ -61,7 +61,7 @@ export async function clearKeys() {
 
 ### 🔑 公開鍵・秘密鍵を生成しよう
 
-次に、キーペアを生成する機能を実装します。`lib/cryptoService.ts`を更新しましょう。
+データベースの準備ができたので、次にキーペアを生成する機能を実装しましょう。`lib/cryptoService.ts`を更新していきます。
 
 先ほど作成した`keyStorage.ts`をインポートします。
 
@@ -69,7 +69,7 @@ export async function clearKeys() {
 import { clearKeys, loadKey, storeKey } from './keyStorage';
 ```
 
-鍵を準備して、CryptoServiceクラスのメンバーを更新する`init`関数を更新します。下記を参考に、`/** STEP6: 公開鍵・秘密鍵を生成します。 */`の部分にコードを追加しましょう。
+鍵の生成（または取得）を行う`init`関数を更新します。下記を参考に、`/** STEP6: 公開鍵・秘密鍵を生成します。 */`の部分にコードを追加しましょう。
 
 ```ts
   public async init(): Promise<boolean> {
@@ -160,15 +160,13 @@ generateKey(algorithm, extractable, keyUsages);
       this.privateKey = keyPair.privateKey;
 ```
 
-最後にinit関数は`true`を返します。ここではtrueを返すだけとなっていますが今はこのままにしておきます。以降のレッスンで更新していきます。
+最後にinit関数は`true`を返します。今はtrueを返すだけとなっていますがこのままにしておきます。以降のレッスンで更新していきます。
 
 ```ts
     return true;
 ```
 
-それでは、init関数を呼び出してみましょう。authContext.tsに`const cryptoService = new CryptoService();`を追加しました。このインスタンスを使用してinit関数を呼び出します。
-
-`/** STEP7: デバイスデータの設定を行います。 */`の部分に下記のコードを追加しましょう。
+それでは、init関数を呼び出してみましょう。`hooks/authContext.ts`内のある`/** STEP7: デバイスデータの設定を行います。 */`の部分に下記のコードを追加しましょう。
 
 ```ts
     /** STEP7: デバイスデータの設定を行います。 */
@@ -178,15 +176,23 @@ generateKey(algorithm, extractable, keyUsages);
 
 ### ✅ 動作確認をしよう
 
-ログインボタンを押して、認証を行います。認証が完了したら、ストレージを確認してみます。`crypto-store`というデータベースが作成されていることが確認します。
+ブラウザに戻り、再度ログインボタンを押しましょう。前回のレッスンでIdentityの生成を済ませているので、そこから再デプロイを行なっていない限り、生成したidentityを選択して進みます。
 
-<!-- TODO: 画像を追加（Application->Storage->IndexedDB->crypto-store->keys） -->
+![](/public/images/ICP-Encrypted-Notes/section-2/2_4_1.png)
+
+開発環境下での動作確認なので、「Remind me later」を選択していただいて大丈夫です。
+
+![](/public/images/ICP-Encrypted-Notes/section-2/2_4_2.png)
+
+認証が完了したら、ストレージを見てみましょう。`crypto-store`というデータベースが作成され、中に公開鍵と秘密鍵が保存されていること確認しましょう。
+
+![](/public/images/ICP-Encrypted-Notes/section-2/2_4_3.png)
 
 ### 📝 このレッスンで追加したコード
 
 - `lib/keyStorage.ts`
 
-このレッスン最初の「🛢 データベースを作成しよう」を参照。
+レッスン最初の「🛢 データベースを作成しよう」を参照。
 
 - `lib/cryptoService.ts`
 
@@ -264,4 +270,4 @@ generateKey(algorithm, extractable, keyUsages);
 
 ---
 
-次のレッスンに進み、デバイスデータの登録・削除機能を完成させましょう！
+次のレッスンに進み、デバイスデータが登録できるようにしましょう！

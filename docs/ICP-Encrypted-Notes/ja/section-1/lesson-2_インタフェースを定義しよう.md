@@ -1,6 +1,34 @@
+### 🤝 インタフェースを定義しよう
+
+実装した機能をフロントエンドから呼び出す前に、インタフェースを定義する必要があります。ICPでは、キャニスターのインタフェースはCandidという言語で記述します。
+
+#### Candidとは
+
+Candidは、サービスのパブリック・インタフェースを記述することを主な目的としたインタフェース記述言語です。Candidの主な利点のひとつは、言語にとらわれず、Motoko[https://internetcomputer.org/docs/current/motoko/main/about-this-guide]、Rust、JavaScriptなどの異なるプログラミング言語で書かれたサービスとフロントエンド間の相互運用を可能にすることです。詳細は[こちら](https://internetcomputer.org/docs/current/developer-docs/backend/candid/candid-concepts)をご覧ください。
+
+Motokoでキャニスターを記述した場合、プログラムをコンパイルする際にコンパイラが自動的にCandidで記述されたファイル`.did`を生成してくれます。しかし、Rustのような他の言語では現在、Candidインタフェースの記述を自身で書かなければなりません。
+
+`src/encrypted_notes_backend/`内の`encrypted_notes_backend.did`を、下記の内容で上書きしてください。
+
+```javascript
+type EncryptedNote = record {
+  "id" : nat;
+  "data" : text;
+};
+
+service : {
+  "addNote" : (text) -> ();
+  "deleteNote" : (nat) -> ();
+  "getNotes" : () -> (vec EncryptedNote) query;
+  "updateNote" : (EncryptedNote) -> ();
+};
+```
+
+`type`から始まる部分は、バックエンドキャニスターで定義した**型**を記述し、`service`から始まる部分は、バックエンドキャニスターの**関数**を記述します。関数は`"関数名": (引数の型) -> (戻り値の型)`という形式で記述する必要があります。引数や戻り値がない場合は、`()`を指定します。型は、Candidがサポートする型を指定する必要があります（例：RustのString型はtextを指定）。型に関する詳細は、[こちら](https://internetcomputer.org/docs/current/references/candid-ref)をご覧ください。
+
 ### 📝 テストスクリプトの作成
 
-まずは、前回のレッスンで実装したバックエンドキャニスターの関数が正しく動作するかを確認するためのテストスクリプトを作成します。
+インタフェースが定義されたので、前回のレッスンで実装したバックエンドキャニスターの関数が正しく動作するかを確認するためのテストスクリプトを作成します。
 
 プロジェクトのルートディレクトに`scripts`ディレクトリを作成し、その中に`test.sh`というファイルを作成してください。
 
@@ -184,37 +212,32 @@ fi
 bash ./scripts/test.sh
 ```
 
-<!-- TODO：結果を記載する -->
+全てのテストにパスし、最後に`"PASS"`が出力されたら成功です。
 
-バックエンドキャニスターに定義した関数が問題なく機能することを確認できました！
+```bash
+# デプロイに関する出力...
 
-### インタフェースを定義しよう
+===== addNote =====
+Return none: OK
 
-バックエンドキャニスターのインタフェースを定義していきます。ICPでは、キャニスターのインタフェースはCandidという言語で記述します。
+===== getNotes =====
+Return note list: OK
 
-#### Candidとは
+===== updateNote =====
+Return none: OK
+Check with getNotes: OK
 
-Candidは、サービスのパブリック・インタフェースを記述することを主な目的としたインタフェース記述言語です。Candidの主な利点のひとつは、言語にとらわれず、Motoko[https://internetcomputer.org/docs/current/motoko/main/about-this-guide]、Rust、JavaScriptなどの異なるプログラミング言語で書かれたサービスとフロントエンド間の相互運用を可能にすることです。詳細は[こちら](https://internetcomputer.org/docs/current/developer-docs/backend/candid/candid-concepts)をご覧ください。
+===== deleteNote =====
+Return none: OK
+Check with getNotes: OK
 
-Motokoでキャニスターを記述した場合、プログラムをコンパイルする際にコンパイラが自動的にCandidで記述されたファイル`.did`を生成してくれます。しかし、Rustのような他の言語では現在、Candidインタフェースの記述を手動で書かなければなりません。
+# 後始末に関する出力...
 
-`src/encrypted_notes_backend/`内の`encrypted_notes_backend.did`に、下記を記述してください。
-
-```javascript
-type EncryptedNote = record {
-  "id" : nat;
-  "data" : text;
-};
-
-service : {
-  "addNote" : (text) -> ();
-  "deleteNote" : (nat) -> ();
-  "getNotes" : () -> (vec EncryptedNote) query;
-  "updateNote" : (EncryptedNote) -> ();
-};
+===== Result =====
+"PASS"
 ```
 
-`type`から始まる部分は、バックエンドキャニスターで定義した**型**を記述し、`service`から始まる部分は、バックエンドキャニスターの**関数**を記述します。関数は`"関数名": (引数の型) -> (戻り値の型)`という形式で記述する必要があります。引数や戻り値がない場合は、`()`を指定します。型は、Candidがサポートする型を指定する必要があります（例：RustのString型はtextを指定）。型に関する詳細は、[こちら](https://internetcomputer.org/docs/current/references/candid-ref)をご覧ください。
+バックエンドキャニスターに定義した関数が問題なく機能することを確認できました！
 
 ### 🙋‍♂️ 質問する
 

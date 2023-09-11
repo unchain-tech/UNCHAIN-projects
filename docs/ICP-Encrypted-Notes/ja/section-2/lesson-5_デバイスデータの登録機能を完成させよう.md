@@ -2,7 +2,7 @@
 
 デバイスエイリアスとキーペアの生成ができたので、これらをバックエンドキャニスターに登録しましょう。
 
-`cryptoService.ts`内のinit関数を更新します。`/** STEP8: デバイスデータを登録します。 */`の部分に下記のコードを追加しましょう。
+`lib/cryptoService.ts`内のinit関数を更新します。`/** STEP8: デバイスデータを登録します。 */`の部分に下記のコードを追加しましょう。
 
 ```tsx
     /** STEP8: デバイスデータを登録します。 */
@@ -50,7 +50,7 @@
     );
 ```
 
-デバイスデータの登録機能が実装できたので、次は登録したデバイスデータを取得しましょう。
+デバイスデータの登録機能が実装できたので、登録したデバイスデータを取得して表示しましょう。
 
 `routes/devices/`内の`index.tsx`を更新します。このファイルは、デバイス一覧を表示するページのコンポーネントです。`getDevices`関数内の空配列を設定している`setDeviceAliases([]);`を、下記のように更新しましょう。
 
@@ -76,118 +76,31 @@
 
 バックエンドキャニスターの`getDeviceAliases`関数を呼び出し、取得したデータを`setDeviceAliases`関数でステートに保存します。
 
-### 🗑 デバイスデータを削除しよう
-
-デバイスデータの削除機能を実装しましょう。同じコンポーネントにある`deleteDevice`関数内、ログ出力をしている部分を下記のように更新しましょう。
-
-```tsx
-  const deleteDevice = async () => {
-    if (auth.status !== 'SYNCED') {
-      console.error(`CryptoService is not synced.`);
-      return;
-    }
-    setIsLoading(true);
-    try {
-      // デバイスを削除します。
-      await auth.actor.deleteDevice(deleteAlias);
-      await getDevices();
-    } catch (err) {
-      console.error(err);
-      showMessage({
-        title: 'Failed to delete device',
-        status: 'error',
-      });
-    } finally {
-      onCloseDeleteDialog();
-      setIsLoading(false);
-    }
-  };
-```
-
-バックエンドキャニスターの`deleteDevice`関数に、削除したいデバイスエイリアスを渡して呼び出します。この時渡される`deleteAlias`は、ステート変数です。どのようにステート変数が更新されるかは、`setDeleteAlias`関数を辿って確認してみてください！
-
-```tsx
-  const [deleteAlias, setDeleteAlias] = useState<string | undefined>(undefined);
-```
-
-最後に、削除されたデバイスが自身のフロントエンド側で保持するデバイスデータを全て削除し、ログイン後にアクセスができるページからログインページへリダイレクトするようにしましょう。この機能により、削除されたデバイスは再度認証を行わないとアプリケーションの機能が利用できないようになります。
-
-`hooks/useDeviceCheck.ts`は、デバイスデータが削除されたかどうかをチェックするisDeviceRemoved関数を定義しています。バックエンドキャニスターからデバイスエイリアスを取得して、この関数を完成させましょう。下記のように更新してください。
-
-```ts
-  const isDeviceRemoved = useCallback(async () => {
-    if (auth.status !== 'SYNCED') {
-      return false;
-    }
-
-    // バックエンドキャニスターからデバイスエイリアスを取得します。
-    const deviceAlias = await auth.actor.getDeviceAliases();
-    // 自身のデバイスエイリアスが含まれていない場合は、デバイスが削除されたと判断します。
-    return !deviceAlias.includes(auth.cryptoService.deviceAlias);
-  }, [auth]);
-```
-
-isDeviceRemoved関数は、あらかじめNotesコンポーネントとDevicesコンポーネント内で呼び出すようにしています。該当箇所を簡単に確認しましょう。
-
-```tsx
-// routes/notes/index.tsx
-  useEffect(() => {
-    // 1秒ごとにポーリングします。
-    const intervalId = window.setInterval(async () => {
-      console.log('Check device data...');
-
-      const isRemoved = await isDeviceRemoved();
-      if (isRemoved) {
-        try {
-          await logout();
-          showMessage({
-            title: 'This device has been deleted.',
-            status: 'info',
-          });
-          navigate('/');
-        } catch (err) {
-          showMessage({ title: 'Failed to logout', status: 'error' });
-          console.error(err);
-        }
-      }
-    }, 1000);
-
-    // クリーンアップ関数を返します。
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, [auth]);
-```
-
-[setInterval](https://developer.mozilla.org/en-US/docs/Web/API/setInterval)は、一定の時間ごとに指定した処理を実行してくれます。ここでは1秒ごとにisDeviceRemoved関数の結果を確認し、デバイスデータが削除されていた場合は、ログアウト処理を行ってログインページへリダイレクトします。
-
 ### ✅ 動作確認をしよう
-
-実際に、デバイスデータの登録・削除機能が正しく動作するか確認してみましょう。
 
 まずは、現在の状態を確認します。サイドバーの「Devices」をクリックします。
 
-<!-- TODO: 画像を追加 -->
-
 デバイス一覧ページに、デバイスエイリアスが1つ表示されていることを確認します。
 
-<!-- TODO: 画像を追加 -->
+![](/public/images/ICP-Encrypted-Notes/section-2/2_5_1.png)
 
-シークレットブラウザで、同じInternet Identity（開発モードでは10000）で認証します。
+次に、別のデバイスを追加してみましょう。シークレットブラウザを開き、http://localhost:8080にアクセスします。ログインボタンを押して認証ページが開いたら、「Use existing」を選択します。
 
-<!-- TODO: 画像を追加 -->
+![](/public/images/ICP-Encrypted-Notes/section-2/2_5_2.png)
 
-デバイス一覧ページを更新して、デバイスエイリアスが2つ表示されていることを確認します。
+現在アプリケーションにログインしているInternet Identityと同じ値で認証します。ここでは10000で認証しています（画像右）。
 
-<!-- TODO: 画像を追加 -->
+![](/public/images/ICP-Encrypted-Notes/section-2/2_5_3.png)
 
-どちらか一方のデバイスを削除します。
+認証後、デバイス一覧ページを開くとデバイスエイリアスが2つ表示されているはずです。
 
-<!-- TODO: 画像を追加 -->
+![](/public/images/ICP-Encrypted-Notes/section-2/2_5_4.png)
+
+最初に使用していたブラウザ（画像では左）の画面をリロードすると、こちらでもデバイスエイリアスが2つ表示されていることが確認できるはずです。
+
+これで、デバイスデータの登録機能が完成しました！
 
 ### 📝 このレッスンで追加したコード
-
-<!-- TODO: 追加したコードをdiffで示す -->
 
 - `lib/cryptoService.ts`
 
@@ -233,33 +146,6 @@ isDeviceRemoved関数は、あらかじめNotesコンポーネントとDevices�
 - `routes/devices/index.tsx`
 
 ```diff
-export const Devices = () => {
-
-...
-
-  const deleteDevice = async () => {
-    if (auth.status !== 'SYNCED') {
-      console.error(`CryptoService is not synced.`);
-      return;
-    }
-    setIsLoading(true);
-    try {
-      // デバイスを削除します。
--      console.log('delete device');
-+      await auth.actor.deleteDevice(deleteAlias);
-+      await getDevices();
-    } catch (err) {
-      console.error(err);
-      showMessage({
-        title: 'Failed to delete device',
-        status: 'error',
-      });
-    } finally {
-      onCloseDeleteDialog();
-      setIsLoading(false);
-    }
-  };
-
   const getDevices = async () => {
     if (auth.status !== 'SYNCED') {
       console.error(`CryptoService is not synced.`);
@@ -278,9 +164,6 @@ export const Devices = () => {
       });
     }
   };
-
-...
-
 ```
 
 ### 🙋‍♂️ 質問する

@@ -4,7 +4,7 @@
 
 ### 🛠 バックエンドキャニスターの実装
 
-まずは、`encrypted_notes_backend/src/`下に`notes.rs`を作成します。
+早速ですが、バックエンドキャニスターにノートを管理する機能を実装していきましょう。まずは、`encrypted_notes_backend/src/`下に`notes.rs`を作成します。
 
 ```diff
 encrypted_notes_backend/
@@ -51,7 +51,7 @@ pub struct Notes {
 
 次に構造体を定義しました。[#[derive()]](https://doc.rust-jp.rs/rust-by-example-ja/trait/derive.html)は、Rustの構造体やenumといった型にトレイト（機能）を自動的に実装するための構文です。例えばCandidTypeをderiveに設定することで、CandidとRust間のデータの変換に必要なコードを手間なく、かつ型安全に自動生成できるため、開発効率が向上します。
 
-各ユーザーがそれぞれノートを保存できるように、マッピングを使って`notes`を定義します。キーに`Principal`を、値に`Vec<EncryptedNote>`を指定して保存します。[Vec]は、可変長の配列を表す型です。配列の中には、`EncryptedNote`という構造体を格納しています。EncryptedNoteは、ノートのIDと暗号化されたテキストを格納する構造体です。
+各ユーザーがそれぞれノートを保存できるように、マッピングを使って`notes`を定義します。キーに`Principal`を、値に`Vec<EncryptedNote>`を指定して保存します。[Vec](https://doc.rust-lang.org/std/vec/struct.Vec.html)は、可変長の配列を表す型です。配列の中には、`EncryptedNote`という構造体を格納しています。EncryptedNoteは、ノートのIDと暗号化されたテキストを格納する構造体です。
 
 それでは、Notes構造体の下に[impl](https://doc.rust-lang.org/std/keyword.impl.html)キーワードを使用して、Notes構造体を操作する関数を定義しましょう。
 
@@ -250,6 +250,9 @@ fn get_notes() -> Vec<EncryptedNote> {
     let caller = caller();
     NOTES.with(|notes| notes.borrow().get_notes(caller))
 }
+
+...
+
 ```
 
 ここまでで、ノートを管理するバックエンドキャニスターの実装は完了です。

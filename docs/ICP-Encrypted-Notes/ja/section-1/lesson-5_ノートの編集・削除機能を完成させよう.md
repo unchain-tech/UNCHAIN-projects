@@ -66,21 +66,25 @@ const [deleteId, setDeleteId] = useState<bigint | undefined>(undefined);
 
 ### ✅ 動作確認をしよう
 
-まずは、ノートを編集してみましょう。
+まずは、ノートを編集してみましょう。編集アイコンをクリックすると、モーダルが開きます。
 
-<!-- TODO: 画像を追加 -->
+![](/public/images/ICP-Encrypted-Notes/section-1/1_5_1.png)
 
-モーダルが開いたら、テキストを編集して「Save」ボタンをクリックします。
+テキストを編集して「Save」ボタンをクリックします。
 
-<!-- TODO: 画像を追加 -->
+![](/public/images/ICP-Encrypted-Notes/section-1/1_5_2.png)
 
-ノートが編集されたことを確認しましょう。
+ノートが編集されていることを確認しましょう。
 
-同様の流れで、今度はノートを削除してみましょう。選択したノートが削除されていたら実装は完了です。
+同様の流れで、今度はノートを削除してみましょう。削除アイコンをクリックします。
 
-<!-- TODO: 画像を追加 -->
+![](/public/images/ICP-Encrypted-Notes/section-1/1_5_3.png)
 
-<!-- TODO: 画像を追加 -->
+確認のダイアログが表示されるので、「Delete」ボタンをクリックします。
+
+![](/public/images/ICP-Encrypted-Notes/section-1/1_5_4.png)
+
+ノートが削除されたら実装は完成です！
 
 ### 📝 このレッスンで追加したコード
 

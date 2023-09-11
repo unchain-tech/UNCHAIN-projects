@@ -8,6 +8,9 @@
 - [Rust](https://www.rust-lang.org/ja/)
 - [Typescript](https://typescriptbook.jp/overview/features)
 - [React.js](https://ja.react.dev/)
+- [Chakra UI](https://chakra-ui.com/)
+
+※ ICPでの開発が初めての方は、まず`ICP-Static-Site`や`ICP-Basic-DEX`のプロジェクトから始めることをお勧めします ☺️
 
 いますべてを理解している必要はありません。
 
@@ -24,7 +27,11 @@
 
 完成したアプリケーションはこのような見た目になります 💪
 
-<!-- TODO: 画像を追加する -->
+![](/public/images/ICP-Encrypted-Notes/section-0/0_1_1.png)
+
+![](/public/images/ICP-Encrypted-Notes/section-0/0_1_2.png)
+
+![](/public/images/ICP-Encrypted-Notes/section-0/0_1_3.png)
 
 ### 🌍 プロジェクトをアップグレードする
 

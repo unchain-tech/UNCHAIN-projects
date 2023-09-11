@@ -54,11 +54,11 @@ GitHubのアカウントをお持ちの方は、下記の手順に沿ってプ�
 
 1\. [ICP-Encrypted-Notes](https://github.com/unchain-tech/ICP-Encrypted-Notes)にアクセスをして、ページ右上の`Fork`ボタンをクリックします。
 
-![](/public/images/ICP-Encrypted-Notes/section-0/0_1_1.png)
+![](/public/images/ICP-Encrypted-Notes/section-0/0_2_1.png)
 
 2\. Create a new forkページが開くので、「Copy the `main` branch only」という項目に**チェックが入っていることを確認します**。
 
-![](/public/images/ICP-Encrypted-Notes/section-0/0_1_2.png)
+![](/public/images/ICP-Encrypted-Notes/section-0/0_2_2.png)
 
 設定が完了したら`Create fork`ボタンをクリックします。あなたのGitHubアカウントに`ICP-Encrypted-Notes`リポジトリのフォークが作成されたことを確認してください。
 
@@ -66,7 +66,7 @@ GitHubのアカウントをお持ちの方は、下記の手順に沿ってプ�
 
 まず、下図のように、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
 
-![](/public/images/ICP-Encrypted-Notes/section-0/0_1_3.png)
+![](/public/images/ICP-Encrypted-Notes/section-0/0_2_3.png)
 
 ターミナル上で作業を行う任意のディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
 
@@ -79,7 +79,9 @@ git clone コピーした_github_リンク
 ### 🔍 フォルダ構成を確認する
 <!-- TODO: 必要に応じて記述する -->
 
-必要なパッケージをインストールしましょう。
+### 📦 パッケージをインストールする
+
+下記のコマンドを実行して、パッケージのインストールをしましょう。
 
 ```bash
 npm install
@@ -87,29 +89,31 @@ npm install
 
 問題なくインストールが行われることを確認します。
 
-現在、必要なファイルが不足しているためデプロイを行うと失敗してしまいます。ここではデプロイの手順は行いませんが、実際に行う場合には下記の手順でアプリケーションを立ち上げます。
+#### アプリケーションを立ち上げるには
 
-バックグラウンドでローカル実行環境を起動します。
+必要な実装が不足しているため、今の状態でアプリケーションを立ち上げると失敗してしまいます。そのため、ここでは実際に実行しませんが、手順のみ提示しておきます。
+
+1\. バックグラウンドでローカル実行環境を起動します。
 
 ```bash
 dfx start --clean --background
 ```
 
-プロジェクトの登録・ビルド・デプロイを行います。
+2\. プロジェクトの登録・ビルド・デプロイを行います。
 
 ```bash
 npm run deploy:local
 ```
 
-開発サーバーを立ち上げ、アプリケーションを起動します。
+3\. 開発サーバーを立ち上げ、アプリケーションを起動します。
 
 ```bash
 npm run start
 ```
 
-`Loopback:`に表示されたURLにアクセスをします。
+4\. `Loopback:`に表示されたURLにアクセスをします。
 
-ローカル実行環境を停止するには、下記のコマンドを実行します。
+ローカルの実行環境を停止するには、下記のコマンドを実行します。
 
 ```bash
 dfx stop

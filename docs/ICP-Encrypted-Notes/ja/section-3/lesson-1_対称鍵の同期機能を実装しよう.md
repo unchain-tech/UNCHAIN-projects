@@ -1,8 +1,8 @@
-### 🛠 バックエンドキャニスターの実装
+### 🔐 対称鍵の同期機能を実装しよう
 
-バックエンドキャニスターに、対称鍵を同期するために必要な関数を実装します。
+対称鍵を同期するために必要な関数を、バックエンドキャニスターに実装しましょう。
 
-まずは、対称鍵を同期するための手順を再確認しましょう。
+まずは、対称鍵を同期するための手順を再確認しておきます。
 
 1. 公開鍵のアップロード
 2. 対称鍵を保有するブラウザが、バックエンドキャニスターから公開鍵を取得
@@ -20,7 +20,9 @@
 4. 暗号化された対称鍵を保存する関数
 5. 暗号化された対称鍵を取得する関数
 
-では、devices.rs内に定義している`delete_device`関数の下に、下記の関数を記述しましょう。
+### 🛠 バックエンドキャニスターの実装
+
+それでは実装していきましょう。devices.rs内に定義している`delete_device`関数の下に、下記の関数を記述しましょう。
 
 ```rust
     /// 指定した公開鍵に紐づいている対称鍵を取得します。
@@ -189,7 +191,7 @@
     }
 ```
 
-次に、`lib.rs`を更新します。下記のコードを`fn delete_device(alias: DeviceAlias) {}`の下に追加しましょう。
+では、追加した関数をlib.rsから呼び出すようにしましょう。下記のコードをlib.rs内の`fn delete_device(alias: DeviceAlias) {}`の下に追加しましょう。
 
 ```rust
 #[query(name = "getEncryptedSymmetricKey")]
@@ -254,6 +256,53 @@ fn upload_encrypted_symmetric_keys(
             .upload_encrypted_symmetric_keys(caller, keys)
     })
 }
+```
+
+### 🤝 インタフェースを定義しよう
+
+新しい関数を定義したので、`encrypted_notes_backend.did`を下記の内容で更新しましょう。
+
+```javascript
+type DeviceAlias = text;
+type PublicKey = text;
+type EncryptedSymmetricKey = text;
+
+type EncryptedNote = record {
+  "id" : nat;
+  "data" : text;
+};
+
+type DeviceError = variant {
+  AlreadyRegistered;
+  DeviceNotRegistered;
+  KeyNotSynchronized;
+  UnknownPublicKey;
+};
+
+type RegisterKeyResult = variant {
+  Ok;
+  Err : DeviceError;
+};
+
+type SynchronizeKeyResult = variant {
+  Ok : EncryptedSymmetricKey;
+  Err : DeviceError;
+};
+
+service : {
+  "deleteDevice" : (DeviceAlias) -> ();
+  "getDeviceAliases" : () -> (vec DeviceAlias) query;
+  "getEncryptedSymmetricKey" : (PublicKey) -> (SynchronizeKeyResult) query;
+  "getUnsyncedPublicKeys" : () -> (vec PublicKey) query;
+  "isEncryptedSymmetricKeyRegistered" : () -> (bool) query;
+  "registerDevice" : (DeviceAlias, PublicKey) -> ();
+  "registerEncryptedSymmetricKey" : (PublicKey, EncryptedSymmetricKey) -> (RegisterKeyResult);
+  "uploadEncryptedSymmetricKeys" : (vec record { PublicKey; EncryptedSymmetricKey }) -> (RegisterKeyResult);
+  "addNote" : (text) -> ();
+  "deleteNote" : (nat) -> ();
+  "getNotes" : () -> (vec EncryptedNote) query;
+  "updateNote" : (EncryptedNote) -> ();
+};
 ```
 
 ### ✅ 動作確認をしよう
@@ -375,53 +424,6 @@ compare_result "Check with $FUNCTION" "$EXPECT" "$RESULT" || TEST_STATUS=1
 ```
 
 テストスクリプトを実行して、`PASS`が表示されていたら確認は完了です。
-
-### インタフェースを定義しよう
-
-新しい関数を定義したので、`encrypted_notes_backend.did`を下記の内容で更新しましょう。
-
-```javascript
-type DeviceAlias = text;
-type PublicKey = text;
-type EncryptedSymmetricKey = text;
-
-type EncryptedNote = record {
-  "id" : nat;
-  "data" : text;
-};
-
-type DeviceError = variant {
-  AlreadyRegistered;
-  DeviceNotRegistered;
-  KeyNotSynchronized;
-  UnknownPublicKey;
-};
-
-type RegisterKeyResult = variant {
-  Ok;
-  Err : DeviceError;
-};
-
-type SynchronizeKeyResult = variant {
-  Ok : EncryptedSymmetricKey;
-  Err : DeviceError;
-};
-
-service : {
-  "deleteDevice" : (DeviceAlias) -> ();
-  "getDeviceAliases" : () -> (vec DeviceAlias) query;
-  "getEncryptedSymmetricKey" : (PublicKey) -> (SynchronizeKeyResult) query;
-  "getUnsyncedPublicKeys" : () -> (vec PublicKey) query;
-  "isEncryptedSymmetricKeyRegistered" : () -> (bool) query;
-  "registerDevice" : (DeviceAlias, PublicKey) -> ();
-  "registerEncryptedSymmetricKey" : (PublicKey, EncryptedSymmetricKey) -> (RegisterKeyResult);
-  "uploadEncryptedSymmetricKeys" : (vec record { PublicKey; EncryptedSymmetricKey }) -> (RegisterKeyResult);
-  "addNote" : (text) -> ();
-  "deleteNote" : (nat) -> ();
-  "getNotes" : () -> (vec EncryptedNote) query;
-  "updateNote" : (EncryptedNote) -> ();
-};
-```
 
 お疲れ様です！ 長かったですが、これで対称鍵を同期するための準備ができました。次は、フロントエンドキャニスターで実際に対称鍵の同期処理を行なっていきましょう。
 

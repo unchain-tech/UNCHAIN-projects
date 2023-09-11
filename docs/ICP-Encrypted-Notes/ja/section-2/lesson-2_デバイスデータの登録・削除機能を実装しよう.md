@@ -1,8 +1,8 @@
 ### 🛠 バックエンドキャニスターの実装
 
-バックエンドキャニスターにデバイスデータの登録・削除機能を実装しましょう。
+バックエンドキャニスターにデバイスデータの登録・削除機能を実装しましょう。デバイスデータの削除機能は、ノートを共有しているデバイス一覧からあるデバイスを削除したいときに使います。
 
-`encrypted_notes_backend/src/`下に`devices.rs`を作成します。
+まずは、コードを記述するファイルを用意しましょう。`encrypted_notes_backend/src/`下に`devices.rs`を作成します。
 
 ```diff
 encrypted_notes_backend/
@@ -64,7 +64,7 @@ pub struct Devices {
 
 `Devices`構造体は、プリンシパルとデバイスデータを紐づけて保存するための構造体です。ここでマッピングの値には、`DeviceData`構造体を使用しています。`DeviceData`構造体は、デバイスエイリアスと公開鍵を紐づける`aliases`と公開鍵と暗号化された対称鍵を紐づける`keys`をメンバーに持ちます。
 
-では、Devices構造体の下に下記のコードを記述しましょう。
+次に、Devices構造体の下に下記のコードを記述しましょう。
 
 ```rust
 impl Devices {
@@ -135,7 +135,7 @@ impl Devices {
             assert!(device_data.aliases.len() > 1);
 ```
 
-removeは、削除した値を返すので、公開鍵と暗号化された対称鍵を紐づけるマッピングからも削除します。
+removeは削除した値を返すので、公開鍵と暗号化された対称鍵を紐づけるマッピングからも削除します。
 
 ```rust
             let public_key = device_data.aliases.remove(&alias);
@@ -144,7 +144,7 @@ removeは、削除した値を返すので、公開鍵と暗号化された対�
             }
 ```
 
-では、`lib.rs`を更新して、devices.rsの機能を呼び出すようにしましょう。
+では、`lib.rs`を更新してdevices.rsの機能を呼び出すようにしましょう。
 
 `use crate::notes::*;`の上に、下記のコードを追加します。
 
@@ -323,69 +323,7 @@ fn update_note(new_note: EncryptedNote) {
 }
 ```
 
-### ✅ 動作確認をしよう
-
-現在のテストスクリプトを実行すると、下のようなエラーが発生するかと思います。addNote関数を実行した際に、アサーションエラーが発生しています。
-
-```bash
-# 実行例
-===== addNote =====
-2023-07-25 10:48:04.633196 UTC: [Canister bkyz2-fmaaa-aaaaa-qaaaq-cai] Panicked at 'assertion failed: is_caller_registered(caller)', src/encrypted_notes_backend/src/lib.rs:52:5
-Error: Failed update call.
-Caused by: Failed update call.
-  The Replica returned an error: code 5, message: "Canister bkyz2-fmaaa-aaaaa-qaaaq-cai trapped explicitly: Panicked at 'assertion failed: is_caller_registered(caller)', src/encrypted_notes_backend/src/lib.rs:52:5"
-addNote: ERR
-1c1
-< ()
----
-> 
-```
-
-これは、プリンシパルが登録済みかどうかのチェックを追加したためです。エラーを回避するには、register_device関数を最初に呼び出す必要があります。
-
-では、テストスクリプトを更新します。下記の内容を`FUNCTION='addNote'`の上に記述しましょう。
-
-```bash
-# ===== テスト =====
-FUNCTION='registerDevice'
-echo -e "\n===== $FUNCTION ====="
-EXPECT='()'
-RESULT=`dfx canister call encrypted_notes_backend $FUNCTION '('\"$TEST_DEVICE_ALIAS_01\"', '\"$TEST_PUBLIC_KEY_01\"')'`
-compare_result "Return none" "$EXPECT" "$RESULT" || TEST_STATUS=1
-
-FUNCTION='getDeviceAliases'
-echo -e "\n===== $FUNCTION ====="
-EXPECT='(vec { '\"$TEST_DEVICE_ALIAS_01\"' })'
-RESULT=`dfx canister call encrypted_notes_backend $FUNCTION`
-compare_result "Return device list" "$EXPECT" "$RESULT" || TEST_STATUS=1
-
-FUNCTION='deleteDevice'
-echo -e "\n===== $FUNCTION ====="
-EXPECT='()'
-RESULT=`dfx canister call encrypted_notes_backend $FUNCTION '('\"$TEST_DEVICE_ALIAS_01\"')'`
-compare_result "Return none" "$EXPECT" "$RESULT" || TEST_STATUS=1
-# 確認
-FUNCTION='getDeviceAliases'
-EXPECT='(vec { '\"$TEST_DEVICE_ALIAS_02\"' })'
-RESULT=`dfx canister call encrypted_notes_backend $FUNCTION`
-compare_result "Check with $FUNCTION" "$EXPECT" "$RESULT" || TEST_STATUS=1
-
-FUNCTION='registerDevice'
-echo -e "\n===== $FUNCTION ====="
-EXPECT='()'
-RESULT=`dfx canister call encrypted_notes_backend $FUNCTION '('\"$TEST_DEVICE_ALIAS_01\"', '\"$TEST_PUBLIC_KEY_01\"')'`
-compare_result "Return none" "$EXPECT" "$RESULT" || TEST_STATUS=1
-```
-
-テストスクリプトを実行してみましょう。
-
-```bash
-bash ./scripts/test.sh
-```
-
-テストにパスしたことが確認できたら完了です。
-
-### インタフェースを更新しよう
+### 🤝 インタフェースを更新しよう
 
 関数を新しく追加したので、インタフェースを更新しましょう。`encrypted_notes_backend.did`を下記の内容で更新します。
 
@@ -410,6 +348,72 @@ service : {
 };
 
 ```
+
+### ✅ 動作確認をしよう
+
+現在のテストスクリプトを実行すると、下のようなエラーが発生するかと思います。addNote関数を実行した際に、アサーションエラーが発生しています。
+
+```bash
+# 実行例
+===== addNote =====
+2023-09-11 07:46:06.904263 UTC: [Canister bkyz2-fmaaa-aaaaa-qaaaq-cai] Panicked at 'assertion failed: is_caller_registered(caller)', src/encrypted_notes_backend/src/lib.rs:70:5
+Error: Failed update call.
+Caused by: Failed update call.
+  The Replica returned an error: code 5, message: "Canister bkyz2-fmaaa-aaaaa-qaaaq-cai trapped explicitly: Panicked at 'assertion failed: is_caller_registered(caller)', src/encrypted_notes_backend/src/lib.rs:70:5"
+Return none: ERR
+1c1
+< ()
+---
+> 
+```
+
+これは、プリンシパルが登録済みかどうかのチェックを追加したためです。エラーを回避するには、register_device関数を最初に呼び出す必要があります。
+
+では、テストスクリプトを更新します。下記の内容を`FUNCTION='addNote'`の上に記述しましょう。
+
+```bash
+# ===== テスト =====
+FUNCTION='registerDevice'
+echo -e "\n===== $FUNCTION ====="
+EXPECT='()'
+RESULT=`dfx canister call encrypted_notes_backend $FUNCTION '('\"$TEST_DEVICE_ALIAS_01\"', '\"$TEST_PUBLIC_KEY_01\"')'`
+compare_result "Return none" "$EXPECT" "$RESULT" || TEST_STATUS=1
+
+EXPECT='()'
+RESULT=`dfx canister call encrypted_notes_backend $FUNCTION '('\"$TEST_DEVICE_ALIAS_02\"', '\"$TEST_PUBLIC_KEY_02\"')'`
+compare_result "Return none" "$EXPECT" "$RESULT" || TEST_STATUS=1
+
+FUNCTION='deleteDevice'
+echo -e "\n===== $FUNCTION ====="
+EXPECT='()'
+RESULT=`dfx canister call encrypted_notes_backend $FUNCTION '('\"$TEST_DEVICE_ALIAS_01\"')'`
+compare_result "Return none" "$EXPECT" "$RESULT" || TEST_STATUS=1
+
+FUNCTION='getDeviceAliases'
+echo -e "\n===== $FUNCTION ====="
+EXPECT='(vec { '\"$TEST_DEVICE_ALIAS_02\"' })'
+RESULT=`dfx canister call encrypted_notes_backend $FUNCTION`
+compare_result "Return deviceAliases list $FUNCTION" "$EXPECT" "$RESULT" || TEST_STATUS=1
+```
+
+次に、テストで使用するデバイスデータを定義します。下記を`TEST_STATUS=0`の下に追加してください。
+
+```bash
+TEST_DEVICE_ALIAS_01='TEST_DEVICE_ALIAS_01'
+TEST_DEVICE_ALIAS_02='TEST_DEVICE_ALIAS_02'
+TEST_PUBLIC_KEY_01='TEST_PUBLIC_KEY_01'
+TEST_PUBLIC_KEY_02='TEST_PUBLIC_KEY_02'
+TEST_ENCRYPTED_SYMMETRIC_KEY_01='TEST_ENCRYPTED_SYMMETRIC_KEY_01'
+TEST_ENCRYPTED_SYMMETRIC_KEY_02='TEST_ENCRYPTED_SYMMETRIC_KEY_02'
+```
+
+テストスクリプトを実行してみましょう。
+
+```bash
+bash ./scripts/test.sh
+```
+
+全てのテストにパスしたら、バックエンドキャニスターの準備は完了です。
 
 ### 🙋‍♂️ 質問する
 

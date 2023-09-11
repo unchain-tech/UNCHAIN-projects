@@ -3,11 +3,23 @@
 前回のレッスンでバックエンドキャニスターを更新したので、改めてデプロイを行いましょう。
 
 ```bash
-dfx deploy
+dfx start --clean --background
+npm run deploy:local
 npm run start
 ```
 
-cryptoService.tsファイルのinit関数に対称鍵の生成と登録を行うコードを追加します。`/** STEP9: 対称鍵を生成します。 */`の部分に下記のコードを追加しましょう。
+ここからは、`encrypted_notes_frontend/`内のファイルを更新していきます。
+
+まずは、cryptoService.tsファイルを更新しましょう。インタフェースに定義した型をクラス内で使用したいのでインポートします。
+
+```ts
+import {
+  _SERVICE,
+  RegisterKeyResult,
+} from '../../../declarations/encrypted_notes_backend/encrypted_notes_backend.did';
+```
+
+init関数に対称鍵の生成と登録を行うコードを追加します。`/** STEP9: 対称鍵を生成します。 */`の下を下記のコードで更新しましょう。
 
 ```ts
     /** STEP9: 対称鍵を生成します。 */
@@ -53,7 +65,7 @@ cryptoService.tsファイルのinit関数に対称鍵の生成と登録を行う
 
 追加したコードを確認していきましょう。
 
-まず、`isEncryptedSymmetricKeyRegistered`関数を呼び出して、対称鍵が登録されているかを確認します。登録されていない場合は、対称鍵を生成し、既に登録されている場合は何もせずに、今はfalseを返して終了します。
+まず、`isEncryptedSymmetricKeyRegistered`関数を呼び出して、対称鍵が登録されているかを確認します。登録されていない場合は対称鍵を生成し、既に登録されている場合は何もせずに、今はfalseを返して終了します。
 
 ```ts
     const isSymKeyRegistered =
@@ -116,12 +128,15 @@ init関数に戻り、最後は暗号化された対称鍵をバックエンド�
       }
 ```
 
+ここまでで、対称鍵の生成を行うコードが実装できました。
+
 ### ✅ 動作確認をしよう
 
-ログインボタンを押して認証を行うと、以下のようなログが出力されることを確認しましょう。
+ブラウザのコンソールを開いておき、改めて認証を行いましょう。認証が完了してアプリケーションに戻ると、以下のようなログが出力されていることを確認しましょう。
 
 ```console
 Generate symmetric key...
+initialized: true
 ```
 
 ### 📝 このレッスンで追加したコード
@@ -129,6 +144,13 @@ Generate symmetric key...
 - `lib/cryptoService.ts`
 
 ```diff
+import {
+  _SERVICE,
++  RegisterKeyResult,
+} from '../../../declarations/encrypted_notes_backend/encrypted_notes_backend.did';
+
+...
+
   public async init(): Promise<boolean> {
     /** STEP6: 公開鍵・秘密鍵を生成します。 */
     // データベースから公開鍵・秘密鍵を取得します。

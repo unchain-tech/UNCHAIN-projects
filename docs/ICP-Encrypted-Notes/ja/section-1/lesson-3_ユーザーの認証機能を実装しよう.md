@@ -1,6 +1,6 @@
-### 👤 ユーザー認証機能を実装しよう
+### 👤 ユーザーの認証機能を実装しよう
 
-前回までのレッスンで、ノートを管理する機能が準備できました。フロントエンドキャニスターでこの機能を呼び出す前に、ユーザーの認証機能を実装する必要があります。ノートはプリンシパルと紐づけて管理するためです。このレッスンでは、アプリケーションのホーム画面にログインボタンを実装していきます。
+前回までのレッスンで、ノートを管理する機能が準備できました。フロントエンドキャニスターでこの機能を呼び出す前に、ユーザーの認証機能を実装する必要があります。ノートはプリンシパルと紐づけて管理するためです。このレッスンでは、アプリケーションのホーム画面にログインボタンを実装します。
 
 ### 📁 internet identity キャニスターを準備しよう
 
@@ -8,11 +8,11 @@
 
 #### Internet Identity とは
 
-Internet Identityは、WebAuthn対応デバイスを持つ全ての人が、Internet Computer上で稼働するweb3サービスに匿名で認証できるフレームワークです。
+Internet Identityは、Internet Computer上で稼働するweb3サービスに匿名で認証できるフレームワークです。
 
-Web上では、主にユーザー名とパスワードによる認証が用いられますが、管理が難しくセキュリティの脆弱性でよく知られています。これらの問題を解決するため、Internet Computerブロックチェーンは、より進んでおり、はるかにセキュアな暗号化認証法であるInternet Identityを導入しました。
+Web上では、主にユーザー名とパスワードによる認証が用いられますが、管理が難しいことや、セキュリティの脆弱性が度々問題になります。これらの問題を解決するため、Internet Computerブロックチェーンは、よりセキュアな認証法であるInternet Identityを導入しました。
 
-ユーザーはFaceIDや指紋センサー、またはYubiKeyを使用してデバイスによる認証のロックを解除します。その後、デバイスを利用してさまざまなアプリケーションにサインアップし認証を行うことができます（認証の手順に関する詳細はこちらの[ドキュメント](https://internetcomputer.org/how-it-works/web-authentication-identity/)を参照してください）。
+ユーザーはFaceIDや指紋センサー、またはYubiKeyを使用したデバイスの認証を活用することで、Internet Computer上のさまざまなアプリケーションにサインアップすることができます（認証の手順に関する詳細はこちらの[ドキュメント](https://internetcomputer.org/how-it-works/web-authentication-identity/)を参照してください）。
 
 それでは早速、認証機能を構築していきましょう！
 
@@ -99,7 +99,9 @@ const identity = authClient.getIdentity();
 
 それでは、ここまでの内容をフロントエンドキャニスターに実装していきましょう！ ここからは、`src/encrypted_notes_frontend`ディレクトリ内のファイルを編集していきます。
 
-まずは`src/hooks`ディレクトリ内の`authContext.ts`を更新します。`login`関数の`/** STEP1: 認証機能を実装します。 */`を下記ように更新しましょう。
+まずは`src/hooks/`内の`authContext.ts`を更新します。このファイルには、ユーザーの情報を管理するためのステートや関数が[Context](https://react.dev/learn/passing-data-deeply-with-context)を用いて定義されています。
+
+`login`関数の`/** STEP1: 認証機能を実装します。 */`を下記ように更新しましょう。
 
 ```tsx
   const login = async (): Promise<void> => {
@@ -150,7 +152,7 @@ const identity = authClient.getIdentity();
 
 login関数が実装できました。では、ログインボタンを押したらこの関数が呼び出されるようにしましょう。
 
-`routes/home/index.tsx`の`Home`コンポーネントを更新します。まずは下記のインポート文を追加しましょう。
+`routes/home/index.tsx`の`Home`コンポーネントを更新します。このコンポーネントは、アプリケーションを立ち上げた際に最初に表示されるページ（'/'）を提供します。まずは下記のインポート文を追加しましょう。
 
 ```tsx
 import { useAuthContext } from '../../hooks/authContext';
@@ -186,21 +188,47 @@ export const Home = () => {
   };
 ```
 
-login関数を呼び出して認証が成功したら、`showMessage`関数を用いてメッセージを表示し、navigate関数を用いて`/notes`に移動します。認証に失敗したら、エラーメッセージを表示します。
+login関数を呼び出して認証が成功したら、`showMessage()`関数を用いてメッセージを表示します（showMessage()はhooks/useMessage.tsに定義されたカスタムフックです）。その後`navigate()`で`/notes`に移動します。認証に失敗した場合、エラーメッセージを表示します。
 
 これで認証ボタンの機能が実装できました。
 
 ### ✅ 動作確認をしよう
 
-それでは、動作確認をしてみましょう。キャニスターをデプロイして、プロジェクトを起動しましょう。
+それでは、動作確認をしてみましょう。キャニスターをデプロイして、プロジェクトを起動します。
 
 ```bash
 dfx start --clean --background
-dfx deploy
+npm run deploy:local
 npm run start
 ```
 
-<!-- TODO: 操作時画面の画像を追加する　 -->
+Loopbackに表示されたURLにアクセスします。ここでは、ブラウザに[Brave](https://brave.com/ja/)を使用します。
+
+![](/public/images/ICP-Encrypted-Notes/section-1/1_3_7.png)
+
+ホーム画面の「Login with Internet Identity」をクリックします。
+
+![](/public/images/ICP-Encrypted-Notes/section-1/1_3_8.png)
+
+Internet Identityの認証画面が表示されます。ここで、「Create New」をクリックします。
+
+![](/public/images/ICP-Encrypted-Notes/section-1/1_3_9.png)
+
+「Create Passkey」をクリックします。
+
+![](/public/images/ICP-Encrypted-Notes/section-1/1_3_10.png)
+
+表示されている文字を入力し、「Next」をクリックします。
+
+![](/public/images/ICP-Encrypted-Notes/section-1/1_3_11.png)
+
+Internet Identityが表示されます。開発用のIdentityは、10000からとなります。
+
+![](/public/images/ICP-Encrypted-Notes/section-1/1_3_12.png)
+
+これで認証が完了しました。アプリケーションに戻る（または自動で切り替わる）と、ログイン成功のメッセージが表示されて`/notes`に移動していることを確認しましょう。
+
+![](/public/images/ICP-Encrypted-Notes/section-1/1_3_13.png)
 
 ### 📝 このレッスンで追加したコード
 
@@ -214,6 +242,15 @@ export const useAuthProvider = (): AuthState => {
   const setupService = async (authClient: AuthClient) => {
     /** STEP2: 認証したユーザーのデータを取得します。 */
 +    const identity = authClient.getIdentity();
+
+    /** STEP3: バックエンドキャニスターを呼び出す準備をします。 */
+
+    /** STEP5: CryptoServiceクラスのインスタンスを生成します。 */
+    const cryptoService = new CryptoService();
+
+    /** STEP12: デバイスデータの設定を行います。 */
+
+    setAuth({ status: 'SYNCHRONIZING' });
   };
 
   const login = async (): Promise<void> => {

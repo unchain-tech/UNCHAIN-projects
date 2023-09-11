@@ -1,6 +1,6 @@
 ### 📞 バックエンドキャニスターと通信する準備をしよう
 
-前回のレッスンで、認証機能が完成しました。ここからは、実際にバックエンドキャニスターの関数を呼び出してノートを取得・追加する処理を実装していきましょう！
+前回のレッスンで、認証機能が完成しました。ここからは、実際にバックエンドキャニスターの関数を呼び出してノートを取得・追加する処理を実装していきましょう！ ノートの暗号化はまだ行わないので、データはそのまま保存します。
 
 `hooks/authContext.ts`のsetupService関数`/** STEP3: バックエンドキャニスターを呼び出す準備をします。 */`の下に、コードを追加します。
 
@@ -52,7 +52,7 @@ import {
 } from '../../../declarations/encrypted_notes_backend';
 ```
 
-最後に、setupService関数の一番下に下記のコードを追加しましょう。`setAuth`関数に取得したデータを設定して、認証状態を更新します。
+最後に、setupService関数の一番下に定義している`setAuth({ status: 'SYNCHRONIZING' });`を下記のコードに更新しましょう。`setAuth`関数に取得したデータを設定して、認証状態を更新します。
 
 ```ts
     setAuth({ actor, authClient, cryptoService, status: 'SYNCED' });
@@ -99,7 +99,7 @@ getNotes関数は、はじめに`auth.status`を確認しています。この�
 
     try {
       // バックエンドキャニスターにノートを追加します。
-      await auth.actor.addNote(currentNote);
+      await auth.actor.addNote(currentNote.data);
       await getNotes();
     } catch (err) {
       showMessage({
@@ -113,9 +113,7 @@ getNotes関数は、はじめに`auth.status`を確認しています。この�
   }
 ```
 
-バックエンドキャニスターのaddNote関数を呼び出します。実行中にエラーが発生した場合の処理も、getNotes関数と同様です。
-
-auth.actor.addNote関数には、`currentNote`を引数として渡しています。この変数は、`useState`で定義されたステート変数です。
+バックエンドキャニスターのaddNote関数を呼び出します。実行中にエラーが発生した場合の処理も、getNotes関数と同様です。auth.actor.addNote関数には、`currentNote.data`を引数として渡しています。この変数は、`useState`で定義されたステート変数です。
 
 ```tsx
 const [currentNote, setCurrentNote] = useState<EncryptedNote | undefined>(
@@ -127,15 +125,17 @@ const [currentNote, setCurrentNote] = useState<EncryptedNote | undefined>(
 
 ### ✅ 動作確認をしよう
 
-まずは、ノートを追加してみましょう。ノートを追加するには、右上の「＋ New Note」ボタンをクリックします。
+まずは、ノートを追加してみましょう。ノートを追加するには、右上の「＋ New Note」をクリックします。
 
-<!-- TODO: 画像を追加 -->
+![](/public/images/ICP-Encrypted-Notes/section-1/1_4_1.png)
 
-モーダルが開いたら、テキストを入力して「Save」ボタンをクリックします。
+モーダルが開いたら、テキストを入力して「Save」をクリックします。
 
-<!-- TODO: 画像を追加 -->
+![](/public/images/ICP-Encrypted-Notes/section-1/1_4_2.png)
 
-ノートが追加されたことを確認しましょう。
+追加したノートが表示されていたら実装は完成です！
+
+![](/public/images/ICP-Encrypted-Notes/section-1/1_4_3.png)
 
 ### 📝 このレッスンで追加したコード
 
@@ -161,6 +161,7 @@ const [currentNote, setCurrentNote] = useState<EncryptedNote | undefined>(
 
     /** STEP7: デバイスデータの設定を行います。 */
 
+-    setAuth({ status: 'SYNCHRONIZING' });
 +    setAuth({ actor, authClient, cryptoService, status: 'SYNCED' });
   };
 ```
@@ -183,7 +184,7 @@ export const Notes = () => {
     try {
 -      // バックエンドキャニスターにノートを追加します。
 -      console.log('add note');
-+      await auth.actor.addNote(currentNote);
++      await auth.actor.addNote(currentNote.data);
 +      await getNotes();
     } catch (err) {
       showMessage({
@@ -237,4 +238,4 @@ export const Notes = () => {
 
 ---
 
-次のレッスンに進み、フロントエンドからノートを追加・取得する機能を実装しましょう！
+次のレッスンに進み、ノートの編集・削除機能を完成させましょう！
