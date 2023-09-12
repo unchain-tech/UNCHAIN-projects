@@ -125,7 +125,7 @@ Done in 54.29s.
 まず、`Proposal`をインポートします。
 
 ```typescript
-import { Proposal } from "@thirdweb-dev/sdk";
+import { Proposal } from '@thirdweb-dev/sdk';
 ```
 
 続いて、`const token = useContract...`の下に投票コントラクトを初期化するコードを追加します。
@@ -134,7 +134,10 @@ import { Proposal } from "@thirdweb-dev/sdk";
 
 ```typescript
   // 投票コントラクトの初期化
-  const vote = useContract("INSERT_VOTE_ADDRESS", "vote").contract;
+  const vote = useContract(
+    'INSERT_VOTE_ADDRESS',
+    'vote',
+  ).contract;
 ```
 
 さらに、`const [memberAddresses, setMemberAddresses] = useState...`の下に新しい`useState`を追加します。
@@ -159,9 +162,9 @@ import { Proposal } from "@thirdweb-dev/sdk";
       try {
         const proposals = await vote!.getAll();
         setProposals(proposals);
-        console.log("🌈 Proposals:", proposals);
+        console.log('🌈 Proposals:', proposals);
       } catch (error) {
-        console.log("failed to get proposals", error);
+        console.log('failed to get proposals', error);
       }
     };
     getAllProposals();
@@ -183,12 +186,12 @@ import { Proposal } from "@thirdweb-dev/sdk";
         const hasVoted = await vote!.hasVoted(proposals[0].proposalId.toString(), address);
         setHasVoted(hasVoted);
         if (hasVoted) {
-          console.log("🥵 User has already voted");
+          console.log('🥵 User has already voted');
         } else {
-          console.log("🙂 User has not voted yet");
+          console.log('🙂 User has not voted yet');
         }
       } catch (error) {
-        console.error("Failed to check if wallet has voted", error);
+        console.error('Failed to check if wallet has voted', error);
       }
     };
     checkIfUserHasVoted();
@@ -219,7 +222,7 @@ import { Proposal } from "@thirdweb-dev/sdk";
 まず、以下の`AddressZero`をインポートします。
 
 ```typescript
-import { AddressZero } from "@ethersproject/constants";
+import { AddressZero } from '@ethersproject/constants';
 ```
 
 続いて、DAOダッシュボード画面を表示している`else if (hasClaimedNFT) {...}`の中身を以下のコードに置き換えます。
@@ -270,7 +273,7 @@ import { AddressZero } from "@ethersproject/constants";
                     };
                     proposal.votes.forEach((vote) => {
                       const elem = document.getElementById(
-                        proposal.proposalId + "-" + vote.type
+                        proposal.proposalId + '-' + vote.type
                       ) as HTMLInputElement;
 
                       if (elem!.checked) {
@@ -316,15 +319,15 @@ import { AddressZero } from "@ethersproject/constants";
                         );
                         // 投票成功と判定する
                         setHasVoted(true);
-                        console.log("successfully voted");
+                        console.log('successfully voted');
                       } catch (err) {
-                        console.error("failed to execute votes", err);
+                        console.error('failed to execute votes', err);
                       }
                     } catch (err) {
-                      console.error("failed to vote", err);
+                      console.error('failed to vote', err);
                     }
                   } catch (err) {
-                    console.error("failed to delegate tokens");
+                    console.error('failed to delegate tokens');
                   } finally {
                     setIsVoting(false);
                   }
@@ -338,13 +341,13 @@ import { AddressZero } from "@ethersproject/constants";
                         <div key={type}>
                           <input
                             type="radio"
-                            id={proposal.proposalId + "-" + type}
+                            id={proposal.proposalId + '-' + type}
                             name={proposal.proposalId.toString()}
                             value={type}
                             // デフォルトで棄権票をチェックする
                             defaultChecked={type === 2}
                           />
-                          <label htmlFor={proposal.proposalId + "-" + type}>
+                          <label htmlFor={proposal.proposalId + '-' + type}>
                             {label}
                           </label>
                         </div>
@@ -355,10 +358,10 @@ import { AddressZero } from "@ethersproject/constants";
                 <p></p>
                 <button disabled={isVoting || hasVoted} type="submit">
                   {isVoting
-                    ? "Voting..."
+                    ? 'Voting...'
                     : hasVoted
-                      ? "You Already Voted"
-                      : "Submit Votes"}
+                      ? 'You Already Voted'
+                      : 'Submit Votes'}
                 </button>
                 <p></p>
                 {!hasVoted && (

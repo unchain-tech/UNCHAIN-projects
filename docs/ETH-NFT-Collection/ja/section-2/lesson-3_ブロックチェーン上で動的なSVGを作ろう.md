@@ -397,10 +397,10 @@ describe('pickRandomFirstWord', function () {
 
 それでは、作成したテストを実行してみましょう。
 
-`packages/contract`ディレクトリにいることを確認して、次のコマンドを実行しましょう。
+`ETH-NFT-Collection`ディレクトリ直下にいることを確認して、次のコマンドを実行しましょう。
 
 ```bash
-npx hardhat test
+yarn contract test
 ```
 
 以下のような結果が出力されていれば成功です。

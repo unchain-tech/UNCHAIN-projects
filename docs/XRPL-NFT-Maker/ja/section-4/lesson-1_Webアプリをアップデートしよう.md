@@ -14,10 +14,9 @@ import { useEffect, useState } from "react";
 import { Buffer } from "buffer";
 import { XrplClient } from 'xrpl-client'
 import { NFTStorage } from "nft.storage";
-import { extractAffectedNFT } from "@xrplkit/txmeta";
 
 const xumm = new Xumm("apikey");
-const nftStorage = new NFTStorage({  token: 'token'});
+const nftStorage = new NFTStorage({ token: 'token' });
 
 export const NftMinter = () => {
   const [account, setAccount] = useState(undefined);
@@ -72,9 +71,9 @@ export const NftMinter = () => {
       command: "tx",
       transaction: txid,
     });
-    const nftoken = extractAffectedNFT(txResponse);
-    alert('NFTトークンが発行されました！')
-    window.open(`https://test.bithomp.com/nft/${nftoken.NFTokenID}`, "_blank");
+    const nftokenId = txResponse.meta.nftoken_id
+    alert("NFTトークンが発行されました！");
+    window.open(`https://test.bithomp.com/nft/${nftokenId}`, "_blank");
   };
 
   return (

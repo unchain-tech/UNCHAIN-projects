@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       LEVEL: error
-      FLAGS: docs/**.md
+      FLAGS: docs/*/ja/**/*.md
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -20,8 +20,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Install dependencies
-        run: |
-          yarn install --frozen-lockfile
+        run: yarn install --immutable
       - name: Setup reviewdog
         uses: reviewdog/action-setup@v1
         with:

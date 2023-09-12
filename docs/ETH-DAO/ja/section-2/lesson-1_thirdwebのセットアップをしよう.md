@@ -39,11 +39,19 @@ thirdwebを使ってSepoliaにコントラクトを作成し、デプロイす�
 
 その前に、まずはプロジェクトのルートに以下の`.env.local`ファイルを作成し以下のように編集しましょう。
 
+```plaintext
+PRIVATE_KEY=YOUR_PRIVATE_KEY_HERE
+WALLET_ADDRESS=YOUR_WALLET_ADDRESS
+ALCHEMY_API_URL=YOUR_ALCHEMY_API_URL
+```
+
 ここに記載する情報は誰にも教えてはならない情報なので、取り扱いには十分に注意しましょう。
 
 > ⚠️ 注意：thirdweb は、あなたに代わってコントラクトをデプロイするために、これらすべての環境変数を必要とします。
 >
-> 秘密鍵を盗まれてしまう恐れがあるので、**`.env.local`ファイルを GitHub にコミットしないよう気をつけてください**。
+> 秘密鍵を盗まれてしまう恐れがあるので、**`.env.local`ファイルを GitHub にコミットしないよう気をつけてください**。.gitignoreファイルに`.env.local`が含まれていることを確認してください。
+
+`YOUR_PRIVATE_KEY_HERE`にはMetamaskのPrivate Keyを、`YOUR_WALLET_ADDRESS`にはMetamaskのウォレットアドレスを、`YOUR_ALCHEMY_API_URL`にはAlchemyのHTTPS Keyを設定していきましょう。
 
 各値は、こちらのリンクを参照してください。
 
@@ -81,11 +89,11 @@ Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押して�
 
 ![](/public/images/ETH-DAO/section-2/2_1_5.png)
 
-ポップアップが開くので、`HTTP`のリンクをコピーしてください。
+ポップアップが開くので、`HTTPS`のリンクをコピーしてください。
 
 これがあなたが本番環境のネットワークに接続する際に使用する`API Key`になります。
 
-- **`API Key`は、今後必要になるので、PC 上のわかりやすいところに保存しておきましょう。**
+コピーした値を`.env.local`の`YOUR_ALCHEMY_API_URL`部分に設定しましょう。
 
 
 ### 🐣 テストネットから始める
@@ -108,8 +116,6 @@ Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押して�
 
 
 ### 🚰 偽の ETH を取得する
-
-`ALCHEMY_API_URL`についてはこれから取得していきます。
 
 今回は、`Sepolia`というイーサリアム財団によって運営されているテストネットを使用します。
 
@@ -140,16 +146,6 @@ MetaMaskウォレットに`Sepolia Test Network`が設定されたら、下記�
 - [Alchemy](https://sepoliafaucet.com/) - 1 Sepolia ETH（24時間に1度もらうことができる）
   - ウォレットアドレスを入力して`Send Me ETH`ボタンを押下するとその場でもらえます
 
-
-ではここまでで作成した情報を最初に作成した`.env.local`ファイルの中に以下のように記述していきましょう。
-
-```plaintext
-PRIVATE_KEY=YOUR_PRIVATE_KEY_HERE
-WALLET_ADDRESS=YOUR_WALLET_ADDRESS
-ALCHEMY_API_URL=YOUR_ALCHEMY_API_URL
-```
-
-`YOUR_PRIVATE_KEY_HERE`にはMetamaskのPrivate Keyを、`YOUR_WALLET_ADDRESS`にはMetamaskのウォレットアドレスを、`YOUR_ALCHEMY_API_URL`にはAlchemyのHTTP Keyをそれぞれ代入していきましょう。
 
 ### 🙋‍♂️ 質問する
 

@@ -140,7 +140,7 @@ artifacts               contracts               node_modules            scripts
 ```javascript
 require("@nomicfoundation/hardhat-toolbox");
 module.exports = {
-  solidity: "0.8.17",
+  solidity: "0.8.19",
   networks: {
     sepolia: {
       url: "YOUR_ALCHEMY_API_URL",

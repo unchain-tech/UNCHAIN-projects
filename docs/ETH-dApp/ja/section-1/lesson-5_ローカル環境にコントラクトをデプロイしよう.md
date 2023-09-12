@@ -14,7 +14,7 @@
 
 `packages/contract/package.json`の`script`部分を以下のように編集してください。
 
-```
+```json
 "scripts": {
     "run:script":"npx hardhat run scripts/run.js",
     "test": "npx hardhat test",
@@ -75,7 +75,7 @@ runMain();
 
 `packages/contract/package.json`の`script`部分を以下のように編集してください。
 
-```
+```json
 "scripts": {
     "run:script":"npx hardhat run scripts/run.js",
     "test": "npx hardhat test",

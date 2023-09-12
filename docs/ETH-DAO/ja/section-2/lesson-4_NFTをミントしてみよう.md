@@ -1,7 +1,7 @@
 このレッスンでは`pages/index.tsx`を変更して、以下の実装をしていきます。
 
-1. ユーザーがメンバーシップNFTを持っていることを検知したら、プロポーザルに投票したり、DAO関連の情報を見ることができる「DAOダッシュボード」画面を表示します。
-2. ユーザーがメンバーシップNFTを持っていない場合は、NFTをミントするボタンを表示します。
+1. ユーザーがメンバーシップNFTを持っていない場合は、NFTをミントするボタンを表示します。
+2. ユーザーがメンバーシップNFTを持っていることを検知したら、プロポーザルに投票したり、DAO関連の情報を見ることができる「DAOダッシュボード」画面を表示します。
 
 さあ、やってみましょう！
 まず、ケース1について説明します。
@@ -13,20 +13,29 @@
 ※ あなたのコントラクトアドレスを設定することを忘れないでください！
 
 ```typescript
-import { useState, useEffect } from "react";
-import type { NextPage } from "next";
 // 接続中のネットワークを取得するため useNetwork を新たにインポートします。
-import { ConnectWallet, useNetwork, useAddress, useContract } from "@thirdweb-dev/react";
-import styles from "../styles/Home.module.css";
+import {
+  ConnectWallet,
+  useAddress,
+  useContract
+  useNetwork,
+} from '@thirdweb-dev/react';
+import type { NextPage } from 'next';
+import { useEffect, useState } from 'react';
+
+import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {
   const address = useAddress();
-  console.log("👋Wallet Address: ", address);
+  console.log('👋Wallet Address: ', address);
 
   const [network, switchNetwork] = useNetwork();
 
-  /// editionDrop コントラクトを初期化
-  const editionDrop = useContract("INSERT_EDITION_DROP_ADDRESS", "edition-drop").contract;
+  // editionDrop コントラクトを初期化
+  const editionDrop = useContract(
+    'INSERT_EDITION_DROP_ADDRESS',
+    'edition-drop',
+  ).contract;
 
   // ユーザーがメンバーシップ NFT を持っているかどうかを知るためのステートを定義
   const [hasClaimedNFT, setHasClaimedNFT] = useState(false);
@@ -42,14 +51,14 @@ const Home: NextPage = () => {
         const balance = await editionDrop!.balanceOf(address, 0);
         if (balance.gt(0)) {
           setHasClaimedNFT(true);
-          console.log("🌟 this user has a membership NFT!");
+          console.log('🌟 this user has a membership NFT!');
         } else {
           setHasClaimedNFT(false);
           console.log("😭 this user doesn't have a membership NFT.");
         }
       } catch (error) {
         setHasClaimedNFT(false);
-        console.error("Failed to get balance", error);
+        console.error('Failed to get balance', error);
       }
     };
 
@@ -58,8 +67,8 @@ const Home: NextPage = () => {
   }, [address, editionDrop]);
 
   if (address && network && network?.data?.chain?.id !== 11155111) {
-    console.log("wallet address: ", address);
-    console.log("network: ", network?.data?.chain?.id);
+    console.log('wallet address: ', address);
+    console.log('network: ', network?.data?.chain?.id);
 
     return (
       <div className={styles.container}>
@@ -117,20 +126,29 @@ export default Home;
 ※ あなたのコントラクトアドレスを設定することを忘れないでください！
 
 ```typescript
-import { useState, useEffect } from "react";
-import type { NextPage } from "next";
 // 接続中のネットワークを取得するため useNetwork を新たにインポートします。
-import { ConnectWallet, useNetwork, useAddress, useContract } from "@thirdweb-dev/react";
-import styles from "../styles/Home.module.css";
+import {
+  ConnectWallet,
+  useAddress,
+  useContract
+  useNetwork,
+} from '@thirdweb-dev/react';
+import type { NextPage } from 'next';
+import { useEffect, useState } from 'react';
+
+import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {
   const address = useAddress();
-  console.log("👋Wallet Address: ", address);
+  console.log('👋Wallet Address: ', address);
 
   const [network, switchNetwork] = useNetwork();
 
   // editionDrop コントラクトを初期化
-  const editionDrop = useContract("INSERT_EDITION_DROP_ADDRESS", "edition-drop").contract;
+  const editionDrop = useContract(
+    'INSERT_EDITION_DROP_ADDRESS',
+    'edition-drop',
+  ).contract;
 
   // ユーザーがメンバーシップ NFT を持っているかどうかを知るためのステートを定義
   const [hasClaimedNFT, setHasClaimedNFT] = useState(false);
@@ -149,14 +167,14 @@ const Home: NextPage = () => {
         const balance = await editionDrop!.balanceOf(address, 0);
         if (balance.gt(0)) {
           setHasClaimedNFT(true);
-          console.log("🌟 this user has a membership NFT!");
+          console.log('🌟 this user has a membership NFT!');
         } else {
           setHasClaimedNFT(false);
           console.log("😭 this user doesn't have a membership NFT.");
         }
       } catch (error) {
         setHasClaimedNFT(false);
-        console.error("Failed to get balance", error);
+        console.error('Failed to get balance', error);
       }
     };
     // 関数を実行
@@ -166,14 +184,14 @@ const Home: NextPage = () => {
   const mintNft = async () => {
     try {
       setIsClaiming(true);
-      await editionDrop!.claim("0", 1);
+      await editionDrop!.claim('0', 1);
       console.log(
         `🌊 Successfully Minted! Check it out on etherscan: https://sepolia.etherscan.io/address/${editionDrop!.getAddress()}`
       );
       setHasClaimedNFT(true);
     } catch (error) {
       setHasClaimedNFT(false);
-      console.error("Failed to mint NFT", error);
+      console.error('Failed to mint NFT', error);
     } finally {
       setIsClaiming(false);
     }
@@ -196,8 +214,8 @@ const Home: NextPage = () => {
   }
   // テストネットが Sepolia ではなかった場合に警告を表示
   else if (address && network && network?.data?.chain?.id !== 11155111) {
-    console.log("wallet address: ", address);
-    console.log("network: ", network?.data?.chain?.id);
+    console.log('wallet address: ', address);
+    console.log('network: ', network?.data?.chain?.id);
 
     return (
       <div className={styles.container}>
@@ -216,7 +234,7 @@ const Home: NextPage = () => {
         <main className={styles.main}>
           <h1 className={styles.title}>Mint your free 🍪DAO Membership NFT</h1>
           <button disabled={isClaiming} onClick={mintNft}>
-            {isClaiming ? "Minting..." : "Mint your nft (FREE)"}
+            {isClaiming ? 'Minting...' : 'Mint your nft (FREE)'}
           </button>
         </main>
       </div>
@@ -231,9 +249,9 @@ export default Home;
 
 詳しくは[こちら](https://docs.ethers.io/v5/api/signer/)をご覧ください。
 
-ここから`editionDrop!.claim("0", 1)`を呼び出し、ユーザーがボタンをクリックした際にNFTをウォレットに実際にミントします。
+ここから`editionDrop!.claim('0', 1)`を呼び出し、ユーザーがボタンをクリックした際にNFTをウォレットに実際にミントします。
 
-この場合、メンバーシップNFTのtokenchainIdは`"0"`なので、`"0"`を渡します。
+この場合、メンバーシップNFTのtokenchainIdは`'0'`なので、`'0'`を渡します。
 
 次に、`1`を渡します。これは、ユーザーのウォレットに1つのメンバーシップNFTを作成したいだけだからです。
 
@@ -276,8 +294,8 @@ NFTのミントが完了すると、以下のとおりコンソールにEthersca
 
 このLessonでは、2つのケースを処理する必要がありましたね。
 
-1. ユーザーがメンバーシップNFTを持っていることを検知したら、プロポーザルに投票したり、DAO関連の情報を見ることができる「DAOダッシュボード」画面を表示します。
-2. ユーザーがメンバーシップNFTを持っていない場合は、NFTをミントするボタンを表示します。
+1. ユーザーがメンバーシップNFTを持っていない場合は、NFTをミントするボタンを表示します。
+2. ユーザーがメンバーシップNFTを持っていることを検知したら、プロポーザルに投票したり、DAO関連の情報を見ることができる「DAOダッシュボード」画面を表示します。
 
 ここではケース2を実装していきます。
 
@@ -305,8 +323,8 @@ NFTのミント画面を描画する前に、以下のコメント`DAO ダッシ
   }
   // テストネットが Sepolia ではなかった場合に警告を表示
   else if (address && network && network?.data?.chain?.id !== 11155111) {
-    console.log("wallet address: ", address);
-    console.log("network: ", network?.data?.chain?.id);
+    console.log('wallet address: ', address);
+    console.log('network: ', network?.data?.chain?.id);
 
     return (
       <div className={styles.container}>
@@ -336,7 +354,7 @@ NFTのミント画面を描画する前に、以下のコメント`DAO ダッシ
         <main className={styles.main}>
           <h1 className={styles.title}>Mint your free 🍪DAO Membership NFT</h1>
           <button disabled={isClaiming} onClick={mintNft}>
-            {isClaiming ? "Minting..." : "Mint your nft (FREE)"}
+            {isClaiming ? 'Minting...' : 'Mint your nft (FREE)'}
           </button>
         </main>
       </div>

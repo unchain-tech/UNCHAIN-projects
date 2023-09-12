@@ -7,9 +7,10 @@
 `src/scripts/1-initialize-sdk.ts`を作成して、以下を追加します。
 
 ```typescript
-import { ThirdwebSDK } from "@thirdweb-dev/sdk";
-import ethers from "ethers";
-import nextEnv from "@next/env";
+import nextEnv from '@next/env';
+import { ThirdwebSDK } from '@thirdweb-dev/sdk';
+import ethers from 'ethers';
+
 const { loadEnvConfig } = nextEnv;
 // 環境変数を env ファイルから読み込む
 const { PRIVATE_KEY, ALCHEMY_API_URL, WALLET_ADDRESS } = loadEnvConfig(
@@ -17,16 +18,16 @@ const { PRIVATE_KEY, ALCHEMY_API_URL, WALLET_ADDRESS } = loadEnvConfig(
 ).combinedEnv;
 
 // 環境変数が取得できてとれているか確認
-if (!PRIVATE_KEY || PRIVATE_KEY === "") {
-  console.log("🛑 Private key not found.");
+if (!PRIVATE_KEY || PRIVATE_KEY === '') {
+  console.log('🛑 Private key not found.');
 }
 
-if (!ALCHEMY_API_URL || ALCHEMY_API_URL === "") {
-  console.log("🛑 Alchemy API URL not found.");
+if (!ALCHEMY_API_URL || ALCHEMY_API_URL === '') {
+  console.log('🛑 Alchemy API URL not found.');
 }
 
-if (!WALLET_ADDRESS || WALLET_ADDRESS === "") {
-  console.log("🛑 Wallet Address not found.");
+if (!WALLET_ADDRESS || WALLET_ADDRESS === '') {
+  console.log('🛑 Wallet Address not found.');
 }
 
 const sdk = new ThirdwebSDK(
@@ -36,11 +37,11 @@ const sdk = new ThirdwebSDK(
 // ここでスクリプトを実行
 (async () => {
   try {
-    if (!sdk || !("getSigner" in sdk)) return;
+    if (!sdk || !('getSigner' in sdk)) return;
     const address = await sdk.getSigner()?.getAddress();
-    console.log("SDK initialized by address:", address);
+    console.log('SDK initialized by address:', address);
   } catch (err) {
-    console.error("Failed to get apps from the sdk", err);
+    console.error('Failed to get apps from the sdk', err);
     process.exit(1);
   }
 })();
@@ -65,7 +66,7 @@ export default sdk;
 
 続いて、`next.config.js`を以下のとおり変更します。
 
-```Typescript
+```typescript
 /** @type {import('next').NextConfig} */
 export const nextConfig = {
   reactStrictMode: true,
@@ -111,19 +112,20 @@ _📝 備考: `ExperimentalWarning`のようなランダムな警告が表示さ
 ※ コレクションのアイコンとなる画像はお気に入りの画像に変更しておきましょう。
 
 ```typescript
-import { AddressZero } from "@ethersproject/constants";
-import sdk from "./1-initialize-sdk.js";
-import { readFileSync } from "fs";
+import { AddressZero } from '@ethersproject/constants';
+import { readFileSync } from 'fs';
+
+import sdk from './1-initialize-sdk.js';
 
 (async () => {
   try {
     const editionDropAddress = await sdk.deployer.deployEditionDrop({
       // コレクションの名前（あなたの作成する DAO の名前に入れ替えてください）
-      name: "Tokyo Sauna Collective",
+      name: 'Tokyo Sauna Collective',
       // コレクションの説明（同じく書き換えてください）
-      description: "A DAO for sauna enthusiasts in Tokyo",
+      description: 'A DAO for sauna enthusiasts in Tokyo',
       // コレクションのアイコンとなる画像（ローカルの画像を参照すること）
-      image: readFileSync("src/scripts/assets/test.jpg"),
+      image: readFileSync('src/scripts/assets/test.jpg'),
       // NFT の販売による収益を受け取るアドレスを設定
       // ドロップに課金をしたい場合は、ここに自分のウォレットアドレスを設定します
       // 今回は課金設定はないので、0x0 のアドレスで渡す
@@ -131,22 +133,22 @@ import { readFileSync } from "fs";
     });
 
     // 初期化し、返ってきた editionDrop コントラクトのアドレスから editionDrop を取得
-    const editionDrop = sdk.getContract(editionDropAddress, "edition-drop");
+    const editionDrop = sdk.getContract(editionDropAddress, 'edition-drop');
 
     // メタデータを取得
     const metadata = await (await editionDrop).metadata.get();
 
     // editionDrop コントラクトのアドレスを出力
     console.log(
-      "✅ Successfully deployed editionDrop contract, address:",
+      '✅ Successfully deployed editionDrop contract, address:',
       editionDropAddress
     );
 
     // editionDrop コントラクトのメタデータを出力
-    console.log("✅ editionDrop metadata:", metadata);
+    console.log('✅ editionDrop metadata:', metadata);
   } catch (error) {
     // エラーをキャッチしたら出力
-    console.log("failed to deploy editionDrop contract", error);
+    console.log('failed to deploy editionDrop contract', error);
   }
 })();
 ```

@@ -105,10 +105,10 @@ describe('MyEpicNFT', function () {
 
 `to.emit(コントラクト名, イベント名).withArgs(emitされる値)`と定義することで、発行されるイベントの値を確認することができます。今回の`NewEpicNFTMinted`イベントは、第一引数にNFTを受け取るアドレス、第二引数にNFTのIDを設定するので期待する値を上記のようにテストしています。
 
-それでは、自動テストを実行してみましょう。`packages/contract`ディレクトリ下で次のコマンドを実行します。
+それでは、自動テストを実行してみましょう。`ETH-NFT-Collection`ディレクトリ直下で次のコマンドを実行します。
 
 ```bash
-npx hardhat test
+yarn contract test
 ```
 
 以下のような出力があり、全てのテストに通過したことが確認できたら完了です！
@@ -747,7 +747,7 @@ if (chainId !== sepoliaChainId) {
 }
 ```
 
-他のブロックチェーン IDは [こちら](https://docs.MetaMask.io/guide/ethereum-provider.html#chain-ids) から見つけることができます。
+他のブロックチェーンIDは [こちら](https://docs.MetaMask.io/guide/ethereum-provider.html#chain-ids) から見つけることができます。
 
 **3\. マイニングアニメーションを作成する**
 
