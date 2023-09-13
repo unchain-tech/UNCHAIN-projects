@@ -4,13 +4,14 @@
 
 ### 🛠 バックエンドキャニスターの実装
 
-早速ですが、バックエンドキャニスターにノートを管理する機能を実装していきましょう。まずは、`encrypted_notes_backend/src/`下に`notes.rs`を作成します。
+早速ですが、バックエンドキャニスターにノートを管理する機能を実装していきましょう。まずは、`src/encrypted_notes_backend/src/`下に`notes.rs`を作成します。
 
 ```diff
-encrypted_notes_backend/
-└── src/
-    ├── lib.rs
-+   └── notes.rs
+src/
+└── encrypted_notes_backend/
+    └── src/
+        ├── lib.rs
++       └── notes.rs
 ```
 
 作成した`notes.rs`の先頭に、[use](https://doc.rust-lang.org/std/keyword.use.html)キーワードでファイル内で使用したい機能をインポートします。
