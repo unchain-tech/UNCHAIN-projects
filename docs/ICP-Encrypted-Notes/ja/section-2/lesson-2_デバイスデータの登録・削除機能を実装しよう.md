@@ -22,7 +22,7 @@ use std::collections::hash_map::Entry;
 use std::collections::HashMap;
 ```
 
-その下に、type文を使用して、既存の方に新しい名前（[エイリアス](https://doc.rust-jp.rs/rust-by-example-ja/types/alias.html)）を付けます。
+その下に、type文を使用して、既存の型に新しい名前（[エイリアス](https://doc.rust-jp.rs/rust-by-example-ja/types/alias.html)）を付けます。
 
 ```rust
 /// devicesモジュール内のエラーを表す列挙型です。
