@@ -101,7 +101,7 @@ const identity = authClient.getIdentity();
 
 まずは`src/hooks/`内の`authContext.ts`を更新します。このファイルには、ユーザーの情報を管理するためのステートや関数が[Context](https://react.dev/learn/passing-data-deeply-with-context)を用いて定義されています。
 
-`login`関数の`/** STEP1: 認証機能を実装します。 */`を下記ように更新しましょう。
+`login`関数の`/** STEP1: 認証機能を実装します。 */`を下記のように更新しましょう。
 
 ```tsx
   const login = async (): Promise<void> => {
