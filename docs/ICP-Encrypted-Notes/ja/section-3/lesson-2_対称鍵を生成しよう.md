@@ -221,9 +221,7 @@ import {
 +      /** STEP11: 対称鍵を取得します。 */
 +      return false;
 +    }
-+  }
-
-    return true;
+-    return true;
   }
 ```
 
