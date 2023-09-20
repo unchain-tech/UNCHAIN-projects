@@ -325,29 +325,13 @@ fn update_note(new_note: EncryptedNote) {
 
 ### 🤝 インタフェースを更新しよう
 
-関数を新しく追加したので、インタフェースを更新しましょう。`encrypted_notes_backend.did`を下記の内容で更新します。
+関数を新しく追加したので、インタフェースを更新しましょう。下記のコマンドを実行します。
 
-```javascript
-type DeviceAlias = text;
-type PublicKey = text;
-type EncryptedSymmetricKey = text;
-
-type EncryptedNote = record {
-  "id" : nat;
-  "data" : text;
-};
-
-service : {
-  "deleteDevice" : (DeviceAlias) -> ();
-  "getDeviceAliases" : () -> (vec DeviceAlias) query;
-  "registerDevice" : (DeviceAlias, PublicKey) -> ();
-  "addNote" : (text) -> ();
-  "deleteNote" : (nat) -> ();
-  "getNotes" : () -> (vec EncryptedNote) query;
-  "updateNote" : (EncryptedNote) -> ();
-};
-
+```bash
+npm run generate
 ```
+
+ファイルに関数の定義が追加されたことを確認しましょう。
 
 ### ✅ 動作確認をしよう
 

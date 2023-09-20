@@ -6,35 +6,94 @@
 
 Candidは、サービスのパブリック・インタフェースを記述することを主な目的としたインタフェース記述言語です。Candidの主な利点のひとつは、言語にとらわれず、Motoko[https://internetcomputer.org/docs/current/motoko/main/about-this-guide]、Rust、JavaScriptなどの異なるプログラミング言語で書かれたサービスとフロントエンド間の相互運用を可能にすることです。詳細は[こちら](https://internetcomputer.org/docs/current/developer-docs/backend/candid/candid-concepts)をご覧ください。
 
-Motokoでキャニスターを記述した場合、プログラムをコンパイルする際にコンパイラが自動的にCandidで記述されたファイル`.did`を生成してくれます。しかし、Rustのような他の言語では現在、Candidインタフェースの記述を自身で書かなければなりません。
+Motokoでキャニスターを記述した場合、プログラムをコンパイルする際にコンパイラが自動的にCandidで記述されたファイル`.did`を生成してくれます。しかし、Rustでは2023年9月時点でそのような機能は組み込まれておらず、Candidインタフェースを自動生成するためには設定が必要です。
 
-`src/encrypted_notes_backend/`内の`encrypted_notes_backend.did`を、下記の内容で上書きしてください。
+まずは、`src/encrypted_notes/backend/lib.rs`を更新します。`export_candid`マクロをインポートして、ファイルの一番下に追加してください。
+
+```rust
+use ic_cdk_macros::{export_candid, query, update};
+
+...
+
+// ===== ファイルの一番下に定義してください。 =====
+// .didファイルを生成します。
+export_candid!();
+```
+
+次に、[candid-extractor](https://crates.io/crates/candid-extractor)をインストールします。これは、Rustファイルをコンパイルした際に生成されるWASMファイルから、Candidの定義を抽出するCLIツールです。
+
+```bash
+cargo install candid-extractor
+```
+
+最後に、Candidファイルを生成するためのスクリプトを追加します。プロジェクトのルートディレクトに`scripts`ディレクトリを作成し、その中に`did.sh`というファイルを作成してください。
+
+```diff
+ ICP-Encrypted-Notes/
++├── scripts/
++│   └── did.sh
+ ├── src/
+ ├── dfx.json
+ ├── LICENSE
+ ├── README.md
+ └── dfx.json
+```
+
+`did.sh`に、下記を記述してください。先ほどインストールしたcandid-extractorを使用して、WASMファイルからCandidインタフェースを生成するスクリプトとなります。
+
+```bash
+#!/bin/bash
+
+function generate_did() {
+  local canister=$1
+  canister_root="src/$canister"
+
+  cargo build --manifest-path="$canister_root/Cargo.toml" \
+      --target wasm32-unknown-unknown \
+      --release --package "$canister"
+
+  candid-extractor "target/wasm32-unknown-unknown/release/$canister.wasm" > "$canister_root/$canister.did"
+}
+
+# The list of canisters of your project
+CANISTERS=encrypted_notes_backend
+
+for canister in $(echo $CANISTERS | sed "s/,/ /g")
+do
+    generate_did "$canister"
+done
+```
+
+これで、Candidインタフェースを自動生成する準備ができました！ それでは、実際に生成してみましょう。下記のコマンドをプロジェクトのルートディレクトリで実行してください。
+
+```bash
+npm run generate
+```
+
+`src/encrypted_notes_backend/encrypted_notes_backend.did`を確認してみましょう。
 
 ```javascript
-type EncryptedNote = record {
-  "id" : nat;
-  "data" : text;
-};
-
+type EncryptedNote = record { id : nat; data : text };
 service : {
-  "addNote" : (text) -> ();
-  "deleteNote" : (nat) -> ();
-  "getNotes" : () -> (vec EncryptedNote) query;
-  "updateNote" : (EncryptedNote) -> ();
+  addNote : (text) -> ();
+  deleteNote : (nat) -> ();
+  getNotes : () -> (vec EncryptedNote) query;
+  updateNote : (EncryptedNote) -> ();
 };
 ```
 
-`type`から始まる部分は、バックエンドキャニスターで定義した**型**を記述し、`service`から始まる部分は、バックエンドキャニスターの**関数**を記述します。関数は`"関数名": (引数の型) -> (戻り値の型)`という形式で記述する必要があります。引数や戻り値がない場合は、`()`を指定します。型は、Candidがサポートする型を指定する必要があります（例：RustのString型はtextを指定）。型に関する詳細は、[こちら](https://internetcomputer.org/docs/current/references/candid-ref)をご覧ください。
+`type`から始まる部分は、バックエンドキャニスターで定義した**型**が記述されています。`service`から始まる部分は、バックエンドキャニスターの**関数**が記述されます。関数は`"関数名": (引数の型) -> (戻り値の型)`という形式となり、引数や戻り値がない場合は、`()`を指定します。型は、Candidがサポートする型となります（例：RustのString型はtextを指定）。型に関する詳細は、[こちら](https://internetcomputer.org/docs/current/references/candid-ref)をご覧ください。
 
 ### 📝 テストスクリプトの作成
 
 インタフェースが定義されたので、前回のレッスンで実装したバックエンドキャニスターの関数が正しく動作するかを確認するためのテストスクリプトを作成します。
 
-プロジェクトのルートディレクトに`scripts`ディレクトリを作成し、その中に`test.sh`というファイルを作成してください。
+`scripts/`の中に`test.sh`というファイルを作成してください。
 
 ```diff
  ICP-Encrypted-Notes/
-+├── scripts/
+ ├── scripts/
+ │   ├── did.sh
 +│   └── test.sh
  ├── src/
  ├── dfx.json
