@@ -17,8 +17,7 @@ src/
 作成した`notes.rs`の先頭に、[use](https://doc.rust-lang.org/std/keyword.use.html)キーワードでファイル内で使用したい機能をインポートします。
 
 ```rust
-use candid::CandidType;
-use ic_cdk::export::Principal;
+use candid::{CandidType, Principal};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 ```
@@ -46,8 +45,7 @@ pub struct Notes {
 ここまでのコードを確認していきましょう。
 
 最初に、様々な機能をインポートしています。
-- [candid](https://docs.rs/candid/0.8.0/candid/index.html)は、Rustの値とCandidとの間で、データをシームレスに変換するためのモジュールです。
-- [ic_cdk](https://docs.rs/ic-cdk/0.7.0/ic_cdk/index.html)は、Internet Computerのキャニスターを開発するための基本的なライブラリを提供します。ここでは、[Principal](https://docs.rs/ic-cdk/0.7.0/ic_cdk/export/struct.Principal.html)（Internet Computer上のID）を扱うための機能をインポートしています。
+- [candid](https://docs.rs/candid/0.9.6/candid/index.html)は、Rustの値とCandidとの間で、データをシームレスに変換するためのモジュールです。
 - [serde](https://docs.rs/serde/1.0.174/serde/index.html)は、Rustのデータ構造をシリアライズおよびデシリアライズするためのフレームワークです。シリアライズとは、データ構造を適切なフォーマットに変換することで、デシリアライズとはその逆の操作です。データを変換することは、異なるプログラミング言語間でデータの整合性を維持するためにとても大切です。
 
 次に構造体を定義しました。[#[derive()]](https://doc.rust-jp.rs/rust-by-example-ja/trait/derive.html)は、Rustの構造体やenumといった型にトレイト（機能）を自動的に実装するための構文です。例えばCandidTypeをderiveに設定することで、CandidとRust間のデータの変換に必要なコードを手間なく、かつ型安全に自動生成できるため、開発効率が向上します。
@@ -149,9 +147,9 @@ impl Notes {
 
 ```rust
 use crate::notes::*;
+use candid::Principal;
 use ic_cdk::api::caller as caller_api;
-use ic_cdk::export::Principal;
-use ic_cdk_macros::*;
+use ic_cdk_macros::{query, update};
 use std::cell::RefCell;
 
 mod notes;
