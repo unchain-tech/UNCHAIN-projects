@@ -268,7 +268,7 @@ fi
 それではテストスクリプトを実行してみましょう。
 
 ```bash
-bash ./scripts/test.sh
+npm run test
 ```
 
 全てのテストにパスし、最後に`"PASS"`が出力されたら成功です。

@@ -397,7 +397,7 @@ TEST_ENCRYPTED_SYMMETRIC_KEY_02='TEST_ENCRYPTED_SYMMETRIC_KEY_02'
 テストスクリプトを実行してみましょう。
 
 ```bash
-bash ./scripts/test.sh
+npm run test
 ```
 
 全てのテストにパスしたら、バックエンドキャニスターの準備は完了です。
