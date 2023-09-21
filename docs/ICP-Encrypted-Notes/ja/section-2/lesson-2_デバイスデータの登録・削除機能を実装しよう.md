@@ -331,7 +331,7 @@ export_candid!();
 関数を新しく追加したので、インタフェースを更新しましょう。下記のコマンドを実行します。
 
 ```bash
-npm run generate
+npm run generate:did
 ```
 
 ファイルに関数の定義が追加されたことを確認しましょう。

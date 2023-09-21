@@ -67,7 +67,7 @@ done
 これで、Candidインタフェースを自動生成する準備ができました！ それでは、実際に生成してみましょう。下記のコマンドをプロジェクトのルートディレクトリで実行してください。
 
 ```bash
-npm run generate
+npm run generate:did
 ```
 
 `src/encrypted_notes_backend/encrypted_notes_backend.did`を確認してみましょう。

@@ -263,7 +263,7 @@ fn upload_encrypted_symmetric_keys(
 新しい関数を定義したので、`encrypted_notes_backend.did`を更新しましょう。下記のコマンドを実行します。
 
 ```bash
-npm run generate
+npm run generate:did
 ```
 
 ファイルに関数の定義が追加されたことを確認しましょう。
