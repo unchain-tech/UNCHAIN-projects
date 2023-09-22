@@ -2,7 +2,32 @@
 
 コーディング部分がついに完了しました、おめでとうございます！ これで結果を楽しむ時が来ました。
 
-まずは、「`connect`」をクリックしてMetamaskアカウントをリンクします（ホワイトリストに登録されていることを確認してください）。
+それでは、フロントエンドを立ち上げてみましょう。`frontend/`下にいることを確認し、下記のコマンドを実行します。
+
+```
+yarn install
+yarn dev
+```
+
+![](/public/images/Polygon-Whitelist-NFT/section-4/4_3_9.png)
+
+次に、「Port Manager」を開き、「Add Port」クリックします。
+
+![](/public/images/Polygon-Whitelist-NFT/section-4/4_3_10.png)
+
+Select Sandboxに`Polygon（Ubuntu）`を選択し、Portには`3000`（Sandbox上に表示されたポート番号）を入力します。設定が完了したら「Add」をクリックしましょう。
+
+![](/public/images/Polygon-Whitelist-NFT/section-4/4_3_11.png)
+
+ポートの情報が追加されたことを確認したら、下記アイコンをクリックしてアプリケーションにアクセスしてみましょう。新しいタブが開きます。
+
+![](/public/images/Polygon-Whitelist-NFT/section-4/4_3_12.png)
+
+⚠️ ブラウザからアクセスできるまで数分時間がかかることがあります。下記のようなエラーが表示された場合は、しばらく待ってから再度アクセスしてみてください。
+
+![](/public/images/Polygon-Whitelist-NFT/section-4/4_3_13.png)
+
+アプリケーションにアクセスできたら、まずは、「`connect`」をクリックしてMetamaskアカウントをリンクします（ホワイトリストに登録されていることを確認してください）。
 
 ![image-20230223160640040](/public/images/Polygon-Whitelist-NFT/section-4/4_3_1.png)
 
@@ -38,7 +63,7 @@
 
 ![image-20230223164704695](/public/images/Polygon-Whitelist-NFT/section-4/4_3_7.png)
 
-終わったら「`submit changes`」をクリックするのを忘れないでください。何度でも変更できるので、心配はいりません。
+何か変更を加えた場合は「`Save collection`」をクリックするのを忘れないでください。何度でも変更できるので、心配はいりません。
 
 ![image-20230223164753042](/public/images/Polygon-Whitelist-NFT/section-4/4_3_8.png)
 

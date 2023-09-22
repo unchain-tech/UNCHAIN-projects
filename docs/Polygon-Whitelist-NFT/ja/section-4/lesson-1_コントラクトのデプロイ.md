@@ -4,7 +4,7 @@
 
 最初に`Polygon Mumbai`テストネットでテストトークンを受け取ったことを覚えていますか？ 次に、このテストネットへ`Whitelist.sol`と`Shield.sol`のコントラクトをデプロイします。
 
-右上の「`Connected`」ボタンをクリックし、「`Disconnect JS VM`」を選択します。
+右上の「`Connected`」ボタンをクリックし、「`Disconnect`」を選択します。
 
 ![image-20230223133803703](/public/images/Polygon-Whitelist-NFT/section-4/4_1_1.png)
 
