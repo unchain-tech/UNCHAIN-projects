@@ -148,7 +148,7 @@ constructor() ERC721 ("SquareNFT", "SQUARE") {
 
 次に、ターミナル上で`ETH-NFT-Collection`ディレクトリ直下にいることを確認し、以下のコマンドを実行してみましょう。
 
-```bash
+```
 yarn contract deploy:sepolia
 ```
 

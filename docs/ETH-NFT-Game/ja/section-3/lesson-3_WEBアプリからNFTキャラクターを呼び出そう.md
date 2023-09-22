@@ -84,19 +84,19 @@ ABIファイルの中身は、`MyEpicGame.json`というファイルに格納さ
 
 2\. 下記を実行して、`client/src/`の中に`utils`ディレクトリを作成する。
 
-> ```bash
+> ```
 > mkdir src/utils
 > ```
 
 3\. 下記を実行して、`utils`ディレクトリに`MyEpicGame.json`ファイルを作成する。
 
-> ```bash
+> ```
 > touch src/utils/MyEpicGame.json
 > ```
 
 4\. 下記を実行して、`MyEpicGame.json`ファイルをVS Codeで開く。
 
-> ```bash
+> ```
 > code client/src/utils/MyEpicGame.json
 > ```
 

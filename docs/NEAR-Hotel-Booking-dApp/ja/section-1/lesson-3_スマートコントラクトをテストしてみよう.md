@@ -21,25 +21,25 @@
 
 以下のコマンドをターミナルで実行しましょう。
 
-```bash
+```
 cargo build --target wasm32-unknown-unknown --release
 ```
 
 このような出力があると、成功です。
 
-```bash
+```
     Finished release [optimized] target(s) in 0.83s
 ```
 
 実際にファイルが生成されているかを確認します。
 
-```bash
+```
 ls ./target/wasm32-unknown-unknown/release | grep hotel_booking.wasm
 ```
 
 ファイル名が表示されるはずです。
 
-```bash
+```
 hotel_booking.wasm
 ```
 
@@ -55,13 +55,13 @@ near login
 
 サブアカウントを作成します。
 
-```bash
+```
 near create-account ${SUBACCOUNT_ID}.${ACCOUNT_ID} --masterAccount ${ACCOUNT_ID} --initialBalance 5
 ```
 
 例えば、このように実行します。
 
-```bash
+```
 near create-account contract.hotel_booking.testnet --masterAccount hotel_booking.testnet --initialBalance 5
 ```
 
@@ -72,13 +72,13 @@ near create-account contract.hotel_booking.testnet --masterAccount hotel_booking
 
 サブアカウントにスマートコントラクトをデプロイします。
 
-```bash
+```
 near deploy --wasmFile target/wasm32-unknown-unknown/release/hotel_booking.wasm --accountId contract.hotel_booking.testnet
 ```
 
 以下のように表示されたらデプロイは成功です！
 
-```bash
+```
 Transaction Id 4QjCzpcZZ3Yj28wqCUEVtbV313duUXMN5nnWXBHM5GC7
 To see the transaction in the transaction explorer, please open this url in your browser
 https://explorer.testnet.near.org/transactions/4QjCzpcZZ3Yj28wqCUEVtbV313duUXMN5nnWXBHM5GC7
@@ -91,13 +91,13 @@ Done deploying to contract.hotel_booking.testnet
 
 `View`メソッド
 
-```bash
+```
 near view [contractName] [method_name] [{ args ]]
 ```
 
 `Change`メソッド
 
-```bash
+```
 near call [contractName] [method_name] [{ args }] [--accountId]
 ```
 
@@ -106,13 +106,13 @@ near call [contractName] [method_name] [{ args }] [--accountId]
 では、メソッドを呼び出してみましょう。
 まずは、`get_rooms_registered_by_owner`メソッドを呼んでみます。
 
-```bash
+```
 near view contract.hotel_booking.testnet get_rooms_registered_by_owner '{"owner_id": "hotel_booking.testnet"}' --accountId hotel_booking.testnet
 ```
 
 以下のような出力が返されます。
 
-```bash
+```
 View call: contract.hotel_booking.testnet.get_rooms_registered_by_owner({"owner_id": "hotel_booking.testnet"})
 []
 ```
@@ -123,13 +123,13 @@ View call: contract.hotel_booking.testnet.get_rooms_registered_by_owner({"owner_
 
 💡 このプロジェクトでは、部屋の画像に`URL`を用います。`"image": "URL"`には、お好きな画像のURLを指定してみてください。
 
-```bash
+```
 near call contract.hotel_booking.testnet add_room_to_owner '{"name": "Sun Room", "image": "URL", "beds": 1, "description": "This is Sun room.", "location": "Tokyo", "price": "1000000000000000000000000"}' --accountId hotel_booking.testnet
 ```
 
 以下のようなものが表示されます。
 
-```bash
+```
 Scheduling a call: contract.hotel_booking.testnet.add_room_to_owner({"name": "Sun Room", "image": "n URL", "beds": 1, "description": "This is Sun room.", "location": "Tokyo", "price": "1000000000000000000000000"})
 Doing account.functionCall()
 Transaction Id FaBHfU7UZraj8TMc8pbycoADfaoevhB3zQWzT2vb4qT6
@@ -140,13 +140,13 @@ https://explorer.testnet.near.org/transactions/FaBHfU7UZraj8TMc8pbycoADfaoevhB3z
 
 再度`get_rooms_registered_by_owner`メソッドを呼んでみます。
 
-```bash
+```
 near view contract.hotel_booking.testnet get_rooms_registered_by_owner '{"owner_id": "hotel_booking.testnet"}' --accountId hotel_booking.testnet
 ```
 
 以下のようなものが表示されます。
 
-```bash
+```
 View call: contract.hotel_booking.testnet.get_rooms_registered_by_owner({"owner_id": "hotel_booking.testnet"})
 [
   {
@@ -165,26 +165,26 @@ View call: contract.hotel_booking.testnet.get_rooms_registered_by_owner({"owner_
 
 最後に、`exists`メソッドを確認します。
 
-```bash
+```
 near view contract.hotel_booking.testnet exists '{"owner_id": "hotel_booking.testnet", "room_name": "Sun Room"}' --accountId hotel_booking.testnet
 ```
 
 `true`が返ってきます。
 
-```bash
+```
 View call: contract.hotel_booking.testnet.exists({"owner_id": "hotel_booking.testnet", "room_name": "Sun Room"})
 true
 ```
 
 では、未登録のデータを指定してみます。
 
-```bash
+```
 near view contract.hotel_booking.testnet exists '{"owner_id": "hotel_booking.testnet", "room_name": "Moon Room"}' --accountId hotel_booking.testnet
 ```
 
 Moon Roomという名前の部屋は登録していないので、`false`が返ってきます。
 
-```bash
+```
 View call: contract.hotel_booking.testnet.exists({"owner_id": "hotel_booking.testnet", "room_name": "Moon Room"})
 false
 ```

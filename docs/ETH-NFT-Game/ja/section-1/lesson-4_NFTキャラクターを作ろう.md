@@ -261,7 +261,7 @@ uint[] memory characterAttackDmg
 
 それでは、ターミナル上で下記を実行してみましょう。
 
-```bash
+```
 yarn contract run:script
 ```
 

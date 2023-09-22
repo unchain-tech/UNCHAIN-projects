@@ -262,7 +262,7 @@ fn upload_encrypted_symmetric_keys(
 
 新しい関数を定義したので、`encrypted_notes_backend.did`を更新しましょう。下記のコマンドを実行します。
 
-```bash
+```
 npm run generate:did
 ```
 
@@ -272,7 +272,7 @@ npm run generate:did
 
 `test.sh`を更新します。`# ===== テスト =====`の部分を下記の内容で上書きしてください。
 
-```bash
+```
 # ===== テスト =====
 FUNCTION='registerDevice'
 echo -e "\n===== $FUNCTION ====="

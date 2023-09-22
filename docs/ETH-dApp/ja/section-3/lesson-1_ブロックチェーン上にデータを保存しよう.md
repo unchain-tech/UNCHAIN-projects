@@ -389,7 +389,7 @@ yarn contract run:script
 
 下記のような結果がターミナルに表示されていればテストは成功です。
 
-```bash
+```
 Compiling 1 file with 0.8.19
 Solidity compilation finished successfully
 WavePortal - Smart Contract!

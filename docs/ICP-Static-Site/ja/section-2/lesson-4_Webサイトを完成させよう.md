@@ -18,7 +18,7 @@
 
 次に、3つのファイルを作成します。
 
-```bash
+```
 touch ./src/lib/Home.svelte ./src/lib/About.svelte ./src/lib/Portfolio.svelte
 ```
 
@@ -233,7 +233,7 @@ touch ./src/lib/Home.svelte ./src/lib/About.svelte ./src/lib/Portfolio.svelte
 
 次に、不要となったタイトルのアイコン・ロゴを削除します。以下のコマンドで実行できます（ロゴを残しておきたい方はここをとばしてください）。
 
-```bash
+```
 rm -r ./public ./src/assets/svelte.svg
 ```
 

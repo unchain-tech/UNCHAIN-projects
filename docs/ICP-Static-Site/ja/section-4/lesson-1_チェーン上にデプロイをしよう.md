@@ -4,13 +4,13 @@
 
 以下のコマンドを実行しましょう。必ず、`icp-static-site/`下で実行してください。
 
-```bash
+```
 dfx deploy --network ic --with-cycles 1000000000000
 ```
 
 ⚠️ 使用しているPCの環境によっては、フロントエンドのビルドに失敗する可能性があります。
 
-```bash
+```
 Error: Failed while trying to deploy canisters.
 Caused by: Failed while trying to deploy canisters.
   Failed to build call canisters.
@@ -37,7 +37,7 @@ install a platform-specific binary executable.
 
 問題がなければ、`dfx.json`ファイルで定義したキャニスターが、IC上にデプロイされます。
 
-```bash
+```
 Deploying all canisters.
 Creating canisters...
 Creating canister website...
@@ -70,7 +70,7 @@ Deployed canisters.
 
 キャニスター IDは、デプロイ時の出力や生成された`canister_ids.json`ファイル、または以下のコマンドで確認できます。
 
-```bash
+```
 dfx canister --network ic id website
 ```
 

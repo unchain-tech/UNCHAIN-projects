@@ -4,7 +4,7 @@
 
 今回は全部で`5 TC`を使用します。必ず残高の確認を行い、きちんとサイクルが取得できていることを確認しましょう。
 
-```bash
+```
 dfx wallet --network=ic balance
 #20.099 TC (trillion cycles).
 ```
@@ -19,37 +19,37 @@ dfx wallet --network=ic balance
 
 それでは、デプロイ作業を行なっていきましょう。まずは、メインネットへデプロイを行うユーザーのプリンシパルを変数に登録しておきます。
 
-```bash
+```
 export ROOT_PRINCIPAL=$(dfx identity get-principal)
 ```
 
 続いて、実際にキャニスターをデプロイしていきましょう。最初に`GoldDIP20`キャニスターをデプロイします。
 
-```bash
+```
 dfx deploy GoldDIP20 --argument='("Token Gold Logo", "Token Gold", "TGLD", 8, 1_000_000_000_000, principal '\"$ROOT_PRINCIPAL\"', 0)'  --network ic --with-cycles 1000000000000
 ```
 
 `SilverDIP20`キャニスターをデプロイします。
 
-```bash
+```
 dfx deploy SilverDIP20 --argument='("Token Silver Logo", "Token Silver", "TSLV", 8, 1_000_000_000_000, principal '\"$ROOT_PRINCIPAL\"', 0)'  --network ic --with-cycles 1000000000000
 ```
 
 `faucet`キャニスターをデプロイします。
 
-```bash
+```
 dfx deploy faucet --network ic --with-cycles 1000000000000
 ```
 
 デプロイが完了したら、`faucet`キャニスターにトークンをプールしましょう。先に変数へIDを保存しておきます。
 
-```bash
+```
 export IC_FAUCET_PRINCIPAL=$(dfx canister id --network ic faucet)
 ```
 
 それでは、`mint`メソッドを実行してトークンをプールしましょう。まずは`GoldDIP20`キャニスターの`mint`を実行します。
 
-```bash
+```
 dfx canister call  --network ic GoldDIP20 mint '(principal '\"$IC_FAUCET_PRINCIPAL\"', 100_000)'
 
 #(variant { Ok = 0 : nat })
@@ -57,7 +57,7 @@ dfx canister call  --network ic GoldDIP20 mint '(principal '\"$IC_FAUCET_PRINCIP
 
 `faucet`キャニスターのトークン残高を確認するには、以下のコマンドを実行します。
 
-```bash
+```
 dfx canister call --network ic GoldDIP20 balanceOf '(principal '\"$IC_FAUCET_PRINCIPAL\"')'
 
 #(100_000 : nat)
@@ -65,7 +65,7 @@ dfx canister call --network ic GoldDIP20 balanceOf '(principal '\"$IC_FAUCET_PRI
 
 同様に、`SilverDIP20`キャニスターの`mint`を実行します。
 
-```bash
+```
 dfx canister call  --network ic SilverDIP20 mint '(principal '\"$IC_FAUCET_PRINCIPAL\"', 100_000)'
 
 #(variant { Ok = 0 : nat })
@@ -75,19 +75,19 @@ dfx canister call  --network ic SilverDIP20 mint '(principal '\"$IC_FAUCET_PRINC
 
 `icp_basic_dex_backend`キャニスターをデプロイします。
 
-```bash
+```
 dfx deploy icp_basic_dex_backend --network ic --with-cycles 1000000000000
 ```
 
 最後に、`icp_basic_dex_frontend`キャニスターをデプロイします。
 
-```bash
+```
 dfx deploy icp_basic_dex_frontend --network ic --with-cycles 1000000000000
 ```
 
 デプロイが完了すると、合計5つのURLが表示されます。
 
-```bash
+```
 URLs:
   Frontend canister via browser
     icp_basic_dex_frontend: https://egf4l-kiaaa-aaaap-qaula-cai.ic0.app/
@@ -100,7 +100,7 @@ URLs:
 
 また、デプロイをしたキャニスターに関する情報は以下のコマンドで確認することができます。
 
-```bash
+```
 dfx canister status --network ic icp_basic_dex_backend
 ```
 

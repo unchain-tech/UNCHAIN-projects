@@ -120,7 +120,7 @@ flutterでは`pubspec.yaml`というファイルに必要なライブラリや�
 
 [`pubspec.yaml`]
 
-```bash
+```
 dependencies:
   flutter:
     sdk: flutter
@@ -150,7 +150,7 @@ dependencies:
 
 [`pubspec.yaml`]
 
-```
+```yaml
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -247,7 +247,7 @@ INFURA_KEY_TEST = "https://aurora-testnet.infura.io/v3/4b5...."
 
 [`home.dart`]
 
-```
+```dart
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -272,7 +272,7 @@ class _HomeState extends State<Home> {
 
 [`qr_code_scan.dart`]
 
-```
+```dart
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -296,7 +296,7 @@ class _HomeState extends State<QRCodeScan> {
 
 [`send.dart`]
 
-```
+```dart
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -320,7 +320,7 @@ class _HomeState extends State<Send> {
 
 [`signin.dart`]
 
-```
+```dart
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -344,7 +344,7 @@ class _HomeState extends State<SignIn> {
 
 [`wallet.dart`]
 
-```
+```dart
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -372,7 +372,7 @@ class _HomeState extends State<Wallet> {
 
 [`contract_model.dart`]
 
-```
+```dart
 import 'dart:convert';
 import 'dart:core';
 import 'package:flutter/material.dart';
@@ -635,7 +635,7 @@ class Token {
 
 最初の`import`の部分で必要なライブラリを宣言しています。
 
-```
+```dart
 import 'dart:convert';
 import 'dart:core';
 import 'package:flutter/material.dart';
@@ -654,7 +654,7 @@ import 'package:http/http.dart' as http;
 
 序盤ではそれぞれのTokenについてアドレスやコントラクトの名前などをリスト化したものやAurora上のコントラクトとやり取りするためのプロパティを宣言しています。
 
-```
+```dart
 class ContractModel extends ChangeNotifier {
   List<Token> tokenList = [
     Token(
@@ -733,7 +733,7 @@ class ContractModel extends ChangeNotifier {
 
 最初に書いている`init`関数はこのコントラクトが作成された時に最初に走るメソッドで、infuraを通じてAuroraのTestnet上にデプロイしたコントラクトとやりとりができるための準備をしています。
 
-```
+```dart
 ContractModel() {
     init();
   }
@@ -750,7 +750,7 @@ ContractModel() {
 
 そして`getAbi,getContract`メソッドはそれぞれのコントラクトの情報を取得して、メソッドを呼ぶためのものです。
 
-```
+```dart
 Future<void> getAbi(String contractName) async {
   String abiStringFile =
       await rootBundle.loadString("smartcontracts/" + contractName + ".json");
@@ -774,7 +774,7 @@ Future<DeployedContract> getContract(
 
 `query`関数は読み取り専用の関数を呼ぶ際に使うものです。これはwalletとのやり取りをする必要（walletの許可を必要）がない関数に使われるものです。この関数ではブロックチェーン状の値を書き換えたり、追加したりすることはできせん。
 
-```
+```dart
 Future<List<dynamic>> query(String contractName, String contractAddress,
     String functionName, List<dynamic> args) async {
   DeployedContract contract =
@@ -791,7 +791,7 @@ Future<List<dynamic>> query(String contractName, String contractAddress,
 
 次の`sendTransaction`関数はブロックチェーン上の値を書き換えるような関数を呼び出すことができます。ただし、毎回walletの許可が必要となります。
 
-```
+```dart
 Future<void> sendTransaction(String contractName, String contractAddress,
       String functionName, List<dynamic> args) async {
     if (_connection != null && _client != null) {
@@ -819,7 +819,7 @@ Future<void> sendTransaction(String contractName, String contractAddress,
 
 `setConnection`関数はwalletと接続した情報をインスタンス化したこのmodelに保存するための関数です。
 
-```
+```dart
 Future<void> setConnection(Web3Connect connection) async {
     _connection = connection;
     account = connection.account;
@@ -829,7 +829,7 @@ Future<void> setConnection(Web3Connect connection) async {
 
 それ以降はコントラクトに存在する関数を呼び出すもので、指定のトークンの残高を参照したり、swapを行うなどsection-1で作成した関数を呼び出すことができます。
 
-```
+```dart
 Future<String> getBalance(
       String tokenContractName, String tokenAddress) async {
     List<dynamic> result = await query(tokenContractName, tokenAddress,
@@ -906,7 +906,7 @@ Future<String> getBalance(
 
 一番下に記述している`Token`というクラスはトークンの情報を保存するためのclassになります。
 
-```
+```dart
 class Token {
   final String address;
   final String contractName;
@@ -937,7 +937,7 @@ class Token {
 
 [`coin.dart`]
 
-```
+```dart
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -1031,7 +1031,7 @@ Widget Coins(double displayWidth, displayHeight, String imagePath, symbol, name,
 
 この値をもとに例えばしたのようにトークンのロゴの大きさが変わるようにしています。
 
-```
+```dart
 SizedBox(
               height: isDeskTop ? 55 : 37,
               width: isDeskTop ? 55 : 37,
@@ -1049,7 +1049,7 @@ SizedBox(
 
 [`navbar.dart`]
 
-```
+```dart
 import 'package:fluid_bottom_nav_bar/fluid_bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:client/view/screens/home.dart';
@@ -1133,7 +1133,7 @@ class _BottomNavigationBarState extends State<BottomNavigationBarWidget> {
 
 最初の部分ではナビゲーションバーで使用するクラスを宣言しています。このクラスによって今どこのメニューを選択しているのかを管理します。
 
-```
+```dart
 class BottomNavigationBarProvider with ChangeNotifier {
   int _currentIndex = 0;
 
@@ -1148,7 +1148,7 @@ class BottomNavigationBarProvider with ChangeNotifier {
 
 次の部分で実際に下に置かれるナビゲーションバーのUIを記述しています。
 
-```
+```dart
 class _BottomNavigationBarState extends State<BottomNavigationBarWidget> {
   var currentTab = [
     const Home(),
@@ -1218,7 +1218,7 @@ class _BottomNavigationBarState extends State<BottomNavigationBarWidget> {
 
 [`qr_code.dart`]
 
-```
+```dart
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';

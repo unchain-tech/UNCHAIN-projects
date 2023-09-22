@@ -48,7 +48,7 @@ AURORA_PRIVATE_KEY="YOUR_WALLET_PRIVATE_KEY"
 
 [`hardhat.config.ts`]
 
-```
+```ts
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
 import "@typechain/hardhat";

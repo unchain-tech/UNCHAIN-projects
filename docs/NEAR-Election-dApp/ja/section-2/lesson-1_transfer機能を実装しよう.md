@@ -51,7 +51,7 @@ impl NonFungibleTokenCore for Contract {
 
 その後NFTの送信者のアドレスと一緒に`internal_transfer関数`への引数として渡してtransferします。
 
-```bash
+```
 #[payable]
     // transfer token
     fn nft_transfer(&mut self, receiver_id: AccountId, token_id: TokenId) {
@@ -208,7 +208,7 @@ impl Contract {
 
 こちらは1yoctoNEARがattachされていることを確認しています。
 
-```bash
+```
 pub(crate) fn assert_one_yocto() {
     assert_eq!(
         env::attached_deposit(),
@@ -220,7 +220,7 @@ pub(crate) fn assert_one_yocto() {
 
 この関数では引数として取りいれたユーザーのidと送りたいtokenのidを用いて、そのユーザーがもっているNFTをリストから削除します。
 
-```bash
+```
 pub(crate) fn internal_remove_token_from_owner(
         &mut self,
         account_id: &AccountId,
@@ -248,7 +248,7 @@ pub(crate) fn internal_remove_token_from_owner(
 
 これをクリアしたら`tokens_per_owner`というmapから元の所有者のtokenのidと所有者のmapを消し、新しい所有者のtokenのidと所有者のmapを追加します。
 
-```bash
+```
 // transfer token
     pub(crate) fn internal_transfer(
         &mut self,
@@ -295,20 +295,20 @@ transferの実装は成功したので、それが機能しているのかテス
 下のコマンドを`NEAR-Election-dApp`にいる状態で実行してください（うまくいかない場合は新しくwalletを作ってそのアドレスを使ってdeployしてみましょう）。
 
 
-```bash
+```
 yarn contract build
 yarn contract deploy
 ```
 
 コントラクトの更新ができたので、次は`packages/contract`へ移動して下のコマンドを実行し新しくNFTをmintしてみましょう。
 
-```bash
+```
 near call $NFT_CONTRACT_ID nft_mint '{"metadata": {"title": "Tonny(candidate)", "description": "Fifth Token", "media": "https://gateway.pinata.cloud/ipfs/QmTGtuh3c1qaMdiBUnbiF9k2M3Yr4gZn8yixtAQuVvZueW", "media_CID": "QmTGtuh3c1qaMdiBUnbiF9k2M3Yr4gZn8yixtAQuVvZueW", "candidate_name": "Tonny", "candidate_manifest": "Be yourself everyone else is already taken.", "token_kind": "candidate"}, "receiver_id": "'$NFT_CONTRACT_ID'"}' --accountId $NFT_CONTRACT_ID --amount 0.1
 ```
 
 次にdeloyするために下のコマンドをターミナルで実行し、必要なtokenのidを確かめましょう。
 
-```bash
+```
 near view $NFT_CONTRACT_ID nft_tokens
 ```
 
@@ -316,7 +316,7 @@ near view $NFT_CONTRACT_ID nft_tokens
 
 `owner_id`の部分は自分の作ったwalletのidになっているはずです。
 
-```bash
+```
 [
   {
     owner_id: 'dev_account_46.testnet',
@@ -351,7 +351,7 @@ near view $NFT_CONTRACT_ID nft_tokens
 
 下のコマンドの`NEW_WALLET_ID`に新しいWallet Idを入れて実行させてみましょう。
 
-```bash
+```
 near call $NFT_CONTRACT_ID nft_transfer '{"receiver_id": "NEW_WALLET_ID", "token_id": 1}' --accountId $NFT_CONTRACT_ID --depositYocto 1
 ```
 

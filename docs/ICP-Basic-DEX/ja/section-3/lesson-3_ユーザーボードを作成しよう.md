@@ -12,13 +12,13 @@
 
 まずは、必要なファイルを作成します。
 
-```bash
+```
 touch ./src/icp_basic_dex_frontend/src/components/UserBoard.jsx
 ```
 
 続いて、DEX上で扱うトークンの情報をまとめておくためのファイルを作成します。
 
-```bash
+```
 mkdir ./src/icp_basic_dex_frontend/src/utils && touch ./src/icp_basic_dex_frontend/src/utils/token.js
 ```
 
@@ -446,13 +446,13 @@ export default App;
 
 それでは、ブラウザで確認をしてみましょう。開発中は、フロントエンドの変更が動的に反映されるwebpackの使用がおすすめです。まずは、サーバーを立ち上げましょう。
 
-```bash
+```
 npm start
 ```
 
 起動が完了すると、最後に`compiled successfully`と出力されます。
 
-```bash
+```
 webpack 5.74.0 compiled successfully in 1260 ms
 ```
 

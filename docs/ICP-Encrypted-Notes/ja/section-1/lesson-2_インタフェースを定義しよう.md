@@ -22,7 +22,7 @@ export_candid!();
 
 次に、[candid-extractor](https://crates.io/crates/candid-extractor)をインストールします。これは、Rustファイルをコンパイルした際に生成されるWASMファイルから、Candidの定義を抽出するCLIツールです。
 
-```bash
+```
 cargo install candid-extractor
 ```
 
@@ -41,7 +41,7 @@ cargo install candid-extractor
 
 `did.sh`に、下記を記述してください。先ほどインストールしたcandid-extractorを使用して、WASMファイルからCandidインタフェースを生成するスクリプトとなります。
 
-```bash
+```
 #!/bin/bash
 
 function generate_did() {
@@ -66,7 +66,7 @@ done
 
 これで、Candidインタフェースを自動生成する準備ができました！ それでは、実際に生成してみましょう。下記のコマンドをプロジェクトのルートディレクトリで実行してください。
 
-```bash
+```
 npm run generate:did
 ```
 
@@ -104,7 +104,7 @@ service : {
 
 `test.sh`に、下記を記述してください。
 
-```bash
+```
 #!/bin/bash
 
 compare_result() {
@@ -196,7 +196,7 @@ fi
 
 キャニスター実行環境を立ち上げて、encrypted_notes_backendをデプロイします。テストで使用するユーザーを`dfx identity new`で作成することができます。
 
-```bash
+```
 # ===== 準備 =====
 dfx stop
 rm -rf .dfx
@@ -212,7 +212,7 @@ dfx deploy encrypted_notes_backend
 
 `dfx canister call`でencrypted_notes_backendキャニスターの関数を呼び出します。関数の実行結果（`RESULT`）と期待する値（`EXPECT`）をcompare_resultに渡します。
 
-```bash
+```
 # ===== テスト =====
 FUNCTION='addNote'
 echo -e "\n===== $FUNCTION ====="
@@ -226,7 +226,7 @@ compare_result "Return none" "$EXPECT" "$RESULT" || TEST_STATUS=1
 
 テストスクリプトの上部に定義されている`compare_result()`は、関数の戻り値と期待する値を比較して一致しているかどうかを確認します。一致している場合は`OK`を出力して`0`を返します。一致していない場合は`ERR`と差分を表示して`1`を返します。
 
-```bash
+```
 # scripts/test.sh
 compare_result() {
     local label=$1
@@ -248,7 +248,7 @@ compare_resultを呼び出す部分で、`compare_result "Return ..." "$EXPECT" 
 
 最後に、テスト用に作成したidentityを削除してテスト結果を出力します。`TEST_STATUS`が`0`の場合は`PASS`、`1`の場合は`FAIL`が出力されます。
 
-```bash
+```
 # ===== 後始末 =====
 dfx identity use default
 dfx identity remove test-user
@@ -267,13 +267,13 @@ fi
 
 それではテストスクリプトを実行してみましょう。
 
-```bash
+```
 npm run test
 ```
 
 全てのテストにパスし、最後に`"PASS"`が出力されたら成功です。
 
-```bash
+```
 # デプロイに関する出力...
 
 ===== addNote =====

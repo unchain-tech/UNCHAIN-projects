@@ -169,13 +169,13 @@ runMain();
 
 それでは、以下のコマンドを実行してテストを行いましょう。
 
-```bash
+```
 anchor test
 ```
 
 以下のように表示されていればOKです。
 
-```bash
+```
 🚀 Starting test...
 📝 Your transaction signature 3bVdunNLAHN78rYERyTkZaTzD9Bd9DPAw8c6kipywCD1wgHS3fFkaQWDmUrGNggxzKxwSoY7PGhA4ZHCpfofLwZR
 👀 GIF Count 0

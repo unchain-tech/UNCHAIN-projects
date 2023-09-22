@@ -8,7 +8,7 @@
 
 Hardhatを使用する場合、ファイル構造は非常に重要ですので、注意する必要があります。ファイル構造が下記のようになっていれば大丈夫です 😊
 
-```bash
+```
 contract
     |_ contracts
            |_  Domains.sol
@@ -209,7 +209,7 @@ console.log("Contract deployed to:", domainContract.address);
 
 `packages/contract/package.json`の`script`部分を以下のように編集してください。
 
-```
+```json
 "scripts": {
     "run:script":"npx hardhat run scripts/run.js",
     "test": "npx hardhat test",
@@ -218,7 +218,7 @@ console.log("Contract deployed to:", domainContract.address);
 ```
 その後、ターミナル上で、下記を実行してみましょう。
 
-```bash
+```
 yarn contract run:script
 ```
 
@@ -226,7 +226,7 @@ yarn contract run:script
 
 例)ターミナル上でのアウトプット:
 
-```bash
+```
 Compiled 1 Solidity file successfully
 THIS IS MY DOMAINS CONTRACT. NICE.
 Contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3

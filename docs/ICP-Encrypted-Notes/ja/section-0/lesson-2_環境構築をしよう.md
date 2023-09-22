@@ -7,7 +7,7 @@
 
 なお、本プロジェクトは以下のバージョンを推奨しています。
 
-```bash
+```
 $ node -v
 v18.17.0
 
@@ -19,13 +19,13 @@ $ npm -v
 
 [Rustインストール手順](https://doc.rust-lang.org/book/ch01-01-installation.html)を参考に、RustとCargoのインストールを行いましょう。
 
-```bash
+```
 curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
 ```
 
 次に、プログラムをWebAssemblyにコンパイルするためのビルドターゲットを追加しましょう。
 
-```bash
+```
 rustup target add wasm32-unknown-unknown
 ```
 
@@ -35,13 +35,13 @@ IC SDKは、Internet Computerブロックチェーン上でキャニスタース
 
 [IC SDKのインストール](https://internetcomputer.org/docs/current/developer-docs/setup/install/)を参考に、IC SDKをインストールをしましょう。下記のように、バージョン`0.14.1`を指定してください。
 
-```bash
+```
 DFX_VERSION=0.14.1 sh -ci "$(curl -sSL https://internetcomputer.org/install.sh)"
 ```
 
 下記を実行してバージョンを確認してみましょう。
 
-```bash
+```
 $ dfx --version
 dfx 0.14.1
 ```
@@ -70,7 +70,7 @@ GitHubのアカウントをお持ちの方は、下記の手順に沿ってプ�
 
 ターミナル上で作業を行う任意のディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
 
-```bash
+```
 git clone コピーした_github_リンク
 ```
 
@@ -80,7 +80,7 @@ git clone コピーした_github_リンク
 
 下記のコマンドを実行して、パッケージのインストールをしましょう。
 
-```bash
+```
 npm install
 ```
 
@@ -92,19 +92,19 @@ npm install
 
 1\. バックグラウンドでローカル実行環境を起動します。
 
-```bash
+```
 dfx start --clean --background
 ```
 
 2\. プロジェクトの登録・ビルド・デプロイを行います。
 
-```bash
+```
 npm run deploy:local
 ```
 
 3\. 開発サーバーを立ち上げ、アプリケーションを起動します。
 
-```bash
+```
 npm run start
 ```
 
@@ -112,7 +112,7 @@ npm run start
 
 ローカルの実行環境を停止するには、下記のコマンドを実行します。
 
-```bash
+```
 dfx stop
 ```
 

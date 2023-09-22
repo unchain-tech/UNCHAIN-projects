@@ -51,7 +51,7 @@ drop down buttonを押すとテストネット用のものがあります。こ�
 
 それでは本プロジェクトで使用するフォルダーを作成してきましょう。作業を始めるディレクトリに移動したら、次のコマンドを実行します。
 
-```bash
+```
 mkdir NEAR-Mulpay
 cd NEAR-Mulpay
 yarn init --private -y
@@ -59,7 +59,7 @@ yarn init --private -y
 
 NEAR-Mulpayディレクトリ内に、package.jsonファイルが生成されます。
 
-```bash
+```
 NEAR-Mulpay
  └── package.json
 ```
@@ -113,7 +113,7 @@ NEAR-Mulpay
 
 これにより、各パッケージのディレクトリへ階層を移動しなくてもプロジェクトのルート直下から以下のようにコマンドを実行することが可能となります（ただし、各パッケージ内に`package.json`ファイルが存在し、その中にコマンドが定義されていないと実行できません。そのため、現在は実行してもエラーとなります。ファイルは後ほど作成します）。
 
-```bash
+```
 yarn <パッケージ名> <実行したいコマンド>
 ```
 
@@ -132,7 +132,7 @@ NEAR-Mulpay
 
 最後に、NEAR-Mulpayディレクトリ下に`.gitignore`ファイルを作成して以下の内容を書き込みます。
 
-```bash
+```
 **/yarn-error.log*
 
 # dependencies
@@ -144,7 +144,7 @@ NEAR-Mulpay
 
 最終的に以下のようなフォルダー構成となっていることを確認してください。
 
-```bash
+```
 NEAR-Mulpay
  ├── .gitignore
  ├── package.json
@@ -164,14 +164,14 @@ NEAR-Mulpay
 
 それでは、先ほど作成した`packages/contract`ディレクトリ内にファイルを作成します。ターミナルに向かい、`packages/contract`ディレクトリ内で以下のコマンドを実行します。
 
-```bash
+```
 cd packages/contract
 yarn init --private -y
 ```
 
 `package.json`の内容を以下のように書き換えてください。
 
-```
+```json
 {
   "name": "contract",
   "version": "1.0.0",
@@ -217,7 +217,7 @@ yarn install
 
 `packages/contract`ディレクトリにいることを確認し、次のコマンドを実行します。
 
-```bash
+```
 npx hardhat
 ```
 
@@ -230,7 +230,7 @@ npx hardhat
 ```
 
 （例）
-```bash
+```
 $ npx hardhat
 
 888    888                      888 888               888
@@ -265,7 +265,7 @@ Give Hardhat a star on Github if you're enjoying it! 💞✨
 >
 > `npx hardhat`が実行されなかった場合、以下をターミナルで実行してください。
 >
-> ```bash
+> ```
 > yarn add --dev @nomicfoundation/hardhat-toolbox
 > ```
 
@@ -339,7 +339,7 @@ npx hardhat test
 
 ターミナル上で`ls`と入力してみて、下記のフォルダーとファイルが表示されていたら成功です。
 
-```bash
+```
 README.md         cache             hardhat.config.ts package.json      test
 artifacts         contracts         node_modules      scripts
 ```
@@ -373,19 +373,19 @@ Hardhatは段階的に下記を実行しています。
 
 `NEAR-Mulpay/packages`ディレクトリに移動して下のコマンドをターミナルで実行しましょう。
 
-```bash
+```
 flutter create client
 ```
 
 次に下のコマンドを実行して`package.json`を作成してください。
 
-```bash
+```
 yarn init --private -y
 ```
 
 その後作成したpackage.jsonファイルを下のように編集してください。
 
-```
+```json
 {
   "name": "client",
   "version": "1.0.0",
@@ -419,13 +419,13 @@ client
 
 下のコマンドをターミナルで実行し確認することができます。
 
-```bash
+```
 tree -L 1 -F
 ```
 
 ではこの中の`lib`ディレクトリの中身を編集して以下のような構造にしてください。
 
-```bash
+```
 lib/
 ├── main.dart
 ├── model/
@@ -445,7 +445,7 @@ lib/
 
 下のコマンドを`lib`ディレクトリに移動して実行し確認することができます。
 
-```bash
+```
 tree -L 3 -F
 ```
 

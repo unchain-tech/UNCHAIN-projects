@@ -408,7 +408,7 @@ await txn.wait();
 
 それではターミナル上で下記を実行し、テストを行いましょう。
 
-```bash
+```
 yarn contract run:script
 ```
 

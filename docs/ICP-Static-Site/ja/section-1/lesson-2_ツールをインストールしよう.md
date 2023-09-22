@@ -11,19 +11,19 @@ IC SDKとはDFINITYが提供する、ICPブロックチェーン上でキャニ�
 
 今回は、バージョン`0.11.1`を指定してインストールをしたいと思います。ターミナルで以下のコマンドを実行しましょう。
 
-```bash
+```
 DFX_VERSION=0.11.1 sh -ci "$(curl -sSL https://internetcomputer.org/install.sh)"
 ```
 
 正しくインストールされたことを確認するために、以下を実行します。
 
-```bash
+```
 dfx --version
 ```
 
 バージョン`0.11.1`が表示されたら完了です。
 
-```bash
+```
 dfx 0.11.1
 ```
 

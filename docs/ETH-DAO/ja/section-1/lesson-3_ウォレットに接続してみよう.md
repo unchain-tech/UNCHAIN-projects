@@ -69,7 +69,7 @@ export default function HeadComponent(): JSX.Element {
       <meta property="twitter:description" content="TypeScript + React.js + NEXT.js + Thirdweb + Vercel 👉 Ethereum Network 上でオリジナルの DAO を運営しよう🤝" />
       <meta property="twitter:image" content="/banner.png" />
     </Head>
-  ); 
+  );
 }
 ```
 
@@ -88,7 +88,7 @@ export default function HeadComponent(): JSX.Element {
 
 以下のコマンドを実行するとローカルでフロントエンドが立ち上がるので、初期画面を確認してみましょう。
 
-```bash
+```
 yarn dev
 ```
 

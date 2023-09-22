@@ -65,13 +65,13 @@ _📝 備考： ERC-1155 の NFT なのでメンバー全員が同じ NFT をミ
 
 準備が整ったらターミナルに移動し、下記コマンドを実行してみましょう。
 
-```bash
+```
 yarn node --loader ts-node/esm src/scripts/3-config-nft.ts
 ```
 
 以下のような表示がされたら、成功です。
 
-```bash
+```
 SDK initialized by address: 0x8cB688A30D5Fd6f2e5025d8915eD95e770832933
 ✅ Successfully created a new NFT in the drop!
 Done in 30.57s.
@@ -154,13 +154,13 @@ ERC-1155では、複数の人が同じNFTをミントすることができるこ
 
 それでは続いて、ターミナルに移動し、下記コマンドを実行してみましょう。
 
-```bash
+```
 yarn node --loader ts-node/esm src/scripts/4-set-claim-condition.ts
 ```
 
 以下のような表示がされたら、成功です。
 
-```bash
+```
 SDK initialized by address: 0x8cB688A30D5Fd6f2e5025d8915eD95e770832933
 ✅ Successfully set claim condition!
 Done in 27.07s.

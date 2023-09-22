@@ -4,13 +4,13 @@
 
 まずは必要なパッケージのインストールから行っていきましょう。プロジェクトのルートディレクトリにいることを確認して、以下のコマンドを実行します。
 
-```bash
+```
 npm install --save react@18.2.0 react-dom@18.2.0
 ```
 
 続いて、以下のコマンドを実行しましょう。
 
-```bash
+```
 npm install --save-dev @babel/core@^7.19.6 babel-loader@^9.0.0 @babel/preset-react@^7.18.6 style-loader@^3.3.1 css-loader@^6.7.1
 ```
 
@@ -36,7 +36,7 @@ root.render(
 
 `index.js`ファイルがインポートをする`App.jsx`ファイルとスタイルをあてるCSSファイルを作成します。
 
-```bash
+```
 touch ./icp_basic_dex_frontend/src/App.jsx ./icp_basic_dex_frontend/src/App.css
 ```
 
@@ -437,7 +437,7 @@ module.exports = {
 
 **dfinity**が提供する、パッケージをインストールしておきます。これらは、以降のレッスンでIC上のキャニスターとやり取りを行うフロントエンドの機能を実装するために使われます。
 
-```bash
+```
 npm install --save-dev @dfinity/auth-client@^0.14.0
 ```
 

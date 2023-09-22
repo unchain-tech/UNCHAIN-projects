@@ -91,7 +91,7 @@ const { ethereum } = window;
 
 プロジェクトのルートディレクトリ（ETH-NFT-Collection/）にいることを確認し、下記を実行してみましょう。
 
-```bash
+```
 yarn client start
 ```
 
@@ -429,7 +429,7 @@ const renderNotConnectedContainer = () => (
 
 上記のコードをすべて`App.js`に反映させたら、ターミナル上で下記を実行しましょう。
 
-```bash
+```
 yarn client start
 ```
 

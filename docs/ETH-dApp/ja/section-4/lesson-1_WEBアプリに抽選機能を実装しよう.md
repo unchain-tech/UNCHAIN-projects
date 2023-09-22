@@ -223,7 +223,7 @@ yarn contract run:script
 
 次のような結果が、ターミナルに出力されたでしょうか？
 
-```bash
+```
 Compiling 1 file with 0.8.19
 Solidity compilation finished successfully
 We have been constructed!
@@ -265,7 +265,7 @@ Contract balance: 0.0999
 
 一人目のユーザーは、乱数の結果`89`という値を取得したので、ETHを獲得できませんでした。`Contract balance`は0.1ETHのままです。
 
-```bash
+```
 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 has waved!
 Random # generated: 89
 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 did not win.
@@ -274,7 +274,7 @@ Contract balance: 0.1
 
 次に、二人目のユーザーの結果を見てみましょう。
 
-```bash
+```
 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 has waved!
 Random # generated: 31
 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 won!
@@ -625,13 +625,13 @@ describe('WavePortal', function () {
 
 それでは、テストスクリプトを実行してみましょう。テスト結果がわかりやすいように、`WavePortal.sol`内の`console.log`を全てコメントアウトすると良いでしょう。
 
-```bash
+```
 yarn contract test
 ```
 
 下記のようなメッセージが出力されていればテスト成功です！
 
-```bash
+```
 Compiled 1 Solidity file successfully
 
 

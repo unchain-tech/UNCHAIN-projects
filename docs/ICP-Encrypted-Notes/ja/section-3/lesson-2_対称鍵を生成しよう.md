@@ -2,7 +2,7 @@
 
 前回のレッスンでバックエンドキャニスターを更新したので、改めてデプロイを行いましょう。
 
-```bash
+```
 dfx start --clean --background
 npm run deploy:local
 npm run start

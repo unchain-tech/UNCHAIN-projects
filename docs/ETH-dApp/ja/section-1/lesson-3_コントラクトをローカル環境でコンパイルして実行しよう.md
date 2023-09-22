@@ -112,7 +112,7 @@ console.log("WavePortal address:", wavePortal.address);
 
 `packages/contract/package.json`の`script`部分を以下のように編集してください。
 
-```
+```json
 "scripts": {
     "run:script":"npx hardhat run scripts/run.js",
     "test": "npx hardhat test",
@@ -121,7 +121,7 @@ console.log("WavePortal address:", wavePortal.address);
 ```
 その後ルートディレクトリにいることを確認して、ターミナル上で下記を実行してみましょう。
 
-```bash
+```
 yarn contract run:script
 ```
 

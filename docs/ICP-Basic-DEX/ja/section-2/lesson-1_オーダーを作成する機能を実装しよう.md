@@ -60,7 +60,7 @@ module {
 
 次に、`Exchange`メソッドを定義する`exchange.mo`ファイルを作成します。
 
-```bash
+```
 touch ./src/icp_basic_dex_backend/exchange.mo
 ```
 

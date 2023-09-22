@@ -85,7 +85,7 @@ return (
 
 components/ImportWallet/index.test.jsが`PASS`し、`Test Suites`が下記のようになっていたらOKです！
 
-```bash
+```
 Test Suites: 3 failed, 2 passed, 5 total
 ```
 

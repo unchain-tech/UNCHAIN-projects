@@ -4,7 +4,7 @@
 
 [test.sh]
 
-```bash
+```
 #!/bin/bash
 
 compare_result() {
@@ -69,22 +69,22 @@ dfx identity use user1
 # user1がトークンを取得する
 echo '===== getToken ====='
 EXPECT="(variant { Ok = 1_000 : nat })"
-RESULT=`dfx canister call faucet getToken '(principal '\"$GoldDIP20_PRINCIPAL\"')'` 
+RESULT=`dfx canister call faucet getToken '(principal '\"$GoldDIP20_PRINCIPAL\"')'`
 compare_result "return 1_000" "$EXPECT" "$RESULT" || TEST_STATUS=1
 
 EXPECT="(variant { Err = variant { AlreadyGiven } })"
-RESULT=`dfx canister call faucet getToken '(principal '\"$GoldDIP20_PRINCIPAL\"')'` 
+RESULT=`dfx canister call faucet getToken '(principal '\"$GoldDIP20_PRINCIPAL\"')'`
 compare_result "return Err AlreadyGiven" "$EXPECT" "$RESULT" || TEST_STATUS=1
 
 echo '===== deposit ====='
 # approveをコールして、DEXがuser1の代わりにdepositすることを許可する
 dfx canister call GoldDIP20 approve '(principal '\"$DEX_PRINCIPAL\"', 1_000)' > /dev/null
 EXPECT="(variant { Ok = 1_000 : nat })"
-RESULT=`dfx canister call icp_basic_dex_backend deposit '(principal '\"$GoldDIP20_PRINCIPAL\"')'` 
+RESULT=`dfx canister call icp_basic_dex_backend deposit '(principal '\"$GoldDIP20_PRINCIPAL\"')'`
 compare_result "return 1_000" "$EXPECT" "$RESULT" || TEST_STATUS=1
 
 EXPECT="(variant { Err = variant { BalanceLow } })"
-RESULT=`dfx canister call icp_basic_dex_backend deposit '(principal '\"$GoldDIP20_PRINCIPAL\"')'` 
+RESULT=`dfx canister call icp_basic_dex_backend deposit '(principal '\"$GoldDIP20_PRINCIPAL\"')'`
 compare_result "return Err BalanceLow" "$EXPECT" "$RESULT" || TEST_STATUS=1
 
 echo '===== placeOrder ====='
@@ -221,13 +221,13 @@ fi
 
 それでは実行してみましょう。
 
-```bash
+```
 bash ./scripts/test.sh
 ```
 
 実行結果を確認してみましょう。
 
-```bash
+```
 # キャニスターデプロイの出力結果は省略しています...
 
 Using identity: "user1".
