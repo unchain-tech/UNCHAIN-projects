@@ -63,7 +63,7 @@ const CONTRACT_ADDRESS =
 
 **`ETH-NFT-Collection`ディレクトリ直下で、もう一度下記を実行し、コントラクトのアドレスを取得してください。**
 
-```bash
+```
 yarn contract deploy:sepolia
 ```
 
@@ -199,7 +199,7 @@ return (
 
 すべての変更を`App.js`に反映させた後、ターミナルで下記を実行してみてください。
 
-```bash
+```
 yarn client start
 ```
 
@@ -256,19 +256,19 @@ ABIファイルの中身は、`MyEpicNFT.json`というファイルに格納さ�
 
 2\. 下記を実行して、`packages/client/src/`の中に`utils`ディレクトリを作成する。
 
-> ```bash
+> ```
 > mkdir src/utils
 > ```
 
 3\. 下記を実行して、`utils`ディレクトリに`MyEpicNFT.json`ファイルを作成する。
 
-> ```bash
+> ```
 > touch src/utils/MyEpicNFT.json
 > ```
 
 4\. 下記を実行して、`MyEpicNFT.json`ファイルをVS Codeで開く。
 
-> ```bash
+> ```
 > code src/utils/MyEpicNFT.json
 > ```
 
@@ -289,7 +289,7 @@ import myEpicNft from "./utils/MyEpicNFT.json";
 
 それでは、ターミナル上で`ETH-NFT-Collection`ディレクトリ直下に移動して下記を実行し、ローカル環境でWebアプリケーションをホストしてみましょう。
 
-```bash
+```
 yarn client start
 ```
 

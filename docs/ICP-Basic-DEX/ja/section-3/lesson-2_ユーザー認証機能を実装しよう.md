@@ -40,7 +40,7 @@ Internet Identityは、ICPがサポートするユーザー認証のフレーム
 
 まずは、機能を実装するファイルを作成します。
 
-```bash
+```
 mkdir ./src/icp_basic_dex_frontend/src/components && touch ./src/icp_basic_dex_frontend/src/components/Header.jsx
 ```
 
@@ -159,7 +159,7 @@ export default App;
 
 複数のキャニスターをスムーズにデプロイするために、デプロイコマンドをファイルに記述したいと思います。`scripts`ディレクトリ内に新しいファイルを作成します。
 
-```bash
+```
 touch ./scripts/deploy_local.sh
 ```
 
@@ -167,7 +167,7 @@ touch ./scripts/deploy_local.sh
 
 [deploy_local.sh]
 
-```bash
+```
 #!/bin/bash
 
 # 古いコンテンツを削除
@@ -207,13 +207,13 @@ dfx deploy icp_basic_dex_frontend
 
 では、スクリプトを実行したいと思います。プロジェクトのルートディレクトリにいることを確認して、以下のコマンドを実行しましょう。
 
-```bash
+```
 bash ./scripts/deploy_local.sh
 ```
 
 `GoldDIP20`キャニスターから順番に、デプロイされていく様子がターミナル上で確認できます。全てのキャニスターがデプロイされると、以下のように各キャニスターのUIにアクセスするためのURL一覧が出力されます。
 
-```bash
+```
 Deployed canisters.
 URLs:
   Frontend canister via browser
@@ -263,7 +263,7 @@ URLs:
 ボタンを押すと自動でブラウザの画面がDEXアプリケーションに切り替わります。メッセージが消えていることと`console.log()`の結果を確認してみましょう。
 以下のようなログが確認できたら、ユーザー IDの取得成功です！
 
-```bash
+```
 User Principal: 42iew-bwtbo-6ug3n-k7vur-fzjgy-b33z5-ctdd7-kcqby-3lwee-hsd2s-rqe
 ```
 

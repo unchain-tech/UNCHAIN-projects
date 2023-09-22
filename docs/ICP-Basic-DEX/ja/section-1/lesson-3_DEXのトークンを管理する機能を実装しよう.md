@@ -11,7 +11,7 @@
 
 まずは、Faucetキャニスターを実装した時と同様に`types.mo`ファイルを作成します。場所は、サンプルプロジェクトの`main.mo`ファイルと同じ階層になります。
 
-```bash
+```
 touch src/icp_basic_dex_backend/types.mo
 ```
 
@@ -25,7 +25,7 @@ module {
 
 続いて、`BalanceBook`モジュールを実装するファイルを作成します。こちらも、サンプルプロジェクトの`main.mo`ファイルと同じ階層に作成します。
 
-```bash
+```
 touch src/icp_basic_dex_backend/balance_book.mo
 ```
 

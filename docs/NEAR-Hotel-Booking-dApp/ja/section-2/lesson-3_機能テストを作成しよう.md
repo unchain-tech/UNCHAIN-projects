@@ -402,13 +402,13 @@ impl Contract {
 
 それでは、以下のコマンドをターミナルで実行してみましょう。
 
-```bash
+```
 cargo test
 ```
 
 このような結果が返ってきたら、機能テストは成功です！
 
-```bash
+```
     Finished test [unoptimized + debuginfo] target(s) in 1.19s
      Running unittests src/lib.rs (target/debug/deps/hotel_booking-bf7ec22a09582a46)
 

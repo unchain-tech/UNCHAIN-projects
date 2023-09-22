@@ -4,7 +4,7 @@
 
 以下のコマンドを実行し、`dfx.json`ファイルを作成します。必ず、`icp-static-site/`下(`package.json`と同じ階層)に作成してください。
 
-```bash
+```
 touch dfx.json
 ```
 
@@ -37,7 +37,7 @@ touch dfx.json
 
 `icp-static-site`ディレクトリ直下で、下記のコマンドを実行しましょう。
 
-```bash
+```
 # バックグラウンドでローカル環境を立ち上げます（数秒かかります）
 dfx start --clean --background
 
@@ -46,7 +46,7 @@ dfx deploy
 ```
 
 （出力例）
-```bash
+```
 Deploying all canisters.
 Creating a wallet canister on the local network.
 The wallet canister on the "local" network for user "default" is "bnz7o-iuaaa-aaaaa-qaaaa-cai"
@@ -63,14 +63,14 @@ Uploading assets to asset canister...
 Fetching properties for all assets in the canister.
 Starting batch.
 Staging contents of new and changed assets in batch 1:
-  /index.html 1/1 (367 bytes) sha 162d9a885ddad425d1e682e436a5fa6d3ba0455f2aac94b2971521e867fb9ad4 
-  /assets/index.6eafe1ac.css 1/1 (6321 bytes) sha 6eafe1ac7fb4037eb205b8a865a9c9c3800dbc63caaca80dcee1a1490070a6c9 
-  /assets/index.6eafe1ac.css (gzip) 1/1 (1975 bytes) sha 3ce3680a96865423f96753a305e6a159e25f9b5e9bc4e3cc607cf075de52759b 
-  /vite.svg 1/1 (1497 bytes) sha 4a748afd443918bb16591c834c401dae33e87861ab5dbad0811c3a3b4a9214fb 
-  /assets/unchain_logo.9fc9ba05.png 1/1 (11126 bytes) sha 9fc9ba059ecdc2fc1e35f0b6083c10bb80bc1170c744999c076f3e75f0274581 
-  /assets/index.02ce13a8.js 1/1 (8726 bytes) sha af17fea9c836f8e2b90d0cbcea12e1e41fafc288aee722753e33457e11a5b9e9 
-  /assets/index.02ce13a8.js (gzip) 1/1 (3376 bytes) sha 12ccec78eca1fcd5f15ac08507e2a3466f7f8a34a3e77fe63e011b01a757e224 
-  /index.html (gzip) 1/1 (273 bytes) sha 48c939c1335d5c580283aa15755b80ddfa635bbbda93822dcac20e6a4c69d5cb 
+  /index.html 1/1 (367 bytes) sha 162d9a885ddad425d1e682e436a5fa6d3ba0455f2aac94b2971521e867fb9ad4
+  /assets/index.6eafe1ac.css 1/1 (6321 bytes) sha 6eafe1ac7fb4037eb205b8a865a9c9c3800dbc63caaca80dcee1a1490070a6c9
+  /assets/index.6eafe1ac.css (gzip) 1/1 (1975 bytes) sha 3ce3680a96865423f96753a305e6a159e25f9b5e9bc4e3cc607cf075de52759b
+  /vite.svg 1/1 (1497 bytes) sha 4a748afd443918bb16591c834c401dae33e87861ab5dbad0811c3a3b4a9214fb
+  /assets/unchain_logo.9fc9ba05.png 1/1 (11126 bytes) sha 9fc9ba059ecdc2fc1e35f0b6083c10bb80bc1170c744999c076f3e75f0274581
+  /assets/index.02ce13a8.js 1/1 (8726 bytes) sha af17fea9c836f8e2b90d0cbcea12e1e41fafc288aee722753e33457e11a5b9e9
+  /assets/index.02ce13a8.js (gzip) 1/1 (3376 bytes) sha 12ccec78eca1fcd5f15ac08507e2a3466f7f8a34a3e77fe63e011b01a757e224
+  /index.html (gzip) 1/1 (273 bytes) sha 48c939c1335d5c580283aa15755b80ddfa635bbbda93822dcac20e6a4c69d5cb
 Committing batch.
 Deployed canisters.
 ```
@@ -81,7 +81,7 @@ Deployed canisters.
 
 それでは、ブラウザ上で確認をしてみましょう。デプロイされたキャニスターのIDが必要なので、`.dfx/local/canister_ids.json内の"website:"`の値、または下記のコマンドを実行して取得しましょう。
 
-```bash
+```
 dfx canister id website
 ```
 

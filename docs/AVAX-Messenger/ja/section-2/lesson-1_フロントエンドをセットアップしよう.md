@@ -58,7 +58,7 @@ yarn create next-app client --ts
 
 ターミナル上で`AVAX-Messenger/`直下にいることを確認して、下記を実行しましょう。
 
-```bash
+```
 yarn client dev
 ```
 

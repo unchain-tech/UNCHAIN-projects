@@ -21,13 +21,13 @@
 
 `config.json`の修正を反映させるため、下記のコマンドを実行しましょう。
 
-```bash
+```
 sugar guard update
 ```
 
 次のようなエラーが発生した場合は以下のように対応してください。
 
-```bash
+```
 🛑 Error running command (re-run needed): Cache file 'cache.json' not found. Run `sugar upload` to create it or provide it with the --cache option.
 ```
 
@@ -296,7 +296,7 @@ expect(clearInterval).toHaveBeenCalled();
 
 では、実際にテストを実行してみましょう。
 
-```bash
+```
 yarn test
 ```
 
@@ -433,7 +433,7 @@ expect(buttonElement).not.toBeInTheDocument();
 
 それでは、実際にテストを実行してみましょう。
 
-```bash
+```
 yarn test
 ```
 

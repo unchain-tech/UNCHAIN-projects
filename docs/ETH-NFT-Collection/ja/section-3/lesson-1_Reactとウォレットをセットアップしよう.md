@@ -14,7 +14,7 @@
 
 ターミナル上で`ETH-NFT-Collection`ディレクトリ直下に移動して下記を実行しましょう。
 
-```bash
+```
 yarn client start
 ```
 

@@ -4,7 +4,7 @@
 
 それでは本プロジェクトで使用するフォルダーを作成してきましょう。作業を始めるディレクトリに移動したら、次のコマンドを実行します。
 
-```bash
+```
 mkdir Polygon-Mobile-dApp
 cd Polygon-Mobile-dApp
 yarn init --private -y
@@ -12,7 +12,7 @@ yarn init --private -y
 
 Polygon-Mobile-dAppディレクトリ内に、package.jsonファイルが生成されます。
 
-```bash
+```
 Polygon-Mobile-dApp
  └── package.json
 ```
@@ -66,7 +66,7 @@ Polygon-Mobile-dApp
 
 これにより、各パッケージのディレクトリへ階層を移動しなくてもプロジェクトのルート直下から以下のようにコマンドを実行することが可能となります（ただし、各パッケージ内に`package.json`ファイルが存在し、その中にコマンドが定義されていないと実行できません。そのため、現在は実行してもエラーとなります。ファイルは後ほど作成します）。
 
-```bash
+```
 yarn <パッケージ名> <実行したいコマンド>
 ```
 
@@ -85,7 +85,7 @@ Polygon-Mobile-dApp
 
 最後に、Polygon-Mobile-dAppディレクトリ下に`.gitignore`ファイルを作成して以下の内容を書き込みます。
 
-```bash
+```
 **/yarn-error.log*
 
 # dependencies
@@ -97,7 +97,7 @@ Polygon-Mobile-dApp
 
 最終的に以下のようなフォルダー構成となっていることを確認してください。
 
-```bash
+```
 Polygon-Mobile-dApp
  ├── .gitignore
  ├── package.json
@@ -118,7 +118,7 @@ Polygon-Mobile-dApp
 
 それでは、先ほど作成した`packages/contract`ディレクトリ内に`package.json`ファイルを作成します。そして以下のように編集しましょう。
 
-```
+```json
 {
   "name": "contract",
   "version": "1.0.0",
@@ -147,7 +147,7 @@ Polygon-Mobile-dApp
 
 次にターミナルに向かい、packages/contract`ディレクトリ内で以下のコマンドを実行します。
 
-```bash
+```
 yarn install
 ```
 
@@ -164,7 +164,7 @@ yarn install
 
 `packages/contract`ディレクトリにいることを確認し、次のコマンドを実行します。
 
-```bash
+```
 npx hardhat
 ```
 
@@ -177,7 +177,7 @@ npx hardhat
 ```
 
 （例）
-```bash
+```
 $ npx hardhat
 
 888    888                      888 888               888
@@ -212,7 +212,7 @@ Give Hardhat a star on Github if you're enjoying it! 💞✨
 >
 > `npx hardhat`が実行されなかった場合、以下をターミナルで実行してください。
 >
-> ```bash
+> ```
 > yarn add --dev @nomicfoundation/hardhat-toolbox
 > ```
 
@@ -240,7 +240,7 @@ Polygon-Mobile-dApp
 
 `packages/contract`ディレクトリにいることを確認し、以下のコマンドを実行してください。
 
-```bash
+```
 yarn add --dev @openzeppelin/contracts
 ```
 
@@ -268,7 +268,7 @@ npx hardhat test
 
 ターミナル上で`ls`と入力してみて、下記のフォルダーとファイルが表示されていたら成功です。
 
-```bash
+```
 README.md         cache             hardhat.config.js package.json      test
 artifacts         contracts         node_modules      scripts
 ```
@@ -298,7 +298,7 @@ Hardhatは段階的に下記を実行しています。
 
 ターミナルに出力されたアドレスを確認してみましょう。
 
-```bash
+```
 Greeter deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 ```
 
@@ -322,7 +322,7 @@ Greeter deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 
 `packages`ディレクトリに移動して、次のコマンドを実行します。
 
-```bash
+```
 flutter create client
 ```
 

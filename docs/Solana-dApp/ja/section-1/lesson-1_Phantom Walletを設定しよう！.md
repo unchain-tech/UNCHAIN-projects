@@ -19,7 +19,7 @@
 
 ※ `YOUR_FORKED_LINK`に先ほどコピーしたリポジトリのリンクを張り付けましょう。
 
-```bash
+```
 git clone YOUR_FORKED_LINK
 ```
 

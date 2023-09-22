@@ -12,7 +12,7 @@
 
 その前に不要なファイルを削除しておきましょう。サンプルプロジェクトに準備されていた`Counter.svelte`ファイルを削除します。
 
-```bash
+```
 rm ./src/lib/Counter.svelte
 ```
 
@@ -22,7 +22,7 @@ rm ./src/lib/Counter.svelte
 
 `src/lib/`フォルダに`Nav.svelte`ファイルを作成します。
 
-```bash
+```
 touch ./src/lib/Nav.svelte
 ```
 
@@ -91,7 +91,7 @@ VS Codeの拡張機能をインストールした方は、クラスにカーソ�
 
 では、動作確認をしてみましょう。プロジェクトを止めてしまった方は以下のコマンドを実行して起動しましょう。
 
-```bash
+```
 npm run dev
 ```
 
@@ -105,7 +105,7 @@ Webサイトの最下部を構成するフッターを実装しましょう。�
 
 まず、`src/lib/`フォルダに`Footer.svelte`ファイルを作成します。
 
-```bash
+```
 touch ./src/lib/Footer.svelte
 ```
 

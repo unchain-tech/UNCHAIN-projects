@@ -61,7 +61,7 @@ yarn contract run:script
 * コントラクトにETHを送金できる機能
 これらの基本機能をテストスクリプトとして記述していきましょう。
 ではpackages/contract/testに`test.js`という名前でファイルを作成して、以下のように記述しましょう。
-```
+```js
 const hre = require('hardhat');
 const { expect } = require('chai');
 
@@ -314,7 +314,7 @@ main()
 
 まずは、`packages/contract/package.json`の`script`部分を以下のように編集してください。
 
-```
+```json
 "scripts": {
     "run:script":"npx hardhat run scripts/run.js",
     "test": "npx hardhat test",
@@ -370,7 +370,7 @@ PolygonscanはEtherscanを搭載しているため、`ETHERSCAN_API`という変
 
 下記の`DEPLOYED_CONTRACT_ADDRESS`と`"BASE_TOKEN_URI"`をあなたのものに更新したら、ターミナルで実行していきましょう。
 
-```bash
+```
 npx hardhat clean
 
 npx hardhat verify --network mumbai DEPLOYED_CONTRACT_ADDRESS "BASE_TOKEN_URI"

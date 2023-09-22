@@ -151,7 +151,7 @@ export default function GetBalance({ refreshBalance }) {
 
 components/GetBalance/index.test.jsが`PASS`し、`Test Suites`が下記のようになっていたらOKです！
 
-```bash
+```
 Test Suites: 2 failed, 3 passed, 5 total
 ```
 

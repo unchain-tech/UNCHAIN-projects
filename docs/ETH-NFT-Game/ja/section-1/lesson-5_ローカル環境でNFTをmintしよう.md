@@ -462,7 +462,7 @@ console.log("Token URI:", returnedTokenUri);
 
 それでは、ターミナル上で下記を実行してみましょう。
 
-```bash
+```
 yarn contract run:script
 ```
 
@@ -692,7 +692,7 @@ abi.encodePacked("data:application/json;base64,", json);
 
 それでは、ターミナル上で下記を実行してみましょう。
 
-```bash
+```
 yarn contract run:script
 ```
 

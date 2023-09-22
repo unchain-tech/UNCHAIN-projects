@@ -314,7 +314,7 @@ ABIファイルの中身は、`WavePortal.json`というファイルに格納さ
 
 2. 下記を実行して、`WavePortal.json`ファイルをVS Codeで開く。
 
-> ```bash
+> ```
 > code client/src/utils/WavePortal.json
 > ```
 

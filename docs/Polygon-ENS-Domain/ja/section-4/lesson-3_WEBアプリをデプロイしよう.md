@@ -12,7 +12,7 @@
 
 `contract`ディレクトリにいどうして下のコマンドを実行しましょう。
 
-```bash
+```
 yarn add --dev dotenv
 ```
 

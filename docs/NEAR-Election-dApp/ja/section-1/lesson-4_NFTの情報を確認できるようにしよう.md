@@ -200,25 +200,25 @@ mintをしたいところですが、mintができているかを確認するた
 
 walletのidをコピーして下のコマンドの`YOUR_WALLET_ID`に入れてターミナルで実行させてください。
 
-```bash
+```
 export NFT_CONTRACT_ID=YOUR_WALLET_ID
 ```
 
 下のコマンドをターミナルを実行させてきちんと`NFT_CONTRACT_ID`という変数にあなたのWallet Idが入っているかを確認してみましょう。
 
-```bash
+```
 echo $NFT_CONTRACT_ID
 ```
 
 確認ができたら、下のコマンドをターミナルを実行させてログインしましょう。
 
-```bash
+```
 near login
 ```
 
 次に`packages/contract/package.json`の`script`部分を以下のように編集してください。
 
-```
+```json
 "scripts": {
     "build":"set -e && RUSTFLAGS='-C link-arg=-s' cargo build --target wasm32-unknown-unknown --release",
     "deploy":"near deploy --wasm-file target/wasm32-unknown-unknown/release/near_election_dapp_contract.wasm --accountId $NFT_CONTRACT_ID",
@@ -227,14 +227,14 @@ near login
 ```
 その後、ターミナル上で、下記を実行してみましょう。
 
-```bash
+```
 yarn contract build
 yarn contract deploy
 ```
 
 では`packages/contract`へ移動して、初期化するために作った`new_default_meta`を下のコマンドをターミナルを実行させましょう。
 
-```bash
+```
 near call $NFT_CONTRACT_ID new_default_meta '{"owner_id": "'$NFT_CONTRACT_ID'"}' --accountId $NFT_CONTRACT_ID
 ```
 
@@ -242,7 +242,7 @@ near call $NFT_CONTRACT_ID new_default_meta '{"owner_id": "'$NFT_CONTRACT_ID'"}'
 
 コードの`nft_mint`以下では、この関数が必要とする引数を記述しています。他にいい画像などがあればそのURLを`media`に入れてもできます！
 
-```bash
+```
 near call $NFT_CONTRACT_ID nft_mint '{"metadata": {"title": "Vote Ticket", "description": "First Token", "media": "https://gateway.pinata.cloud/ipfs/QmUs5K3LwdvbhKA58bH9C6FX5Q7Bhsvvg9GRAhr9aVKLyx", "media_CID": "QmUs5K3LwdvbhKA58bH9C6FX5Q7Bhsvvg9GRAhr9aVKLyx","token_kind": "vote"}, "receiver_id": "'$NFT_CONTRACT_ID'"}' --accountId $NFT_CONTRACT_ID --amount 0.1
 ```
 

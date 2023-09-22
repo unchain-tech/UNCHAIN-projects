@@ -115,7 +115,7 @@ PRIVATE_KEY=<YOUR_PRIVATE_KEY>
 
 では早速デプロイ作業に移りましょう。ターミナルで以下のコマンドを実行します。
 
-```bash
+```
 yarn contract deploy
 ```
 

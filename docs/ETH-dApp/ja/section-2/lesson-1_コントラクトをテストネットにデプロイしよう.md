@@ -200,7 +200,7 @@ code .gitignore
 
 `.gitignore`の中身が下記のようになっていれば、問題ありません。
 
-```bash
+```
 node_modules
 .env
 coverage
@@ -244,13 +244,13 @@ git rm --cached hardhat.config.js
 
 ではルートディレクトリにいることを確認して、ターミナル上で下記のコマンドを実行しましょう。
 
-```bash
+```
 yarn contract deploy
 ```
 
 下記のような結果が出力されていれば成功です 🎉
 
-```bash
+```
 Deploying contracts with account:  0x1A7f14FBF50acf10bCC08466743fB90384Cbd720
 Account balance:  174646846389073382
 Contract deployed to:  0x04da168454AFA19Eb43D6A28b63964D8DCE8351e

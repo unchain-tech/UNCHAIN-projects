@@ -2,14 +2,14 @@
 
 デバイスエイリアスは、[UUID](https://github.com/uuidjs/uuid#readme)でランダムに生成します。以下のコマンドを実行してライブラリをインストールしましょう。
 
-```bash
+```
 npm install uuid@9.0.0
 npm install --save-dev @types/uuid@9.0.2
 ```
 
 次に、下記のコマンドを実行して、キャニスターのデプロイを行いアプリケーションを再度起動します。
 
-```bash
+```
 dfx start --clean --background
 npm run deploy:local
 npm run start

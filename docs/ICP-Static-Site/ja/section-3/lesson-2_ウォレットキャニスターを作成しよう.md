@@ -12,19 +12,19 @@
 
 以下のコマンドを実行して、無料サイクルがあらかじめ入った状態のウォレットキャニスターを作成します。
 
-```bash
+```
 dfx canister --network=ic call fg7gi-vyaaa-aaaal-qadca-cai redeem '("YOUR_COUPON_CODE")'
 ```
 
 少し待つと、ウォレットキャニスター IDが返されます。
 
-```bash
+```
 (principal "CANISTER_ID")
 ```
 
 以下のコマンドで、作成されたウォレットキャニスターのステータスを確認してみましょう。
 
-```bash
+```
 dfx canister --network=ic status CANISTER_ID
 ```
 
@@ -34,13 +34,13 @@ dfx canister --network=ic status CANISTER_ID
 
 ターミナルで以下のコマンドを実行しましょう。
 
-```bash
+```
 dfx identity --network=ic set-wallet CANISTER_ID
 ```
 
 このような出力が返されます。
 
-```bash
+```
 Setting wallet for identity 'default' on network 'ic' to id 'CANISTER_ID'
 Wallet set successfully.
 ```
@@ -50,13 +50,13 @@ Wallet set successfully.
 最後に、ウォレットキャニスターの残高を確認をしてみましょう。
 以下のコマンドを実行します。
 
-```bash
+```
 dfx wallet --network=ic balance
 ```
 
 残高が取得できれば完了です！
 
-```bash
+```
 20.099 TC (trillion cycles).
 ```
 

@@ -196,7 +196,7 @@ login関数を呼び出して認証が成功したら、`showMessage()`関数を
 
 それでは、動作確認をしてみましょう。キャニスターをデプロイして、プロジェクトを起動します。
 
-```bash
+```
 dfx start --clean --background
 npm run deploy:local
 npm run start

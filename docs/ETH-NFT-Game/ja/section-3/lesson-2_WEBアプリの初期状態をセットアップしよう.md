@@ -28,7 +28,7 @@
 
 `client`ディレクトリ上で下記を実行すると、スムーズに移動できます。
 
-```bash
+```
 cd src/Components/SelectCharacter
 ```
 
@@ -163,7 +163,7 @@ return (
 
 まず、ターミナル上で下記を実行しましょう。
 
-```bash
+```
 yarn client start
 ```
 

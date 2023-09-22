@@ -25,7 +25,7 @@ Rustがわからなくても心配しないでください。
 
 ターミナルを開いて次のコマンドを実行します。
 
-```bash
+```
 curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
 ```
 
@@ -35,7 +35,7 @@ curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
 
 以下のコマンドを実行して、Rustのバージョンが表示されていればOKです。
 
-```bash
+```
 rustup --version
 ```
 
@@ -43,7 +43,7 @@ rustup --version
 
 Rustコンパイラのバージョンが表示されていればOKです。
 
-```bash
+```
 rustc --version
 ```
 
@@ -51,7 +51,7 @@ rustc --version
 
 Cargoのバージョンが表示されていればOKです。
 
-```bash
+```
 cargo --version
 ```
 
@@ -66,7 +66,7 @@ Solana CLIをWindows、Linux、およびMacにインストールするための�
 
 ※ 安定版をインストールするには、以下のようにバージョン番号を`stable`に置き換えます（以下のコマンドは参考ですので、環境にあったインストール方法を実行してください）。
 
-```bash
+```
 sh -c "$(curl -sSfL https://release.solana.com/stable/install)"
 ```
 
@@ -80,20 +80,20 @@ sh -c "$(curl -sSfL https://release.solana.com/stable/install)"
 
 以下のコマンドを実行します。
 
-```bash
+```
 solana --version
 ```
 
 次に、以下の2つのコマンドを別々に実行してください。
 
-```bash
+```
 solana config set --url localhost
 solana config get
 ```
 
 コマンドを入力すると以下のように出力されます。
 
-```bash
+```
 Config File: 任意のディレクトリ名\.config\solana\cli\config.yml
 RPC URL: http://localhost:8899
 WebSocket URL: ws://localhost:8900/ (computed)
@@ -109,7 +109,7 @@ Commitment: confirmed
 
 `packages/contractに移動して、以下のコマンドを実行しましょう。
 
-```bash
+```
 solana-test-validator
 ```
 
@@ -126,7 +126,7 @@ solana-test-validator
 
 不安な方は以下のコマンドを別々に実行して、それぞれのバージョン情報が出力されるかどうか確認してみてください。
 
-```bash
+```
 node -v
 npm -v
 ```
@@ -135,7 +135,7 @@ npm -v
 
 以下のコマンドを実行します。
 
-```bash
+```
 npm install -g mocha
 ```
 
@@ -148,19 +148,19 @@ AnchorはSolanaのために作られたHardhatのようなものです。
 
 Anchorをインストールする前に、まずはパッケージマネージャー `yarn`を以下のコマンドを実行してインストールします。
 
-```bash
+```
 npm install -g yarn
 ```
 
 次に、以下のコマンドを実行してAnchor CLIをインストールします。
 
-```bash
+```
 npm i -g @project-serum/anchor-cli
 ```
 
 続いて、以下のコマンドを実行してAnchorのバージョン情報を出力しましょう。
 
-```bash
+```
 anchor --version
 ```
 
@@ -174,7 +174,7 @@ Solanaプログラムと通信するには、トランザクションにデジ�
 
 上記のコマンドで生成したディレクトリに移動して、以下のコマンドを実行してキーペアを作りましょう。
 
-```bash
+```
 solana-keygen new
 ```
 
@@ -182,7 +182,7 @@ solana-keygen new
 
 次に、以下のコマンドを実行して、作成したキーペアを確認します。
 
-```bash
+```
 solana address
 ```
 
@@ -190,7 +190,7 @@ solana address
 
 最後に`packages/contract/Anchor.toml`の12行目にあるパスを自身のPCのものに置き換えてください。
 
-```
+```toml
 wallet = "/Users/{YOUR_USERNAME}/.config/solana/id.json" # YOUR_USERNAMEは自分のPCのユーザー名に置き換えてください
 ```
 
@@ -209,7 +209,7 @@ wallet = "/Users/{YOUR_USERNAME}/.config/solana/id.json" # YOUR_USERNAMEは自�
 
 以下のコマンドを実行してみてください。
 
-```bash
+```
 anchor test
 ```
 

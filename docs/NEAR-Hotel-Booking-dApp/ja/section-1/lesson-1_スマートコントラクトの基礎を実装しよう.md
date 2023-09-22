@@ -37,13 +37,13 @@ NEARブロックチェーンには2種類のメソッドがあります。
 
 編集後、スマートコントラクトが問題なくコンパイル・デプロイされるかを確認します。
 
-```bash
+```
 yarn deploy
 ```
 
 問題がなければ、以下のように表示されます。
 
-```bash
+```
 Transaction Id 2hqDQBHSQ8cuXYBjjs1kkPHarfDPDcoRXB6XfFfEMFEE
 To see the transaction in the transaction explorer, please open this url in your browser
 https://explorer.testnet.near.org/transactions/2hqDQBHSQ8cuXYBjjs1kkPHarfDPDcoRXB6XfFfEMFEE
@@ -98,14 +98,14 @@ use std::collections::HashMap;
 
 + type RoomId = String;
 + type CheckInDate = String;
-+ 
++
 + #[derive(Serialize, Deserialize, Debug, BorshSerialize, BorshDeserialize, PartialEq)]
 + #[serde(crate = "near_sdk::serde")]
 + pub enum UsageStatus {
 +     Available,                           // 空室
 +     Stay { check_in_date: CheckInDate }, // 滞在中
 + }
-+ 
++
 + // オーナーが登録した部屋一覧を表示する際に使用
 + #[derive(Serialize, Deserialize, Debug, BorshSerialize, BorshDeserialize)]
 + #[serde(crate = "near_sdk::serde")]
@@ -118,7 +118,7 @@ use std::collections::HashMap;
 +     price: U128,
 +     status: UsageStatus,
 + }
-+ 
++
 + // 実際にブロックチェーン上に保存される部屋のデータ
 + #[derive(BorshDeserialize, BorshSerialize)]
 + pub struct Room {

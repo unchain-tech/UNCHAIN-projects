@@ -4,7 +4,7 @@
 
 秘密鍵などのファイルを隠すために`dotenv`というパッケージを追加します。ターミナルで`packages/contract`に移動して、下記を実行してください。
 
-```bash
+```
 yarn add --dev dotenv
 ```
 

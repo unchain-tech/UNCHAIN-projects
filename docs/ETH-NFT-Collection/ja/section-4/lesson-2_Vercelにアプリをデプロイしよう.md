@@ -4,7 +4,7 @@
 
 秘密鍵などのファイルを隠すために、ターミナルで`packages/contract`ディレクトリに移動して、下記を実行してください。
 
-```bash
+```
 yarn add --dev dotenv
 ```
 
@@ -251,13 +251,13 @@ Vercelに関する詳しい説明は、[こちら](https://zenn.dev/lollipop_onl
 
 スタータープロジェクト内の`.git`ディレクトリを削除します。
 
-```bash
+```
 rm -rf packages/client/.git
 ```
 
 ローカル環境の`ETH-NFT-Collection`ディレクトリと、GitHubのリポジトリを紐づけてコードをアップロードします。
 
-```bash
+```
 git init
 git add .
 git commit -m "upload to github"

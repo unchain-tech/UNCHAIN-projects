@@ -46,7 +46,7 @@
 
 Etherscanでverificationを行うために必要なツールをインストールします。
 
-```bash
+```
 yarn add @nomiclabs/hardhat-etherscan
 ```
 
@@ -88,7 +88,7 @@ module.exports = {
 
 下記の`DEPLOYED_CONTRACT_ADDRESS`と`"BASE_TOKEN_URI"`をあなたのものに更新したら、`packages/contract`へ移動してターミナルで実行していきましょう。
 
-```bash
+```
 npx hardhat clean
 
 npx hardhat verify --network sepolia DEPLOYED_CONTRACT_ADDRESS "BASE_TOKEN_URI"

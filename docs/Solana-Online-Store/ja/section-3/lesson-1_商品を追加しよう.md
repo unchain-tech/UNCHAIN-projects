@@ -8,7 +8,7 @@
 
 私の場合、`.env.local`ファイルは以下のようになります。
 
-```code
+```
 // .env.local
 NEXT_PUBLIC_OWNER_PUBLIC_KEY=2TmQsWGFh5vhqJdDrG6uA2MRstGrUwUCiiThyHL9HaMe
 ```
@@ -234,7 +234,7 @@ expect(window.alert).toBeCalledWith('Product added!');
 
 jestコマンドを更新したら、ターミナルで`yarn test`を実行してみましょう。
 
-```bash
+```
 yarn test
 ```
 

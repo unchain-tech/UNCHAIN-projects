@@ -479,7 +479,7 @@ expect(sendTransactionMock).toBeCalledWith('mockTx', 'connection');
 
 jestコマンドを更新したら、ターミナルで`yarn test`を実行してみましょう。
 
-```bash
+```
 yarn test
 ```
 

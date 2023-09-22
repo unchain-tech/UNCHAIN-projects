@@ -7,7 +7,7 @@
 
 Hardhatを使用する場合、ファイル構造は非常に重要ですので、注意する必要があります。ファイル構造が下記のようになっていれば大丈夫です 😊
 
-```bash
+```
 contract/
 └── contracts/
     └── Messenger.sol

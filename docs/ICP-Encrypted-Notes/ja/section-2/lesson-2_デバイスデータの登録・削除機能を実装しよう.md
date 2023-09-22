@@ -330,7 +330,7 @@ export_candid!();
 
 関数を新しく追加したので、インタフェースを更新しましょう。下記のコマンドを実行します。
 
-```bash
+```
 npm run generate:did
 ```
 
@@ -340,7 +340,7 @@ npm run generate:did
 
 現在のテストスクリプトを実行すると、下のようなエラーが発生するかと思います。addNote関数を実行した際に、アサーションエラーが発生しています。
 
-```bash
+```
 # 実行例
 ===== addNote =====
 2023-09-11 07:46:06.904263 UTC: [Canister bkyz2-fmaaa-aaaaa-qaaaq-cai] Panicked at 'assertion failed: is_caller_registered(caller)', src/encrypted_notes_backend/src/lib.rs:70:5
@@ -351,14 +351,14 @@ Return none: ERR
 1c1
 < ()
 ---
-> 
+>
 ```
 
 これは、プリンシパルが登録済みかどうかのチェックを追加したためです。エラーを回避するには、register_device関数を最初に呼び出す必要があります。
 
 では、テストスクリプトを更新します。下記の内容を`FUNCTION='addNote'`の上に記述しましょう。
 
-```bash
+```
 # ===== テスト =====
 FUNCTION='registerDevice'
 echo -e "\n===== $FUNCTION ====="
@@ -385,7 +385,7 @@ compare_result "Return deviceAliases list $FUNCTION" "$EXPECT" "$RESULT" || TEST
 
 次に、テストで使用するデバイスデータを定義します。下記を`TEST_STATUS=0`の下に追加してください。
 
-```bash
+```
 TEST_DEVICE_ALIAS_01='TEST_DEVICE_ALIAS_01'
 TEST_DEVICE_ALIAS_02='TEST_DEVICE_ALIAS_02'
 TEST_PUBLIC_KEY_01='TEST_PUBLIC_KEY_01'
@@ -396,7 +396,7 @@ TEST_ENCRYPTED_SYMMETRIC_KEY_02='TEST_ENCRYPTED_SYMMETRIC_KEY_02'
 
 テストスクリプトを実行してみましょう。
 
-```bash
+```
 npm run test
 ```
 

@@ -48,15 +48,15 @@
 
 OpenSeaなどのNFTマーケットプレイスでJSONファイルの内容を表示させるためには、下記のように標準に準拠した方法でJSONファイルを形成する必要があります。
 
-```
+```json
 {
-   "description"： "Friendly OpenSea Creature"、
-   "image"： "https://opensea-prod.appspot.com/puffs/3.png"、
-   "name"： "Dave Starbelly"、
+   "description"： "Friendly OpenSea Creature",
+   "image"： "https://opensea-prod.appspot.com/puffs/3.png",
+   "name"： "Dave Starbelly",
    "attributes"：[
-       { "trait_type"： "Base"、 "value"： "Starfish"}、
-       {"trait_type"： "Eyes"、 "value"： "Big"}、
-       {"trait_type"： "Mouth"、 "value"： "Surprise"}、
+       { "trait_type"： "Base"、 "value"： "Starfish"},
+       {"trait_type"： "Eyes"、 "value"： "Big"},
+       {"trait_type"： "Mouth"、 "value"： "Surprise"},
    ]
 }
 ```
@@ -203,7 +203,7 @@ PinataにアップロードされたJSONファイルは下記のように表示�
 
 私の`#0 `番目のNFTコレクションのデータは以下のようになります。
 
-```
+```json
 {"name": "First Collection #0", "description": "A collection of Scrappy Squirrel.", "image": "ipfs://Qman4YbTQHsLDSJvjV5MMnGmF7kmWujVeFhAxUoisHifZF/00.png", "attributes": [{"trait_type": "Background", "value": "white"}, {"trait_type": "Body", "value": "maroon"}, {"trait_type": "Eyes", "value": "standard"}, {"trait_type": "Clothes", "value": "blue_dot"}, {"trait_type": "Held Item", "value": "nut"}, {"trait_type": "Hands", "value": "standard"}]}
 ```
 

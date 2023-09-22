@@ -304,7 +304,7 @@ export default App;
 
 ではフロントを立ち上げてみて、機能しているかを確認してみましょう。
 
-```bash
+```
 yarn client start
 ```
 

@@ -6,7 +6,7 @@
 
 [`qr_code_scan.dart`]
 
-```
+```dart
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -141,7 +141,7 @@ class _QRCodeScanState extends State<QRCodeScan> {
 
 [`send.dart`]
 
-```
+```dart
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -718,7 +718,7 @@ class _SendState extends State<Send> {
 
 [`wallet.dart`]
 
-```
+```dart
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
