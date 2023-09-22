@@ -106,8 +106,8 @@
 ```ts
 import {
   _SERVICE,
-  RegisterKeyResult,
-  SynchronizeKeyResult,
+  Result_1,
+  Result,
 } from '../../../declarations/encrypted_notes_backend/encrypted_notes_backend.did';
 ```
 
@@ -116,7 +116,7 @@ import {
 ```ts
   public async trySyncSymmetricKey(): Promise<boolean> {
     // 対称鍵が同期されているか確認します。
-    const syncedSymmetricKey: SynchronizeKeyResult =
+    const syncedSymmetricKey: Result =
       await this.actor.getEncryptedSymmetricKey(this.exportedPublicKeyBase64);
     if ('Err' in syncedSymmetricKey) {
       // エラー処理を行います。
@@ -144,7 +144,7 @@ import {
 追加したコードを確認しましょう。`getEncryptedSymmetricKey`関数を実行して、自身の公開鍵で暗号化された対称鍵がバックエンドキャニスターにアップロードされているかを確認します。
 
 ```ts
-    const syncedSymmetricKey: SynchronizeKeyResult =
+    const syncedSymmetricKey: Result =
       await this.actor.getEncryptedSymmetricKey(this.exportedPublicKeyBase64);
 ```
 
@@ -205,7 +205,7 @@ import {
 「2. ユーザーが再ログインをしたとき」で実装したtrySyncSymmetricKey関数を思い出してください。`this.actor.getEncryptedSymmetricKey`の戻り値がエラーの時、1つだけエラーをスローするのではなくfalseを返す条件分岐がありました。ユーザーが別のデバイスで初めてログインをしたとき、この条件分岐が実行されます。
 
 ```ts
-    const syncedSymmetricKey: SynchronizeKeyResult =
+    const syncedSymmetricKey: Result =
       await this.actor.getEncryptedSymmetricKey(this.exportedPublicKeyBase64);
     if ('Err' in syncedSymmetricKey) {
       // エラー処理を行います。
@@ -376,7 +376,7 @@ init関数、trySyncSymmetricKey関数、syncSymmetricKey関数を追加・更�
         this.publicKey,
       );
       // 暗号化した対称鍵をバックエンドキャニスターに登録します。
-      const result: RegisterKeyResult =
+      const result: Result_1 =
         await this.actor.registerEncryptedSymmetricKey(
           this.exportedPublicKeyBase64,
           wrappedSymmetricKeyBase64,
@@ -414,7 +414,7 @@ init関数、trySyncSymmetricKey関数、syncSymmetricKey関数を追加・更�
 
   public async trySyncSymmetricKey(): Promise<boolean> {
     // 対称鍵が同期されているか確認します。
-    const syncedSymmetricKey: SynchronizeKeyResult =
+    const syncedSymmetricKey: Result =
       await this.actor.getEncryptedSymmetricKey(this.exportedPublicKeyBase64);
     if ('Err' in syncedSymmetricKey) {
       // エラー処理を行います。

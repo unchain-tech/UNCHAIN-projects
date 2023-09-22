@@ -258,52 +258,15 @@ fn upload_encrypted_symmetric_keys(
 }
 ```
 
-### 🤝 インタフェースを定義しよう
+### 🤝 インタフェースを更新しよう
 
-新しい関数を定義したので、`encrypted_notes_backend.did`を下記の内容で更新しましょう。
+新しい関数を定義したので、`encrypted_notes_backend.did`を更新しましょう。下記のコマンドを実行します。
 
-```javascript
-type DeviceAlias = text;
-type PublicKey = text;
-type EncryptedSymmetricKey = text;
-
-type EncryptedNote = record {
-  "id" : nat;
-  "data" : text;
-};
-
-type DeviceError = variant {
-  AlreadyRegistered;
-  DeviceNotRegistered;
-  KeyNotSynchronized;
-  UnknownPublicKey;
-};
-
-type RegisterKeyResult = variant {
-  Ok;
-  Err : DeviceError;
-};
-
-type SynchronizeKeyResult = variant {
-  Ok : EncryptedSymmetricKey;
-  Err : DeviceError;
-};
-
-service : {
-  "deleteDevice" : (DeviceAlias) -> ();
-  "getDeviceAliases" : () -> (vec DeviceAlias) query;
-  "getEncryptedSymmetricKey" : (PublicKey) -> (SynchronizeKeyResult) query;
-  "getUnsyncedPublicKeys" : () -> (vec PublicKey) query;
-  "isEncryptedSymmetricKeyRegistered" : () -> (bool) query;
-  "registerDevice" : (DeviceAlias, PublicKey) -> ();
-  "registerEncryptedSymmetricKey" : (PublicKey, EncryptedSymmetricKey) -> (RegisterKeyResult);
-  "uploadEncryptedSymmetricKeys" : (vec record { PublicKey; EncryptedSymmetricKey }) -> (RegisterKeyResult);
-  "addNote" : (text) -> ();
-  "deleteNote" : (nat) -> ();
-  "getNotes" : () -> (vec EncryptedNote) query;
-  "updateNote" : (EncryptedNote) -> ();
-};
+```bash
+npm run generate:did
 ```
+
+ファイルに関数の定義が追加されたことを確認しましょう。
 
 ### ✅ 動作確認をしよう
 

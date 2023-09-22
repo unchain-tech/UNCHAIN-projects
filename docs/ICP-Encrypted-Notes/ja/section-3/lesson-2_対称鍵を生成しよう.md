@@ -15,7 +15,7 @@ npm run start
 ```ts
 import {
   _SERVICE,
-  RegisterKeyResult,
+  Result_1,
 } from '../../../declarations/encrypted_notes_backend/encrypted_notes_backend.did';
 ```
 
@@ -36,7 +36,7 @@ init関数に対称鍵の生成と登録を行うコードを追加します。`
         this.publicKey,
       );
       // 暗号化した対称鍵をバックエンドキャニスターに登録します。
-      const result: RegisterKeyResult =
+      const result: Result_1 =
         await this.actor.registerEncryptedSymmetricKey(
           this.exportedPublicKeyBase64,
           wrappedSymmetricKeyBase64,
@@ -110,7 +110,7 @@ wrapSymmetricKey関数を簡単に解説します。鍵を暗号化するには�
 init関数に戻り、最後は暗号化された対称鍵をバックエンドキャニスターに登録します。登録時にエラーが返されたら、対応するエラーをスローします。
 
 ```ts
-      const result: RegisterKeyResult =
+      const result: Result_1 =
         await this.actor.registerEncryptedSymmetricKey(
           this.exportedPublicKeyBase64,
           wrappedSymmetricKeyBase64,
@@ -146,7 +146,7 @@ initialized: true
 ```diff
 import {
   _SERVICE,
-+  RegisterKeyResult,
++  Result_1,
 } from '../../../declarations/encrypted_notes_backend/encrypted_notes_backend.did';
 
 ...
@@ -197,7 +197,7 @@ import {
 +        this.publicKey,
 +      );
 +      // 暗号化した対称鍵をバックエンドキャニスターに登録します。
-+      const result: RegisterKeyResult =
++      const result: Result_1 =
 +        await this.actor.registerEncryptedSymmetricKey(
 +          this.exportedPublicKeyBase64,
 +          wrappedSymmetricKeyBase64,

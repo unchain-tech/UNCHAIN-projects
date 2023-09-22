@@ -15,8 +15,7 @@ encrypted_notes_backend/
 作成した`devices.rs`の先頭に、useキーワードでファイル内で使用したい機能をインポートします。
 
 ```rust
-use candid::CandidType;
-use ic_cdk::export::Principal;
+use candid::{CandidType, Principal};
 use serde::{Deserialize, Serialize};
 use std::collections::hash_map::Entry;
 use std::collections::HashMap;
@@ -227,9 +226,9 @@ fn get_device_aliases() -> Vec<DeviceAlias> {
 // lib.rs
 use crate::devices::*;
 use crate::notes::*;
+use candid::Principal;
 use ic_cdk::api::caller as caller_api;
-use ic_cdk::export::Principal;
-use ic_cdk_macros::*;
+use ic_cdk_macros::{export_candid, query, update};
 use std::cell::RefCell;
 
 mod devices;
@@ -321,33 +320,21 @@ fn update_note(new_note: EncryptedNote) {
         notes.borrow_mut().update_note(caller, new_note);
     })
 }
+
+// .didファイルを生成します。
+export_candid!();
+
 ```
 
 ### 🤝 インタフェースを更新しよう
 
-関数を新しく追加したので、インタフェースを更新しましょう。`encrypted_notes_backend.did`を下記の内容で更新します。
+関数を新しく追加したので、インタフェースを更新しましょう。下記のコマンドを実行します。
 
-```javascript
-type DeviceAlias = text;
-type PublicKey = text;
-type EncryptedSymmetricKey = text;
-
-type EncryptedNote = record {
-  "id" : nat;
-  "data" : text;
-};
-
-service : {
-  "deleteDevice" : (DeviceAlias) -> ();
-  "getDeviceAliases" : () -> (vec DeviceAlias) query;
-  "registerDevice" : (DeviceAlias, PublicKey) -> ();
-  "addNote" : (text) -> ();
-  "deleteNote" : (nat) -> ();
-  "getNotes" : () -> (vec EncryptedNote) query;
-  "updateNote" : (EncryptedNote) -> ();
-};
-
+```bash
+npm run generate:did
 ```
+
+ファイルに関数の定義が追加されたことを確認しましょう。
 
 ### ✅ 動作確認をしよう
 
@@ -410,7 +397,7 @@ TEST_ENCRYPTED_SYMMETRIC_KEY_02='TEST_ENCRYPTED_SYMMETRIC_KEY_02'
 テストスクリプトを実行してみましょう。
 
 ```bash
-bash ./scripts/test.sh
+npm run test
 ```
 
 全てのテストにパスしたら、バックエンドキャニスターの準備は完了です。
