@@ -64,7 +64,7 @@
 
 この時、フロントエンドのディレクトリ(ここでは`client`)にいることを確認して行ってください。
 
-```bash
+```
 yarn add react-ipfs-image react-router-dom
 ```
 
@@ -72,7 +72,7 @@ yarn add react-ipfs-image react-router-dom
 
 [dev-account.env]
 
-```bash
+```
 CONTRACT_NAME=YOUR_WALLET_ID
 ```
 
@@ -704,7 +704,7 @@ yarn install
 
 それでは準備は整ったので下のコマンドをターミナルで実行させてみましょう
 
-```bash
+```
 yarn client dev
 ```
 

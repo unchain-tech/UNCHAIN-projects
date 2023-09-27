@@ -208,13 +208,13 @@ describe('TokenFarm', () => {
 
 それでは、ターミナルで下記のコマンドを実行しすることでテストしていきましょう！
 
-```bash
+```
 yarn test
 ```
 
 以下のような結果がターミナルに出力されていれば成功です🎉
 
-```bash
+```
 Contract: TokenFarm
     Mock DAI deployment
       ✓ has a name (39ms)
@@ -236,7 +236,7 @@ Contract: TokenFarm
 
 ではpackages/contract/scriptsに`deploy.js`という名前でファイルを作成して、以下のように記述しましょう。
 
-```
+```javascript
 const hre = require('hardhat');
 const web3 = require('web3');
 
@@ -287,7 +287,7 @@ dApp用のトークンはアンステーキングのときに投資家の方に�
 
 ここで、`packages/contract/package.json`の`script`部分を以下のように編集してください。
 
-```
+```json
 "scripts": {
     "test": "npx hardhat test",
     "deploy": "npx hardhat run scripts/deploy.js --network sepolia"

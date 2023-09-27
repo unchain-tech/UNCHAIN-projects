@@ -376,13 +376,13 @@ fn transfer_test() {
 
 それでは`NEAR-Election-dApp`ディレクトリにいる状態で、下のコマンドをターミナルで実行しテストをしてみましょう！
 
-```bash
+```
 yarn contract test
 ```
 
 下のような結果が返ってきていれば成功です！
 
-```bash
+```
 running 3 tests
 test tests::vote_closed_test ... ok
 test tests::mint_test ... ok
@@ -415,7 +415,7 @@ section1-lesson4で行った`new_default_meta関数をターミナルで走ら�
 
 画像のCID（IPFSで保存された画像のURI）やtitleは自由に変えてもらって大丈夫です！
 
-```bash
+```
 near call $NFT_CONTRACT_ID nft_mint '{"metadata": {"title": "Rob Stark(candidate)", "description": "Forth Token", "media": "https://gateway.pinata.cloud/ipfs/QmQaBSeg58JcWkCxzGhqHiy9SSUugH9MtV8UnZQ3siMRYA", "media_CID": "QmQaBSeg58JcWkCxzGhqHiy9SSUugH9MtV8UnZQ3siMRYA", "candidate_name": "Rob Stark", "candidate_manifest": "In three words I can sum up everything I have learned about life it goes on.", "token_kind": "candidate"}, "receiver_id": "'$NFT_CONTRACT_ID'"}' --accountId $NFT_CONTRACT_ID --amount 0.1
 ```
 
@@ -424,13 +424,13 @@ near call $NFT_CONTRACT_ID nft_mint '{"metadata": {"title": "Rob Stark(candidate
 
 まずは下のコマンドでmintしたNFTの値を確認してみましょう！
 
-```bash
+```
 near view $NFT_CONTRACT_ID nft_tokens
 ```
 
 下のようにNFTのmetadataが返ってくるはずです。
 
-```bash
+```
 [
   {
     owner_id: 'YOUR_WALLET_ID',
@@ -449,20 +449,20 @@ near view $NFT_CONTRACT_ID nft_tokens
 
 次にこのNFTに紐づいた得票数を確認してみましょう。
 
-```bash
+```
 near call $NFT_CONTRACT_ID nft_return_candidate_likes '{"token_id": 0}' --accountId $NFT_CONTRACT_ID
 ```
 
 `0`という値が返ってくるはずです。
 今度はNFTに紐づいた得票数を1大きくしてみましょう。
 
-```bash
+```
 near call $NFT_CONTRACT_ID nft_add_likes_to_candidate '{"token_id": 0}' --accountId $NFT_CONTRACT_ID
 ```
 
 返り値はないですが、再び下のコマンドを実行しこのNFTに紐づいた得票数を確認してみましょう。
 
-```bash
+```
 near call $NFT_CONTRACT_ID nft_return_candidate_likes '{"token_id": 0}' --accountId $NFT_CONTRACT_ID
 ```
 
@@ -472,7 +472,7 @@ near call $NFT_CONTRACT_ID nft_return_candidate_likes '{"token_id": 0}' --accoun
 
 下のコマンドで現在投票が締め切られているか確認してみましょう。
 
-```bash
+```
 near view $NFT_CONTRACT_ID if_election_closed
 ```
 
@@ -482,13 +482,13 @@ near view $NFT_CONTRACT_ID if_election_closed
 
 では次に投票を締め切りましょう。
 
-```bash
+```
 near call $NFT_CONTRACT_ID close_election --accountId $NFT_CONTRACT_ID
 ```
 
 再度、下のコマンドを入力してみてください。
 
-```bash
+```
 near view $NFT_CONTRACT_ID if_election_closed
 ```
 
@@ -496,7 +496,7 @@ near view $NFT_CONTRACT_ID if_election_closed
 
 では試しに下のコマンドをターミナルで実行させて違う候補者のNFTをmintしてみましょう。
 
-```bash
+```
 near call $NFT_CONTRACT_ID nft_mint '{"metadata": {"title": "Jenny Lind(candidate)", "description": "Seventh Token", "media": "https://gateway.pinata.cloud/ipfs/QmWUzLowW5ErzoezkpdSVZNF5LFgWTtMhiwfAdZU9LhcgF", "media_CID": "QmWUzLowW5ErzoezkpdSVZNF5LFgWTtMhiwfAdZU9LhcgF", "candidate_name": "Jenny Lind", "candidate_manifest": "Be yourself everyone else is already taken.", "token_kind": "candidate"}, "receiver_id": "'$NFT_CONTRACT_ID'"}' --accountId $NFT_CONTRACT_ID --amount 0.1
 ```
 
@@ -506,13 +506,13 @@ panic（rustにおけるerror）が起こっていればOKです。
 
 では投票を再開してみましょう。
 
-```bash
+```
 near call $NFT_CONTRACT_ID reopen_election --accountId $NFT_CONTRACT_ID
 ```
 
 次に現在投票が再開されているか確認してみましょう。
 
-```bash
+```
 near view $NFT_CONTRACT_ID if_election_closed
 ```
 
@@ -520,7 +520,7 @@ near view $NFT_CONTRACT_ID if_election_closed
 
 では先ほど試みたmintをもう一度してみましょう!下のコマンドをターミナルで実行させてください。
 
-```bash
+```
 near call $NFT_CONTRACT_ID nft_mint '{"metadata": {"title": "Jenny Lind(candidate)", "description": "Seventh Token", "media": "https://gateway.pinata.cloud/ipfs/QmWUzLowW5ErzoezkpdSVZNF5LFgWTtMhiwfAdZU9LhcgF", "media_CID": "QmWUzLowW5ErzoezkpdSVZNF5LFgWTtMhiwfAdZU9LhcgF", "candidate_name": "Jenny Lind", "candidate_manifest": "Be yourself everyone else is already taken.", "token_kind": "candidate"}, "receiver_id": "'$NFT_CONTRACT_ID'"}' --accountId $NFT_CONTRACT_ID --amount 0.1
 ```
 

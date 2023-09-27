@@ -154,7 +154,7 @@ const tx = await program.rpc.startStuffOff();
 
 続いて、`myepicproject/Anchor.toml`の`[scripts]`タグを少し変更します。
 
-```bash
+```
 [scripts]
 test = "node tests/myepicproject.js"
 ```
@@ -163,13 +163,13 @@ test = "node tests/myepicproject.js"
 
 ※ VS Codeを使用している場合は、変更したファイルを全て保存してから実行してください。
 
-```bash
+```
 anchor test
 ```
 
 以下のように出力されていればOKです。
 
-```bash
+```
 🚀 Starting test...
 📝 Your transaction signature 4D5hbvQKADe6zxmB6qsnG5LRcfkYYCug3sAfbuKs94UdY1B4Hmj85DvnNLbagUxXQPqAJQDLocECEPtNa6RPayuS
 ```

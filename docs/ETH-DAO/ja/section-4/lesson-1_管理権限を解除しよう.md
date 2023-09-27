@@ -41,13 +41,13 @@ const token = sdk.getContract(ERCTokenAddress, 'token');
 
 それでは、ターミナルに移動し、下記コマンドを実行してみましょう。
 
-```bash
+```
 yarn node --loader ts-node/esm src/scripts/11-revoke-roles.ts
 ```
 
 以下のような表示がされたら、成功です。
 
-```bash
+```
 SDK initialized by address: 0x8cB688A30D5Fd6f2e5025d8915eD95e770832933
 👀 Roles that exist right now: {
   admin: [ '0x8cB688A30D5Fd6f2e5025d8915eD95e770832933' ],
@@ -65,7 +65,7 @@ SDK initialized by address: 0x8cB688A30D5Fd6f2e5025d8915eD95e770832933
   minter: [],
   transfer: [
     '0x8cB688A30D5Fd6f2e5025d8915eD95e770832933',
-    '0x0000000000000000000000000000000000000000' 
+    '0x0000000000000000000000000000000000000000'
   ]
 }
 ✅ Successfully revoked our superpowers from the ERC-20 contract
@@ -129,7 +129,7 @@ const Home: NextPage = () => {
 
   // メンバーごとの保有しているトークンの数をステートとして宣言
   const [memberTokenAmounts, setMemberTokenAmounts] = useState<any>([]);
-  
+
   // DAO メンバーのアドレスをステートで宣言
   const [memberAddresses, setMemberAddresses] = useState<string[] | undefined>([]);
 
@@ -285,7 +285,7 @@ const Home: NextPage = () => {
       setIsClaiming(false);
     }
   };
-  
+
   // ウォレットと接続していなかったら接続を促す
   if (!address) {
     return (

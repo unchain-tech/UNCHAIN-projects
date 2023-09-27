@@ -190,7 +190,7 @@ console.log('👀 GIF Count', account.totalGifs.toString())
 
 `anchor test`コマンドを実行すると以下のように表示されます。
 
-```bash
+```
 🚀 Starting test...
 📝 Your transaction signature 44Ufkfyq56kHkYeahViFrJPwBV5w99kMLLRY9NbRfRWA7PjBcLVfC9GLvsceW9YhSc39QwrHcWaBMmoEHhdkcaCx
 👀 GIF Count 0
@@ -336,13 +336,13 @@ runMain();
 
 以下のコマンドを実行してみましょう。
 
-```bash
+```
 anchor test
 ```
 
 以下のように表示されればOKです。
 
-```bash
+```
 🚀 Starting test...
 📝 Your transaction signature 2MdxhYHDDnhuJ9wr2LYqTL8t39qb8FeTU9iffUXyYdUBRYB1yU9XZYBayUk2usPV9tCyLmoutfuSokx8Pn6Lc8Tf
 👀 GIF Count 0

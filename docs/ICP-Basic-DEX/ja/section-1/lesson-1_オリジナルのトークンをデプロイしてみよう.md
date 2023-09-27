@@ -21,7 +21,7 @@
 
 ターミナルで`icp_basic_dex/src/`下に移動し、DIP20リポジトリをサブモジュールとして取り込みましょう。
 
-```bash
+```
 cd src/
 git submodule add https://github.com/Psychedelic/DIP20.git
 ```
@@ -112,31 +112,31 @@ src/化にDIP20が追加され、プロジェクトのルートディレクト�
 
 それでは、プロジェクトのルートディレクトリで以下のコマンドを実行していきましょう。最初に、環境を立ち上げます。
 
-```bash
+```
 dfx start --clean --background
 ```
 
 次に、デプロイをするユーザプリンシパル（識別子）を変数に登録しておきます。これは、以降のコマンドを実行しやすくするためです。
 
-```bash
+```
 export ROOT_PRINCIPAL=$(dfx identity get-principal)
 ```
 
 最後に、`GoldDIP20`キャニスターをデプロイしてみましょう。`dfx deploy`の後ろに、デプロイしたいキャニスターの名前を指定します。これは、`dfx.json`ファイルに記述した名前です。`--argument=`で作成するトークンの情報を初期値として渡します。
 
-```bash
+```
 dfx deploy GoldDIP20 --argument='("Token Gold Logo", "Token Gold", "TGLD", 8, 10_000_000_000_000_000, principal '\"$ROOT_PRINCIPAL\"', 0)'
 ```
 
 `GoldDIP20`キャニスターが生成されたことを確認するために、キャニスターとやりとりをしてみたいと思います。以下のコマンドを実行して、初期値として渡したメタデータを取得してみます。`dfx canister call`の後ろに、キャニスターの名前と実行したいメソッドを指定します。
 
-```bash
+```
 dfx canister call GoldDIP20 getMetadata
 ```
 
 このような出力が返されたらデプロイ成功です！
 
-```bash
+```
 (
   record {
     fee = 0 : nat;
@@ -152,17 +152,17 @@ dfx canister call GoldDIP20 getMetadata
 
 SilverDIP20も同様に、デプロイとメソッドのコールを実行してみましょう。
 
-```bash
+```
 dfx deploy SilverDIP20 --argument='("Token Silver Logo", "Token Silver", "TSLV", 8, 10_000_000_000_000_000, principal '\"$ROOT_PRINCIPAL\"', 0)'
 ```
 
-```bash
+```
 dfx canister call SilverDIP20 getMetadata
 ```
 
 GoldDIP20と同様にメタデータが取得できるでしょう。
 
-```bash
+```
 (
   record {
     fee = 0 : nat;

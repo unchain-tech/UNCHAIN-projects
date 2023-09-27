@@ -66,7 +66,7 @@ export default App;
 
 ターミナルで下記を実行してみましょう。
 
-```bash
+```
 yarn client start
 ```
 
@@ -173,7 +173,7 @@ if (accounts.length !== 0) {
 
 ターミナルで再度下記を実行してみましょう。
 
-```bash
+```
 yarn client start
 ```
 
@@ -368,7 +368,7 @@ const connectWallet = async () => {
 
 上記のコードをすべて`App.js`に反映させたら、ターミナルで下記を実行しましょう。
 
-```bash
+```
 yarn client start
 ```
 

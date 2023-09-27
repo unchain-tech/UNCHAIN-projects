@@ -119,13 +119,13 @@ main()
 
 次にターミナル上で下記を実行してみましょう。
 
-```bash
+```
 yarn contract run:script
 ```
 
 ターミナルに下記のような出力結果が表示されていればテストは成功です。
 
-```bash
+```
 Contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 10 NFTs have been reserved
 Owner has tokens:  [
@@ -161,13 +161,13 @@ Owner has tokens:  [
 
 `deploy.js`が作成できたら、ターミナル上で下記のコマンドを実行しましょう。
 
-```bash
+```
 yarn contract deploy
 ```
 
 下記のような結果がターミナルに出力されていることを確認してください。
 
-```bash
+```
 Contract deployed to: 0x97517fEEEA81d82aA637C8c3d901771155EF4bca
 10 NFTs have been reserved
 Owner has tokens:  [

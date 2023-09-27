@@ -28,13 +28,13 @@ Cannot deserialize the contract state.
 
 では、以下のコマンドを実行し、サブアカウントを削除します。この時、サブアカウントに残っているトークンは全て`${ACCOUNT_ID}`に戻ります。
 
-```bash
+```
 near delete ${SUBACCOUNT_ID}.${ACCOUNT_ID} ${ACCOUNT_ID}
 ```
 
 以下のコマンドを実行し、サブアカウントを再作成します。これで、更新されたスマートコントラクトを安心してデプロイできます！
 
-```bash
+```
 near create-account ${SUBACCOUNT_ID}.${ACCOUNT_ID} --masterAccount ${ACCOUNT_ID} --initialBalance 5
 ```
 
@@ -51,13 +51,13 @@ near create-account ${SUBACCOUNT_ID}.${ACCOUNT_ID} --masterAccount ${ACCOUNT_ID}
 
 1. 宿泊者が、宿泊希望日で部屋を検索します。
 
-```bash
+```
 near call contract.hotel_booking.testnet get_available_rooms '{"room_id": "hotel_booking.testnetSun Room", "check_in_date": "2222-01-01"}' --accountId guest.hotel_booking.testnet
 ```
 
 以下のようなものが表示されます。
 
-```bash
+```
 Transaction Id ByZawjJLaaa6UpyF9oGM7kAVqU4G7Fi7AeWKkLZh49L2
 To see the transaction in the transaction explorer, please open this url in your browser
 https://explorer.testnet.near.org/transactions/ByZawjJLaaa6UpyF9oGM7kAVqU4G7Fi7AeWKkLZh49L2
@@ -77,13 +77,13 @@ https://explorer.testnet.near.org/transactions/ByZawjJLaaa6UpyF9oGM7kAVqU4G7Fi7A
 
 2. 部屋を予約をします。
 
-```bash
+```
 near call contract.hotel_booking.testnet book_room '{"room_id": "hotel_booking.testnetSun Room", "check_in_date": "2222-01-01"}' --depositYocto=1000000000000000000000000 --accountId guest.hotel_booking.testnet
 ```
 
 以下のようなものが表示されます。
 
-```bash
+```
 To see the transaction in the transaction explorer, please open this url in your browser
 https://explorer.testnet.near.org/transactions/4H9q6fjmf6HqopR9tXzLeBcoV2HNWqHG5EZ7ymMj9Nwq
 ''
@@ -91,13 +91,13 @@ https://explorer.testnet.near.org/transactions/4H9q6fjmf6HqopR9tXzLeBcoV2HNWqHG5
 
 3. オーナーが予約データを確認します
 
-```bash
+```
 near view contract.hotel_booking.testnet get_booking_info_for_owner '{"owner_id": "hotel_booking.testnet"}'
 ```
 
 以下のようなものが表示されます。
 
-```bash
+```
 View call: contract.hotel_booking.testnet.get_booking_info_for_owner({"owner_id": "hotel_booking.testnet"})
 [
   {
@@ -112,13 +112,13 @@ View call: contract.hotel_booking.testnet.get_booking_info_for_owner({"owner_id"
 
 4. 宿泊者が自身の予約データを確認します
 
-```bash
+```
 near view contract.hotel_booking.testnet get_booking_info_for_guest '{"guest_id": "guest.hotel_booking.testnet"}'
 ```
 
 以下のようなものが表示されます。
 
-```bash
+```
 View call: contract.hotel_booking.testnet.get_booking_info_for_guest({"guest_id": "guest.hotel_booking.testnet"})
 [
   {
@@ -133,13 +133,13 @@ View call: contract.hotel_booking.testnet.get_booking_info_for_guest({"guest_id"
 
 Check In
 
-```bash
+```
 near call contract.hotel_booking.testnet change_status_to_stay '{"room_id": "hotel_booking.testnetSun Room", "check_in_date": "2222-01-01"}' --accountId hotel_booking.testnet
 ```
 
 Check Out
 
-```bash
+```
 near call contract.hotel_booking.testnet change_status_to_available '{"room_id": "hotel_booking.testnetSun Room", "check_in_date": "2222-01-01", "guest_id": "guest.hotel_booking.testnet"}' --accountId hotel_booking.testnet
 ```
 

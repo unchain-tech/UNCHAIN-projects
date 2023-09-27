@@ -94,13 +94,13 @@ _📝 備考: thirdweb が使っているコントラクトは[こちら](https:
 
 続いて、ターミナルに移動し、下記コマンドを実行してみましょう。
 
-```bash
+```
 yarn node --loader ts-node/esm src/scripts/5-deploy-token.ts
 ```
 
 以下のような表示がされたら、成功です。
 
-```bash
+```
 SDK initialized by address: 0x8cB688A30D5Fd6f2e5025d8915eD95e770832933
 ✅ Successfully deployed token module, address: 0x925d850A8A83af24a8F0C6B1E78B20A475a0c71E
 Done in 40.70s.
@@ -179,13 +179,13 @@ const token = sdk.getContract(ERCTokenAddress, 'token');
 
 それでは、ターミナルに移動し、下記コマンドを実行してみましょう。
 
-```bash
+```
 yarn node --loader ts-node/esm src/scripts/6-print-money.ts
 ```
 
 以下のような表示がされたら、成功です。
 
-```bash
+```
 SDK initialized by address: 0x8cB688A30D5Fd6f2e5025d8915eD95e770832933
 ✅ There now is 1000000.0 $TSC in circulation
 Done in 32.95s.
@@ -285,13 +285,13 @@ const token = sdk.getContract(ERCTokenAddress, 'token');
 
 それでは、ターミナルに移動し、下記コマンドを実行してみましょう。
 
-```bash
+```
 yarn node --loader ts-node/esm src/scripts/7-airdrop-token.ts
 ```
 
 以下のような表示がされたら成功です。
 
-```bash
+```
 SDK initialized by address: 0x8cB688A30D5Fd6f2e5025d8915eD95e770832933
 ✅ Going to airdrop 5205 tokens to 0x0310b7F40EbdB4A8200a6aC581ECA9420d1214e8
 ✅ Going to airdrop 2602 tokens to 0x8cB688A30D5Fd6f2e5025d8915eD95e770832933

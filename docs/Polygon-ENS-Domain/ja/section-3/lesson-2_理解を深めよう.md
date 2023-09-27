@@ -120,7 +120,8 @@ Error: VM Exception while processing transaction: reverted with custom error 'In
 
 これらの基本機能をテストスクリプトとして記述していきましょう。
 ではpackages/contract/testに`test.js`という名前でファイルを作成して、以下のように記述しましょう。
-```
+
+```js
 const { loadFixture } = require('@nomicfoundation/hardhat-network-helpers');
 const hre = require('hardhat');
 const { expect } = require('chai');

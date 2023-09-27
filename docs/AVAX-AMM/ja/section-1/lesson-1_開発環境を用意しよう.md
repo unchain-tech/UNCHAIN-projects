@@ -28,7 +28,7 @@
 
 それでは本プロジェクトで使用するフォルダーを作成してきましょう。作業を始めるディレクトリに移動したら、次のコマンドを実行します。
 
-```bash
+```
 mkdir AVAX-AMM
 cd AVAX-AMM
 yarn init --private -y
@@ -36,7 +36,7 @@ yarn init --private -y
 
 AVAX-AMMディレクトリ内に、package.jsonファイルが生成されます。
 
-```bash
+```
 AVAX-AMM
  └── package.json
 ```
@@ -90,7 +90,7 @@ AVAX-AMM
 
 これにより、各パッケージのディレクトリへ階層を移動しなくてもプロジェクトのルート直下から以下のようにコマンドを実行することが可能となります（ただし、各パッケージ内に`package.json`ファイルが存在し、その中にコマンドが定義されていないと実行できません。そのため、現在は実行してもエラーとなります。ファイルは後ほど作成します）。
 
-```bash
+```
 yarn <パッケージ名> <実行したいコマンド>
 ```
 
@@ -98,7 +98,7 @@ yarn <パッケージ名> <実行したいコマンド>
 
 それでは、AVAX-AMMディレクトリ直下にいることを確認し、下記のコマンドを実行しましょう。
 
-```bash
+```
 tsc --init
 ```
 
@@ -120,7 +120,7 @@ AVAX-AMM
 
 最後に、AVAX-AMMディレクトリ下に`.gitignore`ファイルを作成して以下の内容を書き込みます。
 
-```bash
+```
 **/yarn-error.log*
 
 # dependencies
@@ -132,7 +132,7 @@ AVAX-AMM
 
 最終的に以下のようなフォルダー構成となっていることを確認してください。
 
-```bash
+```
 AVAX-AMM
  ├── .gitignore
  ├── package.json
@@ -153,11 +153,13 @@ AVAX-AMM
 
 それでは、先ほど作成した`packages/contract`ディレクトリ内にファイルを作成します。ターミナルに向かい、packages/contract`ディレクトリ内で以下のコマンドを実行します。
 
-```bash
+```
 cd packages/contract
 yarn init --private -y
+
 # Hardhatのインストール
 yarn add --dev hardhat@^2.11.2
+
 # スマートコントラクトの開発に必要なプラグインのインストール
 yarn add --dev @nomicfoundation/hardhat-network-helpers@^1.0.0 @nomicfoundation/hardhat-chai-matchers@^1.0.0 @nomicfoundation/hardhat-toolbox@^2.0.0 @nomiclabs/hardhat-ethers@^2.0.0 @nomiclabs/hardhat-etherscan@^3.0.0 @types/chai@^4.2.0 @types/mocha@>=9.1.0 @typechain/ethers-v5@^10.1.0 @typechain/hardhat@^6.1.2 hardhat-gas-reporter@^1.0.8 solidity-coverage@^0.8.1 ts-node@^10.9.1 typechain@^8.1.0
 
@@ -184,7 +186,7 @@ yarn add dotenv@^16.0.2 @openzeppelin/contracts@^4.7.3
 
 `packages/contract`ディレクトリにいることを確認し、次のコマンドを実行します。
 
-```bash
+```
 npx hardhat
 ```
 
@@ -198,7 +200,7 @@ npx hardhat
 ```
 
 （例）
-```bash
+```
 $ npx hardhat
 
 888    888                      888 888               888
@@ -332,7 +334,7 @@ Hardhatは段階的に下記を実行しています。
 
 ターミナルに出力されたアドレスを確認してみましょう。
 
-```bash
+```
 Greeter deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 ```
 
@@ -350,8 +352,8 @@ Greeter deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 
 `GitHub`へソースコードをアップロードをしたことがない方は以下を参考にしてください。
 
-[新しいレポジトリを作成](https://docs.github.com/ja/get-started/quickstart/create-a-repo)（リポジトリ名などはご自由に）した後、 
-手順に従いターミナルからアップロードを済ませます。  
+[新しいレポジトリを作成](https://docs.github.com/ja/get-started/quickstart/create-a-repo)（リポジトリ名などはご自由に）した後、
+手順に従いターミナルからアップロードを済ませます。
 以下ターミナルで実行するコマンドの参考です。(`AVAX-AMM`直下で実行することを想定しております)
 
 ```

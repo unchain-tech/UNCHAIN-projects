@@ -1,0 +1,9 @@
+{
+  "project_id": 603,
+  "title": "ICP Encrypted Notes",
+  "difficulty": "intermediate",
+  "chain": "ICP",
+  "description": "👉 Rust と React を使って、ICP ネットワーク上にテキストを暗号化して保存するノート dApp を構築します。",
+  "total_sections": 5,
+  "total_lessons": 19
+}

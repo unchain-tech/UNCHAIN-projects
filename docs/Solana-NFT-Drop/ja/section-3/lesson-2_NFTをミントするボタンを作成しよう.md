@@ -27,7 +27,7 @@ Solanaは現在、計算ユニットのデフォルト値を200k（200,000）と
 
 **[Approve後のコンソール出力]**
 
-```console
+```
 Error: failed to send transaction: Transaction simulation failed: Error processing Instruction 0: Computational budget exceeded
 ```
 

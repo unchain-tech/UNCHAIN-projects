@@ -67,7 +67,7 @@ fs.writeFileSync('./keypair.json', JSON.stringify(account))
 
 ※ `src`ディレクトリ内に移動したことを確認してから`node createKeyPair.js`コマンドを実行してください。
 
-```bash
+```
 cd src
 node createKeyPair.js
 ```

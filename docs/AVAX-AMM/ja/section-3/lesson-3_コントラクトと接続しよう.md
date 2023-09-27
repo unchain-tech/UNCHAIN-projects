@@ -363,7 +363,7 @@ yarn contract deploy
 
 このような出力結果が出たら成功です！
 
-```bash
+```
 yarn run v1.22.19
 $ yarn workspace contract deploy
 $ npx hardhat run scripts/deploy.ts --network fuji

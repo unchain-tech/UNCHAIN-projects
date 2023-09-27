@@ -32,7 +32,7 @@ netlify login
 
 最後に`near-hotel-booking-dapp/`にいることを確認し、netlifyにWebアプリケーションをデプロイするために以下のコマンドを実行しましょう。
 
-```bash
+```
 netlify deploy --prod
 ```
 
@@ -40,27 +40,27 @@ netlify deploy --prod
 
 まず、既にNetlifyに存在するプロジェクトを更新するのか、新しいプロジェクトとしてデプロイするのかを聞かれます。ここでは後者を選択してください。
 
-```bash
+```
 ? What would you like to do?
 +  Create & configure a new site
 ```
 
 次に、どのチームとしてデプロイするかを聞かれるので、ログインの時に作成したチーム名にしてください。
 
-```bash
+```
 ? Team: ysaito
 ```
 
 次に、サイト名を聞かれるので自分の好きなサイト名にしてください
 
-```bash
+```
 Choose a unique site name (e.g. netlify-thinks-ysaito-is-great.netlify.app) or leave it blank for a random name. You can update the site name later.
 ? Site name (optional): near-hotel-booking-dapp
 ```
 
 最後に、デプロイに必要なHTMLなどの情報を含んでいるPublish Directoryを指定する必要があるので、その部分を`./dist`と指定しましょう。
 
-```bash
+```
 ? Publish directory ./frontend/dist
 ```
 
@@ -68,7 +68,7 @@ Choose a unique site name (e.g. netlify-thinks-ysaito-is-great.netlify.app) or l
 
 デプロイが完了したら下のようにURLが返ってきます。一番下の`Website URL:`に表示された`URL`にアクセスしてみましょう。
 
-```bash
+```
 Deploy path:        /Users/user/Desktop/git/near-hotel-booking-dapp/dist
 Configuration path: /Users/user/Desktop/git/near-hotel-booking-dapp/netlify.toml
 Deploying to main site URL...

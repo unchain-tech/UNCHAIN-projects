@@ -19,7 +19,7 @@ Git hubなどにコードをアップロードする際は、秘密鍵や構成�
 
 まず、ターミナルでプロジェクトのルートディレクトリまで移動し、以下のコマンドを実行しましょう。
 
-```bash
+```
 yarn add --dev dotenv
 ```
 
@@ -83,7 +83,7 @@ Vercelのアカウントをお持ちでない方は、上記のリンクにア�
 
 ターミナルで`Solana-dApp`に移動し、以下のコマンドをそれぞれ実行しましょう。
 
-```bash
+```
 git add .
 git commit -m "upload to github"
 git push

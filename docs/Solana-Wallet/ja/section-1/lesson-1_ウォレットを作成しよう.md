@@ -24,7 +24,7 @@ JavaScriptには [`BIP39`](https://github.com/bitcoinjs/bip39) と呼ばれる�
 
 - `BIP39`ライブラリを`npm install`する
 
-```bash
+```
 npm install bip39@^3.1.0
 ```
 
@@ -219,7 +219,7 @@ it('should implement generate wallet flow', async () => {
 
 それでは、テストスクリプトを実行してみましょう。ターミナル上で下記を実行します。
 
-```bash
+```
 npm run test
 ```
 

@@ -4,19 +4,19 @@
 
 `icp-static-site/`にいることを確認して、以下のコマンドを実行します。
 
-```bash
+```
 npm install -D tailwindcss@3.1.8 postcss@8.4.16 autoprefixer@10.4.8
 ```
 
 次に、設定ファイルを作成します。
 
-```bash
+```
 npx tailwindcss init  -p
 ```
 
 2つのファイルが作成されます。
 
-```bash
+```
 Created Tailwind CSS config file: tailwind.config.cjs
 Created PostCSS config file: postcss.config.cjs
 ```
@@ -63,13 +63,13 @@ module.exports = {
 
 この時点でのファイル構成を`tree`コマンドで確認してみましょう。最後に指定した`.`は、現在自分がいるディレクトリ（カレントディレクトリ）を意味します。
 
-```bash
+```
 tree -L 1 -F -a .
 ```
 
 以下のような構成になっていることを確認してください。
 
-```bash
+```
 ./
 ├── .gitignore
 ├── .vscode/

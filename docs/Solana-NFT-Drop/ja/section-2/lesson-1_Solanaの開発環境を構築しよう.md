@@ -71,13 +71,13 @@ OS情報、エラーのスクリーンショットなど、できるだけ多く
 
 [Metaplex Docs](https://docs.metaplex.com/developer-tools/sugar/overview/installation)を参考に、Sugarのインストールを行います。
 
-```bash
+```
 bash <(curl -sSf https://sugar.metaplex.com/install.sh)
 ```
 
 上記のコマンドを実行すると、Sugarのインストールスクリプトが実行されます。このとき、インストールするSugarのバージョンを問われますがこのプロジェクトではCandy Machine V3を使用するため、`V2.x`を選択してください。下記の実行例では1. `v2.1.1`を選択しています。
 
-```bash
+```
 # 実行例
 $ bash <(curl -sSf https://sugar.metaplex.com/install.sh)
 
@@ -108,7 +108,7 @@ Select a release [1-2] (default 1): 1
 
 先に進む前に、`sugar --version`を実行して、インストール時に選択したバージョンが表示されるかを確認しましょう。
 
-```bash
+```
 # 実行例
 $ sugar --version
 

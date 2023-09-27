@@ -203,7 +203,7 @@ console.log("Contract deployed to:", nftContract.address);
 
 ターミナルを開いて`ETH-NFT-Collection`ディレクトリ直下にいることを確認して、以下のコマンドを実行してください。
 
-```bash
+```
 yarn contract deploy
 ```
 

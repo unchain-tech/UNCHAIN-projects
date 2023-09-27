@@ -20,7 +20,7 @@ ICの重要な特徴の1つに、従来のデータベースを使わずにキ�
 private var last_id : Nat32 = 100; // TODO: 後で初期値0に戻す
 ```
 
-```bash
+```
 dfx deploy icp_basic_dex_backend
 ```
 
@@ -188,7 +188,7 @@ module {
 
 準備ができたので、実際に永続化が行われるのかを確認しましょう。編集した2つのキャニスターを再度デプロイします。
 
-```bash
+```
 dfx deploy faucet && dfx deploy icp_basic_dex_backend
 ```
 
@@ -202,7 +202,7 @@ dfx deploy faucet && dfx deploy icp_basic_dex_backend
 private stable var last_id : Nat32 = 0;
 ```
 
-```bash
+```
 dfx deploy icp_basic_dex_backend
 ```
 

@@ -156,7 +156,7 @@ console.log("Owner of domain:", domainOwner);
 
 ターミナル上で、下記を実行してみましょう。
 
-```bash
+```
 yarn contract run:script
 ```
 

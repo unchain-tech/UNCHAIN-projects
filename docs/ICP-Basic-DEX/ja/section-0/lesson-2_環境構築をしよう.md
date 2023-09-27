@@ -12,19 +12,19 @@ IC SDKとはDFINITYが提供する、ICPブロックチェーン上でキャニ�
 
 今回は、バージョン`0.14.1`を指定してインストールをしたいと思います。ターミナルで以下のコマンドを実行しましょう。
 
-```bash
+```
 DFX_VERSION=0.14.1 sh -ci "$(curl -sSL https://internetcomputer.org/install.sh)"
 ```
 
 正しくインストールされたことを確認するために、以下を実行します。
 
-```bash
+```
 dfx --version
 ```
 
 バージョン`0.14.1`が表示されたら完了です。
 
-```bash
+```
 dfx 0.14.1
 ```
 
@@ -52,7 +52,7 @@ Motokoは、DFINITY財団が開発中の新しいソフトウェア言語で、�
 
 プロジェクトを構築する任意のフォルダに移動後、以下のコマンドを実行します。このプロジェクトでは、`icp_basic_dex`という名前で作成します。
 
-```bash
+```
 dfx new icp_basic_dex
 ```
 
@@ -63,7 +63,7 @@ dfx new icp_basic_dex
 
 作成されたプロジェクトが以下のような構成になっていることを確認してください。
 
-```bash
+```
 icp_basic_dex/
 ├── .env
 ├── .git/
@@ -79,19 +79,19 @@ icp_basic_dex/
 
 それでは、サンプルプロジェクトを実行してみましょう。まずはプロジェクトのルートディレクトリへ移動します。
 
-```bash
+```
 cd icp_basic_dex
 ```
 
 プロジェクトをローカル環境へデプロイする前に、ローカルのキャニスター実行環境を起動する必要があります。以下のコマンドを実行して、キャニスター実行環境を立ち上げましょう。`--clean`オプションは、ローカルのキャッシュを削除してクリーンな状態で環境を立ち上げてくれます。`--background`オプションは、バックグラウンドで実行してくれるものです。
 
-```bash
+```
 dfx start --clean --background
 ```
 
 ターミナル上に出力された最後の行に、`Dashboard: http://localhost:58635/_/dashboard`と表示があれば起動成功です。
 
-```bash
+```
 Running dfx start for version 0.14.1
 Using the default definition for the 'local' shared network because /任意のパス/.config/dfx/networks.json does not exist.
 Dashboard: http://localhost:58635/_/dashboard
@@ -99,19 +99,19 @@ Dashboard: http://localhost:58635/_/dashboard
 
 ⚠︎ `node_modules/`が存在しない場合は、デプロイ前にインストールを行なってください。
 
-```bash
+```
 npm install
 ```
 
 最後に、プロジェクトをデプロイします。`dfx deploy`というコマンドは、実行環境へキャニスターを登録・ビルド・デプロイが一括で行えるコマンドになります。なお、`deploy`コマンドは、キャニスターの設定が書かれたdfx.jsonファイルが存在する階層で実行しないとエラーになります。デプロイするキャニスターの情報を読み込めないためです。
 
-```bash
+```
 dfx deploy
 ```
 
 ターミナルには、実行された操作に関する情報が表示されます。たとえば、今回のサンプルプロジェクトでは2つのキャニスター（icp_basic_dex_backendとicp_basic_dex_frontend）がデプロイされます。
 
-```bash
+```
 $ dfx deploy
 
 dfx deploy
@@ -157,7 +157,7 @@ URLs:
 
 以下のコマンドを実行し、開発サーバーを起動します。
 
-```bash
+```
 npm start
 ```
 
@@ -167,7 +167,7 @@ npm start
 
 これで、準備は完了です！ バックグラウンドで実行されているキャニスター実行環境を、一度止めておきましょう。最初にwebpackが起動しているターミナル上で`Control + C`を押すなどして、サーバーを停止します。
 
-```bash
+```
 webpack 5.75.0 compiled successfully in 485 ms
 # Control+Cで停止
 ^C
@@ -175,7 +175,7 @@ webpack 5.75.0 compiled successfully in 485 ms
 
 サーバーが停止してターミナルが入力できるようになったら、以下のコマンドを実行してキャニスター実行環境を停止しましょう。
 
-```bash
+```
 dfx stop
 ```
 

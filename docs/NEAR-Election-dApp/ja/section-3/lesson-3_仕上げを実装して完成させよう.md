@@ -754,7 +754,7 @@ CONTRACT_NAME=YOUR_WALLET_ID
 
 では早速下のコマンドを実行して,UIを見てみましょう！
 
-```bash
+```
 yarn client dev
 ```
 

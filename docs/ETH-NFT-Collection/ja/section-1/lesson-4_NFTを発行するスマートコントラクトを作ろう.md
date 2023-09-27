@@ -226,7 +226,7 @@ console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
 
 `tokenURI`は、下記のような「**メタデータ**」と呼ばれるJSONファイルに**リンク**されています。
 
-```bash
+```json
 {
     "name": "Tanya",
     "description": "A mindful creature. Just woke up like this.",
@@ -322,7 +322,7 @@ main().catch((error) => {
 
 上記を`deploy.js`に反映させたら、ターミナル上で`ETH-NFT-Collection`ディレクトリ直下にいることを確認し下記を実行しましょう。
 
-```bash
+```
 yarn contract deploy
 ```
 
@@ -524,7 +524,7 @@ code .gitignore
 
 `.gitignore`の中身が下記のようになっていれば、問題ありません。
 
-```bash
+```
 node_modules
 .env
 coverage
@@ -560,7 +560,7 @@ hardhat.config.js
 
 `ETH-NFT-Collection`ディレクトリ直下でこのコマンドを実行します。
 
-```bash
+```
 yarn contract deploy:sepolia
 ```
 

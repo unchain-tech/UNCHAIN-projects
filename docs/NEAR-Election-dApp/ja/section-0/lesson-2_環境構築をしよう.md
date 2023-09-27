@@ -10,7 +10,7 @@
 
 まずは下のコマンドをターミナルで実行しRustをインストールしてください
 
-```bash
+```
 $ curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
 ```
 
@@ -20,35 +20,35 @@ $ curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
    このようなメッセージが出てきたら、1のdefaultを選択してください。
    インストールが成功していれば下のようなメッセージが表示されているでしょう
 
-```bash
+```
 Rust is installed now. Great!
 ```
 
 また、環境変数を設定するために下のコマンドをターミナルで実行させましょう([環境変数とは？](https://wa3.i-3-i.info/word11027.html))
 
-```bash
+```
 source $HOME/.cargo/env
 ```
 
-```bash
+```
 export PATH="$HOME/.cargo/bin:$PATH"
 ```
 
 ここまでの設定が完了していることを確認するために下のコマンドをターミナルで実行させましょう
 
-```bash
+```
 $ rustc --version
 ```
 
 完了していれば以下のような形式のメッセージが表示されるはずです
 
-```bash
+```
 rustc x.y.z (abcabcabc yyyy-mm-dd)
 ```
 
 次にコンピュータからnearに接続するためのツールである`near-cli`をどのディレクトリでも使えるように下のコマンドを実行することでグローバルにインストールしましょう！
 
-```bash
+```
 npm install -g near-cli
 ```
 
@@ -62,7 +62,7 @@ npm install -g near-cli
 
 それでは本プロジェクトで使用するフォルダーを作成してきましょう。作業を始めるディレクトリに移動したら、次のコマンドを実行します。
 
-```bash
+```
 mkdir NEAR-Election-dApp
 cd NEAR-Election-dApp
 yarn init --private -y
@@ -70,7 +70,7 @@ yarn init --private -y
 
 NEAR-Election-dAppディレクトリ内に、package.jsonファイルが生成されます。
 
-```bash
+```
 NEAR-Election-dApp
  └── package.json
 ```
@@ -124,13 +124,13 @@ NEAR-Election-dApp
 
 これにより、各パッケージのディレクトリへ階層を移動しなくてもプロジェクトのルート直下から以下のようにコマンドを実行することが可能となります（ただし、各パッケージ内に`package.json`ファイルが存在し、その中にコマンドが定義されていないと実行できません。そのため、現在は実行してもエラーとなります。ファイルは後ほど作成します）。
 
-```bash
+```
 yarn <パッケージ名> <実行したいコマンド>
 ```
 
 最後に、NEAR-Election-dAppディレクトリ下に`.gitignore`ファイルを作成して以下の内容を書き込みます。
 
-```bash
+```
 **/yarn-error.log*
 
 # dependencies
@@ -142,7 +142,7 @@ yarn <パッケージ名> <実行したいコマンド>
 
 最終的に以下のようなフォルダー構成となっていることを確認してください。
 
-```bash
+```
 NEAR-Election-dApp
  ├── .gitignore
  ├── package.json
@@ -157,7 +157,7 @@ NEAR-Election-dApp
 
 `packages`のディレクトリに移動して下のコマンドをターミナルで実行させましょう。
 
-```bash
+```
 cargo new contract --lib
 ```
 
@@ -169,7 +169,7 @@ cargo new contract --lib
 
 次にフロントエンドのセッティングもしていきます。`packages`ディレクトリにいることを確認して以下のコードを実行しましょう。
 
-```bash
+```
 npx create-near-app@3.1.0 --frontend=react --contract=rust client
 ```
 
@@ -189,7 +189,7 @@ npx create-near-app@3.1.0 --frontend=react --contract=rust client
 
 下のコマンドをターミナルで実行すると確認できます。`-L 2`は２つ下の階層まで、`-F`はディレクトリを`/`で表現するという意味です。
 
-```bash
+```
 tree -L 2 -F
 ```
 
@@ -219,7 +219,7 @@ https://dot-blog.jp/news/homebrew-how-to-install/
 
 下のコマンドをターミナルで実行すると、あらかじめ用意されているコントラクトのコンパイルとデプロイがされた後にフロントエンドが起動されます！
 
-```bash
+```
 yarn client dev
 ```
 
@@ -236,7 +236,7 @@ https://asapoon.com/error/2795/command-not-found-yarn/
 
 まずは`client`ディレクトリに移動して下のコマンドをターミナルで実行し、Tailwindのインストールとconfigファイルの生成をします。
 
-```bash
+```
 yarn add -D tailwindcss postcss &&  npx tailwindcss init
 ```
 
@@ -301,7 +301,7 @@ module.exports = {
 
 末尾が`/`となっているものはディレクトリ、それ以外はファイルであることを示しています
 
-```bash
+```
 contract/
 ├── contract-contract/
 │   ├── Cargo.toml

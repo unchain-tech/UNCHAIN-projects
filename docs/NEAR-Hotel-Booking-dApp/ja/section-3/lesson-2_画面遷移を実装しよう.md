@@ -28,7 +28,7 @@
 
 ナビゲーションバーを作成するためのフレームワークと、画面遷移を実行するためのライブラリを以下のコマンドでインストールします。
 
-```bash
+```
 yarn add --dev react-bootstrap bootstrap bootstrap-icons react-router-dom　
 ```
 
@@ -350,7 +350,7 @@ export default Search;
 
 以下のコマンドを実行してwebアプリケーションを起動します。
 
-```bash
+```
 yarn dev
 ```
 

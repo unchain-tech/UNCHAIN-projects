@@ -29,7 +29,7 @@
 
 それでは本プロジェクトで使用するフォルダーを作成してきましょう。作業を始めるディレクトリに移動したら、次のコマンドを実行します。
 
-```bash
+```
 mkdir AVAX-Messenger
 cd AVAX-Messenger
 yarn init --private -y
@@ -37,7 +37,7 @@ yarn init --private -y
 
 AVAX-Messengerディレクトリ内に、package.jsonファイルが生成されます。
 
-```bash
+```
 AVAX-Messenger
  └── package.json
 ```
@@ -93,7 +93,7 @@ AVAX-Messenger
 
 これにより、各パッケージのディレクトリへ階層を移動しなくてもプロジェクトのルート直下から以下のようにコマンドを実行することが可能となります（ただし、各パッケージ内に`package.json`ファイルが存在し、その中にコマンドが定義されていないと実行できません。そのため、現在は実行してもエラーとなります。ファイルは後ほど作成します）。
 
-```bash
+```
 yarn <パッケージ名> <実行したいコマンド>
 ```
 
@@ -101,7 +101,7 @@ yarn <パッケージ名> <実行したいコマンド>
 
 それでは、AVAX-Messengerディレクトリ直下にいることを確認し、下記のコマンドを実行しましょう。
 
-```bash
+```
 tsc --init
 ```
 
@@ -123,7 +123,7 @@ AVAX-Messenger
 
 最後に、AVAX-Messengerディレクトリ下に`.gitignore`ファイルを作成して以下の内容を書き込みます。
 
-```bash
+```
 **/yarn-error.log*
 
 # dependencies
@@ -135,7 +135,7 @@ AVAX-Messenger
 
 最終的に以下のようなフォルダー構成となっていることを確認してください。
 
-```bash
+```
 AVAX-Messenger
  ├── .gitignore
  ├── package.json
@@ -156,7 +156,7 @@ AVAX-Messenger
 
 それでは、先ほど作成した`packages/contract`ディレクトリ内にファイルを作成します。ターミナルに向かい、packages/contract`ディレクトリ内で以下のコマンドを実行します。
 
-```bash
+```
 cd packages/contract
 
 yarn init --private -y
@@ -181,7 +181,7 @@ yarn add --dev @nomicfoundation/hardhat-network-helpers@^1.0.0 @nomicfoundation/
 
 `packages/contract`ディレクトリにいることを確認し、次のコマンドを実行します。
 
-```bash
+```
 npx hardhat
 ```
 
@@ -195,7 +195,7 @@ npx hardhat
 ```
 
 （例）
-```bash
+```
 $ npx hardhat
 
 888    888                      888 888               888
@@ -333,8 +333,8 @@ Hardhatは段階的に下記を実行しています。
 
 `GitHub`へソースコードをアップロードをしたことがない方は以下を参考にしてください。
 
-[新しいレポジトリを作成](https://docs.github.com/ja/get-started/quickstart/create-a-repo)（リポジトリ名などはご自由に）した後、 
-手順に従いターミナルからアップロードを済ませます。  
+[新しいレポジトリを作成](https://docs.github.com/ja/get-started/quickstart/create-a-repo)（リポジトリ名などはご自由に）した後、
+手順に従いターミナルからアップロードを済ませます。
 以下ターミナルで実行するコマンドの参考です。(`AVAX-Messenger`直下で実行することを想定しております)
 
 ```
