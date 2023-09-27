@@ -3,11 +3,11 @@
 
 Are you ready? Let's get started!
 
-First, let's create a folder called `Contracts` in the explorer in the left side.
+First, let's create a folder called `contracts` in the explorer in the left side.
 
 ![image-20230222151853564](/public/images/Polygon-Whitelist-NFT/section-1/1_2_1.png)
 
-Then, create a new smart contract file called `Whitelist.sol` under folder `Contracts`
+Then, create a new smart contract file called `Whitelist.sol` under folder `contracts`
 
 ![image-20230222152021342](/public/images/Polygon-Whitelist-NFT/section-1/1_2_2.png)
 

@@ -14,7 +14,7 @@ contract Whitelist {
     
     // Create a mapping of whitelistedAddresses
     // if an address is whitelisted, we would set it to true, it is false by default for all other addresses.
-    mapping(address => bool) private isWhitelisted;
+    mapping(address => bool) private _isWhitelisted;
 
     //Event: record the addresses added to the whitelist
     event AddToWhitelist(address indexed account);
@@ -40,9 +40,9 @@ contract Whitelist {
         // Check if the user is the owner
         require(owner == msg.sender, "Caller is not the owner");
         // Check if the user has already been whitelisted
-        require(!isWhitelisted[_address], "Address already whitelisted");
+        require(!_isWhitelisted[_address], "Address already whitelisted");
         // Add the address which called the function to the whitelistedAddress array
-        isWhitelisted[_address] = true;
+        _isWhitelisted[_address] = true;
         // Triggers AddToWhitelist event
         emit AddToWhitelist(_address);
     }
@@ -56,9 +56,9 @@ contract Whitelist {
         // Check if the user is the owner
         require(owner == msg.sender, "Caller is not the owner");
         // Check if the user has not already been whitelisted    
-        require(isWhitelisted[_address], "Address not in whitelist");
+        require(_isWhitelisted[_address], "Address not in whitelist");
         // Remove the address which called the function to the whitelistedAddress array
-        isWhitelisted[_address] = false;
+        _isWhitelisted[_address] = false;
         // Triggers RemoveFromWhitelist event
         emit RemoveFromWhitelist(_address);
     }
@@ -68,7 +68,7 @@ contract Whitelist {
      */
 
     function whitelistedAddresses(address _address) public view returns (bool) {
-        return isWhitelisted[_address];
+        return _isWhitelisted[_address];
     }
 }
 ```
@@ -84,10 +84,10 @@ First, we've set up a state [variable](https://solidity-by-example.org/variables
 ```solidity
     // Create a mapping of whitelistedAddresses
     // if an address is whitelisted, we would set it to true, it is false by default for all other addresses.
-    mapping(address => bool) private isWhitelisted;
+    mapping(address => bool) private _isWhitelisted;
 ```
 
-`isWhitelisted` is used to determine whether an address is in the whitelist, and it has been set to a [mapping](https://solidity-by-example.org/app/iterable-mapping/) type. If the address is in the whitelist, the corresponding bool is set to true; otherwise, it's false. By default, the bool is false. (Why do we do this? Because it allows us to know which addresses are in the whitelist without using an array, saving a significant amount of gas).
+`_isWhitelisted` is used to determine whether an address is in the whitelist, and it has been set to a [mapping](https://solidity-by-example.org/app/iterable-mapping/) type. If the address is in the whitelist, the corresponding bool is set to true; otherwise, it's false. By default, the bool is false. (Why do we do this? Because it allows us to know which addresses are in the whitelist without using an array, saving a significant amount of gas).
 
 ```solidity
     //Event: record the addresses added to the whitelist
@@ -123,9 +123,9 @@ The [constructor](https://solidity-by-example.org/constructor/) is a function al
         // Check if the user is the owner
         require(owner == msg.sender, "Caller is not the owner");
         // Check if the user has already been whitelisted
-        require(!isWhitelisted[_address], "Address already whitelisted");
+        require(!_isWhitelisted[_address], "Address already whitelisted");
         // Add the address which called the function to the whitelistedAddress array
-        isWhitelisted[_address] = true;
+        _isWhitelisted[_address] = true;
         // Triggers AddToWhitelist event
         emit AddToWhitelist(_address);
     }
@@ -139,7 +139,7 @@ The first require checks whether the owner is equal to msg.sender (the caller of
 
 The second require checks whether the address is already whitelisted. If it is, the function will throw an error stating `"Address already whitelisted"`, and the execution will fail.
 
-If both require statements pass, the address will be set as whitelisted in `isWhitelisted`.
+If both require statements pass, the address will be set as whitelisted in `_isWhitelisted`.
 
 Then, the event is triggered, logging the addition of this address to the whitelist.
 
@@ -155,9 +155,9 @@ This function effectively implements the functionality of adding a new address t
         // Check if the user is the owner
         require(owner == msg.sender, "Caller is not the owner");
         // Check if the user has not already been whitelisted    
-        require(isWhitelisted[_address], "Address not in whitelist");
+        require(_isWhitelisted[_address], "Address not in whitelist");
         // Remove the address which called the function to the whitelistedAddress array
-        isWhitelisted[_address] = false;
+        _isWhitelisted[_address] = false;
         // Triggers RemoveFromWhitelist event
         emit RemoveFromWhitelist(_address);
     }
@@ -171,7 +171,7 @@ This function's functionality is the opposite of the one above, and I believe yo
      */
 
     function whitelistedAddresses(address _address) public view returns (bool) {
-        return isWhitelisted[_address];
+        return _isWhitelisted[_address];
     }
 
 ```

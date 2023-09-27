@@ -4,7 +4,7 @@
 
 Do you recall that we received test tokens on the `Polygon Mumbai` testnet initially? Next, our task is to deploy the `Whitelist.sol` and `Shield.sol` contracts on this testnet.
 
-Click on the "Connected" button in the upper-right corner and then select "Disconnect JS VM".
+Click on the "Connected" button in the upper-right corner and then select "Disconnect".
 
 ![image-20230223133803703](/public/images/Polygon-Whitelist-NFT/section-4/4_1_1.png)
 
