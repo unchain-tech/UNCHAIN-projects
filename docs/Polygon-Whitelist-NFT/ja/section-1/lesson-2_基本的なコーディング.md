@@ -31,7 +31,7 @@ contract Whitelist {
 // SPDX-License-Identifier: UNLICENSED
 ```
 
-この行は`SPDXライセンス識別子`と呼ばれ、その後に続くコードの著作権の問題に対処します。一般的には、`UNLICENSED`と`MIT`が最もよく使われる接尾辞で、これは以下のコードが誰でも使ってよいことを示します。言い換えれば、皆さんは自由にコピー&ペーストすることができます。詳細は[こちら](https://spdx.org/licenses/?utm_source=buildspace.so&utm_medium=buildspace_project)で確認できます。
+この行は`SPDXライセンス識別子`と呼ばれ、その後に続くコードの著作権の問題に対処します。一般的には、`UNLICENSED`と`MIT`が最もよく使われる接尾辞で、これは以下のコードが誰でも使ってよいことを示します。言い換えれば、皆さんは自由にコピー&ペーストすることができます。詳細は[こちら](https://spdx.org/licenses/)で確認できます。
 
 ```solidity
 pragma solidity ^0.8.4;

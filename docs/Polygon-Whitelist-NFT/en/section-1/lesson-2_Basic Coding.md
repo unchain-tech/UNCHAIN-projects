@@ -30,7 +30,7 @@ Let's talk about the code line by line.
 // SPDX-License-Identifier: UNLICENSED
 ```
 
-This line is referred to `SPDX license identifier`, which addresses the copyright issues of the code that follows. Generally speaking, `UNLICENSED` and `MIT` are the most common suffixes, indicating that the following code is permitted for anyone to use. In other words, you all can freely copy and paste it. You can find more information [here](https://spdx.org/licenses/?utm_source=buildspace.so&utm_medium=buildspace_project).
+This line is referred to `SPDX license identifier`, which addresses the copyright issues of the code that follows. Generally speaking, `UNLICENSED` and `MIT` are the most common suffixes, indicating that the following code is permitted for anyone to use. In other words, you all can freely copy and paste it. You can find more information [here](https://spdx.org/licenses/).
 
 ```solidity
 pragma solidity ^0.8.4;
