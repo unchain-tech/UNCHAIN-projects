@@ -75,13 +75,13 @@ contract Shield is ERC721Enumerable, Ownable {
       * @dev _baseTokenURI for computing {tokenURI}. If set, the resulting URI for each
       * token will be the concatenation of the `baseURI` and the `tokenId`.
       */
-    string _baseTokenURI;
+    string private _baseTokenURI;
 
-    //  _price is the price of one Shield NFT
-    uint256 public _price = 0.01 ether;
+    //  price is the price of one Shield NFT
+    uint256 public price = 0.01 ether;
 
-    // _paused is used to pause the contract in case of an emergency
-    bool public _paused;
+    // paused is used to pause the contract in case of an emergency
+    bool public paused;
 
     // max number of Shield NFT
     uint256 public maxTokenIds = 4;
@@ -90,10 +90,10 @@ contract Shield is ERC721Enumerable, Ownable {
     uint256 public tokenIds;
 
     // Whitelist contract instance
-    IWhitelist whitelist;
+    IWhitelist private _whitelist;
 
     modifier onlyWhenNotPaused {
-        require(!_paused, "Contract currently paused");
+        require(!paused, "Contract currently paused");
         _;
     }
 
@@ -105,7 +105,7 @@ contract Shield is ERC721Enumerable, Ownable {
       */
     constructor (string memory baseURI, address whitelistContract) ERC721("ChainIDE Shields", "CS") {
         _baseTokenURI = baseURI;
-        whitelist = IWhitelist(whitelistContract);
+        _whitelist = IWhitelist(whitelistContract);
     }
 
 
@@ -113,9 +113,9 @@ contract Shield is ERC721Enumerable, Ownable {
       * @dev presaleMint allows a user to mint one NFT per transaction during the presale.
       */
     function mint() public payable onlyWhenNotPaused {
-        require(whitelist.whitelistedAddresses(msg.sender), "You are not whitelisted");
+        require(_whitelist.whitelistedAddresses(msg.sender), "You are not whitelisted");
         require(tokenIds < maxTokenIds, "Exceeded maximum Shields supply");
-        require(msg.value >= _price, "Ether sent is not correct");
+        require(msg.value >= price, "Ether sent is not correct");
         tokenIds += 1;
         //_safeMint is a safer version of the _mint function as it ensures that
         // if the address being minted to is a contract, then it knows how to deal with ERC721 tokens
@@ -135,7 +135,7 @@ contract Shield is ERC721Enumerable, Ownable {
     * @dev setPaused makes the contract paused or unpaused
       */
     function setPaused(bool val) public onlyOwner {
-        _paused = val;
+        paused = val;
     }
 
     /**
@@ -185,14 +185,14 @@ contract Shield is ERC721Enumerable, Ownable {
 `tokenIds`は各NFTの数値IDを表しており、これらのIDはユニークです。`_baseTokenURI`と組み合わせることで、各NFTのメタデータが形成されます（メタデータについては後ほど説明します。今は、メタデータがあることでNFTをさまざまなNFTプラットフォームで表示できることを覚えておいてください）。
 
 ```solidity
-    //  _price is the price of one Shield NFT
-    uint256 public _price = 0.01 ether;
+    //  price is the price of one Shield NFT
+    uint256 public price = 0.01 ether;
     
     // max number of Shield NFT
     uint256 public maxTokenIds = 4;
 ```
 
-`_price`は各NFTの価格を設定します。Ethereum（ETH）ではETHそのものを指し、PolygonではMaticを指します。ether以外にも単位があります：1 ether = 10^9 gwei、1 gwei = 10^9 weiです。
+`price`は各NFTの価格を設定します。Ethereum（ETH）ではETHそのものを指し、PolygonではMaticを指します。ether以外にも単位があります：1 ether = 10^9 gwei、1 gwei = 10^9 weiです。
 
 `maxTokenIds`はNFTの最大数を示しています。ここでは4に設定されているため、4つのNFTのメタデータを準備する必要があります。
 
@@ -205,7 +205,7 @@ contract Shield is ERC721Enumerable, Ownable {
       */
     constructor (string memory baseURI, address whitelistContract) ERC721("ChainIDE Shields", "CS") {
         _baseTokenURI = baseURI;
-        whitelist = IWhitelist(whitelistContract);
+        _whitelist = IWhitelist(whitelistContract);
     }
 ```
 
@@ -216,9 +216,9 @@ contract Shield is ERC721Enumerable, Ownable {
       * @dev presaleMint allows a user to mint one NFT per transaction during the presale.
       */
     function mint() public payable onlyWhenNotPaused {
-        require(whitelist.whitelistedAddresses(msg.sender), "You are not whitelisted");
+        require(_whitelist.whitelistedAddresses(msg.sender), "You are not whitelisted");
         require(tokenIds < maxTokenIds, "Exceeded maximum Shields supply");
-        require(msg.value >= _price, "Ether sent is not correct");
+        require(msg.value >= price, "Ether sent is not correct");
         tokenIds += 1;
         //_safeMint is a safer version of the _mint function as it ensures that
         // if the address being minted to is a contract, then it knows how to deal with ERC721 tokens
@@ -229,20 +229,20 @@ contract Shield is ERC721Enumerable, Ownable {
 
 `mint`関数の説明に焦点を当てましょう：
 
-1. `payable`というキーワードは、この関数が直接トークンを受け取ることができることを示しており、NFTの価格は0.01 etherです。onlyWhenNotPausedは[modifier](https://solidity-by-example.org/function-modifier/)が定義されています。`_paused`が`false`のときのみ関数が実行されることを示しています（注：コントラクトは_pausedがfalseの状態で開始されるため、ホワイトリストのユーザーはコントラクトのデプロイ後に直接ミントを行うことができます）。
+1. `payable`というキーワードは、この関数が直接トークンを受け取ることができることを示しており、NFTの価格は0.01 etherです。onlyWhenNotPausedは[modifier](https://solidity-by-example.org/function-modifier/)が定義されています。`paused`が`false`のときのみ関数が実行されることを示しています（注：コントラクトは_pausedがfalseの状態で開始されるため、ホワイトリストのユーザーはコントラクトのデプロイ後に直接ミントを行うことができます）。
 
 ```solidity
     modifier onlyWhenNotPaused {
-        require(!_paused, "Contract currently paused");
+        require(!paused, "Contract currently paused");
         _;
     }
 ```
 
-2. `require(whitelist.whitelistedAddresses(msg.sender), "You are not whitelisted");`：ミントプロセスへの参加をホワイトリストに載っているユーザーのみに制限します。
+2. `require(_whitelist.whitelistedAddresses(msg.sender), "You are not whitelisted");`：ミントプロセスへの参加をホワイトリストに載っているユーザーのみに制限します。
 
 3. `require(tokenIds < maxTokenIds, "Exceeded maximum Shields supply");`：`tokenIds`の最大量が設定された`maxTokenIds`（4）を超えないように制限されています。
 
-4. `require(msg.value >= _price, "Ether sent is not correct");`：送られてくるトークンは0.01 ether以上である必要があります。もし0.01 etherよりも多ければ、それも問題ありません！ 😄
+4. `require(msg.value >= price, "Ether sent is not correct");`：送られてくるトークンは0.01 ether以上である必要があります。もし0.01 etherよりも多ければ、それも問題ありません！ 😄
 
 5. `tokenIds += 1;`：上記すべての条件が満たされた後で、`tokenIds`は1増加します。デフォルトの`tokenIds`値は0なので、`tokenIds`の範囲は1, 2, 3, 4となります。
 
@@ -253,11 +253,11 @@ contract Shield is ERC721Enumerable, Ownable {
     * @dev setPaused makes the contract paused or unpaused
       */
     function setPaused(bool val) public onlyOwner {
-        _paused = val;
+        paused = val;
     }
 ```
 
-コントラクトのミントを一時停止する機能は、`_paused`変数を通じて実現されています。この変数はbool型で、初期値は`false`です。したがって、ユーザーがミントを開始する前に、オーナーだけがこの関数を呼び出す必要があります。
+コントラクトのミントを一時停止する機能は、`paused`変数を通じて実現されています。この変数はbool型で、初期値は`false`です。したがって、ユーザーがミントを開始する前に、オーナーだけがこの関数を呼び出す必要があります。
 
 ```solidity
     /**
