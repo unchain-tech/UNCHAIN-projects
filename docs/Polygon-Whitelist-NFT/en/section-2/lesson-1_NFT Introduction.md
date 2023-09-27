@@ -1,6 +1,6 @@
 ## Write an NFT contract that only allows addresses within the whitelist to mint.
 
-### What is NFT
+### 🎓　What is NFT
 
 NFT (Non-Fungible Token) is a type of digital asset, typically used to store and trade unique digital content on the blockchain, such as digital art, audio, video, game items, etc. Unlike traditional currency or cryptocurrency, NFTs are unique and non-interchangeable, as each NFT has its unique identifier, giving it individuality.
 
@@ -22,3 +22,5 @@ There are now many different NFT protocol standards on ETH, and let me introduce
 
 3. Subsequent NFT protocols such as [ERC-3525](https://eips.ethereum.org/EIPS/eip-3525), [ERC-4907](https://eips.ethereum.org/EIPS/eip-4907) were also developed from the above two NFT standards.
 
+### 🙋‍♂️ Asking Questions
+If you have any questions or uncertainties up to this point, please ask in the `#polygon` channel on Discord.

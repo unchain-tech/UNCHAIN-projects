@@ -1,6 +1,6 @@
 ## Preparation
 
-### Setup MetaMask wallet
+### 🛠 Setup MetaMask wallet
 
 #### Install MetaMask
 
@@ -32,3 +32,16 @@ Click "Connect wallet" on the right side of the screen, select "Injected Web3 Pr
 Once Mumbai is added to MetaMask, click on [Polygon Faucet](https://faucet.polygon.technology/) to receive testnet tokens. On the faucet page, we choose Mumbai as the network and MATIC as the token and then paste your MetaMask wallet address. Next, click submit, and the faucet will send you some test MATIC within a minute.
 
 ![image-2023011412043342](/public/images/Polygon-Whitelist-NFT/section-0/0_2_5.png)
+
+### 🙋‍♂️ Asking Questions
+
+If you have any uncertainties or issues with the work done so far, please ask in the `#polygon` channel on Discord.
+
+To streamline the assistance process, kindly include the following 4 points in your error report ✨:
+
+```
+1. Section and lesson number related to the question
+2. What you were trying to do
+3. Copy & paste the error message
+4. Screenshot of the error screen
+```

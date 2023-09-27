@@ -1,17 +1,41 @@
-### Minting NFTs for Whitelisted Users
+### 🦄 Minting NFTs for Whitelisted Users
 
 The coding part is finally complete, congratulations! Now it's time to enjoy the results.
 
-Start by clicking `Connect` to link your Metamask account (make sure it's whitelisted).
+Now let's start up the front end. Make sure you are under `client/` and execute the following command:
 
+```
+yarn install
+yarn dev
+```
+
+![](/public/images/Polygon-Whitelist-NFT/section-4/4_3_9.png)
+
+Next, open "Port Manager" and click "Add Port".
+
+![](/public/images/Polygon-Whitelist-NFT/section-4/4_3_10.png)
+
+Select `Polygon (Ubuntu)` for Select Sandbox and enter `3000` (the port number displayed on the Sandbox) for Port. After completing the settings, click "Add".
+
+![](/public/images/Polygon-Whitelist-NFT/section-4/4_3_11.png)
+
+After confirming that the port information has been added, click on the icon below to access the application. A new tab will open.
+
+![](/public/images/Polygon-Whitelist-NFT/section-4/4_3_12.png)
+
+⚠️ It may take a few minutes before you can access the site from your browser. If you receive an error message similar to the one below, please wait a few minutes and try accessing the site again.
+
+![](/public/images/Polygon-Whitelist-NFT/section-4/4_3_13.png)
+
+If you have access to the application, start by clicking "connect" to link your Metamask account (make sure it's whitelisted).
 
 ![image-20230223160640040](/public/images/Polygon-Whitelist-NFT/section-4/4_3_1.png)
 
-Next, click "Mint" and a pop-up from MetaMask will appear. Click "Confirm".
+Next, click "mint" and a pop-up from MetaMask will appear. Click "Confirm".
 
 ![image-20230223160943332](/public/images/Polygon-Whitelist-NFT/section-4/4_3_2.png)
 
-After successfully minting, if you are the owner, you can click "Withdraw" to retrieve the tokens from the contract.
+After successfully minting, if you are the owner, you can click "withdraw" to retrieve the tokens from the contract.
 
 Alright, it's time to check out the NFT Collection you've created on OpenSea. Enter the following URL in your browser: `https://testnets.opensea.io/assets/mumbai/0x86b5cf393100cf895b3371a4ccaa1bc95d486a56/1`. Replace "`0x86b5cf393100cf895b3371a4ccaa1bc95d486a56`" with your contract address, and you'll be able to see the first NFT in your Collection.
 
@@ -21,7 +45,7 @@ Click on the "ChainIDE Shields" above, and you'll be able to view the entire con
 
 ![image-20230223163620536](/public/images/Polygon-Whitelist-NFT/section-4/4_3_4.png)
 
-### Final step, configure the Collection.
+### 🛠 Final step, configure the Collection.
 
 If you're the owner, there might be a few additional steps you need to complete. These steps can enhance the appearance of your collection and potentially increase your earnings.
 
@@ -37,21 +61,19 @@ One particularly interesting aspect is the "Creator Earnings." Every time a user
 
 ![image-20230223164704695](/public/images/Polygon-Whitelist-NFT/section-4/4_3_7.png)
 
-Remember to click "Save" when you're done. You can make multiple changes, so there's no need to worry.
+Remember to click "Save collection" if you have made any changes. You can make multiple changes, so there's no need to worry.
 
 ![image-20230223164753042](/public/images/Polygon-Whitelist-NFT/section-4/4_3_8.png)
 
-### You did it!
+### 🙋‍♂️ Asking Questions
 
-Congratulations! You've completed a full-stack project of an NFT Collection that only allows whitelisted users to mint. You took a significant step toward your web3 journey. I genuinely share your joy in this accomplishment.
+If you have any uncertainties or issues with the work done so far, please ask in the `#polygon` channel on Discord.
 
-However, just as I used to face post-lesson homework back in my student days, I might be passing on some of that challenge to you now, 😁. So, please take a moment to rest and consider the following questions:
+To streamline the assistance process, kindly include the following 4 points in your error report ✨:
 
-* The mint function of the Shield contract allows whitelisted users to directly mint after the owner deploys the contract. Is there a way to modify it so that only after the owner sets permission can whitelisted users mint?
-* The mint function of the Shield contract doesn't currently restrict the number of mints per whitelisted user. How can you modify the code to limit each whitelisted user to only one mint?
-* If you want to grant minting permissions to everyone after whitelisted users have minted through the Shield contract, how should the code be designed?
-* The Whitelist contract uses a mapping to record whitelisted addresses. If the number of addresses exceeds 1000, it could consume a significant amount of gas. What can be done to address this?
-
-These questions might be a bit challenging, but there are hints within the article itself. Stay determined, and I believe your intelligence will guide you to the solutions. If you ever find yourself stuck, feel free to follow us; the upcoming articles will reveal the answers!
-
-Peace!
+```
+1. Section and lesson number related to the question
+2. What you were trying to do
+3. Copy & paste the error message
+4. Screenshot of the error screen
+```

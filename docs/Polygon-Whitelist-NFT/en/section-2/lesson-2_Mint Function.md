@@ -1,4 +1,4 @@
-### Write an NFT contract that only allows addresses within the whitelist to MINT.
+### 💳　Write an NFT contract that only allows addresses within the whitelist to MINT.
 
 For our dApp smart contract, we choose the ERC 721 contract which is the same as BAYC. We will modify it by adding a whitelist restriction feature.
 
@@ -6,7 +6,7 @@ For our dApp smart contract, we choose the ERC 721 contract which is the same as
     address public owner;
 
     constructor(address[] memory initialAddresses) {
-        owner =msg.sender;
+        owner = msg.sender;
 		...
     }
     
@@ -75,13 +75,13 @@ contract Shield is ERC721Enumerable, Ownable {
       * @dev _baseTokenURI for computing {tokenURI}. If set, the resulting URI for each
       * token will be the concatenation of the `baseURI` and the `tokenId`.
       */
-    string _baseTokenURI;
+    string private _baseTokenURI;
 
-    //  _price is the price of one Shield NFT
-    uint256 public _price = 0.01 ether;
+    // price is the price of one Shield NFT
+    uint256 public price = 0.01 ether;
 
-    // _paused is used to pause the contract in case of an emergency
-    bool public _paused;
+    // paused is used to pause the contract in case of an emergency
+    bool public paused;
 
     // max number of Shield NFT
     uint256 public maxTokenIds = 4;
@@ -90,10 +90,10 @@ contract Shield is ERC721Enumerable, Ownable {
     uint256 public tokenIds;
 
     // Whitelist contract instance
-    IWhitelist whitelist;
+    IWhitelist private _whitelist;
 
     modifier onlyWhenNotPaused {
-        require(!_paused, "Contract currently paused");
+        require(!paused, "Contract currently paused");
         _;
     }
 
@@ -105,7 +105,7 @@ contract Shield is ERC721Enumerable, Ownable {
       */
     constructor (string memory baseURI, address whitelistContract) ERC721("ChainIDE Shields", "CS") {
         _baseTokenURI = baseURI;
-        whitelist = IWhitelist(whitelistContract);
+        _whitelist = IWhitelist(whitelistContract);
     }
 
 
@@ -113,9 +113,9 @@ contract Shield is ERC721Enumerable, Ownable {
       * @dev presaleMint allows a user to mint one NFT per transaction during the presale.
       */
     function mint() public payable onlyWhenNotPaused {
-        require(whitelist.whitelistedAddresses(msg.sender), "You are not whitelisted");
+        require(_whitelist.whitelistedAddresses(msg.sender), "You are not whitelisted");
         require(tokenIds < maxTokenIds, "Exceeded maximum Shields supply");
-        require(msg.value >= _price, "Ether sent is not correct");
+        require(msg.value >= price, "Ether sent is not correct");
         tokenIds += 1;
         //_safeMint is a safer version of the _mint function as it ensures that
         // if the address being minted to is a contract, then it knows how to deal with ERC721 tokens
@@ -135,7 +135,7 @@ contract Shield is ERC721Enumerable, Ownable {
     * @dev setPaused makes the contract paused or unpaused
       */
     function setPaused(bool val) public onlyOwner {
-        _paused = val;
+        paused = val;
     }
 
     /**
@@ -183,14 +183,14 @@ Let's explain a few of the more significant state variables below.
 `tokenIds` represent the numerical IDs for each NFT, and these IDs are unique. When combined with `_baseTokenURI`, they form the Metadata for each NFT. (We'll talk about Metadata shortly. For now, just remember that having Metadata allows your NFT to be displayed on various NFT platforms.)
 
 ```solidity
-    //  _price is the price of one Shield NFT
-    uint256 public _price = 0.01 ether;
+    // price is the price of one Shield NFT
+    uint256 public price = 0.01 ether;
     
     // max number of Shield NFT
     uint256 public maxTokenIds = 4;
 ```
 
-`_price` sets the price for each NFT. In Ethereum (ETH), it refers to ETH itself, while in Polygon, it refers to Matic. Apart from ether, there are other units as well: 1 ether = 10^9 gwei, and 1 gwei = 10^9 wei.
+`price` sets the price for each NFT. In Ethereum (ETH), it refers to ETH itself, while in Polygon, it refers to Matic. Apart from ether, there are other units as well: 1 ether = 10^9 gwei, and 1 gwei = 10^9 wei.
 
 `maxTokenIds` indicates the maximum quantity of NFTs. Here, it's set to 4, which means you need to prepare metadata for four NFTs.
 
@@ -203,20 +203,20 @@ Let's explain a few of the more significant state variables below.
       */
     constructor (string memory baseURI, address whitelistContract) ERC721("ChainIDE Shields", "CS") {
         _baseTokenURI = baseURI;
-        whitelist = IWhitelist(whitelistContract);
+        _whitelist = IWhitelist(whitelistContract);
     }
 ```
 
-When deploying the contract, we need to input the `_baseTokenURI` and the address of the `whitelist` contract. Simultaneously, we also set the name of this NFT as "ChainIDE Shields," with the symbol "CS".
+When deploying the contract, we need to input the `_baseTokenURI` and the address of the `_whitelist` contract. Simultaneously, we also set the name of this NFT as "ChainIDE Shields," with the symbol "CS".
 
 ```solidity
      /**
       * @dev presaleMint allows a user to mint one NFT per transaction during the presale.
       */
     function mint() public payable onlyWhenNotPaused {
-        require(whitelist.whitelistedAddresses(msg.sender), "You are not whitelisted");
+        require(_whitelist.whitelistedAddresses(msg.sender), "You are not whitelisted");
         require(tokenIds < maxTokenIds, "Exceeded maximum Shields supply");
-        require(msg.value >= _price, "Ether sent is not correct");
+        require(msg.value >= price, "Ether sent is not correct");
         tokenIds += 1;
         //_safeMint is a safer version of the _mint function as it ensures that
         // if the address being minted to is a contract, then it knows how to deal with ERC721 tokens
@@ -227,20 +227,20 @@ When deploying the contract, we need to input the `_baseTokenURI` and the addres
 
 Let's focus on explaining the `mint` function:
 
-1. The keyword `payable` indicates that this function can receive tokens directly, as the price of an NFT is 0.01 ether. The usage of onlyWhenNotPaused employs a [modifier](https://solidity-by-example.org/function-modifier/), which signifies that the function can only proceed when `_paused` is `false`. (Note: The contract starts with _paused being false, allowing whitelist users to directly mint after contract deployment.)
+1. The keyword `payable` indicates that this function can receive tokens directly, as the price of an NFT is 0.01 ether. The usage of onlyWhenNotPaused employs a [modifier](https://solidity-by-example.org/function-modifier/), which signifies that the function can only proceed when `paused` is `false`. (Note: The contract starts with paused being false, allowing whitelist users to directly mint after contract deployment.)
 
 ```solidity
     modifier onlyWhenNotPaused {
-        require(!_paused, "Contract currently paused");
+        require(!paused, "Contract currently paused");
         _;
     }
 ```
 
-2. `require(whitelist.whitelistedAddresses(msg.sender), "You are not whitelisted");` This effectively restricts participation in the minting process to users who are on the whitelist.
+2. `require(_whitelist.whitelistedAddresses(msg.sender), "You are not whitelisted");` This effectively restricts participation in the minting process to users who are on the whitelist.
 
 3. `require(tokenIds < maxTokenIds, "Exceeded maximum Shields supply");` Here, the maximum quantity of `tokenIds` is restricted to not exceed the set `maxTokenIds`, which is 4.
 
-4. `require(msg.value >= _price, "Ether sent is not correct"); ` It requires that the incoming tokens must be greater than or equal to 0.01 ether. If they are greater than 0.01 ether, that's also perfectly fine! 😄
+4. `require(msg.value >= price, "Ether sent is not correct"); ` It requires that the incoming tokens must be greater than or equal to 0.01 ether. If they are greater than 0.01 ether, that's also perfectly fine! 😄
 
 5. `tokenIds += 1;` After all the aforementioned conditions are met, `tokenIds` will be incremented by 1. Remember, the default value of `tokenIds` is 0, so our `tokenIds` range becomes 1, 2, 3, 4.
 
@@ -251,11 +251,11 @@ Let's focus on explaining the `mint` function:
     * @dev setPaused makes the contract paused or unpaused
       */
     function setPaused(bool val) public onlyOwner {
-        _paused = val;
+        paused = val;
     }
 ```
 
-Setting the minting of the contract to be paused is achieved through the `_paused` variable, which is of type bool and is initially set to `false`. Therefore, only the `owner` needs to invoke this function before users can start minting.
+Setting the minting of the contract to be paused is achieved through the `paused` variable, which is of type bool and is initially set to `false`. Therefore, only the `owner` needs to invoke this function before users can start minting.
 
 ```solidity
     /**
@@ -279,3 +279,16 @@ Next, let's compile and deploy this smart contract using the `JS VM`. (You can s
 You can observe that on the `Deploy` page, we are required to input the `baseURI` (the root link for Metadata) and `whitelistContract` (the previous whitelist address). Therefore, the next task is to determine how to generate the root link for Metadata.
 
 ![image-20230223092203406](/public/images/Polygon-Whitelist-NFT/section-2/2_2_5.png)
+
+### 🙋‍♂️ Asking Questions
+
+If you have any uncertainties or issues with the work done so far, please ask in the `#polygon` channel on Discord.
+
+To streamline the assistance process, kindly include the following 4 points in your error report ✨:
+
+```
+1. Section and lesson number related to the question
+2. What you were trying to do
+3. Copy & paste the error message
+4. Screenshot of the error screen
+```

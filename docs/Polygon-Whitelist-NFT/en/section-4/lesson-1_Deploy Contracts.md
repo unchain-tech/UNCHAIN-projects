@@ -1,10 +1,10 @@
-## Deploy the whitelist and NFT contracts on the testnet.
+### 🌎 Deploy the whitelist and NFT contracts on the testnet.
 
 > Before deploying contracts on the testnet, you can thoroughly test the contracts using `JS VM`, as it doesn't require gas and deployment is quick.
 
 Do you recall that we received test tokens on the `Polygon Mumbai` testnet initially? Next, our task is to deploy the `Whitelist.sol` and `Shield.sol` contracts on this testnet.
 
-Click on the "Connected" button in the upper-right corner and then select "Disconnect JS VM".
+Click on the "Connected" button in the upper-right corner and then select "Disconnect".
 
 ![image-20230223133803703](/public/images/Polygon-Whitelist-NFT/section-4/4_1_1.png)
 
@@ -20,7 +20,7 @@ Select `Mumbai`
 
 ![image-20230223134208657](/public/images/Polygon-Whitelist-NFT/section-4/4_1_4.png)
 
-### Depoly Whitelist.sol 
+### 📝 Depoly Whitelist.sol 
 
 Compile `Whitelis.sol` first
 
@@ -76,7 +76,7 @@ Congratulations, verification successful!
 
 ![image-20230223141313801](/public/images/Polygon-Whitelist-NFT/section-4/4_1_16.png)
 
-### Deploy Shield.sol
+### 🛡　Deploy Shield.sol
 
 Let's start by compiling the `Shield.sol`.
 
@@ -94,3 +94,16 @@ After deployment, navigate to the `Verify` page again. Input the same `baseURI` 
 ![image-20230223142357545](/public/images/Polygon-Whitelist-NFT/section-4/4_1_19.png)
 
 Cool, the contract-related part is almost concluded. Next, we need to develop a frontend page for users on the whitelist to perform minting operations.
+
+### 🙋‍♂️ Asking Questions
+
+If you have any uncertainties or issues with the work done so far, please ask in the `#polygon` channel on Discord.
+
+To streamline the assistance process, kindly include the following 4 points in your error report ✨:
+
+```
+1. Section and lesson number related to the question
+2. What you were trying to do
+3. Copy & paste the error message
+4. Screenshot of the error screen
+```

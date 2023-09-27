@@ -1,4 +1,4 @@
-#### NFTメタデータの構築
+### 🃏 NFTメタデータの構築
 
 さあ、少しわくわくしてきましたか？ これから、自分自身のメタデータを作成する手順を順に説明しましょう。
 
@@ -84,7 +84,7 @@
 
 ![image-20230223103510159](/public/images/Polygon-Whitelist-NFT/section-3/3_2_6.png)
 
-#### IPFS経由でNFT画像とメタデータをアップロード
+### 🔧 IPFS経由でNFT画像とメタデータをアップロード
 
 前述の通り、IPFSにファイルをアップロードするにはノードが必要であり、自身でIPFSノードを実行することは難しいと感じるかもしれません。
 
@@ -206,3 +206,16 @@ https://car.ipfs.io をクリックします。
 このメタデータCARのCIDをコピーします：`bafybeihuwmkxnqban2ukneymhwctxfqec5ywrdiqyc7vmyegftrrllf7gq`
 
 IPFSのbaseURIに変換します：`ipfs://bafybeihuwmkxnqban2ukneymhwctxfqec5ywrdiqyc7vmyegftrrllf7gq/`
+
+### 🙋‍♂️ 質問する
+
+ここまでの作業で何かわからないことがある場合は、Discordの`#polygon`で質問をしてください。
+
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
+
+```
+1. 質問が関連しているセクション番号とレッスン番号
+2. 何をしようとしていたか
+3. エラー文をコピー&ペースト
+4. エラー画面のスクリーンショット
+```

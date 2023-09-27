@@ -1,13 +1,13 @@
-### Deploy a smart contract with whitelist function
+### 🏃 Deploy a smart contract with whitelist function
 #### First attempt
 
 Are you ready? Let's get started!
 
-First, let's create a folder called `Contracts` in the explorer in the left side.
+First, let's create a folder called `contracts` in the explorer in the left side.
 
 ![image-20230222151853564](/public/images/Polygon-Whitelist-NFT/section-1/1_2_1.png)
 
-Then, create a new smart contract file called `Whitelist.sol` under folder `Contracts`
+Then, create a new smart contract file called `Whitelist.sol` under folder `contracts`
 
 ![image-20230222152021342](/public/images/Polygon-Whitelist-NFT/section-1/1_2_2.png)
 
@@ -65,3 +65,16 @@ Switch to the Deploy & Interaction panel, connect to JS VM (JS VM is an EVM impl
 In the `INTERACT` section below, you can see the smart contract we've just deployed. Since there are no functions and state variables yet, it's completely empty. Next, we'll start adding those elements to make the smart contract more substantial.
 
 ![image-20230222160157031](/public/images/Polygon-Whitelist-NFT/section-1/1_2_6.png)
+
+### 🙋‍♂️ Asking Questions
+
+If you have any uncertainties or issues with the work done so far, please ask in the `#polygon` channel on Discord.
+
+To streamline the assistance process, kindly include the following 4 points in your error report ✨:
+
+```
+1. Section and lesson number related to the question
+2. What you were trying to do
+3. Copy & paste the error message
+4. Screenshot of the error screen
+```

@@ -1,10 +1,10 @@
-## テストネットにホワイトリストとNFTのコントラクトをデプロイする
+### 🌏 テストネットにホワイトリストとNFTのコントラクトをデプロイする
 
 > テストネットでのコントラクトのデプロイ前に、ガスを必要とせず、デプロイが迅速なため、`JS VM`を使用してコントラクトを徹底的にテストできます。
 
 最初に`Polygon Mumbai`テストネットでテストトークンを受け取ったことを覚えていますか？ 次に、このテストネットへ`Whitelist.sol`と`Shield.sol`のコントラクトをデプロイします。
 
-右上の「`Connected`」ボタンをクリックし、「`Disconnect JS VM`」を選択します。
+右上の「`Connected`」ボタンをクリックし、「`Disconnect`」を選択します。
 
 ![image-20230223133803703](/public/images/Polygon-Whitelist-NFT/section-4/4_1_1.png)
 
@@ -20,7 +20,7 @@
 
 ![image-20230223134208657](/public/images/Polygon-Whitelist-NFT/section-4/4_1_4.png)
 
-### Whitelist.solをデプロイする
+### 📝 Whitelist.solをデプロイする
 
 まず`Whitelis.sol`をコンパイルします。
 
@@ -76,7 +76,7 @@ Scan Verifierパネルに貼り付け、「`Verify`」をクリックします�
 
 ![image-20230223141313801](/public/images/Polygon-Whitelist-NFT/section-4/4_1_16.png)
 
-### Shield.solのデプロイ
+### 🛡 Shield.solのデプロイ
 
 `Shield.sol`のコンパイルから始めましょう。
 
@@ -94,3 +94,16 @@ Scan Verifierパネルに貼り付け、「`Verify`」をクリックします�
 ![image-20230223142357545](/public/images/Polygon-Whitelist-NFT/section-4/4_1_19.png)
 
 素晴らしい、コントラクトに関する部分はほぼ完了しました。次は、ホワイトリストに登録されたユーザーがミント操作を行うためのフロントエンドページを開発する必要があります。
+
+### 🙋‍♂️ 質問する
+
+ここまでの作業で何かわからないことがある場合は、Discordの`#polygon`で質問をしてください。
+
+ヘルプをするときのフローが円滑になるので、エラーレポートには下記の4点を記載してください ✨
+
+```
+1. 質問が関連しているセクション番号とレッスン番号
+2. 何をしようとしていたか
+3. エラー文をコピー&ペースト
+4. エラー画面のスクリーンショット
+```
