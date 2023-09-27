@@ -229,7 +229,7 @@ contract Shield is ERC721Enumerable, Ownable {
 
 `mint`関数の説明に焦点を当てましょう：
 
-1. `payable`というキーワードは、この関数が直接トークンを受け取ることができることを示しており、NFTの価格は0.01 etherです。onlyWhenNotPausedは[modifier](https://solidity-by-example.org/function-modifier/)が定義されています。`paused`が`false`のときのみ関数が実行されることを示しています（注：コントラクトは_pausedがfalseの状態で開始されるため、ホワイトリストのユーザーはコントラクトのデプロイ後に直接ミントを行うことができます）。
+1. `payable`というキーワードは、この関数が直接トークンを受け取ることができることを示しており、NFTの価格は0.01 etherです。onlyWhenNotPausedは[modifier](https://solidity-by-example.org/function-modifier/)が定義されています。`paused`が`false`のときのみ関数が実行されることを示しています（注：コントラクトはpausedがfalseの状態で開始されるため、ホワイトリストのユーザーはコントラクトのデプロイ後に直接ミントを行うことができます）。
 
 ```solidity
     modifier onlyWhenNotPaused {
