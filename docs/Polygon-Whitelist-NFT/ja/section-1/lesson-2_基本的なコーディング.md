@@ -4,11 +4,11 @@
 
 準備はできましたか？ それでは始めましょう！
 
-まず、左側のExplorerで`contract`というフォルダを作成しましょう。
+まず、左側のExplorerで`contracts`というフォルダを作成しましょう。
 
 ![image-20230222151853564](/public/images/Polygon-Whitelist-NFT/section-1/1_2_1.png)
 
-次に、`contract`フォルダの下に`contracts`フォルダを作成します。作成したcontractsフォルダの中に、`Whitelist.sol`という新しいスマートコントラクトファイルを作成しましょう。
+作成したcontractsフォルダの中に、`Whitelist.sol`という新しいスマートコントラクトファイルを作成しましょう。
 
 ![image-20230222152021342](/public/images/Polygon-Whitelist-NFT/section-1/1_2_2.png)
 

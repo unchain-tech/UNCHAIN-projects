@@ -15,13 +15,13 @@ Sandboxが立ち上がったことを確認しましょう。
 プロジェクトのルートディレクトリにいることを確認して、下記のコマンドを実行します。
 
 ```
-npx create-next-app@latest
+yarn create next-app
 ```
 
-プロジェクト名は`frontend`とし、以下のように選択肢を選んでプロジェクトを作成しましょう。
+プロジェクト名は`client`とし、以下のように選択肢を選んでプロジェクトを作成しましょう。
 
 ```
-✔ What is your project named? … frontend
+✔ What is your project named? … client
 ✔ Would you like to use TypeScript? … [Yes]
 ✔ Would you like to use ESLint? … [Yes]
 ✔ Would you like to use Tailwind CSS? … [No]
@@ -30,14 +30,14 @@ npx create-next-app@latest
 ✔ Would you like to customize the default import alias? … [No]
 ```
 
-`frontend/`が作成されたことを確認しましょう。
+`client/`が作成されたことを確認しましょう。
 
 ![](/public/images/Polygon-Whitelist-NFT/section-4/4_2_9.png)
 
-frontendフォルダに移動して、必要なパッケージをインストールします。
+clientフォルダに移動して、必要なパッケージをインストールします。
 
 ```
-cd frontend
+cd client
 yarn add @metamask/providers@^13.0.0 ethers@^5
 ```
 
@@ -46,8 +46,6 @@ yarn add @metamask/providers@^13.0.0 ethers@^5
 `pages/api/`を削除します。
 
 ![](/public/images/Polygon-Whitelist-NFT/section-4/4_2_10.png)
-
-同様の手順で`package-lock.json`を削除しましょう。
 
 それでは、ファイルの更新をしていきます。
 
@@ -102,9 +100,11 @@ body {
 
 ```
 
-frontendフォルダの中に、`@types/global.d.ts`を作成します。
+clientフォルダの中に、`@types/global.d.ts`を作成します。
 
 ![](/public/images/Polygon-Whitelist-NFT/section-4/4_2_11.png)
+
+![](/public/images/Polygon-Whitelist-NFT/section-4/4_2_12.png)
 
 下記のコードを記述しましょう。
 
@@ -120,7 +120,7 @@ declare global {
 
 ### コード生成
 
-frontendフォルダの中、`pages/index.tsx`に完全なコードを貼り付けましょう。
+clientフォルダの中にある、`pages/index.tsx`に完全なコードを貼り付けましょう。
 
 ```tsx
 import Head from 'next/head';
@@ -148,9 +148,6 @@ export default function Home() {
       }
       await switchToMumbai();
       setConnectStatus('connected');
-      // const accounts = await ethereum.request({
-      //   method: 'eth_accounts',
-      // });
     } else {
       setConnectStatus('Please install MetaMask');
     }
@@ -578,7 +575,7 @@ import { ethers } from 'ethers';
 
 ユーザーが`"Connect"`ボタンをクリックすると、`connect`関数が起動します。まず、MetaMaskにアカウントを要求します。次に、チェーンIDをチェックしてMumbaiテストネットに接続されているかどうかを判断します（各チェーンには通常、ユニークなチェーンIDがあり、Ethereumのメインネットは1、Mumbaiは4902となっています）。Mumbaiが設定されていない場合は、自動的に設定します。このプロセス中にエラーが発生した場合は、対応するエラーメッセージが表示されます。
 
-```javascript
+```tsx
   const mint = async () => {
     console.log(`Mint...`);
     if (typeof window.ethereum !== 'undefined') {
