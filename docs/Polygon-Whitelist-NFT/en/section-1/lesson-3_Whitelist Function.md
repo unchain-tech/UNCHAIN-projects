@@ -1,4 +1,4 @@
-#### Creating a Smart Contract with Whitelist Functionality
+### 📃 Creating a Smart Contract with Whitelist Functionality
 
 > Note, this course here may be a bit lengthy, please be patient.
 
@@ -195,3 +195,16 @@ After deployment is complete, you can call the contract. Try entering some addre
 ![image-20230222181353308](/public/images/Polygon-Whitelist-NFT/section-1/1_3_3.png)
 
 Alright, the whitelist contract is now complete. Next, we will move on to the smart contract writing module for the NFT (Non-Fungible Token) part.
+
+### 🙋‍♂️ Asking Questions
+
+If you have any uncertainties or issues with the work done so far, please ask in the `#polygon` channel on Discord.
+
+To streamline the assistance process, kindly include the following 4 points in your error report ✨:
+
+```
+1. Section and lesson number related to the question
+2. What you were trying to do
+3. Copy & paste the error message
+4. Screenshot of the error screen
+```

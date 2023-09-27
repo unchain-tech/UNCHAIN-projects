@@ -1,4 +1,4 @@
-### Write an NFT contract that only allows addresses within the whitelist to MINT.
+### 💳　Write an NFT contract that only allows addresses within the whitelist to MINT.
 
 For our dApp smart contract, we choose the ERC 721 contract which is the same as BAYC. We will modify it by adding a whitelist restriction feature.
 
@@ -279,3 +279,16 @@ Next, let's compile and deploy this smart contract using the `JS VM`. (You can s
 You can observe that on the `Deploy` page, we are required to input the `baseURI` (the root link for Metadata) and `whitelistContract` (the previous whitelist address). Therefore, the next task is to determine how to generate the root link for Metadata.
 
 ![image-20230223092203406](/public/images/Polygon-Whitelist-NFT/section-2/2_2_5.png)
+
+### 🙋‍♂️ Asking Questions
+
+If you have any uncertainties or issues with the work done so far, please ask in the `#polygon` channel on Discord.
+
+To streamline the assistance process, kindly include the following 4 points in your error report ✨:
+
+```
+1. Section and lesson number related to the question
+2. What you were trying to do
+3. Copy & paste the error message
+4. Screenshot of the error screen
+```

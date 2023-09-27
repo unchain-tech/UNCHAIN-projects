@@ -1,4 +1,4 @@
-### Minting NFTs for Whitelisted Users
+### 🦄 Minting NFTs for Whitelisted Users
 
 The coding part is finally complete, congratulations! Now it's time to enjoy the results.
 
@@ -45,7 +45,7 @@ Click on the "ChainIDE Shields" above, and you'll be able to view the entire con
 
 ![image-20230223163620536](/public/images/Polygon-Whitelist-NFT/section-4/4_3_4.png)
 
-### Final step, configure the Collection.
+### 🛠 Final step, configure the Collection.
 
 If you're the owner, there might be a few additional steps you need to complete. These steps can enhance the appearance of your collection and potentially increase your earnings.
 
@@ -64,3 +64,16 @@ One particularly interesting aspect is the "Creator Earnings." Every time a user
 Remember to click "Save collection" if you have made any changes. You can make multiple changes, so there's no need to worry.
 
 ![image-20230223164753042](/public/images/Polygon-Whitelist-NFT/section-4/4_3_8.png)
+
+### 🙋‍♂️ Asking Questions
+
+If you have any uncertainties or issues with the work done so far, please ask in the `#polygon` channel on Discord.
+
+To streamline the assistance process, kindly include the following 4 points in your error report ✨:
+
+```
+1. Section and lesson number related to the question
+2. What you were trying to do
+3. Copy & paste the error message
+4. Screenshot of the error screen
+```

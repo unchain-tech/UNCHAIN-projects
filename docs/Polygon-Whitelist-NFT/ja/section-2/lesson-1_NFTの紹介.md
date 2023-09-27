@@ -1,6 +1,6 @@
 ## ホワイトリスト内のアドレスのみがミントできるNFTコントラクトを書く
 
-### NFTとは
+### 🎓 NFTとは
 
 NFT（Non-Fungible Token）はデジタル資産の一種で、通常、デジタルアート、オーディオ、ビデオ、ゲームアイテムなど、ブロックチェーン上でユニークなデジタルコンテンツの保管や取引に使用されます。従来の通貨や暗号通貨とは異なり、NFTはそれぞれ固有の識別子を持つため、ユニークで交換不可能です。
 
@@ -21,3 +21,6 @@ BAYC（Bored Ape Yacht Club）は現在、NFTの世界で注目の存在です�
 2. [ERC-1155](https://eips.ethereum.org/EIPS/eip-1155)は、2018年にEnjinによってリリースされた新しいNFT標準規格です。ERC-1155は「Fungible/Non-Fungible Tokens」を表し、FungibleトークンとNon-Fungibleトークンを1つの標準に統合しています。この規格により、複数の種類のトークンを管理する単一のスマートコントラクトを作成することが可能になり、それらはfungibleやnon-fungibleにもなります。ERC-1155トークンは、ゲーム内の武器、装備、装飾品などのデジタルアイテムを表すために使用されます。
 
 3. [ERC-3525](https://eips.ethereum.org/EIPS/eip-3525)や[ERC-4907](https://eips.ethereum.org/EIPS/eip-4907)といった後続のNFTプロトコルも、上記2つのNFT標準規格を基に開発されました。
+
+### 🙋‍♂️ 質問する
+ここまで何かわからないことがある場合は、Discordの`#polygon`で質問をしてください。

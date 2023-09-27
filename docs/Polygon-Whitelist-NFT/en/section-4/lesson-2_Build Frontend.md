@@ -1,6 +1,6 @@
 ## Create a web frontend page
 
-### Generate Project
+### 🛠 Generate Project
 
 The terminal panel, located at the bottom of the ChainIDE screen, will be manipulated.
 
@@ -118,7 +118,7 @@ declare global {
 }
 ```
 
-### Generate Code
+### 🚗 Generate Code
 
 Paste the complete code into `pages/index.tsx` in the client folder.
 
@@ -606,3 +606,16 @@ When a user clicks the `"Connect"` button, it triggers the `connect` function. F
 When a user clicks the `"Mint"` button, the script first fetches the array from the input field. It then outputs `"Mint..."` to the console. Subsequently, it prompts the user to sign the transaction using their MetaMask extension. The script calls the `mint` function of the contract and sends the corresponding amount of ether. If the minting process is successful, the console will display "Mint succeed!". Otherwise, it will show the corresponding error message.
 
 I believe you can deduce the functionality of the `"withdraw"` function from here, so I won't elaborate further.
+
+### 🙋‍♂️ Asking Questions
+
+If you have any uncertainties or issues with the work done so far, please ask in the `#polygon` channel on Discord.
+
+To streamline the assistance process, kindly include the following 4 points in your error report ✨:
+
+```
+1. Section and lesson number related to the question
+2. What you were trying to do
+3. Copy & paste the error message
+4. Screenshot of the error screen
+```

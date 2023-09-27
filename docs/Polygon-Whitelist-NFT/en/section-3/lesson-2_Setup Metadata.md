@@ -1,4 +1,4 @@
-#### Build a NFT Metadata
+### 🃏 Build a NFT Metadata
 
 Alright, feeling a bit excited? Now, I'll guide you through the process of creating your own metadata step by step.
 
@@ -84,7 +84,7 @@ Then, create four new files in another folder, naming them 1, 2, 3, and 4. Fill 
 
 ![image-20230223103510159](/public/images/Polygon-Whitelist-NFT/section-3/3_2_6.png)
 
-#### Upload NFT images and metadata via IPFS.
+### 🔧 Upload NFT images and metadata via IPFS.
 
 As mentioned earlier, uploading files to IPFS requires nodes, and running your own IPFS node might seem challenging.
 
@@ -202,3 +202,16 @@ After making the necessary modifications, let's follow the process of uploading 
 Copy the CID of this Metadata CAR: `bafybeihuwmkxnqban2ukneymhwctxfqec5ywrdiqyc7vmyegftrrllf7gq`
 
 Convert it to an IPFS baseURI: `ipfs://bafybeihuwmkxnqban2ukneymhwctxfqec5ywrdiqyc7vmyegftrrllf7gq/`
+
+### 🙋‍♂️ Asking Questions
+
+If you have any uncertainties or issues with the work done so far, please ask in the `#polygon` channel on Discord.
+
+To streamline the assistance process, kindly include the following 4 points in your error report ✨:
+
+```
+1. Section and lesson number related to the question
+2. What you were trying to do
+3. Copy & paste the error message
+4. Screenshot of the error screen
+```

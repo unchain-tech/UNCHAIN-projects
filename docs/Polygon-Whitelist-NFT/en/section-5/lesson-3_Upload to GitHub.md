@@ -1,6 +1,6 @@
-### Upload your project to GitHub
+### 🐱 Upload your project to GitHub
 
-### Setup the contract address and ABI
+#### Setup the contract address and ABI
 
 Shield contract address and ABI were described directly, but let's refer to the contract address from the `.env.local` file and ABI from the `artifacts` folder generated at build time, respectively.
 
@@ -77,11 +77,11 @@ After all files are staged, enter a commit message and click "Commit & Push".
 
 Go to your GitHub account and make sure the files have been uploaded to the Polygon-Whitelist-NFT repository.
 
-### Deploying a Web Application to Vercel
+### 🤟 Deploying a Web Application to Vercel
 
 To deploy an application to Vercel, please refer to [Deploying a Web Application in Vercel](https://app.unchain.tech/learn/Solana-NFT-Drop/ja/4/2/)
 
-### You did it!
+### 🎊 You did it!
 
 Congratulations! You've completed a full-stack project of an NFT Collection that only allows whitelisted users to mint. You took a significant step toward your web3 journey. I genuinely share your joy in this accomplishment.
 
@@ -95,3 +95,31 @@ However, just as I used to face post-lesson homework back in my student days, I 
 These questions might be a bit challenging, but there are hints within the article itself. Stay determined, and I believe your intelligence will guide you to the solutions. If you ever find yourself stuck, feel free to follow us; the upcoming articles will reveal the answers!
 
 Peace!
+
+### 🙋‍♂️ Asking Questions
+
+If you have any uncertainties or issues with the work done so far, please ask in the `#polygon` channel on Discord.
+
+To streamline the assistance process, kindly include the following 4 points in your error report ✨:
+
+```
+1. Section and lesson number related to the question
+2. What you were trying to do
+3. Copy & paste the error message
+4. Screenshot of the error screen
+```
+
+### 🎫 Get an NFT!
+
+The conditions for obtaining an NFT are as follows:
+
+1. All MVP features have been implemented (Implementation OK).
+2. MVP functions are working seamlessly on the web application (Testing OK).
+3. Fill out the Project Completion Form linked at the end of this page.
+4. Please share your OpenSea link in the Discord `🔥｜completed-project` channel 😉🎉. When posting on Discord, we'd appreciate it if you could also mention any additional features you implemented and provide an overview!
+
+Those who complete the project will receive an NFT.
+
+---
+
+The Project Completion Form can be found [here](https://airtable.com/shrf1cCtTx0iQuszX).

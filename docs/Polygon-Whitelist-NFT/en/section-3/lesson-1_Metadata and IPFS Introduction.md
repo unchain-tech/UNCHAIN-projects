@@ -1,4 +1,4 @@
-### Upload NFT Metadata using IPFS
+### 🤖　Upload NFT Metadata using IPFS
 
 #### What is IPFS
 
@@ -82,3 +82,6 @@ However, this is just the most basic `JSON Schema`. Some NFT creators prefer to 
     }]
 }
 ```
+
+### 🙋‍♂️ Asking Questions
+If you have any questions or uncertainties up to this point, please ask in the `#polygon` channel on Discord.

@@ -1,4 +1,4 @@
-### IPFSを使用したNFTメタデータのアップロード
+### 🤖 IPFSを使用したNFTメタデータのアップロード
 
 #### IPFSとは
 
@@ -82,3 +82,6 @@ https://cloudflare-ipfs.com/ipfs/QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/
     }]
 }
 ```
+
+### 🙋‍♂️ 質問する
+ここまで何かわからないことがある場合は、Discordの`#polygon`で質問をしてください。

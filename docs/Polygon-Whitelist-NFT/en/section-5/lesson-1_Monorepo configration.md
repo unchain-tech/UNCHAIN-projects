@@ -1,4 +1,4 @@
-### Monorepo configration
+### 📦 Monorepo configration
 
 Update your file structure to a monorepo structure. Monorepo is a way to manage all code for the contract and client（or other components）together in one repository.
 
@@ -182,3 +182,16 @@ yarn client dev
 ```
 
 If it runs without problems, the monorepo setup is complete!
+
+### 🙋‍♂️ Asking Questions
+
+If you have any uncertainties or issues with the work done so far, please ask in the `#polygon` channel on Discord.
+
+To streamline the assistance process, kindly include the following 4 points in your error report ✨:
+
+```
+1. Section and lesson number related to the question
+2. What you were trying to do
+3. Copy & paste the error message
+4. Screenshot of the error screen
+```

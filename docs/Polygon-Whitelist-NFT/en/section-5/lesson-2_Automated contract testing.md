@@ -1,4 +1,4 @@
-### Create an automated test
+### ✅ Create an automated test
 
 Create an automated test for your contract. This is to verify that the contract is behaving as expected.
 
@@ -352,7 +352,7 @@ describe('Whitelist', function () {
         ...
 ```
 
-実行・検証のセクションでは、実際にテスト対象の関数を実行し、期待する結果が得られるかどうかを確認します。
+In the Execution and Verification section, the function under test is actually executed to see if the expected results are returned.
 
 ```typescript
         // Execution and Verification
@@ -373,3 +373,16 @@ yarn test
 ```
 
 If all tests pass, you are done!
+
+### 🙋‍♂️ Asking Questions
+
+If you have any uncertainties or issues with the work done so far, please ask in the `#polygon` channel on Discord.
+
+To streamline the assistance process, kindly include the following 4 points in your error report ✨:
+
+```
+1. Section and lesson number related to the question
+2. What you were trying to do
+3. Copy & paste the error message
+4. Screenshot of the error screen
+```
