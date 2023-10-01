@@ -507,7 +507,7 @@ import { describe, it } from 'node:test';
 import {
   editionDropAddress,
   ERCTokenAddress,
-  gavananceAddress,
+  governanceAddress,
   ownerWalletAddress,
 } from '../scripts/module.js';
 
@@ -533,10 +533,10 @@ describe('ETH-DAO test', function () {
     assert.equal(address, demoWallet.address);
   });
 
-  // edition-drop, ERC1155-token, gavanance-tokenの3つのコントラクトを取得
+  // edition-drop, ERC1155-token, governance-tokenの3つのコントラクトを取得
   const editionDrop = sdk.getContract(editionDropAddress, 'edition-drop');
   const token = sdk.getContract(ERCTokenAddress, 'token');
-  const vote = sdk.getContract(gavananceAddress, 'vote');
+  const vote = sdk.getContract(governanceAddress, 'vote');
 
   // 2-deploy-drop.tsのテスト
   it('metadata is set', async function () {

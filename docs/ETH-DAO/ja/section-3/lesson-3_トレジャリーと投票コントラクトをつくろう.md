@@ -146,10 +146,10 @@ ENSでは、供給量の50％ がコミュニティ、25％ はエアドロッ�
 
 ```typescript
 import sdk from './1-initialize-sdk';
-import { ERCTokenAddress, gavananceAddress } from './module';
+import { ERCTokenAddress, governanceAddress } from './module';
 
 // ガバナンスコントラクトのアドレスを設定します
-const vote = sdk.getContract(gavananceAddress, 'vote');
+const vote = sdk.getContract(governanceAddress, 'vote');
 
 // ERC-20 コントラクトのアドレスを設定します。
 const token = sdk.getContract(ERCTokenAddress, 'token');
