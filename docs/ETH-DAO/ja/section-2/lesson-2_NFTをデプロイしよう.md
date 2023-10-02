@@ -9,30 +9,30 @@
 ```typescript
 import nextEnv from '@next/env';
 import { ThirdwebSDK } from '@thirdweb-dev/sdk';
-import ethers from 'ethers';
 
-const { loadEnvConfig } = nextEnv;
 // 環境変数を env ファイルから読み込む
-const { PRIVATE_KEY, ALCHEMY_API_URL, WALLET_ADDRESS } = loadEnvConfig(
-  process.cwd()
+const { loadEnvConfig } = nextEnv;
+const { PRIVATE_KEY, CLIENT_ID, SECRET_KEY } = loadEnvConfig(
+  process.cwd(),
 ).combinedEnv;
 
-// 環境変数が取得できてとれているか確認
+// 環境変数が取得できているか確認
 if (!PRIVATE_KEY || PRIVATE_KEY === '') {
   console.log('🛑 Private key not found.');
 }
 
-if (!ALCHEMY_API_URL || ALCHEMY_API_URL === '') {
-  console.log('🛑 Alchemy API URL not found.');
+if (!CLIENT_ID || CLIENT_ID === '') {
+  console.log('🛑 Client ID of API Key not found.');
 }
 
-if (!WALLET_ADDRESS || WALLET_ADDRESS === '') {
-  console.log('🛑 Wallet Address not found.');
+if (!SECRET_KEY || SECRET_KEY === '') {
+  console.log('🛑 Secret Key of API Key not found.');
 }
 
-const sdk = new ThirdwebSDK(
-  new ethers.Wallet(PRIVATE_KEY!, ethers.getDefaultProvider(ALCHEMY_API_URL))
-);
+const sdk = ThirdwebSDK.fromPrivateKey(PRIVATE_KEY!, 'sepolia', {
+  clientId: CLIENT_ID,
+  secretKey: SECRET_KEY,
+});
 
 // ここでスクリプトを実行
 (async () => {
