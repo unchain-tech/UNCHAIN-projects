@@ -93,13 +93,13 @@ import { ERCTokenAddress } from './module';
 
 それでは、ターミナルに移動し、下記コマンドを実行してみましょう。
 
-```bash
+```
 yarn node --loader ts-node/esm src/scripts/8-deploy-vote.ts
 ```
 
 以下のような表示がされたら、成功です。
 
-```bash
+```
 SDK initialized by address: 0x8cB688A30D5Fd6f2e5025d8915eD95e770832933
 ✅ Successfully deployed vote contract, address: 0xCA7D13D6A51141D04C3fC05cFE4EBeE9f9ac6Bc2
 Done in 50.84s.
@@ -205,13 +205,13 @@ const token = sdk.getContract(ERCTokenAddress, 'token');
 
 それでは、ターミナルに移動し、下記コマンドを実行してみましょう。
 
-```bash
+```
 yarn node --loader ts-node/esm src/scripts/9-setup-vote.ts
 ```
 
 以下のような表示がされたら、成功です。
 
-```bash
+```
 SDK initialized by address: 0x8cB688A30D5Fd6f2e5025d8915eD95e770832933
 Successfully gave vote contract permissions to act on token contract
 ✅ Successfully transferred 895315.5000000001 tokens to vote contract

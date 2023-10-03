@@ -254,7 +254,7 @@ code .gitignore
 
 `.gitignore`の中身が下記のようになっていれば、問題ありません。
 
-```bash
+```
 node_modules
 .env
 coverage
@@ -288,13 +288,13 @@ hardhat.config.js
 
 ターミナル上で下記のコマンドを実行しましょう。
 
-```bash
+```
 yarn contract deploy
 ```
 
 ターミナルに、下記のような結果が出力されていることを確認してください。
 
-```bash
+```
 Contract deployed to: 0x534bA0eEFbA75bb8C306CD306AB02E8FfFB4eB71
 Minted NFT #1
 Done deploying and minting!

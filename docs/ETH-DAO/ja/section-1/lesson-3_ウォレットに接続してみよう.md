@@ -88,7 +88,7 @@ export const HeadComponent = () => {
 
 以下のコマンドを実行するとローカルでフロントエンドが立ち上がるので、初期画面を確認してみましょう。
 
-```bash
+```
 yarn dev
 ```
 

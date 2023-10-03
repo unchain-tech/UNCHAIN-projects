@@ -171,7 +171,7 @@ VercelはGitHubと連動しているので、GitHubが更新されるたびに�
 
 秘密鍵などのファイルを隠すために、ターミナルで`contract`に移動して、下記を実行してください。
 
-```bash
+```
 yarn add --dev dotenv
 ```
 

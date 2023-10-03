@@ -35,7 +35,7 @@ yarn contract deploy
 
 その後`assetTokenization address:`に続くコントラクトのアドレスを`client`ディレクトリ内、 `hooks/useContract.ts`の中の以下の部分に貼り付けてください。
 
-```
+```javascript
 export const AssetTokenizationAddress =
   "コントラクトのデプロイ先アドレス";
 ```

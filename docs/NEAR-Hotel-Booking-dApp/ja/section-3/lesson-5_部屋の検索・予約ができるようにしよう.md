@@ -55,7 +55,7 @@ export default Home;
 
 `Search`画面に遷移したブラウザのURLを見てみましょう。パスの最後に、検索をした日付が追加されているはずです。
 
-```bash
+```
 localhost:1234/search/2022-08-09
 ```
 

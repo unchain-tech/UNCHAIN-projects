@@ -114,11 +114,11 @@ contract MyEpicNFT is ERC721URIStorage {
 
         // tokenURI は後で設定します。
         // 今は、tokenURI の代わりに、"We will set tokenURI later." を設定します。
-        _setTokenURI(newItemId, "We will set tokenURI later.");   
+        _setTokenURI(newItemId, "We will set tokenURI later.");
         // NFTがいつ誰に作成されたかを確認します。
         console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
     }
-} 
+}
 ```
 
 簡単にコードの内容を説明していきます。
@@ -175,7 +175,7 @@ string[] thirdWords = ["Kitten", "Puppy", "Monkey", "Bird", "Panda", "Elephant"]
 function pickRandomFirstWord(uint256 tokenId) public view returns (string memory)
 {
     // pickRandomFirstWord 関数のシードとなる rand を作成します。
-    uint256 rand = random(string(abi.encodePacked("FIRST_WORD", Strings.toString(tokenId)))); 
+    uint256 rand = random(string(abi.encodePacked("FIRST_WORD", Strings.toString(tokenId))));
 
     // firstWords配列の長さを基準に、rand 番目の単語を選びます。
     rand = rand % firstWords.length;
@@ -399,13 +399,13 @@ describe('pickRandomFirstWord', function () {
 
 `ETH-NFT-Collection`ディレクトリ直下にいることを確認して、次のコマンドを実行しましょう。
 
-```bash
+```
 yarn contract test
 ```
 
 以下のような結果が出力されていれば成功です。
 
-```bash
+```
   MyEpicNFT
     pickRandomFirstWord
 This is my NFT contract.
@@ -425,7 +425,7 @@ rand - first word:  0
 
 自動テストを全て通過したことが確認できたら、次にデプロイスクリプトを実行してどのような生成物となるのか、`console.log`の出力を確認してみましょう。
 
-```bash
+```
 yarn contract deploy
 ```
 
@@ -693,7 +693,7 @@ contract MyEpicNFT is ERC721URIStorage {
         // NFTがいつ誰に作成されたかを確認します。
         console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
     }
-} 
+}
 ```
 
 追加したコードを見ていきましょう。
@@ -768,7 +768,7 @@ _setTokenURI(newItemId, finalTokenUri);
 
 それでは、ターミナルに向かい、`ETH-NFT-Collection`ディレクトリ直下で、下記を実行しましょう。
 
-```bash
+```
 yarn contract deploy
 ```
 
@@ -851,7 +851,7 @@ main().catch((error) => {
 
 続いて、デプロイコマンドを実行します。
 
-```bash
+```
 yarn contract deploy:sepolia
 ```
 

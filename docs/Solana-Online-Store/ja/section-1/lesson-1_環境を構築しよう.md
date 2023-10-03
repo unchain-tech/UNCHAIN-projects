@@ -56,7 +56,7 @@ Chromeの方は[こちら](https://chrome.google.com/webstore/detail/phantom/bfn
 
 ターミナルで任意の作業ディレクトリに移動し、先ほどコピーしたリンクを貼り付け、下記を実行してください。
 
-```bash
+```
 git clone コピーした_github_リンク
 ```
 

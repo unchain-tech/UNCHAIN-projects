@@ -31,7 +31,7 @@ GitHubのアカウントをお持ちの方は、下記の手順に沿ってプ�
 
 ターミナル上で作業を行う任意のディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
 
-```bash
+```
 git clone コピーした_github_リンク
 ```
 
@@ -41,7 +41,7 @@ git clone コピーした_github_リンク
 
 実装に入る前に、フォルダ構成を確認しておきましょう。クローンしたスタータープロジェクトは下記のようになっているはずです。
 
-```bash
+```
 ETH-NFT-Collection
 ├── .git/
 ├── .gitignore
@@ -77,7 +77,7 @@ packagesディレクトリの中には、`client`と`contract`という2つの�
 
 ターミナル上で`ETH-NFT-Collection`ディレクトリ直下に移動して下記を実行してみましょう。
 
-```bash
+```
 yarn install
 ```
 
@@ -96,7 +96,7 @@ yarn install
 
 これにより、各パッケージのディレクトリへ階層を移動しなくてもプロジェクトのルート直下から以下のようにコマンドを実行することが可能となります（ただし、各パッケージ内に`package.json`ファイルが存在し、その中にコマンドが定義されていないと実行できません）。
 
-```bash
+```
 yarn <パッケージ名> <実行したいコマンド>
 ```
 
@@ -114,7 +114,7 @@ yarn <パッケージ名> <実行したいコマンド>
 
 `packages/contract`ディレクトリに移動し、次のコマンドを実行します。
 
-```bash
+```
 npx hardhat
 ```
 
@@ -127,7 +127,7 @@ npx hardhat
 ```
 
 （例）
-```bash
+```
 $ npx hardhat
 
 888    888                      888 888               888
@@ -184,7 +184,7 @@ Give Hardhat a star on Github if you're enjoying it! 💞✨
 
 `packages/contract`ディレクトリにいることを確認し、以下のコマンドを実行してください。
 
-```bash
+```
 yarn add --dev @openzeppelin/contracts@4.8.2
 ```
 
@@ -212,7 +212,7 @@ npx hardhat test
 
 ターミナル上で`ls`と入力してみて、下記のフォルダーとファイルが表示されていたら成功です。
 
-```bash
+```
 README.md         cache             hardhat.config.js package.json      test
 artifacts         contracts         node_modules      scripts
 ```

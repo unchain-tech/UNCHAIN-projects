@@ -426,7 +426,7 @@ export default function SendMessagePage() {
 
 上記のコードをすべて反映させたら、ターミナル上で下記を実行しましょう。
 
-```bash
+```
 yarn client dev
 ```
 

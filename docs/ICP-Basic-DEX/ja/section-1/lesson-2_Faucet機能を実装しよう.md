@@ -382,7 +382,7 @@ case (?tokens) {
 
 まずは、プロジェクトのルート直下に`scripts`ディレクトリを作成します。
 
-```bash
+```
 mkdir scripts
 ```
 
@@ -396,7 +396,7 @@ touch ./scripts/test.sh
 
 [test.sh]
 
-```bash
+```
 #!/bin/bash
 
 compare_result() {
@@ -457,11 +457,11 @@ dfx identity use user1
 # user1がトークンを取得する
 echo '===== getToken ====='
 EXPECT="(variant { Ok = 1_000 : nat })"
-RESULT=`dfx canister call faucet getToken '(principal '\"$GoldDIP20_PRINCIPAL\"')'` 
+RESULT=`dfx canister call faucet getToken '(principal '\"$GoldDIP20_PRINCIPAL\"')'`
 compare_result "return 1_000" "$EXPECT" "$RESULT" || TEST_STATUS=1
 
 EXPECT="(variant { Err = variant { AlreadyGiven } })"
-RESULT=`dfx canister call faucet getToken '(principal '\"$GoldDIP20_PRINCIPAL\"')'` 
+RESULT=`dfx canister call faucet getToken '(principal '\"$GoldDIP20_PRINCIPAL\"')'`
 compare_result "return Err AlreadyGiven" "$EXPECT" "$RESULT" || TEST_STATUS=1
 
 # ===== 後始末 =====
@@ -496,13 +496,13 @@ fi
 
 では、実際にテストを実行してみましょう。ターミナルを開き、作成したスクリプトを走らせます。
 
-```bash
+```
 bash ./scripts/test.sh
 ```
 
 実行結果は以下のように出力されるでしょう。
 
-```bash
+```
 # キャニスターデプロイの出力結果は省略しています...
 
 ===== getToken =====

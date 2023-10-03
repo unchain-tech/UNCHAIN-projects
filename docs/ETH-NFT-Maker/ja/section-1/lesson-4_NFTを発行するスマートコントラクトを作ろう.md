@@ -42,17 +42,18 @@ contract Web3Mint is ERC721URIStorage {
 }
 ```
 
-1行ずつコードを見ていきたいですが、ほとんどは[Project2-section1-lesson4](https://unchain-portal.netlify.app/projects/102-ETH-NFT-Collection/section-1-lesson-4)で解説されているので、今回はポイントに絞って解説したいと思います。解説されていなくてわからない方はぜひ一度戻ってみることをおすすめします。
+これは[ETH-NFT-Collection](/docs/ETH-NFT-Collection/ja/section-1/lesson-4_NFTを発行するスマートコントラクトを作ろう.md)と同様の構成になっています。復習も兼ねて是非一度戻ってみることをおすすめします。
 
 ```solidity
 // Web3Mint.sol
 contract Web3Mint is ERC721URIStorage {
 	:
+}
 ```
 
 ここでは、`ERC721URIStorage`を継承しています。
 
-なぜ、`ERC721`ではなく`ERC721URIStorage`を継承しているのかと疑問に思った方もいるかもしれないですが、これはいきなり`tokenURI`関数で解説するよりも、`setTokenURI`で解説したほうがわかりやすいだろうという考えです。
+なぜ、`ERC721`ではなく`ERC721URIStorage`を継承しているのかというと、`tokenURI`関数よりも、`setTokenURI`の方がシンプルでわかりやすいからという理由です。
 
 今はわからなくても大丈夫なので、そうなんだと受け流してください。
 
@@ -187,7 +188,7 @@ NFTが発行された後、`_tokenIds.increment()`（＝ OpenZeppelinが提供�
 `tokenURI`は、**NFT データが保存されている場所**を意味します。
 `tokenURI`は、下記のような「**メタデータ**」と呼ばれるJSONファイルに**リンク**されています。
 
-```bash
+```
 {
     "name": "Tanya",
     "description": "A mindful creature. Just woke up like this.",
@@ -286,7 +287,7 @@ runMain();
 
 上記を`run.js`に反映させえたら、下記をターミナル上で実行しましょう。
 
-```bash
+```
 yarn contract run:script
 ```
 
@@ -506,7 +507,7 @@ code .gitignore
 `.gitignore`に`hardhat.config.js`の行を追加します。
 `.gitignore`の中身が下記のようになっていれば、問題ありません。
 
-```bash
+```
 node_modules
 .env
 coverage
@@ -541,7 +542,7 @@ hardhat.config.js
 構成のセットアップが完了すると、前に作成したデプロイスクリプトを使用してデプロイするように設定されます。
 ルートディレクトリからこのコマンドを実行します 。
 
-```bash
+```
 yarn contract deploy
 ```
 

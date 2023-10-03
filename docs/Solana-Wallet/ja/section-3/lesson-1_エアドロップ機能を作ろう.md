@@ -124,7 +124,7 @@ return (
 
 components/Airdrop/index.test.jsが`PASS`し、`Test Suites`が下記のようになっていたらOKです！
 
-```bash
+```
 Test Suites: 1 failed, 4 passed, 5 total
 ```
 

@@ -8,7 +8,7 @@
 
 [`swap.test.ts`]
 
-```
+```ts
 const { loadFixture } = require("@nomicfoundation/hardhat-network-helpers");
 import { ethers } from "hardhat";
 
@@ -112,7 +112,7 @@ describe("Swap Contract", function () {
 
 最初に宣言している`deployTokenFixture`関数はそれぞれのコントラクトをデプロイを行うための関数で、それぞれのテストを行う前に走らせる必要があります。
 
-```
+```js
 async function deployTokenFixture() {
     const [owner, addr1] = await ethers.getSigners();
 
@@ -154,7 +154,7 @@ async function deployTokenFixture() {
 
 最初の部分ではERC20規格のトークンがきちんとdeployされているかをテストしています。
 
-```
+```js
 it("ERC20 token is minted from smart contract", async function () {
       const { DaiToken, SwapContract } = await loadFixture(deployTokenFixture);
       const balanceOfDai = await DaiToken.balanceOf(SwapContract.address);
@@ -168,7 +168,7 @@ it("ERC20 token is minted from smart contract", async function () {
 
 `ERC20Tokens.sol`ではETHの発行量はDAIのそれより1/10の量なので0.1になるはずです。
 
-```
+```js
 it("Get value ETH/DAI", async function () {
       const { DaiToken, EthToken, SwapContract } = await loadFixture(
         deployTokenFixture
@@ -189,7 +189,7 @@ it("Get value ETH/DAI", async function () {
 
 その後受領者の残高をswap前後で確認しています。
 
-```
+```js
 // check swap function works
     it("swap function", async function () {
       const { owner, addr1, DaiToken, EthToken, UniToken, SwapContract } =
@@ -263,7 +263,7 @@ After transfer, address_1 has 0.1 ETH
 
 [`deploy.ts`]
 
-```
+```js
 require("dotenv").config();
 const hre = require("hardhat");
 

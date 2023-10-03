@@ -198,13 +198,13 @@ console.log("Contract balance:", hre.ethers.utils.formatEther(contractBalance));
 
 それでは、ターミナル上で下記を実行し、テストを行いましょう。
 
-```bash
+```
 yarn contract run:script
 ```
 
 下記のような結果がターミナルで出力されているか確認してください。
 
-```bash
+```
 WavePortal - Smart Contract!
 Contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 Contract balance: 0.1

@@ -6,7 +6,7 @@ Anchorの設定がDevnetになっているため、Devnet上で直接テスト�
 
 まずは、以下のコマンドを実行しましょう。
 
-```bash
+```
 anchor test
 ```
 
@@ -14,7 +14,7 @@ anchor test
 
 ※ 資金不足のエラーが表示された場合は`solana airdrop 2`コマンドを実行してDevnetのSOLを取得します。
 
-```bash
+```
 Deploy success
 
 🚀 Starting test...
@@ -95,7 +95,7 @@ Solanaでは、アカウントのデータ読み込みは無料でできます�
 
 ※ `INSERT_YOUR_PHANTOM_PUBLIC_ADDRESS_HERE`に先ほどコピーしたPhantom Walletのアドレスを入れて実行してください。
 
-```bash
+```
 solana airdrop 2 INSERT_YOUR_PHANTOM_PUBLIC_ADDRESS_HERE --url devnet
 ```
 
@@ -110,7 +110,7 @@ Anchorプロジェクトでもインストールしていますが、同じも�
 
 ルートディレクトリで以下のコマンドを実行します。
 
-```bash
+```
 npm install @project-serum/anchor @solana/web3.js
 ```
 

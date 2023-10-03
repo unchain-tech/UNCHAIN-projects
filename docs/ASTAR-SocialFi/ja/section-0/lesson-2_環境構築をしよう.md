@@ -12,7 +12,7 @@
 
 では下のコマンドをターミナルで実行してrustを使用できるようにしていきます。(Windows OSの場合は`https://rust.sh/`からインストール用のinit.exeをダウンロードし実行しましょう。)
 
-```
+```bash
 curl --proto '=https' --tlsv1.2 -sSf `https://sh.rustup.rs` | sh
 ```
 
@@ -27,7 +27,7 @@ curl --proto '=https' --tlsv1.2 -sSf `https://sh.rustup.rs` | sh
 
 処理が終わったら下のコマンドを実行して環境変数を設定します。
 
-```
+```bash
 source "$HOME/.cargo/env"
 ```
 
@@ -54,7 +54,7 @@ rustup toolchain list
 
 
 ```
-rustup override set 1.68.0  
+rustup override set 1.68.0
 rustup component add rust-src --toolchain 1.68.0-aarch64-apple-darwin
 ```
 
@@ -89,7 +89,7 @@ cargo install --force --locked cargo-contract
 
 それでは本プロジェクトで使用するフォルダーを作成してきましょう。作業を始めるディレクトリに移動したら、次のコマンドを実行します。
 
-```bash
+```
 mkdir ASTAR-SocialFi
 cd ASTAR-SocialFi
 yarn init --private -y
@@ -97,7 +97,7 @@ yarn init --private -y
 
 ASTAR-SocialFiディレクトリ内に、package.jsonファイルが生成されます。
 
-```bash
+```
 ASTAR-SocialFi
  └── package.json
 ```
@@ -151,13 +151,13 @@ ASTAR-SocialFi
 
 これにより、各パッケージのディレクトリへ階層を移動しなくてもプロジェクトのルート直下から以下のようにコマンドを実行することが可能となります（ただし、各パッケージ内に`package.json`ファイルが存在し、その中にコマンドが定義されていないと実行できません。そのため、現在は実行してもエラーとなります。ファイルは後ほど作成します）。
 
-```bash
+```
 yarn <パッケージ名> <実行したいコマンド>
 ```
 
 次に、ASTAR-SocialFiディレクトリ下に`.gitignore`ファイルを作成して以下の内容を書き込みます。
-package
-```bash
+
+```
 **/yarn-error.log*
 
 # dependencies
@@ -171,7 +171,7 @@ package
 
 最終的に以下のようなフォルダー構成となっていることを確認してください。
 
-```bash
+```
 ASTAR-SocialFi
  ├── .gitignore
  ├── package.json
@@ -194,14 +194,14 @@ cargo contract new aster_sns_contract
 
 次に下のコマンドを順番に実行してコントラクトディレクトリを編集していきましょう。
 
-```bash
+```
 cd packages/contract
 yarn init --private -y
 ```
 
 その後`contract`ディレクトリ内で作成されたpackage.jsonを以下のように編集しましょう。
 
-```
+```json
 {
   "name": "contract",
   "version": "1.0.0",
@@ -213,7 +213,6 @@ yarn init --private -y
     "test": "cargo test"
   }
 }
-
 ```
 
 では作成されたコントラクトをローカルのチェーンにデプロイしてみましょう。
@@ -377,7 +376,7 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx}",
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
- 
+
     // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx}",
   ],

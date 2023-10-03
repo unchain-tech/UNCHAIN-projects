@@ -197,7 +197,7 @@ const Home: NextPage = () => {
       setIsClaiming(false);
     }
   };
-  
+
   // ウォレットと接続していなかったら接続を促す
   if (!address) {
     return (
@@ -268,7 +268,7 @@ MetaMaskのポップアップが表示され、ガスを支払うことでNFTが
 
 NFTのミントが完了すると、以下のとおりコンソールにEtherscanのリンクが表示されます。
 
-```bash
+```
 🌊 Successfully Minted! Check it out on etherscan: https://sepolia.etherscan.io/address/0xcB5F0888d059eE9957816b40B149c499909891b7
 ```
 

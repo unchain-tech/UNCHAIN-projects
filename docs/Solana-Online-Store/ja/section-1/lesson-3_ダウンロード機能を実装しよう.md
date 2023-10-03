@@ -126,7 +126,7 @@ expect(linkElement).toHaveAttribute('download', mockFilename);
 
 jestコマンドを更新したら、ターミナルで`yarn test`を実行してみましょう。
 
-```bash
+```
 yarn test
 ```
 
@@ -319,7 +319,7 @@ IPFS上のファイルは複数のノードにキャッシュされるため、�
 
 以下のコマンドでWebアプリケーションを動かしてみましょう。
 
-```bash
+```
 yarn dev
 ```
 

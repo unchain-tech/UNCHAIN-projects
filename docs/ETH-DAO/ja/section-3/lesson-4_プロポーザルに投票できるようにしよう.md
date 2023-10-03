@@ -83,11 +83,11 @@ const token = sdk.getContract(ERCTokenAddress, 'token');
 ここでは会員に投票してもらうために、2つの新しい提案を作成しています。
 
 1. トレジャリーが42万個の新しいトークンを鋳造（mint）できるようにする提案を作成しています。
-   
+
    これはとても民主的なトレジャリーであるため、もしメンバーの大多数がこの提案を不賛成とした場合、この提案は否決される可能性があります。
 
 2. トレジャリーから自分のウォレットに6,900トークンを送金する提案を作成しています。
-   
+
    既存のDAOでは、DAOに貢献してくれた人などのウォレットにトークンを送る際、今回のようにプロポーザルを作成するのが一般的です。
 
 `nativeTokenValue`は、ガバナンストークンの他にETHを送るための設定です。
@@ -96,13 +96,13 @@ const token = sdk.getContract(ERCTokenAddress, 'token');
 
 それでは、ターミナルに移動し、下記コマンドを実行してみましょう。
 
-```bash
+```
 yarn node --loader ts-node/esm src/scripts/10-create-vote-proposals.ts
 ```
 
 以下のような表示がされたら、成功です。
 
-```bash
+```
 SDK initialized by address: 0x8cB688A30D5Fd6f2e5025d8915eD95e770832933
 ✅ Successfully created proposal to mint tokens
 ✅ Successfully created proposal to reward ourselves from the treasury, let's hope people vote for it!
@@ -111,7 +111,7 @@ Done in 54.29s.
 
 > ⚠️注意
 > `proposal_token_threshold > 0`のように設定した場合、エラーとなる可能性があるため、提案を作成する前にトークンをガバナンスコントラクトに移動させたうえで動作させる必要があるかもしれません。
-> 
+>
 
 
 ### ✍️ ダッシュボードから提案に投票できるようにする
@@ -202,9 +202,9 @@ import { Proposal } from '@thirdweb-dev/sdk';
 ここでは、以下の2つのことを行っています。
 
 1. 最初の`useEffect`では、`vote!.getAll()`を実行して、ガバナンスコントラクトに存在するすべての提案を取得し、`setProposals`を実行して、後でそれらをレンダリングできるようにしています。
-   
+
 2. 2つ目の`useEffect`では、`vote!.hasVoted(properties[0].proposalId.toString(), address)`を実行して、このアドレスが最初の提案に投票しているかどうかを確認しています。
-   
+
    もし投票済みだった場合は、`setHasVoted`を実行して、ユーザが再び投票できないようにします。
 
    ただし、もしこの処理がなかったとしても、ユーザが二重投票をしようとしたら、私たちのコントラクトがトランザクションを拒否することでしょう！

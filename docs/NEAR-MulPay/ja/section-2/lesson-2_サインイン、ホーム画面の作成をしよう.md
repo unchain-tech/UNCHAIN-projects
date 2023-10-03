@@ -8,7 +8,7 @@
 
 [`signin.dart`]
 
-```
+```dart
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -143,7 +143,7 @@ class SignIn extends StatelessWidget {
 では次に`main.dart`へ移動して下のように変更しましょう。
 
 [`main.dart`]
-```
+```dart
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -223,7 +223,7 @@ flutterでは`main`関数から走り出します。まず`.env`ファイルを�
 
 このproviderを使用することで他のウィジェットからも情報の共有、監視ができるようになります。
 
-```
+```dart
 Future main() async {
   await dotenv.load(fileName: ".env");
   runApp(
@@ -244,7 +244,7 @@ Future main() async {
 
 childとして`MyApp`が指定されているので次にこのウィジェットが表示されることになります。
 
-```
+```dart
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -294,7 +294,7 @@ class MyApp extends StatelessWidget {
 ```
 
 このコードによって画面の横のサイズが450ピクセル以下のものをモバイル、それ以上をデスクトップとして指定しています。
-```
+```dart
 builder: (context, child) => ResponsiveBreakpoints.builder(
         child: child!,
         breakpoints: [
@@ -313,7 +313,7 @@ builder: (context, child) => ResponsiveBreakpoints.builder(
 
 その前に、使用しているライブラリの中でandroidの設定を変えないと動かないものがあるので`android/app/build.gradle`に移動して`defaultConfig`の中の`minSdkVersion`を`20`にしましょう。
 
-```
+```dart
 android {
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
@@ -372,7 +372,7 @@ yarn client start
 
 [`home.dart`]
 
-```
+```dart
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';

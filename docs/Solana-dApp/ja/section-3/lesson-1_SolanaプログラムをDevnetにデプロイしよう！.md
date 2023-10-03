@@ -13,13 +13,13 @@ Devnetにデプロイするのはかなり大変です。
 
 まず、Devnetへの切り替えを行います。`packages/contract`ディレクトリへ移動してください。
 
-```bash
+```
 solana config set --url devnet
 ```
 
 次に。以下のコマンドを実行します。
 
-```bash
+```
 solana config get
 ```
 
@@ -35,13 +35,13 @@ Solanaネットワークの接続先の設定が`https://api.devnet.solana.com`�
 
 以下のコマンドを2回実行してください。
 
-```bash
+```
 solana airdrop 2
 ```
 
 次に、以下のコマンドを実行します。
 
-```bash
+```
 solana balance
 ```
 
@@ -62,7 +62,7 @@ Devnetに接続するために、`Anchor.toml`の変数を変更する必要が�
 
 上記の変更が完了したら、以下のコマンドを実行してください。
 
-```bash
+```
 anchor build
 ```
 
@@ -70,7 +70,7 @@ anchor build
 
 以下のコマンドを実行することでアクセスできます。
 
-```bash
+```
 solana address -k target/deploy/myepicproject-keypair.json
 ```
 
@@ -82,7 +82,7 @@ solana address -k target/deploy/myepicproject-keypair.json
 
 このIDが上部に表示されているはずです。
 
-```bash
+```
 declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 ```
 
@@ -100,7 +100,7 @@ declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 
 ここまで終わったら、以下のコマンドを再度実行しましょう。
 
-```bash
+```
 anchor build
 ```
 
@@ -114,7 +114,7 @@ Devnetの設定には様々な手順がありました。
 
 以下に使用したコマンドをまとめます。
 
-```bash
+```
 solana config set --url devnet
 
 // devnetに切り替えられていることを確認します。
@@ -136,7 +136,7 @@ anchor build
 
 DevnetにSolanaプログラムをデプロイしましょう。
 
-```bash
+```
 anchor deploy
 ```
 

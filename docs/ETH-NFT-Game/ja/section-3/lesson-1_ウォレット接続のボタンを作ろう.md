@@ -70,7 +70,7 @@ export default App;
 
 ターミナルで下記を実行してみましょう。
 
-```bash
+```
 yarn client start
 ```
 

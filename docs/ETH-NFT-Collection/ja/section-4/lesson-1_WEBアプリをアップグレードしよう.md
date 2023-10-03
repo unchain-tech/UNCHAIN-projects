@@ -107,13 +107,13 @@ describe('MyEpicNFT', function () {
 
 それでは、自動テストを実行してみましょう。`ETH-NFT-Collection`ディレクトリ直下で次のコマンドを実行します。
 
-```bash
+```
 yarn contract test
 ```
 
 以下のような出力があり、全てのテストに通過したことが確認できたら完了です！
 
-```bash
+```
   MyEpicNFT
     pickRandomFirstWord
 This is my NFT contract.

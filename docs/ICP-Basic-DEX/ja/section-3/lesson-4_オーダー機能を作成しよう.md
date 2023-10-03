@@ -6,7 +6,7 @@
 
 まずは、オーダー機能を実装するファイルを追加します。
 
-```bash
+```
 touch ./src/icp_basic_dex_frontend/src/components/PlaceOrder.jsx ./src/icp_basic_dex_frontend/src/components/ListOrder.jsx
 ```
 

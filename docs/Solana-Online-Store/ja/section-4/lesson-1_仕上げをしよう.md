@@ -79,7 +79,7 @@ Vercelのアカウントをお持ちでない方は、上記のリンクにア�
 
 ターミナルで`Solana-Online-Store`に移動し、以下のコマンドをそれぞれ実行しましょう。
 
-```bash
+```
 git add .
 git commit -m "upload to github"
 git push

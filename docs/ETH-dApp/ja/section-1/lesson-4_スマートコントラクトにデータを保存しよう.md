@@ -267,7 +267,7 @@ waveCount = await waveContract.getTotalWaves();
 
 ルートディレクトリにいることを確認して、ターミナルで下記を実行してみましょう。
 
-```bash
+```
  yarn contract run:script
 ```
 
@@ -368,7 +368,7 @@ waveCount = await waveContract.getTotalWaves();
 
 それでは、`run.js`を更新して、下記を実行してみましょう。
 
-```bash
+```
 yarn contract run:script
 ```
 

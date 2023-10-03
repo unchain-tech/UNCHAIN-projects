@@ -8,7 +8,7 @@ NFTを作成するスマートコントラクトを作成します。
 
 Hardhatを使用する場合、ファイル構造は非常に重要ですので、注意する必要があります。ファイル構造が下記のようになっていれば大丈夫です 😊
 
-```bash
+```
 contract
     |_ contracts
            |_  MyEpicGame.sol
@@ -205,7 +205,7 @@ console.log("Contract deployed to:", gameContract.address);
 
 ターミナル上で下記を実行してみましょう。
 
-```bash
+```
 yarn contract run:script
 ```
 

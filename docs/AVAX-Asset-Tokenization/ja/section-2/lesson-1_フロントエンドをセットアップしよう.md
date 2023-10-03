@@ -14,7 +14,7 @@
 
 `AVAX-Asset-Tokenization/packages`ディレクトリに移動し、以下のコマンドを実行して下さい。
 
-```bash
+```
 yarn create next-app client --ts
 ```
 

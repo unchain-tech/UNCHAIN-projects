@@ -70,7 +70,7 @@ const CONTRACT_ADDRESS =
 
 **ルーディレクトリでもう一度下記を実行し、コントラクトのアドレスを取得してください。**
 
-```bash
+```
 yarn contract deploy
 ```
 
@@ -144,7 +144,7 @@ console.log(
 
 すべての変更を`NftUploader.jsx`に反映させた後、ターミナルで下記を実行しみてください。
 
-```bash
+```
 yarn client start
 ```
 
@@ -198,17 +198,17 @@ ABIファイルの中身は、`Web3Mint.json`というファイルに格納さ�
 
 2\. 下記を実行して、`client/src/`の中に`utils`ディレクトリを作成する。
 
-> ```bash
+> ```
 > mkdir src/utils
 > ```
 3\. 下記を実行して、`utils`ディレクトリに`Web3Mint.json`ファイルを作成する。
 
-> ```bash
+> ```
 > touch src/utils/Web3Mint.json
 > ```
 4\. 下記を実行して、`Web3Mint.json`ファイルをVS Codeで開く。
 
-> ```bash
+> ```
 > code client/src/utils/Web3Mint.json
 > ```
 5\. **先ほどコピーした`packages/contract/artifacts/contracts/Web3Mint.sol/Web3Mint.json`の中身を新しく作成した`packages/client/src/utils/MyEpicNFT.json`の中に貼り付けてください。**
@@ -348,7 +348,7 @@ const rootCid = await client.put(image.files, {
 
 それでは、ターミナル上で`client`ディレクトリに移動して下記を実行し、ローカル環境でWebアプリケーションをホストしてみましょう。
 
-```bash
+```
 yarn client start
 ```
 

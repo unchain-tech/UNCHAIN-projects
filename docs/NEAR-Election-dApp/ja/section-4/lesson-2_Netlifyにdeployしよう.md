@@ -33,7 +33,7 @@ netlify login
 
 最後に`client`ディレクトリにいることを確認しnetlifyにコードをデプロイするために下のコマンドを実行しましょう。
 
-```bash
+```
 netlify deploy --prod
 ```
 
@@ -41,20 +41,20 @@ netlify deploy --prod
 
 まず、すでに`Netlify`に存在するプロジェクトを更新するのか、新しいプロジェクトとしてdeployするのかを聞かれます。ここでは後者を選択してください。
 
-```bash
+```
 ? What would you like to do?
 +  Create & configure a new site
 ```
 
 次にどのチームとしてdeployするかを聞かれるので、ログインの時に作成したチーム名にしてください。
 
-```bash
+```
 ? Team: Tonny
 ```
 
 次にサイト名を聞かれるので自分の好きなサイト名にしてください
 
-```bash
+```
 Choose a unique site name (e.g. super-cool-site-by-honganji.netlify.app) or leave it blank for a random name. You can update the site name later.
 
 ? Site name (optional): near-election-dapp
@@ -62,7 +62,7 @@ Choose a unique site name (e.g. super-cool-site-by-honganji.netlify.app) or leav
 
 最後にdeployに必要なHTMLなどの情報を含んでいる`Publish Directory`を指定する必要があるので、その部分を下のように指定しましょう。
 
-```bash
+```
 Publish directory: ./dist
 ```
 
@@ -70,7 +70,7 @@ Publish directory: ./dist
 
 deployが完了したら下のようにURLが返ってくるので、一番下の'Website URL
 
-```bash
+```
 Deploying to main site URL...
 ✔ Finished hashing
 ✔ CDN requesting 4 files

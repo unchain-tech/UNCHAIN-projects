@@ -26,7 +26,7 @@
 
 それでは本プロジェクトで使用するフォルダを作成してきましょう。作業を始めるディレクトリに移動したら、次のコマンドを実行します。
 
-```bash
+```
 mkdir AVAX-Asset-Tokenization
 cd AVAX-Asset-Tokenization
 yarn init --private -y
@@ -34,7 +34,7 @@ yarn init --private -y
 
 AVAX-Asset-Tokenizationディレクトリ内に、package.jsonファイルが生成されます。
 
-```bash
+```
 AVAX-Asset-Tokenization
 └── package.json
 ```
@@ -93,7 +93,7 @@ AVAX-Asset-Tokenization
 
 これにより、各パッケージのディレクトリへ階層を移動しなくてもプロジェクトのルート直下から以下のようにコマンドを実行することが可能となります（ただし、各パッケージ内に`package.json`ファイルが存在し、その中にコマンドが定義されていないと実行できません。そのため、現在は実行してもエラーとなります。ファイルは後ほど作成します）。
 
-```bash
+```
 yarn <パッケージ名> <実行したいコマンド>
 ```
 
@@ -101,7 +101,7 @@ yarn <パッケージ名> <実行したいコマンド>
 
 それでは、AVAX-Asset-Tokenizationディレクトリ直下にいることを確認し、下記のコマンドを実行しましょう。
 
-```bash
+```
 tsc --init
 ```
 
@@ -125,7 +125,7 @@ tsc --init
 
 最後に、AVAX-Asset-Tokenizationディレクトリ下に`.gitignore`ファイルを作成して以下の内容を書き込みます。
 
-```bash
+```
 **/yarn-error.log*
 
 # dependencies
@@ -137,7 +137,7 @@ tsc --init
 
 最終的に以下のようなフォルダー構成となっていることを確認してください。
 
-```bash
+```
 AVAX-Asset-Tokenization
 ├── .gitignore
 ├── package.json
@@ -161,7 +161,7 @@ AVAX-Asset-Tokenization
 
 それでは、先ほど作成した`packages/contract`ディレクトリ内にファイルを作成します。ターミナルに向かい、`packages/contract`ディレクトリへ移動して以下のコマンドを実行します。
 
-```bash
+```
 # yarnパッケージを管理するための環境セットアップ
 yarn init --private -y
 
@@ -185,7 +185,7 @@ yarn add dotenv @openzeppelin/contracts@^4.7.3 @chainlink/contracts@^0.5.1
 
 `packages/contract`ディレクトリにいることを確認し、次のコマンドを実行します。
 
-```bash
+```
 npx hardhat
 ```
 

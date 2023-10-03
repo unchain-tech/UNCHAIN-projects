@@ -76,13 +76,13 @@ solana airdrop 2
 
 Section2 Lesson1の環境構築でインストールした`sugar`コマンドを用いて、設定ファイルを作成しましょう。設定ファイルは、アセット数、使用するクリエイター、適用する設定などの値で、キャンディマシンをどのように構成するかをSugarに指示します。それでは、下記コマンドを実行してください。
 
-```bash
+```
 sugar config create
 ```
 
 いくつかの質問に答えていきます。下記の例は質問とその入力例になります。詳しくは[公式ドキュメント](https://docs.metaplex.com/programs/candy-machine/how-to-guides/my-first-candy-machine-part1#create-a-config-file)を参考にしてください。
 
-```bash
+```
 # 入力例
 ✔ Found 3 file pairs in "assets". Is this how many NFTs you will have in your candy machine? #「y」を入力
 ✔ Found no symbol in your metadata file. Is this value correct? #「y」を入力
@@ -99,7 +99,7 @@ sugar config create
 
 Saving config to file: "config.json"
 
-Successfully generated the config file. 🎉 
+Successfully generated the config file. 🎉
 
 ✅ Command successful.
 ```
@@ -108,7 +108,7 @@ Successfully generated the config file. 🎉
 
 次に、`assets`内のファイルをBundler経由でArweaveにアップロードします。
 
-```bash
+```
 sugar upload
 ```
 
@@ -120,11 +120,11 @@ assetsディレクトリの各アセットがArweaveにアップロードされ�
 
 次に、Candh Machineをデプロイします。
 
-```bash
+```
 sugar deploy
 ```
 
-```bash
+```
 # 実行例
 sugar deploy
 
@@ -145,7 +145,7 @@ Sending config line(s) in 1 transaction(s): (Ctrl+C to abort)
 
 また、以下のコマンドを実行するとCandy Machineのデプロイに成功したかを再確認することができます。
 
-```bash
+```
 sugar verify
 ```
 
@@ -174,7 +174,7 @@ sugar verify
 
 これでドロップ開始時刻を設定することができました。それでは、以下のコマンドを実行してガードの設定を適用しましょう。
 
-```bash
+```
 sugar guard add
 ```
 
@@ -182,13 +182,13 @@ sugar guard add
 
 現在のガード設定を確認するには、以下のコマンドを実行します。
 
-```bash
+```
 sugar guard show
 ```
 
 なお、ガードの設定を更新したい場合は、ファイルを更新後にアップロードコマンドを実行する必要があります。
 
-```bash
+```
 sugar guard update
 ```
 

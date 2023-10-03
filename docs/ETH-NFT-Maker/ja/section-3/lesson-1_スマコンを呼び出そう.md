@@ -91,7 +91,7 @@ const { ethereum } = window;
 
 ターミナルで下記を実行してみましょう。
 
-```bash
+```
 yarn client start
 ```
 
@@ -400,7 +400,7 @@ const renderNotConnectedContainer = () => (
 
 上記のコードをすべて`NftUploader.jsx`に反映させたら、ターミナル上で下記を実行しましょう。
 
-```bash
+```
 yarn client start
 ```
 

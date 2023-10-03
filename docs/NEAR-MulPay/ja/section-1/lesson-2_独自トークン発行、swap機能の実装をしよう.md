@@ -8,7 +8,7 @@
 
 [`ERC20Tokens.sol`]
 
-```
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.17;
 
@@ -62,13 +62,13 @@ contract PolygonToken is ERC20 {
 
 まずは下の一行によってOpenZepplinが発行している`ERC20`のライブラリが使用できるようにします。
 
-```
+```solidity
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 ```
 
 全て同じように書いているので、その中の1つを見ていきましょう。一番最初に書いてある`DaiToken`というコントラクトの内容は以下のようになっています。
 
-```
+```solidity
 contract DaiToken is ERC20 {
     constructor(address contractAddress) ERC20('Dai Token', "DAI") {
         _mint(contractAddress, 1000000 ether);
@@ -121,7 +121,7 @@ etherの最小単位`wei`は`10の-18乗`であり、発行数の単位はweiな
 
 [`Swap.sol`]
 
-```
+```solidity
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.17;
 
@@ -171,19 +171,19 @@ contract SwapContract{
 
 まず最初にOpenZepplinのERC20規格のライブラリをインポートすることを宣言しています。
 
-```
+```solidity
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 ```
 
 次にコントラクトの状態変数を宣言します。
 
-```
+```solidity
 address public deployerAddress;
 ```
 
 `deployerAddress`はこのコントラクトをdeployした人のアドレスが格納されます。このアドレスはトークンの配布などの管理権限がある人のみが行えるような関数を作る時に必要となります。
 
-```
+```solidity
 // calculate value between two tokens
     function calculateValue(address tokenSendAddress, address tokenReceiveMesureAddress) public view returns (uint256 value){
         value = (1 ether) * IERC20(tokenSendAddress).balanceOf(address(this)) / ERC20(tokenReceiveMesureAddress).balanceOf(address(this));
@@ -194,7 +194,7 @@ address public deployerAddress;
 
 `value`という変数が算出された価値になるのですが、solidityでは小数点以下は扱うことができないので最初に1 ether（10^18）をかけることで小数点以下が消えることを回避しています。しかし後でこの1ether分掛け合わせる必要があるので覚えておいてください。
 
-```
+```solidity
 // distribute token to users
     function distributeToken(address tokenAddress, uint256 amount, address recipientAddress) public {
         require(msg.sender == deployerAddress, "Anyone but depoyer can distribute token!");
@@ -207,7 +207,7 @@ address public deployerAddress;
 
 関数の中で宣言されている`token`は送りたいトークンのアドレスから生成されたコントラクトのことで、tokenはそのトークンの送金や残高照会ができるようになります。
 
-```
+```solidity
 // swap tokens between two users
     function swap(address sendTokenAddress, address measureTokenAddress, address receiveTokenAddress, uint256 amount, address recipientAddress) public payable{
         IERC20 sendToken = IERC20(sendTokenAddress);
@@ -238,21 +238,21 @@ amount: measureTokenAddressで決める価値の量
 
 次に送金者が送りたいトークンと、受領者が受け取りたいトークンのアドレスからそれぞれコントラクトを呼び出します。
 
-```
+```solidity
 IERC20 sendToken = IERC20(sendTokenAddress);
 IERC20 receiveToken = IERC20(receiveTokenAddress);
 ```
 
 次に`calculateValue`関数を用いることで`sendTokenAddress/measureTokenAddress`、`receiveTokenAddress/measureTokenAddress`の両方の相対的な価値を算出します。
 
-```
+```solidity
 uint256 sendTokenValue = calculateValue(sendTokenAddress, measureTokenAddress);
 uint256 receiveTokenValue = calculateValue(receiveTokenAddress, measureTokenAddress);
 ```
 
 次に相対的な価値に引数である`amount`を掛け合わせることで送金者が送るトークン量と受領者が受け取るトークン量を算出します。
 
-```
+```solidity
 uint256 sendAmount = amount * sendTokenValue / (1 ether);
 uint256 receiveAmount = amount * receiveTokenValue / (1 ether);
 ```
@@ -261,14 +261,14 @@ uint256 receiveAmount = amount * receiveTokenValue / (1 ether);
 
 次に送金者、このコントラクトの両方が十分なトークンを保有しているのかを確認しています。
 
-```
+```solidity
 require(sendToken.balanceOf(msg.sender) >= sendAmount, "Your asset is smaller than amount you want to send");
 require(receiveToken.balanceOf(address(this)) >= receiveAmount, "Contract asset of the currency recipient want is smaller than amount you want to send");
 ```
 
 最後に送信者、このコントラクトの両方からそれぞれ指定されたトークン量（sendAmount,receiveAmount）をtransferします。
 
-```
+```solidity
 sendToken.transferFrom(msg.sender, address(this), sendAmount);
 receiveToken.transfer(recipientAddress, receiveAmount);
 ```

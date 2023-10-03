@@ -75,13 +75,13 @@ export const nextConfig = {
 
 ここまで準備ができたら、ターミナルに移動して以下のコマンドを実行しましょう。
 
-```bash
+```
 yarn node --loader ts-node/esm src/scripts/1-initialize-sdk.ts
 ```
 
 スクリプトを実行して成功すれば、以下のような結果が出力されます。
 
-```bash
+```
 SDK initialized by address: 0x8cB688A30D5Fd6f2e5025d8915eD95e770832933
 Done in 3.62s.
 ```
@@ -165,13 +165,13 @@ _⚠️ 注意： インターネットのリンク(ex. https://~)を使用す�
 
 では、ターミナルに移動し下記コマンドを実行してみましょう。
 
-```bash
+```
 yarn node --loader ts-node/esm src/scripts/2-deploy-drop.ts
 ```
 
 成功すると、以下のように得られた結果が出力されます（少し時間がかかります）。
 
-```bash
+```
 SDK initialized by address: 0x8cB688A30D5Fd6f2e5025d8915eD95e770832933
 ✅ Successfully deployed editionDrop contract, address: 0x445c4D7d80EA463f29Ab0411A33dd760F8181546
 ✅ editionDrop metadata: {
@@ -198,7 +198,7 @@ Done in 40.59s.
 
 ではここでデプロイされたコントラクトのアドレスを保存するためのファイルを作成します。`src/scripts/`に`module.ts`という名前でファイルを作成して下のような変数を作成しましょう。
 
-```
+```js
 export const editionDropAddress = '';
 export const ERCTokenAddress = '';
 export const governanceAddress = '';
@@ -211,7 +211,7 @@ export const ownerWalletAddress = '';
 
 最終的には下のようになります。
 
-```
+```js
 export const editionDropAddress = '0x051300f66FD67a8B94D3d64B1e5d07f23BC90170';
 export const ERCTokenAddress = '0x238B28BaE48dA495125aE2B6623094C5f74CCAD5';
 export const governanceAddress = '0x62e06783EA7490367f3413B79331AC328cb6e00D';
