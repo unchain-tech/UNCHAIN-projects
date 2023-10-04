@@ -11,8 +11,8 @@
 それでは早速、`src/scripts/11-revoke-roles.ts`を作成し、以下のとおりコードを変更します。
 
 ```typescript
-import sdk from './1-initialize-sdk.js';
-import { ERCTokenAddress } from './module.js';
+import sdk from './1-initialize-sdk';
+import { ERCTokenAddress } from './module';
 
 const token = sdk.getContract(ERCTokenAddress, 'token');
 
@@ -84,12 +84,12 @@ Done in 44.18s.
 
 ```typescript
 import { AddressZero } from '@ethersproject/constants';
-// 接続中のネットワークを取得するため useNetwork を新たにインポートします。
+import { Sepolia } from '@thirdweb-dev/chains';
 import {
   ConnectWallet,
   useAddress,
-  useContract
-  useNetwork,
+  useChain,
+  useContract,
 } from '@thirdweb-dev/react';
 import { Proposal } from '@thirdweb-dev/sdk';
 import type { NextPage } from 'next';
@@ -101,7 +101,7 @@ const Home: NextPage = () => {
   const address = useAddress();
   console.log('👋Wallet Address: ', address);
 
-  const [network, switchNetwork] = useNetwork();
+  const chain = useChain();
 
   // editionDrop コントラクトを初期化
   const editionDrop = useContract(
@@ -302,9 +302,9 @@ const Home: NextPage = () => {
     );
   }
   // テストネットが Sepolia ではなかった場合に警告を表示
-  else if (address && network && network?.data?.chain?.id !== 11155111) {
+  else if (chain && chain.chainId !== Sepolia.chainId) {
     console.log('wallet address: ', address);
-    console.log('network: ', network?.data?.chain?.id);
+    console.log('chain name: ', chain.name);
 
     return (
       <div className={styles.container}>
@@ -495,7 +495,7 @@ export default Home;
 * NFT,トークン,ガバナンストークンに操作を加える機能
 
 これらの基本機能をテストスクリプトとして記述していきましょう。
-ではtestディレクトリを作成し、その中に`test.ts`という名前でファイルを作成して、以下のように記述しましょう。
+ではsrcディレクトリの中に`test`ディレクトリを作成し、その中に`test.ts`という名前でファイルを作成して、以下のように記述しましょう。
 
 ```typescript
 import { AddressZero } from '@ethersproject/constants';
@@ -507,9 +507,9 @@ import { describe, it } from 'node:test';
 import {
   editionDropAddress,
   ERCTokenAddress,
-  gavananceAddress,
+  governanceAddress,
   ownerWalletAddress,
-} from '../src/scripts/module.js';
+} from '../scripts/module.js';
 
 describe('ETH-DAO test', function () {
   // テスト用のウォレットを作成
@@ -533,10 +533,10 @@ describe('ETH-DAO test', function () {
     assert.equal(address, demoWallet.address);
   });
 
-  // edition-drop, ERC1155-token, gavanance-tokenの3つのコントラクトを取得
+  // edition-drop, ERC1155-token, governance-tokenの3つのコントラクトを取得
   const editionDrop = sdk.getContract(editionDropAddress, 'edition-drop');
   const token = sdk.getContract(ERCTokenAddress, 'token');
-  const vote = sdk.getContract(gavananceAddress, 'vote');
+  const vote = sdk.getContract(governanceAddress, 'vote');
 
   // 2-deploy-drop.tsのテスト
   it('metadata is set', async function () {
