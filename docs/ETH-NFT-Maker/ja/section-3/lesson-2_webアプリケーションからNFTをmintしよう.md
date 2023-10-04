@@ -6,19 +6,19 @@
 
 - 以前のレッスンで`mintIpfsNFT`関数は`Web3Mint.sol`に実装しました。
 
-まず、`NftUploader.jsx`の1行目に、下記のコードを追加してください。
+まず、`NftUploader.jsx`内`import { Button } from '@mui/material';`の下に、下記のコードを追加してください。
 
 ```javascript
 // NftUploader.jsx
-import { ethers } from "ethers";
+import { ethers } from 'ethers';
 ```
 
 ここでは、フロントエンドとコントラクトを連携させるライブラリ`ethers`をインポートしています。
 
-まだ`ethers`のライブラリをインストールしてなかったので`packages/client`へ移動して以下のコマンドを実行してください。
+まだ`ethers`のライブラリをインストールしてなかったので、プロジェクトのルートで以下のコマンドを実行してください。
 
 ```
-yarn add --dev ethers
+yarn workspace client add ethers@5.7.2
 ```
 
 ethersをもっと詳しく知りたい方は、[こちら](https://www.npmjs.com/package/ethers)をどうぞ。
@@ -31,7 +31,7 @@ ethersをもっと詳しく知りたい方は、[こちら](https://www.npmjs.co
 // NftUploader.jsx
 const askContractToMintNft = async (ipfs) => {
   const CONTRACT_ADDRESS =
-    "ここに Sepolia Test Network にデプロイしたコントラクトのアドレスを貼り付けてください";
+    'ここに Sepolia Test Network にデプロイしたコントラクトのアドレスを貼り付けてください';
   try {
     const { ethereum } = window;
     if (ethereum) {
@@ -42,9 +42,9 @@ const askContractToMintNft = async (ipfs) => {
         Web3Mint.abi,
         signer
       );
-      console.log("Going to pop wallet now to pay gas...");
-      let nftTxn = await connectedContract.mintIpfsNFT("sample",ipfs);
-      console.log("Mining...please wait.");
+      console.log('Going to pop wallet now to pay gas...');
+      let nftTxn = await connectedContract.mintIpfsNFT('sample',ipfs);
+      console.log('Mining...please wait.');
       await nftTxn.wait();
       console.log(
         `Mined, see transaction: https://sepolia.etherscan.io/tx/${nftTxn.hash}`
@@ -63,7 +63,7 @@ const askContractToMintNft = async (ipfs) => {
 ```javascript
 // NftUploader.jsx
 const CONTRACT_ADDRESS =
-  "ここに Sepolia Test Network にデプロイしたコントラクトのアドレスを貼り付けてください";
+  'ここに Sepolia Test Network にデプロイしたコントラクトのアドレスを貼り付けてください';
 ```
 
 ここでは、コントラクトのアドレスを`CONTRACT_ADDRESS`に格納しています。
@@ -80,7 +80,7 @@ yarn contract deploy
 Contract deployed to: 0x88a0e9c2F3939598c402eccb7Ae1612e45448C04
 ```
 
-上記のアドレスを`"ここに ... 貼り付けてください"`の中身と入れ替えてください。
+上記のアドレスを`'ここに ... 貼り付けてください'`の中身と入れ替えてください。
 
 `provider`や`signer`の概念がわからない方は、[Project2-section3-lesson3](https://unchain-portal.netlify.app/projects/102-ETH-NFT-Collection/section-3-Lesson-3)を見て復習してみてください。
 
@@ -117,8 +117,8 @@ Contract deployed to: 0x88a0e9c2F3939598c402eccb7Ae1612e45448C04
 
 ```javascript
 // NftUploader.jsx
-let nftTxn = await connectedContract.mintIpfsNFT("sample",ipfs);
-console.log("Mining...please wait.");
+let nftTxn = await connectedContract.mintIpfsNFT('sample',ipfs);
+console.log('Mining...please wait.');
 ```
 
 ここでは、`mintIpfsNFT`関数をコントラクトから呼び出し、`await`を使用して、NFTの発行が承認（＝マイニング）されるまで、処理をやめています。
@@ -211,15 +211,15 @@ ABIファイルの中身は、`Web3Mint.json`というファイルに格納さ�
 > ```
 > code client/src/utils/Web3Mint.json
 > ```
-5\. **先ほどコピーした`packages/contract/artifacts/contracts/Web3Mint.sol/Web3Mint.json`の中身を新しく作成した`packages/client/src/utils/MyEpicNFT.json`の中に貼り付けてください。**
+5\. **先ほどコピーした`packages/contract/artifacts/contracts/Web3Mint.sol/Web3Mint.json`の中身を新しく作成した`packages/client/src/utils/Web3Mint.json`の中に貼り付けてください。**
 
 ABIファイルの準備ができたので、`NftUploader.jsx`にインポートしましょう。
 
-下記を`NftUploader.jsx`の1行目に追加しましょう。
+下記を`NftUploader.jsx`内`import ImageLogo from './image.svg';`の上に追加しましょう。
 
 ```javascript
 // NftUploader.jsx
-import Web3Mint from "../../utils/Web3Mint.json";
+import Web3Mint from '../../utils/Web3Mint.json';
 ```
 
 ここでは、先ほど取得した、ABIファイルを含む`Web3Mint.json`ファイルをインポートしています。
@@ -232,13 +232,13 @@ import Web3Mint from "../../utils/Web3Mint.json";
 
 まずは、`Web3.storage`のライブラリをインストールしましょう!このライブラリを使うことで先ほど手作業で行ったIPFSに画像をアップロードする作業をプログラムで実装できるようになります。
 
-`packages/client`ディレクトリに移動して下記を実行してください。
+プロジェクトのルートで下記を実行してください。
 
 ```
-yarn add web3.storage
+yarn workspace client add web3.storage@^4.5.4
 ```
 
-そして`NftUploader.jsx`の冒頭に一行を加えましょう。
+そして`NftUploader.jsx`の中`import { useEffect, useState } from 'react';`の下に一行を加えましょう。
 
 ```javascript
 // NftUploader.jsx
@@ -263,7 +263,7 @@ const imageToNFT = async (e) => {
         const res = await client.get(rootCid) // Web3Response
         const files = await res.files() // Web3File[]
         for (const file of files) {
-          console.log("file.cid:",file.cid)
+          console.log('file.cid:',file.cid)
           askContractToMintNft(file.cid)
         }
     }
@@ -309,7 +309,7 @@ const imageToNFT = async (e) => {
 
 ```javascript
 // NftUploader.jsx
-const API_KEY ="あなたのKEYをいれてください"
+const API_KEY ='あなたのKEYをいれてください';
 ```
 
 
@@ -393,13 +393,13 @@ Consoleに出力された`currentAccount:`に続く、`0x..`のアドレスをge
 
 **1 \. 再度、コントラクトをデプロイする。**
 
-- `npx hardhat run scripts/deploy.js --network Sepolia`を実行する必要があります。
+- `yarn contract deploy`を実行する必要があります。
 
 2 \. フロントエンド(`App.js`)の`CONTRACT_ADDRESS`を更新する。
 
 3 \. ABIファイルを更新する。
 
-- `epic-nfts/artifacts/contracts/MyEpicNFT.sol/MyEpicNFT.json`の中身を新しく作成する`nft-collection-starter-project/src/utils/MyEpicNFT.json`の中に貼り付ける必要があります。
+- `packages/contract/artifacts/contracts/Web3Mint.sol/Web3Mint.json`の中身を、`packages/client/src/utils/Web3Mint.sol`の中に貼り付ける必要があります。
 
 **コントラクトを更新する際、必ずこの 3 つのステップを実行してください。**
 

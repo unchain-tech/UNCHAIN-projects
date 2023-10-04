@@ -5,18 +5,17 @@ IPFSに写真をアップロードできたところで、その写真を使っ�
 `Web3Mint.sol`を下記のように更新してみましょう。
 
 ```solidity
-// Web3Mint.sol
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.17;
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 //OpenZeppelinが提供するヘルパー機能をインポートします。
 import "@openzeppelin/contracts/utils/Counters.sol";
-
 import "./libraries/Base64.sol";
 import "hardhat/console.sol";
-contract Web3Mint is ERC721{
-    struct NftAttributes{
+
+contract Web3Mint is ERC721 {
+    struct NftAttributes {
         string name;
         string imageURL;
     }
@@ -27,41 +26,45 @@ contract Web3Mint is ERC721{
     // tokenIdはNFTの一意な識別子で、0, 1, 2, .. N のように付与されます。
     Counters.Counter private _tokenIds;
 
-    constructor() ERC721("NFT","nft"){
+    constructor() ERC721("NFT", "nft") {
         console.log("This is my NFT contract.");
     }
 
     // ユーザーが NFT を取得するために実行する関数です。
-
-    function mintIpfsNFT(string memory name,string memory imageURI) public{
+    function mintIpfsNFT(string memory name, string memory imageURI) public {
         uint256 newItemId = _tokenIds.current();
-        _safeMint(msg.sender,newItemId);
-        Web3Nfts.push(NftAttributes({
-            name: name,
-            imageURL: imageURI
-        }));
-        console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
+        _safeMint(msg.sender, newItemId);
+        Web3Nfts.push(NftAttributes({name: name, imageURL: imageURI}));
+        console.log(
+            "An NFT w/ ID %s has been minted to %s",
+            newItemId,
+            msg.sender
+        );
         _tokenIds.increment();
     }
-    function tokenURI(uint256 _tokenId) public override view returns(string memory){
-    string memory json = Base64.encode(
-        bytes(
-            string(
-                abi.encodePacked(
-                    '{"name": "',
-                    Web3Nfts[_tokenId].name,
-                    ' -- NFT #: ',
-                    Strings.toString(_tokenId),
-                    '", "description": "An epic NFT", "image": "ipfs://',
-                    Web3Nfts[_tokenId].imageURL,'"}'
+
+    function tokenURI(
+        uint256 _tokenId
+    ) public view override returns (string memory) {
+        string memory json = Base64.encode(
+            bytes(
+                string(
+                    abi.encodePacked(
+                        '{"name": "',
+                        Web3Nfts[_tokenId].name,
+                        " -- NFT #: ",
+                        Strings.toString(_tokenId),
+                        '", "description": "An epic NFT", "image": "ipfs://',
+                        Web3Nfts[_tokenId].imageURL,
+                        '"}'
+                    )
                 )
             )
-        )
-    );
-    string memory output = string(
-        abi.encodePacked("data:application/json;base64,", json)
-    );
-    return output;
+        );
+        string memory output = string(
+            abi.encodePacked("data:application/json;base64,", json)
+        );
+        return output;
     }
 }
 ```
@@ -83,7 +86,6 @@ Base64のやり方は、[project3](https://app.unchain.tech/learn/ETH-NFT-Game/j
 その`libraries`ディレクトリの下に`Base64.sol`ファイルを作成して、下記のコードを貼り付けてください
 
 ```solidity
-// Base64.sol
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.17;
@@ -181,7 +183,7 @@ struct NftAttributes{
 
 ```solidity
 // Web3Mint.sol
-function mintIpfsNFT(string memory name,string memory imageURI) public{
+function mintIpfsNFT(string memory name,string memory imageURI) public {
         uint256 newItemId = _tokenIds.current();
         _safeMint(msg.sender,newItemId);
         Web3Nfts.push(NftAttributes({
@@ -209,7 +211,7 @@ Web3Nfts.push(NftAttributes({
 
 ```solidity
 // Web3Mint.sol
-function tokenURI(uint256 _tokenId) public override view returns(string memory){
+function tokenURI(uint256 _tokenId) public override view returns(string memory) {
     string memory json = Base64.encode(
         bytes(
             string(
@@ -248,7 +250,7 @@ openseaなどのNFTマーケットサービスは、この`tokenURI`関数のデ
 この機能をテストスクリプトに記述してテストを実効してみましょう。
 ではpackages/contract/testに`test.js`という名前でファイルを作成して、以下のように記述しましょう。
 
-```
+```javascript
 const { assert } = require('chai');
 const { ethers } = require('hardhat');
 
@@ -283,7 +285,7 @@ describe('Web3Mint', () => {
 
 では下のコマンドを実行してみましょう。
 ```
-yarn contract test
+yarn test
 ```
 
 結果として下のような結果が出力されていればテスト成功です！
@@ -308,25 +310,25 @@ An NFT w/ ID 1 has been minted to 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
 `run.js`を下記に更新してください。
 
 ```javascript
-// run.js
 const main = async () => {
   // コントラクトがコンパイルします
   // コントラクトを扱うために必要なファイルが `artifacts` ディレクトリの直下に生成されます。
-  const nftContractFactory = await hre.ethers.getContractFactory("Web3Mint");
+  const nftContractFactory = await hre.ethers.getContractFactory('Web3Mint');
   // Hardhat がローカルの Ethereum ネットワークを作成します。
   const nftContract = await nftContractFactory.deploy();
   // コントラクトが Mint され、ローカルのブロックチェーンにデプロイされるまで待ちます。
   await nftContract.deployed();
-  console.log("Contract deployed to:", nftContract.address);
+  console.log('Contract deployed to:', nftContract.address);
 
   let txn = await nftContract.mintIpfsNFT(
-    "poker",
-    "bafybeibewfzz7w7lhm33k2rmdrk3vdvi5hfrp6ol5vhklzzepfoac37lry"
+    'poker',
+    'bafybeibewfzz7w7lhm33k2rmdrk3vdvi5hfrp6ol5vhklzzepfoac37lry'
   );
   await txn.wait();
   let returnedTokenUri = await nftContract.tokenURI(0);
-  console.log("tokenURI:", returnedTokenUri);
+  console.log('tokenURI:', returnedTokenUri);
 };
+
 // エラー処理を行っています。
 const runMain = async () => {
   try {
@@ -348,17 +350,17 @@ runMain();
 `deploy.js`を下記のように更新して`yarn contract deploy`をしてください。
 
 ```javascript
-// deploy.js
 const main = async () => {
   // コントラクトがコンパイルします
   // コントラクトを扱うために必要なファイルが `artifacts` ディレクトリの直下に生成されます。
-  const nftContractFactory = await hre.ethers.getContractFactory("Web3Mint");
+  const nftContractFactory = await hre.ethers.getContractFactory('Web3Mint');
   // Hardhat がローカルの Ethereum ネットワークを作成します。
   const nftContract = await nftContractFactory.deploy();
   // コントラクトが Mint され、ローカルのブロックチェーンにデプロイされるまで待ちます。
   await nftContract.deployed();
-  console.log("Contract deployed to:", nftContract.address);
+  console.log('Contract deployed to:', nftContract.address);
 };
+
 // エラー処理を行っています。
 const runMain = async () => {
   try {
@@ -369,6 +371,7 @@ const runMain = async () => {
     process.exit(1);
   }
 };
+
 runMain();
 ```
 

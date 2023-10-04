@@ -6,8 +6,8 @@ Hardhatを使用する場合、ファイル構造は非常に重要ですので�
 
 ```
 contract
-    |_ contracts
-           |_  Web3Mint.sol
+ └── contracts
+     └── Web3Mint.sol
 ```
 
 次に、コードエディタでプロジェクトのコードを開きます。
@@ -22,7 +22,6 @@ contract
 `Web3Mint.sol`のファイル内に以下のコードを記載します。
 
 ```solidity
-// Web3Mint.sol
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.17;
 import "hardhat/console.sol";
@@ -123,17 +122,17 @@ classの概念については、[ここ](https://aiacademy.jp/media/?p=131)を�
 `run.js`の中身を下記のように更新しましょう。
 
 ```javascript
-// run.js
 const main = async () => {
   // コントラクトがコンパイルします
   // コントラクトを扱うために必要なファイルが `artifacts` ディレクトリの直下に生成されます。
-  const nftContractFactory = await hre.ethers.getContractFactory("Web3Mint");
+  const nftContractFactory = await hre.ethers.getContractFactory('Web3Mint');
   // Hardhat がローカルの Ethereum ネットワークを作成します。
   const nftContract = await nftContractFactory.deploy();
   // コントラクトが Mint され、ローカルのブロックチェーンにデプロイされるまで待ちます。
   await nftContract.deployed();
-  console.log("Contract deployed to:", nftContract.address);
+  console.log('Contract deployed to:', nftContract.address);
 };
+
 // エラー処理を行っています。
 const runMain = async () => {
   try {
@@ -144,6 +143,7 @@ const runMain = async () => {
     process.exit(1);
   }
 };
+
 runMain();
 ```
 
@@ -151,7 +151,7 @@ runMain();
 
 ```javascript
 // run.js
-const nftContractFactory = await hre.ethers.getContractFactory("Web3Mint");
+const nftContractFactory = await hre.ethers.getContractFactory('Web3Mint');
 ```
 
 実際にコントラクトがコンパイルされ、コントラクトを扱うために必要なファイルが`artifacts`ディレクトリの直下に生成されます。
@@ -167,7 +167,8 @@ const nftContractFactory = await hre.ethers.getContractFactory("Web3Mint");
 >
 > これを使うと、`await`が先頭についている処理が終わるまで、`main`関数の他の処理は行われません。
 >
-> つまり、`hre.ethers.getContractFactory("Web3Mint")`の処理が終わるまで、`main`関数の中に記載されている他の処理は実行されないということです。
+> つまり、`hre.ethers.getContractFactory('Web3Mint')`の処理が終わるまで、`main`関数の中に記載されている他の処理は実行されないということです。
+
 ```javascript
 // run.js
 const nftContract = await nftContractFactory.deploy();
@@ -190,7 +191,8 @@ Hardhatは実際にあなたのマシン上に「マイナー」を作成し、�
 最後に、デプロイされると、`nftContract.address`はデプロイされたコントラクトのアドレスを出力します。
 
 ```javascript
-console.log("Contract deployed to:", nftContract.address);
+// run.js
+console.log('Contract deployed to:', nftContract.address);
 ```
 
 このアドレスから、ブロックチェーン上でコントラクトを見つけることができますが、今回はローカルのブロックチェーンに実装しているため、世界中の人がアクセスできるわけでありません。
@@ -202,17 +204,6 @@ console.log("Contract deployed to:", nftContract.address);
 アドレスさえわかれば、世界中どこにいても、私たちが興味を持っているコントラクトに簡単にアクセスできます。
 
 ### 💨 実行してみよう!
-
-まずは`packages/contract/package.json`の`script`部分を以下のように編集してください。
-
-```
-"scripts": {
-    "run:script":"npx hardhat run scripts/run.js",
-    "test": "npx hardhat test",
-    "deploy": "npx hardhat run scripts/deploy.js --network sepolia",
-    "start":"npx hardhat node",
-  },
-```
 
 ターミナルを開いて下記を実行してください。
 

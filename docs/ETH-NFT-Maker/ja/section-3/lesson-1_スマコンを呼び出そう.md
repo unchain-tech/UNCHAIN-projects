@@ -11,12 +11,12 @@ Webアプリケーション上で、ユーザーがイーサリアムネット�
 - `NftUploader.jsx`はあなたのWebアプリケーションのフロントエンド機能を果たします。
 
 ```javascript
-// NftUploader.jsx
-import { Button } from "@mui/material";
-import React from "react";
+import { Button } from '@mui/material';
+import React from 'react';
 import { useEffect, useState } from 'react'
-import ImageLogo from "./image.svg";
-import "./NftUploader.css";
+
+import ImageLogo from './image.svg';
+import './NftUploader.css';
 
 const NftUploader = () => {
   const checkIfWalletIsConnected = () => {
@@ -25,10 +25,10 @@ const NftUploader = () => {
      */
     const { ethereum } = window;
     if (!ethereum) {
-      console.log("Make sure you have MetaMask!");
+      console.log('Make sure you have MetaMask!');
       return;
     } else {
-      console.log("We have the ethereum object", ethereum);
+      console.log('We have the ethereum object', ethereum);
     }
   };
   const connectWallet = () =>{
@@ -117,37 +117,37 @@ Consoleに`We have the ethereum object`と表示されているでしょうか�
 以下の通り、`NftUploader.jsx`を修正してください。
 
 ```javascript
-// NftUploader.jsx
-import { Button } from "@mui/material";
-import React from "react";
+import { Button } from '@mui/material';
+import React from 'react';
 import { useEffect, useState } from 'react'
-import ImageLogo from "./image.svg";
-import "./NftUploader.css";
+
+import ImageLogo from './image.svg';
+import './NftUploader.css';
 
 const NftUploader = () => {
   /*
    * ユーザーのウォレットアドレスを格納するために使用する状態変数を定義します。
    */
-  const [currentAccount, setCurrentAccount] = useState("");
+  const [currentAccount, setCurrentAccount] = useState('');
   /*この段階でcurrentAccountの中身は空*/
-  console.log("currentAccount: ", currentAccount);
+  console.log('currentAccount: ', currentAccount);
   const checkIfWalletIsConnected = async () => {
     const { ethereum } = window;
     if (!ethereum) {
-      console.log("Make sure you have MetaMask!");
+      console.log('Make sure you have MetaMask!');
       return;
     } else {
-      console.log("We have the ethereum object", ethereum);
+      console.log('We have the ethereum object', ethereum);
     }
 
-    const accounts = await ethereum.request({ method: "eth_accounts" });
+    const accounts = await ethereum.request({ method: 'eth_accounts' });
 
     if (accounts.length !== 0) {
       const account = accounts[0];
-      console.log("Found an authorized account:", account);
+      console.log('Found an authorized account:', account);
       setCurrentAccount(account);
     } else {
-      console.log("No authorized account found");
+      console.log('No authorized account found');
     }
   };
 
@@ -191,11 +191,11 @@ export default NftUploader;
 新しく追加したコードを見ていきましょう。
 
 ```javascript
-// App.js
+// NftUploader.jsx
 // ユーザーのウォレットアドレスを格納するために使用する状態変数を定義します。
-const [currentAccount, setCurrentAccount] = useState("");
+const [currentAccount, setCurrentAccount] = useState('');
 /*この段階でcurrentAccountの中身は空*/
-console.log("currentAccount: ", currentAccount);
+console.log('currentAccount: ', currentAccount);
 ```
 
 アクセス可能なアカウントを検出した後、`currentAccount`にユーザーのウォレットアカウント(`0x...`)の値が入ります。
@@ -203,18 +203,18 @@ console.log("currentAccount: ", currentAccount);
 以下で`currentAccount`を更新しています。
 
 ```javascript
-// App.js
+// NftUploader.jsx
 // accountsにWEBサイトを訪れたユーザーのウォレットアカウントを格納する（複数持っている場合も加味、よって account's' と変数を定義している）
-const accounts = await ethereum.request({ method: "eth_accounts" });
+const accounts = await ethereum.request({ method: 'eth_accounts' });
 // もしアカウントが一つでも存在したら、以下を実行。
 if (accounts.length !== 0) {
   // accountという変数にユーザーの1つ目（=Javascriptでいう0番目）のアドレスを格納
   const account = accounts[0];
-  console.log("Found an authorized account:", account);
+  console.log('Found an authorized account:', account);
   // currentAccountにユーザーのアカウントアドレスを格納
   setCurrentAccount(account);
 } else {
-  console.log("No authorized account found");
+  console.log('No authorized account found');
 }
 ```
 
@@ -227,53 +227,53 @@ if (accounts.length !== 0) {
 下記の通り`NftUploader.jsx`を更新していきましょう。
 
 ```javascript
-// NftUploader.jsx
-import { Button } from "@mui/material";
-import React from "react";
+import { Button } from '@mui/material';
+import React from 'react';
 import { useEffect, useState } from 'react'
-import ImageLogo from "./image.svg";
-import "./NftUploader.css";
+
+import ImageLogo from './image.svg';
+import './NftUploader.css';
 
 const NftUploader = () => {
   /*
    * ユーザーのウォレットアドレスを格納するために使用する状態変数を定義します。
    */
-  const [currentAccount, setCurrentAccount] = useState("");
+  const [currentAccount, setCurrentAccount] = useState('');
   /*この段階でcurrentAccountの中身は空*/
-  console.log("currentAccount: ", currentAccount);
+  console.log('currentAccount: ', currentAccount);
   const checkIfWalletIsConnected = async () => {
     const { ethereum } = window;
     if (!ethereum) {
-      console.log("Make sure you have MetaMask!");
+      console.log('Make sure you have MetaMask!');
       return;
     } else {
-      console.log("We have the ethereum object", ethereum);
+      console.log('We have the ethereum object', ethereum);
     }
 
-    const accounts = await ethereum.request({ method: "eth_accounts" });
+    const accounts = await ethereum.request({ method: 'eth_accounts' });
 
     if (accounts.length !== 0) {
       const account = accounts[0];
-      console.log("Found an authorized account:", account);
+      console.log('Found an authorized account:', account);
       setCurrentAccount(account);
     } else {
-      console.log("No authorized account found");
+      console.log('No authorized account found');
     }
   };
   const connectWallet = async () =>{
     try {
       const { ethereum } = window;
       if (!ethereum) {
-        alert("Get MetaMask!");
+        alert('Get MetaMask!');
         return;
       }
       /*
        * ウォレットアドレスに対してアクセスをリクエストしています。
        */
       const accounts = await ethereum.request({
-        method: "eth_requestAccounts",
+        method: 'eth_requestAccounts',
       });
-      console.log("Connected", accounts[0]);
+      console.log('Connected', accounts[0]);
       /*
        * ウォレットアドレスを currentAccount に紐付けます。
        */
@@ -282,7 +282,6 @@ const NftUploader = () => {
       console.log(error);
     }
   };
-
 
   const renderNotConnectedContainer = () => (
       <button onClick={connectWallet} className="cta-button connect-wallet-button">
@@ -298,7 +297,7 @@ const NftUploader = () => {
 
   return (
     <div className="outerBox">
-      {currentAccount === "" ? (
+      {currentAccount === '' ? (
         renderNotConnectedContainer()
       ) : (
         <p>If you choose image, you can mint your NFT</p>
@@ -330,18 +329,18 @@ export default NftUploader;
 **1 \. `connectWallet`メソッドを実装**
 
 ```javascript
-// App.js
+// NftUploader.jsx
 const connectWallet = async () => {
   try {
     // ユーザーが認証可能なウォレットアドレスを持っているか確認
     const { ethereum } = window;
     if (!ethereum) {
-      alert("Get MetaMask!");
+      alert('Get MetaMask!');
       return;
     }
     // 持っている場合は、ユーザーに対してウォレットへのアクセス許可を求める。許可されれば、ユーザーの最初のウォレットアドレスを currentAccount に格納する。
-    const accounts = await ethereum.request({ method: "eth_requestAccounts" });
-    console.log("Connected: ", accounts[0]);
+    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+    console.log('Connected: ', accounts[0]);
     setCurrentAccount(accounts[0]);
   } catch (error) {
     console.log(error);
@@ -354,7 +353,7 @@ const connectWallet = async () => {
 **2 \. `renderNotConnectedContainer`メソッドを実装**
 
 ```javascript
-// App.js
+// NftUploader.jsx
 const renderNotConnectedContainer = () => (
   <button onClick={connectWallet} className="cta-button connect-wallet-button">
     Connect to Wallet
@@ -374,7 +373,7 @@ const renderNotConnectedContainer = () => (
   /*条件付きレンダリングを追加しました。*/
 }
 {
-  currentAccount === "" ? (
+  currentAccount === '' ? (
     renderNotConnectedContainer()
   ) : (
     <p>If you choose image, you can mint your NFT</p>
@@ -384,12 +383,12 @@ const renderNotConnectedContainer = () => (
 
 ここでは、条件付きレンダリングを実装しています。
 
-`currentAccount === ""`は、`currentAccount`にユーザーのウォレットアドレスが紐づいているかどうか判定しています。
+`currentAccount === ''`は、`currentAccount`にユーザーのウォレットアドレスが紐づいているかどうか判定しています。
 
 条件付きレンダリングは、下記のように実行されます。
 
 ```javascript
-{ currentAccount === "" ? ( currentAccount にアドレスが紐づいてなければ、A を実行 ) : ( currentAccount にアドレスが紐づいれば B を実行 )}
+{ currentAccount === '' ? ( currentAccount にアドレスが紐づいてなければ、A を実行 ) : ( currentAccount にアドレスが紐づいれば B を実行 )}
 ```
 
 `NftUploader.jsx`の場合、`A`ならば、`renderNotConnectedContainer()`を実行し、`B`ならば、`If you choose image, you can mint your NFT`という文字をフロントエンドに反映させています。

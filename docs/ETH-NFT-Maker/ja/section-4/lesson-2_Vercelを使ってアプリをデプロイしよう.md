@@ -1,11 +1,11 @@
 ### 🙉 GitHub に 関する注意点
 
-**GitHub にコントラクト( `contract`)のコードをアップロードする際は、秘密鍵を含むハードハット構成ファイルをリポジトリにアップロードしないよう注意しましょう。**
+**GitHub にコントラクト(`contract`)のコードをアップロードする際は、秘密鍵を含むハードハット構成ファイルをリポジトリにアップロードしないよう注意しましょう。**
 
-秘密鍵などのファイルを隠すために`dotenv`というパッケージを追加します。ターミナルで`packages/contract`に移動して、下記を実行してください。
+秘密鍵などのファイルを隠すために`dotenv`というパッケージを追加します。ターミナル上で、プロジェクトのルートから下記を実行してください。
 
 ```
-yarn add --dev dotenv
+yarn workspace add dotenv@^16.3.1
 ```
 
 `dotenv`モジュールに関する詳しい説明は、[こちら](https://maku77.github.io/nodejs/env/dotenv.html)を参照してください。
@@ -34,16 +34,14 @@ PROD_ALCHEMY_KEY = イーサリアムメインネットにデプロイする際�
 
 私の`.env`は、下記のようになります。
 
-```javascript
-// .env
-PRIVATE_KEY = 0x...
-STAGING_ALCHEMY_KEY = https://...
+```
+PRIVATE_KEY=0x...
+STAGING_ALCHEMY_KEY=https://...
 ```
 
 `.env`を更新したら、 `hardhat.config.js`ファイルを次のように更新してください。
 
 ```javascript
-// hardhat.config.js
 require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
 module.exports = {
@@ -77,8 +75,6 @@ artifacts
 ```
 
 これで、GitHubにあなたの秘密鍵をアップロードせずに、GitHubにコントラクトのコードをアップロードできます。
-
-
 
 ### 🔮 プロジェクトを拡張する
 
