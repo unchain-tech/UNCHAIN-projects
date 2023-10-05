@@ -166,12 +166,12 @@ library Base64 {
 
 ```solidity
 // Web3Mint.sol
-struct NftAttributes{
-        string name;
-        string imageURL;
-    }
+struct NftAttributes {
+    string name;
+    string imageURL;
+}
 
-    NftAttributes[] Web3Nfts;
+NftAttributes[] Web3Nfts;
 ```
 
 最初に書いていたNFTのデータを保存するための配列がこれです。
@@ -184,15 +184,15 @@ struct NftAttributes{
 ```solidity
 // Web3Mint.sol
 function mintIpfsNFT(string memory name,string memory imageURI) public {
-        uint256 newItemId = _tokenIds.current();
-        _safeMint(msg.sender,newItemId);
-        Web3Nfts.push(NftAttributes({
-            name: name,
-            imageURL: imageURI
-        }));
-        console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
-        _tokenIds.increment();
-    }
+    uint256 newItemId = _tokenIds.current();
+    _safeMint(msg.sender,newItemId);
+    Web3Nfts.push(NftAttributes({
+        name: name,
+        imageURL: imageURI
+    }));
+    console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
+    _tokenIds.increment();
+}
 ```
 
 先程のコードから`setTokenURI`関数が消え、代わりに下記のコードが追加されています。
@@ -200,9 +200,9 @@ function mintIpfsNFT(string memory name,string memory imageURI) public {
 ```solidity
 // Web3Mint.sol
 Web3Nfts.push(NftAttributes({
-            name: name,
-            imageURL: imageURI
-        }));
+    name: name,
+    imageURL: imageURI
+}));
 ```
 
 `mintIpfsNFT`関数が引数で、NFTにしたいもののデータを受け取り、ここで配列に加えます。`tokenId`の値と、配列の番号は同じになっています。
@@ -230,7 +230,7 @@ function tokenURI(uint256 _tokenId) public override view returns(string memory) 
         abi.encodePacked("data:application/json;base64,", json)
     );
     return output;
-    }
+}
 ```
 
 openseaなどのNFTマーケットサービスは、この`tokenURI`関数のデータをみています。

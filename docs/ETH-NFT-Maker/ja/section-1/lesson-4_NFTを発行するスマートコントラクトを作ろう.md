@@ -19,33 +19,33 @@ import "hardhat/console.sol";
 // インポートした OpenZeppelin のコントラクトを継承しています。
 // 継承したコントラクトのメソッドにアクセスできるようになります。
 contract Web3Mint is ERC721URIStorage {
-  // OpenZeppelin が tokenIds を簡単に追跡するために提供するライブラリを呼び出しています
-  using Counters for Counters.Counter;
-  // _tokenIdsを初期化（_tokenIds = 0）
-  Counters.Counter private _tokenIds;
+    // OpenZeppelin が tokenIds を簡単に追跡するために提供するライブラリを呼び出しています
+    using Counters for Counters.Counter;
+    // _tokenIdsを初期化（_tokenIds = 0）
+    Counters.Counter private _tokenIds;
 
-  // NFT トークンの名前とそのシンボルを渡します。
-  constructor() ERC721 ("TanyaNFT", "TANYA") {
-    console.log("This is my NFT contract.");
-  }
+    // NFT トークンの名前とそのシンボルを渡します。
+    constructor() ERC721("TanyaNFT", "TANYA") {
+        console.log("This is my NFT contract.");
+    }
 
-  // ユーザーが NFT を取得するために実行する関数です。
-  function makeAnEpicNFT() public {
-     // 現在のtokenIdを取得します。tokenIdは0から始まります。
-    uint256 newItemId = _tokenIds.current();
-     // msg.sender を使って NFT を送信者に Mint します。
-    _safeMint(msg.sender, newItemId);
-     // NFT データを設定します。
-    _setTokenURI(newItemId, "Valuable data!");
-    // NFTがいつ誰に作成されたかを確認します。
-    console.log(
-      "An NFT w/ ID %s has been minted to %s",
-      newItemId,
-      msg.sender
-    );
-    // 次の NFT が Mint されるときのカウンターをインクリメントする。
-    _tokenIds.increment();
-  }
+    // ユーザーが NFT を取得するために実行する関数です。
+    function makeAnEpicNFT() public {
+        // 現在のtokenIdを取得します。tokenIdは0から始まります。
+        uint256 newItemId = _tokenIds.current();
+        // msg.sender を使って NFT を送信者に Mint します。
+        _safeMint(msg.sender, newItemId);
+        // NFT データを設定します。
+        _setTokenURI(newItemId, "Valuable data!");
+        // NFTがいつ誰に作成されたかを確認します。
+        console.log(
+            "An NFT w/ ID %s has been minted to %s",
+            newItemId,
+            msg.sender
+        );
+        // 次の NFT が Mint されるときのカウンターをインクリメントする。
+        _tokenIds.increment();
+    }
 }
 ```
 
@@ -585,7 +585,7 @@ https://gemcase.vercel.app/view/evm/sepolia/0x677fcCF5F8be725ad8A9C23622ba6B738A
 ```
 
 中身を見ていきましょう。
-`0x67cd3f53c20e3a6211458dd5b7465e1f9464531c`は、`MyEpicNFT`コントラクトのデプロイ先のアドレスです。
+`0x67cd3f53c20e3a6211458dd5b7465e1f9464531c`は、`Web3Mint`コントラクトのデプロイ先のアドレスです。
 `0`は、`tokenID`が0番であることを意味しています。
 上記のリンクを共有すれば、誰でもあなたのNFTをオンライン上で見ることができます。
 
