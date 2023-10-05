@@ -176,7 +176,6 @@ ETH-NFT-Maker
   "description": "UNCHAIN ETH NFT Maker contract",
   "private": true,
   "scripts": {
-    "start": "npx hardhat node",
     "run:script": "npx hardhat run scripts/run.js",
     "deploy": "npx hardhat run scripts/deploy.js --network sepolia",
     "test": "npx hardhat test"
