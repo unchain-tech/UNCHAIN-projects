@@ -331,7 +331,7 @@ Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押して�
 
 では`contract`ディレクトリにある`hardhat.config.js`というファイルを下のように編集しましょう。
 
-```
+```js
 require('@nomicfoundation/hardhat-toolbox');
 require('dotenv').config();
 
