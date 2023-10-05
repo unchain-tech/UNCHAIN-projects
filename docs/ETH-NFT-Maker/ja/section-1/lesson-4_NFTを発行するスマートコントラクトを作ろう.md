@@ -8,37 +8,44 @@
 まずは、NFTの仕組みをわかりやすくみるために`ERC721URIStorage`とそれのfunctionである`_setTokenURI`を使ってNFTを作成しますが、これはあとで変更します。
 
 ```solidity
-// Web3Mint.sol
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.17;
+
 // いくつかの OpenZeppelin のコントラクトをインポートします。
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "hardhat/console.sol";
+
 // インポートした OpenZeppelin のコントラクトを継承しています。
 // 継承したコントラクトのメソッドにアクセスできるようになります。
 contract Web3Mint is ERC721URIStorage {
-  // OpenZeppelin が tokenIds を簡単に追跡するために提供するライブラリを呼び出しています
-  using Counters for Counters.Counter;
-  // _tokenIdsを初期化（_tokenIds = 0）
-  Counters.Counter private _tokenIds;
-  // NFT トークンの名前とそのシンボルを渡します。
-  constructor() ERC721 ("TanyaNFT", "TANYA") {
-    console.log("This is my NFT contract.");
-  }
-  // ユーザーが NFT を取得するために実行する関数です。
-  function makeAnEpicNFT() public {
-     // 現在のtokenIdを取得します。tokenIdは0から始まります。
-    uint256 newItemId = _tokenIds.current();
-     // msg.sender を使って NFT を送信者に Mint します。
-    _safeMint(msg.sender, newItemId);
-     // NFT データを設定します。
-    _setTokenURI(newItemId, "Valuable data!");
-    // NFTがいつ誰に作成されたかを確認します。
-    console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
-    // 次の NFT が Mint されるときのカウンターをインクリメントする。
-    _tokenIds.increment();
-  }
+    // OpenZeppelin が tokenIds を簡単に追跡するために提供するライブラリを呼び出しています
+    using Counters for Counters.Counter;
+    // _tokenIdsを初期化（_tokenIds = 0）
+    Counters.Counter private _tokenIds;
+
+    // NFT トークンの名前とそのシンボルを渡します。
+    constructor() ERC721("TanyaNFT", "TANYA") {
+        console.log("This is my NFT contract.");
+    }
+
+    // ユーザーが NFT を取得するために実行する関数です。
+    function makeAnEpicNFT() public {
+        // 現在のtokenIdを取得します。tokenIdは0から始まります。
+        uint256 newItemId = _tokenIds.current();
+        // msg.sender を使って NFT を送信者に Mint します。
+        _safeMint(msg.sender, newItemId);
+        // NFT データを設定します。
+        _setTokenURI(newItemId, "Valuable data!");
+        // NFTがいつ誰に作成されたかを確認します。
+        console.log(
+            "An NFT w/ ID %s has been minted to %s",
+            newItemId,
+            msg.sender
+        );
+        // 次の NFT が Mint されるときのカウンターをインクリメントする。
+        _tokenIds.increment();
+    }
 }
 ```
 
@@ -237,7 +244,6 @@ NFTが発行された後、`_tokenIds.increment()`（＝ OpenZeppelinが提供�
 それでは、スマートコントラクトに向かい、下記の行を変更しましょう。
 
 ```solidity
-// Web3Mint.sol
 _setTokenURI(newItemId, "Valuable data!");
 ```
 
@@ -245,7 +251,6 @@ _setTokenURI(newItemId, "Valuable data!");
 そのリンクを下記に貼り付けましょう。
 
 ```solidity
-// Web3Mint.sol
 _setTokenURI(
   newItemId,
   "こちらに、JSON ファイルへのリンクを貼り付けてください"
@@ -258,12 +263,11 @@ _setTokenURI(
 テスト用のプログラム`run.js`ファイルを下記のように変更しましょう。
 
 ```javascript
-// run.js
 const main = async () => {
-  const nftContractFactory = await hre.ethers.getContractFactory("Web3Mint");
+  const nftContractFactory = await hre.ethers.getContractFactory('Web3Mint');
   const nftContract = await nftContractFactory.deploy();
   await nftContract.deployed();
-  console.log("Contract deployed to:", nftContract.address);
+  console.log('Contract deployed to:', nftContract.address);
   // makeAnEpicNFT 関数を呼び出す。NFT が Mint される。
   let txn = await nftContract.makeAnEpicNFT();
   // Minting が仮想マイナーにより、承認されるのを待つ。
@@ -273,6 +277,7 @@ const main = async () => {
   // Minting が仮想マイナーにより、承認されるのを待つ。
   await txn.wait();
 };
+
 const runMain = async () => {
   try {
     await main();
@@ -282,6 +287,7 @@ const runMain = async () => {
     process.exit(1);
   }
 };
+
 runMain();
 ```
 
@@ -292,19 +298,15 @@ yarn contract run:script
 ```
 
 エラーが発生した場合は、`pwd`を実行して、 `ETH-NFT-Maker`ディレクトリにいることを確認して、もう一度上記のコードを実行してみてください。
-下記のような結果が、ターミナルに出力されれば、テストは成功です。
+
+2回ミントが実行されることを確認できるはずです! 以下、出力結果のサンプルです。
 
 ```
-Web3Mint
+Compiled 13 Solidity files successfully
 This is my NFT contract.
+Contract deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 An NFT w/ ID 0 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-An NFT w/ ID 1 has been minted to 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
-    ✔ Should return the nft (2360ms)
-
-
-  1 passing (2s)
-
-✨  Done in 4.56s.
+An NFT w/ ID 1 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
 ```
 
 現在、ユーザーがこのスマートコントラクトにアクセスしてNFTを発行するたび、データは常に同じ`Tanya`です!　 🐱。
@@ -401,27 +403,27 @@ Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押して�
 テストネットにコントラクトをデプロイするために、`scripts`ディレクトリの中にある`deploy.js`を以下のとおり更新します。
 
 ```javascript
-// deploy.js
 const main = async () => {
   // コントラクトがコンパイルします
   // コントラクトを扱うために必要なファイルが `artifacts` ディレクトリの直下に生成されます。
-  const nftContractFactory = await hre.ethers.getContractFactory("Web3Mint");
+  const nftContractFactory = await hre.ethers.getContractFactory('Web3Mint');
   // Hardhat がローカルの Ethereum ネットワークを作成します。
   const nftContract = await nftContractFactory.deploy();
   // コントラクトが Mint され、ローカルのブロックチェーンにデプロイされるまで待ちます。
   await nftContract.deployed();
-  console.log("Contract deployed to:", nftContract.address);
+  console.log('Contract deployed to:', nftContract.address);
   // makeAnEpicNFT 関数を呼び出す。NFT が Mint される。
   let txn = await nftContract.makeAnEpicNFT();
   // Minting が仮想マイナーにより、承認されるのを待ちます。
   await txn.wait();
-  console.log("Minted NFT #1");
+  console.log('Minted NFT #1');
   // makeAnEpicNFT 関数をもう一度呼び出します。NFT がまた Mint されます。
   txn = await nftContract.makeAnEpicNFT();
   // Minting が仮想マイナーにより、承認されるのを待ちます。
   await txn.wait();
-  console.log("Minted NFT #2");
+  console.log('Minted NFT #2');
 };
+
 // エラー処理を行っています。
 const runMain = async () => {
   try {
@@ -432,6 +434,7 @@ const runMain = async () => {
     process.exit(1);
   }
 };
+
 runMain();
 ```
 
@@ -454,14 +457,13 @@ hardhat.config.js
 下記のように、`hardhat.config.js`の中身を更新します。
 
 ```javascript
-// hardhat.config.js
-require("@nomicfoundation/hardhat-toolbox");
+require('@nomicfoundation/hardhat-toolbox');
 module.exports = {
-  solidity: "0.8.17",
+  solidity: '0.8.17',
   networks: {
     sepolia: {
-      url: "YOUR_ALCHEMY_API_URL",
-      accounts: ["YOUR_PRIVATE_SEPOLIA_ACCOUNT_KEY"],
+      url: 'YOUR_ALCHEMY_API_URL',
+      accounts: ['YOUR_PRIVATE_SEPOLIA_ACCOUNT_KEY'],
     },
   },
 };
@@ -583,7 +585,7 @@ https://gemcase.vercel.app/view/evm/sepolia/0x677fcCF5F8be725ad8A9C23622ba6B738A
 ```
 
 中身を見ていきましょう。
-`0x67cd3f53c20e3a6211458dd5b7465e1f9464531c`は、`MyEpicNFT`コントラクトのデプロイ先のアドレスです。
+`0x67cd3f53c20e3a6211458dd5b7465e1f9464531c`は、`Web3Mint`コントラクトのデプロイ先のアドレスです。
 `0`は、`tokenID`が0番であることを意味しています。
 上記のリンクを共有すれば、誰でもあなたのNFTをオンライン上で見ることができます。
 
