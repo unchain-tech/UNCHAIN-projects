@@ -48,7 +48,7 @@ ERC-20標準規格を使用することで、トークンは以下のユース�
 
 ERC-20規格に準拠した機能を実装するために、`DappToken.sol`を下のように編集しましょう。
 
-```
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.18;
 
@@ -115,7 +115,7 @@ contract DappToken {
 ```
 
 次に`MockDaiToken.sol`を以下のように編集しましょう。
-```
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.18;
 
