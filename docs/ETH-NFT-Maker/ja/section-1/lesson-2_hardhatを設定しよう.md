@@ -167,18 +167,41 @@ ETH-NFT-Maker
 +        └── test/
 ```
 
+それでは、`packages/contract`ディレクトリ内の`package.json`ファイルを更新しましょう。下記のように`"private": true,`の下に`"scripts":{...}`を追加してください。よく利用するコマンドを設定しておきます。
+
+```json
+{
+  "name": "contract",
+  "version": "0.1.0",
+  "description": "UNCHAIN ETH NFT Maker contract",
+  "private": true,
+  "scripts": {
+    "start": "npx hardhat node",
+    "run:script": "npx hardhat run scripts/run.js",
+    "deploy": "npx hardhat run scripts/deploy.js --network sepolia",
+    "test": "npx hardhat test"
+  },
+  "devDependencies": {
+```
+
+次に、安全なスマートコントラクトを開発するために使用されるライブラリ **OpenZeppelin** をインストールします。
+
+`packages/contract`ディレクトリにいることを確認し、以下のコマンドを実行してください。
+
+```
+yarn add @openzeppelin/contracts@^4.8.2
+```
+
+[OpenZeppelin](https://github.com/OpenZeppelin/openzeppelin-contracts) はイーサリアムネットワーク上で安全なスマートコントラクトを実装するためのフレームワークです。
+
+OpenZeppelinには非常に多くの機能が実装されておりインポートするだけで安全にその機能を使うことができます。
+
 ### ⭐️ 実行する
 
 すべてが機能していることを確認するには、以下を実行します。
 
 ```
-npx hardhat compile
-```
-
-次に、以下を実行します。
-
-```
-npx hardhat test
+yarn test
 ```
 
 次のように表示されます。
