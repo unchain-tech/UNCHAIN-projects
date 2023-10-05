@@ -5,7 +5,7 @@
 秘密鍵などのファイルを隠すために`dotenv`というパッケージを追加します。ターミナル上で、プロジェクトのルートから下記を実行してください。
 
 ```
-yarn workspace add dotenv@^16.3.1
+yarn workspace contract add dotenv@^16.3.1
 ```
 
 `dotenv`モジュールに関する詳しい説明は、[こちら](https://maku77.github.io/nodejs/env/dotenv.html)を参照してください。
