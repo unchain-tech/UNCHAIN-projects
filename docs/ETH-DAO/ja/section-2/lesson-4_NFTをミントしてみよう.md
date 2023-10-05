@@ -1,4 +1,4 @@
-このレッスンでは`pages/index.tsx`を変更して、以下の実装をしていきます。
+このレッスンでは`src/pages/index.tsx`を変更して、以下の実装をしていきます。
 
 1. ユーザーがメンバーシップNFTを持っていない場合は、NFTをミントするボタンを表示します。
 2. ユーザーがメンバーシップNFTを持っていることを検知したら、プロポーザルに投票したり、DAO関連の情報を見ることができる「DAOダッシュボード」画面を表示します。
@@ -8,17 +8,17 @@
 
 ### 🤔 メンバーシップ NFT を持っているかどうかを確認する
 
-`pages/index.tsx`に移動し、コードを以下のとおり変更します。
+`src/pages/index.tsx`に移動し、コードを以下のとおり変更します。
 
 ※ あなたのコントラクトアドレスを設定することを忘れないでください！
 
 ```typescript
-// 接続中のネットワークを取得するため useNetwork を新たにインポートします。
+import { Sepolia } from '@thirdweb-dev/chains';
 import {
   ConnectWallet,
   useAddress,
-  useContract
-  useNetwork,
+  useChain,
+  useContract,
 } from '@thirdweb-dev/react';
 import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
@@ -29,7 +29,7 @@ const Home: NextPage = () => {
   const address = useAddress();
   console.log('👋Wallet Address: ', address);
 
-  const [network, switchNetwork] = useNetwork();
+  const chain = useChain();
 
   // editionDrop コントラクトを初期化
   const editionDrop = useContract(
@@ -66,9 +66,10 @@ const Home: NextPage = () => {
     checkBalance();
   }, [address, editionDrop]);
 
-  if (address && network && network?.data?.chain?.id !== 11155111) {
+  // テストネットが Sepolia ではなかった場合に警告を表示
+  if (chain && chain.chainId !== Sepolia.chainId) {
     console.log('wallet address: ', address);
-    console.log('network: ', network?.data?.chain?.id);
+    console.log('chain name: ', chain.name);
 
     return (
       <div className={styles.container}>
@@ -119,19 +120,19 @@ export default Home;
 
 ### ✨ "Mint NFT" ボタンをつくろう
 
-それでは、`pages/index.tsx`へ移動しメンバーシップNFTをミントできるようにしていきましょう。
+それでは、`src/pages/index.tsx`へ移動しメンバーシップNFTをミントできるようにしていきましょう。
 
 下記のとおりコードを変更してください。
 
 ※ あなたのコントラクトアドレスを設定することを忘れないでください！
 
 ```typescript
-// 接続中のネットワークを取得するため useNetwork を新たにインポートします。
+import { Sepolia } from '@thirdweb-dev/chains';
 import {
   ConnectWallet,
   useAddress,
-  useContract
-  useNetwork,
+  useChain,
+  useContract,
 } from '@thirdweb-dev/react';
 import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
@@ -142,7 +143,7 @@ const Home: NextPage = () => {
   const address = useAddress();
   console.log('👋Wallet Address: ', address);
 
-  const [network, switchNetwork] = useNetwork();
+  const chain = useChain();
 
   // editionDrop コントラクトを初期化
   const editionDrop = useContract(
@@ -213,9 +214,9 @@ const Home: NextPage = () => {
     );
   }
   // テストネットが Sepolia ではなかった場合に警告を表示
-  else if (address && network && network?.data?.chain?.id !== 11155111) {
+  else if (chain && chain.chainId !== Sepolia.chainId) {
     console.log('wallet address: ', address);
-    console.log('network: ', network?.data?.chain?.id);
+    console.log('chain name: ', chain.name);
 
     return (
       <div className={styles.container}>
@@ -303,7 +304,7 @@ NFTのミントが完了すると、以下のとおりコンソールにEthersca
 
 NFTのミント画面を描画する前に、以下のコメント`DAO ダッシュボード画面を表示`部分のコードを追加するだけです。
 
-`pages/index.tsx`に移動し、コードの一部を以下のとおり変更します。
+`src/pages/index.tsx`に移動し、コードの一部を以下のとおり変更します。
 
 ```typescript
   // ウォレットと接続していなかったら接続を促す
@@ -322,9 +323,10 @@ NFTのミント画面を描画する前に、以下のコメント`DAO ダッシ
     );
   }
   // テストネットが Sepolia ではなかった場合に警告を表示
-  else if (address && network && network?.data?.chain?.id !== 11155111) {
+  else if (chain && chain.chainId !== Sepolia.chainId) {
     console.log('wallet address: ', address);
-    console.log('network: ', network?.data?.chain?.id);
+    console.log('chain name: ', chain.name);
+
 
     return (
       <div className={styles.container}>

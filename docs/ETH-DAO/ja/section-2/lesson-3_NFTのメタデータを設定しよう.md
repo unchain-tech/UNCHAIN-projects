@@ -13,8 +13,8 @@
 ```typescript
 import { readFileSync } from 'fs';
 
-import sdk from './1-initialize-sdk.js';
-import { editionDropAddress } from './module.js';
+import sdk from './1-initialize-sdk';
+import { editionDropAddress } from './module';
 
 const editionDrop = sdk.getContract(editionDropAddress, 'edition-drop');
 
@@ -92,8 +92,8 @@ Done in 30.57s.
 ```typescript
 import { MaxUint256 } from '@ethersproject/constants';
 
-import sdk from './1-initialize-sdk.js';
-import { editionDropAddress } from './module.js';
+import sdk from './1-initialize-sdk';
+import { editionDropAddress } from './module';
 
 const editionDrop = sdk.getContract(editionDropAddress, 'edition-drop');
 

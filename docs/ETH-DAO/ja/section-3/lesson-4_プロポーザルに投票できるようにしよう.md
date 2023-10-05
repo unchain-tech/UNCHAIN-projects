@@ -7,11 +7,11 @@
 ```typescript
 import { ethers } from 'ethers';
 
-import sdk from './1-initialize-sdk.js';
-import { ERCTokenAddress, gavananceAddress } from './module.js';
+import sdk from './1-initialize-sdk';
+import { ERCTokenAddress, governanceAddress } from './module';
 
 // 投票コントラクトのアドレスを設定します
-const vote = sdk.getContract(gavananceAddress, 'vote');
+const vote = sdk.getContract(governanceAddress, 'vote');
 
 // ERC-20 コントラクトのアドレスを設定します。
 const token = sdk.getContract(ERCTokenAddress, 'token');

@@ -9,30 +9,30 @@
 ```typescript
 import nextEnv from '@next/env';
 import { ThirdwebSDK } from '@thirdweb-dev/sdk';
-import ethers from 'ethers';
 
-const { loadEnvConfig } = nextEnv;
 // 環境変数を env ファイルから読み込む
-const { PRIVATE_KEY, ALCHEMY_API_URL, WALLET_ADDRESS } = loadEnvConfig(
-  process.cwd()
+const { loadEnvConfig } = nextEnv;
+const { PRIVATE_KEY, CLIENT_ID, SECRET_KEY } = loadEnvConfig(
+  process.cwd(),
 ).combinedEnv;
 
-// 環境変数が取得できてとれているか確認
+// 環境変数が取得できているか確認
 if (!PRIVATE_KEY || PRIVATE_KEY === '') {
   console.log('🛑 Private key not found.');
 }
 
-if (!ALCHEMY_API_URL || ALCHEMY_API_URL === '') {
-  console.log('🛑 Alchemy API URL not found.');
+if (!CLIENT_ID || CLIENT_ID === '') {
+  console.log('🛑 Client ID of API Key not found.');
 }
 
-if (!WALLET_ADDRESS || WALLET_ADDRESS === '') {
-  console.log('🛑 Wallet Address not found.');
+if (!SECRET_KEY || SECRET_KEY === '') {
+  console.log('🛑 Secret Key of API Key not found.');
 }
 
-const sdk = new ThirdwebSDK(
-  new ethers.Wallet(PRIVATE_KEY!, ethers.getDefaultProvider(ALCHEMY_API_URL))
-);
+const sdk = ThirdwebSDK.fromPrivateKey(PRIVATE_KEY!, 'sepolia', {
+  clientId: CLIENT_ID,
+  secretKey: SECRET_KEY,
+});
 
 // ここでスクリプトを実行
 (async () => {
@@ -115,7 +115,7 @@ _📝 備考: `ExperimentalWarning`のようなランダムな警告が表示さ
 import { AddressZero } from '@ethersproject/constants';
 import { readFileSync } from 'fs';
 
-import sdk from './1-initialize-sdk.js';
+import sdk from './1-initialize-sdk';
 
 (async () => {
   try {
@@ -201,7 +201,7 @@ Done in 40.59s.
 ```js
 export const editionDropAddress = '';
 export const ERCTokenAddress = '';
-export const gavananceAddress = '';
+export const governanceAddress = '';
 export const ownerWalletAddress = '';
 
 ```
@@ -214,7 +214,7 @@ export const ownerWalletAddress = '';
 ```js
 export const editionDropAddress = '0x051300f66FD67a8B94D3d64B1e5d07f23BC90170';
 export const ERCTokenAddress = '0x238B28BaE48dA495125aE2B6623094C5f74CCAD5';
-export const gavananceAddress = '0x62e06783EA7490367f3413B79331AC328cb6e00D';
+export const governanceAddress = '0x62e06783EA7490367f3413B79331AC328cb6e00D';
 export const ownerWalletAddress = '0xa9eD1748Ffcda5442dCaEA242603E7e3FF09dD7F';
 
 ```

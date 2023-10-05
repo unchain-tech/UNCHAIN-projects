@@ -41,8 +41,8 @@ thirdwebを使ってSepoliaにコントラクトを作成し、デプロイす�
 
 ```plaintext
 PRIVATE_KEY=YOUR_PRIVATE_KEY_HERE
-WALLET_ADDRESS=YOUR_WALLET_ADDRESS
-ALCHEMY_API_URL=YOUR_ALCHEMY_API_URL
+CLIENT_ID=YOUR_CLIENT_ID
+SECRET_KEY=YOUR_SECRET_KEY
 ```
 
 ここに記載する情報は誰にも教えてはならない情報なので、取り扱いには十分に注意しましょう。
@@ -51,50 +51,35 @@ ALCHEMY_API_URL=YOUR_ALCHEMY_API_URL
 >
 > 秘密鍵を盗まれてしまう恐れがあるので、**`.env.local`ファイルを GitHub にコミットしないよう気をつけてください**。.gitignoreファイルに`.env.local`が含まれていることを確認してください。
 
-`YOUR_PRIVATE_KEY_HERE`にはMetamaskのPrivate Keyを、`YOUR_WALLET_ADDRESS`にはMetamaskのウォレットアドレスを、`YOUR_ALCHEMY_API_URL`にはAlchemyのHTTPS Keyを設定していきましょう。
+`YOUR_PRIVATE_KEY_HERE`にはMetamaskのPrivate Keyを、`YOUR_CLIENT_ID`にはthirdweb APIキーのClient IDを、`YOUR_SECRET_KEY`にはthirdweb APIキーのSecret Keyを設定していきましょう。
 
-各値は、こちらのリンクを参照してください。
+PRIVATE_KEYの取得方法は、[こちら](https://metamask.zendesk.com/hc/en-us/articles/360015289632-How-to-Export-an-Account-Private-Key)を参照してください。
 
-[PRIVATE_KEY の取得](https://metamask.zendesk.com/hc/en-us/articles/360015289632-How-to-Export-an-Account-Private-Key)
+※ CLIENT_IDとSECRET_KEYの取得方法については以下で解説していきます。
 
-[WALLET_ADDRESS の取得](https://metamask.zendesk.com/hc/en-us/articles/360015289512-How-to-copy-your-MetaMask-account-public-address-)
+### 🔑 APIキーを作成する
 
-※ ALCHEMY_API_URLの取得方法については以下で解説していきます。
+SDKでthirdwebのインフラサービスを利用するには、APIキーが必要になります。APIキーは、thirdwebのダッシュボードから無料で作成することができます。
 
-
-### 💎 Alchemy でネットワークを作成
-
-Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押してください。
+[こちら](https://thirdweb.com/dashboard/settings/api-keys)からthirdwebのダッシュボードにアクセスをして、ウォレット接続を行いSign inしましょう。
 
 ![](/public/images/ETH-DAO/section-2/2_1_1.png)
 
-※ Ecosystem選択欄が出てきた場合は`Ethereum`を選択しましょう。
+Sign inが完了したら、ダッシュボード右上の「+ Create API Key」をクリックします。
 
 ![](/public/images/ETH-DAO/section-2/2_1_2.png)
 
-次に、下記の項目を埋めていきます。
+APIキーに任意の名前をつけて、「Next」をクリックします。
 
 ![](/public/images/ETH-DAO/section-2/2_1_3.png)
 
-- `NAME`: プロジェクトの名前(例: `MyDAO`)
-- `DESCRIPTION`: プロジェクトの概要
-- `CHAIN`: `Ethereum`を選択
-- `NETWORK`: `Sepolia`を選択
-
-それから、作成したAppの`VIEW DETAILS`をクリックします。
+次に、APIキーの設定を行います。下記画像のようにサービス有効化とアクセス制限の設定を行い、最後に「Create」をクリックします。
 
 ![](/public/images/ETH-DAO/section-2/2_1_4.png)
 
-プロジェクトを開いたら、`VIEW KEY`ボタンをクリックします。
+画面上に作成したAPIキーの`Client ID`と`Secret Key`が表示されます。これらの値をコピーして、`.env.local`の`YOUR_CLIENT_ID`と`YOUR_SECRET_KEY`にそれぞれ設定しましょう。注意書きにもありますが、Secret Keyは表示されている画面を閉じると二度と取得することはできないので、大切に保管してください。設定と保管が完了したら、「I have stored the Secret Key securely」をクリックして画面を閉じます。
 
 ![](/public/images/ETH-DAO/section-2/2_1_5.png)
-
-ポップアップが開くので、`HTTPS`のリンクをコピーしてください。
-
-これがあなたが本番環境のネットワークに接続する際に使用する`API Key`になります。
-
-コピーした値を`.env.local`の`YOUR_ALCHEMY_API_URL`部分に設定しましょう。
-
 
 ### 🐣 テストネットから始める
 
