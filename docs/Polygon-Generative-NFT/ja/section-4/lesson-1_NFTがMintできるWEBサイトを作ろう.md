@@ -35,17 +35,19 @@
 </html>
 ```
 
-次に、`client/src`フォルダに移動して、`App.test.js` , `logo.svg` , `setupTests.js`ファイルを削除してください。
+次に、`packages/client/src`フォルダに移動して、`App.test.js` , `logo.svg` , `setupTests.js`ファイルを削除してください。
 
 このレッスンでは、これらのファイルは必要ありません。
 
 次に、`src`フォルダの中にある`App.js`ファイルを開き、内容を、以下の定型文に置き換えます。
 
 ```javascript
-import "./App.css";
+import './App.css';
+
 function App() {
   return <h1>Hello World</h1>;
 }
+
 export default App;
 ```
 
@@ -71,7 +73,7 @@ ABI（またはApplication Binary Interface）は、コントラクトのコン�
 
 これがまさにABIファイルの役割です。
 
-`/contract/artifacts/contracts/NFTCollectible.sol/NFTCollectible.json`をVS Codeで開き中身を確認してみましょう。
+`packages/contract/artifacts/contracts/NFTCollectible.sol/NFTCollectible.json`をVS Codeで開き中身を確認してみましょう。
 
 ![](/public/images/Polygon-Generative-NFT/section-4/4_1_2.png)
 
@@ -79,7 +81,7 @@ ABI（またはApplication Binary Interface）は、コントラクトのコン�
 
 まず、JSONファイルをReactプロジェクトにコピーする必要があります。
 
-`client/src`フォルダに`contracts`という新しいフォルダを作成し、`NFTCollectible.json`ファイルをコピーして貼り付けましょう。
+`packages/client/src`フォルダに`contracts`という新しいフォルダを作成し、`NFTCollectible.json`ファイルをコピーして貼り付けましょう。
 
 次に、前回のレッスンでPolygonテストネットにデプロイしたスマートコントラクトのアドレスを取得してください。
 
@@ -90,16 +92,17 @@ ABI（またはApplication Binary Interface）は、コントラクトのコン�
 それでは、コントラクトABIをインポートして、`App.js`ファイルにコントラクトアドレスを定義していきましょう。
 
 ```javascript
-import "./App.css";
-import contract from "./contracts/NFTCollectible.json";
+import './App.css';
+import contract from './contracts/NFTCollectible.json';
 
 const contractAddress =
-  "あなたのコントラクトアドレスをこちらに貼り付けてください";
+  'あなたのコントラクトアドレスをこちらに貼り付けてください';
 const abi = contract.abi;
 
 function App() {
   return <h1>Hello World</h1>;
 }
+
 export default App;
 ```
 
@@ -118,11 +121,12 @@ export default App;
 以下の内容を、`App.js`ファイルにコピーしてください。
 
 ```javascript
-import { useEffect } from "react";
-import "./App.css";
-import contract from "./contracts/NFTCollectible.json";
+import { useEffect } from 'react';
 
-const contractAddress = "あなたのコントラクトアドレスを貼り付けましょう";
+import './App.css';
+import contract from './contracts/NFTCollectible.json';
+
+const contractAddress = 'あなたのコントラクトアドレスを貼り付けましょう';
 const abi = contract.abi;
 
 function App() {
@@ -169,7 +173,7 @@ export default App;
 `App.js`の5行目であなたのコントラクトアドレスを設定してください。
 
 ```javascript
-const contractAddress = "あなたのコントラクトアドレスを貼り付けましょう";
+const contractAddress = 'あなたのコントラクトアドレスを貼り付けましょう';
 ```
 
 現時点では、関数をいくつか定義していることに注意してください。後で、その目的を説明し、ロジックを組み込んでいく予定です。
@@ -179,7 +183,6 @@ const contractAddress = "あなたのコントラクトアドレスを貼り付�
 以下を`App.css`ファイルにコピーしてください。
 
 ```css
-// App.css
 .main-app {
     text-align: center;
     margin: 100px;
@@ -233,7 +236,7 @@ const checkWalletIsConnected = async () => {
   const { ethereum } = window;
 
   if (!ethereum) {
-    console.log("Make sure you have MetaMask installed!");
+    console.log('Make sure you have MetaMask installed!');
     return;
   } else {
     console.log("Wallet exists! We're ready to go!");
@@ -268,7 +271,7 @@ MetaMaskは`window.ethereum.request`メソッドでこのプロセスシンプ�
 まず、Reactから`useState`をインポートするために、`App.js`ファイルの1行目`import from 'react'`の中身を下記のように更新してください。
 
 ```javascript
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 ```
 
 それから、下記を`checkWalletIsConnected`関数の真上に追加してください。
@@ -290,12 +293,12 @@ const connectWalletHandler = async () => {
   const { ethereum } = window;
 
   if (!ethereum) {
-    alert("Please install MetaMask!");
+    alert('Please install MetaMask!');
   }
 
   try {
-    const accounts = await ethereum.request({ method: "eth_requestAccounts" });
-    console.log("Found an account! Address: ", accounts[0]);
+    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+    console.log('Found an account! Address: ', accounts[0]);
     setCurrentAccount(accounts[0]);
   } catch (err) {
     console.log(err);
@@ -313,15 +316,15 @@ const connectWalletHandler = async () => {
 const { ethereum } = window;
 
 if (!ethereum) {
-  alert("Please install MetaMask!");
+  alert('Please install MetaMask!');
 }
 ```
 
 MetaMaskにユーザーのウォレット接続を促し、アドレスの取得を試みます。
 
 ```javascript
-const accounts = await ethereum.request({ method: "eth_requestAccounts" });
-console.log("Found an account! Address: ", accounts[0]);
+const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+console.log('Found an account! Address: ', accounts[0]);
 ```
 
 ユーザーがWebサイトとの接続に同意すると、最初に利用可能なウォレットアドレスを取得し、それを`currentAccount`変数の値として設定します。
@@ -400,20 +403,20 @@ const checkWalletIsConnected = async () => {
   const { ethereum } = window;
 
   if (!ethereum) {
-    console.log("Make sure you have MetaMask installed!");
+    console.log('Make sure you have MetaMask installed!');
     return;
   } else {
     console.log("Wallet exists! We're ready to go!");
   }
 
-  const accounts = await ethereum.request({ method: "eth_accounts" });
+  const accounts = await ethereum.request({ method: 'eth_accounts' });
 
   if (accounts.length !== 0) {
     const account = accounts[0];
-    console.log("Found an authorized account: ", account);
+    console.log('Found an authorized account: ', account);
     setCurrentAccount(account);
   } else {
-    console.log("No authorized account found");
+    console.log('No authorized account found');
   }
 };
 ```
@@ -427,7 +430,7 @@ const checkWalletIsConnected = async () => {
   ```javascript
 
   if (!ethereum) {
-    console.log("Make sure you have MetaMask installed!");
+    console.log('Make sure you have MetaMask installed!');
     return;
   } else {
     console.log("Wallet exists! We're ready to go!");
@@ -437,7 +440,7 @@ const checkWalletIsConnected = async () => {
 - Webサイトに接続中のアカウントに対してMetaMaskのリクエストを試みます。
 
 ```javascript
-const accounts = await ethereum.request({ method: "eth_accounts" });
+const accounts = await ethereum.request({ method: 'eth_accounts' });
 ```
 
 - MetaMaskがすでにWebサイトに接続されている場合は、この関数にアカウントのリストを渡して要求を出します。
@@ -445,7 +448,7 @@ const accounts = await ethereum.request({ method: "eth_accounts" });
 ```javascript
 if (accounts.length !== 0) {
   const account = accounts[0];
-  console.log("Found an authorized account: ", account);
+  console.log('Found an authorized account: ', account);
 ```
 
 - リストが空でない場合、`checkWalletIsConnected`関数はMetaMaskから取得した最初のアカウントアドレスを選び、それを`currentAccount`に設定します。
@@ -458,7 +461,7 @@ setCurrentAccount(account);
 
 ```javascript
 } else {
-  console.log("No authorized account found");
+  console.log('No authorized account found');
 }
 ```
 
@@ -480,10 +483,10 @@ setCurrentAccount(account);
 
 次に、`App.js`で`ethers`ライブラリをインポートしましょう。
 
-`import contract from './contracts/NFTCollectible.json';`の直下に、下記を追加してください。
+`import { useEffect, useState } from 'react';`の上に、下記を追加してください。
 
 ```javascript
-import { ethers } from "ethers";
+import { ethers } from 'ethers';
 ```
 
 最後に、下記のように`mintNftHandler`関数を更新しましょう。
@@ -498,17 +501,17 @@ const mintNftHandler = async () => {
       const signer = provider.getSigner();
       const nftContract = new ethers.Contract(contractAddress, abi, signer);
 
-      console.log("Initialize payment");
+      console.log('Initialize payment');
       let nftTxn = await nftContract.mintNFTs(1, {
-        value: ethers.utils.parseEther("0.01"),
+        value: ethers.utils.parseEther('0.01'),
       });
 
-      console.log("Mining... please wait");
+      console.log('Mining... please wait');
       await nftTxn.wait();
 
       console.log(`Mined, see transaction: ${nftTxn.hash}`);
     } else {
-      console.log("Ethereum object does not exist");
+      console.log('Ethereum object does not exist');
     }
   } catch (err) {
     console.log(err);
@@ -545,16 +548,16 @@ const signer = provider.getSigner();
 
 ```javascript
 const nftContract = new ethers.Contract(contractAddress, abi, signer);
-console.log("Initialize payment");
+console.log('Initialize payment');
 ```
 
 5\. これで、前述のコントラクトオブジェクトを通じてコントラクト上の関数を呼び出すことができます。`mintNFT`関数を呼び出し、MetaMaskに`0.01 ETH`（これはNFTに設定した価格）を送信するよう依頼します。
 
 ```javascript
 let nftTxn = await nftContract.mintNFTs(1, {
-  value: ethers.utils.parseEther("0.01"),
+  value: ethers.utils.parseEther('0.01'),
 });
-console.log("Mining... please wait");
+console.log('Mining... please wait');
 ```
 
 6\. トランザクションが処理されるのを待ち、処理が完了したら、トランザクションのハッシュをコンソールに出力します。
@@ -583,13 +586,13 @@ console.log(`Mined, see transaction: ${nftTxn.hash}`);
 `App.js`の最終盤はこちらです。
 
 ```javascript
+import { ethers } from 'ethers';
+import { useEffect, useState } from 'react';
 
-import { useEffect, useState } from "react";
-import "./App.css";
-import contract from "./contracts/NFTCollectible.json";
-import { ethers } from "ethers";
+import './App.css';
+import contract from './contracts/NFTCollectible.json';
 
-const contractAddress = "0x7aDBc3497BE70a903c5b17BEf184782dD0A7eFAa";
+const contractAddress = '0xF899DeB963208560a7c667FA78376ecaFF684b8E';
 const abi = contract.abi;
 
 function App() {
@@ -599,20 +602,20 @@ function App() {
     const { ethereum } = window;
 
     if (!ethereum) {
-      console.log("Make sure you have MetaMask installed!");
+      console.log('Make sure you have MetaMask installed!');
       return;
     } else {
       console.log("Wallet exists! We're ready to go!");
     }
 
-    const accounts = await ethereum.request({ method: "eth_accounts" });
+    const accounts = await ethereum.request({ method: 'eth_accounts' });
 
     if (accounts.length !== 0) {
       const account = accounts[0];
-      console.log("Found an authorized account: ", account);
+      console.log('Found an authorized account: ', account);
       setCurrentAccount(account);
     } else {
-      console.log("No authorized account found");
+      console.log('No authorized account found');
     }
   };
 
@@ -620,14 +623,14 @@ function App() {
     const { ethereum } = window;
 
     if (!ethereum) {
-      alert("Please install MetaMask!");
+      alert('Please install MetaMask!');
     }
 
     try {
       const accounts = await ethereum.request({
-        method: "eth_requestAccounts",
+        method: 'eth_requestAccounts',
       });
-      console.log("Found an account! Address: ", accounts[0]);
+      console.log('Found an account! Address: ', accounts[0]);
       setCurrentAccount(accounts[0]);
     } catch (err) {
       console.log(err);
@@ -643,17 +646,17 @@ function App() {
         const signer = provider.getSigner();
         const nftContract = new ethers.Contract(contractAddress, abi, signer);
 
-        console.log("Initialize payment");
+        console.log('Initialize payment');
         let nftTxn = await nftContract.mintNFTs(1, {
-          value: ethers.utils.parseEther("0.01"),
+          value: ethers.utils.parseEther('0.01'),
         });
 
-        console.log("Mining... please wait");
+        console.log('Mining... please wait');
         await nftTxn.wait();
 
         console.log(`Mined, see transaction: ${nftTxn.hash}`);
       } else {
-        console.log("Ethereum object does not exist");
+        console.log('Ethereum object does not exist');
       }
     } catch (err) {
       console.log(err);
