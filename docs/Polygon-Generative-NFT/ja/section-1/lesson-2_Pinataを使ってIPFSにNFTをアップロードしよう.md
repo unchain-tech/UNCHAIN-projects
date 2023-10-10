@@ -149,30 +149,30 @@ IPFS URLの中身をブラウザで確認する場合は、下記のリンクの
 
 `packages/library`に向かい、`metadata.py`を開き下記のように中身を更新してください。
 
-```javascript
-BASE_IMAGE_URL = "ipfs://ここにあなたのCIDを貼り付けます";
-BASE_NAME = "ここにあなたのコレクションの名前を記入します";
+```python
+BASE_IMAGE_URL = "ipfs://ここにあなたのCIDを貼り付けます"
+BASE_NAME = "ここにあなたのコレクションの名前を記入します"
 ```
 
 私の`metadata.py`は下記のようになります。
 
-```javascript
-BASE_IMAGE_URL = "ipfs://Qman4YbTQHsLDSJvjV5MMnGmF7kmWujVeFhAxUoisHifZF";
-BASE_NAME = "First Collection #";
+```python
+BASE_IMAGE_URL = "ipfs://Qman4YbTQHsLDSJvjV5MMnGmF7kmWujVeFhAxUoisHifZF"
+BASE_NAME = "First Collection #"
 
 BASE_JSON = {
   name: BASE_NAME,
   description: "A collection of Scrappy Squirrel.",
   image: BASE_IMAGE_URL,
   attributes: [],
-};
+}
 ```
 
 `BASE_NAME`に、`First Collection #`とつけると、NFTには、`First Collection #1`、`First Collection #2`のようなIDが付与されます。
 
 `description`にはあなたのコレクションの説明を記載しましょう。
 
-`metadata.py`の更新が完了したら、ターミナルを開き、`library`ディレクトリ上で、次のコマンドを実行してください。
+`metadata.py`の更新が完了したら、ターミナルを開き、`Polygon-Generative-NFT`ディレクトリ上で、次のコマンドを実行してください。
 
 ```
 yarn library generate:JSON
@@ -184,7 +184,7 @@ yarn library generate:JSON
 
 あなたが作成したコレクションの`edition`の名前をターミナルに入力してください。
 
-> ✍️: わたしの場合、`first collection`と入力します。
+> ✍️: わたしの場合、`first-collection`と入力します。
 
 プログラムが完了したら、`library/output/あなたのedition/json`フォルダに移動して中身を確認しましょう。
 
@@ -196,7 +196,7 @@ yarn library generate:JSON
 
 最後に、生成されたJSONファイルをIPFSにアップロードしていきましょう。
 
-`library/output/あなたのedition/json`フォルダを`images`フォルダをアップロードしたときと同じ要領で、IPFSにアップロードしてください。
+`library/output/あなたのedition/json`フォルダを、`images`フォルダをアップロードしたときと同じ要領でIPFSにアップロードしてください。
 
 PinataにアップロードされたJSONファイルは下記のように表示されます。
 ![](/public/images/Polygon-Generative-NFT/section-1/1_2_5.png)

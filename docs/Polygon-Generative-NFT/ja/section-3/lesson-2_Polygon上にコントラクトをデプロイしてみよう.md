@@ -4,7 +4,7 @@
 
 手順はほかのイーサリアムのサイドチェーン(例：[Plasma](https://aire-voice.com/blockchain/4479/))とほぼ同じです。
 
-まず、`contract`ディレクトリに向かい、下記を修正していきましょう。
+まず、`packages/contract`ディレクトリに向かい、下記を修正していきましょう。
 
 1 \. `.env`ファイルを下記のように修正してください。
 
@@ -59,6 +59,7 @@ yarn contract run:script
 * NFTをmintする機能
 * nftをコントラクト所有者にためにキープする機能
 * コントラクトにETHを送金できる機能
+
 これらの基本機能をテストスクリプトとして記述していきましょう。
 ではpackages/contract/testに`test.js`という名前でファイルを作成して、以下のように記述しましょう。
 ```js
@@ -242,7 +243,7 @@ Hardhatを使用する場合、AlchemyのカスタムRPC URLが必要です。
 
 ![](/public/images/Polygon-Generative-NFT/section-3/3_2_6.png)
 
-それでは、`contract/.env`ファイルを開き、コピーした`HTTP` URLを下記の`Alchemy Polygon URL`の部分に貼り付けていきます。
+それでは、`packages/contract/.env`ファイルを開き、コピーした`HTTP` URLを下記の`Alchemy Polygon URL`の部分に貼り付けていきます。
 
 ```javascript
 POLYGON_URL = "Alchemy Polygon URL";
@@ -276,7 +277,7 @@ Sepoliaとは異なり、これらのトークンの取得にそれほど問題�
 
 準備完了です!
 
-`contract/scripts`に向かい、`deploy.js`を下記のように更新してください。
+`packages/contract/scripts`に向かい、`deploy.js`を下記のように更新してください。
 
 ```javascript
 async function main() {
@@ -315,12 +316,11 @@ main()
 まずは、`packages/contract/package.json`の`script`部分を以下のように編集してください。
 
 ```json
-"scripts": {
-    "run:script":"npx hardhat run scripts/run.js",
-    "test": "npx hardhat test",
+  "scripts": {
+    "run:script": "npx hardhat run scripts/run.js",
     "deploy:sepolia": "npx hardhat run scripts/deploy.js --network sepolia",
     "deploy:mumbai": "npx hardhat run scripts/deploy.js --network mumbai",
-    "start":"npx hardhat node",
+    "test": "npx hardhat test"
   },
 ```
 
@@ -360,7 +360,7 @@ APIを作成したら、そのAPIの`Edit`ボタンをクリックしてくだ�
 
 ![](/public/images/Polygon-Generative-NFT/section-3/3_2_11.png)
 
-最後にもう一度`contract/.env`ファイルを開き、下記にコピーした`Polygon-API-Key`の値を貼り付けます。
+最後にもう一度`packages/contract/.env`ファイルを開き、下記にコピーした`Polygon-API-Key`の値を貼り付けます。
 
 ```javascript
 ETHERSCAN_API = "Polygonscan-API-key";

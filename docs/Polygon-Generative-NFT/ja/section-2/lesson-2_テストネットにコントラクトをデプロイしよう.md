@@ -30,6 +30,7 @@ Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押して�
 次に、下記の項目を埋めていきます。下図を参考にしてください。
 
 ![](/public/images/Polygon-Generative-NFT/section-2/2_2_2.png)
+
 - `NAME`: プロジェクトの名前(例: `NFTCollectible`)
 - `DESCRIPTION`: プロジェクトの概要
 - `CHAIN`: `Ethereum`を選択。
@@ -112,7 +113,7 @@ MetaMaskウォレットに`Sepolia Test Network`が設定されたら、下記�
 
 まず、`dotenv`ライブラリを使用して、先ほど作成した`Alchemy URL`とあなたのMetaMaskの秘密鍵を隠していきます。
 
-`.env`というファイルを`contract`ディレクトリ内に作成し、下記のように編集しましょう。
+`.env`というファイルを`packages/contract`ディレクトリ内に作成し、下記のように編集しましょう。
 
 ```
 API_URL="YOUR_ALCHEMY_API_URL"
@@ -126,7 +127,7 @@ PRIVATE_KEY="YOUR_PRIVATE_SEPOLIA_ACCOUNT_KEY"
 2\. `YOUR_PRIVATE_SEPOLIA_ACCOUNT_KEY`の取得
 > 1\. お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを`Sepolia Test Network`に変更します。
 >
-> ![](/public/images/Polygon-Generative-NFT/section-2/2_2_9.png)
+> ![](/public/images/Polygon-Generative-NFT/section-2/2_2_8.png)
 >
 > 2\. それから、`Account details`を選択してください。
 > ![](/public/images/Polygon-Generative-NFT/section-2/2_2_10.png)
@@ -161,17 +162,13 @@ PRIVATE_KEY="YOUR_PRIVATE_SEPOLIA_ACCOUNT_KEY"
 
 これは、スマートコントラクトプロジェクトのルートディレクトリにあります。
 
-- `contract/hardhat.config.js`
+- `packages/contract/hardhat.config.js`
 
 - 今回は、`contract`ディレクトリの直下に`hardhat.config.js`が存在するはずです。
 
-例)ターミナル上で`contract`に移動し、`ls`を実行した結果
+例)ターミナル上で`packages/contract`に移動し、`ls`を実行した結果
 ```
-README.md			package-lock.json
-artifacts			package.json
-cache				scripts
-contracts			test
-hardhat.config.js
+README.md         artifacts         cache             contracts         hardhat.config.js node_modules      package.json      scripts           test
 ```
 
 `hardhat.config.js`をVS Codeで開いて、中身を下記のように更新しましょう。

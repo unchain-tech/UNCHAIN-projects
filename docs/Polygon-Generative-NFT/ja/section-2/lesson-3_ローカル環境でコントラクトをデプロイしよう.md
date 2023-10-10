@@ -2,7 +2,7 @@
 
 ローカル環境で、Sepoliaテストネットワークにコントラクトをデプロイするための準備をしましょう。
 
-`contract/scripts`ディレクトリに移動し、`run.js`という名前のファイルを作成してください。
+`packages/contract/scripts`ディレクトリに移動し、`run.js`という名前のファイルを作成してください。
 
 **`run.js`はローカル環境でスマートコントラクトのテストを行うためのテストプログラムです。**
 
@@ -117,7 +117,7 @@ main()
 
 - `tokensOfOwner`の呼び出しは、単にブロックチェーンからデータを読み込んでいるので、ガス代はかかりません。
 
-次にターミナル上で下記を実行してみましょう。
+次にターミナル上でプロジェクトのルートに移動し、下記を実行してみましょう。
 
 ```
 yarn contract run:script
@@ -149,7 +149,7 @@ Owner has tokens:  [
 
 それでは、Sepolia Test Networkにコントラクトをデプロイしましょう。
 
-`contract/scripts`の中にある`deploy.js`に、`run.js`の中身と同じにしてください。
+`packages/contract/scripts`フォルダ内の`deploy.js`の内容を、`run.js`の内容と同じにしてください。
 
 > ⚠️: 注意
 >
