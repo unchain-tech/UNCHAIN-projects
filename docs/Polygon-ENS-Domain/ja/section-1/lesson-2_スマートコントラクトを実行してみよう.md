@@ -9,9 +9,10 @@
 Hardhatを使用する場合、ファイル構造は非常に重要ですので、注意する必要があります。ファイル構造が下記のようになっていれば大丈夫です 😊
 
 ```
-contract
-    |_ contracts
-           |_  Domains.sol
+packages
+└── contract
+    └── contracts
+        └── Domains.sol
 ```
 
 次に、コードエディタでプロジェクトのコードを開きます。
@@ -207,16 +208,7 @@ console.log("Contract deployed to:", domainContract.address);
 
 ### 💨 実行してみよう
 
-`packages/contract/package.json`の`script`部分を以下のように編集してください。
-
-```json
-"scripts": {
-    "run:script":"npx hardhat run scripts/run.js",
-    "test": "npx hardhat test",
-    "deploy": "npx hardhat run scripts/deploy.js --network mumbai"
-  },
-```
-その後、ターミナル上で、下記を実行してみましょう。
+ターミナル上で、下記を実行してみましょう。
 
 ```
 yarn contract run:script
