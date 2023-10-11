@@ -183,6 +183,18 @@ Polygon-ENS-Domain
 +        └── test/
 ```
 
+次に、安全なスマートコントラクトを開発するために使用されるライブラリ **OpenZeppelin** を追加します。
+
+`packages/contract`ディレクトリにいることを確認し、以下のコマンドを実行してください。
+
+```
+yarn add @openzeppelin/contracts@^4.8.2
+```
+
+[OpenZeppelin](https://github.com/OpenZeppelin/openzeppelin-contracts) はイーサリアムネットワーク上で安全なスマートコントラクトを実装するためのフレームワークです。
+
+OpenZeppelinには非常に多くの機能が実装されておりインポートするだけで安全にその機能を使うことができます。
+
 それでは、`packages/contract`ディレクトリ内の`package.json`ファイルを更新しましょう。下記のように`"private": true,`の下に`"scripts":{...}`を追加してください。よく利用するコマンドを設定しておきます。
 
 ```diff
