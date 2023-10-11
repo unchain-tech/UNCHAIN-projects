@@ -25,7 +25,7 @@ import './styles/App.css';
 import twitterLogo from './assets/twitter-logo.svg';
 
 // 定数
-const TWITTER_HANDLE = '_UNCHAIN';
+const TWITTER_HANDLE = 'UNCHAIN_tech';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const App = () => {
@@ -117,7 +117,7 @@ import React, { useEffect, useState } from 'react';
 import './styles/App.css';
 import twitterLogo from './assets/twitter-logo.svg';
 
-const TWITTER_HANDLE = '_UNCHAIN';
+const TWITTER_HANDLE = 'UNCHAIN_tech';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const App = () => {
@@ -208,8 +208,8 @@ import React, { useEffect, useState } from 'react';
 import './styles/App.css';
 import twitterLogo from './assets/twitter-logo.svg';
 
-// コントラクト
-const TWITTER_HANDLE = '_UNCHAIN';
+// 定数
+const TWITTER_HANDLE = 'UNCHAIN_tech';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const App = () => {

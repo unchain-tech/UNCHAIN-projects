@@ -10,7 +10,7 @@ import './styles/App.css';
 import twitterLogo from './assets/twitter-logo.svg';
 import { ethers } from 'ethers';
 
-const TWITTER_HANDLE = '_UNCHAIN';
+const TWITTER_HANDLE = 'UNCHAIN_tech';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 // 登録したいドメインです。好みで変えてみましょう。
 const tld = '.ninja';
