@@ -6,7 +6,7 @@
 const updateDomain = async () => {
   if (!record || !domain) { return }
   setLoading(true);
-  console.log("Updating domain", domain, "with record", record);
+  console.log('Updating domain', domain, 'with record', record);
     try {
       const { ethereum } = window;
       if (ethereum) {
@@ -16,7 +16,7 @@ const updateDomain = async () => {
 
         let tx = await contract.setRecord(domain, record);
         await tx.wait();
-        console.log("Record set https://mumbai.polygonscan.com/tx/"+tx.hash);
+        console.log('Record set https://mumbai.polygonscan.com/tx/'+tx.hash);
 
         fetchMints();
         setRecord('');
@@ -132,7 +132,7 @@ const fetchMints = async () => {
       };
     }));
 
-    console.log("MINTS FETCHED ", mintRecords);
+    console.log('MINTS FETCHED ', mintRecords);
     setMints(mintRecords);
     }
   } catch(error){
@@ -170,7 +170,7 @@ const mintDomain = async () => {
   // 3文字 = 0.005 MATIC, 4文字 = 0.003 MATIC, 5文字以上 = 0.001 MATIC
   // ご自分で設定を変えても構いませんが、現在ウォレットには少量しかないはずです。。。
   const price = domain.length === 3 ? '0.005' : domain.length === 4 ? '0.003' : '0.001';
-  console.log("Minting domain", domain, "with price", price);
+  console.log('Minting domain', domain, 'with price', price);
   try {
       const { ethereum } = window;
       if (ethereum) {
@@ -178,20 +178,20 @@ const mintDomain = async () => {
       const signer = provider.getSigner();
       const contract = new ethers.Contract(CONTRACT_ADDRESS, contractAbi.abi, signer);
 
-      console.log("Going to pop wallet now to pay gas...")
+      console.log('Going to pop wallet now to pay gas...')
           let tx = await contract.register(domain, {value: ethers.utils.parseEther(price)});
       // トランザクションを待ちます
       const receipt = await tx.wait();
 
       // トランザクションの成功の確認です。
       if (receipt.status === 1) {
-        console.log("Domain minted! https://mumbai.polygonscan.com/tx/"+tx.hash);
+        console.log('Domain minted! https://mumbai.polygonscan.com/tx/'+tx.hash);
 
         // domain の record をセットします。
         tx = await contract.setRecord(domain, record);
         await tx.wait();
 
-        console.log("Record set! https://mumbai.polygonscan.com/tx/"+tx.hash);
+        console.log('Record set! https://mumbai.polygonscan.com/tx/'+tx.hash);
 
         // fetchMints関数実行後2秒待ちます。
         setTimeout(() => {
@@ -201,7 +201,7 @@ const mintDomain = async () => {
         setRecord('');
         setDomain('');
       } else {
-        alert("Transaction failed! Please try again");
+        alert('Transaction failed! Please try again');
       }
       }
     } catch(error) {
@@ -248,7 +248,7 @@ const renderMints = () => {
 
 // edit モードを設定します。
 const editRecord = (name) => {
-  console.log("Editing record for", name);
+  console.log('Editing record for', name);
   setEditing(true);
   setDomain(name);
 }

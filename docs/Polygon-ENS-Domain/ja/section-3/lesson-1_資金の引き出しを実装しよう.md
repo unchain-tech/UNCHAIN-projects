@@ -18,19 +18,19 @@
 
 ```solidity
 modifier onlyOwner() {
-  require(isOwner());
-  _;
+    require(isOwner());
+    _;
 }
 
 function isOwner() public view returns (bool) {
-  return msg.sender == owner;
+    return msg.sender == owner;
 }
 
 function withdraw() public onlyOwner {
-  uint amount = address(this).balance;
+    uint amount = address(this).balance;
 
-  (bool success, ) = msg.sender.call{value: amount}("");
-  require(success, "Failed to withdraw Matic");
+    (bool success, ) = msg.sender.call{value: amount}("");
+    require(success, "Failed to withdraw Matic");
 }
 ```
 
@@ -60,9 +60,9 @@ function withdraw() public onlyOwner {
 address payable public owner;
 
 constructor(string memory _tld) ERC721 ("Ninja Name Service", "NNS") payable {
-  owner = payable(msg.sender);
-  tld = _tld;
-  console.log("%s name service deployed", _tld);
+    owner = payable(msg.sender);
+    tld = _tld;
+    console.log("%s name service deployed", _tld);
 }
 ```
 
@@ -79,30 +79,30 @@ constructor(string memory _tld) ERC721 ("Ninja Name Service", "NNS") payable {
 const main = async () => {
   const [owner, superCoder] = await hre.ethers.getSigners();
   const domainContractFactory = await hre.ethers.getContractFactory('Domains');
-  const domainContract = await domainContractFactory.deploy("ninja");
+  const domainContract = await domainContractFactory.deploy('ninja');
   await domainContract.deployed();
 
-  console.log("Contract owner:", owner.address);
+  console.log('Contract owner:', owner.address);
 
   // 今回は多額を設定しています。
-  let txn = await domainContract.register("a16z",  {value: hre.ethers.utils.parseEther('1234')});
+  let txn = await domainContract.register('a16z',  {value: hre.ethers.utils.parseEther('1234')});
   await txn.wait();
 
   // コントラクトにいくらあるかを確認しています。
   const balance = await hre.ethers.provider.getBalance(domainContract.address);
-  console.log("Contract balance:", hre.ethers.utils.formatEther(balance));
+  console.log('Contract balance:', hre.ethers.utils.formatEther(balance));
 
   // スーパーコーダーとしてコントラクトから資金を奪おうとします。
   try {
     txn = await domainContract.connect(superCoder).withdraw();
     await txn.wait();
   } catch(error){
-    console.log("Could not rob contract");
+    console.log('Could not rob contract');
   }
 
   // 引き出し前のウォレットの残高を確認します。あとで比較します。
   let ownerBalance = await hre.ethers.provider.getBalance(owner.address);
-  console.log("Balance of owner before withdrawal:", hre.ethers.utils.formatEther(ownerBalance));
+  console.log('Balance of owner before withdrawal:', hre.ethers.utils.formatEther(ownerBalance));
 
   // オーナーなら引き出せるでしょう。
   txn = await domainContract.connect(owner).withdraw();
@@ -112,8 +112,8 @@ const main = async () => {
   const contractBalance = await hre.ethers.provider.getBalance(domainContract.address);
   ownerBalance = await hre.ethers.provider.getBalance(owner.address);
 
-  console.log("Contract balance after withdrawal:", hre.ethers.utils.formatEther(contractBalance));
-  console.log("Balance of owner after withdrawal:", hre.ethers.utils.formatEther(ownerBalance));
+  console.log('Contract balance after withdrawal:', hre.ethers.utils.formatEther(contractBalance));
+  console.log('Balance of owner after withdrawal:', hre.ethers.utils.formatEther(ownerBalance));
 }
 
 const runMain = async () => {

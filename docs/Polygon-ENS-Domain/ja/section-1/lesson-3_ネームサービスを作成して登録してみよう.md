@@ -4,7 +4,6 @@
 
 ### 💽ドメインデータをブロックチェーンに保存する
 
-
 ネームサービスのポイントは、人々がインターネット上のあなた固有の名前に便利にアクセスすることができるということです。
 
 [google.com](http://google.com)と入力してGoogleにアクセスするのと同じように、ユーザーはあなたのドメインネームを頼りにあなたの情報にアクセスすることができます。
@@ -21,23 +20,23 @@ pragma solidity ^0.8.17;
 import "hardhat/console.sol";
 
 contract Domains {
-  // "mapping"でstring型の各keyとaddress型の各データを紐付けにして格納します。そのmappingをここでは"domains"として定義しています。
-  mapping(string => address) public domains;
+    // "mapping"でstring型の各keyとaddress型の各データを紐付けにして格納します。そのmappingをここでは"domains"として定義しています。
+    mapping(string => address) public domains;
 
-  constructor() {
-      console.log("THIS IS MY DOMAIN CONTRACT. NICE.");
-  }
+    constructor() {
+        console.log("THIS IS MY DOMAIN CONTRACT. NICE.");
+    }
 
-  // register関数はnameとアドレスを紐付けます。
-  function register(string calldata name) public {
-      domains[name] = msg.sender;
-      console.log("%s has registered a domain!", msg.sender);
-  }
+    // register関数はnameとアドレスを紐付けます。
+    function register(string calldata name) public {
+        domains[name] = msg.sender;
+        console.log("%s has registered a domain!", msg.sender);
+    }
 
-  // nameに対応するaddressを返すゲッター関数を定義しておきます。
-  function getAddress(string calldata name) public view returns (address) {
-      return domains[name];
-  }
+    // nameに対応するaddressを返すゲッター関数を定義しておきます。
+    function getAddress(string calldata name) public view returns (address) {
+        return domains[name];
+    }
 }
 ```
 
@@ -95,14 +94,14 @@ const main = async () => {
   const domainContractFactory = await hre.ethers.getContractFactory('Domains');
   const domainContract = await domainContractFactory.deploy();
   await domainContract.deployed();
-  console.log("Contract deployed to:", domainContract.address);
-  console.log("Contract deployed by:", owner.address);
+  console.log('Contract deployed to:', domainContract.address);
+  console.log('Contract deployed by:', owner.address);
 
-  const txn = await domainContract.register("doom");
+  const txn = await domainContract.register('doom');
   await txn.wait();
 
-  const domainOwner = await domainContract.getAddress("doom");
-  console.log("Owner of domain:", domainOwner);
+  const domainOwner = await domainContract.getAddress('doom');
+  console.log('Owner of domain:', domainOwner);
 }
 
 const runMain = async () => {
@@ -135,17 +134,17 @@ const [owner, randomPerson] = await hre.ethers.getSigners();
 コントラクトをデプロイした人のアドレスを出力します。
 
 ```javascript
-console.log("Contract deployed by:", owner.address);
+console.log('Contract deployed by:', owner.address);
 ```
 
 最後にこれを追加しています。
 
 ```javascript
-const txn = await domainContract.register("doom");
+const txn = await domainContract.register('doom');
 await txn.wait();
 
-const domainOwner = await domainContract.getAddress("doom");
-console.log("Owner of domain:", domainOwner);
+const domainOwner = await domainContract.getAddress('doom');
+console.log('Owner of domain:', domainOwner);
 ```
 
 まず、`doom`を引数として`register`関数を呼び出します。
@@ -200,35 +199,37 @@ pragma solidity ^0.8.17;
 import "hardhat/console.sol";
 
 contract Domains {
-  mapping(string => address) public domains;
+    mapping(string => address) public domains;
 
-  // stringとstringを紐付けた新しいmappingです。
-  mapping(string => string) public records;
+    // stringとstringを紐付けた新しいmappingです。
+    mapping(string => string) public records;
 
-  constructor() {
-      console.log("Yo yo, I am a contract and I am smart");
-  }
+    constructor() {
+        console.log("Yo yo, I am a contract and I am smart");
+    }
 
-  function register(string calldata name) public {
-      // そのドメインがまだ登録されていないか確認します。
-      require(domains[name] == address(0));
-      domains[name] = msg.sender;
-      console.log("%s has registered a domain!", msg.sender);
-  }
+    function register(string calldata name) public {
+        // そのドメインがまだ登録されていないか確認します。
+        require(domains[name] == address(0));
+        domains[name] = msg.sender;
+        console.log("%s has registered a domain!", msg.sender);
+    }
 
-  function getAddress(string calldata name) public view returns (address) {
-      return domains[name];
-  }
+    function getAddress(string calldata name) public view returns (address) {
+        return domains[name];
+    }
 
-  function setRecord(string calldata name, string calldata record) public {
-      // トランザクションの送信者であることを確認しています。
-      require(domains[name] == msg.sender);
-      records[name] = record;
-  }
+    function setRecord(string calldata name, string calldata record) public {
+        // トランザクションの送信者であることを確認しています。
+        require(domains[name] == msg.sender);
+        records[name] = record;
+    }
 
-  function getRecord(string calldata name) public view returns(string memory) {
-      return records[name];
-  }
+    function getRecord(
+        string calldata name
+    ) public view returns (string memory) {
+        return records[name];
+    }
 }
 ```
 
@@ -276,14 +277,14 @@ const main = async () => {
   const domainContractFactory = await hre.ethers.getContractFactory('Domains');
   const domainContract = await domainContractFactory.deploy();
   await domainContract.deployed();
-  console.log("Contract deployed to:", domainContract.address);
-  console.log("Contract deployed by:", owner.address);
+  console.log('Contract deployed to:', domainContract.address);
+  console.log('Contract deployed by:', owner.address);
 
-  let txn = await domainContract.register("doom");
+  let txn = await domainContract.register('doom');
   await txn.wait();
 
-  const domainAddress = await domainContract.getAddress("doom");
-  console.log("Owner of domain doom:", domainAddress);
+  const domainAddress = await domainContract.getAddress('doom');
+  console.log('Owner of domain doom:', domainAddress);
 
 }
 
@@ -331,17 +332,17 @@ const main = async () => {
   const domainContractFactory = await hre.ethers.getContractFactory('Domains');
   const domainContract = await domainContractFactory.deploy();
   await domainContract.deployed();
-  console.log("Contract deployed to:", domainContract.address);
-  console.log("Contract deployed by:", owner.address);
+  console.log('Contract deployed to:', domainContract.address);
+  console.log('Contract deployed by:', owner.address);
 
-  let txn = await domainContract.register("doom");
+  let txn = await domainContract.register('doom');
   await txn.wait();
 
-  const domainAddress = await domainContract.getAddress("doom");
-  console.log("Owner of domain doom:", domainAddress);
+  const domainAddress = await domainContract.getAddress('doom');
+  console.log('Owner of domain doom:', domainAddress);
 
   // 自分以外でデータを記録してみます。
-  txn = await domainContract.connect(randomPerson).setRecord("doom", "Haha my domain now!");
+  txn = await domainContract.connect(randomPerson).setRecord('doom', 'Haha my domain now!');
   await txn.wait();
 }
 
@@ -368,7 +369,7 @@ yarn contract run:script
 **次のスクリプトの箇所でエラーが発生します**
 
 ```javascript
-txn = await domainContract.connect(randomPerson).setRecord("doom", "Haha my domain now!");
+txn = await domainContract.connect(randomPerson).setRecord('doom', 'Haha my domain now!');
 await txn.wait();
 ```
 

@@ -15,7 +15,7 @@
     </div>
     {/* Display a logo and wallet connection status*/}
     <div className="right">
-      <img alt="Network logo" className="logo" src={ network.includes("Polygon") ? polygonLogo : ethLogo} />
+      <img alt="Network logo" className="logo" src={ network.includes('Polygon') ? polygonLogo : ethLogo} />
       { currentAccount ? <p> Wallet: {currentAccount.slice(0, 6)}...{currentAccount.slice(-4)} </p> : <p> Not connected </p> }
     </div>
   </header>
@@ -30,7 +30,7 @@
 ```
 です。
 
-ここではネットワーク名に"Polygon"という単語が含まれているかどうかを確認しています。
+ここではネットワーク名に'Polygon'という単語が含まれているかどうかを確認しています。
 
 したがって、Polygonメインネットを使用している場合は、ポリゴンのロゴが表示されます。
 
@@ -46,7 +46,7 @@ import { networks } from './utils/networks';
 
 const App = () => {
   // network を状態変数として設定します。
-    const [network, setNetwork] = useState("");
+  const [network, setNetwork] = useState('');
 
   // network を扱えるよう checkIfWalletIsConnected 関数をupdateします。
   const checkIfWalletIsConnected = async () => {
@@ -105,9 +105,9 @@ const renderInputForm = () =>{
     );
   }
 
-// その他の場所はそのままにしておいてください。
-return (
-  ...
+  // その他の場所はそのままにしておいてください。
+  return (
+    ...
 ```
 
 一方、例えばPolygonのメインネットにいるときは次のように表示されます。
@@ -152,11 +152,11 @@ const switchNetwork = async () => {
                 chainName: 'Polygon Mumbai Testnet',
                 rpcUrls: ['https://rpc-mumbai.maticvigil.com/'],
                 nativeCurrency: {
-                    name: "Mumbai Matic",
-                    symbol: "MATIC",
+                    name: 'Mumbai Matic',
+                    symbol: 'MATIC',
                     decimals: 18
                 },
-                blockExplorerUrls: ["https://mumbai.polygonscan.com/"]
+                blockExplorerUrls: ['https://mumbai.polygonscan.com/']
               },
             ],
           });
