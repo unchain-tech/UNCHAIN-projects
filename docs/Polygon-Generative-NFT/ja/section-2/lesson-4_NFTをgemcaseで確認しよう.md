@@ -12,7 +12,7 @@
 
 ![](/public/images/Polygon-Generative-NFT/section-2/2_4_8.png)
 
-下にスクロールすると他のコレクションが見れるのでV`View`ボタンをクリックしてみましょう。
+下にスクロールすると他のコレクションが見れるので`View`ボタンをクリックしてみましょう。
 
 ![](/public/images/Polygon-Generative-NFT/section-2/2_4_9.png)
 
@@ -47,12 +47,12 @@
 Etherscanでverificationを行うために必要なツールをインストールします。
 
 ```
-yarn add @nomiclabs/hardhat-etherscan
+yarn add --dev @nomiclabs/hardhat-etherscan@^3.1.7
 ```
 
 ![](/public/images/Polygon-Generative-NFT/section-2/2_4_4.png)
 
-次に、`contract`ディレクトリにある`.env`を開きます。
+次に、`packages/contract`ディレクトリにある`.env`を開きます。
 
 `YOUR ETHERSCAN apiKey HERE`の部分にEtherscanから取得した`apiKey`を貼り付けたら、下記のコードを`.env`に追加しましょう。
 
