@@ -233,17 +233,9 @@ Give Hardhat a star on Github if you're enjoying it! 💞✨
      https://github.com/NomicFoundation/hardhat
 ```
 
-> ⚠️: 注意 #1
+> ⚠️: 注意
 >
 > Windows で Git Bash を使用してハードハットをインストールしている場合、このステップ (HH1) でエラーが発生する可能性があります。問題が発生した場合は、WindowsCMD（コマンドプロンプト）を使用して HardHat のインストールを実行してみてください。
-
-> ⚠️: 注意 #2
->
-> `npx hardhat`が実行されなかった場合、以下をターミナルで実行してください。
->
-> ```
-> yarn add --dev @nomicfoundation/hardhat-toolbox
-> ```
 
 この段階で、フォルダー構造は下記のようになっていることを確認してください。
 
@@ -259,42 +251,38 @@ Polygon-Generative-NFT
 +        ├── README.md
 +        ├── contracts/
 +        ├── hardhat.config.js
-+        ├── package.json
+         ├── package.json
 +        ├── scripts/
 +        └── test/
 ```
 
-それでは、`contract`ディレクトリ内の`package.json`ファイルを以下を参考に更新をしましょう。
+次に、安全なスマートコントラクトを開発するために使用されるライブラリ **OpenZeppelin** と秘密鍵などのファイルを隠すためにdotenvというパッケージを追加します。
 
-```diff
+`packages/contract`ディレクトリにいることを確認し、以下のコマンドを実行してください。
+
+```
+yarn add @openzeppelin/contracts@^4.8.2 dotenv@^16.0.3
+```
+
+[OpenZeppelin](https://github.com/OpenZeppelin/openzeppelin-contracts) はイーサリアムネットワーク上で安全なスマートコントラクトを実装するためのフレームワークです。
+
+OpenZeppelinには非常に多くの機能が実装されておりインポートするだけで安全にその機能を使うことができます。
+
+`dotenv`モジュールに関する詳しい説明は、[こちら](https://maku77.github.io/nodejs/env/dotenv.html)を参照してください。
+
+それでは、`packages/contract`ディレクトリ内の`package.json`ファイルを更新しましょう。下記のように`"private": true,`の下に`"scripts":{...}`を追加してください。よく利用するコマンドを設定しておきます。
+
+```json
 {
   "name": "contract",
   "version": "1.0.0",
--  "main": "index.js",
--  "license": "MIT",
   "private": true,
-  "devDependencies": {
-    "@nomicfoundation/hardhat-chai-matchers": "^1.0.6",
-    "@nomicfoundation/hardhat-network-helpers": "^1.0.8",
-    "@nomicfoundation/hardhat-toolbox": "^2.0.2",
-    "@nomiclabs/hardhat-ethers": "^2.2.2",
-    "@nomiclabs/hardhat-etherscan": "^3.1.7",
-    "@typechain/ethers-v5": "^10.2.0",
-    "@typechain/hardhat": "^6.1.5",
-    "chai": "^4.3.7",
-    "ethers": "^6.1.0",
-    "hardhat": "^2.13.0",
-    "hardhat-gas-reporter": "^1.0.9",
-    "solidity-coverage": "^0.8.2",
-    "typechain": "^8.1.1"
+  "scripts": {
+    "run:script": "npx hardhat run scripts/run.js",
+    "deploy": "npx hardhat run scripts/deploy.js --network sepolia",
+    "test": "npx hardhat test"
   },
-+  "scripts": {
-+   "run:script":"npx hardhat run scripts/run.js",
-+   "test": "npx hardhat test",
-+   "deploy": "npx hardhat run scripts/deploy.js --network sepolia",
-+   "start":"npx hardhat node",
-+  }
-}
+  "devDependencies": {
 ```
 
 ### ⭐️ 実行する
@@ -302,18 +290,31 @@ Polygon-Generative-NFT
 すべてが機能していることを確認するには、以下を実行します。
 
 ```
-npx hardhat compile
-```
-
-次に、以下を実行します。
-
-```
-npx hardhat test
+yarn test
 ```
 
 次のように表示されます。
 
-![](/public/images/Polygon-Generative-NFT/section-1/1_2_1.png)
+```
+  Lock
+    Deployment
+      ✔ Should set the right unlockTime (743ms)
+      ✔ Should set the right owner
+      ✔ Should receive and store the funds to lock
+      ✔ Should fail if the unlockTime is not in the future
+    Withdrawals
+      Validations
+        ✔ Should revert with the right error if called too soon
+        ✔ Should revert with the right error if called from another account
+        ✔ Shouldn't fail if the unlockTime has arrived and the owner calls it
+      Events
+        ✔ Should emit an event on withdrawals
+      Transfers
+        ✔ Should transfer the funds to the owner
+
+
+  9 passing (846ms)
+```
 
 ターミナル上で`ls`と入力してみて、下記のフォルダーとファイルが表示されていたら成功です。
 
@@ -629,7 +630,7 @@ Pythonリストは、`rarity_weights`の重みを割り当てる最も一般的�
 
 `config.py`ファイルの中身を更新したら、Generative Artを生成しましょう。
 
-まず、ターミナル（またはコマンドプロンプト）を開き、`generative-nft-library`フォルダに移動してください。
+まず、ターミナル（またはコマンドプロンプト）を開き、`Polygon-Generative-NFT`フォルダに移動してください。
 
 ここで、以下のコマンドを実行します。
 
@@ -693,7 +694,7 @@ Task complete!
 
 ### 👀 生成されたアバターを確認する
 
-`generative-nft-library`に向かい、新しく作成された`output`フォルダを見ていきましょう。
+`packages/library`に向かい、新しく作成された`output`フォルダを見ていきましょう。
 
 `What would you like to call this edition?`で命名した`edition`は下記のように保存されています。
 

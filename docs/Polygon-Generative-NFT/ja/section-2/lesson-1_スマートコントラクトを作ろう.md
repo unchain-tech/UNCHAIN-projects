@@ -4,14 +4,15 @@
 
 - ここで作成するスマートコントラクトは、後でユースケースに合わせて自由に変更できます。
 
-`contracts`ディレクトリの下に`NFTCollectible.sol`という名前のファイルを作成します。
+`packages/contract/contracts`ディレクトリの下に`NFTCollectible.sol`という名前のファイルを作成します。
 
 Hardhatを使用する場合、ファイル構造は非常に重要ですので、注意する必要があります。ファイル構造が下記のようになっていれば大丈夫です 😊
 
 ```
-contract
-    |_ contracts
-           |_  NFTCollectible.sol
+packages
+└── contract
+    └── contracts
+        └── NFTCollectible.sol
 ```
 
 次に、コードエディタでプロジェクトのコードを開きます。
@@ -139,7 +140,7 @@ string public baseTokenURI;
 
 ```solidity
 constructor(string memory baseURI) ERC721("NFT Collectible", "NFTC") {
-     setBaseURI(baseURI);
+    setBaseURI(baseURI);
 }
 ```
 
@@ -169,13 +170,11 @@ constructor(string memory baseURI) ERC721("NFT Collectible", "NFTC") {
 
 ```solidity
 function reserveNFTs() public onlyOwner {
-     uint totalMinted = _tokenIds.current();
-     require(
-        totalMinted.add(10) < MAX_SUPPLY, "Not enough NFTs"
-     );
-     for (uint i = 0; i < 10; i++) {
-          _mintSingleNFT();
-     }
+    uint totalMinted = _tokenIds.current();
+    require(totalMinted.add(10) < MAX_SUPPLY, "Not enough NFTs");
+    for (uint i = 0; i < 10; i++) {
+        _mintSingleNFT();
+    }
 }
 ```
 
@@ -221,16 +220,12 @@ https://gateway.pinata.cloud/ipfs/QmSvw119ALMN9SkP89Xj37jvqJik8jZrSjU5c1vgBhkhz8
 上記を踏まえ、下記を`reserveNFTs`のコードブロック直下に追加しましょう。
 
 ```solidity
-function _baseURI() internal
-                    view
-                    virtual
-                    override
-                    returns (string memory) {
-     return baseTokenURI;
+function _baseURI() internal view virtual override returns (string memory) {
+    return baseTokenURI;
 }
 
 function setBaseURI(string memory _baseTokenURI) public onlyOwner {
-     baseTokenURI = _baseTokenURI;
+    baseTokenURI = _baseTokenURI;
 }
 ```
 
@@ -260,25 +255,26 @@ NFTのJSONメタデータは、IPFSの次のURLで入手できます： ipfs://Q
 
 ```solidity
 function mintNFTs(uint _count) public payable {
-     uint totalMinted = _tokenIds.current();
-     require(
-	// 1つ目のチェック
-      	totalMinted.add(_count) <= MAX_SUPPLY, "Not enough NFTs!"
-     );
-     require(
-	// 2つ目のチェック
-       	_count > 0 && _count <= MAX_PER_MINT,
-       	"Cannot mint specified number of NFTs."
-     );
-     require(
-	// 3つ目のチェック
-      	msg.value >= PRICE.mul(_count),
-	    "Not enough ether to purchase NFTs."
-     );
-     for (uint i = 0; i < _count; i++) {
-	　// すべてのチェックが終わったら、_count 個の NFT をユーザーに Mint する
-	    _mintSingleNFT();
-     }
+    uint totalMinted = _tokenIds.current();
+    require(
+        // 1つ目のチェック
+        totalMinted.add(_count) <= MAX_SUPPLY,
+        "Not enough NFTs!"
+    );
+    require(
+        // 2つ目のチェック
+        _count > 0 && _count <= MAX_PER_MINT,
+        "Cannot mint specified number of NFTs."
+    );
+    require(
+        // 3つ目のチェック
+        msg.value >= PRICE.mul(_count),
+        "Not enough ether to purchase NFTs."
+    );
+    for (uint i = 0; i < _count; i++) {
+        // すべてのチェックが終わったら、_count 個の NFT をユーザーに Mint する
+        _mintSingleNFT();
+    }
 }
 ```
 
@@ -308,9 +304,9 @@ uint public constant MAX_PER_MINT = 3;
 
 ```solidity
 function _mintSingleNFT() private {
-      uint newTokenID = _tokenIds.current();
-      _safeMint(msg.sender, newTokenID);
-      _tokenIds.increment();
+    uint newTokenID = _tokenIds.current();
+    _safeMint(msg.sender, newTokenID);
+    _tokenIds.increment();
 }
 ```
 
@@ -339,17 +335,16 @@ NFT保有者に何らかの実用性を提供する場合、各ユーザーが�
 下記を`_mintSingleNFT`関数のコードブロック直下に追加しましょう。
 
 ```solidity
-function tokensOfOwner(address _owner)
-         external
-         view
-         returns (uint[] memory) {
-     uint tokenCount = balanceOf(_owner);
-     uint[] memory tokensId = new uint256[](tokenCount);
-     for (uint i = 0; i < tokenCount; i++) {
-          tokensId[i] = tokenOfOwnerByIndex(_owner, i);
-     }
+function tokensOfOwner(
+    address _owner
+) external view returns (uint[] memory) {
+    uint tokenCount = balanceOf(_owner);
+    uint[] memory tokensId = new uint256[](tokenCount);
+    for (uint i = 0; i < tokenCount; i++) {
+        tokensId[i] = tokenOfOwnerByIndex(_owner, i);
+    }
 
-     return tokensId;
+    return tokensId;
 }
 ```
 
@@ -369,10 +364,10 @@ ERC721 Enumerableの`balanceOf`と`tokenOfOwnerByIndex`関数を使用してい�
 
 ```solidity
 function withdraw() public payable onlyOwner {
-     uint balance = address(this).balance;
-     require(balance > 0, "No ether left to withdraw");
-     (bool success, ) = (msg.sender).call{value: balance}("");
-     require(success, "Transfer failed.");
+    uint balance = address(this).balance;
+    require(balance > 0, "No ether left to withdraw");
+    (bool success, ) = (msg.sender).call{value: balance}("");
+    require(success, "Transfer failed.");
 }
 ```
 
