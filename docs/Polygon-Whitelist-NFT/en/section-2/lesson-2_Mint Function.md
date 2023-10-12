@@ -48,7 +48,7 @@ We'll insert the following code into the `IWhitelist.sol`.
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.20;
 
 interface IWhitelist {
     function whitelistedAddresses(address) external view returns (bool);
@@ -64,7 +64,7 @@ We insert the code below in `Shield.sol`.
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
@@ -154,7 +154,7 @@ Don't worry, lets talk about this contract step by step.
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";

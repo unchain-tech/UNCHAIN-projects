@@ -16,7 +16,7 @@ In `Whitelist.sol`, let's start with a simple block of code.
 ```solidity
 // SPDX-License-Identifier: UNLICENSED
 
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.20;
 
 contract Whitelist {
     constructor() {
@@ -33,10 +33,10 @@ Let's talk about the code line by line.
 This line is referred to `SPDX license identifier`, which addresses the copyright issues of the code that follows. Generally speaking, `UNLICENSED` and `MIT` are the most common suffixes, indicating that the following code is permitted for anyone to use. In other words, you all can freely copy and paste it. You can find more information [here](https://spdx.org/licenses/).
 
 ```solidity
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.20;
 ```
 
-This specifies the version of the Solidity compiler that we want the contract to use. It means that only a Solidity compiler with a version between `0.8.4` and `0.9.0` can be used to compile the code.
+This specifies the version of the Solidity compiler that we want the contract to use. It means that only a Solidity compiler with a version between `0.8.20` and `0.9.0` can be used to compile the code.
 
 ```solidity
 contract Whitelist {

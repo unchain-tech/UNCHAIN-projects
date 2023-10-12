@@ -6,7 +6,7 @@
 
 ```solidity
 //SPDX-License-Identifier: Unlicense
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.20;
 
 contract Whitelist {
     // The address that can operate addAddressToWhitelist function
