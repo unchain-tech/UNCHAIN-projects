@@ -10,16 +10,16 @@
 
 これから行うフロントエンド側のデプロイには秘密鍵は含まれていませんが、後々のためにここでは`dotenv`というパッケージを使用して秘密鍵をより安全に扱う方法を挙げておきます。
 
-`contract`ディレクトリにいどうして下のコマンドを実行しましょう。
+下のコマンドを実行しましょう。
 
 ```
-yarn add --dev dotenv
+yarn workspace contract add dotenv^16.0.3
 ```
 
 `hardhat.config.js`を変更します。
 
 ```javascript
-require("@nomicfoundation/hardhat-toolbox");
+require('@nomicfoundation/hardhat-toolbox');
 require('dotenv').config();
 
 module.exports = {
@@ -50,7 +50,7 @@ YOURS_1,2のところはご自分のものを使用してください（" "で�
 
 以前に`.gitignore`に加えた変更を覚えていますか？
 
-これで、 `hardhat.config.js`行を削除して元に戻すことができます。
+これで、`hardhat.config.js`行を削除して元に戻すことができます。
 
 これは、このファイルには今、実際のキー情報ではなく、キーを表す変数のみが含まれているためです。
 
@@ -71,8 +71,6 @@ Vercelに関する説明は、[こちら](https://zenn.dev/lollipop_onl/articles
 これまでにアプリを完成させてきました。
 
 いよいよこのデプロイが最後のステップです。
-
-
 
 - 最新のフロントエンドコードをGithubにプッシュします。 (`.env`など公開したくないファイルがある場合そのファイルはコミットしないでください。)
 - VercelをGithubのリポジトリに接続します。VercelのDashboardページの右上に見える`New Project`ボタンから登録していきます。

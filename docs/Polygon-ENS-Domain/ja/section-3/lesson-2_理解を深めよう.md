@@ -10,18 +10,18 @@
 
 ```solidity
 // コントラクトの最初に付け加えてください（他のマッピングに続けて）。
-mapping (uint => string) public names;
+mapping(uint => string) public names;
 
 // コントラクトのどこかに付け加えてください。
 function getAllNames() public view returns (string[] memory) {
-  console.log("Getting all names from contract");
-  string[] memory allNames = new string[](_tokenIds.current());
-  for (uint i = 0; i < _tokenIds.current(); i++) {
-    allNames[i] = names[i];
-    console.log("Name for token %d is %s", i, allNames[i]);
-  }
+    console.log("Getting all names from contract");
+    string[] memory allNames = new string[](_tokenIds.current());
+    for (uint i = 0; i < _tokenIds.current(); i++) {
+        allNames[i] = names[i];
+        console.log("Name for token %d is %s", i, allNames[i]);
+    }
 
-  return allNames;
+    return allNames;
 }
 ```
 
@@ -47,7 +47,7 @@ names[newRecordId] = name;
 
 復習です🔥
 
-Section-2のLesson-3を参照くださいね👋
+Section-2のLesson-2を参照くださいね👋
 
 ---
 ### 💔 コントラクトのドメインの有効性を確認
@@ -61,8 +61,8 @@ Section-2のLesson-3を参照くださいね👋
 下のように加えてみましょう。
 
 ```solidity
-function valid(string calldata name) public pure returns(bool) {
-  return StringUtils.strlen(name) >= 3 && StringUtils.strlen(name) <= 10;
+function valid(string calldata name) public pure returns (bool) {
+    return StringUtils.strlen(name) >= 3 && StringUtils.strlen(name) <= 10;
 }
 ```
 
@@ -84,15 +84,15 @@ error InvalidName(string name);
 
 ```solidity
 function setRecord(string calldata name, string calldata record) public {
-  if (msg.sender != domains[name]) revert Unauthorized();
-  records[name] = record;
+    if (msg.sender != domains[name]) revert Unauthorized();
+    records[name] = record;
 }
 
 function register(string calldata name) public payable {
-  if (domains[name] != address(0)) revert AlreadyRegistered();
-  if (!valid(name)) revert InvalidName(name);
+    if (domains[name] != address(0)) revert AlreadyRegistered();
+    if (!valid(name)) revert InvalidName(name);
 
-  // register関数のその他の部分はそのまま残しておきます。
+    // register関数のその他の部分はそのまま残しておきます。
 }
 ```
 

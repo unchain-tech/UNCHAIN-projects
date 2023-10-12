@@ -122,28 +122,28 @@ MetaMaskとHardhatの両方でPolygonネットワークの設定が完了した�
 
 ```javascript
 const main = async () => {
-  const domainContractFactory = await hre.ethers.getContractFactory("Domains");
-  const domainContract = await domainContractFactory.deploy("ninja");
+  const domainContractFactory = await hre.ethers.getContractFactory('Domains');
+  const domainContract = await domainContractFactory.deploy('ninja');
   await domainContract.deployed();
 
-  console.log("Contract deployed to:", domainContract.address);
+  console.log('Contract deployed to:', domainContract.address);
 
   // domainをオリジナルにしましょう！
-  let txn = await domainContract.register("banana", {
-    value: hre.ethers.utils.parseEther("0.1"),
+  let txn = await domainContract.register('banana', {
+    value: hre.ethers.utils.parseEther('0.1'),
   });
   await txn.wait();
-  console.log("Minted domain banana.ninja");
+  console.log('Minted domain banana.ninja');
 
-  txn = await domainContract.setRecord("banana", "Am I a banana or a ninja??");
+  txn = await domainContract.setRecord('banana', 'Am I a banana or a ninja??');
   await txn.wait();
-  console.log("Set record for banana.ninja");
+  console.log('Set record for banana.ninja');
 
-  const address = await domainContract.getAddress("banana");
-  console.log("Owner of domain banana:", address);
+  const address = await domainContract.getAddress('banana');
+  console.log('Owner of domain banana:', address);
 
   const balance = await hre.ethers.provider.getBalance(domainContract.address);
-  console.log("Contract balance:", hre.ethers.utils.formatEther(balance));
+  console.log('Contract balance:', hre.ethers.utils.formatEther(balance));
 };
 
 const runMain = async () => {
@@ -168,14 +168,14 @@ runMain();
 `hardhat.config.js`ファイルを編集します。 これは、スマートコントラクトプロジェクトのルートディレクトリにあります。 ここでは、使用しているネットワークと秘密鍵を追加します。
 
 ```javascript
-require("@nomicfoundation/hardhat-toolbox");
+require('@nomicfoundation/hardhat-toolbox');
 
 module.exports = {
-  solidity: "0.8.17",
+  solidity: '0.8.17',
   networks: {
     mumbai: {
-      url: "YOUR_ALCHEMY_MUMBAI_URL",
-      accounts: ["YOUR_TEST_WALLET_PRIVATE_KEY"],
+      url: 'YOUR_ALCHEMY_MUMBAI_URL',
+      accounts: ['YOUR_TEST_WALLET_PRIVATE_KEY'],
     },
   },
 };

@@ -10,7 +10,7 @@ _当レッスンは、もし各自の学習状況により以前のプロジェ�
 
 一度私たちがウォレットをウェブサイトと接続するとウェブサイトは私たちの代わりにスマートコントラクトとやりとりします。私たちが**許可したこと**を行ってくれます。
 
-`src`フォルダの中の`App.js`に向かいましょう。
+`packages/client/src`フォルダの中の`App.js`に向かいましょう。
 ここがフロントエンドの基点となります。
 
 メタマスクにログインすると、自動的に`ethereum`というオブジェクトがウィンドウにインジェクトされます。
@@ -20,12 +20,12 @@ _当レッスンは、もし各自の学習状況により以前のプロジェ�
 **注意：メタマスクのチェーン選択で自分の本来の目的のブロックチェーン以外のチェーンを選択している状態でも`ethereum`オブジェクトはインジェクトされます。後でそれも実感できるでしょう。**
 
 ```javascript
-import React, { useEffect } from "react";
-import "./styles/App.css";
-import twitterLogo from "./assets/twitter-logo.svg";
+import React, { useEffect } from 'react';
+import './styles/App.css';
+import twitterLogo from './assets/twitter-logo.svg';
 
-// コントラクト
-const TWITTER_HANDLE = "_UNCHAIN";
+// 定数
+const TWITTER_HANDLE = 'UNCHAIN_tech';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const App = () => {
@@ -35,10 +35,10 @@ const App = () => {
     const { ethereum } = window;
 
     if (!ethereum) {
-      console.log("Make sure you have MetaMask!");
+      console.log('Make sure you have MetaMask!');
       return;
     } else {
-      console.log("We have the ethereum object", ethereum);
+      console.log('We have the ethereum object', ethereum);
     }
   };
 
@@ -95,7 +95,7 @@ export default App;
 ```
 
 これでメタマスク拡張機能がインストールされているかのロジックを作成しました。
-ページを更新するとブラウザのDevコンソールには`We have the Ethereum object`と表示されるでしょう（メタマスクがインストール済みの場合）。
+ページを更新するとブラウザのDevコンソールには`We have the ethereum object`と表示されるでしょう（メタマスクがインストール済みの場合）。
 
 ページを好みに合わせてカスタマイズしてみてください。[GIF の参考サイト](https://giphy.com/)です。
 
@@ -113,37 +113,37 @@ MetaMaskは、私たちが許可するウェブサイトにのみ権限を与え
 
 ```javascript
 // useStateを追加でインポートしています。
-import React, { useEffect, useState } from "react";
-import "./styles/App.css";
-import twitterLogo from "./assets/twitter-logo.svg";
+import React, { useEffect, useState } from 'react';
+import './styles/App.css';
+import twitterLogo from './assets/twitter-logo.svg';
 
-const TWITTER_HANDLE = "_UNCHAIN";
+const TWITTER_HANDLE = 'UNCHAIN_tech';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const App = () => {
   //ユーザーのウォレットアドレスをstate管理しています。冒頭のuseStateのインポートを忘れないでください。
-  const [currentAccount, setCurrentAccount] = useState("");
+  const [currentAccount, setCurrentAccount] = useState('');
 
   const checkIfWalletIsConnected = async () => {
     const { ethereum } = window;
 
     if (!ethereum) {
-      console.log("Make sure you have metamask!");
+      console.log('Make sure you have metamask!');
       return;
     } else {
-      console.log("We have the ethereum object", ethereum);
+      console.log('We have the ethereum object', ethereum);
     }
 
     // ユーザーのウォレットをリクエストします。
-    const accounts = await ethereum.request({ method: "eth_accounts" });
+    const accounts = await ethereum.request({ method: 'eth_accounts' });
 
     // ユーザーが複数のアカウントを持っている場合もあります。ここでは最初のアドレスを使います。
     if (accounts.length !== 0) {
       const account = accounts[0];
-      console.log("Found an authorized account:", account);
+      console.log('Found an authorized account:', account);
       setCurrentAccount(account);
     } else {
-      console.log("No authorized account found");
+      console.log('No authorized account found');
     }
   };
 
@@ -204,16 +204,16 @@ export default App;
 web3の世界では、ウォレットの接続はいわばユーザーの「ログイン」ボタンです。MetaMaskにリクエストを送信して、ユーザーのウォレットへの読み取り専用アクセスを許可します。
 
 ```javascript
-import React, { useEffect, useState } from "react";
-import "./styles/App.css";
-import twitterLogo from "./assets/twitter-logo.svg";
+import React, { useEffect, useState } from 'react';
+import './styles/App.css';
+import twitterLogo from './assets/twitter-logo.svg';
 
-// コントラクト
-const TWITTER_HANDLE = "_UNCHAIN";
+// 定数
+const TWITTER_HANDLE = 'UNCHAIN_tech';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const App = () => {
-  const [currentAccount, setCurrentAccount] = useState("");
+  const [currentAccount, setCurrentAccount] = useState('');
 
   // connectWallet 関数を定義
   const connectWallet = async () => {
@@ -221,17 +221,17 @@ const App = () => {
       const { ethereum } = window;
 
       if (!ethereum) {
-        alert("Get MetaMask -> https://metamask.io/");
+        alert('Get MetaMask -> https://metamask.io/');
         return;
       }
 
       // アカウントへのアクセスを要求するメソッドを使用します。
       const accounts = await ethereum.request({
-        method: "eth_requestAccounts",
+        method: 'eth_requestAccounts',
       });
 
       // Metamask を一度認証すれば Connected とコンソールに表示されます。
-      console.log("Connected", accounts[0]);
+      console.log('Connected', accounts[0]);
       setCurrentAccount(accounts[0]);
     } catch (error) {
       console.log(error);
@@ -242,20 +242,20 @@ const App = () => {
     const { ethereum } = window;
 
     if (!ethereum) {
-      console.log("Make sure you have metamask!");
+      console.log('Make sure you have metamask!');
       return;
     } else {
-      console.log("We have the ethereum object", ethereum);
+      console.log('We have the ethereum object', ethereum);
     }
 
-    const accounts = await ethereum.request({ method: "eth_accounts" });
+    const accounts = await ethereum.request({ method: 'eth_accounts' });
 
     if (accounts.length !== 0) {
       const account = accounts[0];
-      console.log("Found an authorized account:", account);
+      console.log('Found an authorized account:', account);
       setCurrentAccount(account);
     } else {
-      console.log("No authorized account found");
+      console.log('No authorized account found');
     }
   };
 
