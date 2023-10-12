@@ -161,9 +161,9 @@ describe('Shield', function () {
         const { shield, alice } = await loadFixture(deployWhitelistFixture);
 
         // Verify that an account that is not the owner of the contract will get an error if it tries to execute the setPaused function.
-        await expect(shield.connect(alice).setPaused(true)).to.be.revertedWith(
-          'Ownable: caller is not the owner',
-        );
+        await expect(shield.connect(alice).setPaused(true))
+          .to.be.revertedWithCustomError(shield, 'OwnableUnauthorizedAccount')
+          .withArgs(alice.address);
       });
     });
     context('when set to true', function () {
@@ -280,9 +280,9 @@ describe('Shield', function () {
         const { shield, alice } = await loadFixture(deployWhitelistFixture);
 
         // Verify that an error occurs when an account that is not the owner of the contract tries to execute the withdraw function.
-        await expect(shield.connect(alice).withdraw()).to.be.revertedWith(
-          'Ownable: caller is not the owner',
-        );
+        await expect(shield.connect(alice).withdraw())
+          .to.be.revertedWithCustomError(shield, 'OwnableUnauthorizedAccount')
+          .withArgs(alice.address);
       });
     });
     context('when owner executes', function () {
