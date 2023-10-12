@@ -103,7 +103,7 @@ contract Shield is ERC721Enumerable, Ownable {
       * Constructor for Shields takes in the baseURI to set _baseTokenURI for the collection.
       * It also initializes an instance of whitelist interface.
       */
-    constructor (string memory baseURI, address whitelistContract) ERC721("ChainIDE Shields", "CS") {
+    constructor (string memory baseURI, address whitelistContract) ERC721("ChainIDE Shields", "CS") Ownable(msg.sender) {
         _baseTokenURI = baseURI;
         _whitelist = IWhitelist(whitelistContract);
     }
