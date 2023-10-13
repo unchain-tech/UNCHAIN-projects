@@ -52,15 +52,15 @@ drop down buttonを押すとテストネット用のものがあります。こ�
 それでは本プロジェクトで使用するフォルダーを作成してきましょう。作業を始めるディレクトリに移動したら、次のコマンドを実行します。
 
 ```
-mkdir NEAR-Mulpay
-cd NEAR-Mulpay
+mkdir NEAR-MulPay
+cd NEAR-MulPay
 yarn init --private -y
 ```
 
-NEAR-Mulpayディレクトリ内に、package.jsonファイルが生成されます。
+NEAR-MulPayディレクトリ内に、package.jsonファイルが生成されます。
 
 ```
-NEAR-Mulpay
+NEAR-MulPay
  └── package.json
 ```
 
@@ -68,7 +68,7 @@ NEAR-Mulpay
 
 ```json
 {
-  "name": "NEAR-Mulpay",
+  "name": "NEAR-MulPay",
   "version": "1.0.0",
   "description": "Token swap dapp",
   "private": true,
@@ -122,7 +122,7 @@ yarn <パッケージ名> <実行したいコマンド>
 以下のようなフォルダー構成となるように、`packages`ディレクトリとその中に`contract`ディレクトリを作成してください（`client`ディレクトリは、後ほどのレッスンでスターターコードをクローンする際に作成したいと思います）。
 
 ```diff
-NEAR-Mulpay
+NEAR-MulPay
  ├── package.json
 +└── packages/
 +    └── contract/
@@ -130,7 +130,7 @@ NEAR-Mulpay
 
 `contract`ディレクトリには、スマートコントラクトを構築するためのファイルを作成していきます。
 
-最後に、NEAR-Mulpayディレクトリ下に`.gitignore`ファイルを作成して以下の内容を書き込みます。
+最後に、NEAR-MulPayディレクトリ下に`.gitignore`ファイルを作成して以下の内容を書き込みます。
 
 ```
 **/yarn-error.log*
@@ -145,7 +145,7 @@ NEAR-Mulpay
 最終的に以下のようなフォルダー構成となっていることを確認してください。
 
 ```
-NEAR-Mulpay
+NEAR-MulPay
  ├── .gitignore
  ├── package.json
  └── packages/
@@ -245,7 +245,7 @@ $ npx hardhat
 👷 Welcome to Hardhat v2.13.0 👷‍
 
 ✔ What do you want to do? · Create a JavaScript project
-✔ Hardhat project root: · /NEAR-Mulpay/packages/contract
+✔ Hardhat project root: · /NEAR-MulPay/packages/contract
 ✔ Do you want to add a .gitignore? (Y/n) · y
 
 ✨ Project created ✨
@@ -272,7 +272,7 @@ Give Hardhat a star on Github if you're enjoying it! 💞✨
 この段階で、フォルダー構造は下記のようになっていることを確認してください。
 
 ```diff
-NEAR-Mulpay
+NEAR-MulPay
  ├── .gitignore
  ├── package.json
  └── packages/
@@ -335,7 +335,7 @@ npx hardhat test
 
 次のように表示されます。
 
-![](/public/images/NEAR-Mulpay/section-1/1_2_2.png)
+![](/public/images/NEAR-MulPay/section-1/1_2_2.png)
 
 ターミナル上で`ls`と入力してみて、下記のフォルダーとファイルが表示されていたら成功です。
 
@@ -371,7 +371,7 @@ Hardhatは段階的に下記を実行しています。
 
 次にフロントエンドのプロジェクトを作成していきます。
 
-`NEAR-Mulpay/packages`ディレクトリに移動して下のコマンドをターミナルで実行しましょう。
+`NEAR-MulPay/packages`ディレクトリに移動して下のコマンドをターミナルで実行しましょう。
 
 ```
 flutter create client
