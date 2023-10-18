@@ -45,44 +45,34 @@ Flutterの環境構築はそれぞれのPCによって予期しないエラー�
 drop down buttonを押すとテストネット用のものがあります。これは後で使います！
 ![](/public/images/NEAR-MulPay/section-0/0_2_4.png)
 
-では次に、`node` / `yarn`を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスしてください。
+では次に、`node` / `yarn`を取得する必要があります。お持ちでない場合は、下記にアクセスしてください。
 
-`node v16`をインストールすることを推奨しています。
+- [Node.js](https://hardhat.org/tutorial/setting-up-the-environment#installing-node.js)
+- [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable)
+
+推奨するバージョンは以下のとおりです。
+
+- Node.js: v20.5.0
+- Yarn: 3.6.4
 
 それでは本プロジェクトで使用するフォルダーを作成してきましょう。作業を始めるディレクトリに移動したら、次のコマンドを実行します。
 
 ```
 mkdir NEAR-MulPay
 cd NEAR-MulPay
-yarn init --private -y
+yarn init -w
 ```
 
-NEAR-MulPayディレクトリ内に、package.jsonファイルが生成されます。
+NEAR-MulPayディレクトリ内の構成を確認してみましょう。
 
 ```
-NEAR-MulPay
- └── package.json
-```
-
-それでは、`package.json`ファイルを以下のように更新してください。
-
-```json
-{
-  "name": "NEAR-MulPay",
-  "version": "1.0.0",
-  "description": "Token swap dapp",
-  "private": true,
-  "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
-  },
-  "scripts": {
-    "contract": "yarn workspace contract",
-    "client": "yarn workspace client",
-    "test": "yarn workspace contract test"
-  }
-}
+NEAR-MulPay/
+├── .git/
+├── .gitignore
+├── README.md
+├── package.json
+├── packages/
+└── yarn.lock
 ```
 
 `package.json`ファイルの内容を確認してみましょう。
@@ -94,20 +84,27 @@ NEAR-MulPay
 **workspaces**の定義をしている部分は以下になります。
 
 ```json
-"workspaces": {
-  "packages": [
+  "workspaces": [
     "packages/*"
-  ]
-},
+  ],
 ```
 
-また、ワークスペース内の各パッケージにアクセスするためのコマンドを以下の部分で定義しています。
+それでは、`package.json`ファイルにワークスペース内の各パッケージにアクセスするためのコマンドを記述しましょう。下記のように`"scripts"`を追加してください。
 
 ```json
-"scripts": {
-  "contract": "yarn workspace contract",
-  "client": "yarn workspace client",
-  "test": "yarn workspace contract test"
+{
+  "name": "NEAR-MulPay",
+  "version": "1.0.0",
+  "description": "Token swap dapp",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "contract": "yarn workspace contract",
+    "client": "yarn workspace client",
+    "test": "yarn workspace contract test"
+  }
 }
 ```
 
@@ -117,28 +114,27 @@ NEAR-MulPay
 yarn <パッケージ名> <実行したいコマンド>
 ```
 
-それでは、ワークスペースのパッケージを格納するディレクトリを作成しましょう。
+次に、Nodeパッケージのインストール方法を定義しましょう。プロジェクトのルートに`.yarnrc.yml`ファイルを作成し、以下の内容を記述してください。
 
-以下のようなフォルダー構成となるように、`packages`ディレクトリとその中に`contract`ディレクトリを作成してください（`client`ディレクトリは、後ほどのレッスンでスターターコードをクローンする際に作成したいと思います）。
-
-```diff
-NEAR-MulPay
- ├── package.json
-+└── packages/
-+    └── contract/
+```yml
+nodeLinker: node-modules
 ```
 
-`contract`ディレクトリには、スマートコントラクトを構築するためのファイルを作成していきます。
-
-最後に、NEAR-MulPayディレクトリ下に`.gitignore`ファイルを作成して以下の内容を書き込みます。
+最後に、`.gitignore`ファイルを下記の内容に更新しましょう。
 
 ```
-**/yarn-error.log*
+# yarn
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
 
 # dependencies
 **/node_modules
 
-# miscpackages
+# misc
 **/.DS_Store
 ```
 
@@ -146,10 +142,14 @@ NEAR-MulPay
 
 ```
 NEAR-MulPay
- ├── .gitignore
- ├── package.json
- └── packages/
-     └── contract/
+├── .git/
+├── .gitignore
+├── .yarn/
+├── .yarnrc.yml
+├── README.md
+├── package.json
+├── packages/
+└── yarn.lock
 ```
 
 これでモノレポの雛形が完成しました！
@@ -162,46 +162,24 @@ NEAR-MulPay
 
 - 「サーバー」がブロックチェーンであることを除けば、Hardhatはローカルサーバーと同じです。
 
-それでは、先ほど作成した`packages/contract`ディレクトリ内にファイルを作成します。ターミナルに向かい、`packages/contract`ディレクトリ内で以下のコマンドを実行します。
+それでは、先ほど準備をしたワークスペースにスマートコントラクトを構築するためのパッケージを作成していきましょう。`NEAR-MulPay/packages`ディレクトリ中に`contract`ディレクトリを作成してください。
 
-```
-cd packages/contract
-yarn init --private -y
-```
-
-`package.json`の内容を以下のように書き換えてください。
-
-```json
-{
-  "name": "contract",
-  "version": "1.0.0",
-  "private": true,
-  "devDependencies": {
-    "@nomicfoundation/hardhat-chai-matchers": "^1.0.6",
-    "@nomicfoundation/hardhat-network-helpers": "^1.0.8",
-    "@nomicfoundation/hardhat-toolbox": "^2.0.2",
-    "@nomiclabs/hardhat-ethers": "^2.2.2",
-    "@nomiclabs/hardhat-etherscan": "^3.1.7",
-    "@typechain/ethers-v5": "^10.2.0",
-    "@typechain/hardhat": "^6.1.5",
-    "chai": "^4.3.7",
-    "ethers": "^6.1.0",
-    "hardhat": "^2.13.0",
-    "hardhat-gas-reporter": "^1.0.9",
-    "solidity-coverage": "^0.8.2",
-    "typechain": "^8.1.1"
-  },
-  "dependencies": {
-    "@openzeppelin/contracts": "^4.8.2",
-    "dotenv": "^16.0.3"
-  },
-}
+```diff
+ NEAR-MulPay
+ └── packages/
++    └── contract/
 ```
 
-その後以下のコマンドを実行して必要なパッケージをインストールしてください。
+次に、`package.json`ファイルを作成します。ターミナルに向かい、`packages/contract`ディレクトリ内で以下のコマンドを実行します。
 
 ```
-yarn install
+yarn init -p
+```
+
+必要なパッケージをインストールしましょう。
+
+```
+yarn add @openzeppelin/contracts@4.8.2 dotenv@16.3.1 && yarn add --dev @nomicfoundation/hardhat-chai-matchers@1.0.6 @nomicfoundation/hardhat-network-helpers@1.0.8 @nomicfoundation/hardhat-toolbox@2.0.2 @nomiclabs/hardhat-ethers@2.2.3 @nomiclabs/hardhat-etherscan@3.1.7 @typechain/ethers-v5@11.1.2 @typechain/hardhat@7.0.0 @types/chai@4.3.8 @types/mocha@10.0.2 chai@4.3.10 ethers@5.7.2 hardhat@2.18.1 hardhat-gas-reporter@1.0.9 solidity-coverage@0.8.5 ts-node@10.9.1 typechain@8.3.2 typescript@5.2.2
 ```
 
 > ✍️: `warning`について
@@ -218,7 +196,7 @@ yarn install
 `packages/contract`ディレクトリにいることを確認し、次のコマンドを実行します。
 
 ```
-npx hardhat
+npx hardhat init
 ```
 
 `hardhat`がターミナル上で立ち上がったら、それぞれの質問を以下のように答えていきます。
@@ -231,7 +209,7 @@ npx hardhat
 
 （例）
 ```
-$ npx hardhat
+$ npx hardhat init
 
 888    888                      888 888               888
 888    888                      888 888               888
@@ -242,9 +220,9 @@ $ npx hardhat
 888    888 888  888 888    Y88b 888 888  888 888  888 Y88b.
 888    888 "Y888888 888     "Y88888 888  888 "Y888888  "Y888
 
-👷 Welcome to Hardhat v2.13.0 👷‍
+👷 Welcome to Hardhat v2.18.1 👷‍
 
-✔ What do you want to do? · Create a JavaScript project
+✔ What do you want to do? · Create a TypeScript project
 ✔ Hardhat project root: · /NEAR-MulPay/packages/contract
 ✔ Do you want to add a .gitignore? (Y/n) · y
 
@@ -252,29 +230,19 @@ $ npx hardhat
 
 See the README.md file for some example tasks you can run
 
-Give Hardhat a star on Github if you're enjoying it! 💞✨
+Give Hardhat a star on Github if you're enjoying it! ⭐️✨
 
      https://github.com/NomicFoundation/hardhat
 ```
 
-> ⚠️: 注意 #1
+> ⚠️: 注意
 >
 > Windows で Git Bash を使用してハードハットをインストールしている場合、このステップ (HH1) でエラーが発生する可能性があります。問題が発生した場合は、WindowsCMD（コマンドプロンプト）を使用して HardHat のインストールを実行してみてください。
-
-> ⚠️: 注意 #2
->
-> `npx hardhat`が実行されなかった場合、以下をターミナルで実行してください。
->
-> ```
-> yarn add --dev @nomicfoundation/hardhat-toolbox
-> ```
 
 この段階で、フォルダー構造は下記のようになっていることを確認してください。
 
 ```diff
-NEAR-MulPay
- ├── .gitignore
- ├── package.json
+ NEAR-MulPay
  └── packages/
      └── contract/
 +        ├── .gitignore
@@ -283,77 +251,192 @@ NEAR-MulPay
 +        ├── hardhat.config.ts
 +        ├── package.json
 +        ├── scripts/
-+        └── test/
++        ├── test/
++        └── tsconfig.json
 ```
 
-それでは、`contract`ディレクトリ内に生成された`package.json`ファイルを以下を参考に更新をしましょう。
+package.jsonファイルを下のように編集してください。
 
-```diff
+```json
 {
   "name": "contract",
   "version": "1.0.0",
--  "main": "index.js",
--  "license": "MIT",
   "private": true,
-  "devDependencies": {
-    "@nomicfoundation/hardhat-chai-matchers": "^1.0.6",
-    "@nomicfoundation/hardhat-network-helpers": "^1.0.8",
-    "@nomicfoundation/hardhat-toolbox": "^2.0.2",
-    "@nomiclabs/hardhat-ethers": "^2.2.2",
-    "@nomiclabs/hardhat-etherscan": "^3.1.7",
-    "@typechain/ethers-v5": "^10.2.0",
-    "@typechain/hardhat": "^6.1.5",
-    "chai": "^4.3.7",
-    "ethers": "^6.1.0",
-    "hardhat": "^2.13.0",
-    "hardhat-gas-reporter": "^1.0.9",
-    "solidity-coverage": "^0.8.2",
-    "typechain": "^8.1.1"
+  "scripts": {
+    "deploy":"npx hardhat run scripts/deploy.ts --network testnet_aurora",
+    "test": "npx hardhat test"
   },
-+  "scripts": {
-+    "test": "npx hardhat test",
-+    "deploy":"npx hardhat run scripts/deploy.ts --network testnet_aurora",
-+  }
-}
+  "dependencies": {
+    ...
 ```
 
-不要な定義を削除し、hardhatの自動テストを実行するためのコマンドを追加しました。
+test/Lock.tsファイルを下の内容で上書きしてください。ethers v6ベースのToolboxで生成された初期コードを、ethers v5ベースのコードに置き換えます。このプロジェクトではethers v5を使用するためです。
+
+```typescript
+import { time, loadFixture } from "@nomicfoundation/hardhat-network-helpers";
+import { anyValue } from "@nomicfoundation/hardhat-chai-matchers/withArgs";
+import { expect } from "chai";
+import { ethers } from "hardhat";
+
+describe("Lock", function () {
+  // We define a fixture to reuse the same setup in every test.
+  // We use loadFixture to run this setup once, snapshot that state,
+  // and reset Hardhat Network to that snapshot in every test.
+  async function deployOneYearLockFixture() {
+    const ONE_YEAR_IN_SECS = 365 * 24 * 60 * 60;
+    const ONE_GWEI = 1_000_000_000;
+
+    const lockedAmount = ONE_GWEI;
+    const unlockTime = (await time.latest()) + ONE_YEAR_IN_SECS;
+
+    // Contracts are deployed using the first signer/account by default
+    const [owner, otherAccount] = await ethers.getSigners();
+
+    const Lock = await ethers.getContractFactory("Lock");
+    const lock = await Lock.deploy(unlockTime, { value: lockedAmount });
+
+    return { lock, unlockTime, lockedAmount, owner, otherAccount };
+  }
+
+  describe("Deployment", function () {
+    it("Should set the right unlockTime", async function () {
+      const { lock, unlockTime } = await loadFixture(deployOneYearLockFixture);
+
+      expect(await lock.unlockTime()).to.equal(unlockTime);
+    });
+
+    it("Should set the right owner", async function () {
+      const { lock, owner } = await loadFixture(deployOneYearLockFixture);
+
+      expect(await lock.owner()).to.equal(owner.address);
+    });
+
+    it("Should receive and store the funds to lock", async function () {
+      const { lock, lockedAmount } = await loadFixture(
+        deployOneYearLockFixture
+      );
+
+      expect(await ethers.provider.getBalance(lock.address)).to.equal(
+        lockedAmount
+      );
+    });
+
+    it("Should fail if the unlockTime is not in the future", async function () {
+      // We don't use the fixture here because we want a different deployment
+      const latestTime = await time.latest();
+      const Lock = await ethers.getContractFactory("Lock");
+      await expect(Lock.deploy(latestTime, { value: 1 })).to.be.revertedWith(
+        "Unlock time should be in the future"
+      );
+    });
+  });
+
+  describe("Withdrawals", function () {
+    describe("Validations", function () {
+      it("Should revert with the right error if called too soon", async function () {
+        const { lock } = await loadFixture(deployOneYearLockFixture);
+
+        await expect(lock.withdraw()).to.be.revertedWith(
+          "You can't withdraw yet"
+        );
+      });
+
+      it("Should revert with the right error if called from another account", async function () {
+        const { lock, unlockTime, otherAccount } = await loadFixture(
+          deployOneYearLockFixture
+        );
+
+        // We can increase the time in Hardhat Network
+        await time.increaseTo(unlockTime);
+
+        // We use lock.connect() to send a transaction from another account
+        await expect(lock.connect(otherAccount).withdraw()).to.be.revertedWith(
+          "You aren't the owner"
+        );
+      });
+
+      it("Shouldn't fail if the unlockTime has arrived and the owner calls it", async function () {
+        const { lock, unlockTime } = await loadFixture(
+          deployOneYearLockFixture
+        );
+
+        // Transactions are sent using the first signer by default
+        await time.increaseTo(unlockTime);
+
+        await expect(lock.withdraw()).not.to.be.reverted;
+      });
+    });
+
+    describe("Events", function () {
+      it("Should emit an event on withdrawals", async function () {
+        const { lock, unlockTime, lockedAmount } = await loadFixture(
+          deployOneYearLockFixture
+        );
+
+        await time.increaseTo(unlockTime);
+
+        await expect(lock.withdraw())
+          .to.emit(lock, "Withdrawal")
+          .withArgs(lockedAmount, anyValue); // We accept any value as `when` arg
+      });
+    });
+
+    describe("Transfers", function () {
+      it("Should transfer the funds to the owner", async function () {
+        const { lock, unlockTime, lockedAmount, owner } = await loadFixture(
+          deployOneYearLockFixture
+        );
+
+        await time.increaseTo(unlockTime);
+
+        await expect(lock.withdraw()).to.changeEtherBalances(
+          [owner, lock],
+          [lockedAmount, -lockedAmount]
+        );
+      });
+    });
+  });
+});
+
+```
 
 ### ⭐️ 実行する
 
 すべてが機能していることを確認するには、以下を実行します。
 
 ```
-npx hardhat compile
-```
-
-次に、以下を実行します。
-
-```
-npx hardhat test
+yarn test
 ```
 
 次のように表示されます。
 
-![](/public/images/NEAR-MulPay/section-1/1_2_2.png)
+```
+  Lock
+    Deployment
+      ✔ Should set the right unlockTime (1257ms)
+      ✔ Should set the right owner
+      ✔ Should receive and store the funds to lock
+      ✔ Should fail if the unlockTime is not in the future
+    Withdrawals
+      Validations
+        ✔ Should revert with the right error if called too soon
+        ✔ Should revert with the right error if called from another account
+        ✔ Shouldn't fail if the unlockTime has arrived and the owner calls it
+      Events
+        ✔ Should emit an event on withdrawals
+      Transfers
+        ✔ Should transfer the funds to the owner
+
+
+  9 passing (1s)
+
+```
 
 ターミナル上で`ls`と入力してみて、下記のフォルダーとファイルが表示されていたら成功です。
 
 ```
-README.md         cache             hardhat.config.ts package.json      test
-artifacts         contracts         node_modules      scripts
+README.md         artifacts         cache             contracts         hardhat.config.ts package.json      scripts           test              tsconfig.json     typechain-types
 ```
-
-ここまできたら、フォルダーの中身を整理しましょう。
-
-まず、`test`の下のファイル`Lock.js`を削除します。
-
-1. `test`フォルダーに移動: `cd test`
-
-2. `Lock.js`を削除: `rm Lock.js`
-
-次に、上記の手順を参考にして`contracts`の下の`Lock.sol`を削除してください。実際のフォルダは削除しないように注意しましょう。
-
 
 ### ☀️ Hardhat の機能について
 
@@ -377,25 +460,26 @@ Hardhatは段階的に下記を実行しています。
 flutter create client
 ```
 
-次に下のコマンドを実行して`package.json`を作成してください。
+次に、作成された`client`ディレクトリに移動して下のコマンドを実行しましょう。
 
 ```
-yarn init --private -y
+yarn init -p
 ```
 
-その後作成したpackage.jsonファイルを下のように編集してください。
+その後作成されたpackage.jsonファイルを下のように編集してください。
 
 ```json
 {
   "name": "client",
   "version": "1.0.0",
+  "private": true,
   "scripts":{
     "start": "flutter run"
   }
 }
 ```
 
-プロジェクトが完成したら`client`ディレクトリに移動して、ディレクトリ構造が以下のようになっていることを確認してください。
+プロジェクトが完成したら`client`ディレクトリの構造が以下のようになっていることを確認してください。
 
 末尾が`/`となっているものはディレクトリ、それ以外はファイルであることを示しています
 
@@ -408,7 +492,6 @@ client
 ├── lib/
 ├── linux/
 ├── macos/
-├── payment_dapp.iml
 ├── package.json
 ├── pubspec.lock
 ├── pubspec.yaml
