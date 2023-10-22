@@ -2,7 +2,6 @@
 
 前のセクションでスマートコントラクトが書けたので、次はそれをデプロイします。
 
-
 ### 🦊 MetaMask に Polygon Network を追加する
 
 MetaMaskウォレットにMatic MainnetとPolygon Mumbai-Testnetを追加してみましょう。
@@ -55,38 +54,68 @@ Sepoliaとは異なり、これらのトークンの取得にそれほど問題�
 >
 > Polygon のようなサイドチェーンの場合、`2`の方が簡単で安く済みます。
 
+### 💎 Alchemy でネットワークを作成
+
+[こちら](https://www.alchemy.com/) からAlchemyのアカウントを作成してください。アカウントを作成したら、Appsページの`+ Create new app`ボタンを押してください。
+
+![](/public/images/Polygon-Mobile-dApp/section-1/1_3_1.png)
+
+次に、下記の項目を埋めていきます。下図を参考にしてください。
+
+![](/public/images/Polygon-Mobile-dApp/section-1/1_3_2.png)
+
+- `Chain`: `Polygon PoS`を選択
+- `Network`: `Polygon Mumbai`を選択
+- `Name`: プロジェクトの名前(例: `Polygon Mobile dApp`)
+- `Description`: プロジェクトの概要
+
+`Create app`ボタンを押すと、プロジェクトが作成されます。`API Key`をクリックすると、表示されたポップアップからKeyを取得することができます（今回のプロジェクトで使用するのは、`HTTPS`に表示されているものになります）。
+
+![](/public/images/Polygon-Mobile-dApp/section-1/1_3_3.png)
+
+これがあなたが本番環境のネットワークに接続する際に使用する`API Key`になります。
 
 ### ✨ スマートコントラクトを Mumbai testnet に公開する
 
-上記の`providerOrUrl: process.env.ALCHEMY_API_KEY,`の`process.env.ALCHEMY_API_KEY`の部分を、[alchemy.com](https://www.alchemy.com/)で作成したPolygon用のデプロイ先の`API key`に設定します。
+それでは、実際にコントラクトをデプロイしてみましょう。まずは、`scripts`ディレクトリの中にある`deploy.js`を以下の内容で上書きしてください。
 
-手順は下記のとおりです。
+```javascript
+const hre = require('hardhat');
+const main = async () => {
+  const [deployer] = await hre.ethers.getSigners();
+  const accountBalance = await deployer.getBalance();
 
-まず、先ほどのリンクからログインして、`Create App`を選択し、下記のように設定してください。
+  console.log('Deploying contracts with account: ', deployer.address);
+  console.log('Account balance: ', accountBalance.toString());
 
-![](/public/images/Polygon-Mobile-dApp/section-3/3_1_5.png)
+  const todoContractFactory = await hre.ethers.getContractFactory(
+    'TodoContract',
+  );
+  /* コントラクトに資金を提供できるようにする */
+  const todoContract = await todoContractFactory.deploy();
 
-下の画像で示す部分をクリックすると、`HTTP`を確認できます。
+  await todoContract.deployed();
 
-![](/public/images/Polygon-Mobile-dApp/section-3/3_1_6.jpg)
+  console.log('TodoContract address: ', todoContract.address);
+};
 
-次に下記のコマンドを`todo-dApp-contract`フォルダ上でターミナルを開いて実行してください。
+const runMain = async () => {
+  try {
+    await main();
+  } catch (error) {
+    console.error(error);
+    throw new Error('there is error!');
+  }
+};
 
-`Alchemy Polygon URL`の部分に、先ほど確認した`HTTP`を貼り付けてください。
-
-次に、`.gitignore`ファイルを以下のように更新してください。
-
+runMain();
 ```
-node_modules
-.env
-```
 
-次に`hardhat-config.js`の既存の内容をすべて削除し、以下のコードに置き換えてください。
+次に`hardhat.config.js`の既存の内容をすべて削除し、以下のコードに置き換えてください。
 
 solidityのバージョンはあなたが使用しているものに合わせて変更してください。
 
 ```js
-//hardhat-config.js
 require('@nomicfoundation/hardhat-toolbox');
 require('dotenv').config();
 
@@ -94,7 +123,7 @@ const { PRIVATE_KEY, STAGING_ALCHEMY_KEY } = process.env;
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
-  solidity: '0.8.17',
+  solidity: '0.8.19',
   networks: {
     mumbai: {
       url: STAGING_ALCHEMY_KEY || '',
@@ -104,16 +133,16 @@ module.exports = {
 };
 ```
 
-次に`.env`ファイルを`contract`ディレクトリに作成して次のように値を入れましょう。
-
-`<YOUR_ALCHEMY_KEY>`にはAlchemyで作成したHTTP_KEYを、`<YOUR_PRIVATE_KEY>`にはmetamaskで作成したウォレットのプライベートキーを代入しましょう。
+それでは、hardhat.config.jsに設定する値を準備します。`packages/contract`ディレクトリに`.env`ファイルを作成して次のように記述しましょう。
 
 ```
-STAGING_ALCHEMY_KEY=<YOUR_ALCHEMY_KEY>
-PRIVATE_KEY=<YOUR_PRIVATE_KEY>
+STAGING_ALCHEMY_KEY=YOUR_ALCHEMY_KEY
+PRIVATE_KEY=YOUR_PRIVATE_KEY
 ```
 
-では早速デプロイ作業に移りましょう。ターミナルで以下のコマンドを実行します。
+`YOUR_ALCHEMY_KEY`にはAlchemyで作成したAPI Key（HTTPSの値）を、`YOUR_PRIVATE_KEY`にはMetaMaskで作成したウォレットのプライベートキーを代入しましょう（取得方法は[こちら](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key)のドキュメントを参照してください）。
+
+では早速デプロイ作業に移りましょう。プロジェクトのルートで、以下のコマンドを実行します。
 
 ```
 yarn contract deploy
@@ -122,14 +151,12 @@ yarn contract deploy
 下のようになっていれば成功です！
 
 ```
-$ yarn workspace contract deploy
-warning package.json: No license field
-$ npx hardhat run scripts/deploy.js --network mumbai
 Deploying contracts with account:  0x04CD057E4bAD766361348F26E847B546cBBc7946
 Account balance:  287212753772831574
 TodoContract address:  0x14479CaB58EB7B2AF847FCb2DbFD5F7e1bB17A08
-✨  Done in 21.27s.
 ```
+
+- **TodoContractのアドレスは後ほど必要になるので、PC 上のわかりやすいところに保存しておきましょう。**
 
 次は、Flutterアプリケーションへ接続していきましょう。
 
