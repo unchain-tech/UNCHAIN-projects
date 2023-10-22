@@ -1,35 +1,48 @@
-## 💎環境構築をしよう
+### 💎環境構築をしよう
 
-まず、`node` / `npm`を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスしてください（Hardhatのためのサイトですが気にしないでください）
+まず、`Node.js`を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment#installing-node.js)にアクセスをしてインストールしてください。このプロジェクトで推奨するバージョンは`v20`です。
 
-それでは本プロジェクトで使用するフォルダーを作成してきましょう。作業を始めるディレクトリに移動したら、次のコマンドを実行します。
+インストールが完了したら、ターミナルで以下のコマンドを実行し、バージョンを確認してください。
+
+```
+$ node -v
+v20.5.0
+```
+
+それでは本プロジェクトで使用するフォルダを作成してきましょう。作業を始めるディレクトリに移動したら、次のコマンドを実行します。
 
 ```
 mkdir Polygon-Mobile-dApp
 cd Polygon-Mobile-dApp
-yarn init --private -y
 ```
 
-Polygon-Mobile-dAppディレクトリ内に、package.jsonファイルが生成されます。
+Polygon-Mobile-dApp内に移動したら、[ドキュメント](https://yarnpkg.com/getting-started/install)を参考にYarnの設定を行いましょう。以下のコマンドを実行して、インストールを行います。
 
 ```
-Polygon-Mobile-dApp
- └── package.json
+corepack enable
+yarn set version 3.6.4
 ```
 
-それでは、`package.json`ファイルを以下のように更新してください。
+次に、以下のコマンドを実行して[Workspaces](https://yarnpkg.com/features/workspaces)を設定します。これは、プロジェクトをモノレポ構成にするためです。モノレポに関しては「[ETH dApp Section 1 - Lesson 1 🔍 フォルダ構成を確認する](https://app.unchain.tech/learn/ETH-dApp/ja/1/1/)」を参照して下さい。
+
+```
+yarn init -w
+```
+
+package.jsonファイルが更新され、新たにpackagesというディレクトリが作成されます。
+
+![](/public/images/Polygon-Mobile-dApp/section-1/1_1_1.png)
+
+それでは、`package.json`ファイルを更新します。以下のように`"scripts"`を追加してください。ワークスペース内の各パッケージにアクセスするためのコマンドを定義します。
 
 ```json
 {
   "name": "Polygon-Mobile-dApp",
-  "version": "1.0.0",
-  "description": "Maken mobile dapp",
+  "packageManager": "yarn@3.6.4",
   "private": true,
-  "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
-  },
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "contract": "yarn workspace contract",
     "client": "yarn workspace client",
@@ -38,55 +51,22 @@ Polygon-Mobile-dApp
 }
 ```
 
-`package.json`ファイルの内容を確認してみましょう。
+次に、Nodeパッケージのインストール方法を定義しましょう。`.yarnrc.yml`ファイルに以下の内容を追加してください。
 
-モノレポを作成するにあたり、パッケージマネージャーの機能である[Workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/)を利用しています。
-
-この機能により、yarn installを一度だけ実行すれば、すべてのパッケージ（今回はコントラクトのパッケージとクライアントのパッケージ）を一度にインストールできるようになります。
-
-**workspaces**の定義をしている部分は以下になります。
-
-```json
-"workspaces": {
-  "packages": [
-    "packages/*"
-  ]
-},
+```yml
+nodeLinker: node-modules
 ```
 
-また、ワークスペース内の各パッケージにアクセスするためのコマンドを以下の部分で定義しています。
-
-```json
-"scripts": {
-  "contract": "yarn workspace contract",
-  "client": "yarn workspace client",
-  "test": "yarn workspace contract test"
-}
-```
-
-これにより、各パッケージのディレクトリへ階層を移動しなくてもプロジェクトのルート直下から以下のようにコマンドを実行することが可能となります（ただし、各パッケージ内に`package.json`ファイルが存在し、その中にコマンドが定義されていないと実行できません。そのため、現在は実行してもエラーとなります。ファイルは後ほど作成します）。
+最後に、`.gitignore`ファイルを下記の内容に更新しましょう。
 
 ```
-yarn <パッケージ名> <実行したいコマンド>
-```
-
-それでは、ワークスペースのパッケージを格納するディレクトリを作成しましょう。
-
-以下のようなフォルダー構成となるように、`packages`ディレクトリとその中に`contract`ディレクトリを作成してください（`client`ディレクトリは、後ほどのレッスンでスターターコードをクローンする際に作成したいと思います）。
-
-```diff
-Polygon-Mobile-dApp
- ├── package.json
-+└── packages/
-+    └── contract/
-```
-
-`contract`ディレクトリには、スマートコントラクトを構築するためのファイルを作成していきます。
-
-最後に、Polygon-Mobile-dAppディレクトリ下に`.gitignore`ファイルを作成して以下の内容を書き込みます。
-
-```
-**/yarn-error.log*
+# yarn
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
 
 # dependencies
 **/node_modules
@@ -95,19 +75,8 @@ Polygon-Mobile-dApp
 **/.DS_Store
 ```
 
-最終的に以下のようなフォルダー構成となっていることを確認してください。
+これでPolygon-Mobile-dAppフォルダの準備が完了しました！
 
-```
-Polygon-Mobile-dApp
- ├── .gitignore
- ├── package.json
- └── packages/
-     └── contract/
-```
-
-これでモノレポの雛形が完成しました！
-
-<!-- TODO change how to install hardhat -->
 ### ✨ Hardhat をインストールする
 
 スマートコントラクトをすばやくコンパイルし、ローカル環境にてテストを行うために、**Hardhat** というツールを使用します。
@@ -116,39 +85,20 @@ Polygon-Mobile-dApp
 
 - 「サーバー」がブロックチェーンであることを除けば、Hardhatはローカルサーバーと同じです。
 
-それでは、先ほど作成した`packages/contract`ディレクトリ内に`package.json`ファイルを作成します。そして以下のように編集しましょう。
+それでは、先ほど準備をしたワークスペースにスマートコントラクトを構築するためのパッケージを作成していきましょう。`packages`ディレクトリ中に`contract`ディレクトリを作成してください。
 
-```json
-{
-  "name": "contract",
-  "version": "1.0.0",
-  "private": true,
-  "devDependencies": {
-    "@nomicfoundation/hardhat-chai-matchers": "^1.0.6",
-    "@nomicfoundation/hardhat-network-helpers": "^1.0.8",
-    "@nomicfoundation/hardhat-toolbox": "^2.0.2",
-    "@nomiclabs/hardhat-ethers": "^2.2.2",
-    "@nomiclabs/hardhat-etherscan": "^3.1.7",
-    "@typechain/ethers-v5": "^10.2.0",
-    "@typechain/hardhat": "^6.1.5",
-    "chai": "^4.3.7",
-    "ethers": "^6.1.0",
-    "hardhat": "^2.13.0",
-    "hardhat-gas-reporter": "^1.0.9",
-    "solidity-coverage": "^0.8.2",
-    "typechain": "^8.1.1"
-  },
-  "scripts": {
-    "test": "npx hardhat test",
-    "deploy":"npx hardhat run scripts/deploy.ts --network testnet_aurora",
-  }
-}
-```
+![](/public/images/Polygon-Mobile-dApp/section-1/1_1_2.png)
 
-次にターミナルに向かい、packages/contract`ディレクトリ内で以下のコマンドを実行します。
+次に、`package.json`ファイルを作成します。ターミナルに向かい、`packages/contract`ディレクトリ内に移動して以下のコマンドを実行します。
 
 ```
-yarn install
+yarn init -p
+```
+
+次に、必要なパッケージをインストールしましょう。以下のコマンドを実行してください。
+
+```
+yarn add dotenv@16.3.1 && yarn add --dev @nomicfoundation/hardhat-chai-matchers@1.0.6 @nomicfoundation/hardhat-network-helpers@1.0.8 @nomicfoundation/hardhat-toolbox@2.0.2 @nomiclabs/hardhat-ethers@2.2.3 @nomiclabs/hardhat-etherscan@3.1.7 @typechain/ethers-v5@11.1.2 @typechain/hardhat@7.0.0 chai@4.3.10 ethers@5.7.2 hardhat@2.18.1 hardhat-gas-reporter@1.0.9 solidity-coverage@0.8.5 typechain@8.3.2
 ```
 
 > ✍️: `warning`について
@@ -165,10 +115,10 @@ yarn install
 `packages/contract`ディレクトリにいることを確認し、次のコマンドを実行します。
 
 ```
-npx hardhat
+npx hardhat init
 ```
 
-`hardhat`がターミナル上で立ち上がったら、それぞれの質問を以下のように答えていきます。
+`Hardhat`がターミナル上で立ち上がったら、それぞれの質問を以下のように答えていきます。
 
 ```
 ・What do you want to do? →「Create a JavaScript project」を選択
@@ -178,7 +128,7 @@ npx hardhat
 
 （例）
 ```
-$ npx hardhat
+$ npx hardhat init
 
 888    888                      888 888               888
 888    888                      888 888               888
@@ -189,7 +139,7 @@ $ npx hardhat
 888    888 888  888 888    Y88b 888 888  888 888  888 Y88b.
 888    888 "Y888888 888     "Y88888 888  888 "Y888888  "Y888
 
-👷 Welcome to Hardhat v2.13.0 👷‍
+👷 Welcome to Hardhat v2.18.1 👷‍
 
 ✔ What do you want to do? · Create a JavaScript project
 ✔ Hardhat project root: · /Polygon-Mobile-dApp/packages/contract
@@ -199,79 +149,176 @@ $ npx hardhat
 
 See the README.md file for some example tasks you can run
 
-Give Hardhat a star on Github if you're enjoying it! 💞✨
+Give Hardhat a star on Github if you're enjoying it! ⭐️✨
 
      https://github.com/NomicFoundation/hardhat
 ```
 
-> ⚠️: 注意 #1
+> ⚠️: 注意
 >
 > Windows で Git Bash を使用してハードハットをインストールしている場合、このステップ (HH1) でエラーが発生する可能性があります。問題が発生した場合は、WindowsCMD（コマンドプロンプト）を使用して HardHat のインストールを実行してみてください。
 
-> ⚠️: 注意 #2
->
-> `npx hardhat`が実行されなかった場合、以下をターミナルで実行してください。
->
-> ```
-> yarn add --dev @nomicfoundation/hardhat-toolbox
-> ```
+この段階で、packages/contract内のフォルダー構造は下記のようになっていることを確認してください。
 
-この段階で、フォルダー構造は下記のようになっていることを確認してください。
+![](/public/images/Polygon-Mobile-dApp/section-1/1_1_3.png)
 
-```diff
-Polygon-Mobile-dApp
- ├── .gitignore
- ├── package.json
- └── packages/
-     ├── client/
-     └── contract/
-+        ├── .gitignore
-+        ├── README.md
-+        ├── contracts/
-+        ├── hardhat.config.js
-+        ├── package.json
-+        ├── scripts/
-+        └── test/
+package.jsonファイルに`"scripts"`を追加しましょう。下のように更新してください。
+
+```json
+{
+  "name": "contract",
+  "packageManager": "yarn@3.6.4",
+  "private": true,
+  "scripts": {
+    "deploy": "npx hardhat run scripts/deploy.js --network mumbai",
+    "test": "npx hardhat test"
+  },
+  "dependencies": {
+    ...
 ```
 
-不要な定義を削除し、hardhatの自動テストを実行するためのコマンドを追加しました。
+test/Lock.tsファイルを下の内容で上書きしてください。ethers v6ベースのToolboxで生成された初期コードを、ethers v5ベースのコードに置き換えます。このプロジェクトではethers v5を使用するためです。
 
-次に、安全なスマートコントラクトを開発するために使用されるライブラリ **OpenZeppelin** をインストールします。
+```javascript
+const {
+  time,
+  loadFixture,
+} = require("@nomicfoundation/hardhat-network-helpers");
+const { anyValue } = require("@nomicfoundation/hardhat-chai-matchers/withArgs");
+const { expect } = require("chai");
 
-`packages/contract`ディレクトリにいることを確認し、以下のコマンドを実行してください。
+describe("Lock", function () {
+  // We define a fixture to reuse the same setup in every test.
+  // We use loadFixture to run this setup once, snapshot that state,
+  // and reset Hardhat Network to that snapshot in every test.
+  async function deployOneYearLockFixture() {
+    const ONE_YEAR_IN_SECS = 365 * 24 * 60 * 60;
+    const ONE_GWEI = 1_000_000_000;
 
+    const lockedAmount = ONE_GWEI;
+    const unlockTime = (await time.latest()) + ONE_YEAR_IN_SECS;
+
+    // Contracts are deployed using the first signer/account by default
+    const [owner, otherAccount] = await ethers.getSigners();
+
+    const Lock = await ethers.getContractFactory("Lock");
+    const lock = await Lock.deploy(unlockTime, { value: lockedAmount });
+
+    return { lock, unlockTime, lockedAmount, owner, otherAccount };
+  }
+
+  describe("Deployment", function () {
+    it("Should set the right unlockTime", async function () {
+      const { lock, unlockTime } = await loadFixture(deployOneYearLockFixture);
+
+      expect(await lock.unlockTime()).to.equal(unlockTime);
+    });
+
+    it("Should set the right owner", async function () {
+      const { lock, owner } = await loadFixture(deployOneYearLockFixture);
+
+      expect(await lock.owner()).to.equal(owner.address);
+    });
+
+    it("Should receive and store the funds to lock", async function () {
+      const { lock, lockedAmount } = await loadFixture(
+        deployOneYearLockFixture
+      );
+
+      expect(await ethers.provider.getBalance(lock.address)).to.equal(
+        lockedAmount
+      );
+    });
+
+    it("Should fail if the unlockTime is not in the future", async function () {
+      // We don't use the fixture here because we want a different deployment
+      const latestTime = await time.latest();
+      const Lock = await ethers.getContractFactory("Lock");
+      await expect(Lock.deploy(latestTime, { value: 1 })).to.be.revertedWith(
+        "Unlock time should be in the future"
+      );
+    });
+  });
+
+  describe("Withdrawals", function () {
+    describe("Validations", function () {
+      it("Should revert with the right error if called too soon", async function () {
+        const { lock } = await loadFixture(deployOneYearLockFixture);
+
+        await expect(lock.withdraw()).to.be.revertedWith(
+          "You can't withdraw yet"
+        );
+      });
+
+      it("Should revert with the right error if called from another account", async function () {
+        const { lock, unlockTime, otherAccount } = await loadFixture(
+          deployOneYearLockFixture
+        );
+
+        // We can increase the time in Hardhat Network
+        await time.increaseTo(unlockTime);
+
+        // We use lock.connect() to send a transaction from another account
+        await expect(lock.connect(otherAccount).withdraw()).to.be.revertedWith(
+          "You aren't the owner"
+        );
+      });
+
+      it("Shouldn't fail if the unlockTime has arrived and the owner calls it", async function () {
+        const { lock, unlockTime } = await loadFixture(
+          deployOneYearLockFixture
+        );
+
+        // Transactions are sent using the first signer by default
+        await time.increaseTo(unlockTime);
+
+        await expect(lock.withdraw()).not.to.be.reverted;
+      });
+    });
+
+    describe("Events", function () {
+      it("Should emit an event on withdrawals", async function () {
+        const { lock, unlockTime, lockedAmount } = await loadFixture(
+          deployOneYearLockFixture
+        );
+
+        await time.increaseTo(unlockTime);
+
+        await expect(lock.withdraw())
+          .to.emit(lock, "Withdrawal")
+          .withArgs(lockedAmount, anyValue); // We accept any value as `when` arg
+      });
+    });
+
+    describe("Transfers", function () {
+      it("Should transfer the funds to the owner", async function () {
+        const { lock, unlockTime, lockedAmount, owner } = await loadFixture(
+          deployOneYearLockFixture
+        );
+
+        await time.increaseTo(unlockTime);
+
+        await expect(lock.withdraw()).to.changeEtherBalances(
+          [owner, lock],
+          [lockedAmount, -lockedAmount]
+        );
+      });
+    });
+  });
+});
 ```
-yarn add --dev @openzeppelin/contracts
-```
-
-[OpenZeppelin](https://github.com/OpenZeppelin/openzeppelin-contracts) はイーサリアムネットワーク上で安全なスマートコントラクトを実装するためのフレームワークです。
-
-OpenZeppelinには非常に多くの機能が実装されておりインポートするだけで安全にその機能を使うことができます。
 
 ### ⭐️ 実行する
 
 すべてが機能していることを確認するには、以下を実行します。
 
 ```
-npx hardhat compile
+yarn test
 ```
 
-次に、以下を実行します。
+次のように表示されていたら成功です。
 
-```
-npx hardhat test
-```
-
-次のように表示されます。
-
-![](/public/images/Polygon-Mobile-dApp/section-1/1_2_2.png)
-
-ターミナル上で`ls`と入力してみて、下記のフォルダーとファイルが表示されていたら成功です。
-
-```
-README.md         cache             hardhat.config.js package.json      test
-artifacts         contracts         node_modules      scripts
-```
+![](/public/images/Polygon-Mobile-dApp/section-1/1_1_4.png)
 
 ここまできたら、フォルダーの中身を整理しましょう。
 
@@ -296,14 +343,6 @@ Hardhatは段階的に下記を実行しています。
 
 3\. **Hardhat は、コンパイルされたスマートコントラクトをローカルイーサリアムネットワークに「デプロイ」します。**
 
-ターミナルに出力されたアドレスを確認してみましょう。
-
-```
-Greeter deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
-```
-
-これは、イーサリアムネットワークのテスト環境でデプロイされたスマートコントラクトのアドレスです。
-
 **フロントエンドのプロジェクト作成**
 
 次にフロントエンドのプロジェクトを作成していきます。
@@ -314,9 +353,11 @@ Greeter deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
 
 では、お手持ちのデバイスに合わせてインストールしてください。
 
-- [macOS](https://hara-chan.com/it/programming/how-to-setup-flutter/)（sdkダウンロード後は「Visual Studio Codeのセットアップ」をご参照ください）。
+- [macOS](https://zenn.dev/kboy/books/ca6a9c93fd23f3/viewer/5232dc)
 
 - [Windows](https://qiita.com/apricotcomic/items/7ff53950e10fcff212d2)
+
+VS Codeをお使いの方は、コーディングのサポートツールとしてFlutterの拡張機能をダウンロードすることをお勧めします。ダウンロードは [こちら](https://marketplace.visualstudio.com/items?itemName=Dart-Code.flutter) から。
 
 次に、ターミナルに向かいましょう。
 
@@ -328,9 +369,9 @@ flutter create client
 
 Flutterでは、プロジェクトの名前に`-`や大文字を入れることができない事に注意してください。詳しくは、[こちら](https://dart.dev/tools/pub/pubspec#name)をご覧ください。
 
-この段階で、フォルダ構造は下記のようになっていることを確認してください。
+`client`ディレクトリが作成されたことを確認してください。
 
-![](/public/images/Polygon-Mobile-dApp/section-2/2_1_1.png)
+![](/public/images/Polygon-Mobile-dApp/section-1/1_1_5.png)
 
 ### ✨ Flutterプロジェクトのセットアップをする。
 
@@ -340,10 +381,17 @@ Flutterでは、プロジェクトの名前に`-`や大文字を入れること�
 
 ```yaml
 //pubspec.yaml
-dependencies:
-  flutter:
+dev_dependencies:
+  flutter_test:
     sdk: flutter
-//以下を追加
+
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. The lint set provided by the package is
+  # activated in the `analysis_options.yaml` file located at the root of your
+  # package. See that file for information about deactivating specific lint
+  # rules and activating additional ones.
+  flutter_lints: ^2.0.0
+  // ===== 以下を追加 =====
   http: ^0.13.4
   web3dart: ^2.3.5
   web_socket_channel: ^2.2.0
@@ -352,7 +400,8 @@ dependencies:
 
 Flutterのパッケージについて詳しく知りたい方は、[こちら](https://pub.dev/)から検索してみてください。
 
-次に、前のセクションでコンパイルした、ブロックチェーンに接続するための`TodoContract.json`ファイルを`client`の中に持ってきます。
+<!-- TODO: 下記は、TodoContractを作成した後に移動する。 -->
+<!-- 次に、前のセクションでコンパイルした、ブロックチェーンに接続するための`TodoContract.json`ファイルを`client`の中に持ってきます。
 
 `client`フォルダ直下に、`smartcontract`フォルダを作成してください。
 
@@ -372,7 +421,7 @@ flutter:
   uses-material-design: true
   assets:
     - smartcontract/TodoContract.json
-```
+``` -->
 
 最後に、必要ないので、`test`フォルダ内の`widget_test.dart`ファイルは削除してください。
 
