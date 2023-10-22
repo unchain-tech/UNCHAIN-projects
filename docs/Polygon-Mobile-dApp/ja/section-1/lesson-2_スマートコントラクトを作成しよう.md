@@ -16,8 +16,7 @@
 
 `TodoContract.sol`のファイル内に以下のコードを記載します。
 
-```js
-// TodoContract.sol
+```solidity
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity ^0.8.9;
 
@@ -45,7 +44,7 @@ contract TodoContract {
 
 では、コードを詳しく見ていきましょう。
 
-```js
+```solidity
 // TodoContract.sol
 // SPDX-License-Identifier: GPL-3.0
 ```
@@ -54,7 +53,7 @@ contract TodoContract {
 
 詳細については、[こちら](https://www.skyarch.net/blog/?p=15940)を参照してみてください。
 
-```js
+```solidity
 // TodoContract.sol
 pragma solidity ^0.8.9;
 ```
@@ -63,7 +62,7 @@ pragma solidity ^0.8.9;
 
 上記の場合「このコントラクトを実行するときは、Solidityコンパイラのバージョン0.8.6のみを使用し、それ以下のものは使用しません」という意味です。
 
-```js
+```solidity
 // TodoContract.sol
 contract TodoContract {
   ...
@@ -72,14 +71,14 @@ contract TodoContract {
 
 `contract`は、ほかの言語でいうところの「[class](https://wa3.i-3-i.info/word1120.html)」のようなものなのです。
 
-```js
+```solidity
 // TodoContract.sol
     uint256 public taskCount = 0;
 ```
 
 `taskCount`は、スマートコントラクト内のToDoアイテムの総数を格納する符号なしpublic整数です。
 
-```js
+```solidity
 // TodoContract.sol
     struct Task {
         uint256 index;
@@ -93,14 +92,14 @@ contract TodoContract {
 - `taskName` : To-doのタイトル
 - `isComplete` : To-doが完了したかどうかの状態(完了したら`true`、完了してないなら`false`)
 
-```js
+```solidity
 // TodoContract.sol
     mapping(uint256 => Task) public todos;
 ```
 
 `mapping(uint256 => Task) public todos;`は、すべてのToDoを格納するマッピングで、キーは`id`で、値は上記の`Task`です。
 
-```js
+```solidity
 // TodoContract.sol
     //1.to-doを作成する機能
     event TaskCreated(string task, uint256 taskNumber);
@@ -119,7 +118,7 @@ contract TodoContract {
 
 1\. to-doを作成する機能
 
-```js
+```solidity
 // TodoContract.sol
     function createTask(string memory _taskName) public {
         todos[taskCount] = Task(taskCount, _taskName, false);
@@ -130,7 +129,7 @@ contract TodoContract {
 
 では、コードを詳しく見ていきましょう。
 
-```js
+```solidity
 // TodoContract.sol
     function createTask(string memory _taskName) public {
     　...
@@ -139,21 +138,21 @@ contract TodoContract {
 
 `createTask`関数は、to-doの`_taskName`を受け取ります。
 
-```js
+```solidity
 // TodoContract.sol
         todos[taskCount] = Task(taskCount, _taskName, false);
 ```
 
 `taskCount`と`_taskName`で新しい`Task`構造を作成し、`todos`マップの現在の`taskCount`の値に代入することができます。
 
-```js
+```solidity
 // TodoContract.sol
         taskCount++;
 ```
 
 to-doが作成されるたびに`taskCount`が１ずつ増えるようにしています。
 
-```js
+```solidity
 // TodoContract.sol
         emit TaskCreated(_taskName, taskCount - 1);
 ```
@@ -164,7 +163,7 @@ to-doが作成されるたびに`taskCount`が１ずつ増えるようにして�
 
 2\.to-doを更新する機能
 
-```js
+```solidity
 // TodoContract.sol
     function updateTask(uint256 _taskId, string memory _taskName) public {
         Task memory currTask = todos[_taskId];
@@ -175,7 +174,7 @@ to-doが作成されるたびに`taskCount`が１ずつ増えるようにして�
 
 では、コードを詳しく見ていきましょう。
 
-```js
+```solidity
 // TodoContract.sol
     function updateTask(uint256 _taskId, string memory _taskName) public {
       ...
@@ -184,7 +183,7 @@ to-doが作成されるたびに`taskCount`が１ずつ増えるようにして�
 
 `updateTask`関数は、更新されるto-doの`_taskId`と更新された`taskName`を受け取ります。
 
-```js
+```solidity
 // TodoContract.sol
         Task memory currTask = todos[_taskId];
         todos[_taskId] = Task(_taskId, _taskName, currTask.isComplete);
@@ -194,7 +193,7 @@ to-doが作成されるたびに`taskCount`が１ずつ増えるようにして�
 
 - 更新中に、そのto-doの`isComplete`の値を保持しておく必要があります。まず、マップから現在のタスクを取得し、それを変数に格納し、その`isComplete`値を新しいタスク・オブジェクトに使用します。
 
-```js
+```solidity
 // TodoContract.sol
         emit TaskUpdated(_taskName, _taskId);
 ```
@@ -205,7 +204,7 @@ to-doが作成されるたびに`taskCount`が１ずつ増えるようにして�
 
 3\.to-doの完了・未完了を切り替える機能
 
-```js
+```solidity
 // TodoContract.sol
     function toggleComplete(uint256 _taskId) public {
         Task memory currTask = todos[_taskId];
@@ -221,7 +220,7 @@ to-doが作成されるたびに`taskCount`が１ずつ増えるようにして�
 
 では、コードを詳しく見ていきましょう。
 
-```js
+```solidity
 // TodoContract.sol
     function toggleComplete(uint256 _taskId) public {
       ...
@@ -230,7 +229,7 @@ to-doが作成されるたびに`taskCount`が１ずつ増えるようにして�
 
 `toggleComplete`関数には、更新するto-doの`_taskId`を受け取ります。
 
-```js
+```solidity
 // TodoContract.sol
         Task memory currTask = todos[_taskId];
         todos[_taskId] = Task(_taskId, currTask.taskName, !currTask.isComplete);
@@ -239,7 +238,7 @@ to-doが作成されるたびに`taskCount`が１ずつ増えるようにして�
 
 - `isComplete`を現在の`isComplete`の反対の値として設定します。
 
-```js
+```solidity
 // TodoContract.sol
         emit TaskIsCompleteToggled(
             currTask.taskName,
@@ -254,7 +253,7 @@ to-doが作成されるたびに`taskCount`が１ずつ増えるようにして�
 
 4\.to-doを削除する機能
 
-```js
+```solidity
 // TodoContract.sol
     function deleteTask(uint256 _taskId) public {
         delete todos[_taskId];
@@ -264,7 +263,7 @@ to-doが作成されるたびに`taskCount`が１ずつ増えるようにして�
 
 では、コードを詳しく見ていきましょう。
 
-```js
+```solidity
 // TodoContract.sol
     function deleteTask(uint256 _taskId) public {
   ...
@@ -273,14 +272,14 @@ to-doが作成されるたびに`taskCount`が１ずつ増えるようにして�
 
 `deleteTask`は、削除するto-doの`_task`をパラメータとして受け取ります。
 
-```js
+```solidity
 // TodoContract.sol
         delete todos[_taskId];
 ```
 
 受け取った`_task`に対応する`todos`マップから`Task`オブジェクトを削除します。
 
-```js
+```solidity
 // TodoContract.sol
         emit TaskDeleted(_taskId);
 ```
