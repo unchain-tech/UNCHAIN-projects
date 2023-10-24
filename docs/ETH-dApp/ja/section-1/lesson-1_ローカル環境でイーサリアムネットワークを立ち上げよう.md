@@ -17,22 +17,14 @@
 - ユーザーはWebサイトを介して、ブロックチェーン上に展開されているあなたのスマートコントラクトと簡単にやりとりできます。
 - スマートコントラクトの実装 + フロントエンドユーザー・インタフェースの作成 👉 dAppの完成を目指しましょう 🎉
 
-まず、`node` / `yarn`を取得する必要があります。お持ちでない場合は、下記のリンクを参照してください。
+まず、`Node.js`を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment#installing-node.js)にアクセスをしてインストールしてください。このプロジェクトで推奨するバージョンは`v20`です。
 
-- [Node.js](https://hardhat.org/tutorial/setting-up-the-environment#installing-node.js)
-- [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable)
+インストールが完了したら、ターミナルで以下のコマンドを実行し、バージョンを確認してください。
 
->**Node.js / Yarnのバージョンについて**
->
->以下のバージョンを推奨しています。
->この先バージョンの違いによるエラーに遭遇する場合があるので参考にしてください。
->```
-># Node.js
->v20.5.0
->
-># Yarn
->3.6.1
->```
+```
+$ node -v
+v20.5.0
+```
 
 ### 🍽 Git リポジトリをあなたの GitHub にフォークする
 
@@ -94,11 +86,9 @@ packagesディレクトリの中には、`client`と`contract`という2つの�
 
 ```json
 // package.json
-"workspaces": {
-  "packages": [
+  "workspaces": [
     "packages/*"
-  ]
-},
+  ],
 ```
 
 この機能により、yarn installを一度だけ実行すれば、すべてのパッケージ（今回はコントラクトのパッケージとクライアントのパッケージ）を一度にインストールできるようになります。
@@ -107,6 +97,12 @@ packagesディレクトリの中には、`client`と`contract`という2つの�
 
 ```
 yarn install
+```
+
+⚠️ `command not found: yarn`が発生した場合は、以下のコマンドを実行後、再度`yarn install`を実行してください（[参照](https://yarnpkg.com/getting-started/install)）。
+
+```
+corepack disable
 ```
 
 `yarn`コマンドを実行することで、JavaScriptライブラリのインストールが行われます。
@@ -140,7 +136,7 @@ yarn client start
 `packages/contract`ディレクトリにいることを確認し、次のコマンドを実行します。
 
 ```
-npx hardhat
+npx hardhat init
 ```
 
 `hardhat`がターミナル上で立ち上がったら、それぞれの質問を以下のように答えていきます。
@@ -164,7 +160,7 @@ $ npx hardhat
 888    888 888  888 888    Y88b 888 888  888 888  888 Y88b.
 888    888 "Y888888 888     "Y88888 888  888 "Y888888  "Y888
 
-👷 Welcome to Hardhat v2.13.0 👷‍
+👷 Welcome to Hardhat v2.18.1 👷‍
 
 ✔ What do you want to do? · Create a JavaScript project
 ✔ Hardhat project root: · /ETH-dApp/packages/contract
@@ -174,22 +170,14 @@ $ npx hardhat
 
 See the README.md file for some example tasks you can run
 
-Give Hardhat a star on Github if you're enjoying it! 💞✨
+Give Hardhat a star on Github if you're enjoying it! ⭐️✨
 
      https://github.com/NomicFoundation/hardhat
 ```
 
-> ⚠️: 注意 #1
+> ⚠️: 注意
 >
 > Windows で Git Bash を使用してハードハットをインストールしている場合、このステップ (HH1) でエラーが発生する可能性があります。問題が発生した場合は、WindowsCMD（コマンドプロンプト）を使用して HardHat のインストールを実行してみてください。
-
-> ⚠️: 注意 #2
->
-> `npx hardhat`が実行されなかった場合、以下をターミナルで実行してください。
->
-> ```
-> yarn add --dev @nomicfoundation/hardhat-toolbox
-> ```
 
 この段階で、フォルダー構造は下記のようになっていることを確認してください。
 
@@ -209,50 +197,68 @@ ETH-dApp
 +        └── test/
 ```
 
-それでは、`contract`ディレクトリ内に生成された`package.json`ファイルを以下を参考に更新をしましょう。
+それでは、`contract`ディレクトリ内の`package.json`ファイルに、`"scripts"`を追加しましょう。下のように更新してください。
 
-```diff
+```json
 {
   "name": "contract",
   "version": "0.1.0",
--  "main": "index.js",
--  "license": "MIT",
   "private": true,
-  "devDependencies": {
-    "@nomicfoundation/hardhat-chai-matchers": "^1.0.6",
-    "@nomicfoundation/hardhat-network-helpers": "^1.0.8",
-    "@nomicfoundation/hardhat-toolbox": "^2.0.2",
-    "@nomiclabs/hardhat-ethers": "^2.2.2",
-    "@nomiclabs/hardhat-etherscan": "^3.1.7",
-    "@typechain/ethers-v5": "^10.2.0",
-    "@typechain/hardhat": "^6.1.5",
-    "chai": "^4.3.7",
-    "ethers": "^5.4",
-    "hardhat": "^2.17.0",
-    "hardhat-gas-reporter": "^1.0.9",
-    "solidity-coverage": "^0.8.2",
-    "typechain": "^8.1.1"
+  "scripts": {
+    "test": "npx hardhat test"
   },
-+  "scripts": {
-+    "test": "npx hardhat test"
-+  }
-}
+  "devDependencies": {
+    ...
 ```
 
-不要な定義を削除し、hardhatの自動テストを実行するためのコマンドを追加しました。
+hardhatの自動テストを実行するためのコマンドを追加しました。
+
+次に、test/Lock.tsファイルを修正しましょう。ethers v6ベースのToolboxで生成された初期コードを、ethers v5ベースのコードに置き換えます。このプロジェクトではethers v5を使用するためです。
+
+修正箇所は2箇所です。まず初めに、ファイルの先頭でインポートしている`@nomicfoundation/hardhat-toolbox/network-helpers`を`@nomicfoundation/hardhat-network-helpers`に変更します。
+
+**（変更前）**
+
+```javascript
+const {
+  time,
+  loadFixture,
+} = require("@nomicfoundation/hardhat-toolbox/network-helpers");
+```
+
+**（変更後）**
+
+```javascript
+const {
+  time,
+  loadFixture,
+} = require("@nomicfoundation/hardhat-network-helpers");
+```
+
+次に、46行目の`lock.target`を`lock.address`に変更します。
+
+**（変更前）**
+
+```javascript
+      expect(await ethers.provider.getBalance(lock.target)).to.equal(
+        lockedAmount
+      );
+```
+
+**（変更後）**
+
+```javascript
+      expect(await ethers.provider.getBalance(lock.address)).to.equal(
+        lockedAmount
+      );
+```
 
 ### ⭐️ 実行する
 
 すべてが機能していることを確認するには、以下を実行します。
 
 ```
-npx hardhat compile
-```
-
-次に、以下を実行します。
-
-```
-npx hardhat test
+yarn test
 ```
 
 次のように表示されます。
@@ -281,8 +287,7 @@ npx hardhat test
 ターミナル上で`ls`と入力してみて、下記のフォルダーとファイルが表示されていたら成功です。
 
 ```
-README.md         cache             hardhat.config.js package.json      test
-artifacts         contracts         node_modules      scripts
+README.md         artifacts         cache             contracts         hardhat.config.js package.json      scripts           test
 ```
 
 ここまできたら、フォルダーの中身を整理しましょう。
