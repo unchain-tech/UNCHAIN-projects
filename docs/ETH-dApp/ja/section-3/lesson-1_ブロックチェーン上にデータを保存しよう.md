@@ -15,13 +15,17 @@
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
+
 import "hardhat/console.sol";
+
 contract WavePortal {
     uint256 private _totalWaves;
+
     /*
     * NewWaveイベントの作成
     */
     event NewWave(address indexed from, uint256 timestamp, string message);
+
     /*
     * Waveという構造体を作成。
     * 構造体の中身は、カスタマイズすることができます。
@@ -30,15 +34,18 @@ contract WavePortal {
         address waver; //「👋（wave）」を送ったユーザーのアドレス
         string message; // ユーザーが送ったメッセージ
         uint256 timestamp; // ユーザーが「👋（wave）」を送った瞬間のタイムスタンプ
+
     }
     /*
     * 構造体の配列を格納するための変数wavesを宣言。
     * これで、ユーザーが送ってきたすべての「👋（wave）」を保持することができます。
     */
     Wave[] private _waves;
+
     constructor() {
         console.log("WavePortal - Smart Contract!");
     }
+
     /*
     * _messageという文字列を要求するようにwave関数を更新。
     * _messageは、ユーザーがフロントエンドから送信するメッセージです。
@@ -46,15 +53,18 @@ contract WavePortal {
     function wave(string memory _message) public {
         _totalWaves += 1;
         console.log("%s waved w/ message %s", msg.sender, _message);
+
         /*
          * 「👋（wave）」とメッセージを配列に格納。
          */
         _waves.push(Wave(msg.sender, _message, block.timestamp));
+
         /*
          * コントラクト側でemitされたイベントに関する通知をフロントエンドで取得できるようにする。
          */
         emit NewWave(msg.sender, block.timestamp, _message);
     }
+
     /*
      * 構造体配列のwavesを返してくれるgetAllWavesという関数を追加。
      * これで、私たちのWEBアプリからwavesを取得することができます。
@@ -62,6 +72,7 @@ contract WavePortal {
     function getAllWaves() public view returns (Wave[] memory) {
         return _waves;
     }
+
     function getTotalWaves() public view returns (uint256) {
         // コントラクトが出力する値をコンソールログで表示する。
         console.log("We have %d total waves!", _totalWaves);
@@ -168,6 +179,7 @@ useEffect(() => {
     );
     wavePortalContract.on("NewWave", onNewWave);
   }
+
   /*メモリリークを防ぐために、NewWaveのイベントを解除します*/
   return () => {
     if (wavePortalContract) {
@@ -355,20 +367,25 @@ const main = async () => {
   const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
   const waveContract = await waveContractFactory.deploy();
   console.log("Contract added to:", waveContract.address);
+
   let waveCount;
   waveCount = await waveContract.getTotalWaves();
   console.log(waveCount.toNumber());
+
   /**
    * 「👋（wave）」を送る
    */
   let waveTxn = await waveContract.wave("A message!");
   await waveTxn.wait(); // トランザクションが承認されるのを待つ（テスト:1回目）
+
   const [_, randomPerson] = await hre.ethers.getSigners();
   waveTxn = await waveContract.connect(randomPerson).wave("Another message!");
   await waveTxn.wait(); // トランザクションが承認されるのを待つ（テスト:2回目）
+
   let allWaves = await waveContract.getAllWaves();
   console.log(allWaves);
 };
+
 const runMain = async () => {
   try {
     await main();
@@ -378,6 +395,7 @@ const runMain = async () => {
     process.exit(1);
   }
 };
+
 runMain();
 ```
 
@@ -611,6 +629,7 @@ const App = () => {
       console.log(error);
     }
   };
+
   /* connectWalletメソッドを実装 */
   const connectWallet = async () => {
     try {
@@ -628,6 +647,7 @@ const App = () => {
       console.log(error);
     }
   };
+
   /* waveの回数をカウントする関数を実装 */
   const wave = async () => {
     try {
@@ -736,6 +756,7 @@ const App = () => {
     </div>
   );
 };
+
 export default App;
 ```
 

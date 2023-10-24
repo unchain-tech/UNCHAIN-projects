@@ -13,6 +13,7 @@ Webアプリケーション上で、ユーザーがイーサリアムネット�
 ```javascript
 import React, { useEffect } from "react";
 import "./App.css";
+
 const App = () => {
   const checkIfWalletIsConnected = () => {
     /*
@@ -25,12 +26,14 @@ const App = () => {
       console.log("We have the ethereum object", ethereum);
     }
   };
+
   /*
    * WEBページがロードされたときに下記の関数を実行します。
    */
   useEffect(() => {
     checkIfWalletIsConnected();
   }, []);
+
   return (
     <div className="mainContainer">
       <div className="dataContainer">
@@ -57,6 +60,7 @@ const App = () => {
     </div>
   );
 };
+
 export default App;
 ```
 
@@ -93,10 +97,12 @@ Consoleに`We have the ethereum object`と表示されているでしょうか�
 ```javascript
 import React, { useEffect, useState } from "react";
 import "./App.css";
+
 const App = () => {
   /* ユーザーのパブリックウォレットを保存するために使用する状態変数を定義します */
   const [currentAccount, setCurrentAccount] = useState("");
   console.log("currentAccount: ", currentAccount);
+
   /* window.ethereumにアクセスできることを確認します */
   const checkIfWalletIsConnected = async () => {
     try {
@@ -120,10 +126,12 @@ const App = () => {
       console.log(error);
     }
   };
+
   /* WEBページがロードされたときに下記の関数を実行します */
   useEffect(() => {
     checkIfWalletIsConnected();
   }, []);
+
   return (
     <div className="mainContainer">
       <div className="dataContainer">
@@ -150,6 +158,7 @@ const App = () => {
     </div>
   );
 };
+
 export default App;
 ```
 
@@ -230,10 +239,12 @@ yarn client start
 ```javascript
 import React, { useEffect, useState } from "react";
 import "./App.css";
+
 const App = () => {
   // ユーザーのパブリックウォレットを保存するために使用する状態変数を定義します。
   const [currentAccount, setCurrentAccount] = useState("");
   console.log("currentAccount: ", currentAccount);
+
   // window.ethereumにアクセスできることを確認します。
   const checkIfWalletIsConnected = async () => {
     try {
@@ -257,6 +268,7 @@ const App = () => {
       console.log(error);
     }
   };
+
   // connectWalletメソッドを実装
   const connectWallet = async () => {
     try {
@@ -274,6 +286,7 @@ const App = () => {
       console.log(error);
     }
   };
+
   // WEBページがロードされたときに下記の関数を実行します。
   useEffect(() => {
     checkIfWalletIsConnected();
@@ -315,6 +328,7 @@ const App = () => {
     </div>
   );
 };
+
 export default App;
 ```
 

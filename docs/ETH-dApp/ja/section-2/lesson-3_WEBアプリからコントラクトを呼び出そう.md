@@ -18,10 +18,12 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 /* ethers 変数を使えるようにする*/
 import { ethers } from "ethers";
+
 const App = () => {
   // ユーザーのパブリックウォレットを保存するために使用する状態変数を定義します。
   const [currentAccount, setCurrentAccount] = useState("");
   console.log("currentAccount: ", currentAccount);
+
   // window.ethereumにアクセスできることを確認します。
   const checkIfWalletIsConnected = async () => {
     try {
@@ -45,6 +47,7 @@ const App = () => {
       console.log(error);
     }
   };
+
   // connectWalletメソッドを実装
   const connectWallet = async () => {
     try {
@@ -62,6 +65,7 @@ const App = () => {
       console.log(error);
     }
   };
+
   // waveの回数をカウントする関数を実装
   const wave = async () => {
     try {
@@ -84,6 +88,7 @@ const App = () => {
       console.log(error);
     }
   };
+
   // WEBページがロードされたときに下記の関数を実行します。
   useEffect(() => {
     checkIfWalletIsConnected();
@@ -126,6 +131,7 @@ const App = () => {
     </div>
   );
 };
+
 export default App;
 ```
 
@@ -290,7 +296,7 @@ Webアプリケーションがコントラクトと通信するために必要�
 
 ABIファイルは、コントラクトがコンパイルされた時に生成され、`artifacts`ディレクトリに自動的に格納されます。
 
-ターミナルで`contract`ディレクトリに移動し、`ls`を実行しましょう。
+ターミナルで`packages/contract`ディレクトリに移動し、`ls`を実行しましょう。
 
 `artifacts`ディレクトリの存在を確認してください。
 
@@ -298,7 +304,7 @@ ABIファイルの中身は、`WavePortal.json`というファイルに格納さ
 
 下記を実行して、ABIファイルをコピーしましょう。
 
-1. ターミナル上で`contract`にいることを確認する（もしくは移動する）。
+1. ターミナル上で`packages/contract`にいることを確認する（もしくは移動する）。
 
 2. ターミナル上で下記を実行し、`WavePortal.json`を開きましょう。※ ファインダーから直接開くことも可能です。
 
@@ -331,6 +337,7 @@ import "./App.css";
 import { ethers } from "ethers";
 /* ABIファイルを含むWavePortal.jsonファイルをインポートする*/
 import abi from "./utils/WavePortal.json";
+
 const App = () => {
   /*
    * ユーザーのパブリックウォレットを保存するために使用する状態変数を定義します。
@@ -373,6 +380,7 @@ const App = () => {
       console.log(error);
     }
   };
+
   /*
    * connectWalletメソッドを実装
    */
@@ -392,6 +400,7 @@ const App = () => {
       console.log(error);
     }
   };
+
   /*
    * waveの回数をカウントする関数を実装
    */
@@ -434,6 +443,7 @@ const App = () => {
   useEffect(() => {
     checkIfWalletIsConnected();
   }, []);
+
   return (
     <div className="mainContainer">
       <div className="dataContainer">
@@ -476,6 +486,7 @@ const App = () => {
     </div>
   );
 };
+
 export default App;
 ```
 
