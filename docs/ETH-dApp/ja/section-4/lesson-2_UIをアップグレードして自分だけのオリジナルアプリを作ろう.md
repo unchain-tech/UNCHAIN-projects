@@ -47,7 +47,7 @@ console.log("Retrieved total wave count...", count.toNumber());
 このコードの直下に下記を追加しましょう。
 
 ```javascript
-let contractBalance = await provider.getBalance(wavePortalContract.address);
+const contractBalance = await provider.getBalance(wavePortalContract.address);
 console.log("Contract balance:", ethers.utils.formatEther(contractBalance));
 ```
 
@@ -72,13 +72,11 @@ console.log("Retrieved total wave count...", count.toNumber());
 このコードの直下に下記を追加しましょう。
 
 ```javascript
-let contractBalance = await provider.getBalance(wavePortalContract.address);
-let contractBalance_post = await provider.getBalance(
+const contractBalancePost = await provider.getBalance(
   wavePortalContract.address
 );
-console.log("Contract balance:", ethers.utils.formatEther(contractBalance));
 /* コントラクトの残高が減っていることを確認 */
-if (contractBalance_post.lt(contractBalance)) {
+if (contractBalancePost.lt(contractBalance)) {
   /* 減っていたら下記を出力 */
   console.log("User won ETH!");
 } else {
@@ -86,7 +84,7 @@ if (contractBalance_post.lt(contractBalance)) {
 }
 console.log(
   "Contract balance after wave:",
-  ethers.utils.formatEther(contractBalance_post)
+  ethers.utils.formatEther(contractBalancePost)
 );
 ```
 
