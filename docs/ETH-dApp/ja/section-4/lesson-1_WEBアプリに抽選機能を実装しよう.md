@@ -156,15 +156,15 @@ if (_seed <= 50) {
 
 ```javascript
 const main = async () => {
-  const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
+  const waveContractFactory = await hre.ethers.getContractFactory('WavePortal');
   /*
    * デプロイする際0.1ETHをコントラクトに提供する
    */
   const waveContract = await waveContractFactory.deploy({
-    value: hre.ethers.utils.parseEther("0.1"),
+    value: hre.ethers.utils.parseEther('0.1'),
   });
   await waveContract.deployed();
-  console.log("Contract deployed to: ", waveContract.address);
+  console.log('Contract deployed to: ', waveContract.address);
 
   /*
    * コントラクトの残高を取得（0.1ETH）であることを確認
@@ -173,17 +173,17 @@ const main = async () => {
     waveContract.address
   );
   console.log(
-    "Contract balance:",
+    'Contract balance:',
     hre.ethers.utils.formatEther(contractBalance)
   );
 
   /*
    * 2回 waves を送るシミュレーションを行う
    */
-  const waveTxn = await waveContract.wave("This is wave #1");
+  const waveTxn = await waveContract.wave('This is wave #1');
   await waveTxn.wait();
 
-  const waveTxn2 = await waveContract.wave("This is wave #2");
+  const waveTxn2 = await waveContract.wave('This is wave #2');
   await waveTxn2.wait();
 
   /*
@@ -194,7 +194,7 @@ const main = async () => {
    *コントラクトの残高から0.0001ETH引かれていることを確認
    */
   console.log(
-    "Contract balance:",
+    'Contract balance:',
     hre.ethers.utils.formatEther(contractBalance)
   );
 
@@ -661,7 +661,7 @@ Compiled 1 Solidity file successfully
 
 - `WavePortal.sol`の`uint256 prizeAmount`を更新して、ユーザーに送るETHの金額を再設定する
 
-- `deploy.js`の`hre.ethers.utils.parseEther("0.001")`を更新して、コントラクトに提供する資金を再設定する
+- `deploy.js`の`hre.ethers.utils.parseEther('0.001')`を更新して、コントラクトに提供する資金を再設定する
 
 - `WavePortal.sol`に記載されている`15 minutes`を調整して、バッファ期間を調整する(※テストに関しては、`30 seconds`を推奨しています)
 

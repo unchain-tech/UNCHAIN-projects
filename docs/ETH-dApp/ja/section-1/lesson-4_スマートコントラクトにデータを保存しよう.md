@@ -153,12 +153,12 @@ function getTotalWaves() public view returns (uint256) {
 ```javascript
 const main = async () => {
   const [owner, randomPerson] = await hre.ethers.getSigners();
-  const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
+  const waveContractFactory = await hre.ethers.getContractFactory('WavePortal');
   const waveContract = await waveContractFactory.deploy();
   const wavePortal = await waveContract.deployed();
 
-  console.log("Contract deployed to:", wavePortal.address);
-  console.log("Contract deployed by:", owner.address);
+  console.log('Contract deployed to:', wavePortal.address);
+  console.log('Contract deployed by:', owner.address);
 
   let waveCount;
   waveCount = await waveContract.getTotalWaves();
@@ -208,13 +208,13 @@ const [owner, randomPerson] = await hre.ethers.getSigners();
 次に、下記のコードを見ていきましょう。
 
 ```javascript
-console.log("Contract deployed to:", wavePortal.address);
+console.log('Contract deployed to:', wavePortal.address);
 ```
 
 ここでは、あなたのスマートコントラクトのデプロイ先のアドレス(＝ `wavePortal.address`)をターミナルに出力しています。
 
 ```javascript
-console.log("Contract deployed by:", owner.address);
+console.log('Contract deployed by:', owner.address);
 ```
 
 ここでは、`WavePortal`コントラクトをデプロイした人（＝あなた）のアドレス(＝ `owner.address`)をターミナルに出力しています。
@@ -306,12 +306,12 @@ We have 1 total waves!
 ```javascript
 const main = async () => {
   const [owner, randomPerson] = await hre.ethers.getSigners();
-  const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
+  const waveContractFactory = await hre.ethers.getContractFactory('WavePortal');
   const waveContract = await waveContractFactory.deploy();
   const wavePortal = await waveContract.deployed();
 
-  console.log("Contract deployed to:", wavePortal.address);
-  console.log("Contract deployed by:", owner.address);
+  console.log('Contract deployed to:', wavePortal.address);
+  console.log('Contract deployed by:', owner.address);
 
   let waveCount;
   waveCount = await waveContract.getTotalWaves();

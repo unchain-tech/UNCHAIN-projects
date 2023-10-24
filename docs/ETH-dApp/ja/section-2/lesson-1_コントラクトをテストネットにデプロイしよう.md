@@ -131,14 +131,14 @@ README.md         artifacts         cache             contracts         hardhat.
 `hardhat.config.js`をVS Codeで開いて、中身を編集していきます。
 
 ```javascript
-require("@nomicfoundation/hardhat-toolbox");
+require('@nomicfoundation/hardhat-toolbox');
 
 module.exports = {
-  solidity: "0.8.19",
+  solidity: '0.8.19',
   networks: {
     sepolia: {
-      url: "YOUR_ALCHEMY_API_URL",
-      accounts: ["YOUR_PRIVATE_SEPOLIA_ACCOUNT_KEY"],
+      url: 'YOUR_ALCHEMY_API_URL',
+      accounts: ['YOUR_PRIVATE_SEPOLIA_ACCOUNT_KEY'],
     },
   },
 };

@@ -41,14 +41,14 @@ const wavePortalContract = new ethers.Contract(
   signer
 );
 let count = await wavePortalContract.getTotalWaves();
-console.log("Retrieved total wave count...", count.toNumber());
+console.log('Retrieved total wave count...', count.toNumber());
 ```
 
 このコードの直下に下記を追加しましょう。
 
 ```javascript
 const contractBalance = await provider.getBalance(wavePortalContract.address);
-console.log("Contract balance:", ethers.utils.formatEther(contractBalance));
+console.log('Contract balance:', ethers.utils.formatEther(contractBalance));
 ```
 
 これにより、コントラクトの現在の資金額がConsoleに出力されます。
@@ -62,11 +62,11 @@ console.log("Contract balance:", ethers.utils.formatEther(contractBalance));
 const waveTxn = await wavePortalContract.wave(messageValue, {
   gasLimit: 300000,
 });
-console.log("Mining...", waveTxn.hash);
+console.log('Mining...', waveTxn.hash);
 await waveTxn.wait();
-console.log("Mined -- ", waveTxn.hash);
+console.log('Mined -- ', waveTxn.hash);
 count = await wavePortalContract.getTotalWaves();
-console.log("Retrieved total wave count...", count.toNumber());
+console.log('Retrieved total wave count...', count.toNumber());
 ```
 
 このコードの直下に下記を追加しましょう。
@@ -78,12 +78,12 @@ const contractBalancePost = await provider.getBalance(
 /* コントラクトの残高が減っていることを確認 */
 if (contractBalancePost.lt(contractBalance)) {
   /* 減っていたら下記を出力 */
-  console.log("User won ETH!");
+  console.log('User won ETH!');
 } else {
   console.log("User didn't win ETH.");
 }
 console.log(
-  "Contract balance after wave:",
+  'Contract balance after wave:',
   ethers.utils.formatEther(contractBalancePost)
 );
 ```
@@ -201,11 +201,11 @@ PROD_ALCHEMY_KEY = メインネットにデプロイする際に使用するAlch
 
 ```javascript
 // hardhat.config.js
-require("@nomicfoundation/hardhat-toolbox");
-require("dotenv").config();
+require('@nomicfoundation/hardhat-toolbox');
+require('dotenv').config();
 
 module.exports = {
-  solidity: "0.8.19",
+  solidity: '0.8.19',
   networks: {
     sepolia: {
       url: process.env.STAGING_ALCHEMY_KEY,

@@ -320,7 +320,7 @@ WavePortal address:  0x550925E923Cb1734de73B3a843A21b871fe2a673
 
 ターミナルに出力されたコントラクト(`WavePortal address`)のアドレス(`0x..`)をコピーしましょう。
 
-- コピーしたアドレスを`App.js`の`const contractAddress = "こちら"`に貼り付けましょう。
+- コピーしたアドレスを`App.js`の`const contractAddress = 'こちら'`に貼り付けましょう。
 
 3 \. 以前と同じように`artifacts`からABIファイルを取得します。下記のステップを実行してください。
 
