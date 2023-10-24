@@ -37,27 +37,22 @@ Alchemyは、世界中のトランザクションを一元化し、マイナー�
 
 ### 💎 Alchemy でネットワークを作成
 
-Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押してください。
+Alchemyのアカウントを作成したら、Appsページの`+ Create new app`ボタンを押してください。
 
-![](/public/images/ETH-dApp/section-2/2_2_17.png)
-Ecosystem選択欄が出てきた場合は`Ethereum`を選択しましょう。
+![](/public/images/ETH-dApp/section-2/2_1_1.png)
 
-![](/public/images/ETH-dApp/section-2/2_2_1.png)
 次に、下記の項目を埋めていきます。下図を参考にしてください。
 
-![](/public/images/ETH-dApp/section-2/2_2_2.png)
+![](/public/images/ETH-dApp/section-2/2_1_2.png)
 
-- `NAME`: プロジェクトの名前(例: `WavePortal`)
-- `DESCRIPTION`: プロジェクトの概要
-- `CHAIN`: `Ethereum`を選択
-- `NETWORK`: `Sepolia`を選択
+- `Chain`: `Ethereum`を選択
+- `Network`: `Ethereum Sepolia`を選択
+- `Name`: プロジェクトの名前(例: `ETH dApp`)
+- `Description`: プロジェクトの概要（任意）
 
-それから、作成したAppの`VIEW DETAILS`をクリックします。
-![](/public/images/ETH-dApp/section-2/2_2_3.png)
+`Create app`ボタンを押すと、プロジェクトが作成されます。`API Key`をクリックすると、表示されたポップアップからKeyを取得することができます（今回のプロジェクトで使用するのは、`HTTPS`に表示されているものになります）。
 
-プロジェクトを開いたら、`VIEW KEY`ボタンをクリックします。
-![](/public/images/ETH-dApp/section-2/2_2_4.png)
-ポップアップが開くので、`HTTP`のリンクをコピーしてください。
+![](/public/images/ETH-dApp/section-2/2_1_3.png)
 
 これがあなたが本番環境のネットワークに接続する際に使用する`API Key`になります。
 
@@ -125,20 +120,20 @@ MetaMaskウォレットに`Sepolia Test Network`が設定されたら、下記�
 
 これは、スマートコントラクトプロジェクトのルートディレクトリにあります。
 
-- 今回は、`contract`ディレクトリの直下に`hardhat.config.js`が存在するはずです。
+- 今回は、`packages/contract`ディレクトリの直下に`hardhat.config.js`が存在するはずです。
 
-例)ターミナル上で`contract`に移動し、`ls`を実行した結果
+例)ターミナル上で`packages/contract`に移動し、`ls`を実行した結果
 
 ```
-toshi@ToshiBook contract % ls
-README.md               cache                   hardhat.config.js       package.json            test
-artifacts               contracts               node_modules            scripts
+$ ls
+README.md         artifacts         cache             contracts         hardhat.config.js package.json      scripts           test
 ```
 
 `hardhat.config.js`をVS Codeで開いて、中身を編集していきます。
 
 ```javascript
 require("@nomicfoundation/hardhat-toolbox");
+
 module.exports = {
   solidity: "0.8.19",
   networks: {
