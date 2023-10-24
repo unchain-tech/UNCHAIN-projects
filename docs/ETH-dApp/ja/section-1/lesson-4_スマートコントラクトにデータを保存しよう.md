@@ -268,7 +268,7 @@ waveCount = await waveContract.getTotalWaves();
 ルートディレクトリにいることを確認して、ターミナルで下記を実行してみましょう。
 
 ```
- yarn contract run:script
+yarn contract run:script
 ```
 
 例)ターミナルの出力結果
