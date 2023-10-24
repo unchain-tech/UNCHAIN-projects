@@ -145,7 +145,7 @@ Vercelのアカウントを取得したら、下記を実行しましょう。
 
 3\. プロジェクトを作成します。`Root Directory`が「packages/client」となっていることを確認してください。
 
-![](/public/images/ETH-NFT-Collection/section-4/4_2_9.png)
+![](/public/images/ETH-dApp/section-4/4_2_6.png)
 
 4\. `Deploy`ボタンを推しましょう。
 
