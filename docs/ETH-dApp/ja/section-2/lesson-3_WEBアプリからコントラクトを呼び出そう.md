@@ -318,13 +318,20 @@ ABIファイルの中身は、`WavePortal.json`というファイルに格納さ
 
 1. ターミナル上で`client/src`に移動する。
 
-2. 下記を実行して、`WavePortal.json`ファイルをVS Codeで開く。
+2. srcディレクトリの中に`utils`ディレクトリを作成して、その中に`WavePortal.json`ファイルを作成する。
 
-> ```
-> code client/src/utils/WavePortal.json
-> ```
+   > ```
+   > mkdir utils
+   > touch utils/WavePortal.json
+   > ```
 
-3. **先ほどコピーした`contract/artifacts/contracts/WavePortal.sol/WavePortal.json`の中身を新しく作成した`client/src/utils/WavePortal.json`の中に貼り付けてください。**
+3. 下記を実行して、`WavePortal.json`ファイルをVS Codeで開く。
+
+   > ```
+   > code client/src/utils/WavePortal.json
+   > ```
+
+4. **先ほどコピーした`contract/artifacts/contracts/WavePortal.sol/WavePortal.json`の中身を新しく作成した`client/src/utils/WavePortal.json`の中に貼り付けてください。**
 
 ABIファイルの準備ができたので、`App.js`にインポートしましょう。
 
