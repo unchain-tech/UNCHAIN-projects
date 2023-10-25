@@ -81,7 +81,7 @@ NFTを取得する条件は、以下のようになります。
 
 3. このページの最後にリンクされているProject Completion Formに記入する
 
-4. Discordの`post-your-project`チャンネルに、 あなたのWebサイトをシェアしてください
+4. Discordの`🔥｜completed-projects`チャンネルに、 あなたのWebサイトをシェアしてください
 
 😉🎉 Discordに投稿する際に、追加実装した機能とその概要も教えていただけると幸いです!
 

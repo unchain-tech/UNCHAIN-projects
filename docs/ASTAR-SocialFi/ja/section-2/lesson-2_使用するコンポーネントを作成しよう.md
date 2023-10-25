@@ -1273,7 +1273,7 @@ export default function TopBar(props: any) {
 
 これで間接的に使用するパーツの作成は完了しました！
 
-わからないことがあれば、Discordの`#astar-network`でsection・Lesson名とともに質問をしてください 👋
+わからないことがあれば、Discordの`#astar`でsection・Lesson名とともに質問をしてください 👋
 
 ### 🙋‍♂️ 質問する
 

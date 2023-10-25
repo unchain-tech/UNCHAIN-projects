@@ -116,7 +116,7 @@ The conditions for obtaining an NFT are as follows:
 1. All MVP features have been implemented (Implementation OK).
 2. MVP functions are working seamlessly on the web application (Testing OK).
 3. Fill out the Project Completion Form linked at the end of this page.
-4. Please share your OpenSea link in the Discord `🔥｜completed-project` channel 😉🎉. When posting on Discord, we'd appreciate it if you could also mention any additional features you implemented and provide an overview!
+4. Please share your OpenSea link in the Discord `🔥｜completed-projects` channel 😉🎉. When posting on Discord, we'd appreciate it if you could also mention any additional features you implemented and provide an overview!
 
 Those who complete the project will receive an NFT.
 
