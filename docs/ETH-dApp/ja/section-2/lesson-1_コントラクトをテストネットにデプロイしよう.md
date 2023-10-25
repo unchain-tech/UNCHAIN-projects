@@ -86,27 +86,17 @@ Alchemyのアカウントを作成したら、Appsページの`+ Create new app`
 
 > ✍️: MetaMask で`Sepolia Test Network`を設定する方法
 >
-> 1 \. MetaMask ウォレットのネットワークトグルを開く。
+> 1 \. MetaMask ウォレットのネットワークトグルを開きます。
 >
 > ![](/public/images/ETH-dApp/section-2/2_1_4.png)
 >
-> 2 \. `Show/hide test networks`をクリック。
+> 2 \. `Show test networks`を`ON`にして、表示された`Sepolia`を選択します。
 >
 > ![](/public/images/ETH-dApp/section-2/2_1_5.png)
 >
-> 3 \. `Show test networks`を`ON`にする。
+> 3 \. ネットワークが`Sepolia`に切り替わったことを確認します。
 >
 > ![](/public/images/ETH-dApp/section-2/2_1_6.png)
->
-> 4 \. `Add network`を選択する。
->
-> ![](/public/images/ETH-dApp/section-2/2_1_7.png)
-> 5 \. `Add a network manually`を選択する。
->
-> ![](/public/images/ETH-dApp/section-2/2_1_8.png)
-> 5 \. 以下の情報を入力して`Save`ボタンを押す。
->
-> ![](/public/images/ETH-dApp/section-2/2_1_9.png)
 
 MetaMaskウォレットに`Sepolia Test Network`が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽ETHを取得しましょう。
 
@@ -150,25 +140,27 @@ module.exports = {
 
 2\. `YOUR_PRIVATE_SEPOLIA_ACCOUNT_KEY`の取得
 
-> 1.  お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを`Sepolia Test Network`に変更します。
+> [ドキュメント](https://support.metamask.io/hc/en-us/articles/360015289632)を参考に取得していきます。
 >
-> ![](/public/images/ETH-dApp/section-2/2_1_10.png)
+> 1.  お使いのブラウザから、MetaMask プラグインをクリックして、画面上部のアカウント選択をクリックします。
 >
-> 2.  それから、`Account details`を選択してください。
+> ![](/public/images/ETH-dApp/section-2/2_1_7.png)
 >
-> ![](/public/images/ETH-dApp/section-2/2_1_11.png)
+> 2.  秘密鍵をエクスポートしたいアカウントの横にあるメニューをクリックし、`Account details`を開きます。
 >
-> 3.  `Account details`から`Export Private Key`をクリックしてください。
+> ![](/public/images/ETH-dApp/section-2/2_1_8.png)
 >
-> ![](/public/images/ETH-dApp/section-2/2_1_12.png)
+> 3.  `Show Private Key`をクリックしてください。
+>
+> ![](/public/images/ETH-dApp/section-2/2_1_9.png)
 >
 > 4.  MetaMask のパスワードを求められるので、入力したら`Confirm`を押します。
 >
-> ![](/public/images/ETH-dApp/section-2/2_1_13.png)
+> ![](/public/images/ETH-dApp/section-2/2_1_10.png)
 >
-> 5.  あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
+> 5. `Hold to reveal Private Key`を長押しすると、あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
 >
-> ![](/public/images/ETH-dApp/section-2/2_1_14.png)
+> ![](/public/images/ETH-dApp/section-2/2_1_11.png)
 
 > - `hardhat.config.js`の`YOUR_PRIVATE_SEPOLIA_ACCOUNT_KEY`の部分をここで取得した秘密鍵とを入れ替えます。
 
@@ -217,9 +209,9 @@ hardhat.config.js
 > 「ログイン」には下記の情報が必要となります。
 >
 > - ユーザー名: 公開アドレス
->   ![](/public/images/ETH-dApp/section-2/2_1_15.png)
+>   ![](/public/images/ETH-dApp/section-2/2_1_12.png)
 > - パスワード: 秘密鍵
->   ![](/public/images/ETH-dApp/section-2/2_1_16.png)
+>   ![](/public/images/ETH-dApp/section-2/2_1_13.png)
 >   ユーザー名とパスワードを使用して、AWS にログインしてプロジェクトをデプロイするのと同じです。
 
 ⚠️: すでにGitHubに`hardhat.config.js`をpushしてしまった場合の対処法
