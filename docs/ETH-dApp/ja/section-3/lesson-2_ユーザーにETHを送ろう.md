@@ -11,28 +11,32 @@
 `WavePortal.sol`の`wave`関数を下記のように更新していきます。
 
 ```solidity
-function wave(string memory _message) public {
-	totalWaves += 1;
-	console.log("%s waved w/ message %s", msg.sender, _message);
-	/*
-	* 「👋（wave）」とメッセージを配列に格納。
-	*/
-	_waves.push(Wave(msg.sender, _message, block.timestamp));
-	/*
-	* コントラクト側でemitされたイベントに関する通知をフロントエンドで取得できるようにする。
-	*/
-	emit NewWave(msg.sender, block.timestamp, _message);
-	/*
-	* 「👋（wave）」を送ってくれたユーザーに0.0001ETHを送る
-	*/
-	uint256 prizeAmount = 0.0001 ether;
-	require(
-		prizeAmount <= address(this).balance,
-		"Trying to withdraw more money than the contract has."
-	);
-	(bool success, ) = (msg.sender).call{value: prizeAmount}("");
-	require(success, "Failed to withdraw money from contract.");
-}
+    function wave(string memory _message) public {
+        _totalWaves += 1;
+        console.log("%s waved w/ message %s", msg.sender, _message);
+
+        /*
+        * 「👋（wave）」とメッセージを配列に格納。
+        */
+        _waves.push(Wave(msg.sender, _message, block.timestamp));
+
+        /*
+        * コントラクト側でemitされたイベントに関する通知をフロントエンドで取得できるようにする。
+        */
+        emit NewWave(msg.sender, block.timestamp, _message);
+
+        /*
+        * 「👋（wave）」を送ってくれたユーザーに0.0001ETHを送る
+        */
+        uint256 prizeAmount = 0.0001 ether;
+        require(
+            prizeAmount <= address(this).balance,
+            "Trying to withdraw more money than the contract has."
+        );
+
+        (bool success, ) = (msg.sender).call{value: prizeAmount}("");
+        require(success, "Failed to withdraw money from contract.");
+    }
 ```
 
 コードを見ていきましょう。
@@ -47,8 +51,8 @@ function wave(string memory _message) public {
 >
 > ```solidity
 > require(
-> 	prizeAmount <= address(this).balance,
-> 	"Trying to withdraw more money than the contract has."
+>     prizeAmount <= address(this).balance,
+>     "Trying to withdraw more money than the contract has."
 > );
 > ```
 >
@@ -77,7 +81,7 @@ function wave(string memory _message) public {
 
 ```solidity
 constructor() payable {
-  console.log("We have been constructed!");
+    console.log("We have been constructed!");
 }
 ```
 
@@ -316,7 +320,7 @@ WavePortal address:  0x550925E923Cb1734de73B3a843A21b871fe2a673
 
 ターミナルに出力されたコントラクト(`WavePortal address`)のアドレス(`0x..`)をコピーしましょう。
 
-- コピーしたアドレスを`App.js`の`const contractAddress = "こちら"`に貼り付けましょう。
+- コピーしたアドレスを`App.js`の`const contractAddress = 'こちら'`に貼り付けましょう。
 
 3 \. 以前と同じように`artifacts`からABIファイルを取得します。下記のステップを実行してください。
 
