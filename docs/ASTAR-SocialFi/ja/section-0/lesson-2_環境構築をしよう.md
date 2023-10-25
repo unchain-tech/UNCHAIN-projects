@@ -432,7 +432,7 @@ event - compiled client and server successfully in 806 ms (150 modules)
 
 ### 🙋‍♂️ 質問する
 
-わからないことがあれば、Discordの`#astar-network`でsection ・ Lesson名とともに質問をしてください 👋
+わからないことがあれば、Discordの`#astar`でsection ・ Lesson名とともに質問をしてください 👋
 
 ---
 
