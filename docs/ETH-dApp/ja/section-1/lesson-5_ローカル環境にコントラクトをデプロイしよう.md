@@ -15,12 +15,12 @@
 `packages/contract/package.json`の`script`部分を以下のように編集してください。
 
 ```json
-"scripts": {
-    "run:script":"npx hardhat run scripts/run.js",
+  "scripts": {
+    "run:script": "npx hardhat run scripts/run.js",
     "test": "npx hardhat test",
     "deploy": "npx hardhat run scripts/deploy.js --network sepolia",
-    "start":"npx hardhat node"
-  }
+    "start": "npx hardhat node"
+  },
 ```
 
 では下のコマンドを実行してみましょう。
@@ -76,13 +76,13 @@ runMain();
 `packages/contract/package.json`の`script`部分を以下のように編集してください。
 
 ```json
-"scripts": {
-    "run:script":"npx hardhat run scripts/run.js",
+  "scripts": {
+    "run:script": "npx hardhat run scripts/run.js",
     "test": "npx hardhat test",
     "deploy": "npx hardhat run scripts/deploy.js --network sepolia",
     "deploy:localhost": "npx hardhat run scripts/deploy.js --network localhost",
-    "start":"npx hardhat node"
-  }
+    "start": "npx hardhat node"
+  },
 ```
 
 **新しくターミナルのウィンドウを立ち上げ**、下記のコマンドを実行しましょう。あなたのスマートコントラクトを、ローカルネットワークにデプロイします。

@@ -113,8 +113,8 @@ console.log('WavePortal address:', wavePortal.address);
 `packages/contract/package.json`の`script`部分を以下のように編集してください。
 
 ```json
-"scripts": {
-    "run:script":"npx hardhat run scripts/run.js",
+  "scripts": {
+    "run:script": "npx hardhat run scripts/run.js",
     "test": "npx hardhat test",
     "deploy": "npx hardhat run scripts/deploy.js --network sepolia"
   },
