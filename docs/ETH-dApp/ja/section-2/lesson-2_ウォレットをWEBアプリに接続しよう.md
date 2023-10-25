@@ -391,7 +391,7 @@ yarn client start
 
 ローカルサーバーでWebサイトを立ち上げたら、MetaMaskのプラグインをクリックし、あなたのウォレットアドレスの接続状況を確認しましょう。
 
-もし、下図のように`Connected`と表示されている場合は、`Connected`の文字をクリックします。
+もし、下図のように`connected`となっている場合は、赤枠のアイコンをクリックします。
 
 ![](/public/images/ETH-dApp/section-2/2_2_5.png)
 
