@@ -164,18 +164,17 @@ VercelはGitHubと連動しているので、GitHubが更新されるたびに�
 
 ### 🙉 GitHub に関するメモ
 
-**※今回は`ETH-dApp`のみをアップロードするため、以下の作業は必要ありません**
 **GitHub にコントラクト( `contract`)のコードをアップロードする際は、秘密鍵を含むハードハット構成ファイルをリポジトリにアップロードしないよう注意しましょう**
 
-秘密鍵などのファイルを隠すために、ターミナルで`contract`に移動して、下記を実行してください。
+秘密鍵などのファイルを隠すために、ターミナルで`ETH-dApp`にいることを確認して、下記を実行してください。
 
 ```
-yarn add --dev dotenv
+yarn workspace contract add --dev dotenv
 ```
 
 `dotenv`モジュールに関する詳しい説明は、[こちら](https://maku77.github.io/nodejs/env/dotenv.html)を参照してください。
 
-`dotenv`をインストールしたら、`.env`ファイルを更新します。
+`dotenv`をインストールしたら、`packages/contract`ディレクトリ内に`.env`ファイルを更新します。
 
 ファイルの先頭に`.`がついているファイルは、「不可視ファイル」です。
 
@@ -183,7 +182,7 @@ yarn add --dev dotenv
 
 操作されては困るファイルについては、このように「不可視」の属性を持たせて、一般の人が触れられないようにします。
 
-ターミナル上で`contract`ディレクトリにいることを確認し、下記を実行しましょう。VS Codeから`.env`ファイルを開きます。
+ターミナル上で`packages/contract`ディレクトリにいることを確認し、下記を実行しましょう。VS Codeから`.env`ファイルを開きます。
 
 ```
 code .env
@@ -200,7 +199,6 @@ PROD_ALCHEMY_KEY = メインネットにデプロイする際に使用するAlch
 `.env`を更新したら、 `hardhat.config.js`ファイルを次のように更新してください。
 
 ```javascript
-// hardhat.config.js
 require('@nomicfoundation/hardhat-toolbox');
 require('dotenv').config();
 
