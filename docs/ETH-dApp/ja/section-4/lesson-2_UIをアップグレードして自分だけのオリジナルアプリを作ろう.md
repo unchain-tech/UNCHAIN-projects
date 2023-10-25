@@ -41,14 +41,14 @@ const wavePortalContract = new ethers.Contract(
   signer
 );
 let count = await wavePortalContract.getTotalWaves();
-console.log("Retrieved total wave count...", count.toNumber());
+console.log('Retrieved total wave count...', count.toNumber());
 ```
 
 このコードの直下に下記を追加しましょう。
 
 ```javascript
-let contractBalance = await provider.getBalance(wavePortalContract.address);
-console.log("Contract balance:", ethers.utils.formatEther(contractBalance));
+const contractBalance = await provider.getBalance(wavePortalContract.address);
+console.log('Contract balance:', ethers.utils.formatEther(contractBalance));
 ```
 
 これにより、コントラクトの現在の資金額がConsoleに出力されます。
@@ -62,31 +62,29 @@ console.log("Contract balance:", ethers.utils.formatEther(contractBalance));
 const waveTxn = await wavePortalContract.wave(messageValue, {
   gasLimit: 300000,
 });
-console.log("Mining...", waveTxn.hash);
+console.log('Mining...', waveTxn.hash);
 await waveTxn.wait();
-console.log("Mined -- ", waveTxn.hash);
+console.log('Mined -- ', waveTxn.hash);
 count = await wavePortalContract.getTotalWaves();
-console.log("Retrieved total wave count...", count.toNumber());
+console.log('Retrieved total wave count...', count.toNumber());
 ```
 
 このコードの直下に下記を追加しましょう。
 
 ```javascript
-let contractBalance = await provider.getBalance(wavePortalContract.address);
-let contractBalance_post = await provider.getBalance(
+const contractBalancePost = await provider.getBalance(
   wavePortalContract.address
 );
-console.log("Contract balance:", ethers.utils.formatEther(contractBalance));
 /* コントラクトの残高が減っていることを確認 */
-if (contractBalance_post.lt(contractBalance)) {
+if (contractBalancePost.lt(contractBalance)) {
   /* 減っていたら下記を出力 */
-  console.log("User won ETH!");
+  console.log('User won ETH!');
 } else {
   console.log("User didn't win ETH.");
 }
 console.log(
-  "Contract balance after wave:",
-  ethers.utils.formatEther(contractBalance_post)
+  'Contract balance after wave:',
+  ethers.utils.formatEther(contractBalancePost)
 );
 ```
 
@@ -147,7 +145,7 @@ Vercelのアカウントを取得したら、下記を実行しましょう。
 
 3\. プロジェクトを作成します。`Root Directory`が「packages/client」となっていることを確認してください。
 
-![](/public/images/ETH-NFT-Collection/section-4/4_2_9.png)
+![](/public/images/ETH-dApp/section-4/4_2_6.png)
 
 4\. `Deploy`ボタンを推しましょう。
 
@@ -166,18 +164,17 @@ VercelはGitHubと連動しているので、GitHubが更新されるたびに�
 
 ### 🙉 GitHub に関するメモ
 
-**※今回は`ETH-dApp`のみをアップロードするため、以下の作業は必要ありません**
 **GitHub にコントラクト( `contract`)のコードをアップロードする際は、秘密鍵を含むハードハット構成ファイルをリポジトリにアップロードしないよう注意しましょう**
 
-秘密鍵などのファイルを隠すために、ターミナルで`contract`に移動して、下記を実行してください。
+秘密鍵などのファイルを隠すために、ターミナルで`ETH-dApp`にいることを確認して、下記を実行してください。
 
 ```
-yarn add --dev dotenv
+yarn workspace contract add --dev dotenv
 ```
 
 `dotenv`モジュールに関する詳しい説明は、[こちら](https://maku77.github.io/nodejs/env/dotenv.html)を参照してください。
 
-`dotenv`をインストールしたら、`.env`ファイルを更新します。
+`dotenv`をインストールしたら、`packages/contract`ディレクトリ内に`.env`ファイルを更新します。
 
 ファイルの先頭に`.`がついているファイルは、「不可視ファイル」です。
 
@@ -185,7 +182,7 @@ yarn add --dev dotenv
 
 操作されては困るファイルについては、このように「不可視」の属性を持たせて、一般の人が触れられないようにします。
 
-ターミナル上で`contract`ディレクトリにいることを確認し、下記を実行しましょう。VS Codeから`.env`ファイルを開きます。
+ターミナル上で`packages/contract`ディレクトリにいることを確認し、下記を実行しましょう。VS Codeから`.env`ファイルを開きます。
 
 ```
 code .env
@@ -202,12 +199,11 @@ PROD_ALCHEMY_KEY = メインネットにデプロイする際に使用するAlch
 `.env`を更新したら、 `hardhat.config.js`ファイルを次のように更新してください。
 
 ```javascript
-// hardhat.config.js
-require("@nomicfoundation/hardhat-toolbox");
-require("dotenv").config();
+require('@nomicfoundation/hardhat-toolbox');
+require('dotenv').config();
 
 module.exports = {
-  solidity: "0.8.19",
+  solidity: '0.8.19',
   networks: {
     sepolia: {
       url: process.env.STAGING_ALCHEMY_KEY,

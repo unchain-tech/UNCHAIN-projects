@@ -14,54 +14,59 @@
 `App.js`を以下のように更新して、フロントエンドから`getTotalWaves`関数へアクセスできるようにします。
 
 ```javascript
-import React, { useEffect, useState } from "react";
-import "./App.css";
 /* ethers 変数を使えるようにする*/
-import { ethers } from "ethers";
+import { ethers } from 'ethers';
+import React, { useEffect, useState } from 'react';
+
+import './App.css';
+
 const App = () => {
   // ユーザーのパブリックウォレットを保存するために使用する状態変数を定義します。
-  const [currentAccount, setCurrentAccount] = useState("");
-  console.log("currentAccount: ", currentAccount);
+  const [currentAccount, setCurrentAccount] = useState('');
+  console.log('currentAccount: ', currentAccount);
+
   // window.ethereumにアクセスできることを確認します。
   const checkIfWalletIsConnected = async () => {
     try {
       const { ethereum } = window;
       if (!ethereum) {
-        console.log("Make sure you have MetaMask!");
+        console.log('Make sure you have MetaMask!');
         return;
       } else {
-        console.log("We have the ethereum object", ethereum);
+        console.log('We have the ethereum object', ethereum);
       }
       // ユーザーのウォレットへのアクセスが許可されているかどうかを確認します。
-      const accounts = await ethereum.request({ method: "eth_accounts" });
+      const accounts = await ethereum.request({ method: 'eth_accounts' });
       if (accounts.length !== 0) {
         const account = accounts[0];
-        console.log("Found an authorized account:", account);
+        console.log('Found an authorized account:', account);
         setCurrentAccount(account);
       } else {
-        console.log("No authorized account found");
+        console.log('No authorized account found');
       }
     } catch (error) {
       console.log(error);
     }
   };
+
   // connectWalletメソッドを実装
   const connectWallet = async () => {
     try {
       const { ethereum } = window;
       if (!ethereum) {
-        alert("Get MetaMask!");
+        alert('Get MetaMask!');
         return;
       }
       const accounts = await ethereum.request({
-        method: "eth_requestAccounts",
+        method: 'eth_requestAccounts',
       });
-      console.log("Connected: ", accounts[0]);
+      console.log('Connected: ', accounts[0]);
       setCurrentAccount(accounts[0]);
     } catch (error) {
       console.log(error);
     }
   };
+
   // waveの回数をカウントする関数を実装
   const wave = async () => {
     try {
@@ -75,8 +80,8 @@ const App = () => {
           signer
         );
         let count = await wavePortalContract.getTotalWaves();
-        console.log("Retrieved total wave count...", count.toNumber());
-        console.log("Signer:", signer);
+        console.log('Retrieved total wave count...', count.toNumber());
+        console.log('Signer:', signer);
       } else {
         console.log("Ethereum object doesn't exist!");
       }
@@ -84,6 +89,7 @@ const App = () => {
       console.log(error);
     }
   };
+
   // WEBページがロードされたときに下記の関数を実行します。
   useEffect(() => {
     checkIfWalletIsConnected();
@@ -94,7 +100,7 @@ const App = () => {
         <div className="header">
           <span role="img" aria-label="hand-wave">
             👋
-          </span>{" "}
+          </span>{' '}
           WELCOME!
         </div>
         <div className="bio">
@@ -126,6 +132,7 @@ const App = () => {
     </div>
   );
 };
+
 export default App;
 ```
 
@@ -134,7 +141,7 @@ export default App;
 **1 \. ethers 変数を使えるようにする**
 
 ```javascript
-import { ethers } from "ethers";
+import { ethers } from 'ethers';
 ```
 
 `ethers`のさまざまなクラスや関数は、[ethersproject](https://docs.ethers.io/v5/getting-started/) が提供するサブパッケージからインポートできます。これは、Webアプリケーションからコントラクトを呼び出す際に必須となるので、覚えておきましょう。
@@ -155,8 +162,8 @@ const wave = async () => {
         signer
       );
       let count = await wavePortalContract.getTotalWaves();
-      console.log("Retrieved total wave count...", count.toNumber());
-      console.log("Signer:", signer);
+      console.log('Retrieved total wave count...', count.toNumber());
+      console.log('Signer:', signer);
     } else {
       console.log("Ethereum object doesn't exist!");
     }
@@ -235,7 +242,7 @@ const wave = async () => {
 ローカルサーバーを介して表示されているWebアプリケーションから右クリック → `Inspect`を選択し、Consoleの出力結果を確認してみましょう。
 
 下記のようなエラーが表示されていれば、テストは成功です。
-![](/public/images/ETH-dApp/section-2/2_4_1.png)
+![](/public/images/ETH-dApp/section-2/2_3_1.png)
 
 これから`contractAddress`と`contractABI`を設定していきます。
 
@@ -261,20 +268,20 @@ yarn contract deploy
 
 コントラクトのデプロイ先のアドレスを取得できたら、`App.js`に`contractAddress`という新規の変数を追加しましょう。`Contract deployed to`の出力結果(`0x..`)を設定していきます。
 
-`const [currentAccount, setCurrentAccount] = useState("")`の直下に`contractAddress`を作成しましょう。以下のようになります。
+`const [currentAccount, setCurrentAccount] = useState('')`の直下に`contractAddress`を作成しましょう。以下のようになります。
 
 ```javascript
-const [currentAccount, setCurrentAccount] = useState("");
+const [currentAccount, setCurrentAccount] = useState('');
 /*
  * デプロイされたコントラクトのアドレスを保持する変数を作成
  */
-const contractAddress = "あなたの WavePortal の address を貼り付けてください";
+const contractAddress = 'あなたの WavePortal の address を貼り付けてください';
 ```
 
 `App.js`を更新したら、ローカルサーバーにホストされているWebアプリケーションからConsoleを確認してみましょう。
 
 `contractAddress`に関するエラーが消えていれば、成功です。
-![](/public/images/ETH-dApp/section-2/2_4_2.png)
+![](/public/images/ETH-dApp/section-2/2_3_2.png)
 
 ### 📂 ABI ファイルを取得する
 
@@ -290,7 +297,7 @@ Webアプリケーションがコントラクトと通信するために必要�
 
 ABIファイルは、コントラクトがコンパイルされた時に生成され、`artifacts`ディレクトリに自動的に格納されます。
 
-ターミナルで`contract`ディレクトリに移動し、`ls`を実行しましょう。
+ターミナルで`packages/contract`ディレクトリに移動し、`ls`を実行しましょう。
 
 `artifacts`ディレクトリの存在を確認してください。
 
@@ -298,7 +305,7 @@ ABIファイルの中身は、`WavePortal.json`というファイルに格納さ
 
 下記を実行して、ABIファイルをコピーしましょう。
 
-1. ターミナル上で`contract`にいることを確認する（もしくは移動する）。
+1. ターミナル上で`packages/contract`にいることを確認する（もしくは移動する）。
 
 2. ターミナル上で下記を実行し、`WavePortal.json`を開きましょう。※ ファインダーから直接開くことも可能です。
 
@@ -312,35 +319,45 @@ ABIファイルの中身は、`WavePortal.json`というファイルに格納さ
 
 1. ターミナル上で`client/src`に移動する。
 
-2. 下記を実行して、`WavePortal.json`ファイルをVS Codeで開く。
+2. srcディレクトリの中に`utils`ディレクトリを作成して、その中に`WavePortal.json`ファイルを作成する。
 
-> ```
-> code client/src/utils/WavePortal.json
-> ```
+   > ```
+   > mkdir utils
+   > touch utils/WavePortal.json
+   > ```
 
-3. **先ほどコピーした`contract/artifacts/contracts/WavePortal.sol/WavePortal.json`の中身を新しく作成した`client/src/utils/WavePortal.json`の中に貼り付けてください。**
+3. 下記を実行して、`WavePortal.json`ファイルをVS Codeで開く。
+
+   > ```
+   > code client/src/utils/WavePortal.json
+   > ```
+
+4. **先ほどコピーした`contract/artifacts/contracts/WavePortal.sol/WavePortal.json`の中身を新しく作成した`client/src/utils/WavePortal.json`の中に貼り付けてください。**
 
 ABIファイルの準備ができたので、`App.js`にインポートしましょう。
 
 下記のように`App.js`を更新します。
 
 ```javascript
-import React, { useEffect, useState } from "react";
-import "./App.css";
 /* ethers 変数を使えるようにする*/
-import { ethers } from "ethers";
+import { ethers } from 'ethers';
+import React, { useEffect, useState } from 'react';
+
+import './App.css';
+
 /* ABIファイルを含むWavePortal.jsonファイルをインポートする*/
-import abi from "./utils/WavePortal.json";
+import abi from './utils/WavePortal.json';
+
 const App = () => {
   /*
    * ユーザーのパブリックウォレットを保存するために使用する状態変数を定義します。
    */
-  const [currentAccount, setCurrentAccount] = useState("");
-  console.log("currentAccount: ", currentAccount);
+  const [currentAccount, setCurrentAccount] = useState('');
+  console.log('currentAccount: ', currentAccount);
   /*
    * デプロイされたコントラクトのアドレスを保持する変数を作成
    */
-  const contractAddress = "あなたのコントラクトアドレスを貼り付けてください";
+  const contractAddress = 'あなたのコントラクトアドレスを貼り付けてください';
   /*
    * ABIの内容を参照する変数を作成
    */
@@ -353,26 +370,27 @@ const App = () => {
     try {
       const { ethereum } = window;
       if (!ethereum) {
-        console.log("Make sure you have MetaMask!");
+        console.log('Make sure you have MetaMask!');
         return;
       } else {
-        console.log("We have the ethereum object", ethereum);
+        console.log('We have the ethereum object', ethereum);
       }
       /*
        * ユーザーのウォレットへのアクセスが許可されているかどうかを確認します。
        */
-      const accounts = await ethereum.request({ method: "eth_accounts" });
+      const accounts = await ethereum.request({ method: 'eth_accounts' });
       if (accounts.length !== 0) {
         const account = accounts[0];
-        console.log("Found an authorized account:", account);
+        console.log('Found an authorized account:', account);
         setCurrentAccount(account);
       } else {
-        console.log("No authorized account found");
+        console.log('No authorized account found');
       }
     } catch (error) {
       console.log(error);
     }
   };
+
   /*
    * connectWalletメソッドを実装
    */
@@ -380,18 +398,19 @@ const App = () => {
     try {
       const { ethereum } = window;
       if (!ethereum) {
-        alert("Get MetaMask!");
+        alert('Get MetaMask!');
         return;
       }
       const accounts = await ethereum.request({
-        method: "eth_requestAccounts",
+        method: 'eth_requestAccounts',
       });
-      console.log("Connected: ", accounts[0]);
+      console.log('Connected: ', accounts[0]);
       setCurrentAccount(accounts[0]);
     } catch (error) {
       console.log(error);
     }
   };
+
   /*
    * waveの回数をカウントする関数を実装
    */
@@ -410,16 +429,16 @@ const App = () => {
           signer
         );
         let count = await wavePortalContract.getTotalWaves();
-        console.log("Retrieved total wave count...", count.toNumber());
+        console.log('Retrieved total wave count...', count.toNumber());
         /*
          * コントラクトに👋（wave）を書き込む。
          */
         const waveTxn = await wavePortalContract.wave();
-        console.log("Mining...", waveTxn.hash);
+        console.log('Mining...', waveTxn.hash);
         await waveTxn.wait();
-        console.log("Mined -- ", waveTxn.hash);
+        console.log('Mined -- ', waveTxn.hash);
         count = await wavePortalContract.getTotalWaves();
-        console.log("Retrieved total wave count...", count.toNumber());
+        console.log('Retrieved total wave count...', count.toNumber());
       } else {
         console.log("Ethereum object doesn't exist!");
       }
@@ -434,13 +453,14 @@ const App = () => {
   useEffect(() => {
     checkIfWalletIsConnected();
   }, []);
+
   return (
     <div className="mainContainer">
       <div className="dataContainer">
         <div className="header">
           <span role="img" aria-label="hand-wave">
             👋
-          </span>{" "}
+          </span>{' '}
           WELCOME!
         </div>
         <div className="bio">
@@ -476,13 +496,14 @@ const App = () => {
     </div>
   );
 };
+
 export default App;
 ```
 
 コントラクトアドレスをご自身のものに更新するのをお忘れなく!
 
 ```javascript
-const contractAddress = "あなたのコントラクトアドレスを貼り付けてください";
+const contractAddress = 'あなたのコントラクトアドレスを貼り付けてください';
 ```
 
 新しく実装されいる機能は下記の3つです。
@@ -490,7 +511,7 @@ const contractAddress = "あなたのコントラクトアドレスを貼り付�
 **1 \. ABI ファイルを含む WavePortal.json ファイルをインポートする**
 
 ```javascript
-import abi from "./utils/WavePortal.json";
+import abi from './utils/WavePortal.json';
 ```
 
 **2 \. ABI の内容を参照する変数を作成**
@@ -517,7 +538,7 @@ const wave = async () => {
         signer
       );
       let count = await wavePortalContract.getTotalWaves();
-      console.log("Retrieved total wave count...", count.toNumber());
+      console.log('Retrieved total wave count...', count.toNumber());
     } else {
       console.log("Ethereum object doesn't exist!");
     }
@@ -546,16 +567,16 @@ const wave = async () => {
         signer
       );
       let count = await wavePortalContract.getTotalWaves();
-      console.log("Retrieved total wave count...", count.toNumber());
+      console.log('Retrieved total wave count...', count.toNumber());
       /*
        * コントラクトに👋（wave）を書き込む。ここから...
        */
       const waveTxn = await wavePortalContract.wave();
-      console.log("Mining...", waveTxn.hash);
+      console.log('Mining...', waveTxn.hash);
       await waveTxn.wait();
-      console.log("Mined -- ", waveTxn.hash);
+      console.log('Mined -- ', waveTxn.hash);
       count = await wavePortalContract.getTotalWaves();
-      console.log("Retrieved total wave count...", count.toNumber());
+      console.log('Retrieved total wave count...', count.toNumber());
       /*-- ここまで --*/
     } else {
       console.log("Ethereum object doesn't exist!");
@@ -589,9 +610,9 @@ yarn client start
 
 いつものようにローカルサーバーにホストされているWebアプリケーションを`Inspect`し、Consoleを確認しましょう。
 
-例)`Wave at Me`ボタンを2回押した際に出力された  Consoleの結果。
+例)`Wave at Me`ボタンを2回押した際に出力されたConsoleの結果。
 
-![](/public/images/ETH-dApp/section-2/2_4_3.png)
+![](/public/images/ETH-dApp/section-2/2_3_3.png)
 
 それぞれの`Wave`がカウントされ、承認されていることが確認できたら、次のステップに進みましょう。
 
