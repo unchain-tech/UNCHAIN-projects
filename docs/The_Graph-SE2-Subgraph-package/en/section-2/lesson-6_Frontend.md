@@ -1,0 +1,106 @@
+## Frontend
+
+### Updating and deploying our Frontend
+
+Now that we have our contract deployed to a testnet and the data is getting indexed in Subgraph Studio. It is time to update our frontend.
+
+#### ✅ Step 1: Update the Scaffold-ETH config
+
+Update the configuration to point to the testnet that you deployed to in previous steps.
+
+> The scaffold.config.ts is located in packages/nextjs
+
+```
+  targetNetwork: chains.sepolia,
+```
+
+#### ✅ Update our GraphQL URL to point to our development endpoint
+
+The development endpoint for your subgraph can be found on the details tab in Subgraph Studio.
+
+> Edit _app.tsx located in packages/nextjs/pages
+
+```
+  const subgraphUri = "https://api.studio.thegraph.com/query/51078/sendmessage-test/version/latest";
+  const apolloClient = new ApolloClient({
+    uri: subgraphUri,
+    cache: new InMemoryCache(),
+  });
+```
+
+#### ✅ Start with a clean slate in your index.ts file
+
+Let's import everything we will need into our index.ts file. You can also clean out all the info in the return.
+
+> this file is located in packages/nextjs/pages
+
+It should look something like this...
+
+```
+import type { NextPage } from "next";
+import { MetaHeader } from "~~/components/MetaHeader";
+
+import { gql } from "@apollo/client";
+import { useQuery } from "@apollo/client";
+
+const Home: NextPage = () => {
+  return (
+    <>
+      <MetaHeader />
+    </>
+  );
+};
+
+export default Home;
+```
+
+#### ✅ Display our messages in a table format 
+
+Lastly a table to display our messages.
+
+```
+        <h1>Messages</h1>
+        <table className="min-w-[70%]">
+          <thead>
+            <tr>
+              <th>From</th>
+              <th>To</th>
+              <th>Message</th>
+            </tr>
+          </thead>
+          <tbody>
+            {messages.map((message) => (
+              <tr key={message.id}>
+                <td>{message._from}</td>
+                <td>{message._to}</td>
+                <td>{message.message}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+```
+
+We should create a const with our GraphQL query outside of the main function.
+
+```
+export const GET_MESSAGES = gql`
+{
+  sendMessages(first: 5) {
+    id
+    _from
+    _to
+    message
+  }
+}
+`;
+```
+
+And then load the data like so...
+
+```
+  const { loading, error, data: messagesData } = useQuery(GET_MESSAGES);
+
+  const messages = messagesData?.sendMessages || []; 
+```
+
+> Note: If you want to see the full complete file you can do so [here](https://gist.github.com/kmjones1979/26ef9633b61b17f237e88eb41bb688de)!
