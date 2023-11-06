@@ -16,6 +16,8 @@ yarn clean-node
 yarn run-node
 ```
 
-This will spin up all the containers for The Graph using docker-compose. You will want to keep this window open at all times so that you can see log output from Docker.
+![](/public/images/The_Graph-SE2-Subgraph-package/section-0/Lesson4-1.png)
+
+This will spin up all the containers for The Graph using docker-compose. You will know this is complete when it reads "Downloading latest blocks from Ethereum..."
 
 > As stated before, be sure to keep this window open so that you can see any log output from Docker. 🔎

@@ -19,6 +19,14 @@ This workshop is built around Scaffold-ETH 2 and The Graph. You will learn how t
 - 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
 - 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
 
+![](/public/images/The_Graph-SE2-Subgraph-package/section-0/Lesson1-1.png)
+
+![](/public/images/The_Graph-SE2-Subgraph-package/section-0/Lesson1-2.png)
+
+![](/public/images/The_Graph-SE2-Subgraph-package/section-0/Lesson1-3.png)
+
+![](/public/images/The_Graph-SE2-Subgraph-package/section-0/Lesson1-4.png)
+
 To learn more about Scaffold-ETH checkout the [Github repository](https://github.com/scaffold-eth/scaffold-eth-2) or [Scaffoldeth.io](https://scaffoldeth.io).
 
 ### 🧑🏼‍🚀 What is The Graph?

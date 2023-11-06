@@ -10,6 +10,8 @@ Now we can open up a fourth window to finish setting up The Graph. 😅 In this 
 yarn local-create
 ```
 
+![](/public/images/The_Graph-SE2-Subgraph-package/section-0/Lesson5-1.png)
+
 > You should see some output stating your Subgraph has been created along with a log output on your graph-node inside docker.
 
 Next we will ship our subgraph! You will need to give your subgraph a version after executing this command. (e.g. 0.0.1).
@@ -17,6 +19,8 @@ Next we will ship our subgraph! You will need to give your subgraph a version af
 ```
 yarn local-ship
 ```
+
+![](/public/images/The_Graph-SE2-Subgraph-package/section-0/Lesson5-2.png)
 
 > This command does the following all in one… 🚀🚀🚀
 
@@ -31,6 +35,10 @@ yarn local-ship
 ```
 npm install -g ts-node
 ```
+
+If your subgraph deployment was successful it will look something like this:
+
+![](/public/images/The_Graph-SE2-Subgraph-package/section-0/Lesson5-3.png)
 
 You should get a build completed output along with the address of your Subgraph endpoint.
 
