@@ -33,3 +33,5 @@ Auto-detected Project Settings (Next.js):
 📝  Deployed to production. Run `vercel --prod` to overwrite later (https://vercel.link/2F).
 💡  To change the domain or build command, go to https://vercel.com/kevin-kevinjonescr/testing/settings
 ```
+
+Thank you so much for learning all about Scaffold-ETH and The Graph. We want to hear about how you enjoyed this tutorial and any feedback you have. You can join The Graph Discord and reach out if you have questions or problems along your web3 journey! Keep BUIDLing my friends!

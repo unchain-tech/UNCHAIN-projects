@@ -14,11 +14,41 @@ Update the configuration to point to the testnet that you deployed to in previou
   targetNetwork: chains.sepolia,
 ```
 
+It should look like this when changed:
+
+![](/public/images/The_Graph-SE2-Subgraph-package/section-2/Lesson6-1.png)
+
 Once you change this you can go back to scaffold-ETH and refresh the UI. You will get kicked from your burner wallet, you will want to connect to the testnet work using your metamask wallet.
 
-#### ✅ Fire off a test message to someone you know!
+Click "CONNECT WALLET"...
 
-Then check to see if the message was indexed successfully in the studio.
+![](/public/images/The_Graph-SE2-Subgraph-package/section-2/Lesson6-2.png)
+
+Choose Metamask...
+
+![](/public/images/The_Graph-SE2-Subgraph-package/section-2/Lesson6-3.png)
+
+Switch the network...
+
+![](/public/images/The_Graph-SE2-Subgraph-package/section-2/Lesson6-4.png)
+
+![](/public/images/The_Graph-SE2-Subgraph-package/section-2/Lesson6-5.png)
+
+Once complete you should now be connected to your dapp on sepolia network.
+
+![](/public/images/The_Graph-SE2-Subgraph-package/section-2/Lesson6-6.png)
+
+#### ✅ Fire off a test message to someone you know! (or Vitalik heh)
+
+We now want to send an event on the testnet that we have deployed our smart contract. We can do that fairly easily now that our frontend is properly configured.
+
+![](/public/images/The_Graph-SE2-Subgraph-package/section-2/Lesson6-7.png)
+
+![](/public/images/The_Graph-SE2-Subgraph-package/section-2/Lesson6-8.png)
+
+Then check to see if the message was indexed successfully in the studio. You can find the GraphiQL explorer on the "Playground" page.
+
+![](/public/images/The_Graph-SE2-Subgraph-package/section-2/Lesson6-9.png)
 
 #### ✅ Update our GraphQL URL to point to our development endpoint
 
@@ -33,6 +63,10 @@ The development endpoint for your subgraph can be found on the details tab in Su
     cache: new InMemoryCache(),
   });
 ```
+
+The change will look something like this: 
+
+![](/public/images/The_Graph-SE2-Subgraph-package/section-2/Lesson6-10.png)
 
 #### ✅ Start with a clean slate in your index.ts file
 
@@ -59,6 +93,10 @@ const Home: NextPage = () => {
 
 export default Home;
 ```
+
+After your change the home directory will look something like this:
+
+![](/public/images/The_Graph-SE2-Subgraph-package/section-2/Lesson6-11.png)
 
 #### ✅ Display our messages in a table format 
 
@@ -109,6 +147,8 @@ And then load the data like so...
   const messages = messagesData?.sendMessages || []; 
 ```
 
+![](/public/images/The_Graph-SE2-Subgraph-package/section-2/Lesson6-13.png)
+
 We can then make this a bit prettier and use the <Address> component instead of just plain text.
 
 ```
@@ -120,5 +160,7 @@ We can then make this a bit prettier and use the <Address> component instead of 
 ```
 
 This will look a lot nicer than those long strings! :D
+
+![](/public/images/The_Graph-SE2-Subgraph-package/section-2/Lesson6-14.png)
 
 > Note: If you want to see the full complete file you can do so [here](https://gist.github.com/kmjones1979/26ef9633b61b17f237e88eb41bb688de)!

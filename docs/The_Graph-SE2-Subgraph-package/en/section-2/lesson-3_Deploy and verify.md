@@ -8,6 +8,8 @@ Now we can deploy to our testnet of choice... in this example we will deploy to 
 yarn deploy --network sepolia
 ```
 
+![](/public/images/The_Graph-SE2-Subgraph-package/section-2/Lesson3-1.png)
+
 If all is well you should see the following success output.
 
 ```
@@ -20,6 +22,8 @@ deploying "YourContract" (tx: 0xf404021d736271a7a0a84d124ed35250c533efe37c177536
 ```
 yarn verify --network sepolia
 ```
+
+![](/public/images/The_Graph-SE2-Subgraph-package/section-2/Lesson3-2.png)
 
 You should see the following successful output...
 
