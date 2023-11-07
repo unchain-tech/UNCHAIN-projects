@@ -8,7 +8,7 @@ Now we want to start making some changes to our contract. We will create a new f
 
 > Open up YourContract.sol under packages/hardhat/contracts
 
-Add the following new code.
+Add the following new line of code.
 
 ```
     event SendMessage(address _from, address _to, string message);
@@ -18,12 +18,24 @@ Add the following new code.
     }
 ```
 
-We can save our contract and then deploy those new changes.
+You can drop this event and function anywhere inside the contract, but best practice is to drop it below any modifiers or the constructor.
+
+![](/public/images/The_Graph-SE2-Subgraph-package/section-1/Lesson1-1.png)
+
+We can save our contract and then deploy those new changes. 
+
+> Pro tip, if you use the --reset flag you will ALWAYS get a fresh contract deployed, regardless of any updates to the source.
 
 ```
 yarn deploy --reset
 ```
 
+You should see the following output:
+
+![](/public/images/The_Graph-SE2-Subgraph-package/section-1/Lesson1-2.png)
+
 #### ✅ Test your new function
 
 Navigate over to http://localhost:3000/debug and send vitalik.eth a message. 
+
+![](/public/images/The_Graph-SE2-Subgraph-package/section-1/Lesson1-3.png)

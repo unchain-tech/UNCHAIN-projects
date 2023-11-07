@@ -6,4 +6,8 @@
 yarn local-ship
 ```
 
-If you want to test this out on your own instance of Scaffold-ETH, navigate over to the Debug Contracts tab. Here you can draft up a message and fire it off.
+![](/public/images/The_Graph-SE2-Subgraph-package/section-1/Lesson3-1.png)
+
+Be sure to add a new version number to your subgraph when it prompts you. This should be higher then the previous version.
+
+Next we will test out the subgraph and make sure it is indexing correctly.

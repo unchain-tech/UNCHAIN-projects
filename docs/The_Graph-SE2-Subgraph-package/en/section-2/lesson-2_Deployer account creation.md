@@ -53,3 +53,5 @@ Public address: 0x87f00B2c39F97CD00BC6d09777BC4327aCA39180
    nonce: 0
 
 ```
+
+Send over some testnet ETH from the chain of your choice. I would suggest sepolia as its fairly easy to get some testnet ETH from various sources.

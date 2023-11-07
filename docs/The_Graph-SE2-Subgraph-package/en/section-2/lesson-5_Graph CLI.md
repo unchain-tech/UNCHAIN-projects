@@ -1,6 +1,10 @@
 ## Graph CLI
 
-###  ✅ Install the Graph CLI 
+###  ✅ Deploy your subgraph using the CLI
+
+#### ✅ Use the Graph CLI to complete the deployment
+
+![](/public/images/The_Graph-SE2-Subgraph-package/section-2/Studio6.png)
 
 You can install the Graph CLI globally using the following command.
 
@@ -140,6 +144,10 @@ Which version label to use? (e.g. "v0.0.1"): 0.0.1
 
 Build completed: QmUqgKBRWxFGNG6oPZuZxuCwJbEvKe6UbKCe8WTcDJvusk
 ```
+
+It might take up to 5 minutes for you subgraph to deploy to the studio. Once it has been deployed, you can check that is fully syncing and has no errors. A successful deploy will look like the following.
+
+![](/public/images/The_Graph-SE2-Subgraph-package/section-2/Studio7.png)
 
 #### ✅ Send a transaction and verify in Subgraph Playground 
 

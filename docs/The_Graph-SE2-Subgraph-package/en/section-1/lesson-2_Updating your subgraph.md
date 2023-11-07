@@ -32,6 +32,8 @@ type SendMessage @entity(immutable: true) {
 
 ```
 
+![](/public/images/The_Graph-SE2-Subgraph-package/section-1/Lesson2-1.png)
+
 #### ✅ Update the Subgraph manifest
 
 You will also need to add these entities to the Subgraph YAML configuration and also add the event handlers as well.
@@ -52,11 +54,15 @@ entities:
           handler: handleSendMessage
 ```
 
+![](/public/images/The_Graph-SE2-Subgraph-package/section-1/Lesson2-2.png)
+
 If you are following along, next you will need to copy over your new abi and regenerate the code.
 
 ```
 yarn abi-copy && yarn codegen
 ```
+
+![](/public/images/The_Graph-SE2-Subgraph-package/section-1/Lesson2-3.png)
 
 #### ✅ Update the mapping script
 
@@ -66,9 +72,10 @@ Next you will need to update the mappings for the files we have edited above.
 
 ```
 import {
+  YourContract,
   GreetingChange as GreetingChangeEvent,
   SendMessage as SendMessageEvent
-} from "../generated/Contract/Contract"
+} from "../generated/YourContract/YourContract";
 ```
 
 As well as the schema.
@@ -112,6 +119,10 @@ export function handleSendMessage(event: SendMessageEvent): void {
 }
 
 ```
+
+Your changes should be accepted inside of your editor without any linting errors.
+
+![](/public/images/The_Graph-SE2-Subgraph-package/section-1/Lesson2-4.png)
 
 After that is done, you are almost done… time to ship it!
 

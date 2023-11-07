@@ -14,6 +14,12 @@ Update the configuration to point to the testnet that you deployed to in previou
   targetNetwork: chains.sepolia,
 ```
 
+Once you change this you can go back to scaffold-ETH and refresh the UI. You will get kicked from your burner wallet, you will want to connect to the testnet work using your metamask wallet.
+
+#### ✅ Fire off a test message to someone you know!
+
+Then check to see if the message was indexed successfully in the studio.
+
 #### ✅ Update our GraphQL URL to point to our development endpoint
 
 The development endpoint for your subgraph can be found on the details tab in Subgraph Studio.
@@ -102,5 +108,17 @@ And then load the data like so...
 
   const messages = messagesData?.sendMessages || []; 
 ```
+
+We can then make this a bit prettier and use the <Address> component instead of just plain text.
+
+```
+              <tr key={message.id}>
+                <td><Address address={message._from}/></td>
+                <td><Address address={message._to}/></td>
+                <td>{message.message}</td>
+              </tr>
+```
+
+This will look a lot nicer than those long strings! :D
 
 > Note: If you want to see the full complete file you can do so [here](https://gist.github.com/kmjones1979/26ef9633b61b17f237e88eb41bb688de)!
