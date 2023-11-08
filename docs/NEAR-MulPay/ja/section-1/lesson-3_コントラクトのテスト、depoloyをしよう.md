@@ -9,57 +9,57 @@
 [`swap.test.ts`]
 
 ```ts
-const { loadFixture } = require("@nomicfoundation/hardhat-network-helpers");
-import { ethers } from "hardhat";
+import { loadFixture } from '@nomicfoundation/hardhat-network-helpers';
+import { ethers } from 'hardhat';
 
-describe("Swap Contract", function () {
+describe('Swap Contract', function () {
   async function deployTokenFixture() {
     const [owner, addr1] = await ethers.getSigners();
 
-    const daiToken = await ethers.getContractFactory("DaiToken");
-    const ethToken = await ethers.getContractFactory("EthToken");
-    const auroraToken = await ethers.getContractFactory("AuroraToken");
-    const shibainuToken = await ethers.getContractFactory("ShibainuToken");
-    const solanaToken = await ethers.getContractFactory("SolanaToken");
-    const tetherToken = await ethers.getContractFactory("TetherToken");
-    const uniswapToken = await ethers.getContractFactory("UniswapToken");
-    const polygonToken = await ethers.getContractFactory("PolygonToken");
-    const swapFactory = await ethers.getContractFactory("SwapContract");
+    const swapFactory = await ethers.getContractFactory('SwapContract');
+    const auroraToken = await ethers.getContractFactory('AuroraToken');
+    const daiToken = await ethers.getContractFactory('DaiToken');
+    const ethToken = await ethers.getContractFactory('EthToken');
+    const polygonToken = await ethers.getContractFactory('PolygonToken');
+    const shibainuToken = await ethers.getContractFactory('ShibainuToken');
+    const solanaToken = await ethers.getContractFactory('SolanaToken');
+    const tetherToken = await ethers.getContractFactory('TetherToken');
+    const uniswapToken = await ethers.getContractFactory('UniswapToken');
 
     const SwapContract = await swapFactory.deploy();
+    const AoaToken = await auroraToken.deploy(SwapContract.address);
     const DaiToken = await daiToken.deploy(SwapContract.address);
     const EthToken = await ethToken.deploy(SwapContract.address);
-    const AoaToken = await auroraToken.deploy(SwapContract.address);
+    const MaticToken = await polygonToken.deploy(SwapContract.address);
     const ShibToken = await shibainuToken.deploy(SwapContract.address);
     const SolToken = await solanaToken.deploy(SwapContract.address);
-    const UsdtToken = await tetherToken.deploy(SwapContract.address);
     const UniToken = await uniswapToken.deploy(SwapContract.address);
-    const MaticToken = await polygonToken.deploy(SwapContract.address);
+    const UsdtToken = await tetherToken.deploy(SwapContract.address);
 
     return {
       owner,
       addr1,
+      SwapContract,
+      AoaToken,
       DaiToken,
       EthToken,
-      AoaToken,
+      MaticToken,
       ShibToken,
       SolToken,
-      UsdtToken,
       UniToken,
-      MaticToken,
-      SwapContract,
+      UsdtToken,
     };
   }
-  describe("Deployment", function () {
+  describe('Deployment', function () {
     // check if the owner of DAI token is smart contract
-    it("ERC20 token is minted from smart contract", async function () {
+    it('ERC20 token is minted from smart contract', async function () {
       const { DaiToken, SwapContract } = await loadFixture(deployTokenFixture);
       const balanceOfDai = await DaiToken.balanceOf(SwapContract.address);
       console.log(balanceOfDai.toString());
     });
 
     // get the value between DAI and ETH
-    it("Get value between DAI and ETH", async function () {
+    it('Get value between DAI and ETH', async function () {
       const { DaiToken, EthToken, SwapContract } = await loadFixture(
         deployTokenFixture
       );
@@ -69,23 +69,23 @@ describe("Swap Contract", function () {
       );
       console.log(
         `value of ETH/DAI is ${
-          value / parseInt(ethers.utils.parseEther("1").toString())
+          value / parseInt(ethers.utils.parseEther('1').toString())
         }`
       );
     });
 
     // check swap function works
-    it("swap function", async function () {
+    it('swap function', async function () {
       const { owner, addr1, DaiToken, EthToken, UniToken, SwapContract } =
         await loadFixture(deployTokenFixture);
 
       await DaiToken.approve(
         SwapContract.address,
-        ethers.utils.parseEther("200")
+        ethers.utils.parseEther('200')
       );
       await SwapContract.distributeToken(
         DaiToken.address,
-        ethers.utils.parseEther("100"),
+        ethers.utils.parseEther('100'),
         owner.address
       );
       const ethAmountBefore = await DaiToken.balanceOf(addr1.address);
@@ -97,7 +97,7 @@ describe("Swap Contract", function () {
         DaiToken.address,
         UniToken.address,
         EthToken.address,
-        ethers.utils.parseEther("1"),
+        ethers.utils.parseEther('1'),
         addr1.address
       );
 
@@ -112,50 +112,50 @@ describe("Swap Contract", function () {
 
 最初に宣言している`deployTokenFixture`関数はそれぞれのコントラクトをデプロイを行うための関数で、それぞれのテストを行う前に走らせる必要があります。
 
-```js
+```ts
 async function deployTokenFixture() {
     const [owner, addr1] = await ethers.getSigners();
 
-    const daiToken = await ethers.getContractFactory("DaiToken");
-    const ethToken = await ethers.getContractFactory("EthToken");
-    const auroraToken = await ethers.getContractFactory("AuroraToken");
-    const shibainuToken = await ethers.getContractFactory("ShibainuToken");
-    const solanaToken = await ethers.getContractFactory("SolanaToken");
-    const tetherToken = await ethers.getContractFactory("TetherToken");
-    const uniswapToken = await ethers.getContractFactory("UniswapToken");
-    const polygonToken = await ethers.getContractFactory("PolygonToken");
-    const swapFactory = await ethers.getContractFactory("SwapContract");
+    const swapFactory = await ethers.getContractFactory('SwapContract');
+    const auroraToken = await ethers.getContractFactory('AuroraToken');
+    const daiToken = await ethers.getContractFactory('DaiToken');
+    const ethToken = await ethers.getContractFactory('EthToken');
+    const polygonToken = await ethers.getContractFactory('PolygonToken');
+    const shibainuToken = await ethers.getContractFactory('ShibainuToken');
+    const solanaToken = await ethers.getContractFactory('SolanaToken');
+    const tetherToken = await ethers.getContractFactory('TetherToken');
+    const uniswapToken = await ethers.getContractFactory('UniswapToken');
 
     const SwapContract = await swapFactory.deploy();
+    const AoaToken = await auroraToken.deploy(SwapContract.address);
     const DaiToken = await daiToken.deploy(SwapContract.address);
     const EthToken = await ethToken.deploy(SwapContract.address);
-    const AoaToken = await auroraToken.deploy(SwapContract.address);
+    const MaticToken = await polygonToken.deploy(SwapContract.address);
     const ShibToken = await shibainuToken.deploy(SwapContract.address);
     const SolToken = await solanaToken.deploy(SwapContract.address);
-    const UsdtToken = await tetherToken.deploy(SwapContract.address);
     const UniToken = await uniswapToken.deploy(SwapContract.address);
-    const MaticToken = await polygonToken.deploy(SwapContract.address);
+    const UsdtToken = await tetherToken.deploy(SwapContract.address);
 
     return {
       owner,
       addr1,
+      SwapContract,
+      AoaToken,
       DaiToken,
       EthToken,
-      AoaToken,
+      MaticToken,
       ShibToken,
       SolToken,
-      UsdtToken,
       UniToken,
-      MaticToken,
-      SwapContract,
+      UsdtToken,
     };
   }
 ```
 
 最初の部分ではERC20規格のトークンがきちんとdeployされているかをテストしています。
 
-```js
-it("ERC20 token is minted from smart contract", async function () {
+```ts
+it('ERC20 token is minted from smart contract', async function () {
       const { DaiToken, SwapContract } = await loadFixture(deployTokenFixture);
       const balanceOfDai = await DaiToken.balanceOf(SwapContract.address);
       console.log(balanceOfDai.toString());
@@ -168,8 +168,8 @@ it("ERC20 token is minted from smart contract", async function () {
 
 `ERC20Tokens.sol`ではETHの発行量はDAIのそれより1/10の量なので0.1になるはずです。
 
-```js
-it("Get value ETH/DAI", async function () {
+```ts
+it('Get value ETH/DAI', async function () {
       const { DaiToken, EthToken, SwapContract } = await loadFixture(
         deployTokenFixture
       );
@@ -179,7 +179,7 @@ it("Get value ETH/DAI", async function () {
       );
       console.log(
         `value of ETH/DAI is ${
-          value / parseInt(ethers.utils.parseEther("1").toString())
+          value / parseInt(ethers.utils.parseEther('1').toString())
         }`
       );
     });
@@ -189,19 +189,19 @@ it("Get value ETH/DAI", async function () {
 
 その後受領者の残高をswap前後で確認しています。
 
-```js
+```ts
 // check swap function works
-    it("swap function", async function () {
+    it('swap function', async function () {
       const { owner, addr1, DaiToken, EthToken, UniToken, SwapContract } =
         await loadFixture(deployTokenFixture);
 
       await DaiToken.approve(
         SwapContract.address,
-        ethers.utils.parseEther("200")
+        ethers.utils.parseEther('200')
       );
       await SwapContract.distributeToken(
         DaiToken.address,
-        ethers.utils.parseEther("100"),
+        ethers.utils.parseEther('100'),
         owner.address
       );
       const ethAmountBefore = await DaiToken.balanceOf(addr1.address);
@@ -213,7 +213,7 @@ it("Get value ETH/DAI", async function () {
         DaiToken.address,
         UniToken.address,
         EthToken.address,
-        ethers.utils.parseEther("1"),
+        ethers.utils.parseEther('1'),
         addr1.address
       );
 
@@ -263,33 +263,37 @@ After transfer, address_1 has 0.1 ETH
 
 [`deploy.ts`]
 
-```js
-require("dotenv").config();
-const hre = require("hardhat");
-
-const provider = hre.ethers.provider;
-const deployerWallet = new hre.ethers.Wallet(
-  process.env.AURORA_PRIVATE_KEY,
-  provider
-);
+```ts
+import 'dotenv/config';
+import hre from 'hardhat';
 
 async function main() {
-  console.log("Deploying contracts with the account:", deployerWallet.address);
+  if (process.env.AURORA_PRIVATE_KEY === undefined) {
+    throw Error('AURORA_PRIVATE_KEY is not set');
+  }
+
+  const provider = hre.ethers.provider;
+  const deployerWallet = new hre.ethers.Wallet(
+    process.env.AURORA_PRIVATE_KEY,
+    provider
+  );
+
+  console.log('Deploying contracts with the account:', deployerWallet.address);
 
   console.log(
-    "Account balance:",
+    'Account balance:',
     (await deployerWallet.getBalance()).toString()
   );
 
-  const swapFactory = await hre.ethers.getContractFactory("SwapContract");
-  const daiToken = await hre.ethers.getContractFactory("DaiToken");
-  const ethToken = await hre.ethers.getContractFactory("EthToken");
-  const aoaToken = await hre.ethers.getContractFactory("AuroraToken");
-  const shibToken = await hre.ethers.getContractFactory("ShibainuToken");
-  const solToken = await hre.ethers.getContractFactory("SolanaToken");
-  const usdtToken = await hre.ethers.getContractFactory("TetherToken");
-  const uniToken = await hre.ethers.getContractFactory("UniswapToken");
-  const maticToken = await hre.ethers.getContractFactory("PolygonToken");
+  const swapFactory = await hre.ethers.getContractFactory('SwapContract');
+  const aoaToken = await hre.ethers.getContractFactory('AuroraToken');
+  const daiToken = await hre.ethers.getContractFactory('DaiToken');
+  const ethToken = await hre.ethers.getContractFactory('EthToken');
+  const maticToken = await hre.ethers.getContractFactory('PolygonToken');
+  const shibToken = await hre.ethers.getContractFactory('ShibainuToken');
+  const solToken = await hre.ethers.getContractFactory('SolanaToken');
+  const uniToken = await hre.ethers.getContractFactory('UniswapToken');
+  const usdtToken = await hre.ethers.getContractFactory('TetherToken');
 
   const SwapContract = await swapFactory.connect(deployerWallet).deploy();
   await SwapContract.deployed();
@@ -297,32 +301,32 @@ async function main() {
   const [deployer] = await hre.ethers.getSigners();
   console.log(`deployer address is ${deployer.address}`);
 
+  const AoaToken = await aoaToken.deploy(SwapContract.address);
   const DaiToken = await daiToken.deploy(SwapContract.address);
   const EthToken = await ethToken.deploy(SwapContract.address);
-  const AoaToken = await aoaToken.deploy(SwapContract.address);
+  const MaticToken = await maticToken.deploy(SwapContract.address);
   const ShibToken = await shibToken.deploy(SwapContract.address);
   const SolToken = await solToken.deploy(SwapContract.address);
-  const UsdtToken = await usdtToken.deploy(SwapContract.address);
   const UniToken = await uniToken.deploy(SwapContract.address);
-  const MaticToken = await maticToken.deploy(SwapContract.address);
+  const UsdtToken = await usdtToken.deploy(SwapContract.address);
+  await AoaToken.deployed();
   await DaiToken.deployed();
   await EthToken.deployed();
-  await AoaToken.deployed();
+  await MaticToken.deployed();
   await ShibToken.deployed();
   await SolToken.deployed();
-  await UsdtToken.deployed();
   await UniToken.deployed();
-  await MaticToken.deployed();
+  await UsdtToken.deployed();
 
-  console.log("Swap Contract is deployed to:", SwapContract.address);
-  console.log("DaiToken is deployed to:", DaiToken.address);
-  console.log("EthToken is deployed to:", EthToken.address);
-  console.log("AoaToken is deployed to:", AoaToken.address);
-  console.log("ShibToken is deployed to:", ShibToken.address);
-  console.log("SolToken is deployed to:", SolToken.address);
-  console.log("UsdtToken is deployed to:", UsdtToken.address);
-  console.log("UniToken is deployed to:", UniToken.address);
-  console.log("MaticToken is deployed to:", MaticToken.address);
+  console.log('Swap Contract is deployed to:', SwapContract.address);
+  console.log('AoaToken is deployed to:', AoaToken.address);
+  console.log('DaiToken is deployed to:', DaiToken.address);
+  console.log('EthToken is deployed to:', EthToken.address);
+  console.log('MaticToken is deployed to:', MaticToken.address);
+  console.log('ShibToken is deployed to:', ShibToken.address);
+  console.log('SolToken is deployed to:', SolToken.address);
+  console.log('UniToken is deployed to:', UniToken.address);
+  console.log('UsdtToken is deployed to:', UsdtToken.address);
 }
 
 main().catch((error) => {
@@ -355,14 +359,14 @@ Deploying contracts with the account: 0xa9eD1748Ffcda5442dCaEA242603E7e3FF09dD7F
 Account balance: 232046724600000000
 deployer address is 0xa9eD1748Ffcda5442dCaEA242603E7e3FF09dD7F
 Swap Contract is deployed to: 0xC678d76a12Dd7f87FF1f952B6bEEd2c0fd308CF8
+AoaToken is deployed to: 0x10E9C13e9f73A35d4a0C8AA8328b84EF9747b7a8
 DaiToken is deployed to: 0x48a6b4beAeB3a959Cd358e3365fc9d178eB0B2D9
 EthToken is deployed to: 0x395A1065eA907Ab366807d68bbe21Df83169bA6c
-AoaToken is deployed to: 0x10E9C13e9f73A35d4a0C8AA8328b84EF9747b7a8
+MaticToken is deployed to: 0x4A8c0C9f9f2444197cE78b672F0D98D1Fe47bdA6
 ShibToken is deployed to: 0xa11e679EE578B32d12Dbe2882FcC387A86C8f887
 SolToken is deployed to: 0x30E198301969fDeddDCb84cE2C284dF58d4AB944
-UsdtToken is deployed to: 0x44734B834364c37d35e6E4253779e9459c93B5F4
 UniToken is deployed to: 0xC73F7cBD464aC7163D03dE669dedc3d1fA6Af5E4
-MaticToken is deployed to: 0x4A8c0C9f9f2444197cE78b672F0D98D1Fe47bdA6
+UsdtToken is deployed to: 0x44734B834364c37d35e6E4253779e9459c93B5F4
 ```
 
 これでコントラクトのdeployは成功したので、コントラクトの実装は完了です！
