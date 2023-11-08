@@ -131,23 +131,23 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
-  provider: ^6.0.3
-  fluid_bottom_nav_bar: ^1.3.0
-  hexcolor: ^3.0.1
-  google_fonts: ^4.0.0
-  flutter_svg: ^0.22.0
-  dropdown_button2: ^1.7.1
-  fluttertoast: ^8.0.9
-  qr_flutter: ^4.0.0
+  cupertino_icons: 1.0.6
+  dropdown_button2: 1.9.4
+  fluid_bottom_nav_bar: 1.3.0
+  flutter_dotenv: 5.1.0
+  flutter_svg: 0.22.0
+  fluttertoast: 8.2.2
+  google_fonts: 4.0.4
+  hexcolor: 3.0.1
+  http: 0.13.6
+  provider: 6.0.5
   qr_code_scanner: 1.0.0
-  http: ^0.13.5
-  web3dart: 2.3.5
-  web_socket_channel: ^2.2.0
-  flutter_dotenv: ^5.0.2
-  url_launcher: ^6.1.2
-  web3_connect: ^0.0.3
-  responsive_framework: ^1.0.0
+  qr_flutter: 4.1.0
+  responsive_framework: 1.1.1
+  url_launcher: 6.2.1
+  walletconnect_flutter_v2: 2.1.8
+  web_socket_channel: 2.4.0
+  web3dart: 2.6.1
 ```
 
 次に使用する画像やファイルの宣言、アイコンを変更するための記述をしていきます。先ほどの記述の下に書いてあるものを以下のように書き換えましょう。
@@ -212,36 +212,40 @@ flutter pub run flutter_launcher_icons:main
 [`.env`]
 
 ```
-AOA_CONTRACT_ADDRESS = "0x10E9C13e9f73A35d4a0C8AA8328b84EF9747b7a8"
-SHIB_CONTRACT_ADDRESS = "0xa11e679EE578B32d12Dbe2882FcC387A86C8f887"
-ETH_CONTRACT_ADDRESS = "0x395A1065eA907Ab366807d68bbe21Df83169bA6c"
-SOL_CONTRACT_ADDRESS = "0x30E198301969fDeddDCb84cE2C284dF58d4AB944"
-USDT_CONTRACT_ADDRESS = "0x44734B834364c37d35e6E4253779e9459c93B5F4"
-UNI_CONTRACT_ADDRESS = "0xC73F7cBD464aC7163D03dE669dedc3d1fA6Af5E4"
-MATIC_CONTRACT_ADDRESS = "0x4A8c0C9f9f2444197cE78b672F0D98D1Fe47bdA6"
-DAI_CONTRACT_ADDRESS = "0x48a6b4beAeB3a959Cd358e3365fc9d178eB0B2D9"
 SWAP_CONTRACT_ADDRESS = "0xC678d76a12Dd7f87FF1f952B6bEEd2c0fd308CF8"
+AOA_CONTRACT_ADDRESS = "0x10E9C13e9f73A35d4a0C8AA8328b84EF9747b7a8"
+DAI_CONTRACT_ADDRESS = "0x48a6b4beAeB3a959Cd358e3365fc9d178eB0B2D9"
+ETH_CONTRACT_ADDRESS = "0x395A1065eA907Ab366807d68bbe21Df83169bA6c"
+MATIC_CONTRACT_ADDRESS = "0x4A8c0C9f9f2444197cE78b672F0D98D1Fe47bdA6"
+SHIB_CONTRACT_ADDRESS = "0xa11e679EE578B32d12Dbe2882FcC387A86C8f887"
+SOL_CONTRACT_ADDRESS = "0x30E198301969fDeddDCb84cE2C284dF58d4AB944"
+UNI_CONTRACT_ADDRESS = "0xC73F7cBD464aC7163D03dE669dedc3d1fA6Af5E4"
+USDT_CONTRACT_ADDRESS = "0x44734B834364c37d35e6E4253779e9459c93B5F4"
 
 SWAP_CONTRACT_NAME = "SwapContract"
+AOA_CONTRACT_NAME = "AuroraToken"
 DAI_CONTRACT_NAME = "DaiToken"
 ETH_CONTRACT_NAME = "EthToken"
-AOA_CONTRACT_NAME = "AuroraToken"
+MATIC_CONTRACT_NAME = "PolygonToken"
 SHIB_CONTRACT_NAME = "ShibainuToken"
 SOL_CONTRACT_NAME = "SolanaToken"
-USDT_CONTRACT_NAME = "TetherToken"
 UNI_CONTRACT_NAME = "UniswapToken"
-MATIC_CONTRACT_NAME = "PolygonToken"
+USDT_CONTRACT_NAME = "TetherToken"
 
-INFURA_KEY_TEST = "Infura's aurora testnet http key"
+AURORA_TESTNET_INFURA_KEY = "Infura's aurora testnet http key"
+
+WALLETCONNECT_PROJECT_ID = "WalletConnect's project id"
 ```
 
 `XXX_CONTRACT_ADDRESS`にはsection-1のlesson-2で行ったdeployから返ってきたそれぞれのアドレスを入れます。
 
-`INFURA_KEY_TEST`には前半で作ったinfuraアカウントの、aurora testnet用のhttp keyを入れます。下のような形式になっているものです。
+`AURORA_TESTNET_INFURA_KEY`にはsection-0のlesson-2で行った環境構築時に作成したinfuraアカウントの、aurora testnet用のhttp keyを入れます。下のような形式になっているものです。
 
 ```
 INFURA_KEY_TEST = "https://aurora-testnet.infura.io/v3/4b5...."
 ```
+
+`WALLETCONNECT_PROJECT_ID`には同じくsection-0のlesson-2で作成したWalletConnectのproject idを入れます。
 
 ではいよいよ基礎となるmodelやウィジェットを作成していきたいところですが、その前にホーム画面などのそれぞれの画面を簡単に作っておきます。
 
