@@ -9,20 +9,20 @@
 追加後は下のようなディレクトリ構造になります。
 
 ```
+client/
 ├── README.md
 ├── analysis_options.yaml
 ├── android/
 ├── assets/
 ├── build/
-├── firebase.json
 ├── ios/
 ├── lib/
 ├── linux/
 ├── macos/
-├── payment_dapp.iml
+├── package.json
 ├── pubspec.lock
 ├── pubspec.yaml
-├── smartcontracts/assets
+├── smartcontracts/
 ├── test/
 ├── web/
 └── windows/
