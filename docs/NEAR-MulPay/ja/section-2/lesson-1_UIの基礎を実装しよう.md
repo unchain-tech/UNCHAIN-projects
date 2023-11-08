@@ -257,8 +257,6 @@ INFURA_KEY_TEST = "https://aurora-testnet.infura.io/v3/4b5...."
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -271,7 +269,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Home Screen")),
+      appBar: AppBar(title: const Text("Home Screen")),
     );
   }
 }
@@ -282,8 +280,6 @@ class _HomeState extends State<Home> {
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class QRCodeScan extends StatefulWidget {
   const QRCodeScan({Key? key}) : super(key: key);
@@ -296,7 +292,7 @@ class _HomeState extends State<QRCodeScan> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("QRCodeScan Screen")),
+      appBar: AppBar(title: const Text("QRCodeScan Screen")),
     );
   }
 }
@@ -306,8 +302,6 @@ class _HomeState extends State<QRCodeScan> {
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class Send extends StatefulWidget {
   const Send({Key? key}) : super(key: key);
@@ -320,7 +314,7 @@ class _HomeState extends State<Send> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Send Screen")),
+      appBar: AppBar(title: const Text("Send Screen")),
     );
   }
 }
@@ -330,8 +324,6 @@ class _HomeState extends State<Send> {
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -344,7 +336,7 @@ class _HomeState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("SignIn Screen")),
+      appBar: AppBar(title: const Text("SignIn Screen")),
     );
   }
 }
@@ -354,8 +346,6 @@ class _HomeState extends State<SignIn> {
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class Wallet extends StatefulWidget {
   const Wallet({Key? key}) : super(key: key);
@@ -368,7 +358,7 @@ class _HomeState extends State<Wallet> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Wallet Screen")),
+      appBar: AppBar(title: const Text("Wallet Screen")),
     );
   }
 }
@@ -383,6 +373,8 @@ class _HomeState extends State<Wallet> {
 ```dart
 import 'dart:convert';
 import 'dart:core';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -391,7 +383,6 @@ import 'package:url_launcher/url_launcher_string.dart';
 import 'package:web3_connect/web3_connect.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:web_socket_channel/io.dart';
-import 'dart:math';
 import 'package:http/http.dart' as http;
 
 class ContractModel extends ChangeNotifier {
@@ -652,6 +643,8 @@ class Token {
 ```dart
 import 'dart:convert';
 import 'dart:core';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -660,7 +653,6 @@ import 'package:url_launcher/url_launcher_string.dart';
 import 'package:web3_connect/web3_connect.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:web_socket_channel/io.dart';
-import 'dart:math';
 import 'package:http/http.dart' as http;
 ```
 
@@ -951,6 +943,7 @@ class Token {
 
 では次にhome画面に表示する、それぞれのコインの残高情報を示すリスト一つ一つの元となるUIを作成していきます。
 
+<!-- TODO: 以下の画像を正しいものに差し替える -->
 ![](/public/images/NEAR-MulPay/section-2/2_1_19.png)
 
 `lib/view/widgets/coin.dart`に移動して下のコードを追加していきましょう。
@@ -1072,11 +1065,12 @@ SizedBox(
 ```dart
 import 'package:fluid_bottom_nav_bar/fluid_bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:client/view/screens/home.dart';
-import 'package:client/view/screens/send.dart';
-import 'package:client/view/screens/wallet.dart';
-import 'package:provider/provider.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:provider/provider.dart';
+
+import '/view/screens/home.dart';
+import '/view/screens/send.dart';
+import '/view/screens/wallet.dart';
 
 class BottomNavigationBarProvider with ChangeNotifier {
   int _currentIndex = 0;
@@ -1240,9 +1234,6 @@ class _BottomNavigationBarState extends State<BottomNavigationBarWidget> {
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 
 class QRCode extends StatefulWidget {
   const QRCode({Key? key, this.qrImage}) : super(key: key);
