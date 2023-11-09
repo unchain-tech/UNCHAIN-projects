@@ -380,10 +380,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-import 'package:web3_connect/web3_connect.dart';
+import 'package:walletconnect_flutter_v2/walletconnect_flutter_v2.dart';
+import 'package:web3dart/crypto.dart';
 import 'package:web3dart/web3dart.dart';
-import 'package:web_socket_channel/io.dart';
-import 'package:http/http.dart' as http;
 
 class ContractModel extends ChangeNotifier {
   List<Token> tokenList = [
@@ -395,11 +394,11 @@ class ContractModel extends ChangeNotifier {
       imagePath: "assets/aurora-aoa-logo.png",
     ),
     Token(
-        address: dotenv.env["SHIB_CONTRACT_ADDRESS"]!,
-        contractName: dotenv.env["SHIB_CONTRACT_NAME"]!,
-        name: "Shibainu",
-        symbol: "SHIB",
-        imagePath: "assets/shib-logo.png"),
+        address: dotenv.env["DAI_CONTRACT_ADDRESS"]!,
+        contractName: dotenv.env["DAI_CONTRACT_NAME"]!,
+        name: "Dai",
+        symbol: "DAI",
+        imagePath: "assets/dai-dai-logo.png"),
     Token(
         address: dotenv.env["ETH_CONTRACT_ADDRESS"]!,
         contractName: dotenv.env["ETH_CONTRACT_NAME"]!,
@@ -407,17 +406,23 @@ class ContractModel extends ChangeNotifier {
         symbol: "ETH",
         imagePath: "assets/ethereum-eth-logo.png"),
     Token(
+        address: dotenv.env["MATIC_CONTRACT_ADDRESS"]!,
+        contractName: dotenv.env["MATIC_CONTRACT_NAME"]!,
+        name: "Polygon",
+        symbol: "MATIC",
+        imagePath: "assets/polygon-matic-logo.png"),
+    Token(
+        address: dotenv.env["SHIB_CONTRACT_ADDRESS"]!,
+        contractName: dotenv.env["SHIB_CONTRACT_NAME"]!,
+        name: "Shibainu",
+        symbol: "SHIB",
+        imagePath: "assets/shib-logo.png"),
+    Token(
         address: dotenv.env["SOL_CONTRACT_ADDRESS"]!,
         contractName: dotenv.env["SOL_CONTRACT_NAME"]!,
         name: "Solana",
         symbol: "SOL",
         imagePath: "assets/solana-sol-logo.png"),
-    Token(
-        address: dotenv.env["USDT_CONTRACT_ADDRESS"]!,
-        contractName: dotenv.env["USDT_CONTRACT_NAME"]!,
-        name: "Tether",
-        symbol: "USDT",
-        imagePath: "assets/tether-usdt-logo.png"),
     Token(
         address: dotenv.env["UNI_CONTRACT_ADDRESS"]!,
         contractName: dotenv.env["UNI_CONTRACT_NAME"]!,
@@ -425,65 +430,39 @@ class ContractModel extends ChangeNotifier {
         symbol: "UNI",
         imagePath: "assets/uniswap-uni-logo.png"),
     Token(
-        address: dotenv.env["MATIC_CONTRACT_ADDRESS"]!,
-        contractName: dotenv.env["MATIC_CONTRACT_NAME"]!,
-        name: "Polygon",
-        symbol: "MATIC",
-        imagePath: "assets/polygon-matic-logo.png"),
-    Token(
-        address: dotenv.env["DAI_CONTRACT_ADDRESS"]!,
-        contractName: dotenv.env["DAI_CONTRACT_NAME"]!,
-        name: "Dai",
-        symbol: "DAI",
-        imagePath: "assets/dai-dai-logo.png"),
+        address: dotenv.env["USDT_CONTRACT_ADDRESS"]!,
+        contractName: dotenv.env["USDT_CONTRACT_NAME"]!,
+        name: "Tether",
+        symbol: "USDT",
+        imagePath: "assets/tether-usdt-logo.png"),
   ];
 
   final SWAP_CONTRACT_ADDRESS = dotenv.env["SWAP_CONTRACT_ADDRESS"];
   final SWAP_CONTRACT_NAME = dotenv.env["SWAP_CONTRACT_NAME"];
 
+  String? _deepLinkUrl;
+  String? _account;
+  Web3App? _wcClient;
+  SessionData? _sessionData;
+
   late Web3Client auroraClient;
   int ethBalance = 0;
-  bool _isLoading = true;
-  final String _rpcUrl = "https://testnet.aurora.dev";
-  final String _wsUrl = "wss://testnet.aurora.dev";
-  final String _deepLink =
-      "wc:00e46b69-d0cc-4b3e-b6a2-cee442f97188@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=91303dedf64285cbbaf9120f6e9d160a5c8aa3deb67017a3874cd272323f48ae";
 
-
-  Web3Client? _client;
-  String? _abiCode;
-
-  Credentials? _credentials;
-  EthereumAddress? _contractAddress;
-  EthereumAddress? _ownAddress;
   DeployedContract? _contract;
-
-  ContractFunction? _transfer;
-  ContractFunction? _balanceOf;
-
-  Web3Connect? _connection;
-  var account;
 
   ContractModel() {
     init();
   }
 
   Future<void> init() async {
-    final INFURA_KEY_TEST = dotenv.env["INFURA_KEY_TEST"];
-    http.Client httpClient = http.Client();
-    auroraClient = Web3Client(INFURA_KEY_TEST!, httpClient);
-    _client = Web3Client(_rpcUrl, Client(), socketConnector: () {
-      return IOWebSocketChannel.connect(_wsUrl).cast<String>();
-    });
+    var httpClient = Client();
+
+    auroraClient =
+        Web3Client(dotenv.env["AURORA_TESTNET_INFURA_KEY"]!, httpClient);
   }
 
-  Future<void> getAbi(String contractName) async {
-    String abiStringFile =
-        await rootBundle.loadString("smartcontracts/" + contractName + ".json");
-    var jsonAbi = jsonDecode(abiStringFile);
-    _abiCode = jsonEncode(jsonAbi["abi"]);
-    _contractAddress =
-        EthereumAddress.fromHex(jsonAbi["networks"]["1313161555"]["address"]);
+  getAccount() {
+    return _account;
   }
 
   Future<DeployedContract> getContract(
@@ -497,7 +476,7 @@ class ContractModel extends ChangeNotifier {
     return contract;
   }
 
-// This is called for read-only function of contract
+  // This is called for read-only function of contract
   Future<List<dynamic>> query(String contractName, String contractAddress,
       String functionName, List<dynamic> args) async {
     DeployedContract contract =
@@ -511,40 +490,63 @@ class ContractModel extends ChangeNotifier {
     return result;
   }
 
-  Future<void> sendTransaction(String contractName, String contractAddress,
-      String functionName, List<dynamic> args) async {
-    if (_connection != null && _client != null) {
-      final contract = await getContract(contractName, contractAddress);
-      ContractFunction function = contract.function(functionName);
-      final transaction = Transaction.callContract(
-        contract: contract,
-        function: function,
-        from: EthereumAddress.fromHex(_connection!.account),
-        parameters: args,
-      );
-      final tra = _client!.sendTransaction(
-          _connection!.credentials, transaction,
-          chainId: 1313161555);
-      if (!await launchUrlString(_deepLink)) {
-        throw "Could not launch $_deepLink";
-      }
-      await tra;
-      notifyListeners();
-    } else {
-      print("There is no connection to wallet or no client");
-    }
+  Future<EthereumTransaction> generateTransaction(
+      String contractName,
+      String contractAddress,
+      String functionName,
+      List<dynamic> parameters) async {
+    _contract = await getContract(contractName, contractAddress);
+
+    ContractFunction function = _contract!.function(functionName);
+
+    // web3dartを使用して、トランザクションを作成します。
+    final Transaction transaction = Transaction.callContract(
+        contract: _contract!, function: function, parameters: parameters);
+
+    // walletconnect_flutter_v2を使用して、Ethereumトランザクションを作成します。
+    final EthereumTransaction ethereumTransaction = EthereumTransaction(
+      from: _account!,
+      to: contractAddress,
+      value: '0x${transaction.value?.getInWei.toRadixString(16) ?? '0'}',
+      data: transaction.data != null ? bytesToHex(transaction.data!) : null,
+    );
+
+    return ethereumTransaction;
   }
 
-  Future<void> setConnection(Web3Connect connection) async {
-    _connection = connection;
-    account = connection.account;
+  Future<String> sendTransaction(EthereumTransaction transaction) async {
+    // Metamaskアプリケーションを起動します。
+    await launchUrlString(_deepLinkUrl!, mode: LaunchMode.externalApplication);
+
+    // 署名をリクエストします。
+    final String signResponse = await _wcClient?.request(
+      topic: _sessionData?.topic ?? "",
+      chainId: 'eip155:1313161555',
+      request: SessionRequestParams(
+        method: 'eth_sendTransaction',
+        params: [transaction.toJson()],
+      ),
+    );
+
+    return signResponse;
+  }
+
+  Future<void> setConnection(
+      String deepLinkUrl, Web3App wcClient, SessionData sessionData) async {
+    _deepLinkUrl = deepLinkUrl;
+    _wcClient = wcClient;
+    _sessionData = sessionData;
+    // セッションを認証したアカウントを取得します。
+    _account = NamespaceUtils.getAccount(
+        sessionData.namespaces.values.first.accounts.first);
+
     notifyListeners();
   }
 
   Future<String> getBalance(
       String tokenContractName, String tokenAddress) async {
     List<dynamic> result = await query(tokenContractName, tokenAddress,
-        'balanceOf', [EthereumAddress.fromHex(_connection!.account)]);
+        'balanceOf', [EthereumAddress.fromHex(_account!)]);
     return result[0].toString();
   }
 
@@ -575,28 +577,64 @@ class ContractModel extends ChangeNotifier {
 
   Future<void> sendToken(String sendTokenContractName, String sendTokenAddress,
       String receiveTokenAddress, String recipientAddress, int amount) async {
-    await sendTransaction(
-      sendTokenContractName,
-      sendTokenAddress,
-      "approve",
-      [
+    try {
+      // トークンの送信を承認します。
+      final EthereumTransaction ethereumTransactionOfApprove =
+          await generateTransaction(
+              sendTokenContractName, sendTokenAddress, "approve", [
         EthereumAddress.fromHex(dotenv.env['SWAP_CONTRACT_ADDRESS']!),
         BigInt.from(amount),
-      ],
-    );
-    await sendTransaction(
-      dotenv.env['SWAP_CONTRACT_NAME']!,
-      dotenv.env['SWAP_CONTRACT_ADDRESS']!,
-      "swap",
-      [
-        // measureToken is got rid of
-        EthereumAddress.fromHex(sendTokenAddress),
-        EthereumAddress.fromHex(sendTokenAddress),
-        EthereumAddress.fromHex(receiveTokenAddress),
-        BigInt.from(amount),
-        EthereumAddress.fromHex(recipientAddress),
-      ],
-    );
+      ]);
+
+      final String signResponseOfApprove =
+          await sendTransaction(ethereumTransactionOfApprove);
+      debugPrint('=== signResponseOfApprove: $signResponseOfApprove');
+
+      final EthereumTransaction ethereumTransactionOfSwap =
+          await generateTransaction(
+        dotenv.env['SWAP_CONTRACT_NAME']!,
+        dotenv.env['SWAP_CONTRACT_ADDRESS']!,
+        "swap",
+        [
+          // measureToken is got rid of
+          EthereumAddress.fromHex(sendTokenAddress),
+          EthereumAddress.fromHex(sendTokenAddress),
+          EthereumAddress.fromHex(receiveTokenAddress),
+          BigInt.from(amount),
+          EthereumAddress.fromHex(recipientAddress),
+        ],
+      );
+
+      final String signResponseOfSwap =
+          await sendTransaction(ethereumTransactionOfSwap);
+      debugPrint('=== signResponseOfSwap: $signResponseOfSwap');
+    } catch (error) {
+      rethrow;
+    } finally {
+      notifyListeners();
+    }
+  }
+
+  Future<void> distributeToken(String tokenAddress) async {
+    try {
+      final EthereumTransaction ethereumTransaction = await generateTransaction(
+        dotenv.env["SWAP_CONTRACT_NAME"]!,
+        dotenv.env["SWAP_CONTRACT_ADDRESS"]!,
+        "distributeToken",
+        [
+          EthereumAddress.fromHex(tokenAddress),
+          BigInt.from(100),
+          EthereumAddress.fromHex(_account!),
+        ],
+      );
+
+      final String signResponse = await sendTransaction(ethereumTransaction);
+      debugPrint('=== signResponse: $signResponse');
+    } catch (error) {
+      rethrow;
+    } finally {
+      notifyListeners();
+    }
   }
 
   Future<double> getTotalBalance() async {
@@ -634,6 +672,28 @@ class Token {
     this.balance = "0";
     this.ethBalance = "0";
   }
+}
+
+// Ethereumトランザクションを作成するためのモデルクラス
+class EthereumTransaction {
+  const EthereumTransaction({
+    required this.from,
+    required this.to,
+    required this.value,
+    this.data,
+  });
+
+  final String from;
+  final String to;
+  final String value;
+  final String? data;
+
+  Map<String, dynamic> toJson() => {
+        'from': from,
+        'to': to,
+        'value': value,
+        'data': data,
+      };
 }
 
 ```
@@ -671,11 +731,11 @@ class ContractModel extends ChangeNotifier {
       imagePath: "assets/aurora-aoa-logo.png",
     ),
     Token(
-        address: dotenv.env["SHIB_CONTRACT_ADDRESS"]!,
-        contractName: dotenv.env["SHIB_CONTRACT_NAME"]!,
-        name: "Shibainu",
-        symbol: "SHIB",
-        imagePath: "assets/shib-logo.png"),
+        address: dotenv.env["DAI_CONTRACT_ADDRESS"]!,
+        contractName: dotenv.env["DAI_CONTRACT_NAME"]!,
+        name: "Dai",
+        symbol: "DAI",
+        imagePath: "assets/dai-dai-logo.png"),
     Token(
         address: dotenv.env["ETH_CONTRACT_ADDRESS"]!,
         contractName: dotenv.env["ETH_CONTRACT_NAME"]!,
@@ -683,17 +743,23 @@ class ContractModel extends ChangeNotifier {
         symbol: "ETH",
         imagePath: "assets/ethereum-eth-logo.png"),
     Token(
+        address: dotenv.env["MATIC_CONTRACT_ADDRESS"]!,
+        contractName: dotenv.env["MATIC_CONTRACT_NAME"]!,
+        name: "Polygon",
+        symbol: "MATIC",
+        imagePath: "assets/polygon-matic-logo.png"),
+    Token(
+        address: dotenv.env["SHIB_CONTRACT_ADDRESS"]!,
+        contractName: dotenv.env["SHIB_CONTRACT_NAME"]!,
+        name: "Shibainu",
+        symbol: "SHIB",
+        imagePath: "assets/shib-logo.png"),
+    Token(
         address: dotenv.env["SOL_CONTRACT_ADDRESS"]!,
         contractName: dotenv.env["SOL_CONTRACT_NAME"]!,
         name: "Solana",
         symbol: "SOL",
         imagePath: "assets/solana-sol-logo.png"),
-    Token(
-        address: dotenv.env["USDT_CONTRACT_ADDRESS"]!,
-        contractName: dotenv.env["USDT_CONTRACT_NAME"]!,
-        name: "Tether",
-        symbol: "USDT",
-        imagePath: "assets/tether-usdt-logo.png"),
     Token(
         address: dotenv.env["UNI_CONTRACT_ADDRESS"]!,
         contractName: dotenv.env["UNI_CONTRACT_NAME"]!,
@@ -701,44 +767,25 @@ class ContractModel extends ChangeNotifier {
         symbol: "UNI",
         imagePath: "assets/uniswap-uni-logo.png"),
     Token(
-        address: dotenv.env["MATIC_CONTRACT_ADDRESS"]!,
-        contractName: dotenv.env["MATIC_CONTRACT_NAME"]!,
-        name: "Polygon",
-        symbol: "MATIC",
-        imagePath: "assets/polygon-matic-logo.png"),
-    Token(
-        address: dotenv.env["DAI_CONTRACT_ADDRESS"]!,
-        contractName: dotenv.env["DAI_CONTRACT_NAME"]!,
-        name: "Dai",
-        symbol: "DAI",
-        imagePath: "assets/dai-dai-logo.png"),
+        address: dotenv.env["USDT_CONTRACT_ADDRESS"]!,
+        contractName: dotenv.env["USDT_CONTRACT_NAME"]!,
+        name: "Tether",
+        symbol: "USDT",
+        imagePath: "assets/tether-usdt-logo.png"),
   ];
 
   final SWAP_CONTRACT_ADDRESS = dotenv.env["SWAP_CONTRACT_ADDRESS"];
   final SWAP_CONTRACT_NAME = dotenv.env["SWAP_CONTRACT_NAME"];
 
+  String? _deepLinkUrl;
+  String? _account;
+  Web3App? _wcClient;
+  SessionData? _sessionData;
+
   late Web3Client auroraClient;
   int ethBalance = 0;
-  bool _isLoading = true;
-  final String _rpcUrl = "https://testnet.aurora.dev";
-  final String _wsUrl = "wss://testnet.aurora.dev";
-  final String _deepLink =
-      "wc:00e46b69-d0cc-4b3e-b6a2-cee442f97188@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=91303dedf64285cbbaf9120f6e9d160a5c8aa3deb67017a3874cd272323f48ae";
 
-
-  Web3Client? _client;
-  String? _abiCode;
-
-  Credentials? _credentials;
-  EthereumAddress? _contractAddress;
-  EthereumAddress? _ownAddress;
   DeployedContract? _contract;
-
-  ContractFunction? _transfer;
-  ContractFunction? _balanceOf;
-
-  Web3Connect? _connection;
-  var account;
 ```
 
 後半の部分ではコントラクトにあるメソッドを呼び出すためのメソッドが書かれています。
@@ -751,27 +798,16 @@ ContractModel() {
   }
 
   Future<void> init() async {
-    final INFURA_KEY_TEST = dotenv.env["INFURA_KEY_TEST"];
-    http.Client httpClient = http.Client();
-    auroraClient = Web3Client(INFURA_KEY_TEST!, httpClient);
-    _client = Web3Client(_rpcUrl, Client(), socketConnector: () {
-      return IOWebSocketChannel.connect(_wsUrl).cast<String>();
-    });
+    var httpClient = Client();
+
+    auroraClient =
+        Web3Client(dotenv.env["AURORA_TESTNET_INFURA_KEY"]!, httpClient);
   }
 ```
 
-そして`getAbi,getContract`メソッドはそれぞれのコントラクトの情報を取得して、メソッドを呼ぶためのものです。
+そして`getContract`メソッドはそれぞれのコントラクトの情報を取得して、メソッドを呼ぶためのものです。
 
 ```dart
-Future<void> getAbi(String contractName) async {
-  String abiStringFile =
-      await rootBundle.loadString("smartcontracts/" + contractName + ".json");
-  var jsonAbi = jsonDecode(abiStringFile);
-  _abiCode = jsonEncode(jsonAbi["abi"]);
-  _contractAddress =
-      EthereumAddress.fromHex(jsonAbi["networks"]["1313161555"]["address"]);
-}
-
 Future<DeployedContract> getContract(
     String contractName, String contractAddress) async {
   String abi =
@@ -801,91 +837,119 @@ Future<List<dynamic>> query(String contractName, String contractAddress,
 }
 ```
 
-次の`sendTransaction`関数はブロックチェーン上の値を書き換えるような関数を呼び出すことができます。ただし、毎回walletの許可が必要となります。
+`generateTransaction`関数は、その次に定義されている`sendTransaction`関数で使用するトランザクションを作成します。`sendTransaction`関数はブロックチェーン上の値を書き換えるような関数を呼び出すことができます。ただし、毎回walletの許可が必要となります。
 
 ```dart
-Future<void> sendTransaction(String contractName, String contractAddress,
-      String functionName, List<dynamic> args) async {
-    if (_connection != null && _client != null) {
-      final contract = await getContract(contractName, contractAddress);
-      ContractFunction function = contract.function(functionName);
-      final transaction = Transaction.callContract(
-        contract: contract,
-        function: function,
-        from: EthereumAddress.fromHex(_connection!.account),
-        parameters: args,
-      );
-      final tra = _client!.sendTransaction(
-          _connection!.credentials, transaction,
-          chainId: 1313161555);
-      if (!await launchUrlString(_deepLink)) {
-        throw "Could not launch $_deepLink";
-      }
-      await tra;
-      notifyListeners();
-    } else {
-      print("There is no connection to wallet or no client");
-    }
-  }
+Future<EthereumTransaction> generateTransaction(
+    String contractName,
+    String contractAddress,
+    String functionName,
+    List<dynamic> parameters) async {
+  _contract = await getContract(contractName, contractAddress);
+
+  ContractFunction function = _contract!.function(functionName);
+
+  // web3dartを使用して、トランザクションを作成します。
+  final Transaction transaction = Transaction.callContract(
+      contract: _contract!, function: function, parameters: parameters);
+
+  // walletconnect_flutter_v2を使用して、Ethereumトランザクションを作成します。
+  final EthereumTransaction ethereumTransaction = EthereumTransaction(
+    from: _account!,
+    to: contractAddress,
+    value: '0x${transaction.value?.getInWei.toRadixString(16) ?? '0'}',
+    data: transaction.data != null ? bytesToHex(transaction.data!) : null,
+  );
+
+  return ethereumTransaction;
+}
+
+Future<String> sendTransaction(EthereumTransaction transaction) async {
+  // Metamaskアプリケーションを起動します。
+  await launchUrlString(_deepLinkUrl!, mode: LaunchMode.externalApplication);
+
+  // 署名をリクエストします。
+  final String signResponse = await _wcClient?.request(
+    topic: _sessionData?.topic ?? "",
+    chainId: 'eip155:1313161555',
+    request: SessionRequestParams(
+      method: 'eth_sendTransaction',
+      params: [transaction.toJson()],
+    ),
+  );
+
+  return signResponse;
+}
 ```
 
 `setConnection`関数はwalletと接続した情報をインスタンス化したこのmodelに保存するための関数です。
 
 ```dart
-Future<void> setConnection(Web3Connect connection) async {
-    _connection = connection;
-    account = connection.account;
-    notifyListeners();
-  }
+Future<void> setConnection(
+    String deepLinkUrl, Web3App wcClient, SessionData sessionData) async {
+  _deepLinkUrl = deepLinkUrl;
+  _wcClient = wcClient;
+  _sessionData = sessionData;
+  // セッションを認証したアカウントを取得します。
+  _account = NamespaceUtils.getAccount(
+      sessionData.namespaces.values.first.accounts.first);
+
+  notifyListeners();
+}
 ```
 
 それ以降はコントラクトに存在する関数を呼び出すもので、指定のトークンの残高を参照したり、swapを行うなどsection-1で作成した関数を呼び出すことができます。
 
 ```dart
 Future<String> getBalance(
-      String tokenContractName, String tokenAddress) async {
-    List<dynamic> result = await query(tokenContractName, tokenAddress,
-        'balanceOf', [EthereumAddress.fromHex(_connection!.account)]);
-    return result[0].toString();
-  }
+    String tokenContractName, String tokenAddress) async {
+  List<dynamic> result = await query(tokenContractName, tokenAddress,
+      'balanceOf', [EthereumAddress.fromHex(_account!)]);
+  return result[0].toString();
+}
 
-  Future<String> getEthBalance(String tokenContractName) async {
-    List<dynamic> result = await query(
-        SWAP_CONTRACT_NAME!, SWAP_CONTRACT_ADDRESS!, 'calculateValue', [
-      EthereumAddress.fromHex(tokenContractName),
-      EthereumAddress.fromHex(dotenv.env["ETH_CONTRACT_ADDRESS"]!)
+Future<String> getEthBalance(String tokenContractName) async {
+  List<dynamic> result = await query(
+      SWAP_CONTRACT_NAME!, SWAP_CONTRACT_ADDRESS!, 'calculateValue', [
+    EthereumAddress.fromHex(dotenv.env["ETH_CONTRACT_ADDRESS"]!),
+    EthereumAddress.fromHex(tokenContractName)
+  ]);
+  return result[0].toString();
+}
+
+Future<bool> getTokensInfo() async {
+  for (int i = 0; i < tokenList.length; i++) {
+    final balance =
+        await getBalance(tokenList[i].contractName, tokenList[i].address);
+    final ethValue = await getEthBalance(tokenList[i].address);
+    final ethBalance =
+        ((double.parse(ethValue) * double.parse(balance) / (pow(10, 18)))
+                .ceil())
+            .toString();
+    tokenList[i]
+      ..balance = balance
+      ..ethBalance = ethBalance;
+  }
+  return true;
+}
+
+Future<void> sendToken(String sendTokenContractName, String sendTokenAddress,
+    String receiveTokenAddress, String recipientAddress, int amount) async {
+  try {
+    // トークンの送信を承認します。
+    final EthereumTransaction ethereumTransactionOfApprove =
+        await generateTransaction(
+            sendTokenContractName, sendTokenAddress, "approve", [
+      EthereumAddress.fromHex(dotenv.env['SWAP_CONTRACT_ADDRESS']!),
+      BigInt.from(amount),
     ]);
-    return result[0].toString();
-  }
 
-  Future<bool> getTokensInfo() async {
-    for (int i = 0; i < tokenList.length; i++) {
-      final balance =
-          await getBalance(tokenList[i].contractName, tokenList[i].address);
-      final ethValue = await getEthBalance(tokenList[i].address);
-      final ethBalance =
-          ((double.parse(ethValue) * double.parse(balance) / (pow(10, 18)))
-                  .ceil())
-              .toString();
-      tokenList[i]
-        ..balance = balance
-        ..ethBalance = ethBalance;
-    }
-    return true;
-  }
+    final String signResponseOfApprove =
+        await sendTransaction(ethereumTransactionOfApprove);
+    debugPrint('=== signResponseOfApprove: $signResponseOfApprove');
 
-  Future<void> sendToken(String sendTokenContractName, String sendTokenAddress,
-      String receiveTokenAddress, String recipientAddress, int amount) async {
-    await sendTransaction(
-      sendTokenContractName,
-      sendTokenAddress,
-      "approve",
-      [
-        EthereumAddress.fromHex(dotenv.env['SWAP_CONTRACT_ADDRESS']!),
-        BigInt.from(amount),
-      ],
-    );
-    await sendTransaction(
+    final EthereumTransaction ethereumTransactionOfSwap =
+        await generateTransaction(
       dotenv.env['SWAP_CONTRACT_NAME']!,
       dotenv.env['SWAP_CONTRACT_ADDRESS']!,
       "swap",
@@ -898,25 +962,56 @@ Future<String> getBalance(
         EthereumAddress.fromHex(recipientAddress),
       ],
     );
-  }
 
-  Future<double> getTotalBalance() async {
-    double total = 0;
-    for (int i = 0; i < tokenList.length; i++) {
-      var balance =
-          await getBalance(tokenList[i].contractName, tokenList[i].address);
-      var ethValue = await getEthBalance(tokenList[i].address);
-      var ethBalance =
-          ((double.parse(ethValue) * double.parse(balance) / (pow(10, 18)))
-                  .ceil())
-              .toString();
-      total += double.parse(ethBalance);
-    }
-    return total;
+    final String signResponseOfSwap =
+        await sendTransaction(ethereumTransactionOfSwap);
+    debugPrint('=== signResponseOfSwap: $signResponseOfSwap');
+  } catch (error) {
+    rethrow;
+  } finally {
+    notifyListeners();
   }
+}
+
+Future<void> distributeToken(String tokenAddress) async {
+  try {
+    final EthereumTransaction ethereumTransaction = await generateTransaction(
+      dotenv.env["SWAP_CONTRACT_NAME"]!,
+      dotenv.env["SWAP_CONTRACT_ADDRESS"]!,
+      "distributeToken",
+      [
+        EthereumAddress.fromHex(tokenAddress),
+        BigInt.from(100),
+        EthereumAddress.fromHex(_account!),
+      ],
+    );
+
+    final String signResponse = await sendTransaction(ethereumTransaction);
+    debugPrint('=== signResponse: $signResponse');
+  } catch (error) {
+    rethrow;
+  } finally {
+    notifyListeners();
+  }
+}
+
+Future<double> getTotalBalance() async {
+  double total = 0;
+  for (int i = 0; i < tokenList.length; i++) {
+    var balance =
+        await getBalance(tokenList[i].contractName, tokenList[i].address);
+    var ethValue = await getEthBalance(tokenList[i].address);
+    var ethBalance =
+        ((double.parse(ethValue) * double.parse(balance) / (pow(10, 18)))
+                .ceil())
+            .toString();
+    total += double.parse(ethBalance);
+  }
+  return total;
+}
 ```
 
-一番下に記述している`Token`というクラスはトークンの情報を保存するためのclassになります。
+一番下にはclassを定義しています。`Token`というクラスはトークンの情報を保存するためのclassになります。`EthereumTransaction`というクラスは、walletconnect_flutter_v2を使用してEthereumトランザクションを作成するためのclassになります。
 
 ```dart
 class Token {
@@ -939,12 +1034,33 @@ class Token {
     this.ethBalance = "0";
   }
 }
+
+// Ethereumトランザクションを作成するためのモデルクラス
+class EthereumTransaction {
+  const EthereumTransaction({
+    required this.from,
+    required this.to,
+    required this.value,
+    this.data,
+  });
+
+  final String from;
+  final String to;
+  final String value;
+  final String? data;
+
+  Map<String, dynamic> toJson() => {
+        'from': from,
+        'to': to,
+        'value': value,
+        'data': data,
+      };
+}s
 ```
 
 では次にhome画面に表示する、それぞれのコインの残高情報を示すリスト一つ一つの元となるUIを作成していきます。
 
-<!-- TODO: 以下の画像を正しいものに差し替える -->
-![](/public/images/NEAR-MulPay/section-2/2_1_19.png)
+![](/public/images/NEAR-MulPay/section-2/2_1_22.png)
 
 `lib/view/widgets/coin.dart`に移動して下のコードを追加していきましょう。
 
