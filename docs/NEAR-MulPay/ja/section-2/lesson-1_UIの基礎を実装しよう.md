@@ -43,50 +43,53 @@
 [aurora-aoa-logo.png]
 ![](/public/images/NEAR-MulPay/section-2/2_1_3.png)
 
-[ethereum-eth-logo.png]
+[dai-dai-logo.png]
 ![](/public/images/NEAR-MulPay/section-2/2_1_4.png)
 
-[polygon-matic-logo.png]
+[ethereum-eth-logo.png]
 ![](/public/images/NEAR-MulPay/section-2/2_1_5.png)
 
-[shib-logo.png]
+[polygon-matic-logo.png]
 ![](/public/images/NEAR-MulPay/section-2/2_1_6.png)
 
-[solana-sol-logo.png]
+[shib-logo.png]
 ![](/public/images/NEAR-MulPay/section-2/2_1_7.png)
 
-[tether-usdt-logo.png]
+[solana-sol-logo.png]
 ![](/public/images/NEAR-MulPay/section-2/2_1_8.png)
 
-[uniswap-uni-logo.png]
+[tether-usdt-logo.png]
 ![](/public/images/NEAR-MulPay/section-2/2_1_9.png)
 
-[unchain_logo.png]
+[uniswap-uni-logo.png]
 ![](/public/images/NEAR-MulPay/section-2/2_1_10.png)
 
+[unchain_logo.png]
+![](/public/images/NEAR-MulPay/section-2/2_1_11.png)
+
 [multiple-coins.jpg]
-![](/public/images/NEAR-MulPay/section-2/2_1_11.jpg)
+![](/public/images/NEAR-MulPay/section-2/2_1_12.jpg)
 
 [pop.svg]
-![](/public/images/NEAR-MulPay/section-2/2_1_12.svg)
-
-[pay.svg]
 ![](/public/images/NEAR-MulPay/section-2/2_1_13.svg)
 
-[home.svg]
+[pay.svg]
 ![](/public/images/NEAR-MulPay/section-2/2_1_14.svg)
 
-[three-dots.svg]
+[home.svg]
 ![](/public/images/NEAR-MulPay/section-2/2_1_15.svg)
 
-[triangle.svg]
+[three-dots.svg]
 ![](/public/images/NEAR-MulPay/section-2/2_1_16.svg)
 
-[wallet_screen_img.svg]
+[triangle.svg]
 ![](/public/images/NEAR-MulPay/section-2/2_1_17.svg)
 
-[wallet.svg]
+[wallet_screen_img.svg]
 ![](/public/images/NEAR-MulPay/section-2/2_1_18.svg)
+
+[wallet.svg]
+![](/public/images/NEAR-MulPay/section-2/2_1_19.svg)
 
 次に`smartcontracts`ディレクトリにsection-1で作成したコントラクトのabiファイルを追加します。
 
@@ -183,8 +186,8 @@ flutter:
 ```
 
 スペースについては下のようになっていればOKです。
-![](/public/images/NEAR-MulPay/section-2/2_1_19.png)
 ![](/public/images/NEAR-MulPay/section-2/2_1_20.png)
+![](/public/images/NEAR-MulPay/section-2/2_1_21.png)
 
 その後、`client`ディレクトリに移動して下のコマンドをターミナルで実行しましょう。
 
@@ -395,6 +398,12 @@ class ContractModel extends ChangeNotifier {
       symbol: "AOA",
       imagePath: "assets/aurora-aoa-logo.png",
     ),
+    Token(
+        address: dotenv.env["DAI_CONTRACT_ADDRESS"]!,
+        contractName: dotenv.env["DAI_CONTRACT_NAME"]!,
+        name: "Dai",
+        symbol: "DAI",
+        imagePath: "assets/dai-dai-logo.png"),
     Token(
         address: dotenv.env["SHIB_CONTRACT_ADDRESS"]!,
         contractName: dotenv.env["SHIB_CONTRACT_NAME"]!,
