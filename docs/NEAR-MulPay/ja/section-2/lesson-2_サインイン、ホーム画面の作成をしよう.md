@@ -405,7 +405,7 @@ android {
 これ以降も、UIを確認する際は同じ手順で行います。
 
 ```
-yarn client start
+yarn client flutter:run
 ```
 
 エミュレータであれば下のような画面が表示されていれば成功です。

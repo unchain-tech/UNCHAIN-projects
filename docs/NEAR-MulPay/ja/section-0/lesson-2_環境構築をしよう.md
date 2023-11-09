@@ -489,8 +489,9 @@ yarn init -p
   "name": "client",
   "version": "1.0.0",
   "private": true,
-  "scripts":{
-    "start": "flutter run"
+  "scripts": {
+    "flutter:install": "flutter pub get",
+    "flutter:run": "flutter run"
   }
 }
 ```
