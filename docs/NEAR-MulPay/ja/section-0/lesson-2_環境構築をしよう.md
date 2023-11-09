@@ -31,7 +31,7 @@ metamaskのセットアップではアカウントを２つ（受信用・送金
 
 Flutterの環境構築はそれぞれのPCによって予期しないエラーが出ることがよくある（筆者の経験）ので何か問題があれば気軽にdiscordで質問してみてください！
 
-最後にコントラクトとやり取りする仲介役をしてくれる`Infura`でアカウントを作って、Aurora Testnet用のhttp keyを[こちら](https://infura.io/)で取得しましょう。
+次に、コントラクトとやり取りする仲介役をしてくれる`Infura`でアカウントを作って、Aurora Testnet用のhttp keyを[こちら](https://infura.io/)で取得しましょう。
 手順は下の通りです。
 
 1. アカウントを作成（作成済みの人は2から）
@@ -45,7 +45,18 @@ Flutterの環境構築はそれぞれのPCによって予期しないエラー�
 drop down buttonを押すとテストネット用のものがあります。これは後で使います！
 ![](/public/images/NEAR-MulPay/section-0/0_2_4.png)
 
-では次に、`Node.js`を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment#installing-node.js)にアクセスしてください。このプロジェクトで推奨するバージョンはv20です。
+最後に、Web3ウォレットとDappsを連携してくれる[WalletConnect](https://walletconnect.com/)のSDKを使用するために必要なProject IDを取得しましょう。[こちら](https://cloud.walletconnect.com/)にアクセスをしてください。
+手順は下の通りです。
+
+1. アカウントを作成
+2. アカウントを作成したら右上の`+ New Project`ボタンを押す
+3. 任意のプロジェクト名を入力して`Create`ボタンを押す
+4. プロジェクトが作成されたら完了！
+   ![](/public/images/NEAR-MulPay/section-0/0_2_5.png)
+
+Project IDは、後ほどフロントエンドを構築する際に必要となります。
+
+ここからは実際にファイルを作成していきます。まずは`Node.js`を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment#installing-node.js)にアクセスしてください。このプロジェクトで推奨するバージョンはv20です。
 
 インストールが完了したら、ターミナルで以下のコマンドを実行し、バージョンを確認してください。
 
