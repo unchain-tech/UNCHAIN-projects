@@ -10,6 +10,7 @@
 
 ```ts
 import { loadFixture } from '@nomicfoundation/hardhat-network-helpers';
+import { expect } from 'chai';
 import { ethers } from 'hardhat';
 
 describe('Swap Contract', function () {
@@ -54,57 +55,59 @@ describe('Swap Contract', function () {
     // check if the owner of DAI token is smart contract
     it('ERC20 token is minted from smart contract', async function () {
       const { DaiToken, SwapContract } = await loadFixture(deployTokenFixture);
+
       const balanceOfDai = await DaiToken.balanceOf(SwapContract.address);
-      console.log(balanceOfDai.toString());
+      // convert expected value `1000000 Ether` to Wei units
+      const expectedValue = ethers.utils.parseUnits('1000000', 18);
+
+      expect(balanceOfDai).to.equal(expectedValue);
     });
 
     // get the value between DAI and ETH
     it('Get value between DAI and ETH', async function () {
       const { DaiToken, EthToken, SwapContract } = await loadFixture(
-        deployTokenFixture
+        deployTokenFixture,
       );
+
       const value = await SwapContract.calculateValue(
         EthToken.address,
-        DaiToken.address
+        DaiToken.address,
       );
-      console.log(
-        `value of ETH/DAI is ${
-          value / parseInt(ethers.utils.parseEther('1').toString())
-        }`
-      );
+      // convert expected value `0.1 Ether` to Wei units
+      const expectedValue = ethers.utils.parseUnits('0.1', 18);
+
+      expect(value).to.equal(expectedValue);
     });
 
     // check swap function works
-    it('swap function', async function () {
+    it('Swap function', async function () {
       const { owner, addr1, DaiToken, EthToken, UniToken, SwapContract } =
         await loadFixture(deployTokenFixture);
 
       await DaiToken.approve(
         SwapContract.address,
-        ethers.utils.parseEther('200')
+        ethers.utils.parseEther('200'),
       );
       await SwapContract.distributeToken(
         DaiToken.address,
         ethers.utils.parseEther('100'),
-        owner.address
+        owner.address,
       );
+
       const ethAmountBefore = await DaiToken.balanceOf(addr1.address);
-      console.log(
-        `Before transfer, address_1 has ${ethAmountBefore.toString()} ETH`
-      );
+      expect(ethAmountBefore).to.equal(0);
 
       await SwapContract.swap(
         DaiToken.address,
         UniToken.address,
         EthToken.address,
         ethers.utils.parseEther('1'),
-        addr1.address
+        addr1.address,
       );
 
-      const ethAmountAfter = ethers.utils.formatEther(
-        await EthToken.balanceOf(addr1.address)
-      );
-      console.log(`After transfer, address_1 has ${ethAmountAfter} ETH`);
+      const ethAmountAfter = await EthToken.balanceOf(addr1.address);
+      const expectedValue = ethers.utils.parseUnits('0.1', 18);
+      expect(ethAmountAfter).to.equal(expectedValue);
     });
   });
 });
@@ -113,7 +116,7 @@ describe('Swap Contract', function () {
 最初に宣言している`deployTokenFixture`関数はそれぞれのコントラクトをデプロイを行うための関数で、それぞれのテストを行う前に走らせる必要があります。
 
 ```ts
-async function deployTokenFixture() {
+  async function deployTokenFixture() {
     const [owner, addr1] = await ethers.getSigners();
 
     const swapFactory = await ethers.getContractFactory('SwapContract');
@@ -155,10 +158,15 @@ async function deployTokenFixture() {
 最初の部分ではERC20規格のトークンがきちんとdeployされているかをテストしています。
 
 ```ts
-it('ERC20 token is minted from smart contract', async function () {
+    // check if the owner of DAI token is smart contract
+    it('ERC20 token is minted from smart contract', async function () {
       const { DaiToken, SwapContract } = await loadFixture(deployTokenFixture);
+
       const balanceOfDai = await DaiToken.balanceOf(SwapContract.address);
-      console.log(balanceOfDai.toString());
+      // convert expected value `1000000 Ether` to Wei units
+      const expectedValue = ethers.utils.parseUnits('1000000', 18);
+
+      expect(balanceOfDai).to.equal(expectedValue);
     });
 ```
 
@@ -166,22 +174,23 @@ it('ERC20 token is minted from smart contract', async function () {
 
 次に`DAI/ETH`の価値を算出しています。SwapContractが保有しているそれぞれのトークン量によって変動します。
 
-`ERC20Tokens.sol`ではETHの発行量はDAIのそれより1/10の量なので0.1になるはずです。
+`ERC20Tokens.sol`ではETHの発行量はDAIのそれより1/10の量なので0.1 etherになるはずです。
 
 ```ts
-it('Get value ETH/DAI', async function () {
+    // get the value between DAI and ETH
+    it('Get value between DAI and ETH', async function () {
       const { DaiToken, EthToken, SwapContract } = await loadFixture(
-        deployTokenFixture
+        deployTokenFixture,
       );
+
       const value = await SwapContract.calculateValue(
         EthToken.address,
-        DaiToken.address
+        DaiToken.address,
       );
-      console.log(
-        `value of ETH/DAI is ${
-          value / parseInt(ethers.utils.parseEther('1').toString())
-        }`
-      );
+      // convert expected value `0.1 Ether` to Wei units
+      const expectedValue = ethers.utils.parseUnits('0.1', 18);
+
+      expect(value).to.equal(expectedValue);
     });
 ```
 
@@ -190,37 +199,35 @@ it('Get value ETH/DAI', async function () {
 その後受領者の残高をswap前後で確認しています。
 
 ```ts
-// check swap function works
-    it('swap function', async function () {
+    // check swap function works
+    it('Swap function', async function () {
       const { owner, addr1, DaiToken, EthToken, UniToken, SwapContract } =
         await loadFixture(deployTokenFixture);
 
       await DaiToken.approve(
         SwapContract.address,
-        ethers.utils.parseEther('200')
+        ethers.utils.parseEther('200'),
       );
       await SwapContract.distributeToken(
         DaiToken.address,
         ethers.utils.parseEther('100'),
-        owner.address
+        owner.address,
       );
+
       const ethAmountBefore = await DaiToken.balanceOf(addr1.address);
-      console.log(
-        `Before transfer, address_1 has ${ethAmountBefore.toString()} ETH`
-      );
+      expect(ethAmountBefore).to.equal(0);
 
       await SwapContract.swap(
         DaiToken.address,
         UniToken.address,
         EthToken.address,
         ethers.utils.parseEther('1'),
-        addr1.address
+        addr1.address,
       );
 
-      const ethAmountAfter = ethers.utils.formatEther(
-        await EthToken.balanceOf(addr1.address)
-      );
-      console.log(`After transfer, address_1 has ${ethAmountAfter} ETH`);
+      const ethAmountAfter = await EthToken.balanceOf(addr1.address);
+      const expectedValue = ethers.utils.parseUnits('0.1', 18);
+      expect(ethAmountAfter).to.equal(expectedValue);
     });
 ```
 
@@ -233,15 +240,11 @@ yarn test
 これによって以下のような結果が返ってくるはずです。
 
 ```
- Swap Contract
+  Swap Contract
     Deployment
-1000000000000000000000000
-      ✔ ERC20 token is minted from smart contract (1241ms)
-value of ETH/DAI is 0.1
+      ✔ ERC20 token is minted from smart contract (1083ms)
       ✔ Get value between DAI and ETH
-Before transfer, address_1 has 0 ETH
-After transfer, address_1 has 0.1 ETH
-      ✔ swap function (50ms)
+      ✔ Swap function
 
 
   3 passing (1s)
