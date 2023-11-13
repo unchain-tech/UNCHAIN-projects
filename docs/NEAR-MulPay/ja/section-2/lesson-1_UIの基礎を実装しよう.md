@@ -1344,7 +1344,7 @@ class _BottomNavigationBarState extends State<BottomNavigationBarWidget> {
 
 次にユーザーのウォレットアドレスをQRコード化して表示するためのウィジェットを実装していきましょう。
 
-`lib/view/widgets/qr_code.dart`に以下のコードを
+`lib/view/widgets/qr_code.dart`に以下のコードを記述しましょう。
 
 [`qr_code.dart`]
 

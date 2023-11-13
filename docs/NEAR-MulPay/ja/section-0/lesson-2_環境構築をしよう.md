@@ -160,7 +160,6 @@ nodeLinker: node-modules
 NEAR-MulPay
 ├── .git/
 ├── .gitignore
-├── .yarn/
 ├── .yarnrc.yml
 ├── README.md
 ├── package.json
@@ -271,7 +270,7 @@ Give Hardhat a star on Github if you're enjoying it! ⭐️✨
 +        └── tsconfig.json
 ```
 
-package.jsonファイルを下のように編集してください。
+package.jsonファイルに`"scripts"`を追加しましょう。
 
 ```json
 {
@@ -482,7 +481,7 @@ flutter create client
 yarn init -p
 ```
 
-その後作成されたpackage.jsonファイルを下のように編集してください。
+その後作成されたpackage.jsonファイルに`"scripts"`を追加しましょう。
 
 ```json
 {
@@ -505,6 +504,7 @@ client
 ├── README.md
 ├── analysis_options.yaml
 ├── android/
+├── client.iml
 ├── ios/
 ├── lib/
 ├── linux/
@@ -547,6 +547,12 @@ lib/
 
 ```
 tree -L 3 -F
+```
+
+最後に、プロジェクトのルートにある`yarn.lock`ファイルを更新したいと思います。これは、clientワークスペースに新たなpackage.jsonが追加されたことを反映するためです。プロジェクトルートで以下のコマンドを実行しましょう。
+
+```
+yarn install
 ```
 
 これで環境構築＋ディレクトリ構造の作成は完了です。
