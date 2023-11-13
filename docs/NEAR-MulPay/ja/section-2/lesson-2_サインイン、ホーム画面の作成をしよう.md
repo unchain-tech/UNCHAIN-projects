@@ -414,6 +414,18 @@ yarn client flutter:run
 デスクトップ版であれば下のような画面が表示されていれば成功です。
 ![](/public/images/NEAR-MulPay/section-2/2_2_6.png)
 
+**👀 Wallet接続時のトラブルシューティング**
+
+`Wallet Connect`ボタンを押した際、walletconnect_flutter_v2ライブラリやMetaMaskに関するエラーが発生していないにも関わらずMetaMaskの接続要求のポップアップが開かない場合は、以下の対処法を試してみてください。
+
+1\. **Wallet Connectの再試行**
+
+MetaMaskがパスワード入力後に立ち上がるが、接続要求のポップアップが表示されない場合、Swapアプリケーションに戻りもう一度Wallet Connectボタンを押してください。
+
+2\. **システムの再起動**
+
+上記のステップを試してもポップアップが表示されない場合、またはMetaMaskの立ち上げにパスワード入力が不要だった場合、エミュレータの再起動、またはパソコンの再起動を試してください。
+
 次にホーム画面を作成していきましょう。`lib/view/screens/home.dart`へ移動して以下のコードを追加していきましょう！
 
 [`home.dart`]
