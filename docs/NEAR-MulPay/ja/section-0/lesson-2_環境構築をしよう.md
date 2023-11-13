@@ -45,7 +45,7 @@ Flutterの環境構築はそれぞれのPCによって予期しないエラー�
 drop down buttonを押すとテストネット用のものがあります。これは後で使います！
 ![](/public/images/NEAR-MulPay/section-0/0_2_4.png)
 
-最後に、Web3ウォレットとDappsを連携してくれる[WalletConnect](https://walletconnect.com/)のSDKを使用するために必要なProject IDを取得しましょう。[こちら](https://cloud.walletconnect.com/)にアクセスをしてください。
+最後に、web3ウォレットとdAppsを連携してくれる[WalletConnect](https://walletconnect.com/)のSDKを使用するために必要なProject IDを取得しましょう。[こちら](https://cloud.walletconnect.com/)にアクセスをしてください。
 手順は下の通りです。
 
 1. アカウントを作成
