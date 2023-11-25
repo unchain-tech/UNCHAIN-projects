@@ -274,42 +274,109 @@ const { expect } = require('chai');
 const { loadFixture } = require('@nomicfoundation/hardhat-network-helpers');
 
 describe('MyEpicGame', () => {
+  // テストで使用するキャラクターの情報を定義
+  const characters = [
+    {
+      name: 'ZORO',
+      imageURI: 'QmXxR67ryeUw4xppPLbF2vJmfj1TCGgzANfiEZPzByM5CT',
+      hp: 100,
+      maxHp: 100,
+      attackDamage: 100,
+    },
+    {
+      name: 'NAMI',
+      imageURI: 'QmPHX1R4QgvGQrZym5dpWzzopavyNX2WZaVGYzVQQ2QcQL',
+      hp: 50,
+      maxHp: 50,
+      attackDamage: 50,
+    },
+    {
+      name: 'USOPP',
+      imageURI: 'QmUGjB7oQLBZdCDNJp9V9ZdjsBECjwcneRhE7bHcs9HwxG',
+      hp: 300,
+      maxHp: 300,
+      attackDamage: 25,
+    },
+  ];
+  // テストで使用するボスの情報を定義
+  const bigBoss = {
+    name: 'CROCODILE',
+    imageURI: 'https://i.imgur.com/BehawOh.png',
+    hp: 100,
+    maxHp: 100,
+    attackDamage: 50,
+  };
+
   async function deployTextFixture() {
     const gameContractFactory = await hre.ethers.getContractFactory(
       'MyEpicGame',
     );
 
-    // Hardhat がローカルの Ethereum ネットワークを、コントラクトのためだけに作成します。
+    // Hardhat がローカルの Ethereum ネットワークを、コントラクトのためだけに作成
     const gameContract = await gameContractFactory.deploy(
       // キャラクターの名前
-      ['ZORO', 'NAMI', 'USOPP'],
+      [characters[0].name, characters[1].name, characters[2].name],
       // キャラクターの画像を IPFS の CID に変更
+      [characters[0].imageURI, characters[1].imageURI, characters[2].imageURI],
+      [characters[0].hp, characters[1].hp, characters[2].hp],
       [
-        'QmXxR67ryeUw4xppPLbF2vJmfj1TCGgzANfiEZPzByM5CT',
-        'QmPHX1R4QgvGQrZym5dpWzzopavyNX2WZaVGYzVQQ2QcQL',
-        'QmUGjB7oQLBZdCDNJp9V9ZdjsBECjwcneRhE7bHcs9HwxG',
+        characters[0].attackDamage,
+        characters[1].attackDamage,
+        characters[2].attackDamage,
       ],
-      [100, 50, 300],
-      [100, 50, 25],
-      'CROCODILE', // Bossの名前
-      'https://i.imgur.com/BehawOh.png', // Bossの画像
-      100, // Bossのhp
-      50, // Bossの攻撃力
+      bigBoss.name, // Bossの名前
+      bigBoss.imageURI, // Bossの画像
+      bigBoss.hp, // Bossのhp
+      bigBoss.attackDamage, // Bossの攻撃力
     );
     await gameContract.deployed();
 
     return {
       gameContract,
+      characters,
+      bigBoss,
     };
   }
+
+  it('check if the characters are deployed correctly', async () => {
+    const { gameContract, characters } = await loadFixture(deployTextFixture);
+
+    const savedCharacters = await gameContract.getAllDefaultCharacters();
+
+    // デプロイ時に指定したキャラクターの情報が保存されているかを確認
+    expect(savedCharacters.length).to.equal(characters.length);
+
+    for (let i = 0; i < savedCharacters.length; i++) {
+      expect(savedCharacters[i].name).to.equal(characters[i].name);
+      expect(savedCharacters[i].imageURI).to.equal(characters[i].imageURI);
+      expect(savedCharacters[i].hp.toNumber()).to.equal(characters[i].hp);
+      expect(savedCharacters[i].maxHp.toNumber()).to.equal(characters[i].maxHp);
+      expect(savedCharacters[i].attackDamage.toNumber()).to.equal(
+        characters[i].attackDamage,
+      );
+    }
+  });
+
+  it('check if the big boss is deployed correctly', async () => {
+    const { gameContract, bigBoss } = await loadFixture(deployTextFixture);
+
+    const savedBigBoss = await gameContract.getBigBoss();
+
+    // デプロイ時に指定したボスの情報が保存されているかを確認
+    expect(savedBigBoss.name).to.equal(bigBoss.name);
+    expect(savedBigBoss.imageURI).to.equal(bigBoss.imageURI);
+    expect(savedBigBoss.hp.toNumber()).to.equal(bigBoss.hp);
+    expect(savedBigBoss.maxHp.toNumber()).to.equal(bigBoss.maxHp);
+    expect(savedBigBoss.attackDamage.toNumber()).to.equal(bigBoss.attackDamage);
+  });
 
   it('attack was successful', async () => {
     const { gameContract } = await loadFixture(deployTextFixture);
 
-    // 3体のNFTキャラクターの中から、3番目のキャラクターを Mint しています。
+    // 3体のNFTキャラクターの中から、3番目のキャラクターを Mint する
     let txn = await gameContract.mintCharacterNFT(2);
 
-    // Minting が仮想マイナーにより、承認されるのを待ちます。
+    // Minting が仮想マイナーにより、承認されるのを待つ
     await txn.wait();
 
     // mintしたNFTにおける、攻撃前と後のhpを取得する
@@ -334,10 +401,10 @@ describe('MyEpicGame', () => {
   it('check boss attack does not happen if boss hp is smaller than 0', async () => {
     const { gameContract } = await loadFixture(deployTextFixture);
 
-    // 3体のNFTキャラクターの中から、1番目のキャラクターを Mint しています。
+    // 3体のNFTキャラクターの中から、1番目のキャラクターを Mint する
     let txn = await gameContract.mintCharacterNFT(0);
 
-    // Minting が仮想マイナーにより、承認されるのを待ちます。
+    // Minting が仮想マイナーにより、承認されるのを待つ
     await txn.wait();
 
     // 1回目の攻撃: attackBoss 関数を追加
@@ -346,7 +413,7 @@ describe('MyEpicGame', () => {
 
     // 2回目の攻撃: attackBoss 関数を追加
     // ボスのhpがなくなった時に、エラーが発生することを確認
-    txn = expect(gameContract.attackBoss()).to.be.revertedWith(
+    expect(gameContract.attackBoss()).to.be.revertedWith(
       'Error: boss must have HP to attack characters.',
     );
   });
@@ -355,10 +422,10 @@ describe('MyEpicGame', () => {
   it('check boss attack does not happen if character hp is smaller than 0', async () => {
     const { gameContract } = await loadFixture(deployTextFixture);
 
-    // 3体のNFTキャラクターの中から、2番目のキャラクターを Mint しています。
+    // 3体のNFTキャラクターの中から、2番目のキャラクターを Mint する
     let txn = await gameContract.mintCharacterNFT(1);
 
-    // Minting が仮想マイナーにより、承認されるのを待ちます。
+    // Minting が仮想マイナーにより、承認されるのを待つ
     await txn.wait();
 
     // 1回目の攻撃: attackBoss 関数を追加
@@ -367,12 +434,87 @@ describe('MyEpicGame', () => {
 
     // 2回目の攻撃: attackBoss 関数を追加
     // キャラクターのhpがなくなった時に、エラーが発生することを確認
-    txn = expect(gameContract.attackBoss()).to.be.revertedWith(
+    expect(gameContract.attackBoss()).to.be.revertedWith(
       'Error: character must have HP to attack boss.',
     );
   });
 });
 ```
+
+次に、MyEpicGameコントラクト内に定義していた`console.log`を削除しましょう。テストスクリプトを作成することにより、目視で結果を確認する必要がなくなります。
+
+import文を削除します。
+
+```solidity
+// === 下記を削除 ===
+import 'hardhat/console.sol';
+```
+
+constructor内の`bigBoss`をログ出力している箇所を削除します。
+
+```solidity
+    // === 下記を削除 ===
+    console.log(
+      'Done initializing boss %s w/ HP %s, img %s',
+      bigBoss.name,
+      bigBoss.hp,
+      bigBoss.imageURI
+    );
+```
+
+constructor内の`character`変数と`defaultCharacters`をログ出力している箇所を削除します。
+
+```solidity
+      // === 下記を削除 ===
+      CharacterAttributes memory character = defaultCharacters[i];
+
+      //  ハードハットのconsole.log()では、任意の順番で最大4つのパラメータを指定できます。
+      // 使用できるパラメータの種類: uint, string, bool, address
+      console.log(
+        'Done initializing %s w/ HP %s, img %s',
+        character.name,
+        character.hp,
+        character.imageURI
+      );
+```
+
+`mintCharacterNFT`関数内のログ出力を削除します。
+
+```solidity
+    // === 下記を削除 ===
+    console.log(
+      'Minted NFT w/ tokenId %s and characterIndex %s',
+      newItemId,
+      _characterIndex
+    );
+```
+
+`attackBoss`関数内の4つのログ出力を削除します。
+
+```solidity
+    // === 下記を削除 ===
+    console.log(
+      '\nPlayer w/ character %s about to attack. Has %s HP and %s AD',
+      player.name,
+      player.hp,
+      player.attackDamage
+    );
+    console.log(
+      'Boss %s has %s HP and %s AD',
+      bigBoss.name,
+      bigBoss.hp,
+      bigBoss.attackDamage
+    );
+
+    // ...
+
+    // === 下記を削除 ===
+    // プレイヤーの攻撃をターミナルに出力する。
+    console.log('Player attacked boss. New boss hp: %s', bigBoss.hp);
+    // ボスの攻撃をターミナルに出力する。
+    console.log('Boss attacked player. New player hp: %s\n', player.hp);
+```
+
 
 では下のコマンドを実行することでコントラクトのテストをしていきましょう！
 
@@ -383,49 +525,19 @@ yarn test
 下のような結果がでいれば成功です！
 
 ```
-Compiled 14 Solidity files successfully
+Compiled 1 Solidity file successfully
 
 
   MyEpicGame
-Done initializing boss CROCODILE w/ HP 100, img https://i.imgur.com/BehawOh.png
-Done initializing ZORO w/ HP 100, img QmXxR67ryeUw4xppPLbF2vJmfj1TCGgzANfiEZPzByM5CT
-Done initializing NAMI w/ HP 50, img QmPHX1R4QgvGQrZym5dpWzzopavyNX2WZaVGYzVQQ2QcQL
-Done initializing USOPP w/ HP 300, img QmUGjB7oQLBZdCDNJp9V9ZdjsBECjwcneRhE7bHcs9HwxG
-Minted NFT w/ tokenId 1 and characterIndex 2
-
-Player w/ character USOPP about to attack. Has 300 HP and 25 AD
-Boss CROCODILE has 100 HP and 50 AD
-Player attacked boss. New boss hp: 75
-Boss attacked player. New player hp: 250
-
-    ✔ attack was successful (2072ms)
-Minted NFT w/ tokenId 1 and characterIndex 0
-
-Player w/ character ZORO about to attack. Has 100 HP and 100 AD
-Boss CROCODILE has 100 HP and 50 AD
-Player attacked boss. New boss hp: 0
-Boss attacked player. New player hp: 50
-
-    ✔ check boss attack does not happen if boss hp is smaller than 0 (62ms)
-
-Player w/ character ZORO about to attack. Has 50 HP and 100 AD
-Boss CROCODILE has 0 HP and 50 AD
-Minted NFT w/ tokenId 1 and characterIndex 1
-
-Player w/ character NAMI about to attack. Has 50 HP and 50 AD
-Boss CROCODILE has 100 HP and 50 AD
-Player attacked boss. New boss hp: 50
-Boss attacked player. New player hp: 0
-
-    ✔ check boss attack does not happen if character hp is smaller than 0 (76ms)
-
-Player w/ character NAMI about to attack. Has 0 HP and 50 AD
-Boss CROCODILE has 50 HP and 50 AD
+    ✔ check if the characters are deployed correctly (1031ms)
+    ✔ check if the big boss is deployed correctly
+    ✔ attack was successful (41ms)
+    ✔ check boss attack does not happen if boss hp is smaller than 0
+    ✔ check boss attack does not happen if character hp is smaller than 0
 
 
-  3 passing (2s)
+  5 passing (1s)
 
-✨  Done in 5.84s.
 ```
 
 
