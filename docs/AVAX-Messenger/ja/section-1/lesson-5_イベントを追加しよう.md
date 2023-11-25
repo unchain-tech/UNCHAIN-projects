@@ -134,9 +134,16 @@ contract Messenger {
 +    it('Should emit an event on post', async function () {
 +      const { messenger, otherAccount } = await loadFixture(deployContract);
 +
-+      await expect(
-+        messenger.post('text', otherAccount.address, { value: 1 })
-+      ).to.emit(messenger, 'NewMessage');
++      await expect(messenger.post('text', otherAccount.address, { value: 1 }))
++        .to.emit(messenger, 'NewMessage')
++        .withArgs(
++          owner.address,
++          otherAccount.address,
++          1,
++          anyValue,
++          'text',
++          true,
++        );
 +    });
 
     it('Should send the correct amount of tokens', async function () {
@@ -145,7 +152,7 @@ contract Messenger {
 
     it('Should set the right Message', async function () {
       // ...
-	});
+    });
   });
 ```
 
@@ -160,10 +167,9 @@ contract Messenger {
 +      });
 +
 +      const first_index = 0;
-+      await expect(messenger.connect(otherAccount).accept(first_index)).to.emit(
-+        messenger,
-+        'MessageConfirmed'
-+      );
++      await expect(messenger.connect(otherAccount).accept(first_index))
++        .to.emit(messenger, 'MessageConfirmed')
++        .withArgs(otherAccount.address, first_index);
 +    });
 
     it('isPending must be changed', async function () {
@@ -191,10 +197,9 @@ contract Messenger {
 +      });
 +
 +      const first_index = 0;
-+      await expect(messenger.connect(otherAccount).deny(first_index)).to.emit(
-+        messenger,
-+        'MessageConfirmed'
-+      );
++      await expect(messenger.connect(otherAccount).deny(first_index))
++        .to.emit(messenger, 'MessageConfirmed')
++        .withArgs(otherAccount.address, first_index);
 +    });
 
     it('isPending must be changed', async function () {
@@ -214,10 +219,47 @@ contract Messenger {
 それぞれ正しくイベントが発生したかどうかについて確認をしています。
 
 ```ts
-expect(関数実行).to.emit(コントラクト, 'イベント名');
+expect(関数実行).to.emit(コントラクト, 'イベント名').withArgs(イベントの引数, ...);
 ```
 
+
 とすることで指定したイベントが発生したのかをテストをすることができます。
+
+`NewMessage`イベントの確認に使用している`anyValue`は、`@nomicfoundation/hardhat-chai-matchers/withArgs`に定義されている関数です。引数として受け取った値に関わらず常にtrueを返すため、引数の具体的な値をチェックせずにイベントを確認するために使用されます。ここでは、NewMessageイベントの引数のうち`block.timestamp`値に使用することで、この値をテストの対象外としています。
+
+それでは、ファイルの先頭に以下のimport文を追加してください。
+
+```ts
+import { anyValue } from '@nomicfoundation/hardhat-chai-matchers/withArgs';
+```
+
+テストを実行する前に`Messenger`コントラクト内で定義していた`console.log`を削除しましょう。コンストラクタの動作はこれまでのテストですでに確認済みです。また、`post`関数で定義していたconsole.logは、イベントの発生をテストすることで確認できるため削除します。
+
+まずはimport文を削除します。
+
+```soidity
+// === 下記を削除 ===
+import "hardhat/console.sol";
+```
+
+次に、コンストラクタ内のconsole.logを削除します。
+
+```solidity
+        // === 下記を削除 ===
+        console.log("Here is my first smart contract!");
+```
+
+最後にpost関数内のconsole.logを削除します。
+
+```solidity
+        // === 下記を削除 ===
+        console.log(
+            "%s posts text:[%s] token:[%d]",
+            msg.sender,
+            _text,
+            msg.value
+        );
+```
 
 それではテストを実行しましょう！
 ターミナル上で`AVAX-Messenger/`直下にいることを確認し、以下のコマンドを実行してください。

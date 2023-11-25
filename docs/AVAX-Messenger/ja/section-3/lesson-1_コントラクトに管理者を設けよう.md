@@ -54,8 +54,6 @@ contract Messenger {
     event MessageConfirmed(address receiver, uint256 index);
 
 +    constructor(uint256 _numOfPendingLimits) payable {
-+        console.log("Here is my first smart contract!");
-+
 +        numOfPendingLimits = _numOfPendingLimits;
 +    }
 
@@ -72,13 +70,6 @@ contract Messenger {
 +
 +        // 保留中のメッセージの数をインクリメントします。
 +        _numOfPendingAtAddress[_receiver] += 1;
-
-        console.log(
-            "%s posts text:[%s] token:[%d]",
-            msg.sender,
-            _text,
-            msg.value
-        );
 
         _messagesAtAddress[_receiver].push(
             Message(
@@ -121,8 +112,6 @@ contract Messenger {
 
 ```solidity
     constructor(uint256 _numOfPendingLimits) payable {
-        console.log("Here is my first smart contract!");
-
         numOfPendingLimits = _numOfPendingLimits;
     }
 ```
@@ -167,6 +156,7 @@ contract Messenger {
 - `Post`テスト内の最後にテストケースを追加
 
 ```ts
+import { anyValue } from '@nomicfoundation/hardhat-chai-matchers/withArgs';
 import { loadFixture } from '@nomicfoundation/hardhat-network-helpers';
 import { expect } from 'chai';
 import { Overrides } from 'ethers';
@@ -334,8 +324,6 @@ import "hardhat/console.sol";
 +    event NumOfPendingLimitsChanged(uint256 limits);
 
     constructor(uint256 _numOfPendingLimits) payable {
-        console.log("Here is my first smart contract!");
-
 +        ownable();
 
         numOfPendingLimits = _numOfPendingLimits;
