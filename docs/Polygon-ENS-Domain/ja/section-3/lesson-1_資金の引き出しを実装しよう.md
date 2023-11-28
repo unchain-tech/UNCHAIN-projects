@@ -18,7 +18,7 @@
 
 ```solidity
 modifier onlyOwner() {
-    require(isOwner());
+    require(isOwner(), "You aren't the owner");
     _;
 }
 
