@@ -140,8 +140,7 @@ npx hardhat
 まずは、プロジェクトのルートにあるcontractsフォルダを`packages/contract`フォルダ内に移動しましょう。下記のコマンドは、プロジェクトのルートで実行してください。
 
 ```
-rm -r ./packages/contract/contracts/ && mv ./cont
-contracts/ ./packages/contract/
+rm -r ./packages/contract/contracts/ && mv ./contracts/ ./packages/contract/
 ```
 
 次に、`hardhat.config.ts`を下記のように更新しましょう。
