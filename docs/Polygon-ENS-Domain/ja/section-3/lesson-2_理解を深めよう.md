@@ -167,18 +167,13 @@ describe('ENS-Domain', () => {
       deployTextFixture,
     );
 
-    let txn;
-
     const ownerBeforeBalance = await hre.ethers.provider.getBalance(
       owner.address,
     );
-    // スーパーコーダーとしてコントラクトから資金を奪おうとします。
-    try {
-      txn = await domainContract.connect(superCoder).withdraw();
-      await txn.wait();
-    } catch (error) {
-      console.log('robber could not withdraw token');
-    }
+
+    await expect(
+      domainContract.connect(superCoder).withdraw(),
+    ).to.be.revertedWith("You aren't the owner");
 
     const ownerAfterBalance = await hre.ethers.provider.getBalance(
       owner.address,
