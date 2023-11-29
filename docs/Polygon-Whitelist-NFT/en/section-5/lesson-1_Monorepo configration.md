@@ -140,8 +140,7 @@ Now let's update the files in the `packages/contract` folder.
 First, let's move the contracts folder in the root of the project into the `packages/contract` folder. The following command should be executed in the root of the project.
 
 ```
-rm -r ./packages/contract/contracts/ && mv ./cont
-contracts/ ./packages/contract/
+rm -r ./packages/contract/contracts/ && mv ./contracts/ ./packages/contract/
 ```
 
 Next, update `hardhat.config.ts` as follows
