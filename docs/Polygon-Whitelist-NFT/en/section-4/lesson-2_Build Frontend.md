@@ -12,7 +12,26 @@ Make sure Sandbox is up and running.
 
 ![](/public/images/Polygon-Whitelist-NFT/section-4/4_2_8.png)
 
-Make sure you are in the root directory of the project and execute the following command
+Make sure you have `node` 18.17.0 or newer.
+
+```
+node -v
+```
+
+If you don't, install the stable version and check the newly activated version.
+
+```
+# Install n to manage your Node.js versions
+npm install -g n
+
+# Install and activate the stable version of Node.js
+n stable
+
+# Confirm Node.js version 18.17.0 or newer
+node -v
+```
+
+Make sure you are in the root directory of the project and execute the following command.
 
 ```
 yarn create next-app
