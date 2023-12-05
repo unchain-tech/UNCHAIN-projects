@@ -244,7 +244,7 @@ Let's focus on explaining the `mint` function:
 
 5. `tokenIds += 1;` After all the aforementioned conditions are met, `tokenIds` will be incremented by 1. Remember, the default value of `tokenIds` is 0, so our `tokenIds` range becomes 1, 2, 3, 4.
 
-6.  `_safeMint(msg.sender, tokenIds);` This is the functionality implemented by `"@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol"`. You can explore the specific functionalities by opening that contract. For now, we only need to understand that this will result in minting an NFT to the caller of this function.
+6.  `_safeMint(msg.sender, tokenIds);` This is the functionality implemented by `"@openzeppelin/contracts/token/ERC721/ERC721.sol"`. You can explore the specific functionalities by opening that contract. For now, we only need to understand that this will result in minting an NFT to the caller of this function.
 
 ```solidity
     /**

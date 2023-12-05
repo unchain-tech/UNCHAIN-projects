@@ -9,37 +9,83 @@
 [`signin.dart`]
 
 ```dart
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:hexcolor/hexcolor.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:http/http.dart';
-import 'package:mulpay_frontend/model/contract_model.dart';
-import 'package:mulpay_frontend/view/screens/home.dart';
-import 'package:mulpay_frontend/view/widgets/navbar.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
-import 'package:web3_connect/web3_connect.dart';
-import 'package:web3dart/web3dart.dart';
-import 'package:web_socket_channel/io.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:url_launcher/url_launcher_string.dart';
+import 'package:walletconnect_flutter_v2/walletconnect_flutter_v2.dart';
+
+import '../../model/contract_model.dart';
+import '../widgets/navbar.dart';
 
 class SignIn extends StatelessWidget {
-  SignIn({Key? key}) : super(key: key);
-  final connection = Web3Connect();
-  final String _rpcUrl = "https://testnet.aurora.dev";
-  final _client =
-      Web3Client("https://testnet.aurora.dev", Client(), socketConnector: () {
-    return IOWebSocketChannel.connect("wss://testnet.aurora.dev")
-        .cast<String>();
-  });
+  const SignIn({Key? key}) : super(key: key);
+
+  static Web3App? _walletConnect;
+  static String? _url;
+  static SessionData? _sessionData;
+
+  String get deepLinkUrl => 'metamask://wc?uri=$_url';
+
+  Future<void> _initWalletConnect() async {
+    _walletConnect = await Web3App.createInstance(
+      projectId: dotenv.env["WALLETCONNECT_PROJECT_ID"]!,
+      metadata: const PairingMetadata(
+        name: 'NEAR MulPay',
+        description: 'Mobile Payment dApp with Swap Feature',
+        url: 'https://walletconnect.com/',
+        icons: [
+          'https://walletconnect.com/walletconnect-logo.png',
+        ],
+      ),
+    );
+  }
+
+  Future<void> connectWallet() async {
+    if (_walletConnect == null) {
+      await _initWalletConnect();
+    }
+
+    try {
+      // セッション（dAppとMetamask間の接続）を開始します。
+      final ConnectResponse connectResponse = await _walletConnect!.connect(
+        requiredNamespaces: {
+          'eip155': const RequiredNamespace(
+              chains: ['eip155:1313161555'],
+              methods: ['eth_signTransaction', 'eth_sendTransaction'],
+              events: ['chainChanged']),
+        },
+      );
+      final Uri? uri = connectResponse.uri;
+      if (uri == null) {
+        throw Exception('Invalid URI');
+      }
+      final String encodedUri = Uri.encodeComponent('$uri');
+      _url = encodedUri;
+
+      // Metamaskを起動します。
+      await launchUrlString(deepLinkUrl, mode: LaunchMode.externalApplication);
+
+      // セッションが確立されるまで待機します。
+      final Completer<SessionData> session = connectResponse.session;
+      _sessionData = await session.future;
+    } catch (e) {
+      rethrow;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final displayHeight = MediaQuery.of(context).size.height;
     final displayWidth = MediaQuery.of(context).size.width;
-    var provider = Provider.of<BottomNavigationBarProvider>(context);
     final isDeskTop = ResponsiveBreakpoints.of(context).largerThan(MOBILE);
+
+    var provider = Provider.of<BottomNavigationBarProvider>(context);
 
     return Scaffold(
       body: SafeArea(
@@ -108,15 +154,14 @@ class SignIn extends StatelessWidget {
                   width: isDeskTop ? displayWidth * 0.4 : displayWidth * 0.7,
                   child: ElevatedButton(
                     onPressed: () async {
-                      connection.enterChainId(1313161555);
-                      connection.enterRpcUrl(_rpcUrl);
-                      await connection.connect();
-                      if (connection.account != "") {
-                        await context
-                            .read<ContractModel>()
-                            .setConnection(connection);
+                      try {
+                        await connectWallet();
+                        await context.read<ContractModel>().setConnection(
+                            deepLinkUrl, _walletConnect!, _sessionData!);
                         provider.currentIndex = 0;
                         Navigator.pushReplacementNamed(context, '/home');
+                      } catch (error) {
+                        debugPrint('error $error');
                       }
                     },
                     child: Text(
@@ -138,8 +183,6 @@ class SignIn extends StatelessWidget {
 }
 ```
 
-エラーが出ていると思いますが、次の実装によって消えるので気にしないでください。
-
 では次に`main.dart`へ移動して下のように変更しましょう。
 
 [`main.dart`]
@@ -148,11 +191,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:mulpay_frontend/model/contract_model.dart';
-import 'package:mulpay_frontend/view/screens/signin.dart';
-import 'package:mulpay_frontend/view/widgets/navbar.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+
+import 'model/contract_model.dart';
+import 'view/screens/signin.dart';
+import 'view/widgets/navbar.dart';
 
 Future main() async {
   await dotenv.load(fileName: ".env");
@@ -359,7 +403,7 @@ android {
 これ以降も、UIを確認する際は同じ手順で行います。
 
 ```
-yarn client start
+yarn client flutter:run
 ```
 
 エミュレータであれば下のような画面が表示されていれば成功です。
@@ -368,23 +412,33 @@ yarn client start
 デスクトップ版であれば下のような画面が表示されていれば成功です。
 ![](/public/images/NEAR-MulPay/section-2/2_2_6.png)
 
+**👀 Wallet接続時のトラブルシューティング**
+
+`Wallet Connect`ボタンを押した際、walletconnect_flutter_v2ライブラリやMetaMaskに関するエラーが発生していないにも関わらずMetaMaskの接続要求のポップアップが開かない場合は、以下の対処法を試してみてください。
+
+1\. **Wallet Connectの再試行**
+
+MetaMaskがパスワード入力後に立ち上がるが、接続要求のポップアップが表示されない場合、Swapアプリケーションに戻りもう一度Wallet Connectボタンを押してください。
+
+2\. **システムの再起動**
+
+上記のステップを試してもポップアップが表示されない場合、エミュレータの再起動、またはPCの再起動を試してください。
+
 次にホーム画面を作成していきましょう。`lib/view/screens/home.dart`へ移動して以下のコードを追加していきましょう！
 
 [`home.dart`]
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:mulpay_frontend/model/contract_model.dart';
-import 'package:mulpay_frontend/view/widgets/qr_code.dart';
-import 'package:mulpay_frontend/view/widgets/coin.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+
+import '/model/contract_model.dart';
+import '/view/widgets/coin.dart';
+import '/view/widgets/qr_code.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -511,7 +565,7 @@ class Home extends StatelessWidget {
                                   SizedBox(
                                     width: displayWidth * 0.2,
                                     child: Text(
-                                      contractModel.account,
+                                      contractModel.getAccount(),
                                       style: TextStyle(
                                         color: Colors.grey,
                                         fontSize: isDeskTop ? 28 : 13,
@@ -526,8 +580,8 @@ class Home extends StatelessWidget {
                                       await showDialog(
                                         context: context,
                                         builder: (_) => QRCode(
-                                            qrImage: QrImage(
-                                          data: contractModel.account,
+                                            qrImage: QrImageView(
+                                          data: contractModel.getAccount(),
                                           size: 200,
                                         )),
                                       );

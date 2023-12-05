@@ -66,7 +66,7 @@ Deployed canisters.
 
 それでは、デプロイしたポートフォリオサイトにアクセスしてみましょう。URLはキャニスター IDを用いたものになります。
 
-`https://<CREATED_CANISTER_ID>.ic0.app/`
+`https://<CREATED_CANISTER_ID>.icp0.io/`
 
 キャニスター IDは、デプロイ時の出力や生成された`canister_ids.json`ファイル、または以下のコマンドで確認できます。
 

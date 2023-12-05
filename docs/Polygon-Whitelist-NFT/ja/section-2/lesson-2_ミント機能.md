@@ -246,7 +246,7 @@ contract Shield is ERC721Enumerable, Ownable {
 
 5. `tokenIds += 1;`：上記すべての条件が満たされた後で、`tokenIds`は1増加します。デフォルトの`tokenIds`値は0なので、`tokenIds`の範囲は1, 2, 3, 4となります。
 
-6. `_safeMint(msg.sender, tokenIds);`：この機能は`"@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol"`によって実装されています。そのコントラクトを参照することで具体的な機能を確認することができます。今のところ、この関数を呼び出した人にNFTがミントされるということだけ理解しておけば良いです。
+6. `_safeMint(msg.sender, tokenIds);`：この機能は`"@openzeppelin/contracts/token/ERC721/ERC721.sol"`によって実装されています。そのコントラクトを参照することで具体的な機能を確認することができます。今のところ、この関数を呼び出した人にNFTがミントされるということだけ理解しておけば良いです。
 
 ```solidity
     /**

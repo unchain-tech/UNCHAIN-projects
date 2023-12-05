@@ -283,7 +283,35 @@ describe('Web3Mint', () => {
 });
 ```
 
+次に、`Web3Mint`コントラクト内で定義していた`console.log`を削除しましょう。
+
+import文を削除します。
+
+```solidity
+// === 下記を削除 ===
+import "hardhat/console.sol";
+```
+
+constructor関数内の`console.log`を削除します。
+
+```solidity
+    // === 下記を削除 ===
+    console.log('This is my NFT contract.');
+```
+
+`mintIpfsNFT`関数内の`console.log`を削除します。
+
+```solidity
+        // === 下記を削除 ===
+        console.log(
+            "An NFT w/ ID %s has been minted to %s",
+            newItemId,
+            msg.sender
+        );
+```
+
 では下のコマンドを実行してみましょう。
+
 ```
 yarn test
 ```
@@ -291,16 +319,15 @@ yarn test
 結果として下のような結果が出力されていればテスト成功です！
 
 ```
- Web3Mint
-This is my NFT contract.
-An NFT w/ ID 0 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-An NFT w/ ID 1 has been minted to 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
-    ✔ Should return the nft (2319ms)
+Compiled 1 Solidity file successfully
 
 
-  1 passing (2s)
+  Web3Mint
+    ✔ Should return the nft (904ms)
 
-✨  Done in 4.93s.
+
+  1 passing (905ms)
+
 ```
 
 **brave**ブラウザでは、`ipfs://bafkreievxssucnete4vpthh3klylkv2ctll2sk2ib24jvgozyg62zdtm2y`のままブラウザに貼れば表示され、他のブラウザの場合は`https://ipfs.io/ipfs/自分のCID`のようにして、画像を確認してみましょう!
