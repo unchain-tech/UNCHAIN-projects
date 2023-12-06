@@ -96,7 +96,7 @@ yarn client start
 `packages/contract`ディレクトリにいることを確認し、次のコマンドを実行します。
 
 ```
-npx hardhat
+npx hardhat init
 ```
 
 `hardhat`がターミナル上で立ち上がったら、それぞれの質問を以下のように答えていきます。
@@ -109,7 +109,7 @@ npx hardhat
 
 （例）
 ```
-$ npx hardhat
+$ npx hardhat init
 
 888    888                      888 888               888
 888    888                      888 888               888
@@ -141,7 +141,7 @@ Give Hardhat a star on Github if you're enjoying it! 💞✨
 
 > ⚠️: 注意 #2
 >
-> `npx hardhat`が実行されなかった場合、`packages/contract`に移動して以下をターミナルで実行してください。
+> `npx hardhat init`が実行されなかった場合、`packages/contract`に移動して以下をターミナルで実行してください。
 >
 > ```
 > yarn add --dev @nomicfoundation/hardhat-toolbox

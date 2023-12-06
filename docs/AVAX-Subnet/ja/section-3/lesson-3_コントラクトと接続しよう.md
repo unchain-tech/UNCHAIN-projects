@@ -39,7 +39,7 @@ interface IAllowList {
 > その時に役に立つのが型定義ファイルです。
 >
 > コントラクトの型定義ファイルは、コントラクトがコンパイルされた時に生成され、`typechain-types`ディレクトリに自動的に格納されます。  
-> これは`npx hardhat`実行時にtypescriptを選択したため、初期設定が済んでいるためです。
+> これは`npx hardhat init`実行時にtypescriptを選択したため、初期設定が済んでいるためです。
 
 それでは`packages/contract`ディレクトリ直下で下記のコマンドを実行してデプロイします！
 
