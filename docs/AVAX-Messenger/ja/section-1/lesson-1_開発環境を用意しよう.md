@@ -182,7 +182,7 @@ yarn add --dev @nomicfoundation/hardhat-network-helpers@^1.0.0 @nomicfoundation/
 `packages/contract`ディレクトリにいることを確認し、次のコマンドを実行します。
 
 ```
-npx hardhat
+npx hardhat init
 ```
 
 `hardhat`がターミナル上で立ち上がったら、それぞれの質問を以下のように答えていきます。
@@ -196,7 +196,7 @@ npx hardhat
 
 （例）
 ```
-$ npx hardhat
+$ npx hardhat init
 
 888    888                      888 888               888
 888    888                      888 888               888
