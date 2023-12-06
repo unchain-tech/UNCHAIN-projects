@@ -118,7 +118,7 @@ yarn workspace contract add @openzeppelin/contracts@^5.0.0 && yarn workspace con
 それでは、Hardhatを使用してプロジェクトを生成しましょう。packages/contract/下に移動して、下記のコマンドを実行してください。
 
 ```
-npx hardhat
+npx hardhat init
 ```
 
 下記のようにプロジェクトの設定を行いましょう。

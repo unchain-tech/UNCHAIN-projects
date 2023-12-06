@@ -183,7 +183,7 @@ yarn add dotenv@^16.0.3 @openzeppelin/contracts@^4.8.0
 `packages/contract`ディレクトリにいることを確認し、次のコマンドを実行します。
 
 ```
-npx hardhat
+npx hardhat init
 ```
 
 実行すると対話形式で指示を求められるので、それぞれを以下のように答えていきます。
@@ -202,7 +202,7 @@ npx hardhat
 （例）
 
 ```
-$npx hardhat
+$npx hardhat init
 
 888    888                      888 888               888
 888    888                      888 888               888

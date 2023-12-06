@@ -118,7 +118,7 @@ At this point, packages/contract/package.json should look like the following.
 Now let's generate a project using Hardhat, go under packages/contract/ and execute the following command。
 
 ```
-npx hardhat
+npx hardhat init
 ```
 
 Set up your project as follows.
