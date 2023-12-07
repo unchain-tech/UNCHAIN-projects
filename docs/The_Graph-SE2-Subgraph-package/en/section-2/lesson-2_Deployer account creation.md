@@ -13,7 +13,7 @@ If you need some testnet funds you can try the following faucets:
 yarn run generate
 ```
 
-![](/public/images/The_Graph-SE2-Subgraph-package/section-2/Lesson2-1.png)
+![](/public/images/The_Graph-SE2-Subgraph-package/section-2/2_2_1.png)
 
 You should see the following saved to your hardhats environment variable file
 ```
@@ -27,7 +27,7 @@ You should see the following saved to your hardhats environment variable file
 yarn account
 ```
 
-![](/public/images/The_Graph-SE2-Subgraph-package/section-2/Lesson2-2.png)
+![](/public/images/The_Graph-SE2-Subgraph-package/section-2/2_2_2.png)
 
 This should display your public address along with a fancy QR code. And balances?!? Woooowwwww that is slick! <3
 
@@ -60,4 +60,4 @@ Public address: 0x87f00B2c39F97CD00BC6d09777BC4327aCA39180
 
 Send over some testnet ETH from the chain of your choice. I would suggest sepolia as its fairly easy to get some testnet ETH from various sources. In the output below you can see I now have a sepolia balance.
 
-![](/public/images/The_Graph-SE2-Subgraph-package/section-2/Lesson2-3.png)
+![](/public/images/The_Graph-SE2-Subgraph-package/section-2/2_2_3.png)

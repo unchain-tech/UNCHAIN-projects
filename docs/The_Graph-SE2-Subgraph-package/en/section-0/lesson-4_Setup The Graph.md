@@ -16,7 +16,7 @@ yarn clean-node
 yarn run-node
 ```
 
-![](/public/images/The_Graph-SE2-Subgraph-package/section-0/Lesson4-1.png)
+![](/public/images/The_Graph-SE2-Subgraph-package/section-0/0_4_1.png)
 
 This will spin up all the containers for The Graph using docker-compose. You will know this is complete when it reads "Downloading latest blocks from Ethereum..."
 

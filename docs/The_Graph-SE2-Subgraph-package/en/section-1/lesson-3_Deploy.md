@@ -6,7 +6,7 @@
 yarn local-ship
 ```
 
-![](/public/images/The_Graph-SE2-Subgraph-package/section-1/Lesson3-1.png)
+![](/public/images/The_Graph-SE2-Subgraph-package/section-1/1_3_1.png)
 
 Be sure to add a new version number to your subgraph when it prompts you. This should be higher then the previous version.
 

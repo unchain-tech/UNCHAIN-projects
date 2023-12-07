@@ -6,21 +6,21 @@ Now that our smart contract is on a public testnet it is time to push our Subgra
 
 #### ✅ Navigate to https://thegraph.com/studio
 
-![](/public/images/The_Graph-SE2-Subgraph-package/section-2/Studio1.png)
+![Studio1](/public/images/The_Graph-SE2-Subgraph-package/section-2/2_4_1.png)
 
 #### ✅ Connect your wallet
 
-![](/public/images/The_Graph-SE2-Subgraph-package/section-2/Studio2.png)
+![Studio2](/public/images/The_Graph-SE2-Subgraph-package/section-2/2_4_2.png)
 
 You might need to sign a request to verify that you own the connected wallet.
 
-![](/public/images/The_Graph-SE2-Subgraph-package/section-2/Studio3.png)
+![Studio3](/public/images/The_Graph-SE2-Subgraph-package/section-2/2_4_3.png)
 
 #### ✅ Click Create a Subgraph
 
-![](/public/images/The_Graph-SE2-Subgraph-package/section-2/Studio4.png)
+![Studio4](/public/images/The_Graph-SE2-Subgraph-package/section-2/2_4_4.png)
 
 #### ✅ Name your Subgraph
 
-![](/public/images/The_Graph-SE2-Subgraph-package/section-2/Studio5.png)
+![Studio5](/public/images/The_Graph-SE2-Subgraph-package/section-2/2_4_5.png)
 

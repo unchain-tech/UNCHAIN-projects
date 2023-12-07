@@ -32,7 +32,7 @@ type SendMessage @entity(immutable: true) {
 
 ```
 
-![](/public/images/The_Graph-SE2-Subgraph-package/section-1/Lesson2-1.png)
+![](/public/images/The_Graph-SE2-Subgraph-package/section-1/1_2_1.png)
 
 #### ✅ Update the Subgraph manifest
 
@@ -54,7 +54,7 @@ entities:
           handler: handleSendMessage
 ```
 
-![](/public/images/The_Graph-SE2-Subgraph-package/section-1/Lesson2-2.png)
+![](/public/images/The_Graph-SE2-Subgraph-package/section-1/1_2_2.png)
 
 If you are following along, next you will need to copy over your new abi and regenerate the code.
 
@@ -62,7 +62,7 @@ If you are following along, next you will need to copy over your new abi and reg
 yarn abi-copy && yarn codegen
 ```
 
-![](/public/images/The_Graph-SE2-Subgraph-package/section-1/Lesson2-3.png)
+![](/public/images/The_Graph-SE2-Subgraph-package/section-1/1_2_3.png)
 
 #### ✅ Update the mapping script
 
@@ -122,7 +122,7 @@ export function handleSendMessage(event: SendMessageEvent): void {
 
 Your changes should be accepted inside of your editor without any linting errors.
 
-![](/public/images/The_Graph-SE2-Subgraph-package/section-1/Lesson2-4.png)
+![](/public/images/The_Graph-SE2-Subgraph-package/section-1/1_2_4.png)
 
 After that is done, you are almost done… time to ship it!
 
