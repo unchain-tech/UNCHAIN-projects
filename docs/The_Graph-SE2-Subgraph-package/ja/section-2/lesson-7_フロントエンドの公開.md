@@ -2,7 +2,7 @@
 
 ### ✅ YOLO Vercel！
 
-最後のステップは、フロントエンドをvercelにプッシュすることです！これは、次のコマンドで簡単に行うことができます。このコマンドラインスイッチ「vercel --build-env NEXT_PUBLIC_IGNORE_BUILD_ERROR=true」は、基本的にビルドエラーをスキップします。
+最後のステップは、フロントエンドをvercelにプッシュすることです！ これは、次のコマンドで簡単に行うことができます。このコマンドラインスイッチ「vercel --build-env NEXT_PUBLIC_IGNORE_BUILD_ERROR=true」は、基本的にビルドエラーをスキップします。
 
 少し時間がかかるかもしれませんので、コーヒーを飲みながら待ちましょう。☕
 
@@ -34,4 +34,4 @@ Auto-detected Project Settings (Next.js):
 💡  To change the domain or build command, go to https://vercel.com/kevin-kevinjonescr/testing/settings
 ```
 
-Scaffold-ETHとThe Graphについて学んでいただき、ありがとうございます。このチュートリアルを楽しんでいただけたか、また、フィードバックがあればぜひお聞かせください。The GraphのDiscordに参加して、Web3の旅での質問や問題があれば気軽にご連絡ください！友達よ、ブロックチェーン開発（BUIDLing）を続けよう！
+Scaffold-ETHとThe Graphについて学んでいただき、ありがとうございます。このチュートリアルを楽しんでいただけたか、また、フィードバックがあればぜひお聞かせください。The GraphのDiscordに参加して、web3の旅での質問や問題があれば気軽にご連絡ください！ 友達よ、ブロックチェーン開発（BUIDLing）を続けよう！
