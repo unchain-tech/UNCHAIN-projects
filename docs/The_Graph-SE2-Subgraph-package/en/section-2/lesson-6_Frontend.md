@@ -38,7 +38,7 @@ Once complete you should now be connected to your dapp on sepolia network.
 
 ![](/public/images/The_Graph-SE2-Subgraph-package/section-2/2_6_6.png)
 
-#### ✅ Fire off a test message to someone you know! (or Vitalik heh)
+#### ✅ Fire off a test message to someone you know! （or Vitalik heh）
 
 We now want to send an event on the testnet that we have deployed our smart contract. We can do that fairly easily now that our frontend is properly configured.
 
@@ -149,7 +149,7 @@ And then load the data like so...
 
 ![](/public/images/The_Graph-SE2-Subgraph-package/section-2/2_6_13.png)
 
-We can then make this a bit prettier and use the <Address> component instead of just plain text.
+We can then make this a bit prettier and use the `<Address>` component instead of just plain text.
 
 ```
               <tr key={message.id}>
