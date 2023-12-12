@@ -1,4 +1,4 @@
-## Test 
+## Test
 
 ### ✅ Test your newly deployed Subgraph
 
@@ -14,8 +14,8 @@ Next, lets see if our data is in The Graph. Here is an example query that shows 
 }
 ```
 
-You should get a nice response like this: 
+You should get a nice response like this:
 
 ![](/public/images/The_Graph-SE2-Subgraph-package/section-1/1_4_1.png)
 
-Data is such a beautiful thing huh? 
+Data is such a beautiful thing huh?

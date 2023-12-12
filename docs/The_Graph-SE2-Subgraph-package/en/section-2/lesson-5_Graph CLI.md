@@ -40,7 +40,7 @@ Success looks like this:
 Deploy key set for https://api.studio.thegraph.com/deploy/
 ```
 
-#### ✅ Run codegen and build your subgraph 
+#### ✅ Run codegen and build your subgraph
 
 You will need to change into the directory where the subgraph was created in the previous step.
 
@@ -69,7 +69,7 @@ It might take up to 5 minutes for you subgraph to deploy to the studio. Once it 
 
 ![Studio7](/public/images/The_Graph-SE2-Subgraph-package/section-2/2_5_6.png)
 
-#### ✅ Send a transaction and verify in Subgraph Playground 
+#### ✅ Send a transaction and verify in Subgraph Playground
 
 On Etherscan you can send a transaction directly to your contract on the Contract -> Write Contract tab.
 
@@ -86,7 +86,7 @@ Our Query:
 }
 ```
 
-Our data object response: 
+Our data object response:
 
 ```
 {

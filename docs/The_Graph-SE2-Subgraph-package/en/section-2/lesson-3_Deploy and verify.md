@@ -32,6 +32,6 @@ verifying YourContract (0x541D469C06990B7F0bd5103b57997cE8a39C050c) ...
 waiting for result...
  => contract YourContract is now verified
 ```
- 
+
  You can also check your contract was successfully on etherscan. [Here](https://sepolia.etherscan.io/address/0x541D469C06990B7F0bd5103b57997cE8a39C050c#code) is the one I deployed and verified.
 

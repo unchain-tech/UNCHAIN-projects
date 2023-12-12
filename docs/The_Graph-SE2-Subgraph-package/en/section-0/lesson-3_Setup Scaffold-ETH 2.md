@@ -55,7 +55,7 @@ yarn deploy
 
 If you navigate to http://localhost:3000 you should see the NextJS application. Explore the menus and features of Scaffold-ETH 2! Someone call in an emergency, cause hot damn that is fire! 🔥
 
-You can test by sending an update to the setGreeting function. In order to do this you will need to get some gas by clicking cash icon in the top right hand corner next to the burner wallet address. This will send you 1 ETH from the faucet. 
+You can test by sending an update to the setGreeting function. In order to do this you will need to get some gas by clicking cash icon in the top right hand corner next to the burner wallet address. This will send you 1 ETH from the faucet.
 
 Then you can simply navigate to "Debug Contracts", click the string field under setGreeting and type something fun and then click "SEND"
 

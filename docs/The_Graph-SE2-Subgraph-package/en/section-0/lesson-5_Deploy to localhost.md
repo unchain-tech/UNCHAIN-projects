@@ -2,7 +2,7 @@
 
 ### ✅ Create and ship our Subgraph
 
-Now we can open up a fourth window to finish setting up The Graph. 😅 In this forth window we will create our local subgraph! 
+Now we can open up a fourth window to finish setting up The Graph. 😅 In this forth window we will create our local subgraph!
 
 > Note: You will only need to do this once.
 

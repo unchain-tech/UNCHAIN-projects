@@ -22,7 +22,7 @@ You can drop this event and function anywhere inside the contract, but best prac
 
 ![](/public/images/The_Graph-SE2-Subgraph-package/section-1/1_1_1.png)
 
-We can save our contract and then deploy those new changes. 
+We can save our contract and then deploy those new changes.
 
 > Pro tip, if you use the --reset flag you will ALWAYS get a fresh contract deployed, regardless of any updates to the source.
 
@@ -36,6 +36,6 @@ You should see the following output:
 
 #### ✅ Test your new function
 
-Navigate over to http://localhost:3000/debug and send vitalik.eth a message. 
+Navigate over to http://localhost:3000/debug and send vitalik.eth a message.
 
 ![](/public/images/The_Graph-SE2-Subgraph-package/section-1/1_1_3.png)
