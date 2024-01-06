@@ -5,5 +5,5 @@
   "chain": "Ethereum",
   "description": "👉 ScaffoldETH2とSubgraphを使って、任意のアドレス同士でメッセージを送り合える分散型アプリケーションを構築します。",
   "total_sections": 3,
-  "total_lessons": 23
+  "total_lessons": 17
 }
