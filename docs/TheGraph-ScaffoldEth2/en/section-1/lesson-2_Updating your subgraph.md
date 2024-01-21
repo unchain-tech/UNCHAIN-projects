@@ -2,7 +2,7 @@
 
 ### ✅ Update the GraphQL schema
 
-After you add an event to your smart contract, you will need to first update the GraphQL schema to include the entities you want to store on your Graph node. If you want to catch up on entities here is a good link to the docs for that.
+After you add an event to your smart contract, you will need to first update the GraphQL schema to include the entities you want to store on your Graph node. If you want to catch up on entities [here](https://thegraph.com/docs/en/developing/creating-a-subgraph/#defining-entities) is a good link to the docs for that.
 
 In the code below we will update the existing schema to a new naming convention that matches the event name.
 
