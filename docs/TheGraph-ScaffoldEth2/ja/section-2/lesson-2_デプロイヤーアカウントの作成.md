@@ -6,7 +6,7 @@
 
 ## テストネット用の資金が必要な場合は、以下のフォーセットを試してみてください：
 
-<!-- TODO: faucetのURLを追加する -->
+[Ethereum Sepolia Faucet - Alchemy](https://sepoliafaucet.com/)
 
 #### ✅ デプロイヤーアカウントの作成
 

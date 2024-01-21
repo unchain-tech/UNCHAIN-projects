@@ -6,6 +6,8 @@ Next we want to take our smart contract and deploy it to a testnet! At the time 
 
 ## If you need some testnet funds you can try the following faucets:
 
+[Ethereum Sepolia Faucet - Alchemy](https://sepoliafaucet.com/)
+
 #### ✅ Create a deployer account
 
 ```
