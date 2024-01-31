@@ -9,7 +9,7 @@
 You can install the Graph CLI globally using the following command.
 
 ```
-yarn global add @graphprotocol/graph-cli
+curl -LS https://cli.thegraph.com/install.sh | sudo sh
 ```
 
 ![](/public/images/TheGraph-ScaffoldEth2/section-2/2_5_2.png)

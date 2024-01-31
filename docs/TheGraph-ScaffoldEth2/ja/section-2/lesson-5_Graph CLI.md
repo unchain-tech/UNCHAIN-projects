@@ -9,14 +9,14 @@
 以下のコマンドを使用して、Graph CLIをグローバルにインストールできます。
 
 ```
-yarn global add @graphprotocol/graph-cli
+curl -LS https://cli.thegraph.com/install.sh | sudo sh
 ```
 
 ![](/public/images/TheGraph-ScaffoldEth2/section-2/2_5_2.png)
 
 #### ✅ サブグラフの初期化
 
-これは、yarnパッケージを初期化するために、お好きな別のフォルダで行うことができます。初期化プロセス中に必要な設定を入力する必要があります。スタートブロックは、必要に応じてEtherescanで見つけることができ、以前のブロック全体をインデックスする必要がありません。
+このコマンドは、yarnパッケージの初期化を行うため、これまで操作してきたプロジェクトフォルダとは別のお好きなフォルダで行うことができます。また、初期化プロセス中に設定を入力する必要があります。スタートブロックは、必要に応じてEtherescanで見つけることができ、以前のブロック全体をインデックスする必要がありません。
 
 ```
 graph init --studio name_of_your_subgraph
@@ -28,7 +28,7 @@ graph init --studio name_of_your_subgraph
 
 #### ✅ Studio への認証
 
-Subgraph StudioのAuth & Deployから認証文字列を取得します。
+Subgraph StudioのAuth & Deployから認証CLIを取得します。
 
 ```
 graph auth --studio auth_key_here
@@ -42,7 +42,7 @@ Deploy key set for https://api.studio.thegraph.com/deploy/
 
 #### ✅ codegen を実行し、サブグラフをビルドする
 
-前のステップでサブグラフが作成されたディレクトリに移動する必要があります。
+ここまでのステップで作成された、サブグラフのディレクトリに移動する必要があります。
 
 ```
 cd sendmessage
