@@ -43,13 +43,9 @@ Scaffold-ETHについてもっと知りたい場合は、[Github リポジトリ
 
 イベントデータのデータストレージにThe Graphプロトコルを利用するスマートコントラクトとフロントエンドを構築します。
 
-<!-- TODO: 以下について、確認する -->
+https://sendmessage-tau.vercel.app
 
-（ここにオンラインでデプロイされたサンプルdappへのリンクを追加します）
-
-<!-- TODO: 以下について、確認する -->
-
-（ここにサンプルdappを示すスクリーンショットを追加します）
+![](/public/images/TheGraph-ScaffoldEth2/section-0/0_1_5.png)
 
 ### 🌍 プロジェクトをアップグレードする
 

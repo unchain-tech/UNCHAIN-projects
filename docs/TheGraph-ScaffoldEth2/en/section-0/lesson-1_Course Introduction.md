@@ -43,9 +43,9 @@ For detailed instructions and more context, check out the [Getting Started Guide
 
 We are building an example smart contract and front end that utilizes The Graph protocol for data storage of event data.
 
-(Add links here to example dapp deployed online)
+https://sendmessage-tau.vercel.app
 
-(add screen shots here to show the example dapp)
+![](/public/images/TheGraph-ScaffoldEth2/section-0/0_1_5.png)
 
 ### 🌍 Upgrading this project
 
