@@ -18,7 +18,7 @@ Vercel CLI 28.20.0
 y
 ? Which scope do you want to deploy to? myscope
 ? Link to existing project? [y/N] n
-? What’s your project’s name? sendMessage
+? What’s your project’s name? sendmessage
 ? In which directory is your code located? ./
 Local settings detected in vercel.json:
 Auto-detected Project Settings (Next.js):
