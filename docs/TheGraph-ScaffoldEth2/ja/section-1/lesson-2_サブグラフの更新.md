@@ -9,6 +9,7 @@
 > スキーマファイルは、packages/subgraph/src/schema.graphql にあります。
 
 ```
+// 既存のコード下に追加
 type GreetingChange @entity(immutable: true) {
   id: Bytes!
   greetingSetter: Bytes! # address
@@ -42,6 +43,8 @@ type SendMessage @entity(immutable: true) {
 
 ```
 entities:
+        - Greeting
+        - Sender
         - GreetingChange
         - SendMessage
 ```
@@ -120,7 +123,7 @@ export function handleSendMessage(event: SendMessageEvent): void {
 
 ```
 
-この変更により、エディタ内でのリントエラーは発生しないでしょう。
+この変更により、エディタ内でのリントエラーは消えるでしょう。
 
 ![](/public/images/TheGraph-ScaffoldEth2/section-1/1_2_4.png)
 
