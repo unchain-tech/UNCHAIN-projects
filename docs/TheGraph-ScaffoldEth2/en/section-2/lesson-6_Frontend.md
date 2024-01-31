@@ -151,6 +151,14 @@ And then load the data like so...
 
 We can then make this a bit prettier and use the `<Address>` component instead of just plain text.
 
+First, import the Address component.
+
+```
+import { Address } from "~~/components/scaffold-eth";
+```
+
+Then, update the table to display the message as follows.
+
 ```
               <tr key={message.id}>
                 <td><Address address={message._from}/></td>

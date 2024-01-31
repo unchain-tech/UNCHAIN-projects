@@ -151,6 +151,14 @@ export const GET_MESSAGES = gql`
 
 それを少しリファクタリングして、単なるテキストの代わりに`<Address>`コンポーネントを使いましょう。
 
+Addressコンポーネントをインポートします。
+
+```
+import { Address } from "~~/components/scaffold-eth";
+```
+
+そして、メッセージを表示するテーブルを以下のように更新します。
+
 ```
               <tr key={message.id}>
                 <td><Address address={message._from}/></td>
