@@ -10,9 +10,7 @@ const config: Config = {
 
   // site production url
   url: "https://unchain-tech.github.io/",
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: "/UNCHAIN-projects/",
+  baseUrl: "/", // "/REPOSITORY_NAME/", when not using a custom domain
 
   // GitHub pages deployment config
   organizationName: "unchain-tech",
