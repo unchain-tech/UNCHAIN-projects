@@ -96,7 +96,7 @@ Then, create four new files in another folder, naming them 1, 2, 3, and 4. Fill 
 
 As mentioned earlier, uploading files to IPFS requires nodes, and running your own IPFS node might seem challenging.
 
-[NFT Storage](https://nft.storage/) and [Textile](https://textile.io/) are popular IPFS node providers. Here, we will use [NFT Storage](<(https://nft.storage/)>) for demonstration purposes.
+[NFT Storage](https://nft.storage/) and [Textile](https://textile.io/) are popular IPFS node providers. Here, we will use [NFT Storage](https://nft.storage/) for demonstration purposes.
 
 Click Login
 

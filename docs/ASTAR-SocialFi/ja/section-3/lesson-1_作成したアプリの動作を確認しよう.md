@@ -64,7 +64,7 @@ NEXT_PUBLIC_UNKNOWN_IMAGE_URL="https://images.unsplash.com/..."
 
 ![](/images/ASTAR-SocialFi/section-3/3_1_19.png)
 
-では早速ローカルで立てたノードが作った[サイト](`http://localhost:3000/`)を開いてみましょう！
+では早速ローカルで立てたノードが作った[サイト](http://localhost:3000/)を開いてみましょう！
 
 ※設計上、画面遷移するごとにリロードしないときちんと動きません。UX的に悪く申し訳ないです 🙇
 
