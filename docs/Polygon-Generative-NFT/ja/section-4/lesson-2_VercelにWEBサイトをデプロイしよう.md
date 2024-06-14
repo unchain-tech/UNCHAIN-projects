@@ -12,7 +12,7 @@
 
 OpenSeaのように、ユーザーが間違ったネットワークに接続している場合、警告を出す機能を実装してみてはどうでしょうか？
 
-![](/public/images/Polygon-Generative-NFT/section-4/4_2_1.png)
+![](/images/Polygon-Generative-NFT/section-4/4_2_1.png)
 
 また、ユーザーが間違ったネットワークに接続しているときに、`Mint NFT`ボタンを見えなくする機能も有効な手段でしょう。
 
@@ -50,7 +50,7 @@ ETHがいくら必要で、いくら足りないかをユーザーに知らせ�
 
 アップグレードされたUXはこのようになります。
 
-![](/public/images/Polygon-Generative-NFT/section-4/4_2_2.png)
+![](/images/Polygon-Generative-NFT/section-4/4_2_2.png)
 
 [こちら](https://nft-collectible-demoo.vercel.app/) のWebサイトは、UXのアップグレードの大部分を実装しています。
 
@@ -68,7 +68,7 @@ ETHがいくら必要で、いくら足りないかをユーザーに知らせ�
 
 UIをアップデートする際に参考になるコードが、`App.js` / `App.cs` / `Header.js` / `Footer.js`に隠されています ✨
 
-![](/public/images/Polygon-Generative-NFT/section-4/4_2_3.png)
+![](/images/Polygon-Generative-NFT/section-4/4_2_3.png)
 
 ぜひ、あなたのWebアプリケーションをアップグレードして、HTML/CSS/JavaScriptへの理解を深めましょう。
 
@@ -93,13 +93,13 @@ Vercelに関する詳しい説明は、[こちら](https://zenn.dev/lollipop_onl
 
 `Your repositories`ページを開き、`New`ボタンを押してください。
 
-![](/public/images/Polygon-Generative-NFT/section-4/4_2_4.png)
+![](/images/Polygon-Generative-NFT/section-4/4_2_4.png)
 
 リポジトリに、`Polygon-Generative-NFT-git`と名前を付け足ら、`Create repository`ボタンを押してください。
 
 次に、ディレクトリのリンクをコピーしましょう。
 
-![](/public/images/Polygon-Generative-NFT/section-4/4_2_6.png)
+![](/images/Polygon-Generative-NFT/section-4/4_2_6.png)
 
 ターミナルに向かい、任意のディレクトリに移動し、コピーしたリンクを下記に貼り付け、実行しましょう。
 
@@ -123,15 +123,15 @@ git push
 
 1\. `Dashboard`へ進んで、`Project`を選択してください。
 
-![](/public/images/Polygon-Generative-NFT/section-4/4_2_7.png)
+![](/images/Polygon-Generative-NFT/section-4/4_2_7.png)
 
 2\. `Import Git Repository`で自分のGitHubアカウントを接続したら、`Polygon-Generative-NFT-git`を選択し、`Import`してください。
 
-![](/public/images/Polygon-Generative-NFT/section-4/4_2_8.png)
+![](/images/Polygon-Generative-NFT/section-4/4_2_8.png)
 
 3\. プロジェクトを作成します。`Root Directory`が「packages/client」となっていることを確認してください。
 
-![](/public/images/ETH-NFT-Collection/section-4/4_2_9.png)
+![](/images/ETH-NFT-Collection/section-4/4_2_9.png)
 
 4\. `Deploy`ボタンを推しましょう。
 
@@ -141,11 +141,11 @@ VercelはGitHubと連動しているので、GitHubが更新されるたびに�
 
 基本的に`warning`は無視して問題ありません。
 
-![](/public/images/Polygon-Generative-NFT/section-4/4_2_10.png)
+![](/images/Polygon-Generative-NFT/section-4/4_2_10.png)
 
 デプロイが完了したら、自分のWebサイトに向かい、NFTをMintしてみましょう。
 
-![](/public/images/Polygon-Generative-NFT/section-4/4_2_11.png)
+![](/images/Polygon-Generative-NFT/section-4/4_2_11.png)
 
 ### 🙋‍♂️ 質問する
 

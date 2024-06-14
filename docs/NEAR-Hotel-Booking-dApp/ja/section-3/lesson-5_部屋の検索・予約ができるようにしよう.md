@@ -8,12 +8,12 @@
 `frontend/asserts/js/pages/Home.js`
 
 ```js
-import FormDate from '../components/FormDate';
+import FormDate from "../components/FormDate";
 
 const Home = () => {
   return (
     <>
-      <div className="text-center" style={{ margin: '200px' }}>
+      <div className="text-center" style={{ margin: "200px" }}>
         <h1>Welcome.</h1>
         <h1>Select your stay dates and find a hotel!</h1>
         <FormDate />
@@ -28,7 +28,6 @@ const Home = () => {
 };
 
 export default Home;
-
 ```
 
 `import`の追加、`return文`の書き換えを行いました。
@@ -36,12 +35,12 @@ export default Home;
 
 確認のため、`Home`画面を表示してみましょう。
 
-![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_5_1.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-3/3_5_1.png)
 
 試しに、日付を入力して`Search`ボタンを押してみましょう。
 `Search画面`に遷移ができれば`Home画面`は完成です！
 
-![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_5_2.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-3/3_5_2.png)
 
 ここで、`Search`画面への遷移を設定した部分を振り返ります。
 
@@ -78,13 +77,13 @@ onClick={() => navigate(`/search/${date}`)}
 `frontend/asserts/js/pages/Search.js`
 
 ```js
-import { useEffect, useState } from 'react';
-import Row from 'react-bootstrap/Row';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import Row from "react-bootstrap/Row";
+import { useParams } from "react-router-dom";
 
-import FormDate from '../components/FormDate';
-import Room from '../components/Room';
-import { book_room, get_available_rooms } from '../near/utils';
+import FormDate from "../components/FormDate";
+import Room from "../components/Room";
+import { book_room, get_available_rooms } from "../near/utils";
 
 const Search = () => {
   // URLから検索する日付を取得する
@@ -114,7 +113,7 @@ const Search = () => {
     <>
       {/* 日付を入力するフォームを表示 */}
       <FormDate />
-      <div className="text-center" style={{ margin: '20px' }}>
+      <div className="text-center" style={{ margin: "20px" }}>
         <h2>{date}</h2>
         {availableRooms.length === 0 ? (
           <h3>Sorry, no rooms found.</h3>
@@ -143,7 +142,6 @@ const Search = () => {
 };
 
 export default Search;
-
 ```
 
 内容を見ていきましょう。
@@ -196,11 +194,11 @@ useEffect(() => {
 
 NEAR Walletに接続していない時
 
-![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_5_3.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-3/3_5_3.png)
 
 NEAR Walletに接続している時
 
-![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_5_4.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-3/3_5_4.png)
 
 ### 💰 トークンの転送を確認しよう
 
@@ -208,28 +206,28 @@ NEAR Walletに接続している時
 
 トークン転送を承認後、Webアプリケーションに戻ると予約した部屋が消えているでしょう。
 
-![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_5_5.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-3/3_5_5.png)
 
 ナビゲーションバーのメニューから、`NEAR Explorer`へ移動します。
 
-![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_5_6.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-3/3_5_6.png)
 
 トランザクション一覧から、先ほど実行された`book_room`メソッドのトランザクションを確認してみます。
 
-![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_5_7.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-3/3_5_7.png)
 
 ハッシュ値のリンクから詳細を開き、Transaction Execution Planの項目を見ると、オーナーへ宿泊料が転送されていたらOKです。
 
-![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_5_8.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-3/3_5_8.png)
 
 最後に、オーナーのWalletを確認します。先ほど確認した項目に`Receiver ID:`があります。オーナーのアカウントIDをクリックしましょう。オーナーアカウントのトランザクションページが表示されるので、`Ⓝ BALANCE PROFILE`欄のリンクからアカウントページに移動します。
 
-![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_5_9.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-3/3_5_9.png)
 
 `Wallet`のページを表示し、右下の`Recent activity`で宿泊料を受け取っていたら確認完了です！
 
-![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_5_10.png)
-![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_5_11.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-3/3_5_10.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-3/3_5_11.png)
 
 これで部屋の検索・予約ができるようになりました！
 

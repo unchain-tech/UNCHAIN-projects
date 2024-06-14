@@ -25,17 +25,17 @@ Vercelのアカウントを取得したら、下記を実行しましょう。
 
 1\. `Dashboard`へ進んで、 `New Project`を選択してください。
 
-![](/public/images/AVAX-Asset-Tokenization/section-4/4_1_1.png)
+![](/images/AVAX-Asset-Tokenization/section-4/4_1_1.png)
 
 2\. `Import Git Repository`で自分のGitHubアカウントを接続したら、 当リポジトリを選択し`Import`してください。
 
-![](/public/images/AVAX-Asset-Tokenization/section-4/4_1_2.png)
+![](/images/AVAX-Asset-Tokenization/section-4/4_1_2.png)
 
 3\. プロジェクトを作成します。
 
 `Framework Preset`に`Next.js`を、`Root directory`に`packages/client`を選択してください。
 
-![](/public/images/AVAX-Asset-Tokenization/section-4/4_1_3.png)
+![](/images/AVAX-Asset-Tokenization/section-4/4_1_3.png)
 
 4\. `Deploy`ボタンをクリックしましょう。
 
@@ -44,7 +44,7 @@ VercelはGitHubと連動しているので、GitHubでリポジトリが更新�
 しばらくしてビルドが完了すると
 メッセージと、 下記のようにホーム画面が表示されます。
 
-![](/public/images/AVAX-Asset-Tokenization/section-4/4_1_4.png)
+![](/images/AVAX-Asset-Tokenization/section-4/4_1_4.png)
 
 ホーム画面の表示部分はリンクになっているので、 クリックするとあなたの作成したdappがブラウザで確認できます 🎉
 

@@ -31,7 +31,7 @@ frontend
 
 初めに以下の画像をダウンロードし,`bike.png`という名前で`frontend/assets/img/`内に保存してください。
 
-![](/public/images/NEAR-BikeShare/section-2/2_4_4.png)
+![](/images/NEAR-BikeShare/section-2/2_4_4.png)
 
 次に`frontend/assets/css/global.css`を以下に示すコードで書き換えてください。
 今回のプロジェクトに合わせた`css`を記述しています。
@@ -779,7 +779,9 @@ export default function App() {
     return (
       <div className="balance_content">
         <button>check my balance</button>
-        <button style={{ marginTop: "0.1em" }}>check contract&apos;s balance</button>
+        <button style={{ marginTop: "0.1em" }}>
+          check contract&apos;s balance
+        </button>
         <span>or</span>
         <form
           onSubmit={async (event) => {
@@ -922,21 +924,21 @@ $ yarn dev
 
 サインインしていない場合
 
-![](/public/images/NEAR-BikeShare/section-2/2_4_5.png)
+![](/images/NEAR-BikeShare/section-2/2_4_5.png)
 
 サインイン後
 
-![](/public/images/NEAR-BikeShare/section-2/2_4_1.png)
+![](/images/NEAR-BikeShare/section-2/2_4_1.png)
 
 `use`、`inspect`、`return`ボタンを押してみて挙動を確かめましょう。
 
 サイトの上で右クリックを行い、`Inspect`を選択 -> `Console`を選択し出力結果を確認してみましょう。
 
-![](/public/images/NEAR-BikeShare/section-2/2_4_2.png)
+![](/images/NEAR-BikeShare/section-2/2_4_2.png)
 
 アプリの挙動を確かめた後`Console`の出力にURLが2つ表示されています。
 
-![](/public/images/NEAR-BikeShare/section-2/2_4_3.png)
+![](/images/NEAR-BikeShare/section-2/2_4_3.png)
 
 それぞれユーザのアカウント情報、コントラクトのアカウント情報を検索することができます。
 クリックして参照してみましょう、トランザクションの履歴などが確認できます。

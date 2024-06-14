@@ -1,4 +1,5 @@
-###  🖥 このレッスンの参考動画URL
+### 🖥 このレッスンの参考動画 URL
+
 [Dapp University](https://youtu.be/CgXQC4dbGUE?t=7594)
 
 ### 🔥 コントラクトとフロントエンドの接続部分の残りを完成させる
@@ -10,34 +11,34 @@
 23~25行目の部分には、コントラクトのデプロイ時に出てくるアドレスをそれぞれ対応する変数に代入してください。
 
 ```javascript
-import { ethers } from 'ethers';
-import React, { useEffect, useState } from 'react';
+import { ethers } from "ethers";
+import React, { useEffect, useState } from "react";
 
 /* ABIファイルをインポートする */
-import daiAbi from './abis/DaiToken.json';
-import dappAbi from './abis/DappToken.json';
-import tokenfarmAbi from './abis/TokenFarm.json';
-import './App.css';
+import daiAbi from "./abis/DaiToken.json";
+import dappAbi from "./abis/DappToken.json";
+import tokenfarmAbi from "./abis/TokenFarm.json";
+import "./App.css";
 
 function App() {
   /* ユーザーのパブリックウォレットを保存するために使用する状態変数を定義 */
-  const [currentAccount, setCurrentAccount] = useState('');
+  const [currentAccount, setCurrentAccount] = useState("");
 
   // 各トークンの残高を保存するために使用する状態変数を定義
-  const [currentDaiBalance, setDaiBalance] = useState('0');
-  const [currentDappBalance, setDappBalance] = useState('0');
+  const [currentDaiBalance, setDaiBalance] = useState("0");
+  const [currentDappBalance, setDappBalance] = useState("0");
 
   // フォームの入力値を保存するために使用する状態変数を定義
-  const [stakedToken, setStakedToken] = useState('0');
-  const [transferAddress, setTransferAddress] = useState('');
+  const [stakedToken, setStakedToken] = useState("0");
+  const [transferAddress, setTransferAddress] = useState("");
 
   // コントラクトアドレスを記載
-  const daiTokenAddress = '0x30F80dd46e82Ec3A3cd0fe5aF29b378525F7e693';
-  const dappTokenAddress = '0xe9eF0ccF59a3A5E255d6270A8BAF8e9bC5502756';
-  const tokenfarmAddress = '0xb17c21AFD8775357b4a65b234081bddd87F825f7';
+  const daiTokenAddress = "0x30F80dd46e82Ec3A3cd0fe5aF29b378525F7e693";
+  const dappTokenAddress = "0xe9eF0ccF59a3A5E255d6270A8BAF8e9bC5502756";
+  const tokenfarmAddress = "0xb17c21AFD8775357b4a65b234081bddd87F825f7";
 
   //ウォレットアドレス(コントラクトの保持者)を記載
-  const walletAddress = '0x04CD057E4bAD766361348F26E847B546cBBc7946';
+  const walletAddress = "0x04CD057E4bAD766361348F26E847B546cBBc7946";
 
   /* ABIの内容を参照する変数を作成 */
   const daiTokenABI = daiAbi.abi;
@@ -73,12 +74,12 @@ function App() {
         dappContract = new ethers.Contract(
           dappTokenAddress,
           dappTokenABI,
-          signer,
+          signer
         );
         tokenfarmContract = new ethers.Contract(
           tokenfarmAddress,
           tokenfarmABI,
-          signer,
+          signer
         );
 
         // 各トークンの残高を格納
@@ -95,23 +96,23 @@ function App() {
   // stakeする値を格納する関数
   const handleStakeChange = (event) => {
     setStakedToken(event.target.value);
-    console.log('staked token is:', event.target.value);
+    console.log("staked token is:", event.target.value);
   };
 
   // stake関数
   const stake = async () => {
     try {
-      if (currentAccount !== '') {
+      if (currentAccount !== "") {
         await daiContract.approve(
           tokenfarmContract.address,
-          convertToWei(stakedToken).toString(),
+          convertToWei(stakedToken).toString()
         );
         await tokenfarmContract.stakeTokens(
-          convertToWei(stakedToken).toString(),
+          convertToWei(stakedToken).toString()
         );
-        console.log('value is:', stakedToken);
+        console.log("value is:", stakedToken);
       }
-      console.log('Connect Wallet');
+      console.log("Connect Wallet");
     } catch (error) {
       console.log(error);
     }
@@ -120,9 +121,9 @@ function App() {
   // unstake関数
   const unStake = async () => {
     try {
-      if (currentAccount !== '') {
+      if (currentAccount !== "") {
         await tokenfarmContract.unstakeTokens(
-          convertToWei(stakedToken).toString(),
+          convertToWei(stakedToken).toString()
         );
       }
     } catch (error) {
@@ -133,20 +134,20 @@ function App() {
   // transferする先のアドレスを格納する関数
   const handleTransferChange = (event) => {
     setTransferAddress(event.target.value);
-    console.log('staked token is:', event.target.value);
+    console.log("staked token is:", event.target.value);
   };
 
   // transfer関数
   const transfer = async (event) => {
     try {
-      if (currentAccount !== '') {
+      if (currentAccount !== "") {
         await daiContract.transfer(
           transferAddress,
-          convertToWei(100).toString(),
+          convertToWei(100).toString()
         );
-        console.log('Successed to transfer DAI token to:', transferAddress);
+        console.log("Successed to transfer DAI token to:", transferAddress);
       }
-      console.log('Connect Wallet');
+      console.log("Connect Wallet");
     } catch (error) {
       console.log(error);
     }
@@ -157,20 +158,20 @@ function App() {
     try {
       const { ethereum } = window;
       if (!ethereum) {
-        console.log('Make sure you have MetaMask!');
+        console.log("Make sure you have MetaMask!");
         return;
       } else {
-        console.log('We have the ethereum object', ethereum);
+        console.log("We have the ethereum object", ethereum);
       }
       /* ユーザーのウォレットへのアクセスが許可されているかどうかを確認 */
-      const accounts = await ethereum.request({ method: 'eth_accounts' });
+      const accounts = await ethereum.request({ method: "eth_accounts" });
       if (accounts.length !== 0) {
         const account = accounts[0];
-        console.log('Found an authorized account:', account);
+        console.log("Found an authorized account:", account);
         setCurrentAccount(account);
         getBalance();
       } else {
-        console.log('No authorized account found');
+        console.log("No authorized account found");
       }
     } catch (error) {
       console.log(error);
@@ -182,13 +183,13 @@ function App() {
     try {
       const { ethereum } = window;
       if (!ethereum) {
-        console.error('Get MetaMask!');
+        console.error("Get MetaMask!");
         return;
       }
       const accounts = await ethereum.request({
-        method: 'eth_requestAccounts',
+        method: "eth_requestAccounts",
       });
-      console.log('Connected: ', accounts[0]);
+      console.log("Connected: ", accounts[0]);
       setCurrentAccount(accounts[0]);
     } catch (error) {
       console.log(error);
@@ -204,10 +205,10 @@ function App() {
     <div className="h-screen w-screen flex-col flex">
       <div className="text-ellipsis h-20 w-full flex items-center justify-between bg-black">
         <div className="flex items-center">
-          <img src={'farmer.png'} alt="Logo" className="px-5" />;
+          <img src={"farmer.png"} alt="Logo" className="px-5" />;
           <div className="text-white text-3xl">ETH Yield Farm</div>
         </div>
-        {currentAccount === '' ? (
+        {currentAccount === "" ? (
           <button
             className="text-white mr-10 px-3 py-1 text-2xl border-solid border-2 border-white flex items-center justify-center"
             onClick={connectWallet}
@@ -247,7 +248,7 @@ function App() {
               onChange={handleStakeChange}
             />
             <div className="flex-row flex justify-between items-end">
-              <img src={'dai.png'} alt="Logo" className="px-5 h-9 w-18" />
+              <img src={"dai.png"} alt="Logo" className="px-5 h-9 w-18" />
               <div>DAI</div>
             </div>
           </div>
@@ -309,7 +310,7 @@ yarn client start
 ```
 
 するとしたのような画面が出てくるはずです。
-![](/public/images/ETH-Yield-Farm/section-3/3_3_6.png)
+![](/images/ETH-Yield-Farm/section-3/3_3_6.png)
 
 deployの時にDAIトークンを100万トークン作成したので、残高もそのようになっています。
 
@@ -317,7 +318,7 @@ deployの時にDAIトークンを100万トークン作成したので、残高�
 
 コントラクトをdeployしたアドレス以外のアドレスを下の入力欄にコピぺしてしてtranserボタンを押してみてください。
 
-![](/public/images/ETH-Yield-Farm/section-3/3_3_7.png)
+![](/images/ETH-Yield-Farm/section-3/3_3_7.png)
 
 すると下のように100DAIトークン送るようにMetamask上で許可を求められるのでそれに従ってください。
 
@@ -325,13 +326,13 @@ deployの時にDAIトークンを100万トークン作成したので、残高�
 
 トークンを送信するための欄はコントラクトアドレスに接続していない場合は表示されないようになっています。
 
-![](/public/images/ETH-Yield-Farm/section-3/3_3_8.png)
+![](/images/ETH-Yield-Farm/section-3/3_3_8.png)
 
 ではこのアドレスでステーキングしてみましょう。10を入力欄に入力して、`STAKE!`ボタンを押してみましょう。
 
 Metamaskが起動して数字を入力するように出てくるので、下の画像のように10以上かつ自分がその時点で所有しているトークン量以下の値を入力してウォレットからDAIトークンが送信されることを許可します。
 
-![](/public/images/ETH-Yield-Farm/section-3/3_3_12.png)
+![](/images/ETH-Yield-Farm/section-3/3_3_12.png)
 
 その後stake関数を実行するための許可を求められるので許可しましょう。
 
@@ -339,13 +340,13 @@ Metamaskが起動して数字を入力するように出てくるので、下の
 
 DAIトークンの残高が20減っているでしょう。
 
-![](/public/images/ETH-Yield-Farm/section-3/3_3_9.png)
+![](/images/ETH-Yield-Farm/section-3/3_3_9.png)
 
 では最後にインステーキングをしてみましょう。
 
 20と入力欄に入力して、`UN-STAKE`ボタンを押してみましょう。そしてMetamask上で許可をしてしばらく待ち、リロードすると下のようにDAIトークンが返金されていて、かつ報酬としてDAPPトークンが貰えているはずです。
 
-![](/public/images/ETH-Yield-Farm/section-3/3_3_11.png)
+![](/images/ETH-Yield-Farm/section-3/3_3_11.png)
 
 これで動作確認が完了しました。
 
@@ -363,6 +364,7 @@ DAIトークンの残高が20減っているでしょう。
 ```
 
 ---
-これでフロントエンドが完成しました!あなたのフロントエンドのスクリーンショットを`#ethereum`にシェアしてください😊
+
+これでフロントエンドが完成しました!あなたのフロントエンドのスクリーンショットを`#ethereum`にシェアしてください 😊
 
 次のレッスンで作ったWebアプリケーションをネット上に上げましょう!

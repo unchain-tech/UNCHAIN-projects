@@ -2,9 +2,9 @@
 
 実際にWebアプリを外部に公開できるよう仕上げていきます。
 
-### 🙉 Githubに関するメモ
+### 🙉 Github に関するメモ
 
-**どんなプロジェクトにおいてもGithubにアップロードする場合は、秘密鍵を含む`hardhat.config.js`をリポジトリにアップロードしないでください。**
+**どんなプロジェクトにおいても Github にアップロードする場合は、秘密鍵を含む`hardhat.config.js`をリポジトリにアップロードしないでください。**
 
 **資金を奪われてしまいます!**
 
@@ -19,11 +19,11 @@ yarn workspace contract add dotenv^16.0.3
 `hardhat.config.js`を変更します。
 
 ```javascript
-require('@nomicfoundation/hardhat-toolbox');
-require('dotenv').config();
+require("@nomicfoundation/hardhat-toolbox");
+require("dotenv").config();
 
 module.exports = {
-  solidity: '0.8.17',
+  solidity: "0.8.17",
   networks: {
     mumbai: {
       url: process.env.STAGING_ALCHEMY_KEY,
@@ -44,6 +44,7 @@ module.exports = {
 STAGING_ALCHEMY_KEY=YOURS_1
 PRIVATE_KEY=YOURS_2
 ```
+
 YOURS_1,2のところはご自分のものを使用してください（" "で囲います）。
 
 また、言うまでもないことですが`.env`をコミットしてはいけません。`.gitignore`ファイルに`.env`を入力します.
@@ -79,9 +80,8 @@ Vercelに関する説明は、[こちら](https://zenn.dev/lollipop_onl/articles
 
 注：Vercelでは、環境変数`CI=false`を追加する必要があります。 これにより、`warning`が原因でビルドが失敗しないようになります。また、ルートディレクトリは`packages/client`に設定してください。
 
-![](/public/images/Polygon-ENS-Domain/section-4/4_3_1.png)
-![](/public/images/Polygon-ENS-Domain/section-4/4_3_3.png)
-
+![](/images/Polygon-ENS-Domain/section-4/4_3_1.png)
+![](/images/Polygon-ENS-Domain/section-4/4_3_3.png)
 
 設定を入力したら`deploy`ボタンを押してください。
 
@@ -95,13 +95,11 @@ Vercelに関する説明は、[こちら](https://zenn.dev/lollipop_onl/articles
 
 あなたのアプリを世界中の人が使うことができます!
 
+これで、ドメインサービスについてはもう習熟されています 🎉
 
-これで、ドメインサービスについてはもう習熟されています🎉
-
-![](/public/images/Polygon-ENS-Domain/section-4/4_3_2.png)
+![](/images/Polygon-ENS-Domain/section-4/4_3_2.png)
 
 [こちら](https://polygon-ens-domain-client.vercel.app/)が見本のプロジェクトとなります！
-
 
 ### 🎉 おつかれさまでした!
 

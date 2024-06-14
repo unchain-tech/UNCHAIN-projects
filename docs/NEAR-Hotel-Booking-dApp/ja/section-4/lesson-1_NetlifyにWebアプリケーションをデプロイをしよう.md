@@ -84,7 +84,7 @@ Website URL:       https://near-hotel-booking-dapp.netlify.app
 
 ブラウザ上で自分の作成したWebアプリケーションが使えたらデプロイ成功です！
 
-![](/public/images/NEAR-Hotel-Booking-dApp/section-4/4_1_1.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-4/4_1_1.png)
 
 ぜひ、デプロイされたWebアプリケーションを自分の目で確認してみてください ✨
 

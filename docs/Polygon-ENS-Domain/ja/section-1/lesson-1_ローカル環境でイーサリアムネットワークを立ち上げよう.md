@@ -15,13 +15,14 @@ Webアプリで作業するには、ローカル環境をどのように起動�
 ここでの全体像は次のとおりです。
 
 1. **スマートコントラクトを作成します**。
-そのコントラクトには、ドメインに関するすべてのロジックが含まれています。
+   そのコントラクトには、ドメインに関するすべてのロジックが含まれています。
 
 2. **これから作るスマートコントラクトはブロックチェーン上にデプロイされます**。
+
 - 世界中の誰もがあなたのスマートコントラクトにアクセスしてドメインをミントすることができるようになります。
 
 3. **ドメインを簡単に作成できる Web サイトを構築します。**
-まず、`node` / `yarn`を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスしてください。
+   まず、`node` / `yarn`を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスしてください。
 
 `node v16`をインストールすることを推奨しています。
 
@@ -33,11 +34,11 @@ GitHubのアカウントをお持ちの方は、下記の手順に沿ってプ�
 
 1. [こちら](https://github.com/unchain-tech/Polygon-ENS-Domain)からunchain-tech/Polygon-ENS-Domainリポジトリにアクセスをして、ページ右上の`Fork`ボタンをクリックします。
 
-![](/public/images/Polygon-ENS-Domain/section-1/1_1_3.png)
+![](/images/Polygon-ENS-Domain/section-1/1_1_3.png)
 
 2. Create a new forkページが開くので、「Copy the `main` branch only」という項目に**チェックが入っていることを確認します**。
 
-![](/public/images/Polygon-ENS-Domain/section-1/1_1_4.png)
+![](/images/Polygon-ENS-Domain/section-1/1_1_4.png)
 
 設定が完了したら`Create fork`ボタンをクリックします。あなたのGitHubアカウントに`Polygon-ENS-Domain`リポジトリのフォークが作成されたことを確認してください。
 
@@ -45,7 +46,7 @@ GitHubのアカウントをお持ちの方は、下記の手順に沿ってプ�
 
 まず、下図のように、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
 
-![](/public/images/Polygon-ENS-Domain/section-1/1_1_5.png)
+![](/images/Polygon-ENS-Domain/section-1/1_1_5.png)
 
 ターミナル上で作業を行う任意のディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
 
@@ -104,7 +105,7 @@ yarn client start
 
 例)ローカル環境で表示されているWebサイト
 
-![](/public/images/Polygon-ENS-Domain/section-1/1_1_6.png)
+![](/images/Polygon-ENS-Domain/section-1/1_1_6.png)
 
 上記のような形でフロントエンドが確認できれば成功です。
 
@@ -134,6 +135,7 @@ npx hardhat init
 ```
 
 （例）
+
 ```
 $ npx hardhat init
 
@@ -257,7 +259,6 @@ artifacts         contracts         node_modules      scripts
 2. `Lock.js`を削除: `rm Lock.js`
 
 次に、上記の手順を参考にして`contracts`の下の`Lock.sol`を削除してください。実際のフォルダは削除しないように注意しましょう。
-
 
 ### ☀️ Hardhat の機能について
 

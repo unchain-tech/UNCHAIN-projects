@@ -4,7 +4,7 @@
 
 #### ✅ Graph CLI を使ってデプロイを完了する
 
-![Studio6](/public/images/TheGraph-ScaffoldEth2/section-2/2_5_1.png)
+![Studio6](/images/TheGraph-ScaffoldEth2/section-2/2_5_1.png)
 
 以下のコマンドを使用して、Graph CLIをグローバルにインストールできます。
 
@@ -12,7 +12,7 @@
 curl -LS https://cli.thegraph.com/install.sh | sudo sh
 ```
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_5_2.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_5_2.png)
 
 #### ✅ サブグラフの初期化
 
@@ -24,7 +24,7 @@ graph init --studio name_of_your_subgraph
 
 このようになります...
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_5_3.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_5_3.png)
 
 #### ✅ Studio への認証
 
@@ -51,7 +51,7 @@ graph codegen && graph build
 
 成功すると以下のようになります！
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_5_4.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_5_4.png)
 
 #### ✅ デプロイ
 
@@ -63,11 +63,11 @@ graph deploy --studio name_of_your_subgraph
 
 バージョンを選択して、実行しましょう！
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_5_5.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_5_5.png)
 
 サブグラフがスタジオにデプロイされるまで、5分ほどかかることがあります。デプロイされたら、完全に同期されていてエラーがないことを確認してください。デプロイに成功すると、以下のようになります。
 
-![Studio7](/public/images/TheGraph-ScaffoldEth2/section-2/2_5_6.png)
+![Studio7](/images/TheGraph-ScaffoldEth2/section-2/2_5_6.png)
 
 #### ✅ トランザクションを送信し、Subgraph Playground で確認する
 

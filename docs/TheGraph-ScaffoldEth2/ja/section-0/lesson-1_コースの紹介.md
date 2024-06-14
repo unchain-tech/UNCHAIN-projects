@@ -19,13 +19,13 @@
 - 🔥 **バーナーウォレット＆ローカルフォーセット**: バーナーウォレットとローカルフォーセットを使用して、アプリケーションを素早くテストします。
 - 🔐 **ウォレットプロバイダーとの統合**: 異なるウォレットプロバイダーに接続し、Ethereumネットワークとやり取りします。
 
-![](/public/images/TheGraph-ScaffoldEth2/section-0/0_1_1.png)
+![](/images/TheGraph-ScaffoldEth2/section-0/0_1_1.png)
 
-![](/public/images/TheGraph-ScaffoldEth2/section-0/0_1_2.png)
+![](/images/TheGraph-ScaffoldEth2/section-0/0_1_2.png)
 
-![](/public/images/TheGraph-ScaffoldEth2/section-0/L0_1_3.png)
+![](/images/TheGraph-ScaffoldEth2/section-0/0_1_3.png)
 
-![](/public/images/TheGraph-ScaffoldEth2/section-0/0_1_4.png)
+![](/images/TheGraph-ScaffoldEth2/section-0/0_1_4.png)
 
 Scaffold-ETHについてもっと知りたい場合は、[Github リポジトリ](https://github.com/scaffold-eth/scaffold-eth-2) や [Scaffoldeth.io](https://scaffoldeth.io) をご覧ください。
 
@@ -45,7 +45,7 @@ Scaffold-ETHについてもっと知りたい場合は、[Github リポジトリ
 
 https://sendmessage-tau.vercel.app
 
-![](/public/images/TheGraph-ScaffoldEth2/section-0/0_1_5.png)
+![](/images/TheGraph-ScaffoldEth2/section-0/0_1_5.png)
 
 ### 🌍 プロジェクトをアップグレードする
 

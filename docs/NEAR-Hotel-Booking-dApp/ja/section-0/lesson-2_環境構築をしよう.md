@@ -128,7 +128,7 @@ yarn dev
 
 あらかじめ用意されているスマートコントラクトがコンパイル・デプロイされ、Webアプリケーションが起動されます。
 
-![](/public/images/NEAR-Hotel-Booking-dApp/0_2_2.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-0/0_2_2.jpeg)
 
 動作確認ができたので、これで環境構築＋新規プロジェクトの雛形作成は完了です！
 

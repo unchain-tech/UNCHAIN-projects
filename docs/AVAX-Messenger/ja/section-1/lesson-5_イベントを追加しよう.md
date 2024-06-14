@@ -222,7 +222,6 @@ contract Messenger {
 expect(関数実行).to.emit(コントラクト, 'イベント名').withArgs(イベントの引数, ...);
 ```
 
-
 とすることで指定したイベントが発生したのかをテストをすることができます。
 
 `NewMessage`イベントの確認に使用している`anyValue`は、`@nomicfoundation/hardhat-chai-matchers/withArgs`に定義されている関数です。引数として受け取った値に関わらず常にtrueを返すため、引数の具体的な値をチェックせずにイベントを確認するために使用されます。ここでは、NewMessageイベントの引数のうち`block.timestamp`値に使用することで、この値をテストの対象外としています。
@@ -230,7 +229,7 @@ expect(関数実行).to.emit(コントラクト, 'イベント名').withArgs(イ
 それでは、ファイルの先頭に以下のimport文を追加してください。
 
 ```ts
-import { anyValue } from '@nomicfoundation/hardhat-chai-matchers/withArgs';
+import { anyValue } from "@nomicfoundation/hardhat-chai-matchers/withArgs";
 ```
 
 テストを実行する前に`Messenger`コントラクト内で定義していた`console.log`を削除しましょう。コンストラクタの動作はこれまでのテストですでに確認済みです。また、`post`関数で定義していたconsole.logは、イベントの発生をテストすることで確認できるため削除します。
@@ -270,7 +269,7 @@ yarn test
 
 以下のような表示がされたらテスト成功です！
 
-![](/public/images/AVAX-Messenger/section-1/1_5_1.png)
+![](/images/AVAX-Messenger/section-1/1_5_1.png)
 
 ### 🙋‍♂️ 質問する
 

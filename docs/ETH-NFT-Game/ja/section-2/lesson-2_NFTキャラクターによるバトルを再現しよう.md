@@ -80,7 +80,7 @@ Done!
 
 ウソップのHPは **300** から始まっているので、クロコダイルを2回攻撃した場合、ウソップのHPは200になるはずです。
 
-次に、[gemcase(NFTを閲覧できるサービス)](https://gemcase.vercel.app/) に先ほどコピーしたコントラクトアドレスを含めた必要な情報を下のように打ち込んでいきます。
+次に、[gemcase(NFT を閲覧できるサービス)](https://gemcase.vercel.app/) に先ほどコピーしたコントラクトアドレスを含めた必要な情報を下のように打ち込んでいきます。
 
 下記のアドレスを直接ブラウザに貼り付けて、NFTキャラクターを確認することもできます。
 
@@ -89,10 +89,9 @@ https://gemcase.vercel.app/view/evm/sepolia/1INSERT_DEPLOY_CONTRACT_ADDRESS_HERE
 ```
 
 gemcaseでNFTを確認したら、`Refresh Metadata`をクリックしてみてください。
-![](/public/images/ETH-NFT-Game/section-2/2_2_1.png)
+![](/images/ETH-NFT-Game/section-2/2_2_1.png)
 
 `Health Points`が`200`に更新されていれば、成功です。
-
 
 ### 🙋‍♂️ 質問する
 

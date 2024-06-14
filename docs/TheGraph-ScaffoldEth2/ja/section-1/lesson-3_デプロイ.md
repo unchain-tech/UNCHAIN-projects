@@ -6,7 +6,7 @@
 yarn local-ship
 ```
 
-![](/public/images/TheGraph-ScaffoldEth2/section-1/1_3_1.png)
+![](/images/TheGraph-ScaffoldEth2/section-1/1_3_1.png)
 
 サブグラフに新しいバージョン番号を追加してください。これは以前のバージョンよりも高い番号である必要があります。
 

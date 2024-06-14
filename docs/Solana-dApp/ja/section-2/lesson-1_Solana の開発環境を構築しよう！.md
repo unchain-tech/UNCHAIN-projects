@@ -12,7 +12,6 @@
 >
 > Windows 環境の方は[WSL ( Windows Subsystem for Linux )](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-wsl)をインストールしたうえで、Ubuntu を起動して進めることをおすすめします。
 
-
 ### 🦀 Rust をインストールする
 
 **Solana のプログラムは Rust で書かれています!**
@@ -56,7 +55,6 @@ cargo --version
 ```
 
 これらすべてのコマンドでバージョン情報が出力され、エラーが発生しなければ問題はありません。
-
 
 ### 🔥 Solana をインストールする
 
@@ -115,10 +113,9 @@ solana-test-validator
 
 開始されると以下のように表示されます。
 
-![solana test validator](/public/images/Solana-dApp/section-2/2_1_1.jpg)
+![solana test validator](/images/Solana-dApp/section-2/2_1_1.jpg)
 
 これで、ローカルバリデーターが実行されました。
-
 
 ### ☕️ Node.js / NPM / Mocha をインストールする
 
@@ -138,7 +135,6 @@ npm -v
 ```
 npm install -g mocha
 ```
-
 
 ### ⚓️ Anchor をインストールする
 
@@ -194,7 +190,6 @@ solana address
 wallet = "/Users/{YOUR_USERNAME}/.config/solana/id.json" # YOUR_USERNAMEは自分のPCのユーザー名に置き換えてください
 ```
 
-
 ### 🥳 テストプログラムを実行する
 
 プログラムを実行するには以下の手順が必要になります。
@@ -217,10 +212,9 @@ anchor test
 
 出力の一番下に「1 passing」という緑色の単語が表示されていれば問題ありません。
 
-![anchor test](/public/images/Solana-dApp/section-2/2_1_2.jpg)
+![anchor test](/images/Solana-dApp/section-2/2_1_2.jpg)
 
 これでようやくSolana環境のセットアップに成功しました。
-
 
 ### 🙋‍♂️ 質問する
 

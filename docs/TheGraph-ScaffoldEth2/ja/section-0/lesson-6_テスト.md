@@ -22,7 +22,7 @@
   }
 ```
 
-![](/public/images/TheGraph-ScaffoldEth2/section-0/0_6_1.png)
+![](/images/TheGraph-ScaffoldEth2/section-0/0_6_1.png)
 
 > すべてがうまくいっていて、スマートコントラクトにトランザクションを送信した場合は、同様のデータ出力が表示されるはずです！
 

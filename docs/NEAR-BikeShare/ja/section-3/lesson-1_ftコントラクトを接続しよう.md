@@ -465,7 +465,7 @@ $ yarn dev
 
 ブラウザで立ち上がったら、`check my balance`などのボタンを押して挙動を確認してみてください。
 
-![](/public/images/NEAR-BikeShare/section-3/3_1_1.png)
+![](/images/NEAR-BikeShare/section-3/3_1_1.png)
 
 また、一度サインアウト(※ftをたくさん持っているアカウントで`Unregister`を押さないように気をつけてください。)し,
 新たに作成したアカウントでサインインすると,
@@ -474,26 +474,26 @@ $ yarn dev
 
 サインインを行います。
 
-![](/public/images/NEAR-BikeShare/section-3/3_1_2.png)
+![](/images/NEAR-BikeShare/section-3/3_1_2.png)
 
 その後アカウント登録画面になります。
 登録します。
 
-![](/public/images/NEAR-BikeShare/section-3/3_1_3.png)
+![](/images/NEAR-BikeShare/section-3/3_1_3.png)
 
 再びサインアウトし、`ft_account.testnet`(ftの`owner id`、ftをたくさん持っていればどんなアカウントでも良いです)で入り直します。
 `ft_account.testnet`から`new_ft_user.testnet`へftの送信を行ってみます。
 事前に`new_ft_user.testnet`の残高を調べると0ftです。
 
-![](/public/images/NEAR-BikeShare/section-3/3_1_4.png)
+![](/images/NEAR-BikeShare/section-3/3_1_4.png)
 
 `new_ft_user.testnet`へftを送信します。
 
-![](/public/images/NEAR-BikeShare/section-3/3_1_5.png)
+![](/images/NEAR-BikeShare/section-3/3_1_5.png)
 
 `new_ft_user.testnet`の残高が増えています。
 
-![](/public/images/NEAR-BikeShare/section-3/3_1_6.png)
+![](/images/NEAR-BikeShare/section-3/3_1_6.png)
 
 ### 🙋‍♂️ 質問する
 

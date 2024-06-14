@@ -15,8 +15,12 @@
     </div>
     {/* Display a logo and wallet connection status*/}
     <div className="right">
-      <img alt="Network logo" className="logo" src={ network.includes('Polygon') ? polygonLogo : ethLogo} />
-      { currentAccount ? <p> Wallet: {currentAccount.slice(0, 6)}...{currentAccount.slice(-4)} </p> : <p> Not connected </p> }
+      <img alt="Network logo" className="logo" src={ network.includes('Polygon')
+      ? polygonLogo : ethLogo} /> { currentAccount ?
+      <p>Wallet: {currentAccount.slice(0, 6)}...{currentAccount.slice(-4)}</p>
+      :
+      <p>Not connected</p>
+      }
     </div>
   </header>
 </div>
@@ -25,9 +29,11 @@
 「? :」は三項演算子であり、適切な場面で使用すると非常に有用です。
 
 簡単には
+
 ```
 ( true or false ) ? ( true の場合の処理) : ( false の場合の処理)
 ```
+
 です。
 
 ここではネットワーク名に'Polygon'という単語が含まれているかどうかを確認しています。
@@ -90,7 +96,7 @@ const App = () => {
 
 Mumbai上にいるときは次のようになります。
 
-![](/public/images/Polygon-ENS-Domain/section-4/4_1_1.png)
+![](/images/Polygon-ENS-Domain/section-4/4_1_1.png)
 
 ネットワークをチェックしているので`mumbai`のテストネット上にいない場合は、ミントフォームを無効にする必要があります。 これを`renderInputForm`の先頭に追加します。
 
@@ -114,9 +120,9 @@ const renderInputForm = () =>{
 
 入力フォームとミントボタンの代わりにテキストメッセージをレンダリングします。
 
-![](/public/images/Polygon-ENS-Domain/section-4/4_1_2.png)
+![](/images/Polygon-ENS-Domain/section-4/4_1_2.png)
 
-### 🦊 MetaMaskでネットワークの追加、切り替え
+### 🦊 MetaMask でネットワークの追加、切り替え
 
 あらゆる種類のユーザーがアプリにアクセスできるようにしたいですね。
 
@@ -136,8 +142,8 @@ const switchNetwork = async () => {
     try {
       // Mumbai testnet に切り替えます。
       await window.ethereum.request({
-        method: 'wallet_switchEthereumChain',
-        params: [{ chainId: '0x13881' }], // utilsフォルダ内のnetworks.js を確認しましょう。0xは16進数です。
+        method: "wallet_switchEthereumChain",
+        params: [{ chainId: "0x13881" }], // utilsフォルダ内のnetworks.js を確認しましょう。0xは16進数です。
       });
     } catch (error) {
       // このエラーコードは当該チェーンがメタマスクに追加されていない場合です。
@@ -145,18 +151,18 @@ const switchNetwork = async () => {
       if (error.code === 4902) {
         try {
           await window.ethereum.request({
-            method: 'wallet_addEthereumChain',
+            method: "wallet_addEthereumChain",
             params: [
               {
-                chainId: '0x13881',
-                chainName: 'Polygon Mumbai Testnet',
-                rpcUrls: ['https://rpc-mumbai.maticvigil.com/'],
+                chainId: "0x13881",
+                chainName: "Polygon Mumbai Testnet",
+                rpcUrls: ["https://rpc-mumbai.maticvigil.com/"],
                 nativeCurrency: {
-                    name: 'Mumbai Matic',
-                    symbol: 'MATIC',
-                    decimals: 18
+                  name: "Mumbai Matic",
+                  symbol: "MATIC",
+                  decimals: 18,
                 },
-                blockExplorerUrls: ['https://mumbai.polygonscan.com/']
+                blockExplorerUrls: ["https://mumbai.polygonscan.com/"],
               },
             ],
           });
@@ -168,9 +174,11 @@ const switchNetwork = async () => {
     }
   } else {
     // window.ethereum が見つからない場合メタマスクのインストールを促します。
-    alert('MetaMask is not installed. Please install it to use this app: https://metamask.io/download.html');
+    alert(
+      "MetaMask is not installed. Please install it to use this app: https://metamask.io/download.html"
+    );
   }
-}
+};
 ```
 
 見ていきましょう。
@@ -179,8 +187,8 @@ const switchNetwork = async () => {
 
 ```javascript
 await window.ethereum.request({
-  method: 'wallet_switchEthereumChain',
-  params: [{ chainId: '0x13881' }], // utilsフォルダの networks.js を確認ください。
+  method: "wallet_switchEthereumChain",
+  params: [{ chainId: "0x13881" }], // utilsフォルダの networks.js を確認ください。
 });
 ```
 
@@ -211,8 +219,7 @@ const renderInputForm = () =>{
 
 例えばPolygon（Matic）のメインネットにいる場合、下のような画面になるでしょう。
 
-![](/public/images/Polygon-ENS-Domain/section-4/4_1_3.png)
-
+![](/images/Polygon-ENS-Domain/section-4/4_1_3.png)
 
 ### 🙋‍♂️ 質問する
 
@@ -228,4 +235,5 @@ const renderInputForm = () =>{
 ```
 
 ---
-お疲れ様でした! 一休みしてからでも次のレッスンに進みましょう😉
+
+お疲れ様でした! 一休みしてからでも次のレッスンに進みましょう 😉

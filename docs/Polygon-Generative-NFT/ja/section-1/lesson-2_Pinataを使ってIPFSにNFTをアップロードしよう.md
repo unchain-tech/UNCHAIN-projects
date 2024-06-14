@@ -26,7 +26,7 @@
 
 下記のテーブルを見ていきましょう。
 
-![](/public/images/Polygon-Generative-NFT/section-1/1_2_1.png)
+![](/images/Polygon-Generative-NFT/section-1/1_2_1.png)
 
 ここで、`ID`は特定のNFTを識別する一意の正の整数にすぎないことがわかります。
 
@@ -118,10 +118,10 @@ IPFSは、分散型で、コンテンツベースのアドレス指定を使用�
 [Pinata](https://www.pinata.cloud/) に向かい、アカウントを作成して、UIから前回のレッスンで作成したコレクションをアップロードしてみましょう。
 
 `Upload`から`Folder`を選択します。
-![](/public/images/Polygon-Generative-NFT/section-1/1_2_2.png)
+![](/images/Polygon-Generative-NFT/section-1/1_2_2.png)
 
 先ほど作成したコレクションを選択し、`images`フォルダーをアップロードします。
-![](/public/images/Polygon-Generative-NFT/section-1/1_2_3.png)
+![](/images/Polygon-Generative-NFT/section-1/1_2_3.png)
 
 ファイルをアップロードしたら、UIに表示されている「CID」をコピーしてください。
 
@@ -190,7 +190,7 @@ yarn library generate:JSON
 
 下記のように、NFT画像それぞれに対してJSONファイルが生成されていれば成功です。
 
-![](/public/images/Polygon-Generative-NFT/section-1/1_2_4.png)
+![](/images/Polygon-Generative-NFT/section-1/1_2_4.png)
 
 ### 💫 JSON ファイルを IPFS にアップロードする
 
@@ -199,12 +199,24 @@ yarn library generate:JSON
 `library/output/あなたのedition/json`フォルダを、`images`フォルダをアップロードしたときと同じ要領でIPFSにアップロードしてください。
 
 PinataにアップロードされたJSONファイルは下記のように表示されます。
-![](/public/images/Polygon-Generative-NFT/section-1/1_2_5.png)
+![](/images/Polygon-Generative-NFT/section-1/1_2_5.png)
 
 私の`#0 `番目のNFTコレクションのデータは以下のようになります。
 
 ```json
-{"name": "First Collection #0", "description": "A collection of Scrappy Squirrel.", "image": "ipfs://Qman4YbTQHsLDSJvjV5MMnGmF7kmWujVeFhAxUoisHifZF/00.png", "attributes": [{"trait_type": "Background", "value": "white"}, {"trait_type": "Body", "value": "maroon"}, {"trait_type": "Eyes", "value": "standard"}, {"trait_type": "Clothes", "value": "blue_dot"}, {"trait_type": "Held Item", "value": "nut"}, {"trait_type": "Hands", "value": "standard"}]}
+{
+  "name": "First Collection #0",
+  "description": "A collection of Scrappy Squirrel.",
+  "image": "ipfs://Qman4YbTQHsLDSJvjV5MMnGmF7kmWujVeFhAxUoisHifZF/00.png",
+  "attributes": [
+    { "trait_type": "Background", "value": "white" },
+    { "trait_type": "Body", "value": "maroon" },
+    { "trait_type": "Eyes", "value": "standard" },
+    { "trait_type": "Clothes", "value": "blue_dot" },
+    { "trait_type": "Held Item", "value": "nut" },
+    { "trait_type": "Hands", "value": "standard" }
+  ]
+}
 ```
 
 このJSONファイルのフォーマットは、OpenSeaなどのプラットフォームに準拠しています。

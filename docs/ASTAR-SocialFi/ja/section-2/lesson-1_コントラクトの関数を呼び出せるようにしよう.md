@@ -39,11 +39,11 @@ NEXT_PUBLIC_UNKNOWN_IMAGE_URL=unknown_image
 
 下のように代入してみてください。
 
-![](/public/images/ASTAR-SocialFi/section-2/2_1_10.png)
+![](/images/ASTAR-SocialFi/section-2/2_1_10.png)
 
 次にさきほどコントラクトを実装して後に更新した`metadata.json`を一番上の階層(`pages`と同じ階層)に加えましょう。
 
-![](/public/images/ASTAR-SocialFi/section-2/2_1_9.png)
+![](/images/ASTAR-SocialFi/section-2/2_1_9.png)
 
 次に`linter`の設定をしましょう。linterをきちんと設定しないと無駄な部分にエラーが発生してアプリのデプロイ時に問題があるように写りデプロイができないようになります。
 
@@ -165,23 +165,23 @@ hooks/
 
 [`Astar_logo.png`]
 
-![](/public/images/ASTAR-SocialFi/section-2/2_1_1.png)
+![](/images/ASTAR-SocialFi/section-2/2_1_1.png)
 
 [`cross_mark_2_logo-removebg.png`]
 
-![](/public/images/ASTAR-SocialFi/section-2/2_1_2.png)
+![](/images/ASTAR-SocialFi/section-2/2_1_2.png)
 
 [`cross_star_2_logo-removebg.png`]
 
-![](/public/images/ASTAR-SocialFi/section-2/2_1_3.png)
+![](/images/ASTAR-SocialFi/section-2/2_1_3.png)
 
 [`cross_star_6_logo-removebg.png`]
 
-![](/public/images/ASTAR-SocialFi/section-2/2_1_4.png)
+![](/images/ASTAR-SocialFi/section-2/2_1_4.png)
 
 [`unchain_logo.png`]
 
-![](/public/images/ASTAR-SocialFi/section-2/2_1_5.png)
+![](/images/ASTAR-SocialFi/section-2/2_1_5.png)
 
 次にNext.jsではURLの画像を参照するためには`next.config.js`に参照したいURLの頭の部分を登録する必要があるので下のように書き換えましょう。
 
@@ -533,8 +533,8 @@ export const sendMessage = async (props: PropsSM) => {
 
 今回は後者で行います。下のように情報を書き込む関数には`exec`ボタンがあるのでそれを押せばガス代の最大値が出てくるので、それと同じ値を入れましょう。
 
-![](/public/images/ASTAR-SocialFi/section-2/2_1_6.png)
-![](/public/images/ASTAR-SocialFi/section-2/2_1_7.png)
+![](/images/ASTAR-SocialFi/section-2/2_1_6.png)
+![](/images/ASTAR-SocialFi/section-2/2_1_7.png)
 
 次の2つはコントラクトから情報を引き出すタイプの関数です。こちらはガス代を消費することはないのでガス代の欄は`-1`に設定しておけばOKです。
 
@@ -759,9 +759,7 @@ export const getGeneralPost = async (props: PropsGGP) => {
     1
   );
   if (output !== undefined && output !== null) {
-    props.setGeneralPostList(
-      output.toHuman() == null ? [] : output.toHuman()
-    );
+    props.setGeneralPostList(output.toHuman() == null ? [] : output.toHuman());
   }
 };
 

@@ -13,14 +13,13 @@
 
 わからないことがあったらインターネットで検索したり、コミュニティで質問しながらプロジェクトを進めていきましょう!
 
-
 ### 🛠 何を構築するのか？
 
 本プロジェクトでは、ユーザーがSolana用のウォレットを接続し、Solanaチェーン上に送信したGIFデータを取得して表示するWebアプリケーションを作成することです。
 
 以下は作成するWebアプリケーションのイメージです。
 
-![web application](/public/images/Solana-dApp/section-0/0_1_1.jpg)
+![web application](/images/Solana-dApp/section-0/0_1_1.jpg)
 
 本プロジェクトは以下の3つのステップに分かれています。
 
@@ -29,7 +28,6 @@
 2\. Solanaブロックチェーン（テストネット）上にGIFデータを保存するスマートコントラクトをデプロイする。
 
 3\. Solanaブロックチェーン（テストネット）からGIFデータを取得し、表示するようにWebアプリケーションを再構築する。
-
 
 ### 🌍 プロジェクトをアップグレードする
 
@@ -47,7 +45,6 @@ GitHubから直接コードを編集して直接`pull request`を送る方法は
 
 - プロジェクトを`Fork`する方法は、[こちら](https://docs.github.com/ja/get-started/quickstart/fork-a-repo) を参照してください。
 - `Fork`から`pull request`を作成する方法は、[こちら](https://docs.github.com/ja/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) です。
-
 
 ### ⚡️ `Issue`を作成する
 

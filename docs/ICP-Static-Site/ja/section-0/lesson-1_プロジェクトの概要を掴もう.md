@@ -25,11 +25,11 @@
 
 完成したポートフォリオサイトは以下のような見た目になります 💪
 
-![](/public/images/ICP-Static-Site/section-0/0_1_1.png)
+![](/images/ICP-Static-Site/section-0/0_1_1.png)
 
-![](/public/images/ICP-Static-Site/section-0/0_1_2.png)
+![](/images/ICP-Static-Site/section-0/0_1_2.png)
 
-![](/public/images/ICP-Static-Site/section-0/0_1_3.png)
+![](/images/ICP-Static-Site/section-0/0_1_3.png)
 
 ### 🌍 プロジェクトをアップグレードする
 

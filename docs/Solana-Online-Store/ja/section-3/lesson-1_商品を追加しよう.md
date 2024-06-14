@@ -24,20 +24,19 @@ NEXT_PUBLIC_OWNER_PUBLIC_KEY=2TmQsWGFh5vhqJdDrG6uA2MRstGrUwUCiiThyHL9HaMe
 ```jsx
 // CreateProduct.js
 
-import { create } from 'ipfs-http-client';
-import { useState } from 'react';
+import { create } from "ipfs-http-client";
+import { useState } from "react";
 
-import styles from '../styles/CreateProduct.module.css';
+import styles from "../styles/CreateProduct.module.css";
 
-const client = create('https://ipfs.infura.io:5001/api/v0');
+const client = create("https://ipfs.infura.io:5001/api/v0");
 
 const CreateProduct = () => {
-
   const [newProduct, setNewProduct] = useState({
-    name: '',
-    price: '',
-    imageUrl: '',
-    description: '',
+    name: "",
+    price: "",
+    imageUrl: "",
+    description: "",
   });
   const [file, setFile] = useState({});
   const [uploading, setUploading] = useState(false);
@@ -50,7 +49,7 @@ const CreateProduct = () => {
       const added = await client.add(files[0]);
       setFile({ filename: files[0].name, hash: added.path });
     } catch (error) {
-      console.log('Error uploading file: ', error);
+      console.log("Error uploading file: ", error);
     }
     setUploading(false);
   }
@@ -59,22 +58,20 @@ const CreateProduct = () => {
     try {
       // 商品データとfile.nameを結合します。
       const product = { ...newProduct, ...file };
-      console.log('Sending product to api',product);
-      const response = await fetch('../api/addProduct', {
-        method: 'POST',
+      console.log("Sending product to api", product);
+      const response = await fetch("../api/addProduct", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(product),
       });
       if (response.status === 200) {
-        alert('Product added!');
-      }
-      else{
+        alert("Product added!");
+      } else {
         const data = await response.json();
-        alert('Unable to add product: ', data.error);
+        alert("Unable to add product: ", data.error);
       }
-
     } catch (error) {
       console.log(error);
     }
@@ -173,7 +170,7 @@ const addedProductMock = () => {
 const errorAddedProductMock = () => {
   return Promise.resolve({
     status: 500,
-    json: () => Promise.resolve({ error: 'error' }),
+    json: () => Promise.resolve({ error: "error" }),
   });
 };
 ```
@@ -187,16 +184,16 @@ const formNameElement = screen.getByPlaceholderText(/Product Name/i);
 const formPriceElement = screen.getByPlaceholderText(/0.01 USDC/i);
 const formImageUrlElement = screen.getByPlaceholderText(/Image URL/i);
 const formDescriptionElement = screen.getByPlaceholderText(/Description/i);
-const btnElement = screen.getByRole('button', {
+const btnElement = screen.getByRole("button", {
   name: /Create Product/i,
 });
 
 /** 実行 */
-await userEvent.type(formFileElement, 'file');
-await userEvent.type(formNameElement, 'name');
-await userEvent.type(formPriceElement, 'price');
-await userEvent.type(formImageUrlElement, 'imageUrl');
-await userEvent.type(formDescriptionElement, 'description');
+await userEvent.type(formFileElement, "file");
+await userEvent.type(formNameElement, "name");
+await userEvent.type(formPriceElement, "price");
+await userEvent.type(formImageUrlElement, "imageUrl");
+await userEvent.type(formDescriptionElement, "description");
 await userEvent.click(btnElement);
 ```
 
@@ -205,19 +202,19 @@ await userEvent.click(btnElement);
 ```javascript
 // __tests__/CreateProduct.test.js
 /** 確認 */
-expect(fetch).toBeCalledWith('../api/addProduct', {
-  method: 'POST',
+expect(fetch).toBeCalledWith("../api/addProduct", {
+  method: "POST",
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
   body: JSON.stringify({
-    name: 'name',
-    price: 'price',
-    imageUrl: 'imageUrl',
-    description: 'description',
+    name: "name",
+    price: "price",
+    imageUrl: "imageUrl",
+    description: "description",
   }),
 });
-expect(window.alert).toBeCalledWith('Product added!');
+expect(window.alert).toBeCalledWith("Product added!");
 ```
 
 エラーステータスをテストする場合は、fetch関数の戻り値に`errorAddedProductMock`を設定して、alert関数が期待する引数で実行されているかを確認しています。
@@ -240,8 +237,7 @@ yarn test
 
 テストがパスしたら、CreateProductコンポーネントの実装は完了です。
 
-![](/public/images/Solana-Online-Store/section-3/3_1_2.png)
-
+![](/images/Solana-Online-Store/section-3/3_1_2.png)
 
 ### 🛒 商品追加ボタンの表示
 
@@ -250,23 +246,23 @@ yarn test
 ```jsx
 // index.js
 
-import { useWallet } from '@solana/wallet-adapter-react';
-import dynamic from 'next/dynamic';
-import { useEffect, useState } from 'react';
+import { useWallet } from "@solana/wallet-adapter-react";
+import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
 
-import CreateProduct from '../components/CreateProduct';
-import HeadComponent from '../components/Head';
-import Product from '../components/Product';
+import CreateProduct from "../components/CreateProduct";
+import HeadComponent from "../components/Head";
+import Product from "../components/Product";
 
 // 参照: https://github.com/solana-labs/wallet-adapter/issues/648
 const WalletMultiButtonDynamic = dynamic(
   async () =>
-    (await import('@solana/wallet-adapter-react-ui')).WalletMultiButton,
-  { ssr: false },
+    (await import("@solana/wallet-adapter-react-ui")).WalletMultiButton,
+  { ssr: false }
 );
 
 // 定数を宣言します。
-const TWITTER_HANDLE = 'あなたのTwitterハンドル';
+const TWITTER_HANDLE = "あなたのTwitterハンドル";
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const App = () => {
@@ -292,10 +288,10 @@ const App = () => {
   useEffect(() => {
     if (publicKey) {
       fetch(`/api/fetchProducts`)
-        .then(response => response.json())
-        .then(data => {
+        .then((response) => response.json())
+        .then((data) => {
           setProducts(data);
-          console.log('Products', data);
+          console.log("Products", data);
         });
     }
   }, [publicKey]);
@@ -310,7 +306,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <HeadComponent/>
+      <HeadComponent />
       <div className="container">
         <header className="header-container">
           <p className="header"> 😳 UNCHAIN Image Store 😈</p>
@@ -323,7 +319,7 @@ const App = () => {
               className="create-product-button"
               onClick={() => setCreating(!creating)}
             >
-              {creating ? 'Close' : 'Create Product'}
+              {creating ? "Close" : "Create Product"}
             </button>
           )}
         </header>
@@ -363,20 +359,20 @@ export default App;
 ```jsx
 // addProduct.js
 
-import fs from 'fs';
+import fs from "fs";
 
-import products from './products.json';
+import products from "./products.json";
 
-export default function handler(req, res){
-  if (req.method === 'POST'){
+export default function handler(req, res) {
+  if (req.method === "POST") {
     try {
-      console.log('body is ', req.body)
+      console.log("body is ", req.body);
       const { name, price, imageUrl, description, filename, hash } = req.body;
 
       // 前回のプロダクトIDを元に新しいプロダクトIDを作成します。
       const maxID = products.reduce(
         (max, product) => Math.max(max, product.id),
-        0,
+        0
       );
       products.push({
         id: maxID + 1,
@@ -388,16 +384,15 @@ export default function handler(req, res){
         hash,
       });
       fs.writeFileSync(
-        './pages/api/products.json',
-        JSON.stringify(products, null, 2),
+        "./pages/api/products.json",
+        JSON.stringify(products, null, 2)
       );
-      res.status(200).send({ status: 'ok' });
+      res.status(200).send({ status: "ok" });
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: 'error adding product' });
+      res.status(500).json({ error: "error adding product" });
     }
-  }
-  else {
+  } else {
     res.status(405).send(`Method ${req.method} not allowed`);
   }
 }
@@ -407,8 +402,7 @@ export default function handler(req, res){
 
 ※値段の欄には数字だけを入れるよう、注意してください。
 
-![Create Product](/public/images/Solana-Online-Store/section-3/3_1_1.jpg)
-
+![Create Product](/images/Solana-Online-Store/section-3/3_1_1.jpg)
 
 ### 🙋‍♂️ 質問する
 

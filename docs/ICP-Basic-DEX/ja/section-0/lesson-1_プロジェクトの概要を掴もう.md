@@ -40,9 +40,9 @@ ICの目的は、従来のIT技術（例えばビッグテックのクラウド�
 
 完成したDEXアプリケーションはこのような見た目になります 💪
 
-![](/public/images/ICP-Basic-DEX/section-0/0_1_1.png)
+![](/images/ICP-Basic-DEX/section-0/0_1_1.png)
 
-![](/public/images/ICP-Basic-DEX/section-0/0_1_2.png)
+![](/images/ICP-Basic-DEX/section-0/0_1_2.png)
 
 ### 🌍 プロジェクトをアップグレードする
 

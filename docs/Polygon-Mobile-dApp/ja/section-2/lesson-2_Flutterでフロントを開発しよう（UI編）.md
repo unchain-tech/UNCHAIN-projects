@@ -1,4 +1,4 @@
-### ✨ Flutter でフロントを開発する（UI編）
+### ✨ Flutter でフロントを開発する（UI 編）
 
 FlutterのUI部分を構築するために、まず、2.`TodoList.dart`ファイルの中身を作成していきます。
 
@@ -89,6 +89,7 @@ class TodoList extends StatelessWidget {
     ...
 }
 ```
+
 `StatelessWidget`クラスを継承した`TodoList`クラスを作成しています。
 
 簡単に説明すると、`StatelessWidget`とは状態がずっと変化しないウィジェットのことです。
@@ -174,7 +175,7 @@ class TodoList extends StatelessWidget {
 
 下の画像のようなUIになります。
 
-![](/public/images/Polygon-Mobile-dApp/section-2/2_3_1.png)
+![](/images/Polygon-Mobile-dApp/section-2/2_3_1.png)
 
 以上で、2.`TodoList.dart`ファイルの中身は完成しました。
 
@@ -400,7 +401,7 @@ TextButton buildButton(String text, void Function()? onPressed) {
 
 下の画像のようなUIになります。
 
-![](/public/images/Polygon-Mobile-dApp/section-2/2_3_2.png)
+![](/images/Polygon-Mobile-dApp/section-2/2_3_2.png)
 
 以上で、3.`TodoBottomSheet.dart`ファイルの中身は完成しました。
 
@@ -449,6 +450,7 @@ class MyApp extends StatelessWidget {
 ```
 
 ---
+
 あなたのUIをスクリーンショットしてDiscordの`#polygon`に投稿してましょう!
 
 次のセクションに進んで、スマートコントラクトをMumbai testnetに公開しましょう 🎉

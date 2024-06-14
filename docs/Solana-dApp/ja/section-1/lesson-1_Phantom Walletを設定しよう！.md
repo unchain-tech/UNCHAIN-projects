@@ -4,8 +4,8 @@
 
 まず、 [この GitHub リンク](https://github.com/unchain-tech/Solana-dApp) にアクセスして、ページの右上にある[Fork]ボタンを押してください。
 
-![](/public/images/Solana-dApp/section-1/1_1_4.png)
-![](/public/images/Solana-dApp/section-1/1_1_5.png)
+![](/images/Solana-dApp/section-1/1_1_4.png)
+![](/images/Solana-dApp/section-1/1_1_5.png)
 
 このリポジトリをフォークすると、自分のGitHubに同一のリポジトリがコピーされます。
 
@@ -13,7 +13,7 @@
 
 `Code`ボタンをクリックして、コピーしたリポジトリのリンクをコピーしてください。
 
-![github code button](/public/images/Solana-dApp/section-1/1_1_6.png)
+![github code button](/images/Solana-dApp/section-1/1_1_6.png)
 
 最後に、ターミナルで`cd`コマンドを実行してプロジェクトが存在するディレクトリまで移動し、次のコマンドを実行します。
 
@@ -24,7 +24,6 @@ git clone YOUR_FORKED_LINK
 ```
 
 無事に複製されたらローカル開発環境の準備は完了です。
-
 
 ### 🔌 Phantom Wallet をインストールする
 
@@ -42,10 +41,9 @@ Chromeの方は[こちら](https://chrome.google.com/webstore/detail/phantom/bfn
 
 - 「設定」→「デベロッパー設定」→「ネットワークの変更」→「Devnet」から変更できます。
 
-![phantom wallet settings](/public/images/Solana-dApp/section-1/1_1_2.png)
+![phantom wallet settings](/images/Solana-dApp/section-1/1_1_2.png)
 
 ※ 本プロジェクトではBraveとChromeでのみ動作が確認できます。
-
 
 ### 👻 Solana オブジェクトを設定する
 
@@ -57,27 +55,26 @@ WebアプリケーションがSolanaブロックチェーンと通信するた�
 
 ```jsx
 // Reactを使用します。
-import React, { useEffect } from 'react';
-import twitterLogo from './assets/twitter-logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import twitterLogo from "./assets/twitter-logo.svg";
+import "./App.css";
 
 // 定数を宣言します。
-const TWITTER_HANDLE = 'あなたのTwitterハンドル';
+const TWITTER_HANDLE = "あなたのTwitterハンドル";
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const App = () => {
-
- /*
-  * Phantom Walletが接続されているかどうかを確認するための関数です。
-  */
+  /*
+   * Phantom Walletが接続されているかどうかを確認するための関数です。
+   */
   const checkIfWalletIsConnected = async () => {
     try {
       const { solana } = window;
 
       if (solana && solana.isPhantom) {
-        console.log('Phantom wallet found!');
+        console.log("Phantom wallet found!");
       } else {
-        alert('Solana object not found! Get a Phantom Wallet 👻');
+        alert("Solana object not found! Get a Phantom Wallet 👻");
       }
     } catch (error) {
       console.error(error);
@@ -91,8 +88,8 @@ const App = () => {
     const onLoad = async () => {
       await checkIfWalletIsConnected();
     };
-    window.addEventListener('load', onLoad);
-    return () => window.removeEventListener('load', onLoad);
+    window.addEventListener("load", onLoad);
+    return () => window.removeEventListener("load", onLoad);
   }, []);
 
   return (
@@ -163,7 +160,6 @@ Reactでは、2番目のパラメータ`[]`が空の場合、コンポーネン�
 const TWITTER_HANDLE = "あなたのTwitterハンドル";
 ```
 
-
 ### 🔒 ユーザーのアカウントにアクセスする
 
 一度、ブラウザでインタフェースを確認してみましょう。
@@ -178,7 +174,7 @@ const TWITTER_HANDLE = "あなたのTwitterハンドル";
 
 ※ コンソールを表示するには、ブラウザ上で`右クリック` -> `検証` -> `コンソール`を開きます。
 
-![browser console](/public/images/Solana-dApp/section-1/1_1_3.png)
+![browser console](/images/Solana-dApp/section-1/1_1_3.png)
 
 次に、WebアプリケーションがユーザーのPhantom Walletにアクセスすることが **許可** されているかどうかを確認します。
 
@@ -197,19 +193,19 @@ const checkIfWalletIsConnected = async () => {
 
     if (solana) {
       if (solana.isPhantom) {
-        console.log('Phantom wallet found!');
+        console.log("Phantom wallet found!");
 
         /*
          * ユーザーのウォレットに直接接続する機能を提供します。
          */
         const response = await solana.connect({ onlyIfTrusted: true });
         console.log(
-          'Connected with Public Key:',
+          "Connected with Public Key:",
           response.publicKey.toString()
         );
       }
     } else {
-      alert('Solana object not found! Get a Phantom Wallet 👻');
+      alert("Solana object not found! Get a Phantom Wallet 👻");
     }
   } catch (error) {
     console.error(error);
@@ -229,7 +225,6 @@ const checkIfWalletIsConnected = async () => {
 
 - Mac: `ctrl + c`
 - Windows: `ctrl + shift + w`
-
 
 ### 🙋‍♂️ 質問する
 

@@ -11,7 +11,7 @@ This workshop is built around Scaffold-ETH 2 and The Graph. You will learn how t
 
 ### 🏗 What is Scaffold-ETH 2 🏗
 
-🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
+🧪 An open-source, up-to-date toolkit for building decentralized applications（dApps）on the Ethereum blockchain. It's designed to make it easier for developers to create and deployスマートコントラクトand build user interfaces that interact with those contracts.
 
 ⚙️ Built using NextJS, RainbowKit, Hardhat, Wagmi, and Typescript.
 
@@ -19,21 +19,21 @@ This workshop is built around Scaffold-ETH 2 and The Graph. You will learn how t
 - 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
 - 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
 
-![](/public/images/TheGraph-ScaffoldEth2/section-0/0_1_1.png)
+![](/images/TheGraph-ScaffoldEth2/section-0/0_1_1.png)
 
-![](/public/images/TheGraph-ScaffoldEth2/section-0/0_1_2.png)
+![](/images/TheGraph-ScaffoldEth2/section-0/0_1_2.png)
 
-![](/public/images/TheGraph-ScaffoldEth2/section-0/L0_1_3.png)
+![](/images/TheGraph-ScaffoldEth2/section-0/0_1_3.png)
 
-![](/public/images/TheGraph-ScaffoldEth2/section-0/0_1_4.png)
+![](/images/TheGraph-ScaffoldEth2/section-0/0_1_4.png)
 
 To learn more about Scaffold-ETH checkout the [Github repository](https://github.com/scaffold-eth/scaffold-eth-2) or [Scaffoldeth.io](https://scaffoldeth.io).
 
 ### 🧑🏼‍🚀 What is The Graph?
 
-[The Graph](https://thegraph.com/) is a protocol for building decentralized applications (dApps) quickly on Ethereum and IPFS using GraphQL.
+[The Graph](https://thegraph.com/) is a protocol for building decentralized applications（dApps）quickly on Ethereum and IPFS using GraphQL.
 
-- 🗃️ **Decentralized Indexing**: The Graph enables open APIs ("subgraphs") to efficiently index and organize blockchain data.
+- 🗃️ **Decentralized Indexing**: The Graph enables open APIs（"subgraphs"）to efficiently index and organize blockchain data.
 - 🔎 **Efficient Querying**: The protocol uses GraphQL for streamlined querying blockchain data.
 - 🙌 **Community Ecosystem**: The Graph fosters collaboration by empowering developers to build, deploy, and share subgraphs!
 
@@ -45,7 +45,7 @@ We are building an example smart contract and front end that utilizes The Graph 
 
 https://sendmessage-tau.vercel.app
 
-![](/public/images/TheGraph-ScaffoldEth2/section-0/0_1_5.png)
+![](/images/TheGraph-ScaffoldEth2/section-0/0_1_5.png)
 
 ### 🌍 Upgrading this project
 

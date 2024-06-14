@@ -1,4 +1,4 @@
-## Setup The Graph (Docker)
+## Setup The Graph （Docker）
 
 ### 🚀 Setup The Graph Integration
 
@@ -16,7 +16,7 @@ yarn clean-node
 yarn run-node
 ```
 
-![](/public/images/TheGraph-ScaffoldEth2/section-0/0_4_1.png)
+![](/images/TheGraph-ScaffoldEth2/section-0/0_4_1.png)
 
 This will spin up all the containers for The Graph using docker-compose. You will know this is complete when it reads "Downloading latest blocks from Ethereum..."
 

@@ -1,4 +1,4 @@
-### 💻 Webアプリケーションを設定する
+### 💻 Web アプリケーションを設定する
 
 このセクションでは、Webサイトの構築を通して、WebアプリとXummの連携方法について学びます。
 
@@ -16,11 +16,11 @@ GitHubのアカウントをお持ちの方は、下記の手順に沿ってプ�
 
 1\. [こちら](https://github.com/unchain-tech/XRPL-NFT-Maker)からunchain-tech/XRPL-NFT-Makerリポジトリにアクセスをして、ページ右上の`Fork`ボタンをクリックします。
 
-![](/public/images/XRPL-NFT-Maker/section-3/3_1_2.png)
+![](/images/XRPL-NFT-Maker/section-3/3_1_2.png)
 
 2\. Create a new forkページが開くので、「Copy the `main` branch only」という項目に**チェックが入っていることを確認します**。
 
-![](/public/images/XRPL-NFT-Maker/section-3/3_1_3.png)
+![](/images/XRPL-NFT-Maker/section-3/3_1_3.png)
 
 3\. 設定が完了したら`Create fork`ボタンをクリックします。あなたのGitHubアカウントに`XRPL-NFT-Maker`リポジトリのフォークが作成されたことを確認してください。
 
@@ -28,7 +28,7 @@ GitHubのアカウントをお持ちの方は、下記の手順に沿ってプ�
 
 まず、下図のように、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
 
-![](/public/images/XRPL-NFT-Maker/section-3/3_1_4.png)
+![](/images/XRPL-NFT-Maker/section-3/3_1_4.png)
 
 ターミナルで任意のディレクトリに移動し、先ほどコピーしたリンクを貼り付け、下記を実行してください。
 
@@ -53,8 +53,7 @@ npm start
 次のような形でフロントエンドが確認できれば成功です。
 
 例)ローカル環境で表示されているWebサイト
-![](/public/images/XRPL-NFT-Maker/section-3/3_1_1.png)
-
+![](/images/XRPL-NFT-Maker/section-3/3_1_1.png)
 
 これからフロントエンドの表示を確認したい時は、`XRPL-NFT-Maker`ディレクトリ上で、`npm start`を実行します。これからも必要となる作業ですので、よく覚えておいてください。
 

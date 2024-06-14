@@ -48,7 +48,7 @@ ASTARが用意してくれている基礎的なシステムをしようすれば
 この画面の`Connect`ボタンを押すことでウォレットを接続できるようになっています。
 
 うまく接続が完了すれば次にホーム画面へ飛ぶようにできています。
-![](/public/images/ASTAR-SocialFi/section-0/0_1_1.png)
+![](/images/ASTAR-SocialFi/section-0/0_1_1.png)
 
 [`ホーム画面`]
 
@@ -60,20 +60,20 @@ ASTARが用意してくれている基礎的なシステムをしようすれば
 
 加えて、いいねの数に従ってトークンを獲得できる機能も備えておりロゴとプロフィールアイコンの間に残高が表示されます。
 
-![](/public/images/ASTAR-SocialFi/section-0/0_1_2.png)
+![](/images/ASTAR-SocialFi/section-0/0_1_2.png)
 
 [`プロフィール画面`]
 
 自分のプロフィール、フォロワー数、フォロー数、投稿内容を見ることができます。
 
 また、プロフィールの画像と名前を変更することもできます。
-![](/public/images/ASTAR-SocialFi/section-0/0_1_3.png)
+![](/images/ASTAR-SocialFi/section-0/0_1_3.png)
 
 [`メッセージ画面`]
 
 フォローしている、またはされているユーザーとメッセージのやりとりができる画面です。
-![](/public/images/ASTAR-SocialFi/section-0/0_1_4.png)
-![](/public/images/ASTAR-SocialFi/section-0/0_1_5.png)
+![](/images/ASTAR-SocialFi/section-0/0_1_4.png)
+![](/images/ASTAR-SocialFi/section-0/0_1_5.png)
 
 以上を踏まえて実装する機能は下のようになっています。
 
@@ -121,7 +121,3 @@ UNCHAINのプロジェクトをみんなでより良いものにしていきま�
 ---
 
 では早速次のレッスンに進んで、ASTAR SNS作成のための環境構築をしていきましょう 🚀
-
----
-
-Documentation created by [shø](https://github.com/neila) and [Tonny](https://github.com/honganji)（UNCHAIN discord ID: shø#0537, Tonny#5693）

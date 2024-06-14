@@ -75,9 +75,9 @@ yarn client start
 ```
 
 ローカルサーバーでWebサイトを立ち上げたら、サイトの上で右クリックを行い、`Inspect`を選択します。
-![](/public/images/ETH-NFT-Game/section-3/3_2_1.png)
+![](/images/ETH-NFT-Game/section-3/3_2_1.png)
 次に、`Console`を選択し、出力結果を確認してみましょう。
-![](/public/images/ETH-NFT-Game/section-3/3_2_2.png)
+![](/images/ETH-NFT-Game/section-3/3_2_2.png)
 
 Consoleに`We have the ethereum object`と表示されているでしょうか？
 

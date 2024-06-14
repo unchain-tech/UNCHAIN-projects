@@ -11,7 +11,9 @@
 1\. `createTransaction.js`で設定したテストネットのUSDC SPLトークンアドレスを以下のとおりメインネットのUSDC SPLトークンアドレスに変更します。
 
 ```jsx
-const usdcAddress = new PublicKey('EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v');
+const usdcAddress = new PublicKey(
+  "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+);
 ```
 
 2\. `_app.js`及び`createTransaction.js`ファイル内の`WalletAdapterNetwork`関数内にある`network`を以下のとおり変更します。
@@ -21,7 +23,6 @@ const network = WalletAdapterNetwork.Mainnet;
 ```
 
 たったこれだけでメインネットで販売することができます!
-
 
 ### 🎨 Web アプリケーションをアップグレードする
 
@@ -36,7 +37,6 @@ const network = WalletAdapterNetwork.Mainnet;
 2\. 商品データ及び注文情報をSolanaチェーン上に保存する。
 
 3\. 画像をNFT化して商品にする機能を設ける。
-
 
 ### 🙉 `.gitignore`を確認する
 
@@ -61,7 +61,6 @@ node_modules
 > `.`がついているファイルやフォルダはその名の通り見ることができないので、「隠しファイル」「隠しフォルダ」とも呼ばれます。
 >
 > 操作されては困るファイルなどは、このように「不可視」の属性を持たせて、一般の人が触れられないように設定しておきましょう。
-
 
 ### 🚀 Vercel に Web アプリケーションをデプロイする
 
@@ -89,11 +88,11 @@ git push
 
 1\. Vercelのダッシュボードから、`Add New...`をクリックし、`Project`を選択します。
 
-![new project](/public/images/Solana-Online-Store/section-4/4_1_1.png)
+![new project](/images/Solana-Online-Store/section-4/4_1_1.png)
 
 2\. `Import Git Repository`で自分のGitHubアカウントを接続したら、Webアプリケーションのリポジトリを`Import`してください。
 
-![Import](/public/images/Solana-Online-Store/section-4/4_1_2.png)
+![Import](/images/Solana-Online-Store/section-4/4_1_2.png)
 
 3\. プロジェクトの設定では、**FRAMEWORK PRESET** に`Next.js`、**ROOT DIRECTORY** に`./`を入力してください。
 
@@ -101,14 +100,13 @@ git push
 
 5\. **Environment Variables** に`.env.local`で設定した環境変数（NAME: NEXT_PUBLIC_OWNER_PUBLIC_KEY、VALUE: `phantom wallet address`）を直接入力してください( GitHubには`.env.local`ファイルを保存していないため、`Vercel`に直接記載する必要があります)。
 
-![Environment Variables1](/public/images/Solana-Online-Store/section-4/4_1_3.png)
+![Environment Variables1](/images/Solana-Online-Store/section-4/4_1_3.png)
 
 6\.`Deploy`ボタンを押してデプロイします（VercelはGitHubと連動しているので、GitHubが更新されるたびに自動でデプロイを行ってくれます）。
 
 **Vercel へのデプロイが無事完了しました!**
 
 ぜひデプロイされたWebアプリケーションを自分の目で確認してみてください!!
-
 
 ### 🙋‍♂️ 質問する
 
@@ -123,7 +121,6 @@ git push
 4. エラー画面のスクリーンショット
 ```
 
-
 ### 🎫 NFT を取得しよう!
 
 NFTを取得する条件は、以下のようになります。
@@ -137,7 +134,6 @@ NFTを取得する条件は、以下のようになります。
 4. Discordの`🔥｜completed-projects`チャンネルに、あなたのWebサイトをシェアしてください 😉🎉 。Discordへ投稿する際に、追加実装した機能とその概要も教えていただけると幸いです!
 
 プロジェクトを完成させていただいた方には、NFTをお送りします。
-
 
 ### 🎉 おつかれさまでした!
 

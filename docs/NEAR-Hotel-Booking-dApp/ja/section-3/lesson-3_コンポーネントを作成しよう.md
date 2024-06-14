@@ -35,23 +35,23 @@
 `frontend/assets/js/components/FormDate.js`
 
 ```js
-import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import { useNavigate } from "react-router-dom";
 
 const FormDate = () => {
   const navigate = useNavigate();
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState("");
 
   const isFormFilled = () => date;
   return (
     <Form>
       <Row
         className="justify-content-center"
-        style={{ marginTop: '50px', marginBottom: '50px' }}
+        style={{ marginTop: "50px", marginBottom: "50px" }}
       >
         <Col xs="auto">
           <Form.Control
@@ -79,12 +79,11 @@ const FormDate = () => {
 };
 
 export default FormDate;
-
 ```
 
 このようなフォームとボタンが実装されます。
 
-![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_3_1.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-3/3_3_1.png)
 
 追加した内容を見ていきましょう。
 
@@ -116,19 +115,19 @@ export default FormDate;
 `frontend/assets/js/components/AddRoom.js`
 
 ```js
-import PropTypes from 'prop-types';
-import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Modal from 'react-bootstrap/Modal';
+import PropTypes from "prop-types";
+import { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
 
 const AddRoom = ({ save }) => {
   // フォームで入力されたデータを取得・設定する
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
   const [beds, setBeds] = useState(0);
-  const [image, setImage] = useState('');
-  const [description, setDescription] = useState('');
-  const [location, setLocation] = useState('');
+  const [image, setImage] = useState("");
+  const [description, setDescription] = useState("");
+  const [location, setLocation] = useState("");
   const [price, setPrice] = useState(0);
   // 全ての項目が入力されたか確認する
   const isFormFilled = () =>
@@ -188,7 +187,7 @@ const AddRoom = ({ save }) => {
               <Form.Control
                 as="textarea"
                 placeholder="Description"
-                style={{ height: '80px' }}
+                style={{ height: "80px" }}
                 onChange={(e) => {
                   setDescription(e.target.value);
                 }}
@@ -251,12 +250,11 @@ AddRoom.propTypes = {
 };
 
 export default AddRoom;
-
 ```
 
 このようなフォームが実装されます。
 
-![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_3_2.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-3/3_3_2.png)
 
 追加した内容を見ていきましょう。
 
@@ -308,7 +306,7 @@ React Bootstrapの[Modals](https://react-bootstrap.netlify.app/components/modal/
 
 ```javascript
 <Button
-  variant='dark'
+  variant="dark"
   disabled={!isFormFilled()}
   onClick={() => {
     save({
@@ -335,12 +333,12 @@ React Bootstrapの[Modals](https://react-bootstrap.netlify.app/components/modal/
 `frontend/assets/js/components/Room.js`
 
 ```js
-import { formatNearAmount } from 'near-api-js/lib/utils/format';
-import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Image from 'react-bootstrap/Image';
-import Row from 'react-bootstrap/Row';
+import { formatNearAmount } from "near-api-js/lib/utils/format";
+import PropTypes from "prop-types";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Image from "react-bootstrap/Image";
+import Row from "react-bootstrap/Row";
 
 const Room = ({ room, booking }) => {
   // roomオブジェクトからデータを取得
@@ -353,7 +351,7 @@ const Room = ({ room, booking }) => {
   };
 
   return (
-    <Row style={{ padding: '20px' }}>
+    <Row style={{ padding: "20px" }}>
       <Col xs={1}></Col>
       <Col xs={2}>
         <Image src={image} alt={name} width="300" fluid />
@@ -389,12 +387,11 @@ Room.PropTypes = {
 };
 
 export default Room;
-
 ```
 
 このようなレイアウトになります。
 
-![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_3_3.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-3/3_3_3.png)
 
 React Bootstrapの[Row](https://react-bootstrap.netlify.app/layout/grid/#row-props)、[Col](https://react-bootstrap.netlify.app/layout/grid/#col-props)、[Image](https://react-bootstrap.netlify.app/components/images/#rb-docs-content)を使用しています。
 

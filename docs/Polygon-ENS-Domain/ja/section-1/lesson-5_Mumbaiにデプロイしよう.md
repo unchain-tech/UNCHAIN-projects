@@ -27,11 +27,11 @@ Alchemyは、世界中のトランザクションを一元化し、マイナー�
 **_なお Alchemy の Dadhboard がなかなか開けないなどの不調がごくまれに起こる場合があります。その場合は 1 日程度時間を置いてから作業すると回復します。この場合、こちらで何かをすることはできません。ひと休みですね。_**
 
 Alchemyのアカウントを作成したら、Dashboardの`CREATE APP`ボタンを押してください。
-![](/public/images/Polygon-ENS-Domain/section-1/1_5_1.png)
+![](/images/Polygon-ENS-Domain/section-1/1_5_1.png)
 
 次に、下記の項目を埋めていきます。下図を参考にしてください。
 
-![](/public/images/Polygon-ENS-Domain/section-1/1_5_2.png)
+![](/images/Polygon-ENS-Domain/section-1/1_5_2.png)
 
 - `NAME`: プロジェクトの名前(例: `CoolDomains`)
 - `DESCRIPTION`: プロジェクトの概要(例：`ENS on Polygon`)
@@ -40,7 +40,7 @@ Alchemyのアカウントを作成したら、Dashboardの`CREATE APP`ボタン�
 
 それから、作成したAppの`VIEW DETAILS`をクリックします。
 
-![](/public/images/Polygon-ENS-Domain/section-1/1_5_3.png)
+![](/images/Polygon-ENS-Domain/section-1/1_5_3.png)
 
 プロジェクトを開いたら、`VIEW KEY`ボタンをクリックします。
 
@@ -66,15 +66,15 @@ Matic MainnetをMetaMaskに追加するには、次の手順に従ってくだ�
 
 まず、[Polygonscan](https://polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Polygon Network`ボタンをクリックします。
 
-![](/public/images/Polygon-ENS-Domain/section-1/1_5_4.png)
+![](/images/Polygon-ENS-Domain/section-1/1_5_4.png)
 
 下記のようなポップアップが立ち上がったら、`Switch Network`をクリックしましょう。
 
-![](/public/images/Polygon-ENS-Domain/section-1/1_5_5.png)
+![](/images/Polygon-ENS-Domain/section-1/1_5_5.png)
 
 `Matic Mainnet`があなたのMetaMaskにセットアップされました。
 
-![](/public/images/Polygon-ENS-Domain/section-1/1_5_6.png)
+![](/images/Polygon-ENS-Domain/section-1/1_5_6.png)
 
 **2 \. Polygon Mumbai-Testnet を MetaMask に接続する**
 
@@ -90,7 +90,7 @@ MetaMaskとHardhatの両方でPolygonネットワークの設定が完了した�
 
 [こちら](https://faucet.polygon.technology/) にアクセスして、下記のように偽MATICをリクエストしてください。
 
-![](/public/images/Polygon-ENS-Domain/section-1/1_5_7.png)
+![](/images/Polygon-ENS-Domain/section-1/1_5_7.png)
 
 1回のリクエストでは少量ですので、数回リクエストして、1 MATIC程度入手しましょう。
 
@@ -122,28 +122,28 @@ MetaMaskとHardhatの両方でPolygonネットワークの設定が完了した�
 
 ```javascript
 const main = async () => {
-  const domainContractFactory = await hre.ethers.getContractFactory('Domains');
-  const domainContract = await domainContractFactory.deploy('ninja');
+  const domainContractFactory = await hre.ethers.getContractFactory("Domains");
+  const domainContract = await domainContractFactory.deploy("ninja");
   await domainContract.deployed();
 
-  console.log('Contract deployed to:', domainContract.address);
+  console.log("Contract deployed to:", domainContract.address);
 
   // domainをオリジナルにしましょう！
-  let txn = await domainContract.register('banana', {
-    value: hre.ethers.utils.parseEther('0.1'),
+  let txn = await domainContract.register("banana", {
+    value: hre.ethers.utils.parseEther("0.1"),
   });
   await txn.wait();
-  console.log('Minted domain banana.ninja');
+  console.log("Minted domain banana.ninja");
 
-  txn = await domainContract.setRecord('banana', 'Am I a banana or a ninja??');
+  txn = await domainContract.setRecord("banana", "Am I a banana or a ninja??");
   await txn.wait();
-  console.log('Set record for banana.ninja');
+  console.log("Set record for banana.ninja");
 
-  const address = await domainContract.getAddress('banana');
-  console.log('Owner of domain banana:', address);
+  const address = await domainContract.getAddress("banana");
+  console.log("Owner of domain banana:", address);
 
   const balance = await hre.ethers.provider.getBalance(domainContract.address);
-  console.log('Contract balance:', hre.ethers.utils.formatEther(balance));
+  console.log("Contract balance:", hre.ethers.utils.formatEther(balance));
 };
 
 const runMain = async () => {
@@ -168,21 +168,20 @@ runMain();
 `hardhat.config.js`ファイルを編集します。 これは、スマートコントラクトプロジェクトのルートディレクトリにあります。 ここでは、使用しているネットワークと秘密鍵を追加します。
 
 ```javascript
-require('@nomicfoundation/hardhat-toolbox');
+require("@nomicfoundation/hardhat-toolbox");
 
 module.exports = {
-  solidity: '0.8.17',
+  solidity: "0.8.17",
   networks: {
     mumbai: {
-      url: 'YOUR_ALCHEMY_MUMBAI_URL',
-      accounts: ['YOUR_TEST_WALLET_PRIVATE_KEY'],
+      url: "YOUR_ALCHEMY_MUMBAI_URL",
+      accounts: ["YOUR_TEST_WALLET_PRIVATE_KEY"],
     },
   },
 };
 ```
 
 開発とテストのために、MetaMask（または使用している他のEthereumウォレットアプリ）内に別のウォレットを作成することを**強くお勧めします**。 所要時間は約10秒です。秘密鍵を記載したPublicリポジトリを公開した場合はウォレット内のすべてのTokenが無くなることも覚悟しなければなりません。
-
 
 数ステップ前に取得したAPIのURLを準備します。`url`のところで使用します。 アプリがPolygonMumbaiテストネット用であることを確認してください。 次に、[メタマスクから取得](https://metamask.zendesk.com/hc/en-us/articles/360015289632-How-to-Export-an-Account-Private-Key)できる**秘密鍵**（パブリックアドレスではありません!）が必要になります。`accounts`のところで使用します。
 
@@ -215,6 +214,7 @@ Set record for banana.ninja
 Owner of domain banana: 0xf280e1A88D8eE02140828C8BD06DE71b3483Fd69
 Contract balance: 0.01
 ```
+
 ---
 
 なお、これから先の学習でもトランザクションを起こそうとした場合に
@@ -231,8 +231,6 @@ RPCについては検索してみてください。
 
 ---
 
-
-
 **Polygon にデプロイできました ✨**
 
 先に進む前に、問題ないか確認しましょう。 これは先ほどの[Mumbai Polygonscan](https://mumbai.polygonscan.com/)を使用して行うことができます。
@@ -241,7 +239,7 @@ RPCについては検索してみてください。
 
 すべてが問題なく機能した場合は、コントラクトに基づいて実行されたいくつかのトランザクションを確認できるはずです。
 
-![](/public/images/Polygon-ENS-Domain/section-1/1_5_8.png)
+![](/images/Polygon-ENS-Domain/section-1/1_5_8.png)
 
 Polygonscanの使用に慣れると便利です。これは、問題が発生した場合にデプロイを追跡して問題を解決する最も簡単なツールです。Polygonscanに表示されない場合は、まだ処理中であるか、問題が発生したことを意味します。
 
@@ -252,7 +250,7 @@ Polygonscanの使用に慣れると便利です。これは、問題が発生し
 コントラクトアドレス(`Contract deployed to`に続く`0x..`)をターミナルからコピーして、[テストネット用の OpenSea](https://testnets.opensea.io/) に貼り付け、検索してみてください。
 **コントラクトアドレスはご自身のターミナルに表示されているものを使用してください。**
 
-![](/public/images/Polygon-ENS-Domain/section-1/1_5_9.png)
+![](/images/Polygon-ENS-Domain/section-1/1_5_9.png)
 
 独自のドメインコントラクトを作成し、**ドメインを作成できました!**
 
@@ -260,7 +258,7 @@ Polygonscanの使用に慣れると便利です。これは、問題が発生し
 
 数分待ってもNFTがOpenSeaに表示されない場合は、[testnets.dev](http://testnets.dev)というサイトにアクセスしてください。 上部のテストネット選択でMatic Mumbaiを選択し、コントラクトアドレスを入力して、トークンIDを0に設定します。 これで実際のブロックチェーンであなたのドメインを見ることができます。
 
-![](/public/images/Polygon-ENS-Domain/section-1/1_5_10.png)
+![](/images/Polygon-ENS-Domain/section-1/1_5_10.png)
 
 ### 🙋‍♂️ 質問する
 

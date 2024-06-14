@@ -78,7 +78,7 @@ Solidityには、4つのアクセス修飾子が存在します。
 
 以下に、Solidityのアクセス修飾子とアクセス権限についてまとめています。
 
-![](/public/images/ETH-dApp/section-1/1_4_1.png)
+![](/images/ETH-dApp/section-1/1_4_1.png)
 
 これからSolidityのアクセス修飾子は頻繁に登場するので、まずは大まかな理解ができれば大丈夫です。
 
@@ -115,7 +115,7 @@ Solidity開発では関数修飾子を意識しておかないとデータを記
 
 以下に、Solidityの関数修飾子`pure`と`view`についてまとめています。
 
-![](/public/images/ETH-dApp/section-1/1_4_2.png)
+![](/images/ETH-dApp/section-1/1_4_2.png)
 
 ここまで理解してほしいのは、`pure`や`view`関数を使用すれば、**ガス代を削減できる**ということです。
 
@@ -153,12 +153,12 @@ function getTotalWaves() public view returns (uint256) {
 ```javascript
 const main = async () => {
   const [owner, randomPerson] = await hre.ethers.getSigners();
-  const waveContractFactory = await hre.ethers.getContractFactory('WavePortal');
+  const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
   const waveContract = await waveContractFactory.deploy();
   const wavePortal = await waveContract.deployed();
 
-  console.log('Contract deployed to:', wavePortal.address);
-  console.log('Contract deployed by:', owner.address);
+  console.log("Contract deployed to:", wavePortal.address);
+  console.log("Contract deployed by:", owner.address);
 
   let waveCount;
   waveCount = await waveContract.getTotalWaves();
@@ -208,13 +208,13 @@ const [owner, randomPerson] = await hre.ethers.getSigners();
 次に、下記のコードを見ていきましょう。
 
 ```javascript
-console.log('Contract deployed to:', wavePortal.address);
+console.log("Contract deployed to:", wavePortal.address);
 ```
 
 ここでは、あなたのスマートコントラクトのデプロイ先のアドレス(＝ `wavePortal.address`)をターミナルに出力しています。
 
 ```javascript
-console.log('Contract deployed by:', owner.address);
+console.log("Contract deployed by:", owner.address);
 ```
 
 ここでは、`WavePortal`コントラクトをデプロイした人（＝あなた）のアドレス(＝ `owner.address`)をターミナルに出力しています。
@@ -306,12 +306,12 @@ We have 1 total waves!
 ```javascript
 const main = async () => {
   const [owner, randomPerson] = await hre.ethers.getSigners();
-  const waveContractFactory = await hre.ethers.getContractFactory('WavePortal');
+  const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
   const waveContract = await waveContractFactory.deploy();
   const wavePortal = await waveContract.deployed();
 
-  console.log('Contract deployed to:', wavePortal.address);
-  console.log('Contract deployed by:', owner.address);
+  console.log("Contract deployed to:", wavePortal.address);
+  console.log("Contract deployed by:", owner.address);
 
   let waveCount;
   waveCount = await waveContract.getTotalWaves();

@@ -107,7 +107,7 @@ import {
   storage_unregister,
   who_is_inspecting,
   who_is_using,
-} from './assets/js/near/utils';
+} from "./assets/js/near/utils";
 
 export default function App() {
   // ...
@@ -218,15 +218,15 @@ $ yarn dev
 
 バイクを使用する前のユーザ（自分）の残高を確認します。
 
-![](/public/images/NEAR-BikeShare/section-4/4_1_1.png)
+![](/images/NEAR-BikeShare/section-4/4_1_1.png)
 
 バイク使用後のユーザ（自分）の残高を確認します（30ft引かれています！）
 
-![](/public/images/NEAR-BikeShare/section-4/4_1_2.png)
+![](/images/NEAR-BikeShare/section-4/4_1_2.png)
 
 残高が足りない状態でバイクの使用を試みます（アラートが出ます！）
 
-![](/public/images/NEAR-BikeShare/section-4/4_1_3.png)
+![](/images/NEAR-BikeShare/section-4/4_1_3.png)
 
 ブラウザ上で`Console`を開き、ログの最後に表示されたURL（コントラクトアカウントIDに関するURL）をブラウザに貼り付けてトランザクション履歴などを確認しましょう！
 

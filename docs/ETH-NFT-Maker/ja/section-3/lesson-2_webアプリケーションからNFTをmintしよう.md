@@ -10,7 +10,7 @@
 
 ```javascript
 // NftUploader.jsx
-import { ethers } from 'ethers';
+import { ethers } from "ethers";
 ```
 
 ここでは、フロントエンドとコントラクトを連携させるライブラリ`ethers`をインポートしています。
@@ -31,7 +31,7 @@ ethersをもっと詳しく知りたい方は、[こちら](https://www.npmjs.co
 // NftUploader.jsx
 const askContractToMintNft = async (ipfs) => {
   const CONTRACT_ADDRESS =
-    'ここに Sepolia Test Network にデプロイしたコントラクトのアドレスを貼り付けてください';
+    "ここに Sepolia Test Network にデプロイしたコントラクトのアドレスを貼り付けてください";
   try {
     const { ethereum } = window;
     if (ethereum) {
@@ -42,9 +42,9 @@ const askContractToMintNft = async (ipfs) => {
         Web3Mint.abi,
         signer
       );
-      console.log('Going to pop wallet now to pay gas...');
-      let nftTxn = await connectedContract.mintIpfsNFT('sample',ipfs);
-      console.log('Mining...please wait.');
+      console.log("Going to pop wallet now to pay gas...");
+      let nftTxn = await connectedContract.mintIpfsNFT("sample", ipfs);
+      console.log("Mining...please wait.");
       await nftTxn.wait();
       console.log(
         `Mined, see transaction: https://sepolia.etherscan.io/tx/${nftTxn.hash}`
@@ -63,7 +63,7 @@ const askContractToMintNft = async (ipfs) => {
 ```javascript
 // NftUploader.jsx
 const CONTRACT_ADDRESS =
-  'ここに Sepolia Test Network にデプロイしたコントラクトのアドレスを貼り付けてください';
+  "ここに Sepolia Test Network にデプロイしたコントラクトのアドレスを貼り付けてください";
 ```
 
 ここでは、コントラクトのアドレスを`CONTRACT_ADDRESS`に格納しています。
@@ -117,8 +117,8 @@ Contract deployed to: 0x88a0e9c2F3939598c402eccb7Ae1612e45448C04
 
 ```javascript
 // NftUploader.jsx
-let nftTxn = await connectedContract.mintIpfsNFT('sample',ipfs);
-console.log('Mining...please wait.');
+let nftTxn = await connectedContract.mintIpfsNFT("sample", ipfs);
+console.log("Mining...please wait.");
 ```
 
 ここでは、`mintIpfsNFT`関数をコントラクトから呼び出し、`await`を使用して、NFTの発行が承認（＝マイニング）されるまで、処理をやめています。
@@ -140,7 +140,6 @@ console.log(
 `console.log`では、取得したトランザクションの結果を、Etherscan URLとして出力しています。
 
 `askContractToMintNft`関数を呼び出すコードはこの後実装していくので、今は気にしないでください。
-
 
 すべての変更を`NftUploader.jsx`に反映させた後、ターミナルで下記を実行しみてください。
 
@@ -190,7 +189,8 @@ ABIファイルの中身は、`Web3Mint.json`というファイルに格納さ�
 > ```
 > code artifacts/contracts/Web3Mint.sol/Web3Mint.json
 > ```
-3\. VS Codeで`Web3Mint.json`ファイルが開かれるので、中身をすべてコピーしましょう。※ VS Codeのファインダーを使って、直接`Web3Mint.json`を開くことも可能です。
+>
+> 3\. VS Code で`Web3Mint.json`ファイルが開かれるので、中身をすべてコピーしましょう。※ VS Code のファインダーを使って、直接`Web3Mint.json`を開くことも可能です。
 
 次に、下記を実行して、ABIファイルをWebアプリケーションから呼び出せるようにしましょう。
 
@@ -201,17 +201,20 @@ ABIファイルの中身は、`Web3Mint.json`というファイルに格納さ�
 > ```
 > mkdir src/utils
 > ```
-3\. 下記を実行して、`utils`ディレクトリに`Web3Mint.json`ファイルを作成する。
+>
+> 3\. 下記を実行して、`utils`ディレクトリに`Web3Mint.json`ファイルを作成する。
 
 > ```
 > touch src/utils/Web3Mint.json
 > ```
-4\. 下記を実行して、`Web3Mint.json`ファイルをVS Codeで開く。
+>
+> 4\. 下記を実行して、`Web3Mint.json`ファイルを VS Code で開く。
 
 > ```
 > code client/src/utils/Web3Mint.json
 > ```
-5\. **先ほどコピーした`packages/contract/artifacts/contracts/Web3Mint.sol/Web3Mint.json`の中身を新しく作成した`packages/client/src/utils/Web3Mint.json`の中に貼り付けてください。**
+>
+> 5\. **先ほどコピーした`packages/contract/artifacts/contracts/Web3Mint.sol/Web3Mint.json`の中身を新しく作成した`packages/client/src/utils/Web3Mint.json`の中に貼り付けてください。**
 
 ABIファイルの準備ができたので、`NftUploader.jsx`にインポートしましょう。
 
@@ -219,11 +222,10 @@ ABIファイルの準備ができたので、`NftUploader.jsx`にインポート
 
 ```javascript
 // NftUploader.jsx
-import Web3Mint from '../../utils/Web3Mint.json';
+import Web3Mint from "../../utils/Web3Mint.json";
 ```
 
 ここでは、先ほど取得した、ABIファイルを含む`Web3Mint.json`ファイルをインポートしています。
-
 
 ### 🛠 `Web3.storage`を使用する
 
@@ -242,7 +244,7 @@ yarn workspace client add web3.storage@^4.5.4
 
 ```javascript
 // NftUploader.jsx
-import { Web3Storage } from 'web3.storage'
+import { Web3Storage } from "web3.storage";
 ```
 
 では、この`Web3Storage`を使った関数を実装していきましょう。
@@ -252,21 +254,21 @@ import { Web3Storage } from 'web3.storage'
 ```javascript
 // NftUploader.jsx
 const imageToNFT = async (e) => {
-        const client = new Web3Storage({ token: API_KEY })
-        const image = e.target
-        console.log(image)
+  const client = new Web3Storage({ token: API_KEY });
+  const image = e.target;
+  console.log(image);
 
-        const rootCid = await client.put(image.files, {
-            name: 'experiment',
-            maxRetries: 3
-        })
-        const res = await client.get(rootCid) // Web3Response
-        const files = await res.files() // Web3File[]
-        for (const file of files) {
-          console.log('file.cid:',file.cid)
-          askContractToMintNft(file.cid)
-        }
-    }
+  const rootCid = await client.put(image.files, {
+    name: "experiment",
+    maxRetries: 3,
+  });
+  const res = await client.get(rootCid); // Web3Response
+  const files = await res.files(); // Web3File[]
+  for (const file of files) {
+    console.log("file.cid:", file.cid);
+    askContractToMintNft(file.cid);
+  }
+};
 ```
 
 この関数は画像を受け取る`input`タグの`onClick`プロパティに実装します。これで`input`が画像を受け取るたびにNFTが発行されることになります。変更する箇所が二箇所あるので、注意してください。
@@ -291,6 +293,7 @@ const imageToNFT = async (e) => {
         const image = e.target
         console.log(image)
 ```
+
 ここでは、`input`から受け取った画像を`e`で受け取って、画像のオブジェクトを`e.target`で`image`に代入しています。
 
 `e`という合成イベントについては、[公式の説明](https://ja.reactjs.org/docs/events.html)や[こちら](https://react.keicode.com/basics/synthetic-events.php)が役に立つと思います。
@@ -299,7 +302,7 @@ const imageToNFT = async (e) => {
 
 `web3.storage`のアカウント画面に行き、`create a token`のボタンを押してください。
 
-![](/public/images/ETH-NFT-Maker/section-3/3_3_1.png)
+![](/images/ETH-NFT-Maker/section-3/3_3_1.png)
 
 すると、`Name your token`という記入画面があると思うので、そこに好きな名前をいれて`api_key`を作りましょう。
 
@@ -309,32 +312,33 @@ const imageToNFT = async (e) => {
 
 ```javascript
 // NftUploader.jsx
-const API_KEY ='あなたのKEYをいれてください';
+const API_KEY = "あなたのKEYをいれてください";
 ```
 
-
 次は、下記のコードを解説します。
+
 ```javascript
 // NftUploader.jsx
 const rootCid = await client.put(image.files, {
-            name: 'experiment',
-            maxRetries: 3
-        })
+  name: "experiment",
+  maxRetries: 3,
+});
 ```
+
 ここで、画像をIPFSで保存しています。画像のデータと、名前などを設定しています。さらに返り値の`CID`が`rootCid`に代入されています。
 
-詳しく知りたい方は、[公式doc](https://web3.storage/docs/reference/js-client-library/)を参考にしてみてください。
+詳しく知りたい方は、[公式 doc](https://web3.storage/docs/reference/js-client-library/)を参考にしてみてください。
 
 次は、下記のコードを解説します。
 
 ```javascript
 // NftUploader.jsx
-        const res = await client.get(rootCid) // Web3Response
-        const files = await res.files() // Web3File[]
-        for (const file of files) {
-          console.log("file.cid:",file.cid)
-          askContractToMintNft(file.cid)
-        }
+const res = await client.get(rootCid); // Web3Response
+const files = await res.files(); // Web3File[]
+for (const file of files) {
+  console.log("file.cid:", file.cid);
+  askContractToMintNft(file.cid);
+}
 ```
 
 先程の返り値をつかって、今度は保存したファイルのデータを取りに行っています。
@@ -342,7 +346,6 @@ const rootCid = await client.put(image.files, {
 この`file.cid`が送った画像のIPFSになります。気になる方は、console.logで出たものをブラウザに表示させてみてください。
 そのfile.cidを引数にして、`askContractToMintNft`関数を使いましょう。
 これで、mintするための準備はすべて整ったはずです。
-
 
 ### 🥳 NFT を Mint する
 
@@ -354,7 +357,7 @@ yarn client start
 
 Webアプリケーションで画像を選択して、下記のようなポップアップが立ち上がったら、`Confirm`を押してください。
 
-![](/public/images/ETH-NFT-Maker/section-3/3_3_2.png)
+![](/images/ETH-NFT-Maker/section-3/3_3_2.png)
 
 ここで請求される少量のETHは、通称**ガス代**と呼ばれます。
 
@@ -378,12 +381,12 @@ Going to pop wallet now to pay gas...
 Mining...please wait.
 Mined, see transaction: https://sepolia.etherscan.io/tx/0x5fbe47b7c0fd658f5866d10c70bfa4616d7f26f438dcade022cbff930400f175
 ```
+
 Consoleに出力された`https://sepolia.etherscan.io/...`のアドレスをクリックしてみましょう。
 
 - あなたのSepolia Test Network上のトランザクションの履歴が参照できます。
 
-次に、[gemcase(NFTで閲覧できるサービス)](https://gemcase.vercel.app/) にアクセスして、MintしたNFTがあなたのSepolia Test Networkのアドレスに紐づいているか確認してみましょう。
-
+次に、[gemcase(NFT で閲覧できるサービス)](https://gemcase.vercel.app/) にアクセスして、MintしたNFTがあなたのSepolia Test Networkのアドレスに紐づいているか確認してみましょう。
 
 Consoleに出力された`currentAccount:`に続く、`0x..`のアドレスをgemcaseのWebサイトに貼り付けて、結果が表示されたら、画面右上の`Profile`メニューを選択してください。それから、ご自身のアカウントを開いて、NFTを確認してみましょう。
 

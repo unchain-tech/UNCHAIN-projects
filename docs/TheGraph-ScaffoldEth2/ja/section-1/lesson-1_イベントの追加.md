@@ -20,7 +20,7 @@
 
 このイベントと関数はコントラクト内のどこにでも追加できますが、ベストプラクティスは、修飾子やコンストラクタの下に配置することです。
 
-![](/public/images/TheGraph-ScaffoldEth2/section-1/1_1_1.png)
+![](/images/TheGraph-ScaffoldEth2/section-1/1_1_1.png)
 
 コントラクトを保存して、新しい変更をデプロイします。
 
@@ -32,10 +32,10 @@ yarn deploy --reset
 
 以下の出力が表示されるはずです：
 
-![](/public/images/TheGraph-ScaffoldEth2/section-1/1_1_2.png)
+![](/images/TheGraph-ScaffoldEth2/section-1/1_1_2.png)
 
 #### ✅ 新しい関数をテストする
 
 http://localhost:3000/debug に移動し、vitalik.ethにメッセージを送信します。
 
-![](/public/images/TheGraph-ScaffoldEth2/section-1/1_1_3.png)
+![](/images/TheGraph-ScaffoldEth2/section-1/1_1_3.png)

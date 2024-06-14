@@ -6,7 +6,7 @@ jobs:
     env:
       PATH_REGEX: ^.+\/docs\/.+\/(ja|en)\/section\-[0-9]\/lesson\-[0-9]_.+\.md$
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: check lesson count
         run: |
           for dir in docs/*/ja/

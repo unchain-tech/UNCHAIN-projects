@@ -11,12 +11,12 @@ Webアプリケーション上で、ユーザーがイーサリアムネット�
 - `NftUploader.jsx`はあなたのWebアプリケーションのフロントエンド機能を果たします。
 
 ```javascript
-import { Button } from '@mui/material';
-import React from 'react';
-import { useEffect, useState } from 'react'
+import { Button } from "@mui/material";
+import React from "react";
+import { useEffect, useState } from "react";
 
-import ImageLogo from './image.svg';
-import './NftUploader.css';
+import ImageLogo from "./image.svg";
+import "./NftUploader.css";
 
 const NftUploader = () => {
   const checkIfWalletIsConnected = () => {
@@ -25,21 +25,22 @@ const NftUploader = () => {
      */
     const { ethereum } = window;
     if (!ethereum) {
-      console.log('Make sure you have MetaMask!');
+      console.log("Make sure you have MetaMask!");
       return;
     } else {
-      console.log('We have the ethereum object', ethereum);
+      console.log("We have the ethereum object", ethereum);
     }
   };
-  const connectWallet = () =>{
-
-  };
+  const connectWallet = () => {};
 
   const renderNotConnectedContainer = () => (
-      <button onClick={connectWallet} className="cta-button connect-wallet-button">
-        Connect to Wallet
-      </button>
-    );
+    <button
+      onClick={connectWallet}
+      className="cta-button connect-wallet-button"
+    >
+      Connect to Wallet
+    </button>
+  );
   /*
    * ページがロードされたときに useEffect()内の関数が呼び出されます。
    */
@@ -57,12 +58,22 @@ const NftUploader = () => {
           <img src={ImageLogo} alt="imagelogo" />
           <p>ここにドラッグ＆ドロップしてね</p>
         </div>
-        <input className="nftUploadInput" multiple name="imageURL" type="file" accept=".jpg , .jpeg , .png"  />
+        <input
+          className="nftUploadInput"
+          multiple
+          name="imageURL"
+          type="file"
+          accept=".jpg , .jpeg , .png"
+        />
       </div>
       <p>または</p>
       <Button variant="contained">
         ファイルを選択
-        <input className="nftUploadInput" type="file" accept=".jpg , .jpeg , .png"/>
+        <input
+          className="nftUploadInput"
+          type="file"
+          accept=".jpg , .jpeg , .png"
+        />
       </Button>
     </div>
   );
@@ -97,10 +108,9 @@ yarn client start
 
 ローカルサーバーでWebサイトを立ち上げたら、サイトの上で右クリックを行い、`Inspect`を選択します。
 
-
 次に、`Console`を選択し、出力結果を確認してみましょう。
 
-![](/public/images/ETH-NFT-Maker/section-3/3_2_1.png)
+![](/images/ETH-NFT-Maker/section-3/3_2_1.png)
 
 Consoleに`We have the ethereum object`と表示されているでしょうか？
 
@@ -117,45 +127,45 @@ Consoleに`We have the ethereum object`と表示されているでしょうか�
 以下の通り、`NftUploader.jsx`を修正してください。
 
 ```javascript
-import { Button } from '@mui/material';
-import React from 'react';
-import { useEffect, useState } from 'react'
+import { Button } from "@mui/material";
+import React from "react";
+import { useEffect, useState } from "react";
 
-import ImageLogo from './image.svg';
-import './NftUploader.css';
+import ImageLogo from "./image.svg";
+import "./NftUploader.css";
 
 const NftUploader = () => {
   /*
    * ユーザーのウォレットアドレスを格納するために使用する状態変数を定義します。
    */
-  const [currentAccount, setCurrentAccount] = useState('');
+  const [currentAccount, setCurrentAccount] = useState("");
   /*この段階でcurrentAccountの中身は空*/
-  console.log('currentAccount: ', currentAccount);
+  console.log("currentAccount: ", currentAccount);
   const checkIfWalletIsConnected = async () => {
     const { ethereum } = window;
     if (!ethereum) {
-      console.log('Make sure you have MetaMask!');
+      console.log("Make sure you have MetaMask!");
       return;
     } else {
-      console.log('We have the ethereum object', ethereum);
+      console.log("We have the ethereum object", ethereum);
     }
 
-    const accounts = await ethereum.request({ method: 'eth_accounts' });
+    const accounts = await ethereum.request({ method: "eth_accounts" });
 
     if (accounts.length !== 0) {
       const account = accounts[0];
-      console.log('Found an authorized account:', account);
+      console.log("Found an authorized account:", account);
       setCurrentAccount(account);
     } else {
-      console.log('No authorized account found');
+      console.log("No authorized account found");
     }
   };
 
   const renderNotConnectedContainer = () => (
-      <button onClick={null} className="cta-button connect-wallet-button">
-        Connect to Wallet
-      </button>
-    );
+    <button onClick={null} className="cta-button connect-wallet-button">
+      Connect to Wallet
+    </button>
+  );
   /*
    * ページがロードされたときに useEffect()内の関数が呼び出されます。
    */
@@ -174,12 +184,22 @@ const NftUploader = () => {
           <img src={ImageLogo} alt="imagelogo" />
           <p>ここにドラッグ＆ドロップしてね</p>
         </div>
-        <input className="nftUploadInput" multiple name="imageURL" type="file" accept=".jpg , .jpeg , .png"  />
+        <input
+          className="nftUploadInput"
+          multiple
+          name="imageURL"
+          type="file"
+          accept=".jpg , .jpeg , .png"
+        />
       </div>
       <p>または</p>
       <Button variant="contained">
         ファイルを選択
-        <input className="nftUploadInput" type="file" accept=".jpg , .jpeg , .png"/>
+        <input
+          className="nftUploadInput"
+          type="file"
+          accept=".jpg , .jpeg , .png"
+        />
       </Button>
     </div>
   );
@@ -193,9 +213,9 @@ export default NftUploader;
 ```javascript
 // NftUploader.jsx
 // ユーザーのウォレットアドレスを格納するために使用する状態変数を定義します。
-const [currentAccount, setCurrentAccount] = useState('');
+const [currentAccount, setCurrentAccount] = useState("");
 /*この段階でcurrentAccountの中身は空*/
-console.log('currentAccount: ', currentAccount);
+console.log("currentAccount: ", currentAccount);
 ```
 
 アクセス可能なアカウントを検出した後、`currentAccount`にユーザーのウォレットアカウント(`0x...`)の値が入ります。
@@ -205,16 +225,16 @@ console.log('currentAccount: ', currentAccount);
 ```javascript
 // NftUploader.jsx
 // accountsにWEBサイトを訪れたユーザーのウォレットアカウントを格納する（複数持っている場合も加味、よって account's' と変数を定義している）
-const accounts = await ethereum.request({ method: 'eth_accounts' });
+const accounts = await ethereum.request({ method: "eth_accounts" });
 // もしアカウントが一つでも存在したら、以下を実行。
 if (accounts.length !== 0) {
   // accountという変数にユーザーの1つ目（=Javascriptでいう0番目）のアドレスを格納
   const account = accounts[0];
-  console.log('Found an authorized account:', account);
+  console.log("Found an authorized account:", account);
   // currentAccountにユーザーのアカウントアドレスを格納
   setCurrentAccount(account);
 } else {
-  console.log('No authorized account found');
+  console.log("No authorized account found");
 }
 ```
 
@@ -227,53 +247,53 @@ if (accounts.length !== 0) {
 下記の通り`NftUploader.jsx`を更新していきましょう。
 
 ```javascript
-import { Button } from '@mui/material';
-import React from 'react';
-import { useEffect, useState } from 'react'
+import { Button } from "@mui/material";
+import React from "react";
+import { useEffect, useState } from "react";
 
-import ImageLogo from './image.svg';
-import './NftUploader.css';
+import ImageLogo from "./image.svg";
+import "./NftUploader.css";
 
 const NftUploader = () => {
   /*
    * ユーザーのウォレットアドレスを格納するために使用する状態変数を定義します。
    */
-  const [currentAccount, setCurrentAccount] = useState('');
+  const [currentAccount, setCurrentAccount] = useState("");
   /*この段階でcurrentAccountの中身は空*/
-  console.log('currentAccount: ', currentAccount);
+  console.log("currentAccount: ", currentAccount);
   const checkIfWalletIsConnected = async () => {
     const { ethereum } = window;
     if (!ethereum) {
-      console.log('Make sure you have MetaMask!');
+      console.log("Make sure you have MetaMask!");
       return;
     } else {
-      console.log('We have the ethereum object', ethereum);
+      console.log("We have the ethereum object", ethereum);
     }
 
-    const accounts = await ethereum.request({ method: 'eth_accounts' });
+    const accounts = await ethereum.request({ method: "eth_accounts" });
 
     if (accounts.length !== 0) {
       const account = accounts[0];
-      console.log('Found an authorized account:', account);
+      console.log("Found an authorized account:", account);
       setCurrentAccount(account);
     } else {
-      console.log('No authorized account found');
+      console.log("No authorized account found");
     }
   };
-  const connectWallet = async () =>{
+  const connectWallet = async () => {
     try {
       const { ethereum } = window;
       if (!ethereum) {
-        alert('Get MetaMask!');
+        alert("Get MetaMask!");
         return;
       }
       /*
        * ウォレットアドレスに対してアクセスをリクエストしています。
        */
       const accounts = await ethereum.request({
-        method: 'eth_requestAccounts',
+        method: "eth_requestAccounts",
       });
-      console.log('Connected', accounts[0]);
+      console.log("Connected", accounts[0]);
       /*
        * ウォレットアドレスを currentAccount に紐付けます。
        */
@@ -284,10 +304,13 @@ const NftUploader = () => {
   };
 
   const renderNotConnectedContainer = () => (
-      <button onClick={connectWallet} className="cta-button connect-wallet-button">
-        Connect to Wallet
-      </button>
-    );
+    <button
+      onClick={connectWallet}
+      className="cta-button connect-wallet-button"
+    >
+      Connect to Wallet
+    </button>
+  );
   /*
    * ページがロードされたときに useEffect()内の関数が呼び出されます。
    */
@@ -297,7 +320,7 @@ const NftUploader = () => {
 
   return (
     <div className="outerBox">
-      {currentAccount === '' ? (
+      {currentAccount === "" ? (
         renderNotConnectedContainer()
       ) : (
         <p>If you choose image, you can mint your NFT</p>
@@ -310,12 +333,22 @@ const NftUploader = () => {
           <img src={ImageLogo} alt="imagelogo" />
           <p>ここにドラッグ＆ドロップしてね</p>
         </div>
-        <input className="nftUploadInput" multiple name="imageURL" type="file" accept=".jpg , .jpeg , .png"  />
+        <input
+          className="nftUploadInput"
+          multiple
+          name="imageURL"
+          type="file"
+          accept=".jpg , .jpeg , .png"
+        />
       </div>
       <p>または</p>
       <Button variant="contained">
         ファイルを選択
-        <input className="nftUploadInput" type="file" accept=".jpg , .jpeg , .png"/>
+        <input
+          className="nftUploadInput"
+          type="file"
+          accept=".jpg , .jpeg , .png"
+        />
       </Button>
     </div>
   );
@@ -335,12 +368,12 @@ const connectWallet = async () => {
     // ユーザーが認証可能なウォレットアドレスを持っているか確認
     const { ethereum } = window;
     if (!ethereum) {
-      alert('Get MetaMask!');
+      alert("Get MetaMask!");
       return;
     }
     // 持っている場合は、ユーザーに対してウォレットへのアクセス許可を求める。許可されれば、ユーザーの最初のウォレットアドレスを currentAccount に格納する。
-    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-    console.log('Connected: ', accounts[0]);
+    const accounts = await ethereum.request({ method: "eth_requestAccounts" });
+    console.log("Connected: ", accounts[0]);
     setCurrentAccount(accounts[0]);
   } catch (error) {
     console.log(error);
@@ -373,7 +406,7 @@ const renderNotConnectedContainer = () => (
   /*条件付きレンダリングを追加しました。*/
 }
 {
-  currentAccount === '' ? (
+  currentAccount === "" ? (
     renderNotConnectedContainer()
   ) : (
     <p>If you choose image, you can mint your NFT</p>
@@ -406,13 +439,13 @@ yarn client start
 ローカルサーバーでWebサイトを立ち上げたら、MetaMaskのプラグインをクリックし、あなたのウォレットアドレスの接続状況を確認しましょう。
 もし、下図のように`Connected`と表示されている場合は、`Connected`の文字をクリックします。
 
-![](/public/images/ETH-NFT-Maker/section-3/3_2_2.png)
+![](/images/ETH-NFT-Maker/section-3/3_2_2.png)
 
 そこで、Webサイトとあなたのウォレットアドレスの接続を一度解除します。
 
 - `Disconnect this account`を選択してください。
 
-![](/public/images/ETH-NFT-Maker/section-3/3_2_3.png)
+![](/images/ETH-NFT-Maker/section-3/3_2_3.png)
 
 次にローカルサーバーにホストされているあなたのWebサイトをリフレッシュしてボタンの表示を確認してください。
 
@@ -420,13 +453,13 @@ yarn client start
 
 次に、右クリック → `Inspect`を選択し、Consoleを立ち上げましょう。下図のように、`No authorized account found`と出力されていれば成功です。
 
-![](/public/images/ETH-NFT-Maker/section-3/3_2_4.png)
+![](/images/ETH-NFT-Maker/section-3/3_2_4.png)
 
 では、`Connect Wallet`ボタンを押してみましょう。
 
 下図のようにMetaMaskからウォレット接続を求められますので、承認してください。
 
-![](/public/images/ETH-NFT-Maker/section-3/3_2_5.png)
+![](/images/ETH-NFT-Maker/section-3/3_2_5.png)
 
 MetaMaskの承認が終わると、ウォレット接続ボタンの表示が`If you choose image, you can mint your NFT`に変更されているはずです。
 

@@ -10,7 +10,7 @@
 
 ボタンを押すと`ホーム画面`に遷移するという関数が動きます。
 
-![](/public/images/ASTAR-SocialFi/section-2/2_3_1.png)
+![](/images/ASTAR-SocialFi/section-2/2_3_1.png)
 
 ウォレットコネクトする前の画面のUIが記述されています。
 
@@ -125,7 +125,7 @@ export default Home;
 
 [`home.tsx`]
 
-![](/public/images/ASTAR-SocialFi/section-2/2_3_2.png)
+![](/images/ASTAR-SocialFi/section-2/2_3_2.png)
 
 ホーム画面です。
 
@@ -255,7 +255,7 @@ export default function home() {
 
 [`profile.tsx`]
 
-![](/public/images/ASTAR-SocialFi/section-2/2_3_3.png)
+![](/images/ASTAR-SocialFi/section-2/2_3_3.png)
 
 プロフィール画面です。useEffect内で動いている関数はホーム画面のものとほぼ同じで、全体の投稿リストか特定のアカウントの投稿リストを取得するかの違いです。
 
@@ -399,7 +399,7 @@ export default function profile(props: any) {
 
 [`message.tsx`]
 
-![](/public/images/ASTAR-SocialFi/section-2/2_3_4.png)
+![](/images/ASTAR-SocialFi/section-2/2_3_4.png)
 
 メッセージ画面です。
 

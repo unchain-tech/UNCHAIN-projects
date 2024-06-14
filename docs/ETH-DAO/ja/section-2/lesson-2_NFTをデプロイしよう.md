@@ -7,29 +7,29 @@
 `src/scripts/1-initialize-sdk.ts`を作成して、以下を追加します。
 
 ```typescript
-import nextEnv from '@next/env';
-import { ThirdwebSDK } from '@thirdweb-dev/sdk';
+import nextEnv from "@next/env";
+import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 
 // 環境変数を env ファイルから読み込む
 const { loadEnvConfig } = nextEnv;
 const { PRIVATE_KEY, CLIENT_ID, SECRET_KEY } = loadEnvConfig(
-  process.cwd(),
+  process.cwd()
 ).combinedEnv;
 
 // 環境変数が取得できているか確認
-if (!PRIVATE_KEY || PRIVATE_KEY === '') {
-  console.log('🛑 Private key not found.');
+if (!PRIVATE_KEY || PRIVATE_KEY === "") {
+  console.log("🛑 Private key not found.");
 }
 
-if (!CLIENT_ID || CLIENT_ID === '') {
-  console.log('🛑 Client ID of API Key not found.');
+if (!CLIENT_ID || CLIENT_ID === "") {
+  console.log("🛑 Client ID of API Key not found.");
 }
 
-if (!SECRET_KEY || SECRET_KEY === '') {
-  console.log('🛑 Secret Key of API Key not found.');
+if (!SECRET_KEY || SECRET_KEY === "") {
+  console.log("🛑 Secret Key of API Key not found.");
 }
 
-const sdk = ThirdwebSDK.fromPrivateKey(PRIVATE_KEY!, 'sepolia', {
+const sdk = ThirdwebSDK.fromPrivateKey(PRIVATE_KEY!, "sepolia", {
   clientId: CLIENT_ID,
   secretKey: SECRET_KEY,
 });
@@ -37,11 +37,11 @@ const sdk = ThirdwebSDK.fromPrivateKey(PRIVATE_KEY!, 'sepolia', {
 // ここでスクリプトを実行
 (async () => {
   try {
-    if (!sdk || !('getSigner' in sdk)) return;
+    if (!sdk || !("getSigner" in sdk)) return;
     const address = await sdk.getSigner()?.getAddress();
-    console.log('SDK initialized by address:', address);
+    console.log("SDK initialized by address:", address);
   } catch (err) {
-    console.error('Failed to get apps from the sdk', err);
+    console.error("Failed to get apps from the sdk", err);
     process.exit(1);
   }
 })();
@@ -57,12 +57,11 @@ export default sdk;
 
 これは、サーバーからデータベースへの接続を初期化するのと似ています。
 
-
 ### 🍬 SDK の初期化を実行する
 
 次に、以下を参考に`package.json`に`"type": "module",`の記述を追加してESModulesを有効化してts-nodeを使用できるように設定を変更します。
 
-![](/public/images/ETH-DAO/section-2/2_2_1.png)
+![](/images/ETH-DAO/section-2/2_2_1.png)
 
 続いて、`next.config.js`を以下のとおり変更します。
 
@@ -90,7 +89,6 @@ Done in 3.62s.
 
 _📝 備考: `ExperimentalWarning`のようなランダムな警告が表示されることがありますが、アドレスが表示されていることを確認してください_
 
-
 ### 🧨 ERC-1155 のメンバーシップ NFT コレクションを作ろう
 
 これから行うのは、[ERC-1155](https://ethereum.org/ja/developers/docs/standards/tokens/erc-1155/) コントラクトを作成し、Sepoliaテストネットにデプロイすることです。
@@ -112,20 +110,20 @@ _📝 備考: `ExperimentalWarning`のようなランダムな警告が表示さ
 ※ コレクションのアイコンとなる画像はお気に入りの画像に変更しておきましょう。
 
 ```typescript
-import { AddressZero } from '@ethersproject/constants';
-import { readFileSync } from 'fs';
+import { AddressZero } from "@ethersproject/constants";
+import { readFileSync } from "fs";
 
-import sdk from './1-initialize-sdk';
+import sdk from "./1-initialize-sdk";
 
 (async () => {
   try {
     const editionDropAddress = await sdk.deployer.deployEditionDrop({
       // コレクションの名前（あなたの作成する DAO の名前に入れ替えてください）
-      name: 'Tokyo Sauna Collective',
+      name: "Tokyo Sauna Collective",
       // コレクションの説明（同じく書き換えてください）
-      description: 'A DAO for sauna enthusiasts in Tokyo',
+      description: "A DAO for sauna enthusiasts in Tokyo",
       // コレクションのアイコンとなる画像（ローカルの画像を参照すること）
-      image: readFileSync('src/scripts/assets/test.jpg'),
+      image: readFileSync("src/scripts/assets/test.jpg"),
       // NFT の販売による収益を受け取るアドレスを設定
       // ドロップに課金をしたい場合は、ここに自分のウォレットアドレスを設定します
       // 今回は課金設定はないので、0x0 のアドレスで渡す
@@ -133,22 +131,22 @@ import sdk from './1-initialize-sdk';
     });
 
     // 初期化し、返ってきた editionDrop コントラクトのアドレスから editionDrop を取得
-    const editionDrop = sdk.getContract(editionDropAddress, 'edition-drop');
+    const editionDrop = sdk.getContract(editionDropAddress, "edition-drop");
 
     // メタデータを取得
     const metadata = await (await editionDrop).metadata.get();
 
     // editionDrop コントラクトのアドレスを出力
     console.log(
-      '✅ Successfully deployed editionDrop contract, address:',
+      "✅ Successfully deployed editionDrop contract, address:",
       editionDropAddress
     );
 
     // editionDrop コントラクトのメタデータを出力
-    console.log('✅ editionDrop metadata:', metadata);
+    console.log("✅ editionDrop metadata:", metadata);
   } catch (error) {
     // エラーをキャッチしたら出力
-    console.log('failed to deploy editionDrop contract', error);
+    console.log("failed to deploy editionDrop contract", error);
   }
 })();
 ```
@@ -199,11 +197,10 @@ Done in 40.59s.
 ではここでデプロイされたコントラクトのアドレスを保存するためのファイルを作成します。`src/scripts/`に`module.ts`という名前でファイルを作成して下のような変数を作成しましょう。
 
 ```js
-export const editionDropAddress = '';
-export const ERCTokenAddress = '';
-export const governanceAddress = '';
-export const ownerWalletAddress = '';
-
+export const editionDropAddress = "";
+export const ERCTokenAddress = "";
+export const governanceAddress = "";
+export const ownerWalletAddress = "";
 ```
 
 そして一番上の変数`editionDropAddress`に先ほど取得したコントラクトのアドレスを,
@@ -212,18 +209,17 @@ export const ownerWalletAddress = '';
 最終的には下のようになります。
 
 ```js
-export const editionDropAddress = '0x051300f66FD67a8B94D3d64B1e5d07f23BC90170';
-export const ERCTokenAddress = '0x238B28BaE48dA495125aE2B6623094C5f74CCAD5';
-export const governanceAddress = '0x62e06783EA7490367f3413B79331AC328cb6e00D';
-export const ownerWalletAddress = '0xa9eD1748Ffcda5442dCaEA242603E7e3FF09dD7F';
-
+export const editionDropAddress = "0x051300f66FD67a8B94D3d64B1e5d07f23BC90170";
+export const ERCTokenAddress = "0x238B28BaE48dA495125aE2B6623094C5f74CCAD5";
+export const governanceAddress = "0x62e06783EA7490367f3413B79331AC328cb6e00D";
+export const ownerWalletAddress = "0xa9eD1748Ffcda5442dCaEA242603E7e3FF09dD7F";
 ```
 
 コントラクトの作成の過程で、ERC-1155トークンとガバナンストークンのコントラクトをデプロイすることになりますが同様にこのファイルにコントラクトアドレスを保存しておきましょう。
 
 _📝 備考： `editionDrop`のアドレスは、後で必要になるので保管しておいてください。もし紛失した場合は、いつでも [thirdweb のダッシュボード](https://thirdweb.com/dashboard)から取得することができます。_
 
-![](/public/images/ETH-DAO/section-2/2_2_2.png)
+![](/images/ETH-DAO/section-2/2_2_2.png)
 
 TypeScriptだけでデプロイされた独自コントラクトですが、thirdwebが内部で実際に使用しているスマートコントラクトのコードは[こちら](https://github.com/thirdweb-dev/contracts/blob/main/contracts/drop/DropERC1155.sol)から確認できます。
 
@@ -238,7 +234,6 @@ _📝 備考：`ipfs://` URI を使って IPFS を直接叩くこともできま
 Solidityで独自コントラクトを開発したことがある人なら、ちょっと心惹かれるのではないでしょうか。
 
 すでにSepoliaネットワークにデプロイされた独自コントラクトとIPFSにホストされたデータが保持されています。
-
 
 ### 🙋‍♂️ 質問する
 

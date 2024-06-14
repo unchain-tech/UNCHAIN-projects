@@ -35,61 +35,61 @@ client/
 [assets]
 
 [MulPay_Icon_2_foreground.png]
-![](/public/images/NEAR-MulPay/section-2/2_1_1.png)
+![](/images/NEAR-MulPay/section-2/2_1_1.png)
 
 [MulPay_Icon_2.png]
-![](/public/images/NEAR-MulPay/section-2/2_1_2.png)
+![](/images/NEAR-MulPay/section-2/2_1_2.png)
 
 [aurora-aoa-logo.png]
-![](/public/images/NEAR-MulPay/section-2/2_1_3.png)
+![](/images/NEAR-MulPay/section-2/2_1_3.png)
 
 [dai-dai-logo.png]
-![](/public/images/NEAR-MulPay/section-2/2_1_4.png)
+![](/images/NEAR-MulPay/section-2/2_1_4.png)
 
 [ethereum-eth-logo.png]
-![](/public/images/NEAR-MulPay/section-2/2_1_5.png)
+![](/images/NEAR-MulPay/section-2/2_1_5.png)
 
 [polygon-matic-logo.png]
-![](/public/images/NEAR-MulPay/section-2/2_1_6.png)
+![](/images/NEAR-MulPay/section-2/2_1_6.png)
 
 [shib-logo.png]
-![](/public/images/NEAR-MulPay/section-2/2_1_7.png)
+![](/images/NEAR-MulPay/section-2/2_1_7.png)
 
 [solana-sol-logo.png]
-![](/public/images/NEAR-MulPay/section-2/2_1_8.png)
+![](/images/NEAR-MulPay/section-2/2_1_8.png)
 
 [tether-usdt-logo.png]
-![](/public/images/NEAR-MulPay/section-2/2_1_9.png)
+![](/images/NEAR-MulPay/section-2/2_1_9.png)
 
 [uniswap-uni-logo.png]
-![](/public/images/NEAR-MulPay/section-2/2_1_10.png)
+![](/images/NEAR-MulPay/section-2/2_1_10.png)
 
 [unchain_logo.png]
-![](/public/images/NEAR-MulPay/section-2/2_1_11.png)
+![](/images/NEAR-MulPay/section-2/2_1_11.png)
 
 [multiple-coins.jpg]
-![](/public/images/NEAR-MulPay/section-2/2_1_12.jpg)
+![](/images/NEAR-MulPay/section-2/2_1_12.jpg)
 
 [pop.svg]
-![](/public/images/NEAR-MulPay/section-2/2_1_13.svg)
+![](/images/NEAR-MulPay/section-2/2_1_13.svg)
 
 [pay.svg]
-![](/public/images/NEAR-MulPay/section-2/2_1_14.svg)
+![](/images/NEAR-MulPay/section-2/2_1_14.svg)
 
 [home.svg]
-![](/public/images/NEAR-MulPay/section-2/2_1_15.svg)
+![](/images/NEAR-MulPay/section-2/2_1_15.svg)
 
 [three-dots.svg]
-![](/public/images/NEAR-MulPay/section-2/2_1_16.svg)
+![](/images/NEAR-MulPay/section-2/2_1_16.svg)
 
 [triangle.svg]
-![](/public/images/NEAR-MulPay/section-2/2_1_17.svg)
+![](/images/NEAR-MulPay/section-2/2_1_17.svg)
 
 [wallet_screen_img.svg]
-![](/public/images/NEAR-MulPay/section-2/2_1_18.svg)
+![](/images/NEAR-MulPay/section-2/2_1_18.svg)
 
 [wallet.svg]
-![](/public/images/NEAR-MulPay/section-2/2_1_19.svg)
+![](/images/NEAR-MulPay/section-2/2_1_19.svg)
 
 次に`smartcontracts`ディレクトリにsection-1で作成したコントラクトのabiファイルを追加します。
 
@@ -187,8 +187,8 @@ flutter:
 ```
 
 スペースについては下のようになっていればOKです。
-![](/public/images/NEAR-MulPay/section-2/2_1_20.png)
-![](/public/images/NEAR-MulPay/section-2/2_1_21.png)
+![](/images/NEAR-MulPay/section-2/2_1_20.png)
+![](/images/NEAR-MulPay/section-2/2_1_21.png)
 
 その後、`client`ディレクトリに移動して下のコマンドをターミナルで実行しましょう。
 
@@ -1060,7 +1060,7 @@ class EthereumTransaction {
 
 では次にhome画面に表示する、それぞれのコインの残高情報を示すリスト一つ一つの元となるUIを作成していきます。
 
-![](/public/images/NEAR-MulPay/section-2/2_1_22.png)
+![](/images/NEAR-MulPay/section-2/2_1_22.png)
 
 `lib/view/widgets/coin.dart`に移動して下のコードを追加していきましょう。
 

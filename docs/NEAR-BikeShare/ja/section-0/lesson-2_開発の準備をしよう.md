@@ -51,21 +51,21 @@ $ rustup target add wasm32-unknown-unknown
 
 Create Accountを選択します。
 
-![](/public/images/NEAR-BikeShare/section-0/0_2_1.png)
+![](/images/NEAR-BikeShare/section-0/0_2_1.png)
 
 自由なアカウント名をつけてください。
 ここで作成するアカウントは次項の`ftコントラクト`に利用するのでftにちなんだアカウント名にするのも良いかもしれません。
 ここでは`ft_account.testnet`として進めます。
 
-![](/public/images/NEAR-BikeShare/section-0/0_2_2.png)
+![](/images/NEAR-BikeShare/section-0/0_2_2.png)
 
 Secure Passphraseを選択（Ledger Hardware Walletでも構いません 🙆‍♂️）してパスフレーズをどこかに保存しておきましょう！
 
-![](/public/images/NEAR-BikeShare/section-0/0_2_3.png)
+![](/images/NEAR-BikeShare/section-0/0_2_3.png)
 
 Passphraseの確認が取れたらアカウント作成の完了です! 以下のような画面に移ります。
 
-![](/public/images/NEAR-BikeShare/section-0/0_2_4.png)
+![](/images/NEAR-BikeShare/section-0/0_2_4.png)
 
 **`near-cli`のインストール**
 
@@ -94,7 +94,7 @@ cliを利用してコマンドラインからアカウントにログインし�
 $ near login
 ```
 
-![](/public/images/NEAR-BikeShare/section-0/0_2_5.png)
+![](/images/NEAR-BikeShare/section-0/0_2_5.png)
 アカウントへのアクセス許可を確認し、接続へ進むとログインが成功します。
 ここではアカウントへのフルアクセスを許可したので、アカウントの作成や削除、アカウントによるコントラクトの呼び出しなどあらゆる操作をコマンドラインから実行できるようになります。
 

@@ -186,6 +186,7 @@ class SignIn extends StatelessWidget {
 では次に`main.dart`へ移動して下のように変更しましょう。
 
 [`main.dart`]
+
 ```dart
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -338,6 +339,7 @@ class MyApp extends StatelessWidget {
 ```
 
 このコードによって画面の横のサイズが450ピクセル以下のものをモバイル、それ以上をデスクトップとして指定しています。
+
 ```dart
 builder: (context, child) => ResponsiveBreakpoints.builder(
         child: child!,
@@ -353,7 +355,6 @@ builder: (context, child) => ResponsiveBreakpoints.builder(
 `initialRoute`には`/signIn`が指定されているのでまずは`SignIn`ウィジェットが表示されます。
 
 ではエミュレータで動かしてみましょう！
-
 
 その前に、使用しているライブラリの中でandroidの設定を変えないと動かないものがあるので`android/app/build.gradle`に移動して`defaultConfig`の中の`minSdkVersion`を`20`にしましょう。
 
@@ -407,16 +408,16 @@ yarn client flutter:run
 ```
 
 エミュレータであれば下のような画面が表示されていれば成功です。
-![](/public/images/NEAR-MulPay/section-2/2_2_1.png)
+![](/images/NEAR-MulPay/section-2/2_2_1.png)
 
 デスクトップ版であれば下のような画面が表示されていれば成功です。
-![](/public/images/NEAR-MulPay/section-2/2_2_6.png)
+![](/images/NEAR-MulPay/section-2/2_2_6.png)
 
-**👀 Wallet接続時のトラブルシューティング**
+**👀 Wallet 接続時のトラブルシューティング**
 
 `Wallet Connect`ボタンを押した際、walletconnect_flutter_v2ライブラリやMetaMaskに関するエラーが発生していないにも関わらずMetaMaskの接続要求のポップアップが開かない場合は、以下の対処法を試してみてください。
 
-1\. **Wallet Connectの再試行**
+1\. **Wallet Connect の再試行**
 
 MetaMaskがパスワード入力後に立ち上がるが、接続要求のポップアップが表示されない場合、Swapアプリケーションに戻りもう一度Wallet Connectボタンを押してください。
 
@@ -678,10 +679,10 @@ class Home extends StatelessWidget {
 では再びエミュレータを立ち上げてきちんと動いているかみていきましょう！
 
 正常に動いている場合は、エミュレータであれば下のように表示されているはずです。
-![](/public/images/NEAR-MulPay/section-2/2_2_2.png)
+![](/images/NEAR-MulPay/section-2/2_2_2.png)
 
 デスクトップ版であれば下のような画面が表示されていれば成功です。
-![](/public/images/NEAR-MulPay/section-2/2_2_3.png)
+![](/images/NEAR-MulPay/section-2/2_2_3.png)
 
 トークンのリストは上下にスクロールできるようになっていて、トークンの数が増えてもきちんと動くようになっています！
 

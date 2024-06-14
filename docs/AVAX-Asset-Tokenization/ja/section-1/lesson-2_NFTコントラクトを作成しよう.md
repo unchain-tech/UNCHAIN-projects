@@ -29,7 +29,7 @@ NFTの機能を持つスマートコントラクトです。
 
 ここでは`AssetTokenization`がフロントエンドとやり取りをすることと、 複数の`FarmNft`を管理しているという関係性が掴めれば十分です！
 
-![](/public/images/AVAX-Asset-Tokenization/section-1/1_1_2.png)
+![](/images/AVAX-Asset-Tokenization/section-1/1_1_2.png)
 
 ### 🥮 `FarmNft`コントラクトを作成する
 
@@ -305,7 +305,7 @@ openseaなどのNFTマーケットサービスは、 このtokenURI関数のデ�
 以下のように、 各テストで呼び出される`deployContract`とその後に続くテストコードが記述されているかと思います。
 
 ```ts
-describe('farmNft', function () {
+describe("farmNft", function () {
   const oneWeekInSecond = 60 * 60 * 24 * 7;
 
   async function deployContract() {
@@ -323,20 +323,20 @@ describe('farmNft', function () {
 次に以下のような形で`mint`に関するテストが4つ記述されているかと思います。
 
 ```ts
-describe('mint', function () {
-  it('NFT should be minted', async function () {
+describe("mint", function () {
+  it("NFT should be minted", async function () {
     // テストコード
   });
 
-  it('balance should be change', async function () {
+  it("balance should be change", async function () {
     // テストコード
   });
 
-  it('revert when not enough nft to mint', async function () {
+  it("revert when not enough nft to mint", async function () {
     // テストコード
   });
 
-  it('revert when not enough currency to mint', async function () {
+  it("revert when not enough currency to mint", async function () {
     // テストコード
   });
 });
@@ -370,7 +370,7 @@ yarn test
 以下のような表示がされます。
 実行したテスト名とそのテストがパスしたことがわかります。
 
-![](/public/images/AVAX-Asset-Tokenization/section-1/1_1_3.png)
+![](/images/AVAX-Asset-Tokenization/section-1/1_1_3.png)
 
 ### 🌔 参考リンク
 

@@ -3,7 +3,7 @@
 AMMではアルゴリズムに従ってswapできるトークンの量を決定します。
 ここではUniswapと同様に式
 
-![](/public/images/AVAX-AMM/section-2/2_1_5.png)
+![](/images/AVAX-AMM/section-2/2_1_5.png)
 
 を使用します。
 
@@ -15,13 +15,13 @@ kは固定定数です。
 ⚠️ 実際には、流動性の提供時やswap時に手数料を考慮するとkは変化しますが、
 あくまで
 
-![](/public/images/AVAX-AMM/section-2/2_1_5.png)
+![](/images/AVAX-AMM/section-2/2_1_5.png)
 
 の法則に基づいてトークンの価格を算出しています。
 
 上式を図にすると以下のような曲線を描きます。
 
-![](/public/images/AVAX-AMM/section-2/2_1_1.png)
+![](/images/AVAX-AMM/section-2/2_1_1.png)
 
 xの量が増えるほどyの量が減り、yの量が増えるほどxの量は減るような式になっています。
 
@@ -32,11 +32,11 @@ xの量が増えるほどyの量が減り、yの量が増えるほどxの量は�
 今の処理を図で見てみましょう。
 トークンXからYへのswap時、プール内のトークンの量の変化は下の図のA地点->B地点への移動で表すことができます。
 
-![](/public/images/AVAX-AMM/section-2/2_1_2.png)
+![](/images/AVAX-AMM/section-2/2_1_2.png)
 
 逆にトークンYからXへのswapは以下のように考えられます。
 
-![](/public/images/AVAX-AMM/section-2/2_1_3.png)
+![](/images/AVAX-AMM/section-2/2_1_3.png)
 
 このようにAMMの内部では基本式に基づいて価格決定をしています。
 
@@ -62,23 +62,23 @@ Discordの`#avalanche`で聞くのも良いでしょう。
 
 🦕 シチュエーション1: x' からy' を算出する
 
-![](/public/images/AVAX-AMM/section-2/2_1_2.png)
+![](/images/AVAX-AMM/section-2/2_1_2.png)
 
 プールに入るx' の量が分かっていて、x' を元にプールから出る量y' を算出する方法を導きます。
 
 基本式は以下で、Kは定数というものでした。
 
-![](/public/images/AVAX-AMM/section-2/2_1_5.png)
+![](/images/AVAX-AMM/section-2/2_1_5.png)
 
 つまりx' とy' 分の増減があってもプールに残るXとYの積は一定ということです。
 これを式にすると以下のようになります。
 
-![](/public/images/AVAX-AMM/section-2/2_1_6.png)
+![](/images/AVAX-AMM/section-2/2_1_6.png)
 
 式の左辺が上図のA地点、右辺が上図のB地点のKを表しています。
 さらに今回求めたいy' について上の式を解いていきます。
 
-![](/public/images/AVAX-AMM/section-2/2_1_7.png)
+![](/images/AVAX-AMM/section-2/2_1_7.png)
 
 シンプルな式が導き出されました。
 この計算式を利用することでy' を求めることができます。
@@ -87,13 +87,13 @@ Discordの`#avalanche`で聞くのも良いでしょう。
 
 図はシチュエーション1と同じものです。
 
-![](/public/images/AVAX-AMM/section-2/2_1_2.png)
+![](/images/AVAX-AMM/section-2/2_1_2.png)
 
 ここでは先ほどとは逆に、プールから出る量y' があらかじめ指定された状態で、どのくらいの量のx' をプールに入れなければいけないのかを求めます。
 
 計算は先ほどとほとんど同じで、今度はx' について解きます。
 
-![](/public/images/AVAX-AMM/section-2/2_1_8.png)
+![](/images/AVAX-AMM/section-2/2_1_8.png)
 
 以上でユーザがswapをする際に、swap元のトークンの量から受け取れるswap先のトークンの量を求めたい時はシチュエーション1の式を、
 swapによって受け取りたいswap先のトークンの量からどのくらいswap元のトークンが必要かを求めたい時はシチュエーション2の式を利用すれば良いことがわかりました。

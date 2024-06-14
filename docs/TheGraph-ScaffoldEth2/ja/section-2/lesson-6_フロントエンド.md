@@ -16,39 +16,39 @@
 
 変更すると以下のようになります：
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_6_1.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_6_1.png)
 
 この変更を行ったら、scaffold-ETHに戻り、UIをリロードしてください。バーナーウォレットから切断されるので、Metamaskウォレットを使用してテストネットに接続します。
 
 "CONNECT WALLET"をクリックしてください...
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_6_2.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_6_2.png)
 
 Metamaskを選択してください...
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_6_3.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_6_3.png)
 
 ネットワークを切り替えてください...
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_6_4.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_6_4.png)
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_6_5.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_6_5.png)
 
 完了したら、sepoliaネットワーク上のdappに接続されているはずです。
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_6_6.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_6_6.png)
 
 #### ✅ 知り合いにテストメッセージを送ってみよう！（または Vitalik へ）
 
 デプロイしたスマートコントラクトにイベントを送信したいと思います。フロントエンドが適切に設定されているので、これは比較的簡単に行うことができます。
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_6_7.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_6_7.png)
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_6_8.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_6_8.png)
 
 次に、Studioでメッセージが正常にインデックスされたかどうかを確認します。GraphiQLエクスプローラは、「Playground」ページにあります。
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_6_9.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_6_9.png)
 
 #### ✅ GraphQL URL を開発用エンドポイントに更新する
 
@@ -66,7 +66,7 @@ Metamaskを選択してください...
 
 変更すると以下のようになります：
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_6_10.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_6_10.png)
 
 #### ✅ index.ts ファイルをまっさらな状態から始める
 
@@ -96,7 +96,7 @@ export default Home;
 
 変更後、ホームディレクトリは以下のようになります：
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_6_11.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_6_11.png)
 
 #### ✅ テーブル形式でメッセージを表示する
 
@@ -147,7 +147,7 @@ export const GET_MESSAGES = gql`
   const messages = messagesData?.sendMessages || [];
 ```
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_6_13.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_6_13.png)
 
 それを少しリファクタリングして、単なるテキストの代わりに`<Address>`コンポーネントを使いましょう。
 
@@ -169,6 +169,6 @@ import { Address } from "~~/components/scaffold-eth";
 
 これにより、長い文字列よりもはるかに見栄えがよくなります！ :D
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_6_14.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_6_14.png)
 
 > 注：完全なファイルをご覧になりたい場合は、[こちら](https://gist.github.com/kmjones1979/26ef9633b61b17f237e88eb41bb688de)をご覧ください！

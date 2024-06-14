@@ -38,11 +38,11 @@ Alchemyは、世界中のトランザクションを一元化し、マイナー�
 
 Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押してください。
 
-![](/public/images/ETH-NFT-Game/section-1/1_5_1.png)
+![](/images/ETH-NFT-Game/section-1/1_5_1.png)
 
 次に、下記の項目を埋めていきます。下図を参考にしてください。
 
-![](/public/images/ETH-NFT-Game/section-1/1_5_2.png)
+![](/images/ETH-NFT-Game/section-1/1_5_2.png)
 
 - `NAME`: プロジェクトの名前(例: `MyEpicGame`)
 - `DESCRIPTION`: プロジェクトの概要
@@ -51,11 +51,11 @@ Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押して�
 
 それから、作成したAppの`VIEW DETAILS`をクリックします。
 
-![](/public/images/ETH-NFT-Game/section-1/1_5_3.png)
+![](/images/ETH-NFT-Game/section-1/1_5_3.png)
 
 プロジェクトを開いたら、`VIEW KEY`ボタンをクリックします。
 
-![](/public/images/ETH-NFT-Game/section-1/1_5_4.png)
+![](/images/ETH-NFT-Game/section-1/1_5_4.png)
 
 ポップアップが開くので、`HTTP`のリンクをコピーしてください。
 
@@ -96,19 +96,19 @@ Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押して�
 > ✍️: MetaMask で`Sepolia Test Network`を設定する方法
 > 1 \. MetaMask ウォレットのネットワークトグルを開く。
 >
-> ![](/public/images/ETH-NFT-Game/section-1/1_5_5.png)
+> ![](/images/ETH-NFT-Game/section-1/1_5_5.png)
 
 > 2 \. `Show/hide test networks`をクリック。
 >
-> ![](/public/images/ETH-NFT-Game/section-1/1_5_6.png)
+> ![](/images/ETH-NFT-Game/section-1/1_5_6.png)
 
 > 3 \. `Show test networks`を`ON`にする。
 >
-> ![](/public/images/ETH-NFT-Game/section-1/1_5_7.png)
+> ![](/images/ETH-NFT-Game/section-1/1_5_7.png)
 
 > 4 \. `sepolia Test Network`を選択する。
 >
-> ![](/public/images/ETH-NFT-Game/section-1/1_5_8.png)
+> ![](/images/ETH-NFT-Game/section-1/1_5_8.png)
 
 MetaMaskウォレットに`Sepolia Test Network`が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽ETHを取得しましょう。
 
@@ -217,19 +217,19 @@ module.exports = {
 
 2. \. `YOUR_PRIVATE_SEPOLIA_ACCOUNT_KEY`の取得
    > 1\. お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを`Sepolia Test Network`に変更します。
-   > ![](/public/images/ETH-NFT-Game/section-1/1_5_8.png)
+   > ![](/images/ETH-NFT-Game/section-1/1_5_8.png)
    >
    > 2\. それから、`Account details`を選択してください。
-   > ![](/public/images/ETH-NFT-Game/section-1/1_5_9.png)
+   > ![](/images/ETH-NFT-Game/section-1/1_5_9.png)
    >
    > 3\. `Account details`から`Export Private Key`をクリックしてください。
-   > ![](/public/images/ETH-NFT-Game/section-1/1_5_10.png)
+   > ![](/images/ETH-NFT-Game/section-1/1_5_10.png)
    >
    > 4\. MetaMask のパスワードを求められるので、入力したら`Confirm`を推します。
-   > ![](/public/images/ETH-NFT-Game/section-1/1_5_11.png)
+   > ![](/images/ETH-NFT-Game/section-1/1_5_11.png)
    >
    > 5\. あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
-   > ![](/public/images/ETH-NFT-Game/section-1/1_5_12.png)
+   > ![](/images/ETH-NFT-Game/section-1/1_5_12.png)
    >
    > `hardhat.config.js`の`YOUR_PRIVATE_SEPOLIA_ACCOUNT_KEY`の部分をここで取得した秘密鍵とを入れ替えます。
 
@@ -276,9 +276,9 @@ hardhat.config.js
 >
 > 「ログイン」には下記の情報が必要となります。
 >
-> - ユーザー名: 公開アドレス ![](/public/images/ETH-NFT-Game/section-1/1_5_13.png)
+> - ユーザー名: 公開アドレス ![](/images/ETH-NFT-Game/section-1/1_5_13.png)
 > - パスワード: 秘密鍵
->   ![](/public/images/ETH-NFT-Game/section-1/1_5_14.png)
+>   ![](/images/ETH-NFT-Game/section-1/1_5_14.png)
 >
 > ユーザー名とパスワードを使用して、AWS にログインしてプロジェクトをデプロイするのと同じです。
 
@@ -318,7 +318,7 @@ Done deploying and minting!
 
 下記のような結果が、Sepolia Etherscan上で確認できれば、テストネットへのデプロイは成功です 🎉
 
-![](/public/images/ETH-NFT-Game/section-1/1_5_15.png)
+![](/images/ETH-NFT-Game/section-1/1_5_15.png)
 
 **デプロイのデバッグに Sepolia Etherscan 使うことに慣れましょう。**
 
@@ -328,18 +328,18 @@ Sepolia Etherscanはデプロイを追跡する最も簡単な方法であり、
 
 ### 🐝 gemcase で NFT を確認する
 
-![](/public/images/ETH-NFT-Game/section-1/1_5_22.png)
+![](/images/ETH-NFT-Game/section-1/1_5_22.png)
 
 そして`View`ボタンをクリックするとコレクションの詳細が表示されます。
 
 私のコレクションはこのような形で表示されます。
 
-![](/public/images/ETH-NFT-Game/section-1/1_5_19.png)
+![](/images/ETH-NFT-Game/section-1/1_5_19.png)
 
 下にスクロールすると他のコレクションが見れるのでV`View`ボタンをクリックしてみましょう。
 
-![](/public/images/ETH-NFT-Game/section-1/1_5_20.png)
-![](/public/images/ETH-NFT-Game/section-1/1_5_21.png)
+![](/images/ETH-NFT-Game/section-1/1_5_20.png)
+![](/images/ETH-NFT-Game/section-1/1_5_21.png)
 
 OpenSeaなどのNFTマーケットプレイスはキャラクター属性を適切にレンダリングしてくれます 😊
 

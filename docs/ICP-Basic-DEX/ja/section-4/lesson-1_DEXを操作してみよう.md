@@ -7,65 +7,65 @@
 3. 別のユーザーがオーダーを購入する
 4. DEXからトークンを出金する
 
-ユーザーが2名登場するので、最初に`TGLD`を入金するユーザーを**ユーザーGLD**、`TSLV`を入金するユーザーを**ユーザーSLV**と表記しています。
+ユーザーが2名登場するので、最初に`TGLD`を入金するユーザーを**ユーザー GLD**、`TSLV`を入金するユーザーを**ユーザー SLV**と表記しています。
 
 **1. トークンを DEX に入金する**
 
 まずは、ユーザーボード上の**Faucet**ボタンを押してトークン`TGLD`を取得してみましょう。
 
-[ユーザーGLD]
+[ユーザー GLD]
 
-![](/public/images/ICP-Basic-DEX/section-4/4_1_1.png)
+![](/images/ICP-Basic-DEX/section-4/4_1_1.png)
 
 次に、**Deposit**ボタンを押して取得したトークンをDEXに入金します。
 
-![](/public/images/ICP-Basic-DEX/section-4/4_1_2.png)
+![](/images/ICP-Basic-DEX/section-4/4_1_2.png)
 
 **2. オーダーを作成する**
 
 オーダーを作成しましょう。フォームに入力後、**Submit Order**ボタンを押します。ここでは、"`TGLD` : 100を`TSLV` : 100に交換したい" というオーダーを作成しています。
 
-[ユーザーGLD]
+[ユーザー GLD]
 
-![](/public/images/ICP-Basic-DEX/section-4/4_1_3.png)
+![](/images/ICP-Basic-DEX/section-4/4_1_3.png)
 
 **3. 別のユーザーがオーダーを購入する**
 
-今度は、別のユーザー（ユーザーSLV）でログインをしてみます。もう1つブラウザを開き、**Login Internet Identity**ボタンを押して、新しいアンカーを作成しましょう。
+今度は、別のユーザー（ユーザー SLV）でログインをしてみます。もう1つブラウザを開き、**Login Internet Identity**ボタンを押して、新しいアンカーを作成しましょう。
 
-左：[ユーザーGLD]
+左：[ユーザー GLD]
 
-右：[ユーザーSLV]
+右：[ユーザー SLV]
 
-![](/public/images/ICP-Basic-DEX/section-4/4_1_4.png)
+![](/images/ICP-Basic-DEX/section-4/4_1_4.png)
 
 認証後、トークン`TSLV`をFaucetから取得します。残高が更新されたら、トークン`TSLV`をDEXに入金します。
 
-![](/public/images/ICP-Basic-DEX/section-4/4_1_5.png)
+![](/images/ICP-Basic-DEX/section-4/4_1_5.png)
 
-入金されたら、画像右（ユーザーSLV）のオーダー一覧に表示されている**Buy**ボタンを押してオーダーを購入してみましょう。実行後、オーダーが消えてユーザーボードのトークン量が更新されたことを確認しましょう。
+入金されたら、画像右（ユーザー SLV）のオーダー一覧に表示されている**Buy**ボタンを押してオーダーを購入してみましょう。実行後、オーダーが消えてユーザーボードのトークン量が更新されたことを確認しましょう。
 
-![](/public/images/ICP-Basic-DEX/section-4/4_1_6.png)
+![](/images/ICP-Basic-DEX/section-4/4_1_6.png)
 
-今度は、オーダーが購入された画像左（ユーザーGLD）の残高が更新されているかを確認してみます。ユーザーボードを更新するために、画面のリロードを行いましょう。オーダーを購入したユーザーと同じPrincipalが表示されてしまうので、再度ログインをし直します。アンカーを入力して、**Authorize**ボタンを押します。
+今度は、オーダーが購入された画像左（ユーザー GLD）の残高が更新されているかを確認してみます。ユーザーボードを更新するために、画面のリロードを行いましょう。オーダーを購入したユーザーと同じPrincipalが表示されてしまうので、再度ログインをし直します。アンカーを入力して、**Authorize**ボタンを押します。
 
-![](/public/images/ICP-Basic-DEX/section-4/4_1_7.png)
+![](/images/ICP-Basic-DEX/section-4/4_1_7.png)
 
 再ログイン後、ユーザーボードを確認してトークン量が更新されていることを確認しましょう。
 
-![](/public/images/ICP-Basic-DEX/section-4/4_1_8.png)
+![](/images/ICP-Basic-DEX/section-4/4_1_8.png)
 
 **4. DEX からトークンを出金する**
 
-最後に、ユーザーGLDを操作して出金機能を確認します。今回は引き出すトークン量を`500`に設定しているのでまずは、**Deposit**ボタンを押してDEX内の残高を500以上にします。
+最後に、ユーザー GLDを操作して出金機能を確認します。今回は引き出すトークン量を`500`に設定しているのでまずは、**Deposit**ボタンを押してDEX内の残高を500以上にします。
 
-[ユーザーGLD]
+[ユーザー GLD]
 
-![](/public/images/ICP-Basic-DEX/section-4/4_1_9.png)
+![](/images/ICP-Basic-DEX/section-4/4_1_9.png)
 
 **Withdraw**ボタンを押して、出金を行いトークンが移動したことを確認しましょう。
 
-![](/public/images/ICP-Basic-DEX/section-4/4_1_10.png)
+![](/images/ICP-Basic-DEX/section-4/4_1_10.png)
 
 DEXを操作して、ユーザー間でトークンを取引することができました！
 

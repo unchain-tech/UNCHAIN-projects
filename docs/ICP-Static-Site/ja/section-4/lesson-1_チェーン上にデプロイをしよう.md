@@ -85,13 +85,13 @@ Internet Identityを利用するためには、Anchorと呼ばれる一意のID�
 以下に、作成手順を簡単に説明します。設定に使用するデバイスやリカバリー方法に複数の選択肢があるため、詳しくは[こちら](https://internetcomputer.org/docs/current/tokenomics/identity-auth/auth-how-to/)を参照してください。
 
 1. `Create an internet identity Anchor`をクリックします。
-   ![](/public/images/ICP-Static-Site/section-4/4_1_1.png)
+   ![](/images/ICP-Static-Site/section-4/4_1_1.png)
 
 2. デバイスの名前を入力し、`Create`ボタンを押します（例：Brave, iPhone, など）。
-   ![](/public/images/ICP-Static-Site/section-4/4_1_2.png)
+   ![](/images/ICP-Static-Site/section-4/4_1_2.png)
 
 3. 認証方法として使用するアイテムを選びます。
-   ![](/public/images/ICP-Static-Site/section-4/4_1_3.png)
+   ![](/images/ICP-Static-Site/section-4/4_1_3.png)
 
 4. プロンプトが表示されたら、選択した方法で認証します。例えば、3.で`This device`を選択した場合、デバイスに搭載されている生体認証やロック解除のパスワードなどでの認証が求められます。
 
@@ -103,7 +103,7 @@ Internet Identityを利用するためには、Anchorと呼ばれる一意のID�
 
 Webサイトが確認できたらデプロイ完了です！
 
-![](/public/images/ICP-Static-Site/section-4/4_1_4.png)
+![](/images/ICP-Static-Site/section-4/4_1_4.png)
 
 ### 🙋‍♂️ 質問する
 

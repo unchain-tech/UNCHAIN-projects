@@ -4,7 +4,7 @@
 
 #### ✅ Use the Graph CLI to complete the deployment
 
-![Studio6](/public/images/TheGraph-ScaffoldEth2/section-2/2_5_1.png)
+![Studio6](/images/TheGraph-ScaffoldEth2/section-2/2_5_1.png)
 
 You can install the Graph CLI globally using the following command.
 
@@ -12,7 +12,7 @@ You can install the Graph CLI globally using the following command.
 curl -LS https://cli.thegraph.com/install.sh | sudo sh
 ```
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_5_2.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_5_2.png)
 
 #### ✅ Init your Subgraph
 
@@ -24,7 +24,7 @@ graph init --studio name_of_your_subgraph
 
 It should looks something like this...
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_5_3.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_5_3.png)
 
 #### ✅ Authenticate to Studio
 
@@ -51,7 +51,7 @@ graph codegen && graph build
 
 Success will look something like the following!
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_5_4.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_5_4.png)
 
 #### ✅ Deploy
 
@@ -63,11 +63,11 @@ graph deploy --studio name_of_your_subgraph
 
 Choose a version and fire away!
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_5_5.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_5_5.png)
 
 It might take up to 5 minutes for you subgraph to deploy to the studio. Once it has been deployed, you can check that is fully syncing and has no errors. A successful deploy will look like the following.
 
-![Studio7](/public/images/TheGraph-ScaffoldEth2/section-2/2_5_6.png)
+![Studio7](/images/TheGraph-ScaffoldEth2/section-2/2_5_6.png)
 
 #### ✅ Send a transaction and verify in Subgraph Playground
 

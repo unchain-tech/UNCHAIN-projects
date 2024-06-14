@@ -42,7 +42,7 @@
 次に、`src`フォルダの中にある`App.js`ファイルを開き、内容を、以下の定型文に置き換えます。
 
 ```javascript
-import './App.css';
+import "./App.css";
 
 function App() {
   return <h1>Hello World</h1>;
@@ -75,7 +75,7 @@ ABI（またはApplication Binary Interface）は、コントラクトのコン�
 
 `packages/contract/artifacts/contracts/NFTCollectible.sol/NFTCollectible.json`をVS Codeで開き中身を確認してみましょう。
 
-![](/public/images/Polygon-Generative-NFT/section-4/4_1_2.png)
+![](/images/Polygon-Generative-NFT/section-4/4_1_2.png)
 
 `NFTCollectible.json`に記載されているすべてのコードが、ABIファイルです。
 
@@ -92,11 +92,11 @@ ABI（またはApplication Binary Interface）は、コントラクトのコン�
 それでは、コントラクトABIをインポートして、`App.js`ファイルにコントラクトアドレスを定義していきましょう。
 
 ```javascript
-import './App.css';
-import contract from './contracts/NFTCollectible.json';
+import "./App.css";
+import contract from "./contracts/NFTCollectible.json";
 
 const contractAddress =
-  'あなたのコントラクトアドレスをこちらに貼り付けてください';
+  "あなたのコントラクトアドレスをこちらに貼り付けてください";
 const abi = contract.abi;
 
 function App() {
@@ -121,12 +121,12 @@ export default App;
 以下の内容を、`App.js`ファイルにコピーしてください。
 
 ```javascript
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
-import './App.css';
-import contract from './contracts/NFTCollectible.json';
+import "./App.css";
+import contract from "./contracts/NFTCollectible.json";
 
-const contractAddress = 'あなたのコントラクトアドレスを貼り付けましょう';
+const contractAddress = "あなたのコントラクトアドレスを貼り付けましょう";
 const abi = contract.abi;
 
 function App() {
@@ -173,7 +173,7 @@ export default App;
 `App.js`の5行目であなたのコントラクトアドレスを設定してください。
 
 ```javascript
-const contractAddress = 'あなたのコントラクトアドレスを貼り付けましょう';
+const contractAddress = "あなたのコントラクトアドレスを貼り付けましょう";
 ```
 
 現時点では、関数をいくつか定義していることに注意してください。後で、その目的を説明し、ロジックを組み込んでいく予定です。
@@ -184,32 +184,32 @@ const contractAddress = 'あなたのコントラクトアドレスを貼り付�
 
 ```css
 .main-app {
-    text-align: center;
-    margin: 100px;
+  text-align: center;
+  margin: 100px;
 }
 
 .cta-button {
-    padding: 15px;
-    border: none;
-    border-radius: 12px;
-    min-width: 250px;
-    color: white;
-    font-size: 18px;
-    cursor: pointer;
+  padding: 15px;
+  border: none;
+  border-radius: 12px;
+  min-width: 250px;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
 }
 
 .connect-wallet-button {
-    background: rgb(32, 129, 226);
+  background: rgb(32, 129, 226);
 }
 
 .mint-nft-button {
-    background: orange;
+  background: orange;
 }
 ```
 
 あなたのWebサイトは、このように表示されるはずです。
 
-![](/public/images/Polygon-Generative-NFT/section-4/4_1_3.png)
+![](/images/Polygon-Generative-NFT/section-4/4_1_3.png)
 
 CSSスタイルや静的要素（画像、ヘッダ、フッタ、ソーシャルメディアリンクなど）を追加して、Webサイトの外観を自由にカスタマイズしてください。
 
@@ -236,7 +236,7 @@ const checkWalletIsConnected = async () => {
   const { ethereum } = window;
 
   if (!ethereum) {
-    console.log('Make sure you have MetaMask installed!');
+    console.log("Make sure you have MetaMask installed!");
     return;
   } else {
     console.log("Wallet exists! We're ready to go!");
@@ -252,7 +252,7 @@ const checkWalletIsConnected = async () => {
 
 MetaMaskがインストールされていれば、`Wallet exists! We’re ready to go!`というメッセージがConsoleに表示されているはずです。
 
-![](/public/images/Polygon-Generative-NFT/section-4/4_1_4.png)
+![](/images/Polygon-Generative-NFT/section-4/4_1_4.png)
 
 MetaMaskエクステンションをインストールしたからといって、アクセスしたすべてのWebサイトにMetaMaskが自動的に接続されるわけではありません。
 
@@ -271,7 +271,7 @@ MetaMaskは`window.ethereum.request`メソッドでこのプロセスシンプ�
 まず、Reactから`useState`をインポートするために、`App.js`ファイルの1行目`import from 'react'`の中身を下記のように更新してください。
 
 ```javascript
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 ```
 
 それから、下記を`checkWalletIsConnected`関数の真上に追加してください。
@@ -293,12 +293,12 @@ const connectWalletHandler = async () => {
   const { ethereum } = window;
 
   if (!ethereum) {
-    alert('Please install MetaMask!');
+    alert("Please install MetaMask!");
   }
 
   try {
-    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-    console.log('Found an account! Address: ', accounts[0]);
+    const accounts = await ethereum.request({ method: "eth_requestAccounts" });
+    console.log("Found an account! Address: ", accounts[0]);
     setCurrentAccount(accounts[0]);
   } catch (err) {
     console.log(err);
@@ -316,15 +316,15 @@ const connectWalletHandler = async () => {
 const { ethereum } = window;
 
 if (!ethereum) {
-  alert('Please install MetaMask!');
+  alert("Please install MetaMask!");
 }
 ```
 
 MetaMaskにユーザーのウォレット接続を促し、アドレスの取得を試みます。
 
 ```javascript
-const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-console.log('Found an account! Address: ', accounts[0]);
+const accounts = await ethereum.request({ method: "eth_requestAccounts" });
+console.log("Found an account! Address: ", accounts[0]);
 ```
 
 ユーザーがWebサイトとの接続に同意すると、最初に利用可能なウォレットアドレスを取得し、それを`currentAccount`変数の値として設定します。
@@ -347,13 +347,13 @@ setCurrentAccount(accounts[0]);
 
 もし、下図のように`Connected`と表示されている場合は、`Connected`の文字をクリックします。
 
-![](/public/images/Polygon-Generative-NFT/section-4/4_1_5.png)
+![](/images/Polygon-Generative-NFT/section-4/4_1_5.png)
 
 そこで、Webサイトとあなたのウォレットアドレスの接続を一度解除します。
 
 - `Disconnect this account`を選択してください。
 
-![](/public/images/Polygon-Generative-NFT/section-4/4_1_6.png)
+![](/images/Polygon-Generative-NFT/section-4/4_1_6.png)
 
 次にローカルサーバーにホストされているあなたのWebサイトをリフレッシュして、`Connect Wallet`ボタンを押してください。
 
@@ -361,7 +361,7 @@ MetaMaskがWebサイトとの接続を促してきますので、同意しまし
 
 下記のように、Consoleにあなたのパブリックウォレットアドレスが出力されていれば、ウォレット接続のテストは成功です。
 
-![](/public/images/Polygon-Generative-NFT/section-4/4_1_7.png)
+![](/images/Polygon-Generative-NFT/section-4/4_1_7.png)
 
 ウォレットが接続されたら、`Connect Wallet`ボタンを`Mint NFT`ボタンに置き換えていきましょう。
 
@@ -380,13 +380,13 @@ return (
 
 これで、私たちのWebサイトはこのようになります。
 
-![](/public/images/Polygon-Generative-NFT/section-4/4_1_8.png)
+![](/images/Polygon-Generative-NFT/section-4/4_1_8.png)
 
 ページを更新して、MetaMaskエクステンションを確認してみましょう。
 
 MetaMaskはまだWebサイトに接続されていることを伝えていますが、WebサイトにはまだConnect Walletボタンが表示されていることがわかります。
 
-![](/public/images/Polygon-Generative-NFT/section-4/4_1_9.png)
+![](/images/Polygon-Generative-NFT/section-4/4_1_9.png)
 
 Reactに慣れている人なら、なぜこのようなことが起こるのかお分かりでしょう。
 
@@ -403,20 +403,20 @@ const checkWalletIsConnected = async () => {
   const { ethereum } = window;
 
   if (!ethereum) {
-    console.log('Make sure you have MetaMask installed!');
+    console.log("Make sure you have MetaMask installed!");
     return;
   } else {
     console.log("Wallet exists! We're ready to go!");
   }
 
-  const accounts = await ethereum.request({ method: 'eth_accounts' });
+  const accounts = await ethereum.request({ method: "eth_accounts" });
 
   if (accounts.length !== 0) {
     const account = accounts[0];
-    console.log('Found an authorized account: ', account);
+    console.log("Found an authorized account: ", account);
     setCurrentAccount(account);
   } else {
-    console.log('No authorized account found');
+    console.log("No authorized account found");
   }
 };
 ```
@@ -428,9 +428,8 @@ const checkWalletIsConnected = async () => {
 - MetaMaskがインストールされているかどうかをチェックし、結果をコンソールに出力します。
 
   ```javascript
-
   if (!ethereum) {
-    console.log('Make sure you have MetaMask installed!');
+    console.log("Make sure you have MetaMask installed!");
     return;
   } else {
     console.log("Wallet exists! We're ready to go!");
@@ -440,7 +439,7 @@ const checkWalletIsConnected = async () => {
 - Webサイトに接続中のアカウントに対してMetaMaskのリクエストを試みます。
 
 ```javascript
-const accounts = await ethereum.request({ method: 'eth_accounts' });
+const accounts = await ethereum.request({ method: "eth_accounts" });
 ```
 
 - MetaMaskがすでにWebサイトに接続されている場合は、この関数にアカウントのリストを渡して要求を出します。
@@ -486,7 +485,7 @@ setCurrentAccount(account);
 `import { useEffect, useState } from 'react';`の上に、下記を追加してください。
 
 ```javascript
-import { ethers } from 'ethers';
+import { ethers } from "ethers";
 ```
 
 最後に、下記のように`mintNftHandler`関数を更新しましょう。
@@ -501,17 +500,17 @@ const mintNftHandler = async () => {
       const signer = provider.getSigner();
       const nftContract = new ethers.Contract(contractAddress, abi, signer);
 
-      console.log('Initialize payment');
+      console.log("Initialize payment");
       let nftTxn = await nftContract.mintNFTs(1, {
-        value: ethers.utils.parseEther('0.01'),
+        value: ethers.utils.parseEther("0.01"),
       });
 
-      console.log('Mining... please wait');
+      console.log("Mining... please wait");
       await nftTxn.wait();
 
       console.log(`Mined, see transaction: ${nftTxn.hash}`);
     } else {
-      console.log('Ethereum object does not exist');
+      console.log("Ethereum object does not exist");
     }
   } catch (err) {
     console.log(err);
@@ -548,16 +547,16 @@ const signer = provider.getSigner();
 
 ```javascript
 const nftContract = new ethers.Contract(contractAddress, abi, signer);
-console.log('Initialize payment');
+console.log("Initialize payment");
 ```
 
 5\. これで、前述のコントラクトオブジェクトを通じてコントラクト上の関数を呼び出すことができます。`mintNFT`関数を呼び出し、MetaMaskに`0.01 ETH`（これはNFTに設定した価格）を送信するよう依頼します。
 
 ```javascript
 let nftTxn = await nftContract.mintNFTs(1, {
-  value: ethers.utils.parseEther('0.01'),
+  value: ethers.utils.parseEther("0.01"),
 });
-console.log('Mining... please wait');
+console.log("Mining... please wait");
 ```
 
 6\. トランザクションが処理されるのを待ち、処理が完了したら、トランザクションのハッシュをコンソールに出力します。
@@ -586,13 +585,13 @@ console.log(`Mined, see transaction: ${nftTxn.hash}`);
 `App.js`の最終盤はこちらです。
 
 ```javascript
-import { ethers } from 'ethers';
-import { useEffect, useState } from 'react';
+import { ethers } from "ethers";
+import { useEffect, useState } from "react";
 
-import './App.css';
-import contract from './contracts/NFTCollectible.json';
+import "./App.css";
+import contract from "./contracts/NFTCollectible.json";
 
-const contractAddress = '0xF899DeB963208560a7c667FA78376ecaFF684b8E';
+const contractAddress = "0xF899DeB963208560a7c667FA78376ecaFF684b8E";
 const abi = contract.abi;
 
 function App() {
@@ -602,20 +601,20 @@ function App() {
     const { ethereum } = window;
 
     if (!ethereum) {
-      console.log('Make sure you have MetaMask installed!');
+      console.log("Make sure you have MetaMask installed!");
       return;
     } else {
       console.log("Wallet exists! We're ready to go!");
     }
 
-    const accounts = await ethereum.request({ method: 'eth_accounts' });
+    const accounts = await ethereum.request({ method: "eth_accounts" });
 
     if (accounts.length !== 0) {
       const account = accounts[0];
-      console.log('Found an authorized account: ', account);
+      console.log("Found an authorized account: ", account);
       setCurrentAccount(account);
     } else {
-      console.log('No authorized account found');
+      console.log("No authorized account found");
     }
   };
 
@@ -623,14 +622,14 @@ function App() {
     const { ethereum } = window;
 
     if (!ethereum) {
-      alert('Please install MetaMask!');
+      alert("Please install MetaMask!");
     }
 
     try {
       const accounts = await ethereum.request({
-        method: 'eth_requestAccounts',
+        method: "eth_requestAccounts",
       });
-      console.log('Found an account! Address: ', accounts[0]);
+      console.log("Found an account! Address: ", accounts[0]);
       setCurrentAccount(accounts[0]);
     } catch (err) {
       console.log(err);
@@ -646,17 +645,17 @@ function App() {
         const signer = provider.getSigner();
         const nftContract = new ethers.Contract(contractAddress, abi, signer);
 
-        console.log('Initialize payment');
+        console.log("Initialize payment");
         let nftTxn = await nftContract.mintNFTs(1, {
-          value: ethers.utils.parseEther('0.01'),
+          value: ethers.utils.parseEther("0.01"),
         });
 
-        console.log('Mining... please wait');
+        console.log("Mining... please wait");
         await nftTxn.wait();
 
         console.log(`Mined, see transaction: ${nftTxn.hash}`);
       } else {
-        console.log('Ethereum object does not exist');
+        console.log("Ethereum object does not exist");
       }
     } catch (err) {
       console.log(err);
@@ -707,7 +706,7 @@ MetaMaskが0.01 ETH + ガス代を支払うよう促すので、同意してく�
 
 処理が完了したら、MetaMaskのポップアップとコンソール出力の両方でトランザクションが確認できます。
 
-![](/public/images/Polygon-Generative-NFT/section-4/4_1_10.png)
+![](/images/Polygon-Generative-NFT/section-4/4_1_10.png)
 
 > ⚠️: 2022 年 4 月 1 日より、Mint ボタンすると下記のようなエラーが発生しています。
 >
@@ -726,7 +725,7 @@ Polygonがほかのサイドチェーンと異なる最大の利点は、世界�
 
 MintされたNFTがコレレクションとしてアップロードされているのがわかるでしょう。
 
-![](/public/images/Polygon-Generative-NFT/section-4/4_1_11.png)
+![](/images/Polygon-Generative-NFT/section-4/4_1_11.png)
 
 ### 🙋‍♂️ 質問する
 

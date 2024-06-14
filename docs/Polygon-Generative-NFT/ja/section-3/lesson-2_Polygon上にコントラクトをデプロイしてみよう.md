@@ -52,32 +52,33 @@ yarn contract run:script
 
 ターミナル上で、上記がエラーなく実行されれば、Polygonネットワークにコントラクトをデプロイする準備は完了です。
 
-
 ### 🧙‍♂️ テストを作成・実行する
 
 ここまでの作業でコントラクトには基本機能として以下の機能が追加されました。
-* NFTをmintする機能
-* nftをコントラクト所有者にためにキープする機能
-* コントラクトにETHを送金できる機能
+
+- NFTをmintする機能
+- nftをコントラクト所有者にためにキープする機能
+- コントラクトにETHを送金できる機能
 
 これらの基本機能をテストスクリプトとして記述していきましょう。
 ではpackages/contract/testに`test.js`という名前でファイルを作成して、以下のように記述しましょう。
-```js
-const hre = require('hardhat');
-const { expect } = require('chai');
 
-describe('Generative-NFT', () => {
-  it('mint is successed', async () => {
+```js
+const hre = require("hardhat");
+const { expect } = require("chai");
+
+describe("Generative-NFT", () => {
+  it("mint is successed", async () => {
     // あなたのコレクションの Base Token URI（JSON の CID）に差し替えてください
     const baseTokenURI =
-      'ipfs.io/ipfs/QmZbWNKJPAjxXuNFSEaksCJVd1M6DaKQViJBYPK2BdpDEP/';
+      "ipfs.io/ipfs/QmZbWNKJPAjxXuNFSEaksCJVd1M6DaKQViJBYPK2BdpDEP/";
 
     // オーナー/デプロイヤーのウォレットアドレスを取得する
     const [owner] = await hre.ethers.getSigners();
 
     // デプロイしたいコントラクトを取得
     const contractFactory = await hre.ethers.getContractFactory(
-      'NFTCollectible',
+      "NFTCollectible"
     );
 
     // 正しいコンストラクタ引数（baseTokenURI）でコントラクトをデプロイします。
@@ -94,7 +95,7 @@ describe('Generative-NFT', () => {
 
     // 0.03 ETH を送信して3つ NFT を mint できるかチェック
     txn = await contract.mintNFTs(3, {
-      value: hre.ethers.utils.parseEther('0.03'),
+      value: hre.ethers.utils.parseEther("0.03"),
     });
     await txn.wait();
     tokens = await contract.tokensOfOwner(owner.address);
@@ -211,15 +212,15 @@ Matic MainnetをMetaMaskに追加するには、次の手順に従ってくだ�
 
 まず、[Polygonscan](https://polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Polygon Network`ボタンをクリックします。
 
-![](/public/images/Polygon-Generative-NFT/section-3/3_2_1.png)
+![](/images/Polygon-Generative-NFT/section-3/3_2_1.png)
 
 下記のようなポップアップが立ち上がったら、`Switch Network`をクリックしましょう。
 
-![](/public/images/Polygon-Generative-NFT/section-3/3_2_2.png)
+![](/images/Polygon-Generative-NFT/section-3/3_2_2.png)
 
 `Matic Mainnet`があなたのMetaMaskにセットアップされました。
 
-![](/public/images/Polygon-Generative-NFT/section-3/3_2_3.png)
+![](/images/Polygon-Generative-NFT/section-3/3_2_3.png)
 
 **2 \. Polygon Mumbai-Testnet を MetaMask に接続する**
 
@@ -233,15 +234,15 @@ Hardhatを使用する場合、AlchemyのカスタムRPC URLが必要です。
 
 [alchemy.com](https://www.alchemy.com/) に再度ログインして、`Create App`を選択し、下記のように設定してください。
 
-![](/public/images/Polygon-Generative-NFT/section-3/3_2_4.png)
+![](/images/Polygon-Generative-NFT/section-3/3_2_4.png)
 
 次に、下図のように、新しく作成した`Polygon NFT`アプリケーションの`VIEW DETAILS`をクリックしましょう。
 
-![](/public/images/Polygon-Generative-NFT/section-3/3_2_5.png)
+![](/images/Polygon-Generative-NFT/section-3/3_2_5.png)
 
 次に、アプリケーションの`VIEW KEY`をクリックし、`HTTP` URLをコピーしてください。
 
-![](/public/images/Polygon-Generative-NFT/section-3/3_2_6.png)
+![](/images/Polygon-Generative-NFT/section-3/3_2_6.png)
 
 それでは、`packages/contract/.env`ファイルを開き、コピーした`HTTP` URLを下記の`Alchemy Polygon URL`の部分に貼り付けていきます。
 
@@ -255,7 +256,7 @@ MetaMaskとHardhatの両方でPolygonネットワークの設定が完了した�
 
 [こちら](https://faucet.polygon.technology/) にアクセスして、下記のように偽MATICをリクエストしてください。
 
-![](/public/images/Polygon-Generative-NFT/section-3/3_2_7.png)
+![](/images/Polygon-Generative-NFT/section-3/3_2_7.png)
 
 Sepoliaとは異なり、これらのトークンの取得にそれほど問題はないはずです。
 
@@ -339,7 +340,7 @@ Owner has tokens:  []
 
 次に、[mumbai.polygonscan.com](https://mumbai.polygonscan.com/) に向かい、コントラクトアドレス(`Contract deployed to`に続く`0x..`)を検索して、コントラクトがデプロイされたことを確認しましょう。
 
-![](/public/images/Polygon-Generative-NFT/section-3/3_2_8.png)
+![](/images/Polygon-Generative-NFT/section-3/3_2_8.png)
 
 ### 📝 Polygonscan を使ってコントラクトを verify（検証）する
 
@@ -349,16 +350,16 @@ Owner has tokens:  []
 
 次に、APIの作成に進みます。下図のように、`API-Keys`のタブを選択し、`+ Add`ボタンを押してください。
 
-![](/public/images/Polygon-Generative-NFT/section-3/3_2_9.png)
+![](/images/Polygon-Generative-NFT/section-3/3_2_9.png)
 
 ポップアップが開くので、APIに任意の名前をつけて、保存しましょう。
 
 APIを作成したら、そのAPIの`Edit`ボタンをクリックしてください。
-![](/public/images/Polygon-Generative-NFT/section-3/3_2_10.png)
+![](/images/Polygon-Generative-NFT/section-3/3_2_10.png)
 
 下記の画面に遷移するので、`Polygon-API-Key`をコピーしましょう。
 
-![](/public/images/Polygon-Generative-NFT/section-3/3_2_11.png)
+![](/images/Polygon-Generative-NFT/section-3/3_2_11.png)
 
 最後にもう一度`packages/contract/.env`ファイルを開き、下記にコピーした`Polygon-API-Key`の値を貼り付けます。
 

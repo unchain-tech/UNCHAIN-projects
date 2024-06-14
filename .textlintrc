@@ -29,7 +29,7 @@
     "preset-ja-technical-writing": {
       "arabic-kanji-numbers": true,
       "sentence-length": {
-        "max": 200
+        "max": 300
       },
       "max-comma": {
         "max": 6
@@ -37,12 +37,26 @@
       "max-ten": {
         "max": 6,
         "strict": false,
-        "touten": ["、", ","],
-        "kuten": ["。", "."]
+        "touten": [
+          "、",
+          ","
+        ],
+        "kuten": [
+          "。",
+          "."
+        ]
       },
       "max-kanji-continuous-len": {
         "max": 6,
-        "allow": ["公開鍵暗号方式", "最大送金手数料", "分散型自律組織", "運転免許証番号", "暗号通貨取引所", "候補者追加画面", "投票者追加画面"]
+        "allow": [
+          "公開鍵暗号方式",
+          "最大送金手数料",
+          "分散型自律組織",
+          "運転免許証番号",
+          "暗号通貨取引所",
+          "候補者追加画面",
+          "投票者追加画面"
+        ]
       },
       "no-mix-dearu-desumasu": {
         "preferInHeader": "",
@@ -68,11 +82,21 @@
       "ja-no-successive-word": true,
       "ja-no-abusage": false,
       "ja-no-redundant-expression": false,
-      "ja-unnatural-alphabet": {"allow": ["x", "y", "z", "k", "n", "e", "/[A-Z]/"]},
+      "ja-unnatural-alphabet": {
+        "allow": [
+          "x",
+          "y",
+          "z",
+          "k",
+          "n",
+          "e",
+          "/[A-Z]/"
+        ]
+      },
       "no-unmatched-pair": true,
       "ja-no-mixed-period": false,
       "no-doubled-joshi": {
-        "min_interval" : 1,
+        "min_interval": 1,
         "strict": false,
         "allow": [
           "か",
@@ -92,11 +116,11 @@
           "!",
           "？",
           "！"
-      ],
-      "commaCharacters": [
+        ],
+        "commaCharacters": [
           "、",
           "，"
-      ]
+        ]
       }
     },
     "no-mixed-zenkaku-and-hankaku-alphabet": {

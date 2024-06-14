@@ -28,7 +28,7 @@ Created PostCSS config file: postcss.config.cjs
 ```javascript
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{html,js,svelte,ts}'],
+  content: ["./src/**/*.{html,js,svelte,ts}"],
   theme: {
     extend: {},
   },
@@ -53,13 +53,13 @@ module.exports = {
 [App.svelte]
 
 ```javascript
-<h1 class='text-red-600'>Vite + Svelte</h1>
+<h1 class="text-red-600">Vite + Svelte</h1>
 ```
 
 `Vite + Svelte`の部分が赤字に変わっていたら成功です！
 `app.css`を上書きしたことにより、表示が崩れてしまいますが気にせず進みましょう。
 
-![](/public/images/ICP-Static-Site/section-2/2_2_1.png)
+![](/images/ICP-Static-Site/section-2/2_2_1.png)
 
 この時点でのファイル構成を`tree`コマンドで確認してみましょう。最後に指定した`.`は、現在自分がいるディレクトリ（カレントディレクトリ）を意味します。
 

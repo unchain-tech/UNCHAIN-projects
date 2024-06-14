@@ -12,7 +12,6 @@ MVPを起点にしてWebアプリケーションのアップグレードにチ�
 
 3\. GIFデータ送信時に表示されるローディング画面を実装する。
 
-
 ### 🙉 `.env`プロパティを設定する
 
 Git hubなどにコードをアップロードする際は、秘密鍵や構成ファイル等の見られたくないファイルはアップロードしないように設定する必要があります。
@@ -46,7 +45,7 @@ SOLANA_NETWORK=devnet
 ※ `require('dotenv').config();`はimport文の直下に追加し、`clusterApiUrl`の引数を`process.env.SOLANA_NETWORK`に変更してください。
 
 ```javascript
-require('dotenv').config();
+require("dotenv").config();
 
 // ネットワークをdevnetに設定します。
 const network = clusterApiUrl(process.env.SOLANA_NETWORK);
@@ -65,7 +64,6 @@ node_modules
 ```
 
 これで、GitHubにアップロードしたくない情報をアップロードしないで済みます。
-
 
 ### 🚀 Vercel に Web アプリケーションをデプロイする
 
@@ -93,30 +91,29 @@ git push
 
 1\. Vercelのダッシュボードから、`New Project`をクリックしてください。
 
-![new project](/public/images/Solana-dApp/section-4/4_1_1.png)
+![new project](/images/Solana-dApp/section-4/4_1_1.png)
 
 2\. `Import Git Repository`で自分のGitHubアカウントを接続したら、Webアプリケーションのリポジトリを`Import`してください。
 
-![Import](/public/images/Solana-dApp/section-4/4_1_2.png)
+![Import](/images/Solana-dApp/section-4/4_1_2.png)
 
 3\. プロジェクトの設定では、**FRAMEWORK PRESET** に`Create React App`、**ROOT DIRECTORY** に`app`を入力してください。
 
 4\. プロジェクトを作成します。`Root Directory`が「packages/client」となっていることを確認してください。
 
-![](/public/images/ETH-NFT-Collection/section-4/4_2_9.png)
+![](/images/ETH-NFT-Collection/section-4/4_2_9.png)
 
 5\. **Environment Variables** に`.env`で設定した環境変数（NAME: SOLANA_NETWORK、VALUE: devnet）を直接入力してください( GitHubには`.env`ファイルを保存していないため、`Vercel`に直接記載する必要があります)。
 
-![Environment Variables1](/public/images/Solana-dApp/section-4/4_1_3.png)
+![Environment Variables1](/images/Solana-dApp/section-4/4_1_3.png)
 
-![Environment Variables2](/public/images/Solana-dApp/section-4/4_1_4.png)
+![Environment Variables2](/images/Solana-dApp/section-4/4_1_4.png)
 
 6\.[Deploy]ボタンを押してデプロイします（VercelはGitHubと連動しているので、GitHubが更新されるたびに自動でデプロイを行ってくれます）。
 
 **Vercel へのデプロイが無事完了しました!**
 
 ぜひデプロイされたWebアプリケーションを自分の目で確認してみてください!!
-
 
 ### 🙋‍♂️ 質問する
 
@@ -131,7 +128,6 @@ git push
 4. エラー画面のスクリーンショット
 ```
 
-
 ### 🎫 NFT を取得しよう!
 
 NFTを取得する条件は、以下のようになります。
@@ -145,7 +141,6 @@ NFTを取得する条件は、以下のようになります。
 4. Discordの`🔥｜completed-projects`チャンネルに、あなたのWebサイトをシェアしてください 😉🎉 。Discordへ投稿する際に、追加実装した機能とその概要も教えていただけると幸いです!
 
 プロジェクトを完成させていただいた方には、NFTをお送りします。
-
 
 ### 😍 完成!
 

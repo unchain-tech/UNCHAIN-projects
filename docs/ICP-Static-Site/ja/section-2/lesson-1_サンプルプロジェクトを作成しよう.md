@@ -99,7 +99,7 @@ npm run dev
 
 `Local:`に表示されたURLにアクセスすると、ブラウザでサンプルプロジェクトが確認できます。
 
-![](/public/images/ICP-Static-Site/section-2/2_1_1.png)
+![](/images/ICP-Static-Site/section-2/2_1_1.png)
 
 ### 🙋‍♂️ 質問する
 

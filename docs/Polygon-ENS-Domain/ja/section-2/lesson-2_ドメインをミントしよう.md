@@ -5,37 +5,37 @@
 まず、ユーザーのドメイン名と保存するデータを取得する必要があるので、それを実行しましょう。
 
 ```javascript
-import React, { useEffect, useState } from 'react';
-import './styles/App.css';
-import twitterLogo from './assets/twitter-logo.svg';
-import { ethers } from 'ethers';
+import React, { useEffect, useState } from "react";
+import "./styles/App.css";
+import twitterLogo from "./assets/twitter-logo.svg";
+import { ethers } from "ethers";
 
-const TWITTER_HANDLE = 'UNCHAIN_tech';
+const TWITTER_HANDLE = "UNCHAIN_tech";
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 // 登録したいドメインです。好みで変えてみましょう。
-const tld = '.ninja';
-const CONTRACT_ADDRESS = 'YOUR_CONTRACT_ADDRESS_HERE';
+const tld = ".ninja";
+const CONTRACT_ADDRESS = "YOUR_CONTRACT_ADDRESS_HERE";
 
 const App = () => {
-  const [currentAccount, setCurrentAccount] = useState('');
+  const [currentAccount, setCurrentAccount] = useState("");
   // state管理するプロパティを追加しています。
-  const [domain, setDomain] = useState('');
-  const [record, setRecord] = useState('');
+  const [domain, setDomain] = useState("");
+  const [record, setRecord] = useState("");
 
   const connectWallet = async () => {
     try {
       const { ethereum } = window;
 
       if (!ethereum) {
-        alert('Get MetaMask -> https://metamask.io/');
+        alert("Get MetaMask -> https://metamask.io/");
         return;
       }
 
       const accounts = await ethereum.request({
-        method: 'eth_requestAccounts',
+        method: "eth_requestAccounts",
       });
 
-      console.log('Connected', accounts[0]);
+      console.log("Connected", accounts[0]);
       setCurrentAccount(accounts[0]);
     } catch (error) {
       console.log(error);
@@ -46,20 +46,20 @@ const App = () => {
     const { ethereum } = window;
 
     if (!ethereum) {
-      console.log('Make sure you have metamask!');
+      console.log("Make sure you have metamask!");
       return;
     } else {
-      console.log('We have the ethereum object', ethereum);
+      console.log("We have the ethereum object", ethereum);
     }
 
-    const accounts = await ethereum.request({ method: 'eth_accounts' });
+    const accounts = await ethereum.request({ method: "eth_accounts" });
 
     if (accounts.length !== 0) {
       const account = accounts[0];
-      console.log('Found an authorized account:', account);
+      console.log("Found an authorized account:", account);
       setCurrentAccount(account);
     } else {
-      console.log('No authorized account found');
+      console.log("No authorized account found");
     }
   };
 
@@ -194,7 +194,7 @@ return (
 
 アプリを見ると、次の入力フォームが表示されます。
 
-![](/public/images/Polygon-ENS-Domain/section-2/2_3_1.png)
+![](/images/Polygon-ENS-Domain/section-2/2_3_1.png)
 
 **注：** 現在、Mintボタンは何も機能しません。これは予想できますね。
 
@@ -214,14 +214,14 @@ const mintDomain = async () => {
   }
   // ドメインが3文字に満たない、短すぎる場合にアラートを出します。
   if (domain.length < 3) {
-    alert('Domain must be at least 3 characters long');
+    alert("Domain must be at least 3 characters long");
     return;
   }
   // ドメインの文字数に応じて価格を計算します。
   // 3 chars = 0.05 MATIC, 4 chars = 0.03 MATIC, 5 or more = 0.01 MATIC
   const price =
-    domain.length === 3 ? '0.05' : domain.length === 4 ? '0.03' : '0.01';
-  console.log('Minting domain', domain, 'with price', price);
+    domain.length === 3 ? "0.05" : domain.length === 4 ? "0.03" : "0.01";
+  console.log("Minting domain", domain, "with price", price);
   try {
     const { ethereum } = window;
     if (ethereum) {
@@ -233,7 +233,7 @@ const mintDomain = async () => {
         signer
       );
 
-      console.log('Going to pop wallet now to pay gas...');
+      console.log("Going to pop wallet now to pay gas...");
       let tx = await contract.register(domain, {
         value: ethers.utils.parseEther(price),
       });
@@ -243,19 +243,19 @@ const mintDomain = async () => {
       // トランザクションが問題なく実行されたか確認します。
       if (receipt.status === 1) {
         console.log(
-          'Domain minted! https://mumbai.polygonscan.com/tx/' + tx.hash
+          "Domain minted! https://mumbai.polygonscan.com/tx/" + tx.hash
         );
 
         // domain,recordをセットします。
         tx = await contract.setRecord(domain, record);
         await tx.wait();
 
-        console.log('Record set! https://mumbai.polygonscan.com/tx/' + tx.hash);
+        console.log("Record set! https://mumbai.polygonscan.com/tx/" + tx.hash);
 
-        setRecord('');
-        setDomain('');
+        setRecord("");
+        setDomain("");
       } else {
-        alert('Transaction failed! Please try again');
+        alert("Transaction failed! Please try again");
       }
     }
   } catch (error) {
@@ -292,7 +292,7 @@ const contract = new ethers.Contract(CONTRACT_ADDRESS, contractAbi.abi, signer);
 忘れたり紛失したりしても心配はいりません。コントラクトを再デプロイして新しいコントラクトアドレスを取得してください。
 
 ```javascript
-console.log('Going to pop wallet now to pay gas...');
+console.log("Going to pop wallet now to pay gas...");
 let tx = await contract.register(domain, {
   value: ethers.utils.parseEther(price),
 });
@@ -301,18 +301,18 @@ const receipt = await tx.wait();
 
 // トランザクションが完了したか確認します。
 if (receipt.status === 1) {
-  console.log('Domain minted! https://mumbai.polygonscan.com/tx/' + tx.hash);
+  console.log("Domain minted! https://mumbai.polygonscan.com/tx/" + tx.hash);
 
   // domain,recordをセットします。
   tx = await contract.setRecord(domain, record);
   await tx.wait();
 
-  console.log('Record set! https://mumbai.polygonscan.com/tx/' + tx.hash);
+  console.log("Record set! https://mumbai.polygonscan.com/tx/" + tx.hash);
 
-  setRecord('');
-  setDomain('');
+  setRecord("");
+  setDomain("");
 } else {
-  alert('Transaction failed! Please try again');
+  alert("Transaction failed! Please try again");
 }
 ```
 
@@ -395,7 +395,7 @@ ABIファイルの内容を新しいファイルに貼り付けます。
 次のようになります。
 
 ```javascript
-import contractAbi from './utils/contractABI.json';
+import contractAbi from "./utils/contractABI.json";
 ```
 
 すべて完了しました。
@@ -404,7 +404,7 @@ import contractAbi from './utils/contractABI.json';
 
 このような画面になるはずです。
 
-![](/public/images/Polygon-ENS-Domain/section-2/2_3_2.png)
+![](/images/Polygon-ENS-Domain/section-2/2_3_2.png)
 
 ここから行う必要があるのは、ドメイン名とレコードを入力し、`Mint`をクリックして、ガスを支払い（偽のMATICを使用）、トランザクションがマイニングされるのを待つだけです。
 
@@ -422,7 +422,7 @@ NFTミンティングサイトが実際にどのように機能するかを確�
 
 下は一例です。`nin-nin.ninja`をミントしました。
 
-![](/public/images/Polygon-ENS-Domain/section-2/2_3_3.png)
+![](/images/Polygon-ENS-Domain/section-2/2_3_3.png)
 
 (ガスについて詳しく知りたい方は英語になりますが[ここ](https://ethereum.org/en/developers/docs/gas/)を参照してみてください。)
 
@@ -452,6 +452,7 @@ NFTミンティングサイトが実際にどのように機能するかを確�
 3. エラー文をコピー&ペースト
 4. エラー画面のスクリーンショット
 ```
+
 ---
 
-おめでとうございます! Section 2が完了しました! ぜひあなたのが新しくMintしたNFTをDiscordの`polygon-ens-domain`でシェアしてください😊
+おめでとうございます! Section 2が完了しました! ぜひあなたのが新しくMintしたNFTをDiscordの`polygon-ens-domain`でシェアしてください 😊

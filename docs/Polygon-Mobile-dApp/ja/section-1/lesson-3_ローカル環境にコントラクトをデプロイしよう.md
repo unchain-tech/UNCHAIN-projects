@@ -2,7 +2,6 @@
 
 前のセクションでスマートコントラクトが書けたので、次はそれをデプロイします。
 
-
 ### 🦊 MetaMask に Polygon Network を追加する
 
 MetaMaskウォレットにMatic MainnetとPolygon Mumbai-Testnetを追加してみましょう。
@@ -13,15 +12,15 @@ Matic MainnetをMetaMaskに追加するには、次の手順に従ってくだ�
 
 まず、[Polygonscan](https://polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Polygon Network`ボタンをクリックします。
 
-![](/public/images/Polygon-Mobile-dApp/section-3/3_1_1.png)
+![](/images/Polygon-Mobile-dApp/section-3/3_1_1.png)
 
 下記のようなポップアップが立ち上がったら、`Switch Network`をクリックしましょう。
 
-![](/public/images/Polygon-Mobile-dApp/section-3/3_1_2.png)
+![](/images/Polygon-Mobile-dApp/section-3/3_1_2.png)
 
 `Matic Mainnet`があなたのMetaMaskにセットアップされました。
 
-![](/public/images/Polygon-Mobile-dApp/section-3/3_1_3.png)
+![](/images/Polygon-Mobile-dApp/section-3/3_1_3.png)
 
 **2 \. Polygon Mumbai-Testnet を MetaMask に接続する**
 
@@ -37,7 +36,7 @@ MetaMaskでPolygonネットワークの設定が完了したら、偽のMATICを
 
 [こちら](https://faucet.polygon.technology/) にアクセスして、下記のように偽MATICをリクエストしてください。
 
-![](/public/images/Polygon-Mobile-dApp/section-3/3_1_4.png)
+![](/images/Polygon-Mobile-dApp/section-3/3_1_4.png)
 
 Sepoliaとは異なり、これらのトークンの取得にそれほど問題はないはずです。
 
@@ -55,7 +54,6 @@ Sepoliaとは異なり、これらのトークンの取得にそれほど問題�
 >
 > Polygon のようなサイドチェーンの場合、`2`の方が簡単で安く済みます。
 
-
 ### ✨ スマートコントラクトを Mumbai testnet に公開する
 
 上記の`providerOrUrl: process.env.ALCHEMY_API_KEY,`の`process.env.ALCHEMY_API_KEY`の部分を、[alchemy.com](https://www.alchemy.com/)で作成したPolygon用のデプロイ先の`API key`に設定します。
@@ -64,11 +62,11 @@ Sepoliaとは異なり、これらのトークンの取得にそれほど問題�
 
 まず、先ほどのリンクからログインして、`Create App`を選択し、下記のように設定してください。
 
-![](/public/images/Polygon-Mobile-dApp/section-3/3_1_5.png)
+![](/images/Polygon-Mobile-dApp/section-3/3_1_5.png)
 
 下の画像で示す部分をクリックすると、`HTTP`を確認できます。
 
-![](/public/images/Polygon-Mobile-dApp/section-3/3_1_6.jpg)
+![](/images/Polygon-Mobile-dApp/section-3/3_1_6.jpg)
 
 次に下記のコマンドを`todo-dApp-contract`フォルダ上でターミナルを開いて実行してください。
 
@@ -87,18 +85,18 @@ solidityのバージョンはあなたが使用しているものに合わせて
 
 ```js
 //hardhat-config.js
-require('@nomicfoundation/hardhat-toolbox');
-require('dotenv').config();
+require("@nomicfoundation/hardhat-toolbox");
+require("dotenv").config();
 
 const { PRIVATE_KEY, STAGING_ALCHEMY_KEY } = process.env;
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
-  solidity: '0.8.17',
+  solidity: "0.8.17",
   networks: {
     mumbai: {
-      url: STAGING_ALCHEMY_KEY || '',
-      accounts: PRIVATE_KEY ? [PRIVATE_KEY] : ['0'.repeat(64)],
+      url: STAGING_ALCHEMY_KEY || "",
+      accounts: PRIVATE_KEY ? [PRIVATE_KEY] : ["0".repeat(64)],
     },
   },
 };
@@ -147,6 +145,7 @@ TodoContract address:  0x14479CaB58EB7B2AF847FCb2DbFD5F7e1bB17A08
 ```
 
 ---
+
 ターミナルの出力結果をDiscordの`#polygon`に投稿して、コミュニティにシェアしてください!
 
 次のセクションに進んで、Flutterアプリケーションへの接続を開始しましょう 🎉

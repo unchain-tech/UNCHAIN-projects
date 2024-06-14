@@ -8,7 +8,7 @@
 yarn deploy --network sepolia
 ```
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_3_1.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_3_1.png)
 
 問題がなければ、以下のような成功の出力が表示されるはずです。
 
@@ -23,7 +23,7 @@ deploying "YourContract" (tx: 0xf404021d736271a7a0a84d124ed35250c533efe37c177536
 yarn verify --network sepolia
 ```
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_3_2.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_3_2.png)
 
 以下のような成功の出力が表示されるはずです...
 
