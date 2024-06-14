@@ -2,7 +2,7 @@
 
 このレッスンでは、ユーザーボード下に表示するオーダー機能を作成してUIを完成させたいと思います。
 
-![](/public/images/ICP-Basic-DEX/section-3/3_4_1.png)
+![](/images/ICP-Basic-DEX/section-3/3_4_1.png)
 
 まずは、オーダー機能を実装するファイルを追加します。
 
@@ -42,10 +42,10 @@ touch ./src/icp_basic_dex_frontend/src/components/PlaceOrder.jsx ./src/icp_basic
 import {
   canisterId as DEXCanisterId,
   createActor,
-} from '../../../declarations/icp_basic_dex_backend';
-import { tokens } from '../utils/token';
-import { Principal } from '@dfinity/principal';
-import { useState } from 'react';
+} from "../../../declarations/icp_basic_dex_backend";
+import { tokens } from "../utils/token";
+import { Principal } from "@dfinity/principal";
+import { useState } from "react";
 
 export const PlaceOrder = (props) => {
   const { agent, updateOrderList } = props;
@@ -180,7 +180,7 @@ export const PlaceOrder = (props) => {
 import {
   canisterId as DEXCanisterId,
   createActor,
-} from '../../../declarations/icp_basic_dex_backend';
+} from "../../../declarations/icp_basic_dex_backend";
 
 export const ListOrder = (props) => {
   const { agent, userPrincipal, orderList, updateOrderList, updateUserTokens } =
@@ -350,7 +350,7 @@ return (
 
 それでは、ブラウザ上で表示の確認をしてみたいと思います。webpackを起動したままの方は、そのまま画面を更新してみましょう。停止した方は、再度`npm start`で起動してURLにアクセスをしましょう。画像のように、フォームとオーダー一覧を表示するリストのタイトルが表示されていたら完成です！
 
-![](/public/images/ICP-Basic-DEX/section-3/3_4_2.png)
+![](/images/ICP-Basic-DEX/section-3/3_4_2.png)
 
 ここまでで、UIが完成しました。次のレッスンで実際に操作をしてみましょう！
 

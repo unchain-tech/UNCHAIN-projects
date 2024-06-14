@@ -12,11 +12,11 @@ Vercelのアカウントをお持ちでない方は、上記のリンクにア�
 
 2 \. Vercelのダッシュボードから、`Add New...`をクリックし、`Project`を選択します。
 
-![](/public/images/Solana-Wallet/section-3/3_3_1.png)
+![](/images/Solana-Wallet/section-3/3_3_1.png)
 
 3 \. Webアプリケーションのリポジトリを`Import`してください。
 
-![](/public/images/Solana-Wallet/section-3/3_3_2.png)
+![](/images/Solana-Wallet/section-3/3_3_2.png)
 
 4 \. 必要項目を埋めていきます。**FRAMEWORK PRESET** では`Next.js`を選択してください。
 
@@ -24,11 +24,11 @@ Vercelのアカウントをお持ちでない方は、上記のリンクにア�
 
 環境変数`CI = false`を追加することにより、警告が原因でビルドが失敗しないようになります。
 
-![](/public/images/Solana-Wallet/section-3/3_3_3.png)
+![](/images/Solana-Wallet/section-3/3_3_3.png)
 
 6 \. デプロイします!
 
-7 \. デプロイが完了し、ローカルと同じ動作が確認できれば成功です!おめでとうございます🥭
+7 \. デプロイが完了し、ローカルと同じ動作が確認できれば成功です!おめでとうございます 🥭
 
 ### 🎫 NFT を取得しよう
 

@@ -2,7 +2,7 @@
 
 このレッスンでは、ユーザーが保有するトークンの情報を一覧表示するボードを作成していきます。
 
-![](/public/images/ICP-Basic-DEX/section-3/3_3_1.png)
+![](/images/ICP-Basic-DEX/section-3/3_3_1.png)
 
 ユーザーボードは以下の機能を持ちます。
 
@@ -80,14 +80,14 @@ export const tokens = [
 import {
   canisterId as faucetCanisterId,
   createActor as faucetCreateActor,
-} from '../../../declarations/faucet';
+} from "../../../declarations/faucet";
 import {
   canisterId as DEXCanisterId,
   createActor as DEXCreateActor,
   icp_basic_dex_backend as DEX,
-} from '../../../declarations/icp_basic_dex_backend';
-import { tokens } from '../utils/token';
-import { Principal } from '@dfinity/principal';
+} from "../../../declarations/icp_basic_dex_backend";
+import { tokens } from "../utils/token";
+import { Principal } from "@dfinity/principal";
 
 export const UserBoard = (props) => {
   const { agent, userPrincipal, userTokens, setUserTokens } = props;
@@ -460,7 +460,7 @@ webpack 5.74.0 compiled successfully in 1260 ms
 
 ログインのセッションが切れている場合、再度ログインボタンを押してアンカーを入力しましょう。認証後、以下のようにユーザーボードが表示されていたら完成です！
 
-![](/public/images/ICP-Basic-DEX/section-3/3_3_2.png)
+![](/images/ICP-Basic-DEX/section-3/3_3_2.png)
 
 ### 🙋‍♂️ 質問する
 

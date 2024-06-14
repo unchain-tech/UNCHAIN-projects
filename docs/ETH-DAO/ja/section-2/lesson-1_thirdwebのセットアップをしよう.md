@@ -32,7 +32,6 @@ Solidityのコードを書くのに比べて、thirdwebでスマートコント�
 
 ※ thirdwebはデータベースを持っておらず、あなたのデータはすべてオンチェーンに保存されます。
 
-
 ### 📝 環境変数を設定しよう
 
 thirdwebを使ってSepoliaにコントラクトを作成し、デプロイするためにはスクリプトをいくつか作成する必要があります。
@@ -49,7 +48,7 @@ SECRET_KEY=YOUR_SECRET_KEY
 
 > ⚠️ 注意：thirdweb は、あなたに代わってコントラクトをデプロイするために、これらすべての環境変数を必要とします。
 >
-> 秘密鍵を盗まれてしまう恐れがあるので、**`.env.local`ファイルを GitHub にコミットしないよう気をつけてください**。.gitignoreファイルに`.env.local`が含まれていることを確認してください。
+> 秘密鍵を盗まれてしまう恐れがあるので、**`.env.local`ファイルを GitHub にコミットしないよう気をつけてください**。.gitignore ファイルに`.env.local`が含まれていることを確認してください。
 
 `YOUR_PRIVATE_KEY_HERE`にはMetamaskのPrivate Keyを、`YOUR_CLIENT_ID`にはthirdweb APIキーのClient IDを、`YOUR_SECRET_KEY`にはthirdweb APIキーのSecret Keyを設定していきましょう。
 
@@ -57,29 +56,29 @@ PRIVATE_KEYの取得方法は、[こちら](https://metamask.zendesk.com/hc/en-u
 
 ※ CLIENT_IDとSECRET_KEYの取得方法については以下で解説していきます。
 
-### 🔑 APIキーを作成する
+### 🔑 API キーを作成する
 
 SDKでthirdwebのインフラサービスを利用するには、APIキーが必要になります。APIキーは、thirdwebのダッシュボードから無料で作成することができます。
 
 [こちら](https://thirdweb.com/dashboard/settings/api-keys)からthirdwebのダッシュボードにアクセスをして、ウォレット接続を行いSign inしましょう。
 
-![](/public/images/ETH-DAO/section-2/2_1_1.png)
+![](/images/ETH-DAO/section-2/2_1_1.png)
 
 Sign inが完了したら、ダッシュボード右上の「+ Create API Key」をクリックします。
 
-![](/public/images/ETH-DAO/section-2/2_1_2.png)
+![](/images/ETH-DAO/section-2/2_1_2.png)
 
 APIキーに任意の名前をつけて、「Next」をクリックします。
 
-![](/public/images/ETH-DAO/section-2/2_1_3.png)
+![](/images/ETH-DAO/section-2/2_1_3.png)
 
 次に、APIキーの設定を行います。下記画像のようにサービス有効化とアクセス制限の設定を行い、最後に「Create」をクリックします。
 
-![](/public/images/ETH-DAO/section-2/2_1_4.png)
+![](/images/ETH-DAO/section-2/2_1_4.png)
 
 画面上に作成したAPIキーの`Client ID`と`Secret Key`が表示されます。これらの値をコピーして、`.env.local`の`YOUR_CLIENT_ID`と`YOUR_SECRET_KEY`にそれぞれ設定しましょう。注意書きにもありますが、Secret Keyは表示されている画面を閉じると二度と取得することはできないので、大切に保管してください。設定と保管が完了したら、「I have stored the Secret Key securely」をクリックして画面を閉じます。
 
-![](/public/images/ETH-DAO/section-2/2_1_5.png)
+![](/images/ETH-DAO/section-2/2_1_5.png)
 
 ### 🐣 テストネットから始める
 
@@ -99,7 +98,6 @@ APIキーに任意の名前をつけて、「Next」をクリックします。
 
 このセクションでは、コードを書きながら、これらのイベントについての理解を深めていきます。
 
-
 ### 🚰 偽の ETH を取得する
 
 今回は、`Sepolia`というイーサリアム財団によって運営されているテストネットを使用します。
@@ -112,25 +110,24 @@ APIキーに任意の名前をつけて、「Next」をクリックします。
 >
 > 1 \. MetaMask ウォレットのネットワークトグルを開く。
 >
-> ![](/public/images/ETH-DAO/section-2/2_1_6.png)
+> ![](/images/ETH-DAO/section-2/2_1_6.png)
 >
 > 2 \. `Show/hide test networks`をクリック。
 >
-> ![](/public/images/ETH-DAO/section-2/2_1_7.png)
+> ![](/images/ETH-DAO/section-2/2_1_7.png)
 >
 > 3 \. `Show test networks`を`ON`にする。
 >
-> ![](/public/images/ETH-DAO/section-2/2_1_8.png)
+> ![](/images/ETH-DAO/section-2/2_1_8.png)
 >
 > 4 \. `Sepolia Test Network`を選択する。
 >
-> ![](/public/images/ETH-DAO/section-2/2_1_9.png)
+> ![](/images/ETH-DAO/section-2/2_1_9.png)
 
 MetaMaskウォレットに`Sepolia Test Network`が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽ETHを取得しましょう。
 
 - [Alchemy](https://sepoliafaucet.com/) - 1 Sepolia ETH（24時間に1度もらうことができる）
   - ウォレットアドレスを入力して`Send Me ETH`ボタンを押下するとその場でもらえます
-
 
 ### 🙋‍♂️ 質問する
 

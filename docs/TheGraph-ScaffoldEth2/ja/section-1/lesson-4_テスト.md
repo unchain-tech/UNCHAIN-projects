@@ -16,6 +16,6 @@
 
 このような素晴らしいレスポンスが得られるはずです：
 
-![](/public/images/TheGraph-ScaffoldEth2/section-1/1_4_1.png)
+![](/images/TheGraph-ScaffoldEth2/section-1/1_4_1.png)
 
 データとは素晴らしいものですね？

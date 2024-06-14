@@ -18,11 +18,11 @@ To elaborate, the dApp will allow users to connect their Metamask wallets, and o
 
 This is the mint page：
 
-![image-20230223171808615](/public/images/Polygon-Whitelist-NFT/section-0/0_1_1.png)
+![image-20230223171808615](/images/Polygon-Whitelist-NFT/section-0/0_1_1.png)
 
-This is how it looks like on OpenSea once we finished: 
+This is how it looks like on OpenSea once we finished:
 
-![image-20230223163620536](/public/images/Polygon-Whitelist-NFT/section-0/0_1_2.png)
+![image-20230223163620536](/images/Polygon-Whitelist-NFT/section-0/0_1_2.png)
 
 ### 🌍 Upgrading this project
 
@@ -52,4 +52,5 @@ Creating `pull request` and `issues` is an important task when actually developi
 Let's make the UNCHAIN project better together ✨.
 
 ### 🙋‍♂️ Asking Questions
+
 If you have any questions or uncertainties up to this point, please ask in the `#polygon` channel on Discord.

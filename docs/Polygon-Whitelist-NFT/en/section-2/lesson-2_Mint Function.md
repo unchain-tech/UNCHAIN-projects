@@ -1,4 +1,4 @@
-### 💳　Write an NFT contract that only allows addresses within the whitelist to MINT.
+### 💳 　 Write an NFT contract that only allows addresses within the whitelist to MINT.
 
 For our dApp smart contract, we choose the ERC 721 contract which is the same as BAYC. We will modify it by adding a whitelist restriction feature.
 
@@ -9,7 +9,7 @@ For our dApp smart contract, we choose the ERC 721 contract which is the same as
         owner = msg.sender;
 		...
     }
-    
+
     function addToWhitelist(address _address) public {
         // Check if the user is the owner
         require(owner == msg.sender, "Caller is not the owner");
@@ -17,32 +17,32 @@ For our dApp smart contract, we choose the ERC 721 contract which is the same as
     }
 ```
 
-
 In the whitelist contract, we set the owner address and use the `require` method to ensure that the functionality to add or remove from the whitelist can only be invoked by the contract deployer.
 
 Here, we'll use a more secure and efficient way — the [OpenZeppelin](https://www.openzeppelin.com/about) smart contract library.
 
 We will use [OpenZeppelin](https://www.openzeppelin.com/about)'s `Ownable.sol` to help us implement the owner privilege functionality.
 
-* By default, the owner of the Ownable contract is the account that deploys it.
-- Ownable also allows you to:
+- By default, the owner of the Ownable contract is the account that deploys it.
+
+* Ownable also allows you to:
   - Transfer ownership of the owner's account to a new account, and
   - Renounce ownership: The owner gives up this administrative privilege, a common pattern after the initial management phase of the contract, making the contract more decentralized.
 
 Additionally, we will use an extension of the ERC721 contract called [ERC721 Enumerable](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/extensions/ERC721Enumerable.sol), which includes all the features of ERC721 along with some additional implementations.
 
 - ERC721 Enumerable helps you keep track of all tokenIds within a contract and the tokensIds held by a given address within the contract.
-- It implements various helpful [functions](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#ERC721Enumerable) such as `tokenOfOwnerByIndex`. 
+- It implements various helpful [functions](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#ERC721Enumerable) such as `tokenOfOwnerByIndex`.
 
 We will create a folder named "`interfaces`" under the "`contracts`" directory.
 
-![image-20230222235209219](/public/images/Polygon-Whitelist-NFT/section-2/2_2_1.png)
+![image-20230222235209219](/images/Polygon-Whitelist-NFT/section-2/2_2_1.png)
 
 Within the "`interfaces`" folder, we'll create a contract named `IWhitelist.sol`.
 
 > Note: Solidity files that contain only interfaces typically have a prefix `I` to indicate that they are just an [interface](https://solidity-by-example.org/interface/).
 
-![image-20230222235330497](/public/images/Polygon-Whitelist-NFT/section-2/2_2_2.png)
+![image-20230222235330497](/images/Polygon-Whitelist-NFT/section-2/2_2_2.png)
 
 We'll insert the following code into the `IWhitelist.sol`.
 
@@ -54,11 +54,12 @@ interface IWhitelist {
     function whitelistedAddresses(address) external view returns (bool);
 }
 ```
+
 This is an interface file. It makes it convenient for other smart contracts to call the `whitelistedAddresses` function in `Whitelist.sol`. Which in turn verifies whether an address is in the whitelist.
 
 Next, we will create `Shield.sol` under the folder `contracts`.
 
-![image-20230223091938319](/public/images/Polygon-Whitelist-NFT/section-2/2_2_3.png)
+![image-20230223091938319](/images/Polygon-Whitelist-NFT/section-2/2_2_3.png)
 
 We insert the code below in `Shield.sol`.
 
@@ -150,6 +151,7 @@ contract Shield is ERC721Enumerable, Ownable {
     }
 }
 ```
+
 Don't worry, lets talk about this contract step by step.
 
 ```solidity
@@ -164,6 +166,7 @@ contract Shield is ERC721Enumerable, Ownable {
 	...
 	}
 ```
+
 A lot is happening here like `ERC721Enumerable` and `Ownable`. First, you'll notice that when declaring the contract, I "inherit" from two OpenZeppelin contracts. You can read more about inheritance [here](https://solidity-by-example.org/inheritance/?utm_source=buildspace.so&utm_medium=buildspace_project), but essentially, this means that our Shield contract's code includes the code from two contracts, ERC721Enumerable and Ownable. This saves us from having to rewrite the code to implement these two functionalities.
 
 Let's explain a few of the more significant state variables below.
@@ -185,7 +188,7 @@ Let's explain a few of the more significant state variables below.
 ```solidity
     // price is the price of one Shield NFT
     uint256 public price = 0.01 ether;
-    
+
     // max number of Shield NFT
     uint256 public maxTokenIds = 4;
 ```
@@ -244,7 +247,7 @@ Let's focus on explaining the `mint` function:
 
 5. `tokenIds += 1;` After all the aforementioned conditions are met, `tokenIds` will be incremented by 1. Remember, the default value of `tokenIds` is 0, so our `tokenIds` range becomes 1, 2, 3, 4.
 
-6.  `_safeMint(msg.sender, tokenIds);` This is the functionality implemented by `"@openzeppelin/contracts/token/ERC721/ERC721.sol"`. You can explore the specific functionalities by opening that contract. For now, we only need to understand that this will result in minting an NFT to the caller of this function.
+6. `_safeMint(msg.sender, tokenIds);` This is the functionality implemented by `"@openzeppelin/contracts/token/ERC721/ERC721.sol"`. You can explore the specific functionalities by opening that contract. For now, we only need to understand that this will result in minting an NFT to the caller of this function.
 
 ```solidity
     /**
@@ -274,11 +277,11 @@ To withdraw the `ether` from the contract, the `withdraw()` function comes into 
 
 Next, let's compile and deploy this smart contract using the `JS VM`. (You can simply stick with the compiler automatically chosen by ChainIDE.)
 
-![image-20230223092112169](/public/images/Polygon-Whitelist-NFT/section-2/2_2_4.png)
+![image-20230223092112169](/images/Polygon-Whitelist-NFT/section-2/2_2_4.png)
 
 You can observe that on the `Deploy` page, we are required to input the `baseURI` (the root link for Metadata) and `whitelistContract` (the previous whitelist address). Therefore, the next task is to determine how to generate the root link for Metadata.
 
-![image-20230223092203406](/public/images/Polygon-Whitelist-NFT/section-2/2_2_5.png)
+![image-20230223092203406](/images/Polygon-Whitelist-NFT/section-2/2_2_5.png)
 
 ### 🙋‍♂️ Asking Questions
 

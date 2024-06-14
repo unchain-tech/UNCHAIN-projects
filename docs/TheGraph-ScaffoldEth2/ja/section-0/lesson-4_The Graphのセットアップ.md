@@ -16,7 +16,7 @@ yarn clean-node
 yarn run-node
 ```
 
-![](/public/images/TheGraph-ScaffoldEth2/section-0/0_4_1.png)
+![](/images/TheGraph-ScaffoldEth2/section-0/0_4_1.png)
 
 これにより、docker-composeを使用してThe Graphのすべてのコンテナが起動します。"Downloading latest blocks from Ethereum..."と表示されたら、完了です。
 

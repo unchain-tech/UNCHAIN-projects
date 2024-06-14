@@ -1,4 +1,4 @@
-## 💎環境構築をしよう
+## 💎 環境構築をしよう
 
 まず、`node` / `npm`を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスしてください（Hardhatのためのサイトですが気にしないでください）
 
@@ -26,9 +26,7 @@ Polygon-Mobile-dApp
   "description": "Maken mobile dapp",
   "private": true,
   "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
+    "packages": ["packages/*"]
   },
   "scripts": {
     "contract": "yarn workspace contract",
@@ -108,6 +106,7 @@ Polygon-Mobile-dApp
 これでモノレポの雛形が完成しました！
 
 <!-- TODO change how to install hardhat -->
+
 ### ✨ Hardhat をインストールする
 
 スマートコントラクトをすばやくコンパイルし、ローカル環境にてテストを行うために、**Hardhat** というツールを使用します。
@@ -140,7 +139,7 @@ Polygon-Mobile-dApp
   },
   "scripts": {
     "test": "npx hardhat test",
-    "deploy":"npx hardhat run scripts/deploy.ts --network testnet_aurora",
+    "deploy": "npx hardhat run scripts/deploy.ts --network testnet_aurora"
   }
 }
 ```
@@ -177,6 +176,7 @@ npx hardhat init
 ```
 
 （例）
+
 ```
 $ npx hardhat init
 
@@ -262,10 +262,6 @@ npx hardhat compile
 npx hardhat test
 ```
 
-次のように表示されます。
-
-![](/public/images/Polygon-Mobile-dApp/section-1/1_2_2.png)
-
 ターミナル上で`ls`と入力してみて、下記のフォルダーとファイルが表示されていたら成功です。
 
 ```
@@ -282,7 +278,6 @@ artifacts         contracts         node_modules      scripts
 2. `Lock.js`を削除: `rm Lock.js`
 
 次に、上記の手順を参考にして`contracts`の下の`Lock.sol`を削除してください。実際のフォルダは削除しないように注意しましょう。
-
 
 ### ☀️ Hardhat の機能について
 
@@ -330,9 +325,9 @@ Flutterでは、プロジェクトの名前に`-`や大文字を入れること�
 
 この段階で、フォルダ構造は下記のようになっていることを確認してください。
 
-![](/public/images/Polygon-Mobile-dApp/section-2/2_1_1.png)
+![](/images/Polygon-Mobile-dApp/section-2/2_1_1.png)
 
-### ✨ Flutterプロジェクトのセットアップをする。
+### ✨ Flutter プロジェクトのセットアップをする。
 
 まず、開発に必要なパッケージをダウンロードをします。
 

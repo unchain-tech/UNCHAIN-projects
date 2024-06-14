@@ -11,7 +11,7 @@ pragma solidity ^0.8.20;
 contract Whitelist {
     // The address that can operate addAddressToWhitelist function
     address public owner;
-    
+
     // Create a mapping of whitelistedAddresses
     // if an address is whitelisted, we would set it to true, it is false by default for all other addresses.
     mapping(address => bool) private _isWhitelisted;
@@ -55,7 +55,7 @@ contract Whitelist {
     function removeFromWhitelist(address _address) public {
         // Check if the user is the owner
         require(owner == msg.sender, "Caller is not the owner");
-        // Check if the user has not already been whitelisted    
+        // Check if the user has not already been whitelisted
         require(_isWhitelisted[_address], "Address not in whitelist");
         // Remove the address which called the function to the whitelistedAddress array
         _isWhitelisted[_address] = false;
@@ -79,6 +79,7 @@ Let's take it step by step and understand what's happening with this code.
     // The address that can operate addAddressToWhitelist function
     address public owner;
 ```
+
 First, we've set up a state [variable](https://solidity-by-example.org/variables/) called `owner`, with the `data type` address, which refers to the type of wallet address `(e.g., "0xa323A54987cE8F51A648AF2826beb49c368B8bC6")`. The visibility of this variable is set to public, allowing any contract and account to access it. By default, the `owner` is set to 0, but we will configure it later.
 
 ```solidity
@@ -95,7 +96,6 @@ First, we've set up a state [variable](https://solidity-by-example.org/variables
     //Event: record whitelisted excluded addresses
     event RemoveFromWhitelist(address indexed account);
 ```
-
 
 [Events](https://solidity-by-example.org/events/) allow users to log on the Ethereum network, enabling them to keep track of which addresses have been added to or removed from the whitelist at any time.
 
@@ -154,7 +154,7 @@ This function effectively implements the functionality of adding a new address t
     function removeFromWhitelist(address _address) public {
         // Check if the user is the owner
         require(owner == msg.sender, "Caller is not the owner");
-        // Check if the user has not already been whitelisted    
+        // Check if the user has not already been whitelisted
         require(_isWhitelisted[_address], "Address not in whitelist");
         // Remove the address which called the function to the whitelistedAddress array
         _isWhitelisted[_address] = false;
@@ -182,17 +182,17 @@ Finally, we need a function to return whether an address belongs to the whitelis
 
 Alright, next we'll compile and deploy this contract using JS VM.
 
-![image-20230222180958479](/public/images/Polygon-Whitelist-NFT/section-1/1_3_1.png)
+![image-20230222180958479](/images/Polygon-Whitelist-NFT/section-1/1_3_1.png)
 
 Here, we need to enter an array of addresses, which can be obtained from the JS VM accounts below, and switch accounts as needed.
 
 Like: `["0x5B38Da6a701c568545dCfcB03FcB875f56beddC4","0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2"]`
 
-![image-20230222180944652](/public/images/Polygon-Whitelist-NFT/section-1/1_3_2.png)
+![image-20230222180944652](/images/Polygon-Whitelist-NFT/section-1/1_3_2.png)
 
 After deployment is complete, you can call the contract. Try entering some addresses to test it.
 
-![image-20230222181353308](/public/images/Polygon-Whitelist-NFT/section-1/1_3_3.png)
+![image-20230222181353308](/images/Polygon-Whitelist-NFT/section-1/1_3_3.png)
 
 Alright, the whitelist contract is now complete. Next, we will move on to the smart contract writing module for the NFT (Non-Fungible Token) part.
 

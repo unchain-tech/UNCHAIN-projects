@@ -4,7 +4,6 @@
 
 まず、SolanaのテストネットであるDevnetにSolanaプログラムをデプロイする必要があります。
 
-
 ### 🌳 Devnet の環境設定をする
 
 Devnetにデプロイするのはかなり大変です。
@@ -27,7 +26,7 @@ solana config get
 
 Solanaネットワークの接続先の設定が`https://api.devnet.solana.com`となっていることを確認してください。
 
-![solana config](/public/images/Solana-dApp/section-3/3_1_1.jpg)
+![solana config](/images/Solana-dApp/section-3/3_1_1.jpg)
 
 それでは、次にDevnet上のSOLをエアドロップしましょう。
 
@@ -49,8 +48,7 @@ solana balance
 
 ※ 現時点では、一度にエアドロップできるSOLの量は2 SOLまでです。
 
-![airdrop](/public/images/Solana-dApp/section-3/3_1_2.jpg)
-
+![airdrop](/images/Solana-dApp/section-3/3_1_2.jpg)
 
 ### ✨ 変数を変更する
 
@@ -144,8 +142,7 @@ anchor deploy
 
 以下の画像のように`Deploy success`という単語が表示されていればデプロイ完了です。
 
-![Deploy success](/public/images/Solana-dApp/section-3/3_1_3.jpg)
-
+![Deploy success](/images/Solana-dApp/section-3/3_1_3.jpg)
 
 完了したら、[Solana Explorer](https://explorer.solana.com/?cluster=devnet)にアクセスして、すべてがうまくいったかどうかを確認します。
 
@@ -155,14 +152,13 @@ anchor deploy
 
 デプロイされたSolanaプログラムが表示されたら、下にスクロールしてトランザクション履歴を確認すると、そこにデプロイ履歴が表示されているので確認してみてください。
 
-![solana explorer](/public/images/Solana-dApp/section-3/3_1_4.jpg)
+![solana explorer](/images/Solana-dApp/section-3/3_1_4.jpg)
 
 > ⚠️ 注意
 >
 > Solana プログラムを変更する際は、毎回再デプロイして上記のステップを踏む必要があります。
 
 ※ Devnetは「メインネット」ではありませんが、Devnetもマイナーによって運営されています。
-
 
 ### 🙋‍♂️ 質問する
 

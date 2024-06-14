@@ -131,7 +131,6 @@ pub struct Message {
     pub sender_id: AccountId,
     pub created_time: String,
 }
-
 ```
 
 まずは最初の4行で宣言している部分を解説して行きます。
@@ -140,7 +139,7 @@ pub struct Message {
 
 `AccountId`は32文字で表されるアドレスの型です。もしおかしなアドレス（文字数が違うなど）がこの型に入ることになるとエラーとなります。
 
-`Vec`はJavaScriptでいう`List`と同じようなものでVec <type>の`type`に入る型の値がリスト状に格納されることになります。
+`Vec`はJavaScriptでいう`List`と同じようなものでVec `<type>`の`type`に入る型の値がリスト状に格納されることになります。
 
 `String`は文字列の型です。
 

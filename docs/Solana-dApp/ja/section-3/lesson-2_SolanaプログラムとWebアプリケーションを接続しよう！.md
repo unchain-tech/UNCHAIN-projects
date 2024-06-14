@@ -49,7 +49,6 @@ Deploy success
 
 これは、一度デプロイされたスマートコントラクトの変更ができないEthereumとはまったく異なるものです。
 
-
 ### 🤟 IDL ファイルを Web アプリケーションに接続する
 
 SolanaプログラムはDevnetにデプロイされました。
@@ -77,9 +76,8 @@ SolanaプログラムはDevnetにデプロイされました。
 追加する場所は`import './App.css';`のすぐ下でOKです。
 
 ```javascript
-import idl from './idl.json';
+import idl from "./idl.json";
 ```
-
 
 ### 👻 Phantom Wallet に資金を供給する
 
@@ -89,7 +87,7 @@ Solanaでは、アカウントのデータ読み込みは無料でできます�
 
 このとき、Phantom Walletのアドレスが必要になるので、以下の画像を参考にウォレットアドレスをコピーしましょう。
 
-![wallet address copy](/public/images/Solana-dApp/section-3/3_2_1.jpg)
+![wallet address copy](/images/Solana-dApp/section-3/3_2_1.jpg)
 
 次に、ターミナルから以下のコマンドを実行します。
 
@@ -100,7 +98,6 @@ solana airdrop 2 INSERT_YOUR_PHANTOM_PUBLIC_ADDRESS_HERE --url devnet
 ```
 
 Phantom Walletを確認し、Devnetで2 SOLが入っていることを確認できれば完了です。
-
 
 ### 🍔 Web アプリケーションで Solana プロバイダをセットアップする
 
@@ -119,8 +116,8 @@ npm install @project-serum/anchor @solana/web3.js
 `App.js`の`import idl from './idl.json';`のすぐ下に以下のコードを追加します。
 
 ```javascript
-import { Connection, PublicKey, clusterApiUrl } from '@solana/web3.js';
-import { Program, Provider, web3 } from '@project-serum/anchor';
+import { Connection, PublicKey, clusterApiUrl } from "@solana/web3.js";
+import { Program, Provider, web3 } from "@project-serum/anchor";
 ```
 
 続いて、`getProvider`関数を作成しましょう。
@@ -131,10 +128,12 @@ import { Program, Provider, web3 } from '@project-serum/anchor';
 const getProvider = () => {
   const connection = new Connection(network, opts.preflightCommitment);
   const provider = new Provider(
-    connection, window.solana, opts.preflightCommitment,
+    connection,
+    window.solana,
+    opts.preflightCommitment
   );
-	return provider;
-}
+  return provider;
+};
 ```
 
 ここでは、Solanaへの認証された接続である「プロバイダ」を作成しています。
@@ -154,15 +153,13 @@ Phantom WalletはSolana上のプログラムと通信するためのプロバイ
 `App.js`を以下のとおり更新します。
 
 ```javascript
-import React, { useEffect, useState } from 'react';
-import twitterLogo from './assets/twitter-logo.svg';
-import './App.css';
-import { Connection, PublicKey, clusterApiUrl} from '@solana/web3.js';
-import {
-  Program, Provider, web3
-} from '@project-serum/anchor';
+import React, { useEffect, useState } from "react";
+import twitterLogo from "./assets/twitter-logo.svg";
+import "./App.css";
+import { Connection, PublicKey, clusterApiUrl } from "@solana/web3.js";
+import { Program, Provider, web3 } from "@project-serum/anchor";
 
-import idl from './idl.json';
+import idl from "./idl.json";
 
 // SystemProgramはSolanaランタイムへの参照です。
 const { SystemProgram, Keypair } = web3;
@@ -174,17 +171,14 @@ let baseAccount = Keypair.generate();
 const programID = new PublicKey(idl.metadata.address);
 
 // ネットワークをDevnetに設定します。
-const network = clusterApiUrl('devnet');
+const network = clusterApiUrl("devnet");
 
 // トランザクションが完了したときに通知方法を制御します。
 const opts = {
-  preflightCommitment: "processed"
-}
-
+  preflightCommitment: "processed",
+};
 
 // その他の部分は変更しないでください。
-
-
 ```
 
 `SystemProgram`は、Solanaを実行する[コアプログラム](https://docs.solana.com/developing/runtime-facilities/programs#system-program)への参照です。
@@ -199,7 +193,6 @@ const opts = {
 
 他の方法については[こちら](https://solana-labs.github.io/solana-web3.js/modules.html#Commitment)を参照してみてください。
 
-
 ### 🏈 プログラムのアカウントから GIF データを取得する
 
 すべての準備が整いました。
@@ -211,7 +204,7 @@ const opts = {
 ```javascript
 useEffect(() => {
   if (walletAddress) {
-    console.log('Fetching GIF list...');
+    console.log("Fetching GIF list...");
 
     // Solana チェーンからのフェッチ処理をここに記述します。
 
@@ -224,29 +217,29 @@ useEffect(() => {
 この記述を以下のように変更しましょう。
 
 ```javascript
-const getGifList = async() => {
+const getGifList = async () => {
   try {
     const provider = getProvider();
     const program = new Program(idl, programID, provider);
-    const account = await program.account.baseAccount.fetch(baseAccount.publicKey);
+    const account = await program.account.baseAccount.fetch(
+      baseAccount.publicKey
+    );
 
-    console.log("Got the account", account)
-    setGifList(account.gifList)
-
+    console.log("Got the account", account);
+    setGifList(account.gifList);
   } catch (error) {
-    console.log("Error in getGifList: ", error)
+    console.log("Error in getGifList: ", error);
     setGifList(null);
   }
-}
+};
 
 useEffect(() => {
   if (walletAddress) {
-    console.log('Fetching GIF list...');
-    getGifList()
+    console.log("Fetching GIF list...");
+    getGifList();
   }
 }, [walletAddress]);
 ```
-
 
 ### 🔥 `startStuffOff`を呼び出してプログラムを初期化する
 
@@ -259,22 +252,24 @@ const createGifAccount = async () => {
   try {
     const provider = getProvider();
     const program = new Program(idl, programID, provider);
-    console.log("ping")
+    console.log("ping");
     await program.rpc.startStuffOff({
       accounts: {
         baseAccount: baseAccount.publicKey,
         user: provider.wallet.publicKey,
         systemProgram: SystemProgram.programId,
       },
-      signers: [baseAccount]
+      signers: [baseAccount],
     });
-    console.log("Created a new BaseAccount w/ address:", baseAccount.publicKey.toString())
+    console.log(
+      "Created a new BaseAccount w/ address:",
+      baseAccount.publicKey.toString()
+    );
     await getGifList();
-
-  } catch(error) {
-    console.log("Error creating BaseAccount account:", error)
+  } catch (error) {
+    console.log("Error creating BaseAccount account:", error);
   }
-}
+};
 ```
 
 次に、以下の2つのケースを想定して`renderConnectedContainer`関数を変更しましょう。
@@ -285,19 +280,22 @@ const createGifAccount = async () => {
 
 ```jsx
 const renderConnectedContainer = () => {
-// プログラムアカウントが初期化されているかどうかチェックします。
+  // プログラムアカウントが初期化されているかどうかチェックします。
   if (gifList === null) {
     return (
       <div className="connected-container">
-        <button className="cta-button submit-gif-button" onClick={createGifAccount}>
+        <button
+          className="cta-button submit-gif-button"
+          onClick={createGifAccount}
+        >
           Do One-Time Initialization For GIF Program Account
         </button>
       </div>
-    )
+    );
   }
-	// アカウントが存在した場合、ユーザーはGIFを投稿することができます。
-	else {
-    return(
+  // アカウントが存在した場合、ユーザーはGIFを投稿することができます。
+  else {
+    return (
       <div className="connected-container">
         <form
           onSubmit={(event) => {
@@ -316,7 +314,7 @@ const renderConnectedContainer = () => {
           </button>
         </form>
         <div className="gif-grid">
-					{/* indexをキーとして使用し、GIFイメージとしてitem.gifLinkに変更しました。 */}
+          {/* indexをキーとして使用し、GIFイメージとしてitem.gifLinkに変更しました。 */}
           {gifList.map((item, index) => (
             <div className="gif-item" key={index}>
               <img src={item.gifLink} />
@@ -324,11 +322,10 @@ const renderConnectedContainer = () => {
           ))}
         </div>
       </div>
-    )
+    );
   }
-}
+};
 ```
-
 
 ### 🥳 テストする
 
@@ -340,7 +337,7 @@ const renderConnectedContainer = () => {
 
 すべてがうまくいった場合は、コンソール上に以下のように表示されます。
 
-![console](/public/images/Solana-dApp/section-3/3_2_2.jpg)
+![console](/images/Solana-dApp/section-3/3_2_2.jpg)
 
 ここで作成したアカウントを取得しました。
 
@@ -349,7 +346,6 @@ const renderConnectedContainer = () => {
 現段階では、ページを更新するたびに、もう一度アカウントを作成するように要求されてしまうという問題があります。
 
 これは後で修正します。
-
 
 ### 🙋‍♂️ 質問する
 

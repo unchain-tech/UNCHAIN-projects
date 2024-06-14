@@ -4,7 +4,7 @@
 
 皆さんこんにちは、講師のWTOMです。このチュートリアルでは、ChainIDEを使用してホワイトリストに登録されたユーザーだけがNFTをミントできるようにするdAppを開発する方法を紹介します。開発には、Solidity、TypeScript、Reactの知識が必要ですが、心配しないでください。
 
-### 🎓 ChainIDEとは
+### 🎓 ChainIDE とは
 
 [ChainIDE](https://chainide.com/)は、分散型アプリケーションを開発するためのクラウドベースIDEです。Ethereum、BNB Chain、Polygon、Conflux、Nervos、Dfinity、Flow、Aptosなど様々なブロックチェーンをサポートしています。
 
@@ -18,11 +18,11 @@
 
 これがミントページです：
 
-![image-20230223171808615](/public/images/Polygon-Whitelist-NFT/section-0/0_1_1.png)
+![image-20230223171808615](/images/Polygon-Whitelist-NFT/section-0/0_1_1.png)
 
 これが完成後のOpenSeaでの様子です：
 
-![image-20230223163620536](/public/images/Polygon-Whitelist-NFT/section-0/0_1_2.png)
+![image-20230223163620536](/images/Polygon-Whitelist-NFT/section-0/0_1_2.png)
 
 ### 🌍 プロジェクトをアップグレードする
 
@@ -52,4 +52,5 @@ GitHubから直接コードを編集して直接`pull request`を送る方法は
 UNCHAINのプロジェクトをみんなでより良いものにしていきましょう ✨
 
 ### 🙋‍♂️ 質問する
+
 ここまで何かわからないことがある場合は、Discordの`#polygon`で質問をしてください。

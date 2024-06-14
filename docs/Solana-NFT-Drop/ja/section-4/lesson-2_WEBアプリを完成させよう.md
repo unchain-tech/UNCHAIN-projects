@@ -12,11 +12,11 @@ Vercelのアカウントをお持ちでない方は、上記のリンクにア�
 
 2 \. Vercelのダッシュボードから、`Add New...`をクリックし、`Project`を選択します。
 
-![無題](/public/images/Solana-NFT-Drop/section-4/4_2_1.png)
+![無題](/images/Solana-NFT-Drop/section-4/4_2_1.png)
 
 3 \. Webアプリケーションのリポジトリを`Import`してください。
 
-![無題](/public/images/Solana-NFT-Drop/section-4/4_2_2.png)
+![無題](/images/Solana-NFT-Drop/section-4/4_2_2.png)
 
 4 \. 必要項目を埋めていきます。**FRAMEWORK PRESET** には`Next.js`、**ROOT DIRECTORY** は`./`を入力してください。
 
@@ -24,7 +24,7 @@ Vercelのアカウントをお持ちでない方は、上記のリンクにア�
 
 環境変数`CI = false`を追加することにより、警告が原因でビルドが失敗しないようになります。
 
-![無題](/public/images/Solana-NFT-Drop/section-4/4_2_3.png)
+![無題](/images/Solana-NFT-Drop/section-4/4_2_3.png)
 
 6 \. デプロイします!
 

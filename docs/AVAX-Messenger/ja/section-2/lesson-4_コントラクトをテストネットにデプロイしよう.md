@@ -22,20 +22,20 @@ TEST_ACCOUNT_PRIVATE_KEY="YOUR_PRIVATE_KEY"
 >
 > 1.  お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを`Avalanche FUJI C-Chain`に変更します。
 >
-> ![](/public/images/AVAX-Messenger/section-2/2_4_1.png)
+> ![](/images/AVAX-Messenger/section-2/2_4_1.png)
 >
 > 2.  それから、`Account details`を選択してください。
 >
-> ![](/public/images/AVAX-Messenger/section-2/2_4_2.png)
+> ![](/images/AVAX-Messenger/section-2/2_4_2.png)
 >
 > 3.  `Account details`から`Export Private Key`をクリックしてください。
 >
-> ![](/public/images/AVAX-Messenger/section-2/2_4_3.png)
+> ![](/images/AVAX-Messenger/section-2/2_4_3.png)
 >
 > 4.  MetaMask のパスワードを求められるので、入力したら`Confirm`を押します。
 >     あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
 >
-> ![](/public/images/AVAX-Messenger/section-2/2_4_4.png)
+> ![](/images/AVAX-Messenger/section-2/2_4_4.png)
 
 > - `.env`の`YOUR_PRIVATE_KEY`の部分をここで取得した秘密鍵とを入れ替えます。
 
@@ -53,22 +53,22 @@ TEST_ACCOUNT_PRIVATE_KEY="YOUR_PRIVATE_KEY"
 次に`contract`ディレクトリ直下にある`hardhat.config.ts`中身を以下のコードに書き換えてください。
 
 ```ts
-import * as dotenv from 'dotenv'; // 環境構築時にこのパッケージはインストールしてあります。
-import '@nomicfoundation/hardhat-toolbox';
-import { HardhatUserConfig } from 'hardhat/config';
+import * as dotenv from "dotenv"; // 環境構築時にこのパッケージはインストールしてあります。
+import "@nomicfoundation/hardhat-toolbox";
+import { HardhatUserConfig } from "hardhat/config";
 
 // .envファイルから環境変数をロードします。
 dotenv.config();
 
 if (process.env.TEST_ACCOUNT_PRIVATE_KEY === undefined) {
-  console.log('private key is missing');
+  console.log("private key is missing");
 }
 
 const config: HardhatUserConfig = {
-  solidity: '0.8.17',
+  solidity: "0.8.17",
   networks: {
     fuji: {
-      url: 'https://api.avax-test.network/ext/bc/C/rpc',
+      url: "https://api.avax-test.network/ext/bc/C/rpc",
       chainId: 43113,
       accounts:
         process.env.TEST_ACCOUNT_PRIVATE_KEY !== undefined
@@ -84,18 +84,18 @@ export default config;
 続いて、`scripts`ディレクトリ内にある`deploy.ts`を以下のコードに書き換えてください。
 
 ```ts
-import { Overrides } from 'ethers';
-import { ethers } from 'hardhat';
+import { Overrides } from "ethers";
+import { ethers } from "hardhat";
 
 async function deploy() {
   // コントラクトをデプロイするアカウントのアドレスを取得します。
   const [deployer] = await ethers.getSigners();
-  console.log('Deploying contract with the account:', deployer.address);
+  console.log("Deploying contract with the account:", deployer.address);
 
   const funds = 100;
 
   // コントラクトのインスタンスを作成します。
-  const Messenger = await ethers.getContractFactory('Messenger');
+  const Messenger = await ethers.getContractFactory("Messenger");
 
   // The deployed instance of the contract
   const messenger = await Messenger.deploy({
@@ -104,7 +104,7 @@ async function deploy() {
 
   await messenger.deployed();
 
-  console.log('Contract deployed at:', messenger.address);
+  console.log("Contract deployed at:", messenger.address);
   console.log(
     "Contract's fund is:",
     await messenger.provider.getBalance(messenger.address)
@@ -124,11 +124,11 @@ deploy()
 ```ts
 // コントラクトをデプロイするアカウントのアドレスを取得します。
 const [deployer] = await ethers.getSigners();
-console.log('Deploying contract with the account:', deployer.address);
+console.log("Deploying contract with the account:", deployer.address);
 
 // デプロイ処理。テストと同じような内容です。
 
-console.log('Contract deployed at:', messenger.address);
+console.log("Contract deployed at:", messenger.address);
 console.log(
   "Contract's fund is:",
   await messenger.provider.getBalance(messenger.address)

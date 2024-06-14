@@ -41,10 +41,10 @@ NEARの特徴としては、独自の`シャーディング技術`によって�
 
 完成した`Multiple Payment dApp`は以下のような見た目になります 💪
 
-![](/public/images/NEAR-MulPay/section-0/0_1_1.png)
-![](/public/images/NEAR-MulPay/section-0/0_1_2.png)
-![](/public/images/NEAR-MulPay/section-0/0_1_3.png)
-![](/public/images/NEAR-MulPay/section-0/0_1_4.png)
+![](/images/NEAR-MulPay/section-0/0_1_1.png)
+![](/images/NEAR-MulPay/section-0/0_1_2.png)
+![](/images/NEAR-MulPay/section-0/0_1_3.png)
+![](/images/NEAR-MulPay/section-0/0_1_4.png)
 
 ### 🌍 プロジェクトをアップグレードする
 

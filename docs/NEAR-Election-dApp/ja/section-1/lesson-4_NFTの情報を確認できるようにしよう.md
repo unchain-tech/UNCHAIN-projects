@@ -225,6 +225,7 @@ near login
     "test": "cargo test"
   },
 ```
+
 その後、ターミナル上で、下記を実行してみましょう。
 
 ```
@@ -247,7 +248,7 @@ near call $NFT_CONTRACT_ID nft_mint '{"metadata": {"title": "Vote Ticket", "desc
 ```
 
 これによって投票券のNFTをmintできました！ 先ほど作成したWalletの`Collectibles`を確認してみましょう！ 下のようなNFTがmintできているはずです。
-![](/public/images/NEAR-Election-dApp/section-1/1_4_1.png)
+![](/images/NEAR-Election-dApp/section-1/1_4_1.png)
 
 ### 🙋‍♂️ 質問する
 

@@ -51,30 +51,30 @@ Webアプリケーションのコードをクリーンに保つため、タイ�
 
 ```jsx
 // CountdownTimer/index.tsx
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-import CountdownTimerStyles from './CountdownTimer.module.css';
+import CountdownTimerStyles from "./CountdownTimer.module.css";
 
 type CountdownTimerProps = {
-  dropDate: Date;
+  dropDate: Date,
 };
 
 const CountdownTimer = (props: CountdownTimerProps) => {
   const { dropDate } = props;
 
   // State
-  const [timerString, setTimerString] = useState('');
+  const [timerString, setTimerString] = useState("");
 
   return (
     <div className={CountdownTimerStyles.timerContainer}>
       <p className={CountdownTimerStyles.timerHeader}>
-        {' '}
-        Candy Drop Starting In{' '}
+        {" "}
+        Candy Drop Starting In{" "}
       </p>
       {timerString && (
         <p className={CountdownTimerStyles.timerValue}>
-          {' '}
-          {`⏰ ${timerString}`}{' '}
+          {" "}
+          {`⏰ ${timerString}`}{" "}
         </p>
       )}
     </div>
@@ -91,7 +91,7 @@ export default CountdownTimer;
 ```jsx
 // CandyMachine/index.tsx
 // 追加
-import CountdownTimer from '@/components/CountdownTimer';
+import CountdownTimer from "@/components/CountdownTimer";
 ```
 
 カウントダウンタイマーをいつ表示するかを処理するロジックを実装します。
@@ -105,10 +105,10 @@ import CountdownTimer from '@/components/CountdownTimer';
 // レンダリング関数を作成します。
 const renderDropField = (
   candyMachine: CandyMachineType,
-  candyGuard: CandyGuardType,
+  candyGuard: CandyGuardType
 ) => {
   const startDate: Option<StartDateType> = candyGuard.guards.startDate;
-  if (startDate.__option === 'None') {
+  if (startDate.__option === "None") {
     return;
   }
 
@@ -126,7 +126,7 @@ const renderDropField = (
     <>
       <p>{`Drop Date: ${dropDate}`}</p>
       <p>
-        {' '}
+        {" "}
         {`Items Minted: ${candyMachine.itemsRedeemed} / ${candyMachine.data.itemsAvailable}`}
       </p>
       <button
@@ -159,7 +159,7 @@ return candyMachine && candyGuard ? (
 
 ページを更新して、UIが反映されているか確認しましょう。
 
-![](/public/images/Solana-NFT-Drop/section-4/4_1_5.png)
+![](/images/Solana-NFT-Drop/section-4/4_1_5.png)
 
 `CountdownTimer`コンポーネントに戻って、残りのロジックを実装します。タイマーのカウントダウンをリアルタイムで確認できるようにしましょう。
 
@@ -167,7 +167,7 @@ return candyMachine && candyGuard ? (
 
 ```jsx
 // CountdownTimer/index.tsx
-const [timerString, setTimerString] = useState('');
+const [timerString, setTimerString] = useState("");
 
 // 下記を追加します。
 // useEffectはコンポーネントのロード時に実行されます。
@@ -180,7 +180,7 @@ useEffect(() => {
     // 時間の計算をするだけで、さまざまなプロパティを得ることができます。
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor(
-      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
     );
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
@@ -191,7 +191,7 @@ useEffect(() => {
     // distanceが0になったらドロップタイムが来たことを示します。
     if (distance < 0) {
       clearInterval(intervalId);
-      setTimerString('');
+      setTimerString("");
     }
   }, 1000);
 
@@ -199,7 +199,7 @@ useEffect(() => {
   return () => {
     if (intervalId) {
       clearInterval(intervalId);
-      setTimerString('');
+      setTimerString("");
     }
   };
 }, []);
@@ -215,7 +215,7 @@ useEffect(() => {
 beforeEach(() => {
   // タイマー関数をモックする
   jest.useFakeTimers();
-  jest.spyOn(global, 'clearInterval');
+  jest.spyOn(global, "clearInterval");
 });
 
 afterEach(() => {
@@ -275,13 +275,13 @@ expect(textTimerElement).toBeInTheDocument();
 
 ```jsx
 /** 確認 */
-const textElement = screen.queryByText(/⏰/)
+const textElement = screen.queryByText(/⏰/);
 
 expect(textElement).toBeNull();
 expect(clearInterval).toHaveBeenCalled();
 ```
 
-3\. **コンポーネントがアンマウントされた時にclearIntervalが呼び出されるか**
+3\. **コンポーネントがアンマウントされた時に clearInterval が呼び出されるか**
 
 最後のテストでは、コンポーネントがアンマウントされた時にclearIntervalが呼び出されるかを確認します。
 
@@ -302,17 +302,15 @@ yarn test
 
 この時点でCountdownTimerコンポーネントのテストにパスし、`Test Suites:`の表示が`1 passed`となっていたら実装完了です。
 
-![](/public/images/Solana-NFT-Drop/section-4/4_1_3.png)
-
+![](/images/Solana-NFT-Drop/section-4/4_1_3.png)
 
 実際にブラウザでも表示を確認してみましょう。
 
-![無題](/public/images/Solana-NFT-Drop/section-4/4_1_1.png)
+![無題](/images/Solana-NFT-Drop/section-4/4_1_1.png)
 
 以上です。
 
 シンプルなカウントダウンタイマーを実装しました。
-
 
 ### 📭「売り切れ」状態を構築する
 
@@ -360,18 +358,17 @@ const renderDropField = (candyMachine: CandyMachineType, startDate: Option<Start
 
 ```jsx
 // __tests__/CandyMachine.test.tsx
-jest.mock('@metaplex-foundation/mpl-candy-machine', () => ({
+jest.mock("@metaplex-foundation/mpl-candy-machine", () => ({
   fetchCandyMachine: jest.fn(),
   safeFetchCandyGuard: jest.fn(),
   mplCandyMachine: jest.fn(),
 }));
 
-jest.mock('@metaplex-foundation/mpl-essentials', () => ({
+jest.mock("@metaplex-foundation/mpl-essentials", () => ({
   setComputeUnitLimit: jest.fn(),
 }));
 
 // === 以下省略 ===
-
 ```
 
 テストを行う状況は、3つあります。
@@ -406,7 +403,7 @@ CandyMachineコンポーネントのレンダリング処理を行い、要素�
 
 ```jsx
 await act(async () => {
-  render(<CandyMachine walletAddress={'mockAddress'} />);
+  render(<CandyMachine walletAddress={"mockAddress"} />);
 });
 ```
 
@@ -421,15 +418,15 @@ await act(async () => {
 const textElement = screen.getByText(/Candy Drop Starting In/);
 expect(textElement).toBeInTheDocument();
 /** Mint NFTボタンは表示されていないか */
-const buttonElement = screen.queryByRole('button', {
+const buttonElement = screen.queryByRole("button", {
   name: /Mint NFT/i,
 });
 expect(buttonElement).not.toBeInTheDocument();
 ```
 
-**2\. NFTがミントできる場合**では、Mint NFTボタンが表示されているかを確認します。
+**2\. NFT がミントできる場合**では、Mint NFTボタンが表示されているかを確認します。
 
-**3\. NFTが売り切れの場合**では、Sold Out 🙊が表示されているか、Mint NFTボタンが表示されていないかを確認します。
+**3\. NFT が売り切れの場合**では、Sold Out 🙊 が表示されているか、Mint NFTボタンが表示されていないかを確認します。
 
 それでは、実際にテストを実行してみましょう。
 
@@ -439,13 +436,13 @@ yarn test
 
 すべてのテストにパスしていたら、実装完了です。
 
-![](/public/images/Solana-NFT-Drop/section-4/4_1_4.png)
+![](/images/Solana-NFT-Drop/section-4/4_1_4.png)
 
 実際にブラウザでも表示を確認してみましょう。
 
 下記の画像は、NFTがすべてミントされた時に期待される表示です。
 
-![無題](/public/images/Solana-NFT-Drop/section-4/4_1_2.png)
+![無題](/images/Solana-NFT-Drop/section-4/4_1_2.png)
 
 ### 🙋‍♂️ 質問する
 

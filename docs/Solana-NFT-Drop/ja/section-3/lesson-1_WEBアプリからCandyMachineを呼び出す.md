@@ -111,7 +111,7 @@ NEXT_PUBLIC_SOLANA_RPC_HOST=https://explorer-api.devnet.solana.com
 
 ```jsx
 // CandyMachine/index.tsx
-import { useEffect } from 'react';
+import { useEffect } from "react";
 ```
 
 2 \. `index.tsx`の中にある下記のコードブロックを確認してください。
@@ -150,21 +150,23 @@ const getCandyMachineState = async () => {
       // Candy Machineからメタデータを取得します。
       const candyMachine = await fetchCandyMachine(
         umi,
-        publicKey(process.env.NEXT_PUBLIC_CANDY_MACHINE_ID),
+        publicKey(process.env.NEXT_PUBLIC_CANDY_MACHINE_ID)
       );
       const candyGuard = await safeFetchCandyGuard(
         umi,
-        candyMachine.mintAuthority,
+        candyMachine.mintAuthority
       );
 
       // 取得したデータをコンソールに出力します。
       console.log(`items: ${JSON.stringify(candyMachine.items)}`);
       console.log(`itemsAvailable: ${candyMachine.data.itemsAvailable}`);
       console.log(`itemsRedeemed: ${candyMachine.itemsRedeemed}`);
-      if (candyGuard?.guards.startDate.__option !== 'None') {
+      if (candyGuard?.guards.startDate.__option !== "None") {
         console.log(`startDate: ${candyGuard?.guards.startDate.value.date}`);
 
-        const startDateString = new Date(Number(candyGuard?.guards.startDate.value.date) * 1000);
+        const startDateString = new Date(
+          Number(candyGuard?.guards.startDate.value.date) * 1000
+        );
         console.log(`startDateString: ${startDateString}`);
       }
     }
@@ -207,13 +209,10 @@ Umiインスタンスを作成したら、Metaplexが提供するfetchメソッ�
 // Candy Machineからメタデータを取得します。
 const candyMachine = await fetchCandyMachine(
   umi,
-  publicKey(process.env.NEXT_PUBLIC_CANDY_MACHINE_ID),
+  publicKey(process.env.NEXT_PUBLIC_CANDY_MACHINE_ID)
 );
 // Guardの設定を取得します。
-const candyGuard = await safeFetchCandyGuard(
-  umi,
-  candyMachine.mintAuthority,
-);
+const candyGuard = await safeFetchCandyGuard(umi, candyMachine.mintAuthority);
 ```
 
 ### 🧠 CandyMachine コンポーネントをレンダリングする
@@ -226,7 +225,7 @@ const candyGuard = await safeFetchCandyGuard(
 
 ```jsx
 // pages/index.tsx
-import CandyMachine from '@/components/CandyMachine';
+import CandyMachine from "@/components/CandyMachine";
 ```
 
 下記の通り、ユーザーのウォレットアドレスがstateにあれば、`CandyMachine`をレンダリングするよう記載してください。
@@ -277,7 +276,7 @@ return (
 
 先に進んでページを更新すると、コンソールに次のようなものが表示されます。
 
-![無題](/public/images/Solana-NFT-Drop/section-3/3_1_3.png)
+![無題](/images/Solana-NFT-Drop/section-3/3_1_3.png)
 
 Solanaのdevnetからデータを取得できました。
 
@@ -285,9 +284,15 @@ Solanaのdevnetからデータを取得できました。
 
 ```jsx
 // CandyMachine/index.tsx
-const startLocalDateString = new Date(Number(candyGuard?.guards.startDate.value.date) * 1000).toLocaleDateString();
-const startLocalTimeString = new Date(Number(candyGuard?.guards.startDate.value.date) * 1000).toLocaleTimeString();
-console.log(`startLocalDateString: ${startLocalDateString} ${startLocalTimeString}`); // startLocalDateString: 1/1/2023 9:00:00 AM
+const startLocalDateString = new Date(
+  Number(candyGuard?.guards.startDate.value.date) * 1000
+).toLocaleDateString();
+const startLocalTimeString = new Date(
+  Number(candyGuard?.guards.startDate.value.date) * 1000
+).toLocaleTimeString();
+console.log(
+  `startLocalDateString: ${startLocalDateString} ${startLocalTimeString}`
+); // startLocalDateString: 1/1/2023 9:00:00 AM
 ```
 
 Webアプリケーションにアクセスすると、すでにレンダリングされているものがいくつか表示されますが、実際のデータはレンダリングされていません。
@@ -299,7 +304,7 @@ Webアプリケーションにアクセスすると、すでにレンダリン�
 ```jsx
 // CandyMachine/index.tsx
 // インポートにuseStateを追加します。
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 ```
 
 ```jsx
@@ -307,12 +312,13 @@ import { useEffect, useState } from 'react';
 const CandyMachine = (props: CandyMachineProps) => {
   const { walletAddress } = props;
   // コンポーネント内にstateプロパティを追加します。
-  const [umi, setUmi] = useState<UmiType | undefined>(undefined);
-  const [candyMachine, setCandyMachine] = useState<
-    CandyMachineType | undefined
-  >(undefined);
-  const [candyGuard, setCandyGuard] = useState<CandyGuardType | null>(null);
-  const [startDateString, setStartDateString] = useState<Date | undefined>(undefined);
+  const [umi, setUmi] = (useState < UmiType) | (undefined > undefined);
+  const [candyMachine, setCandyMachine] =
+    (useState < CandyMachineType) | (undefined > undefined);
+  const [candyGuard, setCandyGuard] =
+    (useState < CandyGuardType) | (null > null);
+  const [startDateString, setStartDateString] =
+    (useState < Date) | (undefined > undefined);
 
   const getCandyMachineState = async () => {
     try {
@@ -329,27 +335,31 @@ const CandyMachine = (props: CandyMachineProps) => {
         // Candy Machineからメタデータを取得します。
         const candyMachine = await fetchCandyMachine(
           umi,
-          publicKey(process.env.NEXT_PUBLIC_CANDY_MACHINE_ID),
+          publicKey(process.env.NEXT_PUBLIC_CANDY_MACHINE_ID)
         );
         const candyGuard = await safeFetchCandyGuard(
           umi,
-          candyMachine.mintAuthority,
+          candyMachine.mintAuthority
         );
 
         // 取得したデータをコンソールに出力します。
         console.log(`items: ${JSON.stringify(candyMachine.items)}`);
         console.log(`itemsAvailable: ${candyMachine.data.itemsAvailable}`);
         console.log(`itemsRedeemed: ${candyMachine.itemsRedeemed}`);
-        if (candyGuard?.guards.startDate.__option !== 'None') {
+        if (candyGuard?.guards.startDate.__option !== "None") {
           console.log(`startDate: ${candyGuard?.guards.startDate.value.date}`);
 
-          const startDateString = new Date(Number(candyGuard?.guards.startDate.value.date) * 1000);
+          const startDateString = new Date(
+            Number(candyGuard?.guards.startDate.value.date) * 1000
+          );
           console.log(`startDateString: ${startDateString}`);
         }
-        if (candyGuard?.guards.startDate.__option !== 'None') {
+        if (candyGuard?.guards.startDate.__option !== "None") {
           console.log(`startDate: ${candyGuard?.guards.startDate.value.date}`);
 
-          const startDateString = new Date(Number(candyGuard?.guards.startDate.value.date) * 1000);
+          const startDateString = new Date(
+            Number(candyGuard?.guards.startDate.value.date) * 1000
+          );
           console.log(`startDateString: ${startDateString}`);
           // 取得したデータをstate変数に保存します。
           setStartDateString(startDateString);
@@ -365,7 +375,7 @@ const CandyMachine = (props: CandyMachineProps) => {
     }
   };
 
-    useEffect(() => {
+  useEffect(() => {
     getCandyMachineState();
   }, []);
 
@@ -373,9 +383,7 @@ const CandyMachine = (props: CandyMachineProps) => {
     <div className={candyMachineStyles.machineContainer}>
       <p>Drop Date:</p>
       <p>Items Minted:</p>
-      <button
-        className={`${styles.ctaButton} ${styles.mintButton}`}
-      >
+      <button className={`${styles.ctaButton} ${styles.mintButton}`}>
         Mint NFT
       </button>
     </div>

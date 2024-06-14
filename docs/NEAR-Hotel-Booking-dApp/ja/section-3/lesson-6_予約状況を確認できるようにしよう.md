@@ -9,10 +9,10 @@
 `frontend/asserts/js/pages/GuestBookedList.js`
 
 ```js
-import { useEffect, useState } from 'react';
-import { Table } from 'react-bootstrap';
+import { useEffect, useState } from "react";
+import { Table } from "react-bootstrap";
 
-import { get_booking_info_for_guest } from '../near/utils';
+import { get_booking_info_for_guest } from "../near/utils";
 
 const GuestBookedList = () => {
   // 予約した部屋のデータを設定する
@@ -66,7 +66,6 @@ const GuestBookedList = () => {
 };
 
 export default GuestBookedList;
-
 ```
 
 内容を見てみましょう。
@@ -90,11 +89,11 @@ const getGuestBookedRooms = async () => {
 
 ナビゲーションバーのメニューから宿泊者の予約確認画面へ移動します。
 
-![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_6_1.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-3/3_6_1.png)
 
 以下のように、予約データが表示されていたら完成です！
 
-![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_6_2.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-3/3_6_2.png)
 
 ### 🔖 オーナーが予約の管理をできるようにしよう
 
@@ -106,16 +105,16 @@ const getGuestBookedRooms = async () => {
 `frontend/asserts/js/pages/ManageBookings.js`
 
 ```js
-import { useEffect, useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Table from 'react-bootstrap/Table';
+import { useEffect, useState } from "react";
+import Button from "react-bootstrap/Button";
+import Table from "react-bootstrap/Table";
 
 import {
   change_status_to_available,
   change_status_to_stay,
   get_booking_info_for_owner,
   is_available,
-} from '../near/utils';
+} from "../near/utils";
 
 const ManageBookings = () => {
   // 予約データを設定する
@@ -133,7 +132,7 @@ const ManageBookings = () => {
     const isAvailable = await is_available(room_id);
     if (isAvailable === false) {
       // 誰かが滞在中の部屋に対して`Check In`ボタンを押すとアラートを発生させる
-      alert('Error: Someone already stay.');
+      alert("Error: Someone already stay.");
       return;
     }
     try {
@@ -149,7 +148,7 @@ const ManageBookings = () => {
       change_status_to_available(room_id, check_in_date, guest_id).then(
         (resp) => {
           getBookedRooms();
-        },
+        }
       );
     } catch (error) {
       console.log(error);
@@ -189,7 +188,7 @@ const ManageBookings = () => {
               <td>{_room.check_in_date}</td>
               <td>{_room.guest_id}</td>
               <td>
-                {_room.status === 'Available' && (
+                {_room.status === "Available" && (
                   <Button
                     variant="success"
                     size="sm"
@@ -200,7 +199,7 @@ const ManageBookings = () => {
                     Check In
                   </Button>
                 )}
-                {_room.status !== 'Available' && (
+                {_room.status !== "Available" && (
                   <Button
                     variant="danger"
                     size="sm"
@@ -209,7 +208,7 @@ const ManageBookings = () => {
                         _room.room_id,
                         _room.check_in_date,
                         _room.guest_id,
-                        e,
+                        e
                       )
                     }
                   >
@@ -226,7 +225,6 @@ const ManageBookings = () => {
 };
 
 export default ManageBookings;
-
 ```
 
 内容を見ていきましょう。
@@ -242,7 +240,7 @@ const handleCheckIn = async (room_id, check_in_date) => {
   let isAvailable = await is_available(room_id);
   if (isAvailable == false) {
     // 誰かが滞在中の部屋に対して`Check In`ボタンを押すとアラートを発生させる
-    alert('Error: Someone already stay.');
+    alert("Error: Someone already stay.");
     return;
   }
   try {
@@ -260,35 +258,36 @@ const handleCheckIn = async (room_id, check_in_date) => {
 return文では、ステータスに応じてボタンの実装を変更しています。
 
 ```javascript
-{/*ステータスが`Available`の時*/}
-{_room.status === 'Available' && (
-  <Button
-    variant="success"
-    size="sm"
-    onClick={(e) =>
-      handleCheckIn(_room.room_id, _room.check_in_date, e)
-    }
-  >
-    Check In
-  </Button>
-)}
-{/* ステータスが`Stay`の時 */}
-{_room.status !== 'Available' && (
-  <Button
-    variant="danger"
-    size="sm"
-    onClick={(e) =>
-      handleCheckOut(
-        _room.room_id,
-        _room.check_in_date,
-        _room.guest_id,
-        e,
-      )
-    }
-  >
-    Check Out
-  </Button>
-)}
+{
+  /*ステータスが`Available`の時*/
+}
+{
+  _room.status === "Available" && (
+    <Button
+      variant="success"
+      size="sm"
+      onClick={(e) => handleCheckIn(_room.room_id, _room.check_in_date, e)}
+    >
+      Check In
+    </Button>
+  );
+}
+{
+  /* ステータスが`Stay`の時 */
+}
+{
+  _room.status !== "Available" && (
+    <Button
+      variant="danger"
+      size="sm"
+      onClick={(e) =>
+        handleCheckOut(_room.room_id, _room.check_in_date, _room.guest_id, e)
+      }
+    >
+      Check Out
+    </Button>
+  );
+}
 ```
 
 では、動作確認をしてみましょう！
@@ -297,14 +296,14 @@ return文では、ステータスに応じてボタンの実装を変更して�
 
 例えば、このようになるでしょう。
 
-![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_6_3.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-3/3_6_3.png)
 
 続いて、オーナーのアカウントIDを接続して、`ManageBookings画面`を表示してみましょう。ナビゲーションバーのメニューからオーナーの予約管理画面へ移動します。
 
-![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_6_4.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-3/3_6_4.png)
 
 このように、予約が2つ表示されていたらOKです！
-![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_6_5.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-3/3_6_5.png)
 
 ### 🌴 チェックイン・チェックアウトを実行してみよう
 
@@ -312,19 +311,19 @@ return文では、ステータスに応じてボタンの実装を変更して�
 
 まずはチェックインを実行してみます。
 片方の**Check In**ボタンを押してみましょう。ボタンが`Check Out`に変更されることを確認します。
-![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_6_6.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-3/3_6_6.png)
 
 ここで、`ManageRooms画面`に移動します。オーナーがチェックインの操作をしたことで、利用状況が`Stay`になったことを確認します。
-![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_6_7.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-3/3_6_7.png)
 
 次に、`ManageBookings画面`に戻りアラートの確認します。もう片方の**Check In**ボタンを押してみましょう。このようにアラートが表示されたらOKです！
 
-![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_6_8.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-3/3_6_8.png)
 
 最後に、チェックアウトを実行してみます。
 **Check Out**ボタンを押すと、予約管理画面からデータが消えることを確認します。
 
-![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_6_9.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-3/3_6_9.png)
 
 `ManageBookings画面`に移動し、部屋の利用状況が`Available`に戻っていること、さらに宿泊者でログインをし直して`GuestBookedList画面`から予約データが消えていることを確認できたらOKです！
 

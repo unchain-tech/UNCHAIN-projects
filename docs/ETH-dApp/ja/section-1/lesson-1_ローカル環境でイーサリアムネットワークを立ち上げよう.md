@@ -34,11 +34,11 @@ GitHubのアカウントをお持ちの方は、下記の手順に沿ってプ�
 
 1. [こちら](https://github.com/unchain-tech/ETH-dApp)からETH-dAppリポジトリにアクセスをして、ページ右上の`Fork`ボタンをクリックします。
 
-![](/public/images/ETH-dApp/section-1/1_1_1.png)
+![](/images/ETH-dApp/section-1/1_1_1.png)
 
 2. Create a new forkページが開くので、「Copy the `main` branch only」という項目に**チェックが入っていることを確認します**。
 
-![](/public/images/ETH-dApp/section-1/1_1_2.png)
+![](/images/ETH-dApp/section-1/1_1_2.png)
 
 設定が完了したら`Create fork`ボタンをクリックします。あなたのGitHubアカウントに`ETH-dApp`リポジトリのフォークが作成されたことを確認してください。
 
@@ -46,7 +46,7 @@ GitHubのアカウントをお持ちの方は、下記の手順に沿ってプ�
 
 まず、下図のように、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
 
-![](/public/images/ETH-dApp/section-1/1_1_3.png)
+![](/images/ETH-dApp/section-1/1_1_3.png)
 
 ターミナル上で作業を行う任意のディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
 
@@ -114,10 +114,11 @@ corepack enable
 ```
 yarn client start
 ```
+
 あなたのローカル環境で、Webサイトのフロントエンドが立ち上がりましたか？
 
 例)ローカル環境で表示されているWebサイト
-![](/public/images/ETH-dApp/section-1/1_1_4.png)
+![](/images/ETH-dApp/section-1/1_1_4.png)
 
 上記のような形でフロントエンドが確認できれば成功です。
 
@@ -148,6 +149,7 @@ npx hardhat init
 ```
 
 （例）
+
 ```
 $ npx hardhat init
 
@@ -240,17 +242,13 @@ const {
 **（変更前）**
 
 ```javascript
-      expect(await ethers.provider.getBalance(lock.target)).to.equal(
-        lockedAmount
-      );
+expect(await ethers.provider.getBalance(lock.target)).to.equal(lockedAmount);
 ```
 
 **（変更後）**
 
 ```javascript
-      expect(await ethers.provider.getBalance(lock.address)).to.equal(
-        lockedAmount
-      );
+expect(await ethers.provider.getBalance(lock.address)).to.equal(lockedAmount);
 ```
 
 ### ⭐️ 実行する
@@ -300,7 +298,6 @@ README.md         artifacts         cache             contracts         hardhat.
 
 次に、上記の手順を参考にして`contracts`の下の`Lock.sol`を削除してください。実際のフォルダは削除しないように注意しましょう。
 
-
 ### ☀️ Hardhat の機能について
 
 Hardhatは段階的に下記を実行しています。
@@ -325,6 +322,7 @@ Hardhatは段階的に下記を実行しています。
 3. エラー文をコピー&ペースト
 4. エラー画面のスクリーンショット
 ```
+
 ---
 
 環境設定が完了したら、次のレッスンに進んでください 🎉

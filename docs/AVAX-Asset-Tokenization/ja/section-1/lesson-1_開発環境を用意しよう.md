@@ -49,9 +49,7 @@ AVAX-Asset-Tokenization
   "description": "Asset tokenization",
   "private": true,
   "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
+    "packages": ["packages/*"]
   },
   "scripts": {
     "contract": "yarn workspace contract",
@@ -257,7 +255,6 @@ AVAX-Asset-Tokenization
  └── tsconfig.json
 ```
 
-
 それでは、`contract`ディレクトリ内に生成された`package.json`ファイルを以下を参考に更新をしましょう。
 
 ```diff
@@ -339,7 +336,7 @@ yarn test
 
 次のように表示されたら成功です! 🎉
 
-![](/public/images/AVAX-Asset-Tokenization/section-1/1_1_1.png)
+![](/images/AVAX-Asset-Tokenization/section-1/1_1_1.png)
 
 これからテストを行う際は、`AVAX-Asset-Tokenization/`直下で`yarn test`を実行します。
 

@@ -13,17 +13,17 @@
 `src/pages/_app.tsx`に移動して、以下のようにコードを更新しましょう。
 
 ```typescript
-import { Sepolia } from '@thirdweb-dev/chains';
-import {ThirdwebProvider } from '@thirdweb-dev/react';
-import type { AppProps } from 'next/app';
+import { Sepolia } from "@thirdweb-dev/chains";
+import { ThirdwebProvider } from "@thirdweb-dev/react";
+import type { AppProps } from "next/app";
 
-import { HeadComponent } from '../components/head';
-import '../styles/globals.css';
+import { HeadComponent } from "../components/head";
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThirdwebProvider activeChain={Sepolia}>
-      <HeadComponent/>
+      <HeadComponent />
       <Component {...pageProps} />
     </ThirdwebProvider>
   );
@@ -41,9 +41,10 @@ Next.jsにおいてAppコンポーネント (`_app.tsx`) で全ページ共通�
 続いて、ヘッダー部分のコードを準備しましょう。
 
 srcディレクトリの中に`components/head.tsx`を作成し、以下のコードを追加します。
+
 ```typescript
-import * as React from 'react';
-import Head from 'next/head';
+import * as React from "react";
+import Head from "next/head";
 
 export const HeadComponent = () => {
   return (
@@ -53,36 +54,44 @@ export const HeadComponent = () => {
 
       <title>Create a DAO tool from scratch</title>
       <meta name="title" content="Create a DAO tool from scratch" />
-      <meta name="description" content="TypeScript + React.js + NEXT.js + Thirdweb + Vercel 👉 Ethereum Network 上でオリジナルの DAO を運営しよう🤝" />
+      <meta
+        name="description"
+        content="TypeScript + React.js + NEXT.js + Thirdweb + Vercel 👉 Ethereum Network 上でオリジナルの DAO を運営しよう🤝"
+      />
 
       {/* Facebook */}
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://www.shiftbase.xyz/" />
       <meta property="og:title" content="Create a DAO tool from scratch" />
-      <meta property="og:description" content="TypeScript + React.js + NEXT.js + Thirdweb + Vercel 👉 Ethereum Network 上でオリジナルの DAO を運営しよう🤝" />
+      <meta
+        property="og:description"
+        content="TypeScript + React.js + NEXT.js + Thirdweb + Vercel 👉 Ethereum Network 上でオリジナルの DAO を運営しよう🤝"
+      />
       <meta property="og:image" content="/banner.png" />
 
       {/* Twitter */}
       <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:url" content="https://www.shiftbase.xyz/" />
       <meta property="twitter:title" content="Create a DAO tool from scratch" />
-      <meta property="twitter:description" content="TypeScript + React.js + NEXT.js + Thirdweb + Vercel 👉 Ethereum Network 上でオリジナルの DAO を運営しよう🤝" />
+      <meta
+        property="twitter:description"
+        content="TypeScript + React.js + NEXT.js + Thirdweb + Vercel 👉 Ethereum Network 上でオリジナルの DAO を運営しよう🤝"
+      />
       <meta property="twitter:image" content="/banner.png" />
     </Head>
-  ); 
+  );
 };
 ```
 
 続いて、ルートディレクトリ直下にある`public`フォルダの中に以下の画像を`banner.png`という名前で保存します。
 
-![](/public/images/ETH-DAO/section-1/1_3_1.png)
+![](/images/ETH-DAO/section-1/1_3_1.png)
 
 これで、ヘッダーの準備が整いました。
 
 ⚠️ 以前にdApps開発取り組んだことがある場合、メタマスクの接続済みサイトから https://localhost:3000 を解除しておきましょう。
 
-![](/public/images/ETH-DAO/section-1/1_3_2.png)
-
+![](/images/ETH-DAO/section-1/1_3_2.png)
 
 ### 🌟 ウォレットに接続してみよう
 
@@ -94,17 +103,17 @@ yarn dev
 
 ※ `localhost:3000`を開くと表示されます。
 
-![](/public/images/ETH-DAO/section-1/1_3_3.png)
+![](/images/ETH-DAO/section-1/1_3_3.png)
 
 では、初期画面を更新していきましょう。
 
 `src/pages/index.tsx`に移動して、コードを以下とおり更新しましょう。
 
 ```typescript
-import { ConnectWallet } from '@thirdweb-dev/react';
-import type { NextPage } from 'next';
+import { ConnectWallet } from "@thirdweb-dev/react";
+import type { NextPage } from "next";
 
-import styles from '../styles/Home.module.css';
+import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   return (
@@ -132,7 +141,7 @@ export default Home;
 
 ウォレットを認証が完了すると、このような画面となります。
 
-![](/public/images/ETH-DAO/section-1/1_3_4.png)
+![](/images/ETH-DAO/section-1/1_3_4.png)
 
 ここでページをリロードしても、ウォレット接続が残っているのがわかると思います。
 
@@ -141,7 +150,6 @@ export default Home;
 私の真似をしないでください！ これはあなたのDAOです！
 
 📝 備考：ユーザーがウォレットを接続していない場合をテストしたい場合は、ご自由にMetaMaskから[ウェブサイトの接続を解除](https://metamask.zendesk.com/hc/en-us/articles/360059535551-Disconnect-wallet-from-Dapp)してください。
-
 
 ### 🙋‍♂️ 質問する
 

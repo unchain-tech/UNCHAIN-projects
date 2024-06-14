@@ -156,7 +156,7 @@ useEffect(() => {
   let wavePortalContract;
 
   const onNewWave = (from, timestamp, message) => {
-    console.log('NewWave', from, timestamp, message);
+    console.log("NewWave", from, timestamp, message);
     setAllWaves((prevState) => [
       ...prevState,
       {
@@ -177,13 +177,13 @@ useEffect(() => {
       contractABI,
       signer
     );
-    wavePortalContract.on('NewWave', onNewWave);
+    wavePortalContract.on("NewWave", onNewWave);
   }
 
   /*メモリリークを防ぐために、NewWaveのイベントを解除します*/
   return () => {
     if (wavePortalContract) {
-      wavePortalContract.off('NewWave', onNewWave);
+      wavePortalContract.off("NewWave", onNewWave);
     }
   };
 }, []);
@@ -285,7 +285,7 @@ const wavesCleaned = waves.map((wave) => {
 
 ```javascript
 const onNewWave = (from, timestamp, message) => {
-  console.log('NewWave', from, timestamp, message);
+  console.log("NewWave", from, timestamp, message);
   setAllWaves((prevState) => [
     ...prevState,
     {
@@ -330,7 +330,7 @@ if (window.ethereum) {
     signer
   );
   /* ここに注目 */
-  wavePortalContract.on('NewWave', onNewWave);
+  wavePortalContract.on("NewWave", onNewWave);
 }
 ```
 
@@ -364,9 +364,9 @@ if (window.ethereum) {
 
 ```javascript
 const main = async () => {
-  const waveContractFactory = await hre.ethers.getContractFactory('WavePortal');
+  const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
   const waveContract = await waveContractFactory.deploy();
-  console.log('Contract added to:', waveContract.address);
+  console.log("Contract added to:", waveContract.address);
 
   let waveCount;
   waveCount = await waveContract.getTotalWaves();
@@ -375,11 +375,11 @@ const main = async () => {
   /**
    * 「👋（wave）」を送る
    */
-  let waveTxn = await waveContract.wave('A message!');
+  let waveTxn = await waveContract.wave("A message!");
   await waveTxn.wait(); // トランザクションが承認されるのを待つ（テスト:1回目）
 
   const [_, randomPerson] = await hre.ethers.getSigners();
-  waveTxn = await waveContract.connect(randomPerson).wave('Another message!');
+  waveTxn = await waveContract.connect(randomPerson).wave("Another message!");
   await waveTxn.wait(); // トランザクションが承認されるのを待つ（テスト:2回目）
 
   let allWaves = await waveContract.getAllWaves();
@@ -515,24 +515,24 @@ Contract deployed to: 0x... ← あなたのコントラクトアドレスをコ
 
 ```javascript
 /* ethers 変数を使えるようにする*/
-import { ethers } from 'ethers';
-import React, { useEffect, useState } from 'react';
+import { ethers } from "ethers";
+import React, { useEffect, useState } from "react";
 
-import './App.css';
+import "./App.css";
 
 /* ABIファイルを含むWavePortal.jsonファイルをインポートする*/
-import abi from './utils/WavePortal.json';
+import abi from "./utils/WavePortal.json";
 
 const App = () => {
   /* ユーザーのパブリックウォレットを保存するために使用する状態変数を定義 */
-  const [currentAccount, setCurrentAccount] = useState('');
+  const [currentAccount, setCurrentAccount] = useState("");
   /* ユーザーのメッセージを保存するために使用する状態変数を定義 */
-  const [messageValue, setMessageValue] = useState('');
+  const [messageValue, setMessageValue] = useState("");
   /* すべてのwavesを保存する状態変数を定義 */
   const [allWaves, setAllWaves] = useState([]);
-  console.log('currentAccount: ', currentAccount);
+  console.log("currentAccount: ", currentAccount);
   /* デプロイされたコントラクトのアドレスを保持する変数を作成 */
-  const contractAddress = '新しいコントラクトアドレス';
+  const contractAddress = "新しいコントラクトアドレス";
   /* コントラクトからすべてのwavesを取得するメソッドを作成 */
   /* ABIの内容を参照する変数を作成 */
   const contractABI = abi.abi;
@@ -576,7 +576,7 @@ const App = () => {
     let wavePortalContract;
 
     const onNewWave = (from, timestamp, message) => {
-      console.log('NewWave', from, timestamp, message);
+      console.log("NewWave", from, timestamp, message);
       setAllWaves((prevState) => [
         ...prevState,
         {
@@ -597,12 +597,12 @@ const App = () => {
         contractABI,
         signer
       );
-      wavePortalContract.on('NewWave', onNewWave);
+      wavePortalContract.on("NewWave", onNewWave);
     }
     /*メモリリークを防ぐために、NewWaveのイベントを解除します*/
     return () => {
       if (wavePortalContract) {
-        wavePortalContract.off('NewWave', onNewWave);
+        wavePortalContract.off("NewWave", onNewWave);
       }
     };
   }, []);
@@ -612,20 +612,20 @@ const App = () => {
     try {
       const { ethereum } = window;
       if (!ethereum) {
-        console.log('Make sure you have MetaMask!');
+        console.log("Make sure you have MetaMask!");
         return;
       } else {
-        console.log('We have the ethereum object', ethereum);
+        console.log("We have the ethereum object", ethereum);
       }
       /* ユーザーのウォレットへのアクセスが許可されているかどうかを確認 */
-      const accounts = await ethereum.request({ method: 'eth_accounts' });
+      const accounts = await ethereum.request({ method: "eth_accounts" });
       if (accounts.length !== 0) {
         const account = accounts[0];
-        console.log('Found an authorized account:', account);
+        console.log("Found an authorized account:", account);
         setCurrentAccount(account);
         getAllWaves();
       } else {
-        console.log('No authorized account found');
+        console.log("No authorized account found");
       }
     } catch (error) {
       console.log(error);
@@ -637,13 +637,13 @@ const App = () => {
     try {
       const { ethereum } = window;
       if (!ethereum) {
-        alert('Get MetaMask!');
+        alert("Get MetaMask!");
         return;
       }
       const accounts = await ethereum.request({
-        method: 'eth_requestAccounts',
+        method: "eth_requestAccounts",
       });
-      console.log('Connected: ', accounts[0]);
+      console.log("Connected: ", accounts[0]);
       setCurrentAccount(accounts[0]);
     } catch (error) {
       console.log(error);
@@ -664,16 +664,16 @@ const App = () => {
           signer
         );
         let count = await wavePortalContract.getTotalWaves();
-        console.log('Retrieved total wave count...', count.toNumber());
+        console.log("Retrieved total wave count...", count.toNumber());
         /* コントラクトに👋（wave）を書き込む */
         const waveTxn = await wavePortalContract.wave(messageValue, {
           gasLimit: 300000,
         });
-        console.log('Mining...', waveTxn.hash);
+        console.log("Mining...", waveTxn.hash);
         await waveTxn.wait();
-        console.log('Mined -- ', waveTxn.hash);
+        console.log("Mined -- ", waveTxn.hash);
         count = await wavePortalContract.getTotalWaves();
-        console.log('Retrieved total wave count...', count.toNumber());
+        console.log("Retrieved total wave count...", count.toNumber());
       } else {
         console.log("Ethereum object doesn't exist!");
       }
@@ -693,7 +693,7 @@ const App = () => {
         <div className="header">
           <span role="img" aria-label="hand-wave">
             👋
-          </span>{' '}
+          </span>{" "}
           WELCOME!
         </div>
         <div className="bio">
@@ -772,9 +772,9 @@ export default App;
 
 ```javascript
 /* ユーザーのパブリックウォレットアドレスを保存するために使用する状態変数を定義 */
-const [currentAccount, setCurrentAccount] = useState('');
+const [currentAccount, setCurrentAccount] = useState("");
 /* ユーザーのメッセージを保存するために使用する状態変数を定義 */
-const [messageValue, setMessageValue] = useState('');
+const [messageValue, setMessageValue] = useState("");
 /* すべてのwavesを保存する状態変数を定義 */
 const [allWaves, setAllWaves] = useState([]);
 ```
@@ -782,14 +782,14 @@ const [allWaves, setAllWaves] = useState([]);
 ここでは、ユーザーの情報を保存するために使用する変数と関数を定義し、初期化しています。
 
 ```javascript
-const [currentAccount, setCurrentAccount] = useState('');
+const [currentAccount, setCurrentAccount] = useState("");
 ```
 
 - ユーザーのパブリックウォレットを格納する変数(＝ `currentAccount`)
 - ユーザーのパブリックウォレットを更新する関数(＝ `setCurrentAccount`)
 
 ```javascript
-const [messageValue, setMessageValue] = useState('');
+const [messageValue, setMessageValue] = useState("");
 ```
 
 - ユーザーのメッセージを格納する変数(＝ `messageValue`)
@@ -864,7 +864,7 @@ const [allWaves, setAllWaves] = useState([]);
 > 基本的な**1Gas 当たりの価格**は 「**21 `Gwei`**」 で送金されます。
 >
 > ガス価格の単位として使われている「 **`wei`** 」は、イーサリアムの単位で 1ETH とのレートは下図のようになっています。
-> ![](/public/images/ETH-dApp/section-3/3_1_1.png)
+> ![](/images/ETH-dApp/section-3/3_1_1.png)
 >
 > **`G`** はギガのことで、`1Gwei = 0.000000001ETH`です。
 >
@@ -928,7 +928,7 @@ const [allWaves, setAllWaves] = useState([]);
 
 こちらが、フロントエンドの実装結果の例になります。
 
-![](/public/images/ETH-dApp/section-3/3_1_2.png)
+![](/images/ETH-dApp/section-3/3_1_2.png)
 
 ターミナルを閉じるときは、以下のコマンドが使えます ✍️
 

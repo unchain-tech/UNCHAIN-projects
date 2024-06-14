@@ -62,17 +62,17 @@ Vercelのアカウントを取得したら、下記を実行しましょう。
 
 1\. `Dashboard`へ進んで、`New Project`を選択してください。
 
-![](/public/images/ETH-DAO/section-4/4_2_1.png)
+![](/images/ETH-DAO/section-4/4_2_1.png)
 
 2\. `Import Git Repository`で自分のGitHubアカウントを接続したら、先ほどpushしたリモートリポジトリを選択し、`Import`してください。
 
-![](/public/images/ETH-DAO/section-4/4_2_2.png)
+![](/images/ETH-DAO/section-4/4_2_2.png)
 
 3\. プロジェクトを作成します。Environment Variableに下記を追加します。
 
 `NAME`＝`CI`、`VALUE`＝`false`（下図参照）
 
-![](/public/images/ETH-DAO/section-4/4_2_3.png)
+![](/images/ETH-DAO/section-4/4_2_3.png)
 
 4\. `Deploy`ボタンを推しましょう。
 
@@ -82,7 +82,7 @@ VercelはGitHubと連動しているので、GitHubが更新されるたびに�
 
 基本的に`warning`は無視して問題ありません。
 
-![](/public/images/ETH-DAO/section-4/4_2_4.png)
+![](/images/ETH-DAO/section-4/4_2_4.png)
 
 [こちら](https://eth-dao-mu.vercel.app/)が見本となるサイトです！
 

@@ -33,7 +33,7 @@ type SendMessage @entity(immutable: true) {
 
 ```
 
-![](/public/images/TheGraph-ScaffoldEth2/section-1/1_2_1.png)
+![](/images/TheGraph-ScaffoldEth2/section-1/1_2_1.png)
 
 #### ✅ サブグラフマニフェストの更新
 
@@ -57,7 +57,7 @@ entities:
           handler: handleSendMessage
 ```
 
-![](/public/images/TheGraph-ScaffoldEth2/section-1/1_2_2.png)
+![](/images/TheGraph-ScaffoldEth2/section-1/1_2_2.png)
 
 ここまでステップ通りに進んでいる場合は、次に新しいabiをコピーしてコードを再生成する必要があります。
 
@@ -65,7 +65,7 @@ entities:
 yarn abi-copy && yarn codegen
 ```
 
-![](/public/images/TheGraph-ScaffoldEth2/section-1/1_2_3.png)
+![](/images/TheGraph-ScaffoldEth2/section-1/1_2_3.png)
 
 #### ✅ マッピングスクリプトの更新
 
@@ -125,6 +125,6 @@ export function handleSendMessage(event: SendMessageEvent): void {
 
 この変更により、エディタ内でのリントエラーは消えるでしょう。
 
-![](/public/images/TheGraph-ScaffoldEth2/section-1/1_2_4.png)
+![](/images/TheGraph-ScaffoldEth2/section-1/1_2_4.png)
 
 これでほぼ完成です... あとは公開するだけ！

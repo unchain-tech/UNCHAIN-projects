@@ -19,13 +19,13 @@ This workshop is built around Scaffold-ETH 2 and The Graph. You will learn how t
 - 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
 - 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
 
-![](/public/images/TheGraph-ScaffoldEth2/section-0/0_1_1.png)
+![](/images/TheGraph-ScaffoldEth2/section-0/0_1_1.png)
 
-![](/public/images/TheGraph-ScaffoldEth2/section-0/0_1_2.png)
+![](/images/TheGraph-ScaffoldEth2/section-0/0_1_2.png)
 
-![](/public/images/TheGraph-ScaffoldEth2/section-0/L0_1_3.png)
+![](/images/TheGraph-ScaffoldEth2/section-0/0_1_3.png)
 
-![](/public/images/TheGraph-ScaffoldEth2/section-0/0_1_4.png)
+![](/images/TheGraph-ScaffoldEth2/section-0/0_1_4.png)
 
 To learn more about Scaffold-ETH checkout the [Github repository](https://github.com/scaffold-eth/scaffold-eth-2) or [Scaffoldeth.io](https://scaffoldeth.io).
 
@@ -45,7 +45,7 @@ We are building an example smart contract and front end that utilizes The Graph 
 
 https://sendmessage-tau.vercel.app
 
-![](/public/images/TheGraph-ScaffoldEth2/section-0/0_1_5.png)
+![](/images/TheGraph-ScaffoldEth2/section-0/0_1_5.png)
 
 ### 🌍 Upgrading this project
 

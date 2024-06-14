@@ -16,39 +16,39 @@ Update the configuration to point to the testnet that you deployed to in previou
 
 It should look like this when changed:
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_6_1.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_6_1.png)
 
 Once you change this you can go back to scaffold-ETH and refresh the UI. You will get kicked from your burner wallet, you will want to connect to the testnet work using your metamask wallet.
 
 Click "CONNECT WALLET"...
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_6_2.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_6_2.png)
 
 Choose Metamask...
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_6_3.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_6_3.png)
 
 Switch the network...
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_6_4.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_6_4.png)
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_6_5.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_6_5.png)
 
 Once complete you should now be connected to your dapp on sepolia network.
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_6_6.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_6_6.png)
 
 #### ✅ Fire off a test message to someone you know! （or Vitalik heh）
 
 We now want to send an event on the testnet that we have deployed our smart contract. We can do that fairly easily now that our frontend is properly configured.
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_6_7.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_6_7.png)
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_6_8.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_6_8.png)
 
 Then check to see if the message was indexed successfully in the studio. You can find the GraphiQL explorer on the "Playground" page.
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_6_9.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_6_9.png)
 
 #### ✅ Update our GraphQL URL to point to our development endpoint
 
@@ -66,7 +66,7 @@ The development endpoint for your subgraph can be found on the details tab in Su
 
 The change will look something like this:
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_6_10.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_6_10.png)
 
 #### ✅ Start with a clean slate in your index.ts file
 
@@ -96,7 +96,7 @@ export default Home;
 
 After your change the home directory will look something like this:
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_6_11.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_6_11.png)
 
 #### ✅ Display our messages in a table format
 
@@ -147,7 +147,7 @@ And then load the data like so...
   const messages = messagesData?.sendMessages || [];
 ```
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_6_13.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_6_13.png)
 
 We can then make this a bit prettier and use the `<Address>` component instead of just plain text.
 
@@ -169,6 +169,6 @@ Then, update the table to display the message as follows.
 
 This will look a lot nicer than those long strings! :D
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_6_14.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_6_14.png)
 
 > Note: If you want to see the full complete file you can do so [here](https://gist.github.com/kmjones1979/26ef9633b61b17f237e88eb41bb688de)!

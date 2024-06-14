@@ -33,7 +33,7 @@ Vercelに関する詳しい説明は、[こちら](https://zenn.dev/lollipop_onl
 
 まず、ローカルファイルをGitHubへアップロードしましょう。
 
-まだアップロードをしていない方は、ターミナル上で`AVAX-Messenger`に移動して、下記を実行しましょう。  
+まだアップロードをしていない方は、ターミナル上で`AVAX-Messenger`に移動して、下記を実行しましょう。
 ⚠️ `packages/contract/.gitignore`ファイル内に`.env`が記載されていることを確認していください。
 
 ```
@@ -48,17 +48,17 @@ Vercelのアカウントを取得したら、下記を実行しましょう。
 
 1\. `Dashboard`へ進んで、`New Project`を選択してください。
 
-![](/public/images/AVAX-Messenger/section-4/4_1_1.png)
+![](/images/AVAX-Messenger/section-4/4_1_1.png)
 
 2\. `Import Git Repository`で自分のGitHubアカウントを接続したら、当リポジトリを選択し`Import`してください。
 
-![](/public/images/AVAX-Messenger/section-4/4_1_2.png)
+![](/images/AVAX-Messenger/section-4/4_1_2.png)
 
 3\. プロジェクトを作成します。
 
 `Framework Preset`は`Next.js`、`Root Directory`は「packages/client」となっていることを確認してください。
 
-![](/public/images/AVAX-Messenger/section-4/4_1_3.png)
+![](/images/AVAX-Messenger/section-4/4_1_3.png)
 
 4\. `Deploy`ボタンをクリックしましょう。
 
@@ -67,7 +67,7 @@ VercelはGitHubと連動しているので、GitHubが更新されるたびに�
 しばらくしてビルドが完了すると
 下記のように、メッセージとホーム画面が出力されます。
 
-![](/public/images/AVAX-Messenger/section-4/4_1_4.png)
+![](/images/AVAX-Messenger/section-4/4_1_4.png)
 
 ホーム画面の表示部分はリンクになっているので、クリックするとあなたの作成したdappがブラウザで確認できます 🎉
 

@@ -88,13 +88,13 @@ yarn client dev
 次に`SelectTab`ディレクトリ内に`Faucet.tsx`という名前のファイルを作成し、以下のコードを記述してください。
 
 ```ts
-import { ethers } from 'ethers';
-import { useEffect, useState } from 'react';
+import { ethers } from "ethers";
+import { useEffect, useState } from "react";
 
-import { TokenType } from '../../hooks/useContract';
-import { validAmount } from '../../utils/validAmount';
-import InputNumberBox from '../InputBox/InputNumberBox';
-import styles from './SelectTab.module.css';
+import { TokenType } from "../../hooks/useContract";
+import { validAmount } from "../../utils/validAmount";
+import InputNumberBox from "../InputBox/InputNumberBox";
+import styles from "./SelectTab.module.css";
 
 type Props = {
   token0: TokenType | undefined;
@@ -109,7 +109,7 @@ export default function Faucet({
   currentAccount,
   updateDetails,
 }: Props) {
-  const [amountOfFunds, setAmountOfFunds] = useState('');
+  const [amountOfFunds, setAmountOfFunds] = useState("");
   const [currentTokenIndex, setCurrentTokenIndex] = useState(0);
 
   const [tokens, setTokens] = useState<TokenType[]>([]);
@@ -130,12 +130,12 @@ export default function Faucet({
 
   async function onClickFund() {
     if (!currentAccount) {
-      alert('connect wallet');
+      alert("connect wallet");
       return;
     }
     if (tokens.length === 0) return;
     if (!validAmount(amountOfFunds)) {
-      alert('Amount should be a valid number');
+      alert("Amount should be a valid number");
       return;
     }
     try {
@@ -145,7 +145,7 @@ export default function Faucet({
       const txn = await contract.faucet(currentAccount, amountInWei);
       await txn.wait();
       updateDetails(); // ユーザとammの情報を更新
-      alert('Success');
+      alert("Success");
     } catch (error) {
       console.log(error);
     }
@@ -160,13 +160,13 @@ export default function Faucet({
       </div>
       <InputNumberBox
         leftHeader={
-          'Amount of ' +
+          "Amount of " +
           (tokens[currentTokenIndex]
             ? tokens[currentTokenIndex].symbol
-            : 'some token')
+            : "some token")
         }
         right={
-          tokens[currentTokenIndex] ? tokens[currentTokenIndex].symbol : ''
+          tokens[currentTokenIndex] ? tokens[currentTokenIndex].symbol : ""
         }
         value={amountOfFunds}
         onChange={(e) => onChangeAmountOfFunds(e.target.value)}
@@ -225,12 +225,12 @@ export default function Container({ currentAccount }: Props) {
 
 `Faucet`タブをクリックすると以下のような表示がされます。
 
-![](/public/images/AVAX-AMM/section-3/3_4_1.png)
+![](/images/AVAX-AMM/section-3/3_4_1.png)
 
 入力欄に10と入力し、`Fund`をクリックします。
 トランザクションに署名し、しばらく待つと（ポップアップが表示されokを押した後）右側の`Your Details`のUSDCの部分が10増えているはずです。
 
-![](/public/images/AVAX-AMM/section-3/3_4_2.png)
+![](/images/AVAX-AMM/section-3/3_4_2.png)
 
 `Change`ボタンをクリックするとUSDC -> JOEへ変更されるため、JOEに関しても同じようにfaucetを利用することができます。
 
@@ -239,7 +239,7 @@ export default function Container({ currentAccount }: Props) {
 使用する状態変数は以下の通りです。
 
 ```ts
-const [amountOfFunds, setAmountOfFunds] = useState(''); // ユーザが指定した取得したいトークンの量を保持します。
+const [amountOfFunds, setAmountOfFunds] = useState(""); // ユーザが指定した取得したいトークンの量を保持します。
 const [currentTokenIndex, setCurrentTokenIndex] = useState(0); // 現在のtokens(この次にあります)のインデックスを保持します。
 
 const [tokens, setTokens] = useState<TokenType[]>([]); // [token0, token1] のようにトークンオブジェクトが格納されます。
@@ -259,12 +259,12 @@ const onChangeAmountOfFunds = (amount: string) => {
 
 async function onClickFund() {
   if (!currentAccount) {
-    alert('connect wallet');
+    alert("connect wallet");
     return;
   }
   if (tokens.length === 0) return;
   if (!validAmount(amountOfFunds)) {
-    alert('Amount should be a valid number');
+    alert("Amount should be a valid number");
     return;
   }
   try {
@@ -274,7 +274,7 @@ async function onClickFund() {
     const txn = await contract.faucet(currentAccount, amountInWei);
     await txn.wait();
     updateDetails(); // ユーザとammの情報を更新
-    alert('Success');
+    alert("Success");
   } catch (error) {
     console.log(error);
   }
@@ -292,15 +292,14 @@ async function onClickFund() {
 次に`SelectTab`ディレクトリ内に`Provide.tsx`という名前のファイルを作成し、以下のコードを記述してください。
 
 ```ts
-import { BigNumber, ethers } from 'ethers';
-import { useCallback, useEffect, useState } from 'react';
-import { MdAdd } from 'react-icons/md';
+import { BigNumber, ethers } from "ethers";
+import { useCallback, useEffect, useState } from "react";
+import { MdAdd } from "react-icons/md";
 
-import { AmmType, TokenType } from '../../hooks/useContract';
-import { validAmount } from '../../utils/validAmount';
-import InputNumberBox from '../InputBox/InputNumberBox';
-import styles from './SelectTab.module.css';
-
+import { AmmType, TokenType } from "../../hooks/useContract";
+import { validAmount } from "../../utils/validAmount";
+import InputNumberBox from "../InputBox/InputNumberBox";
+import styles from "./SelectTab.module.css";
 
 type Props = {
   token0: TokenType | undefined;
@@ -317,8 +316,8 @@ export default function Provide({
   currentAccount,
   updateDetails,
 }: Props) {
-  const [amountOfToken0, setAmountOfToken0] = useState('');
-  const [amountOfToken1, setAmountOfToken1] = useState('');
+  const [amountOfToken0, setAmountOfToken0] = useState("");
+  const [amountOfToken1, setAmountOfToken1] = useState("");
   const [activePool, setActivePool] = useState(true);
 
   const checkLiquidity = useCallback(async () => {
@@ -373,12 +372,12 @@ export default function Provide({
 
   const onClickProvide = async () => {
     if (!currentAccount) {
-      alert('connect wallet');
+      alert("connect wallet");
       return;
     }
     if (!amm || !token0 || !token1) return;
     if (!validAmount(amountOfToken0) || !validAmount(amountOfToken1)) {
-      alert('Amount should be a valid number');
+      alert("Amount should be a valid number");
       return;
     }
     try {
@@ -404,11 +403,11 @@ export default function Provide({
         amountToken1InWei
       );
       await txn.wait();
-      setAmountOfToken0('');
-      setAmountOfToken1('');
+      setAmountOfToken0("");
+      setAmountOfToken1("");
       checkLiquidity(); // プールの状態を確認
       updateDetails(); // ユーザとammの情報を更新
-      alert('Success');
+      alert("Success");
     } catch (error) {
       alert(error);
     }
@@ -417,8 +416,8 @@ export default function Provide({
   return (
     <div className={styles.tabBody}>
       <InputNumberBox
-        leftHeader={'Amount of ' + (token0 ? token0.symbol : 'some token')}
-        right={token0 ? token0.symbol : ''}
+        leftHeader={"Amount of " + (token0 ? token0.symbol : "some token")}
+        right={token0 ? token0.symbol : ""}
         value={amountOfToken0}
         onChange={(e) =>
           onChangeAmount(
@@ -433,8 +432,8 @@ export default function Provide({
         <MdAdd />
       </div>
       <InputNumberBox
-        leftHeader={'Amount of ' + (token1 ? token1.symbol : 'some token')}
-        right={token1 ? token1.symbol : ''}
+        leftHeader={"Amount of " + (token1 ? token1.symbol : "some token")}
+        right={token1 ? token1.symbol : ""}
         value={amountOfToken1}
         onChange={(e) =>
           onChangeAmount(
@@ -513,7 +512,7 @@ export default function Container({ currentAccount }: Props) {
 
 `Provide`タブをクリックすると以下のような表示がされます。
 
-![](/public/images/AVAX-AMM/section-3/3_4_3.png)
+![](/images/AVAX-AMM/section-3/3_4_3.png)
 
 入力欄にそれぞれ100と入力し、`Provide`をクリックします。
 
@@ -529,15 +528,15 @@ provideの実行では以下のトランザクションへの署名が必要で�
 
 しばらく待つと（ポップアップが表示されokを押した後）右側の`Your Details`が更新されます！
 
-![](/public/images/AVAX-AMM/section-3/3_4_4.png)
+![](/images/AVAX-AMM/section-3/3_4_4.png)
 
 それでは`Provide.tsx`の中身を見ましょう。
 
 使用する状態変数は以下の通りです。
 
 ```ts
-const [amountOfToken0, setAmountOfToken0] = useState(''); // ユーザが指定したtoken0の預けるトークンの量を保持します。
-const [amountOfToken1, setAmountOfToken1] = useState(''); // ユーザが指定したtoken1の預けるトークンの量を保持します。
+const [amountOfToken0, setAmountOfToken0] = useState(""); // ユーザが指定したtoken0の預けるトークンの量を保持します。
+const [amountOfToken1, setAmountOfToken1] = useState(""); // ユーザが指定したtoken1の預けるトークンの量を保持します。
 const [activePool, setActivePool] = useState(true); // プールに流動性があるのかをフラグで保持します。
 ```
 
@@ -591,14 +590,14 @@ const onChangeAmount = (
 次に`SelectTab`ディレクトリ内に`Swap.tsx`という名前のファイルを作成し、以下のコードを記述してください。
 
 ```ts
-import { ethers } from 'ethers';
-import { useEffect, useState } from 'react';
-import { MdSwapVert } from 'react-icons/md';
+import { ethers } from "ethers";
+import { useEffect, useState } from "react";
+import { MdSwapVert } from "react-icons/md";
 
-import { AmmType, TokenType } from '../../hooks/useContract';
-import { validAmount } from '../../utils/validAmount';
-import InputNumberBox from '../InputBox/InputNumberBox';
-import styles from './SelectTab.module.css';
+import { AmmType, TokenType } from "../../hooks/useContract";
+import { validAmount } from "../../utils/validAmount";
+import InputNumberBox from "../InputBox/InputNumberBox";
+import styles from "./SelectTab.module.css";
 
 type Props = {
   token0: TokenType | undefined;
@@ -619,8 +618,8 @@ export default function Swap({
   const [tokenIn, setTokenIn] = useState<TokenType>();
   const [tokenOut, setTokenOut] = useState<TokenType>();
 
-  const [amountIn, setAmountIn] = useState('');
-  const [amountOut, setAmountOut] = useState('');
+  const [amountIn, setAmountIn] = useState("");
+  const [amountOut, setAmountOut] = useState("");
 
   useEffect(() => {
     setTokenIn(token0);
@@ -685,12 +684,12 @@ export default function Swap({
 
   const onClickSwap = async () => {
     if (!currentAccount) {
-      alert('Connect to wallet');
+      alert("Connect to wallet");
       return;
     }
     if (!amm || !tokenIn || !tokenOut) return;
     if (!validAmount(amountIn)) {
-      alert('Amount should be a valid number');
+      alert("Amount should be a valid number");
       return;
     }
     try {
@@ -708,10 +707,10 @@ export default function Swap({
         amountInInWei
       );
       await txn.wait();
-      setAmountIn('');
-      setAmountOut('');
+      setAmountIn("");
+      setAmountOut("");
       updateDetails(); // ユーザとammの情報を更新
-      alert('Success!');
+      alert("Success!");
     } catch (error) {
       alert(error);
     }
@@ -720,8 +719,8 @@ export default function Swap({
   return (
     <div className={styles.tabBody}>
       <InputNumberBox
-        leftHeader={'From'}
-        right={tokenIn ? tokenIn.symbol : ''}
+        leftHeader={"From"}
+        right={tokenIn ? tokenIn.symbol : ""}
         value={amountIn}
         onChange={(e) => onChangeIn(e.target.value)}
       />
@@ -729,8 +728,8 @@ export default function Swap({
         <MdSwapVert />
       </div>
       <InputNumberBox
-        leftHeader={'To'}
-        right={tokenOut ? tokenOut.symbol : ''}
+        leftHeader={"To"}
+        right={tokenOut ? tokenOut.symbol : ""}
         value={amountOut}
         onChange={(e) => onChangeOut(e.target.value)}
       />
@@ -804,7 +803,7 @@ export default function Container({ currentAccount }: Props) {
 
 `Swap`タブをクリックすると以下のような表示がされます。
 
-![](/public/images/AVAX-AMM/section-3/3_4_5.png)
+![](/images/AVAX-AMM/section-3/3_4_5.png)
 
 USDC入力欄に50と入力すると、swapにより受けることができるJOEの量が表示されます。
 `Swap`をクリックします。
@@ -818,11 +817,11 @@ swapの実行では以下のトランザクションへの署名が必要です�
 
 ここでは以下の図のようなことを行っています。
 
-![](/public/images/AVAX-AMM/section-3/swap.drawio.svg)
+![](/images/AVAX-AMM/section-3/swap.drawio.svg)
 
 しばらく待つと（ポップアップが表示されokを押した後）右側の`Your Details`が更新されます！
 
-![](/public/images/AVAX-AMM/section-3/3_4_6.png)
+![](/images/AVAX-AMM/section-3/3_4_6.png)
 
 それでは`Swap.tsx`の中身を見ましょう。
 
@@ -834,8 +833,8 @@ const [tokenIn, setTokenIn] = useState<TokenType>();
 const [tokenOut, setTokenOut] = useState<TokenType>();
 
 // ユーザの入力値を保持します。
-const [amountIn, setAmountIn] = useState('');
-const [amountOut, setAmountOut] = useState('');
+const [amountIn, setAmountIn] = useState("");
+const [amountOut, setAmountOut] = useState("");
 ```
 
 `TokenIn`と`TokenOut`はユーザの操作によって中身に入るトークンオブジェクトが変化します。
@@ -872,17 +871,17 @@ const rev = () => {
 最後に`SelectTab`ディレクトリ内に`Withdraw.tsx`という名前のファイルを作成し、以下のコードを記述してください。
 
 ```ts
-import { BigNumber, ethers } from 'ethers';
-import { useCallback, useEffect, useState } from 'react';
+import { BigNumber, ethers } from "ethers";
+import { useCallback, useEffect, useState } from "react";
 
-import { AmmType, TokenType } from '../../hooks/useContract';
+import { AmmType, TokenType } from "../../hooks/useContract";
 import {
   formatWithoutPrecision,
   formatWithPrecision,
-} from '../../utils/format';
-import { validAmount } from '../../utils/validAmount';
-import InputNumberBox from '../InputBox/InputNumberBox';
-import styles from './SelectTab.module.css';
+} from "../../utils/format";
+import { validAmount } from "../../utils/validAmount";
+import InputNumberBox from "../InputBox/InputNumberBox";
+import styles from "./SelectTab.module.css";
 
 type Props = {
   token0: TokenType | undefined;
@@ -899,9 +898,9 @@ export default function Withdraw({
   currentAccount,
   updateDetails,
 }: Props) {
-  const [amountOfToken0, setAmountOfToken0] = useState('');
-  const [amountOfToken1, setAmountOfToken1] = useState('');
-  const [amountOfShare, setAmountOfShare] = useState('');
+  const [amountOfToken0, setAmountOfToken0] = useState("");
+  const [amountOfToken1, setAmountOfToken1] = useState("");
+  const [amountOfShare, setAmountOfShare] = useState("");
   const [amountOfMaxShare, setAmountOfMaxShare] = useState<string>();
 
   const getMaxShare = useCallback(async () => {
@@ -937,7 +936,7 @@ export default function Withdraw({
     if (!amm || !token || !amountOfMaxShare) return;
     if (!validAmount(amountOfShare)) return;
     if (leftLessThanRightAsBigNumber(amountOfMaxShare, amountOfShare)) {
-      alert('Amount should be less than your max share');
+      alert("Amount should be less than your max share");
       return;
     }
     try {
@@ -971,16 +970,16 @@ export default function Withdraw({
 
   const onClickWithdraw = async () => {
     if (!currentAccount) {
-      alert('connect wallet');
+      alert("connect wallet");
       return;
     }
     if (!amm || !amountOfMaxShare) return;
     if (!validAmount(amountOfShare)) {
-      alert('Amount should be a valid number');
+      alert("Amount should be a valid number");
       return;
     }
     if (leftLessThanRightAsBigNumber(amountOfMaxShare, amountOfShare)) {
-      alert('Amount should be less than your max share');
+      alert("Amount should be less than your max share");
       return;
     }
     try {
@@ -988,11 +987,11 @@ export default function Withdraw({
         formatWithPrecision(amountOfShare, amm.sharePrecision)
       );
       await txn.wait();
-      setAmountOfToken0('');
-      setAmountOfToken1('');
-      setAmountOfShare('');
+      setAmountOfToken0("");
+      setAmountOfToken1("");
+      setAmountOfShare("");
       updateDetails(); // ユーザとammの情報を更新
-      alert('Success!');
+      alert("Success!");
     } catch (error) {
       alert(error);
     }
@@ -1006,7 +1005,7 @@ export default function Withdraw({
         </div>
       </div>
       <InputNumberBox
-        leftHeader={'Amount of share:'}
+        leftHeader={"Amount of share:"}
         right=""
         value={amountOfShare}
         onChange={(e) => onChangeAmountOfShare(e.target.value)}
@@ -1102,14 +1101,14 @@ export default function Container({ currentAccount }: Props) {
 
 `Withdraw`タブをクリックすると以下のような表示がされます。
 
-![](/public/images/AVAX-AMM/section-3/3_4_7.png)
+![](/images/AVAX-AMM/section-3/3_4_7.png)
 
 `Max`ボタンをクリックするとユーザの保有するシェアが入力値となり、引き出すことのできるトークンの量がそれぞれ下に表示されます。
 `Withdraw`をクリックします。
 
 トランザクションに署名し、しばらく待つと（ポップアップが表示されokを押した後）右側の`Your Details`が更新されます！
 
-![](/public/images/AVAX-AMM/section-3/3_4_8.png)
+![](/images/AVAX-AMM/section-3/3_4_8.png)
 
 今回は1つのアカウントで挙動を確かめているためMaxのシェアでトークンを引き出すとプールは空になり、ユーザの保有するトークンの量が元々保有していた量に戻ります。
 
@@ -1126,7 +1125,6 @@ export default function Container({ currentAccount }: Props) {
 > [こちら](https://github.com/unchain-tech/AVAX-AMM)に本プロジェクトの完成形のレポジトリがあります。
 >
 > 期待通り動かない場合は参考にしてみてください。
-
 
 ### 🙋‍♂️ 質問する
 

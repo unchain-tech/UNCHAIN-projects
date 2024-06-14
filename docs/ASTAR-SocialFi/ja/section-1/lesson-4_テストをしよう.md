@@ -884,7 +884,7 @@ cargo contract build
 
 下の画像のように`extention`としてアドレスが`Polkadot.js`で認識されていればOKです！
 
-![](/public/images/ASTAR-SocialFi/section-1/1_1_1.png)
+![](/images/ASTAR-SocialFi/section-1/1_1_1.png)
 
 コントラクトの作成が終わりました。
 

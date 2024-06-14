@@ -233,7 +233,7 @@ return (
 
 上記の実装はフロントエンドに下記のように反映されます。
 
-![](/public/images/ETH-NFT-Game/section-4/4_1_1.png)
+![](/images/ETH-NFT-Game/section-4/4_1_1.png)
 
 ### 🔁 `Arena`コンポーネントにローディングマークを追加する
 

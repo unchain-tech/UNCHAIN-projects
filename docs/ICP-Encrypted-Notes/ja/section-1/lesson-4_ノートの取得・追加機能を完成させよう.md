@@ -5,15 +5,15 @@
 `hooks/authContext.ts`のsetupService関数`/** STEP3: バックエンドキャニスターを呼び出す準備をします。 */`の下に、コードを追加します。
 
 ```ts
-    /** STEP3: バックエンドキャニスターを呼び出す準備をします。 */
-    // 取得した`identity`を使用して、ICと対話する`agent`を作成します。
-    const newAgent = new HttpAgent({ identity });
-    if (process.env.DFX_NETWORK === 'local') {
-      newAgent.fetchRootKey();
-    }
-    // 認証したユーザーの情報で`actor`を作成します。
-    const options = { agent: newAgent };
-    const actor = createActor(canisterId, options);
+/** STEP3: バックエンドキャニスターを呼び出す準備をします。 */
+// 取得した`identity`を使用して、ICと対話する`agent`を作成します。
+const newAgent = new HttpAgent({ identity });
+if (process.env.DFX_NETWORK === "local") {
+  newAgent.fetchRootKey();
+}
+// 認証したユーザーの情報で`actor`を作成します。
+const options = { agent: newAgent };
+const actor = createActor(canisterId, options);
 ```
 
 更新したコードを確認していきましょう。
@@ -23,24 +23,24 @@
 Internet Identityによる認証で取得したユーザーの情報（identity）を元に、HttpAgentを初期化します。初期化に用いたデータが、バックエンドキャニスターへのメッセージ送信に使用されるプリンシパルとなります。
 
 ```ts
-    // 取得した`identity`を使用して、ICと対話する`agent`を作成します。
-    const newAgent = new HttpAgent({ identity });
+// 取得した`identity`を使用して、ICと対話する`agent`を作成します。
+const newAgent = new HttpAgent({ identity });
 ```
 
-デプロイ先のネットワークがローカルの時、[`fetchRootKey`](https://agent-js.icp.xyz/agent/interfaces/Agent.html#fetchRootKey)関数を呼び出します。デフォルトでは、エージェントはメインネットと通信するように設定されており、ハードコードされた公開鍵を使用してレスポンスを検証します。そのため、ローカルネットワークにデプロイしたキャニスターと通信する際には、この関数を呼び出してキャニスターの公開鍵を取得する必要があります（⚠️この関数はメインネットと通信していない時のみに使用します）。
+デプロイ先のネットワークがローカルの時、[`fetchRootKey`](https://agent-js.icp.xyz/agent/interfaces/Agent.html#fetchRootKey)関数を呼び出します。デフォルトでは、エージェントはメインネットと通信するように設定されており、ハードコードされた公開鍵を使用してレスポンスを検証します。そのため、ローカルネットワークにデプロイしたキャニスターと通信する際には、この関数を呼び出してキャニスターの公開鍵を取得する必要があります（⚠️ この関数はメインネットと通信していない時のみに使用します）。
 
 ```ts
-    if (process.env.DFX_NETWORK === 'local') {
-      newAgent.fetchRootKey();
-    }
+if (process.env.DFX_NETWORK === "local") {
+  newAgent.fetchRootKey();
+}
 ```
 
 最後に、アクターを作成します。アクターは、キャニスター間の通信でやり取りされるメッセージを処理するオブジェクトのことで、非同期にメッセージを処理します。アクターを作成するには、[`createActor`](https://agent-js.icp.xyz/agent/classes/Actor.html)関数を使用します。
 
 ```ts
-    // 認証したユーザーの情報で`actor`を作成します。
-    const options = { agent: newAgent };
-    const actor = createActor(canisterId, options);
+// 認証したユーザーの情報で`actor`を作成します。
+const options = { agent: newAgent };
+const actor = createActor(canisterId, options);
 ```
 
 なお、createActor関数はバックエンドキャニスターをデプロイした際に生成されるIDLファイルから取得します。
@@ -49,13 +49,13 @@ Internet Identityによる認証で取得したユーザーの情報（identity�
 import {
   canisterId,
   createActor,
-} from '../../../declarations/encrypted_notes_backend';
+} from "../../../declarations/encrypted_notes_backend";
 ```
 
 最後に、setupService関数の一番下に定義している`setAuth({ status: 'SYNCHRONIZING' });`を下記のコードに更新しましょう。`setAuth`関数に取得したデータを設定して、認証状態を更新します。
 
 ```ts
-    setAuth({ actor, authClient, cryptoService, status: 'SYNCED' });
+setAuth({ actor, authClient, cryptoService, status: "SYNCED" });
 ```
 
 ### 🎤 バックエンドキャニスターの関数を呼び出そう
@@ -65,23 +65,23 @@ import {
 `routes/notes/index.tsx`のNotesコンポーネントを更新します。まずは、`getNotes`関数内で空配列を設定している`setNotes([]);`の部分を、下記のように更新しましょう。
 
 ```tsx
-  const getNotes = async () => {
-    if (auth.status !== 'SYNCED') {
-      console.error(`CryptoService is not synced.`);
-      return;
-    }
+const getNotes = async () => {
+  if (auth.status !== "SYNCED") {
+    console.error(`CryptoService is not synced.`);
+    return;
+  }
 
-    try {
-      // バックエンドキャニスターからノート一覧を取得します。
-      const notes = await auth.actor.getNotes();
-      setNotes(notes);
-    } catch (err) {
-      showMessage({
-        title: 'Failed to get notes',
-        status: 'error',
-      });
-    }
-  };
+  try {
+    // バックエンドキャニスターからノート一覧を取得します。
+    const notes = await auth.actor.getNotes();
+    setNotes(notes);
+  } catch (err) {
+    showMessage({
+      title: "Failed to get notes",
+      status: "error",
+    });
+  }
+};
 ```
 
 getNotes関数は、はじめに`auth.status`を確認しています。この値が`SYNCED`ではない時、つまり認証が未完了の時はすぐに終了します。認証が完了している時は`auth.actor`を用いて、バックエンドキャニスターの`getNotes`関数を呼び出します。取得したノート一覧は、`setNotes`関数を用いて`notes`にセットします。実行中にエラーが発生した場合は、`showMessage`関数を用いてエラーメッセージを表示します。
@@ -89,35 +89,35 @@ getNotes関数は、はじめに`auth.status`を確認しています。この�
 次に、`addNote`関数内でログ出力をしている`console.log('add note');`の部分を下記のように更新しましょう。
 
 ```tsx
-  const addNote = async () => {
-    if (auth.status !== 'SYNCED') {
-      console.error(`CryptoService is not synced.`);
-      return;
-    }
-
-    setIsLoading(true);
-
-    try {
-      // バックエンドキャニスターにノートを追加します。
-      await auth.actor.addNote(currentNote.data);
-      await getNotes();
-    } catch (err) {
-      showMessage({
-        title: 'Failed to add note',
-        status: 'error',
-      });
-    } finally {
-      onCloseNoteModal();
-      setIsLoading(false);
-    }
+const addNote = async () => {
+  if (auth.status !== "SYNCED") {
+    console.error(`CryptoService is not synced.`);
+    return;
   }
+
+  setIsLoading(true);
+
+  try {
+    // バックエンドキャニスターにノートを追加します。
+    await auth.actor.addNote(currentNote.data);
+    await getNotes();
+  } catch (err) {
+    showMessage({
+      title: "Failed to add note",
+      status: "error",
+    });
+  } finally {
+    onCloseNoteModal();
+    setIsLoading(false);
+  }
+};
 ```
 
 バックエンドキャニスターのaddNote関数を呼び出します。実行中にエラーが発生した場合の処理も、getNotes関数と同様です。auth.actor.addNote関数には、`currentNote.data`を引数として渡しています。この変数は、`useState`で定義されたステート変数です。
 
 ```tsx
 const [currentNote, setCurrentNote] = useState<EncryptedNote | undefined>(
-  undefined,
+  undefined
 );
 ```
 
@@ -127,15 +127,15 @@ const [currentNote, setCurrentNote] = useState<EncryptedNote | undefined>(
 
 まずは、ノートを追加してみましょう。ノートを追加するには、右上の「＋ New Note」をクリックします。
 
-![](/public/images/ICP-Encrypted-Notes/section-1/1_4_1.png)
+![](/images/ICP-Encrypted-Notes/section-1/1_4_1.png)
 
 モーダルが開いたら、テキストを入力して「Save」をクリックします。
 
-![](/public/images/ICP-Encrypted-Notes/section-1/1_4_2.png)
+![](/images/ICP-Encrypted-Notes/section-1/1_4_2.png)
 
 追加したノートが表示されていたら実装は完成です！
 
-![](/public/images/ICP-Encrypted-Notes/section-1/1_4_3.png)
+![](/images/ICP-Encrypted-Notes/section-1/1_4_3.png)
 
 ### 📝 このレッスンで追加したコード
 

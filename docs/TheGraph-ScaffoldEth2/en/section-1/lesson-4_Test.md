@@ -16,6 +16,6 @@ Next, lets see if our data is in The Graph. Here is an example query that shows 
 
 You should get a nice response like this:
 
-![](/public/images/TheGraph-ScaffoldEth2/section-1/1_4_1.png)
+![](/images/TheGraph-ScaffoldEth2/section-1/1_4_1.png)
 
 Data is such a beautiful thing huh?

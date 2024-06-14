@@ -171,25 +171,24 @@ NFTキャラクターのデータをスマートコントラクトから取得�
 
 それでは、`SelectCharacter`の中に記載した`useEffect`関数を確認しましょう。
 
-
 ```javascript
 useEffect(() => {
-	const { ethereum } = window;
+  const { ethereum } = window;
 
-	if (ethereum) {
-	  const provider = new ethers.providers.Web3Provider(ethereum);
-	  const signer = provider.getSigner();
-	  const gameContract = new ethers.Contract(
-		CONTRACT_ADDRESS,
-		myEpicGame.abi,
-		signer
-	  );
-	  // gameContract の状態を更新します。
-	  setGameContract(gameContract);
-	} else {
-	  console.log('Ethereum object not found');
-	}
-  	}, []);
+  if (ethereum) {
+    const provider = new ethers.providers.Web3Provider(ethereum);
+    const signer = provider.getSigner();
+    const gameContract = new ethers.Contract(
+      CONTRACT_ADDRESS,
+      myEpicGame.abi,
+      signer
+    );
+    // gameContract の状態を更新します。
+    setGameContract(gameContract);
+  } else {
+    console.log("Ethereum object not found");
+  }
+}, []);
 ```
 
 この関数の直下に、下記を追加していきましょう。
@@ -340,7 +339,7 @@ return (
 
 それでは、Webアプリケーションをリフレッシュして、下記のようにNFTキャラクターがフロントエンドに反映されていることを確認してください。
 
-![](/public/images/ETH-NFT-Game/section-3/3_5_1.png)
+![](/images/ETH-NFT-Game/section-3/3_5_1.png)
 
 ### ✨ Web アプリケーションから NFT キャラクター を Mint する
 
@@ -539,7 +538,7 @@ User has character NFT
 
 **2️⃣ OpenSea で NFT キャラクターを確認する**
 
-[gemcase(NFTを閲覧できるサービス)](https://gemcase.vercel.app/)で、NFTキャラクターを参照してみましょう。
+[gemcase(NFT を閲覧できるサービス)](https://gemcase.vercel.app/)で、NFTキャラクターを参照してみましょう。
 
 あなたの`CONTACT_ADDRESS`と`TOKEN_ID`を取得して、下記のアドレスを更新したら、ブラウザに貼り付けてみてください。
 
@@ -549,7 +548,7 @@ https://gemcase.vercel.app/view/evm/sepolia/CONTRACT_ADDRES/TOKEN_ID
 
 下記のように、オンライン上でもあなたのNFTキャラクターが表示されることを確認しましょう（画像は学習コンテンツ制作時に利用したRarible rinkeby testnetのものになります）。
 
-![](/public/images/ETH-NFT-Game/section-3/3_5_2.png)
+![](/images/ETH-NFT-Game/section-3/3_5_2.png)
 
 ### 🪄 おまけ
 

@@ -14,7 +14,7 @@ GitHubのアカウントをお持ちの方は、[こちら](https://github.com/n
 
 下図のように、`Code`ボタンをクリックした後、`SSH`を選択し、Gitリンクをコピーしましょう。
 
-![](/public/images/NEAR-BikeShare/section-1/1_1_1.png)
+![](/images/NEAR-BikeShare/section-1/1_1_1.png)
 
 > ✍️: SSH の設定を行う
 >

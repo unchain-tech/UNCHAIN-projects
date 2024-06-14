@@ -89,8 +89,8 @@
 `test/AMM.ts`内のテストの最後の行に以下のコードを追加してください。
 
 ```ts
-describe('getSwapEstimateOut', function () {
-  it('Should get the right number of token', async function () {
+describe("getSwapEstimateOut", function () {
+  it("Should get the right number of token", async function () {
     const { amm, token0, token1 } = await loadFixture(
       deployContractWithLiquidity
     );
@@ -98,7 +98,7 @@ describe('getSwapEstimateOut', function () {
     const totalToken0 = await amm.totalAmount(token0.address);
     const totalToken1 = await amm.totalAmount(token1.address);
 
-    const amountInToken0 = ethers.utils.parseEther('10');
+    const amountInToken0 = ethers.utils.parseEther("10");
     // basic formula: k = x * y
     // fee = 0.3%
     const amountInToken0WithFee = amountInToken0.mul(997);
@@ -112,8 +112,8 @@ describe('getSwapEstimateOut', function () {
   });
 });
 
-describe('getSwapEstimateIn', function () {
-  it('Should get the right number of token', async function () {
+describe("getSwapEstimateIn", function () {
+  it("Should get the right number of token", async function () {
     const { amm, token0, token1 } = await loadFixture(
       deployContractWithLiquidity
     );
@@ -121,7 +121,7 @@ describe('getSwapEstimateIn', function () {
     const totalToken0 = await amm.totalAmount(token0.address);
     const totalToken1 = await amm.totalAmount(token1.address);
 
-    const amountOutToken1 = ethers.utils.parseEther('10');
+    const amountOutToken1 = ethers.utils.parseEther("10");
     // basic formula: k = x * y
     // fee = 0.3%
     const amountInToken0 = totalToken0
@@ -134,7 +134,7 @@ describe('getSwapEstimateIn', function () {
     );
   });
 
-  it('Should revert if the amount of out token exceed the total', async function () {
+  it("Should revert if the amount of out token exceed the total", async function () {
     const { amm, token1, amountOwnerProvided1, amountOtherProvided1 } =
       await loadFixture(deployContractWithLiquidity);
 
@@ -144,7 +144,7 @@ describe('getSwapEstimateIn', function () {
 
     await expect(
       amm.getSwapEstimateIn(token1.address, amountSendToken1)
-    ).to.be.revertedWith('Insufficient pool balance');
+    ).to.be.revertedWith("Insufficient pool balance");
   });
 });
 ```
@@ -157,8 +157,8 @@ getSwapEstimateOut/getSwapEstimateInが正しく値を返しているかをテ�
 続いてその下に以下のテストを追加しましょう。
 
 ```ts
-describe('swap', function () {
-  it('Should set the right number of amm details', async function () {
+describe("swap", function () {
+  it("Should set the right number of amm details", async function () {
     const {
       amm,
       token0,
@@ -169,7 +169,7 @@ describe('swap', function () {
       amountOtherProvided1,
     } = await loadFixture(deployContractWithLiquidity);
 
-    const amountSendToken0 = ethers.utils.parseEther('10');
+    const amountSendToken0 = ethers.utils.parseEther("10");
     const amountReceiveToken1 = await amm.getSwapEstimateOut(
       token0.address,
       amountSendToken0
@@ -186,7 +186,7 @@ describe('swap', function () {
     );
   });
 
-  it('Token should be moved', async function () {
+  it("Token should be moved", async function () {
     const { amm, token0, token1, owner } = await loadFixture(
       deployContractWithLiquidity
     );
@@ -197,7 +197,7 @@ describe('swap', function () {
     const ammBalance0Before = await token0.balanceOf(amm.address);
     const ammBalance1Before = await token1.balanceOf(amm.address);
 
-    const amountSendToken0 = ethers.utils.parseEther('10');
+    const amountSendToken0 = ethers.utils.parseEther("10");
     const amountReceiveToken1 = await amm.getSwapEstimateOut(
       token0.address,
       amountSendToken0
@@ -237,14 +237,13 @@ yarn test
 
 以下のような表示がされたらテスト成功です！
 
-![](/public/images/AVAX-AMM/section-2/2_1_4.png)
+![](/images/AVAX-AMM/section-2/2_1_4.png)
 
 ### 🌔 参考リンク
 
 > [こちら](https://github.com/unchain-tech/AVAX-AMM)に本プロジェクトの完成形のレポジトリがあります。
 >
 > 期待通り動かない場合は参考にしてみてください。
-
 
 ### 🙋‍♂️ 質問する
 

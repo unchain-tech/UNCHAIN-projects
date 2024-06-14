@@ -7,7 +7,7 @@
 まず、`src/pages/index.tsx`へ移動し、`react`のインポート部分のコードを以下のとおり変更します。
 
 ```typescript
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from "react";
 ```
 
 ここで変更されたことは`useMemo`をインポートしたところだけです。
@@ -19,11 +19,8 @@ import { useEffect, useMemo, useState } from 'react';
 ※ あなたのアドレスを設定することを忘れないでください！
 
 ```typescript
-  // トークンコントラクトの初期化
-  const token = useContract(
-    'INSERT_TOKEN_ADDRESS',
-    'token',
-  ).contract;
+// トークンコントラクトの初期化
+const token = useContract("INSERT_TOKEN_ADDRESS", "token").contract;
 ```
 
 これはERC-1155とERC-20の両方とやり取りするために必要なものです。
@@ -35,72 +32,74 @@ ERC-20から、各メンバーが持っているトークンの数を取得し�
 次に、`const [isClaiming, setIsClaiming] = useState(false)`の下に、以下のコードを追加します。
 
 ```typescript
-  // メンバーごとの保有しているトークンの数をステートとして宣言
-  const [memberTokenAmounts, setMemberTokenAmounts] = useState<any>([]);
-  
-  // DAO メンバーのアドレスをステートで宣言
-  const [memberAddresses, setMemberAddresses] = useState<string[] | undefined>([]);
+// メンバーごとの保有しているトークンの数をステートとして宣言
+const [memberTokenAmounts, setMemberTokenAmounts] = useState<any>([]);
 
-  // アドレスの長さを省略してくれる便利な関数
-  const shortenAddress = (str: string) => {
-    return str.substring(0, 6) + '...' + str.substring(str.length - 4);
-  };
+// DAO メンバーのアドレスをステートで宣言
+const [memberAddresses, setMemberAddresses] = useState<string[] | undefined>(
+  []
+);
 
-  // メンバーシップを保持しているメンバーの全アドレスを取得します
-  useEffect(() => {
-    if (!hasClaimedNFT) {
-      return;
-    }
+// アドレスの長さを省略してくれる便利な関数
+const shortenAddress = (str: string) => {
+  return str.substring(0, 6) + "..." + str.substring(str.length - 4);
+};
 
-    // 先ほどエアドロップしたユーザーがここで取得できます（発行された tokenID 0 のメンバーシップ NFT）
-    const getAllAddresses = async () => {
-      try {
-        const memberAddresses = await editionDrop?.history.getAllClaimerAddresses(
-          0
-        );
-        setMemberAddresses(memberAddresses);
-        console.log('🚀 Members addresses', memberAddresses);
-      } catch (error) {
-        console.error('failed to get member list', error);
-      }
-    };
-    getAllAddresses();
-  }, [hasClaimedNFT, editionDrop?.history]);
+// メンバーシップを保持しているメンバーの全アドレスを取得します
+useEffect(() => {
+  if (!hasClaimedNFT) {
+    return;
+  }
 
-  // 各メンバーが保持するトークンの数を取得します
-  useEffect(() => {
-    if (!hasClaimedNFT) {
-      return;
-    }
-
-    const getAllBalances = async () => {
-      try {
-        const amounts = await token?.history.getAllHolderBalances();
-        setMemberTokenAmounts(amounts);
-        console.log('👜 Amounts', amounts);
-      } catch (error) {
-        console.error('failed to get member balances', error);
-      }
-    };
-    getAllBalances();
-  }, [hasClaimedNFT, token?.history]);
-
-  // memberAddresses と memberTokenAmounts を 1 つの配列に結合します
-  const memberList = useMemo(() => {
-    return memberAddresses?.map((address) => {
-      // memberTokenAmounts 配列でアドレスが見つかっているかどうかを確認します
-      // その場合、ユーザーが持っているトークンの量を返します
-      // それ以外の場合は 0 を返します
-      const member = memberTokenAmounts?.find(
-        ({ holder }: {holder: string}) => holder === address,
+  // 先ほどエアドロップしたユーザーがここで取得できます（発行された tokenID 0 のメンバーシップ NFT）
+  const getAllAddresses = async () => {
+    try {
+      const memberAddresses = await editionDrop?.history.getAllClaimerAddresses(
+        0
       );
+      setMemberAddresses(memberAddresses);
+      console.log("🚀 Members addresses", memberAddresses);
+    } catch (error) {
+      console.error("failed to get member list", error);
+    }
+  };
+  getAllAddresses();
+}, [hasClaimedNFT, editionDrop?.history]);
 
-      return {
-        address,
-        tokenAmount: member?.balance.displayValue || '0',
-      };
-    });
-  }, [memberAddresses, memberTokenAmounts]);
+// 各メンバーが保持するトークンの数を取得します
+useEffect(() => {
+  if (!hasClaimedNFT) {
+    return;
+  }
+
+  const getAllBalances = async () => {
+    try {
+      const amounts = await token?.history.getAllHolderBalances();
+      setMemberTokenAmounts(amounts);
+      console.log("👜 Amounts", amounts);
+    } catch (error) {
+      console.error("failed to get member balances", error);
+    }
+  };
+  getAllBalances();
+}, [hasClaimedNFT, token?.history]);
+
+// memberAddresses と memberTokenAmounts を 1 つの配列に結合します
+const memberList = useMemo(() => {
+  return memberAddresses?.map((address) => {
+    // memberTokenAmounts 配列でアドレスが見つかっているかどうかを確認します
+    // その場合、ユーザーが持っているトークンの量を返します
+    // それ以外の場合は 0 を返します
+    const member = memberTokenAmounts?.find(
+      ({ holder }: { holder: string }) => holder === address
+    );
+
+    return {
+      address,
+      tokenAmount: member?.balance.displayValue || "0",
+    };
+  });
+}, [memberAddresses, memberTokenAmounts]);
 ```
 
 たくさんあるように見えますが、ここで追加されていることはたったの3つだけです。
@@ -123,14 +122,13 @@ ERC-20から、各メンバーが持っているトークンの数を取得し�
 
 コンソールでは、このようなものが表示されていると思います。
 
-![](/public/images/ETH-DAO/section-3/3_2_1.png)
+![](/images/ETH-DAO/section-3/3_2_1.png)
 
 コントラクトの両方（ERC-20とERC-1155）からデータを取得することに成功しています。
 
 このあたりをいじって、すべてのデータをチェックするのは自由です。
 
 _⚠️ 注: また、あなたのコンソールで Ethers から`Request-Rate Exceeded`というメッセージが表示される場合があります。これは今のところ大丈夫なので無視しちゃってください_
-
 
 ### 🤯 メンバーのデータを DAO ダッシュボードに表示しよう
 
@@ -182,10 +180,9 @@ stateにデータを保持するところまではできているので、早速
 
 ページをチェックすると、以下のスクリーンショットのように表示されることが確認できます。
 
-![](/public/images/ETH-DAO/section-3/3_2_2.png)
+![](/images/ETH-DAO/section-3/3_2_2.png)
 
 トークンを付与されたすべてのメンバーをDAOダッシュボードで確認することができるようになりました。
-
 
 ### 🙋‍♂️ 質問する
 

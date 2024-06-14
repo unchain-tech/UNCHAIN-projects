@@ -5,9 +5,9 @@
 `genesis file`を作成し、それを元にSubnetを作成することで独自のカスタムを加えることができます。
 
 > 📓 genesis file
-> Subnetの初期設定を含むファイルです。
-> Subnetを作成する際、Avalancheはパラメータに基づいてジェネシスファイルを自動で生成します。
-> また、独自のgenesis fileを作成することもできます。これにより、Subnetの構成をより詳細に制御することができます。
+> Subnet の初期設定を含むファイルです。
+> Subnet を作成する際、Avalanche はパラメータに基づいてジェネシスファイルを自動で生成します。
+> また、独自の genesis file を作成することもできます。これにより、Subnet の構成をより詳細に制御することができます。
 
 前回のレッスンで作成したmySubnetのgenesis fileは以下のコマンドで内容を確認することができます。
 
@@ -98,7 +98,6 @@ avalanche subnet describe mySubnet --genesis
 
 genesis fileの中身について、詳しくは[こちら](https://docs.avax.network/subnets/customize-a-subnet)、または[こちら](https://docs.avax.network/community/tutorials-contest/2022/avax-subnet-customization)をご覧ください。
 
-
 ### ✅ 環境構築を行う
 
 genesis fileを作成する前に作業用ディレクトリを用意しましょう。
@@ -110,7 +109,7 @@ genesis fileを作成する前に作業用ディレクトリを用意しまし�
 
 また、前回作成したmySubnetがローカルネットワーク上で起動している場合、`avalanche network status`をターミナルで実行すると以下のような表示がされると思います。
 
-![](/public/images/AVAX-Subnet/section-1/1_3_1.png)
+![](/images/AVAX-Subnet/section-1/1_3_1.png)
 
 `Avalanche-CLI`の操作に慣れるためにもう一度mySubnetを削除します。
 
@@ -151,7 +150,7 @@ Error: timed out trying to contact backend controller、it is most probably not 
 % avalanche subnet delete mySubnet
 ```
 
- `avalanche subnet list`を実行すると、`mySubnet`が削除されてる事が確認できます。
+`avalanche subnet list`を実行すると、`mySubnet`が削除されてる事が確認できます。
 
 ```
 % avalanche subnet list
@@ -161,10 +160,9 @@ Error: timed out trying to contact backend controller、it is most probably not 
 +--------+-------+---------+------+------+-----------+
 ```
 
-
 これから新しくmySubnetを作っていきます。
 
-### 🦀 genesis fileの作成
+### 🦀 genesis file の作成
 
 `AVAX-Subnet`ディレクトリ直下に`genesis`というディレクトリを作成し、その中に`mygenesis.json`という名前のファイルを作成してください。
 
@@ -350,61 +348,61 @@ genesis fileの完成形は以下のようになっています。
 
 ```json
 {
-    "config": {
-      "chainId": 321123,
-      "homesteadBlock": 0,
-      "eip150Block": 0,
-      "eip150Hash": "0x2086799aeebeae135c246c65021c82b4e15a2c451340993aacfd2751886514f0",
-      "eip155Block": 0,
-      "eip158Block": 0,
-      "byzantiumBlock": 0,
-      "constantinopleBlock": 0,
-      "petersburgBlock": 0,
-      "istanbulBlock": 0,
-      "muirGlacierBlock": 0,
-      "SubnetEVMTimestamp": 0,
-      "feeConfig": {
-        "gasLimit": 8000000,
-        "minBaseFee": 25000000000,
-        "targetGas": 15000000,
-        "baseFeeChangeDenominator": 36,
-        "minBlockGasCost": 0,
-        "maxBlockGasCost": 1000000,
-        "targetBlockRate": 2,
-        "blockGasCostStep": 200000
-      },
-      "contractNativeMinterConfig": {
-        "blockTimestamp": 0,
-        "adminAddresses": ["管理者に使用するアカウントのアドレス"]
-      },
-      "contractDeployerAllowListConfig": {
-        "blockTimestamp": 0,
-        "adminAddresses": ["管理者に使用するアカウントのアドレス"]
-      },
-      "txAllowListConfig": {
-        "blockTimestamp": 0,
-        "adminAddresses": ["管理者に使用するアカウントのアドレス"]
-      }
+  "config": {
+    "chainId": 321123,
+    "homesteadBlock": 0,
+    "eip150Block": 0,
+    "eip150Hash": "0x2086799aeebeae135c246c65021c82b4e15a2c451340993aacfd2751886514f0",
+    "eip155Block": 0,
+    "eip158Block": 0,
+    "byzantiumBlock": 0,
+    "constantinopleBlock": 0,
+    "petersburgBlock": 0,
+    "istanbulBlock": 0,
+    "muirGlacierBlock": 0,
+    "SubnetEVMTimestamp": 0,
+    "feeConfig": {
+      "gasLimit": 8000000,
+      "minBaseFee": 25000000000,
+      "targetGas": 15000000,
+      "baseFeeChangeDenominator": 36,
+      "minBlockGasCost": 0,
+      "maxBlockGasCost": 1000000,
+      "targetBlockRate": 2,
+      "blockGasCostStep": 200000
     },
-    "alloc": {
-        "トークンを送信するアカウントのアドレス(※接頭辞の`0x`を除いてください)": {
-          "balance": "0x3635C9ADC5DEA00000"
-        }
+    "contractNativeMinterConfig": {
+      "blockTimestamp": 0,
+      "adminAddresses": ["管理者に使用するアカウントのアドレス"]
     },
-    "nonce": "0x0",
-    "timestamp": "0x0",
-    "extraData": "0x00",
-    "gasLimit": "0x7A1200",
-    "difficulty": "0x0",
-    "mixHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
-    "coinbase": "0x0000000000000000000000000000000000000000",
-    "number": "0x0",
-    "gasUsed": "0x0",
-    "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000"
-  }
+    "contractDeployerAllowListConfig": {
+      "blockTimestamp": 0,
+      "adminAddresses": ["管理者に使用するアカウントのアドレス"]
+    },
+    "txAllowListConfig": {
+      "blockTimestamp": 0,
+      "adminAddresses": ["管理者に使用するアカウントのアドレス"]
+    }
+  },
+  "alloc": {
+    "トークンを送信するアカウントのアドレス(※接頭辞の`0x`を除いてください)": {
+      "balance": "0x3635C9ADC5DEA00000"
+    }
+  },
+  "nonce": "0x0",
+  "timestamp": "0x0",
+  "extraData": "0x00",
+  "gasLimit": "0x7A1200",
+  "difficulty": "0x0",
+  "mixHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+  "coinbase": "0x0000000000000000000000000000000000000000",
+  "number": "0x0",
+  "gasUsed": "0x0",
+  "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000"
+}
 ```
 
-### 🚜 カスタムSubnetの作成
+### 🚜 カスタム Subnet の作成
 
 ※ どこかしらでエラーが発生し、Subnetを作り直す時には下にあるTipsのセクションをご参照ください。
 
@@ -412,7 +410,7 @@ genesis fileの完成形は以下のようになっています。
 
 `AVAX-Subnet`ディレクトリ直下で以下のコマンドを実行してください。
 
-```avalanche subnet create mySubnet --genesis genesis/mygenesis.json```
+`avalanche subnet create mySubnet --genesis genesis/mygenesis.json`
 
 その後のプロンプトで`SubnetEVM`、`Use latest version`を選択します。
 
@@ -424,7 +422,7 @@ Importing genesis
 Successfully created subnet configuration
 ```
 
-### 🛫 Subnetのデプロイ
+### 🛫 Subnet のデプロイ
 
 以下のコマンドを実行して`mySubnet`をローカルネットワークにデプロイします。
 

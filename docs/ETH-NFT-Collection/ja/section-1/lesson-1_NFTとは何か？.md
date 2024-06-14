@@ -16,7 +16,7 @@ NFTの特徴は、主に下記の3つがあげられます。
 
 トークンは、ブロックチェーン技術を利用して発行された**インターネット上でやりとりできる財産的価値**（＝ 暗号資産）のことを意味します。
 
-![](/public/images/ETH-NFT-Collection/section-1/1_1_1.png)
+![](/images/ETH-NFT-Collection/section-1/1_1_1.png)
 
 トークンには、主に2つの種類があります。
 
@@ -29,7 +29,7 @@ NFTの特徴は、主に下記の3つがあげられます。
 
 下記の例を見ていきましょう。
 
-![](/public/images/ETH-NFT-Collection/section-1/1_1_2.png)
+![](/images/ETH-NFT-Collection/section-1/1_1_2.png)
 
 Fungible TokenとNon-Fungible Toke（NFT）の違いは、主に下記の2点です。
 

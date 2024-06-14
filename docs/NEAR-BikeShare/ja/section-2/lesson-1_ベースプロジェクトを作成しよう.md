@@ -21,7 +21,7 @@ $ npx create-near-app@3.1.0 --frontend=react --contract=rust near_bike_share_dap
 実行後、必要なパッケージのインストール許可を求められるのでenterを押します。
 成功すると以下のような表示がされます。
 
-![](/public/images/NEAR-BikeShare/section-2/2_1_1.png)
+![](/images/NEAR-BikeShare/section-2/2_1_1.png)
 
 作成したリポジトリへ移動し、`yarn dev`を実行しましょう！
 
@@ -47,15 +47,15 @@ $ yarn dev
 
 ローカル環境で表示されているWebサイト。
 
-![](/public/images/NEAR-BikeShare/section-2/2_1_2.png)
+![](/images/NEAR-BikeShare/section-2/2_1_2.png)
 
 サインインボタンを押して、既存のアカウントでサインインしてみましょう。
 
-![](/public/images/NEAR-BikeShare/section-2/2_1_3.png)
+![](/images/NEAR-BikeShare/section-2/2_1_3.png)
 
 接続完了したらこのようなサイトが表示されるはずです。
 
-![](/public/images/NEAR-BikeShare/section-2/2_1_4.png)
+![](/images/NEAR-BikeShare/section-2/2_1_4.png)
 
 上記のような形でフロントエンドが確認できれば成功です。
 
@@ -97,8 +97,8 @@ near_bike_share_dapp/
 
 `GitHub`へソースコードをアップロードをしたことがない方は以下を参考にしてください。
 
-[新しいレポジトリを作成](https://docs.github.com/ja/get-started/quickstart/create-a-repo)（リポジトリ名などはご自由に）した後、 
-手順に従いターミナルからアップロードを済ませます。  
+[新しいレポジトリを作成](https://docs.github.com/ja/get-started/quickstart/create-a-repo)（リポジトリ名などはご自由に）した後、
+手順に従いターミナルからアップロードを済ませます。
 以下ターミナルで実行するコマンドの参考です。(`near_bike_share_dapp`直下で実行することを想定しております)
 
 ```

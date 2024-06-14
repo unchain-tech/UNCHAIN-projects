@@ -8,15 +8,15 @@ web3の世界では、ウォレット接続ボタンは「サインアップ/ロ
 
 ```jsx
 // index.tsx
-import Head from 'next/head';
-import Image from 'next/image';
-import { useEffect  } from 'react';
+import Head from "next/head";
+import Image from "next/image";
+import { useEffect } from "react";
 
-import twitterLogo from '@/public/twitter-logo.svg';
-import styles from '@/styles/Home.module.css';
+import twitterLogo from "@/twitter-logo.svg";
+import styles from "@/styles/Home.module.css";
 
 // 定数の宣言
-const TWITTER_HANDLE = 'あなたのTwitterハンドル';
+const TWITTER_HANDLE = "あなたのTwitterハンドル";
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const Home = () => {
@@ -25,15 +25,15 @@ const Home = () => {
       const { solana } = window;
 
       if (solana && solana.isPhantom) {
-        console.log('Phantom wallet found!');
+        console.log("Phantom wallet found!");
 
         const response = await solana.connect({ onlyIfTrusted: true });
         console.log(
-          'Connected with Public Key:',
-          response.publicKey.toString(),
+          "Connected with Public Key:",
+          response.publicKey.toString()
         );
       } else {
-        alert('Solana object not found! Get a Phantom Wallet 👻');
+        alert("Solana object not found! Get a Phantom Wallet 👻");
       }
     } catch (error) {
       console.error(error);
@@ -106,8 +106,7 @@ export default Home;
 
 これで、Webアプリケーションに「ウォレットに接続」というグラデーションボタンが表示されます。
 
-![無題](/public/images/Solana-NFT-Drop/section-1/1_3_1.png)
-
+![無題](/images/Solana-NFT-Drop/section-1/1_3_1.png)
 
 **ユーザーがウォレットを Web アプリケーションに接続していない場合にのみ、`Connect to Wallet`ボタンが表示されます。**
 
@@ -136,15 +135,15 @@ const [walletAddress, setWalletAddress] = useState(null);
 
 ```jsx
 // index.tsx
-import Head from 'next/head';
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import Head from "next/head";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
-import twitterLogo from '@/public/twitter-logo.svg';
-import styles from '@/styles/Home.module.css';
+import twitterLogo from "@/twitter-logo.svg";
+import styles from "@/styles/Home.module.css";
 
 // Constants
-const TWITTER_HANDLE = 'あなたのTwitterハンドル';
+const TWITTER_HANDLE = "あなたのTwitterハンドル";
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const Home = () => {
@@ -157,12 +156,12 @@ const Home = () => {
       const { solana } = window;
 
       if (solana && solana.isPhantom) {
-        console.log('Phantom wallet found!');
+        console.log("Phantom wallet found!");
 
         const response = await solana.connect({ onlyIfTrusted: true });
         console.log(
-          'Connected with Public Key:',
-          response.publicKey.toString(),
+          "Connected with Public Key:",
+          response.publicKey.toString()
         );
 
         /*
@@ -170,7 +169,7 @@ const Home = () => {
          */
         setWalletAddress(response.publicKey.toString());
       } else {
-        alert('Solana object not found! Get a Phantom Wallet 👻');
+        alert("Solana object not found! Get a Phantom Wallet 👻");
       }
     } catch (error) {
       console.error(error);
@@ -242,20 +241,17 @@ const checkIfWalletIsConnected = async () => {
     const { solana } = window;
 
     if (solana && solana.isPhantom) {
-      console.log('Phantom wallet found!');
+      console.log("Phantom wallet found!");
 
       const response = await solana.connect({ onlyIfTrusted: true });
-      console.log(
-        'Connected with Public Key:',
-        response.publicKey.toString(),
-      );
+      console.log("Connected with Public Key:", response.publicKey.toString());
 
       /*
        * ユーザーの公開鍵を後から使える状態にします。
        */
       setWalletAddress(response.publicKey.toString());
     } else {
-      alert('Solana object not found! Get a Phantom Wallet 👻');
+      alert("Solana object not found! Get a Phantom Wallet 👻");
     }
   } catch (error) {
     console.error(error);
@@ -295,7 +291,7 @@ const connectWallet = async () => {
 
   if (solana) {
     const response = await solana.connect();
-    console.log('Connected with Public Key:', response.publicKey.toString());
+    console.log("Connected with Public Key:", response.publicKey.toString());
     setWalletAddress(response.publicKey.toString());
   }
 };

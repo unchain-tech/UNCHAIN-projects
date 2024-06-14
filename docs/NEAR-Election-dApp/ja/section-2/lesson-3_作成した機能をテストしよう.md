@@ -420,7 +420,7 @@ near call $NFT_CONTRACT_ID nft_mint '{"metadata": {"title": "Rob Stark(candidate
 ```
 
 これによって下のように新しく作成したwalletに候補者のNFTがmintされているはずです。
-![](/public/images/NEAR-Election-dApp/section-2/2_3_1.png)
+![](/images/NEAR-Election-dApp/section-2/2_3_1.png)
 
 まずは下のコマンドでmintしたNFTの値を確認してみましょう！
 
@@ -526,18 +526,19 @@ near call $NFT_CONTRACT_ID nft_mint '{"metadata": {"title": "Jenny Lind(candidat
 
 投票が再開されているのでmintが成功して下のようになっているはずです。
 
-![](/public/images/NEAR-Election-dApp/section-2/2_3_2.png)
-
+![](/images/NEAR-Election-dApp/section-2/2_3_2.png)
 
 ### 🧙‍♂️ テストを作成・実行する
 
 ここまでの作業でコントラクトには基本機能として以下の機能が追加されました。
-* NFTをmintする機能
-* 投票を終わらせる機能
-* 投票券を送信する機能
+
+- NFTをmintする機能
+- 投票を終わらせる機能
+- 投票券を送信する機能
 
 これらの基本機能をテストスクリプトとして記述していきましょう。
 では`lib.rs`の内容を以下のように編集していきましょう。
+
 ```
 use near_sdk::borsh::{self, BorshDeserialize, BorshSerialize};
 use near_sdk::collections::{LazyOption, LookupMap, UnorderedMap, UnorderedSet};

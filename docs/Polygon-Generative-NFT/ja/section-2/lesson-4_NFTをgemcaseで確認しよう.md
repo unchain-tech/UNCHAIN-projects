@@ -2,19 +2,19 @@
 
 コントラクトのアドレス(`Contract deployed to`に続く`0x..`)をターミナルからコピーします。
 
-次に、[gemcase(NFTを閲覧できるサービス)](https://gemcase.vercel.app/) に先ほどコピーしたコントラクトアドレスを含めた必要な情報を下のように打ち込んでいきます。
+次に、[gemcase(NFT を閲覧できるサービス)](https://gemcase.vercel.app/) に先ほどコピーしたコントラクトアドレスを含めた必要な情報を下のように打ち込んでいきます。
 
-![](/public/images/Polygon-Generative-NFT/section-2/2_4_7.png)
+![](/images/Polygon-Generative-NFT/section-2/2_4_7.png)
 
 そして`View`ボタンをクリックするとコレクションの詳細が表示されます。
 
 私のコレクションはこのような形で表示されます。
 
-![](/public/images/Polygon-Generative-NFT/section-2/2_4_8.png)
+![](/images/Polygon-Generative-NFT/section-2/2_4_8.png)
 
 下にスクロールすると他のコレクションが見れるので`View`ボタンをクリックしてみましょう。
 
-![](/public/images/Polygon-Generative-NFT/section-2/2_4_9.png)
+![](/images/Polygon-Generative-NFT/section-2/2_4_9.png)
 
 `deploy.js`で、10個のNFTを自分用にキープしてから、3個NFTをMintしました。
 
@@ -34,11 +34,11 @@
 
 アカウントが作成できたら、`My Profile`画面に移動してください。
 
-![](/public/images/Polygon-Generative-NFT/section-2/2_4_2.png)
+![](/images/Polygon-Generative-NFT/section-2/2_4_2.png)
 
 `API Keys`タブを選択し、`+ Add`ボタンを押したら、`Create API Key`のポップアップが表示されるので、あなたのAPIに任意の名前をつけましょう。
 
-![](/public/images/Polygon-Generative-NFT/section-2/2_4_3.png)
+![](/images/Polygon-Generative-NFT/section-2/2_4_3.png)
 
 次に、あなたが作成したAPIの横の`Edit`ボタンを選択してください。ポップアップが表示されるので、`apiKey`を取得しましょう。
 
@@ -50,7 +50,7 @@ Etherscanでverificationを行うために必要なツールをインストー�
 yarn add --dev @nomiclabs/hardhat-etherscan@^3.1.7
 ```
 
-![](/public/images/Polygon-Generative-NFT/section-2/2_4_4.png)
+![](/images/Polygon-Generative-NFT/section-2/2_4_4.png)
 
 次に、`packages/contract`ディレクトリにある`.env`を開きます。
 
@@ -120,13 +120,13 @@ https://sepolia.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#
 
 私の [URL リンク](https://sepolia.etherscan.io/address/0x94E614a7D82d9dD24CBED7607a40eBE4243491dF#code) の中身は下記のように表示されます。
 
-![](/public/images/Polygon-Generative-NFT/section-2/2_4_5.png)
+![](/images/Polygon-Generative-NFT/section-2/2_4_5.png)
 
 `Contract`タブの横に小さな緑のチェックマーク ✅ が表示されているでしょうか？
 
 ✅ は、ユーザーがMetaMaskを使ってし、Etherscan自体からコントラクトの機能を呼び出せるようになったということを意味します。
 
-![](/public/images/Polygon-Generative-NFT/section-2/2_4_6.png)
+![](/images/Polygon-Generative-NFT/section-2/2_4_6.png)
 
 `Contract`タブの中の`Write Contract`を選択して以下を試してみましょう。
 

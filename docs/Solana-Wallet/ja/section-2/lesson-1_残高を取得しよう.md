@@ -30,7 +30,7 @@ Solanaの`Devnet`は、開発者やユーザーが実際の経済的影響を伴
 
 ドキュメントを見直すと、 `Connection`のコンストラクタは2つの引数を必要とすることがわかります。
 
-![](/public/images/Solana-Wallet/section-2/2_1_1.png)
+![](/images/Solana-Wallet/section-2/2_1_1.png)
 
 `endpoint`の説明では、「fullnode JSON RPCエンドポイントへのURL」であることが言及されています。接続のためのURLを持っていないので、Solanaから見つけるか、URLを返す関数を探す必要があります。web3.jsのドキュメントで「URL」を検索すると、clusterApiUrlという関数があり、「指定したクラスターのRPC API URL」を返してくれることがわかります。さらに、Clusterの種類を見直すと、接続したいネットワークを指していることがわかります。
 
@@ -39,7 +39,7 @@ Solanaの`Devnet`は、開発者やユーザーが実際の経済的影響を伴
 以上を踏まえると、Connectionインスタンスの作成をこのようにコード化できます。
 
 ```javascript
-const NETWORK = 'devnet';
+const NETWORK = "devnet";
 const connection = new Connection(clusterApiUrl(NETWORK), "confirmed");
 
 console.log(connection);
@@ -111,7 +111,7 @@ useEffect(() => {
 const refreshBalance = async () => {
   try {
     // Connectionインスタンスを生成します。
-    const connection = new Connection(network, 'confirmed');
+    const connection = new Connection(network, "confirmed");
     const publicKey = account.publicKey;
 
     let balance = await connection.getBalance(publicKey);
@@ -162,7 +162,7 @@ Test Suites: 2 failed, 3 passed, 5 total
 まずは、`GetBalance`コンポーネントをインポートしましょう。
 
 ```javascript
-import GetBalance from '../components/GetBalance';
+import GetBalance from "../components/GetBalance";
 ```
 
 `GetBalance`コンポーネントを呼び出すコードを追加して、ボタンをレンダリングします。
@@ -181,7 +181,9 @@ import GetBalance from '../components/GetBalance';
 
 ```javascript
 <div>
-  <h3 className="p-2 border-dotted border-l-8 border-l-indigo-600">My Wallet</h3>
+  <h3 className="p-2 border-dotted border-l-8 border-l-indigo-600">
+    My Wallet
+  </h3>
   {account && (
     <>
       <div className="my-6 text-indigo-600 font-bold">
@@ -204,7 +206,7 @@ import GetBalance from '../components/GetBalance';
 
 実際に`残高を取得`ボタンを押下して動作確認してみましょう。
 
-ただし残念なことに、作成したばかりのアカウントでは当然残高が0であることがわかります。残高が変わるのを確認するには、アカウントに`SOL`  を付与する必要があるので、次のセクションでエアドロップ機能を実装します。
+ただし残念なことに、作成したばかりのアカウントでは当然残高が0であることがわかります。残高が変わるのを確認するには、アカウントに`SOL`を付与する必要があるので、次のセクションでエアドロップ機能を実装します。
 
 「でも、早く残高増やしたい!エアドロップの実装は待てない!」
 
@@ -212,7 +214,7 @@ import GetBalance from '../components/GetBalance';
 
 [Sol Faucet](https://solfaucet.com/)というサイトを使えば、あなたのアカウントに`SOL`を付与することができます。
 
-![](/public/images/Solana-Wallet/section-2/2_1_2.png)
+![](/images/Solana-Wallet/section-2/2_1_2.png)
 
 フォームにウォレットアドレスを入力し、 `DEVNET`ボタンを押下してみましょう。少し待てば`1 SOL`が付与されるので、再度`残高を取得`ボタンを押して、SOLが増えているか確認してみてください!
 
@@ -370,4 +372,4 @@ export default function Home() {
 
 `残高を取得`ボタンを押して出力される結果をぜひDiscordの`#solana`にシェアしてください!😊
 
-次のセクションではエアドロップや送金機能を実装していきます✨
+次のセクションではエアドロップや送金機能を実装していきます ✨

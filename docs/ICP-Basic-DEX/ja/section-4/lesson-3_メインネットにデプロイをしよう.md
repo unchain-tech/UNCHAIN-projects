@@ -124,17 +124,17 @@ Module hash: 0xaa54f3c23ababdb0dcb5bfd8c96fd741e3fb7ad18ee155a06a38b383ed5af063
 
 1つ目はURLに`ic0`とついていることです。これがICのメインネットにデプロイされているアプリケーションの特徴です。
 
-![](/public/images/ICP-Basic-DEX/section-4/4_3_1.png)
+![](/images/ICP-Basic-DEX/section-4/4_3_1.png)
 
 2つ目は、ログイン認証で使用されるInternet Identityの確認です。早速ログインボタンを押してみましょう。DEX同様に、URLに`ic0`がついていることがわかります。
 
-![](/public/images/ICP-Basic-DEX/section-4/4_3_2.png)
+![](/images/ICP-Basic-DEX/section-4/4_3_2.png)
 
 また、開発用とは違う点がいくつか確認できます。それでは、セクション3で行なったように認証をしてみましょう。
 
 違いとしては、デバイス名を登録する際に実際登録するデバイスの認証を求められる点があります。例えば3つ目の`This device`を選択した時、デバイスのユーザー認証機能（例えば指紋認証）を用いた登録が促されます。そのほかの認証機能については[こちら](https://internetcomputer.org/docs/current/tokenomics/identity-auth/auth-how-to#create-an-identity-anchor)を参照してください。
 
-![](/public/images/ICP-Basic-DEX/section-4/4_3_3.png)
+![](/images/ICP-Basic-DEX/section-4/4_3_3.png)
 
 問題なく認証ができればOKです！　実際にメインネットへデプロイされたDEXを操作してみましょう！
 

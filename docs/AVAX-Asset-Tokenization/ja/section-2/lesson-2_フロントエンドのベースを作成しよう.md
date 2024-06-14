@@ -56,7 +56,7 @@ client
 
 `Next.js`はルートディレクトリ直下の`public`ディレクトリを静的なリソース（画像やテキストデータなど）の配置場所と認識します。
 そのためソースコード内で画像のURLを`/image.png`と指定した場合、
-`Next.js`は自動的に`public`ディレクトリをルートとした`プロジェクトルート/public/image.png`を参照してくれます。
+`Next.js`は自動的に`public`ディレクトリをルートとした`プロジェクトルート/image.png`を参照してくれます。
 
 ディレクトリ内の`favicon.ico`以外のファイルを全て削除してください。
 
@@ -86,7 +86,7 @@ client
 `ethereum.ts`の中に以下のコードを記述してください。
 
 ```ts
-import { MetaMaskInpageProvider } from '@metamask/providers';
+import { MetaMaskInpageProvider } from "@metamask/providers";
 
 // window に ethereum を追加します。
 declare global {
@@ -96,7 +96,7 @@ declare global {
 }
 
 export const getEthereum = (): MetaMaskInpageProvider | null => {
-  if (typeof window !== 'undefined' && typeof window.ethereum !== 'undefined') {
+  if (typeof window !== "undefined" && typeof window.ethereum !== "undefined") {
     const { ethereum } = window;
     return ethereum;
   }
@@ -118,7 +118,7 @@ export const getEthereum = (): MetaMaskInpageProvider | null => {
 `formatter.ts`の中に以下のコードを記述してください。
 
 ```ts
-import { BigNumber, ethers } from 'ethers';
+import { BigNumber, ethers } from "ethers";
 
 export const weiToAvax = (wei: BigNumber) => {
   return ethers.utils.formatEther(wei);
@@ -145,7 +145,7 @@ export const blockTimeStampToDate = (timeStamp: BigNumber) => {
 const regValidNumber = /^[0-9]+[.]?[0-9]*$/;
 
 export const validAmount = (amount: string): boolean => {
-  if (amount === '') {
+  if (amount === "") {
     return false;
   }
   if (!regValidNumber.test(amount)) {
@@ -165,9 +165,9 @@ export const validAmount = (amount: string): boolean => {
 `hooks`ディレクトリ内に`useWallet.ts`というファイルを作成し、 以下のコードを記述してください。
 
 ```ts
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from "react";
 
-import { getEthereum } from '../utils/ethereum';
+import { getEthereum } from "../utils/ethereum";
 
 type ReturnUseWallet = {
   currentAccount: string | undefined;
@@ -181,14 +181,14 @@ export const useWallet = (): ReturnUseWallet => {
   const connectWallet = async () => {
     try {
       if (!ethereum) {
-        alert('Get Wallet!');
+        alert("Get Wallet!");
         return;
       }
       const accounts = await ethereum.request({
-        method: 'eth_requestAccounts',
+        method: "eth_requestAccounts",
       });
       if (!Array.isArray(accounts)) return;
-      console.log('Connected: ', accounts[0]);
+      console.log("Connected: ", accounts[0]);
       setCurrentAccount(accounts[0]); // 簡易実装のため, 配列の初めのアドレスを使用します。
     } catch (error) {
       console.log(error);
@@ -198,19 +198,19 @@ export const useWallet = (): ReturnUseWallet => {
   const checkIfWalletIsConnected = useCallback(async () => {
     try {
       if (!ethereum) {
-        console.log('Make sure you have Wallet!');
+        console.log("Make sure you have Wallet!");
         return;
       } else {
-        console.log('We have the ethereum object', ethereum);
+        console.log("We have the ethereum object", ethereum);
       }
-      const accounts = await ethereum.request({ method: 'eth_accounts' });
+      const accounts = await ethereum.request({ method: "eth_accounts" });
       if (!Array.isArray(accounts)) return;
       if (accounts.length !== 0) {
         const account = accounts[0];
-        console.log('Found an authorized account:', account);
+        console.log("Found an authorized account:", account);
         setCurrentAccount(account);
       } else {
-        console.log('No authorized account found');
+        console.log("No authorized account found");
       }
     } catch (error) {
       console.log(error);
@@ -254,12 +254,12 @@ client
 `context`ディレクトリ内に`CurrentAccountProvider.tsx`というファイルを作成し、 以下のコードを記述してください。
 
 ```ts
-import { createContext, ReactNode } from 'react';
+import { createContext, ReactNode } from "react";
 
-import { useWallet } from '../hooks/useWallet';
+import { useWallet } from "../hooks/useWallet";
 
 const CurrentAccountContext = createContext<[string | undefined, () => void]>([
-  '',
+  "",
   () => {},
 ]);
 
@@ -312,10 +312,10 @@ client
 `_app.tsx`内に以下のコードを記述してください。
 
 ```tsx
-import type { AppProps } from 'next/app';
+import type { AppProps } from "next/app";
 
-import { CurrentAccountProvider } from '../context/CurrentAccountProvider';
-import '../styles/globals.css';
+import { CurrentAccountProvider } from "../context/CurrentAccountProvider";
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -512,27 +512,27 @@ yarn client dev
 
 以下のような画面が表示されれば成功です！
 
-![](/public/images/AVAX-Asset-Tokenization/section-2/2_2_1.png)
+![](/images/AVAX-Asset-Tokenization/section-2/2_2_1.png)
 
 画面右上の`Connect to wallet`ボタンを押下するとウォレットと接続することができます。
 ⚠️ この先ウォレットを接続する場合は、 ネットワークに`Fuji`を選択した状態で行ってください。
 
 MetaMaskの承認が終わると、 `Connect to wallet`ボタンの部分があなたの接続しているウォレットのアドレスの表示に変更されます。
 
-![](/public/images/AVAX-Asset-Tokenization/section-2/2_2_2.png)
+![](/images/AVAX-Asset-Tokenization/section-2/2_2_2.png)
 
 `For Farmer`ボタンを押すとページが切り替わります。
 
-![](/public/images/AVAX-Asset-Tokenization/section-2/2_2_3.png)
+![](/images/AVAX-Asset-Tokenization/section-2/2_2_3.png)
 
 `Tokenize`と`ViewBuyers`ボタンを切り替えると表示も切り替わります。
 
-![](/public/images/AVAX-Asset-Tokenization/section-2/2_2_5.png)
+![](/images/AVAX-Asset-Tokenization/section-2/2_2_5.png)
 
 右下の`Back to home`を押すとホームページに戻ります。
 `For Buyers`ボタンを押すとまたページが切り替わります。
 
-![](/public/images/AVAX-Asset-Tokenization/section-2/2_2_4.png)
+![](/images/AVAX-Asset-Tokenization/section-2/2_2_4.png)
 
 ### 🌔 参考リンク
 

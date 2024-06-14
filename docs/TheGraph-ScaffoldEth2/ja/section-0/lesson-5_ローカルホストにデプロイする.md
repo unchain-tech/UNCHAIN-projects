@@ -10,9 +10,9 @@
 yarn local-create
 ```
 
-![](/public/images/The_Graph-SE2-Subgraph-package/section-0/0_5_1.png)
+![](/images/TheGraph-ScaffoldEth2/section-0/0_5_1.png)
 
-> サブグラフが作成されたことを示す出力と、docker内のgraph-nodeでのログ出力が表示されるはずです。
+> サブグラフが作成されたことを示す出力と、docker 内の graph-node でのログ出力が表示されるはずです。
 
 次に、サブグラフを公開します！ このコマンドを実行すると、サブグラフにバージョンを付ける必要があります（例：0.0.1）。
 
@@ -20,7 +20,7 @@ yarn local-create
 yarn local-ship
 ```
 
-![](/public/images/The_Graph-SE2-Subgraph-package/section-0/0_5_2.png)
+![](/images/TheGraph-ScaffoldEth2/section-0/0_5_2.png)
 
 > このコマンドは、以下のことを一度に行います... 🚀🚀🚀
 
@@ -30,7 +30,7 @@ yarn local-ship
 - マッピング関数をコンパイルしてチェックします
 - ...そして、ローカルサブグラフをデプロイします！
 
-> ts-nodeのエラーが発生した場合は、次のコマンドでインストールできます。
+> ts-node のエラーが発生した場合は、次のコマンドでインストールできます。
 
 ```
 npm install -g ts-node
@@ -38,7 +38,7 @@ npm install -g ts-node
 
 サブグラフのデプロイが成功すると、以下のようになります：
 
-![](/public/images/The_Graph-SE2-Subgraph-package/section-0/0_5_3.png)
+![](/images/TheGraph-ScaffoldEth2/section-0/0_5_3.png)
 
 ビルドが完了し、サブグラフのエンドポイントアドレスが表示されます。
 

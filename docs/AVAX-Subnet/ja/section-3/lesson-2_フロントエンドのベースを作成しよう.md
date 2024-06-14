@@ -6,7 +6,7 @@
 
 ### 📁 `styles`ディレクトリ
 
-`styles`ディレクトリにはcssのコードが入っています。  
+`styles`ディレクトリにはcssのコードが入っています。
 全てのページに適用されるよう用意された`global.css`と、ホームページ用の`Home.module.css`があります。
 
 今回はtailwindを使用するので、`Home.module.css`を削除してください。
@@ -19,9 +19,9 @@ client
 
 ### 📁 `public`ディレクトリ
 
-`Next.js`はルートディレクトリ直下の`public`ディレクトリを静的なリソース（画像やテキストデータなど）の配置場所と認識します。  
-そのためソースコード内で画像のURLを`/image.png`と指定した場合、 
-`Next.js`は自動的に`public`ディレクトリをルートとした`プロジェクトルート/public/image.png`を参照してくれます。
+`Next.js`はルートディレクトリ直下の`public`ディレクトリを静的なリソース（画像やテキストデータなど）の配置場所と認識します。
+そのためソースコード内で画像のURLを`/image.png`と指定した場合、
+`Next.js`は自動的に`public`ディレクトリをルートとした`プロジェクトルート/image.png`を参照してくれます。
 
 このディレクトリを[本プロジェクト](https://github.com/unchain-dev/AVAX-Subnet)の`packages/client/public`ディレクトリと置き換えてください。
 
@@ -39,13 +39,13 @@ vscodeがエラーを出す可能性もありますが、気にせず進めて�
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './pages/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}',
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
       backgroundImage: {
-        home: "url('../public/background.png')",
+        home: "url('../background.png')",
       },
     },
   },
@@ -91,23 +91,23 @@ client
 
 🐬 `ethereum.ts`
 
-型定義に厳格なtypescriptで`window.ethereum`を使用するためには、`window`に`ethereum`オブジェクトがあるということを明示する必要があります。  
+型定義に厳格なtypescriptで`window.ethereum`を使用するためには、`window`に`ethereum`オブジェクトがあるということを明示する必要があります。
 `MetaMaskInpageProvider`は環境設定時にインストールした`@metamask/providers`から取得した`ethereum`の型定義です。
 
-> 📓 `window.ethereum`とは  
+> 📓 `window.ethereum`とは
 > Web アプリケーション上でユーザーがブロックチェーンネットワークと通信するためには、Web アプリケーションはユーザーのウォレット情報を取得する必要があります。
 >
-> `window.ethereum`は MetaMask が`window`(JavaScript にデフォルトで存在するグローバル変数)の直下に用意するオブジェクトであり API です。  
+> `window.ethereum`は MetaMask が`window`(JavaScript にデフォルトで存在するグローバル変数)の直下に用意するオブジェクトであり API です。
 > この API を使用して、ウェブサイトはユーザーのイーサリアムアカウントを要求し、ユーザーが接続しているブロックチェーンからデータを読み取り、ユーザーがメッセージや取引に署名するよう求めることができます。
 
 また、`getEthereum`関数を呼び出すと`window`から取り出した`ethereum`オブジェクトを取得できるようにしています。
 
 🐬 `formatter.ts`
 
-`weiToAvax`(or `avaxToWei`)は`wei`と`AVAX`の単位変換を行なっています。  
+`weiToAvax`(or `avaxToWei`)は`wei`と`AVAX`の単位変換を行なっています。
 ※ APIでは「1 AVAX = 10^18 wei」で単位変換がされているため、`formatEther`(or `parseEther`)を使用できます。
 
-また、`blockTimeStampToDate`はsolidity内の`block.timestamp`から、フロントエンドで使用する`Date`への変換を行なっています。  
+また、`blockTimeStampToDate`はsolidity内の`block.timestamp`から、フロントエンドで使用する`Date`への変換を行なっています。
 `block.timestamp`は単位がミリ秒で、`Date`は秒単位の時間を元に作成するので`* 1000`を行なっています。
 
 🐬 `compare.ts`
@@ -132,44 +132,44 @@ client
 
 ここでは、ユーザがMetamaskを持っていることの確認とウォレットへの接続機能を実装します。
 
-`connectWallet`はWebアプリがユーザのウォレットにアクセスすることを求める関数です。  
-この後の実装でUIにユーザのウォレット接続ボタンを用意し、そのボタンとこの関数を連携します。  
+`connectWallet`はWebアプリがユーザのウォレットにアクセスすることを求める関数です。
+この後の実装でUIにユーザのウォレット接続ボタンを用意し、そのボタンとこの関数を連携します。
 そのため外部で使用できるように返り値の中に含めています。
 
 `checkIfWalletIsConnected`は既にユーザのウォレットとWebアプリが接続しているかを確認する関数です。
 
-また、それぞれの関数内で使用している`eth_requestAccounts`と`eth_accounts`は,空の配列または単一のアカウントアドレスを含む配列を返す特別なメソッドです。  
+また、それぞれの関数内で使用している`eth_requestAccounts`と`eth_accounts`は,空の配列または単一のアカウントアドレスを含む配列を返す特別なメソッドです。
 ユーザーがウォレットに複数のアカウントを持っている場合を考慮して、プログラムはユーザーの1つ目のアカウントアドレスを取得することにしています。
 
 🐬 `useWallet.ts`
 
 ユーザがMetamaskを持っていることの確認とウォレットへの接続機能を実装しています。
- 
-`connectWallet`はWebアプリがユーザのウォレットにアクセスすることを求める関数です。  
-この後の実装でUIにユーザのウォレット接続ボタンを用意し、そのボタンとこの関数を連携します。  
+
+`connectWallet`はWebアプリがユーザのウォレットにアクセスすることを求める関数です。
+この後の実装でUIにユーザのウォレット接続ボタンを用意し、そのボタンとこの関数を連携します。
 そのため外部で使用できるように返り値の中に含めています。
 
 `checkIfWalletIsConnected`は既にユーザのウォレットとWebアプリが接続しているかを確認する関数です。
 
-また、それぞれの関数内で使用している`eth_requestAccounts`と`eth_accounts`は,空の配列または単一のアカウントアドレスを含む配列を返す特別なメソッドです。  
+また、それぞれの関数内で使用している`eth_requestAccounts`と`eth_accounts`は,空の配列または単一のアカウントアドレスを含む配列を返す特別なメソッドです。
 ユーザーがウォレットに複数のアカウントを持っている場合を考慮して、プログラムはユーザーの1つ目のアカウントアドレスを取得することにしています。
 
 🐬 `useContract.ts`
 
 コントラクトとの接続を行います。
 
-ファイル冒頭には、今回フロントエンドから接続する2つのコントラクトのアドレス`BankAddress`と`TxAllowListAddress`が記載されています。  
+ファイル冒頭には、今回フロントエンドから接続する2つのコントラクトのアドレス`BankAddress`と`TxAllowListAddress`が記載されています。
 
 `BankAddress`は`Bank`コントラクトのアドレスに後ほど変更します。
 
-`TxAllowListAddress`は（section-1のLesson_3で設定したPreCompileの）`TransactionAllowList`のアドレスになります。  
+`TxAllowListAddress`は（section-1のLesson_3で設定したPreCompileの）`TransactionAllowList`のアドレスになります。
 このアドレス値は固定です。
 
 その下には型の定義があり、その下に`useContract`が定義されています。
 
 主な関数は`getContract`で、接続している`currentAccount`やコントラクトのアドレス・ABIを元にコントラクトに接続し、stateに保存します。
 
-`getBills`関数は、接続した`Bank`コントラクトから全てのBillデータを取得しています。  
+`getBills`関数は、接続した`Bank`コントラクトから全てのBillデータを取得しています。
 取得したBillはフロントエンド内で扱う`BillType`に変換して、`bills`というstateに保存しています。
 
 ```
@@ -185,7 +185,7 @@ client
 
 🐬 `CurrentAccountProvider.tsx`
 
-コンテキストを用意しています。  
+コンテキストを用意しています。
 コンテキストは複数のコンポーネント間を跨いで値を渡せるもので、値にはstateも渡せます。
 
 はじめに以下の部分で先ほど作成した`useWallet()`を使用してウォレット接続に関わるオブジェクトを取得しています。
@@ -194,16 +194,16 @@ client
 const { currentAccount, connectWallet } = useWallet();
 ```
 
-重要なのは以下です。  
-valueに、取得したオブジェクトを渡します。  
+重要なのは以下です。
+valueに、取得したオブジェクトを渡します。
 
 ```ts
-    <CurrentAccountContext.Provider value={[currentAccount, connectWallet]}>
-      {children}
-    </CurrentAccountContext.Provider>
+<CurrentAccountContext.Provider value={[currentAccount, connectWallet]}>
+  {children}
+</CurrentAccountContext.Provider>
 ```
 
-するとこのコンポーネントの子となるコンポーネント(`children`)以下ではどのコンポーネントでもコンテキストからvalueを取得することができます。  
+するとこのコンポーネントの子となるコンポーネント(`children`)以下ではどのコンポーネントでもコンテキストからvalueを取得することができます。
 複数のコンポーネント間でstateを共有できます。
 
 後ほどこのコンテキストを使用する実装を他のファイルで行います。
@@ -220,9 +220,9 @@ client
 
 こちらにはコンポーネントを実装したファイルを保存していきます。
 
-> 📓 コンポーネントとは  
-> UI（ユーザーインターフェイス）を形成する一つの部品のことです。  
-> コンポーネントはボタンのような小さなものから,ページ全体のような大きなものまであります。  
+> 📓 コンポーネントとは
+> UI（ユーザーインターフェイス）を形成する一つの部品のことです。
+> コンポーネントはボタンのような小さなものから,ページ全体のような大きなものまであります。
 > レゴブロックのようにコンポーネントのブロックで UI を作ることで、機能の追加・削除などの変更を容易にすることができます。
 
 📁 `Button`ディレクトリ
@@ -233,7 +233,7 @@ client
 
 🐬 `AdminButton.tsx`
 
-管理者ページへ進むボタンを実装しています。  
+管理者ページへ進むボタンを実装しています。
 
 `txAllowList`コントラクトに`readAllowList`を呼び出し、接続しているアカウント`currentAccount`がどの権限を持っているかを確認しています。
 
@@ -243,12 +243,12 @@ client
 
 🐬 `ConnectWalletButton.tsx`
 
-ウォレットへの接続ボタンを実装しています。  
+ウォレットへの接続ボタンを実装しています。
 接続されていれば、そのアカウント名を表示します。
 
 🐬 `SubmitButton.tsx`
 
-引数で渡された関数を実行するボタンを実装しています。  
+引数で渡された関数を実行するボタンを実装しています。
 
 ```
 client
@@ -264,26 +264,26 @@ client
 
 🐬 `ViewBillCard.tsx`
 
-1つのBillの情報を表示するコンポーネントです。  
+1つのBillの情報を表示するコンポーネントです。
 ボタンが押下された際に引数で渡された関数を実行します。
 
 🐬 `RecipientBillCards.tsx`
 
-`bills`に対してmap関数を実行します。  
+`bills`に対してmap関数を実行します。
 
-関数`callBackFn`内では、billの受取人が`currentAccount`でなかった場合は空のコンポーネントを返却し、そうであった場合はbillの情報を返却します。  
+関数`callBackFn`内では、billの受取人が`currentAccount`でなかった場合は空のコンポーネントを返却し、そうであった場合はbillの情報を返却します。
 こうすることで`currentAccount`が受取人のbill情報のみ表示するようにしています。
 
 `callBackFn`内ではボタン押下時に`onClickCash`を実行するようにしているため、bill情報に付加されたボタンをユーザが押下すると`onClickCash`内の`cashBill`が呼び出されます。
 
 🐬 `IssuerBillCards.tsx`
 
-`RecipientBillCards`と同じ構成です。  
+`RecipientBillCards`と同じ構成です。
 `currentAccount`が発行者のbill情報のみ表示するようにしています。
 
 🐬 `AllBillCards.tsx`
 
-`RecipientBillCards`と同じ構成です。  
+`RecipientBillCards`と同じ構成です。
 全てのbillの情報を表示します。
 
 🐬 `DishonoredCards.tsx`
@@ -322,7 +322,7 @@ Billを発行する入力フォームを構成するコンポーネントです�
 
 🐬 `AdminForm.tsx`
 
-ネットワーク管理者が使用するフォームを構成するコンポーネントです。  
+ネットワーク管理者が使用するフォームを構成するコンポーネントです。
 アドレス値の入力フォームと、そのアドレスに対してトランザクションを提出する権限を付与する関数と剥奪する関数をそれぞれ用意しボタンに実装しています。
 
 ```
@@ -337,7 +337,7 @@ client
 
 🐬 `Layout.tsx`
 
-レイアウトを構成するコンポーネントです。  
+レイアウトを構成するコンポーネントです。
 画面左上にナビゲーションボタン、右上にウォレット接続ボタンを表示します。
 
 ```
@@ -355,7 +355,7 @@ client
 
 🐬 `_app.tsx`
 
-`_app.tsx`ファイルは標準で全てのページの親コンポーネントとなります。  
+`_app.tsx`ファイルは標準で全てのページの親コンポーネントとなります。
 
 ここで`CurrentAccountProvider`を使用し、全てのコンポーネントが`CurrentAccountProvider`の子コンポーネントとなります。
 
@@ -363,7 +363,7 @@ client
 
 🐬 `index.tsx`
 
-本プロジェクトのルートにアクセスすると表示されるページです。  
+本プロジェクトのルートにアクセスすると表示されるページです。
 ホームページを構成します。
 
 🐬 `IssueBill.tsx`、`ViewBills.tsx`、`Admin.tsx`
@@ -390,30 +390,30 @@ yarn client dev
 
 そしてブラウザで`http://localhost:3000 `へアクセスしてください。
 
-以下のような画面が表示されれば成功です！  
+以下のような画面が表示されれば成功です！
 
-![](/public/images/AVAX-Subnet/section-3/3_2_1.png)
+![](/images/AVAX-Subnet/section-3/3_2_1.png)
 
-画面右上の`Connect to wallet`ボタンを押下するとウォレットと接続することができます。  
+画面右上の`Connect to wallet`ボタンを押下するとウォレットと接続することができます。
 ⚠️ section-1で設定したネットワークの管理者アカウントで接続してください。ネットワークに`mySubnet`を選択した状態で行ってください。
 
-MetaMaskの承認が終わると、`Connect to wallet`ボタンの部分があなたの接続しているウォレットのアドレスの表示に変更されます。  
+MetaMaskの承認が終わると、`Connect to wallet`ボタンの部分があなたの接続しているウォレットのアドレスの表示に変更されます。
 今はアラートが表示されるかと思いますが、無視してokを押下してください。
 
-![](/public/images/AVAX-Subnet/section-3/3_2_4.png)
+![](/images/AVAX-Subnet/section-3/3_2_4.png)
 
 その他各ページはこのようになっております。
 
-![](/public/images/AVAX-Subnet/section-3/3_2_2.png)
+![](/images/AVAX-Subnet/section-3/3_2_2.png)
 
-![](/public/images/AVAX-Subnet/section-3/3_2_3.png)
+![](/images/AVAX-Subnet/section-3/3_2_3.png)
 
-![](/public/images/AVAX-Subnet/section-3/3_2_5.png)
+![](/images/AVAX-Subnet/section-3/3_2_5.png)
 
 ### 🌔 参考リンク
 
-> [こちら](https://github.com/unchain-dev/AVAX-Subnet)に本プロジェクトの完成形のレポジトリがあります。  
-> 期待通り動かない場合は参考にしてみてください。  
+> [こちら](https://github.com/unchain-dev/AVAX-Subnet)に本プロジェクトの完成形のレポジトリがあります。
+> 期待通り動かない場合は参考にしてみてください。
 
 ### 🙋‍♂️ 質問する
 
@@ -430,5 +430,5 @@ MetaMaskの承認が終わると、`Connect to wallet`ボタンの部分があ�
 
 ---
 
-フロントエンドのベースとなるコードが出来ました！  
+フロントエンドのベースとなるコードが出来ました！
 次のレッスンではコントラクトとフロントエンドを連携する作業に入ります！

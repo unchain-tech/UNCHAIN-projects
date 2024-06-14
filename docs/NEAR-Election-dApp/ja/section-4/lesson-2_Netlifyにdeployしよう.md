@@ -87,7 +87,7 @@ Website URL:       https://near-election-dapp.netlify.app
 ここで`Website URL: `URLをコピーして自分が使用しているブラウザに貼り付けてみましょう。
 
 成功すれば以下のようにブラウザ上で自分の作成したdAppが使えるようになるはずです！
-![](/public/images/NEAR-Election-dApp/section-4/4_2_1.png)
+![](/images/NEAR-Election-dApp/section-4/4_2_1.png)
 
 ぜひデプロイされたWebアプリケーションを自分の目で確認してみてください！ ！
 

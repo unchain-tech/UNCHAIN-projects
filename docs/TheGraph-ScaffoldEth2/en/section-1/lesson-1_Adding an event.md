@@ -20,7 +20,7 @@ Add the following new line of code.
 
 You can drop this event and function anywhere inside the contract, but best practice is to drop it below any modifiers or the constructor.
 
-![](/public/images/TheGraph-ScaffoldEth2/section-1/1_1_1.png)
+![](/images/TheGraph-ScaffoldEth2/section-1/1_1_1.png)
 
 We can save our contract and then deploy those new changes.
 
@@ -32,10 +32,10 @@ yarn deploy --reset
 
 You should see the following output:
 
-![](/public/images/TheGraph-ScaffoldEth2/section-1/1_1_2.png)
+![](/images/TheGraph-ScaffoldEth2/section-1/1_1_2.png)
 
 #### ✅ Test your new function
 
 Navigate over to http://localhost:3000/debug and send vitalik.eth a message.
 
-![](/public/images/TheGraph-ScaffoldEth2/section-1/1_1_3.png)
+![](/images/TheGraph-ScaffoldEth2/section-1/1_1_3.png)

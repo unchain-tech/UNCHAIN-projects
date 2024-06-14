@@ -6,7 +6,7 @@
 
 手形取引とは以下のようなものです。
 
-![](/public/images/AVAX-Subnet/section-2/1_2_1.png)
+![](/images/AVAX-Subnet/section-2/1_2_1.png)
 
 手形の発行者と受取人、仲介人としての銀行がいる状態で以下のような取引が行われます。
 
@@ -24,7 +24,7 @@
 
 代金にはネイティブトークンを使用します。
 
-### 🥦 既存金融とSubnet
+### 🥦 既存金融と Subnet
 
 ブロックチェーンは透明性や改ざん耐性から、銀行などの既存金融にとってメリットのあるデータベースと言えます。
 
@@ -160,16 +160,16 @@ contract Bank {
     }
 ```
 
-`_sendToken`はネイティブトークンを_toへ_amount分送信する関数です。
+`_sendToken`はネイティブトークンを\_toへ\_amount分送信する関数です。
 
 `beforeDueDate`は現在のタイムスタンプと手形の期限を比較して、期限に達しているかどうかを返却します。
 
 > 📓 `block.timestamp`の使用について
 > スマートコントラクトで時間の参照方法はいくつかあります。
-> `block.timestamp`はブロックチェーンにブロックが書き込まれる際に、バリデータによって操作ができるという懸念点がありますが、操作のできる範囲は30秒ほどです。
-> つまり30秒の範囲で実際とは差のある時間をコントラクト内のロジックに使用しても良いのなら`block.timestamp`を使用できます。
+> `block.timestamp`はブロックチェーンにブロックが書き込まれる際に、バリデータによって操作ができるという懸念点がありますが、操作のできる範囲は 30 秒ほどです。
+> つまり 30 秒の範囲で実際とは差のある時間をコントラクト内のロジックに使用しても良いのなら`block.timestamp`を使用できます。
 > 今回は簡易的な実装なのでこちらを使います。
-> Ethereumのコントラクトでは、`block.number`を使用した方法([参考](https://zoom-blc.com/solidity-time-logic))などもありますが、Avalancheでは定期的にブロックが生成されるという仕組みではないためこちらは使用できなそうです。
+> Ethereum のコントラクトでは、`block.number`を使用した方法([参考](https://zoom-blc.com/solidity-time-logic))などもありますが、Avalanche では定期的にブロックが生成されるという仕組みではないためこちらは使用できなそうです。
 > 正確な情報を取得するためにはオラクルを使用する必要があります。
 
 `getAmountToCashBill`は、受取人が手形を現金化する際に実際に現金化される金額を返却するものです。
@@ -246,7 +246,7 @@ contract Bank {
     }
 ```
 
-`issueBill`: 発行者が使用します。_recipient（受取人）に対して_amount（トークン量）分の手形の発行を行います。
+`issueBill`: 発行者が使用します。\_recipient（受取人）に対して\_amount（トークン量）分の手形の発行を行います。
 
 `cashBill`: 受取人が使用します。指定したidのBillを現金化します。
 
@@ -275,10 +275,9 @@ contract Bank {
 以下のように、各テストで呼び出される`deployContract`とその後に続くテストコードが記述されているかと思います。
 
 ```ts
-describe('Bank', function () {
-  enum BillStatus {
-    // status
-  }
+describe("Bank", function () {
+  enum BillStatus {}
+  // status
 
   async function getLastBlockTimeStamp() {
     // 最後に記録されたブロックのタイムスタンプを返却
@@ -300,225 +299,221 @@ describe('Bank', function () {
 コメントを参考にしてください。
 
 ```ts
-  describe('issueBill', function () {
-    it('Correct bill issued.', async function () {
-      const { bank, userAccounts } = await loadFixture(deployContract);
+describe("issueBill", function () {
+  it("Correct bill issued.", async function () {
+    const { bank, userAccounts } = await loadFixture(deployContract);
 
-      const issuer = userAccounts[0];
-      const recipient = userAccounts[1];
-      const amount = BigNumber.from(100);
+    const issuer = userAccounts[0];
+    const recipient = userAccounts[1];
+    const amount = BigNumber.from(100);
 
-      // Billの発行
-      await bank.connect(issuer).issueBill(amount, recipient.address);
-      const newId = 0;
+    // Billの発行
+    await bank.connect(issuer).issueBill(amount, recipient.address);
+    const newId = 0;
 
-      // 発行されたBillの取得
-      const bill = await bank.allBills(newId);
+    // 発行されたBillの取得
+    const bill = await bank.allBills(newId);
 
-      // 発行されたBillの内容の確認
-      expect(bill.id).to.equal(newId);
-      expect(bill.amount).to.equal(amount);
-      expect(bill.timestamp).to.equal(await getLastBlockTimeStamp());
-      expect(bill.issuer).to.equal(issuer.address);
-      expect(bill.recipient).to.equal(recipient.address);
-      expect(bill.status).to.equal(BillStatus.Issued);
-    });
+    // 発行されたBillの内容の確認
+    expect(bill.id).to.equal(newId);
+    expect(bill.amount).to.equal(amount);
+    expect(bill.timestamp).to.equal(await getLastBlockTimeStamp());
+    expect(bill.issuer).to.equal(issuer.address);
+    expect(bill.recipient).to.equal(recipient.address);
+    expect(bill.status).to.equal(BillStatus.Issued);
   });
+});
 ```
 
 次に以下のような形で`cashBill`に関するテストが記述されています。
 各コメントを参考にしてください。
 
 ```ts
-  describe('cashBill', function () {
-    it('Token is transferred correctly.', async function () {
-      const { bank, userAccounts } = await loadFixture(deployContract);
+describe("cashBill", function () {
+  it("Token is transferred correctly.", async function () {
+    const { bank, userAccounts } = await loadFixture(deployContract);
 
-      const issuer = userAccounts[0];
-      const recipient = userAccounts[1];
-      const amount = BigNumber.from(100);
+    const issuer = userAccounts[0];
+    const recipient = userAccounts[1];
+    const amount = BigNumber.from(100);
 
-      // Billの発行
-      await bank.connect(issuer).issueBill(amount, recipient.address);
-      const newId = 0;
+    // Billの発行
+    await bank.connect(issuer).issueBill(amount, recipient.address);
+    const newId = 0;
 
-      // ブロックチェーン上の時間を手形の期限分進めます。
-      const term = await bank.TERM();
-      await time.increase(term);
+    // ブロックチェーン上の時間を手形の期限分進めます。
+    const term = await bank.TERM();
+    await time.increase(term);
 
-      // 期限に達した手形を現金化した際にトークンが正しく移動していることを確認
-      await expect(
-        bank.connect(recipient).cashBill(newId)
-      ).to.changeEtherBalances([bank, recipient], [-amount, amount]);
-    });
-
-    it('Discounted amount of token is transferred correctly.', async function () {
-      const { bank, userAccounts } = await loadFixture(deployContract);
-
-      const issuer = userAccounts[0];
-      const recipient = userAccounts[1];
-      const amount = BigNumber.from(100);
-
-      const discountRate = await bank.DISCOUNT_RATE();
-      const discountedAmount = amount.sub(amount.mul(discountRate).div(100));
-
-      // Billの発行
-      await bank.connect(issuer).issueBill(amount, recipient.address);
-      const newId = 0;
-
-      // 期限に達していない手形を現金化した際にトークンが正しく移動していることを確認
-      await expect(
-        bank.connect(recipient).cashBill(newId)
-      ).to.changeEtherBalances(
-        [bank, recipient],
-        [-discountedAmount, discountedAmount]
-      );
-    });
-
-    it('Revert if call twice.', async function () {
-      const { bank, userAccounts } = await loadFixture(deployContract);
-
-      const issuer = userAccounts[0];
-      const recipient = userAccounts[1];
-      const amount = BigNumber.from(100);
-
-      // Billの発行
-      await bank.connect(issuer).issueBill(amount, recipient.address);
-      const newId = 0;
-
-      // cashBillを連続で呼び出した時,（コントラクトが再度トークンを送信してしまわずに)2度目のcashBillの呼び出しが失敗することを確認
-      await bank.connect(recipient).cashBill(newId);
-      await expect(bank.connect(recipient).cashBill(newId)).to.be.reverted;
-    });
-
-    it('Revert if different user call.', async function () {
-      const { bank, userAccounts } = await loadFixture(deployContract);
-
-      const issuer = userAccounts[0];
-      const recipient = userAccounts[1];
-      const amount = BigNumber.from(100);
-
-      // Billの発行
-      await bank.connect(issuer).issueBill(amount, recipient.address);
-      const newId = 0;
-
-      // 受取人でないアカウントによるcashBillの呼び出しが失敗することを確認
-      await expect(bank.connect(issuer).cashBill(newId)).to.be.reverted;
-    });
+    // 期限に達した手形を現金化した際にトークンが正しく移動していることを確認
+    await expect(
+      bank.connect(recipient).cashBill(newId)
+    ).to.changeEtherBalances([bank, recipient], [-amount, amount]);
   });
+
+  it("Discounted amount of token is transferred correctly.", async function () {
+    const { bank, userAccounts } = await loadFixture(deployContract);
+
+    const issuer = userAccounts[0];
+    const recipient = userAccounts[1];
+    const amount = BigNumber.from(100);
+
+    const discountRate = await bank.DISCOUNT_RATE();
+    const discountedAmount = amount.sub(amount.mul(discountRate).div(100));
+
+    // Billの発行
+    await bank.connect(issuer).issueBill(amount, recipient.address);
+    const newId = 0;
+
+    // 期限に達していない手形を現金化した際にトークンが正しく移動していることを確認
+    await expect(
+      bank.connect(recipient).cashBill(newId)
+    ).to.changeEtherBalances(
+      [bank, recipient],
+      [-discountedAmount, discountedAmount]
+    );
+  });
+
+  it("Revert if call twice.", async function () {
+    const { bank, userAccounts } = await loadFixture(deployContract);
+
+    const issuer = userAccounts[0];
+    const recipient = userAccounts[1];
+    const amount = BigNumber.from(100);
+
+    // Billの発行
+    await bank.connect(issuer).issueBill(amount, recipient.address);
+    const newId = 0;
+
+    // cashBillを連続で呼び出した時,（コントラクトが再度トークンを送信してしまわずに)2度目のcashBillの呼び出しが失敗することを確認
+    await bank.connect(recipient).cashBill(newId);
+    await expect(bank.connect(recipient).cashBill(newId)).to.be.reverted;
+  });
+
+  it("Revert if different user call.", async function () {
+    const { bank, userAccounts } = await loadFixture(deployContract);
+
+    const issuer = userAccounts[0];
+    const recipient = userAccounts[1];
+    const amount = BigNumber.from(100);
+
+    // Billの発行
+    await bank.connect(issuer).issueBill(amount, recipient.address);
+    const newId = 0;
+
+    // 受取人でないアカウントによるcashBillの呼び出しが失敗することを確認
+    await expect(bank.connect(issuer).cashBill(newId)).to.be.reverted;
+  });
+});
 ```
 
 次に以下のような形で`lockToken`に関するテストが記述されています。
 コメントを参考にしてください。
 
 ```ts
-    describe('lockToken', function () {
-    it('Token is transferred correctly.', async function () {
-      const { bank, userAccounts } = await loadFixture(deployContract);
+describe("lockToken", function () {
+  it("Token is transferred correctly.", async function () {
+    const { bank, userAccounts } = await loadFixture(deployContract);
 
-      const issuer = userAccounts[0];
-      const recipient = userAccounts[1];
-      const amount = BigNumber.from(100);
+    const issuer = userAccounts[0];
+    const recipient = userAccounts[1];
+    const amount = BigNumber.from(100);
 
-      await bank.connect(issuer).issueBill(amount, recipient.address);
-      const newId = 0;
+    await bank.connect(issuer).issueBill(amount, recipient.address);
+    const newId = 0;
 
-      const interestRate = await bank.INTEREST_RATE();
-      const amountWithFee = amount.add(amount.mul(interestRate).div(100));
+    const interestRate = await bank.INTEREST_RATE();
+    const amountWithFee = amount.add(amount.mul(interestRate).div(100));
 
-      // トークンが正しく移動していることを確認
-      await expect(
-        bank.connect(issuer).lockToken(newId, {
-          value: amountWithFee,
-        } as Overrides)
-      ).to.changeEtherBalances([issuer, bank], [-amountWithFee, amountWithFee]);
+    // トークンが正しく移動していることを確認
+    await expect(
+      bank.connect(issuer).lockToken(newId, {
+        value: amountWithFee,
+      } as Overrides)
+    ).to.changeEtherBalances([issuer, bank], [-amountWithFee, amountWithFee]);
 
-      // statusと、balanceに正しくトークン量が記録されていることを確認
-      expect((await bank.allBills(newId)).status).to.equal(BillStatus.Paid);
-      expect(await bank.connect(issuer).getBalance()).to.equal(amountWithFee);
-    });
+    // statusと、balanceに正しくトークン量が記録されていることを確認
+    expect((await bank.allBills(newId)).status).to.equal(BillStatus.Paid);
+    expect(await bank.connect(issuer).getBalance()).to.equal(amountWithFee);
   });
+});
 ```
 
 最後に以下のような形で`completeBill`に関するテストが記述されています。
 コメントを参考にしてください。
 
 ```ts
-  describe('completeBill', function () {
-    it('Revert if call before due date', async function () {
-      const { bank, userAccounts } = await loadFixture(deployContract);
+describe("completeBill", function () {
+  it("Revert if call before due date", async function () {
+    const { bank, userAccounts } = await loadFixture(deployContract);
 
-      const issuer = userAccounts[0];
-      const recipient = userAccounts[1];
-      const amount = BigNumber.from(100);
+    const issuer = userAccounts[0];
+    const recipient = userAccounts[1];
+    const amount = BigNumber.from(100);
 
-      // Billの発行
-      await bank.connect(issuer).issueBill(amount, recipient.address);
-      const newId = 0;
+    // Billの発行
+    await bank.connect(issuer).issueBill(amount, recipient.address);
+    const newId = 0;
 
-      // 期限に達していないBillは処理できません。
-      await expect(bank.completeBill(newId)).to.be.reverted;
-    });
-
-    it('Bill is properly completed', async function () {
-      const { bank, userAccounts } = await loadFixture(deployContract);
-
-      const issuer = userAccounts[0];
-      const recipient = userAccounts[1];
-      const amount = BigNumber.from(100);
-
-      // Billの発行
-      await bank.connect(issuer).issueBill(amount, recipient.address);
-      const newId = 0;
-
-      const interestRate = await bank.INTEREST_RATE();
-      const amountWithFee = amount.add(amount.mul(interestRate).div(100));
-
-      // 手形の支払い
-      await bank.connect(issuer).lockToken(newId, {
-        value: amountWithFee,
-      } as Overrides);
-
-      // ブロックチェーン上の時間を手形の期限分進めます。
-      const term = await bank.TERM();
-      await time.increase(term);
-
-      // 手形の処理
-      await bank.completeBill(newId);
-
-      // balanceとstatusの確認
-      expect(await bank.connect(issuer).getBalance()).to.equal(0);
-      expect((await bank.allBills(newId)).status).to.equal(
-        BillStatus.Completed
-      );
-    });
-
-    it('Bill is properly dishonored.', async function () {
-      const { bank, userAccounts } = await loadFixture(deployContract);
-
-      const issuer = userAccounts[0];
-      const recipient = userAccounts[1];
-      const amount = BigNumber.from(100);
-
-      // 手形の発行
-      await bank.connect(issuer).issueBill(amount, recipient.address);
-      const newId = 0;
-
-      // ブロックチェーン上の時間を手形の期限分進めます。
-      const term = await bank.TERM();
-      await time.increase(term);
-
-      // 手形の処理
-      await bank.completeBill(newId);
-
-      // balanceとstatusの確認
-      // (ブロックチェーン上の時間は手形の期限分経っているので、statusが不渡りとなっていることを確認)
-      expect((await bank.allBills(newId)).status).to.equal(
-        BillStatus.Dishonored
-      );
-      expect(await bank.dishonoredAddresses(0)).to.equal(issuer.address);
-    });
+    // 期限に達していないBillは処理できません。
+    await expect(bank.completeBill(newId)).to.be.reverted;
   });
+
+  it("Bill is properly completed", async function () {
+    const { bank, userAccounts } = await loadFixture(deployContract);
+
+    const issuer = userAccounts[0];
+    const recipient = userAccounts[1];
+    const amount = BigNumber.from(100);
+
+    // Billの発行
+    await bank.connect(issuer).issueBill(amount, recipient.address);
+    const newId = 0;
+
+    const interestRate = await bank.INTEREST_RATE();
+    const amountWithFee = amount.add(amount.mul(interestRate).div(100));
+
+    // 手形の支払い
+    await bank.connect(issuer).lockToken(newId, {
+      value: amountWithFee,
+    } as Overrides);
+
+    // ブロックチェーン上の時間を手形の期限分進めます。
+    const term = await bank.TERM();
+    await time.increase(term);
+
+    // 手形の処理
+    await bank.completeBill(newId);
+
+    // balanceとstatusの確認
+    expect(await bank.connect(issuer).getBalance()).to.equal(0);
+    expect((await bank.allBills(newId)).status).to.equal(BillStatus.Completed);
+  });
+
+  it("Bill is properly dishonored.", async function () {
+    const { bank, userAccounts } = await loadFixture(deployContract);
+
+    const issuer = userAccounts[0];
+    const recipient = userAccounts[1];
+    const amount = BigNumber.from(100);
+
+    // 手形の発行
+    await bank.connect(issuer).issueBill(amount, recipient.address);
+    const newId = 0;
+
+    // ブロックチェーン上の時間を手形の期限分進めます。
+    const term = await bank.TERM();
+    await time.increase(term);
+
+    // 手形の処理
+    await bank.completeBill(newId);
+
+    // balanceとstatusの確認
+    // (ブロックチェーン上の時間は手形の期限分経っているので、statusが不渡りとなっていることを確認)
+    expect((await bank.allBills(newId)).status).to.equal(BillStatus.Dishonored);
+    expect(await bank.dishonoredAddresses(0)).to.equal(issuer.address);
+  });
+});
 ```
 
 ### ⭐ テストを実行しましょう
@@ -532,13 +527,12 @@ yarn test
 以下のような表示がされます。
 実行したテスト名とそのテストがパスしたことがわかります。
 
-![](/public/images/AVAX-Subnet/section-2/1_2_2.png)
+![](/images/AVAX-Subnet/section-2/1_2_2.png)
 
 ### 🌔 参考リンク
 
 > [こちら](https://github.com/unchain-dev/AVAX-Subnet)に本プロジェクトの完成形のレポジトリがあります。
 > 期待通り動かない場合は参考にしてみてください。
-
 
 ### 🙋‍♂️ 質問する
 

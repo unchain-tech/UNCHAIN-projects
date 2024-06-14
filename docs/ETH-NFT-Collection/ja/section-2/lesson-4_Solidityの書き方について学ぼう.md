@@ -30,7 +30,7 @@ Solidityには、4つのアクセス修飾子が存在します。
 
 以下に、Solidityのアクセス修飾子とアクセス権限についてまとめています。
 
-![](/public/images/ETH-dApp/section-1/1_4_1.png)
+![](/images/ETH-dApp/section-1/1_4_1.png)
 
 これからSolidityのアクセス修飾子は頻繁に登場するので、まずは大まかな理解ができれば大丈夫です。
 
@@ -66,7 +66,7 @@ Solidity開発では関数修飾子を意識しておかないとデータを記
 
 以下に、Solidityの関数修飾子`pure`と`view`についてまとめています。
 
-![](/public/images/ETH-dApp/section-1/1_4_2.png)
+![](/images/ETH-dApp/section-1/1_4_2.png)
 
 ここまで理解してほしいのは、`pure`や`view`関数を使用すれば、**ガス代を削減できる**ということです。同時に、ブロックチェーン上にデータを書き込まないことで、**処理速度も向上します**。
 

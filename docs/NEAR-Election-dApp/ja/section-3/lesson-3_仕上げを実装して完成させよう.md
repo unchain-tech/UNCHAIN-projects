@@ -11,52 +11,69 @@
 import React, { useState } from "react";
 import Title from "../components/title";
 import Input from "../components/input_form";
-import { nft_mint, check_voter_has_been_added } from '../js/near/utils'
+import { nft_mint, check_voter_has_been_added } from "../js/near/utils";
 
 // Adding voter screen
 const Voter = () => {
-    // valuable of input ID for receiving vote ticket
-    const [inputId, setInputId] = useState("");
+  // valuable of input ID for receiving vote ticket
+  const [inputId, setInputId] = useState("");
 
-    // mint function
-    const mint = async () => {
-        // check if user is deployer
-        if (window.accountId !== process.env.CONTRACT_NAME) {
-            alert("You are not contract deployer, so you can't add voter")
-            return
-        }
-
-        // check if a ticket minted to user before
-        const isMinted = await check_voter_has_been_added(`${inputId}`);
-        if (isMinted !== 0) {
-            alert("You've already got vote ticket or voted and used it!")
-            return
-        }
-
-        // mint vote ticket to user
-        await nft_mint("Vote Ticket", "", "https://gateway.pinata.cloud/ipfs/QmUs5K3LwdvbhKA58bH9C6FX5Q7Bhsvvg9GRAhr9aVKLyx", "QmUs5K3LwdvbhKA58bH9C6FX5Q7Bhsvvg9GRAhr9aVKLyx", "Vote Ticket", "You can vote with this ticket! But remember that you can do it just once.", "vote", `${inputId}`);
-        alert(`Vote ticket is minted to ${inputId}!`);
-        setInputId("");
+  // mint function
+  const mint = async () => {
+    // check if user is deployer
+    if (window.accountId !== process.env.CONTRACT_NAME) {
+      alert("You are not contract deployer, so you can't add voter");
+      return;
     }
 
-    return (
-        <div className="grid place-items-center w-full">
-            <Title name="Add Voter" />
-            <div className="text-lg">※Only contract deployer can add voter.</div>
-            <div className="mb-24"></div>
-            <Input title="Wallet ID" hint="0x..." input={inputId} type="text" setInput={(event) => setInputId(event.target.value)} />
-            <div className="mb-24"></div>
-            <button className="button" onClick={() => mint()}>Add</button>
-        </div>
-    )
-}
+    // check if a ticket minted to user before
+    const isMinted = await check_voter_has_been_added(`${inputId}`);
+    if (isMinted !== 0) {
+      alert("You've already got vote ticket or voted and used it!");
+      return;
+    }
+
+    // mint vote ticket to user
+    await nft_mint(
+      "Vote Ticket",
+      "",
+      "https://gateway.pinata.cloud/ipfs/QmUs5K3LwdvbhKA58bH9C6FX5Q7Bhsvvg9GRAhr9aVKLyx",
+      "QmUs5K3LwdvbhKA58bH9C6FX5Q7Bhsvvg9GRAhr9aVKLyx",
+      "Vote Ticket",
+      "You can vote with this ticket! But remember that you can do it just once.",
+      "vote",
+      `${inputId}`
+    );
+    alert(`Vote ticket is minted to ${inputId}!`);
+    setInputId("");
+  };
+
+  return (
+    <div className="grid place-items-center w-full">
+      <Title name="Add Voter" />
+      <div className="text-lg">※Only contract deployer can add voter.</div>
+      <div className="mb-24"></div>
+      <Input
+        title="Wallet ID"
+        hint="0x..."
+        input={inputId}
+        type="text"
+        setInput={(event) => setInputId(event.target.value)}
+      />
+      <div className="mb-24"></div>
+      <button className="button" onClick={() => mint()}>
+        Add
+      </button>
+    </div>
+  );
+};
 export default Voter;
 ```
 
 まず`nft_mint, check_voter_has_been_added`の2つの関数をインポートしましょう。
 
 ```javascript
-import { nft_mint, check_voter_has_been_added } from '../js/near/utils'
+import { nft_mint, check_voter_has_been_added } from "../js/near/utils";
 ```
 
 この部分では`useState`を使って入力値を取得できるようにします。
@@ -73,15 +90,15 @@ const [inputId, setInputId] = useState("");
 
 ```javascript
 if (window.accountId !== process.env.CONTRACT_NAME) {
-    alert("You are not contract deployer, so you can't add voter")
-    return
+  alert("You are not contract deployer, so you can't add voter");
+  return;
 }
 
 // check if a ticket minted to user before
 const isMinted = await check_voter_has_been_added(`${inputId}`);
 if (isMinted !== 0) {
-    alert("You've already got vote ticket or voted and used it!")
-    return
+  alert("You've already got vote ticket or voted and used it!");
+  return;
 }
 ```
 
@@ -90,9 +107,18 @@ if (isMinted !== 0) {
 最後に入力フォームを空にします。
 
 ```javascript
-await nft_mint("Vote Ticket", "", "https://gateway.pinata.cloud/ipfs/QmUs5K3LwdvbhKA58bH9C6FX5Q7Bhsvvg9GRAhr9aVKLyx", "QmUs5K3LwdvbhKA58bH9C6FX5Q7Bhsvvg9GRAhr9aVKLyx", "Vote Ticket", "You can vote with this ticket! But remember that you can do it just once.", "vote", `${inputId}`);
-        alert(`Vote ticket is minted to ${inputId}!`);
-        setInputId("");
+await nft_mint(
+  "Vote Ticket",
+  "",
+  "https://gateway.pinata.cloud/ipfs/QmUs5K3LwdvbhKA58bH9C6FX5Q7Bhsvvg9GRAhr9aVKLyx",
+  "QmUs5K3LwdvbhKA58bH9C6FX5Q7Bhsvvg9GRAhr9aVKLyx",
+  "Vote Ticket",
+  "You can vote with this ticket! But remember that you can do it just once.",
+  "vote",
+  `${inputId}`
+);
+alert(`Vote ticket is minted to ${inputId}!`);
+setInputId("");
 ```
 
 描画するUIはreturnする以下のものです。
@@ -101,12 +127,20 @@ await nft_mint("Vote Ticket", "", "https://gateway.pinata.cloud/ipfs/QmUs5K3Lwdv
 
 ```javascript
 <div className="grid place-items-center w-full">
-    <Title name="Add Voter" />
-    <div className="text-lg">※Only contract deployer can add voter.</div>
-    <div className="mb-24"></div>
-    <Input title="Wallet ID" hint="0x..." input={inputId} type="text" setInput={(event) => setInputId(event.target.value)} />
-    <div className="mb-24"></div>
-    <button className="button" onClick={() => mint()}>Add</button>
+  <Title name="Add Voter" />
+  <div className="text-lg">※Only contract deployer can add voter.</div>
+  <div className="mb-24"></div>
+  <Input
+    title="Wallet ID"
+    hint="0x..."
+    input={inputId}
+    type="text"
+    setInput={(event) => setInputId(event.target.value)}
+  />
+  <div className="mb-24"></div>
+  <button className="button" onClick={() => mint()}>
+    Add
+  </button>
 </div>
 ```
 
@@ -118,42 +152,70 @@ await nft_mint("Vote Ticket", "", "https://gateway.pinata.cloud/ipfs/QmUs5K3Lwdv
 
 ```javascript
 // 以下のように書き換えましょう
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import Title from "../components/title";
 import Input from "../components/input_form";
-import { nft_mint } from '../js/near/utils'
+import { nft_mint } from "../js/near/utils";
 
 // add candidate screen
 function Candidate() {
-    // set input valuable of candidate image CID, candidate name, candidate manifest
-    const [inputCID, setInputCID] = useState("");
-    const [inputName, setInputName] = useState("");
-    const [inputManifest, setInputManifest] = useState("");
+  // set input valuable of candidate image CID, candidate name, candidate manifest
+  const [inputCID, setInputCID] = useState("");
+  const [inputName, setInputName] = useState("");
+  const [inputManifest, setInputManifest] = useState("");
 
-    // function that add candidate info to home screen
-    const addCandidate = async () => {
-        // mint candidate nft
-        await nft_mint(`${inputName}(candidate)`, "", `https://gateway.pinata.cloud/ipfs/${inputCID}`, inputCID, inputName, inputManifest, "candidate", process.env.CONTRACT_NAME);
-        setInputCID("");
-        setInputName("");
-        setInputManifest("");
-        alert("Candidate's NFT has minted! Let's Check it at Home screen!")
-    }
+  // function that add candidate info to home screen
+  const addCandidate = async () => {
+    // mint candidate nft
+    await nft_mint(
+      `${inputName}(candidate)`,
+      "",
+      `https://gateway.pinata.cloud/ipfs/${inputCID}`,
+      inputCID,
+      inputName,
+      inputManifest,
+      "candidate",
+      process.env.CONTRACT_NAME
+    );
+    setInputCID("");
+    setInputName("");
+    setInputManifest("");
+    alert("Candidate's NFT has minted! Let's Check it at Home screen!");
+  };
 
-    return (
-        <div className="grid place-items-center w-full">
-            <Title name="Add Candidate" />
-            <div className="my-3 text-2xl text-red-400">Add candidate who you think must be a leader!</div>
-            <Input title="Image URI(IPFS Content CID)" hint="QmT..." className="mb-3" input={inputCID} setInput={(event) => setInputCID(event.target.value)} />
-            <div className="mb-6"></div>
-            <Input title="Name" hint="Robert Downey Jr." input={inputName} setInput={(event) => setInputName(event.target.value)} />
-            <div className="mb-6"></div>
-            <Input title="Manifest" hint="I'm gonna prosper this city with web3 tech!" input={inputManifest} setInput={(event) => setInputManifest(event.target.value)} />
-            <div className="mb-6"></div>
-            <button className="button" onClick={async () => addCandidate()}>Add</button>
-        </div>
-
-    )
+  return (
+    <div className="grid place-items-center w-full">
+      <Title name="Add Candidate" />
+      <div className="my-3 text-2xl text-red-400">
+        Add candidate who you think must be a leader!
+      </div>
+      <Input
+        title="Image URI(IPFS Content CID)"
+        hint="QmT..."
+        className="mb-3"
+        input={inputCID}
+        setInput={(event) => setInputCID(event.target.value)}
+      />
+      <div className="mb-6"></div>
+      <Input
+        title="Name"
+        hint="Robert Downey Jr."
+        input={inputName}
+        setInput={(event) => setInputName(event.target.value)}
+      />
+      <div className="mb-6"></div>
+      <Input
+        title="Manifest"
+        hint="I'm gonna prosper this city with web3 tech!"
+        input={inputManifest}
+        setInput={(event) => setInputManifest(event.target.value)}
+      />
+      <div className="mb-6"></div>
+      <button className="button" onClick={async () => addCandidate()}>
+        Add
+      </button>
+    </div>
+  );
 }
 export default Candidate;
 ```
@@ -161,35 +223,64 @@ export default Candidate;
 まず`nft_mint関数`をインポートしています。
 
 ```javascript
-import { nft_mint } from '../js/near/utils'
+import { nft_mint } from "../js/near/utils";
 ```
 
 `addCandidate関数`では入力されたCIDや候補者の名前を取得して候補者NFTをmintします。
 
 ```javascript
 const addCandidate = async () => {
-    // mint candidate nft
-    await nft_mint(`${inputName}(candidate)`, "", `https://gateway.pinata.cloud/ipfs/${inputCID}`, inputCID, inputName, inputManifest, "candidate", process.env.CONTRACT_NAME);
-    setInputCID("");
-    setInputName("");
-    setInputManifest("");
-    alert("Candidate's NFT has minted! Let's Check it at Home screen!")
-}
+  // mint candidate nft
+  await nft_mint(
+    `${inputName}(candidate)`,
+    "",
+    `https://gateway.pinata.cloud/ipfs/${inputCID}`,
+    inputCID,
+    inputName,
+    inputManifest,
+    "candidate",
+    process.env.CONTRACT_NAME
+  );
+  setInputCID("");
+  setInputName("");
+  setInputManifest("");
+  alert("Candidate's NFT has minted! Let's Check it at Home screen!");
+};
 ```
 
 最後にreturn内がUIとなります。
 
 ```javascript
 <div className="grid place-items-center w-full">
-    <Title name="Add Candidate" />
-    <div className="my-3 text-2xl text-red-400">Add candidate who you think must be a leader!</div>
-    <Input title="Image URI(IPFS Content CID)" hint="QmT..." className="mb-3" input={inputCID} setInput={(event) => setInputCID(event.target.value)} />
-    <div className="mb-6"></div>
-    <Input title="Name" hint="Robert Downey Jr." input={inputName} setInput={(event) => setInputName(event.target.value)} />
-    <div className="mb-6"></div>
-    <Input title="Manifest" hint="I'm gonna prosper this city with web3 tech!" input={inputManifest} setInput={(event) => setInputManifest(event.target.value)} />
-    <div className="mb-6"></div>
-    <button className="button" onClick={async () => addCandidate()}>Add</button>
+  <Title name="Add Candidate" />
+  <div className="my-3 text-2xl text-red-400">
+    Add candidate who you think must be a leader!
+  </div>
+  <Input
+    title="Image URI(IPFS Content CID)"
+    hint="QmT..."
+    className="mb-3"
+    input={inputCID}
+    setInput={(event) => setInputCID(event.target.value)}
+  />
+  <div className="mb-6"></div>
+  <Input
+    title="Name"
+    hint="Robert Downey Jr."
+    input={inputName}
+    setInput={(event) => setInputName(event.target.value)}
+  />
+  <div className="mb-6"></div>
+  <Input
+    title="Manifest"
+    hint="I'm gonna prosper this city with web3 tech!"
+    input={inputManifest}
+    setInput={(event) => setInputManifest(event.target.value)}
+  />
+  <div className="mb-6"></div>
+  <button className="button" onClick={async () => addCandidate()}>
+    Add
+  </button>
 </div>
 ```
 
@@ -203,242 +294,265 @@ const addCandidate = async () => {
 // 以下のように書き換えましょう
 import React, { useEffect, useState } from "react";
 import {
-    nft_transfer,
-    nft_add_likes_to_candidate,
-    nft_tokens_for_kind,
-    nft_return_candidate_likes,
-    check_voter_has_been_added,
-    check_voter_has_voted,
-    voter_voted,
-    close_election,
-    if_election_closed,
-    reopen_election
-} from '../js/near/utils'
+  nft_transfer,
+  nft_add_likes_to_candidate,
+  nft_tokens_for_kind,
+  nft_return_candidate_likes,
+  check_voter_has_been_added,
+  check_voter_has_voted,
+  voter_voted,
+  close_election,
+  if_election_closed,
+  reopen_election,
+} from "../js/near/utils";
 import CandidateCard from "../components/candidate_card";
-import LikeIcon from '../img/like_icon.png'
+import LikeIcon from "../img/like_icon.png";
 
 // Home screen(user can vote here)
 const Home = () => {
-    // set valuable for candidate NFT info, num of likes for each candidate, state
-    const [candidateInfoList, setCandidateInfoList] = useState();
-    const [candidateLikesList] = useState([]);
-    const [state, setState] = useState("fetching");
+  // set valuable for candidate NFT info, num of likes for each candidate, state
+  const [candidateInfoList, setCandidateInfoList] = useState();
+  const [candidateLikesList] = useState([]);
+  const [state, setState] = useState("fetching");
 
-    // enum of state
-    const State = {
-        Fetching: "fetching",
-        Fetched: "fetched",
-        Open: "open",
-        Closed: "closed"
-    }
+  // enum of state
+  const State = {
+    Fetching: "fetching",
+    Fetched: "fetched",
+    Open: "open",
+    Closed: "closed",
+  };
 
-    // fetch candidate nft info
-    useEffect(async () => {
-        await nft_tokens_for_kind("candidate").then(value => {
-            setCandidateInfoList(value);
-            setState("fetched");
-        });
-    }, [])
+  // fetch candidate nft info
+  useEffect(async () => {
+    await nft_tokens_for_kind("candidate").then((value) => {
+      setCandidateInfoList(value);
+      setState("fetched");
+    });
+  }, []);
 
-    // vote function
-    const vote = (token_id) => {
-        //check if user has already voted
-        check_voter_has_voted(window.accountId).then(value => {
-            if (Boolean(value)) {
-                alert("You have already voted!")
-                return
-            }
+  // vote function
+  const vote = (token_id) => {
+    //check if user has already voted
+    check_voter_has_voted(window.accountId).then((value) => {
+      if (Boolean(value)) {
+        alert("You have already voted!");
+        return;
+      }
 
-            // check if user has vote ticket
-            check_voter_has_been_added(window.accountId).then(value => {
-                let tokenIdOfVoter = parseFloat(value);
-                if (tokenIdOfVoter == 0) {
-                    alert("You don't have vote ticket! Please ask deployer to give it to you.")
-                    return
-                }
-                // confirm if user really vote to specified candidate(because even if they cancel transaction, contract judge user voted)
-                let isSure = confirm("Once you vote, you can't change selected candidate. Are you OK?");
-                if (!isSure) {
-                    return
-                }
-                // transfer vote ticket from user to contract(get rid of vote ticket)
-                nft_transfer(process.env.CONTRACT_NAME, tokenIdOfVoter);
-                // add vote to specified candidate
-                nft_add_likes_to_candidate(token_id);
-
-                //add user ID to voted-list
-                voter_voted(window.accountId);
-            })
-        })
-
-    }
-
-    // body(in case election is open)
-    const cardsInCaseOpen = () => {
-        let candidateCardList = [];
-        for (let i = 0; i < candidateInfoList.length; i++) {
-            // format data for rendering
-            candidateCardList.push(
-                <div className="items-center">
-                    <CandidateCard
-                        CID={candidateInfoList[i].metadata.media_CID}
-                        name={candidateInfoList[i].metadata.candidate_name}
-                        manifest={candidateInfoList[i].metadata.candidate_manifest}
-                    />
-                    <div className="center text-xl items-center">
-                        <img src={LikeIcon} className="object-cover h-5 w-5 mr-2" />
-                        <p className="mr-2">{(candidateLikesList[i])}</p>
-                        <button value={candidateInfoList[i].metadata.token_id} onClick={(event) => vote(parseInt(event.target.value))} className="vote_button hover:skew-1">Vote!</button>
-                    </div>
-                </div>
-
-            )
-
+      // check if user has vote ticket
+      check_voter_has_been_added(window.accountId).then((value) => {
+        let tokenIdOfVoter = parseFloat(value);
+        if (tokenIdOfVoter == 0) {
+          alert(
+            "You don't have vote ticket! Please ask deployer to give it to you."
+          );
+          return;
         }
-        return candidateCardList
+        // confirm if user really vote to specified candidate(because even if they cancel transaction, contract judge user voted)
+        let isSure = confirm(
+          "Once you vote, you can't change selected candidate. Are you OK?"
+        );
+        if (!isSure) {
+          return;
+        }
+        // transfer vote ticket from user to contract(get rid of vote ticket)
+        nft_transfer(process.env.CONTRACT_NAME, tokenIdOfVoter);
+        // add vote to specified candidate
+        nft_add_likes_to_candidate(token_id);
+
+        //add user ID to voted-list
+        voter_voted(window.accountId);
+      });
+    });
+  };
+
+  // body(in case election is open)
+  const cardsInCaseOpen = () => {
+    let candidateCardList = [];
+    for (let i = 0; i < candidateInfoList.length; i++) {
+      // format data for rendering
+      candidateCardList.push(
+        <div className="items-center">
+          <CandidateCard
+            CID={candidateInfoList[i].metadata.media_CID}
+            name={candidateInfoList[i].metadata.candidate_name}
+            manifest={candidateInfoList[i].metadata.candidate_manifest}
+          />
+          <div className="center text-xl items-center">
+            <img src={LikeIcon} className="object-cover h-5 w-5 mr-2" />
+            <p className="mr-2">{candidateLikesList[i]}</p>
+            <button
+              value={candidateInfoList[i].metadata.token_id}
+              onClick={(event) => vote(parseInt(event.target.value))}
+              className="vote_button hover:skew-1"
+            >
+              Vote!
+            </button>
+          </div>
+        </div>
+      );
+    }
+    return candidateCardList;
+  };
+
+  // body(in case election is closed)
+  const cardsInCaseClosed = () => {
+    let candidateCardList = [];
+    let mostVotedNum = candidateLikesList.reduce((a, b) => {
+      return Math.max(a, b);
+    });
+    // format data for rendering
+    for (let i = 0; i < candidateInfoList.length; i++) {
+      if (candidateLikesList[i] == mostVotedNum) {
+        // for winner candidate rendering
+        candidateCardList.push(
+          <div className="items-center">
+            <div className="text-2xl shadow-rose-600 center font-semibold text-red-700">
+              Won!
+            </div>
+            <CandidateCard
+              CID={candidateInfoList[i].metadata.media_CID}
+              name={candidateInfoList[i].metadata.candidate_name}
+              manifest={candidateInfoList[i].metadata.candidate_manifest}
+            />
+            <div className="center text-xl items-center">
+              <img src={LikeIcon} className="object-cover h-5 w-5 mr-2" />
+              <p className="mr-2">{candidateLikesList[i]}</p>
+            </div>
+          </div>
+        );
+      } else {
+        // for other candidate rendering
+        candidateCardList.push(
+          <div className="items-center opacity-20">
+            <div className="pt-7"></div>
+            <CandidateCard
+              CID={candidateInfoList[i].metadata.media_CID}
+              name={candidateInfoList[i].metadata.candidate_name}
+              manifest={candidateInfoList[i].metadata.candidate_manifest}
+            />
+            <div className="center text-xl items-center">
+              <img src={LikeIcon} className="object-cover h-5 w-5 mr-2" />
+              <p className="mr-2">{candidateLikesList[i]}</p>
+            </div>
+          </div>
+        );
+      }
+    }
+    return candidateCardList;
+  };
+
+  // fetching like method
+  const getCandidateLikes = async () => {
+    // get num of likes for each candidate
+    for (let i = 0; i < candidateInfoList.length; i++) {
+      await nft_return_candidate_likes(
+        candidateInfoList[i].metadata.token_id
+      ).then((value) => {
+        candidateLikesList.push(value);
+      });
     }
 
-    // body(in case election is closed)
-    const cardsInCaseClosed = () => {
-        let candidateCardList = [];
-        let mostVotedNum = candidateLikesList.reduce((a, b) => { return Math.max(a, b) });
-        // format data for rendering
-        for (let i = 0; i < candidateInfoList.length; i++) {
-            if (candidateLikesList[i] == mostVotedNum) {
-                // for winner candidate rendering
-                candidateCardList.push(
-                    <div className="items-center">
-                        <div className="text-2xl shadow-rose-600 center font-semibold text-red-700">Won!</div>
-                        <CandidateCard
-                            CID={candidateInfoList[i].metadata.media_CID}
-                            name={candidateInfoList[i].metadata.candidate_name}
-                            manifest={candidateInfoList[i].metadata.candidate_manifest}
-                        />
-                        <div className="center text-xl items-center">
-                            <img src={LikeIcon} className="object-cover h-5 w-5 mr-2" />
-                            <p className="mr-2">{(candidateLikesList[i])}</p>
-                        </div>
-                    </div>
-
-                )
-            } else {
-                // for other candidate rendering
-                candidateCardList.push(
-                    <div className="items-center opacity-20">
-                        <div className="pt-7"></div>
-                        <CandidateCard
-                            CID={candidateInfoList[i].metadata.media_CID}
-                            name={candidateInfoList[i].metadata.candidate_name}
-                            manifest={candidateInfoList[i].metadata.candidate_manifest}
-                        />
-                        <div className="center text-xl items-center">
-                            <img src={LikeIcon} className="object-cover h-5 w-5 mr-2" />
-                            <p className="mr-2">{(candidateLikesList[i])}</p>
-                        </div>
-                    </div>
-
-                )
-            }
-
-        }
-        return candidateCardList
+    // check if election is closed
+    let isClosed = await if_election_closed();
+    console.log(isClosed);
+    if (isClosed) {
+      setState("closed");
+    } else {
+      setState("open");
     }
+  };
 
-    // fetching like method
-    const getCandidateLikes = async () => {
-        // get num of likes for each candidate
-        for (let i = 0; i < candidateInfoList.length; i++) {
-            await nft_return_candidate_likes(candidateInfoList[i].metadata.token_id).then(value => {
-                candidateLikesList.push(value);
-            })
-        }
+  // close button function(display to only contract deployer)
+  const closeButton = () => {
+    // check if user is contract deployer
+    if (window.accountId !== process.env.CONTRACT_NAME) {
+      return;
+    }
+    return (
+      <button
+        className="close_button hover:skew-1 h-10 bg-red-600 mb-3"
+        onClick={() => {
+          // confirm that user really close this election
+          let isSureToClose = confirm("Are you sure to close this election?");
+          if (isSureToClose) {
+            // close this election
+            close_election();
 
-        // check if election is closed
-        let isClosed = await if_election_closed();
-        console.log(isClosed);
-        if (isClosed) {
+            // change state to closed
             setState("closed");
-        } else {
-            setState("open")
-        }
+          }
+        }}
+      >
+        Close Election
+      </button>
+    );
+  };
+
+  // reopen button function(display to only contract deployer)
+  const reopenButton = () => {
+    // check if user is contract deployer
+    if (window.accountId !== process.env.CONTRACT_NAME) {
+      return;
     }
+    return (
+      <button
+        className="close_button hover:skew-1 h-10 bg-red-600 mb-3"
+        onClick={() => {
+          let isSureToClose = confirm("Are you sure to reopen this election?");
+          if (isSureToClose) {
+            // reopen this election
+            reopen_election();
 
-    // close button function(display to only contract deployer)
-    const closeButton = () => {
-        // check if user is contract deployer
-        if (window.accountId !== process.env.CONTRACT_NAME) {
-            return
-        }
-        return <button className="close_button hover:skew-1 h-10 bg-red-600 mb-3" onClick={() => {
-            // confirm that user really close this election
-            let isSureToClose = confirm("Are you sure to close this election?");
-            if (isSureToClose) {
-                // close this election
-                close_election()
+            // change state to open
+            setState("open");
+          }
+        }}
+      >
+        Reopen Election
+      </button>
+    );
+  };
 
-                // change state to closed
-                setState("closed")
-            }
-        }}>Close Election</button>
-    }
+  // message to wait for fetching data
+  const messageToWait = () => {
+    return (
+      <div className="grid h-screen place-items-center text-3xl">
+        Fetching NFTs of candidates...
+      </div>
+    );
+  };
 
-    // reopen button function(display to only contract deployer)
-    const reopenButton = () => {
-        // check if user is contract deployer
-        if (window.accountId !== process.env.CONTRACT_NAME) {
-            return
-        }
-        return <button className="close_button hover:skew-1 h-10 bg-red-600 mb-3" onClick={() => {
-            let isSureToClose = confirm("Are you sure to reopen this election?");
-            if (isSureToClose) {
-                // reopen this election
-                reopen_election()
+  switch (state) {
+    // in case fetching candidate NFTs info
+    case State.Fetching:
+      return <div>{messageToWait()}</div>;
 
-                // change state to open
-                setState("open")
-            }
-        }}>Reopen Election</button>
-    }
+    // in case fetching number of likes for each candidate
+    case State.Fetched:
+      getCandidateLikes();
+      return <div>{messageToWait()}</div>;
 
-    // message to wait for fetching data
-    const messageToWait = () => {
-        return <div className="grid h-screen place-items-center text-3xl">Fetching NFTs of candidates...</div>
-    }
+    // in case all data is fetched(election is open)
+    case State.Open:
+      return (
+        <div>
+          <div className="center">{closeButton()}</div>
+          <div className="grid grid-cols-3 gap-10">{cardsInCaseOpen()}</div>
+        </div>
+      );
 
-    switch (state) {
-        // in case fetching candidate NFTs info
-        case State.Fetching:
-            return <div>{messageToWait()}</div>
-
-        // in case fetching number of likes for each candidate
-        case State.Fetched:
-            getCandidateLikes();
-            return <div>{messageToWait()}</div>
-
-        // in case all data is fetched(election is open)
-        case State.Open:
-            return (
-                < div >
-                    <div className="center">{closeButton()}</div>
-                    <div className="grid grid-cols-3 gap-10">
-                        {cardsInCaseOpen()}
-                    </div>
-                </ div>
-            )
-
-        // in case all data is fetched(election is closed)
-        case State.Closed:
-            return (
-                < div >
-                    <div className="center">{reopenButton()}</div>
-                    <div className="grid grid-cols-3 gap-10">
-                        {cardsInCaseClosed()}
-                    </div>
-                </ div>
-            )
-    }
-
-}
+    // in case all data is fetched(election is closed)
+    case State.Closed:
+      return (
+        <div>
+          <div className="center">{reopenButton()}</div>
+          <div className="grid grid-cols-3 gap-10">{cardsInCaseClosed()}</div>
+        </div>
+      );
+  }
+};
 export default Home;
 ```
 
@@ -446,16 +560,17 @@ export default Home;
 
 ```javascript
 import {
-    nft_transfer,
-    nft_add_likes_to_candidate,
-    nft_tokens_for_kind,
-    nft_return_candidate_likes,
-    check_voter_has_been_added,
-    check_voter_has_voted,
-    voter_voted, close_election,
-    if_election_closed,
-    reopen_election
-} from '../js/near/utils'
+  nft_transfer,
+  nft_add_likes_to_candidate,
+  nft_tokens_for_kind,
+  nft_return_candidate_likes,
+  check_voter_has_been_added,
+  check_voter_has_voted,
+  voter_voted,
+  close_election,
+  if_election_closed,
+  reopen_election,
+} from "../js/near/utils";
 ```
 
 次に更新する変数を定義します。`candidateInfoList`は候補者の情報を入れるリスト、`candidateLikesList`はそれぞれの候補者の得票数を入れるリスト、`state`はデータの取得・投票の締切の真偽の状態を管理するための変数です。
@@ -470,11 +585,11 @@ const [state, setState] = useState("fetching");
 
 ```javascript
 const State = {
-    Fetching: "fetching",
-    Fetched: "fetched",
-    Open: "open",
-    Closed: "closed"
-}
+  Fetching: "fetching",
+  Fetched: "fetched",
+  Open: "open",
+  Closed: "closed",
+};
 ```
 
 ここでは`useEffect`で`nft_tokens_for_kind関数`を引数（candidate）をとることで候補者の情報を取得しています。
@@ -483,46 +598,50 @@ const State = {
 
 ```javascript
 useEffect(async () => {
-    await nft_tokens_for_kind("candidate").then(value => {
-        setCandidateInfoList(value);
-        setState("fetched");
-    });
-}, [])
+  await nft_tokens_for_kind("candidate").then((value) => {
+    setCandidateInfoList(value);
+    setState("fetched");
+  });
+}, []);
 ```
 
 次の`vote関数`ではtokenのidを引数にしています。この`token_id`にはユーザーが取得した投票券のtokenのidが入ることになります。このtokenのidは投票する候補者のNFTのidが入ることになります。
 
 ```javascript
 const vote = (token_id) => {
-    //check if user has already voted
-    check_voter_has_voted(window.accountId).then(value => {
-        if (Boolean(value)) {
-            alert("You have already voted!")
-            return
-        }
+  //check if user has already voted
+  check_voter_has_voted(window.accountId).then((value) => {
+    if (Boolean(value)) {
+      alert("You have already voted!");
+      return;
+    }
 
-        // check if user has vote ticket
-        check_voter_has_been_added(window.accountId).then(value => {
-            let tokenIdOfVoter = parseFloat(value);
-            if (tokenIdOfVoter == 0) {
-                alert("You don't have vote ticket! Please ask deployer to give it to you.")
-                return
-            }
-            // confirm if user really vote to specified candidate(because even if they cancel transaction, contract judge user voted)
-            let isSure = confirm("Once you vote, you can't change selected candidate. Are you OK?");
-            if (!isSure) {
-                return
-            }
-            // transfer vote ticket from user to contract(get rid of vote ticket)
-            nft_transfer(process.env.CONTRACT_NAME, tokenIdOfVoter);
-            // add vote to specified candidate
-            nft_add_likes_to_candidate(token_id);
+    // check if user has vote ticket
+    check_voter_has_been_added(window.accountId).then((value) => {
+      let tokenIdOfVoter = parseFloat(value);
+      if (tokenIdOfVoter == 0) {
+        alert(
+          "You don't have vote ticket! Please ask deployer to give it to you."
+        );
+        return;
+      }
+      // confirm if user really vote to specified candidate(because even if they cancel transaction, contract judge user voted)
+      let isSure = confirm(
+        "Once you vote, you can't change selected candidate. Are you OK?"
+      );
+      if (!isSure) {
+        return;
+      }
+      // transfer vote ticket from user to contract(get rid of vote ticket)
+      nft_transfer(process.env.CONTRACT_NAME, tokenIdOfVoter);
+      // add vote to specified candidate
+      nft_add_likes_to_candidate(token_id);
 
-            //add user ID to voted-list
-            voter_voted(window.accountId);
-        })
-    })
-}
+      //add user ID to voted-list
+      voter_voted(window.accountId);
+    });
+  });
+};
 ```
 
 まずは`check_voter_has_voted関数`を走らせることでユーザーがすでに投票していないかをチェックします。投票済みであれば`alert()`でそのことを知らせます。
@@ -530,7 +649,7 @@ const vote = (token_id) => {
 引数として受け取っている`window.accountId`とはサインインしているユーザーのwalletのidのことです。
 
 ```javascript
-check_voter_has_voted(window.accountId)
+check_voter_has_voted(window.accountId);
 ```
 
 次に`check_voter_has_been_added関数`で投票者が投票券を保有しているかを確認します。ここで重要になってくるのがwalletのidと一緒に格納している値です。
@@ -544,7 +663,7 @@ check_voter_has_voted(window.accountId)
 その後`confirm()`関数で1度投票したら2度とできないことを確認します。
 
 ```javascript
-check_voter_has_been_added(window.accountId)
+check_voter_has_been_added(window.accountId);
 ```
 
 `cardsInCaseOpen関数`では投票が開いているときの候補者それぞれのカードのUIを作成します。投票が閉じているときとの違いは後ほど説明します。
@@ -555,73 +674,90 @@ check_voter_has_been_added(window.accountId)
 
 ```javascript
 const cardsInCaseOpen = () => {
-    let candidateCardList = [];
-    for (let i = 0; i < candidateInfoList.length; i++) {
-        // format data for rendering
-        candidateCardList.push(
-            <div className="items-center">
-                <CandidateCard
-                    CID={candidateInfoList[i].metadata.media_CID}
-                    name={candidateInfoList[i].metadata.candidate_name}
-                    manifest={candidateInfoList[i].metadata.candidate_manifest}
-                />
-                <div className="center text-xl items-center">
-                    <img src={LikeIcon} className="object-cover h-5 w-5 mr-2" />
-                    <p className="mr-2">{(candidateLikesList[i])}</p>
-                    <button value={candidateInfoList[i].metadata.token_id} onClick={(event) => vote(parseInt(event.target.value))} className="vote_button hover:skew-1">Vote!</button>
-                </div>
-            </div>
-        )
-    }
-    return candidateCardList
-}
+  let candidateCardList = [];
+  for (let i = 0; i < candidateInfoList.length; i++) {
+    // format data for rendering
+    candidateCardList.push(
+      <div className="items-center">
+        <CandidateCard
+          CID={candidateInfoList[i].metadata.media_CID}
+          name={candidateInfoList[i].metadata.candidate_name}
+          manifest={candidateInfoList[i].metadata.candidate_manifest}
+        />
+        <div className="center text-xl items-center">
+          <img src={LikeIcon} className="object-cover h-5 w-5 mr-2" />
+          <p className="mr-2">{candidateLikesList[i]}</p>
+          <button
+            value={candidateInfoList[i].metadata.token_id}
+            onClick={(event) => vote(parseInt(event.target.value))}
+            className="vote_button hover:skew-1"
+          >
+            Vote!
+          </button>
+        </div>
+      </div>
+    );
+  }
+  return candidateCardList;
+};
 ```
 
 次の`cardsInCaseClosed関数`では投票が閉じているときの候補者のUIを作成しています。上の`cardsInCaseOpen関数`との違いは、投票による勝者が確定するのでその候補者の上に`Win!`という文字を載せて他の候補者についてはカードを薄くしています。
 
 ```javascript
 const cardsInCaseClosed = () => {
-    let candidateCardList = [];
-    let mostVotedNum = candidateLikesList.reduce((a, b) => { return Math.max(a, b) });
-    // format data for rendering
-    for (let i = 0; i < candidateInfoList.length; i++) {
-        if (candidateLikesList[i] == mostVotedNum) {
-            // for winner candidate rendering
-            candidateCardList.push(
-                <div className="items-center">
-                    <div className="text-2xl shadow-rose-600 center font-semibold text-red-700">Won!</div>
-                    <CandidateCard CID={candidateInfoList[i].metadata.media_CID} name={candidateInfoList[i].metadata.candidate_name} manifest={candidateInfoList[i].metadata.candidate_manifest} />
-                    <div className="center text-xl items-center">
-                        <img src={LikeIcon} className="object-cover h-5 w-5 mr-2" />
-                        <p className="mr-2">{(candidateLikesList[i])}</p>
-                    </div>
-                </div>
-
-            )
-        } else {
-            // for other candidate rendering
-            candidateCardList.push(
-                <div className="items-center opacity-20">
-                    <div className="pt-7"></div>
-                    <CandidateCard CID={candidateInfoList[i].metadata.media_CID} name={candidateInfoList[i].metadata.candidate_name} manifest={candidateInfoList[i].metadata.candidate_manifest} />
-                    <div className="center text-xl items-center">
-                        <img src={LikeIcon} className="object-cover h-5 w-5 mr-2" />
-                        <p className="mr-2">{(candidateLikesList[i])}</p>
-                    </div>
-                </div>
-
-            )
-        }
-
+  let candidateCardList = [];
+  let mostVotedNum = candidateLikesList.reduce((a, b) => {
+    return Math.max(a, b);
+  });
+  // format data for rendering
+  for (let i = 0; i < candidateInfoList.length; i++) {
+    if (candidateLikesList[i] == mostVotedNum) {
+      // for winner candidate rendering
+      candidateCardList.push(
+        <div className="items-center">
+          <div className="text-2xl shadow-rose-600 center font-semibold text-red-700">
+            Won!
+          </div>
+          <CandidateCard
+            CID={candidateInfoList[i].metadata.media_CID}
+            name={candidateInfoList[i].metadata.candidate_name}
+            manifest={candidateInfoList[i].metadata.candidate_manifest}
+          />
+          <div className="center text-xl items-center">
+            <img src={LikeIcon} className="object-cover h-5 w-5 mr-2" />
+            <p className="mr-2">{candidateLikesList[i]}</p>
+          </div>
+        </div>
+      );
+    } else {
+      // for other candidate rendering
+      candidateCardList.push(
+        <div className="items-center opacity-20">
+          <div className="pt-7"></div>
+          <CandidateCard
+            CID={candidateInfoList[i].metadata.media_CID}
+            name={candidateInfoList[i].metadata.candidate_name}
+            manifest={candidateInfoList[i].metadata.candidate_manifest}
+          />
+          <div className="center text-xl items-center">
+            <img src={LikeIcon} className="object-cover h-5 w-5 mr-2" />
+            <p className="mr-2">{candidateLikesList[i]}</p>
+          </div>
+        </div>
+      );
     }
-    return candidateCardList
-}
+  }
+  return candidateCardList;
+};
 ```
 
 選挙の勝者は`mostVotedNum`という変数に`candidateLikesList`というリストの得票数の最大値をいれ、それと同値である候補者とそうでない候補者のUIを変えるようにしています。
 
 ```javascript
-let mostVotedNum = candidateLikesList.reduce((a, b) => { return Math.max(a, b) });
+let mostVotedNum = candidateLikesList.reduce((a, b) => {
+  return Math.max(a, b);
+});
 ```
 
 次の`getCandidateLikes関数`では`nft_tokens_for_kind関数`で取得したそれぞれの候補者のNFTの情報の内tokenのidを引数として受け取り`nft_return_candidate_likes関数`を呼ぶことで得票数を取得しています。
@@ -630,22 +766,24 @@ let mostVotedNum = candidateLikesList.reduce((a, b) => { return Math.max(a, b) }
 
 ```javascript
 const getCandidateLikes = async () => {
-    // get num of likes for each candidate
-    for (let i = 0; i < candidateInfoList.length; i++) {
-        await nft_return_candidate_likes(candidateInfoList[i].metadata.token_id).then(value => {
-            candidateLikesList.push(value);
-        })
-    }
+  // get num of likes for each candidate
+  for (let i = 0; i < candidateInfoList.length; i++) {
+    await nft_return_candidate_likes(
+      candidateInfoList[i].metadata.token_id
+    ).then((value) => {
+      candidateLikesList.push(value);
+    });
+  }
 
-    // check if election is closed
-    let isClosed = await if_election_closed();
-    console.log(isClosed);
-    if (isClosed) {
-        setState("closed");
-    } else {
-        setState("open")
-    }
-}
+  // check if election is closed
+  let isClosed = await if_election_closed();
+  console.log(isClosed);
+  if (isClosed) {
+    setState("closed");
+  } else {
+    setState("open");
+  }
+};
 ```
 
 次の`closeButton関数`はまず最初にコントラクトをdeployしたユーザーとサインインしているユーザーのwalletのidが一致していることを確認しています。誰でも締め切れるのは選挙として成り立ちませんからね。
@@ -656,87 +794,101 @@ const getCandidateLikes = async () => {
 
 ```javascript
 const closeButton = () => {
-    // check if user is contract deployer
-    if (window.accountId !== process.env.CONTRACT_NAME) {
-        return
-    }
-    return <button className="close_button hover:skew-1 h-10 bg-red-600 mb-3" onClick={() => {
+  // check if user is contract deployer
+  if (window.accountId !== process.env.CONTRACT_NAME) {
+    return;
+  }
+  return (
+    <button
+      className="close_button hover:skew-1 h-10 bg-red-600 mb-3"
+      onClick={() => {
         // confirm that user really close this election
         let isSureToClose = confirm("Are you sure to close this election?");
         if (isSureToClose) {
-            // close this election
-            close_election()
+          // close this election
+          close_election();
 
-            // change state to closed
-            setState("closed")
+          // change state to closed
+          setState("closed");
         }
-    }}>Close Election</button>
-}
+      }}
+    >
+      Close Election
+    </button>
+  );
+};
 ```
 
 次の`reopenButton関数`は上で説明した`closeButton関数`とほとんど同じなので説明は割愛します。違っている点はボタンを押して確認が取れた後に`reopen_election関数`を呼んでいることです。
 
 ```javascript
 const reopenButton = () => {
-    // check if user is contract deployer
-    if (window.accountId !== process.env.CONTRACT_NAME) {
-        return
-    }
-    return <button className="close_button hover:skew-1 h-10 bg-red-600 mb-3" onClick={() => {
+  // check if user is contract deployer
+  if (window.accountId !== process.env.CONTRACT_NAME) {
+    return;
+  }
+  return (
+    <button
+      className="close_button hover:skew-1 h-10 bg-red-600 mb-3"
+      onClick={() => {
         let isSureToClose = confirm("Are you sure to reopen this election?");
         if (isSureToClose) {
-            // reopen this election
-            reopen_election()
+          // reopen this election
+          reopen_election();
 
-            // change state to open
-            setState("open")
+          // change state to open
+          setState("open");
         }
-    }}>Reopen Election</button>
-}
+      }}
+    >
+      Reopen Election
+    </button>
+  );
+};
 ```
 
 次の`messageToWait関数`は情報の取得中に表示するUIを返しているだけです。
 
 ```javascript
 const messageToWait = () => {
-    return <div className="grid h-screen place-items-center text-3xl">Fetching NFTs of candidates...</div>
-}
+  return (
+    <div className="grid h-screen place-items-center text-3xl">
+      Fetching NFTs of candidates...
+    </div>
+  );
+};
 ```
 
 最後の`switch`文では`state`の値によって表示するUIが変更されるように呼び込む関数を変えています。
 
 ```javascript
 switch (state) {
-    // in case fetching candidate NFTs info
-    case State.Fetching:
-        return <div>{messageToWait()}</div>
+  // in case fetching candidate NFTs info
+  case State.Fetching:
+    return <div>{messageToWait()}</div>;
 
-    // in case fetching number of likes for each candidate
-    case State.Fetched:
-        getCandidateLikes();
-        return <div>{messageToWait()}</div>
+  // in case fetching number of likes for each candidate
+  case State.Fetched:
+    getCandidateLikes();
+    return <div>{messageToWait()}</div>;
 
-    // in case all data is fetched(election is open)
-    case State.Open:
-        return (
-            < div >
-                <div className="center">{closeButton()}</div>
-                <div className="grid grid-cols-3 gap-10">
-                    {cardsInCaseOpen()}
-                </div>
-            </ div>
-        )
+  // in case all data is fetched(election is open)
+  case State.Open:
+    return (
+      <div>
+        <div className="center">{closeButton()}</div>
+        <div className="grid grid-cols-3 gap-10">{cardsInCaseOpen()}</div>
+      </div>
+    );
 
-    // in case all data is fetched(election is closed)
-    case State.Closed:
-        return (
-            < div >
-                <div className="center">{reopenButton()}</div>
-                <div className="grid grid-cols-3 gap-10">
-                    {cardsInCaseClosed()}
-                </div>
-            </ div>
-        )
+  // in case all data is fetched(election is closed)
+  case State.Closed:
+    return (
+      <div>
+        <div className="center">{reopenButton()}</div>
+        <div className="grid grid-cols-3 gap-10">{cardsInCaseClosed()}</div>
+      </div>
+    );
 }
 ```
 
@@ -760,10 +912,10 @@ yarn client dev
 
 下のように表示されていたら成功です！
 section-2でコントラクト内から`nft_add_likes_to_candidate関数`を走らせたのでどれか1つの候補者の得票数が`1`になっているはずです。
-![](/public/images/NEAR-Election-dApp/section-3/3_3_1.png)
-![](/public/images/NEAR-Election-dApp/section-3/3_3_2.png)
-![](/public/images/NEAR-Election-dApp/section-3/3_3_3.png)
-![](/public/images/NEAR-Election-dApp/section-3/3_3_4.png)
+![](/images/NEAR-Election-dApp/section-3/3_3_1.png)
+![](/images/NEAR-Election-dApp/section-3/3_3_2.png)
+![](/images/NEAR-Election-dApp/section-3/3_3_3.png)
+![](/images/NEAR-Election-dApp/section-3/3_3_4.png)
 
 ### 🙋‍♂️ 質問する
 

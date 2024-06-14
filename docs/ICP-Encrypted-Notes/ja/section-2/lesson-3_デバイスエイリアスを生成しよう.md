@@ -22,7 +22,7 @@ npm run start
 まずは、下記のインポート文を追加します。
 
 ```ts
-import { v4 as uuidV4 } from 'uuid';
+import { v4 as uuidV4 } from "uuid";
 ```
 
 次に、`/** STEP4: コンストラクタを定義します。 */`の箇所に下記のコードを記述します。
@@ -47,8 +47,8 @@ constructorとは、クラスのインスタンスが生成された際に呼び
 `/** STEP5: CryptoServiceクラスのインスタンスを生成します。 */`の部分を下記のコードに更新します。
 
 ```ts
-    /** STEP5: CryptoServiceクラスのインスタンスを生成します。 */
-    const cryptoService = new CryptoService(actor);
+/** STEP5: CryptoServiceクラスのインスタンスを生成します。 */
+const cryptoService = new CryptoService(actor);
 ```
 
 これで、デバイスエイリアスを生成する機能が実装できました。
@@ -59,7 +59,7 @@ constructorとは、クラスのインスタンスが生成された際に呼び
 
 認証時に画像のような画面が表示された場合は、「More options」をクリックするとSection1 Lesson3で操作した画面に戻ることができます。
 
-![](/public/images/ICP-Encrypted-Notes/section-2/2_3_1.png)
+![](/images/ICP-Encrypted-Notes/section-2/2_3_1.png)
 
 認証後、アプリケーションに戻るとノート一覧の取得に失敗してエラーが発生しますが、これは`registerDevice`関数を呼び出していないためです。気にせずこのまま進みましょう。
 
@@ -70,7 +70,7 @@ constructorとは、クラスのインスタンスが生成された際に呼び
 
 このとき、ValueにはUUIDで生成されたデバイスエイリアスが保存されていることを確認しましょう。
 
-![](/public/images/ICP-Encrypted-Notes/section-2/2_3_2.png)
+![](/images/ICP-Encrypted-Notes/section-2/2_3_2.png)
 
 ### 🙋‍♂️ 質問する
 

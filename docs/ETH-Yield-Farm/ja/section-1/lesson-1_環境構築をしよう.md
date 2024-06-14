@@ -1,4 +1,5 @@
-### 🖥 このレッスンの参考動画URL
+### 🖥 このレッスンの参考動画 URL
+
 [Dapp University](https://youtu.be/CgXQC4dbGUE?t=343)
 
 ### ✅ 環境構築を行う
@@ -32,12 +33,11 @@ GitHubのアカウントをお持ちの方は、下記の手順に沿ってプ�
 
 1. [こちら](https://github.com/unchain-tech/ETH-Yield-Farm)からETH-Yield-Farmリポジトリにアクセスをして、ページ右上の`Fork`ボタンをクリックします。
 
-![](/public/images/ETH-Yield-Farm/section-1/1_1_3.png)
+![](/images/ETH-Yield-Farm/section-1/1_1_3.png)
 
 2. Create a new forkページが開くので、「Copy the `main` branch only」という項目に**チェックが入っていることを確認します**。
 
-![](/public/images/ETH-Yield-Farm/section-1/1_1_4.png)
-
+![](/images/ETH-Yield-Farm/section-1/1_1_4.png)
 
 設定が完了したら`Create fork`ボタンをクリックします。あなたのGitHubアカウントに`ETH-Yield-Farm`リポジトリのフォークが作成されたことを確認してください。
 
@@ -45,7 +45,7 @@ GitHubのアカウントをお持ちの方は、下記の手順に沿ってプ�
 
 まず、下図のように、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
 
-![](/public/images/ETH-Yield-Farm/section-1/1_1_5.png)
+![](/images/ETH-Yield-Farm/section-1/1_1_5.png)
 
 ターミナル上で作業を行う任意のディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
 
@@ -106,7 +106,7 @@ yarn client start
 
 例)ローカル環境で表示されているWebサイト
 
-![](/public/images/ETH-Yield-Farm/section-1/1_1_1.png)
+![](/images/ETH-Yield-Farm/section-1/1_1_1.png)
 
 上記のような形でフロントエンドが確認できれば成功です。
 
@@ -136,6 +136,7 @@ npx hardhat init
 ```
 
 （例）
+
 ```
 $ npx hardhat init
 
@@ -279,7 +280,6 @@ artifacts         contracts         node_modules      scripts
 
 次に、上記の手順を参考にして`contracts`の下の`Lock.sol`を削除してください。実際のフォルダは削除しないように注意しましょう。
 
-
 ### ☀️ Hardhat の機能について
 
 Hardhatは段階的に下記を実行しています。
@@ -310,18 +310,18 @@ Hardhatは段階的に下記を実行しています。
 ### 💎 Alchemy でネットワークを作成する
 
 Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押してください。
-![](/public/images/ETH-Yield-Farm/section-1/1_1_6.png)
+![](/images/ETH-Yield-Farm/section-1/1_1_6.png)
 次に、下記の項目を埋めていきます。下図を参考にしてください。
-![](/public/images/ETH-Yield-Farm/section-1/1_1_7.png)
+![](/images/ETH-Yield-Farm/section-1/1_1_7.png)
 
 - `NAME` : プロジェクトの名前(例: `Yield-Farm`)
 - `DESCRIPTION` : プロジェクトの概要（任意）
 - `CHAIN` : `Ethereum`を選択。
 - `NETWORK` : `Sepolia`を選択。
   それから、作成したAppの`VIEW DETAILS`をクリックします。
-  ![](/public/images/ETH-Yield-Farm/section-1/1_1_8.png)
+  ![](/images/ETH-Yield-Farm/section-1/1_1_8.png)
   プロジェクトを開いたら、`VIEW KEY`ボタンをクリックします。
-  ![](/public/images/ETH-Yield-Farm/section-1/1_1_9.png)
+  ![](/images/ETH-Yield-Farm/section-1/1_1_9.png)
   ポップアップが開くので、`HTTP`のリンクをコピーしてください。
   これがあなたが本番環境のネットワークに接続する際に使用する`API Key`になります。
 
@@ -332,22 +332,23 @@ Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押して�
 では`contract`ディレクトリにある`hardhat.config.js`というファイルを下のように編集しましょう。
 
 ```js
-require('@nomicfoundation/hardhat-toolbox');
-require('dotenv').config();
+require("@nomicfoundation/hardhat-toolbox");
+require("dotenv").config();
 
 const { PRIVATE_KEY, STAGING_ALCHEMY_KEY } = process.env;
 
 module.exports = {
-  solidity: '0.8.18',
+  solidity: "0.8.18",
   networks: {
     sepolia: {
-      url: STAGING_ALCHEMY_KEY || '',
-      accounts: PRIVATE_KEY ? [PRIVATE_KEY] : ['0'.repeat(64)],
+      url: STAGING_ALCHEMY_KEY || "",
+      accounts: PRIVATE_KEY ? [PRIVATE_KEY] : ["0".repeat(64)],
       allowUnlimitedContractSize: true,
     },
   },
 };
 ```
+
 次に`contract`ディレクトリに`.env`ファイルを作成し下の変数を追加しましょう。
 
 `PRIVATE_KEY`にはmetamaskで作成したウォレットのPrivate Keyを、`STAGING_ALCHEMY_KEY`にはAlchemyのHTTP Keyを代入しましょう！

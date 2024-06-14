@@ -13,19 +13,19 @@
 
 `cross.png`
 
-![](/public/images/NEAR-Election-dApp/section-3/3_1_1.png)
+![](/images/NEAR-Election-dApp/section-3/3_1_1.png)
 
 `like_icon.png`
 
-![](/public/images/NEAR-Election-dApp/section-3/3_1_2.png)
+![](/images/NEAR-Election-dApp/section-3/3_1_2.png)
 
 `top_img.avif`
 
-![](/public/images/NEAR-Election-dApp/section-3/3_1_3.avif)
+![](/images/NEAR-Election-dApp/section-3/3_1_3.avif)
 
 `unchain_logo.png`
 
-![](/public/images/NEAR-Election-dApp/section-3/3_1_4.png)
+![](/images/NEAR-Election-dApp/section-3/3_1_4.png)
 
 最終的に以下のようなファイル構造になっていればOKです！
 
@@ -82,48 +82,79 @@ CONTRACT_NAME=YOUR_WALLET_ID
 
 ```javascript
 // 以下のように書き換えてください
-import { connect, Contract, keyStores, WalletConnection } from 'near-api-js'
-import getConfig from './config'
+import { connect, Contract, keyStores, WalletConnection } from "near-api-js";
+import getConfig from "./config";
 const BN = require("bn.js");
 
-const nearConfig = getConfig(process.env.NODE_ENV || 'development')
+const nearConfig = getConfig(process.env.NODE_ENV || "development");
 
 // Initialize contract & set global variables
 export async function initContract() {
   // Initialize connection to the NEAR testnet
-  const near = await connect(Object.assign({ deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() } }, nearConfig))
+  const near = await connect(
+    Object.assign(
+      { deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() } },
+      nearConfig
+    )
+  );
 
   // Initializing Wallet based Account. It can work with NEAR testnet wallet that
   // is hosted at https://wallet.testnet.near.org
-  window.walletConnection = new WalletConnection(near)
+  window.walletConnection = new WalletConnection(near);
 
-  window.accountId = window.walletConnection.getAccountId()
+  window.accountId = window.walletConnection.getAccountId();
 
   // Initializing our contract APIs by contract name and configuration
-  window.contract = await new Contract(window.walletConnection.account(), nearConfig.contractName, {
-    viewMethods: ['nft_metadata', 'nft_tokens_for_kind', 'nft_return_candidate_likes', 'check_voter_has_been_added', 'check_voter_has_voted', 'if_election_closed'],
+  window.contract = await new Contract(
+    window.walletConnection.account(),
+    nearConfig.contractName,
+    {
+      viewMethods: [
+        "nft_metadata",
+        "nft_tokens_for_kind",
+        "nft_return_candidate_likes",
+        "check_voter_has_been_added",
+        "check_voter_has_voted",
+        "if_election_closed",
+      ],
 
-    changeMethods: ['new_default_meta', 'nft_mint', 'nft_transfer', 'nft_add_likes_to_candidate', 'voter_voted', 'close_election', 'reopen_election'],
-  })
+      changeMethods: [
+        "new_default_meta",
+        "nft_mint",
+        "nft_transfer",
+        "nft_add_likes_to_candidate",
+        "voter_voted",
+        "close_election",
+        "reopen_election",
+      ],
+    }
+  );
 }
 
 export function logout() {
-  window.walletConnection.signOut()
+  window.walletConnection.signOut();
   // reload page
-  window.location.replace(window.location.origin + window.location.pathname)
+  window.location.replace(window.location.origin + window.location.pathname);
 }
 
 export function login() {
-  window.walletConnection.requestSignIn(nearConfig.contractName)
+  window.walletConnection.requestSignIn(nearConfig.contractName);
 }
 
 export async function new_default_meta() {
-  await window.contract.new_default_meta(
-    { owner_id: window.accountId }
-  )
+  await window.contract.new_default_meta({ owner_id: window.accountId });
 }
 
-export async function nft_mint(title, description, media, media_CID, candidate_name, candidate_manifest, token_kind, receiver_id) {
+export async function nft_mint(
+  title,
+  description,
+  media,
+  media_CID,
+  candidate_name,
+  candidate_manifest,
+  token_kind,
+  receiver_id
+) {
   await window.contract.nft_mint(
     {
       metadata: {
@@ -133,83 +164,73 @@ export async function nft_mint(title, description, media, media_CID, candidate_n
         media_CID: media_CID,
         candidate_name: candidate_name,
         candidate_manifest: candidate_manifest,
-        token_kind: token_kind
+        token_kind: token_kind,
       },
       receiver_id: receiver_id,
     },
     300000000000000, // attached GAS (optional)
     new BN("1000000000000000000000000")
-  )
+  );
 }
 
 export async function nft_transfer(receiver_id, token_id) {
   await window.contract.nft_transfer(
     {
       receiver_id: receiver_id,
-      token_id: token_id
+      token_id: token_id,
     },
     300000000000000, // attached GAS (optional)
-    new BN("1")// deposit yoctoNEAR
-  )
+    new BN("1") // deposit yoctoNEAR
+  );
 }
 
 export async function nft_add_likes_to_candidate(token_id) {
-  await window.contract.nft_add_likes_to_candidate(
-    { token_id: token_id }
-  )
+  await window.contract.nft_add_likes_to_candidate({ token_id: token_id });
 }
 
 export async function nft_metadata() {
-  let contract_metadata = await window.contract.nft_metadata()
+  let contract_metadata = await window.contract.nft_metadata();
   return contract_metadata;
 }
 
 export async function nft_tokens_for_kind(token_kind) {
-  let tokens_list = await window.contract.nft_tokens_for_kind(
-    {
-      token_kind: token_kind
-    }
-  )
-  return tokens_list
+  let tokens_list = await window.contract.nft_tokens_for_kind({
+    token_kind: token_kind,
+  });
+  return tokens_list;
 }
 
 export async function nft_return_candidate_likes(token_id) {
-  let num_of_likes = await window.contract.nft_return_candidate_likes(
-    {
-      token_id: token_id
-    }
-  )
+  let num_of_likes = await window.contract.nft_return_candidate_likes({
+    token_id: token_id,
+  });
 
-  return num_of_likes
+  return num_of_likes;
 }
 
 export async function check_voter_has_been_added(voter_id) {
-  return await window.contract.check_voter_has_been_added(
-    { voter_id: voter_id }
-  )
+  return await window.contract.check_voter_has_been_added({
+    voter_id: voter_id,
+  });
 }
 
 export async function check_voter_has_voted(voter_id) {
-  return await window.contract.check_voter_has_voted(
-    { voter_id: voter_id }
-  )
+  return await window.contract.check_voter_has_voted({ voter_id: voter_id });
 }
 
 export async function voter_voted(voter_id) {
-  return await window.contract.voter_voted(
-    { voter_id: voter_id }
-  )
+  return await window.contract.voter_voted({ voter_id: voter_id });
 }
 
 export async function if_election_closed() {
-  return await window.contract.if_election_closed()
+  return await window.contract.if_election_closed();
 }
 
 export async function close_election() {
-  await window.contract.close_election()
+  await window.contract.close_election();
 }
 export async function reopen_election() {
-  await window.contract.reopen_election()
+  await window.contract.reopen_election();
 }
 ```
 
@@ -218,11 +239,27 @@ export async function reopen_election() {
 `viewMethods`は返り値を得るだけの関数で、`changeMethods`はコントラクトに格納されているデータを書き換える関数が入ります。
 
 ```javascript
-contractName, {
-    viewMethods: ['nft_metadata', 'nft_tokens_for_kind', 'nft_return_candidate_likes', 'check_voter_has_been_added', 'check_voter_has_voted', 'if_election_closed'],
+contractName,
+  {
+    viewMethods: [
+      "nft_metadata",
+      "nft_tokens_for_kind",
+      "nft_return_candidate_likes",
+      "check_voter_has_been_added",
+      "check_voter_has_voted",
+      "if_election_closed",
+    ],
 
-    changeMethods: ['new_default_meta', 'nft_mint', 'nft_transfer', 'nft_add_likes_to_candidate', 'voter_voted', 'close_election', 'reopen_election'],
-  }
+    changeMethods: [
+      "new_default_meta",
+      "nft_mint",
+      "nft_transfer",
+      "nft_add_likes_to_candidate",
+      "voter_voted",
+      "close_election",
+      "reopen_election",
+    ],
+  };
 ```
 
 次に使用する関数をexportします。それぞれ名前を一致させ引数も同じように設定します。
@@ -231,12 +268,19 @@ contractName, {
 
 ```javascript
 export async function new_default_meta() {
-  await window.contract.new_default_meta(
-    { owner_id: window.accountId }
-  )
+  await window.contract.new_default_meta({ owner_id: window.accountId });
 }
 
-export async function nft_mint(title, description, media, media_CID, candidate_name, candidate_manifest, token_kind, receiver_id) {
+export async function nft_mint(
+  title,
+  description,
+  media,
+  media_CID,
+  candidate_name,
+  candidate_manifest,
+  token_kind,
+  receiver_id
+) {
   await window.contract.nft_mint(
     {
       metadata: {
@@ -246,91 +290,80 @@ export async function nft_mint(title, description, media, media_CID, candidate_n
         media_CID: media_CID,
         candidate_name: candidate_name,
         candidate_manifest: candidate_manifest,
-        token_kind: token_kind
+        token_kind: token_kind,
       },
       receiver_id: receiver_id,
     },
     300000000000000, // attached GAS (optional)
     new BN("1000000000000000000000000")
-  )
+  );
 }
 
 export async function nft_transfer(receiver_id, token_id) {
   await window.contract.nft_transfer(
     {
       receiver_id: receiver_id,
-      token_id: token_id
+      token_id: token_id,
     },
     300000000000000, // attached GAS (optional)
-    new BN("1")// deposit yoctoNEAR
-  )
+    new BN("1") // deposit yoctoNEAR
+  );
 }
 
 export async function nft_add_likes_to_candidate(token_id) {
-  await window.contract.nft_add_likes_to_candidate(
-    { token_id: token_id }
-  )
+  await window.contract.nft_add_likes_to_candidate({ token_id: token_id });
 }
 
 export async function nft_metadata() {
-  let contract_metadata = await window.contract.nft_metadata()
+  let contract_metadata = await window.contract.nft_metadata();
   return contract_metadata;
 }
 
 export async function nft_tokens_for_kind(token_kind) {
-  let tokens_list = await window.contract.nft_tokens_for_kind(
-    {
-      token_kind: token_kind
-    }
-  )
-  return tokens_list
+  let tokens_list = await window.contract.nft_tokens_for_kind({
+    token_kind: token_kind,
+  });
+  return tokens_list;
 }
 
 export async function nft_return_candidate_likes(token_id) {
-  let num_of_likes = await window.contract.nft_return_candidate_likes(
-    {
-      token_id: token_id
-    }
-  )
+  let num_of_likes = await window.contract.nft_return_candidate_likes({
+    token_id: token_id,
+  });
 
-  return num_of_likes
+  return num_of_likes;
 }
 
 export async function check_voter_has_been_added(voter_id) {
-  return await window.contract.check_voter_has_been_added(
-    { voter_id: voter_id }
-  )
+  return await window.contract.check_voter_has_been_added({
+    voter_id: voter_id,
+  });
 }
 
 export async function check_voter_has_voted(voter_id) {
-  return await window.contract.check_voter_has_voted(
-    { voter_id: voter_id }
-  )
+  return await window.contract.check_voter_has_voted({ voter_id: voter_id });
 }
 
 export async function voter_voted(voter_id) {
-  return await window.contract.voter_voted(
-    { voter_id: voter_id }
-  )
+  return await window.contract.voter_voted({ voter_id: voter_id });
 }
 
 export async function if_election_closed() {
-  return await window.contract.if_election_closed()
+  return await window.contract.if_election_closed();
 }
 
 export async function close_election() {
-  await window.contract.close_election()
+  await window.contract.close_election();
 }
 export async function reopen_election() {
-  await window.contract.reopen_election()
+  await window.contract.reopen_election();
 }
 ```
 
 いくつか下のような値がついていますが、これらは上がガス代、下はコントラクトにdepositするNEARの値を示しています。
 
 ```javascript
-    300000000000000,
-    new BN("1000000000000000000000000")
+300000000000000, new BN("1000000000000000000000000");
 ```
 
 これでコントラクトの関数を使用できるようになりました。
@@ -341,39 +374,44 @@ export async function reopen_election() {
 
 ```javascript
 // 以下のように書き換えてください
-import 'regenerator-runtime/runtime'
-import React from 'react'
+import "regenerator-runtime/runtime";
+import React from "react";
 
-import './assets/css/global.css'
+import "./assets/css/global.css";
 
-import NEARLogo from './assets/img/logo-black.svg'
-import UNCHLogo from './assets/img/unchain_logo.png'
-import crossLogo from './assets/img/cross.png'
-import TopImage from './assets/img/top_img.avif'
+import NEARLogo from "./assets/img/logo-black.svg";
+import UNCHLogo from "./assets/img/unchain_logo.png";
+import crossLogo from "./assets/img/cross.png";
+import TopImage from "./assets/img/top_img.avif";
 
-import AppRouter from './assets/AppRouter'
+import AppRouter from "./assets/AppRouter";
 
-import { login, logout } from './assets/js/near/utils'
-
+import { login, logout } from "./assets/js/near/utils";
 
 export default function App() {
-
   // check if signed in
   if (!window.walletConnection.isSignedIn()) {
     return (
       // sign in screen
-      <div className='grid h-3/4 place-items-center'>
+      <div className="grid h-3/4 place-items-center">
         <div className="flex items-center">
           <img src={NEARLogo} className="object-cover h-16 w-16" />
           <img src={crossLogo} className="object-cover h-6 w-6" />
           <img src={UNCHLogo} className="object-cover h-12 w-12 mx-2" />
-          <span className="self-center text-3xl font-semibold whitespace-nowrap app_title">Election Dapp</span>
+          <span className="self-center text-3xl font-semibold whitespace-nowrap app_title">
+            Election Dapp
+          </span>
         </div>
         <div className="text-3xl">Have a liberate and fair election!</div>
         <img src={TopImage} className="mb-4 h-5/6 w-1/2" />
-        <button className='text-white w-2/5 h-12 bg-gradient-to-r from-rose-500 via-rose-600 to-rose-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none font-medium rounded-lg text-3xl text-center ' onClick={login}>Sign In</button>
+        <button
+          className="text-white w-2/5 h-12 bg-gradient-to-r from-rose-500 via-rose-600 to-rose-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none font-medium rounded-lg text-3xl text-center "
+          onClick={login}
+        >
+          Sign In
+        </button>
       </div>
-    )
+    );
   }
 
   // in case user signed in
@@ -387,15 +425,27 @@ export default function App() {
             <img src={NEARLogo} className="object-cover h-12 w-12" />
             <img src={crossLogo} className="object-cover h-4 w-4" />
             <img src={UNCHLogo} className="object-cover h-9 w-9 mx-2" />
-            <span className="self-center text-3xl font-semibold whitespace-nowrap app_title">Election Dapp</span>
+            <span className="self-center text-3xl font-semibold whitespace-nowrap app_title">
+              Election Dapp
+            </span>
           </div>
           <div className="md:block md:w-auto pt-1">
-            <ul className='flex md:flex-row md:space-x-8 md:text-xl md:font-medium'>
+            <ul className="flex md:flex-row md:space-x-8 md:text-xl md:font-medium">
               {/* change url as being pushed button */}
-              <li><a href='http://localhost:1234/'> Home </a></li>
-              <li><a href='http://localhost:1234/candidate'> Add Candidate </a></li>
-              <li><a href='http://localhost:1234/voter'> Add Voter </a></li>
-              <button className="link text-red-500" style={{ float: 'right' }} onClick={logout}>
+              <li>
+                <a href="http://localhost:1234/"> Home </a>
+              </li>
+              <li>
+                <a href="http://localhost:1234/candidate"> Add Candidate </a>
+              </li>
+              <li>
+                <a href="http://localhost:1234/voter"> Add Voter </a>
+              </li>
+              <button
+                className="link text-red-500"
+                style={{ float: "right" }}
+                onClick={logout}
+              >
                 Sign out
               </button>
             </ul>
@@ -403,14 +453,12 @@ export default function App() {
         </div>
       </nav>
       {/* body(change depending on url) */}
-      <div className='center'>
+      <div className="center">
         <AppRouter />
       </div>
-
     </div>
-  )
+  );
 }
-
 ```
 
 最初の部分で必要なライブラリや画像のPATHをインポートしています。
@@ -418,19 +466,19 @@ export default function App() {
 一番下の部分では`login, logout`という関数をコントラクトからインポートしています。
 
 ```javascript
-import 'regenerator-runtime/runtime'
-import React from 'react'
+import "regenerator-runtime/runtime";
+import React from "react";
 
-import './assets/css/global.css'
+import "./assets/css/global.css";
 
-import NEARLogo from './assets/img/logo-black.svg'
-import UNCHLogo from './assets/img/unchain_logo.png'
-import crossLogo from './assets/img/cross.png'
-import TopImage from './assets/img/top_img.avif'
+import NEARLogo from "./assets/img/logo-black.svg";
+import UNCHLogo from "./assets/img/unchain_logo.png";
+import crossLogo from "./assets/img/cross.png";
+import TopImage from "./assets/img/top_img.avif";
 
-import AppRouter from './assets/AppRouter'
+import AppRouter from "./assets/AppRouter";
 
-import { login, logout } from './assets/js/near/utils'
+import { login, logout } from "./assets/js/near/utils";
 ```
 
 この部分はサインインされていない場合に表示されるUIを記述しています。
@@ -443,21 +491,28 @@ import { login, logout } from './assets/js/near/utils'
 
 ```javascript
 if (!window.walletConnection.isSignedIn()) {
-    return (
-      // sign in screen
-      <div className='grid h-3/4 place-items-center'>
-        <div className="flex items-center">
-          <img src={NEARLogo} className="object-cover h-16 w-16" />
-          <img src={crossLogo} className="object-cover h-6 w-6" />
-          <img src={UNCHLogo} className="object-cover h-12 w-12 mx-2" />
-          <span className="self-center text-3xl font-semibold whitespace-nowrap app_title">Election Dapp</span>
-        </div>
-        <div className="text-3xl">Have a liberate and fair election!</div>
-        <img src={TopImage} className="mb-4 h-5/6 w-1/2" />
-        <button className='text-white w-2/5 h-12 bg-gradient-to-r from-rose-500 via-rose-600 to-rose-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none font-medium rounded-lg text-3xl text-center ' onClick={login}>Sign In</button>
+  return (
+    // sign in screen
+    <div className="grid h-3/4 place-items-center">
+      <div className="flex items-center">
+        <img src={NEARLogo} className="object-cover h-16 w-16" />
+        <img src={crossLogo} className="object-cover h-6 w-6" />
+        <img src={UNCHLogo} className="object-cover h-12 w-12 mx-2" />
+        <span className="self-center text-3xl font-semibold whitespace-nowrap app_title">
+          Election Dapp
+        </span>
       </div>
-    )
-  }
+      <div className="text-3xl">Have a liberate and fair election!</div>
+      <img src={TopImage} className="mb-4 h-5/6 w-1/2" />
+      <button
+        className="text-white w-2/5 h-12 bg-gradient-to-r from-rose-500 via-rose-600 to-rose-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none font-medium rounded-lg text-3xl text-center "
+        onClick={login}
+      >
+        Sign In
+      </button>
+    </div>
+  );
+}
 ```
 
 その次の部分ではほとんどがホームバーのデザインを記述しています。
@@ -468,37 +523,48 @@ if (!window.walletConnection.isSignedIn()) {
 
 ```javascript
 return (
-    // home screen
-    <div className="bg-white min-h-screen">
-      {/* header */}
-      <nav className="bg-white pt-2.5">
-        <div className="container flex flex-wrap justify-between items-center mx-auto">
-          <div className="flex items-center">
-            <img src={NEARLogo} className="object-cover h-12 w-12" />
-            <img src={crossLogo} className="object-cover h-4 w-4" />
-            <img src={UNCHLogo} className="object-cover h-9 w-9 mx-2" />
-            <span className="self-center text-3xl font-semibold whitespace-nowrap app_title">Election Dapp</span>
-          </div>
-          <div className="md:block md:w-auto pt-1">
-            <ul className='flex md:flex-row md:space-x-8 md:text-xl md:font-medium'>
-              {/* change url as being pushed button */}
-              <li><a href='http://localhost:1234/'> Home </a></li>
-              <li><a href='http://localhost:1234/candidate'> Add Candidate </a></li>
-              <li><a href='http://localhost:1234/voter'> Add Voter </a></li>
-              <button className="link text-red-500" style={{ float: 'right' }} onClick={logout}>
-                Sign out
-              </button>
-            </ul>
-          </div>
+  // home screen
+  <div className="bg-white min-h-screen">
+    {/* header */}
+    <nav className="bg-white pt-2.5">
+      <div className="container flex flex-wrap justify-between items-center mx-auto">
+        <div className="flex items-center">
+          <img src={NEARLogo} className="object-cover h-12 w-12" />
+          <img src={crossLogo} className="object-cover h-4 w-4" />
+          <img src={UNCHLogo} className="object-cover h-9 w-9 mx-2" />
+          <span className="self-center text-3xl font-semibold whitespace-nowrap app_title">
+            Election Dapp
+          </span>
         </div>
-      </nav>
-      {/* body(change depending on url) */}
-      <div className='center'>
-        <AppRouter />
+        <div className="md:block md:w-auto pt-1">
+          <ul className="flex md:flex-row md:space-x-8 md:text-xl md:font-medium">
+            {/* change url as being pushed button */}
+            <li>
+              <a href="http://localhost:1234/"> Home </a>
+            </li>
+            <li>
+              <a href="http://localhost:1234/candidate"> Add Candidate </a>
+            </li>
+            <li>
+              <a href="http://localhost:1234/voter"> Add Voter </a>
+            </li>
+            <button
+              className="link text-red-500"
+              style={{ float: "right" }}
+              onClick={logout}
+            >
+              Sign out
+            </button>
+          </ul>
+        </div>
       </div>
-
+    </nav>
+    {/* body(change depending on url) */}
+    <div className="center">
+      <AppRouter />
     </div>
-  )
+  </div>
+);
 ```
 
 次に`AppRouter.js`を下のように書き換えましょう。
@@ -512,7 +578,7 @@ return (
 ```javascript
 // 以下を追加してください
 import React from "react";
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Home from "./pages/home";
 import Candidate from "./pages/candidate";
@@ -520,22 +586,16 @@ import Voter from "./pages/voter";
 
 // Change with url
 const AppRouter = () => {
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={
-                    <Home />
-                } />
-                <Route path="/candidate" element={
-                    <Candidate />
-                } />
-                <Route path="/voter" element={
-                    <Voter />
-                } />
-            </Routes>
-        </BrowserRouter>
-    )
-}
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/candidate" element={<Candidate />} />
+        <Route path="/voter" element={<Voter />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
 export default AppRouter;
 ```
@@ -551,12 +611,8 @@ pagesにある`home.js, candidate.js, voter.js`を下のように編集しまし
 import React from "react";
 
 const Home = () => {
-    return (
-        <div className="text-xl text-green-500">
-            Home Screen
-        </div>
-    )
-}
+  return <div className="text-xl text-green-500">Home Screen</div>;
+};
 
 export default Home;
 ```
@@ -568,12 +624,8 @@ export default Home;
 import React from "react";
 
 const Candidate = () => {
-    return (
-        <div className="text-xl text-red-500">
-            Add Candidate Screen
-        </div>
-    )
-}
+  return <div className="text-xl text-red-500">Add Candidate Screen</div>;
+};
 
 export default Candidate;
 ```
@@ -585,12 +637,8 @@ export default Candidate;
 import React from "react";
 
 const Voter = () => {
-    return (
-        <div className="text-xl text-blue-500">
-            Vote Screen
-        </div>
-    )
-}
+  return <div className="text-xl text-blue-500">Vote Screen</div>;
+};
 
 export default Voter;
 ```
@@ -633,7 +681,6 @@ export default Voter;
 html {
   font-size: calc(0.9em + 0.5vw);
 }
-
 ```
 
 ではここでwebアプリを起動させて画面遷移の様子をみていきたいところですが、今のままではもともとあったコントラクトをコンパイル・deployして起動するようになります。
@@ -708,9 +755,9 @@ yarn install
 yarn client dev
 ```
 
-![](/public/images/NEAR-Election-dApp/section-3/3_1_5.png)
-![](/public/images/NEAR-Election-dApp/section-3/3_1_6.png)
-![](/public/images/NEAR-Election-dApp/section-3/3_1_7.png)
+![](/images/NEAR-Election-dApp/section-3/3_1_5.png)
+![](/images/NEAR-Election-dApp/section-3/3_1_6.png)
+![](/images/NEAR-Election-dApp/section-3/3_1_7.png)
 
 このように画面がきちんと遷移していれば成功です！
 

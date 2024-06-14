@@ -14,7 +14,7 @@ Next we want to take our smart contract and deploy it to a testnet! At the time 
 yarn run generate
 ```
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_2_1.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_2_1.png)
 
 You should see the following saved to your hardhats environment variable file
 
@@ -29,9 +29,9 @@ You should see the following saved to your hardhats environment variable file
 yarn account
 ```
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_2_2.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_2_2.png)
 
-This should display your public address along with a fancy QR code. And balances?!? Woooowwwww that is slick! <3
+This should display your public address along with a fancy QR code. And balances?!? Woooowwwww that is slick!
 
 ```
 
@@ -62,4 +62,4 @@ Public address: 0x87f00B2c39F97CD00BC6d09777BC4327aCA39180
 
 Send over some testnet ETH from the chain of your choice. I would suggest sepolia as its fairly easy to get some testnet ETH from various sources. In the output below you can see I now have a sepolia balance.
 
-![](/public/images/TheGraph-ScaffoldEth2/section-2/2_2_3.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_2_3.png)

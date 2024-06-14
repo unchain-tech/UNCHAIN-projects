@@ -219,9 +219,9 @@ NFTが発行された後、`_tokenIds.increment()`（＝ OpenZeppelinが提供�
 
 下図のように、Webサイトにメタデータを貼り付けて、`Save`ボタンをクリックすると、JSONファイルへのリンクが表示されます。
 
-![](/public/images/ETH-NFT-Maker/section-1/1_4_1.png)
-![](/public/images/ETH-NFT-Maker/section-1/1_4_21.png)
-![](/public/images/ETH-NFT-Maker/section-1/1_4_22.png)
+![](/images/ETH-NFT-Maker/section-1/1_4_1.png)
+![](/images/ETH-NFT-Maker/section-1/1_4_21.png)
+![](/images/ETH-NFT-Maker/section-1/1_4_22.png)
 
 枠で囲んだ部分をコピーして、ブラウザに貼り付け、メタデータがリンクとして保存されていることを確認しましょう。
 
@@ -236,7 +236,7 @@ NFTが発行された後、`_tokenIds.increment()`（＝ OpenZeppelinが提供�
 
 下記にImgurで画像をアップロードした際に選択する`Direct Link`の取得方法を示します。
 
-![](/public/images/ETH-NFT-Maker/section-1/1_4_2.png)
+![](/images/ETH-NFT-Maker/section-1/1_4_2.png)
 ぜひ自分のお気に入りの画像を使って、自分だけのメタデータを作成してみましょう。
 
 ### 🐈 `Web3Mint.sol`を更新する
@@ -264,10 +264,10 @@ _setTokenURI(
 
 ```javascript
 const main = async () => {
-  const nftContractFactory = await hre.ethers.getContractFactory('Web3Mint');
+  const nftContractFactory = await hre.ethers.getContractFactory("Web3Mint");
   const nftContract = await nftContractFactory.deploy();
   await nftContract.deployed();
-  console.log('Contract deployed to:', nftContract.address);
+  console.log("Contract deployed to:", nftContract.address);
   // makeAnEpicNFT 関数を呼び出す。NFT が Mint される。
   let txn = await nftContract.makeAnEpicNFT();
   // Minting が仮想マイナーにより、承認されるのを待つ。
@@ -336,18 +336,18 @@ Alchemyは、世界中のトランザクションを一元化し、マイナー�
 ### 💎 Alchemy でネットワークを作成する
 
 Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押してください。
-![](/public/images/ETH-NFT-Maker/section-1/1_4_3.png)
+![](/images/ETH-NFT-Maker/section-1/1_4_3.png)
 次に、下記の項目を埋めていきます。下図を参考にしてください。
-![](/public/images/ETH-NFT-Maker/section-1/1_4_4.png)
+![](/images/ETH-NFT-Maker/section-1/1_4_4.png)
 
 - `NAME` : プロジェクトの名前(例: `Web3NFT`)
 - `DESCRIPTION` : プロジェクトの概要（任意）
 - `CHAIN` : `Ethereum`を選択。
 - `NETWORK` : `Sepolia`を選択。
   それから、作成したAppの`VIEW DETAILS`をクリックします。
-  ![](/public/images/ETH-NFT-Maker/section-1/1_4_5.png)
+  ![](/images/ETH-NFT-Maker/section-1/1_4_5.png)
   プロジェクトを開いたら、`VIEW KEY`ボタンをクリックします。
-  ![](/public/images/ETH-NFT-Maker/section-1/1_4_6.png)
+  ![](/images/ETH-NFT-Maker/section-1/1_4_6.png)
   ポップアップが開くので、`HTTP`のリンクをコピーしてください。
   これがあなたが本番環境のネットワークに接続する際に使用する`API Key`になります。
 - **`API Key`は、後で必要になるので、あなたの PC 上のわかりやすいところに、メモとして残しておいてください。**
@@ -377,19 +377,19 @@ Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押して�
 >
 > 1 \. MetaMask ウォレットのネットワークトグルを開く。
 >
-> ![](/public/images/ETH-NFT-Maker/section-1/1_4_7.png)
+> ![](/images/ETH-NFT-Maker/section-1/1_4_7.png)
 >
 > 2 \. `Show/hide test networks`をクリック。
 >
-> ![](/public/images/ETH-NFT-Maker/section-1/1_4_8.png)
+> ![](/images/ETH-NFT-Maker/section-1/1_4_8.png)
 >
 > 3 \. `Show test networks`を`ON`にする。
 >
-> ![](/public/images/ETH-NFT-Maker/section-1/1_4_9.png)
+> ![](/images/ETH-NFT-Maker/section-1/1_4_9.png)
 >
 > 4 \. `Sepolia Test Network`を選択する。
 >
-> ![](/public/images/ETH-NFT-Maker/section-1/1_4_10.png)
+> ![](/images/ETH-NFT-Maker/section-1/1_4_10.png)
 
 > MetaMask ウォレットに`Sepolia Test Network`が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽 ETH を取得しましょう。
 
@@ -406,22 +406,22 @@ Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押して�
 const main = async () => {
   // コントラクトがコンパイルします
   // コントラクトを扱うために必要なファイルが `artifacts` ディレクトリの直下に生成されます。
-  const nftContractFactory = await hre.ethers.getContractFactory('Web3Mint');
+  const nftContractFactory = await hre.ethers.getContractFactory("Web3Mint");
   // Hardhat がローカルの Ethereum ネットワークを作成します。
   const nftContract = await nftContractFactory.deploy();
   // コントラクトが Mint され、ローカルのブロックチェーンにデプロイされるまで待ちます。
   await nftContract.deployed();
-  console.log('Contract deployed to:', nftContract.address);
+  console.log("Contract deployed to:", nftContract.address);
   // makeAnEpicNFT 関数を呼び出す。NFT が Mint される。
   let txn = await nftContract.makeAnEpicNFT();
   // Minting が仮想マイナーにより、承認されるのを待ちます。
   await txn.wait();
-  console.log('Minted NFT #1');
+  console.log("Minted NFT #1");
   // makeAnEpicNFT 関数をもう一度呼び出します。NFT がまた Mint されます。
   txn = await nftContract.makeAnEpicNFT();
   // Minting が仮想マイナーにより、承認されるのを待ちます。
   await txn.wait();
-  console.log('Minted NFT #2');
+  console.log("Minted NFT #2");
 };
 
 // エラー処理を行っています。
@@ -457,13 +457,13 @@ hardhat.config.js
 下記のように、`hardhat.config.js`の中身を更新します。
 
 ```javascript
-require('@nomicfoundation/hardhat-toolbox');
+require("@nomicfoundation/hardhat-toolbox");
 module.exports = {
-  solidity: '0.8.17',
+  solidity: "0.8.17",
   networks: {
     sepolia: {
-      url: 'YOUR_ALCHEMY_API_URL',
-      accounts: ['YOUR_PRIVATE_SEPOLIA_ACCOUNT_KEY'],
+      url: "YOUR_ALCHEMY_API_URL",
+      accounts: ["YOUR_PRIVATE_SEPOLIA_ACCOUNT_KEY"],
     },
   },
 };
@@ -476,23 +476,23 @@ module.exports = {
 > 2\. `YOUR_PRIVATE_SEPOLIA_ACCOUNT_KEY`の取得
 > 1\. お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを`Sepolia Test Network`に変更します。
 >
-> ![](/public/images/ETH-NFT-Maker/section-1/1_4_10.png)
+> ![](/images/ETH-NFT-Maker/section-1/1_4_10.png)
 >
 > 2\. それから、`Account details`を選択してください。
 >
-> ![](/public/images/ETH-NFT-Maker/section-1/1_4_12.png)
+> ![](/images/ETH-NFT-Maker/section-1/1_4_12.png)
 >
 > 3\. `Account details`から`Export Private Key`をクリックしてください。
 >
-> ![](/public/images/ETH-NFT-Maker/section-1/1_4_13.png)
+> ![](/images/ETH-NFT-Maker/section-1/1_4_13.png)
 >
 > 4\. MetaMask のパスワードを求められるので、入力したら`Confirm`を推します。
 >
-> ![](/public/images/ETH-NFT-Maker/section-1/1_4_14.png)
+> ![](/images/ETH-NFT-Maker/section-1/1_4_14.png)
 >
 > 5\. あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
 >
-> ![](/public/images/ETH-NFT-Maker/section-1/1_4_15.png)
+> ![](/images/ETH-NFT-Maker/section-1/1_4_15.png)
 >
 > `hardhat.config.js`の`YOUR_PRIVATE_SEPOLIA_ACCOUNT_KEY`の部分をここで取得した秘密鍵とを入れ替えます。
 > ⚠️: 注意
@@ -532,10 +532,10 @@ hardhat.config.js
 > 「ログイン」には下記の情報が必要となります。
 >
 > - ユーザー名: 公開アドレス
->   ![](/public/images/ETH-NFT-Maker/section-1/1_4_16.png)
+>   ![](/images/ETH-NFT-Maker/section-1/1_4_16.png)
 >
 > - パスワード: 秘密鍵
->   ![](/public/images/ETH-NFT-Maker/section-1/1_4_17.png)
+>   ![](/images/ETH-NFT-Maker/section-1/1_4_17.png)
 >
 > ユーザー名とパスワードを使用して、AWS にログインしてプロジェクトをデプロイするのと同じです。
 
@@ -566,17 +566,17 @@ _表示されるまでに約 1 分かかる場合があります。_
 
 ### 🖼 NFT をオンラインで確認しよう
 
-作成したNFTは、[gemcase(NFTで閲覧できるサービス)](https://gemcase.vercel.app/)で確認できます。
+作成したNFTは、[gemcase(NFT で閲覧できるサービス)](https://gemcase.vercel.app/)で確認できます。
 
 ターミナルに出力された`Contract deployed to`に続くアドレスを検索してみましょう。
 **`Enter`をクリックしないように注意してください。検索でコレクションが表示されたら、コレクション自体をクリックしてください** 。
 ⚠️: gemcaseでNFTを確認するのに時間が掛かる場合があります。
 続いて、ターミナルに出力された`Contract deployed to`に続くアドレスを検索してみましょう。
-![](/public/images/ETH-NFT-Collection/section-1/1_4_18.png)
+![](/images/ETH-NFT-Collection/section-1/1_4_18.png)
 `TanyaNFT`をクリックしてみましょう。
-![](/public/images/ETH-NFT-Collection/section-1/1_4_19.png)
+![](/images/ETH-NFT-Collection/section-1/1_4_19.png)
 コレクションがgemcaseに表示されているのを確認してください。
-![](/public/images/ETH-NFT-Collection/section-1/1_4_20.png)
+![](/images/ETH-NFT-Collection/section-1/1_4_20.png)
 私が作成したTanyaコレクションの`tokenID` 1番のリンクは[こちら]https://gemcase.vercel.app/view/evm/sepolia/0x677fcCF5F8be725ad8A9C23622ba6B738A2DED27/1になります（リンク先は、学習コンテンツ制作時に使用したRinkebyになっていますが、Rinkebyの箇所がSEPOLIAでも同様に表示されます）。
 リンクの内容は以下のようになります。
 

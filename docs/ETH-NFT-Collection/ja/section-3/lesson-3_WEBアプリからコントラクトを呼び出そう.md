@@ -295,7 +295,7 @@ yarn client start
 
 Webアプリケーションの`Mint NFT`ボタンを押して、下記のようなポップアップが立ち上がったら、`Confirm`を押してください。
 
-![](/public/images/ETH-NFT-Collection/section-3/3_3_1.png)
+![](/images/ETH-NFT-Collection/section-3/3_3_1.png)
 
 ここで請求される少量のETHは、通称**ガス代**と呼ばれます。
 
@@ -320,26 +320,27 @@ Going to pop wallet now to pay gas...
 Mining...please wait.
 Mined, see transaction: https://sepolia.etherscan.io/tx/0x5a08f3e66852b5c1833f3a20fc292816bc2ec5a25eee1e8c83c3755000aa773a
 ```
+
 Consoleに出力された`https://sepolia.etherscan.io/...`のアドレスをクリックしてみましょう。
 
 - あなたのSepolia Test Network上のトランザクションの履歴が参照できます。
 
-![](/public/images/ETH-NFT-Collection/section-3/3_3_2.png)
+![](/images/ETH-NFT-Collection/section-3/3_3_2.png)
 
 次に、MintしたNFTがあなたのSepolia Test Networkのアドレスに紐づいているか確認してみましょう。上記画像の赤枠で囲まれている部分が、トークンの転送情報です。転送先のアドレス（`To xxx...`）があなたのウォレットアドレスになっていたら大丈夫です。
 
 それでは、[gemcase](https://gemcase.vercel.app/)にアクセスをして確認をしてみましょう。これまでは`Address`にデプロイをしたコントラクトのアドレスを入力していましたが、今度はあなたのウォレットアドレスを入力して`View`をクリックしてみましょう。
 
-![](/public/images/ETH-NFT-Collection/section-3/3_3_3.png)
+![](/images/ETH-NFT-Collection/section-3/3_3_3.png)
 
 これまでにあなたのアドレスへミントされたNFTの一覧が取得できます。
 
 ステップ通りに進んできた場合は、一番左上のNFTがアプリケーション上の`Mint NFT`をクリックしてミントされたNFTとなります。NFTをクリックして詳細を確認すると、NFTをミントしたアドレスがApp.jsファイルの
 `const CONTRACT_ADDRESS`に設定したコントラクトのアドレスとなっているはずです！
 
-![](/public/images/ETH-NFT-Collection/section-3/3_3_4.png)
+![](/images/ETH-NFT-Collection/section-3/3_3_4.png)
 
-![](/public/images/ETH-NFT-Collection/section-3/3_3_5.png)
+![](/images/ETH-NFT-Collection/section-3/3_3_5.png)
 
 ### 🚨 コントラクトを再びデプロイする際の注意点
 

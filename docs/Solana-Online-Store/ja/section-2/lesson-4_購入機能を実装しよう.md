@@ -22,7 +22,7 @@ export const hasPurchased = async (publicKey, itemID) => {
       // この購入者とアイテムIDのレコードがあるかどうかを確認します。
       const order = json.find(
         (order) =>
-          order.buyer === publicKey.toString() && order.itemID === itemID,
+          order.buyer === publicKey.toString() && order.itemID === itemID
       );
       if (order) {
         return true;
@@ -46,19 +46,19 @@ export const hasPurchased = async (publicKey, itemID) => {
 ```jsx
 // Buy.js
 
-import { findReference, FindReferenceError } from '@solana/pay';
-import { useConnection, useWallet } from '@solana/wallet-adapter-react';
-import { Keypair, Transaction } from '@solana/web3.js';
-import { useEffect, useMemo, useState } from 'react';
-import { InfinitySpin } from 'react-loader-spinner';
+import { findReference, FindReferenceError } from "@solana/pay";
+import { useConnection, useWallet } from "@solana/wallet-adapter-react";
+import { Keypair, Transaction } from "@solana/web3.js";
+import { useEffect, useMemo, useState } from "react";
+import { InfinitySpin } from "react-loader-spinner";
 
-import { addOrder, hasPurchased } from '../lib/api';
-import IPFSDownload from './IpfsDownload';
+import { addOrder, hasPurchased } from "../lib/api";
+import IPFSDownload from "./IpfsDownload";
 
 const STATUS = {
-  Initial: 'Initial',
-  Submitted: 'Submitted',
-  Paid: 'Paid',
+  Initial: "Initial",
+  Submitted: "Submitted",
+  Paid: "Paid",
 };
 
 export default function Buy({ itemID }) {
@@ -80,17 +80,17 @@ export default function Buy({ itemID }) {
 
   const processTransaction = async () => {
     setLoading(true);
-    const txResponse = await fetch('../api/createTransaction', {
-      method: 'POST',
+    const txResponse = await fetch("../api/createTransaction", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(order),
     });
     const txData = await txResponse.json();
 
-    const tx = Transaction.from(Buffer.from(txData.transaction, 'base64'));
-    console.log('Tx data is', tx);
+    const tx = Transaction.from(Buffer.from(txData.transaction, "base64"));
+    console.log("Tx data is", tx);
 
     try {
       const txHash = await sendTransaction(tx, connection);
@@ -111,12 +111,11 @@ export default function Buy({ itemID }) {
       const purchased = await hasPurchased(publicKey, itemID);
       if (purchased) {
         setStatus(STATUS.Paid);
-        console.log('Address has already purchased this item!');
+        console.log("Address has already purchased this item!");
       }
     }
     checkPurchased();
   }, [publicKey, itemID]);
-
 
   useEffect(() => {
     if (status === STATUS.Submitted) {
@@ -124,22 +123,22 @@ export default function Buy({ itemID }) {
       const interval = setInterval(async () => {
         try {
           const result = await findReference(connection, orderID);
-          console.log('Finding tx reference', result.confirmationStatus);
+          console.log("Finding tx reference", result.confirmationStatus);
           if (
-            result.confirmationStatus === 'confirmed' ||
-            result.confirmationStatus === 'finalized'
+            result.confirmationStatus === "confirmed" ||
+            result.confirmationStatus === "finalized"
           ) {
             clearInterval(interval);
             setStatus(STATUS.Paid);
             setLoading(false);
             addOrder(order);
-            alert('Thank you for your purchase!');
+            alert("Thank you for your purchase!");
           }
         } catch (e) {
           if (e instanceof FindReferenceError) {
             return null;
           }
-          console.error('Unknown error', e);
+          console.error("Unknown error", e);
         } finally {
           setLoading(false);
         }
@@ -165,7 +164,11 @@ export default function Buy({ itemID }) {
   return (
     <div>
       {status === STATUS.Paid ? (
-        <IPFSDownload filename="anya" hash="QmcJPLeiXBwA17WASSXs5GPWJs1n1HEmEmrtcmDgWjApjm" cta="Download goods"/>
+        <IPFSDownload
+          filename="anya"
+          hash="QmcJPLeiXBwA17WASSXs5GPWJs1n1HEmEmrtcmDgWjApjm"
+          cta="Download goods"
+        />
       ) : (
         <button
           disabled={loading}
@@ -185,19 +188,18 @@ export default function Buy({ itemID }) {
 コメントのとおり動作します。
 
 ```jsx
-  useEffect(() => {
-    // このアドレスがすでに対象の商品を購入しているか確認し、購入している場合は商品データを取得してPaidをtrueに設定します。
-    async function checkPurchased() {
-      const purchased = await hasPurchased(publicKey, itemID);
-      if (purchased) {
-        setStatus(STATUS.Paid);
-        console.log('Address has already purchased this item!');
-      }
+useEffect(() => {
+  // このアドレスがすでに対象の商品を購入しているか確認し、購入している場合は商品データを取得してPaidをtrueに設定します。
+  async function checkPurchased() {
+    const purchased = await hasPurchased(publicKey, itemID);
+    if (purchased) {
+      setStatus(STATUS.Paid);
+      console.log("Address has already purchased this item!");
     }
-    checkPurchased();
-  }, [publicKey, itemID]);
+  }
+  checkPurchased();
+}, [publicKey, itemID]);
 ```
-
 
 ### 👏 API を使ってデータベースからアイテム情報を取得する
 
@@ -209,14 +211,14 @@ export default function Buy({ itemID }) {
 // fetchItem.js
 
 // このエンドポイントはユーザーに対して IPFS からファイルハッシュを送信します。
-import products from './products.json'
+import products from "./products.json";
 
 export default async function handler(req, res) {
-  if (req.method === 'POST') {
+  if (req.method === "POST") {
     const { itemID } = req.body;
 
     if (!itemID) {
-      return res.status(400).send('Missing itemID');
+      return res.status(400).send("Missing itemID");
     }
 
     const product = products.find((p) => p.id === itemID);
@@ -225,7 +227,7 @@ export default async function handler(req, res) {
       const { hash, filename } = product;
       return res.status(200).send({ hash, filename });
     } else {
-      return res.status(404).send('Item not found');
+      return res.status(404).send("Item not found");
     }
   } else {
     return res.status(405).send(`Method ${req.method} not allowed`);
@@ -241,16 +243,16 @@ export default async function handler(req, res) {
 // api.js
 
 export const fetchItem = async (itemID) => {
-  const response = await fetch('../api/fetchItem', {
-    method: 'POST',
+  const response = await fetch("../api/fetchItem", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({ itemID }),
   });
   const item = await response.json();
   return item;
-}
+};
 ```
 
 さいごに、`Buy.js`を以下のとおり更新します。
@@ -258,19 +260,19 @@ export const fetchItem = async (itemID) => {
 ```jsx
 // Buy.js
 
-import { findReference, FindReferenceError } from '@solana/pay';
-import { useConnection, useWallet } from '@solana/wallet-adapter-react';
-import { Keypair, Transaction } from '@solana/web3.js';
-import { useEffect, useMemo, useState } from 'react';
-import { InfinitySpin } from 'react-loader-spinner';
+import { findReference, FindReferenceError } from "@solana/pay";
+import { useConnection, useWallet } from "@solana/wallet-adapter-react";
+import { Keypair, Transaction } from "@solana/web3.js";
+import { useEffect, useMemo, useState } from "react";
+import { InfinitySpin } from "react-loader-spinner";
 
-import { addOrder, fetchItem, hasPurchased } from '../lib/api';
-import IPFSDownload from './IpfsDownload';
+import { addOrder, fetchItem, hasPurchased } from "../lib/api";
+import IPFSDownload from "./IpfsDownload";
 
 const STATUS = {
-  Initial: 'Initial',
-  Submitted: 'Submitted',
-  Paid: 'Paid',
+  Initial: "Initial",
+  Submitted: "Submitted",
+  Paid: "Paid",
 };
 
 export default function Buy({ itemID }) {
@@ -294,17 +296,17 @@ export default function Buy({ itemID }) {
   // サーバーからトランザクションオブジェクトを取得します。（改ざんを回避するために実行されます。）
   const processTransaction = async () => {
     setLoading(true);
-    const txResponse = await fetch('../api/createTransaction', {
-      method: 'POST',
+    const txResponse = await fetch("../api/createTransaction", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(order),
     });
     const txData = await txResponse.json();
 
-    const tx = Transaction.from(Buffer.from(txData.transaction, 'base64'));
-    console.log('Tx data is', tx);
+    const tx = Transaction.from(Buffer.from(txData.transaction, "base64"));
+    console.log("Tx data is", tx);
     // トランザクションをネットワークに送信します。
     try {
       const txHash = await sendTransaction(tx, connection);
@@ -339,22 +341,22 @@ export default function Buy({ itemID }) {
       const interval = setInterval(async () => {
         try {
           const result = await findReference(connection, orderID);
-          console.log('Finding tx reference', result.confirmationStatus);
+          console.log("Finding tx reference", result.confirmationStatus);
           if (
-            result.confirmationStatus === 'confirmed' ||
-            result.confirmationStatus === 'finalized'
+            result.confirmationStatus === "confirmed" ||
+            result.confirmationStatus === "finalized"
           ) {
             clearInterval(interval);
             setStatus(STATUS.Paid);
             addOrder(order);
             setLoading(false);
-            alert('Thank you for your purchase!');
+            alert("Thank you for your purchase!");
           }
         } catch (e) {
           if (e instanceof FindReferenceError) {
             return null;
           }
-          console.error('Unknown error', e);
+          console.error("Unknown error", e);
         } finally {
           setLoading(false);
         }
@@ -392,7 +394,11 @@ export default function Buy({ itemID }) {
       {item ? (
         <IPFSDownload hash={item.hash} filename={item.filename} />
       ) : (
-        <button disabled={loading} className="buy-button" onClick={processTransaction}>
+        <button
+          disabled={loading}
+          className="buy-button"
+          onClick={processTransaction}
+        >
           Buy now →
         </button>
       )}
@@ -436,7 +442,7 @@ const createTransactionMock = () => {
     status: 200,
     json: () =>
       Promise.resolve({
-        transaction: 'transaction',
+        transaction: "transaction",
       }),
   });
 };
@@ -452,18 +458,18 @@ global.fetch = jest.fn(() => createTransactionMock());
 
 /** 確認 */
 /** 期待する引数で関数が実行されているかを確認します */
-expect(fetch).toBeCalledWith('../api/createTransaction', {
-  method: 'POST',
+expect(fetch).toBeCalledWith("../api/createTransaction", {
+  method: "POST",
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
   body: JSON.stringify({
-    buyer: 'publicKey',
-    orderID: 'orderID',
+    buyer: "publicKey",
+    orderID: "orderID",
     itemID: 1,
   }),
 });
-expect(sendTransactionMock).toBeCalledWith('mockTx', 'connection');
+expect(sendTransactionMock).toBeCalledWith("mockTx", "connection");
 ```
 
 それでは、テストスクリプトを実行してみましょう。`package.json`ファイルのjestコマンドを更新してBuyコンポーネントのテスト実行を追加します。
@@ -485,13 +491,13 @@ yarn test
 
 テストがパスしたら、Buyコンポーネントの実装は完了です。
 
-![](/public/images/Solana-Online-Store/section-2/2_4_1.png)
+![](/images/Solana-Online-Store/section-2/2_4_1.png)
 
 ブラウザ上で実際に操作してみましょう。
 
 おめでとうございます!
 
-これで購入ボタンと商品データ、注文情報などをすべてリンクさせることができました🤣🤣🤣
+これで購入ボタンと商品データ、注文情報などをすべてリンクさせることができました 🤣🤣🤣
 
 ### 🙋‍♂️ 質問する
 

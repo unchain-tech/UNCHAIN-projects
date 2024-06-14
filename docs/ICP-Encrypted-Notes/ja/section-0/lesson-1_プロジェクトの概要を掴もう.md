@@ -27,11 +27,11 @@
 
 完成したアプリケーションはこのような見た目になります 💪
 
-![](/public/images/ICP-Encrypted-Notes/section-0/0_1_1.png)
+![](/images/ICP-Encrypted-Notes/section-0/0_1_1.png)
 
-![](/public/images/ICP-Encrypted-Notes/section-0/0_1_2.png)
+![](/images/ICP-Encrypted-Notes/section-0/0_1_2.png)
 
-![](/public/images/ICP-Encrypted-Notes/section-0/0_1_3.png)
+![](/images/ICP-Encrypted-Notes/section-0/0_1_3.png)
 
 ### 🌍 プロジェクトをアップグレードする
 

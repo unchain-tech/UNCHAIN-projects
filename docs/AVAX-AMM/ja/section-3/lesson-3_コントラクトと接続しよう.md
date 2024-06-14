@@ -12,20 +12,20 @@
 💁 現時点ではまだ用意していないファイルからimportしている箇所があるためエラーメッセージが出ても無視して大丈夫です。
 
 ```ts
-import { BigNumber, ethers } from 'ethers';
-import { useEffect, useState } from 'react';
+import { BigNumber, ethers } from "ethers";
+import { useEffect, useState } from "react";
 
-import { USDCToken as UsdcContractType } from '../typechain-types';
-import { JOEToken as JoeContractType } from '../typechain-types';
-import { AMM as AmmContractType } from '../typechain-types';
-import AmmArtifact from '../utils/AMM.json';
-import { getEthereum } from '../utils/ethereum';
-import UsdcArtifact from '../utils/USDCToken.json';
-import JoeArtifact from '../utils/USDCToken.json';
+import { USDCToken as UsdcContractType } from "../typechain-types";
+import { JOEToken as JoeContractType } from "../typechain-types";
+import { AMM as AmmContractType } from "../typechain-types";
+import AmmArtifact from "../utils/AMM.json";
+import { getEthereum } from "../utils/ethereum";
+import UsdcArtifact from "../utils/USDCToken.json";
+import JoeArtifact from "../utils/USDCToken.json";
 
-export const UsdcAddress = 'コントラクトのデプロイ先アドレス';
-export const JoeAddress = 'コントラクトのデプロイ先アドレス';
-export const AmmAddress = 'コントラクトのデプロイ先アドレス';
+export const UsdcAddress = "コントラクトのデプロイ先アドレス";
+export const JoeAddress = "コントラクトのデプロイ先アドレス";
+export const AmmAddress = "コントラクトのデプロイ先アドレス";
 
 export type TokenType = {
   symbol: string;
@@ -69,7 +69,7 @@ export const useContract = (
       }
       try {
         const provider = new ethers.providers.Web3Provider(
-          ethereum as unknown as ethers.providers.ExternalProvider,
+          ethereum as unknown as ethers.providers.ExternalProvider
         );
         const signer = provider.getSigner(); // 簡易実装のため、引数なし = 初めのアカウント(account#0)を使用する
         const Contract = new ethers.Contract(contractAddress, abi, signer);
@@ -78,7 +78,7 @@ export const useContract = (
         console.log(error);
       }
     },
-    [ethereum, currentAccount],
+    [ethereum, currentAccount]
   );
 
   const generateUsdc = async (contract: UsdcContractType) => {
@@ -172,7 +172,7 @@ const getContract = useCallback(
     }
     try {
       const provider = new ethers.providers.Web3Provider(
-        ethereum as unknown as ethers.providers.ExternalProvider,
+        ethereum as unknown as ethers.providers.ExternalProvider
       );
       const signer = provider.getSigner(); // 簡易実装のため、引数なし = 初めのアカウント(account#0)を使用する
       const Contract = new ethers.Contract(contractAddress, abi, signer);
@@ -181,7 +181,7 @@ const getContract = useCallback(
       console.log(error);
     }
   },
-  [ethereum, currentAccount],
+  [ethereum, currentAccount]
 );
 ```
 
@@ -255,20 +255,20 @@ TEST_ACCOUNT_PRIVATE_KEY="YOUR_PRIVATE_KEY"
 >
 > 1.  お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを`Avalanche FUJI C-Chain`に変更します。
 >
-> ![](/public/images/AVAX-AMM/section-3/3_3_1.png)
+> ![](/images/AVAX-AMM/section-3/3_3_1.png)
 >
 > 2.  それから、`Account details`を選択してください。
 >
-> ![](/public/images/AVAX-AMM/section-3/3_3_2.png)
+> ![](/images/AVAX-AMM/section-3/3_3_2.png)
 >
 > 3.  `Account details`から`Export Private Key`をクリックしてください。
 >
-> ![](/public/images/AVAX-AMM/section-3/3_3_3.png)
+> ![](/images/AVAX-AMM/section-3/3_3_3.png)
 >
 > 4.  MetaMask のパスワードを求められるので、入力したら`Confirm`を押します。
 >     あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
 >
-> ![](/public/images/AVAX-AMM/section-3/3_3_4.png)
+> ![](/images/AVAX-AMM/section-3/3_3_4.png)
 
 > - `.env`の`YOUR_PRIVATE_KEY`の部分をここで取得した秘密鍵とを入れ替えます。
 
@@ -285,22 +285,22 @@ TEST_ACCOUNT_PRIVATE_KEY="YOUR_PRIVATE_KEY"
 ※ solidityのバージョンの部分(`solidity: '0.8.17',`)は元々記載されているものを使用してください。
 
 ```ts
-import * as dotenv from 'dotenv'; // 環境構築時にこのパッケージはインストールしてあります。
-import '@nomicfoundation/hardhat-toolbox';
-import { HardhatUserConfig } from 'hardhat/config';
+import * as dotenv from "dotenv"; // 環境構築時にこのパッケージはインストールしてあります。
+import "@nomicfoundation/hardhat-toolbox";
+import { HardhatUserConfig } from "hardhat/config";
 
 // .envファイルから環境変数をロードします。
 dotenv.config();
 
 if (process.env.TEST_ACCOUNT_PRIVATE_KEY === undefined) {
-  console.log('private key is missing');
+  console.log("private key is missing");
 }
 
 const config: HardhatUserConfig = {
-  solidity: '0.8.17',
+  solidity: "0.8.17",
   networks: {
     fuji: {
-      url: 'https://api.avax-test.network/ext/bc/C/rpc',
+      url: "https://api.avax-test.network/ext/bc/C/rpc",
       chainId: 43113,
       accounts:
         process.env.TEST_ACCOUNT_PRIVATE_KEY !== undefined
@@ -316,31 +316,31 @@ export default config;
 続いて、`scripts`ディレクトリ内にある`deploy.ts`を以下のコードに書き換えてください。
 
 ```ts
-import { ethers } from 'hardhat';
+import { ethers } from "hardhat";
 
 async function deploy() {
   // コントラクトをデプロイするアカウントのアドレスを取得します。
   const [deployer] = await ethers.getSigners();
 
   // USDCトークンのコントラクトをデプロイします。
-  const USDCToken = await ethers.getContractFactory('USDCToken');
+  const USDCToken = await ethers.getContractFactory("USDCToken");
   const usdc = await USDCToken.deploy();
   await usdc.deployed();
 
   // JOEトークンのコントラクトをデプロイします。
-  const JOEToken = await ethers.getContractFactory('JOEToken');
+  const JOEToken = await ethers.getContractFactory("JOEToken");
   const joe = await JOEToken.deploy();
   await joe.deployed();
 
   // AMMコントラクトをデプロイします。
-  const AMM = await ethers.getContractFactory('AMM');
+  const AMM = await ethers.getContractFactory("AMM");
   const amm = await AMM.deploy(usdc.address, joe.address);
   await amm.deployed();
 
-  console.log('usdc address:', usdc.address);
-  console.log('joe address:', joe.address);
-  console.log('amm address:', amm.address);
-  console.log('account address that deploy contract:', deployer.address);
+  console.log("usdc address:", usdc.address);
+  console.log("joe address:", joe.address);
+  console.log("amm address:", amm.address);
+  console.log("account address that deploy contract:", deployer.address);
 }
 
 deploy()
@@ -398,17 +398,17 @@ amm address: 0x1d09929346a768Ec6919bf89dae36B27D7e39321
 `packages/client`ディレクトリ内、`hooks/useContract.ts`の中の以下の部分にそれぞれ貼り付けてください。
 
 ```ts
-export const UsdcAddress = 'コントラクトのデプロイ先アドレス';
-export const JoeAddress = 'コントラクトのデプロイ先アドレス';
-export const AmmAddress = 'コントラクトのデプロイ先アドレス';
+export const UsdcAddress = "コントラクトのデプロイ先アドレス";
+export const JoeAddress = "コントラクトのデプロイ先アドレス";
+export const AmmAddress = "コントラクトのデプロイ先アドレス";
 ```
 
 例:
 
 ```ts
-export const UsdcAddress = '0x5aC2B0744ACD8567c1c33c5c8644C43147645770';
-export const JoeAddress = '0x538589242114BCBcD0f12B1990865E57b3344448';
-export const AmmAddress = '0x1d09929346a768Ec6919bf89dae36B27D7e39321';
+export const UsdcAddress = "0x5aC2B0744ACD8567c1c33c5c8644C43147645770";
+export const JoeAddress = "0x538589242114BCBcD0f12B1990865E57b3344448";
+export const AmmAddress = "0x1d09929346a768Ec6919bf89dae36B27D7e39321";
 ```
 
 📽️ ABIファイルを取得する
@@ -696,8 +696,8 @@ const [amountOfUserTokens, setAmountOfUserTokens] = useState<string[]>([]);
 const [amountOfPoolTokens, setAmountOfPoolTokens] = useState<string[]>([]);
 const [tokens, setTokens] = useState<TokenType[]>([]);
 
-const [userShare, setUserShare] = useState('');
-const [totalShare, setTotalShare] = useState('');
+const [userShare, setUserShare] = useState("");
+const [totalShare, setTotalShare] = useState("");
 ```
 
 このコンポーネントで扱う情報を格納するための状態変数です。
@@ -751,18 +751,18 @@ const getAmountOfUserTokens = useCallback(async () => {
 `Container.tsx`内を以下のコードに変更してください。
 
 ```tsx
-import { useState } from 'react';
+import { useState } from "react";
 
-import { useContract } from '../../hooks/useContract';
-import Details from '../Details/Details';
-import styles from './Container.module.css';
+import { useContract } from "../../hooks/useContract";
+import Details from "../Details/Details";
+import styles from "./Container.module.css";
 
 type Props = {
   currentAccount: string | undefined;
 };
 
 export default function Container({ currentAccount }: Props) {
-  const [activeTab, setActiveTab] = useState('Swap');
+  const [activeTab, setActiveTab] = useState("Swap");
   const [updateDetailsFlag, setUpdateDetailsFlag] = useState(0);
   const { usdc: token0, joe: token1, amm } = useContract(currentAccount);
 
@@ -782,49 +782,49 @@ export default function Container({ currentAccount }: Props) {
           <div
             className={
               styles.tabStyle +
-              ' ' +
-              (activeTab === 'Swap' ? styles.activeTab : '')
+              " " +
+              (activeTab === "Swap" ? styles.activeTab : "")
             }
-            onClick={() => changeTab('Swap')}
+            onClick={() => changeTab("Swap")}
           >
             Swap
           </div>
           <div
             className={
               styles.tabStyle +
-              ' ' +
-              (activeTab === 'Provide' ? styles.activeTab : '')
+              " " +
+              (activeTab === "Provide" ? styles.activeTab : "")
             }
-            onClick={() => changeTab('Provide')}
+            onClick={() => changeTab("Provide")}
           >
             Provide
           </div>
           <div
             className={
               styles.tabStyle +
-              ' ' +
-              (activeTab === 'Withdraw' ? styles.activeTab : '')
+              " " +
+              (activeTab === "Withdraw" ? styles.activeTab : "")
             }
-            onClick={() => changeTab('Withdraw')}
+            onClick={() => changeTab("Withdraw")}
           >
             Withdraw
           </div>
           <div
             className={
               styles.tabStyle +
-              ' ' +
-              (activeTab === 'Faucet' ? styles.activeTab : '')
+              " " +
+              (activeTab === "Faucet" ? styles.activeTab : "")
             }
-            onClick={() => changeTab('Faucet')}
+            onClick={() => changeTab("Faucet")}
           >
             Faucet
           </div>
         </div>
 
-        {activeTab === 'Swap' && <div>swap</div>}
-        {activeTab === 'Provide' && <div>provide</div>}
-        {activeTab === 'Withdraw' && <div>withdraw</div>}
-        {activeTab === 'Faucet' && <div>faucet</div>}
+        {activeTab === "Swap" && <div>swap</div>}
+        {activeTab === "Provide" && <div>provide</div>}
+        {activeTab === "Withdraw" && <div>withdraw</div>}
+        {activeTab === "Faucet" && <div>faucet</div>}
       </div>
       <Details
         token0={token0}
@@ -882,7 +882,7 @@ yarn client dev
 以下のような画面が表示されれば成功です！
 画面右側にユーザとプールの詳細情報が表示されました。
 
-![](/public/images/AVAX-AMM/section-3/3_3_5.png)
+![](/images/AVAX-AMM/section-3/3_3_5.png)
 
 コントラクトのデプロイに使用したアカウントで接続している場合、所有するトークンの量はそれぞれ`10000`になっているはずです。
 
@@ -891,7 +891,6 @@ yarn client dev
 > [こちら](https://github.com/unchain-tech/AVAX-AMM)に本プロジェクトの完成形のレポジトリがあります。
 >
 > 期待通り動かない場合は参考にしてみてください。
-
 
 ### 🙋‍♂️ 質問する
 

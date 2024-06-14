@@ -10,14 +10,14 @@
 💁 現時点ではまだ用意していないファイルからimportしている箇所があるためエラーメッセージが出ても無視して大丈夫です。
 
 ```ts
-import { BigNumber, ethers } from 'ethers';
-import { useEffect, useState } from 'react';
+import { BigNumber, ethers } from "ethers";
+import { useEffect, useState } from "react";
 
-import { Messenger as MessengerType } from '../typechain-types';
-import { getEthereum } from '../utils/ethereum';
-import abi from '../utils/Messenger.json';
+import { Messenger as MessengerType } from "../typechain-types";
+import { getEthereum } from "../utils/ethereum";
+import abi from "../utils/Messenger.json";
 
-const contractAddress = 'あなたのコントラクトのデプロイ先アドレス';
+const contractAddress = "あなたのコントラクトのデプロイ先アドレス";
 const contractABI = abi.abi;
 
 export type Message = {
@@ -65,7 +65,7 @@ export const useMessengerContract = ({
     try {
       if (ethereum) {
         const provider = new ethers.providers.Web3Provider(
-          ethereum as unknown as ethers.providers.ExternalProvider,
+          ethereum as unknown as ethers.providers.ExternalProvider
         );
         const signer = provider.getSigner();
         const MessengerContract = new ethers.Contract(
@@ -111,7 +111,7 @@ export const useMessengerContract = ({
     try {
       const tokenInWei = ethers.utils.parseEther(tokenInEther);
       console.log(
-        'call post with receiver:[%s], token:[%s]',
+        "call post with receiver:[%s], token:[%s]",
         receiver,
         tokenInWei.toString()
       );
@@ -119,10 +119,10 @@ export const useMessengerContract = ({
         gasLimit: 300000,
         value: tokenInWei,
       });
-      console.log('Processing...', txn.hash);
+      console.log("Processing...", txn.hash);
       setProcessing(true);
       await txn.wait();
-      console.log('Done -- ', txn.hash);
+      console.log("Done -- ", txn.hash);
       setProcessing(false);
     } catch (error) {
       console.log(error);
@@ -145,7 +145,7 @@ export const useMessengerContract = ({
       text: string,
       isPending: boolean
     ) => {
-      console.log('NewMessage from %s to %s', sender, receiver);
+      console.log("NewMessage from %s to %s", sender, receiver);
       // 自分宛のメッセージの場合ownMessagesを編集します。
       // 各APIの使用によりアドレス英字が大文字小文字の違いが出る場合がありますが、その違いはアドレス値において区別されません。
       if (receiver.toLocaleLowerCase() === currentAccount) {
@@ -165,13 +165,13 @@ export const useMessengerContract = ({
 
     /* イベントリスナの登録をします */
     if (messengerContract) {
-      messengerContract.on('NewMessage', onNewMessage);
+      messengerContract.on("NewMessage", onNewMessage);
     }
 
     /* イベントリスナの登録を解除します */
     return () => {
       if (messengerContract) {
-        messengerContract.off('NewMessage', onNewMessage);
+        messengerContract.off("NewMessage", onNewMessage);
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -200,7 +200,7 @@ export const useMessengerContract = ({
     try {
       if (ethereum) {
         const provider = new ethers.providers.Web3Provider(
-          ethereum as unknown as ethers.providers.ExternalProvider,
+          ethereum as unknown as ethers.providers.ExternalProvider
         );
         const signer = provider.getSigner();
         const MessengerContract = new ethers.Contract(
@@ -228,7 +228,7 @@ export const useMessengerContract = ({
 
 > ```ts
 > const provider = new ethers.providers.Web3Provider(
->   ethereum as unknown as ethers.providers.ExternalProvider,
+>   ethereum as unknown as ethers.providers.ExternalProvider
 > );
 > ```
 >
@@ -315,7 +315,7 @@ async function sendMessage({ text, receiver, tokenInEther }: PropsSendMessage) {
   try {
     const tokenInWei = ethers.utils.parseEther(tokenInEther);
     console.log(
-      'call post with receiver:[%s], token:[%s]',
+      "call post with receiver:[%s], token:[%s]",
       receiver,
       tokenInWei.toString()
     );
@@ -323,10 +323,10 @@ async function sendMessage({ text, receiver, tokenInEther }: PropsSendMessage) {
       gasLimit: 300000,
       value: tokenInWei,
     });
-    console.log('Processing...', txn.hash);
+    console.log("Processing...", txn.hash);
     setProcessing(true);
     await txn.wait();
-    console.log('Done -- ', txn.hash);
+    console.log("Done -- ", txn.hash);
     setProcessing(false);
   } catch (error) {
     console.log(error);
@@ -367,7 +367,7 @@ useEffect(() => {
     text: string,
     isPending: boolean
   ) => {
-    console.log('NewMessage from %s to %s', sender, receiver);
+    console.log("NewMessage from %s to %s", sender, receiver);
     // 自分宛のメッセージの場合ownMessagesを編集します。
     // 各APIの使用によりアドレス英字が大文字小文字の違いが出る場合がありますが、その違いはアドレス値において区別されません。
     if (receiver.toLocaleLowerCase() === currentAccount) {
@@ -387,13 +387,13 @@ useEffect(() => {
 
   /* イベントリスナの登録をします */
   if (messengerContract) {
-    messengerContract.on('NewMessage', onNewMessage);
+    messengerContract.on("NewMessage", onNewMessage);
   }
 
   /* イベントリスナの登録を解除します */
   return () => {
     if (messengerContract) {
-      messengerContract.off('NewMessage', onNewMessage);
+      messengerContract.off("NewMessage", onNewMessage);
     }
   };
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -427,13 +427,13 @@ Contract's fund is: BigNumber { value: "100" }
 `client`ディレクトリ内、`hooks/useMessengerContract.ts`の中の以下の部分に貼り付けてください。
 
 ```ts
-const contractAddress = 'あなたのコントラクトのデプロイ先アドレス';
+const contractAddress = "あなたのコントラクトのデプロイ先アドレス";
 ```
 
 例:
 
 ```ts
-const contractAddress = '0xf531A6BCF3cD579f5A367cf45ff996dB1FC3beA1';
+const contractAddress = "0xf531A6BCF3cD579f5A367cf45ff996dB1FC3beA1";
 ```
 
 📽️ ABIファイルを取得する
@@ -485,11 +485,11 @@ $ cp -r ./packages/contract/typechain-types ./packages/client/
 `ConfirmMessagePage.tsx`内を以下のコードに変更してください。
 
 ```tsx
-import MessageCard from '../../components/card/MessageCard';
-import Layout from '../../components/layout/Layout';
-import RequireWallet from '../../components/layout/RequireWallet';
-import { useMessengerContract } from '../../hooks/useMessengerContract';
-import { useWallet } from '../../hooks/useWallet';
+import MessageCard from "../../components/card/MessageCard";
+import Layout from "../../components/layout/Layout";
+import RequireWallet from "../../components/layout/RequireWallet";
+import { useMessengerContract } from "../../hooks/useMessengerContract";
+import { useWallet } from "../../hooks/useWallet";
 
 export default function ConfirmMessagePage() {
   const { currentAccount, connectWallet } = useWallet();
@@ -527,11 +527,11 @@ export default function ConfirmMessagePage() {
 `SendMessagePage.tsx`内を以下のコードに変更してください。
 
 ```tsx
-import SendMessageForm from '../../components/form/SendMessageForm';
-import Layout from '../../components/layout/Layout';
-import RequireWallet from '../../components/layout/RequireWallet';
-import { useMessengerContract } from '../../hooks/useMessengerContract';
-import { useWallet } from '../../hooks/useWallet';
+import SendMessageForm from "../../components/form/SendMessageForm";
+import Layout from "../../components/layout/Layout";
+import RequireWallet from "../../components/layout/RequireWallet";
+import { useMessengerContract } from "../../hooks/useMessengerContract";
+import { useWallet } from "../../hooks/useWallet";
 
 export default function SendMessagePage() {
   const { currentAccount, connectWallet } = useWallet();
@@ -575,19 +575,19 @@ yarn client dev
 
 ブラウザで http://localhost:3000 へアクセスすると以下のようにホーム画面が表示されます（ウォレットを接続している場合）
 
-![](/public/images/AVAX-Messenger/section-2/2_5_3.png)
+![](/images/AVAX-Messenger/section-2/2_5_3.png)
 
 `send ->`リンクをクリックして画面を移動しましょう。
 メッセージの宛先アドレスを自分の公開アドレスにして、自分自身にメッセージを送信してみましょう！
 `send`ボタンをクリックすると承認画面が開くので承認します。
 
-![](/public/images/AVAX-Messenger/section-2/2_5_1.png)
+![](/images/AVAX-Messenger/section-2/2_5_1.png)
 
 続いて、ホーム画面へ戻り、`check->`リンクをクリックして、メッセージ確認画面へ移動します。
 
 しばらくするとトランザクションが完了し、送信されたメッセージが表示されます。
 
-![](/public/images/AVAX-Messenger/section-2/2_5_2.png)
+![](/images/AVAX-Messenger/section-2/2_5_2.png)
 
 ### 🌵 `ETH`と`AVAX`
 
@@ -684,7 +684,7 @@ useEffect(() => {
   // MessageConfirmedのイベントリスナの追加
   const onMessageConfirmed = (receiver: string, index: BigNumber) => {
     console.log(
-      'MessageConfirmed index:[%d] receiver: [%s]',
+      "MessageConfirmed index:[%d] receiver: [%s]",
       index.toNumber(),
       receiver
     );
@@ -699,15 +699,15 @@ useEffect(() => {
 
   /* イベントリスナーの登録をします */
   if (messengerContract) {
-    messengerContract.on('NewMessage', onNewMessage);
-    messengerContract.on('MessageConfirmed', onMessageConfirmed); // <- 追加
+    messengerContract.on("NewMessage", onNewMessage);
+    messengerContract.on("MessageConfirmed", onMessageConfirmed); // <- 追加
   }
 
   /* イベントリスナーの登録を解除します */
   return () => {
     if (messengerContract) {
-      messengerContract.off('NewMessage', onNewMessage);
-      messengerContract.off('MessageConfirmed', onMessageConfirmed); // <- 追加
+      messengerContract.off("NewMessage", onNewMessage);
+      messengerContract.off("MessageConfirmed", onMessageConfirmed); // <- 追加
     }
   };
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -732,13 +732,13 @@ return {
 `ConfirmMessagePage.tsx`内を以下のコードに書き換えてください。
 
 ```ts
-import { BigNumber } from 'ethers';
+import { BigNumber } from "ethers";
 
-import MessageCard from '../../components/card/MessageCard';
-import Layout from '../../components/layout/Layout';
-import RequireWallet from '../../components/layout/RequireWallet';
-import { useMessengerContract } from '../../hooks/useMessengerContract';
-import { useWallet } from '../../hooks/useWallet';
+import MessageCard from "../../components/card/MessageCard";
+import Layout from "../../components/layout/Layout";
+import RequireWallet from "../../components/layout/RequireWallet";
+import { useMessengerContract } from "../../hooks/useMessengerContract";
+import { useWallet } from "../../hooks/useWallet";
 
 export default function ConfirmMessagePage() {
   const { currentAccount, connectWallet } = useWallet();
@@ -786,11 +786,11 @@ yarn client dev
 
 ブラウザで http://localhost:3000 へアクセスして先ほど送信された自分宛のメッセージを`accept`してみましょう！
 
-![](/public/images/AVAX-Messenger/section-2/2_5_2.png)
+![](/images/AVAX-Messenger/section-2/2_5_2.png)
 
 `accept`のトランザクションが完了すると確認済みとなり`accept`、`deny`ボタンが消えます。
 
-![](/public/images/AVAX-Messenger/section-2/2_5_6.png)
+![](/images/AVAX-Messenger/section-2/2_5_6.png)
 
 ブラウザ上で`右クリック` -> `検証` -> `コンソール`を開きます。
 
@@ -801,7 +801,7 @@ Done --
 `0x..` ← これをコピーします。
 ```
 
-![](/public/images/AVAX-Messenger/section-2/2_5_7.png)
+![](/images/AVAX-Messenger/section-2/2_5_7.png)
 
 ### 🌱 AVASCAN でトランザクションを確認する
 
@@ -809,14 +809,13 @@ Done --
 
 検索結果が表示され、`STATUS: SUCCESS`が表示されればトランザクションの成功を確認できます。
 
-![](/public/images/AVAX-Messenger/section-2/2_5_8.png)
+![](/images/AVAX-Messenger/section-2/2_5_8.png)
 
 ### 🌔 参考リンク
 
 > [こちら](https://github.com/unchain-tech/AVAX-Messenger)に本プロジェクトの完成形のレポジトリがあります。
 >
 > 期待通り動かない場合は参考にしてみてください。
-
 
 ### 🙋‍♂️ 質問する
 

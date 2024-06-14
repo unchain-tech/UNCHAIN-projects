@@ -113,7 +113,7 @@ artifacts
 
 下記の画面から、CIDをコピーします。
 
-![](/public/images/ETH-NFT-Game/section-4/4_2_1.png)
+![](/images/ETH-NFT-Game/section-4/4_2_1.png)
 
 それでは、下記の`https`アドレスに、コピーしたCIDを貼り付け、ブラウザで中身を見てみましょう。
 
@@ -131,7 +131,7 @@ https://cloudflare-ipfs.com/ipfs/あなたのCIDコードを貼り付けます
 
 下記のように、ブラウザにあなたの画像が表示されいることを確認してください。
 
-![](/public/images/ETH-NFT-Game/section-4/4_2_2.png)
+![](/images/ETH-NFT-Game/section-4/4_2_2.png)
 
 次に、`contract/scripts/run.js`と`contract/scripts/deploy.js`の`imgur`リンクを`CID`（＝ IPFSハッシュ）に変更していきましょう。
 
@@ -162,9 +162,9 @@ const main = async () => {
   const gameContract = await gameContractFactory.deploy(
     ["ZORO", "NAMI", "USOPP"], // キャラクターの名前
     [
-    "QmXxR67ryeUw4xppPLbF2vJmfj1TCGgzANfiEZPzByM5CT", // キャラクターの画像
-    "QmPHX1R4QgvGQrZym5dpWzzopavyNX2WZaVGYzVQQ2QcQL",
-    "QmUGjB7oQLBZdCDNJp9V9ZdjsBECjwcneRhE7bHcs9HwxG",
+      "QmXxR67ryeUw4xppPLbF2vJmfj1TCGgzANfiEZPzByM5CT", // キャラクターの画像
+      "QmPHX1R4QgvGQrZym5dpWzzopavyNX2WZaVGYzVQQ2QcQL",
+      "QmUGjB7oQLBZdCDNJp9V9ZdjsBECjwcneRhE7bHcs9HwxG",
     ],
     [100, 200, 300],
     [100, 50, 25],
@@ -260,39 +260,40 @@ string memory json = Base64.encode(
 ### 🧙‍♂️ テストを作成・実行する
 
 ここまでの作業でコントラクトには基本機能として以下の機能が追加されました。
-* ボスを含めた複数のキャラクターに性質を持たせ、NFTとしてmintする機能
-* ボスに攻撃をする機能
-* ボスまたは他のキャラクターのhpが無くなった場合は攻撃ができなくなる機能
+
+- ボスを含めた複数のキャラクターに性質を持たせ、NFTとしてmintする機能
+- ボスに攻撃をする機能
+- ボスまたは他のキャラクターのhpが無くなった場合は攻撃ができなくなる機能
 
 これらの基本機能をテストスクリプトとして記述していきましょう。
 
 ではpackages/contract/testに`test.js`という名前でファイルを作成して、以下のように記述してください。
 
 ```javascript
-const hre = require('hardhat');
-const { expect } = require('chai');
-const { loadFixture } = require('@nomicfoundation/hardhat-network-helpers');
+const hre = require("hardhat");
+const { expect } = require("chai");
+const { loadFixture } = require("@nomicfoundation/hardhat-network-helpers");
 
-describe('MyEpicGame', () => {
+describe("MyEpicGame", () => {
   // テストで使用するキャラクターの情報を定義
   const characters = [
     {
-      name: 'ZORO',
-      imageURI: 'QmXxR67ryeUw4xppPLbF2vJmfj1TCGgzANfiEZPzByM5CT',
+      name: "ZORO",
+      imageURI: "QmXxR67ryeUw4xppPLbF2vJmfj1TCGgzANfiEZPzByM5CT",
       hp: 100,
       maxHp: 100,
       attackDamage: 100,
     },
     {
-      name: 'NAMI',
-      imageURI: 'QmPHX1R4QgvGQrZym5dpWzzopavyNX2WZaVGYzVQQ2QcQL',
+      name: "NAMI",
+      imageURI: "QmPHX1R4QgvGQrZym5dpWzzopavyNX2WZaVGYzVQQ2QcQL",
       hp: 50,
       maxHp: 50,
       attackDamage: 50,
     },
     {
-      name: 'USOPP',
-      imageURI: 'QmUGjB7oQLBZdCDNJp9V9ZdjsBECjwcneRhE7bHcs9HwxG',
+      name: "USOPP",
+      imageURI: "QmUGjB7oQLBZdCDNJp9V9ZdjsBECjwcneRhE7bHcs9HwxG",
       hp: 300,
       maxHp: 300,
       attackDamage: 25,
@@ -300,8 +301,8 @@ describe('MyEpicGame', () => {
   ];
   // テストで使用するボスの情報を定義
   const bigBoss = {
-    name: 'CROCODILE',
-    imageURI: 'https://i.imgur.com/BehawOh.png',
+    name: "CROCODILE",
+    imageURI: "https://i.imgur.com/BehawOh.png",
     hp: 100,
     maxHp: 100,
     attackDamage: 50,
@@ -309,7 +310,7 @@ describe('MyEpicGame', () => {
 
   async function deployTextFixture() {
     const gameContractFactory = await hre.ethers.getContractFactory(
-      'MyEpicGame',
+      "MyEpicGame"
     );
 
     // Hardhat がローカルの Ethereum ネットワークを、コントラクトのためだけに作成
@@ -327,7 +328,7 @@ describe('MyEpicGame', () => {
       bigBoss.name, // Bossの名前
       bigBoss.imageURI, // Bossの画像
       bigBoss.hp, // Bossのhp
-      bigBoss.attackDamage, // Bossの攻撃力
+      bigBoss.attackDamage // Bossの攻撃力
     );
     await gameContract.deployed();
 
@@ -338,7 +339,7 @@ describe('MyEpicGame', () => {
     };
   }
 
-  it('check if the characters are deployed correctly', async () => {
+  it("check if the characters are deployed correctly", async () => {
     const { gameContract, characters } = await loadFixture(deployTextFixture);
 
     const savedCharacters = await gameContract.getAllDefaultCharacters();
@@ -352,12 +353,12 @@ describe('MyEpicGame', () => {
       expect(savedCharacters[i].hp.toNumber()).to.equal(characters[i].hp);
       expect(savedCharacters[i].maxHp.toNumber()).to.equal(characters[i].maxHp);
       expect(savedCharacters[i].attackDamage.toNumber()).to.equal(
-        characters[i].attackDamage,
+        characters[i].attackDamage
       );
     }
   });
 
-  it('check if the big boss is deployed correctly', async () => {
+  it("check if the big boss is deployed correctly", async () => {
     const { gameContract, bigBoss } = await loadFixture(deployTextFixture);
 
     const savedBigBoss = await gameContract.getBigBoss();
@@ -370,7 +371,7 @@ describe('MyEpicGame', () => {
     expect(savedBigBoss.attackDamage.toNumber()).to.equal(bigBoss.attackDamage);
   });
 
-  it('attack was successful', async () => {
+  it("attack was successful", async () => {
     const { gameContract } = await loadFixture(deployTextFixture);
 
     // 3体のNFTキャラクターの中から、3番目のキャラクターを Mint する
@@ -398,7 +399,7 @@ describe('MyEpicGame', () => {
   });
 
   // ボスのHPがなくなった時に、ボスへの攻撃ができないことを確認
-  it('check boss attack does not happen if boss hp is smaller than 0', async () => {
+  it("check boss attack does not happen if boss hp is smaller than 0", async () => {
     const { gameContract } = await loadFixture(deployTextFixture);
 
     // 3体のNFTキャラクターの中から、1番目のキャラクターを Mint する
@@ -414,12 +415,12 @@ describe('MyEpicGame', () => {
     // 2回目の攻撃: attackBoss 関数を追加
     // ボスのhpがなくなった時に、エラーが発生することを確認
     expect(gameContract.attackBoss()).to.be.revertedWith(
-      'Error: boss must have HP to attack characters.',
+      "Error: boss must have HP to attack characters."
     );
   });
 
   // キャラクターのHPがなくなった時に、ボスへの攻撃ができないことを確認
-  it('check boss attack does not happen if character hp is smaller than 0', async () => {
+  it("check boss attack does not happen if character hp is smaller than 0", async () => {
     const { gameContract } = await loadFixture(deployTextFixture);
 
     // 3体のNFTキャラクターの中から、2番目のキャラクターを Mint する
@@ -435,7 +436,7 @@ describe('MyEpicGame', () => {
     // 2回目の攻撃: attackBoss 関数を追加
     // キャラクターのhpがなくなった時に、エラーが発生することを確認
     expect(gameContract.attackBoss()).to.be.revertedWith(
-      'Error: character must have HP to attack boss.',
+      "Error: character must have HP to attack boss."
     );
   });
 });
@@ -443,7 +444,7 @@ describe('MyEpicGame', () => {
 
 次に、MyEpicGameコントラクト内に定義していた`console.log`を削除しましょう。テストスクリプトを作成することにより、目視で結果を確認する必要がなくなります。
 
-import文を削除します。
+`import`文を削除します。
 
 ```solidity
 // === 下記を削除 ===
@@ -515,7 +516,6 @@ constructor内の`character`変数と`defaultCharacters`をログ出力してい
     console.log('Boss attacked player. New player hp: %s\n', player.hp);
 ```
 
-
 では下のコマンドを実行することでコントラクトのテストをしていきましょう！
 
 ```
@@ -539,7 +539,6 @@ Compiled 1 Solidity file successfully
   5 passing (1s)
 
 ```
-
 
 ### 🤩 Web アプリケーションをアップグレードする
 

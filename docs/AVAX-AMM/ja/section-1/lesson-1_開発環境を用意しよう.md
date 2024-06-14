@@ -50,9 +50,7 @@ AVAX-AMM
   "description": "AMM dApp",
   "private": true,
   "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
+    "packages": ["packages/*"]
   },
   "scripts": {
     "contract": "yarn workspace contract",
@@ -200,6 +198,7 @@ npx hardhat init
 ```
 
 （例）
+
 ```
 $ npx hardhat init
 
@@ -306,7 +305,7 @@ yarn test
 
 次のように表示されます。
 
-![](/public/images/AVAX-AMM/section-1/1_2_2.png)
+![](/images/AVAX-AMM/section-1/1_2_2.png)
 
 これからテストの実行を行う際は、`AVAX-AMM/`直下で`yarn test`を実行します。
 

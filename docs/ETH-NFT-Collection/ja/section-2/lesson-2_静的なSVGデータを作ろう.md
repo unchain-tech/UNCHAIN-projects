@@ -36,7 +36,7 @@ NFTとしてこのデータを取得するために [こちら](https://www.util
 
 - `base64`は、データを文字列にエンコードするために使用する標準規格です。
 
-![](/public/images/ETH-NFT-Collection/section-2/2_2_1.png)
+![](/images/ETH-NFT-Collection/section-2/2_2_1.png)
 
 枠で囲んだ部分を、下記に貼り付けてください。
 
@@ -46,7 +46,7 @@ data:image/svg+xml;base64,ここにあなたのSVGデータを貼り付けます
 
 下図のように、使用しているブラウザで新しいタブを開いて、上記のリンクを貼り付け、実行してみましょう。
 
-![](/public/images/ETH-NFT-Collection/section-2/2_2_2.png)
+![](/images/ETH-NFT-Collection/section-2/2_2_2.png)
 
 SVGデータがあなたのブラウザでも表示されていれば成功です。
 
@@ -96,7 +96,7 @@ data:application/json;base64,ここにあなたのJSONデータを貼り付け�
 
 あなたのブラウザで、下記のような結果が出力されていれば成功です。
 
-![](/public/images/ETH-NFT-Collection/section-2/2_2_3.png)
+![](/images/ETH-NFT-Collection/section-2/2_2_3.png)
 
 私の`base64`でエンコードしたJSONファイルは、次のようになります。
 
@@ -163,9 +163,9 @@ Contract deployed to: 0x49DB07F62d07c516D6A4f3EB053217CdBe9e7187
 
 下記のように、あなたのSquareNFTがgemcaseで確認できたでしょうか？
 
-![](/public/images/ETH-NFT-Collection/section-2/2_2_4.png)
+![](/images/ETH-NFT-Collection/section-2/2_2_4.png)
 
-![](/public/images/ETH-NFT-Collection/section-2/2_2_5.png)
+![](/images/ETH-NFT-Collection/section-2/2_2_5.png)
 
 ### 🙋‍♂️ 質問する
 

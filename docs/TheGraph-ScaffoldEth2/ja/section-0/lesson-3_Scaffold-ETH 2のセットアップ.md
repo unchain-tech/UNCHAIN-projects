@@ -6,7 +6,7 @@
 
 Scaffold-ETH 2とThe Graphをセットアップするために、合計4つの異なるウィンドウが必要になります。
 
-![](/public/images/TheGraph-ScaffoldEth2/section-0/0_3_1.png)
+![](/images/TheGraph-ScaffoldEth2/section-0/0_3_1.png)
 
 ```
 git clone -b subgraph-package \
@@ -21,7 +21,7 @@ cd scaffold-eth-2-subgraph-package && \
   yarn install
 ```
 
-![](/public/images/TheGraph-ScaffoldEth2/section-0/0_3_2.png)
+![](/images/TheGraph-ScaffoldEth2/section-0/0_3_2.png)
 
 次に、スマートコントラクトをデプロイしてテストするために、ローカルブロックチェーンを起動する必要があります。Scaffold-ETH 2はデフォルトでHardhatを使用しています。チェーンを起動するには、次のyarnコマンドを入力します。
 
@@ -29,7 +29,7 @@ cd scaffold-eth-2-subgraph-package && \
 yarn chain
 ```
 
-![](/public/images/TheGraph-ScaffoldEth2/section-0/0_3_3.png)
+![](/images/TheGraph-ScaffoldEth2/section-0/0_3_3.png)
 
 > このウィンドウを開いたままにしておくと、hardhat コンソールからの出力を確認できます。🖥️
 
@@ -39,7 +39,7 @@ yarn chain
 yarn start
 ```
 
-![](/public/images/TheGraph-ScaffoldEth2/section-0/0_3_4.png)
+![](/images/TheGraph-ScaffoldEth2/section-0/0_3_4.png)
 
 > このウィンドウも常に開いておくと、NextJS に加えたコード変更のデバッグ、パフォーマンスのチェック、またはサーバーが適切に動作しているかを確認できます。
 
@@ -49,7 +49,7 @@ yarn start
 yarn deploy
 ```
 
-![](/public/images/TheGraph-ScaffoldEth2/section-0/0_3_5.png)
+![](/images/TheGraph-ScaffoldEth2/section-0/0_3_5.png)
 
 > デプロイにかかったガスの量と共に、トランザクションとアドレスが表示されるはずです。⛽
 
@@ -59,6 +59,6 @@ setGreeting関数にアップデートを送信してテストすることがで
 
 次に、「Debug Contracts」に移動し、setGreetingの下の文字列フィールドをクリックしてお好きな文字を入力し、「SEND」をクリックします。
 
-![](/public/images/TheGraph-ScaffoldEth2/section-0/0_3_6.png)
+![](/images/TheGraph-ScaffoldEth2/section-0/0_3_6.png)
 
 これが完了すると、成功したことを確認するために展開できるTransaction Receiptが表示されます。

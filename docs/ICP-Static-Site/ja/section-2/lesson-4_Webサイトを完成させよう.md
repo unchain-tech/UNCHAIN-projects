@@ -12,7 +12,7 @@
 
 `unchain_logo.png`
 
-![](/public/images/ICP-Static-Site/section-2/2_4_1.png)
+![](/images/ICP-Static-Site/section-2/2_4_1.png)
 
 準備した画像を、`./src/assets/`フォルダに入れます。
 
@@ -200,11 +200,11 @@ touch ./src/lib/Home.svelte ./src/lib/About.svelte ./src/lib/Portfolio.svelte
 
 スクロールやナビゲーションバーを操作して、Webサイトを確認してみましょう。
 
-![](/public/images/ICP-Static-Site/section-2/2_4_2.png)
+![](/images/ICP-Static-Site/section-2/2_4_2.png)
 
-![](/public/images/ICP-Static-Site/section-2/2_4_3.png)
+![](/images/ICP-Static-Site/section-2/2_4_3.png)
 
-![](/public/images/ICP-Static-Site/section-2/2_4_4.png)
+![](/images/ICP-Static-Site/section-2/2_4_4.png)
 
 ### ✂️ ファイルを整理しよう
 
