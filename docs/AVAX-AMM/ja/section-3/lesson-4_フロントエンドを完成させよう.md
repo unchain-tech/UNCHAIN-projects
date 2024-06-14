@@ -817,7 +817,7 @@ swapの実行では以下のトランザクションへの署名が必要です�
 
 ここでは以下の図のようなことを行っています。
 
-![](/images/AVAX-AMM/section-3/swap.drawio.svg)
+![](/images/AVAX-AMM/section-3/swap.drawio.png)
 
 しばらく待つと（ポップアップが表示されokを押した後）右側の`Your Details`が更新されます！
 

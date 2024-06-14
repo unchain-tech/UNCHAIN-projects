@@ -11,7 +11,7 @@ This workshop is built around Scaffold-ETH 2 and The Graph. You will learn how t
 
 ### 🏗 What is Scaffold-ETH 2 🏗
 
-🧪 An open-source, up-to-date toolkit for building decentralized applications（dapps）on the Ethereum blockchain. It's designed to make it easier for developers to create and deployスマートコントラクトand build user interfaces that interact with those contracts.
+🧪 An open-source, up-to-date toolkit for building decentralized applications（dApps）on the Ethereum blockchain. It's designed to make it easier for developers to create and deployスマートコントラクトand build user interfaces that interact with those contracts.
 
 ⚙️ Built using NextJS, RainbowKit, Hardhat, Wagmi, and Typescript.
 
