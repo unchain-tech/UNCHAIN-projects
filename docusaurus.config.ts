@@ -52,6 +52,7 @@ const config: Config = {
       logo: {
         alt: "UNCHAIN",
         src: "https://www.unchain.tech/logo/UNCHAIN_logo.png",
+        srcDark: "https://www.unchain.tech/logo/UNCHAIN_logo_ondark.png",
       },
       items: [
         // {
