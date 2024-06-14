@@ -4,7 +4,7 @@
 
 #### Install MetaMask
 
-When we deploy a smart contract to the blockchain or interact with a deployed smart contract, we need to pay for gas. Therefore, we need a Web3 wallet, such as MetaMask. Click here to install MetaMask.[here](https://metamask.io/)
+When we deploy a smart contract to the blockchain or interact with a deployed smart contract, we need to pay for gas. Therefore, we need a web3 wallet, such as MetaMask. Click here to install MetaMask.[here](https://metamask.io/)
 
 #### Add Polygon Mumbai to MetaMask
 
@@ -22,7 +22,7 @@ To create a new Polygon project, click the 'New Project' button and choose 'Poly
 
 ![image-20230816161348702](/images/Polygon-Whitelist-NFT/section-0/0_2_3.png)
 
-Click "Connect wallet" on the right side of the screen, select "Injected Web3 Provider," and then click on MetaMask to connect the wallet (Polygon Mainnet is the main network, while Mumbai is the testnet - we choose to Connect to Mumbai).
+Click "Connect wallet" on the right side of the screen, select "Injected web3 Provider," and then click on MetaMask to connect the wallet（Polygon Mainnet is the main network, while Mumbai is the testnet - we choose to Connect to Mumbai）.
 
 ![image-20230114120433122](/images/Polygon-Whitelist-NFT/section-0/0_2_4.png)
 

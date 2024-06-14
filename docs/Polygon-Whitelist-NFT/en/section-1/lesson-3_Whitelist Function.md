@@ -2,7 +2,7 @@
 
 > Note, this course here may be a bit lengthy, please be patient.
 
-The basic knowledge about smart contracts is ready. Let's update the `Whitelist.sol` contract. Here's what it looks like after the update:
+The basic knowledge aboutスマートコントラクトis ready. Let's update the `Whitelist.sol` contract. Here's what it looks like after the update:
 
 ```solidity
 //SPDX-License-Identifier: Unlicense
@@ -88,7 +88,7 @@ First, we've set up a state [variable](https://solidity-by-example.org/variables
     mapping(address => bool) private _isWhitelisted;
 ```
 
-`_isWhitelisted` is used to determine whether an address is in the whitelist, and it has been set to a [mapping](https://solidity-by-example.org/app/iterable-mapping/) type. If the address is in the whitelist, the corresponding bool is set to true; otherwise, it's false. By default, the bool is false. (Why do we do this? Because it allows us to know which addresses are in the whitelist without using an array, saving a significant amount of gas).
+`_isWhitelisted` is used to determine whether an address is in the whitelist, and it has been set to a [mapping](https://solidity-by-example.org/app/iterable-mapping/) type. If the address is in the whitelist, the corresponding bool is set to true; otherwise, it's false. By default, the bool is false.（Why do we do this? Because it allows us to know which addresses are in the whitelist without using an array, saving a significant amount of gas）.
 
 ```solidity
     //Event: record the addresses added to the whitelist
@@ -111,7 +111,7 @@ First, we've set up a state [variable](https://solidity-by-example.org/variables
     }
 ```
 
-The [constructor](https://solidity-by-example.org/constructor/) is a function allowed at the time of contract deployment (Note: the constructor is not mandatory). In this case, the constructor takes an initial array of whitelisted addresses and uses a [loop](https://solidity-by-example.org/loop/) to call the addTowhitelist method to set these addresses as whitelisted (don't worry, this will be explained later). At the same time, the owner is set to msg.sender (one of the EVM's unique [global](https://solidity-by-example.org/variables/) variables, which represents the initiator of the call, in this case, the deployer of the contract). This lays the groundwork for permissions to be managed later on.
+The [constructor](https://solidity-by-example.org/constructor/) is a function allowed at the time of contract deployment（Note: the constructor is not mandatory）. In this case, the constructor takes an initial array of whitelisted addresses and uses a [loop](https://solidity-by-example.org/loop/) to call the addTowhitelist method to set these addresses as whitelisted（don't worry, this will be explained later）. At the same time, the owner is set to msg.sender (one of the EVM's unique [global](https://solidity-by-example.org/variables/) variables, which represents the initiator of the call, in this case, the deployer of the contract). This lays the groundwork for permissions to be managed later on.
 
 ```solidity
     /**
@@ -135,7 +135,7 @@ The `function` keyword indicates that `addTowhitelist` is a function, and the `p
 
 **Call contract**
 
-The first require checks whether the owner is equal to msg.sender (the caller of the function). If not, it will throw an error stating "Caller is not the owner," and the function execution will fail. This way, it restricts the successful call of this function to the owner only.
+The first require checks whether the owner is equal to msg.sender（the caller of the function）. If not, it will throw an error stating "Caller is not the owner," and the function execution will fail. This way, it restricts the successful call of this function to the owner only.
 
 The second require checks whether the address is already whitelisted. If it is, the function will throw an error stating `"Address already whitelisted"`, and the execution will fail.
 
@@ -194,7 +194,7 @@ After deployment is complete, you can call the contract. Try entering some addre
 
 ![image-20230222181353308](/images/Polygon-Whitelist-NFT/section-1/1_3_3.png)
 
-Alright, the whitelist contract is now complete. Next, we will move on to the smart contract writing module for the NFT (Non-Fungible Token) part.
+Alright, the whitelist contract is now complete. Next, we will move on to the smart contract writing module for the NFT（Non-Fungible Token）part.
 
 ### 🙋‍♂️ Asking Questions
 

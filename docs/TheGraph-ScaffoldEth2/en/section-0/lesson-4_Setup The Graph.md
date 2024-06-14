@@ -1,4 +1,4 @@
-## Setup The Graph (Docker)
+## Setup The Graph （Docker）
 
 ### 🚀 Setup The Graph Integration
 

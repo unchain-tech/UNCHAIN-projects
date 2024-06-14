@@ -10,17 +10,17 @@ IPFS stands for the **InterPlanetary** File System. It's a distributed peer-to-p
 
 IPFS operates as a decentralized node network designed for storing and sharing files. Each file on IPFS is identified by a content hash based on its content. This content hash is known as a **CID** - a `Content ID`. In simpler terms, when you upload a file to IPFS, the various nodes on the IPFS network check if a node has already uploaded the same content. If they find a match, they return the previous CID to you; if not, the nodes store the file and provide you with a new CID.
 
-With a CID, you can access the content of the file stored on IPFS. The Metadata CID for Bored Ape Yacht Club (BAYC) is QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq (Note: A CID doesn't necessarily refer to a single file; it can represent a folder containing multiple files bundled together, known as a "car" to facilitate uploading. BAYC uses a bundled multi-file CID).
+With a CID, you can access the content of the file stored on IPFS. The Metadata CID for Bored Ape Yacht Club（BAYC）is QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq（Note: A CID doesn't necessarily refer to a single file; it can represent a folder containing multiple files bundled together, known as a "car" to facilitate uploading. BAYC uses a bundled multi-file CID）.
 
 The standard IPFS link format is `IPFS://+CID`, like: `IPFS://QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq`.
 
-However, this format is only effective when used in some IPFS-supported browsers (such as Brave) by directly entering the `IPFS` address in the address bar. Other browsers, like Chrome, do not support this format.
+However, this format is only effective when used in some IPFS-supported browsers（such as Brave）by directly entering the `IPFS` address in the address bar. Other browsers, like Chrome, do not support this format.
 
 Consequently, we need an IPFS gateway to access its IPFS content. Examples include:
 
 https://cloudflare-ipfs.com/ipfs/+CID
 
-In this way, we can easily access the Metadata content of Bored Ape Yacht Club (BAYC).
+In this way, we can easily access the Metadata content of Bored Ape Yacht Club（BAYC）.
 
 https://cloudflare-ipfs.com/ipfs/QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/
 

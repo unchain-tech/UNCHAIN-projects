@@ -47,7 +47,7 @@ contract Whitelist {
 }
 ```
 
-This is the main body of the Solidity code. A `.sol` file can contain multiple contracts, but the name of the primary contract must be the same as the file name, which is `Whitelist` in this case. Here we only include one contract. The constructor is a function that will run when the contract is deployed. Additionally, the first set of curly braces `{}` will contain state variables, functions, etc., and these generally make up about 85~95% of the code.
+This is the main body of the Solidity code. A `.sol` file can contain multiple contracts, but the name of the primary contract must be the same as the file name, which is `Whitelist` in this case. Here we only include one contract. The constructor is a function that will run when the contract is deployed. Additionally, the first set of curly braces `{}` will contain state variables, functions, etc., and these generally make up about 85~95％ of the code.
 
 #### How to run the code
 
@@ -55,11 +55,11 @@ Click on the Compile panel on the right, and you'll see that ChainIDE has automa
 
 ![image-20230222154237333](/images/Polygon-Whitelist-NFT/section-1/1_2_3.png)
 
-You can see that the ABI and BYTE CODE have been generated below. Generally speaking, the ABI defines the communication protocol between the smart contract and other applications, enabling them to call and interact with each other. In fact, this is very helpful for how the smart contract interacts with the frontend. BYTE CODE is a binary encoding, and the underlying principle for deploying contracts on EVM-based chains (such as ETH, Polygon, BNB Chain, Conflux, and other chains that use EVM as a foundation) is achieved through uploading BYTE CODE.
+You can see that the ABI and BYTE CODE have been generated below. Generally speaking, the ABI defines the communication protocol between the smart contract and other applications, enabling them to call and interact with each other. In fact, this is very helpful for how the smart contract interacts with the frontend. BYTE CODE is a binary encoding, and the underlying principle for deploying contracts on EVM-based chains（such as ETH, Polygon, BNB Chain, Conflux, and other chains that use EVM as a foundation）is achieved through uploading BYTE CODE.
 
 ![image-20230222155740298](/images/Polygon-Whitelist-NFT/section-1/1_2_4.png)
 
-Switch to the Deploy & Interaction panel, connect to JS VM (JS VM is an EVM implemented in JavaScript, very convenient for browser-side testing), and click Deploy
+Switch to the Deploy & Interaction panel, connect to JS VM（JS VM is an EVM implemented in JavaScript, very convenient for browser-side testing）, and click Deploy
 
 ![image-20230222155859096](/images/Polygon-Whitelist-NFT/section-1/1_2_5.png)
 

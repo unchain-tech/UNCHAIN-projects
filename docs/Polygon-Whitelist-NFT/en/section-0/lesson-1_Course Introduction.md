@@ -8,7 +8,7 @@ Hi everyone, I'm your teacher WTOM. In this tutorial, I will show you guys how t
 
 [ChainIDE](https://chainide.com/) is a cloud-based IDE for developing decentralized applications, supporting various blockchains such as Ethereum, BNB Chain, Polygon, Conflux, Nervos, Dfinity, Flow and Aptos. Ethereum, BNB Chain, Polygon, Conflux, Nervos, Dfinity, Flow, Aptos, etc.
 
-It comes pre-populated with the necessary plug-ins for development, as well as modules for writing, compiling, debugging, testing, and deploying smart contracts. Therefore, you can start coding right away without having to build a complex environment.
+It comes pre-populated with the necessary plug-ins for development, as well as modules for writing, compiling, debugging, testing, and deployingスマートコントラクト. Therefore, you can start coding right away without having to build a complex environment.
 
 ### 🧱 What we are building
 

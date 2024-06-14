@@ -31,7 +31,7 @@ yarn account
 
 ![](/images/TheGraph-ScaffoldEth2/section-2/2_2_2.png)
 
-This should display your public address along with a fancy QR code. And balances?!? Woooowwwww that is slick!
+This should display your public address along with a fancy QR code. And balances?! ? Woooowwwww that is slick!
 
 ```
 

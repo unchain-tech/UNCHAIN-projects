@@ -876,7 +876,7 @@ Firstly, we have imported [ether.js](https://docs.ethers.org/v5/). In simple ter
 
 ```
 
-When a user clicks the `"Connect"` button, it triggers the `connect` function. Firstly, it requests the account from MetaMask. Then, it checks the chainID to determine if it's connected to the Mumbai testnet (each chain typically has a unique chain ID, like Ethereum's mainnet is 1, and Mumbai's is 4902). If Mumbai is not configured, it will automatically set it up for you. If there are any errors during this process, corresponding error messages will be displayed.
+When a user clicks the `"Connect"` button, it triggers the `connect` function. Firstly, it requests the account from MetaMask. Then, it checks the chainID to determine if it's connected to the Mumbai testnet（each chain typically has a unique chain ID, like Ethereum's mainnet is 1, and Mumbai's is 4902）. If Mumbai is not configured, it will automatically set it up for you. If there are any errors during this process, corresponding error messages will be displayed.
 
 ```tsx
 const mint = async () => {

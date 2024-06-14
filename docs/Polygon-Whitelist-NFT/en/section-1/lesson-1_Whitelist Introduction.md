@@ -2,7 +2,7 @@
 
 ### 🎓 What is whitelist?
 
-Typically, a whitelist refers to a list of entities that are allowed access, such as a list of IP addresses that can access a particular website, a list of software that is allowed to be installed, a list of email domain names that are allowed to be used, etc. In this lesson, we'll use Solidity (one of Ethereum's smart contract programming languages) to write a simple whitelist function, allowing users on the whitelist to have the permission to mint NFTs.
+Typically, a whitelist refers to a list of entities that are allowed access, such as a list of IP addresses that can access a particular website, a list of software that is allowed to be installed, a list of email domain names that are allowed to be used, etc. In this lesson, we'll use Solidity（one of Ethereum's smart contract programming languages）to write a simple whitelist function, allowing users on the whitelist to have the permission to mint NFTs.
 
 ### 📝 Ways to implement whitelist
 

@@ -67,7 +67,7 @@ Make sure that the Owner is your GitHub account that you used to login to ChainI
 
 ![](/images/Polygon-Whitelist-NFT/section-5/5_3_5.png)
 
-The Commit & Push screen will appear on the Git Manager; select the files you want to push to GitHub. We have set up a .gitignore file, but it is recommended that you check to make sure it does not contain any files you do not want to upload. You can change the staging with the "+" next to the files as you check them one by one, or you can change the staging all at once when you are done checking all the files (the "+" button appears when you hover over CHANGES).
+The Commit & Push screen will appear on the Git Manager; select the files you want to push to GitHub. We have set up a .gitignore file, but it is recommended that you check to make sure it does not contain any files you do not want to upload. You can change the staging with the "+" next to the files as you check them one by one, or you can change the staging all at once when you are done checking all the files（the "+" button appears when you hover over CHANGES）.
 
 ![](/images/Polygon-Whitelist-NFT/section-5/5_3_6.png)
 
@@ -113,8 +113,8 @@ To streamline the assistance process, kindly include the following 4 points in y
 
 The conditions for obtaining an NFT are as follows:
 
-1. All MVP features have been implemented (Implementation OK).
-2. MVP functions are working seamlessly on the web application (Testing OK).
+1. All MVP features have been implemented（Implementation OK）.
+2. MVP functions are working seamlessly on the web application（Testing OK）.
 3. Fill out the Project Completion Form linked at the end of this page.
 4. Please share your OpenSea link in the Discord `🔥｜completed-projects` channel 😉🎉. When posting on Discord, we'd appreciate it if you could also mention any additional features you implemented and provide an overview!
 

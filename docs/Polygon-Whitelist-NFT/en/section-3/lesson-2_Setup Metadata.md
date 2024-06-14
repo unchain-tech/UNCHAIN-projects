@@ -24,7 +24,7 @@ Let's start by saving these images to your local device.
 
 ![image-20230223102231474](/images/Polygon-Whitelist-NFT/section-3/3_2_5.png)
 
-Then, create four new files in another folder, naming them 1, 2, 3, and 4. Fill in the following content (the IPFS links for the images are not complete; come back to complete them after uploading the images to IPFS).
+Then, create four new files in another folder, naming them 1, 2, 3, and 4. Fill in the following content（the IPFS links for the images are not complete; come back to complete them after uploading the images to IPFS）.
 
 1
 

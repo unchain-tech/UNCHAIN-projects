@@ -15,7 +15,7 @@ Next, open "Port Manager" and click "Add Port".
 
 ![](/images/Polygon-Whitelist-NFT/section-4/4_3_10.png)
 
-Select `Polygon (Ubuntu)` for Select Sandbox and enter `3000` (the port number displayed on the Sandbox) for Port. After completing the settings, click "Add".
+Select `Polygon (Ubuntu)` for Select Sandbox and enter `3000`（the port number displayed on the Sandbox）for Port. After completing the settings, click "Add".
 
 ![](/images/Polygon-Whitelist-NFT/section-4/4_3_11.png)
 
@@ -27,7 +27,7 @@ After confirming that the port information has been added, click on the icon bel
 
 ![](/images/Polygon-Whitelist-NFT/section-4/4_3_13.png)
 
-If you have access to the application, start by clicking "connect" to link your Metamask account (make sure it's whitelisted).
+If you have access to the application, start by clicking "connect" to link your Metamask account（make sure it's whitelisted）.
 
 ![image-20230223160640040](/images/Polygon-Whitelist-NFT/section-4/4_3_1.png)
 

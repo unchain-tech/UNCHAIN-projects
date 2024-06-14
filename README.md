@@ -1,36 +1,30 @@
-## 💎 **UNCHAIN Developer Community へようこそ** 👋
+# UNCHAIN-projects
 
-![](/public/images/README/unchain-banner.png)
+The project is in fact a simple markdown filesystem that is deployed as a static website using docusaurus.
 
-## 🌍 **プロジェクトのアップデートについて**
+## Local Development
 
-[UNCHAIN](https://www.unchain.tech) のプロジェクトは全て[オープンソース](https://github.com/unchain-dev/UNCHAIN-projects/blob/main/LICENSE)で運用されています。
+```
+$ yarn start
+```
 
-プロジェクトに参加していて、「こうすればもっと分かりやすいのに!」「これは間違っている!」と思ったら、直接`pull request`を送ってくださると幸いです ✨
+This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
 
-Github から直接コードを編集して直接`pull request`を送る方法は、[こちら](https://docs.github.com/ja/repositories/working-with-files/managing-files/editing-files#editing-files-in-another-users-repository)を参照してください。
-
-どんなリクエストでも大歓迎です 🎉
-
-また、プロジェクトを自分の Github アカウントに`Fork`して、中身を編集してから`pull request`を送ることもできます。
-
-- プロジェクトを`Fork`する方法は、[こちら](https://docs.github.com/ja/get-started/quickstart/fork-a-repo)を参照してください。
-
-- `Fork`から`pull request`を作成する方法は、[こちら](https://docs.github.com/ja/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)です。
-
-## 🐝 **コードの中にバグを発見した!**
-
-プロジェクトの中にバグを発見した場合は、[こちら](https://github.com/unchain-dev/UNCHAIN-projects/issues)で`Issue`を作成していただけますと幸いです。
-
-`Issue`の作成方法に関しては、[こちら](https://docs.github.com/ja/issues/tracking-your-work-with-issues/creating-an-issue)を参照してください。
-
-## ✅ textlint について
+### ✅ textlint について
 
 文中の表記揺れや誤字を防ぐため、[textlint](https://github.com/textlint/textlint) という校正チェックツールを入れています。commit する前、PR に更新があった際に GitHub Actions にて textlint を走らせています。ルールや定義の変更がある際は、下記ファイルを変更してください。
 
 - 表記揺れの定義： `prh.yml`
   - see: https://github.com/prh/prh
 - textlint のルール定義： `.textlintrc`
+
+## Build
+
+```
+$ yarn build
+```
+
+This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
 # Contributors
 

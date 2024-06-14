@@ -17,6 +17,7 @@ const config: Config = {
   // GitHub pages deployment config
   organizationName: "unchain-tech",
   projectName: "UNCHAIN-projects",
+  deploymentBranch: "main",
 
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -31,15 +32,12 @@ const config: Config = {
       "classic",
       {
         docs: {
+          routeBasePath: "/",
           sidebarPath: "./sidebars.ts",
           editUrl:
             "https://github.com/unchain-tech/UNCHAIN-projects/tree/main/",
         },
-        // blog: {
-        //   showReadingTime: true,
-        //   editUrl:
-        //     "https://github.com/unchain-tech/UNCHAIN-projects/tree/main/",
-        // },
+        blog: false,
         // theme: {
         //   customCss: "./src/css/custom.css",
         // },
@@ -48,7 +46,6 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
     image: "images/README/unchain-banner.png",
     navbar: {
       title: "BUIDL",
@@ -57,15 +54,14 @@ const config: Config = {
         src: "https://www.unchain.tech/logo/UNCHAIN_logo.png",
       },
       items: [
+        // {
+        //   type: "docSidebar",
+        //   sidebarId: "tutorialSidebar",
+        //   position: "left",
+        //   label: "Tutorial",
+        // },
         {
-          type: "docSidebar",
-          sidebarId: "tutorialSidebar",
-          position: "left",
-          label: "Tutorial",
-        },
-        { to: "/blog", label: "Blog", position: "left" },
-        {
-          href: "https://github.com/facebook/docusaurus",
+          href: "https://github.com/unchain-tech/UNCHAIN-Projects",
           label: "GitHub",
           position: "right",
         },
@@ -75,11 +71,15 @@ const config: Config = {
       style: "dark",
       links: [
         {
-          title: "Docs",
+          title: "About us",
           items: [
             {
-              label: "Tutorial",
-              to: "/docs/intro",
+              label: "Website",
+              href: "https://www.unchain.tech/",
+            },
+            {
+              label: "GitHub",
+              href: "https://github.com/facebook/docusaurus",
             },
           ],
         },
@@ -87,29 +87,12 @@ const config: Config = {
           title: "Community",
           items: [
             {
-              label: "Stack Overflow",
-              href: "https://stackoverflow.com/questions/tagged/docusaurus",
-            },
-            {
               label: "Discord",
-              href: "https://discordapp.com/invite/docusaurus",
+              href: "https://discord.gg/invite/w3AyyvKypT",
             },
             {
               label: "Twitter",
-              href: "https://twitter.com/docusaurus",
-            },
-          ],
-        },
-        {
-          title: "More",
-          items: [
-            {
-              label: "Blog",
-              to: "/blog",
-            },
-            {
-              label: "GitHub",
-              href: "https://github.com/facebook/docusaurus",
+              href: "https://x.com/UNCHAIN_tech",
             },
           ],
         },

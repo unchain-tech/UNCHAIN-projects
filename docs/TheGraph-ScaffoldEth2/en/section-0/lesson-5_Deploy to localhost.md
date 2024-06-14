@@ -14,7 +14,7 @@ yarn local-create
 
 > You should see some output stating your Subgraph has been created along with a log output on your graph-node inside docker.
 
-Next we will ship our subgraph! You will need to give your subgraph a version after executing this command. (e.g. 0.0.1).
+Next we will ship our subgraph! You will need to give your subgraph a version after executing this command.（e.g. 0.0.1）.
 
 ```
 yarn local-ship

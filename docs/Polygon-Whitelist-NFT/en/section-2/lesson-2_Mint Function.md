@@ -55,7 +55,7 @@ interface IWhitelist {
 }
 ```
 
-This is an interface file. It makes it convenient for other smart contracts to call the `whitelistedAddresses` function in `Whitelist.sol`. Which in turn verifies whether an address is in the whitelist.
+This is an interface file. It makes it convenient for otherスマートコントラクトto call the `whitelistedAddresses` function in `Whitelist.sol`. Which in turn verifies whether an address is in the whitelist.
 
 Next, we will create `Shield.sol` under the folder `contracts`.
 
@@ -181,9 +181,9 @@ Let's explain a few of the more significant state variables below.
     uint256 public tokenIds;
 ```
 
-`_baseTokenURI` is the root link for our `NFT Metadata`, for example: `ipfs://QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/` (IPFS is a decentralized storage protocol, which we will discuss later), or it can also be a centralized address, such as: `https://xxxxxxxxxxxx/`.
+`_baseTokenURI` is the root link for our `NFT Metadata`, for example: `ipfs://QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/`（IPFS is a decentralized storage protocol, which we will discuss later）, or it can also be a centralized address, such as: `https://xxxxxxxxxxxx/`.
 
-`tokenIds` represent the numerical IDs for each NFT, and these IDs are unique. When combined with `_baseTokenURI`, they form the Metadata for each NFT. (We'll talk about Metadata shortly. For now, just remember that having Metadata allows your NFT to be displayed on various NFT platforms.)
+`tokenIds` represent the numerical IDs for each NFT, and these IDs are unique. When combined with `_baseTokenURI`, they form the Metadata for each NFT.（We'll talk about Metadata shortly. For now, just remember that having Metadata allows your NFT to be displayed on various NFT platforms.）
 
 ```solidity
     // price is the price of one Shield NFT
@@ -193,7 +193,7 @@ Let's explain a few of the more significant state variables below.
     uint256 public maxTokenIds = 4;
 ```
 
-`price` sets the price for each NFT. In Ethereum (ETH), it refers to ETH itself, while in Polygon, it refers to Matic. Apart from ether, there are other units as well: 1 ether = 10^9 gwei, and 1 gwei = 10^9 wei.
+`price` sets the price for each NFT. In Ethereum（ETH）, it refers to ETH itself, while in Polygon, it refers to Matic. Apart from ether, there are other units as well: 1 ether = 10^9 gwei, and 1 gwei = 10^9 wei.
 
 `maxTokenIds` indicates the maximum quantity of NFTs. Here, it's set to 4, which means you need to prepare metadata for four NFTs.
 
@@ -230,7 +230,7 @@ When deploying the contract, we need to input the `_baseTokenURI` and the addres
 
 Let's focus on explaining the `mint` function:
 
-1. The keyword `payable` indicates that this function can receive tokens directly, as the price of an NFT is 0.01 ether. The usage of onlyWhenNotPaused employs a [modifier](https://solidity-by-example.org/function-modifier/), which signifies that the function can only proceed when `paused` is `false`. (Note: The contract starts with paused being false, allowing whitelist users to directly mint after contract deployment.)
+1. The keyword `payable` indicates that this function can receive tokens directly, as the price of an NFT is 0.01 ether. The usage of onlyWhenNotPaused employs a [modifier](https://solidity-by-example.org/function-modifier/), which signifies that the function can only proceed when `paused` is `false`.（Note: The contract starts with paused being false, allowing whitelist users to directly mint after contract deployment.）
 
 ```solidity
     modifier onlyWhenNotPaused {
@@ -275,11 +275,11 @@ Setting the minting of the contract to be paused is achieved through the `paused
 
 To withdraw the `ether` from the contract, the `withdraw()` function comes into play. This piece of code's purpose is to transfer the funds within the contract to the `owner`. There are multiple ways to handle token transfers, as illustrated in various implementations outlined [here](https://solidity-by-example.org/sending-ether/). In this case, we're using a `call` method.
 
-Next, let's compile and deploy this smart contract using the `JS VM`. (You can simply stick with the compiler automatically chosen by ChainIDE.)
+Next, let's compile and deploy this smart contract using the `JS VM`.（You can simply stick with the compiler automatically chosen by ChainIDE.）
 
 ![image-20230223092112169](/images/Polygon-Whitelist-NFT/section-2/2_2_4.png)
 
-You can observe that on the `Deploy` page, we are required to input the `baseURI` (the root link for Metadata) and `whitelistContract` (the previous whitelist address). Therefore, the next task is to determine how to generate the root link for Metadata.
+You can observe that on the `Deploy` page, we are required to input the `baseURI`（the root link for Metadata）and `whitelistContract`（the previous whitelist address）. Therefore, the next task is to determine how to generate the root link for Metadata.
 
 ![image-20230223092203406](/images/Polygon-Whitelist-NFT/section-2/2_2_5.png)
 

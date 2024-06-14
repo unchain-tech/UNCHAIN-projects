@@ -4,7 +4,7 @@
 
 First, we will start out with a special build of Scaffold-ETH 2 written by Simon from Edge and Node… Thanks Simon! 🫡
 
-We will need a total of four different windows to setup Scaffold-ETH 2 and The Graph.
+We will need a total of four different Windows to setup Scaffold-ETH 2 and The Graph.
 
 ![](/images/TheGraph-ScaffoldEth2/section-0/0_3_1.png)
 
@@ -23,7 +23,7 @@ cd scaffold-eth-2-subgraph-package && \
 
 ![](/images/TheGraph-ScaffoldEth2/section-0/0_3_2.png)
 
-Next, we will want to start up our local blockchain so that we can eventually deploy and test our smart contracts. Scaffold-ETH 2 comes with Hardhat by default. To spin up the chain just type the following yarn command…
+Next, we will want to start up our local blockchain so that we can eventually deploy and test ourスマートコントラクト. Scaffold-ETH 2 comes with Hardhat by default. To spin up the chain just type the following yarn command…
 
 ```
 yarn chain
