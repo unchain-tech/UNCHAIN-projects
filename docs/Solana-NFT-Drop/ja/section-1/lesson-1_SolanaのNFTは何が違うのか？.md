@@ -47,7 +47,7 @@ Candy Machineの非常に優れている特徴の1つとして、販売するNFT
 
 6\. AさんはNFTを受け取ることができず、お金も失いました。Bさんは幸せです。
 
-これは、並列コンピューティングにおける、典型的な課題です。解決策としては [ミューテックス](https://doc.rust-lang.org/std/sync/struct.Mutex.html) と [アトミックトランザクション](<https://en.wikipedia.org/wiki/Atomicity_(database_systems)>) の使用が挙げられます。
+これは、並列コンピューティングにおける、典型的な課題です。解決策としては [ミューテックス](https://doc.rust-lang.org/std/sync/struct.Mutex.html) と [アトミックトランザクション](https://en.wikipedia.org/wiki/Atomicity_%28database_systems%29)の使用が挙げられます。
 
 これらは実装がかなり複雑です。
 
