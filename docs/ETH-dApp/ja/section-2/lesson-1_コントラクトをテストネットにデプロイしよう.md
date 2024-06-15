@@ -120,7 +120,7 @@ README.md         artifacts         cache             contracts         hardhat.
 
 `hardhat.config.js`をVS Codeで開いて、中身を編集していきます。
 
-```javascript
+```js
 require("@nomicfoundation/hardhat-toolbox");
 
 module.exports = {

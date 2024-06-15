@@ -20,7 +20,7 @@
 
 ※ニーモニックフレーズを忘れた場合は、ウォレットを生成ボタンを押下し、フレーズを取得しましょう。
 
-```javascript
+```js
 const inputMnemonic = "ニーモニックフレーズ（12語）";
 const seed = Bip39.mnemonicToSeedSync(inputMnemonic).slice(0, 32);
 const importedAccount = Keypair.fromSeed(seed);
@@ -32,7 +32,7 @@ const importedAccount = Keypair.fromSeed(seed);
 
 実際には、ニーモニックフレーズはフォームから入力します。`export default function ImportWallet() {`の直下に、以下のようにフォームに入力されたニーモニックフレーズを保持する状態変数と`handleImport`関数を定義して、フォームから入力されたフレーズをもとに、ウォレットをインポートできるようにしましょう。また、前のレッスンで作成したGenerateWalletコンポーネント同様、引数に`setAccount`を受け取るようにします。これは、入力されたニーモニックフレーズをもとに、アカウントを更新するためです。
 
-```javascript
+```js
 export default function ImportWallet({ setAccount }) {
   const [recoveryPhrase, setRecoveryPhrase] = useState(null);
 
@@ -50,16 +50,16 @@ export default function ImportWallet({ setAccount }) {
 
 ファイルの先頭に、下記のインポート文を追加します。
 
-```javascript
-import * as bip39 from 'bip39';
-import { Keypair } from '@solana/web3.js';
-import { useState } from 'react';
+```js
+import * as bip39 from "bip39";
+import { Keypair } from "@solana/web3.js";
+import { useState } from "react";
 ```
 
 そして、ニーモニックフレーズを入力するフォームと、インポートボタンをレンダリングします。return文を下記のコードで更新してください。
 フォームの`onSubmit`では、上記で定義した`handleImport`関数を実行するようにしましょう。
 
-```javascript
+```js
 return (
   <form onSubmit={handleImport} className="my-6">
     <div className="flex items-center border-b border-indigo-500 py-2">
@@ -95,13 +95,13 @@ Test Suites: 3 failed, 2 passed, 5 total
 
 まずは、`ImportWallet`コンポーネントをインポートしましょう。
 
-```javascript
-import ImportWallet from '../components/ImportWallet';
+```js
+import ImportWallet from "../components/ImportWallet";
 ```
 
 続いて、`ImportWallet`コンポーネントを呼び出すコードを追加しましょう。
 
-```javascript
+```js
 <div>
   <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">
     STEP2: 既存のウォレットをインポートする
@@ -119,10 +119,11 @@ import ImportWallet from '../components/ImportWallet';
 ### 📝 このセクションで追加したコード
 
 - `components/ImportWallet/index.js`
-```javascript
-import * as bip39 from 'bip39';
-import { Keypair } from '@solana/web3.js';
-import { useState } from 'react';
+
+```js
+import * as bip39 from "bip39";
+import { Keypair } from "@solana/web3.js";
+import { useState } from "react";
 
 export default function ImportWallet({ setAccount }) {
   const [recoveryPhrase, setRecoveryPhrase] = useState(null);
@@ -237,7 +238,7 @@ export default function Home() {
 
 ### ☕️ 豆知識
 
-みなさんが良く知っているイーサリアム対応の`MetaMask`やSolana対応の`Phantom`のようなウォレットは、初回のアクセスはニーモニックーフレーズを使い、その後のログインはローカルでパスワードを設定する方式になっています🥭 ブラウザを変えたときなどに、再度パスワードを設定する必要があるのは、こういった理由からですね!
+みなさんが良く知っているイーサリアム対応の`MetaMask`やSolana対応の`Phantom`のようなウォレットは、初回のアクセスはニーモニックーフレーズを使い、その後のログインはローカルでパスワードを設定する方式になっています 🥭 ブラウザを変えたときなどに、再度パスワードを設定する必要があるのは、こういった理由からですね!
 
 ### 🙋‍♂️ 質問する
 
@@ -251,6 +252,7 @@ export default function Home() {
 3. エラー文をコピー&ペースト
 4. エラー画面のスクリーンショット
 ```
+
 ---
 
-`My Wallet`の下に表示されているウォレットアドレスをDiscordの`#solana`にシェアしましょう🎉 次のレッスンでは、フロントエンドに残高を取得する機能を実装します😊
+`My Wallet`の下に表示されているウォレットアドレスをDiscordの`#solana`にシェアしましょう 🎉 次のレッスンでは、フロントエンドに残高を取得する機能を実装します 😊

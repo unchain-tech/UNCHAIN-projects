@@ -18,7 +18,7 @@ https://gemcase.vercel.app/view/evm/sepolia/あなたのコントラクトアド
 
 現在、`App.js`にはコントラクトアドレスが記載されています。
 
-```javascript
+```js
 // App.js
 const CONTRACT_ADDRESS = "0x.."; ← こちら
 ```
@@ -63,42 +63,41 @@ emit NewEpicNFTMinted(msg.sender, newItemId);
 
 それでは、`test/MyEpicNFT.js`を更新しましょう。以下を参考に、`makeAnEpicNFT`関数のテストを`pickRandomThirdWord`関数のテスト下に追加します。
 
-```javascript
-const { loadFixture } = require('@nomicfoundation/hardhat-network-helpers');
-const { ethers } = require('hardhat');
-const { expect } = require('chai');
+```js
+const { loadFixture } = require("@nomicfoundation/hardhat-network-helpers");
+const { ethers } = require("hardhat");
+const { expect } = require("chai");
 
-describe('MyEpicNFT', function () {
+describe("MyEpicNFT", function () {
   // 各テストの前に呼び出す関数です。テストで使用する変数やコントラクトのデプロイを行います。
   async function deployMyEpicNFTFixture() {
     // === 省略 ===
   }
 
-  describe('pickRandomFirstWord', function () {
+  describe("pickRandomFirstWord", function () {
     // === 省略 ===
   });
 
-  describe('pickRandomSecondWord', function () {
+  describe("pickRandomSecondWord", function () {
     // === 省略 ===
   });
 
-  describe('pickRandomThirdWord', function () {
+  describe("pickRandomThirdWord", function () {
     // === 省略 ===
   });
 
   // === 追加するテスト ===
-  describe('makeAnEpicNFT', function () {
-    it('emit a NewEpicNFTMinted event', async function () {
+  describe("makeAnEpicNFT", function () {
+    it("emit a NewEpicNFTMinted event", async function () {
       const { MyEpicNFT, owner } = await loadFixture(deployMyEpicNFTFixture);
 
       await expect(MyEpicNFT.makeAnEpicNFT())
-        .to.emit(MyEpicNFT, 'NewEpicNFTMinted')
+        .to.emit(MyEpicNFT, "NewEpicNFTMinted")
         .withArgs(owner.address, 0);
     });
   });
   // ===================
 });
-
 ```
 
 `makeAnEpicNFT`関数のイベント発行のテストを追加しました。
@@ -200,7 +199,7 @@ Contract deployed to: 0x... ← あなたのコントラクトアドレスをコ
 
 1つ目のイベントリスナを設定。
 
-```javascript
+```js
 // App.js
 //ユーザーが認証可能なウォレットアドレスを持っている場合は、ユーザーに対してウォレットへのアクセス許可を求める。許可されれば、ユーザーの最初のウォレットアドレスを accounts に格納する。
 const accounts = await ethereum.request({ method: "eth_accounts" });
@@ -220,7 +219,7 @@ if (accounts.length !== 0) {
 
 2つ目のイベントリスナを設定。
 
-```javascript
+```js
 // App.js
 // connectWallet メソッドを実装します。
 const connectWallet = async () => {
@@ -248,7 +247,7 @@ const connectWallet = async () => {
 
 次に、`connectWallet`関数の直下に、下記の`setupEventListener`関数を追加してください。
 
-```javascript
+```js
 // App.js
 // setupEventListener 関数を定義します。
 // MyEpicNFT.sol の中で event が　emit された時に、
@@ -269,7 +268,7 @@ const setupEventListener = async () => {
       connectedContract.on("NewEpicNFTMinted", (from, tokenId) => {
         console.log(from, tokenId.toNumber());
         alert(
-          `あなたのウォレットに NFT を送信しました。gemcase に表示されるまで数分かかることがあります。NFT へのリンクはこちらです: https://gemcase.vercel.app/view/evm/sepolia/${CONTRACT_ADDRESS}/${tokenId.toNumber()}`,
+          `あなたのウォレットに NFT を送信しました。gemcase に表示されるまで数分かかることがあります。NFT へのリンクはこちらです: https://gemcase.vercel.app/view/evm/sepolia/${CONTRACT_ADDRESS}/${tokenId.toNumber()}`
         );
       });
       console.log("Setup event listener!");
@@ -439,12 +438,12 @@ contract MyEpicNFT is ERC721URIStorage {
 
 **`MyEpicNFT.js`はこちら:**
 
-```javascript
-const { loadFixture } = require('@nomicfoundation/hardhat-network-helpers');
-const { ethers } = require('hardhat');
-const { expect } = require('chai');
+```js
+const { loadFixture } = require("@nomicfoundation/hardhat-network-helpers");
+const { ethers } = require("hardhat");
+const { expect } = require("chai");
 
-describe('MyEpicNFT', function () {
+describe("MyEpicNFT", function () {
   // 各テストの前に呼び出す関数です。テストで使用する変数やコントラクトのデプロイを行います。
   async function deployMyEpicNFTFixture() {
     // テストアカウントを取得します。
@@ -452,35 +451,35 @@ describe('MyEpicNFT', function () {
 
     // コントラクト内で使用する単語の配列を定義します。
     const firstWords = [
-      'Epic',
-      'Fantastic',
-      'Crude',
-      'Crazy',
-      'Hysterical',
-      'Grand',
+      "Epic",
+      "Fantastic",
+      "Crude",
+      "Crazy",
+      "Hysterical",
+      "Grand",
     ];
-    const secondWords = ['Meta', 'Live', 'Pop', 'Cute', 'Sweet', 'Hot'];
+    const secondWords = ["Meta", "Live", "Pop", "Cute", "Sweet", "Hot"];
     const thirdWords = [
-      'Kitten',
-      'Puppy',
-      'Monkey',
-      'Bird',
-      'Panda',
-      'Elephant',
+      "Kitten",
+      "Puppy",
+      "Monkey",
+      "Bird",
+      "Panda",
+      "Elephant",
     ];
 
     // コントラクトのインスタンスを生成し、デプロイを行います。
-    const MyEpicNFTFactory = await ethers.getContractFactory('MyEpicNFT');
+    const MyEpicNFTFactory = await ethers.getContractFactory("MyEpicNFT");
     const MyEpicNFT = await MyEpicNFTFactory.deploy();
 
     return { MyEpicNFT, owner, firstWords, secondWords, thirdWords };
   }
 
-  describe('pickRandomFirstWord', function () {
-    it('should get strings in firstWords', async function () {
+  describe("pickRandomFirstWord", function () {
+    it("should get strings in firstWords", async function () {
       // テストの準備をします。
       const { MyEpicNFT, firstWords } = await loadFixture(
-        deployMyEpicNFTFixture,
+        deployMyEpicNFTFixture
       );
 
       // 実行＆確認をします。
@@ -488,33 +487,33 @@ describe('MyEpicNFT', function () {
     });
   });
 
-  describe('pickRandomSecondWord', function () {
-    it('should get strings in secondWords', async function () {
+  describe("pickRandomSecondWord", function () {
+    it("should get strings in secondWords", async function () {
       const { MyEpicNFT, secondWords } = await loadFixture(
-        deployMyEpicNFTFixture,
+        deployMyEpicNFTFixture
       );
 
       expect(secondWords).to.include(await MyEpicNFT.pickRandomSecondWord(0));
     });
   });
 
-  describe('pickRandomThirdWord', function () {
-    it('should get strings in thirdWords', async function () {
+  describe("pickRandomThirdWord", function () {
+    it("should get strings in thirdWords", async function () {
       const { MyEpicNFT, thirdWords } = await loadFixture(
-        deployMyEpicNFTFixture,
+        deployMyEpicNFTFixture
       );
 
       expect(thirdWords).to.include(await MyEpicNFT.pickRandomThirdWord(0));
     });
   });
 
-  describe('makeAnEpicNFT', function () {
-    it('emit a NewEpicNFTMinted event', async function () {
+  describe("makeAnEpicNFT", function () {
+    it("emit a NewEpicNFTMinted event", async function () {
       const { MyEpicNFT, owner } = await loadFixture(deployMyEpicNFTFixture);
 
       // 発行されるイベントの確認をします。
       await expect(MyEpicNFT.makeAnEpicNFT())
-        .to.emit(MyEpicNFT, 'NewEpicNFTMinted')
+        .to.emit(MyEpicNFT, "NewEpicNFTMinted")
         .withArgs(owner.address, 0);
     });
   });
@@ -523,7 +522,7 @@ describe('MyEpicNFT', function () {
 
 **`App.js`はこちら:**
 
-```javascript
+```js
 // App.js
 import "./styles/App.css";
 
@@ -565,7 +564,7 @@ const App = () => {
         connectedContract.on("NewEpicNFTMinted", (from, tokenId) => {
           console.log(from, tokenId.toNumber());
           alert(
-            `あなたのウォレットに NFT を送信しました。gemcase に表示されるまで数分かかることがあります。NFT へのリンクはこちらです: https://gemcase.vercel.app/view/evm/sepolia/${CONTRACT_ADDRESS}/${tokenId.toNumber()}`,
+            `あなたのウォレットに NFT を送信しました。gemcase に表示されるまで数分かかることがあります。NFT へのリンクはこちらです: https://gemcase.vercel.app/view/evm/sepolia/${CONTRACT_ADDRESS}/${tokenId.toNumber()}`
           );
         });
 
@@ -736,7 +735,7 @@ MVPを起点にWebアプリケーションを自分の好きなようにアッ�
 
 下記のコードを`App.js`に組み込んでみましょう。
 
-```javascript
+```js
 // App.js
 let chainId = await ethereum.request({ method: "eth_chainId" });
 console.log("Connected to chain " + chainId);

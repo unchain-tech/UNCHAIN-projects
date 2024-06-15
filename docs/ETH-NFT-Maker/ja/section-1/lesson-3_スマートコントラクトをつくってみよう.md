@@ -41,7 +41,7 @@ contract Web3Mint {
 >
 > 修正する方法がわからなくても心配しないでください。
 > 無視して問題ありません。
-さて、行ごとにコードをみていきましょう。
+> さて、行ごとにコードをみていきましょう。
 
 ```solidity
 // Web3Mint.sol
@@ -121,16 +121,16 @@ classの概念については、[ここ](https://aiacademy.jp/media/?p=131)を�
 
 `run.js`の中身を下記のように更新しましょう。
 
-```javascript
+```js
 const main = async () => {
   // コントラクトがコンパイルします
   // コントラクトを扱うために必要なファイルが `artifacts` ディレクトリの直下に生成されます。
-  const nftContractFactory = await hre.ethers.getContractFactory('Web3Mint');
+  const nftContractFactory = await hre.ethers.getContractFactory("Web3Mint");
   // Hardhat がローカルの Ethereum ネットワークを作成します。
   const nftContract = await nftContractFactory.deploy();
   // コントラクトが Mint され、ローカルのブロックチェーンにデプロイされるまで待ちます。
   await nftContract.deployed();
-  console.log('Contract deployed to:', nftContract.address);
+  console.log("Contract deployed to:", nftContract.address);
 };
 
 // エラー処理を行っています。
@@ -149,9 +149,9 @@ runMain();
 
 一行ずつコードを見ていきましょう。
 
-```javascript
+```js
 // run.js
-const nftContractFactory = await hre.ethers.getContractFactory('Web3Mint');
+const nftContractFactory = await hre.ethers.getContractFactory("Web3Mint");
 ```
 
 実際にコントラクトがコンパイルされ、コントラクトを扱うために必要なファイルが`artifacts`ディレクトリの直下に生成されます。
@@ -169,7 +169,7 @@ const nftContractFactory = await hre.ethers.getContractFactory('Web3Mint');
 >
 > つまり、`hre.ethers.getContractFactory('Web3Mint')`の処理が終わるまで、`main`関数の中に記載されている他の処理は実行されないということです。
 
-```javascript
+```js
 // run.js
 const nftContract = await nftContractFactory.deploy();
 ```
@@ -180,7 +180,7 @@ HardhatがローカルのEthereumネットワークを、コントラクトの�
 
 - 常にゼロリセットとなるので、エラーのデバッグがしやすくなります。
 
-```javascript
+```js
 // run.js
 await nftContract.deployed();
 ```
@@ -190,9 +190,9 @@ Hardhatは実際にあなたのマシン上に「マイナー」を作成し、�
 
 最後に、デプロイされると、`nftContract.address`はデプロイされたコントラクトのアドレスを出力します。
 
-```javascript
+```js
 // run.js
-console.log('Contract deployed to:', nftContract.address);
+console.log("Contract deployed to:", nftContract.address);
 ```
 
 このアドレスから、ブロックチェーン上でコントラクトを見つけることができますが、今回はローカルのブロックチェーンに実装しているため、世界中の人がアクセスできるわけでありません。

@@ -41,7 +41,7 @@ mkdir ./src/icp_basic_dex_frontend/src/utils && touch ./src/icp_basic_dex_fronte
 
 [tokens.js]
 
-```javascript
+```js
 import {
   canisterId as GoldDIP20canisterId,
   createActor as GoldDIP20CreateActor,
@@ -76,7 +76,7 @@ export const tokens = [
 
 [UserBoard.jsx]
 
-```javascript
+```js
 import {
   canisterId as faucetCanisterId,
   createActor as faucetCreateActor,
@@ -310,7 +310,7 @@ const handleSuccess = async (authClient) => {
 
 [App.jsx]
 
-```javascript
+```js
 import React, { useEffect, useState } from "react";
 import "./App.css";
 

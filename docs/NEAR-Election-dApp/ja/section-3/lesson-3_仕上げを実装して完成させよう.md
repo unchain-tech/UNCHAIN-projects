@@ -6,7 +6,7 @@
 
 [voter.js]
 
-```javascript
+```js
 // 以下のように書き換えましょう
 import React, { useState } from "react";
 import Title from "../components/title";
@@ -72,13 +72,13 @@ export default Voter;
 
 まず`nft_mint, check_voter_has_been_added`の2つの関数をインポートしましょう。
 
-```javascript
+```js
 import { nft_mint, check_voter_has_been_added } from "../js/near/utils";
 ```
 
 この部分では`useState`を使って入力値を取得できるようにします。
 
-```javascript
+```js
 const [inputId, setInputId] = useState("");
 ```
 
@@ -88,7 +88,7 @@ const [inputId, setInputId] = useState("");
 
 その次に`check_voter_has_been_added`を呼び出して、すでに投票券を付与していないかを確認します。
 
-```javascript
+```js
 if (window.accountId !== process.env.CONTRACT_NAME) {
   alert("You are not contract deployer, so you can't add voter");
   return;
@@ -106,7 +106,7 @@ if (isMinted !== 0) {
 
 最後に入力フォームを空にします。
 
-```javascript
+```js
 await nft_mint(
   "Vote Ticket",
   "",
@@ -125,7 +125,7 @@ setInputId("");
 
 一番下のボタンを押した時に`mint関数`が走るようになっています。
 
-```javascript
+```js
 <div className="grid place-items-center w-full">
   <Title name="Add Voter" />
   <div className="text-lg">※Only contract deployer can add voter.</div>
@@ -150,7 +150,7 @@ setInputId("");
 
 [candidate.js]
 
-```javascript
+```js
 // 以下のように書き換えましょう
 import React, { useState } from "react";
 import Title from "../components/title";
@@ -222,13 +222,13 @@ export default Candidate;
 
 まず`nft_mint関数`をインポートしています。
 
-```javascript
+```js
 import { nft_mint } from "../js/near/utils";
 ```
 
 `addCandidate関数`では入力されたCIDや候補者の名前を取得して候補者NFTをmintします。
 
-```javascript
+```js
 const addCandidate = async () => {
   // mint candidate nft
   await nft_mint(
@@ -250,7 +250,7 @@ const addCandidate = async () => {
 
 最後にreturn内がUIとなります。
 
-```javascript
+```js
 <div className="grid place-items-center w-full">
   <Title name="Add Candidate" />
   <div className="my-3 text-2xl text-red-400">
@@ -290,7 +290,7 @@ const addCandidate = async () => {
 
 [home.js]
 
-```javascript
+```js
 // 以下のように書き換えましょう
 import React, { useEffect, useState } from "react";
 import {
@@ -558,7 +558,7 @@ export default Home;
 
 このようにコントラクトから関数をインポートします。
 
-```javascript
+```js
 import {
   nft_transfer,
   nft_add_likes_to_candidate,
@@ -575,7 +575,7 @@ import {
 
 次に更新する変数を定義します。`candidateInfoList`は候補者の情報を入れるリスト、`candidateLikesList`はそれぞれの候補者の得票数を入れるリスト、`state`はデータの取得・投票の締切の真偽の状態を管理するための変数です。
 
-```javascript
+```js
 const [candidateInfoList, setCandidateInfoList] = useState();
 const [candidateLikesList] = useState([]);
 const [state, setState] = useState("fetching");
@@ -583,7 +583,7 @@ const [state, setState] = useState("fetching");
 
 こちらは状態を管理するための`enum`型という型で宣言されたものです。これによって描画のところで`if文`をいくつも使ってデータが取得できているかなどを確認する必要がなくなり可読性が上がります。
 
-```javascript
+```js
 const State = {
   Fetching: "fetching",
   Fetched: "fetched",
@@ -596,7 +596,7 @@ const State = {
 
 取得した値は`setCandidateInfoList`によって`candidateInfoList`というリストに格納されます。また、`setState`によって`state`という変数は`fetched`に変わります。これによって次はそれぞれの候補者の得票数を取りにいくという次の段階に移ることができます。
 
-```javascript
+```js
 useEffect(async () => {
   await nft_tokens_for_kind("candidate").then((value) => {
     setCandidateInfoList(value);
@@ -607,7 +607,7 @@ useEffect(async () => {
 
 次の`vote関数`ではtokenのidを引数にしています。この`token_id`にはユーザーが取得した投票券のtokenのidが入ることになります。このtokenのidは投票する候補者のNFTのidが入ることになります。
 
-```javascript
+```js
 const vote = (token_id) => {
   //check if user has already voted
   check_voter_has_voted(window.accountId).then((value) => {
@@ -648,7 +648,7 @@ const vote = (token_id) => {
 
 引数として受け取っている`window.accountId`とはサインインしているユーザーのwalletのidのことです。
 
-```javascript
+```js
 check_voter_has_voted(window.accountId);
 ```
 
@@ -662,7 +662,7 @@ check_voter_has_voted(window.accountId);
 
 その後`confirm()`関数で1度投票したら2度とできないことを確認します。
 
-```javascript
+```js
 check_voter_has_been_added(window.accountId);
 ```
 
@@ -672,7 +672,7 @@ check_voter_has_been_added(window.accountId);
 
 最後にコントラクト内にある全ての候補者についてUIの作成が完了できたらそのリストを返し描画に反映されます。
 
-```javascript
+```js
 const cardsInCaseOpen = () => {
   let candidateCardList = [];
   for (let i = 0; i < candidateInfoList.length; i++) {
@@ -704,7 +704,7 @@ const cardsInCaseOpen = () => {
 
 次の`cardsInCaseClosed関数`では投票が閉じているときの候補者のUIを作成しています。上の`cardsInCaseOpen関数`との違いは、投票による勝者が確定するのでその候補者の上に`Win!`という文字を載せて他の候補者についてはカードを薄くしています。
 
-```javascript
+```js
 const cardsInCaseClosed = () => {
   let candidateCardList = [];
   let mostVotedNum = candidateLikesList.reduce((a, b) => {
@@ -754,7 +754,7 @@ const cardsInCaseClosed = () => {
 
 選挙の勝者は`mostVotedNum`という変数に`candidateLikesList`というリストの得票数の最大値をいれ、それと同値である候補者とそうでない候補者のUIを変えるようにしています。
 
-```javascript
+```js
 let mostVotedNum = candidateLikesList.reduce((a, b) => {
   return Math.max(a, b);
 });
@@ -764,7 +764,7 @@ let mostVotedNum = candidateLikesList.reduce((a, b) => {
 
 全候補者について得票数の取得が終了したら`if_election_closed関数`を呼ぶことで投票が終了しているかを確認して、それによって`state`の値を変化させて実際に描画させるUIを変えています。
 
-```javascript
+```js
 const getCandidateLikes = async () => {
   // get num of likes for each candidate
   for (let i = 0; i < candidateInfoList.length; i++) {
@@ -792,7 +792,7 @@ const getCandidateLikes = async () => {
 
 この後は投票が締め切っているようにしてUIを変更させます。
 
-```javascript
+```js
 const closeButton = () => {
   // check if user is contract deployer
   if (window.accountId !== process.env.CONTRACT_NAME) {
@@ -821,7 +821,7 @@ const closeButton = () => {
 
 次の`reopenButton関数`は上で説明した`closeButton関数`とほとんど同じなので説明は割愛します。違っている点はボタンを押して確認が取れた後に`reopen_election関数`を呼んでいることです。
 
-```javascript
+```js
 const reopenButton = () => {
   // check if user is contract deployer
   if (window.accountId !== process.env.CONTRACT_NAME) {
@@ -849,7 +849,7 @@ const reopenButton = () => {
 
 次の`messageToWait関数`は情報の取得中に表示するUIを返しているだけです。
 
-```javascript
+```js
 const messageToWait = () => {
   return (
     <div className="grid h-screen place-items-center text-3xl">
@@ -861,7 +861,7 @@ const messageToWait = () => {
 
 最後の`switch`文では`state`の値によって表示するUIが変更されるように呼び込む関数を変えています。
 
-```javascript
+```js
 switch (state) {
   // in case fetching candidate NFTs info
   case State.Fetching:

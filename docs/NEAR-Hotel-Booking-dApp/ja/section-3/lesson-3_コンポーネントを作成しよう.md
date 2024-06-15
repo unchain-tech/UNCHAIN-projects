@@ -91,7 +91,7 @@ export default FormDate;
 
 指定した日付で部屋を探せるように、フォームの横に**Search ボタン**実装しました。
 
-```javascript
+```js
 <Button
   variant="secondary"
   // 検索する日付が入力されないとボタンを押せないように設定
@@ -258,7 +258,7 @@ export default AddRoom;
 
 追加した内容を見ていきましょう。
 
-```javascript
+```js
 import PropTypes from 'prop-types';
 
 const AddRoom = ({ save }) => {
@@ -278,7 +278,7 @@ export default AddRoom;
 
 次に、`&&`で全ての項目が入力されたかを確認する関数を定義しています。
 
-```javascript
+```js
 const isFormFilled = () =>
   name && beds && image && description && location && price;
 ```
@@ -288,7 +288,7 @@ React Bootstrapの[Modals](https://react-bootstrap.netlify.app/components/modal/
 
 表示・非表示は`boolean`型で制御しています。
 
-```javascript
+```js
   // 入力フォームの表示・非表示を管理する
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -304,7 +304,7 @@ React Bootstrapの[Modals](https://react-bootstrap.netlify.app/components/modal/
 
 全ての項目が入力されたら、**Save room ボタン**が押せるようになります。ボタンを押すと、引数として渡されていた``save`関数が実行されます。
 
-```javascript
+```js
 <Button
   variant="dark"
   disabled={!isFormFilled()}
@@ -403,7 +403,7 @@ Room
 - `room` : 部屋のデータが入っています。
 - `booking` : **Book for x NEAR ボタン**を押した時に実行される関数です。
 
-```javascript
+```js
 const Room = ({ room, booking }) => {
   // roomオブジェクトからデータを取得
   const { room_id, owner_id, name, image, beds, description, location, price } =
@@ -431,7 +431,7 @@ return文の中で、実際にレイアウトの設定を行なっています�
 
 一番右に配置する予約ボタンの設定に、`disabled={!window.accountId}`を指定することで、NEAR Walletに接続されていないと押せないようにしています。
 
-```javascript
+```js
 <Button
   variant="outline-dark"
   disabled={!window.accountId}

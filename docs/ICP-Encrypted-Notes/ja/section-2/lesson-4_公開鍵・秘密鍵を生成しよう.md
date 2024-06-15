@@ -137,7 +137,7 @@ generateKeyPair関数は、private関数としてあらかじめクラス内に�
 
 この関数は、`window.crypto.subtle.generateKey`を使用して、公開鍵・秘密鍵のペアを生成します。[crypto.subtle](https://developer.mozilla.org/ja/docs/Web/API/Crypto/subtle)は暗号に関する様々なメソッドを提供する[SubtleCrypto](https://developer.mozilla.org/ja/docs/Web/API/SubtleCrypto)オブジェクトを返します。[`generateKey`](https://developer.mozilla.org/ja/docs/Web/API/SubtleCrypto/generateKey)メソッドは、引数に与えられた条件に一致する鍵を含むオブジェクトを返します。
 
-```javascript
+```js
 generateKey(algorithm, extractable, keyUsages);
 ```
 

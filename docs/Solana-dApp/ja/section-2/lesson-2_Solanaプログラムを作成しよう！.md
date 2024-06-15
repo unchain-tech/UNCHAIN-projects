@@ -99,25 +99,24 @@ pub struct StartStuffOff {}
 
 実際にこれらを実行してみて、何が起こるか見てみましょう。
 
-
 ### 💎 スクリプトを記述してローカルで機能することを確認する
 
 プログラムをどのように実行し、どの関数を呼び出したいかをAnchorに指示する必要があります。
 
 そのために、`tests/myepicproject.js`を以下のとおり変更します。
 
-```javascript
-const anchor = require('@project-serum/anchor');
+```js
+const anchor = require("@project-serum/anchor");
 
-const main = async() => {
-  console.log("🚀 Starting test...")
+const main = async () => {
+  console.log("🚀 Starting test...");
 
   anchor.setProvider(anchor.AnchorProvider.env());
   const program = anchor.workspace.Myepicproject;
   const tx = await program.rpc.startStuffOff();
 
   console.log("📝 Your transaction signature", tx);
-}
+};
 
 const runMain = async () => {
   try {
@@ -134,7 +133,7 @@ runMain();
 
 以下でコードの中身を説明していきます。
 
-```javascript
+```js
 anchor.setProvider(anchor.AnchorProvider.env());
 const program = anchor.workspace.Myepicproject;
 const tx = await program.rpc.startStuffOff();
@@ -174,7 +173,6 @@ anchor test
 📝 Your transaction signature 4D5hbvQKADe6zxmB6qsnG5LRcfkYYCug3sAfbuKs94UdY1B4Hmj85DvnNLbagUxXQPqAJQDLocECEPtNa6RPayuS
 ```
 
-
 **ここまで無事に完了しました!**
 
 出力された`Your transaction signature`は`startStuffOff`関数が正常に呼び出されたことを意味します。
@@ -190,7 +188,6 @@ anchor test
 1\. `lib.rs`にコードを書く。
 
 2\. `tests/myepicproject.js`を使用してテストする。
-
 
 ### 🙋‍♂️ 質問する
 

@@ -22,19 +22,19 @@ CONTRACT_NAME=contract.hotel_booking.testnet
 
 `frontend/assets/js/near/utils.js`
 
-```javascript
-import { connect, Contract, keyStores, WalletConnection } from 'near-api-js';
+```js
+import { connect, Contract, keyStores, WalletConnection } from "near-api-js";
 import {
   formatNearAmount,
   parseNearAmount,
-} from 'near-api-js/lib/utils/format';
+} from "near-api-js/lib/utils/format";
 
-import getConfig from './config';
+import getConfig from "./config";
 
 // トランザクション実行時に使用するGASの上限を設定
 const GAS = 100000000000000;
 
-const nearConfig = getConfig(process.env.NODE_ENV || 'development');
+const nearConfig = getConfig(process.env.NODE_ENV || "development");
 
 // コントラクトの初期化とグローバル変数を設定
 export async function initContract() {
@@ -42,8 +42,8 @@ export async function initContract() {
   const near = await connect(
     Object.assign(
       { deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() } },
-      nearConfig,
-    ),
+      nearConfig
+    )
   );
 
   // ウォレットベースのアカウントを初期化
@@ -60,20 +60,20 @@ export async function initContract() {
     nearConfig.contractName,
     {
       viewMethods: [
-        'get_available_rooms',
-        'get_rooms_registered_by_owner',
-        'get_booking_info_for_owner',
-        'get_booking_info_for_guest',
-        'exists',
-        'is_available',
+        "get_available_rooms",
+        "get_rooms_registered_by_owner",
+        "get_booking_info_for_owner",
+        "get_booking_info_for_guest",
+        "exists",
+        "is_available",
       ],
       changeMethods: [
-        'add_room_to_owner',
-        'book_room',
-        'change_status_to_available',
-        'change_status_to_stay',
+        "add_room_to_owner",
+        "book_room",
+        "change_status_to_available",
+        "change_status_to_stay",
       ],
-    },
+    }
   );
 }
 
@@ -90,7 +90,7 @@ export function login() {
 export async function accountBalance() {
   return formatNearAmount(
     (await window.walletConnection.account().getAccountBalance()).total,
-    2,
+    2
   );
 }
 
@@ -160,14 +160,14 @@ export async function book_room({ room_id, date, price }) {
       check_in_date: date,
     },
     GAS,
-    price,
+    price
   );
 }
 
 export async function change_status_to_available(
   room_id,
   check_in_date,
-  guest_id,
+  guest_id
 ) {
   await window.contract.change_status_to_available({
     room_id,
@@ -182,17 +182,16 @@ export async function change_status_to_stay(room_id, check_in_date) {
     check_in_date,
   });
 }
-
 ```
 
 最初に、`near-api-js`からインポートをしています。
 
-```javascript
-import { connect, Contract, keyStores, WalletConnection } from 'near-api-js';
+```js
+import { connect, Contract, keyStores, WalletConnection } from "near-api-js";
 import {
   formatNearAmount,
   parseNearAmount,
-} from 'near-api-js/lib/utils/format';
+} from "near-api-js/lib/utils/format";
 ```
 
 NEARトランザクションの内部で扱う単位と、人が扱う単位の変換は[こちらの関数](https://docs.near.org/tools/near-api-js/utils)で実行できます。
@@ -205,27 +204,27 @@ NEARトランザクションの内部で扱う単位と、人が扱う単位の�
 以下の部分に注目してください。
 スマートコントラクトから呼び出したいメソッドは、このように定義します。
 
-```javascript
+```js
 // スマートコントラクトAPIの初期化
 window.contract = await new Contract(
   window.walletConnection.account(),
   nearConfig.contractName,
   {
     viewMethods: [
-      'get_available_rooms',
-      'get_rooms_registered_by_owner',
-      'get_booking_info_for_owner',
-      'get_booking_info_for_guest',
-      'exists',
-      'is_available',
+      "get_available_rooms",
+      "get_rooms_registered_by_owner",
+      "get_booking_info_for_owner",
+      "get_booking_info_for_guest",
+      "exists",
+      "is_available",
     ],
     changeMethods: [
-      'add_room_to_owner',
-      'book_room',
-      'change_status_to_available',
-      'change_status_to_stay',
+      "add_room_to_owner",
+      "book_room",
+      "change_status_to_available",
+      "change_status_to_stay",
     ],
-  },
+  }
 );
 ```
 
@@ -234,7 +233,7 @@ window.contract = await new Contract(
 
 次に、使用するメソッドの処理を定義し`export`します。
 
-```javascript
+```js
 // コールするメソッドの処理を定義
 // // 実際に引数を渡す処理は全てここに実装
 export async function get_available_rooms(check_in_date) {
@@ -301,14 +300,14 @@ export async function book_room({ room_id, date, price }) {
       check_in_date: date,
     },
     GAS,
-    price,
+    price
   );
 }
 
 export async function change_status_to_available(
   room_id,
   check_in_date,
-  guest_id,
+  guest_id
 ) {
   await window.contract.change_status_to_available({
     room_id,
@@ -327,14 +326,14 @@ export async function change_status_to_stay(room_id, check_in_date) {
 
 トークンの転送処理が行われる`book_room`メソッドには、第二引数にガスの上限、第三引数に量（ここでは宿泊料）を指定します。
 
-```javascript
+```js
 await window.contract.book_room(
   {
     room_id,
     check_in_date: date,
   },
   GAS,
-  price,
+  price
 );
 ```
 

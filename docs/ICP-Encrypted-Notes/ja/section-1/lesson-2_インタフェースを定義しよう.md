@@ -2,7 +2,7 @@
 
 実装した機能をフロントエンドから呼び出す前に、インタフェースを定義する必要があります。ICPでは、キャニスターのインタフェースはCandidという言語で記述します。
 
-#### Candidとは
+#### Candid とは
 
 Candidは、サービスのパブリック・インタフェースを記述することを主な目的としたインタフェース記述言語です。Candidの主な利点のひとつは、言語にとらわれず、[Motoko](https://internetcomputer.org/docs/current/motoko/main/about-this-guide)、Rust、JavaScriptなどの異なるプログラミング言語で書かれたサービスとフロントエンド間の相互運用を可能にすることです。詳細は[こちら](https://internetcomputer.org/docs/current/developer-docs/backend/candid/candid-concepts)をご覧ください。
 
@@ -72,7 +72,7 @@ npm run generate:did
 
 `src/encrypted_notes_backend/encrypted_notes_backend.did`を確認してみましょう。
 
-```javascript
+```js
 type EncryptedNote = record { id : nat; data : text };
 service : {
   addNote : (text) -> ();

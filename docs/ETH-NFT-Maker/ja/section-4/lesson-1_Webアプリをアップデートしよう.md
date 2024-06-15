@@ -1,4 +1,5 @@
 ### 🪄 MVP = web3Mint.sol × NftUploader.jsx
+
 今回のプロジェクトのMVP（＝最小限の機能を備えたプロダクト）を構築するweb3Mint.solとNftUploader.jsxのスクリプトを共有します。
 
 見やすいように少し整理整頓してあります 🧹✨
@@ -63,59 +64,60 @@ contract Web3Mint is ERC721 {
     }
 }
 ```
+
 **`NftUploader.jsx`はこちら:**
 
-```javascript
-import { Button } from '@mui/material';
-import { ethers } from 'ethers';
-import React from 'react';
-import { useEffect, useState } from 'react'
-import { Web3Storage } from 'web3.storage'
+```js
+import { Button } from "@mui/material";
+import { ethers } from "ethers";
+import React from "react";
+import { useEffect, useState } from "react";
+import { Web3Storage } from "web3.storage";
 
-import Web3Mint from '../../utils/Web3Mint.json';
-import ImageLogo from './image.svg';
-import './NftUploader.css';
+import Web3Mint from "../../utils/Web3Mint.json";
+import ImageLogo from "./image.svg";
+import "./NftUploader.css";
 
 const NftUploader = () => {
   /*
    * ユーザーのウォレットアドレスを格納するために使用する状態変数を定義します。
    */
-  const [currentAccount, setCurrentAccount] = useState('');
+  const [currentAccount, setCurrentAccount] = useState("");
   /*この段階でcurrentAccountの中身は空*/
-  console.log('currentAccount: ', currentAccount);
+  console.log("currentAccount: ", currentAccount);
   const checkIfWalletIsConnected = async () => {
     const { ethereum } = window;
     if (!ethereum) {
-      console.log('Make sure you have MetaMask!');
+      console.log("Make sure you have MetaMask!");
       return;
     } else {
-      console.log('We have the ethereum object', ethereum);
+      console.log("We have the ethereum object", ethereum);
     }
 
-    const accounts = await ethereum.request({ method: 'eth_accounts' });
+    const accounts = await ethereum.request({ method: "eth_accounts" });
 
     if (accounts.length !== 0) {
       const account = accounts[0];
-      console.log('Found an authorized account:', account);
+      console.log("Found an authorized account:", account);
       setCurrentAccount(account);
     } else {
-      console.log('No authorized account found');
+      console.log("No authorized account found");
     }
   };
-  const connectWallet = async () =>{
+  const connectWallet = async () => {
     try {
       const { ethereum } = window;
       if (!ethereum) {
-        alert('Get MetaMask!');
+        alert("Get MetaMask!");
         return;
       }
       /*
        * ウォレットアドレスに対してアクセスをリクエストしています。
        */
       const accounts = await ethereum.request({
-        method: 'eth_requestAccounts',
+        method: "eth_requestAccounts",
       });
-      console.log('Connected', accounts[0]);
+      console.log("Connected", accounts[0]);
       /*
        * ウォレットアドレスを currentAccount に紐付けます。
        */
@@ -126,8 +128,7 @@ const NftUploader = () => {
   };
 
   const askContractToMintNft = async (ipfs) => {
-    const CONTRACT_ADDRESS =
-      '0x35558364D864EAAcE19c10d84437969F133eDf12';
+    const CONTRACT_ADDRESS = "0x35558364D864EAAcE19c10d84437969F133eDf12";
     try {
       const { ethereum } = window;
       if (ethereum) {
@@ -138,9 +139,9 @@ const NftUploader = () => {
           Web3Mint.abi,
           signer
         );
-        console.log('Going to pop wallet now to pay gas...');
-        let nftTxn = await connectedContract.mintIpfsNFT('sample',ipfs);
-        console.log('Mining...please wait.');
+        console.log("Going to pop wallet now to pay gas...");
+        let nftTxn = await connectedContract.mintIpfsNFT("sample", ipfs);
+        console.log("Mining...please wait.");
         await nftTxn.wait();
         console.log(
           `Mined, see transaction: https://sepolia.etherscan.io/tx/${nftTxn.hash}`
@@ -153,12 +154,14 @@ const NftUploader = () => {
     }
   };
 
-
   const renderNotConnectedContainer = () => (
-      <button onClick={connectWallet} className="cta-button connect-wallet-button">
-        Connect to Wallet
-      </button>
-    );
+    <button
+      onClick={connectWallet}
+      className="cta-button connect-wallet-button"
+    >
+      Connect to Wallet
+    </button>
+  );
   /*
    * ページがロードされたときに useEffect()内の関数が呼び出されます。
    */
@@ -166,28 +169,29 @@ const NftUploader = () => {
     checkIfWalletIsConnected();
   }, []);
 
-  const API_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGU4MTQxMmVkYTk5NUI5NjMzMDIwNTYxRDkzMTRhNGE5NEQyMDIyNTQiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NDkzMTE5NzIxNjYsIm5hbWUiOiJzYW1wbGUifQ.1q2qbS-4FgjREAr_wVE0QtRI68QLEfPQdPO-B-7ixjg';
+  const API_KEY =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGU4MTQxMmVkYTk5NUI5NjMzMDIwNTYxRDkzMTRhNGE5NEQyMDIyNTQiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NDkzMTE5NzIxNjYsIm5hbWUiOiJzYW1wbGUifQ.1q2qbS-4FgjREAr_wVE0QtRI68QLEfPQdPO-B-7ixjg";
 
   const imageToNFT = async (e) => {
-    const client = new Web3Storage({ token: API_KEY })
-    const image = e.target
-    console.log(image)
+    const client = new Web3Storage({ token: API_KEY });
+    const image = e.target;
+    console.log(image);
 
     const rootCid = await client.put(image.files, {
-        name: 'experiment',
-        maxRetries: 3
-    })
-    const res = await client.get(rootCid) // Web3Response
-    const files = await res.files() // Web3File[]
+      name: "experiment",
+      maxRetries: 3,
+    });
+    const res = await client.get(rootCid); // Web3Response
+    const files = await res.files(); // Web3File[]
     for (const file of files) {
-      console.log('file.cid:',file.cid)
-      askContractToMintNft(file.cid)
+      console.log("file.cid:", file.cid);
+      askContractToMintNft(file.cid);
     }
-}
+  };
 
   return (
     <div className="outerBox">
-      {currentAccount === '' ? (
+      {currentAccount === "" ? (
         renderNotConnectedContainer()
       ) : (
         <p>If you choose image, you can mint your NFT</p>
@@ -200,12 +204,24 @@ const NftUploader = () => {
           <img src={ImageLogo} alt="imagelogo" />
           <p>ここにドラッグ＆ドロップしてね</p>
         </div>
-        <input className="nftUploadInput" multiple name="imageURL" type="file" accept=".jpg , .jpeg , .png" onChange={imageToNFT}  />
+        <input
+          className="nftUploadInput"
+          multiple
+          name="imageURL"
+          type="file"
+          accept=".jpg , .jpeg , .png"
+          onChange={imageToNFT}
+        />
       </div>
       <p>または</p>
       <Button variant="contained">
         ファイルを選択
-        <input className="nftUploadInput" type="file" accept=".jpg , .jpeg , .png" onChange={imageToNFT} />
+        <input
+          className="nftUploadInput"
+          type="file"
+          accept=".jpg , .jpeg , .png"
+          onChange={imageToNFT}
+        />
       </Button>
     </div>
   );
@@ -232,13 +248,13 @@ MVPを起点にWebアプリケーションを自分の好きなようにアッ�
 
 下記のコードを`NftUploader.jsx`に組み込んでみましょう。
 
-```javascript
+```js
 // NftUploader.jsx
-let chainId = await ethereum.request({ method: 'eth_chainId' });
-console.log('Connected to chain ' + chainId);
+let chainId = await ethereum.request({ method: "eth_chainId" });
+console.log("Connected to chain " + chainId);
 
-if (chainId !== '11155111') {
-  alert('You are not connected to the sepolia Test Network!');
+if (chainId !== "11155111") {
+  alert("You are not connected to the sepolia Test Network!");
 }
 ```
 

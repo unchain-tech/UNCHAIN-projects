@@ -23,7 +23,7 @@ POLYGON_URL = ""
 
 2 \. `hardhat.config.js`を開き、コードを下記のように更新しましょう。
 
-```javascript
+```js
 require("@nomicfoundation/hardhat-toolbox");
 require("@nomiclabs/hardhat-etherscan");
 require("dotenv").config();
@@ -168,7 +168,7 @@ uint public constant PRICE = 17 ether;
 
 - Solidityにとって、`17 ether`は下記と同じです。
 
-  ```javascript
+  ```js
   // 17 * 10¹⁸
   1700000000000000;
   ```
@@ -246,7 +246,7 @@ Hardhatを使用する場合、AlchemyのカスタムRPC URLが必要です。
 
 それでは、`packages/contract/.env`ファイルを開き、コピーした`HTTP` URLを下記の`Alchemy Polygon URL`の部分に貼り付けていきます。
 
-```javascript
+```js
 POLYGON_URL = "Alchemy Polygon URL";
 ```
 
@@ -280,7 +280,7 @@ Sepoliaとは異なり、これらのトークンの取得にそれほど問題�
 
 `packages/contract/scripts`に向かい、`deploy.js`を下記のように更新してください。
 
-```javascript
+```js
 async function main() {
   // あなたのコレクションの Base Token URI（JSON の CID）に差し替えてください
   // 注: 十分な NFT を確保するために、下記のサンプル Token URI を使用しても問題ありません。
@@ -363,7 +363,7 @@ APIを作成したら、そのAPIの`Edit`ボタンをクリックしてくだ�
 
 最後にもう一度`packages/contract/.env`ファイルを開き、下記にコピーした`Polygon-API-Key`の値を貼り付けます。
 
-```javascript
+```js
 ETHERSCAN_API = "Polygonscan-API-key";
 ```
 

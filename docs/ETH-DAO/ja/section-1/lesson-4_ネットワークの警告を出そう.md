@@ -6,7 +6,7 @@
 
 `src/pages/index.tsx`のコードを以下のとおり更新しましょう。
 
-```typescript
+```ts
 import { Sepolia } from "@thirdweb-dev/chains";
 import {
   ConnectWallet,

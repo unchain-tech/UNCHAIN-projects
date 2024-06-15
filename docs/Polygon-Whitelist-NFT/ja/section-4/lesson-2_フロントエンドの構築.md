@@ -125,7 +125,7 @@ clientフォルダの中に、`@types/global.d.ts`を作成します。
 
 下記のコードを記述しましょう。
 
-```typescript
+```ts
 import { MetaMaskInpageProvider } from "@metamask/providers";
 
 declare global {

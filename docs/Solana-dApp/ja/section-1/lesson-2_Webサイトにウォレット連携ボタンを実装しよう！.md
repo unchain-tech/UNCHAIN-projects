@@ -210,7 +210,7 @@ export default App;
 
 簡単に修正点を確認しましょう。
 
-```javascript
+```js
 const checkIfWalletIsConnected = async () => {
   try {
     const { solana } = window;
@@ -257,7 +257,7 @@ Phantom WalletがWebアプリケーションに接続されていた場合、ユ
 
 `App.js`の`connectWallet`関数を下記のとおり修正しましょう。
 
-```javascript
+```js
 const connectWallet = async () => {
   const { solana } = window;
 

@@ -41,7 +41,7 @@
 
 まずはこの関数をインポートし、次に関数呼び出しに必要な引数を用意していきましょう。
 
-```javascript
+```js
 // ファイルの先頭で sendAndConfirmTransaction 関数を読み込む
 import { sendAndConfirmTransaction } from "@solana/web3.js";
 
@@ -63,7 +63,7 @@ const confirmation = await sendAndConfirmTransaction(
 
 ドキュメントにある[Transaction クラスへのリンク](https://solana-labs.github.io/solana-web3.js/classes/Transaction.html)をたどると、`Transaction`オブジェクトを作成するには、そのコンストラクタを使用することができるようです。
 
-```javascript
+```js
 // サンプルコード
 const transaction = new Transaction();
 
@@ -97,7 +97,7 @@ console.log(transaction);
 
 ですので、 `instructions`は次のように組み立てることができます。
 
-```javascript
+```js
 // サンプルコード
 const params = {
   fromPubkey: account.publicKey,
@@ -111,7 +111,7 @@ SystemProgram.transfer(params);
 
 これらを`Transaction`に組み込むには、addメソッドを使用します。
 
-```javascript
+```js
 transaction.add(SystemProgram.transfer(params));
 ```
 
@@ -125,7 +125,7 @@ transaction.add(SystemProgram.transfer(params));
 
 `account`から両方を取得できるので、`signers`の配列を作成することができます。
 
-```javascript
+```js
 const signers = [
   {
     publicKey: account.publicKey,
@@ -138,7 +138,7 @@ const signers = [
 
 これで3つのパラメータがすべて完了したので、最後に`sendAndConfirmTransaction`を呼び出して、その確認を待つことができるようになりました。
 
-```javascript
+```js
 const transactionSignature = await sendAndConfirmTransaction(
   connection,
   transaction,
@@ -148,7 +148,7 @@ const transactionSignature = await sendAndConfirmTransaction(
 
 これで、`Solana`アカウント間で暗号通貨を移動することができる機能が完成しました。この機能を完成させるには、送金後にアカウントの残高を更新するために`refreshBalance`関数を呼び出す必要があります。
 
-```javascript
+```js
 await refreshBalance();
 ```
 
@@ -158,7 +158,7 @@ await refreshBalance();
 
 まず、必要な関数やクラスをインポートします。
 
-```javascript
+```js
 import {
   Connection,
   LAMPORTS_PER_SOL,
@@ -171,7 +171,7 @@ import { useState } from "react";
 
 これまで同様、実装に必要なデータを`Home`コンポーネントから引数として受け取るようにします。そして、トランザクションの結果を保存しておくステートと、フォームに入力された送信先アドレスを保存しておくステートを定義します。
 
-```javascript
+```js
 // `Transfer()`に引数を追加
 export default function Transfer({ account, network, refreshBalance }) {
   // 下記を追加
@@ -181,7 +181,7 @@ export default function Transfer({ account, network, refreshBalance }) {
 
 送金処理を行う`handleTransfer`関数を定義し、中身を書いていきましょう。
 
-```javascript
+```js
 const handleTransfer = async (e) => {
   e.preventDefault();
 
@@ -224,7 +224,7 @@ const handleTransfer = async (e) => {
 そして、受信者アドレスを入力するフォームと、送金ボタンを実装します。
 ついでに、実際のトランザクションをあとで確認できるように、送金完了したら`Solana Explorer`へのリンクを表示してあげると良さそうです!
 
-```javascript
+```js
 return (
   <>
     <form onSubmit={handleTransfer} className="my-6">
@@ -271,13 +271,13 @@ components/Transfer/index.test.jsが`PASS`し、以下のようになってい�
 
 インポート文を追加します。
 
-```javascript
+```js
 import Transfer from "../components/Transfer";
 ```
 
 `Transfer`コンポーネントを呼び出すコードを追加して、フォームをレンダリングします。
 
-```javascript
+```js
 <div>
   <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">
     STEP5: 送金機能を実装する
@@ -309,7 +309,7 @@ import Transfer from "../components/Transfer";
 
 - components/Transfer/index.js
 
-```javascript
+```js
 import {
   Connection,
   LAMPORTS_PER_SOL,

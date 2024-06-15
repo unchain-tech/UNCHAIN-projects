@@ -8,7 +8,7 @@
 
 まず、`App.js`の1行目に、下記のコードを追加してください。
 
-```javascript
+```js
 // App.js
 import { ethers } from "ethers";
 ```
@@ -19,7 +19,7 @@ import { ethers } from "ethers";
 
 - フロントエンドに実装する`askContractToMintNft`関数が、コントラクトとWebサイトを連動させ、`makeAnEpicNFT`関数を呼び出します。
 
-```javascript
+```js
 // App.js
 const askContractToMintNft = async () => {
   const CONTRACT_ADDRESS =
@@ -53,7 +53,7 @@ const askContractToMintNft = async () => {
 
 1行ずつ、コードを見ていきましょう。
 
-```javascript
+```js
 // App.js
 const CONTRACT_ADDRESS =
   "ここに Sepolia Test Network にデプロイしたコントラクトのアドレスを貼り付けてください";
@@ -79,7 +79,7 @@ Contract deployed to: 0x88a0e9c2F3939598c402eccb7Ae1612e45448C04
 
 I\. `provider`
 
-> ```javascript
+> ```js
 > // App.js
 > const provider = new ethers.providers.Web3Provider(ethereum);
 > ```
@@ -91,7 +91,7 @@ I\. `provider`
 
 II\. `signer`
 
-> ```javascript
+> ```js
 > // App.js
 > const signer = provider.getSigner();
 > ```
@@ -104,7 +104,7 @@ II\. `signer`
 
 III\. コントラクトインスタンス
 
-> ```javascript
+> ```js
 > // App.js
 > const connectedContract = new ethers.Contract(
 >   CONTRACT_ADDRESS,
@@ -133,7 +133,7 @@ III\. コントラクトインスタンス
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```js
 // App.js
 console.log("Going to pop wallet now to pay gas...");
 ```
@@ -142,7 +142,7 @@ console.log("Going to pop wallet now to pay gas...");
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```js
 // App.js
 let nftTxn = await connectedContract.makeAnEpicNFT();
 console.log("Mining...please wait.");
@@ -154,7 +154,7 @@ console.log("Mining...please wait.");
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```js
 // App.js
 await nftTxn.wait();
 console.log(
@@ -168,7 +168,7 @@ console.log(
 
 ユーザーが`Mint NFT`ボタンをクリックしたときに、`askContractToMintNft`関数を呼び出すコードを見ていきましょう。
 
-```javascript
+```js
 // App.js
 return (
   {currentAccount === ""
@@ -189,7 +189,7 @@ return (
 
 条件付きレンダリングは、下記のように実行されます。
 
-```javascript
+```js
 { currentAccount === "" ? ( currentAccount にアドレスが紐づいてなければ、A を実行 ) : ( currentAccount にアドレスが紐づいれば B を実行 )}
 ```
 
@@ -278,7 +278,7 @@ ABIファイルの準備ができたので、`App.js`にインポートしまし
 
 下記を`App.js`の1行目に追加しましょう。
 
-```javascript
+```js
 // App.js
 import myEpicNft from "./utils/MyEpicNFT.json";
 ```

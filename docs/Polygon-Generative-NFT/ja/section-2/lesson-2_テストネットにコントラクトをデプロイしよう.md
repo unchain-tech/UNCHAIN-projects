@@ -184,7 +184,7 @@ README.md         artifacts         cache             contracts         hardhat.
 
 `hardhat.config.js`をVS Codeで開いて、中身を下記のように更新しましょう。
 
-```javascript
+```js
 require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
 

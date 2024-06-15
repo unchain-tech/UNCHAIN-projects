@@ -68,7 +68,7 @@ export default IPFSDownload;
 
 最初に、テストで使用する仮の値を設定します。
 
-```javascript
+```js
 // __tests__/IpfsDownload.test.js
 
 /** 準備 */
@@ -85,7 +85,7 @@ useIPFS.mockReturnValue(mockFile);
 
 次に、対象コンポーネントのレンダリングを行います。ここで、先ほど定義した値を渡しています。
 
-```javascript
+```js
 // __tests__/IpfsDownload.test.js
 
 /** 実行 */
@@ -94,7 +94,7 @@ render(<IPFSDownload hash={mockHash} filename={mockFilename} />);
 
 最後に、テスト対象のコンポーネントが期待する結果を返しているかをテストします。
 
-```javascript
+```js
 // __tests__/IpfsDownload.test.js
 
 /** 確認 */

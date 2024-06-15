@@ -46,6 +46,7 @@ contract Domains {
   }
 }
 ```
+
 コードを詳しくみていきましょう。
 
 ```solidity
@@ -71,10 +72,10 @@ pragma solidity ^0.8.17;
 ```solidity
 import "hardhat/console.sol";
 ```
+
 コントラクトを実行する際、コンソールログをターミナルに出力するためにHardhatの`console.sol`のファイルをインポートしています。
 
 これは、今後スマートコントラクトのデバッグが発生した場合に、とても役立つツールです。
-
 
 ```solidity
 contract Domains{
@@ -100,7 +101,8 @@ classの概念については、[こちら](https://aiacademy.jp/media/?p=131) �
 - `contract`は1つの`constructor`しか持つことができません。
 - `constructor`は、スマートコントラクトの作成時に一度だけ実行され、`contract`の状態を初期化するために使用されます。
 - `constructor`が実行された後、コードがブロックチェーンにデプロイされます。
-### 😲 コントラクトを実行しましょう
+
+### 😲  コントラクトを実行しましょう
 
 さぁ、スマートコントラクトを作成しました。
 
@@ -111,6 +113,7 @@ classの概念については、[こちら](https://aiacademy.jp/media/?p=131) �
 1. `Domains.sol`をコンパイルします。
 2. `Domains.sol`をローカル環境でブロックチェーン上にデプロイします。
 3. 上記が完了したら、`console.log`の中身がターミナル上に表示されることを確認します。
+
 ### 📝 コントラクトを実行するためのプログラムを作成する
 
 前に挙げた3つのステップを処理するスクリプトを作成します。
@@ -121,9 +124,9 @@ classの概念については、[こちら](https://aiacademy.jp/media/?p=131) �
 
 `run.js`の中身に、以下を記入しましょう。
 
-```javascript
+```js
 const main = async () => {
-  const domainContractFactory = await hre.ethers.getContractFactory('Domains');
+  const domainContractFactory = await hre.ethers.getContractFactory("Domains");
   const domainContract = await domainContractFactory.deploy();
   await domainContract.deployed();
   console.log("Contract deployed to:", domainContract.address);
@@ -144,8 +147,8 @@ runMain();
 
 それでは、1行ずつコードの理解を深めましょう。
 
-```javascript
-const domainContractFactory = await hre.ethers.getContractFactory('Domains');
+```js
+const domainContractFactory = await hre.ethers.getContractFactory("Domains");
 ```
 
 これにより、`Domains`コントラクトがコンパイルされます。
@@ -168,7 +171,7 @@ const domainContractFactory = await hre.ethers.getContractFactory('Domains');
 
 次に、下記の処理を見ていきましょう。
 
-```javascript
+```js
 const domainContract = await domainContractFactory.deploy();
 ```
 
@@ -182,7 +185,7 @@ HardhatがローカルのEthereumネットワークを、コントラクトの�
 
 次に下記の処理を見ていきましょう。
 
-```javascript
+```js
 await domainContract.deployed();
 ```
 
@@ -192,7 +195,7 @@ Hardhatは実際にあなたのマシン上に「マイナー」を作成し、�
 
 `constructor`は、スマートコントラクトがデプロイされるときに初めて実行されます。
 
-```javascript
+```js
 console.log("Contract deployed to:", domainContract.address);
 ```
 
@@ -206,7 +209,7 @@ console.log("Contract deployed to:", domainContract.address);
 
 アドレスさえわかれば、世界中どこにいても、私たちが興味を持っているスマートコントラクトに簡単にアクセスできます。
 
-### 💨 実行してみよう
+### 💨  実行してみよう
 
 ターミナル上で、下記を実行してみましょう。
 

@@ -274,7 +274,7 @@ packages/
 
 続いて、作成した`MyEpicNFT.js`に以下のコードを書き込みます。
 
-```javascript
+```js
 const { loadFixture } = require("@nomicfoundation/hardhat-network-helpers");
 const { ethers } = require("hardhat");
 const { expect } = require("chai");
@@ -351,7 +351,7 @@ describe("MyEpicNFT", function () {
 
 その中で定義している文字列の配列は、ご自身が`MyEpicNFT`コントラクト内で定義したものと一致するように適宜変更してください。
 
-```javascript
+```js
 // コントラクト内で使用する単語の配列を定義します。
 const firstWords = [
   "Epic",
@@ -367,7 +367,7 @@ const thirdWords = ["Kitten", "Puppy", "Monkey", "Bird", "Panda", "Elephant"];
 
 `deployMyEpicNFTFixture`関数の後に続く3つの`describe`ブロックが、実際に`MyEpicNFT`コントラクト内の各関数を呼び出してテストを行なっている部分になります。
 
-```javascript
+```js
 describe("pickRandomFirstWord", function () {
   it("should get strings in firstWords", async function () {
     // テストの準備を行います。
@@ -815,7 +815,7 @@ NFT Previewを使用すれば、テストネットにデプロイしなくても
 
 - 変更点は、2つ目のNFT発行を削除しているだけです。
 
-```javascript
+```js
 // deploy.js
 async function main() {
   // コントラクトがコンパイルします

@@ -4,7 +4,7 @@
 
 まず、`src/scripts/10-create-vote-proposals.ts`を作成し、以下のとおりコードを変更します。
 
-```typescript
+```ts
 import { ethers } from "ethers";
 
 import sdk from "./1-initialize-sdk";
@@ -122,7 +122,7 @@ Done in 54.29s.
 
 まず、`Proposal`をインポートします。
 
-```typescript
+```ts
 import { Proposal } from "@thirdweb-dev/sdk";
 ```
 
@@ -130,14 +130,14 @@ import { Proposal } from "@thirdweb-dev/sdk";
 
 ※ あなたのアドレスを設定することを忘れないでください！
 
-```typescript
+```ts
 // 投票コントラクトの初期化
 const vote = useContract("INSERT_VOTE_ADDRESS", "vote").contract;
 ```
 
 さらに、`const [memberAddresses, setMemberAddresses] = useState...`の下に新しい`useState`を追加します。
 
-```typescript
+```ts
 const [proposals, setProposals] = useState<Proposal[]>([]);
 const [isVoting, setIsVoting] = useState(false);
 const [hasVoted, setHasVoted] = useState(false);
@@ -145,7 +145,7 @@ const [hasVoted, setHasVoted] = useState(false);
 
 さいごに、`shortenAddress`関数の下に以下のコードを追加します。
 
-```typescript
+```ts
 // コントラクトから既存の提案を全て取得します
 useEffect(() => {
   if (!hasClaimedNFT) {
@@ -218,13 +218,13 @@ useEffect(() => {
 
 まず、以下の`AddressZero`をインポートします。
 
-```typescript
+```ts
 import { AddressZero } from "@ethersproject/constants";
 ```
 
 続いて、DAOダッシュボード画面を表示している`else if (hasClaimedNFT) {...}`の中身を以下のコードに置き換えます。
 
-```typescript
+```ts
 return (
   <div className={styles.container}>
     <main className={styles.main}>

@@ -290,7 +290,7 @@ test/Lock.tsファイルを下の内容で上書きしてください。ethers v
 
 **（変更前）**
 
-```typescript
+```ts
 import {
   time,
   loadFixture,
@@ -299,7 +299,7 @@ import {
 
 **（変更後）**
 
-```typescript
+```ts
 import { time, loadFixture } from "@nomicfoundation/hardhat-network-helpers";
 ```
 
@@ -307,13 +307,13 @@ import { time, loadFixture } from "@nomicfoundation/hardhat-network-helpers";
 
 **（変更前）**
 
-```typescript
+```ts
 expect(await ethers.provider.getBalance(lock.target)).to.equal(lockedAmount);
 ```
 
 **（変更後）**
 
-```typescript
+```ts
 expect(await ethers.provider.getBalance(lock.address)).to.equal(lockedAmount);
 ```
 

@@ -75,7 +75,7 @@ SolanaプログラムはDevnetにデプロイされました。
 
 追加する場所は`import './App.css';`のすぐ下でOKです。
 
-```javascript
+```js
 import idl from "./idl.json";
 ```
 
@@ -115,7 +115,7 @@ npm install @project-serum/anchor @solana/web3.js
 
 `App.js`の`import idl from './idl.json';`のすぐ下に以下のコードを追加します。
 
-```javascript
+```js
 import { Connection, PublicKey, clusterApiUrl } from "@solana/web3.js";
 import { Program, Provider, web3 } from "@project-serum/anchor";
 ```
@@ -124,7 +124,7 @@ import { Program, Provider, web3 } from "@project-serum/anchor";
 
 以下のコードを`onInputChange`関数のすぐ下に追加します。
 
-```javascript
+```js
 const getProvider = () => {
   const connection = new Connection(network, opts.preflightCommitment);
   const provider = new Provider(
@@ -152,7 +152,7 @@ Phantom WalletはSolana上のプログラムと通信するためのプロバイ
 
 `App.js`を以下のとおり更新します。
 
-```javascript
+```js
 import React, { useEffect, useState } from "react";
 import twitterLogo from "./assets/twitter-logo.svg";
 import "./App.css";
@@ -201,7 +201,7 @@ const opts = {
 
 `App.js`の以下の記述を覚えていますか？
 
-```javascript
+```js
 useEffect(() => {
   if (walletAddress) {
     console.log("Fetching GIF list...");
@@ -216,7 +216,7 @@ useEffect(() => {
 
 この記述を以下のように変更しましょう。
 
-```javascript
+```js
 const getGifList = async () => {
   try {
     const provider = getProvider();
@@ -247,7 +247,7 @@ useEffect(() => {
 
 以下の関数を`getProvider`関数の下に追加してください。
 
-```javascript
+```js
 const createGifAccount = async () => {
   try {
     const provider = getProvider();

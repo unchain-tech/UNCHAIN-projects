@@ -154,17 +154,17 @@ if (_seed <= 50) {
 
 下記のように、`run.js`を更新して、ユーザーにランダムにETHを送れるか確認してみましょう。
 
-```javascript
+```js
 const main = async () => {
-  const waveContractFactory = await hre.ethers.getContractFactory('WavePortal');
+  const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
   /*
    * デプロイする際0.1ETHをコントラクトに提供する
    */
   const waveContract = await waveContractFactory.deploy({
-    value: hre.ethers.utils.parseEther('0.1'),
+    value: hre.ethers.utils.parseEther("0.1"),
   });
   await waveContract.deployed();
-  console.log('Contract deployed to: ', waveContract.address);
+  console.log("Contract deployed to: ", waveContract.address);
 
   /*
    * コントラクトの残高を取得（0.1ETH）であることを確認
@@ -173,17 +173,17 @@ const main = async () => {
     waveContract.address
   );
   console.log(
-    'Contract balance:',
+    "Contract balance:",
     hre.ethers.utils.formatEther(contractBalance)
   );
 
   /*
    * 2回 waves を送るシミュレーションを行う
    */
-  const waveTxn = await waveContract.wave('This is wave #1');
+  const waveTxn = await waveContract.wave("This is wave #1");
   await waveTxn.wait();
 
-  const waveTxn2 = await waveContract.wave('This is wave #2');
+  const waveTxn2 = await waveContract.wave("This is wave #2");
   await waveTxn2.wait();
 
   /*
@@ -194,7 +194,7 @@ const main = async () => {
    *コントラクトの残高から0.0001ETH引かれていることを確認
    */
   console.log(
-    'Contract balance:',
+    "Contract balance:",
     hre.ethers.utils.formatEther(contractBalance)
   );
 
@@ -389,7 +389,7 @@ Solidityの`mapping`は、ほかの言語におけるハッシュテーブルや
 
 これらは、下記のように`_Key`と`_Value`のペアの形式でデータを格納するために使用されます。
 
-```javascript
+```js
 mapping（_Key => _Value）public mappingName
 ```
 
@@ -426,9 +426,9 @@ lastWavedAt[msg.sender] = block.timestamp;
 
 ここまでの作業でコントラクトには基本機能として以下の機能が追加されました。
 
-* コントラクトにトークンを提供する機能
-* waveを送信する機能
-* ランダムにトークンを送金する機能
+- コントラクトにトークンを提供する機能
+- waveを送信する機能
+- ランダムにトークンを送金する機能
 
 これらの基本機能をテストスクリプトとして記述していきましょう。
 
@@ -439,47 +439,47 @@ lastWavedAt[msg.sender] = block.timestamp;
 
 ではpackages/contract/testに`test.js`という名前でファイルを作成して、以下のように記述しましょう。
 
-```javascript
-const { loadFixture } = require('@nomicfoundation/hardhat-network-helpers');
-const hre = require('hardhat');
-const { expect } = require('chai');
-const { ethers } = require('hardhat');
+```js
+const { loadFixture } = require("@nomicfoundation/hardhat-network-helpers");
+const hre = require("hardhat");
+const { expect } = require("chai");
+const { ethers } = require("hardhat");
 
-describe('WavePortal', function () {
+describe("WavePortal", function () {
   // すべてのテストで同じセットアップを再利用するためにフィクスチャーを定義します。
   async function deployProjectFixture() {
-    const wavePortalFactory = await ethers.getContractFactory('WavePortal');
+    const wavePortalFactory = await ethers.getContractFactory("WavePortal");
 
     // コントラクトは、デフォルトで最初の署名者/アカウント（ここではuser1）を使用してデプロイされます。
     const [user1, user2] = await ethers.getSigners();
 
     const wavePortal = await wavePortalFactory.deploy({
-      value: hre.ethers.utils.parseEther('0.1'),
+      value: hre.ethers.utils.parseEther("0.1"),
     });
 
     await wavePortal.deployed();
 
     // 現在のコントラクトの残高を取得します。
     const wavePortalBalance = hre.ethers.utils.formatEther(
-      await hre.ethers.provider.getBalance(wavePortal.address),
+      await hre.ethers.provider.getBalance(wavePortal.address)
     );
 
     // waveを2回実行する関数を定義します。
     const sendTwoWaves = async () => {
       // user1, user2がそれぞれwaveを送ります。
-      await wavePortal.connect(user1).wave('This is wave #1');
-      await wavePortal.connect(user2).wave('This is wave #2');
+      await wavePortal.connect(user1).wave("This is wave #1");
+      await wavePortal.connect(user2).wave("This is wave #2");
     };
 
     return { wavePortal, wavePortalBalance, sendTwoWaves, user1, user2 };
   }
 
   // テストケース
-  describe('getTotalWaves', function () {
-    it('should return total waves', async function () {
+  describe("getTotalWaves", function () {
+    it("should return total waves", async function () {
       /** 準備 */
       const { wavePortal, sendTwoWaves } = await loadFixture(
-        deployProjectFixture,
+        deployProjectFixture
       );
       await sendTwoWaves();
 
@@ -491,11 +491,11 @@ describe('WavePortal', function () {
     });
   });
 
-  describe('getAllWaves', function () {
-    it('should return all waves', async function () {
+  describe("getAllWaves", function () {
+    it("should return all waves", async function () {
       /** 準備 */
       const { wavePortal, sendTwoWaves, user1, user2 } = await loadFixture(
-        deployProjectFixture,
+        deployProjectFixture
       );
       await sendTwoWaves();
 
@@ -504,15 +504,15 @@ describe('WavePortal', function () {
 
       /** 検証 */
       expect(allWaves[0].waver).to.equal(user1.address);
-      expect(allWaves[0].message).to.equal('This is wave #1');
+      expect(allWaves[0].message).to.equal("This is wave #1");
       expect(allWaves[1].waver).to.equal(user2.address);
-      expect(allWaves[1].message).to.equal('This is wave #2');
+      expect(allWaves[1].message).to.equal("This is wave #2");
     });
   });
 
-  describe('wave', function () {
-    context('when user waved', function () {
-      it('should send tokens at random.', async function () {
+  describe("wave", function () {
+    context("when user waved", function () {
+      it("should send tokens at random.", async function () {
         /** 準備 */
         const { wavePortal, wavePortalBalance, sendTwoWaves } =
           await loadFixture(deployProjectFixture);
@@ -523,7 +523,7 @@ describe('WavePortal', function () {
         /** 検証 */
         // wave後のコントラクトの残高を取得します。
         const wavePortalBalanceAfter = hre.ethers.utils.formatEther(
-          await hre.ethers.provider.getBalance(wavePortal.address),
+          await hre.ethers.provider.getBalance(wavePortal.address)
         );
 
         // 勝利した回数に応じてコントラクトから出ていくトークンを計算します。
@@ -537,26 +537,26 @@ describe('WavePortal', function () {
 
         // コントラクトのトークン残高がwave時の勝負による減少に連動しているかテストします。
         expect(parseFloat(wavePortalBalanceAfter)).to.equal(
-          wavePortalBalance - cost,
+          wavePortalBalance - cost
         );
       });
     });
     context(
-      'when user1 tried to resubmit without waiting 15 mitutes',
+      "when user1 tried to resubmit without waiting 15 mitutes",
       function () {
-        it('reverts', async function () {
+        it("reverts", async function () {
           /** 準備 */
           const { wavePortal, user1 } = await loadFixture(deployProjectFixture);
 
           /** 実行 */
-          await wavePortal.connect(user1).wave('This is wave #1');
+          await wavePortal.connect(user1).wave("This is wave #1");
 
           /** 検証 */
           await expect(
-            wavePortal.connect(user1).wave('This is wave #2'),
-          ).to.be.revertedWith('Wait 15m');
+            wavePortal.connect(user1).wave("This is wave #2")
+          ).to.be.revertedWith("Wait 15m");
         });
-      },
+      }
     );
   });
 });
@@ -568,22 +568,22 @@ describe('WavePortal', function () {
 
 各テストは、3つのステップ「準備」「実行」「検証」で構成されています。
 
-```javascript
-  describe('getTotalWaves', function () {
-    it('should return total waves', async function () {
-      /** 準備 */
-      const { wavePortal, sendTwoWaves } = await loadFixture(
-        deployProjectFixture,
-      );
-      await sendTwoWaves();
+```js
+describe("getTotalWaves", function () {
+  it("should return total waves", async function () {
+    /** 準備 */
+    const { wavePortal, sendTwoWaves } = await loadFixture(
+      deployProjectFixture
+    );
+    await sendTwoWaves();
 
-      /** 実行 */
-      const totalWaves = await wavePortal.getTotalWaves();
+    /** 実行 */
+    const totalWaves = await wavePortal.getTotalWaves();
 
-      /** 検証 */
-      expect(totalWaves).to.equal(2);
-    });
+    /** 検証 */
+    expect(totalWaves).to.equal(2);
   });
+});
 ```
 
 まずは、「準備」のステップです。ここでは、`deployProjectFixture`を実行しています。deployProjectFixture内部ではWavePortalコントラクトのデプロイ、テストで使用したい機能や値を定義しています。
@@ -603,24 +603,21 @@ describe('WavePortal', function () {
 
 一人のユーザーが立て続けにwave関数を呼び出すことで、上記の`require`文に引っかかることを確認します。
 
-```javascript
-    context(
-      'when user1 tried to resubmit without waiting 15 mitutes',
-      function () {
-        it('reverts', async function () {
-          /** 準備 */
-          const { wavePortal, user1 } = await loadFixture(deployProjectFixture);
+```js
+context("when user1 tried to resubmit without waiting 15 mitutes", function () {
+  it("reverts", async function () {
+    /** 準備 */
+    const { wavePortal, user1 } = await loadFixture(deployProjectFixture);
 
-          /** 実行 */
-          await wavePortal.connect(user1).wave('This is wave #1');
+    /** 実行 */
+    await wavePortal.connect(user1).wave("This is wave #1");
 
-          /** 検証 */
-          await expect(
-            wavePortal.connect(user1).wave('This is wave #2'),
-          ).to.be.revertedWith('Wait 15m');
-        });
-      },
-    );
+    /** 検証 */
+    await expect(
+      wavePortal.connect(user1).wave("This is wave #2")
+    ).to.be.revertedWith("Wait 15m");
+  });
+});
 ```
 
 それでは、テストスクリプトを実行してみましょう。テスト結果がわかりやすいように、`WavePortal.sol`内の`console.log`を全てコメントアウトすると良いでしょう。

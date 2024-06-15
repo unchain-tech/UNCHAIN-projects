@@ -112,7 +112,7 @@ emit NewWave(msg.sender, block.timestamp, _message);
 
 `const contractABI = abi.abi;`の直下に下記を追加しましょう。
 
-```javascript
+```js
 /* すべてのwavesを保存する状態変数を定義 */
 const [allWaves, setAllWaves] = useState([]);
 
@@ -193,7 +193,7 @@ useEffect(() => {
 
 `getAllWaves`関数は、`waves`関数とほぼ同じ仕様をしています。
 
-```javascript
+```js
 const getAllWaves = async () => {
   const { ethereum } = window;
 
@@ -230,7 +230,7 @@ const getAllWaves = async () => {
 
 まずは下記のコードを見ていきましょう。
 
-```javascript
+```js
 const provider = new ethers.providers.Web3Provider(ethereum);
 ```
 
@@ -238,7 +238,7 @@ const provider = new ethers.providers.Web3Provider(ethereum);
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```js
 const signer = provider.getSigner();
 ```
 
@@ -246,7 +246,7 @@ const signer = provider.getSigner();
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```js
 const wavePortalContract = new ethers.Contract(
   contractAddress,
   contractABI,
@@ -265,7 +265,7 @@ const wavePortalContract = new ethers.Contract(
 
 最後に、下記のコードを見ていきましょう。
 
-```javascript
+```js
 const wavesCleaned = waves.map((wave) => {
   return {
     address: wave.waver,
@@ -283,7 +283,7 @@ const wavesCleaned = waves.map((wave) => {
 
 それでは、`onNewWave`関数を見ていきましょう。
 
-```javascript
+```js
 const onNewWave = (from, timestamp, message) => {
   console.log("NewWave", from, timestamp, message);
   setAllWaves((prevState) => [
@@ -319,7 +319,7 @@ const onNewWave = (from, timestamp, message) => {
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```js
 if (window.ethereum) {
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
@@ -342,7 +342,7 @@ if (window.ethereum) {
 
 最後に下記のコードを見ていきましょう。
 
-```javascript
+```js
   return () => {
     if (wavePortalContract) {
     /* ここに注目 */
@@ -362,7 +362,7 @@ if (window.ethereum) {
 
 下記のように`run.js`を更新してください。
 
-```javascript
+```js
 const main = async () => {
   const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
   const waveContract = await waveContractFactory.deploy();
@@ -513,7 +513,7 @@ Contract deployed to: 0x... ← あなたのコントラクトアドレスをコ
 
 3. Webサイトにそのデータを表示する。
 
-```javascript
+```js
 /* ethers 変数を使えるようにする*/
 import { ethers } from "ethers";
 import React, { useEffect, useState } from "react";
@@ -770,7 +770,7 @@ export default App;
 
 下記をReactNodeを返す関数型`App`の中に実装しました。
 
-```javascript
+```js
 /* ユーザーのパブリックウォレットアドレスを保存するために使用する状態変数を定義 */
 const [currentAccount, setCurrentAccount] = useState("");
 /* ユーザーのメッセージを保存するために使用する状態変数を定義 */
@@ -781,21 +781,21 @@ const [allWaves, setAllWaves] = useState([]);
 
 ここでは、ユーザーの情報を保存するために使用する変数と関数を定義し、初期化しています。
 
-```javascript
+```js
 const [currentAccount, setCurrentAccount] = useState("");
 ```
 
 - ユーザーのパブリックウォレットを格納する変数(＝ `currentAccount`)
 - ユーザーのパブリックウォレットを更新する関数(＝ `setCurrentAccount`)
 
-```javascript
+```js
 const [messageValue, setMessageValue] = useState("");
 ```
 
 - ユーザーのメッセージを格納する変数(＝ `messageValue`)
 - ユーザーのメッセージを更新する関数(＝ `setMessageValue`)
 
-```javascript
+```js
 const [allWaves, setAllWaves] = useState([]);
 ```
 
@@ -806,7 +806,7 @@ const [allWaves, setAllWaves] = useState([]);
 
 詳しく見ていきましょう。
 
-> ```javascript
+> ```js
 > const wavesCleaned = waves.map((wave) => {
 >   return {
 >     address: wave.waver,
@@ -829,7 +829,7 @@ const [allWaves, setAllWaves] = useState([]);
 >
 > 最後に、`AllWaves`の状態を更新しています。
 >
-> ```javascript
+> ```js
 > setAllWaves(wavesCleaned);
 > ```
 >
@@ -839,7 +839,7 @@ const [allWaves, setAllWaves] = useState([]);
 
 > 下記を実装して、トランザクションに使用できるガス代（＝`gasLimit`）に制限を設けています。
 >
-> ```javascript
+> ```js
 > wavePortalContract.wave(messageValue, { gasLimit: 300000 });
 > ```
 >
@@ -876,7 +876,7 @@ const [allWaves, setAllWaves] = useState([]);
 
 下記をフロントエンドに実装しました。
 
-```javascript
+```js
 {
   currentAccount && (
     <textarea
@@ -895,7 +895,7 @@ const [allWaves, setAllWaves] = useState([]);
 
 3 \. 送られてきたメッセージをフロントエンドに表示する
 
-```javascript
+```js
 {
   allWaves
     .slice(0)

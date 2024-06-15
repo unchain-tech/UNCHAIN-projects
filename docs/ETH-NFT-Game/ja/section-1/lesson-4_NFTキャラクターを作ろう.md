@@ -203,7 +203,7 @@ for(uint i = 0; i < characterNames.length; i += 1) {
 
 テスト用のスクリプト`run.js`を下記のように更新していきましょう。
 
-```javascript
+```js
 const main = async () => {
   const gameContractFactory = await hre.ethers.getContractFactory("MyEpicGame");
   const gameContract = await gameContractFactory.deploy(
@@ -252,7 +252,7 @@ uint[] memory characterAttackDmg
 
 ぜひ、`run.js`の中の`https://i.imgur.com/...`の画像のリンクをあなたのオリジナルの画像に差し替えてください 😊
 
-```javascript
+```js
 ["ZORO", "NAMI", "USOPP"], // キャラクターの名前
 ["https://i.imgur.com/TZEhCTX.png",  // キャラクターの画像
  "https://i.imgur.com/WVAaMPA.png",

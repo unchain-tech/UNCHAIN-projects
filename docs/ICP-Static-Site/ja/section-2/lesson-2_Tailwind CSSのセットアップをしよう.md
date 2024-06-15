@@ -25,7 +25,7 @@ Created PostCSS config file: postcss.config.cjs
 
 [tailwind.config.cjs]
 
-```javascript
+```js
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{html,js,svelte,ts}"],
@@ -52,7 +52,7 @@ module.exports = {
 
 [App.svelte]
 
-```javascript
+```js
 <h1 class="text-red-600">Vite + Svelte</h1>
 ```
 

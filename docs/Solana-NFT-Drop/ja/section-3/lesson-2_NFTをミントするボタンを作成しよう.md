@@ -10,7 +10,7 @@ Solanaでは、トランザクションの中に命令をひとまとめにし�
 
 TransactionBuilderクラスには`add`というメソッドがあり、これにより命令をトランザクションに追加することができます。
 
-```javascript
+```js
 const transaction = transactionBuilder()
   .add(/* トランザクションに追加したい命令 */)
   .add(/* ... */)
@@ -35,7 +35,7 @@ Error: failed to send transaction: Transaction simulation failed: Error processi
 
 今回は`600_000`と設定したいと思います。
 
-```javascript
+```js
 const transaction = transactionBuilder().add(
   setComputeUnitLimit(umi, { units: 600_000 })
 );
@@ -45,7 +45,7 @@ const transaction = transactionBuilder().add(
 
 mintV2メソッドの引数を確認すると、`MintV2InstructionAccounts`というオブジェクトを受け取ることがわかります。オブジェクトの中にはたくさんのプロパティが定義されていますが、ここでは必須のものとCandy Guardの設定を指定したいと思います。
 
-```javascript
+```js
 const transaction = transactionBuilder()
   .add(setComputeUnitLimit(umi, { units: 600_000 }))
   .add(
@@ -68,7 +68,7 @@ const transaction = transactionBuilder()
 
 再度[`TransactionBuilder`](https://umi-docs.vercel.app/classes/umi.TransactionBuilder.html)クラスのメソッドを見てみます。すると、`sendAndConfirm`というメソッドが提供されていることが確認できます。このメソッドを使ってトランザクションの送信と結果の確認を行うのが良さそうです。
 
-```javascript
+```js
 await transaction.sendAndConfirm(umi).then((response) => {
   const transactionResult = response.result.value;
   if (transactionResult.err) {

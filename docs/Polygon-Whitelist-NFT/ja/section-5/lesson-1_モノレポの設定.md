@@ -142,7 +142,7 @@ rm -r ./packages/contract/contracts/ && mv ./contracts/ ./packages/contract/
 
 次に、`hardhat.config.ts`を下記のように更新しましょう。
 
-```typescript
+```ts
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
 

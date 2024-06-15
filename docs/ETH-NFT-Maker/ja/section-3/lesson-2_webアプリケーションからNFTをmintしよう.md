@@ -8,7 +8,7 @@
 
 まず、`NftUploader.jsx`内`import { Button } from '@mui/material';`の下に、下記のコードを追加してください。
 
-```javascript
+```js
 // NftUploader.jsx
 import { ethers } from "ethers";
 ```
@@ -27,7 +27,7 @@ ethersをもっと詳しく知りたい方は、[こちら](https://www.npmjs.co
 
 - フロントエンドに実装する`askContractToMintNft`関数が、コントラクトとWebサイトを連動させ、`mintIpfsNFT`関数を呼び出します。
 
-```javascript
+```js
 // NftUploader.jsx
 const askContractToMintNft = async (ipfs) => {
   const CONTRACT_ADDRESS =
@@ -60,7 +60,7 @@ const askContractToMintNft = async (ipfs) => {
 
 1行ずつ、コードを見ていきましょう。
 
-```javascript
+```js
 // NftUploader.jsx
 const CONTRACT_ADDRESS =
   "ここに Sepolia Test Network にデプロイしたコントラクトのアドレスを貼り付けてください";
@@ -86,7 +86,7 @@ Contract deployed to: 0x88a0e9c2F3939598c402eccb7Ae1612e45448C04
 
 では、コントラクトインスタンスの説明から始めます。
 
-> ```javascript
+> ```js
 > // NftUploader.jsx
 > const connectedContract = new ethers.Contract(
 >   CONTRACT_ADDRESS,
@@ -115,7 +115,7 @@ Contract deployed to: 0x88a0e9c2F3939598c402eccb7Ae1612e45448C04
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```js
 // NftUploader.jsx
 let nftTxn = await connectedContract.mintIpfsNFT("sample", ipfs);
 console.log("Mining...please wait.");
@@ -127,7 +127,7 @@ console.log("Mining...please wait.");
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```js
 // NftUploader.jsx
 await nftTxn.wait();
 console.log(
@@ -220,7 +220,7 @@ ABIファイルの準備ができたので、`NftUploader.jsx`にインポート
 
 下記を`NftUploader.jsx`内`import ImageLogo from './image.svg';`の上に追加しましょう。
 
-```javascript
+```js
 // NftUploader.jsx
 import Web3Mint from "../../utils/Web3Mint.json";
 ```
@@ -242,7 +242,7 @@ yarn workspace client add web3.storage@^4.5.4
 
 そして`NftUploader.jsx`の中`import { useEffect, useState } from 'react';`の下に一行を加えましょう。
 
-```javascript
+```js
 // NftUploader.jsx
 import { Web3Storage } from "web3.storage";
 ```
@@ -251,7 +251,7 @@ import { Web3Storage } from "web3.storage";
 
 `NftUploader.jsx`に`imageToNFT`関数を実装しましょう。
 
-```javascript
+```js
 // NftUploader.jsx
 const imageToNFT = async (e) => {
   const client = new Web3Storage({ token: API_KEY });
@@ -273,7 +273,7 @@ const imageToNFT = async (e) => {
 
 この関数は画像を受け取る`input`タグの`onClick`プロパティに実装します。これで`input`が画像を受け取るたびにNFTが発行されることになります。変更する箇所が二箇所あるので、注意してください。
 
-```javascript
+```js
 // NftUploader.jsx
 <input className="nftUploadInput" multiple name="imageURL" type="file" accept=".jpg , .jpeg , .png" onChange={imageToNFT}/>
       </div>
@@ -286,7 +286,7 @@ const imageToNFT = async (e) => {
 
 `imageToNFT`関数について解説していきます!
 
-```javascript
+```js
 // NftUploader.jsx
 const imageToNFT = async (e) => {
         const client = new Web3Storage({ token: API_KEY })
@@ -310,14 +310,14 @@ const imageToNFT = async (e) => {
 
 `NftUploader.jsx`に戻って、API_KEYを定義しましょう。
 
-```javascript
+```js
 // NftUploader.jsx
 const API_KEY = "あなたのKEYをいれてください";
 ```
 
 次は、下記のコードを解説します。
 
-```javascript
+```js
 // NftUploader.jsx
 const rootCid = await client.put(image.files, {
   name: "experiment",
@@ -331,7 +331,7 @@ const rootCid = await client.put(image.files, {
 
 次は、下記のコードを解説します。
 
-```javascript
+```js
 // NftUploader.jsx
 const res = await client.get(rootCid); // Web3Response
 const files = await res.files(); // Web3File[]

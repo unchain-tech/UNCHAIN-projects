@@ -135,7 +135,7 @@ contract Messenger {
 > Solidity の`mapping`は、ほかの言語におけるハッシュテーブルや辞書のような役割を果たします。
 > これらは、下記のように`_Key`と`_Value`のペアの形式でデータを格納するために使用されます。
 >
-> ```javascript
+> ```js
 > mapping（_Key => _Value）public mappingName
 > ```
 

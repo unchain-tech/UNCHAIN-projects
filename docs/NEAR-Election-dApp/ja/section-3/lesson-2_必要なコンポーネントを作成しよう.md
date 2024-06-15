@@ -8,7 +8,7 @@
 
 [candidate_card.js]
 
-```javascript
+```js
 // 以下のように追加してください
 import React from "react";
 import { IpfsImage } from "react-ipfs-image";
@@ -36,7 +36,7 @@ export default CandidateCard;
 
 このインポートによってIPFSという分散化した画像保存の技術によって保存された画像をすばやく読み込むことができるようになります。
 
-```javascript
+```js
 import { IpfsImage } from "react-ipfs-image";
 ```
 
@@ -48,7 +48,7 @@ import { IpfsImage } from "react-ipfs-image";
 
 [input_form.js]
 
-```javascript
+```js
 // 以下のように追加してください
 import React from "react";
 
@@ -84,7 +84,7 @@ export default Input;
 
 ここで`preventDefault()`としているのは、デフォルトでのEnterキーを押した時に自動的に送信されることを防ぐためで
 
-```javascript
+```js
 <form className="w-3/5" onSubmit={e => { e.preventDefault(); }}>
 ```
 
@@ -96,7 +96,7 @@ export default Input;
 
 [title.js]
 
-```javascript
+```js
 // 以下のように追加してください
 import React from "react";
 

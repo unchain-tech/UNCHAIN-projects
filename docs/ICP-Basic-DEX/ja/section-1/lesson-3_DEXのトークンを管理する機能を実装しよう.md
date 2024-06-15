@@ -17,7 +17,7 @@ touch src/icp_basic_dex_backend/types.mo
 
 [types.mo]
 
-```javascript
+```js
 module {
   public type Token = Principal;
 }
@@ -33,7 +33,7 @@ touch src/icp_basic_dex_backend/balance_book.mo
 
 [balance_book.mo]
 
-```javascript
+```js
 import Iter "mo:base/Iter";
 import Principal "mo:base/Principal";
 import HashMap "mo:base/HashMap";
@@ -67,7 +67,7 @@ module {
 }
 ```
 
-```javascript
+```js
 var balance_book = HashMap.HashMap<Principal, HashMap.HashMap<T.Token, Nat>>(10, Principal.equal, Principal.hash);
 ```
 
@@ -162,13 +162,13 @@ module {
 
 最初の`get`関数は、ユーザーがDEX内に預けているトークンの情報を取得して返す関数です。ポイントは戻り値`?HashMap.HashMap<T.Token, Nat>`です。**?**をつけた型は`Option`型と呼ばれ、この場合、何かしらのエラーとなった場合には`null`を返し、それ以外の場合は指定した型の値を返すことができるようになります。
 
-```javascript
+```js
 public func get(user : Principal) : ?HashMap.HashMap<T.Token, Nat>
 ```
 
 HashMapが持つ[`get`関数](https://internetcomputer.org/docs/current/developer-docs/build/cdks/motoko-dfinity/base/HashMap#function-get)自体がOption型を返します。トークンの情報が取得できた場合はトークンPrincipalとトークン量のマップを返し、取得できなかった場合はそのまま`null`を返します。
 
-```javascript
+```js
 return balance_book.get(user);
 ```
 
@@ -176,13 +176,13 @@ return balance_book.get(user);
 
 3つ目の`removeToken`関数は、出金の際`balance_book`内のデータを更新する関数になります。ポイントは戻り値`?Nat`です。最初に定義した`get`関数同様に、Option型を返します。
 
-```javascript
+```js
 public func removeToken(user : Principal, token : T.Token, amount : Nat) : ?Nat
 ```
 
 ユーザーがトークンを引き出す際、残高が0または不足する場合にはエラーとして`null`を返します。問題がなければ、出金後の残高を返します。出金後にトークン残高が0になるようであれば、トークンデータを`balance_book`から削除します。
 
-```javascript
+```js
 // 残高と引き出す量が等しい時はトークンのデータごと削除
 if (balance == amount) {
   token_balance.delete(token);
@@ -194,7 +194,7 @@ if (balance == amount) {
 
 最後の`hasEnoughBalance`関数は、DEX内に入金されているユーザーのトークン量が十分かどうかを確認したい際にコールされる関数です。
 
-```javascript
+```js
 public func hasEnoughBalance(user : Principal, token : T.Token, amount : Nat) : Bool
 ```
 

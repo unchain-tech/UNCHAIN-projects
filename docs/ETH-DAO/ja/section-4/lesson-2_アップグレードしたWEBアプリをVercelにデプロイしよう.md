@@ -34,7 +34,7 @@ Vercelに関する詳しい説明は、[こちら](https://zenn.dev/lollipop_onl
 
 `next.config.js`では、全てのコードを以下のとおり更新します。
 
-```javascript
+```js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,

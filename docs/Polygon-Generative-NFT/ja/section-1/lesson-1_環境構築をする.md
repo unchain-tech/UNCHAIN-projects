@@ -29,7 +29,7 @@
 
 ダウンロードが完了したら、ターミナルで下記を行して、Python3のバージョンを確認してください。
 
-```javascript
+```js
 // Python のバージョンを確認
 python3 - V;
 ```
@@ -573,7 +573,7 @@ Pythonリストは、`rarity_weights`の重みを割り当てる最も一般的�
 
 次に、`config.py`の`Wristbands`に定義した`rarity_weights`を見てみましょう。
 
-```javascript
+```js
 {
 	'id': 8,
 	'name': 'wristband',

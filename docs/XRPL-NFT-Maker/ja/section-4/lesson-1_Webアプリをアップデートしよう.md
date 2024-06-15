@@ -1,4 +1,5 @@
 ### 🪄 最小限のプロダクトを完成させよう！
+
 今回のプロジェクトのMVP（＝最小限の機能を備えたプロダクト）を構築するNftUploader.jsxを共有します。
 
 見やすいように少し整理整頓してあります 🧹✨
@@ -6,17 +7,17 @@
 
 **`NftUploader.jsx`**
 
-```javascript
+```js
 import { Button } from "@mui/material";
 import { Xumm } from "xumm";
 import "./index.css";
 import { useEffect, useState } from "react";
 import { Buffer } from "buffer";
-import { XrplClient } from 'xrpl-client'
+import { XrplClient } from "xrpl-client";
 import { NFTStorage } from "nft.storage";
 
 const xumm = new Xumm("apikey");
-const nftStorage = new NFTStorage({ token: 'token' });
+const nftStorage = new NFTStorage({ token: "token" });
 
 export const NftMinter = () => {
   const [account, setAccount] = useState(undefined);
@@ -34,7 +35,7 @@ export const NftMinter = () => {
 
   const uploadImage = (e) => {
     const files = e.target.files;
-    setFile(files[0])
+    setFile(files[0]);
   };
 
   const mint = async () => {
@@ -71,7 +72,7 @@ export const NftMinter = () => {
       command: "tx",
       transaction: txid,
     });
-    const nftokenId = txResponse.meta.nftoken_id
+    const nftokenId = txResponse.meta.nftoken_id;
     alert("NFTトークンが発行されました！");
     window.open(`https://test.bithomp.com/nft/${nftokenId}`, "_blank");
   };
@@ -96,11 +97,11 @@ export const NftMinter = () => {
         </Button>
       </div>
       {file && (
-          <img
-            src={window.URL.createObjectURL(file)}
-            alt="nft"
-            className="nft-image"
-          />
+        <img
+          src={window.URL.createObjectURL(file)}
+          alt="nft"
+          className="nft-image"
+        />
       )}
       {account && (
         <div>
@@ -112,7 +113,6 @@ export const NftMinter = () => {
     </div>
   );
 };
-
 ```
 
 ### 😎 Web アプリケーションをアップグレードする
@@ -125,7 +125,7 @@ MVPを起点にWebアプリケーションを自分の好きなようにアッ�
 - tfTransferフラグ（8）が有効な場合のみロイヤリティが設定できることに注意してください
 - 設定するロイヤリティの値は、入力ボックスから入力できるようにすると良いですね
 
-**2\. SBTを発行する**
+**2\. SBT を発行する**
 
 - NFTokenMintトランザクションで`Flags`フィールドからtfTransferフラグを削除し、SBTを発行できるようにしましょう。
 - tfTransferフラグを切り替えるチェックボックスがあると良いですね。
@@ -133,7 +133,6 @@ MVPを起点にWebアプリケーションを自分の好きなようにアッ�
 **3\. メタデータ情報を入力する**
 
 - 現在NFTのメタデータ情報（name, description）はハードコーディングされています。これをMint時に入力できるようにしましょう。
-
 
 ### 🙋‍♂️ 質問する
 

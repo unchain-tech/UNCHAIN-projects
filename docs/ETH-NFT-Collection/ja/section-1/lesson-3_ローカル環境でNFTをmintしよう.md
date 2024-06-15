@@ -122,7 +122,7 @@ classの概念については、[ここ](https://aiacademy.jp/media/?p=131)を�
 
 `scripts/deploy.js`ファイルを、以下の内容に書き換えてください。
 
-```javascript
+```js
 // deploy.js
 async function main() {
   // コントラクトがコンパイルします
@@ -133,7 +133,7 @@ async function main() {
   // コントラクトが Mint され、ローカルのブロックチェーンにデプロイされるまで待ちます。
   await nftContract.deployed();
   console.log("Contract deployed to:", nftContract.address);
-};
+}
 
 main().catch((error) => {
   console.error(error);
@@ -143,7 +143,7 @@ main().catch((error) => {
 
 一行ずつコードを見ていきましょう。
 
-```javascript
+```js
 // deploy.js
 const nftContractFactory = await hre.ethers.getContractFactory("MyEpicNFT");
 ```
@@ -164,7 +164,7 @@ const nftContractFactory = await hre.ethers.getContractFactory("MyEpicNFT");
 >
 > つまり、`hre.ethers.getContractFactory("MyEpicNFT")`の処理が終わるまで、`main`関数の中に記載されている他の処理は実行されないということです。
 
-```javascript
+```js
 // deploy.js
 const nftContract = await nftContractFactory.deploy();
 ```
@@ -175,7 +175,7 @@ HardhatがローカルのEthereumネットワークを、コントラクトの�
 
 - 常にゼロリセットとなるので、エラーのデバッグがしやすくなります。
 
-```javascript
+```js
 // deploy.js
 await nftContract.deployed();
 ```
@@ -185,7 +185,7 @@ Hardhatは実際にあなたのマシン上に「マイナー」を作成し、�
 
 最後に、デプロイされると、`nftContract.address`はデプロイされたコントラクトのアドレスを出力します。
 
-```javascript
+```js
 console.log("Contract deployed to:", nftContract.address);
 ```
 

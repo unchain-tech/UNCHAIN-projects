@@ -415,7 +415,7 @@ export default function Buy({ itemID }) {
 
 アイテムの購入状態は、`lib/api.js`の`hasPurchased`関数をモック化することで設定しています。
 
-```javascript
+```js
 // __tests__/Buy.test.js
 
 // 各テストの状況に合わせて戻り値を設定します。
@@ -433,7 +433,7 @@ describe('Buy', () => {
 
 Buy nowボタンを押したときの挙動は、fetch関数をモックして成功ステータスを返す・sendTransaction関数が期待する引数を受け取るかどうかを確認することでテストしています。
 
-```javascript
+```js
 // __tests__/Buy.test.js
 
 // 下記のように成功ステータスを含むレスポンスを定義します。
@@ -453,7 +453,7 @@ global.fetch = jest.fn(() => createTransactionMock());
 
 関数が期待する引数を受け取るかどうかは、下記の部分で確認しています。
 
-```javascript
+```js
 // __tests__/Buy.test.js
 
 /** 確認 */

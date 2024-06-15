@@ -10,7 +10,7 @@ Webアプリケーション上で、ユーザーがイーサリアムネット�
 
 - `App.js`はあなたのWebアプリケーションのフロントエンド機能を果たします。
 
-```javascript
+```js
 import React, { useEffect } from "react";
 
 import "./App.css";
@@ -95,7 +95,7 @@ Consoleに`We have the ethereum object`と表示されているでしょうか�
 
 下記のように、`App.js`の中身を更新します。
 
-```javascript
+```js
 import React, { useEffect, useState } from "react";
 
 import "./App.css";
@@ -166,7 +166,7 @@ export default App;
 
 新しく追加したコードを見ていきます。
 
-```javascript
+```js
 /* ユーザーのウォレットへのアクセスが許可されているかどうかを確認します */
 const accounts = await ethereum.request({ method: "eth_accounts" });
 if (accounts.length !== 0) {
@@ -199,7 +199,7 @@ yarn client start
 > ✍️: Console の結果を見てわかること
 > `App.js`に記載されているコードは上から順を追って走っているので、最初に`currentAccount`の状態変数を定義したときには、中身が空であることがわかります。
 
-> ```javascript
+> ```js
 > // App.js
 > const [currentAccount, setCurrentAccount] = useState("");
 > /*この段階でcurrentAccountの中身は空*/
@@ -238,7 +238,7 @@ yarn client start
 
 `connectWallet`ボタンを作成していきます。
 
-```javascript
+```js
 import React, { useEffect, useState } from "react";
 
 import "./App.css";
@@ -339,7 +339,7 @@ export default App;
 
 **1 \. `connectWallet`メソッドを実装**
 
-```javascript
+```js
 const connectWallet = async () => {
   try {
     // ユーザーが認証可能なウォレットアドレスを持っているか確認
@@ -362,7 +362,7 @@ const connectWallet = async () => {
 
 **2 \. ウォレットコネクトのボタンを実装**
 
-```javascript
+```js
 // currentAccountが存在しない場合は、「Connect Wallet」ボタンを実装
 {
   !currentAccount && (

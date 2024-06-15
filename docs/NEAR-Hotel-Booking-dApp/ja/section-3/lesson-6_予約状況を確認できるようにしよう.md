@@ -72,7 +72,7 @@ export default GuestBookedList;
 
 宿泊者の予約データは、`get_booking_info_for_guest`メソッドにアカウントIDを渡して取得します。
 
-```javascript
+```js
 const getGuestBookedRooms = async () => {
   try {
     setGuestBookedRooms(await get_booking_info_for_guest(window.accountId));
@@ -234,7 +234,7 @@ export default ManageBookings;
 次は、**Check In**ボタンを押した時に実行される関数を定義しています。ステータスを変更する前に`is_available`メソッドを呼び出し、滞在者がいるかどうかを確認します。これは、同じ部屋に対し複数の予約がある場合、オーナーが誤ってボタンを押してしまっても予約データを変更しないようにするためです。
 空室であれば`change_status_to_stay`メソッドを実行して、ステータスを変更します。
 
-```javascript
+```js
 const handleCheckIn = async (room_id, check_in_date) => {
   // 部屋が空室かを確認
   let isAvailable = await is_available(room_id);
@@ -257,7 +257,7 @@ const handleCheckIn = async (room_id, check_in_date) => {
 
 return文では、ステータスに応じてボタンの実装を変更しています。
 
-```javascript
+```js
 {
   /*ステータスが`Available`の時*/
 }

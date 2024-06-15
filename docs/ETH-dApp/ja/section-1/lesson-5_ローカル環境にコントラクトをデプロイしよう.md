@@ -24,6 +24,7 @@
 ```
 
 では下のコマンドを実行してみましょう。
+
 ```
 yarn contract start
 ```
@@ -40,18 +41,18 @@ yarn contract start
 
 - `run.js`がテスト用のプログラムなら、`deploy.js`は本番用です。
 
-```javascript
+```js
 const main = async () => {
   const [deployer] = await hre.ethers.getSigners();
   const accountBalance = await deployer.getBalance();
-  const waveContractFactory = await hre.ethers.getContractFactory('WavePortal');
+  const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
   const waveContract = await waveContractFactory.deploy();
-  const wavePortal = await waveContract.deployed()
+  const wavePortal = await waveContract.deployed();
 
-  console.log('Deploying contracts with account: ', deployer.address);
-  console.log('Account balance: ', accountBalance.toString());
-  console.log('Contract deployed to: ', wavePortal.address);
-  console.log('Contract deployed by: ', deployer.address);
+  console.log("Deploying contracts with account: ", deployer.address);
+  console.log("Account balance: ", accountBalance.toString());
+  console.log("Contract deployed to: ", wavePortal.address);
+  console.log("Contract deployed by: ", deployer.address);
 };
 
 const runMain = async () => {
@@ -124,6 +125,7 @@ Contract deployed to:  0x5FbDB2315678afecb367f032d93F642f64180aa3
 ```
 
 ここには、**あなたのスマートコントラクトのデプロイ先のアドレス**が表示されています。
+
 ### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discordの`#ethereum`で質問をしてください。

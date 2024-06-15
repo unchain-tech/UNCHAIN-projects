@@ -6,7 +6,6 @@
 
 そのため、`total_gifs`でGIFの投稿数の管理ができるとかなり便利です。
 
-
 ### 🥞 GIF カウントを保存する　
 
 GIFの投稿数を保存するための変数`total_gifs`を定義し、誰かが新しくGIFを投稿した際に、`total_gifs`の数値を`+1`すれば良いだけです。
@@ -59,8 +58,7 @@ pub struct BaseAccount {
 
 以下でコードの中身を詳しく説明していきます。
 
-
-### 🤠アカウントを初期化する
+### 🤠 アカウントを初期化する
 
 ```rust
 #[account]
@@ -124,19 +122,18 @@ pub fn start_stuff_off(ctx: Context<StartStuffOff>) -> Result <()> {
 
 最後に、`start_stuff_off`関数内で`Context<StartStuffOff>`を実行して、`StartStuffOff`コンテキストから`base_account`を取得する処理を実行します。
 
-
 ### 👋 アカウントデータを取得する
 
 JavaScriptの世界でもアカウントデータを取得できるようになったので、`myepicproject.js`を以下のとおり更新しましょう。
 
-```javascript
-const anchor = require('@project-serum/anchor');
+```js
+const anchor = require("@project-serum/anchor");
 
 // 以下の処理に必要なSystemProgramモジュールを用意します。
 const { SystemProgram } = anchor.web3;
 
-const main = async() => {
-  console.log("🚀 Starting test...")
+const main = async () => {
+  console.log("🚀 Starting test...");
 
   // フロントエンドと通信するためにプロバイダを再度作成して設定します。
   const provider = anchor.AnchorProvider.env();
@@ -161,8 +158,8 @@ const main = async() => {
 
   // アカウントからデータを取得します。
   let account = await program.account.baseAccount.fetch(baseAccount.publicKey);
-  console.log('👀 GIF Count', account.totalGifs.toString())
-}
+  console.log("👀 GIF Count", account.totalGifs.toString());
+};
 
 const runMain = async () => {
   try {
@@ -181,9 +178,9 @@ runMain();
 
 `program.rpc.startStuffOff`では、`lib.rs`で指定した`pub struct StartStuffOff`のパラメータを渡しています。
 
-```javascript
-await program.account.baseAccount.fetch(baseAccount.publicKey)
-console.log('👀 GIF Count', account.totalGifs.toString())
+```js
+await program.account.baseAccount.fetch(baseAccount.publicKey);
+console.log("👀 GIF Count", account.totalGifs.toString());
 ```
 
 ここでは、作成したアカウントを取得して、`totalGifs`にアクセスしています。
@@ -199,7 +196,6 @@ console.log('👀 GIF Count', account.totalGifs.toString())
 `GIF Count`が0になっていますね。
 
 これで、実際にプログラムを呼び出し、Solanaチェーン上にデータを保存することができました。
-
 
 ### 👷‍♀️ GIF カウンターを更新する関数を作成する
 
@@ -277,19 +273,18 @@ pub fn add_gif(ctx: Context<AddGif>) -> Result <()> {
 
 `add_gif`関数では、`Context<AddGif>`を介して関数に渡された`base_account`を取得し、カウンターをインクリメントしています。
 
-
 ### 🌈 テストスクリプトを更新する
 
 プログラムを更新するたびに、テストスクリプトを更新してテストを実行する必要があります。
 
 `myepicproject.js`を以下のとおり更新して`add_gif`を呼び出してみましょう。
 
-```javascript
-const anchor = require('@project-serum/anchor');
+```js
+const anchor = require("@project-serum/anchor");
 const { SystemProgram } = anchor.web3;
 
-const main = async() => {
-  console.log("🚀 Starting test...")
+const main = async () => {
+  console.log("🚀 Starting test...");
 
   const provider = anchor.AnchorProvider.env();
   anchor.setProvider(provider);
@@ -307,7 +302,7 @@ const main = async() => {
   console.log("📝 Your transaction signature", tx);
 
   let account = await program.account.baseAccount.fetch(baseAccount.publicKey);
-  console.log('👀 GIF Count', account.totalGifs.toString())
+  console.log("👀 GIF Count", account.totalGifs.toString());
 
   // add_gif関数を呼び出します。
   await program.rpc.addGif({
@@ -318,8 +313,8 @@ const main = async() => {
 
   // もう一度アカウントを取得してtotal_gifsを確認します。
   account = await program.account.baseAccount.fetch(baseAccount.publicKey);
-  console.log('👀 GIF Count', account.totalGifs.toString())
-}
+  console.log("👀 GIF Count", account.totalGifs.toString());
+};
 
 const runMain = async () => {
   try {
@@ -358,7 +353,6 @@ anchor test
 > これは、`anchor.web3.Keypair.generate()`によって、`anchor test`のたびにアカウントのキーペアが生成されるためです。
 >
 > Web アプリケーションではこの対処を行いますが、テスト時には毎回はじめから確認できるので便利です。
-
 
 ### 🙋‍♂️ 質問する
 
