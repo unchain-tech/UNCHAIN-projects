@@ -6,7 +6,7 @@
 
 **`run.js`はローカル環境でスマートコントラクトのテストを行うためのテストプログラムです。**
 
-```javascript
+```js
 async function main() {
   // あなたのコレクションの Base Token URI（JSON の CID）に差し替えてください
   const baseTokenURI = "ipfs://QmZbWNKJPAjxXuNFSEaksCJVd1M6DaKQViJBYPK2BdpDEP/";
@@ -56,28 +56,28 @@ main()
 
 - NFTコレクションのメタデータを取得。**`beseTokenURI`のアドレスをあなたの IPSF のアドレスに変更してください。**
 
-  ```javascript
+  ```js
   // あなたのコレクションの Base Token URI（JSON の CID）に差し替えてください
   const baseTokenURI = "ipfs://QmZbWNKJPAjxXuNFSEaksCJVd1M6DaKQViJBYPK2BdpDEP/";
   ```
 
 - コントラクトの所有者（あなた）のアドレスを取得。
 
-  ```javascript
+  ```js
   // オーナー/デプロイヤーのウォレットアドレスを取得する
   const [owner] = await hre.ethers.getSigners();
   ```
 
 - デプロイしたいコントラクトを取得。
 
-  ```javascript
+  ```js
   // デプロイしたいコントラクトを取得
   const contractFactory = await hre.ethers.getContractFactory("NFTCollectible");
   ```
 
 - コントラクトをデプロイするためのリクエストを送り、マイナーがこのリクエストを選んでブロックチェーンに追加するのを待つ（トランザクションの承認待ち）。
 
-  ```javascript
+  ```js
   // 正しいコンストラクタ引数（baseTokenURI）でコントラクトをデプロイします。
   const contract = await contractFactory.deploy(baseTokenURI);
 
@@ -87,7 +87,7 @@ main()
 
 - トランザクションが承認（mine）されると、コントラクトのアドレスが取得される。
 
-  ```javascript
+  ```js
   // コントラクトアドレスをターミナルに出力
   console.log("Contract deployed to:", contract.address);
   ```
@@ -96,7 +96,7 @@ main()
 
 - 10 NFTを予約し、コントラクトに0.03 ETHを送信して、3 NFTをMintし、所有するNFTをチェックします。
 
-  ```javascript
+  ```js
   // 1. NFTを 10 点、コントラクト所有者のためにキープする
   let txn = await contract.reserveNFTs();
   await txn.wait();

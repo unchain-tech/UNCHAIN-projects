@@ -2,7 +2,7 @@
 
 ここから、ネームサービスの中身を作成していきましょう。
 
-### 💽ドメインデータをブロックチェーンに保存する
+### 💽 ドメインデータをブロックチェーンに保存する
 
 ネームサービスのポイントは、人々がインターネット上のあなた固有の名前に便利にアクセスすることができるということです。
 
@@ -54,7 +54,6 @@ contract Domains {
 
 いわゆる認証のようなものです。
 
-
 スマートコントラクトを呼び出すには、有効なウォレットを使用してトランザクションに署名する必要があるため、**誰が関数を呼び出したかを正確に把握する**必要があります。
 
 **`msg.sender`は今後もよく目にすることになる**でしょう。
@@ -65,10 +64,9 @@ contract Domains {
 
 `getAddress`関数はまさにそれを行います-**ドメイン所有者のウォレットアドレスを取得**します。
 
-
 上の関数定義においてポイントがあるので、それらを見てみましょう。
 
-- `calldata`  これは`name`引数が格納されるべき場所を示します。ブロックチェーンでデータを処理するには実際の費用がかかるため、Solidityでは参照データを格納する場所を指定できます。`calldata`は一時的なデータで不変です。ガスの消費量は最も少ないです。(cf. `memory`一時的で可変)
+- `calldata`これは`name`引数が格納されるべき場所を示します。ブロックチェーンでデータを処理するには実際の費用がかかるため、Solidityでは参照データを格納する場所を指定できます。`calldata`は一時的なデータで不変です。ガスの消費量は最も少ないです。(cf. `memory`一時的で可変)
 
 - `public`これはアクセスに関する修飾子です。 他のコントラクトを含め、どこからでもアクセスできます。
 
@@ -76,7 +74,7 @@ contract Domains {
 
 - `returns(string)`コントラクトは呼び出されたときに文字列変数を返します。
 
-### ✅ run.jsを更新する
+### ✅ run.js を更新する
 
 `run.js`でテストを行うため変更を加えましょう。
 
@@ -88,21 +86,21 @@ APIに詳しい方ならパブリックなAPIのエンドポイントのよう�
 
 では具体的にテストしたいと思います。
 
-```javascript
+```js
 const main = async () => {
   const [owner, randomPerson] = await hre.ethers.getSigners();
-  const domainContractFactory = await hre.ethers.getContractFactory('Domains');
+  const domainContractFactory = await hre.ethers.getContractFactory("Domains");
   const domainContract = await domainContractFactory.deploy();
   await domainContract.deployed();
-  console.log('Contract deployed to:', domainContract.address);
-  console.log('Contract deployed by:', owner.address);
+  console.log("Contract deployed to:", domainContract.address);
+  console.log("Contract deployed by:", owner.address);
 
-  const txn = await domainContract.register('doom');
+  const txn = await domainContract.register("doom");
   await txn.wait();
 
-  const domainOwner = await domainContract.getAddress('doom');
-  console.log('Owner of domain:', domainOwner);
-}
+  const domainOwner = await domainContract.getAddress("doom");
+  console.log("Owner of domain:", domainOwner);
+};
 
 const runMain = async () => {
   try {
@@ -117,13 +115,11 @@ const runMain = async () => {
 runMain();
 ```
 
-
-
 ### 🤔 動作を確認しよう
 
 順番に見ていきましょう。
 
-```javascript
+```js
 const [owner, randomPerson] = await hre.ethers.getSigners();
 ```
 
@@ -133,18 +129,18 @@ const [owner, randomPerson] = await hre.ethers.getSigners();
 
 コントラクトをデプロイした人のアドレスを出力します。
 
-```javascript
-console.log('Contract deployed by:', owner.address);
+```js
+console.log("Contract deployed by:", owner.address);
 ```
 
 最後にこれを追加しています。
 
-```javascript
-const txn = await domainContract.register('doom');
+```js
+const txn = await domainContract.register("doom");
 await txn.wait();
 
-const domainOwner = await domainContract.getAddress('doom');
-console.log('Owner of domain:', domainOwner);
+const domainOwner = await domainContract.getAddress("doom");
+console.log("Owner of domain:", domainOwner);
 ```
 
 まず、`doom`を引数として`register`関数を呼び出します。
@@ -170,7 +166,7 @@ Contract deployed by: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
 Owner of domain: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
 ```
 
-### 🎯レコードの保存
+### 🎯 レコードの保存
 
 これで、スマートコントラクトにドメインを登録できます。
 
@@ -237,7 +233,7 @@ contract Domains {
 
 これは、他の人があなたのドメインを取得したり、レコードを変更したりするのを防ぐためのものです。
 
-マクドナルドにハッピーセットを注文し、誰かが注文をエッグマフィンに変更したら困りますね😠
+マクドナルドにハッピーセットを注文し、誰かが注文をエッグマフィンに変更したら困りますね 😠
 
 スマートコントラクトで何かを指示した場合、あなた以外の人が勝手に内容を変更しては困ります。
 
@@ -251,13 +247,11 @@ require文の括弧の中の条件が満たされない場合、トランザク�
 require(domains[name] == address(0));
 ```
 
-
 ここでは、登録しようとしているドメインのアドレスが現在登録されていない（0）であるということを確認しています。
 
 Solidityではアドレスマッピングが初期化されると、その中のすべてのエントリはゼロアドレスとなります。
 
 したがって、ドメインが登録されていない場合は、ゼロアドレスを指します。
-
 
 ```solidity
 require(domains[name] == msg.sender);
@@ -269,24 +263,22 @@ require(domains[name] == msg.sender);
 
 では`run.js`を以下のように変更してみましょう。
 
-
-```javascript
+```js
 const main = async () => {
   // 1つ目のアドレスは呼び出す人、2つ目のアドレスはランダムです。
   const [owner, randomPerson] = await hre.ethers.getSigners();
-  const domainContractFactory = await hre.ethers.getContractFactory('Domains');
+  const domainContractFactory = await hre.ethers.getContractFactory("Domains");
   const domainContract = await domainContractFactory.deploy();
   await domainContract.deployed();
-  console.log('Contract deployed to:', domainContract.address);
-  console.log('Contract deployed by:', owner.address);
+  console.log("Contract deployed to:", domainContract.address);
+  console.log("Contract deployed by:", owner.address);
 
-  let txn = await domainContract.register('doom');
+  let txn = await domainContract.register("doom");
   await txn.wait();
 
-  const domainAddress = await domainContract.getAddress('doom');
-  console.log('Owner of domain doom:', domainAddress);
-
-}
+  const domainAddress = await domainContract.getAddress("doom");
+  console.log("Owner of domain doom:", domainAddress);
+};
 
 const runMain = async () => {
   try {
@@ -306,6 +298,7 @@ runMain();
 ```
 yarn contract run:script
 ```
+
 次のような画面になります。
 
 ```
@@ -325,26 +318,28 @@ Owner of domain doom: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
 
 `run.js`に数行付け加えました。
 
-```javascript
+```js
 const main = async () => {
   // 1つ目のアドレスは呼び出す人、2つ目のアドレスはランダムです。
   const [owner, randomPerson] = await hre.ethers.getSigners();
-  const domainContractFactory = await hre.ethers.getContractFactory('Domains');
+  const domainContractFactory = await hre.ethers.getContractFactory("Domains");
   const domainContract = await domainContractFactory.deploy();
   await domainContract.deployed();
-  console.log('Contract deployed to:', domainContract.address);
-  console.log('Contract deployed by:', owner.address);
+  console.log("Contract deployed to:", domainContract.address);
+  console.log("Contract deployed by:", owner.address);
 
-  let txn = await domainContract.register('doom');
+  let txn = await domainContract.register("doom");
   await txn.wait();
 
-  const domainAddress = await domainContract.getAddress('doom');
-  console.log('Owner of domain doom:', domainAddress);
+  const domainAddress = await domainContract.getAddress("doom");
+  console.log("Owner of domain doom:", domainAddress);
 
   // 自分以外でデータを記録してみます。
-  txn = await domainContract.connect(randomPerson).setRecord('doom', 'Haha my domain now!');
+  txn = await domainContract
+    .connect(randomPerson)
+    .setRecord("doom", "Haha my domain now!");
   await txn.wait();
-}
+};
 
 const runMain = async () => {
   try {
@@ -357,7 +352,6 @@ const runMain = async () => {
 };
 
 runMain();
-
 ```
 
 スクリプトを実行します。
@@ -368,12 +362,12 @@ yarn contract run:script
 
 **次のスクリプトの箇所でエラーが発生します**
 
-```javascript
-txn = await domainContract.connect(randomPerson).setRecord('doom', 'Haha my domain now!');
+```js
+txn = await domainContract
+  .connect(randomPerson)
+  .setRecord("doom", "Haha my domain now!");
 await txn.wait();
 ```
-
-
 
 なぜなら**自分のものではない**ドメインのレコードをセットしようとしているためです。
 

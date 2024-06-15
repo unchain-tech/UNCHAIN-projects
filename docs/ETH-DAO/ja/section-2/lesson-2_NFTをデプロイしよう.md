@@ -6,7 +6,7 @@
 
 `src/scripts/1-initialize-sdk.ts`を作成して、以下を追加します。
 
-```typescript
+```ts
 import nextEnv from "@next/env";
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 
@@ -65,7 +65,7 @@ export default sdk;
 
 続いて、`next.config.js`を以下のとおり変更します。
 
-```typescript
+```ts
 /** @type {import('next').NextConfig} */
 export const nextConfig = {
   reactStrictMode: true,
@@ -109,7 +109,7 @@ _📝 備考: `ExperimentalWarning`のようなランダムな警告が表示さ
 
 ※ コレクションのアイコンとなる画像はお気に入りの画像に変更しておきましょう。
 
-```typescript
+```ts
 import { AddressZero } from "@ethersproject/constants";
 import { readFileSync } from "fs";
 

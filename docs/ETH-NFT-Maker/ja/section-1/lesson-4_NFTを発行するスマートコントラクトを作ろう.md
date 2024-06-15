@@ -262,7 +262,7 @@ _setTokenURI(
 ここから、実際に`makeAnEpicNFT()`関数を呼び出し、スマートコントラクトが問題なくデプロイされるかテストしていきます。
 テスト用のプログラム`run.js`ファイルを下記のように変更しましょう。
 
-```javascript
+```js
 const main = async () => {
   const nftContractFactory = await hre.ethers.getContractFactory("Web3Mint");
   const nftContract = await nftContractFactory.deploy();
@@ -402,7 +402,7 @@ Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押して�
 
 テストネットにコントラクトをデプロイするために、`scripts`ディレクトリの中にある`deploy.js`を以下のとおり更新します。
 
-```javascript
+```js
 const main = async () => {
   // コントラクトがコンパイルします
   // コントラクトを扱うために必要なファイルが `artifacts` ディレクトリの直下に生成されます。
@@ -456,7 +456,7 @@ hardhat.config.js
 
 下記のように、`hardhat.config.js`の中身を更新します。
 
-```javascript
+```js
 require("@nomicfoundation/hardhat-toolbox");
 module.exports = {
   solidity: "0.8.17",

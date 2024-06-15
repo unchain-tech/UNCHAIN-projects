@@ -18,7 +18,7 @@ yarn workspace contract add dotenv^16.0.3
 
 `hardhat.config.js`を変更します。
 
-```javascript
+```js
 require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
 

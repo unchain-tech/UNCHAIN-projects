@@ -10,7 +10,7 @@
 
 23~25行目の部分には、コントラクトのデプロイ時に出てくるアドレスをそれぞれ対応する変数に代入してください。
 
-```javascript
+```js
 import { ethers } from "ethers";
 import React, { useEffect, useState } from "react";
 

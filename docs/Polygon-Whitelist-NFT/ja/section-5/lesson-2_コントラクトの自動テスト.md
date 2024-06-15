@@ -10,7 +10,7 @@ packages/contract/testフォルダを更新しましょう。`Lock.ts`を削除�
 
 `Whitelist.test.ts`：
 
-```typescript
+```ts
 import { loadFixture } from "@nomicfoundation/hardhat-network-helpers";
 import { expect } from "chai";
 import { ethers } from "hardhat";
@@ -128,7 +128,7 @@ describe("Whitelist", function () {
 
 `Shield.test.ts`：
 
-```typescript
+```ts
 import { loadFixture } from "@nomicfoundation/hardhat-network-helpers";
 import { expect } from "chai";
 import { ethers } from "hardhat";
@@ -320,7 +320,7 @@ Whitelistコントラクトのテストを例に、コードを確認しまし�
 
 準備のセクションでは、テストを実行するために必要な状態を作成します。ここでは、Whitelistコントラクトをデプロイし、ownerとaliceのアドレスをホワイトリストに追加しています。
 
-```typescript
+```ts
 describe('Whitelist', function () {
   // すべてのテストで同じセットアップを再利用するために、フィクスチャを定義します。
   // loadFixture を使ってこのセットアップを一度実行し、その状態をスナップショットします。
@@ -352,7 +352,7 @@ describe('Whitelist', function () {
 
 実行・検証のセクションでは、実際にテスト対象の関数を実行し、期待する結果が得られるかどうかを確認します。
 
-```typescript
+```ts
         // 実行と検証
         // コントラクトのオーナーではないアカウントがaddToWhitelist関数を実行しようとすると、エラーとなることを確認します。
         await expect(

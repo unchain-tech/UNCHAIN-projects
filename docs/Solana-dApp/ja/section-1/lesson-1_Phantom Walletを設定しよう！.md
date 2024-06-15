@@ -118,7 +118,7 @@ export default App;
 
 `App.js`を分解して説明していきます。
 
-```javascript
+```js
 const checkIfWalletIsConnected = async () => {
   try {
     const { solana } = window;
@@ -138,7 +138,7 @@ const checkIfWalletIsConnected = async () => {
 
 `checkIfWalletIsConnected`関数では、`window`オブジェクトをチェックして`solana`オブジェクトが存在しているか、また、それがPhantom Walletであるかどうかを確認し、存在しない場合はPhantom Walletをダウンロードするようにアラートを表示します。
 
-```javascript
+```js
 useEffect(() => {
   const onLoad = async () => {
     await checkIfWalletIsConnected();
@@ -186,7 +186,7 @@ Webアプリケーションでは、ユーザーがWebアプリケーション�
 
 それでは、`checkIfWalletIsConnected`関数を以下のように修正してください。
 
-```javascript
+```js
 const checkIfWalletIsConnected = async () => {
   try {
     const { solana } = window;

@@ -96,7 +96,7 @@ constructor() payable {
 
 - `run.js`はコントラクトのコア機能のテストを行うためのスクリプトです。
 
-```javascript
+```js
 const main = async () => {
   const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
   /*
@@ -155,7 +155,7 @@ runMain();
 
 **1 \. 0.1ETH をコントラクトに提供する**
 
-```javascript
+```js
 const waveContract = await waveContractFactory.deploy({
   value: hre.ethers.utils.parseEther("0.1"),
 });
@@ -163,7 +163,7 @@ const waveContract = await waveContractFactory.deploy({
 
 `hre.ethers.utils.parseEther("0.1")`によって、コントラクトがデプロイされた際に、コントラクトに0.1 ETHの資金を提供することを宣言しています。
 
-```javascript
+```js
 let contractBalance = await hre.ethers.provider.getBalance(
   waveContract.address
 );
@@ -175,7 +175,7 @@ let contractBalance = await hre.ethers.provider.getBalance(
 
 **2 \. コントラクトの資金を確認する**
 
-```javascript
+```js
 console.log("Contract balance:", hre.ethers.utils.formatEther(contractBalance));
 ```
 
@@ -183,7 +183,7 @@ console.log("Contract balance:", hre.ethers.utils.formatEther(contractBalance));
 
 **3 \. `wave`したあとのコントラクトの残高を確認する**
 
-```javascript
+```js
 /*
  * Wave
  */
@@ -232,7 +232,7 @@ Contract balance: 0.0999
 
 本番環境でコントラクトに資金を提供するため、下記のように`deploy.js`を更新します。
 
-```javascript
+```js
 const main = async () => {
   const [deployer] = await hre.ethers.getSigners();
   const accountBalance = await deployer.getBalance();
@@ -266,7 +266,7 @@ runMain();
 
 更新したコードは下記です。
 
-```javascript
+```js
 const waveContract = await waveContractFactory.deploy({
   value: hre.ethers.utils.parseEther("0.001"),
 });

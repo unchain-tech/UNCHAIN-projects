@@ -252,7 +252,7 @@ yarn add -D tailwindcss postcss &&  npx tailwindcss init
 
 [tailwind.config.js]
 
-```javascript
+```js
 module.exports = {
   content: ["./frontend/**/*.{js,jsx,ts,tsx}"],
   theme: {
@@ -284,7 +284,7 @@ module.exports = {
 
 [App.js]
 
-```javascript
+```js
 <p className="text-red-600">
 ```
 

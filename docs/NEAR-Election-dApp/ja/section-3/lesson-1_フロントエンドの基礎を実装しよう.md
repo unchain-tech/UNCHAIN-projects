@@ -80,7 +80,7 @@ CONTRACT_NAME=YOUR_WALLET_ID
 
 [utils.js]
 
-```javascript
+```js
 // 以下のように書き換えてください
 import { connect, Contract, keyStores, WalletConnection } from "near-api-js";
 import getConfig from "./config";
@@ -238,7 +238,7 @@ export async function reopen_election() {
 
 `viewMethods`は返り値を得るだけの関数で、`changeMethods`はコントラクトに格納されているデータを書き換える関数が入ります。
 
-```javascript
+```js
 contractName,
   {
     viewMethods: [
@@ -266,7 +266,7 @@ contractName,
 
 そうすることで関数を使用する時に混乱することがなくなります！
 
-```javascript
+```js
 export async function new_default_meta() {
   await window.contract.new_default_meta({ owner_id: window.accountId });
 }
@@ -362,7 +362,7 @@ export async function reopen_election() {
 
 いくつか下のような値がついていますが、これらは上がガス代、下はコントラクトにdepositするNEARの値を示しています。
 
-```javascript
+```js
 300000000000000, new BN("1000000000000000000000000");
 ```
 
@@ -372,7 +372,7 @@ export async function reopen_election() {
 
 [App.js]
 
-```javascript
+```js
 // 以下のように書き換えてください
 import "regenerator-runtime/runtime";
 import React from "react";
@@ -465,7 +465,7 @@ export default function App() {
 
 一番下の部分では`login, logout`という関数をコントラクトからインポートしています。
 
-```javascript
+```js
 import "regenerator-runtime/runtime";
 import React from "react";
 
@@ -489,7 +489,7 @@ import { login, logout } from "./assets/js/near/utils";
 
 この部分の最後のところのボタンは押すとサインインの関数が走るようになっています。
 
-```javascript
+```js
 if (!window.walletConnection.isSignedIn()) {
   return (
     // sign in screen
@@ -521,7 +521,7 @@ if (!window.walletConnection.isSignedIn()) {
 
 最後の`<AppRouter />`がボディの部分のUIとなり、URLによって画面が遷移するようになっています。
 
-```javascript
+```js
 return (
   // home screen
   <div className="bg-white min-h-screen">
@@ -575,7 +575,7 @@ return (
 
 [AppRouter.js]
 
-```javascript
+```js
 // 以下を追加してください
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -606,7 +606,7 @@ pagesにある`home.js, candidate.js, voter.js`を下のように編集しまし
 
 [home.js]
 
-```javascript
+```js
 // 以下のように書き換えてください
 import React from "react";
 
@@ -619,7 +619,7 @@ export default Home;
 
 [candidate.js]
 
-```javascript
+```js
 // 以下のように書き換えてください
 import React from "react";
 
@@ -632,7 +632,7 @@ export default Candidate;
 
 [voter.js]
 
-```javascript
+```js
 // 以下のように書き換えてください
 import React from "react";
 

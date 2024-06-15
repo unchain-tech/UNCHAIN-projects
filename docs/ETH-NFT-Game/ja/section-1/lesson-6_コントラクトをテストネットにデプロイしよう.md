@@ -123,7 +123,7 @@ MetaMaskウォレットに`Sepolia Test Network`が設定されたら、下記�
 
 内容は、既存の`run.js`に、`mintCharacterNFT`関数の呼び出しを追加しただけです。
 
-```javascript
+```js
 const main = async () => {
   // これにより、`MyEpicGame` コントラクトがコンパイルされます。
   // コントラクトがコンパイルされたら、コントラクトを扱うために必要なファイルが artifacts ディレクトリの直下に生成されます。
@@ -198,7 +198,7 @@ hardhat.config.js
 
 `hardhat.config.js`をVS Codeで開いて、中身を編集していきます。
 
-```javascript
+```js
 require("@nomicfoundation/hardhat-toolbox");
 module.exports = {
   solidity: "0.8.17",

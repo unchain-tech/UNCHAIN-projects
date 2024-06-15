@@ -214,14 +214,14 @@ actor class Dex() = this {
 
 全てのオーダーから、ユーザーが出したオーダーと出金したいトークンが`from`として保存されているものを探します。
 
-```javascript
+```js
 for (order in exchange.getOrders().vals()) {
   if (msg.caller == order.owner and token == order.from) {
 ```
 
 一致したものがあれば、次に残高を調べます。引き出した後のトークン量が、オーダーで出しているトークン量に満たない場合は、オーダーを削除します。もし、`cancelOrder`関数を実行した際に何かしらのエラーが生じて`null`が返ってきてしまったら、エラーを返します。
 
-```javascript
+```js
 if (balance_book.hasEnoughBalance(msg.caller, token, order.fromAmount) == false) {
   // `cancelOrder()`を実行する
   switch (exchange.cancelOrder(order.id)) {

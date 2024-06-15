@@ -12,7 +12,7 @@ Webアプリケーション上で、ユーザーがイーサリアムネット�
 
 - `App.js`はあなたのWebアプリケーションのフロントエンド機能を果たします。
 
-```javascript
+```js
 import React, { useEffect, useState } from "react";
 import twitterLogo from "./assets/twitter-logo.svg";
 import "./App.css";
@@ -93,7 +93,7 @@ Consoleに`We have the ethereum object`と表示されているでしょうか�
 
 以下のコードを確認してください。
 
-```javascript
+```js
 import React, { useEffect, useState } from "react";
 import twitterLogo from "./assets/twitter-logo.svg";
 import "./App.css";
@@ -167,7 +167,7 @@ export default App;
 
 新しく追加したコードを見ていきましょう。
 
-```javascript
+```js
 // ユーザーのウォレットアドレスを格納するために使用する状態変数を定義します。
 const [currentAccount, setCurrentAccount] = useState(null);
 ```
@@ -176,7 +176,7 @@ const [currentAccount, setCurrentAccount] = useState(null);
 
 以下で`currentAccount`を更新しています。
 
-```javascript
+```js
 // accountsにWEBサイトを訪れたユーザーのウォレットアカウントを格納する（複数持っている場合も加味、よって account's' と変数を定義している）
 const accounts = await ethereum.request({ method: "eth_accounts" });
 // もしアカウントが一つでも存在したら、以下を実行。
@@ -199,7 +199,7 @@ if (accounts.length !== 0) {
 
 下記の通り`App.js`を更新していきましょう。
 
-```javascript
+```js
 import React, { useEffect, useState } from "react";
 import twitterLogo from "./assets/twitter-logo.svg";
 import "./App.css";
@@ -304,7 +304,7 @@ export default App;
 
 **1 \. `connectWallet`メソッドを実装**
 
-```javascript
+```js
 // connectWallet メソッドを実装します。
 const connectWalletAction = async () => {
   try {
@@ -330,7 +330,7 @@ const connectWalletAction = async () => {
 
 **2 \. `Connect Wallet`ボタンの実装**
 
-```javascript
+```js
 {
   /*
    * ウォレットコネクトを起動するために使用するボタンを設定しています。

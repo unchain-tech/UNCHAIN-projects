@@ -36,7 +36,7 @@ PROD_ALCHEMY_KEY = イーサリアムメインネットにデプロイする際�
 
 私の`.env`は、下記のようになります。
 
-```javascript
+```js
 // .env
 PRIVATE_KEY = 0x...
 STAGING_ALCHEMY_KEY = https://...
@@ -44,7 +44,7 @@ STAGING_ALCHEMY_KEY = https://...
 
 `.env`を更新したら、 `hardhat.config.js`ファイルを次のように更新してください。
 
-```javascript
+```js
 // hardhat.config.js
 require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
@@ -129,7 +129,7 @@ Etherscanの **コントラクトの Verification（検証）** を行いまし�
 
 まず、`.env`ファイルを開き、先ほどEtherscanから取得した`apiKey`を`Your_Etherscan_apiKey`に貼り付けてください。
 
-```javascript
+```js
 // .env
 PRIVATE_KEY = 0x...
 STAGING_ALCHEMY_KEY = https://...
@@ -140,7 +140,7 @@ ETHERSCAN_API_KEY = Your_Etherscan_apiKey
 
 `require("@nomiclabs/hardhat-etherscan");`を含むのも忘れないようにしましょう。Etherscanでverificationを行うために必要なパッケージです（こちらはスタータープロジェクトに含まれており、既にインストール済みです）。
 
-```javascript
+```js
 // hardhat.config.js
 require("@nomiclabs/hardhat-etherscan");
 require("@nomicfoundation/hardhat-toolbox");

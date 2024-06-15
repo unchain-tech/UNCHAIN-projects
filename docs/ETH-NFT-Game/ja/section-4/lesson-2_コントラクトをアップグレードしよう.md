@@ -34,7 +34,7 @@ PROD_ALCHEMY_KEY = イーサリアムメインネットにデプロイする際�
 
 私の`.env`は、下記のようになります。
 
-```javascript
+```js
 PRIVATE_KEY = 0x...
 STAGING_ALCHEMY_KEY = https://...
 PROD_ALCHEMY_KEY = ""
@@ -42,7 +42,7 @@ PROD_ALCHEMY_KEY = ""
 
 `.env`を更新したら、 `hardhat.config.js`ファイルを次のように更新してください。
 
-```javascript
+```js
 require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
 
@@ -135,7 +135,7 @@ https://cloudflare-ipfs.com/ipfs/あなたのCIDコードを貼り付けます
 
 次に、`contract/scripts/run.js`と`contract/scripts/deploy.js`の`imgur`リンクを`CID`（＝ IPFSハッシュ）に変更していきましょう。
 
-```javascript
+```js
 // Hardhat がローカルの Ethereum ネットワークを、コントラクトのためだけに作成します。
 const gameContract = await gameContractFactory.deploy(
   // キャラクターの名前
@@ -155,7 +155,7 @@ const gameContract = await gameContractFactory.deploy(
 );
 ```
 
-```javascript
+```js
 const main = async () => {
   const gameContractFactory = await hre.ethers.getContractFactory("MyEpicGame");
 
@@ -238,19 +238,19 @@ string memory json = Base64.encode(
 
 1 \. `SelectCharacter/index.js`の中に記載されている`renderCharacters`メソッドの中の`<img src={character.imageURI} alt={character.name} />`を下記に更新しましょう。
 
-```javascript
+```js
 <img src={`https://cloudflare-ipfs.com/ipfs/${character.imageURI}`} />
 ```
 
 2 \. `Arena/index.js`の中に記載されているHTMLを出力する`return();`に着目してください。
 
-```javascript
+```js
 <img src={characterNFT.imageURI} alt={`Character ${characterNFT.name}`} />
 ```
 
 上記のコードを下記に更新してください。
 
-```javascript
+```js
 <img
   src={`https://cloudflare-ipfs.com/ipfs/${characterNFT.imageURI}`}
   alt={`Character ${characterNFT.name}`}
@@ -269,7 +269,7 @@ string memory json = Base64.encode(
 
 ではpackages/contract/testに`test.js`という名前でファイルを作成して、以下のように記述してください。
 
-```javascript
+```js
 const hre = require("hardhat");
 const { expect } = require("chai");
 const { loadFixture } = require("@nomicfoundation/hardhat-network-helpers");
@@ -562,7 +562,7 @@ Compiled 1 Solidity file successfully
 
 `App.js`の下記をあなたのTwitterハンドルに更新しましょう。
 
-```javascript
+```js
 const TWITTER_HANDLE = "あなたのTwitterハンドル";
 ```
 

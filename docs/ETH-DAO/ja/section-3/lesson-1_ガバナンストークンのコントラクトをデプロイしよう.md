@@ -137,7 +137,7 @@ MetaMask"Import Token" をクリックするだけです。
 
 `src/scripts/6-print-money.ts`を作成し、下記コードを追加しましょう。
 
-```typescript
+```ts
 import sdk from "./1-initialize-sdk";
 import { ERCTokenAddress } from "./module";
 
@@ -212,7 +212,7 @@ Done in 32.95s.
 
 `src/scripts/7-airdrop-token.ts`を作成し、以下のコードを追加してください。
 
-```typescript
+```ts
 import sdk from "./1-initialize-sdk";
 import { editionDropAddress, ERCTokenAddress } from "./module";
 

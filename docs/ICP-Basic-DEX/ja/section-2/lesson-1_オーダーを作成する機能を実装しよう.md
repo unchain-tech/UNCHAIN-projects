@@ -61,14 +61,16 @@ module {
 次に、`Exchange`メソッドを定義する`exchange.mo`ファイルを作成します。
 
 ```
+
 touch ./src/icp_basic_dex_backend/exchange.mo
-```
+
+````
 
 作成された`exchange.mo`ファイルに、以下のコードを記述しましょう。
 
 [exchange.mo]
 
-```javascript
+```js
 import Buffer "mo:base/Buffer";
 import HashMap "mo:base/HashMap";
 
@@ -87,17 +89,17 @@ module {
     );
   };
 };
-```
+````
 
 最初にインポート文を定義しました。ポイントは`BalanceBook`モジュールをインポートしている点です。レッスンの最初に、「取引が成立するものがあれば、取引を実行する」と説明しましたが、取引を実行する際に`DEX`内のトークンデータを書き換える必要があります。そのためには、`BalanceBook`モジュール内の関数をコールしたいのでインポートをしています。
 
-```javascript
+```js
 import BalanceBook "balance_book";
 ```
 
 オーダーは、マップ構造で保存します。各オーダーに割り振られるIDでオーダーの検索が簡単にできるようにするためです。
 
-```javascript
+```js
 var orders = HashMap.HashMap<T.OrderId, T.Order>(
       0,
       func(order_id_x, order_id_y) { return (order_id_x == order_id_y) },
@@ -187,7 +189,7 @@ module {
 
 次の2つの`cancelOrder`関数と`addOrder`関数は、オーダーを削除・追加する関数になります。ポイントは`addOrder`関数で、中で`detectMatch`関数をコールしています。
 
-```javascript
+```js
 public func addOrder(new_order : T.Order) {
   orders.put(new_order.id, new_order);
   detectMatch(new_order);
@@ -210,7 +212,7 @@ userY
 
 を希望する場合、取引が成立します。`for`文ですべてのオーダーを確認し、取引が成立する`if`文の条件に一致した場合は`processTrade`関数をコールします。
 
-```javascript
+```js
 for (order in orders.vals()) {
   if (
     order.id != new_order.id
@@ -233,7 +235,7 @@ userX
 
 となるようにまずは更新を行います。
 
-```javascript
+```js
 // 取引の内容で`order_x`の作成者のトークン残高を更新
 let _removed_x = balance_book.removeToken(
   order_x.owner,
@@ -252,7 +254,7 @@ userY
 
 となるように更新を行います。
 
-```javascript
+```js
 // 取引の内容で`order_y`のトークン残高を更新
 let _removed_y = balance_book.removeToken(
   order_y.owner,
@@ -264,7 +266,7 @@ balance_book.addToken(order_y.owner, order_y.to, order_y.toAmount);
 
 最後に取引が完了したオーダーを削除して、終了します。
 
-```javascript
+```js
 // 取引が成立した注文を削除
 let _removed_order_x = orders.remove(order_x.id);
 let _removed_order_y = orders.remove(order_y.id);

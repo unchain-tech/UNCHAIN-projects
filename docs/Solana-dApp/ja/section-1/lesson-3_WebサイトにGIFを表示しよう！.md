@@ -16,7 +16,7 @@ GIPHYで気に入った画像を選択したら、`Share`をクリックし、`C
 
 `App.js`の定数を宣言している場所に下記を追加します。
 
-```javascript
+```js
 const TEST_GIFS = [
   "https://media.giphy.com/media/ZqlvCTNHpqrio/giphy.gif",
   "https://media.giphy.com/media/bC9czlgCMtw4cj8RgH/giphy.gif",
@@ -139,7 +139,7 @@ const renderConnectedContainer = () => (
 
 `const [walletAddress, setWalletAddress] = useState(null);`が記述されているすぐ下に以下のコードを追加します。
 
-```javascript
+```js
 const [inputValue, setInputValue] = useState("");
 ```
 
@@ -149,7 +149,7 @@ GIFリンクは`inputValue`に設定され、管理されます。
 
 続いて、`connectWallet`関数のすぐ下に以下のコードを追加します。
 
-```javascript
+```js
 const onInputChange = (event) => {
   const { value } = event.target;
   setInputValue(value);
@@ -175,7 +175,7 @@ const onInputChange = (event) => {
 
 `onInputChange`関数の下に以下のコードを追加します。
 
-```javascript
+```js
 const sendGif = async () => {
   if (inputValue.length > 0) {
     console.log("Gif link:", inputValue);
@@ -226,7 +226,7 @@ Solanaプログラムと接続する前に、もう1つ設定するものがあ�
 
 それでは、他の`useState`宣言をしたすぐ下に`gifList`の状態を管理するコードを以下のように追加しましょう。
 
-```javascript
+```js
 const [walletAddress, setWalletAddress] = useState(null);
 const [inputValue, setInputValue] = useState("");
 const [gifList, setGifList] = useState([]);
@@ -238,7 +238,7 @@ const [gifList, setGifList] = useState([]);
 
 既存の`useEffect`のすぐ下に、フェッチ用のコードを追加します。
 
-```javascript
+```js
 useEffect(() => {
   const onLoad = async () => {
     await checkIfWalletIsConnected();
@@ -300,7 +300,7 @@ const renderConnectedContainer = () => (
 
 `sendGif`関数を以下のとおり修正します。
 
-```javascript
+```js
 const sendGif = async () => {
   if (inputValue.length > 0) {
     console.log("Gif link:", inputValue);

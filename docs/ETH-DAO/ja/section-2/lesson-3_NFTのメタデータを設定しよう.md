@@ -10,7 +10,7 @@
 
 ※ あなたのメンバーシップNFT用の画像を設定することを忘れないでください！
 
-```typescript
+```ts
 import { readFileSync } from "fs";
 
 import sdk from "./1-initialize-sdk";
@@ -88,7 +88,7 @@ Done in 30.57s.
 
 `src/scripts/4-set-claim-condition.ts`を作成し、下記のコードを追加しましょう。
 
-```typescript
+```ts
 import { MaxUint256 } from "@ethersproject/constants";
 
 import sdk from "./1-initialize-sdk";

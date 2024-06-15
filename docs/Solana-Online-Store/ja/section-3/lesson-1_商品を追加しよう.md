@@ -158,7 +158,7 @@ export default CreateProduct;
 
 Buyコンポーネントのテスト同様、動作確認を行いたいステータスに対応する戻り値を定義します。
 
-```javascript
+```js
 // __tests__/CreateProduct.test.js
 const addedProductMock = () => {
   return Promise.resolve({
@@ -177,7 +177,7 @@ const errorAddedProductMock = () => {
 
 成功ステータスをテストする場合は、下記のようにフォーム要素を取得して、値を入力後にボタンをクリックする動作をシミュレートします。
 
-```javascript
+```js
 // __tests__/CreateProduct.test.js
 const formFileElement = screen.getByPlaceholderText(/Images/i);
 const formNameElement = screen.getByPlaceholderText(/Product Name/i);
@@ -199,7 +199,7 @@ await userEvent.click(btnElement);
 
 確認部分では、fetch関数とalert関数が期待する引数で実行されているかを確認しています。
 
-```javascript
+```js
 // __tests__/CreateProduct.test.js
 /** 確認 */
 expect(fetch).toBeCalledWith("../api/addProduct", {

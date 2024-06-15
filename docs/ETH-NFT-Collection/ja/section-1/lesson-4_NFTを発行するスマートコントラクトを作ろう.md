@@ -214,7 +214,7 @@ _setTokenURI(newItemId, "Valuable data!");
 
 最後に、下記のコードを見ていきましょう。
 
-```javascript
+```js
 console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
 ```
 
@@ -296,7 +296,7 @@ _setTokenURI(
 
 `scripts/deploy.js`ファイルを下記のように変更しましょう。
 
-```javascript
+```js
 // deploy.js
 async function main() {
   const nftContractFactory = await hre.ethers.getContractFactory("MyEpicNFT");
@@ -461,7 +461,7 @@ contracts			test
 
 下記のように、`hardhat.config.js`の中身を更新します。
 
-```javascript
+```js
 // hardhat.config.js
 require("@nomicfoundation/hardhat-toolbox");
 

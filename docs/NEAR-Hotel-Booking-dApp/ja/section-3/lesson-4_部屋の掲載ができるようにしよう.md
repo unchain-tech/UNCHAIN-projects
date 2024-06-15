@@ -124,7 +124,7 @@ export default ManageRooms;
 
 `utils.js`内で定義したメソッドをインポートします。
 
-```javascript
+```js
 import {
   add_room_to_owner,
   exists,
@@ -134,7 +134,7 @@ import {
 
 `get_rooms_registered_by_owner()`にNEAR Walletに接続しているアカウントIDを渡します。これで、アカウントIDに紐づいて保存されている部屋のデータを取得します。
 
-```javascript
+```js
 // オーナーが登録した部屋のデータを取得
 const getRooms = async () => {
   try {
@@ -147,7 +147,7 @@ const getRooms = async () => {
 
 次に、部屋を追加するための関数を定義します。`addRoom`は前回のレッスンで作成した`AddRoom`コンポーネントに渡される関数です。`AddRoom`コンポーネント内のフォームに入力されたデータを受け取ったら、まず`exists`メソッドで既に登録されている部屋の名前かどうかを確認します。登録されていたら`alert()`で通知を出し、未登録であれば`add_room_to_owner`メソッドを実行します。
 
-```javascript
+```js
 const addRoom = async (data) => {
   // 同じ名前の部屋を登録しないかチェック
   let exist = await exists(window.accountId, data.name);
@@ -162,7 +162,7 @@ const addRoom = async (data) => {
 
 次は表示する内容を実装していますが、NEAR Walletに接続されているかどうかで表示を変えます。接続されていない場合はメッセージのみを表示させます。
 
-```javascript
+```js
 // NEAR Walletに接続されていない時
 if (!window.accountId) {
   return (
@@ -177,7 +177,7 @@ if (!window.accountId) {
 
 データの表示には、`React Bootstrap`の[Table](https://react-bootstrap.github.io/components/table/)を使用します。表示する際に、オーナーが利用状況を把握しやすいようステータスが`Available`なら白（デフォルト）、`Stay`なら赤を背景色にします。
 
-```javascript
+```js
 {
   /* 部屋が空室の時 */
 }

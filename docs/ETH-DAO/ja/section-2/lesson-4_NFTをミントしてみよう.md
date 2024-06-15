@@ -12,7 +12,7 @@
 
 ※ あなたのコントラクトアドレスを設定することを忘れないでください！
 
-```typescript
+```ts
 import { Sepolia } from "@thirdweb-dev/chains";
 import {
   ConnectWallet,
@@ -123,7 +123,7 @@ export default Home;
 
 ※ あなたのコントラクトアドレスを設定することを忘れないでください！
 
-```typescript
+```ts
 import { Sepolia } from "@thirdweb-dev/chains";
 import {
   ConnectWallet,
@@ -300,7 +300,7 @@ NFTのミント画面を描画する前に、以下のコメント`DAO ダッシ
 
 `src/pages/index.tsx`に移動し、コードの一部を以下のとおり変更します。
 
-```typescript
+```ts
 // ウォレットと接続していなかったら接続を促す
 if (!address) {
   return (

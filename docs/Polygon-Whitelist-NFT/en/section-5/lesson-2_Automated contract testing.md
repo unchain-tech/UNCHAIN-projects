@@ -10,7 +10,7 @@ Write your test in the file you have created.
 
 `Whitelist.test.ts`：
 
-```typescript
+```ts
 import { loadFixture } from "@nomicfoundation/hardhat-network-helpers";
 import { expect } from "chai";
 import { ethers } from "hardhat";
@@ -128,7 +128,7 @@ describe("Whitelist", function () {
 
 `Shield.test.ts`：
 
-```typescript
+```ts
 import { loadFixture } from "@nomicfoundation/hardhat-network-helpers";
 import { expect } from "chai";
 import { ethers } from "hardhat";
@@ -320,7 +320,7 @@ Let's review the code using the Whitelist contract test as an example. The test 
 
 The preparation section creates the conditions necessary to run the test. Here we deploy the Whitelist contract and add the owner and alice addresses to the whitelist.
 
-```typescript
+```ts
 describe('Whitelist', function () {
   // We define a fixture to reuse the same setup in every test.
   // We use loadFixture to run this setup once, snapshot that state,
@@ -352,7 +352,7 @@ describe('Whitelist', function () {
 
 In the Execution and Verification section, the function under test is actually executed to see if the expected results are returned.
 
-```typescript
+```ts
         // Execution and Verification
         // Verify that if an account that is not the owner of the contract tries to execute the addToWhitelist function, it will result in an error.
         await expect(

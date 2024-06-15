@@ -41,7 +41,7 @@ STAGING_ALCHEMY_KEY=https://...
 
 `.env`を更新したら、 `hardhat.config.js`ファイルを次のように更新してください。
 
-```javascript
+```js
 require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
 module.exports = {

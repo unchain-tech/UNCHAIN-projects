@@ -221,7 +221,7 @@ hardhatの自動テストを実行するためのコマンドを追加しまし�
 
 **（変更前）**
 
-```javascript
+```js
 const {
   time,
   loadFixture,
@@ -230,7 +230,7 @@ const {
 
 **（変更後）**
 
-```javascript
+```js
 const {
   time,
   loadFixture,
@@ -241,13 +241,13 @@ const {
 
 **（変更前）**
 
-```javascript
+```js
 expect(await ethers.provider.getBalance(lock.target)).to.equal(lockedAmount);
 ```
 
 **（変更後）**
 
-```javascript
+```js
 expect(await ethers.provider.getBalance(lock.address)).to.equal(lockedAmount);
 ```
 

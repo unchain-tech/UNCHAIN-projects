@@ -10,33 +10,32 @@
 
 それでは早速、`src/scripts/11-revoke-roles.ts`を作成し、以下のとおりコードを変更します。
 
-```typescript
-import sdk from './1-initialize-sdk';
-import { ERCTokenAddress } from './module';
+```ts
+import sdk from "./1-initialize-sdk";
+import { ERCTokenAddress } from "./module";
 
-const token = sdk.getContract(ERCTokenAddress, 'token');
+const token = sdk.getContract(ERCTokenAddress, "token");
 
 (async () => {
   try {
     // 現在のロールを記録します
     const allRoles = await (await token).roles.getAll();
 
-    console.log('👀 Roles that exist right now:', allRoles);
+    console.log("👀 Roles that exist right now:", allRoles);
 
     // ERC-20 のコントラクトに関して、あなたのウォレットが持っている権限をすべて取り消します
     await (await token).roles.setAll({ admin: [], minter: [] });
     console.log(
-      '🎉 Roles after revoking ourselves',
-      await (await token).roles.getAll(),
+      "🎉 Roles after revoking ourselves",
+      await (await token).roles.getAll()
     );
     console.log(
-      '✅ Successfully revoked our superpowers from the ERC-20 contract',
+      "✅ Successfully revoked our superpowers from the ERC-20 contract"
     );
   } catch (error) {
-    console.error('Failed to revoke ourselves from the DAO treasury', error);
+    console.error("Failed to revoke ourselves from the DAO treasury", error);
   }
 })();
-
 ```
 
 それでは、ターミナルに移動し、下記コマンドを実行してみましょう。
@@ -82,44 +81,38 @@ Done in 44.18s.
 
 参考までに、ここまで修正を重ねた`src/pages/index.tsx`は以下のとおりとなっております。
 
-```typescript
-import { AddressZero } from '@ethersproject/constants';
-import { Sepolia } from '@thirdweb-dev/chains';
+```ts
+import { AddressZero } from "@ethersproject/constants";
+import { Sepolia } from "@thirdweb-dev/chains";
 import {
   ConnectWallet,
   useAddress,
   useChain,
   useContract,
-} from '@thirdweb-dev/react';
-import { Proposal } from '@thirdweb-dev/sdk';
-import type { NextPage } from 'next';
-import { useEffect, useMemo, useState} from 'react';
+} from "@thirdweb-dev/react";
+import { Proposal } from "@thirdweb-dev/sdk";
+import type { NextPage } from "next";
+import { useEffect, useMemo, useState } from "react";
 
-import styles from '../styles/Home.module.css';
+import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   const address = useAddress();
-  console.log('👋Wallet Address: ', address);
+  console.log("👋Wallet Address: ", address);
 
   const chain = useChain();
 
   // editionDrop コントラクトを初期化
   const editionDrop = useContract(
-    'INSERT_EDITION_DROP_ADDRESS',
-    'edition-drop',
+    "INSERT_EDITION_DROP_ADDRESS",
+    "edition-drop"
   ).contract;
 
   // トークンコントラクトの初期化
-  const token = useContract(
-    'INSERT_TOKEN_ADDRESS',
-    'token',
-  ).contract;
+  const token = useContract("INSERT_TOKEN_ADDRESS", "token").contract;
 
   // 投票コントラクトの初期化
-  const vote = useContract(
-    'INSERT_VOTE_ADDRESS',
-    'vote',
-  ).contract;
+  const vote = useContract("INSERT_VOTE_ADDRESS", "vote").contract;
 
   // ユーザーがメンバーシップ NFT を持っているかどうかを知るためのステートを定義
   const [hasClaimedNFT, setHasClaimedNFT] = useState(false);
@@ -131,7 +124,9 @@ const Home: NextPage = () => {
   const [memberTokenAmounts, setMemberTokenAmounts] = useState<any>([]);
 
   // DAO メンバーのアドレスをステートで宣言
-  const [memberAddresses, setMemberAddresses] = useState<string[] | undefined>([]);
+  const [memberAddresses, setMemberAddresses] = useState<string[] | undefined>(
+    []
+  );
 
   const [proposals, setProposals] = useState<Proposal[]>([]);
   const [isVoting, setIsVoting] = useState(false);
@@ -139,7 +134,7 @@ const Home: NextPage = () => {
 
   // アドレスの長さを省略してくれる便利な関数
   const shortenAddress = (str: string) => {
-    return str.substring(0, 6) + '...' + str.substring(str.length - 4);
+    return str.substring(0, 6) + "..." + str.substring(str.length - 4);
   };
 
   // コントラクトから既存の提案を全て取得します
@@ -153,9 +148,9 @@ const Home: NextPage = () => {
       try {
         const proposals = await vote!.getAll();
         setProposals(proposals);
-        console.log('🌈 Proposals:', proposals);
+        console.log("🌈 Proposals:", proposals);
       } catch (error) {
-        console.log('failed to get proposals', error);
+        console.log("failed to get proposals", error);
       }
     };
     getAllProposals();
@@ -174,19 +169,21 @@ const Home: NextPage = () => {
 
     const checkIfUserHasVoted = async () => {
       try {
-        const hasVoted = await vote!.hasVoted(proposals[0].proposalId.toString(), address);
+        const hasVoted = await vote!.hasVoted(
+          proposals[0].proposalId.toString(),
+          address
+        );
         setHasVoted(hasVoted);
         if (hasVoted) {
-          console.log('🥵 User has already voted');
+          console.log("🥵 User has already voted");
         } else {
-          console.log('🙂 User has not voted yet');
+          console.log("🙂 User has not voted yet");
         }
       } catch (error) {
-        console.error('Failed to check if wallet has voted', error);
+        console.error("Failed to check if wallet has voted", error);
       }
     };
     checkIfUserHasVoted();
-
   }, [hasClaimedNFT, proposals, address, vote]);
 
   // メンバーシップを保持しているメンバーの全アドレスを取得します
@@ -198,13 +195,12 @@ const Home: NextPage = () => {
     // 先ほどエアドロップしたユーザーがここで取得できます（発行された tokenchainID 0 のメンバーシップ NFT）
     const getAllAddresses = async () => {
       try {
-        const memberAddresses = await editionDrop?.history.getAllClaimerAddresses(
-          0
-        );
+        const memberAddresses =
+          await editionDrop?.history.getAllClaimerAddresses(0);
         setMemberAddresses(memberAddresses);
-        console.log('🚀 Members addresses', memberAddresses);
+        console.log("🚀 Members addresses", memberAddresses);
       } catch (error) {
-        console.error('failed to get member list', error);
+        console.error("failed to get member list", error);
       }
     };
     getAllAddresses();
@@ -220,9 +216,9 @@ const Home: NextPage = () => {
       try {
         const amounts = await token?.history.getAllHolderBalances();
         setMemberTokenAmounts(amounts);
-        console.log('👜 Amounts', amounts);
+        console.log("👜 Amounts", amounts);
       } catch (error) {
-        console.error('failed to get member balances', error);
+        console.error("failed to get member balances", error);
       }
     };
     getAllBalances();
@@ -235,12 +231,12 @@ const Home: NextPage = () => {
       // その場合、ユーザーが持っているトークンの量を返します
       // それ以外の場合は 0 を返します
       const member = memberTokenAmounts?.find(
-        ({ holder }: {holder: string}) => holder === address,
+        ({ holder }: { holder: string }) => holder === address
       );
 
       return {
         address,
-        tokenAmount: member?.balance.displayValue || '0',
+        tokenAmount: member?.balance.displayValue || "0",
       };
     });
   }, [memberAddresses, memberTokenAmounts]);
@@ -256,14 +252,14 @@ const Home: NextPage = () => {
         const balance = await editionDrop!.balanceOf(address, 0);
         if (balance.gt(0)) {
           setHasClaimedNFT(true);
-          console.log('🌟 this user has a membership NFT!');
+          console.log("🌟 this user has a membership NFT!");
         } else {
           setHasClaimedNFT(false);
           console.log("😭 this user doesn't have a membership NFT.");
         }
       } catch (error) {
         setHasClaimedNFT(false);
-        console.error('Failed to get balance', error);
+        console.error("Failed to get balance", error);
       }
     };
     // 関数を実行
@@ -273,14 +269,14 @@ const Home: NextPage = () => {
   const mintNft = async () => {
     try {
       setIsClaiming(true);
-      await editionDrop!.claim('0', 1);
+      await editionDrop!.claim("0", 1);
       console.log(
         `🌊Successfully Minted! Check it out on etherscan: https://sepolia.etherscan.io/address/${editionDrop!.getAddress()}/0`
       );
       setHasClaimedNFT(true);
     } catch (error) {
       setHasClaimedNFT(false);
-      console.error('Failed to mint NFT', error);
+      console.error("Failed to mint NFT", error);
     } finally {
       setIsClaiming(false);
     }
@@ -291,9 +287,7 @@ const Home: NextPage = () => {
     return (
       <div className={styles.container}>
         <main className={styles.main}>
-          <h1 className={styles.title}>
-            Welcome to Tokyo Sauna Collective !!
-          </h1>
+          <h1 className={styles.title}>Welcome to Tokyo Sauna Collective !!</h1>
           <div className={styles.connect}>
             <ConnectWallet />
           </div>
@@ -303,8 +297,8 @@ const Home: NextPage = () => {
   }
   // テストネットが Sepolia ではなかった場合に警告を表示
   else if (chain && chain.chainId !== Sepolia.chainId) {
-    console.log('wallet address: ', address);
-    console.log('chain name: ', chain.name);
+    console.log("wallet address: ", address);
+    console.log("chain name: ", chain.name);
 
     return (
       <div className={styles.container}>
@@ -318,12 +312,12 @@ const Home: NextPage = () => {
   }
   // ユーザーがすでに NFT を要求している場合は、内部 DAO ページを表示します
   // これは DAO メンバーだけが見ることができ、すべてのメンバーとすべてのトークン量をレンダリングします
-  else if (hasClaimedNFT){
+  else if (hasClaimedNFT) {
     return (
       <div className={styles.container}>
         <main className={styles.main}>
-        <h1 className={styles.title}>🍪DAO Member Page</h1>
-        <p>Congratulations on being a member</p>
+          <h1 className={styles.title}>🍪DAO Member Page</h1>
+          <p>Congratulations on being a member</p>
           <div>
             <div>
               <h2>■ Member List</h2>
@@ -364,7 +358,7 @@ const Home: NextPage = () => {
                     };
                     proposal.votes.forEach((vote) => {
                       const elem = document.getElementBychainId(
-                        proposal.proposalId + '-' + vote.type
+                        proposal.proposalId + "-" + vote.type
                       ) as HTMLInputElement;
 
                       if (elem!.checked) {
@@ -410,15 +404,15 @@ const Home: NextPage = () => {
                         );
                         // 投票成功と判定する
                         setHasVoted(true);
-                        console.log('successfully voted');
+                        console.log("successfully voted");
                       } catch (err) {
-                        console.error('failed to execute votes', err);
+                        console.error("failed to execute votes", err);
                       }
                     } catch (err) {
-                      console.error('failed to vote', err);
+                      console.error("failed to vote", err);
                     }
                   } catch (err) {
-                    console.error('failed to delegate tokens');
+                    console.error("failed to delegate tokens");
                   } finally {
                     setIsVoting(false);
                   }
@@ -432,13 +426,13 @@ const Home: NextPage = () => {
                         <div key={type}>
                           <input
                             type="radio"
-                            chainId={proposal.proposalId + '-' + type}
+                            chainId={proposal.proposalId + "-" + type}
                             name={proposal.proposalId.toString()}
                             value={type}
                             // デフォルトで棄権票をチェックする
                             defaultChecked={type === 2}
                           />
-                          <label htmlFor={proposal.proposalId + '-' + type}>
+                          <label htmlFor={proposal.proposalId + "-" + type}>
                             {label}
                           </label>
                         </div>
@@ -449,16 +443,16 @@ const Home: NextPage = () => {
                 <p></p>
                 <button disabled={isVoting || hasVoted} type="submit">
                   {isVoting
-                    ? 'Voting...'
+                    ? "Voting..."
                     : hasVoted
-                      ? 'You Already Voted'
-                      : 'Submit Votes'}
+                    ? "You Already Voted"
+                    : "Submit Votes"}
                 </button>
                 <p></p>
                 {!hasVoted && (
                   <small>
-                    This will trigger multiple transactions that you will need to
-                    sign.
+                    This will trigger multiple transactions that you will need
+                    to sign.
                   </small>
                 )}
               </form>
@@ -475,7 +469,7 @@ const Home: NextPage = () => {
         <main className={styles.main}>
           <h1 className={styles.title}>Mint your free 🍪DAO Membership NFT</h1>
           <button disabled={isClaiming} onClick={mintNft}>
-            {isClaiming ? 'Minting...' : 'Mint your nft (FREE)'}
+            {isClaiming ? "Minting..." : "Mint your nft (FREE)"}
           </button>
         </main>
       </div>
@@ -489,43 +483,44 @@ export default Home;
 ### 🧙‍♂️ テストを作成・実行する
 
 ここまでの作業でコントラクトには基本機能として以下の機能が追加されました。
-* NFTをmintする機能
-* トークン,ガバナンストークンをデプロイする機能
-* NFT,トークン,ガバナンストークンの情報を取得する機能
-* NFT,トークン,ガバナンストークンに操作を加える機能
+
+- NFTをmintする機能
+- トークン,ガバナンストークンをデプロイする機能
+- NFT,トークン,ガバナンストークンの情報を取得する機能
+- NFT,トークン,ガバナンストークンに操作を加える機能
 
 これらの基本機能をテストスクリプトとして記述していきましょう。
 ではsrcディレクトリの中に`test`ディレクトリを作成し、その中に`test.ts`という名前でファイルを作成して、以下のように記述しましょう。
 
-```typescript
-import { AddressZero } from '@ethersproject/constants';
-import { ThirdwebSDK } from '@thirdweb-dev/sdk';
-import assert from 'assert';
-import ethers from 'ethers';
-import { describe, it } from 'node:test';
+```ts
+import { AddressZero } from "@ethersproject/constants";
+import { ThirdwebSDK } from "@thirdweb-dev/sdk";
+import assert from "assert";
+import ethers from "ethers";
+import { describe, it } from "node:test";
 
 import {
   editionDropAddress,
   ERCTokenAddress,
   governanceAddress,
   ownerWalletAddress,
-} from '../scripts/module.js';
+} from "../scripts/module.js";
 
-describe('ETH-DAO test', function () {
+describe("ETH-DAO test", function () {
   // テスト用のウォレットを作成
   const demoWallet = ethers.Wallet.createRandom();
   // テスト用のPublic RPC Endpointを設定
-  const demoAlchemyRPCEndpoint = 'https://eth-sepolia.g.alchemy.com/v2/demo';
+  const demoAlchemyRPCEndpoint = "https://eth-sepolia.g.alchemy.com/v2/demo";
 
   const sdk = new ThirdwebSDK(
     new ethers.Wallet(
       demoWallet.privateKey,
-      ethers.getDefaultProvider(demoAlchemyRPCEndpoint),
-    ),
+      ethers.getDefaultProvider(demoAlchemyRPCEndpoint)
+    )
   );
 
   // 1-initialize-sdk.tsのテスト
-  it('sdk is working', async function () {
+  it("sdk is working", async function () {
     // sdkからアドレスを取得
     const address = await sdk.getSigner()?.getAddress();
 
@@ -534,12 +529,12 @@ describe('ETH-DAO test', function () {
   });
 
   // edition-drop, ERC1155-token, governance-tokenの3つのコントラクトを取得
-  const editionDrop = sdk.getContract(editionDropAddress, 'edition-drop');
-  const token = sdk.getContract(ERCTokenAddress, 'token');
-  const vote = sdk.getContract(governanceAddress, 'vote');
+  const editionDrop = sdk.getContract(editionDropAddress, "edition-drop");
+  const token = sdk.getContract(ERCTokenAddress, "token");
+  const vote = sdk.getContract(governanceAddress, "vote");
 
   // 2-deploy-drop.tsのテスト
-  it('metadata is set', async function () {
+  it("metadata is set", async function () {
     // メタデータを取得
     const metadata = await (await editionDrop).metadata.get();
 
@@ -551,7 +546,7 @@ describe('ETH-DAO test', function () {
   });
 
   // 3-config-nft.tsのテスト
-  it('NFT is minted', async function () {
+  it("NFT is minted", async function () {
     // 最初にmintされたNFTの情報を取得する
     const NFTInfo = await (await editionDrop).get(0);
 
@@ -560,36 +555,36 @@ describe('ETH-DAO test', function () {
   });
 
   // 4-set-claim-condition.tsのテスト
-  it('NFT condition is set', async function () {
+  it("NFT condition is set", async function () {
     // トークンに与えられた条件を取得する
     const condition = await (
       await editionDrop
-    ).erc1155.claimConditions.getActive('0');
+    ).erc1155.claimConditions.getActive("0");
 
     // 条件として与えられたものの一つであるNFTの価格が0であることを確認する
     assert.equal(condition.price.toNumber(), 0);
   });
 
   // 5-deploy-token.tsのテスト
-  it('token contract is deployed', async function () {
+  it("token contract is deployed", async function () {
     // トークンに与えられた情報を取得する
     const tokenInfo = await (await token).balance();
 
     // トークンのシンボルがTSCとなっているか確認する
-    assert.equal(tokenInfo.symbol, 'TSC');
+    assert.equal(tokenInfo.symbol, "TSC");
   });
 
   // 6-print-money.tsのテスト
-  it('token is minted', async function () {
+  it("token is minted", async function () {
     // トークンの情報を取得する
     const tokenInfo = await (await token).totalSupply();
 
     // トークンの合計が1e+24となっているか確認する
-    assert.equal(Number(tokenInfo.value).toString(), '1e+24');
+    assert.equal(Number(tokenInfo.value).toString(), "1e+24");
   });
 
   // 7-airdrop-token.tsのテスト
-  it('token is transfered', async function () {
+  it("token is transfered", async function () {
     // このコントラクトのオーナーに与えられているトークンの合計を確認する
     const balance = await (await token).balanceOf(ownerWalletAddress);
 
@@ -597,20 +592,20 @@ describe('ETH-DAO test', function () {
     const fixedBalance = Number(balance.value).toString();
 
     // コントラクトのトークンの合計が1e+22となっているか確認
-    assert.equal(fixedBalance, '1e+22');
+    assert.equal(fixedBalance, "1e+22");
   });
 
   // 8-deploy-vote.tsのテスト
-  it('vote contract has right info', async function () {
+  it("vote contract has right info", async function () {
     // 投票コントラクトのメタデータを取得
     const metadata = await (await vote).metadata.get();
 
     // 投票コントラクトに正しく情報が入っているか確認
-    assert.equal(metadata.name, 'My amazing DAO');
+    assert.equal(metadata.name, "My amazing DAO");
   });
 
   // 9-setup-vote.tsのテスト
-  it('vote contract has as 9 times much tokens as owner has', async function () {
+  it("vote contract has as 9 times much tokens as owner has", async function () {
     // ウォレットのトークン残高を取得します
     const ownedTokenBalance = (
       await (await token).balanceOf(ownerWalletAddress)
@@ -626,19 +621,19 @@ describe('ETH-DAO test', function () {
   });
 
   // 10-create-vote-proposals.tsのテスト
-  it('vote contract has proposal', async function () {
+  it("vote contract has proposal", async function () {
     // 投票コントラクトに挙げられた提案を取得します
     const proposal = (await (await vote).getAll())[0];
 
     // 投票コントラクトへ提案がされているか確認する
     assert.equal(
       proposal.description,
-      'Should the DAO mint an additional 420000 tokens into the treasury?',
+      "Should the DAO mint an additional 420000 tokens into the treasury?"
     );
   });
 
   // 11-revoke-roles.tsのテスト
-  it('token role is passed to contract', async function () {
+  it("token role is passed to contract", async function () {
     // 投票コントラクトに挙げられた提案を取得します
     const roles = await (await token).roles.getAll();
 
@@ -646,7 +641,7 @@ describe('ETH-DAO test', function () {
     assert.equal(roles.admin, [].toString());
   });
 
-  console.log('test');
+  console.log("test");
 });
 ```
 

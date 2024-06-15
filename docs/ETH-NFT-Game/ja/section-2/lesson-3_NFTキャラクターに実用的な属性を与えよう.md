@@ -167,7 +167,7 @@ emit AttackComplete(bigBoss.hp, player.hp);
 
 - フロントエンド用のスクリプトに`attackBoss()`関数は実装していくので、`deploy.js`では排除しています。
 
-```javascript
+```js
 const main = async () => {
   const gameContractFactory = await hre.ethers.getContractFactory("MyEpicGame");
 

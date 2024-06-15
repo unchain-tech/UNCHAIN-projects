@@ -12,7 +12,7 @@
 
 `src/pages/_app.tsx`に移動して、以下のようにコードを更新しましょう。
 
-```typescript
+```ts
 import { Sepolia } from "@thirdweb-dev/chains";
 import { ThirdwebProvider } from "@thirdweb-dev/react";
 import type { AppProps } from "next/app";
@@ -42,7 +42,7 @@ Next.jsにおいてAppコンポーネント (`_app.tsx`) で全ページ共通�
 
 srcディレクトリの中に`components/head.tsx`を作成し、以下のコードを追加します。
 
-```typescript
+```ts
 import * as React from "react";
 import Head from "next/head";
 
@@ -109,7 +109,7 @@ yarn dev
 
 `src/pages/index.tsx`に移動して、コードを以下とおり更新しましょう。
 
-```typescript
+```ts
 import { ConnectWallet } from "@thirdweb-dev/react";
 import type { NextPage } from "next";
 

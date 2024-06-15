@@ -60,7 +60,7 @@ touch ./src/lib/Home.svelte ./src/lib/About.svelte ./src/lib/Portfolio.svelte
 
 [Home.svelte]
 
-```javascript
+```js
 <!-- Nav.svelteの`href="#home"`と紐づく`id`を指定する -->
 <section id='home'>
   <div class='container mx-auto'>
@@ -81,7 +81,7 @@ touch ./src/lib/Home.svelte ./src/lib/About.svelte ./src/lib/Portfolio.svelte
 
 [About.svelte]
 
-```javascript
+```js
 <script>
   import profileImage from '../assets/unchain_logo.png';
 </script>
@@ -113,7 +113,7 @@ touch ./src/lib/Home.svelte ./src/lib/About.svelte ./src/lib/Portfolio.svelte
 
 [Portfolio.svelte]
 
-```javascript
+```js
 <script>
   let projects = [
     { name: 'ETH dApp', url: 'YOUR_PROJECT_URL' },
@@ -147,7 +147,7 @@ touch ./src/lib/Home.svelte ./src/lib/About.svelte ./src/lib/Portfolio.svelte
 
 `<script></script>`の中は、これまでUNCHAINで取り組んだコンテンツなど、ご自身の作品を自由に設定してください。ここでは、各プロジェクトの名前とURLを要素として持つデータ構造を、`projects`という変数に代入しています。
 
-```javascript
+```js
 <script>
   let projects = [
     { name: 'ETH dApp', url: 'YOUR_PROJECT_URL' },
@@ -160,7 +160,7 @@ touch ./src/lib/Home.svelte ./src/lib/About.svelte ./src/lib/Portfolio.svelte
 
 データ構造は、`each`ブロックを用いることでループ処理ができます。
 
-```javascript
+```js
 <!-- `each`ブロックでループ処理を行う -->
 {#each projects as project}
   <div class="p-2 md:w-1/3 w-full">

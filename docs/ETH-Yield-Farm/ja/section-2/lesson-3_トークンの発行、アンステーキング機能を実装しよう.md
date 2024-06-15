@@ -1,54 +1,55 @@
-###  🖥 このレッスンの参考動画URL
+### 🖥 このレッスンの参考動画 URL
+
 [Dapp University](https://youtu.be/CgXQC4dbGUE?t=5089)
 
 ### 🧙‍♂️ テストを作成・実行する
 
 ここまでの作業でコントラクトには基本機能として以下の機能が追加されました。
 
-* ２種類のトークンの作成
-* トークンをステーキングする機能
-* トークンをアンステーキングする機能
+- ２種類のトークンの作成
+- トークンをステーキングする機能
+- トークンをアンステーキングする機能
 
 これらの基本機能をテストスクリプトとして記述していきましょう。
 
 ではpackages/contract/testに`test.js`という名前でファイルを作成して、以下のように記述しましょう。
 
-```javascript
-const hre = require('hardhat');
-const { assert, expect } = require('chai');
-const web3 = require('web3');
-const { loadFixture } = require('@nomicfoundation/hardhat-network-helpers');
+```js
+const hre = require("hardhat");
+const { assert, expect } = require("chai");
+const web3 = require("web3");
+const { loadFixture } = require("@nomicfoundation/hardhat-network-helpers");
 
 function tokens(n) {
-  return web3.utils.toWei(n, 'ether');
+  return web3.utils.toWei(n, "ether");
 }
 
 // eslint-disable-next-line no-undef
-describe('TokenFarm', () => {
+describe("TokenFarm", () => {
   async function deployTokenFixture() {
     const [owner, investor] = await hre.ethers.getSigners();
 
     // コントラクトのdeploy
     const daitokenContractFactory = await hre.ethers.getContractFactory(
-      'DaiToken',
+      "DaiToken"
     );
     const dapptokenContractFactory = await hre.ethers.getContractFactory(
-      'DappToken',
+      "DappToken"
     );
     const tokenfarmContractFactory = await hre.ethers.getContractFactory(
-      'TokenFarm',
+      "TokenFarm"
     );
     const daiToken = await daitokenContractFactory.deploy();
     const dappToken = await dapptokenContractFactory.deploy();
     const tokenFarm = await tokenfarmContractFactory.deploy(
       dappToken.address,
-      daiToken.address,
+      daiToken.address
     );
 
     // 全てのDappトークンをファームに移動する(1 million)
-    await dappToken.transfer(tokenFarm.address, tokens('1000000'));
+    await dappToken.transfer(tokenFarm.address, tokens("1000000"));
 
-    await daiToken.transfer(investor.address, tokens('100'));
+    await daiToken.transfer(investor.address, tokens("100"));
 
     return {
       owner,
@@ -60,39 +61,39 @@ describe('TokenFarm', () => {
   }
 
   // テスト1
-  describe('Mock DAI deployment', () => {
-    it('has a name', async () => {
+  describe("Mock DAI deployment", () => {
+    it("has a name", async () => {
       const { daiToken } = await loadFixture(deployTokenFixture);
       const name = await daiToken.name();
-      assert.equal(name, 'Mock DAI Token');
+      assert.equal(name, "Mock DAI Token");
     });
   });
   // テスト2
-  describe('Dapp Token deployment', async () => {
-    it('has a name', async () => {
+  describe("Dapp Token deployment", async () => {
+    it("has a name", async () => {
       const { dappToken } = await loadFixture(deployTokenFixture);
       const name = await dappToken.name();
-      assert.equal(name, 'DApp Token');
+      assert.equal(name, "DApp Token");
     });
   });
 
-  describe('Token Farm deployment', async () => {
+  describe("Token Farm deployment", async () => {
     // テスト3
-    it('has a name', async () => {
+    it("has a name", async () => {
       const { tokenFarm } = await loadFixture(deployTokenFixture);
       const name = await tokenFarm.name();
-      assert.equal(name, 'Dapp Token Farm');
+      assert.equal(name, "Dapp Token Farm");
     });
     // テスト4
-    it('contract has tokens', async () => {
+    it("contract has tokens", async () => {
       const { dappToken, tokenFarm } = await loadFixture(deployTokenFixture);
       const balance = await dappToken.balanceOf(tokenFarm.address);
-      assert.equal(balance.toString(), tokens('1000000'));
+      assert.equal(balance.toString(), tokens("1000000"));
     });
   });
 
-  describe('Farming tokens', async () => {
-    it('rewards investors for staking mDai tokens', async () => {
+  describe("Farming tokens", async () => {
+    it("rewards investors for staking mDai tokens", async () => {
       const { daiToken, dappToken, tokenFarm, investor, owner } =
         await loadFixture(deployTokenFixture);
       let result;
@@ -101,46 +102,46 @@ describe('TokenFarm', () => {
       result = await daiToken.balanceOf(investor.address);
       assert.equal(
         result.toString(),
-        tokens('100'),
-        'investor Mock DAI wallet balance correct before staking',
+        tokens("100"),
+        "investor Mock DAI wallet balance correct before staking"
       );
 
       // テスト6. 偽のDAIトークンを確認する
       await daiToken
         .connect(investor)
-        .approve(tokenFarm.address, tokens('100'));
-      await tokenFarm.connect(investor).stakeTokens(tokens('100'));
+        .approve(tokenFarm.address, tokens("100"));
+      await tokenFarm.connect(investor).stakeTokens(tokens("100"));
 
       // テスト7. ステーキング後の投資家の残高を確認する
       result = await daiToken.balanceOf(investor.address);
       assert.equal(
         result.toString(),
-        tokens('0'),
-        'investor Mock DAI wallet balance correct after staking',
+        tokens("0"),
+        "investor Mock DAI wallet balance correct after staking"
       );
 
       // テスト8. ステーキング後のTokenFarmの残高を確認する
       result = await daiToken.balanceOf(tokenFarm.address);
       assert.equal(
         result.toString(),
-        tokens('100'),
-        'Token Farm Mock DAI balance correct after staking',
+        tokens("100"),
+        "Token Farm Mock DAI balance correct after staking"
       );
 
       // テスト9. 投資家がTokenFarmにステーキングした残高を確認する
       result = await tokenFarm.stakingBalance(investor.address);
       assert.equal(
         result.toString(),
-        tokens('100'),
-        'investor staking balance correct after staking',
+        tokens("100"),
+        "investor staking balance correct after staking"
       );
 
       // テスト10. ステーキングを行った投資家の状態を確認する
       result = await tokenFarm.isStaking(investor.address);
       assert.equal(
         result.toString(),
-        'true',
-        'investor staking status correct after staking',
+        "true",
+        "investor staking status correct after staking"
       );
 
       // ----- 追加するテストコード ------ //
@@ -152,46 +153,46 @@ describe('TokenFarm', () => {
       result = await dappToken.balanceOf(investor.address);
       assert.equal(
         result.toString(),
-        tokens('100'),
-        'investor DApp Token wallet balance correct after staking',
+        tokens("100"),
+        "investor DApp Token wallet balance correct after staking"
       );
 
       // あなた（owner）のみがトークンを発行できることを確認する（もしあなた以外の人がトークンを発行しようとした場合、却下される）
       await expect(tokenFarm.connect(investor).issueTokens()).to.be.reverted;
 
       // トークンをアンステーキングする
-      await tokenFarm.connect(investor).unstakeTokens(tokens('60'));
+      await tokenFarm.connect(investor).unstakeTokens(tokens("60"));
 
       // テスト11. アンステーキングの結果を確認する
       result = await daiToken.balanceOf(investor.address);
       assert.equal(
         result.toString(),
-        tokens('60'),
-        'investor Mock DAI wallet balance correct after staking',
+        tokens("60"),
+        "investor Mock DAI wallet balance correct after staking"
       );
 
       // テスト12.投資家がアンステーキングした後の Token Farm 内に存在する偽の Dai 残高を確認する
       result = await daiToken.balanceOf(tokenFarm.address);
       assert.equal(
         result.toString(),
-        tokens('40'),
-        'Token Farm Mock DAI balance correct after staking',
+        tokens("40"),
+        "Token Farm Mock DAI balance correct after staking"
       );
 
       // テスト13. 投資家がアンステーキングした後の投資家の残高を確認する
       result = await tokenFarm.stakingBalance(investor.address);
       assert.equal(
         result.toString(),
-        tokens('40'),
-        'investor staking status correct after staking',
+        tokens("40"),
+        "investor staking status correct after staking"
       );
 
       // テスト14. 投資家がアンステーキングした後の投資家の状態を確認する
       result = await tokenFarm.isStaking(investor.address);
       assert.equal(
         result.toString(),
-        'false',
-        'investor staking status correct after staking',
+        "false",
+        "investor staking status correct after staking"
       );
     });
   });
@@ -201,9 +202,11 @@ describe('TokenFarm', () => {
 `追加するテストコード`の中身をよく見てみてください。
 
 ここでのポイントは、`approve`関数を呼び出して、`investor`を`TokenFarm`の承認済みユーザとして登録している点です。
+
 - `approve`関数について復習したい方は、section 1のlesson 2を参照してください!
 
 `approve`関数が実行されることにより、`investor`は自身のトークンをToken Farmにステークできるようになります。
+
 ### 🔥 テストを実行する
 
 それでは、ターミナルで下記のコマンドを実行しすることでテストしていきましょう！
@@ -212,7 +215,7 @@ describe('TokenFarm', () => {
 yarn test
 ```
 
-以下のような結果がターミナルに出力されていれば成功です🎉
+以下のような結果がターミナルに出力されていれば成功です 🎉
 
 ```
 Contract: TokenFarm
@@ -236,9 +239,9 @@ Contract: TokenFarm
 
 ではpackages/contract/scriptsに`deploy.js`という名前でファイルを作成して、以下のように記述しましょう。
 
-```javascript
-const hre = require('hardhat');
-const web3 = require('web3');
+```js
+const hre = require("hardhat");
+const web3 = require("web3");
 
 async function main() {
   // コントラクトをdeployしているアドレスの取得
@@ -246,31 +249,31 @@ async function main() {
 
   // コントラクトのdeploy
   const daitokenContractFactory = await hre.ethers.getContractFactory(
-    'DaiToken',
+    "DaiToken"
   );
   const dapptokenContractFactory = await hre.ethers.getContractFactory(
-    'DappToken',
+    "DappToken"
   );
   const tokenfarmContractFactory = await hre.ethers.getContractFactory(
-    'TokenFarm',
+    "TokenFarm"
   );
   const daiToken = await daitokenContractFactory.deploy();
   const dappToken = await dapptokenContractFactory.deploy();
   const tokenFarm = await tokenfarmContractFactory.deploy(
     dappToken.address,
-    daiToken.address,
+    daiToken.address
   );
 
   // 全てのDappトークンをファームに移動する(1 million)
   await dappToken.transfer(
     tokenFarm.address,
-    web3.utils.toWei('1000000', 'ether'),
+    web3.utils.toWei("1000000", "ether")
   );
 
-  console.log('Deploying contracts with account: ', deployer.address);
-  console.log('Dai Token Contract has been deployed to: ', daiToken.address);
-  console.log('Dapp Token Contract has been deployed to: ', dappToken.address);
-  console.log('TokenFarm Contract has been deployed to: ', tokenFarm.address);
+  console.log("Deploying contracts with account: ", deployer.address);
+  console.log("Dai Token Contract has been deployed to: ", daiToken.address);
+  console.log("Dapp Token Contract has been deployed to: ", dappToken.address);
+  console.log("TokenFarm Contract has been deployed to: ", tokenFarm.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
@@ -293,6 +296,7 @@ dApp用のトークンはアンステーキングのときに投資家の方に�
     "deploy": "npx hardhat run scripts/deploy.js --network sepolia"
   },
 ```
+
 その後ルートディレクトリにいることを確認して、ターミナル上で下記を実行してみましょう。
 
 では下記のコマンドを実行してコントラクトをdeployしましょう！
@@ -327,6 +331,7 @@ TokenFarm Contract has been deployed to:  0x3f8237063F68F034BF25Cf096B164486eCD0
 ```
 
 ---
-これでバックエンドの作成は完了です!お疲れ様でした🎉
+
+これでバックエンドの作成は完了です!お疲れ様でした 🎉
 ターミナルの出力結果を`#ethereum`にシェアしましょう!
-次のセクションではフロントエンドの作成に取り掛かっていきます。Token Farmの完成まで後少しです!頑張っていきましょう💪
+次のセクションではフロントエンドの作成に取り掛かっていきます。Token Farmの完成まで後少しです!頑張っていきましょう 💪

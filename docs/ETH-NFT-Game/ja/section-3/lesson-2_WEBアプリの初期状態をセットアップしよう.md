@@ -44,7 +44,7 @@ touch index.js
 
 VS Codeで`index.js`を開いて、下記のコードをは貼り付けましょう。
 
-```javascript
+```js
 import React, { useEffect, useState } from "react";
 import "./SelectCharacter.css";
 // setCharacterNFTについては、あとで詳しく説明します。
@@ -66,7 +66,7 @@ export default SelectCharacter;
 
 `import './App.css';`の直下に下記を追加してください。
 
-```javascript
+```js
 // SelectCharacter に入っているファイルをインポートします。
 import SelectCharacter from "./Components/SelectCharacter";
 ```
@@ -75,7 +75,7 @@ import SelectCharacter from "./Components/SelectCharacter";
 
 次に、下記のコードを` const [currentAccount, setCurrentAccount] = useState(null)`の直下に追加しましょう。
 
-```javascript
+```js
 // characterNFT と setCharacterNFT を初期化します。
 const [characterNFT, setCharacterNFT] = useState(null);
 ```
@@ -100,7 +100,7 @@ const [characterNFT, setCharacterNFT] = useState(null);
 
 `checkIfWalletIsConnected`を宣言したコードブロックの直下に下記を追加しましょう。
 
-```javascript
+```js
 // レンダリングメソッド
 const renderContent = () => {
   // シナリオ1.
@@ -129,7 +129,7 @@ const renderContent = () => {
 
 `App.js`の中にあるHTMLの部分(`return()`で囲まれている部分)を下記のように書き換えてください。
 
-```javascript
+```js
 return (
   <div className="App">
     <div className="container">

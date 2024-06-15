@@ -16,7 +16,7 @@ ICの重要な特徴の1つに、従来のデータベースを使わずにキ�
 
 このようにDEX内にデータが格納されている状態で、`main.mo`を更新してみたいと思います。`main.mo`ファイルに定義した`last_id`変数の初期値を修正して再デプロイを行います。
 
-```javascript
+```js
 private var last_id : Nat32 = 100; // TODO: 後で初期値0に戻す
 ```
 
@@ -198,7 +198,7 @@ dfx deploy faucet && dfx deploy icp_basic_dex_backend
 
 この状態のまま、icp_basic_dex_backendのコードを編集して再デプロイを行います。`main.mo`ファイルに定義した`last_id`変数の初期値を`0`に戻しましょう。
 
-```javascript
+```js
 private stable var last_id : Nat32 = 0;
 ```
 

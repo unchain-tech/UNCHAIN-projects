@@ -18,7 +18,7 @@
 
 まずは、エアドロップの実装に必要なメソッドをインポートし、これまでに作成したコンポーネント同様`Home`コンポーネントが保持しているデータのうち、実装に必要なデータを引数として受け取るようにします。
 
-```javascript
+```js
 import { Connection, LAMPORTS_PER_SOL } from '@solana/web3.js';
 
 export default function Airdrop({ account, network, refreshBalance }) {
@@ -26,7 +26,7 @@ export default function Airdrop({ account, network, refreshBalance }) {
 
 次に、`handleAirdrop`関数を定義していきましょう。`export default function Airdrop({ account, network, refreshBalance }) {`の直下に、下記のコードを追加してください。
 
-```javascript
+```js
 const handleAirdrop = async () => {
   try {
   } catch (error) {
@@ -37,7 +37,7 @@ const handleAirdrop = async () => {
 
 それでは、`handleAirdrop`関数の内部を実装していきましょう。`try-catch`文の`try{}`内にコードを追加していきます。
 
-```javascript
+```js
 const connection = new Connection(network, "confirmed");
 
 // console.log(connection);
@@ -50,7 +50,7 @@ const connection = new Connection(network, "confirmed");
 
 ![](/images/Solana-Wallet/section-3/3_1_1.png)
 
-```javascript
+```js
 const signature = await connection.requestAirdrop(
   account.publicKey,
   1 * LAMPORTS_PER_SOL
@@ -77,7 +77,7 @@ const signature = await connection.requestAirdrop(
 
 それでは、ドキュメントを参考に`confirmTransaction`メソッドを呼び出しましょう。トランザクションの成功を確認するためには、`confirmTransaction`メソッドが返すプロミスの`value`プロパティを確認する必要があります。`value`プロパティは、`signature`プロパティと`err`プロパティを持つオブジェクトを返します。`err`プロパティが`null`であれば、トランザクションは成功しています。
 
-```javascript
+```js
 const latestBlockHash = await connection.getLatestBlockhash();
 await connection
   .confirmTransaction(
@@ -100,13 +100,13 @@ await connection
 
 下記のコードをtry{}内の最後に追加します。
 
-```javascript
+```js
 await refreshBalance();
 ```
 
 最後に、 `Airdrop`ボタンを実装しましょう！ return文を下記のコードで更新してください。
 
-```javascript
+```js
 return (
   <button
     className="p-2 my-6 text-white bg-indigo-500 focus:ring focus:ring-indigo-300 rounded-lg cursor-pointer"
@@ -131,13 +131,13 @@ Test Suites: 1 failed, 4 passed, 5 total
 
 インポート文を追加します。
 
-```javascript
+```js
 import Airdrop from "../components/Airdrop";
 ```
 
 `Airdrop`コンポーネントを呼び出すコードを追加して、ボタンをレンダリングします。
 
-```javascript
+```js
 <div>
   <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">
     STEP4: エアドロップ機能を実装する
@@ -163,7 +163,7 @@ import Airdrop from "../components/Airdrop";
 
 - `components/Airdrop/index.js`
 
-```javascript
+```js
 import { Connection, LAMPORTS_PER_SOL } from "@solana/web3.js";
 
 export default function Airdrop({ account, network, refreshBalance }) {

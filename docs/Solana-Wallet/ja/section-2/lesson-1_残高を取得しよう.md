@@ -38,7 +38,7 @@ Solanaの`Devnet`は、開発者やユーザーが実際の経済的影響を伴
 
 以上を踏まえると、Connectionインスタンスの作成をこのようにコード化できます。
 
-```javascript
+```js
 const NETWORK = "devnet";
 const connection = new Connection(clusterApiUrl(NETWORK), "confirmed");
 
@@ -48,7 +48,7 @@ console.log(connection);
 
 それでは実際に、接続先URLを取得する機能を実装してみましょう。下記を参考に、`pages/index.js`を更新しましょう。
 
-```javascript
+```js
 // 残高の取得に必要なメソッドのインポートを追加
 import { clusterApiUrl, Connection, LAMPORTS_PER_SOL } from '@solana/web3.js';
 // useEffectのインポートを追加
@@ -78,7 +78,7 @@ export default function Home() {
 さて、接続ができたので、アカウントの残高を取得する必要があります。口座のパブリックアドレスをパラメータとして受け取り、口座の残高を返す`getBalance`関数があるはずだと推測されるかもしれません。web3.jsのドキュメントで「残高」というキーワードを検索すると、get残高メソッドがあるだけでなく、それはConnectionクラスのメソッドであることがわかります。
 Connectionのget残高メソッドを確認すると、パラメータとして口座の公開鍵を想定していることがわかります。
 
-```javascript
+```js
 const publicKey = account.publicKey;
 let balance = await connection.getBalance(publicKey);
 balance = balance / LAMPORTS_PER_SOL;
@@ -101,7 +101,7 @@ SOLはSolanaのネイティブトークンの名前ですが、マイクロペ�
 
 Connectionインスタンスの作成と、残高の取得の処理をまとめて`refreshBalance`関数を定義します。取得した残高は`useState`で値を保持しておきます。下記を参考に、`pages/index.js`を更新しましょう。
 
-```javascript
+```js
 const [balance, setBalance] = useState(null);
 
 useEffect(() => {
@@ -132,7 +132,7 @@ const refreshBalance = async () => {
 
 先ほど作成した`refreshBalance`関数を引数として受け取り、[残高を取得]ボタンがクリックされた時に実行するようにします。
 
-```javascript
+```js
 export default function GetBalance({ refreshBalance }) {
   return (
     <button
@@ -161,13 +161,13 @@ Test Suites: 2 failed, 3 passed, 5 total
 
 まずは、`GetBalance`コンポーネントをインポートしましょう。
 
-```javascript
+```js
 import GetBalance from "../components/GetBalance";
 ```
 
 `GetBalance`コンポーネントを呼び出すコードを追加して、ボタンをレンダリングします。
 
-```javascript
+```js
 <div>
   <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">
     STEP3: 残高を取得する
@@ -179,7 +179,7 @@ import GetBalance from "../components/GetBalance";
 
 最後に、残高を表示するコードを追加しましょう。
 
-```javascript
+```js
 <div>
   <h3 className="p-2 border-dotted border-l-8 border-l-indigo-600">
     My Wallet
@@ -222,7 +222,7 @@ import GetBalance from "../components/GetBalance";
 
 - `components/GetBalance/index.js`
 
-```javascript
+```js
 export default function GetBalance({ refreshBalance }) {
   return (
     <button

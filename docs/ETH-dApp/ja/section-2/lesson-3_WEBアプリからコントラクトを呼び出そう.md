@@ -13,7 +13,7 @@
 
 `App.js`を以下のように更新して、フロントエンドから`getTotalWaves`関数へアクセスできるようにします。
 
-```javascript
+```js
 /* ethers 変数を使えるようにする*/
 import { ethers } from "ethers";
 import React, { useEffect, useState } from "react";
@@ -140,7 +140,7 @@ export default App;
 
 **1 \. ethers 変数を使えるようにする**
 
-```javascript
+```js
 import { ethers } from "ethers";
 ```
 
@@ -148,7 +148,7 @@ import { ethers } from "ethers";
 
 **2 \. wave の回数をカウントする関数を実装する**
 
-```javascript
+```js
 const wave = async () => {
   try {
     // ユーザーがMetaMaskを持っているか確認
@@ -177,7 +177,7 @@ const wave = async () => {
 
 **I\. `provider`**
 
-> ```javascript
+> ```js
 > const provider = new ethers.providers.Web3Provider(ethereum);
 > ```
 >
@@ -189,7 +189,7 @@ const wave = async () => {
 
 **II\. `signer`**
 
-> ```javascript
+> ```js
 > const signer = provider.getSigner();
 > ```
 >
@@ -201,7 +201,7 @@ const wave = async () => {
 
 **III\. コントラクトインスタンス**
 
-> ```javascript
+> ```js
 > const wavePortalContract = new ethers.Contract(
 >   contractAddress,
 >   contractABI,
@@ -270,7 +270,7 @@ yarn contract deploy
 
 `const [currentAccount, setCurrentAccount] = useState('')`の直下に`contractAddress`を作成しましょう。以下のようになります。
 
-```javascript
+```js
 const [currentAccount, setCurrentAccount] = useState("");
 /*
  * デプロイされたコントラクトのアドレスを保持する変数を作成
@@ -338,7 +338,7 @@ ABIファイルの準備ができたので、`App.js`にインポートしまし
 
 下記のように`App.js`を更新します。
 
-```javascript
+```js
 /* ethers 変数を使えるようにする*/
 import { ethers } from "ethers";
 import React, { useEffect, useState } from "react";
@@ -502,7 +502,7 @@ export default App;
 
 コントラクトアドレスをご自身のものに更新するのをお忘れなく!
 
-```javascript
+```js
 const contractAddress = "あなたのコントラクトアドレスを貼り付けてください";
 ```
 
@@ -510,19 +510,19 @@ const contractAddress = "あなたのコントラクトアドレスを貼り付�
 
 **1 \. ABI ファイルを含む WavePortal.json ファイルをインポートする**
 
-```javascript
+```js
 import abi from "./utils/WavePortal.json";
 ```
 
 **2 \. ABI の内容を参照する変数を作成**
 
-```javascript
+```js
 const contractABI = abi.abi;
 ```
 
 ABIの参照先を確認しましょう。`wave`関数の中に実装されています。
 
-```javascript
+```js
 const wave = async () => {
   try {
     const { ethereum } = window;
@@ -554,7 +554,7 @@ ABIファイルを`App.js`に追加すると、フロントエンドで`Wave`ボ
 
 コントラクトにデータを書き込むためのコードを実装しました。
 
-```javascript
+```js
 const wave = async () => {
   try {
     const { ethereum } = window;

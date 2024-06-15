@@ -125,7 +125,7 @@ Create `@types/global.d.ts` in the client folder.
 
 Write the following code.
 
-```typescript
+```ts
 import { MetaMaskInpageProvider } from "@metamask/providers";
 
 declare global {

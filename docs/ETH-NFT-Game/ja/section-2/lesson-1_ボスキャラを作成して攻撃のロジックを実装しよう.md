@@ -96,7 +96,7 @@ constructor(
 
 最後に、`run.js`と`deploy.js`のdeploy部分を以下のように変更して、ボスに渡すパラメータを変更しましょう。
 
-```javascript
+```js
 const gameContract = await gameContractFactory.deploy(
   ["ZORO", "NAMI", "USOPP"], // キャラクターの名前
   [
@@ -359,7 +359,7 @@ console.log("Boss attacked player. New player hp: %s\n", player.hp);
 
 - `attackBoss`関数のコードブロックを2回`txn = await gameContract.mintCharacterNFT(2)`の直下に追加します。
 
-```javascript
+```js
 let txn;
 txn = await gameContract.mintCharacterNFT(2);
 await txn.wait();
@@ -375,7 +375,7 @@ await txn.wait();
 
 コードを詳しく見ていきましょう。
 
-```javascript
+```js
 txn = await gameContract.mintCharacterNFT(2);
 await txn.wait();
 ```
@@ -394,7 +394,7 @@ await txn.wait();
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```js
 // 1回目の攻撃: attackBoss 関数を追加
 txn = await gameContract.attackBoss();
 await txn.wait();

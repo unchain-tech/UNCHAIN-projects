@@ -10,7 +10,7 @@ Webアプリケーション上で、ユーザーがイーサリアムネット�
 
 - `NftUploader.jsx`はあなたのWebアプリケーションのフロントエンド機能を果たします。
 
-```javascript
+```js
 import { Button } from "@mui/material";
 import React from "react";
 import { useEffect, useState } from "react";
@@ -84,7 +84,7 @@ export default NftUploader;
 
 新しく追加したコードを見ていきましょう。
 
-```javascript
+```js
 // NftUploader.jsx
 // ユーザーがMetaMaskを持っているか確認します。
 const { ethereum } = window;
@@ -126,7 +126,7 @@ Consoleに`We have the ethereum object`と表示されているでしょうか�
 
 以下の通り、`NftUploader.jsx`を修正してください。
 
-```javascript
+```js
 import { Button } from "@mui/material";
 import React from "react";
 import { useEffect, useState } from "react";
@@ -210,7 +210,7 @@ export default NftUploader;
 
 新しく追加したコードを見ていきましょう。
 
-```javascript
+```js
 // NftUploader.jsx
 // ユーザーのウォレットアドレスを格納するために使用する状態変数を定義します。
 const [currentAccount, setCurrentAccount] = useState("");
@@ -222,7 +222,7 @@ console.log("currentAccount: ", currentAccount);
 
 以下で`currentAccount`を更新しています。
 
-```javascript
+```js
 // NftUploader.jsx
 // accountsにWEBサイトを訪れたユーザーのウォレットアカウントを格納する（複数持っている場合も加味、よって account's' と変数を定義している）
 const accounts = await ethereum.request({ method: "eth_accounts" });
@@ -246,7 +246,7 @@ if (accounts.length !== 0) {
 
 下記の通り`NftUploader.jsx`を更新していきましょう。
 
-```javascript
+```js
 import { Button } from "@mui/material";
 import React from "react";
 import { useEffect, useState } from "react";
@@ -361,7 +361,7 @@ export default NftUploader;
 
 **1 \. `connectWallet`メソッドを実装**
 
-```javascript
+```js
 // NftUploader.jsx
 const connectWallet = async () => {
   try {
@@ -385,7 +385,7 @@ const connectWallet = async () => {
 
 **2 \. `renderNotConnectedContainer`メソッドを実装**
 
-```javascript
+```js
 // NftUploader.jsx
 const renderNotConnectedContainer = () => (
   <button onClick={connectWallet} className="cta-button connect-wallet-button">
@@ -400,7 +400,7 @@ const renderNotConnectedContainer = () => (
 
 **3 \. `renderNotConnectedContainer`メソッドを使った条件付きレンダリング**
 
-```javascript
+```js
 // NftUploader.jsx
 {
   /*条件付きレンダリングを追加しました。*/
@@ -420,7 +420,7 @@ const renderNotConnectedContainer = () => (
 
 条件付きレンダリングは、下記のように実行されます。
 
-```javascript
+```js
 { currentAccount === '' ? ( currentAccount にアドレスが紐づいてなければ、A を実行 ) : ( currentAccount にアドレスが紐づいれば B を実行 )}
 ```
 

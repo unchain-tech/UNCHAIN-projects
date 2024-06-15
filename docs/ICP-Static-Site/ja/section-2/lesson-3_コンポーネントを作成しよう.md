@@ -30,7 +30,7 @@ touch ./src/lib/Nav.svelte
 
 [Nav.svelte]
 
-```javascript
+```js
 <header class="bg-blue-400 p-4 sticky top-0">
   <nav class="container flex justify-between items-center mx-auto">
     <!-- Webサイトのタイトル -->
@@ -59,7 +59,7 @@ VS Codeの拡張機能をインストールした方は、クラスにカーソ�
 
 次に、実装したナビゲーションバーを表示するために、`./src/App.svelte`ファイルを以下のように書き換えます。
 
-```javascript
+```js
 <script>
   import Nav from './lib/Nav.svelte';
 </script>
@@ -75,13 +75,13 @@ VS Codeの拡張機能をインストールした方は、クラスにカーソ�
 
 `Svelte`では、`<script></script>`の中にファイルのインポート文を書きます。ここでは、`Nav.svelte`ファイルを`Nav`という名前をつけてインポートしています。
 
-```javascript
+```js
 <script>import Nav from './lib/Nav.svelte';</script>
 ```
 
 次のブロックで、実際にブラウザ上に表示する内容を実装しています。ここで、先ほどインポートをした`Nav`を呼びます。
 
-```javascript
+```js
 <main>
   <div>
     <Nav />
@@ -113,7 +113,7 @@ touch ./src/lib/Footer.svelte
 
 [Footer.svelte]
 
-```javascript
+```js
 <footer class="bg-blue-400 p-12 absolute bottom-0 w-full">
   <div class="container text-center mx-auto">
     <p class="text-sm">built by YOUR_NAME</p>

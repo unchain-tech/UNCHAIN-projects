@@ -38,7 +38,7 @@ touch ./src/icp_basic_dex_frontend/src/components/PlaceOrder.jsx ./src/icp_basic
 
 [PlaceOrder.jsx]
 
-```javascript
+```js
 import {
   canisterId as DEXCanisterId,
   createActor,
@@ -176,7 +176,7 @@ export const PlaceOrder = (props) => {
 
 [ListOrder.jsx]
 
-```javascript
+```js
 import {
   canisterId as DEXCanisterId,
   createActor,

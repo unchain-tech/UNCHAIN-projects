@@ -110,7 +110,7 @@ classの概念については、[ここ](https://aiacademy.jp/media/?p=131)を�
 
 `run.js`の中身に、以下を記入しましょう。
 
-```javascript
+```js
 const main = async () => {
   const gameContractFactory = await hre.ethers.getContractFactory("MyEpicGame");
   const gameContract = await gameContractFactory.deploy();
@@ -132,7 +132,7 @@ runMain();
 
 それでは、1行ずつコードの理解を深めましょう。
 
-```javascript
+```js
 const gameContractFactory = await hre.ethers.getContractFactory("MyEpicGame");
 ```
 
@@ -155,7 +155,7 @@ const gameContractFactory = await hre.ethers.getContractFactory("MyEpicGame");
 
 次に、下記の処理を見ていきましょう。
 
-```javascript
+```js
 const gameContract = await gameContractFactory.deploy();
 ```
 
@@ -167,7 +167,7 @@ HardhatがローカルのEthereumネットワークを、コントラクトの�
 
 次に下記の処理を見ていきましょう。
 
-```javascript
+```js
 const nftGame = await gameContract.deployed();
 ```
 
@@ -176,7 +176,7 @@ Hardhatは実際にあなたのマシン上に「マイナー」を作成し、�
 
 私たちの`constructor`は、私たちが実際に完全にデプロイされたときに実行されます!
 
-```javascript
+```js
 console.log("Contract deployed to:", gameContract.address);
 ```
 

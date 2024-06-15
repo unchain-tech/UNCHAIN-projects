@@ -46,7 +46,7 @@ export default Home;
 
 `App.js`
 
-```javascript
+```js
 <Route path="/search/:date" element={<Search />} />
 ```
 
@@ -62,7 +62,7 @@ localhost:1234/search/2022-08-09
 
 `FormDate.js`
 
-```javascript
+```js
 // URLに入力された日付を入れて遷移先へ渡す
 onClick={() => navigate(`/search/${date}`)}
 ```
@@ -148,14 +148,14 @@ export default Search;
 
 以下の部分で日付を受け取っています。注意点として、変数名は`App.js`で指定したキーワードと同じ名前を指定します。`:date`と設定したので`date`を受け取ります。
 
-```javascript
+```js
 // URLから検索する日付を取得する
 const { date } = useParams();
 ```
 
 パスから受け取った`date`を`get_available_rooms`メソッドに渡し、部屋のデータを取得します。
 
-```javascript
+```js
 // 予約できる部屋のデータを設定する
 const [availableRooms, setAvailableRooms] = useState([]);
 
@@ -166,7 +166,7 @@ const getAvailableRooms = async () => {
 
 次に定義しているのは、**予約**ボタンが押された際に実行される関数です。中では`book_room`メソッドを呼んでいます。
 
-```javascript
+```js
 const booking = async (room_id, price) => {
   book_room({
     room_id,
@@ -179,7 +179,7 @@ const booking = async (room_id, price) => {
 
 次の`useEffect`には、`date`を指定しています。`Search`画面には再度検索ができるように日付入力フォームを表示させます。検索が実行される度にパスが変更され、`date`の値も更新されます。そこで、`date`が更新されたら再度部屋のデータを取得して、検索結果を更新するために指定します。
 
-```javascript
+```js
 // 検索する日付が更新されるたびに`getAvailableRooms`を実行する
 useEffect(() => {
   getAvailableRooms();

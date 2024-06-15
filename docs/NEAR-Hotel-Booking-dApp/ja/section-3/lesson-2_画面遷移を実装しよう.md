@@ -38,7 +38,7 @@ yarn add --dev react-bootstrap bootstrap bootstrap-icons react-router-dom　
 
 `frontend/index.js`
 
-```javascript
+```js
 import "bootstrap";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -63,7 +63,7 @@ window.nearInitPromise = initContract()
 
 画面遷移を実行するためのライブラリと、フレームワークをインポートしています。
 
-```javascript
+```js
 import "bootstrap";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -74,7 +74,7 @@ import { BrowserRouter } from "react-router-dom";
 次に、`frontend/App.js`を以下のように書き換えます。
 `frontend/App.js`
 
-```javascript
+```js
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import NavBar from "./assets/js/components/NavBar";
@@ -107,7 +107,7 @@ return文の中で、ナビゲーションバーを実装する`<NavBar />`を�
 次に、画面遷移のための詳細な設定を行なっています。
 遷移時に使用するデータを、`path`と`element`で設定します。
 
-```javascript
+```js
 <Routes>
   <Route path="/" element={<Home />} />
   <Route path="/search/:date" element={<Search />} />
@@ -124,7 +124,7 @@ return文の中で、ナビゲーションバーを実装する`<NavBar />`を�
 
 `frontend/assets/js/components/NavBar.js`
 
-```javascript
+```js
 import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -226,13 +226,13 @@ export default NavBar;
 
 NEAR Walletへの接続や残高を取得する関数をインポートします。
 
-```javascript
+```js
 import { accountBalance, login, logout } from "../near/utils";
 ```
 
 NEAR Walletに接続をすると、`window.accountId`にアカウントIDが設定されます。ここでは、if文でチェックをして設定されていたらアカウントの残高を取得しています。
 
-```javascript
+```js
 // ログインしたアカウントのNEAR残高を取得
 const getBalance = async () => {
   if (window.accountId) {
@@ -253,7 +253,7 @@ returnの中では、表示するナビゲーションバーの設定をして�
 
 画面への遷移はメニューをクリックした時に実行されます。`navigate()`の中に遷移したいパスを設定します。設定するパスは、`App.js`内で`path=`に指定したものになります。
 
-```javascript
+```js
 <NavDropdown.Item onClick={() => navigate(`/booked-list`)}>
   Booked List
 </NavDropdown.Item>
@@ -263,7 +263,7 @@ returnの中では、表示するナビゲーションバーの設定をして�
 
 `frontend/assets/js/pages/GuestBookedList.js`
 
-```javascript
+```js
 import React from "react";
 
 const GuestBookedList = () => {

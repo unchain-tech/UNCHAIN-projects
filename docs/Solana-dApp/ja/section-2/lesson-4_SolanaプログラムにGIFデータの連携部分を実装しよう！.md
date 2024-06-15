@@ -6,7 +6,6 @@ Solanaプログラム上にデータを保存することができました。
 
 そして、それらのデータをクライアントで取得できるようにします。
 
-
 ### 💎 Vector を設定する
 
 `lib.js`を以下のとおり更新します。
@@ -104,17 +103,16 @@ pub struct ItemStruct {
 
 カスタム構造体を適切にシリアライズ / デシリアライズされていることを確認するために、この処理を行っているというわけです。
 
-
 ### 🤯 テストスクリプトを更新する
 
 では、テストを行う前に`myepicproject.js`を以下のとおり更新しておきましょう。
 
-```javascript
-const anchor = require('@project-serum/anchor');
+```js
+const anchor = require("@project-serum/anchor");
 const { SystemProgram } = anchor.web3;
 
-const main = async() => {
-  console.log("🚀 Starting test...")
+const main = async () => {
+  console.log("🚀 Starting test...");
 
   const provider = anchor.AnchorProvider.env();
   anchor.setProvider(provider);
@@ -132,7 +130,7 @@ const main = async() => {
   console.log("📝 Your transaction signature", tx);
 
   let account = await program.account.baseAccount.fetch(baseAccount.publicKey);
-  console.log('👀 GIF Count', account.totalGifs.toString())
+  console.log("👀 GIF Count", account.totalGifs.toString());
 
   // GIFリンクと送信ユーザーのアドレスを渡します。
   await program.rpc.addGif("insert_a_gif_link_here", {
@@ -144,11 +142,11 @@ const main = async() => {
 
   // アカウントを呼び出します。
   account = await program.account.baseAccount.fetch(baseAccount.publicKey);
-  console.log('👀 GIF Count', account.totalGifs.toString())
+  console.log("👀 GIF Count", account.totalGifs.toString());
 
   // アカウントでgif_listにアクセスします。
-  console.log('👀 GIF List', account.gifList)
-}
+  console.log("👀 GIF List", account.gifList);
+};
 
 const runMain = async () => {
   try {
@@ -191,7 +189,6 @@ anchor test
 ```
 
 ここまでで、Solanaプログラムの実装部分はほとんど完了しました。
-
 
 ### 🙋‍♂️ 質問する
 

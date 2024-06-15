@@ -8,7 +8,7 @@
 
 [types.mo]
 
-```javascript
+```js
 module {
   // ===== DIP20 TOKEN INTERFACE =====
   public type TxReceipt = {
@@ -77,7 +77,7 @@ module {
 
 [main.mo]
 
-```javascript
+```js
 import Array "mo:base/Array";
 import Iter "mo:base/Iter";
 import HashMap "mo:base/HashMap";
@@ -95,7 +95,7 @@ actor class Dex() = this {
 
 ここでは、これまでと同様にインポート文を定義しています。加えて、前回のレッスンで作成した`BalanceBook`モジュールをインポートしています。以下のように`BalanceBook`をインスタンス化することで、実際に関数を呼び出すことが可能になります。
 
-```javascript
+```js
 private var balance_book = BalanceBook.BalanceBook();
 ```
 
@@ -202,7 +202,7 @@ actor class Dex() = this {
 
 問題がなければ`transferFrom`メソッドでユーザーからDEX内にトークンを転送します。この時転送されるトークン量は、手数料を差し引いた分になります。
 
-```javascript
+```js
 // ユーザーが保有するトークン量を取得
 let balance = await dip20.allowance(msg.caller, Principal.fromActor(this));
 if (balance <= dip_fee) {
@@ -219,7 +219,7 @@ let token_receipt = await dip20.transferFrom(msg.caller, Principal.fromActor(thi
 
 転送が完了した場合、`BalanceBook`モジュールの`addToken`メソッドを呼び出して、DEX内のトークンデータを更新します。
 
-```javascript
+```js
 // `balance_book`にユーザーPrincipalとトークンデータを記録
 balance_book.addToken(msg.caller, token, balance - dip_fee);
 
@@ -230,7 +230,7 @@ return #Ok(balance - dip_fee);
 
 最初に、DEX内にユーザーが保有するトークン量と引き出したい量を比較します。不足するようであれば、エラーを返して終了します。
 
-```javascript
+```js
 if (balance_book.hasEnoughBalance(msg.caller, token, amount) == false) {
   return #Err(#BalanceLow);
 };
@@ -238,7 +238,7 @@ if (balance_book.hasEnoughBalance(msg.caller, token, amount) == false) {
 
 問題がなければ、転送を行います。ここで使用するメソッドは`transfer`になります。
 
-```javascript
+```js
 // `transfer`でユーザーにトークンを転送する
 let txReceipt = await dip20.transfer(msg.caller, amount);
   switch txReceipt {
@@ -249,7 +249,7 @@ let txReceipt = await dip20.transfer(msg.caller, amount);
 
 転送が完了した場合、`balance_book`のデータを更新します。
 
-```javascript
+```js
 let dip_fee = await fetch_dif_fee(token);
 
 // `balance_book`のトークンデータを修正する
@@ -263,7 +263,7 @@ return #Ok(amount);
 
 3つ目の関数`fetch_dif_fee`は内部関数で、転送を行うトークンの手数料を取得します。`getMetadata`メソッドをコールすることでデータの取得ができます。このメソッドが返すデータの型は`types.mo`に定義されています。
 
-```javascript
+```js
 let metadata = await dip20.getMetadata();
 ```
 

@@ -112,7 +112,7 @@ yarn client start
 
 jsonファイルのコピー　& ペーストが完了したら、`App.js`ファイルを以下のように更新してください。
 
-```javascript
+```js
 import { ethers } from "ethers";
 import React, { useEffect, useState } from "react";
 
@@ -278,7 +278,7 @@ export default App;
 
 では接続の確認部分を解説していきます。
 
-```javascript
+```js
 const checkIfWalletIsConnected = async () => {
   try {
     const { ethereum } = window;
@@ -311,7 +311,7 @@ const checkIfWalletIsConnected = async () => {
 
 次にウォレット接続部分を確認しましょう。
 
-```javascript
+```js
 // ウォレットに接続する関数
 const connectWallet = async () => {
   try {

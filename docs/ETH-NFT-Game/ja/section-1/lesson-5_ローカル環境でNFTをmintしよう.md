@@ -415,7 +415,7 @@ NFTをMintした後、OpenZeppelinが提供する関数`_tokenIds.increment()`�
 
 以下のコードを`run.js`の`console.log`の直下に追加しましょう。
 
-```javascript
+```js
 // 再代入可能な変数 txn を宣言
 let txn;
 // 3体のNFTキャラクターの中から、3番目のキャラクターを Mint しています。
@@ -431,7 +431,7 @@ console.log("Token URI:", returnedTokenUri);
 
 コードを1行ずつ見ていきましょう。
 
-```javascript
+```js
 // 再代入可能な変数 txn を宣言
 let txn;
 // 3体のNFTキャラクターの中から、3番目のキャラクターを Mint しています。
@@ -448,7 +448,7 @@ https://qiita.com/y-temp4/items/289686fbdde896d22b5e
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```js
 // Minting が仮想マイナーにより、承認されるのを待ちます。
 await txn.wait();
 // NFTのURIの値を取得します。tokenURI は ERC721 から継承した関数です。

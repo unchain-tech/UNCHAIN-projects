@@ -28,7 +28,7 @@
 
 `client/src`の中に`constants.js`ファイルを作成し、以下のコードを追加してください。
 
-```javascript
+```js
 const CONTRACT_ADDRESS = "YOUR_CONTRACT_ADDRESS_GOES_HERE";
 
 export { CONTRACT_ADDRESS };
@@ -38,7 +38,7 @@ export { CONTRACT_ADDRESS };
 
 次に、`App.js`ファイルに戻り、ファイルの先頭に下記をインポートして、`constants.js`にアクセスできるようにしましょう。
 
-```javascript
+```js
 import { CONTRACT_ADDRESS } from "./constants";
 ```
 
@@ -106,7 +106,7 @@ ABIファイルの準備ができたので、`App.js`にインポートしまし
 
 下記を`App.js`の1行目に追加しましょう。
 
-```javascript
+```js
 import myEpicGame from "./utils/MyEpicGame.json";
 ```
 
@@ -146,7 +146,7 @@ import myEpicGame from "./utils/MyEpicGame.json";
 
 - `import { CONTRACT_ADDRESS } from './constants'`の直下に下記を追加しましょう。
 
-```javascript
+```js
 import { ethers } from "ethers";
 ```
 
@@ -158,7 +158,7 @@ import { ethers } from "ethers";
 
 `checkNetwork`関数を`const [characterNFT, setCharacterNFT] = useState(null);`の直下に追加してください。
 
-```javascript
+```js
 // ユーザーがSepolia Network に接続されているか確認します。
 // '11155111' は Sepolia のネットワークコードです。
 const checkNetwork = async () => {
@@ -186,7 +186,7 @@ const checkNetwork = async () => {
 
 - `connectWalletAction`関数を下記のように更新します。
 
-> ```javascript
+> ```js
 > // connectWallet メソッドを実装します。
 > const connectWalletAction = async () => {
 >   try {
@@ -242,7 +242,7 @@ const checkNetwork = async () => {
 
 - `checkIfWalletIsConnected();`を呼び出している`useEffect()`関数の直下に、新しい`useEffect()`関数（下記）を追加してください。
 
-```javascript
+```js
 // ページがロードされたときに useEffect()内の関数が呼び出されます。
 useEffect(() => {
   // スマートコントラクトを呼び出す関数です。
@@ -282,7 +282,7 @@ useEffect(() => {
 
 追加されたコードを見ながら、新しい概念について学びましょう。
 
-```javascript
+```js
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 ```
 
@@ -294,7 +294,7 @@ MetaMaskが提供するイーサリアムノードを使用して、デプロイ
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```js
 const signer = provider.getSigner();
 ```
 
@@ -306,7 +306,7 @@ const signer = provider.getSigner();
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```js
 const gameContract = new ethers.Contract(
   CONTRACT_ADDRESS,
   myEpicGame.abi,
@@ -326,7 +326,7 @@ const gameContract = new ethers.Contract(
 
 `gameContract`が設定されたら、`checkIfUserHasNFT`メソッドを呼び出すことができます。
 
-```javascript
+```js
 const txn = await gameContract.checkIfUserHasNFT();
 ```
 
@@ -355,7 +355,7 @@ function checkIfUserHasNFT() public view returns (CharacterAttributes memory) {
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```js
 if (txn.name) {
   console.log("User has character NFT");
   setCharacterNFT(transformCharacterData(txn));
@@ -378,7 +378,7 @@ if (txn.name) {
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```js
 if (currentAccount) {
   console.log("CurrentAccount:", currentAccount);
   fetchNFTMetadata();
@@ -391,7 +391,7 @@ if (currentAccount) {
 
 最後に下記のコードを見ていきましょう。
 
-```javascript
+```js
 useEffect(() => {
 	...
 }, [currentAccount]);
@@ -407,7 +407,7 @@ useEffect(() => {
 
 それでは、`contract/src`に移動し、コントラクトアドレスを保持するために作成した`constants.js`ファイルの中身を下記のように更新しましょう。
 
-```javascript
+```js
 // CONTRACT_ADDRESSに、コントラクトアドレスを保存します。
 const CONTRACT_ADDRESS = "YOUR_CONTRACT_ADDRESS_GOES_HERE";
 
@@ -430,7 +430,7 @@ export { CONTRACT_ADDRESS, transformCharacterData };
 
 次に、`App.js`に向かい、`import { ethers } from 'ethers';`の直下に下記を追加してください。
 
-```javascript
+```js
 import { CONTRACT_ADDRESS, transformCharacterData } from "./constants";
 ```
 

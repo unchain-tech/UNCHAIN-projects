@@ -48,7 +48,7 @@ ENSの最大の問題は取引手数料です。 名前を登録するには、�
 
 ENSを使用すると、登録したネームにたくさんの独自データを紐付けて保存できます。
 
-&ensp;[<u>ENS の例 ( cryptonerdtokyo.eth )</u>](https://app.ens.domains/name/cryptonerdtokyo.eth/details)
+&ensp;[ENS の例 ( cryptonerdtokyo.eth )](https://app.ens.domains/name/cryptonerdtokyo.eth/details)
 
 ![](/images/Polygon-ENS-Domain/section-0/0_3_2.png)
 

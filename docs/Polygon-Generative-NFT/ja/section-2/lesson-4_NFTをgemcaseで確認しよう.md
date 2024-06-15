@@ -62,7 +62,7 @@ ETHERSCAN_API = "YOUR ETHERSCAN apiKey HERE"
 
 最後に、`contract/hardhat.config.js`を下記のように更新しましょう。
 
-```javascript
+```js
 require("@nomicfoundation/hardhat-toolbox");
 require("@nomiclabs/hardhat-etherscan");
 require("dotenv").config();

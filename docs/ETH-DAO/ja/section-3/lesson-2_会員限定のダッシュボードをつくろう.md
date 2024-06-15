@@ -6,7 +6,7 @@
 
 まず、`src/pages/index.tsx`へ移動し、`react`のインポート部分のコードを以下のとおり変更します。
 
-```typescript
+```ts
 import { useEffect, useMemo, useState } from "react";
 ```
 
@@ -18,7 +18,7 @@ import { useEffect, useMemo, useState } from "react";
 
 ※ あなたのアドレスを設定することを忘れないでください！
 
-```typescript
+```ts
 // トークンコントラクトの初期化
 const token = useContract("INSERT_TOKEN_ADDRESS", "token").contract;
 ```
@@ -31,7 +31,7 @@ ERC-20から、各メンバーが持っているトークンの数を取得し�
 
 次に、`const [isClaiming, setIsClaiming] = useState(false)`の下に、以下のコードを追加します。
 
-```typescript
+```ts
 // メンバーごとの保有しているトークンの数をステートとして宣言
 const [memberTokenAmounts, setMemberTokenAmounts] = useState<any>([]);
 
@@ -136,7 +136,7 @@ stateにデータを保持するところまではできているので、早速
 
 `src/pages/index.tsx`のDAOダッシュボード画面を表示している箇所を以下のとおり置き換えます（161行目のあたりです）。
 
-```typescript
+```ts
 // ユーザーがすでに NFT を要求している場合は、内部 DAO ページを表示します
 // これは DAO メンバーだけが見ることができ、すべてのメンバーとすべてのトークン量をレンダリングします
   else if (hasClaimedNFT){
