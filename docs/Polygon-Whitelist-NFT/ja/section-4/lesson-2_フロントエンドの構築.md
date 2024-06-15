@@ -220,7 +220,7 @@ export default function Home() {
   };
 
   const switchToMumbai = async () => {
-    const chainId = '0x13881'; // Mumbai
+    const chainId = '0x13881'; // Amoy
 
     const currentChainId = await window.ethereum.request({
       method: 'eth_chainId',
@@ -243,7 +243,7 @@ export default function Home() {
             method: 'wallet_addEthereumChain',
             params: [
               {
-                chainName: 'Mumbai',
+                chainName: 'Amoy',
                 chainId: chainId,
                 nativeCurrency: {
                   name: 'MATIC',
@@ -251,7 +251,7 @@ export default function Home() {
                   symbol: 'MATIC',
                 },
                 rpcUrls: [
-                  'https://endpoints.omniatech.io/v1/matic/mumbai/public',
+                  'https://endpoints.omniatech.io/v1/matic/amoy/public',
                 ],
               },
             ],
@@ -701,7 +701,7 @@ export default function Home() {
   };
 
   const switchToMumbai = async () => {
-    const chainId = "0x13881"; // Mumbai
+    const chainId = "0x13881"; // Amoy
 
     const currentChainId = await window.ethereum.request({
       method: "eth_chainId",
@@ -724,7 +724,7 @@ export default function Home() {
             method: "wallet_addEthereumChain",
             params: [
               {
-                chainName: "Mumbai",
+                chainName: "Amoy",
                 chainId: chainId,
                 nativeCurrency: {
                   name: "MATIC",
@@ -732,7 +732,7 @@ export default function Home() {
                   symbol: "MATIC",
                 },
                 rpcUrls: [
-                  "https://endpoints.omniatech.io/v1/matic/mumbai/public",
+                  "https://endpoints.omniatech.io/v1/matic/amoy/public",
                 ],
               },
             ],
@@ -833,7 +833,7 @@ import { ethers } from "ethers";
 	...
 
   const switchToMumbai = async () => {
-    const chainId = '0x13881'; // Mumbai
+    const chainId = '0x13881'; // Amoy
 
     const currentChainId = await window.ethereum.request({
       method: 'eth_chainId',
@@ -856,7 +856,7 @@ import { ethers } from "ethers";
             method: 'wallet_addEthereumChain',
             params: [
               {
-                chainName: 'Mumbai',
+                chainName: 'Amoy',
                 chainId: chainId,
                 nativeCurrency: {
                   name: 'MATIC',
@@ -864,7 +864,7 @@ import { ethers } from "ethers";
                   symbol: 'MATIC',
                 },
                 rpcUrls: [
-                  'https://endpoints.omniatech.io/v1/matic/mumbai/public',
+                  'https://endpoints.omniatech.io/v1/matic/amoy/public',
                 ],
               },
             ],
@@ -876,7 +876,7 @@ import { ethers } from "ethers";
 
 ```
 
-ユーザーが`"Connect"`ボタンをクリックすると、`connect`関数が起動します。まず、MetaMaskにアカウントを要求します。次に、チェーンIDをチェックしてMumbaiテストネットに接続されているかどうかを判断します（各チェーンには通常、ユニークなチェーンIDがあり、Ethereumのメインネットは1、Mumbaiは4902となっています）。Mumbaiが設定されていない場合は、自動的に設定します。このプロセス中にエラーが発生した場合は、対応するエラーメッセージが表示されます。
+ユーザーが`"Connect"`ボタンをクリックすると、`connect`関数が起動します。まず、MetaMaskにアカウントを要求します。次に、チェーンIDをチェックしてAmoyテストネットに接続されているかどうかを判断します（各チェーンには通常、ユニークなチェーンIDがあり、Ethereumのメインネットは1、Amoyは4902となっています）。Amoyが設定されていない場合は、自動的に設定します。このプロセス中にエラーが発生した場合は、対応するエラーメッセージが表示されます。
 
 ```tsx
 const mint = async () => {

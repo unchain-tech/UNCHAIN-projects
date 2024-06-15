@@ -2,7 +2,7 @@
 
 > Before deploying contracts on the testnet, you can thoroughly test the contracts using `JS VM`, as it doesn't require gas and deployment is quick.
 
-Do you recall that we received test tokens on the `Polygon Mumbai` testnet initially? Next, our task is to deploy the `Whitelist.sol` and `Shield.sol` contracts on this testnet.
+Do you recall that we received test tokens on the `Polygon Amoy` testnet initially? Next, our task is to deploy the `Whitelist.sol` and `Shield.sol` contracts on this testnet.
 
 Click on the "Connected" button in the upper-right corner and then select "Disconnect".
 
@@ -16,7 +16,7 @@ Click `Metamask`
 
 ![image-20230223134000225](/images/Polygon-Whitelist-NFT/section-4/4_1_3.png)
 
-Select `Mumbai`
+Select `Amoy`
 
 ![image-20230223134208657](/images/Polygon-Whitelist-NFT/section-4/4_1_4.png)
 
