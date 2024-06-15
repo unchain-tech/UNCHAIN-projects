@@ -220,7 +220,7 @@ export default function Home() {
   };
 
   const switchToMumbai = async () => {
-    const chainId = '0x13881'; // Amoy
+    const chainId = '0x13882'; // Amoy
 
     const currentChainId = await window.ethereum.request({
       method: 'eth_chainId',
@@ -701,7 +701,7 @@ export default function Home() {
   };
 
   const switchToMumbai = async () => {
-    const chainId = "0x13881"; // Amoy
+    const chainId = "0x13882"; // Amoy
 
     const currentChainId = await window.ethereum.request({
       method: "eth_chainId",
@@ -833,7 +833,7 @@ Firstly, we have imported [ether.js](https://docs.ethers.org/v5/). In simple ter
 	...
 
   const switchToMumbai = async () => {
-    const chainId = '0x13881'; // Amoy
+    const chainId = '0x13882'; // Amoy
 
     const currentChainId = await window.ethereum.request({
       method: 'eth_chainId',
