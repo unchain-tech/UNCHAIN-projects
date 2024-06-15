@@ -14,7 +14,7 @@
 
 **「これは新しいスマートコントラクトです。私のスマートコントラクトをブロックチェーンに追加してから、他の人にもそのことを伝えてください」**
 
-**（以下の Alchemy や Mumbai ネットの設定は他の課題で既に学習している場合は適宜ご自身で割愛してください）**
+**（以下の Alchemy や Amoy ネットの設定は他の課題で既に学習している場合は適宜ご自身で割愛してください）**
 
 ここで[Alchemy](https://alchemy.com/)を使います。
 
@@ -36,7 +36,7 @@ Alchemyのアカウントを作成したら、Dashboardの`CREATE APP`ボタン�
 - `NAME`: プロジェクトの名前(例: `CoolDomains`)
 - `DESCRIPTION`: プロジェクトの概要(例：`ENS on Polygon`)
 - `CHAIN`: `Polygon`を選択。
-- `NETWORK`: `Polygon Mumbai`を選択。
+- `NETWORK`: `Polygon Amoy`を選択。
 
 それから、作成したAppの`VIEW DETAILS`をクリックします。
 
@@ -58,7 +58,7 @@ Metamaskが必要ですが、インストールについてはETH-dAPPなど別�
 
 ### 💜 MetaMask と Hardhat に Polygon Network を追加する
 
-MetaMaskウォレットにMatic MainnetとPolygon Mumbai-Testnetを追加してみましょう。
+MetaMaskウォレットにMatic MainnetとPolygon Amoy-Testnetを追加してみましょう。
 
 **1 \. Matic Mainnet を MetaMask に接続する**
 
@@ -76,11 +76,11 @@ Matic MainnetをMetaMaskに追加するには、次の手順に従ってくだ�
 
 ![](/images/Polygon-ENS-Domain/section-1/1_5_6.png)
 
-**2 \. Polygon Mumbai-Testnet を MetaMask に接続する**
+**2 \. Polygon Amoy-Testnet を MetaMask に接続する**
 
-Polygon Mumbai-TestnetをMetaMaskに追加するには、次の手順に従ってください。
+Polygon Amoy-TestnetをMetaMaskに追加するには、次の手順に従ってください。
 
-まず、[mumbai.polygonscan.com](https://mumbai.polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Mumbai Network`ボタンをクリックします。
+まず、[amoy.polygonscan.com](https://amoy.polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Amoy Network`ボタンをクリックします。
 
 `Matic Mainnet`を設定した時と同じ要領で`Polygon Testnet`をあなたのMetaMaskに設定してください。
 
@@ -173,7 +173,7 @@ require("@nomicfoundation/hardhat-toolbox");
 module.exports = {
   solidity: "0.8.17",
   networks: {
-    mumbai: {
+    amoy: {
       url: "YOUR_ALCHEMY_MUMBAI_URL",
       accounts: ["YOUR_TEST_WALLET_PRIVATE_KEY"],
     },
@@ -203,9 +203,9 @@ yarn contract deploy
 
 通常、デプロイには20〜40秒かかります。 デプロイしているだけではありません。`deploy.js`ではNFTも作成しているので、これにも時間がかかります。 実際には、トランザクションが「マイニング」されてノードによって取得されるのを待つ必要があります。 その1つのコマンドですべてを実行できます。 問題なければ、次のような結果が表示されます。
 
-Mumbaiもストップしていることがまれにありますのでその場合は時間を置いてから実施してください。
+Amoyもストップしていることがまれにありますのでその場合は時間を置いてから実施してください。
 
-こちらの[Mumbai Polygonscan](https://mumbai.polygonscan.com/)から正常に作動しているか確認してみると良いでしょう。
+こちらの[Amoy Polygonscan](https://amoy.polygonscan.com/)から正常に作動しているか確認してみると良いでしょう。
 
 ```
 Contract deployed to: 0x6C45313E2F7e4Fd85f56E66c559bfFc23E726c1d
@@ -233,7 +233,7 @@ RPCについては検索してみてください。
 
 **Polygon にデプロイできました ✨**
 
-先に進む前に、問題ないか確認しましょう。 これは先ほどの[Mumbai Polygonscan](https://mumbai.polygonscan.com/)を使用して行うことができます。
+先に進む前に、問題ないか確認しましょう。 これは先ほどの[Amoy Polygonscan](https://amoy.polygonscan.com/)を使用して行うことができます。
 
 ここで、ターミナルに出力されたコントラクトアドレスを貼り付けて、何が起こっているかを確認できます。
 
@@ -256,7 +256,7 @@ Polygonscanの使用に慣れると便利です。これは、問題が発生し
 
 ### 🙀 NFT が 表示されない場合
 
-数分待ってもNFTがOpenSeaに表示されない場合は、[testnets.dev](http://testnets.dev)というサイトにアクセスしてください。 上部のテストネット選択でMatic Mumbaiを選択し、コントラクトアドレスを入力して、トークンIDを0に設定します。 これで実際のブロックチェーンであなたのドメインを見ることができます。
+数分待ってもNFTがOpenSeaに表示されない場合は、[testnets.dev](http://testnets.dev)というサイトにアクセスしてください。 上部のテストネット選択でMatic Amoyを選択し、コントラクトアドレスを入力して、トークンIDを0に設定します。 これで実際のブロックチェーンであなたのドメインを見ることができます。
 
 ![](/images/Polygon-ENS-Domain/section-1/1_5_10.png)
 

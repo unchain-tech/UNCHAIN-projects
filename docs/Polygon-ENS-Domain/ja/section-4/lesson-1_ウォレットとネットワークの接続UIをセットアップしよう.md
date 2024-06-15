@@ -94,19 +94,19 @@ const App = () => {
 
 ブラウザで確認してみましょう。
 
-Mumbai上にいるときは次のようになります。
+Amoy上にいるときは次のようになります。
 
 ![](/images/Polygon-ENS-Domain/section-4/4_1_1.png)
 
-ネットワークをチェックしているので`mumbai`のテストネット上にいない場合は、ミントフォームを無効にする必要があります。 これを`renderInputForm`の先頭に追加します。
+ネットワークをチェックしているので`amoy`のテストネット上にいない場合は、ミントフォームを無効にする必要があります。 これを`renderInputForm`の先頭に追加します。
 
 ```js
 const renderInputForm = () =>{
-  // テストネットの Polygon Mumbai 上にいない場合の処理
-  if (network !== 'Polygon Mumbai Testnet') {
+  // テストネットの Polygon Amoy 上にいない場合の処理
+  if (network !== 'Polygon Amoy Testnet') {
     return (
       <div className="connect-wallet-container">
-        <p>Please connect to the Polygon Mumbai Testnet</p>
+        <p>Please connect to the Polygon Amoy Testnet</p>
       </div>
     );
   }
@@ -128,7 +128,7 @@ const renderInputForm = () =>{
 
 web3を使用開始したばかりのユーザーや、経験豊富なユーザーもどちらもです。
 
-現在、私たちが行っているのは、Mumbaiに接続するように指示することだけです。
+現在、私たちが行っているのは、Amoyに接続するように指示することだけです。
 
 そのためのボタンを追加すれば、便利になりますね。
 
@@ -140,7 +140,7 @@ MetaMask APIを使用して、実際にネットワークを追加、切り替�
 const switchNetwork = async () => {
   if (window.ethereum) {
     try {
-      // Mumbai testnet に切り替えます。
+      // Amoy testnet に切り替えます。
       await window.ethereum.request({
         method: "wallet_switchEthereumChain",
         params: [{ chainId: "0x13881" }], // utilsフォルダ内のnetworks.js を確認しましょう。0xは16進数です。
@@ -155,14 +155,14 @@ const switchNetwork = async () => {
             params: [
               {
                 chainId: "0x13881",
-                chainName: "Polygon Mumbai Testnet",
-                rpcUrls: ["https://rpc-mumbai.maticvigil.com/"],
+                chainName: "Polygon Amoy Testnet",
+                rpcUrls: ["https://rpc-amoy.maticvigil.com/"],
                 nativeCurrency: {
-                  name: "Mumbai Matic",
+                  name: "Amoy Matic",
                   symbol: "MATIC",
                   decimals: 18,
                 },
-                blockExplorerUrls: ["https://mumbai.polygonscan.com/"],
+                blockExplorerUrls: ["https://amoy.polygonscan.com/"],
               },
             ],
           });
@@ -202,11 +202,11 @@ await window.ethereum.request({
 
 ```js
 const renderInputForm = () =>{
-  // Polygon Mumbai Testnet上にいない場合、switchボタンをレンダリングします。
-  if (network !== 'Polygon Mumbai Testnet') {
+  // Polygon Amoy Testnet上にいない場合、switchボタンをレンダリングします。
+  if (network !== 'Polygon Amoy Testnet') {
     return (
       <div className="connect-wallet-container">
-        <h2>Please switch to Polygon Mumbai Testnet</h2>
+        <h2>Please switch to Polygon Amoy Testnet</h2>
         {/* 今ボタンで switchNetwork 関数を呼び出します。 */}
         <button className='cta-button mint-button' onClick={switchNetwork}>Click here to switch</button>
       </div>

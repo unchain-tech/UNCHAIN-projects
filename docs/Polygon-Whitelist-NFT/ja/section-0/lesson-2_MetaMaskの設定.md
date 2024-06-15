@@ -6,7 +6,7 @@
 
 スマートコントラクトをブロックチェーンにデプロイしたり、デプロイされたスマートコントラクトとやり取りしたりする際には、ガス代が必要になります。そのため、MetaMaskのようなweb3ウォレットが必要です。MetaMaskのインストールは[こちら](https://metamask.io/)。
 
-#### MetaMask に Polygon Mumbai を追加する
+#### MetaMask に Polygon Amoy を追加する
 
 Polygonは、セキュリティを犠牲にすることなく、スケーラブルでユーザーフレンドリーなdAppsを低い取引手数料で構築できる分散型のEthereum Layer 2ブロックチェーンです。OpenseaやRaribleなどの主要なNFTプラットフォームもPolygon Mumbaiテストネットをサポートしているため、私たちはスマートコントラクトのデプロイ先にMumbaiを選択します。
 

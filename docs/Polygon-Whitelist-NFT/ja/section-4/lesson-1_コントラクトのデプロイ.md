@@ -2,7 +2,7 @@
 
 > テストネットでのコントラクトのデプロイ前に、ガスを必要とせず、デプロイが迅速なため、`JS VM`を使用してコントラクトを徹底的にテストできます。
 
-最初に`Polygon Mumbai`テストネットでテストトークンを受け取ったことを覚えていますか？ 次に、このテストネットへ`Whitelist.sol`と`Shield.sol`のコントラクトをデプロイします。
+最初に`Polygon Amoy`テストネットでテストトークンを受け取ったことを覚えていますか？ 次に、このテストネットへ`Whitelist.sol`と`Shield.sol`のコントラクトをデプロイします。
 
 右上の「`Connected`」ボタンをクリックし、「`Disconnect`」を選択します。
 
@@ -16,7 +16,7 @@
 
 ![image-20230223134000225](/images/Polygon-Whitelist-NFT/section-4/4_1_3.png)
 
-「`Mumbai`」を選択します。
+「`Amoy`」を選択します。
 
 ![image-20230223134208657](/images/Polygon-Whitelist-NFT/section-4/4_1_4.png)
 
