@@ -206,7 +206,7 @@ OpenZeppelinには非常に多くの機能が実装されておりインポー�
   "private": true,
   "scripts": {
     "run:script":"npx hardhat run scripts/run.js",
-    "deploy": "npx hardhat run scripts/deploy.js --network mumbai",
+    "deploy": "npx hardhat run scripts/deploy.js --network amoy",
     "test": "npx hardhat test"
   },
   "devDependencies": {

@@ -37,7 +37,7 @@ Next, click "mint" and a pop-up from MetaMask will appear. Click "Confirm".
 
 After successfully minting, if you are the owner, you can click "withdraw" to retrieve the tokens from the contract.
 
-Alright, it's time to check out the NFT Collection you've created on OpenSea. Enter the following URL in your browser: `https://testnets.opensea.io/assets/mumbai/0x86b5cf393100cf895b3371a4ccaa1bc95d486a56/1`. Replace "`0x86b5cf393100cf895b3371a4ccaa1bc95d486a56`" with your contract address, and you'll be able to see the first NFT in your Collection.
+Alright, it's time to check out the NFT Collection you've created on OpenSea. Enter the following URL in your browser: `https://testnets.opensea.io/assets/amoy/0x86b5cf393100cf895b3371a4ccaa1bc95d486a56/1`. Replace "`0x86b5cf393100cf895b3371a4ccaa1bc95d486a56`" with your contract address, and you'll be able to see the first NFT in your Collection.
 
 ![image-20230223163340534](/images/Polygon-Whitelist-NFT/section-4/4_3_3.png)
 

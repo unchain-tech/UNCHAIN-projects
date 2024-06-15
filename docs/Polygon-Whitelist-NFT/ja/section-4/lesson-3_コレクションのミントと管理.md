@@ -37,7 +37,7 @@ Select Sandboxに`Polygon（Ubuntu）`を選択し、Portには`3000`（Sandbox�
 
 成功したら、オーナーであれば「`withdraw`」をクリックしてコントラクトからトークンを引き出すことができます。
 
-さて、OpenSeaで作成したNFTコレクションをチェックする時間です。ブラウザで次のURLを入力します：`https://testnets.opensea.io/assets/mumbai/0x86b5cf393100cf895b3371a4ccaa1bc95d486a56/1`
+さて、OpenSeaで作成したNFTコレクションをチェックする時間です。ブラウザで次のURLを入力します：`https://testnets.opensea.io/assets/amoy/0x86b5cf393100cf895b3371a4ccaa1bc95d486a56/1`
 
 「`0x86b5cf393100cf895b3371a4ccaa1bc95d486a56`」をあなたのコントラクトアドレスに置き換えると、コレクション内の最初のNFTを見ることができます。
 

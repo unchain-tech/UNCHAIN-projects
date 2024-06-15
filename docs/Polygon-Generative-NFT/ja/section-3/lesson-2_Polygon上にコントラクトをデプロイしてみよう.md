@@ -33,7 +33,7 @@ const { API_URL, PRIVATE_KEY, ETHERSCAN_API, POLYGON_URL } = process.env;
 module.exports = {
   solidity: "0.8.17",
   networks: {
-    mumbai: {
+    amoy: {
       url: POLYGON_URL,
       accounts: [PRIVATE_KEY],
     },
@@ -188,7 +188,7 @@ Polygonでは、`10¹⁸ Wei`が`1 MATIC`です。
 
 **異なるネットワークにコントラクトを移行する場合は、常に価格の修正を正しく行うようにしましょう。**
 
-このレッスンでは、Polygon Mumbai-Testnetを使用するので、NFTの価格を`0.01 MATIC`にします。
+このレッスンでは、Polygon Amoy-Testnetを使用するので、NFTの価格を`0.01 MATIC`にします。
 
 そこで、NFTの価格を元通りにリセットすることにします。
 
@@ -204,7 +204,7 @@ uint public constant PRICE = 0.01 ether;
 
 ### 🦊 MetaMask と Hardhat に Polygon Network を追加する
 
-MetaMaskウォレットにMatic MainnetとPolygon Mumbai-Testnetを追加してみましょう。
+MetaMaskウォレットにMatic MainnetとPolygon Amoy-Testnetを追加してみましょう。
 
 **1 \. Matic Mainnet を MetaMask に接続する**
 
@@ -222,11 +222,11 @@ Matic MainnetをMetaMaskに追加するには、次の手順に従ってくだ�
 
 ![](/images/Polygon-Generative-NFT/section-3/3_2_3.png)
 
-**2 \. Polygon Mumbai-Testnet を MetaMask に接続する**
+**2 \. Polygon Amoy-Testnet を MetaMask に接続する**
 
-Polygon Mumbai-TestnetをMetaMaskに追加するには、次の手順に従ってください。
+Polygon Amoy-TestnetをMetaMaskに追加するには、次の手順に従ってください。
 
-まず、[mumbai.polygonscan.com](https://mumbai.polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Mumbai Network`ボタンをクリックします。
+まず、[amoy.polygonscan.com](https://amoy.polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Amoy Network`ボタンをクリックします。
 
 `Matic Mainnet`を設定した時と同じ要領で`Polygon Testnet`をあなたのMetaMaskに設定してください。
 
@@ -320,7 +320,7 @@ main()
   "scripts": {
     "run:script": "npx hardhat run scripts/run.js",
     "deploy:sepolia": "npx hardhat run scripts/deploy.js --network sepolia",
-    "deploy:mumbai": "npx hardhat run scripts/deploy.js --network mumbai",
+    "deploy:amoy": "npx hardhat run scripts/deploy.js --network amoy",
     "test": "npx hardhat test"
   },
 ```
@@ -328,7 +328,7 @@ main()
 ターミナル上で下記を実行してみましょう。
 
 ```
-yarn contract deploy:mumbai
+yarn contract deploy:amoy
 ```
 
 下記のような結果がターミナルに出力されていることを確認してください。
@@ -338,7 +338,7 @@ Contract deployed to: 0xF899DeB963208560a7c667FA78376ecaFF684b8E
 Owner has tokens:  []
 ```
 
-次に、[mumbai.polygonscan.com](https://mumbai.polygonscan.com/) に向かい、コントラクトアドレス(`Contract deployed to`に続く`0x..`)を検索して、コントラクトがデプロイされたことを確認しましょう。
+次に、[amoy.polygonscan.com](https://amoy.polygonscan.com/) に向かい、コントラクトアドレス(`Contract deployed to`に続く`0x..`)を検索して、コントラクトがデプロイされたことを確認しましょう。
 
 ![](/images/Polygon-Generative-NFT/section-3/3_2_8.png)
 
@@ -374,7 +374,7 @@ PolygonscanはEtherscanを搭載しているため、`ETHERSCAN_API`という変
 ```
 npx hardhat clean
 
-npx hardhat verify --network mumbai DEPLOYED_CONTRACT_ADDRESS "BASE_TOKEN_URI"
+npx hardhat verify --network amoy DEPLOYED_CONTRACT_ADDRESS "BASE_TOKEN_URI"
 ```
 
 - `DEPLOYED_CONTRACT_ADDRESS`はあなたのコントラクトアドレスです。
@@ -384,7 +384,7 @@ npx hardhat verify --network mumbai DEPLOYED_CONTRACT_ADDRESS "BASE_TOKEN_URI"
 私のコマンドは下記のようになります。
 
 ```
-npx hardhat verify --network mumbai 0xF899DeB963208560a7c667FA78376ecaFF684b8E "ipfs://QmSvw119ALMN9SkP89Xj37jvqJik8jZrSjU5c1vgBhkhz8/"
+npx hardhat verify --network amoy 0xF899DeB963208560a7c667FA78376ecaFF684b8E "ipfs://QmSvw119ALMN9SkP89Xj37jvqJik8jZrSjU5c1vgBhkhz8/"
 ```
 
 下記のような結果がターミナルに出力されていることを確認してください。
@@ -398,11 +398,11 @@ contracts/NFTCollectible.sol:NFTCollectible at 0xF899DeB963208560a7c667FA78376ec
 for verification on the block explorer. Waiting for verification result...
 
 Successfully verified contract NFTCollectible on Etherscan.
-https://mumbai.polygonscan.com/address/0xF899DeB963208560a7c667FA78376ecaFF684b8E#code
+https://amoy.polygonscan.com/address/0xF899DeB963208560a7c667FA78376ecaFF684b8E#code
 
 ```
 
-出力された`https://mumbai.polygonscan.com/address/0x...`のリンクをブラウザで開いてコントラクトの中身がオンラインで読み込めるか検証してみましょう。
+出力された`https://amoy.polygonscan.com/address/0x...`のリンクをブラウザで開いてコントラクトの中身がオンラインで読み込めるか検証してみましょう。
 
 無事コントラクトの中身がPolygonscanに表示されていたでしょうか？
 

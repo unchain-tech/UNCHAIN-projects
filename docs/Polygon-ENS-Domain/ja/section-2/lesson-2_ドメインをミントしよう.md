@@ -243,14 +243,14 @@ const mintDomain = async () => {
       // トランザクションが問題なく実行されたか確認します。
       if (receipt.status === 1) {
         console.log(
-          "Domain minted! https://mumbai.polygonscan.com/tx/" + tx.hash
+          "Domain minted! https://amoy.polygonscan.com/tx/" + tx.hash
         );
 
         // domain,recordをセットします。
         tx = await contract.setRecord(domain, record);
         await tx.wait();
 
-        console.log("Record set! https://mumbai.polygonscan.com/tx/" + tx.hash);
+        console.log("Record set! https://amoy.polygonscan.com/tx/" + tx.hash);
 
         setRecord("");
         setDomain("");
@@ -301,13 +301,13 @@ const receipt = await tx.wait();
 
 // トランザクションが完了したか確認します。
 if (receipt.status === 1) {
-  console.log("Domain minted! https://mumbai.polygonscan.com/tx/" + tx.hash);
+  console.log("Domain minted! https://amoy.polygonscan.com/tx/" + tx.hash);
 
   // domain,recordをセットします。
   tx = await contract.setRecord(domain, record);
   await tx.wait();
 
-  console.log("Record set! https://mumbai.polygonscan.com/tx/" + tx.hash);
+  console.log("Record set! https://amoy.polygonscan.com/tx/" + tx.hash);
 
   setRecord("");
   setDomain("");

@@ -4,7 +4,7 @@
 
 ### 🦊 MetaMask に Polygon Network を追加する
 
-MetaMaskウォレットにMatic MainnetとPolygon Mumbai-Testnetを追加してみましょう。
+MetaMaskウォレットにMatic MainnetとPolygon Amoy-Testnetを追加してみましょう。
 
 **1 \. Matic Mainnet を MetaMask に接続する**
 
@@ -22,11 +22,11 @@ Matic MainnetをMetaMaskに追加するには、次の手順に従ってくだ�
 
 ![](/images/Polygon-Mobile-dApp/section-3/3_1_3.png)
 
-**2 \. Polygon Mumbai-Testnet を MetaMask に接続する**
+**2 \. Polygon Amoy-Testnet を MetaMask に接続する**
 
-Polygon Mumbai-TestnetをMetaMaskに追加するには、次の手順に従ってください。
+Polygon Amoy-TestnetをMetaMaskに追加するには、次の手順に従ってください。
 
-まず、[mumbai.polygonscan.com](https://mumbai.polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Mumbai Network`ボタンをクリックします。
+まず、[amoy.polygonscan.com](https://amoy.polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Amoy Network`ボタンをクリックします。
 
 `Matic Mainnet`を設定した時と同じ要領で`Polygon Testnet`をあなたのMetaMaskに設定してください。
 
@@ -54,7 +54,7 @@ Sepoliaとは異なり、これらのトークンの取得にそれほど問題�
 >
 > Polygon のようなサイドチェーンの場合、`2`の方が簡単で安く済みます。
 
-### ✨ スマートコントラクトを Mumbai testnet に公開する
+### ✨ スマートコントラクトを Amoy testnet に公開する
 
 上記の`providerOrUrl: process.env.ALCHEMY_API_KEY,`の`process.env.ALCHEMY_API_KEY`の部分を、[alchemy.com](https://www.alchemy.com/)で作成したPolygon用のデプロイ先の`API key`に設定します。
 
@@ -94,7 +94,7 @@ const { PRIVATE_KEY, STAGING_ALCHEMY_KEY } = process.env;
 module.exports = {
   solidity: "0.8.17",
   networks: {
-    mumbai: {
+    amoy: {
       url: STAGING_ALCHEMY_KEY || "",
       accounts: PRIVATE_KEY ? [PRIVATE_KEY] : ["0".repeat(64)],
     },
@@ -122,7 +122,7 @@ yarn contract deploy
 ```
 $ yarn workspace contract deploy
 warning package.json: No license field
-$ npx hardhat run scripts/deploy.js --network mumbai
+$ npx hardhat run scripts/deploy.js --network amoy
 Deploying contracts with account:  0x04CD057E4bAD766361348F26E847B546cBBc7946
 Account balance:  287212753772831574
 TodoContract address:  0x14479CaB58EB7B2AF847FCb2DbFD5F7e1bB17A08

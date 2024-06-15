@@ -22,7 +22,7 @@ const updateDomain = async () => {
 
       let tx = await contract.setRecord(domain, record);
       await tx.wait();
-      console.log("Record set https://mumbai.polygonscan.com/tx/" + tx.hash);
+      console.log("Record set https://amoy.polygonscan.com/tx/" + tx.hash);
 
       fetchMints();
       setRecord("");
@@ -51,10 +51,10 @@ const updateDomain = async () => {
 
   // renderInputForm関数を変更します。
   const renderInputForm = () =>{
-    if (network !== 'Polygon Mumbai Testnet') {
+    if (network !== 'Polygon Amoy Testnet') {
       return (
         <div className="connect-wallet-container">
-          <p>Please connect to Polygon Mumbai Testnet</p>
+          <p>Please connect to Polygon Amoy Testnet</p>
           <button className='cta-button mint-button' onClick={switchNetwork}>Click here to switch</button>
         </div>
       );
@@ -152,7 +152,7 @@ const fetchMints = async () => {
 
 // currentAccount, network が変わるたびに実行されます。
 useEffect(() => {
-  if (network === "Polygon Mumbai Testnet") {
+  if (network === "Polygon Amoy Testnet") {
     fetchMints();
   }
 }, [currentAccount, network]);
@@ -205,14 +205,14 @@ const mintDomain = async () => {
       // トランザクションの成功の確認です。
       if (receipt.status === 1) {
         console.log(
-          "Domain minted! https://mumbai.polygonscan.com/tx/" + tx.hash
+          "Domain minted! https://amoy.polygonscan.com/tx/" + tx.hash
         );
 
         // domain の record をセットします。
         tx = await contract.setRecord(domain, record);
         await tx.wait();
 
-        console.log("Record set! https://mumbai.polygonscan.com/tx/" + tx.hash);
+        console.log("Record set! https://amoy.polygonscan.com/tx/" + tx.hash);
 
         // fetchMints関数実行後2秒待ちます。
         setTimeout(() => {
@@ -249,7 +249,7 @@ const renderMints = () => {
                 <div className="mint-row">
                   <a
                     className="link"
-                    href={`https://testnets.opensea.io/assets/mumbai/${CONTRACT_ADDRESS}/${mint.id}`}
+                    href={`https://testnets.opensea.io/assets/amoy/${CONTRACT_ADDRESS}/${mint.id}`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
