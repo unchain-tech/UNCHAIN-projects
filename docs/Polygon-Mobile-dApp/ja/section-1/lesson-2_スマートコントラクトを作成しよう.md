@@ -425,7 +425,7 @@ yarn test
 ```
 
 全てのテストにパスした場合、このように表示されます。
-![](/public/images/Polygon-Mobile-dApp/section-1/1_2_1.png)
+![](/images/Polygon-Mobile-dApp/section-1/1_2_1.png)
 
 スマートコントラクトの開発は以上で完了です。
 
