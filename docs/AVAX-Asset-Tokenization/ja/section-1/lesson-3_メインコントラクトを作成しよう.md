@@ -274,8 +274,7 @@ describe("AssetTokenization", function () {
 
 `describe('buyNFT', function () { ...`に続くテストでは、 `buyNFT`を呼び出した際に正しい量のAVAXが購入者から農家へ支払われているのかを確認しています。
 これは`farmNft`でも同じようなテストをしましたが、 `AssetTokenization`は購入者と`farmNft`を仲介してNFTの購入を行っているので、 ここではその仲介が正しく機能しているのかを確認しています。
-<br />
-<br />
+
 ※
 `const { userAccounts, assetTokenization } = await ...`では分割代入という構文を用いています。
 くわしくは[こちら](https://typescript-jp.gitbook.io/deep-dive/future-javascript/destructuring)に説明が載っています。
