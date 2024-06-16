@@ -56,35 +56,67 @@ Sepoliaとは異なり、これらのトークンの取得にそれほど問題�
 
 ### ✨ スマートコントラクトを Amoy testnet に公開する
 
-上記の`providerOrUrl: process.env.ALCHEMY_API_KEY,`の`process.env.ALCHEMY_API_KEY`の部分を、[alchemy.com](https://www.alchemy.com/)で作成したPolygon用のデプロイ先の`API key`に設定します。
+[こちら](https://www.alchemy.com/) からAlchemyのアカウントを作成してください。アカウントを作成したら、Appsページの`+ Create new app`ボタンを押してください。
 
-手順は下記のとおりです。
+![](/images/Polygon-Mobile-dApp/section-1/1_3_1.png)
 
-まず、先ほどのリンクからログインして、`Create App`を選択し、下記のように設定してください。
+次に、下記の項目を埋めていきます。下図を参考にしてください。
 
-![](/images/Polygon-Mobile-dApp/section-3/3_1_5.png)
+![](/images/Polygon-Mobile-dApp/section-1/1_3_2.png)
 
-下の画像で示す部分をクリックすると、`HTTP`を確認できます。
+- `Chain`: `Polygon PoS`を選択
+- `Network`: `Polygon Amoy`を選択
+- `Name`: プロジェクトの名前(例: `Polygon Mobile dApp`)
+- `Description`: プロジェクトの概要
 
-![](/images/Polygon-Mobile-dApp/section-3/3_1_6.jpg)
+`Create app`ボタンを押すと、プロジェクトが作成されます。`API Key`をクリックすると、表示されたポップアップからKeyを取得することができます（今回のプロジェクトで使用するのは、`HTTPS`に表示されているものになります）。
 
-次に下記のコマンドを`todo-dApp-contract`フォルダ上でターミナルを開いて実行してください。
+![](/images/Polygon-Mobile-dApp/section-1/1_3_3.png)
 
-`Alchemy Polygon URL`の部分に、先ほど確認した`HTTP`を貼り付けてください。
+これがあなたが本番環境のネットワークに接続する際に使用する`API Key`になります。
 
-次に、`.gitignore`ファイルを以下のように更新してください。
+### ✨ スマートコントラクトを Amoy testnet に公開する
 
+それでは、実際にコントラクトをデプロイしてみましょう。まずは、`scripts`ディレクトリの中にある`deploy.js`を以下の内容で上書きしてください。
+
+```js
+const hre = require("hardhat");
+const main = async () => {
+  const [deployer] = await hre.ethers.getSigners();
+  const accountBalance = await deployer.getBalance();
+
+  console.log("Deploying contracts with account: ", deployer.address);
+  console.log("Account balance: ", accountBalance.toString());
+
+  const todoContractFactory = await hre.ethers.getContractFactory(
+    "TodoContract"
+  );
+  /* コントラクトに資金を提供できるようにする */
+  const todoContract = await todoContractFactory.deploy();
+
+  await todoContract.deployed();
+
+  console.log("TodoContract address: ", todoContract.address);
+};
+
+const runMain = async () => {
+  try {
+    await main();
+  } catch (error) {
+    console.error(error);
+    throw new Error("there is error!");
+  }
+};
+
+runMain();
 ```
-node_modules
-.env
-```
 
-次に`hardhat-config.js`の既存の内容をすべて削除し、以下のコードに置き換えてください。
+次に`hardhat.config.js`の既存の内容をすべて削除し、以下のコードに置き換えてください。
 
 solidityのバージョンはあなたが使用しているものに合わせて変更してください。
 
 ```js
-//hardhat-config.js
+//hardhat.config.js
 require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
 
@@ -92,7 +124,7 @@ const { PRIVATE_KEY, STAGING_ALCHEMY_KEY } = process.env;
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
-  solidity: "0.8.17",
+  solidity: "0.8.19",
   networks: {
     amoy: {
       url: STAGING_ALCHEMY_KEY || "",
@@ -102,13 +134,11 @@ module.exports = {
 };
 ```
 
-次に`.env`ファイルを`contract`ディレクトリに作成して次のように値を入れましょう。
-
-`<YOUR_ALCHEMY_KEY>`にはAlchemyで作成したHTTP_KEYを、`<YOUR_PRIVATE_KEY>`にはmetamaskで作成したウォレットのプライベートキーを代入しましょう。
+それでは、hardhat.config.jsに設定する値を準備します。`packages/contract`ディレクトリに`.env`ファイルを作成して次のように記述しましょう。
 
 ```
-STAGING_ALCHEMY_KEY=<YOUR_ALCHEMY_KEY>
-PRIVATE_KEY=<YOUR_PRIVATE_KEY>
+STAGING_ALCHEMY_KEY=YOUR_ALCHEMY_KEY
+PRIVATE_KEY=YOUR_PRIVATE_KEY
 ```
 
 では早速デプロイ作業に移りましょう。ターミナルで以下のコマンドを実行します。
@@ -120,14 +150,12 @@ yarn contract deploy
 下のようになっていれば成功です！
 
 ```
-$ yarn workspace contract deploy
-warning package.json: No license field
-$ npx hardhat run scripts/deploy.js --network amoy
 Deploying contracts with account:  0x04CD057E4bAD766361348F26E847B546cBBc7946
 Account balance:  287212753772831574
 TodoContract address:  0x14479CaB58EB7B2AF847FCb2DbFD5F7e1bB17A08
-✨  Done in 21.27s.
 ```
+
+- **TodoContract のアドレスは後ほど必要になるので、PC 上のわかりやすいところに保存しておきましょう。**
 
 次は、Flutterアプリケーションへ接続していきましょう。
 
