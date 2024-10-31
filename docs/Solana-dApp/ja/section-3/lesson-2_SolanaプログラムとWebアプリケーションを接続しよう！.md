@@ -108,7 +108,7 @@ Anchorプロジェクトでもインストールしていますが、同じも�
 ルートディレクトリで以下のコマンドを実行します。
 
 ```
-npm install @project-serum/anchor @solana/web3.js
+npm install @project-serum/anchor @solana/web3.js@1
 ```
 
 インストールしたパッケージをWebアプリケーションにインポートしましょう。
