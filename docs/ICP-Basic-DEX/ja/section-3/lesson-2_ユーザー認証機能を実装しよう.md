@@ -84,7 +84,7 @@ export const Header = (props) => {
     // ユーザー認証に使用するInternet IdentityのURLを決定する
     let iiUrl;
     if (process.env.DFX_NETWORK === "local") {
-      iiUrl = `http://localhost:4943/?canisterId=${IICanisterID}`;
+      iiUrl = `http://localhost:8000/?canisterId=${IICanisterID}`;
     } else if (process.env.DFX_NETWORK === "ic") {
       iiUrl = "https://identity.ic0.app/#authorize";
     } else {
@@ -217,13 +217,13 @@ bash ./scripts/deploy_local.sh
 Deployed canisters.
 URLs:
   Frontend canister via browser
-    icp_basic_dex_frontend: http://127.0.0.1:4943/?canisterId=rdmx6-jaaaa-aaaaa-aaadq-cai
+    icp_basic_dex_frontend: http://127.0.0.1:8000/?canisterId=rdmx6-jaaaa-aaaaa-aaadq-cai
   Backend canister via Candid interface:
-    GoldDIP20: http://127.0.0.1:4943/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai&id=rrkah-fqaaa-aaaaa-aaaaq-cai
-    SilverDIP20: http://127.0.0.1:4943/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai&id=r7inp-6aaaa-aaaaa-aaabq-cai
-    faucet: http://127.0.0.1:4943/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai&id=rno2w-sqaaa-aaaaa-aaacq-cai
-    icp_basic_dex_backend: http://127.0.0.1:4943/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai&id=renrk-eyaaa-aaaaa-aaada-cai
-    internet_identity_div: http://127.0.0.1:4943/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai&id=rkp4c-7iaaa-aaaaa-aaaca-cai
+    GoldDIP20: http://127.0.0.1:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai&id=rrkah-fqaaa-aaaaa-aaaaq-cai
+    SilverDIP20: http://127.0.0.1:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai&id=r7inp-6aaaa-aaaaa-aaabq-cai
+    faucet: http://127.0.0.1:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai&id=rno2w-sqaaa-aaaaa-aaacq-cai
+    icp_basic_dex_backend: http://127.0.0.1:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai&id=renrk-eyaaa-aaaaa-aaada-cai
+    internet_identity_div: http://127.0.0.1:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai&id=rkp4c-7iaaa-aaaaa-aaaca-cai
 ```
 
 一番上に表示されている`icp_basic_dex_frontend:`のURLにアクセスしてみましょう。

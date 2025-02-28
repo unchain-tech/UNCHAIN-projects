@@ -86,10 +86,10 @@ Deployed canisters.
 dfx canister id website
 ```
 
-キャニスター IDをコピーして、下記のようにURLを指定してブラウザで表示します。
+キャニスターIDをコピーして、下記のようにURLを指定してブラウザで表示します。
 
 ```
-http://127.0.0.1:4943?canisterId=YOUR_CANISTER_ID
+http://127.0.0.1:8000?canisterId=YOUR_CANISTER_ID
 ```
 
 （実行例）

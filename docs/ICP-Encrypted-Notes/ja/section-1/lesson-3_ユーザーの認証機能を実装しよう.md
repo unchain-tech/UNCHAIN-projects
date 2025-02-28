@@ -86,7 +86,7 @@ loginメソッドに戻って引数を確認してみましょう。すべてが
 ローカル環境にデプロイをする開発用のInternet Identityを使用したいので、下記のようにURLを設定します。
 
 ```tsx
-const iiUrl = `http://${process.env.INTERNET_IDENTITY_CANISTER_ID}.localhost:4943`;
+const iiUrl = `http://${process.env.INTERNET_IDENTITY_CANISTER_ID}.localhost:8000`;
 ```
 
 最後に、loginメソッドが成功したときと失敗したときの処理を考えます。成功時にはInternet Identityの値を取得したいので、利用できそうなメソッドを探してみると[`getIdentity`](https://agent-js.icp.xyz/auth-client/classes/AuthClient.html#getIdentity)メソッドが見つかります。
@@ -106,7 +106,7 @@ const identity = authClient.getIdentity();
 ```tsx
 const login = async (): Promise<void> => {
   /** STEP1: 認証機能を実装します。 */
-  const iiUrl = `http://${process.env.INTERNET_IDENTITY_CANISTER_ID}.localhost:4943`;
+  const iiUrl = `http://${process.env.INTERNET_IDENTITY_CANISTER_ID}.localhost:8000`;
 
   return new Promise((resolve, reject) => {
     // AuthClientオブジェクトを作成します。
@@ -255,7 +255,7 @@ export const useAuthProvider = (): AuthState => {
 
   const login = async (): Promise<void> => {
     /** STEP1: 認証機能を実装します。 */
-+    const iiUrl = `http://${process.env.INTERNET_IDENTITY_CANISTER_ID}.localhost:4943`;
++    const iiUrl = `http://${process.env.INTERNET_IDENTITY_CANISTER_ID}.localhost:8000`;
 +
 +    return new Promise((resolve, reject) => {
 +      // AuthClientオブジェクトを作成します。
