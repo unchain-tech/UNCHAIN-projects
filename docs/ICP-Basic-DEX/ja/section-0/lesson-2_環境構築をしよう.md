@@ -148,9 +148,9 @@ Committing batch.
 Deployed canisters.
 URLs:
   Frontend canister via browser
-    icp_basic_dex_frontend: http://127.0.0.1:4943/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai
+    icp_basic_dex_frontend: http://127.0.0.1:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai
   Backend canister via Candid interface:
-    icp_basic_dex_backend: http://127.0.0.1:4943/?canisterId=r7inp-6aaaa-aaaaa-aaabq-cai&id=rrkah-fqaaa-aaaaa-aaaaq-cai
+    icp_basic_dex_backend: http://127.0.0.1:8000/?canisterId=r7inp-6aaaa-aaaaa-aaabq-cai&id=rrkah-fqaaa-aaaaa-aaaaq-cai
 ```
 
 フロントエンドをテストしてみましょう。

@@ -2,8 +2,8 @@
   "name": "unchain-projects",
   "version": "1.0.0",
   "main": "README.md",
-  "repository": "https://github.com/unchain-dev/UNCHAIN-projects.git",
-  "author": "SHØ <neila@users.noreply.github.com> (https://akxra.art/)",
+  "repository": "https://github.com/unchain-tech/UNCHAIN-projects.git",
+  "author": "neila <neila@users.noreply.github.com> (https://github.com/neila)",
   "scripts": {
     "textlint:check": "textlint docs/**/*.md --ignore-path .textlintignore",
     "textlint:fix": "textlint --fix docs/**/*.md --ignore-path .textlintignore",
