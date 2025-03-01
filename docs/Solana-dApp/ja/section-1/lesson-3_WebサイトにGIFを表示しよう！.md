@@ -10,19 +10,19 @@
 
 GIPHYで気に入った画像を選択したら、`Share`をクリックし、`Copy GIF Link`ボタンを押してリンクをコピーしておきます。
 
-![GIPHY](/public/images/Solana-dApp/section-1/1_3_1.jpg)
+![GIPHY](/images/Solana-dApp/section-1/1_3_1.jpg)
 
 それでは、お気に入りのGIF画像へのリンクを`App.js`に反映させましょう。
 
 `App.js`の定数を宣言している場所に下記を追加します。
 
-```javascript
+```js
 const TEST_GIFS = [
-	'https://media.giphy.com/media/ZqlvCTNHpqrio/giphy.gif',
-	'https://media.giphy.com/media/bC9czlgCMtw4cj8RgH/giphy.gif',
-	'https://media.giphy.com/media/kC8N6DPOkbqWTxkNTe/giphy.gif',
-	'https://media.giphy.com/media/26n6Gx9moCgs1pUuk/giphy.gif'
-]
+  "https://media.giphy.com/media/ZqlvCTNHpqrio/giphy.gif",
+  "https://media.giphy.com/media/bC9czlgCMtw4cj8RgH/giphy.gif",
+  "https://media.giphy.com/media/kC8N6DPOkbqWTxkNTe/giphy.gif",
+  "https://media.giphy.com/media/26n6Gx9moCgs1pUuk/giphy.gif",
+];
 ```
 
 テストデータで使用するGIFは何枚でもOKです。
@@ -46,7 +46,7 @@ const TEST_GIFS = [
 const renderConnectedContainer = () => (
   <div className="connected-container">
     <div className="gif-grid">
-      {TEST_GIFS.map(gif => (
+      {TEST_GIFS.map((gif) => (
         <div className="gif-item" key={gif}>
           <img src={gif} alt={gif} />
         </div>
@@ -70,9 +70,7 @@ return (
     <div className="container">
       <div className="header-container">
         <p className="header">🖼 GIF Portal</p>
-        <p className="sub-text">
-          View your GIF collection ✨
-        </p>
+        <p className="sub-text">View your GIF collection ✨</p>
         {!walletAddress && renderNotConnectedContainer()}
       </div>
       <main className="main">
@@ -95,10 +93,9 @@ return (
 
 これらすべてを変更したうえでPhantom Walletを接続すると、設定したGIFが全て表示されているはずです。
 
-![GIF Portal](/public/images/Solana-dApp/section-1/1_3_2.jpg)
+![GIF Portal](/images/Solana-dApp/section-1/1_3_2.jpg)
 
 Webアプリケーションのスタイルは`App.css`で設定済みですが、好みに合わせて変更してみてください。
-
 
 ### 🔤 GIF 入力ボックスを作成する
 
@@ -119,7 +116,9 @@ const renderConnectedContainer = () => (
       }}
     >
       <input type="text" placeholder="Enter gif link!" />
-      <button type="submit" className="cta-button submit-gif-button">Submit</button>
+      <button type="submit" className="cta-button submit-gif-button">
+        Submit
+      </button>
     </form>
     <div className="gif-grid">
       {TEST_GIFS.map((gif) => (
@@ -140,8 +139,8 @@ const renderConnectedContainer = () => (
 
 `const [walletAddress, setWalletAddress] = useState(null);`が記述されているすぐ下に以下のコードを追加します。
 
-```javascript
-const [inputValue, setInputValue] = useState('');
+```js
+const [inputValue, setInputValue] = useState("");
 ```
 
 これは、入力ボックス内に入力されたGIFリンクの`state`を管理するためのものです。
@@ -150,7 +149,7 @@ GIFリンクは`inputValue`に設定され、管理されます。
 
 続いて、`connectWallet`関数のすぐ下に以下のコードを追加します。
 
-```javascript
+```js
 const onInputChange = (event) => {
   const { value } = event.target;
   setInputValue(value);
@@ -176,12 +175,12 @@ const onInputChange = (event) => {
 
 `onInputChange`関数の下に以下のコードを追加します。
 
-```javascript
+```js
 const sendGif = async () => {
   if (inputValue.length > 0) {
-    console.log('Gif link:', inputValue);
+    console.log("Gif link:", inputValue);
   } else {
-    console.log('Empty input. Try again.');
+    console.log("Empty input. Try again.");
   }
 };
 ```
@@ -209,7 +208,6 @@ Solanaプログラムとの接続中にWebアプリケーション側で他の�
 
 コンソールに入力したGIFリンクが表示されていればOKです。
 
-
 ### 🌈 GIF データの state を設定する
 
 Solanaプログラムと接続する前に、もう1つ設定するものがあります。
@@ -228,9 +226,9 @@ Solanaプログラムと接続する前に、もう1つ設定するものがあ�
 
 それでは、他の`useState`宣言をしたすぐ下に`gifList`の状態を管理するコードを以下のように追加しましょう。
 
-```javascript
+```js
 const [walletAddress, setWalletAddress] = useState(null);
-const [inputValue, setInputValue] = useState('');
+const [inputValue, setInputValue] = useState("");
 const [gifList, setGifList] = useState([]);
 ```
 
@@ -240,18 +238,18 @@ const [gifList, setGifList] = useState([]);
 
 既存の`useEffect`のすぐ下に、フェッチ用のコードを追加します。
 
-```javascript
+```js
 useEffect(() => {
   const onLoad = async () => {
     await checkIfWalletIsConnected();
   };
-  window.addEventListener('load', onLoad);
-  return () => window.removeEventListener('load', onLoad);
+  window.addEventListener("load", onLoad);
+  return () => window.removeEventListener("load", onLoad);
 }, []);
 
 useEffect(() => {
   if (walletAddress) {
-    console.log('Fetching GIF list...');
+    console.log("Fetching GIF list...");
 
     // Solana プログラムからのフェッチ処理をここに記述します。
 
@@ -269,53 +267,52 @@ useEffect(() => {
 
 ```jsx
 const renderConnectedContainer = () => (
-    <div className="connected-container">
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
-          sendGif();
-        }}
-      >
-        <input
-          type="text"
-          placeholder="Enter gif link!"
-          value={inputValue}
-          onChange={onInputChange}
-        />
-        <button type="submit" className="cta-button submit-gif-button">
-          Submit
-        </button>
-      </form>
-      <div className="gif-grid">
-        {/* TEST_GIFSの代わりにgifListを使用します。 */}
-        {gifList.map((gif) => (
-          <div className="gif-item" key={gif}>
-            <img src={gif} alt={gif} />
-          </div>
-        ))}
-      </div>
+  <div className="connected-container">
+    <form
+      onSubmit={(event) => {
+        event.preventDefault();
+        sendGif();
+      }}
+    >
+      <input
+        type="text"
+        placeholder="Enter gif link!"
+        value={inputValue}
+        onChange={onInputChange}
+      />
+      <button type="submit" className="cta-button submit-gif-button">
+        Submit
+      </button>
+    </form>
+    <div className="gif-grid">
+      {/* TEST_GIFSの代わりにgifListを使用します。 */}
+      {gifList.map((gif) => (
+        <div className="gif-item" key={gif}>
+          <img src={gif} alt={gif} />
+        </div>
+      ))}
     </div>
-  );
-  ```
+  </div>
+);
+```
 
 仕上げとして、入力フォームを送信すると、GIFが`gifList`に追加され、テキストフィールドがクリアされるようにしましょう。
 
 `sendGif`関数を以下のとおり修正します。
 
-```javascript
+```js
 const sendGif = async () => {
   if (inputValue.length > 0) {
-    console.log('Gif link:', inputValue);
+    console.log("Gif link:", inputValue);
     setGifList([...gifList, inputValue]);
-    setInputValue('');
+    setInputValue("");
   } else {
-    console.log('Empty input. Try again.');
+    console.log("Empty input. Try again.");
   }
 };
 ```
 
 ここまででSolanaプログラムと接続するための準備が整いました。
-
 
 ### 🙋‍♂️ 質問する
 

@@ -37,11 +37,11 @@ dfx 0.11.1
 
 **Svelte for VS Code**
 
-![](/public/images/ICP-Static-Site/section-1/1_2_1.png)
+![](/images/ICP-Static-Site/section-1/1_2_1.png)
 
 **Tailwind CSS IntelliSense**
 
-![](/public/images/ICP-Static-Site/section-1/1_2_2.png)
+![](/images/ICP-Static-Site/section-1/1_2_2.png)
 
 ### ✨ Node.js の確認をする
 

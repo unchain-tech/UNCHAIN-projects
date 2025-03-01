@@ -1,4 +1,4 @@
-### 💳　Write an NFT contract that only allows addresses within the whitelist to MINT.
+### 💳 　 Write an NFT contract that only allows addresses within the whitelist to MINT.
 
 For our dApp smart contract, we choose the ERC 721 contract which is the same as BAYC. We will modify it by adding a whitelist restriction feature.
 
@@ -9,7 +9,7 @@ For our dApp smart contract, we choose the ERC 721 contract which is the same as
         owner = msg.sender;
 		...
     }
-    
+
     function addToWhitelist(address _address) public {
         // Check if the user is the owner
         require(owner == msg.sender, "Caller is not the owner");
@@ -17,54 +17,55 @@ For our dApp smart contract, we choose the ERC 721 contract which is the same as
     }
 ```
 
-
 In the whitelist contract, we set the owner address and use the `require` method to ensure that the functionality to add or remove from the whitelist can only be invoked by the contract deployer.
 
 Here, we'll use a more secure and efficient way — the [OpenZeppelin](https://www.openzeppelin.com/about) smart contract library.
 
 We will use [OpenZeppelin](https://www.openzeppelin.com/about)'s `Ownable.sol` to help us implement the owner privilege functionality.
 
-* By default, the owner of the Ownable contract is the account that deploys it.
-- Ownable also allows you to:
+- By default, the owner of the Ownable contract is the account that deploys it.
+
+* Ownable also allows you to:
   - Transfer ownership of the owner's account to a new account, and
   - Renounce ownership: The owner gives up this administrative privilege, a common pattern after the initial management phase of the contract, making the contract more decentralized.
 
 Additionally, we will use an extension of the ERC721 contract called [ERC721 Enumerable](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/extensions/ERC721Enumerable.sol), which includes all the features of ERC721 along with some additional implementations.
 
 - ERC721 Enumerable helps you keep track of all tokenIds within a contract and the tokensIds held by a given address within the contract.
-- It implements various helpful [functions](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#ERC721Enumerable) such as `tokenOfOwnerByIndex`. 
+- It implements various helpful [functions](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#ERC721Enumerable) such as `tokenOfOwnerByIndex`.
 
 We will create a folder named "`interfaces`" under the "`contracts`" directory.
 
-![image-20230222235209219](/public/images/Polygon-Whitelist-NFT/section-2/2_2_1.png)
+![image-20230222235209219](/images/Polygon-Whitelist-NFT/section-2/2_2_1.png)
 
 Within the "`interfaces`" folder, we'll create a contract named `IWhitelist.sol`.
 
 > Note: Solidity files that contain only interfaces typically have a prefix `I` to indicate that they are just an [interface](https://solidity-by-example.org/interface/).
 
-![image-20230222235330497](/public/images/Polygon-Whitelist-NFT/section-2/2_2_2.png)
+![image-20230222235330497](/images/Polygon-Whitelist-NFT/section-2/2_2_2.png)
 
 We'll insert the following code into the `IWhitelist.sol`.
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.20;
 
 interface IWhitelist {
     function whitelistedAddresses(address) external view returns (bool);
 }
 ```
-This is an interface file. It makes it convenient for other smart contracts to call the `whitelistedAddresses` function in `Whitelist.sol`. Which in turn verifies whether an address is in the whitelist.
+
+This is an interface file. It makes it convenient for otherスマートコントラクトto call the `whitelistedAddresses` function in `Whitelist.sol`. Which in turn verifies whether an address is in the whitelist.
 
 Next, we will create `Shield.sol` under the folder `contracts`.
 
-![image-20230223091938319](/public/images/Polygon-Whitelist-NFT/section-2/2_2_3.png)
+![image-20230223091938319](/images/Polygon-Whitelist-NFT/section-2/2_2_3.png)
 
 We insert the code below in `Shield.sol`.
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
@@ -103,7 +104,7 @@ contract Shield is ERC721Enumerable, Ownable {
       * Constructor for Shields takes in the baseURI to set _baseTokenURI for the collection.
       * It also initializes an instance of whitelist interface.
       */
-    constructor (string memory baseURI, address whitelistContract) ERC721("ChainIDE Shields", "CS") {
+    constructor (string memory baseURI, address whitelistContract) ERC721("ChainIDE Shields", "CS") Ownable(msg.sender) {
         _baseTokenURI = baseURI;
         _whitelist = IWhitelist(whitelistContract);
     }
@@ -150,11 +151,12 @@ contract Shield is ERC721Enumerable, Ownable {
     }
 }
 ```
+
 Don't worry, lets talk about this contract step by step.
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
@@ -164,6 +166,7 @@ contract Shield is ERC721Enumerable, Ownable {
 	...
 	}
 ```
+
 A lot is happening here like `ERC721Enumerable` and `Ownable`. First, you'll notice that when declaring the contract, I "inherit" from two OpenZeppelin contracts. You can read more about inheritance [here](https://solidity-by-example.org/inheritance/?utm_source=buildspace.so&utm_medium=buildspace_project), but essentially, this means that our Shield contract's code includes the code from two contracts, ERC721Enumerable and Ownable. This saves us from having to rewrite the code to implement these two functionalities.
 
 Let's explain a few of the more significant state variables below.
@@ -178,19 +181,19 @@ Let's explain a few of the more significant state variables below.
     uint256 public tokenIds;
 ```
 
-`_baseTokenURI` is the root link for our `NFT Metadata`, for example: `ipfs://QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/` (IPFS is a decentralized storage protocol, which we will discuss later), or it can also be a centralized address, such as: `https://xxxxxxxxxxxx/`.
+`_baseTokenURI` is the root link for our `NFT Metadata`, for example: `ipfs://QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/`（IPFS is a decentralized storage protocol, which we will discuss later）, or it can also be a centralized address, such as: `https://xxxxxxxxxxxx/`.
 
-`tokenIds` represent the numerical IDs for each NFT, and these IDs are unique. When combined with `_baseTokenURI`, they form the Metadata for each NFT. (We'll talk about Metadata shortly. For now, just remember that having Metadata allows your NFT to be displayed on various NFT platforms.)
+`tokenIds` represent the numerical IDs for each NFT, and these IDs are unique. When combined with `_baseTokenURI`, they form the Metadata for each NFT.（We'll talk about Metadata shortly. For now, just remember that having Metadata allows your NFT to be displayed on various NFT platforms.）
 
 ```solidity
     // price is the price of one Shield NFT
     uint256 public price = 0.01 ether;
-    
+
     // max number of Shield NFT
     uint256 public maxTokenIds = 4;
 ```
 
-`price` sets the price for each NFT. In Ethereum (ETH), it refers to ETH itself, while in Polygon, it refers to Matic. Apart from ether, there are other units as well: 1 ether = 10^9 gwei, and 1 gwei = 10^9 wei.
+`price` sets the price for each NFT. In Ethereum（ETH）, it refers to ETH itself, while in Polygon, it refers to Matic. Apart from ether, there are other units as well: 1 ether = 10^9 gwei, and 1 gwei = 10^9 wei.
 
 `maxTokenIds` indicates the maximum quantity of NFTs. Here, it's set to 4, which means you need to prepare metadata for four NFTs.
 
@@ -227,7 +230,7 @@ When deploying the contract, we need to input the `_baseTokenURI` and the addres
 
 Let's focus on explaining the `mint` function:
 
-1. The keyword `payable` indicates that this function can receive tokens directly, as the price of an NFT is 0.01 ether. The usage of onlyWhenNotPaused employs a [modifier](https://solidity-by-example.org/function-modifier/), which signifies that the function can only proceed when `paused` is `false`. (Note: The contract starts with paused being false, allowing whitelist users to directly mint after contract deployment.)
+1. The keyword `payable` indicates that this function can receive tokens directly, as the price of an NFT is 0.01 ether. The usage of onlyWhenNotPaused employs a [modifier](https://solidity-by-example.org/function-modifier/), which signifies that the function can only proceed when `paused` is `false`.（Note: The contract starts with paused being false, allowing whitelist users to directly mint after contract deployment.）
 
 ```solidity
     modifier onlyWhenNotPaused {
@@ -244,7 +247,7 @@ Let's focus on explaining the `mint` function:
 
 5. `tokenIds += 1;` After all the aforementioned conditions are met, `tokenIds` will be incremented by 1. Remember, the default value of `tokenIds` is 0, so our `tokenIds` range becomes 1, 2, 3, 4.
 
-6.  `_safeMint(msg.sender, tokenIds);` This is the functionality implemented by `"@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol"`. You can explore the specific functionalities by opening that contract. For now, we only need to understand that this will result in minting an NFT to the caller of this function.
+6. `_safeMint(msg.sender, tokenIds);` This is the functionality implemented by `"@openzeppelin/contracts/token/ERC721/ERC721.sol"`. You can explore the specific functionalities by opening that contract. For now, we only need to understand that this will result in minting an NFT to the caller of this function.
 
 ```solidity
     /**
@@ -272,13 +275,13 @@ Setting the minting of the contract to be paused is achieved through the `paused
 
 To withdraw the `ether` from the contract, the `withdraw()` function comes into play. This piece of code's purpose is to transfer the funds within the contract to the `owner`. There are multiple ways to handle token transfers, as illustrated in various implementations outlined [here](https://solidity-by-example.org/sending-ether/). In this case, we're using a `call` method.
 
-Next, let's compile and deploy this smart contract using the `JS VM`. (You can simply stick with the compiler automatically chosen by ChainIDE.)
+Next, let's compile and deploy this smart contract using the `JS VM`.（You can simply stick with the compiler automatically chosen by ChainIDE.）
 
-![image-20230223092112169](/public/images/Polygon-Whitelist-NFT/section-2/2_2_4.png)
+![image-20230223092112169](/images/Polygon-Whitelist-NFT/section-2/2_2_4.png)
 
-You can observe that on the `Deploy` page, we are required to input the `baseURI` (the root link for Metadata) and `whitelistContract` (the previous whitelist address). Therefore, the next task is to determine how to generate the root link for Metadata.
+You can observe that on the `Deploy` page, we are required to input the `baseURI`（the root link for Metadata）and `whitelistContract`（the previous whitelist address）. Therefore, the next task is to determine how to generate the root link for Metadata.
 
-![image-20230223092203406](/public/images/Polygon-Whitelist-NFT/section-2/2_2_5.png)
+![image-20230223092203406](/images/Polygon-Whitelist-NFT/section-2/2_2_5.png)
 
 ### 🙋‍♂️ Asking Questions
 

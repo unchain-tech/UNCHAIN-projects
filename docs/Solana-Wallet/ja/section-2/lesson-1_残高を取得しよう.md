@@ -30,7 +30,7 @@ Solanaの`Devnet`は、開発者やユーザーが実際の経済的影響を伴
 
 ドキュメントを見直すと、 `Connection`のコンストラクタは2つの引数を必要とすることがわかります。
 
-![](/public/images/Solana-Wallet/section-2/2_1_1.png)
+![](/images/Solana-Wallet/section-2/2_1_1.png)
 
 `endpoint`の説明では、「fullnode JSON RPCエンドポイントへのURL」であることが言及されています。接続のためのURLを持っていないので、Solanaから見つけるか、URLを返す関数を探す必要があります。web3.jsのドキュメントで「URL」を検索すると、clusterApiUrlという関数があり、「指定したクラスターのRPC API URL」を返してくれることがわかります。さらに、Clusterの種類を見直すと、接続したいネットワークを指していることがわかります。
 
@@ -38,8 +38,8 @@ Solanaの`Devnet`は、開発者やユーザーが実際の経済的影響を伴
 
 以上を踏まえると、Connectionインスタンスの作成をこのようにコード化できます。
 
-```javascript
-const NETWORK = 'devnet';
+```js
+const NETWORK = "devnet";
 const connection = new Connection(clusterApiUrl(NETWORK), "confirmed");
 
 console.log(connection);
@@ -48,7 +48,7 @@ console.log(connection);
 
 それでは実際に、接続先URLを取得する機能を実装してみましょう。下記を参考に、`pages/index.js`を更新しましょう。
 
-```javascript
+```js
 // 残高の取得に必要なメソッドのインポートを追加
 import { clusterApiUrl, Connection, LAMPORTS_PER_SOL } from '@solana/web3.js';
 // useEffectのインポートを追加
@@ -78,7 +78,7 @@ export default function Home() {
 さて、接続ができたので、アカウントの残高を取得する必要があります。口座のパブリックアドレスをパラメータとして受け取り、口座の残高を返す`getBalance`関数があるはずだと推測されるかもしれません。web3.jsのドキュメントで「残高」というキーワードを検索すると、get残高メソッドがあるだけでなく、それはConnectionクラスのメソッドであることがわかります。
 Connectionのget残高メソッドを確認すると、パラメータとして口座の公開鍵を想定していることがわかります。
 
-```javascript
+```js
 const publicKey = account.publicKey;
 let balance = await connection.getBalance(publicKey);
 balance = balance / LAMPORTS_PER_SOL;
@@ -101,7 +101,7 @@ SOLはSolanaのネイティブトークンの名前ですが、マイクロペ�
 
 Connectionインスタンスの作成と、残高の取得の処理をまとめて`refreshBalance`関数を定義します。取得した残高は`useState`で値を保持しておきます。下記を参考に、`pages/index.js`を更新しましょう。
 
-```javascript
+```js
 const [balance, setBalance] = useState(null);
 
 useEffect(() => {
@@ -111,7 +111,7 @@ useEffect(() => {
 const refreshBalance = async () => {
   try {
     // Connectionインスタンスを生成します。
-    const connection = new Connection(network, 'confirmed');
+    const connection = new Connection(network, "confirmed");
     const publicKey = account.publicKey;
 
     let balance = await connection.getBalance(publicKey);
@@ -132,7 +132,7 @@ const refreshBalance = async () => {
 
 先ほど作成した`refreshBalance`関数を引数として受け取り、[残高を取得]ボタンがクリックされた時に実行するようにします。
 
-```javascript
+```js
 export default function GetBalance({ refreshBalance }) {
   return (
     <button
@@ -161,13 +161,13 @@ Test Suites: 2 failed, 3 passed, 5 total
 
 まずは、`GetBalance`コンポーネントをインポートしましょう。
 
-```javascript
-import GetBalance from '../components/GetBalance';
+```js
+import GetBalance from "../components/GetBalance";
 ```
 
 `GetBalance`コンポーネントを呼び出すコードを追加して、ボタンをレンダリングします。
 
-```javascript
+```js
 <div>
   <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">
     STEP3: 残高を取得する
@@ -179,9 +179,11 @@ import GetBalance from '../components/GetBalance';
 
 最後に、残高を表示するコードを追加しましょう。
 
-```javascript
+```js
 <div>
-  <h3 className="p-2 border-dotted border-l-8 border-l-indigo-600">My Wallet</h3>
+  <h3 className="p-2 border-dotted border-l-8 border-l-indigo-600">
+    My Wallet
+  </h3>
   {account && (
     <>
       <div className="my-6 text-indigo-600 font-bold">
@@ -204,7 +206,7 @@ import GetBalance from '../components/GetBalance';
 
 実際に`残高を取得`ボタンを押下して動作確認してみましょう。
 
-ただし残念なことに、作成したばかりのアカウントでは当然残高が0であることがわかります。残高が変わるのを確認するには、アカウントに`SOL`  を付与する必要があるので、次のセクションでエアドロップ機能を実装します。
+ただし残念なことに、作成したばかりのアカウントでは当然残高が0であることがわかります。残高が変わるのを確認するには、アカウントに`SOL`を付与する必要があるので、次のセクションでエアドロップ機能を実装します。
 
 「でも、早く残高増やしたい!エアドロップの実装は待てない!」
 
@@ -212,7 +214,7 @@ import GetBalance from '../components/GetBalance';
 
 [Sol Faucet](https://solfaucet.com/)というサイトを使えば、あなたのアカウントに`SOL`を付与することができます。
 
-![](/public/images/Solana-Wallet/section-2/2_1_2.png)
+![](/images/Solana-Wallet/section-2/2_1_2.png)
 
 フォームにウォレットアドレスを入力し、 `DEVNET`ボタンを押下してみましょう。少し待てば`1 SOL`が付与されるので、再度`残高を取得`ボタンを押して、SOLが増えているか確認してみてください!
 
@@ -220,7 +222,7 @@ import GetBalance from '../components/GetBalance';
 
 - `components/GetBalance/index.js`
 
-```javascript
+```js
 export default function GetBalance({ refreshBalance }) {
   return (
     <button
@@ -370,4 +372,4 @@ export default function Home() {
 
 `残高を取得`ボタンを押して出力される結果をぜひDiscordの`#solana`にシェアしてください!😊
 
-次のセクションではエアドロップや送金機能を実装していきます✨
+次のセクションではエアドロップや送金機能を実装していきます ✨

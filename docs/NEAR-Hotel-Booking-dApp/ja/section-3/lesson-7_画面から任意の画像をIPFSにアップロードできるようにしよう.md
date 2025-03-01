@@ -7,7 +7,7 @@
 IPFSへのファイルアップロードについては、デスクトップアプリをダウンロードして、手動でも行うことができるのですが、もし画面からボタンを押すだけでアップロードすることができたら使いやすくて便利ですよね！ このレッスンではそのための画面を作成していきます！
 
 今回は、IPFSにアクセスするためのAPIを提供している[Pinata](https://www.pinata.cloud/)を利用します！
-![](/public/images/NEAR-Hotel-Booking-dApp/section-4/4_7_1.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-4/4_7_1.png)
 もしアカウントを作成していない場合は、[Pinata](https://www.pinata.cloud/)にアクセスしてアカウントを作成してください！
 
 アカウントを作成したらいよいよ開発に移ります！
@@ -64,28 +64,28 @@ frontend/
 
 事前にアカウントを作成して[https://www.pinata.cloud/](https://www.pinata.cloud/)にアクセスしましょう！
 
-![](/public/images/NEAR-Hotel-Booking-dApp/section-4/4_7_1.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-4/4_7_1.png)
 
 #### 2. API クレデンシャル情報を作成する。
 
 次にAPI用のクレデンシャル情報を作成しましょう！
 ログイン後のページの右上のメニューボタンから「API Keys」を選択してクリックします！
 
-![](/public/images/NEAR-Hotel-Booking-dApp/section-4/4_7_2.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-4/4_7_2.png)
 
 次に表示される画面でAPIのクレデンシャル情報を作成できます。
 左上の「+ New Key」ボタンをクリックしましょう！
 
-![](/public/images/NEAR-Hotel-Booking-dApp/section-4/4_7_3.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-4/4_7_3.png)
 
 うまくいけば下のような画面が表示されるはずなので必要事項を入力しましょう。
 特に制限がなければ全てONにて最後に名前を決めましょう！
 
-![](/public/images/NEAR-Hotel-Booking-dApp/section-4/4_7_4.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-4/4_7_4.png)
 
 クレデンシャル情報の作成に成功したら下記の様な画面が出てくるはずです！
 
-![](/public/images/NEAR-Hotel-Booking-dApp/section-4/4_7_5.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-4/4_7_5.png)
 
 おめでとうございます！ これでPinataのAPIを利用するためのクレデンシャル情報を作成することができました！
 
@@ -227,7 +227,7 @@ export default UploadButton;
 
 下記のようなフォームとボタンが表示される様になります！
 
-![](/public/images/NEAR-Hotel-Booking-dApp/section-4/4_7_6.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-4/4_7_6.png)
 
 追加した内容を見ていきましょう！
 
@@ -285,11 +285,11 @@ const pinataUploadFile = async (event) => {
   // FormDataオブジェクトを生成
   let postData = new FormData();
   // APIを使って送信するリクエストパラメータを作成する。
-  postData.append('file', file);
-  postData.append('pinataOptions', '{"cidVersion": 1}');
+  postData.append("file", file);
+  postData.append("pinataOptions", '{"cidVersion": 1}');
   postData.append(
-    'pinataMetadata',
-    `{"name": "${fileName}", "keyvalues": {"company": "nearHotel"}}`,
+    "pinataMetadata",
+    `{"name": "${fileName}", "keyvalues": {"company": "nearHotel"}}`
   );
   try {
     // フラグ ON
@@ -297,29 +297,29 @@ const pinataUploadFile = async (event) => {
     // POSTメソッドでデータを送信する
     const res = await axios.post(
       // APIのURL
-      baseAPIUrl + '/pinning/pinFileToIPFS',
+      baseAPIUrl + "/pinning/pinFileToIPFS",
       // リクエストパラメータ
       postData,
       // ヘッダー情報
       {
         headers: {
-          accept: 'application/json',
+          accept: "application/json",
           pinata_api_key: `${PINATA_API_Key}`,
           pinata_secret_api_key: `${PINATA_API_Secret}`,
-          'Content-Type': `multipart/form-data; boundary=${postData}`,
+          "Content-Type": `multipart/form-data; boundary=${postData}`,
         },
-      },
+      }
     );
     console.log(res);
     // CIDを取得
-    console.log('CID:', res.data.IpfsHash);
+    console.log("CID:", res.data.IpfsHash);
     // フラグ OFF
     setPendingFlg(false);
     // CIDを出力
     alert(`upload Successfull!! CID:${res.data.IpfsHash}`);
   } catch (e) {
-    console.error('upload failfull.....：', e);
-    alert('upload failfull.....');
+    console.error("upload failfull.....：", e);
+    alert("upload failfull.....");
   }
 };
 ```
@@ -363,7 +363,7 @@ export default Upload;
 
 これでUpload画面が実装できました！ 画面は次の様に表示されます！
 
-![](/public/images/NEAR-Hotel-Booking-dApp/section-4/4_7_8.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-4/4_7_8.png)
 
 ### 画面遷移の機能を拡張しよう
 

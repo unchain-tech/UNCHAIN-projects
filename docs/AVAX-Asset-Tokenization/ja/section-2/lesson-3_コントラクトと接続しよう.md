@@ -12,15 +12,14 @@
 💁 現時点ではまだ用意していないファイルからimportしている箇所があるためエラーメッセージが出ても無視して大丈夫です。
 
 ```ts
-import { ethers } from 'ethers';
-import { useCallback, useEffect, useState } from 'react';
+import { ethers } from "ethers";
+import { useCallback, useEffect, useState } from "react";
 
-import AssetTokenizationArtifact from '../artifacts/AssetTokenization.json';
-import { AssetTokenization as AssetTokenizationType } from '../types';
-import { getEthereum } from '../utils/ethereum';
+import AssetTokenizationArtifact from "../artifacts/AssetTokenization.json";
+import { AssetTokenization as AssetTokenizationType } from "../types";
+import { getEthereum } from "../utils/ethereum";
 
-export const AssetTokenizationAddress =
-  'コントラクトのデプロイ先アドレス';
+export const AssetTokenizationAddress = "コントラクトのデプロイ先アドレス";
 
 type PropsUseContract = {
   currentAccount: string | undefined;
@@ -41,7 +40,7 @@ export const useContract = ({
     (
       contractAddress: string,
       abi: ethers.ContractInterface,
-      storeContract: (_: ethers.Contract) => void,
+      storeContract: (_: ethers.Contract) => void
     ) => {
       if (!ethereum) {
         console.log("Ethereum object doesn't exist!");
@@ -55,7 +54,7 @@ export const useContract = ({
       }
       try {
         const provider = new ethers.providers.Web3Provider(
-          ethereum as unknown as ethers.providers.ExternalProvider,
+          ethereum as unknown as ethers.providers.ExternalProvider
         );
         const signer = provider.getSigner(); // 簡易実装のため、引数なし = 初めのアカウント(account#0)を使用する
         const Contract = new ethers.Contract(contractAddress, abi, signer);
@@ -64,7 +63,7 @@ export const useContract = ({
         console.log(error);
       }
     },
-    [ethereum, currentAccount],
+    [ethereum, currentAccount]
   );
 
   useEffect(() => {
@@ -73,7 +72,7 @@ export const useContract = ({
       AssetTokenizationArtifact.abi,
       (Contract: ethers.Contract) => {
         setAssetTokenization(Contract as AssetTokenizationType);
-      },
+      }
     );
   }, [ethereum, currentAccount, getContract]);
 
@@ -103,20 +102,20 @@ TEST_ACCOUNT_PRIVATE_KEY="YOUR_PRIVATE_KEY"
 >
 > 1.  お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを`Avalanche FUJI C-Chain`に変更します。
 >
-> ![](/public/images/AVAX-Asset-Tokenization/section-2/3_3_1.png)
+> ![](/images/AVAX-Asset-Tokenization/section-2/3_3_1.png)
 >
 > 2.  それから、`Account details`を選択してください。
 >
-> ![](/public/images/AVAX-Asset-Tokenization/section-2/3_3_2.png)
+> ![](/images/AVAX-Asset-Tokenization/section-2/3_3_2.png)
 >
 > 3.  `Account details`から`Export Private Key`をクリックしてください。
 >
-> ![](/public/images/AVAX-Asset-Tokenization/section-2/3_3_3.png)
+> ![](/images/AVAX-Asset-Tokenization/section-2/3_3_3.png)
 >
 > 4.  MetaMask のパスワードを求められるので、入力したら`Confirm`を押します。
 >     あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
 >
-> ![](/public/images/AVAX-Asset-Tokenization/section-2/3_3_4.png)
+> ![](/images/AVAX-Asset-Tokenization/section-2/3_3_4.png)
 
 > - `.env`の`YOUR_PRIVATE_KEY`の部分をここで取得した秘密鍵とを入れ替えます。
 
@@ -133,22 +132,22 @@ TEST_ACCOUNT_PRIVATE_KEY="YOUR_PRIVATE_KEY"
 ※ solidityのバージョンの部分(`solidity: '0.8.17',`)は元々記載されているものを使用してください。
 
 ```ts
-import * as dotenv from 'dotenv'; // 環境構築時にこのパッケージはインストールしてあります。
-import '@nomicfoundation/hardhat-toolbox';
-import { HardhatUserConfig } from 'hardhat/config';
+import * as dotenv from "dotenv"; // 環境構築時にこのパッケージはインストールしてあります。
+import "@nomicfoundation/hardhat-toolbox";
+import { HardhatUserConfig } from "hardhat/config";
 
 // .envファイルから環境変数をロードします。
 dotenv.config();
 
 if (process.env.TEST_ACCOUNT_PRIVATE_KEY === undefined) {
-  console.log('private key is missing');
+  console.log("private key is missing");
 }
 
 const config: HardhatUserConfig = {
-  solidity: '0.8.17',
+  solidity: "0.8.17",
   networks: {
     fuji: {
-      url: 'https://api.avax-test.network/ext/bc/C/rpc',
+      url: "https://api.avax-test.network/ext/bc/C/rpc",
       chainId: 43113,
       accounts:
         process.env.TEST_ACCOUNT_PRIVATE_KEY !== undefined
@@ -164,7 +163,7 @@ export default config;
 続いて、 `scripts`ディレクトリ内にある`deploy.ts`を以下のコードに書き換えてください。
 
 ```ts
-import { ethers } from 'hardhat';
+import { ethers } from "hardhat";
 
 async function deploy() {
   // コントラクトをデプロイするアカウントのアドレスを取得します。
@@ -172,13 +171,13 @@ async function deploy() {
 
   // AssetTokenizationコントラクトをデプロイします。
   const AssetTokenization = await ethers.getContractFactory(
-    'AssetTokenization'
+    "AssetTokenization"
   );
   const assetTokenization = await AssetTokenization.deploy();
   await assetTokenization.deployed();
 
-  console.log('assetTokenization address:', assetTokenization.address);
-  console.log('account address that deploy contract:', deployer.address);
+  console.log("assetTokenization address:", assetTokenization.address);
+  console.log("account address that deploy contract:", deployer.address);
 }
 
 deploy()
@@ -224,15 +223,14 @@ assetTokenization address: 0x4E2F5941e079EcE9c1927fd7b9fc92fDB58E04cD
 を`packages/client`ディレクトリ内、 `hooks/useContract.ts`の中の以下の部分に貼り付けてください。
 
 ```ts
-export const AssetTokenizationAddress =
-  'コントラクトのデプロイ先アドレス';
+export const AssetTokenizationAddress = "コントラクトのデプロイ先アドレス";
 ```
 
 例:
 
 ```ts
 export const AssetTokenizationAddress =
-  '0x4E2F5941e079EcE9c1927fd7b9fc92fDB58E04cD';
+  "0x4E2F5941e079EcE9c1927fd7b9fc92fDB58E04cD";
 ```
 
 📽️ ABIファイルを取得する
@@ -255,7 +253,7 @@ TypeScriptは静的型付け言語なので、 外部から取ってきたオブ
 その時に役に立つのが型定義ファイルです。
 
 コントラクトの型定義ファイルは、 コントラクトがコンパイルされた時に生成され、 `typechain-types`ディレクトリに自動的に格納されます。
-これは`npx hardhat`実行時にtypescriptを選択したため、 初期設定が済んでいるためです。
+これは`npx hardhat init`実行時にtypescriptを選択したため、 初期設定が済んでいるためです。
 
 `client`の中に`types`ディレクトリを作成し、 その中にコピーしてください。
 

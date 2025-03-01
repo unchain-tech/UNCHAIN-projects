@@ -26,21 +26,21 @@ Gifに収めていただく内容は、以下の４ステップです。編集�
 
 下のGifのようになっていれば完了です。
 
-![](/public/images/Polygon-Mobile-dApp/section-4/4_1_1.gif)
+![](/images/Polygon-Mobile-dApp/section-4/4_1_1.gif)
 
-### 🤟 コードをGitHubに公開する。
+### 🤟 コードを GitHub に公開する。
 
 まず、GitHubに向かい、新しいリポジトリを作成していきましょう。`todo_dapp_front`と`todo-dApp-contract`の２つを作成してください。
 
 `Your repositories`ページを開き、`New`ボタンを押してください。
 
-![](/public/images/Polygon-Mobile-dApp/section-4/4_1_2.png)
+![](/images/Polygon-Mobile-dApp/section-4/4_1_2.png)
 
 リポジトリに名前を付けたら、`Create repository`ボタンを押してください。
 
 次に、ディレクトリのリンクをコピーしましょう。
 
-![](/public/images/Polygon-Mobile-dApp/section-4/4_1_3.png)
+![](/images/Polygon-Mobile-dApp/section-4/4_1_3.png)
 
 ターミナルに向かい、任意のディレクトリに移動し、コピーしたリンクを下記に貼り付け、実行しましょう。
 
@@ -84,7 +84,7 @@ NFTを取得する条件は、以下のようになります。
 
 3. このページの最後にリンクされているProject Completion Formに記入する
 
-4. Discordの`🔥｜post-your-projects`チャンネルに、あなたのGifをシェアしてください 😉🎉 Discordに投稿する際に、追加実装した機能とその概要も教えていただけると幸いです!
+4. Discordの`🔥｜completed-projects`チャンネルに、あなたのGifをシェアしてください 😉🎉 Discordに投稿する際に、追加実装した機能とその概要も教えていただけると幸いです!
 
 プロジェクトを完成させていただいた方には、NFTをお送りします。
 

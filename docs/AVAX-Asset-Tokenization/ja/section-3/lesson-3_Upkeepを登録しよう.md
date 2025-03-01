@@ -8,19 +8,19 @@ chainlinkのUIを使用することで、Upkeepを簡単に登録することが
 
 [こちら](https://docs.chain.link/resources/link-token-contracts/)のリンク先の`Fuji testnet`の部分を参照してください。
 
-![](/public/images/AVAX-Asset-Tokenization/section-3/2_1_5.png)
+![](/images/AVAX-Asset-Tokenization/section-3/2_1_5.png)
 
 Metamaskで特定の(`LINK`を取得するつもりの)アカウントが表示された状態で、 `Add to wallet`をクリックすると、 そのアカウントに`LINK`が表示されるようになります。
 
-![](/public/images/AVAX-Asset-Tokenization/section-3/2_1_6.png)
+![](/images/AVAX-Asset-Tokenization/section-3/2_1_6.png)
 
 続いて、 [こちら](https://faucets.chain.link/fuji)からLINKを取得します。
 
-![](/public/images/AVAX-Asset-Tokenization/section-3/2_1_7.png)
+![](/images/AVAX-Asset-Tokenization/section-3/2_1_7.png)
 
 20LINKを取得できているはずです。
 
-![](/public/images/AVAX-Asset-Tokenization/section-3/2_1_8.png)
+![](/images/AVAX-Asset-Tokenization/section-3/2_1_8.png)
 
 ### 🦆 コントラクトを再デプロイしましょう。
 
@@ -35,9 +35,8 @@ yarn contract deploy
 
 その後`assetTokenization address:`に続くコントラクトのアドレスを`client`ディレクトリ内、 `hooks/useContract.ts`の中の以下の部分に貼り付けてください。
 
-```javascript
-export const AssetTokenizationAddress =
-  "コントラクトのデプロイ先アドレス";
+```js
+export const AssetTokenizationAddress = "コントラクトのデプロイ先アドレス";
 ```
 
 次にABIファイルを取得していきましょう。
@@ -68,32 +67,32 @@ cp -r typechain-types/* ../client/types/
 
 その後`Register new Upkeep`をクリックします。
 
-![](/public/images/AVAX-Asset-Tokenization/section-3/2_1_1.png)
+![](/images/AVAX-Asset-Tokenization/section-3/2_1_1.png)
 
 `Custom Logic`をクリックします。
 
-![](/public/images/AVAX-Asset-Tokenization/section-3/2_1_2.png)
+![](/images/AVAX-Asset-Tokenization/section-3/2_1_2.png)
 
 デプロイしたコントラクトのアドレスを貼り付け、 `Next`をクリックします。
 
-![](/public/images/AVAX-Asset-Tokenization/section-3/2_1_3.png)
+![](/images/AVAX-Asset-Tokenization/section-3/2_1_3.png)
 
 次のページにおいて、 以下のように詳細を入力し、 `Register Upkeep`をクリックします。
 ※ admin addressは先ほど**LINK を取得したアカウントのアドレス**を貼り付けてください。
 その他は任意の値を入れて頂いて構いません。
 
-![](/public/images/AVAX-Asset-Tokenization/section-3/2_1_4.png)
+![](/images/AVAX-Asset-Tokenization/section-3/2_1_4.png)
 
 しばらくするとトランザクションが完了します。
 
-![](/public/images/AVAX-Asset-Tokenization/section-3/2_1_9.png)
+![](/images/AVAX-Asset-Tokenization/section-3/2_1_9.png)
 
 `View Upkeep`をクリックすると、 登録したUpkeepの詳細が表示されます。
 (登録後は[Chainlink Automation ホームページ](https://automation.chain.link/fuji)からでもupkeepを確認できます)
 
 後ほどこちらのページの`History`の欄で実際に`Upkeep`関数が実行されたかを確認できます。
 
-![](/public/images/AVAX-Asset-Tokenization/section-3/2_1_10.png)
+![](/images/AVAX-Asset-Tokenization/section-3/2_1_10.png)
 
 ### 🎍 挙動の確認方法
 
@@ -113,19 +112,19 @@ yarn client dev
 
 例)
 
-![](/public/images/AVAX-Asset-Tokenization/section-3/2_1_13.png)
+![](/images/AVAX-Asset-Tokenization/section-3/2_1_13.png)
 
 `generate NFT`でコントラクトを作成後、
 [Chainlink Automation ホームページ](https://automation.chain.link/fuji)の`My upkeeps`から作成したUpkeepをクリックします。
 Upkeepのページを開くと、 ページ下部にHistoryという欄があります。
 ここに`Perform Upkeep`が動いた履歴があるはずです。
 
-![](/public/images/AVAX-Asset-Tokenization/section-3/2_1_11.png)
+![](/images/AVAX-Asset-Tokenization/section-3/2_1_11.png)
 
 `Perform Upkeep`によって期限切れのNFTは削除されたので、
 ブラウザ上で`For Buyers`のページへ移動し、 デプロイされたNFTの情報を見ようとしても表示されないはずです。
 
-![](/public/images/AVAX-Asset-Tokenization/section-3/2_1_14.png)
+![](/images/AVAX-Asset-Tokenization/section-3/2_1_14.png)
 
 ### 🌔 参考リンク
 

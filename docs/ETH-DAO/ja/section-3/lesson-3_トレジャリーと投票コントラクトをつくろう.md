@@ -22,15 +22,15 @@ DAOの運営のために使われるガバナンストークンは素晴らし�
 
 それでは早速、`src/scripts/8-deploy-vote.ts`を作成し、以下のコードを追加しましょう。
 
-```typescript
-import sdk from './1-initialize-sdk';
-import { ERCTokenAddress } from './module';
+```ts
+import sdk from "./1-initialize-sdk";
+import { ERCTokenAddress } from "./module";
 
 (async () => {
   try {
     const voteContractAddress = await sdk.deployer.deployVote({
       // ガバナンス用のコントラクトに名前を付けます
-      name: 'My amazing DAO',
+      name: "My amazing DAO",
 
       // ERC-20 トークンのコントラクトアドレスを設定します
       voting_token_address: ERCTokenAddress,
@@ -50,11 +50,11 @@ import { ERCTokenAddress } from './module';
     });
 
     console.log(
-      '✅ Successfully deployed vote contract, address:',
-      voteContractAddress,
+      "✅ Successfully deployed vote contract, address:",
+      voteContractAddress
     );
   } catch (err) {
-    console.error('Failed to deploy vote contract', err);
+    console.error("Failed to deploy vote contract", err);
   }
 })();
 ```
@@ -109,12 +109,11 @@ Done in 50.84s.
 
 デプロイしたコントラクトは、[こちら](https://sepolia.etherscan.io/)から確認することができます。
 
-![](/public/images/ETH-DAO/section-3/3_3_1.png)
+![](/images/ETH-DAO/section-3/3_3_1.png)
 
 ここまでで、NFT・トークン・投票の3つのコントラクトが完成しました。
 
 ※ 今回作成したガバナンスコントラクトのアドレスは保存しておいてください。
-
 
 ### 🏦 トレジャリーをセットアップする
 
@@ -136,7 +135,7 @@ Done in 50.84s.
 
 参考までに、ENSのトークンの配布割合は以下のとおりとなっています。
 
-![](/public/images/ETH-DAO/section-3/3_3_2.png)
+![](/images/ETH-DAO/section-3/3_3_2.png)
 
 ENSでは、供給量の50％ がコミュニティ、25％ はエアドロップ、残りの25％ はコアチームと貢献者に割り当てています。
 
@@ -144,28 +143,28 @@ ENSでは、供給量の50％ がコミュニティ、25％ はエアドロッ�
 
 それでは、`src/scripts/9-setup-vote.ts`を作成し、以下のコードを追加しましょう。
 
-```typescript
-import sdk from './1-initialize-sdk';
-import { ERCTokenAddress, governanceAddress } from './module';
+```ts
+import sdk from "./1-initialize-sdk";
+import { ERCTokenAddress, governanceAddress } from "./module";
 
 // ガバナンスコントラクトのアドレスを設定します
-const vote = sdk.getContract(governanceAddress, 'vote');
+const vote = sdk.getContract(governanceAddress, "vote");
 
 // ERC-20 コントラクトのアドレスを設定します。
-const token = sdk.getContract(ERCTokenAddress, 'token');
+const token = sdk.getContract(ERCTokenAddress, "token");
 
 (async () => {
   try {
     // 必要に応じて追加のトークンを作成する権限をトレジャリーに与えます
-    await (await token).roles.grant('minter', (await vote).getAddress());
+    await (await token).roles.grant("minter", (await vote).getAddress());
 
     console.log(
-      'Successfully gave vote contract permissions to act on token contract',
+      "Successfully gave vote contract permissions to act on token contract"
     );
   } catch (error) {
     console.error(
-      'failed to grant vote contract permissions on token contract',
-      error,
+      "failed to grant vote contract permissions on token contract",
+      error
     );
   }
 
@@ -183,10 +182,10 @@ const token = sdk.getContract(ERCTokenAddress, 'token');
     await (await token).transfer((await vote).getAddress(), percent90);
 
     console.log(
-      '✅ Successfully transferred ' + percent90 + ' tokens to vote contract',
+      "✅ Successfully transferred " + percent90 + " tokens to vote contract"
     );
   } catch (err) {
-    console.error('failed to transfer tokens to vote contract', err);
+    console.error("failed to transfer tokens to vote contract", err);
   }
 })();
 ```
@@ -224,10 +223,9 @@ Done in 41.00s.
 
 ここで、私のコントラクトには`895,315.5 TSC`と表示されているのがわかると思います。
 
-![](/public/images/ETH-DAO/section-3/3_3_3.png)
+![](/images/ETH-DAO/section-3/3_3_3.png)
 
 これで無事DAOのトレジャリーの用意ができました。
-
 
 ### 🙋‍♂️ 質問する
 

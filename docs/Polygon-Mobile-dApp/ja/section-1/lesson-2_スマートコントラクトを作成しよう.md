@@ -17,6 +17,7 @@
 `TodoContract.sol`のファイル内に以下のコードを記載します。
 
 ```solidity
+// TodoContract.sol
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity ^0.8.9;
 
@@ -88,6 +89,7 @@ contract TodoContract {
 ```
 
 `struct Task`は、各ToDoに関する情報（メタデータ）を格納するためのデータ構造です。これには、To-doの`id`、`taskName`、`isComplete`のブール値などが含まれています。
+
 - `id` : To-doを識別するためのid
 - `taskName` : To-doのタイトル
 - `isComplete` : To-doが完了したかどうかの状態(完了したら`true`、完了してないなら`false`)
@@ -110,9 +112,8 @@ contract TodoContract {
     //4.to-doを削除する機能
     event TaskDeleted(uint256 taskNumber);
 ```
+
 `TaskCreated`、`TaskUpdated`、`TaskIsCompleteToggled`、`TaskDeleted`は、ブロックチェーン上に発生するイベントで、dAppはこれをリスニングし、それに応じて機能することができます。
-
-
 
 次に以下のコードを`TodoContract`内の`event TaskDeleted(uint256 taskNumber);`下に追加してください。
 
@@ -140,14 +141,14 @@ contract TodoContract {
 
 ```solidity
 // TodoContract.sol
-        todos[taskCount] = Task(taskCount, _taskName, false);
+todos[taskCount] = Task(taskCount, _taskName, false);
 ```
 
 `taskCount`と`_taskName`で新しい`Task`構造を作成し、`todos`マップの現在の`taskCount`の値に代入することができます。
 
 ```solidity
 // TodoContract.sol
-        taskCount++;
+taskCount++;
 ```
 
 to-doが作成されるたびに`taskCount`が１ずつ増えるようにしています。
@@ -234,6 +235,7 @@ to-doが作成されるたびに`taskCount`が１ずつ増えるようにして�
         Task memory currTask = todos[_taskId];
         todos[_taskId] = Task(_taskId, currTask.taskName, !currTask.isComplete);
 ```
+
 - `todos`マップから`Task`オブジェクトを取得し、その値で新しい`Task`オブジェクトを作成します。
 
 - `isComplete`を現在の`isComplete`の反対の値として設定します。
@@ -274,7 +276,7 @@ to-doが作成されるたびに`taskCount`が１ずつ増えるようにして�
 
 ```solidity
 // TodoContract.sol
-        delete todos[_taskId];
+delete todos[_taskId];
 ```
 
 受け取った`_task`に対応する`todos`マップから`Task`オブジェクトを削除します。
@@ -292,57 +294,57 @@ to-doが作成されるたびに`taskCount`が１ずつ増えるようにして�
 
 `packages/contract/test`ディレクトリの中に、`test.js`ファイルを作成して、以下のコードを記載してください。
 
-```javascript
-const hre = require('hardhat');
-const { expect } = require('chai');
+```js
+const hre = require("hardhat");
+const { expect } = require("chai");
 
-describe('TodoContract', () => {
+describe("TodoContract", () => {
   // declare contract variable
   let contract;
 
   // deploy contract before all of the tests
   before(async () => {
-    const contractFactory = await hre.ethers.getContractFactory('TodoContract');
+    const contractFactory = await hre.ethers.getContractFactory("TodoContract");
     contract = await contractFactory.deploy();
   });
 
   // check creating function
-  it('create function is working on chain', async () => {
+  it("create function is working on chain", async () => {
     // check if you can create multiple tasks
-    const receipt = await (await contract.createTask('make lunch')).wait();
-    await contract.createTask('do the dises');
-    await contract.createTask('have luch with friends');
+    const receipt = await (await contract.createTask("make lunch")).wait();
+    await contract.createTask("do the dises");
+    await contract.createTask("have luch with friends");
 
     // check if you can read tasks
-    expect((await contract.readTask(0))[1]).to.equal('make lunch');
-    expect((await contract.readTask(1))[1]).to.equal('do the dises');
-    expect((await contract.readTask(2))[1]).to.equal('have luch with friends');
+    expect((await contract.readTask(0))[1]).to.equal("make lunch");
+    expect((await contract.readTask(1))[1]).to.equal("do the dises");
+    expect((await contract.readTask(2))[1]).to.equal("have luch with friends");
 
     // check if event "TaskCreated" works
     expect(
       receipt.events?.filter((x) => {
-        return x.event === 'TaskCreated';
-      })[0].args[0],
-    ).to.equal('make lunch');
+        return x.event === "TaskCreated";
+      })[0].args[0]
+    ).to.equal("make lunch");
   });
 
-  it('update function is working on chain', async () => {
+  it("update function is working on chain", async () => {
     // check if you can update tasks
-    const receipt = await (await contract.updateTask(0, 'make dinner')).wait();
-    await contract.updateTask(1, 'clean up the rooms');
-    expect((await contract.readTask(0))[1]).to.equal('make dinner');
-    expect((await contract.readTask(1))[1]).to.equal('clean up the rooms');
+    const receipt = await (await contract.updateTask(0, "make dinner")).wait();
+    await contract.updateTask(1, "clean up the rooms");
+    expect((await contract.readTask(0))[1]).to.equal("make dinner");
+    expect((await contract.readTask(1))[1]).to.equal("clean up the rooms");
 
     // check if event "TaskUpdated" works
     expect(
       receipt.events?.filter((x) => {
-        return x.event === 'TaskUpdated';
-      })[0].args[0],
-    ).to.equal('make dinner');
+        return x.event === "TaskUpdated";
+      })[0].args[0]
+    ).to.equal("make dinner");
   });
 
   // check toggling function
-  it('toggleComplete function is working on chain', async () => {
+  it("toggleComplete function is working on chain", async () => {
     // check if you can make a task completed
     const formerState = (await contract.readTask(0))[2];
     const receipt = await (await contract.toggleComplete(0)).wait();
@@ -351,46 +353,44 @@ describe('TodoContract', () => {
     // check if event "TaskIsCompleteToggled" works
     expect(
       receipt.events?.filter((x) => {
-        return x.event === 'TaskIsCompleteToggled';
-      })[0].args[0],
-    ).to.equal('make dinner');
+        return x.event === "TaskIsCompleteToggled";
+      })[0].args[0]
+    ).to.equal("make dinner");
   });
 
   // check deleting function
-  it('delete function is working on chain', async () => {
+  it("delete function is working on chain", async () => {
     // check if you can delete a task
     const receipt = await (await contract.deleteTask(0)).wait();
-    expect((await contract.readTask(0))[1]).to.equal('');
+    expect((await contract.readTask(0))[1]).to.equal("");
 
     // check if event "TaskDeleted" works
     expect(
       receipt.events
         ?.filter((x) => {
-          return x.event === 'TaskDeleted';
+          return x.event === "TaskDeleted";
         })[0]
-        .args[0].toNumber(),
+        .args[0].toNumber()
     ).to.equal(0);
   });
 });
 ```
 
 簡単にテストの内容を解説します。
-
 以下の部分でTodoContractのデプロイを行います。`before()`を用いることで、テストの前に一度だけ実行されるようになります。
 
-```javascript
-  // deploy contract before all of the tests
-  before(async () => {
-    const contractFactory = await hre.ethers.getContractFactory('TodoContract');
-    contract = await contractFactory.deploy();
-  });
+```js
+// deploy contract before all of the tests
+before(async () => {
+  const contractFactory = await hre.ethers.getContractFactory("TodoContract");
+  contract = await contractFactory.deploy();
+});
 ```
 
 以降のコードで、実際にコントラクトの関数を呼び出して期待する結果となるかどうかを確認しています。
-
 例として、`createTask`関数のテストを見てみましょう。ToDoを3つ作成し、それぞれのToDoが正しく登録されているかを確認しています。
 
-```javascript
+```js
   // check creating function
   it('create function is working on chain', async () => {
     // check if you can create multiple tasks
@@ -406,12 +406,9 @@ describe('TodoContract', () => {
 
 また、ToDo: `make lunch`を作成した際のイベントが正しく発火しているかも確認しています。
 
-```javascript
+```js
     const receipt = await (await contract.createTask('make lunch')).wait();
-
     ...
-
-
     // check if event "TaskCreated" works
     expect(
       receipt.events?.filter((x) => {
@@ -419,7 +416,6 @@ describe('TodoContract', () => {
       })[0].args[0],
     ).to.equal('make lunch');
   });
-
 ```
 
 それでは、以下のコマンドでテストを実行してみましょう。
@@ -429,8 +425,7 @@ yarn test
 ```
 
 全てのテストにパスした場合、このように表示されます。
-
-![](/public/images/Polygon-Mobile-dApp/section-1/1_2_1.png)
+![](/images/Polygon-Mobile-dApp/section-1/1_2_1.png)
 
 スマートコントラクトの開発は以上で完了です。
 

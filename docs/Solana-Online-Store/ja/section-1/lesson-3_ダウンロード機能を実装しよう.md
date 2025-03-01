@@ -16,7 +16,7 @@ IPFSに保存されたデータは一定期間内にアクセスがないと消�
 
 ※アップロードするためにはPinataにログイン後、ページ右上の`+ Add Files` -> `File`と進みます。
 
-![pinata](/public/images/Solana-Online-Store/section-1/1_3_1.png)
+![pinata](/images/Solana-Online-Store/section-1/1_3_1.png)
 
 続いて、アップロードした画像の「Content Identifier（CID）」の欄に記載されたIDハッシュをコピーしておきましょう。
 
@@ -26,8 +26,7 @@ CIDはIPFS上でコンテンツにアクセスするためのアドレスで、�
 https://cloudflare-ipfs.com/ipfs/あなたの画像ファイルのCID
 ```
 
-
-### 🎈 IPFSからファイルをダウンロードする
+### 🎈 IPFS からファイルをダウンロードする
 
 `hooks`フォルダ内にIPFSゲートウェイのURLにハッシュとファイル名を追加する`useIPFS.js`ファイルがあります。
 
@@ -38,17 +37,18 @@ https://cloudflare-ipfs.com/ipfs/あなたの画像ファイルのCID
 ```jsx
 // IpfsDownload.js
 
-import useIPFS from '../hooks/useIPFS';
+import useIPFS from "../hooks/useIPFS";
 
 const IPFSDownload = ({ hash, filename }) => {
-
   const file = useIPFS(hash, filename);
 
   return (
     <div>
       {file ? (
         <div className="download-component">
-          <a className="download-button" href={file} download={filename}>Download</a>
+          <a className="download-button" href={file} download={filename}>
+            Download
+          </a>
         </div>
       ) : (
         <p>Downloading file...</p>
@@ -68,13 +68,13 @@ export default IPFSDownload;
 
 最初に、テストで使用する仮の値を設定します。
 
-```javascript
+```js
 // __tests__/IpfsDownload.test.js
 
 /** 準備 */
 /** IPFSDownloadコンポーネントに渡す引数と、useIPFSフックの戻り値を定義します */
-const mockHash = 'hash';
-const mockFilename = 'filename';
+const mockHash = "hash";
+const mockFilename = "filename";
 const mockFile = `https://gateway.ipfscdn.io/ipfs/${mockHash}?filename=${mockFilename}`;
 useIPFS.mockReturnValue(mockFile);
 ```
@@ -85,7 +85,7 @@ useIPFS.mockReturnValue(mockFile);
 
 次に、対象コンポーネントのレンダリングを行います。ここで、先ほど定義した値を渡しています。
 
-```javascript
+```js
 // __tests__/IpfsDownload.test.js
 
 /** 実行 */
@@ -94,23 +94,25 @@ render(<IPFSDownload hash={mockHash} filename={mockFilename} />);
 
 最後に、テスト対象のコンポーネントが期待する結果を返しているかをテストします。
 
-```javascript
+```js
 // __tests__/IpfsDownload.test.js
 
 /** 確認 */
-const linkElement = screen.getByRole('link', {
+const linkElement = screen.getByRole("link", {
   name: /Download/i,
 });
 /** useIPFSフックが呼び出され、ダウンロードリンクが適切に設定されていることを確認します */
 expect(linkElement).toBeInTheDocument();
-expect(linkElement).toHaveAttribute('href', mockFile);
-expect(linkElement).toHaveAttribute('download', mockFilename);
+expect(linkElement).toHaveAttribute("href", mockFile);
+expect(linkElement).toHaveAttribute("download", mockFilename);
 ```
 
 `screen.getByRole()`は、指定された`role`属性を持つ要素を返します。今回テスト対象のコンポーネントでは、下記の要素が該当します。
 
 ```jsx
-<a className="download-button" href={file} download={filename}>Download</a>
+<a className="download-button" href={file} download={filename}>
+  Download
+</a>
 ```
 
 それではテストスクリプトを実行してみましょう。`package.json`ファイルのjestコマンドを更新してIPFSDownloadコンポーネントのテストのみ実行されるようにします。
@@ -132,7 +134,7 @@ yarn test
 
 テストがパスしたら、IPFSDownloadコンポーネントの実装は完了です。
 
-![](/public/images/Solana-Online-Store/section-1/1_3_2.png)
+![](/images/Solana-Online-Store/section-1/1_3_2.png)
 
 ### 😔 ダウンロード機能の実装
 
@@ -165,16 +167,16 @@ yarn test
 ```jsx
 // Product.js
 
-import styles from '../styles/Product.module.css';
-import IPFSDownload from './IpfsDownload';
+import styles from "../styles/Product.module.css";
+import IPFSDownload from "./IpfsDownload";
 
 export default function Product({ product }) {
   const { id, name, price, description, image_url } = product;
 
   return (
     <div className={styles.product_container}>
-      <div >
-        <img className={styles.product_image}src={image_url} alt={name} />
+      <div>
+        <img className={styles.product_image} src={image_url} alt={name} />
       </div>
 
       <div className={styles.product_details}>
@@ -186,7 +188,11 @@ export default function Product({ product }) {
         <div className={styles.product_action}>
           <div className={styles.product_price}>{price} USDC</div>
           {/* 以下の部分は後ほどAPIからハッシュを取得する処理に変更します。 */}
-          <IPFSDownload filename="anya" hash="QmcJPLeiXBwA17WASSXs5GPWJs1n1HEmEmrtcmDgWjApjm" cta="Download goods"/>
+          <IPFSDownload
+            filename="anya"
+            hash="QmcJPLeiXBwA17WASSXs5GPWJs1n1HEmEmrtcmDgWjApjm"
+            cta="Download goods"
+          />
         </div>
       </div>
     </div>
@@ -201,20 +207,18 @@ export default function Product({ product }) {
 ```jsx
 // fetchProducts.js
 
-import products from './products.json'
+import products from "./products.json";
 
 export default function handler(req, res) {
-  if (req.method === 'GET') {
+  if (req.method === "GET") {
     // リクエストを受け取った場合、ハッシュとファイル名を除いた製品のコピーを作成します。（配列）
     const productsNoHashes = products.map((product) => {
-
       const { hash, filename, ...rest } = product;
       return rest;
     });
 
     res.status(200).json(productsNoHashes);
-  }
-  else {
+  } else {
     res.status(405).send(`Method ${req.method} not allowed`);
   }
 }
@@ -227,22 +231,22 @@ export default function handler(req, res) {
 ```jsx
 // index.js
 
-import { useWallet } from '@solana/wallet-adapter-react';
-import dynamic from 'next/dynamic';
-import { useEffect, useState } from 'react';
+import { useWallet } from "@solana/wallet-adapter-react";
+import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
 
-import HeadComponent from '../components/Head';
-import Product from '../components/Product';
+import HeadComponent from "../components/Head";
+import Product from "../components/Product";
 
 // 参照: https://github.com/solana-labs/wallet-adapter/issues/648
 const WalletMultiButtonDynamic = dynamic(
   async () =>
-    (await import('@solana/wallet-adapter-react-ui')).WalletMultiButton,
-  { ssr: false },
+    (await import("@solana/wallet-adapter-react-ui")).WalletMultiButton,
+  { ssr: false }
 );
 
 // 定数を宣言します。
-const TWITTER_HANDLE = 'あなたのTwitterハンドル';
+const TWITTER_HANDLE = "あなたのTwitterハンドル";
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const App = () => {
@@ -252,17 +256,20 @@ const App = () => {
   useEffect(() => {
     if (publicKey) {
       fetch(`/api/fetchProducts`)
-        .then(response => response.json())
-        .then(data => {
+        .then((response) => response.json())
+        .then((data) => {
           setProducts(data);
-          console.log('Products', data);
+          console.log("Products", data);
         });
     }
   }, [publicKey]);
 
   const renderNotConnectedContainer = () => (
     <div>
-      <img src="https://media.giphy.com/media/FWAcpJsFT9mvrv0e7a/giphy.gif" alt="anya" />
+      <img
+        src="https://media.giphy.com/media/FWAcpJsFT9mvrv0e7a/giphy.gif"
+        alt="anya"
+      />
       <div className="button-container">
         <WalletMultiButtonDynamic className="cta-button connect-wallet-button" />
       </div>
@@ -282,7 +289,9 @@ const App = () => {
       <div className="container">
         <header className="header-container">
           <p className="header"> 😳 UNCHAIN Image Store 😈</p>
-          <p className="sub-text">The only Image store that accepts shitcoins</p>
+          <p className="sub-text">
+            The only Image store that accepts shitcoins
+          </p>
         </header>
 
         <main>
@@ -290,7 +299,11 @@ const App = () => {
         </main>
 
         <div className="footer-container">
-          <img alt="Twitter Logo" className="twitter-logo" src="twitter-logo.svg" />
+          <img
+            alt="Twitter Logo"
+            className="twitter-logo"
+            src="twitter-logo.svg"
+          />
           <a
             className="footer-text"
             href={TWITTER_LINK}
@@ -314,7 +327,6 @@ IPFS上のファイルは複数のノードにキャッシュされるため、�
 
 逆にファイルへのアクセスが多いほど、キャッシュされるノードが多くなるため、ダウンロードが速くなります。
 
-
 ### 🎎 あなただけの商品棚へ!
 
 以下のコマンドでWebアプリケーションを動かしてみましょう。
@@ -326,7 +338,6 @@ yarn dev
 ウォレット接続後の画面でかわいく名付けられた商品が並べられているはずです。
 
 余力のある人は、`products.json`に新しい商品を追加してみましょう!
-
 
 ### 🙋‍♂️ 質問する
 

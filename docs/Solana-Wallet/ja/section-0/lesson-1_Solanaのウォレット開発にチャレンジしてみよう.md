@@ -19,7 +19,7 @@
 
 これらの機能を実現するために、 `Solana`のネットワークのネイティブ暗号資産である`SOL`は、カスタムプログラムの実行、トランザクションの送信、 `Solana`ネットワークをサポートする人へのインセンティブに使用されています。
 
-最近ですと、Move and Earnの「STEPN」が`Solana`基盤で作られていることで、注目を浴びてますね👟
+最近ですと、Move and Earnの「STEPN」が`Solana`基盤で作られていることで、注目を浴びてますね 👟
 
 <!-- 参考: https://www.kraken.com/ja-jp/learn/what-is-solana-sol -->
 
@@ -38,7 +38,7 @@
 すでに`MetaMask`や`Phantom`といったウォレットを使ったことがある方にとっては、内部の仕組みや動きを知ることができ、ウォレットに対する知識がより深まると思います。
 
 - レッスン完了後の画面イメージ
-![](/public/images/Solana-Wallet/section-0/0_1_1.png)
+  ![](/images/Solana-Wallet/section-0/0_1_1.png)
 
 ### 🌍 プロジェクトをアップグレードする
 

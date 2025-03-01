@@ -78,7 +78,7 @@ Solidityには、4つのアクセス修飾子が存在します。
 
 以下に、Solidityのアクセス修飾子とアクセス権限についてまとめています。
 
-![](/public/images/ETH-dApp/section-1/1_4_1.png)
+![](/images/ETH-dApp/section-1/1_4_1.png)
 
 これからSolidityのアクセス修飾子は頻繁に登場するので、まずは大まかな理解ができれば大丈夫です。
 
@@ -115,7 +115,7 @@ Solidity開発では関数修飾子を意識しておかないとデータを記
 
 以下に、Solidityの関数修飾子`pure`と`view`についてまとめています。
 
-![](/public/images/ETH-dApp/section-1/1_4_2.png)
+![](/images/ETH-dApp/section-1/1_4_2.png)
 
 ここまで理解してほしいのは、`pure`や`view`関数を使用すれば、**ガス代を削減できる**ということです。
 
@@ -150,7 +150,7 @@ function getTotalWaves() public view returns (uint256) {
 
 次に、`run.js`を以下のように更新していきます。
 
-```javascript
+```js
 const main = async () => {
   const [owner, randomPerson] = await hre.ethers.getSigners();
   const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
@@ -193,7 +193,7 @@ runMain();
 
 更新された部分を1行ずつ見ていきましょう。
 
-```javascript
+```js
 const [owner, randomPerson] = await hre.ethers.getSigners();
 ```
 
@@ -207,13 +207,13 @@ const [owner, randomPerson] = await hre.ethers.getSigners();
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```js
 console.log("Contract deployed to:", wavePortal.address);
 ```
 
 ここでは、あなたのスマートコントラクトのデプロイ先のアドレス(＝ `wavePortal.address`)をターミナルに出力しています。
 
-```javascript
+```js
 console.log("Contract deployed by:", owner.address);
 ```
 
@@ -221,7 +221,7 @@ console.log("Contract deployed by:", owner.address);
 
 最後に、下記のコードを見ていきましょう。
 
-```javascript
+```js
 let waveCount;
 waveCount = await waveContract.getTotalWaves();
 
@@ -233,7 +233,7 @@ waveCount = await waveContract.getTotalWaves();
 
 ここでは、通常のAPIと同じように、関数を手動で呼び出しています。1行ずつ見ていきましょう。
 
-```javascript
+```js
 let waveCount;
 waveCount = await waveContract.getTotalWaves();
 ```
@@ -242,7 +242,7 @@ waveCount = await waveContract.getTotalWaves();
 
 次に、`waveContract.getTotalWaves()`で`WavePortal.sol`に記載された`getTotalWaves()`を呼び出し、既存の「👋（wave）」の総数を取得します。
 
-```javascript
+```js
 let waveTxn = await waveContract.wave();
 await waveTxn.wait();
 ```
@@ -257,7 +257,7 @@ MetaMaskを使っていて、取引を承認するために数秒手間どった
 
 承認が終わったら、`await waveTxn.wait()`が実行され、トランザクションの結果を取得します。コードが冗長に感じるかもしれませんが、大事な処理です。
 
-```javascript
+```js
 waveCount = await waveContract.getTotalWaves();
 ```
 
@@ -268,7 +268,7 @@ waveCount = await waveContract.getTotalWaves();
 ルートディレクトリにいることを確認して、ターミナルで下記を実行してみましょう。
 
 ```
- yarn contract run:script
+yarn contract run:script
 ```
 
 例)ターミナルの出力結果
@@ -303,7 +303,7 @@ We have 1 total waves!
 
 下記を`run.js`に反映させて、ターミナルにどのような結果がでるかテストしてみましょう。
 
-```javascript
+```js
 const main = async () => {
   const [owner, randomPerson] = await hre.ethers.getSigners();
   const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
@@ -342,7 +342,7 @@ runMain();
 
 `run.js`に追加されたコードは以下になります。確認していきましょう。
 
-```javascript
+```js
 waveTxn = await waveContract.connect(randomPerson).wave();
 await waveTxn.wait();
 waveCount = await waveContract.getTotalWaves();
@@ -353,13 +353,13 @@ waveCount = await waveContract.getTotalWaves();
 - `randomPerson`には、Hardhatが取得したランダムなアドレスが格納されています。
 - `randomPerson`は、このシミュレーションのために存在していたのです。
 
-```javascript
+```js
 waveTxn = await waveContract.connect(randomPerson).wave();
 ```
 
 ここでは、`.connect(randomPerson)`を用いて、ほかのユーザーがあなたに「👋（wave）」を送った状態をシミュレーションしています。
 
-```javascript
+```js
 await waveTxn.wait();
 waveCount = await waveContract.getTotalWaves();
 ```
@@ -395,7 +395,7 @@ We have 2 total waves!
 
 下記のように`run.js`に`randomPerson`を追加すると、さらにもう一人追加して、シミュレーションを行うこともできます。
 
-```javascript
+```js
 const [owner, randomPerson1, randomPerson2] = await hre.ethers.getSigners();
 ```
 

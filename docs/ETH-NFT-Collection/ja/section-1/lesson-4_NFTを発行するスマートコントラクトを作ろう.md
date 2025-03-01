@@ -214,7 +214,7 @@ _setTokenURI(newItemId, "Valuable data!");
 
 最後に、下記のコードを見ていきましょう。
 
-```javascript
+```js
 console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
 ```
 
@@ -228,9 +228,9 @@ console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
 
 ```json
 {
-    "name": "Tanya",
-    "description": "A mindful creature. Just woke up like this.",
-    "image": "https://i.imgur.com/t1fye4S.jpg"
+  "name": "Tanya",
+  "description": "A mindful creature. Just woke up like this.",
+  "image": "https://i.imgur.com/t1fye4S.jpg"
 }
 ```
 
@@ -247,14 +247,13 @@ console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
 
 上記の`Tanya`のJSONメタデータをコピーして、 [こちら](https://www.npoint.io/) のWebサイトに貼り付けてください。
 
-
 このWebサイトは、JSONデータをホストするのに便利です。
 
 このレッスンでは、NFTデータを保持するために使用します。
 
 下図のように、Webサイトにメタデータを貼り付けて、`Save`ボタンをクリックすると、JSONファイルへのリンクが表示されます。
 
-![](/public/images/ETH-NFT-Collection/section-1/1_4_1.png)
+![](/images/ETH-NFT-Collection/section-1/1_4_1.png)
 
 枠で囲んだ部分をコピーして、ブラウザに貼り付け、メタデータがリンクとして保存されていることを確認しましょう。
 
@@ -266,7 +265,7 @@ console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
 
 下記にImgurで画像をアップロードした際に選択する`Direct Link`の取得方法を示します。
 
-![](/public/images/ETH-NFT-Collection/section-1/1_4_2.png)
+![](/images/ETH-NFT-Collection/section-1/1_4_2.png)
 
 ぜひ自分のお気に入りの画像を使って、自分だけのメタデータを作成してみましょう。
 
@@ -297,7 +296,7 @@ _setTokenURI(
 
 `scripts/deploy.js`ファイルを下記のように変更しましょう。
 
-```javascript
+```js
 // deploy.js
 async function main() {
   const nftContractFactory = await hre.ethers.getContractFactory("MyEpicNFT");
@@ -312,7 +311,7 @@ async function main() {
   txn = await nftContract.makeAnEpicNFT();
   // Minting が仮想マイナーにより、承認されるのを待つ。
   await txn.wait();
-};
+}
 
 main().catch((error) => {
   console.error(error);
@@ -366,11 +365,11 @@ Alchemyは、世界中のトランザクションを一元化し、マイナー�
 
 Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押してください。
 
-![](/public/images/ETH-NFT-Collection/section-1/1_4_3.png)
+![](/images/ETH-NFT-Collection/section-1/1_4_3.png)
 
 次に、下記の項目を埋めていきます。下図を参考にしてください。
 
-![](/public/images/ETH-NFT-Collection/section-1/1_4_4.png)
+![](/images/ETH-NFT-Collection/section-1/1_4_4.png)
 
 - `NAME` : プロジェクトの名前(例: `MyEpicNFT`)
 - `DESCRIPTION` : プロジェクトの概要（任意）
@@ -379,11 +378,11 @@ Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押して�
 
 それから、作成したAppの`VIEW DETAILS`をクリックします。
 
-![](/public/images/ETH-NFT-Collection/section-1/1_4_5.png)
+![](/images/ETH-NFT-Collection/section-1/1_4_5.png)
 
 プロジェクトを開いたら、`VIEW KEY`ボタンをクリックします。
 
-![](/public/images/ETH-NFT-Collection/section-1/1_4_6.png)
+![](/images/ETH-NFT-Collection/section-1/1_4_6.png)
 
 ポップアップが開くので、`HTTPS`のリンクをコピーしてください。
 
@@ -421,19 +420,19 @@ Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押して�
 >
 > 1 \. MetaMask ウォレットのネットワークトグルを開く。
 >
-> ![](/public/images/ETH-NFT-Collection/section-1/1_4_7.png)
+> ![](/images/ETH-NFT-Collection/section-1/1_4_7.png)
 >
 > 2 \. `Show/hide test networks`をクリック。
 >
-> ![](/public/images/ETH-NFT-Collection/section-1/1_4_8.png)
+> ![](/images/ETH-NFT-Collection/section-1/1_4_8.png)
 >
 > 3 \. `Show test networks`を`ON`にする。
 >
-> ![](/public/images/ETH-NFT-Collection/section-1/1_4_9.png)
+> ![](/images/ETH-NFT-Collection/section-1/1_4_9.png)
 >
 > 4 \. `Sepolia Test Network`を選択する。
 >
-> ![](/public/images/ETH-NFT-Collection/section-1/1_4_10.png)
+> ![](/images/ETH-NFT-Collection/section-1/1_4_10.png)
 
 MetaMaskウォレットに`Sepolia Test Network`が設定されたら、下記のリンクの中から条件に合うものを選んで、少量の偽ETHを取得しましょう。
 
@@ -462,16 +461,16 @@ contracts			test
 
 下記のように、`hardhat.config.js`の中身を更新します。
 
-```javascript
+```js
 // hardhat.config.js
 require("@nomicfoundation/hardhat-toolbox");
 
 module.exports = {
-  solidity: '0.8.18',
-  defaultNetwork: 'hardhat',
+  solidity: "0.8.18",
+  defaultNetwork: "hardhat",
   networks: {
     sepolia: {
-      url: "YOUR_ALCHEMY_API_URL" || '',
+      url: "YOUR_ALCHEMY_API_URL" || "",
       accounts: "YOUR_PRIVATE_ACCOUNT_KEY" ? ["YOUR_PRIVATE_ACCOUNT_KEY"] : [],
     },
   },
@@ -488,23 +487,23 @@ module.exports = {
 
 > 1\. お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを`Sepolia Test Network`に変更します。
 >
-> ![](/public/images/ETH-NFT-Collection/section-1/1_4_11.png)
+> ![](/images/ETH-NFT-Collection/section-1/1_4_11.png)
 >
 > 2\. それから、`Account details`を選択してください。
 >
-> ![](/public/images/ETH-NFT-Collection/section-1/1_4_12.png)
+> ![](/images/ETH-NFT-Collection/section-1/1_4_12.png)
 >
 > 3\. `Account details`から`Export Private Key`をクリックしてください。
 >
-> ![](/public/images/ETH-NFT-Collection/section-1/1_4_13.png)
+> ![](/images/ETH-NFT-Collection/section-1/1_4_13.png)
 >
 > 4\. MetaMask のパスワードを求められるので、入力したら`Confirm`を推します。
 >
-> ![](/public/images/ETH-NFT-Collection/section-1/1_4_14.png)
+> ![](/images/ETH-NFT-Collection/section-1/1_4_14.png)
 >
 > 5\. あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
 >
-> ![](/public/images/ETH-NFT-Collection/section-1/1_4_15.png)
+> ![](/images/ETH-NFT-Collection/section-1/1_4_15.png)
 >
 > `hardhat.config.js`の`YOUR_PRIVATE_ACCOUNT_KEY`の部分をここで取得した秘密鍵とを入れ替えます。
 
@@ -547,10 +546,10 @@ hardhat.config.js
 > 「ログイン」には下記の情報が必要となります。
 >
 > - ユーザー名: 公開アドレス
->   ![](/public/images/ETH-NFT-Collection/section-1/1_4_16.png)
+>   ![](/images/ETH-NFT-Collection/section-1/1_4_16.png)
 >
 > - パスワード: 秘密鍵
->   ![](/public/images/ETH-NFT-Collection/section-1/1_4_17.png)
+>   ![](/images/ETH-NFT-Collection/section-1/1_4_17.png)
 >
 > ユーザー名とパスワードを使用して、AWS にログインしてプロジェクトをデプロイするのと同じです。
 
@@ -594,17 +593,17 @@ _表示されるまでに約 1 分かかり場合があります。_
 - Address : ターミナルに出力された`Contract deployed to`に続くアドレス
 - Token ID : `1`
 
-![](/public/images/ETH-NFT-Collection/section-1/1_4_18.png)
+![](/images/ETH-NFT-Collection/section-1/1_4_18.png)
 
 `TanyaNFT`が表示されたら、`View`をクリックします。
 
 ミントをしたNFTの情報が表示されます。
 
-![](/public/images/ETH-NFT-Collection/section-1/1_4_19.png)
+![](/images/ETH-NFT-Collection/section-1/1_4_19.png)
 
 画面を下にスクロールをすると、現在ミントされているNFT一覧が確認できます。ここでは、2つのNFT画像が表示されています。デプロイ時に2回ミントを行ったため、Token ID 1と2のNFT画像が確認できます。
 
-![](/public/images/ETH-NFT-Collection/section-1/1_4_20.png)
+![](/images/ETH-NFT-Collection/section-1/1_4_20.png)
 
 私が作成したTanyaコレクションの`tokenID` 1番のリンクは[こちら](https://gemcase.vercel.app/view/evm/sepolia/0x8f561c94cc0c6c2771052d10980937804cd53cd6/1)になります。
 

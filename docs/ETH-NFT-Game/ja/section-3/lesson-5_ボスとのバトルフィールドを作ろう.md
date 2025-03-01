@@ -28,7 +28,7 @@ Webアプリケーションの構築が完了したら、CSSのスタイリン�
 
 次に、`client/src/Components/Arena/index.js`を開き、下記のコードを貼り付けましょう。
 
-```javascript
+```js
 import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import { CONTRACT_ADDRESS, transformCharacterData } from "../../constants";
@@ -76,13 +76,13 @@ export default Arena;
 
 まず、`Arena`をインポートするため、`App.js`の先頭に、下記を追加しましょう。
 
-```javascript
+```js
 import Arena from "./Components/Arena";
 ```
 
 次に、`renderContent`関数を下記のように更新しましょう。
 
-```javascript
+```js
 // レンダリングメソッド
 const renderContent = () => {
   // シナリオ1.
@@ -116,7 +116,7 @@ Webアプリケーションを更新すると、「アリーナ」コンポー�
 
 フロントエンドが下記のように表示されていれば、ここまでの実装は成功です。
 
-![](/public/images/ETH-NFT-Game/section-3/3_6_1.png)
+![](/images/ETH-NFT-Game/section-3/3_6_1.png)
 
 ### 😈 スマートコントラクトからボスを取得する
 
@@ -126,7 +126,7 @@ Webアプリケーションを更新すると、「アリーナ」コンポー�
 
 まず、`Arena`コンポーネントの中の`const [gameContract, setGameContract] = useState(null);`の直下に下記を追記してください。
 
-```javascript
+```js
 // ボスのメタデータを保存する状態変数を初期化します。
 const [boss, setBoss] = useState(null);
 
@@ -151,14 +151,14 @@ useEffect(() => {
 
 まず、`Arena/index.js`に向かい、`const [boss, setBoss] = useState(null);`の直下に下記を追加しましょう。
 
-```javascript
+```js
 // NFTキャラクターがボスを攻撃する際に使用する関数を定義します。
 const runAttackAction = async () => {};
 ```
 
 次に、`Arena/index.js`の`return();`の中身を下記のように更新しましょう。
 
-```javascript
+```js
 return (
   <div className="arena-container">
     {/* ボスをレンダリングします */}
@@ -189,7 +189,7 @@ return (
 
 ローカルサーバーで、Webアプリケーションを開き、下記のようにボスが`Arena`にレンダリングされていることを確認してください。
 
-![](/public/images/ETH-NFT-Game/section-3/3_6_3.png)
+![](/images/ETH-NFT-Game/section-3/3_6_3.png)
 
 ### 🛡 NFT キャラクターを`Arena`にレンダリングする
 
@@ -197,7 +197,7 @@ return (
 
 `Arena/index.js`の`return();`の中身を下記のように更新しましょう。
 
-```javascript
+```js
 return (
   <div className="arena-container">
     {/* ボスをレンダリングします */}
@@ -250,7 +250,7 @@ return (
 
 ローカルサーバーで、Webアプリケーションを開き、下記のようにあなたのNFTキャラクターが`Arena`にレンダリングされていることを確認してください。
 
-![](/public/images/ETH-NFT-Game/section-3/3_6_4.png)
+![](/images/ETH-NFT-Game/section-3/3_6_4.png)
 
 ### 🥊 ボスとのバトルを実装する
 
@@ -258,7 +258,7 @@ return (
 
 `Arena/index.js`を下記のように更新していきましょう。
 
-```javascript
+```js
 // コントラクトのデータを保有する状態変数を初期化します。
 const [gameContract, setGameContract] = useState(null);
 
@@ -298,7 +298,7 @@ const runAttackAction = async () => {
 
 **1 \. `const [boss, setBoss] = useState(null);`の直下に、下記を追加。**
 
-```javascript
+```js
 // 攻撃の状態を保存する変数を初期化します。
 const [attackState, setAttackState] = useState("");
 ```
@@ -325,7 +325,7 @@ const [attackState, setAttackState] = useState("");
 
 - `{boss ..}`の中身を下記のように更新しましょう。
 
-```javascript
+```js
 return (
   <div className="arena-container">
     {/* ボスをレンダリングします */}
@@ -367,7 +367,7 @@ return (
 
 3 \. 攻撃が完了すると、トランザクションハッシュ(`attackTxn:`)がConsoleに表示されます。
 
-![](/public/images/ETH-NFT-Game/section-3/3_6_5.png)
+![](/images/ETH-NFT-Game/section-3/3_6_5.png)
 
 ここまで、完了したら、テストは成功です。
 
@@ -379,14 +379,14 @@ return (
 
 まず、`Arena/index.js`の中にある`Arena`コンポーネントを下記のように更新してください。
 
-```javascript
+```js
 // NFT キャラクターの情報を更新するため、setCharacterNFT を引数として追加します。
 const Arena = ({ characterNFT, setCharacterNFT }) => {
 ```
 
 次に、`fetchBoss`関数が記載されている`useEffect`の中身を下記のように更新しましょう。
 
-```javascript
+```js
 // ページがロードされると下記が実行されます。
 useEffect(() => {
   // ボスのデータをコントラクトから読み込む関数を設定します。
@@ -435,7 +435,7 @@ useEffect(() => {
 
 - `Arena/index.js`で`Arena`コンポーネントの引数に、`setCharacterNFT`を追加したので、`App.js`にも更新を反映させます。
 
-```javascript
+```js
 <Arena characterNFT={characterNFT} setCharacterNFT={setCharacterNFT} />
 ```
 
@@ -443,7 +443,7 @@ useEffect(() => {
 
 1つだけReactの手法 [`prevState`](https://ratio.ym-tane.com/development/react-prevstate/) を使用したので、下記のコードを見ていきましょう。
 
-```javascript
+```js
 setBoss((prevState) => {
   return { ...prevState, hp: bossHp };
 });
@@ -468,7 +468,7 @@ setCharacterNFT((prevState) => {
 
 下記のようにボスとNFTキャラクターのHPが更新されていれば成功です。
 
-![](/public/images/ETH-NFT-Game/section-3/3_6_6.png)
+![](/images/ETH-NFT-Game/section-3/3_6_6.png)
 
 ### 🙋‍♂️ 質問する
 

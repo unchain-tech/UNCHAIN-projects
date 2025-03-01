@@ -250,21 +250,21 @@ openseaなどのNFTマーケットサービスは、この`tokenURI`関数のデ
 この機能をテストスクリプトに記述してテストを実効してみましょう。
 ではpackages/contract/testに`test.js`という名前でファイルを作成して、以下のように記述しましょう。
 
-```javascript
-const { assert } = require('chai');
-const { ethers } = require('hardhat');
+```js
+const { assert } = require("chai");
+const { ethers } = require("hardhat");
 
-describe('Web3Mint', () => {
-  it('Should return the nft', async () => {
-    const Mint = await ethers.getContractFactory('Web3Mint');
+describe("Web3Mint", () => {
+  it("Should return the nft", async () => {
+    const Mint = await ethers.getContractFactory("Web3Mint");
     const mintContract = await Mint.deploy();
     await mintContract.deployed();
 
     const [owner, addr1] = await ethers.getSigners();
 
-    const nftName = 'poker';
+    const nftName = "poker";
     const ipfsCID =
-      'bafkreievxssucnete4vpthh3klylkv2ctll2sk2ib24jvgozyg62zdtm2y';
+      "bafkreievxssucnete4vpthh3klylkv2ctll2sk2ib24jvgozyg62zdtm2y";
 
     // 違うアドレスでNFTをmint
     await mintContract.connect(owner).mintIpfsNFT(nftName, ipfsCID);
@@ -273,17 +273,45 @@ describe('Web3Mint', () => {
     // mintしたアドレスによって違うNFTが作成されていることをテスト
     assert.equal(
       await mintContract.tokenURI(0),
-      'data:application/json;base64,eyJuYW1lIjogInBva2VyIC0tIE5GVCAjOiAwIiwgImRlc2NyaXB0aW9uIjogIkFuIGVwaWMgTkZUIiwgImltYWdlIjogImlwZnM6Ly9iYWZrcmVpZXZ4c3N1Y25ldGU0dnB0aGgza2x5bGt2MmN0bGwyc2syaWIyNGp2Z296eWc2MnpkdG0yeSJ9',
+      "data:application/json;base64,eyJuYW1lIjogInBva2VyIC0tIE5GVCAjOiAwIiwgImRlc2NyaXB0aW9uIjogIkFuIGVwaWMgTkZUIiwgImltYWdlIjogImlwZnM6Ly9iYWZrcmVpZXZ4c3N1Y25ldGU0dnB0aGgza2x5bGt2MmN0bGwyc2syaWIyNGp2Z296eWc2MnpkdG0yeSJ9"
     );
     assert.equal(
       await mintContract.tokenURI(1),
-      'data:application/json;base64,eyJuYW1lIjogInBva2VyIC0tIE5GVCAjOiAxIiwgImRlc2NyaXB0aW9uIjogIkFuIGVwaWMgTkZUIiwgImltYWdlIjogImlwZnM6Ly9iYWZrcmVpZXZ4c3N1Y25ldGU0dnB0aGgza2x5bGt2MmN0bGwyc2syaWIyNGp2Z296eWc2MnpkdG0yeSJ9',
+      "data:application/json;base64,eyJuYW1lIjogInBva2VyIC0tIE5GVCAjOiAxIiwgImRlc2NyaXB0aW9uIjogIkFuIGVwaWMgTkZUIiwgImltYWdlIjogImlwZnM6Ly9iYWZrcmVpZXZ4c3N1Y25ldGU0dnB0aGgza2x5bGt2MmN0bGwyc2syaWIyNGp2Z296eWc2MnpkdG0yeSJ9"
     );
   });
 });
 ```
 
+次に、`Web3Mint`コントラクト内で定義していた`console.log`を削除しましょう。
+
+import文を削除します。
+
+```solidity
+// === 下記を削除 ===
+import "hardhat/console.sol";
+```
+
+constructor関数内の`console.log`を削除します。
+
+```solidity
+    // === 下記を削除 ===
+    console.log('This is my NFT contract.');
+```
+
+`mintIpfsNFT`関数内の`console.log`を削除します。
+
+```solidity
+        // === 下記を削除 ===
+        console.log(
+            "An NFT w/ ID %s has been minted to %s",
+            newItemId,
+            msg.sender
+        );
+```
+
 では下のコマンドを実行してみましょう。
+
 ```
 yarn test
 ```
@@ -291,16 +319,15 @@ yarn test
 結果として下のような結果が出力されていればテスト成功です！
 
 ```
- Web3Mint
-This is my NFT contract.
-An NFT w/ ID 0 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-An NFT w/ ID 1 has been minted to 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
-    ✔ Should return the nft (2319ms)
+Compiled 1 Solidity file successfully
 
 
-  1 passing (2s)
+  Web3Mint
+    ✔ Should return the nft (904ms)
 
-✨  Done in 4.93s.
+
+  1 passing (905ms)
+
 ```
 
 **brave**ブラウザでは、`ipfs://bafkreievxssucnete4vpthh3klylkv2ctll2sk2ib24jvgozyg62zdtm2y`のままブラウザに貼れば表示され、他のブラウザの場合は`https://ipfs.io/ipfs/自分のCID`のようにして、画像を確認してみましょう!
@@ -309,24 +336,24 @@ An NFT w/ ID 1 has been minted to 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
 
 `run.js`を下記に更新してください。
 
-```javascript
+```js
 const main = async () => {
   // コントラクトがコンパイルします
   // コントラクトを扱うために必要なファイルが `artifacts` ディレクトリの直下に生成されます。
-  const nftContractFactory = await hre.ethers.getContractFactory('Web3Mint');
+  const nftContractFactory = await hre.ethers.getContractFactory("Web3Mint");
   // Hardhat がローカルの Ethereum ネットワークを作成します。
   const nftContract = await nftContractFactory.deploy();
   // コントラクトが Mint され、ローカルのブロックチェーンにデプロイされるまで待ちます。
   await nftContract.deployed();
-  console.log('Contract deployed to:', nftContract.address);
+  console.log("Contract deployed to:", nftContract.address);
 
   let txn = await nftContract.mintIpfsNFT(
-    'poker',
-    'bafybeibewfzz7w7lhm33k2rmdrk3vdvi5hfrp6ol5vhklzzepfoac37lry'
+    "poker",
+    "bafybeibewfzz7w7lhm33k2rmdrk3vdvi5hfrp6ol5vhklzzepfoac37lry"
   );
   await txn.wait();
   let returnedTokenUri = await nftContract.tokenURI(0);
-  console.log('tokenURI:', returnedTokenUri);
+  console.log("tokenURI:", returnedTokenUri);
 };
 
 // エラー処理を行っています。
@@ -349,16 +376,16 @@ runMain();
 
 `deploy.js`を下記のように更新して`yarn contract deploy`をしてください。
 
-```javascript
+```js
 const main = async () => {
   // コントラクトがコンパイルします
   // コントラクトを扱うために必要なファイルが `artifacts` ディレクトリの直下に生成されます。
-  const nftContractFactory = await hre.ethers.getContractFactory('Web3Mint');
+  const nftContractFactory = await hre.ethers.getContractFactory("Web3Mint");
   // Hardhat がローカルの Ethereum ネットワークを作成します。
   const nftContract = await nftContractFactory.deploy();
   // コントラクトが Mint され、ローカルのブロックチェーンにデプロイされるまで待ちます。
   await nftContract.deployed();
-  console.log('Contract deployed to:', nftContract.address);
+  console.log("Contract deployed to:", nftContract.address);
 };
 
 // エラー処理を行っています。

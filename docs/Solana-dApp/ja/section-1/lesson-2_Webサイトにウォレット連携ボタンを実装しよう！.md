@@ -7,34 +7,33 @@ web3の世界では、ウォレット接続ボタンは「ログイン」ボタ�
 `App.js`ファイルを以下のとおり変更しましょう。
 
 ```jsx
-import React, { useEffect } from 'react';
-import twitterLogo from './assets/twitter-logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import twitterLogo from "./assets/twitter-logo.svg";
+import "./App.css";
 
 // 定数を宣言します。
-const TWITTER_HANDLE = 'あなたのTwitterハンドル';
+const TWITTER_HANDLE = "あなたのTwitterハンドル";
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const App = () => {
-
- /*
-  * Phantom Walletが接続されているかどうかを確認するための関数です。
-  */
+  /*
+   * Phantom Walletが接続されているかどうかを確認するための関数です。
+   */
   const checkIfWalletIsConnected = async () => {
     try {
       const { solana } = window;
 
       if (solana) {
         if (solana.isPhantom) {
-          console.log('Phantom wallet found!');
+          console.log("Phantom wallet found!");
           const response = await solana.connect({ onlyIfTrusted: true });
           console.log(
-            'Connected with Public Key:',
+            "Connected with Public Key:",
             response.publicKey.toString()
           );
         }
       } else {
-        alert('Solana object not found! Get a Phantom Wallet 👻');
+        alert("Solana object not found! Get a Phantom Wallet 👻");
       }
     } catch (error) {
       console.error(error);
@@ -65,8 +64,8 @@ const App = () => {
     const onLoad = async () => {
       await checkIfWalletIsConnected();
     };
-    window.addEventListener('load', onLoad);
-    return () => window.removeEventListener('load', onLoad);
+    window.addEventListener("load", onLoad);
+    return () => window.removeEventListener("load", onLoad);
   }, []);
 
   return (
@@ -74,9 +73,7 @@ const App = () => {
       <div className="container">
         <div className="header-container">
           <p className="header">🖼 GIF Portal</p>
-          <p className="sub-text">
-            View your GIF collection ✨
-          </p>
+          <p className="sub-text">View your GIF collection ✨</p>
           {/* ここでウォレットへの接続ボタンをレンダリングします。 */}
           {renderNotConnectedContainer()}
         </div>
@@ -101,7 +98,7 @@ Webアプリケーションに「Connect to Wallet」ボタンが表示されて
 
 **ユーザーがウォレットを Web アプリケーションに接続していない場合のみ、`Connect to Wallet`ボタンが表示されます。**
 
-![interface](/public/images/Solana-dApp/section-1/1_2_1.jpg)
+![interface](/images/Solana-dApp/section-1/1_2_1.jpg)
 
 次に、Reactの`useState`を用いてユーザーのウォレットアドレスの`state`を管理し、`Connect to Wallet`ボタンを表示するかどうかを判断するためのフラグとして利用していきましょう。
 
@@ -122,31 +119,31 @@ const [walletAddress, setWalletAddress] = useState(null);
 続いて、`App.js`を以下のとおり修正していきましょう。
 
 ```jsx
-import React, { useEffect, useState } from 'react';
-import twitterLogo from './assets/twitter-logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import twitterLogo from "./assets/twitter-logo.svg";
+import "./App.css";
 
 // 定数を宣言します。
-const TWITTER_HANDLE = 'あなたのTwitterハンドル';
+const TWITTER_HANDLE = "あなたのTwitterハンドル";
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const App = () => {
   // ユーザーのウォレットアドレスのstateを管理するためuseStateを使用する。
   const [walletAddress, setWalletAddress] = useState(null);
 
- /*
-  * Phantom Walletが接続されているかどうかを確認するための関数です。
-  */
+  /*
+   * Phantom Walletが接続されているかどうかを確認するための関数です。
+   */
   const checkIfWalletIsConnected = async () => {
     try {
       const { solana } = window;
 
       if (solana) {
         if (solana.isPhantom) {
-          console.log('Phantom wallet found!');
+          console.log("Phantom wallet found!");
           const response = await solana.connect({ onlyIfTrusted: true });
           console.log(
-            'Connected with Public Key:',
+            "Connected with Public Key:",
             response.publicKey.toString()
           );
 
@@ -156,7 +153,7 @@ const App = () => {
           setWalletAddress(response.publicKey.toString());
         }
       } else {
-        alert('Solana object not found! Get a Phantom Wallet 👻');
+        alert("Solana object not found! Get a Phantom Wallet 👻");
       }
     } catch (error) {
       console.error(error);
@@ -181,18 +178,16 @@ const App = () => {
     const onLoad = async () => {
       await checkIfWalletIsConnected();
     };
-    window.addEventListener('load', onLoad);
-    return () => window.removeEventListener('load', onLoad);
+    window.addEventListener("load", onLoad);
+    return () => window.removeEventListener("load", onLoad);
   }, []);
 
   return (
     <div className="App">
-			<div className={walletAddress ? 'authed-container' : 'container'}>
+      <div className={walletAddress ? "authed-container" : "container"}>
         <div className="header-container">
           <p className="header">🖼 GIF Portal</p>
-          <p className="sub-text">
-            View your GIF collection ✨
-          </p>
+          <p className="sub-text">View your GIF collection ✨</p>
           {/* ウォレットアドレスを持っていない場合にのみ表示する条件をここに追加します。 */}
           {!walletAddress && renderNotConnectedContainer()}
         </div>
@@ -215,24 +210,24 @@ export default App;
 
 簡単に修正点を確認しましょう。
 
-```javascript
+```js
 const checkIfWalletIsConnected = async () => {
   try {
     const { solana } = window;
 
     if (solana) {
       if (solana.isPhantom) {
-        console.log('Phantom wallet found!');
+        console.log("Phantom wallet found!");
         const response = await solana.connect({ onlyIfTrusted: true });
         console.log(
-          'Connected with Public Key:',
+          "Connected with Public Key:",
           response.publicKey.toString()
         );
 
         setWalletAddress(response.publicKey.toString());
       }
     } else {
-      alert('Solana object not found! Get a Phantom Wallet 👻');
+      alert("Solana object not found! Get a Phantom Wallet 👻");
     }
   } catch (error) {
     console.error(error);
@@ -245,13 +240,14 @@ Phantom WalletがWebアプリケーションに接続されていた場合、ユ
 更新された`state`は以下で利用します。
 
 ```jsx
-{!walletAddress && renderNotConnectedContainer()}
+{
+  !walletAddress && renderNotConnectedContainer();
+}
 ```
 
 ここでは`state`に`walletAddress`が設定されていない場合のみ、`renderNotConnectedContainer`関数を呼び出すように記述しています。
 
 したがって、ウォレットアドレスがない（ユーザーがウォレットを接続していない）場合は、ウォレットを接続するためのボタンを表示します（条件付きレンダリングと呼ばれる手法です）。
-
 
 ### 🔥 ウォレット接続する
 
@@ -261,7 +257,7 @@ Phantom WalletがWebアプリケーションに接続されていた場合、ユ
 
 `App.js`の`connectWallet`関数を下記のとおり修正しましょう。
 
-```javascript
+```js
 const connectWallet = async () => {
   const { solana } = window;
 
@@ -300,7 +296,6 @@ const connectWallet = async () => {
 > ローカルで実行している場合は`localhost：3000`のものが現在作成している Web アプリケーションです。
 >
 > 連携を解除したうえで Web アプリケーションを更新すると、`Connect to Wallet`ボタンが表示されるのでぜひ一度試してみてください。
-
 
 ### 🙋‍♂️ 質問する
 

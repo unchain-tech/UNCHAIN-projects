@@ -403,7 +403,7 @@ $ cargo test
 
 テストが成功すれば以下のような表示がされます。
 
-![](/public/images/NEAR-BikeShare/section-2/2_3_1.png)
+![](/images/NEAR-BikeShare/section-2/2_3_1.png)
 
 ### 🙋‍♂️ 質問する
 

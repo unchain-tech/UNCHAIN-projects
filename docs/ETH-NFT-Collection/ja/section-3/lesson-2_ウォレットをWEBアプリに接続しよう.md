@@ -12,7 +12,7 @@ Webアプリケーション上で、ユーザーがイーサリアムネット�
 
 - `App.js`はあなたのWebアプリケーションのフロントエンド機能を果たします。
 
-```javascript
+```js
 // App.js
 import React, { useEffect } from "react";
 import "./styles/App.css";
@@ -73,7 +73,7 @@ export default App;
 
 新しく追加したコードを見ていきましょう。
 
-```javascript
+```js
 // App.js
 // ユーザーがMetaMaskを持っているか確認します。
 const { ethereum } = window;
@@ -97,11 +97,11 @@ yarn client start
 
 ローカルサーバーでWebサイトを立ち上げたら、サイトの上で右クリックを行い、`Inspect`を選択します。
 
-![](/public/images/ETH-NFT-Collection/section-3/3_2_1.png)
+![](/images/ETH-NFT-Collection/section-3/3_2_1.png)
 
 次に、`Console`を選択し、出力結果を確認してみましょう。
 
-![](/public/images/ETH-NFT-Collection/section-3/3_2_2.png)
+![](/images/ETH-NFT-Collection/section-3/3_2_2.png)
 
 Consoleに`We have the ethereum object`と表示されているでしょうか？
 
@@ -117,7 +117,7 @@ Consoleに`We have the ethereum object`と表示されているでしょうか�
 
 以下の通り、`App.js`を修正してください。
 
-```javascript
+```js
 // App.js
 // useEffect と useState 関数を React.js からインポートしています。
 import React, { useEffect, useState } from "react";
@@ -200,7 +200,7 @@ export default App;
 
 新しく追加したコードを見ていきましょう。
 
-```javascript
+```js
 // App.js
 // ユーザーのウォレットアドレスを格納するために使用する状態変数を定義します。
 const [currentAccount, setCurrentAccount] = useState("");
@@ -212,7 +212,7 @@ console.log("currentAccount: ", currentAccount);
 
 以下で`currentAccount`を更新しています。
 
-```javascript
+```js
 // App.js
 // accountsにWEBサイトを訪れたユーザーのウォレットアカウントを格納する（複数持っている場合も加味、よって account's' と変数を定義している）
 const accounts = await ethereum.request({ method: "eth_accounts" });
@@ -236,7 +236,7 @@ if (accounts.length !== 0) {
 
 下記の通り`App.js`を更新していきましょう。
 
-```javascript
+```js
 // App.js
 // useEffect と useState 関数を React.js からインポートしています。
 import React, { useEffect, useState } from "react";
@@ -358,7 +358,7 @@ export default App;
 
 **1 \. `connectWallet`メソッドを実装**
 
-```javascript
+```js
 // App.js
 const connectWallet = async () => {
   try {
@@ -382,7 +382,7 @@ const connectWallet = async () => {
 
 **2 \. `renderNotConnectedContainer`メソッドを実装**
 
-```javascript
+```js
 // App.js
 const renderNotConnectedContainer = () => (
   <button onClick={connectWallet} className="cta-button connect-wallet-button">
@@ -395,7 +395,7 @@ const renderNotConnectedContainer = () => (
 
 **3 \. `renderNotConnectedContainer`メソッドを使った条件付きレンダリング**
 
-```javascript
+```js
 // App.js
 {
   /*条件付きレンダリングを追加しました。*/
@@ -417,7 +417,7 @@ const renderNotConnectedContainer = () => (
 
 条件付きレンダリングは、下記のように実行されます。
 
-```javascript
+```js
 { currentAccount === "" ? ( currentAccount にアドレスが紐づいてなければ、A を実行 ) : ( currentAccount にアドレスが紐づいれば B を実行 )}
 ```
 
@@ -436,13 +436,13 @@ yarn client start
 ローカルサーバーでWebサイトを立ち上げたら、MetaMaskのプラグインをクリックし、あなたのウォレットアドレスの接続状況を確認しましょう。
 もし、下図のように`Connected`と表示されている場合は、`Connected`の文字をクリックします。
 
-![](/public/images/ETH-NFT-Collection/section-3/3_2_3.png)
+![](/images/ETH-NFT-Collection/section-3/3_2_3.png)
 
 そこで、Webサイトとあなたのウォレットアドレスの接続を一度解除します。
 
 - `Disconnect this account`を選択してください。
 
-![](/public/images/ETH-NFT-Collection/section-3/3_2_4.png)
+![](/images/ETH-NFT-Collection/section-3/3_2_4.png)
 
 次にローカルサーバーにホストされているあなたのWebサイトをリフレッシュしてボタンの表示を確認してください。
 
@@ -450,13 +450,13 @@ yarn client start
 
 次に、右クリック → `Inspect`を選択し、Consoleを立ち上げましょう。下図のように、`No authorized account found`と出力されていれば成功です。
 
-![](/public/images/ETH-NFT-Collection/section-3/3_2_5.png)
+![](/images/ETH-NFT-Collection/section-3/3_2_5.png)
 
 では、`Connect Wallet`ボタンを押してみましょう。
 
 下図のようにMetaMaskからウォレット接続を求められますので、承認してください。
 
-![](/public/images/ETH-NFT-Collection/section-3/3_2_6.png)
+![](/images/ETH-NFT-Collection/section-3/3_2_6.png)
 
 MetaMaskの承認が終わると、ウォレット接続ボタンの表示が`Mint NFT`に変更されているはずです。
 

@@ -26,7 +26,6 @@
 - [Node.js](https://hardhat.org/tutorial/setting-up-the-environment#installing-node.js)
 - [yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable)
 
-
 それでは本プロジェクトで使用するフォルダーを作成してきましょう。作業を始めるディレクトリに移動したら、次のコマンドを実行します。
 
 ```
@@ -51,9 +50,7 @@ AVAX-Messenger
   "description": "Message dapp that allows text and tokens (AVAX) to be exchanged.",
   "private": true,
   "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
+    "packages": ["packages/*"]
   },
   "scripts": {
     "contract": "yarn workspace contract",
@@ -182,7 +179,7 @@ yarn add --dev @nomicfoundation/hardhat-network-helpers@^1.0.0 @nomicfoundation/
 `packages/contract`ディレクトリにいることを確認し、次のコマンドを実行します。
 
 ```
-npx hardhat
+npx hardhat init
 ```
 
 `hardhat`がターミナル上で立ち上がったら、それぞれの質問を以下のように答えていきます。
@@ -195,8 +192,9 @@ npx hardhat
 ```
 
 （例）
+
 ```
-$ npx hardhat
+$ npx hardhat init
 
 888    888                      888 888               888
 888    888                      888 888               888
@@ -295,8 +293,7 @@ yarn test
 
 次のように表示されます。
 
-![](/public/images/AVAX-Messenger/section-1/1_2_2.png)
-
+![](/images/AVAX-Messenger/section-1/1_2_2.png)
 
 ここまできたら、`packages/contract`フォルダーの中身を整理しましょう。
 
@@ -307,7 +304,6 @@ yarn test
 2. `Lock.js`を削除: `rm Lock.js`
 
 次に、上記の手順を参考にして`contracts`の下の`Lock.sol`を削除してください。実際のフォルダは削除しないように注意しましょう。
-
 
 ### ☀️ Hardhat の機能について
 

@@ -11,18 +11,14 @@ contract/
 ├── cache/
 ├── contracts/
 ├── hardhat.config.ts
-├── node_modules/
-├── package-lock.json
 ├── package.json
 ├── scripts/
-├── src/
 ├── test/
 ├── tsconfig.json
-├── typechain-types/
-└── yarn.lock
+└── typechain-types/
 ```
 
-この中の`contracts`フォルダに`ERC20Tokens.sol`と`Swap.sol`というファイルを作成してください。
+この中の`contracts`フォルダに`ERC20Tokens.sol`と`Swap.sol`というファイルを作成してください。元々あった`Lock.sol`は削除してください。
 
 また、`test`フォルダには`swap.test.ts`を作成してください。元々あった`Lock.ts`は削除してください。
 
@@ -51,11 +47,10 @@ AURORA_PRIVATE_KEY="YOUR_WALLET_PRIVATE_KEY"
 ```ts
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
-import "@typechain/hardhat";
-require("dotenv").config();
+import "dotenv/config";
 
 const config: HardhatUserConfig = {
-  solidity: "0.8.17",
+  solidity: "0.8.19",
   networks: {
     testnet_aurora: {
       url: "https://testnet.aurora.dev",

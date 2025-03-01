@@ -8,11 +8,11 @@
 
 1\. [こちら](https://github.com/unchain-tech/Solana-Wallet.git)からunchain-tech/Solana-Walletリポジトリにアクセスをして、ページ右上の`Fork`ボタンをクリックします。
 
-![](/public/images/Solana-Wallet/section-0/0_2_2.png)
+![](/images/Solana-Wallet/section-0/0_2_2.png)
 
 2\. Create a new forkページが開くので、「Copy the `main` branch only」という項目に**チェックが入っていることを確認します**。
 
-![](/public/images/Solana-Wallet/section-0/0_2_3.png)
+![](/images/Solana-Wallet/section-0/0_2_3.png)
 
 3\. 設定が完了したら`Create fork`ボタンをクリックします。あなたのGitHubアカウントに`Solana-Wallet`リポジトリのフォークが作成されたことを確認してください。
 
@@ -20,7 +20,7 @@
 
 `Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
 
-![](/public/images/Solana-Wallet/section-0/0_2_4.png)
+![](/images/Solana-Wallet/section-0/0_2_4.png)
 
 ターミナルで任意の作業ディレクトリに移動し、先ほどコピーしたリンクを貼り付け、下記を実行してください。
 
@@ -46,7 +46,7 @@ npm run dev
 
 **ローカル環境で表示されている Web サイト**
 
-![](/public/images/Solana-Wallet/section-0/0_2_1.png)
+![](/images/Solana-Wallet/section-0/0_2_1.png)
 
 上記のような形でフロントエンドが確認できれば成功です。
 
@@ -84,6 +84,7 @@ npm run dev
 3. エラー文をコピー&ペースト
 4. エラー画面のスクリーンショット
 ```
+
 ---
 
 ターミナルで`npm run dev`を実行した出力結果をDiscordの`#solana`にシェアしてください!✨ 他の人たちとアウトプットが一致しているか確認したら、次のレッスンに進みましょう!

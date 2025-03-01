@@ -4,14 +4,13 @@
 
 まず、ユーザーのドメイン名と保存するデータを取得する必要があるので、それを実行しましょう。
 
-```javascript
+```js
 import React, { useEffect, useState } from "react";
 import "./styles/App.css";
 import twitterLogo from "./assets/twitter-logo.svg";
 import { ethers } from "ethers";
 
-// コントラクト
-const TWITTER_HANDLE = "_UNCHAIN";
+const TWITTER_HANDLE = "UNCHAIN_tech";
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 // 登録したいドメインです。好みで変えてみましょう。
 const tld = ".ninja";
@@ -163,7 +162,7 @@ export default App;
 
 これらの新しい追加について、より焦点を絞って見てみましょう。
 
-```javascript
+```js
 // トップレベルドメイン(tld)を定義します。
 const tld = '.ninja';
 
@@ -195,7 +194,7 @@ return (
 
 アプリを見ると、次の入力フォームが表示されます。
 
-![](/public/images/Polygon-ENS-Domain/section-2/2_3_1.png)
+![](/images/Polygon-ENS-Domain/section-2/2_3_1.png)
 
 **注：** 現在、Mintボタンは何も機能しません。これは予想できますね。
 
@@ -207,7 +206,7 @@ return (
 
 以前にドメインをNFTとして作成するコントラクトに作成した`register`関数を覚えていますか？ 次はWebアプリからこの関数を呼び出す必要があります。 先に進み、`checkIfWalletIsConnected`関数の下に次の関数を追加します。
 
-```javascript
+```js
 const mintDomain = async () => {
   // ドメインがnullのときrunしません。
   if (!domain) {
@@ -244,14 +243,14 @@ const mintDomain = async () => {
       // トランザクションが問題なく実行されたか確認します。
       if (receipt.status === 1) {
         console.log(
-          "Domain minted! https://mumbai.polygonscan.com/tx/" + tx.hash
+          "Domain minted! https://amoy.polygonscan.com/tx/" + tx.hash
         );
 
         // domain,recordをセットします。
         tx = await contract.setRecord(domain, record);
         await tx.wait();
 
-        console.log("Record set! https://mumbai.polygonscan.com/tx/" + tx.hash);
+        console.log("Record set! https://amoy.polygonscan.com/tx/" + tx.hash);
 
         setRecord("");
         setDomain("");
@@ -267,7 +266,7 @@ const mintDomain = async () => {
 
 これにより、いくつかのエラーが出ますが心配しないでください。これから修正します。 コードを少し見てみましょう。
 
-```javascript
+```js
 const provider = new ethers.providers.Web3Provider(ethereum);
 const signer = provider.getSigner();
 ```
@@ -280,7 +279,7 @@ const signer = provider.getSigner();
 
 [こちら](https://docs.ethers.io/v5/api/signer/#signers)はif文内の`signer`を説明するリンクです。ご参考ください。
 
-```javascript
+```js
 const contract = new ethers.Contract(CONTRACT_ADDRESS, contractAbi.abi, signer);
 ```
 
@@ -292,7 +291,7 @@ const contract = new ethers.Contract(CONTRACT_ADDRESS, contractAbi.abi, signer);
 
 忘れたり紛失したりしても心配はいりません。コントラクトを再デプロイして新しいコントラクトアドレスを取得してください。
 
-```javascript
+```js
 console.log("Going to pop wallet now to pay gas...");
 let tx = await contract.register(domain, {
   value: ethers.utils.parseEther(price),
@@ -302,13 +301,13 @@ const receipt = await tx.wait();
 
 // トランザクションが完了したか確認します。
 if (receipt.status === 1) {
-  console.log("Domain minted! https://mumbai.polygonscan.com/tx/" + tx.hash);
+  console.log("Domain minted! https://amoy.polygonscan.com/tx/" + tx.hash);
 
   // domain,recordをセットします。
   tx = await contract.setRecord(domain, record);
   await tx.wait();
 
-  console.log("Record set! https://mumbai.polygonscan.com/tx/" + tx.hash);
+  console.log("Record set! https://amoy.polygonscan.com/tx/" + tx.hash);
 
   setRecord("");
   setDomain("");
@@ -331,7 +330,7 @@ if (receipt.status === 1) {
 
 他は同じままです。
 
-```javascript
+```js
 const renderInputForm = () => {
   return (
     <div className="form-container">
@@ -373,7 +372,7 @@ ABIファイルというものがあり、これはWebアプリがコントラ�
 
 ABIファイルの内容は、HardhatプロジェクトのJSONファイルにあります。
 
-前のsectionで作成したバックエンド側`contract`ディレクトリをご覧ください。
+前のsectionで作成したバックエンド側`packages/contract`ディレクトリをご覧ください。
 
 `artifacts/contracts/Domains.sol/Domains.json`
 
@@ -381,7 +380,7 @@ ABIファイルの内容は、HardhatプロジェクトのJSONファイルにあ
 
 （全選択はCtrl+A（Windows）, Command+A（Mac）を使用すると便利です）。
 
-`src`の下に`utils`というフォルダに、`contractABI.json`という名前のファイルを作成します。
+`packages/client/src`の下にある`utils`というフォルダに、`contractABI.json`という名前のファイルを作成します。
 
 （フォルダがない場合は作成してください）。
 
@@ -395,7 +394,7 @@ ABIファイルの内容を新しいファイルに貼り付けます。
 
 次のようになります。
 
-```javascript
+```js
 import contractAbi from "./utils/contractABI.json";
 ```
 
@@ -405,7 +404,7 @@ import contractAbi from "./utils/contractABI.json";
 
 このような画面になるはずです。
 
-![](/public/images/Polygon-ENS-Domain/section-2/2_3_2.png)
+![](/images/Polygon-ENS-Domain/section-2/2_3_2.png)
 
 ここから行う必要があるのは、ドメイン名とレコードを入力し、`Mint`をクリックして、ガスを支払い（偽のMATICを使用）、トランザクションがマイニングされるのを待つだけです。
 
@@ -423,7 +422,7 @@ NFTミンティングサイトが実際にどのように機能するかを確�
 
 下は一例です。`nin-nin.ninja`をミントしました。
 
-![](/public/images/Polygon-ENS-Domain/section-2/2_3_3.png)
+![](/images/Polygon-ENS-Domain/section-2/2_3_3.png)
 
 (ガスについて詳しく知りたい方は英語になりますが[ここ](https://ethereum.org/en/developers/docs/gas/)を参照してみてください。)
 
@@ -453,6 +452,7 @@ NFTミンティングサイトが実際にどのように機能するかを確�
 3. エラー文をコピー&ペースト
 4. エラー画面のスクリーンショット
 ```
+
 ---
 
-おめでとうございます! Section 2が完了しました! ぜひあなたのが新しくMintしたNFTをDiscordの`polygon-ens-domain`でシェアしてください😊
+おめでとうございます! Section 2が完了しました! ぜひあなたのが新しくMintしたNFTをDiscordの`polygon-ens-domain`でシェアしてください 😊

@@ -4,7 +4,7 @@
 
 プロジェクトのルートに`package.json`を作成します。
 
-![](/public/images/Polygon-Whitelist-NFT/section-5/5_1_1.png)
+![](/images/Polygon-Whitelist-NFT/section-5/5_1_1.png)
 
 作成したpackage.jsonに下記を記述してください。
 
@@ -15,9 +15,7 @@
   "license": "MIT",
   "private": true,
   "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
+    "packages": ["packages/*"]
   },
   "scripts": {
     "contract": "yarn workspace contract",
@@ -25,22 +23,21 @@
     "test": "yarn contract test"
   }
 }
-
 ```
 
 次に、`workspaces`を構成していきましょう。プロジェクトのルートに`packages`フォルダを作成します。
 
-![](/public/images/Polygon-Whitelist-NFT/section-5/5_1_2.png)
+![](/images/Polygon-Whitelist-NFT/section-5/5_1_2.png)
 
 #### client
 
 `client`フォルダを`packages`フォルダの中に移動しましょう。
 
-![](/public/images/Polygon-Whitelist-NFT/section-5/5_1_3.png)
+![](/images/Polygon-Whitelist-NFT/section-5/5_1_3.png)
 
 clientフォルダ内の`yarn.lock`ファイルを削除しましょう。モノレポ構成にする場合、プロジェクトのルートで一元管理されるため、各workspace内のyarn.lockファイルは不要になります。
 
-![](/public/images/Polygon-Whitelist-NFT/section-5/5_1_4.png)
+![](/images/Polygon-Whitelist-NFT/section-5/5_1_4.png)
 
 #### contract
 
@@ -48,25 +45,25 @@ clientフォルダ内の`yarn.lock`ファイルを削除しましょう。モノ
 
 `packages`フォルダの中に`contract`フォルダを作成しましょう。
 
-![](/public/images/Polygon-Whitelist-NFT/section-5/5_1_5.png)
+![](/images/Polygon-Whitelist-NFT/section-5/5_1_5.png)
 
 contractフォルダの中に`package.json`ファイルを作成します。
 
-![](/public/images/Polygon-Whitelist-NFT/section-5/5_1_6.png)
+![](/images/Polygon-Whitelist-NFT/section-5/5_1_6.png)
 
 作成したpackage.jsonファイルに、下記を記述してください。
 
 ```json
 {
-    "name": "contract",
-    "version": "1.0.0",
-    "private": true,
-    "scripts": {
-      "clean": "npx hardhat clean",
-      "compile": "hardhat compile",
-      "coverage": "hardhat coverage",
-      "test": "hardhat test"
-    }
+  "name": "contract",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "clean": "npx hardhat clean",
+    "compile": "hardhat compile",
+    "coverage": "hardhat coverage",
+    "test": "hardhat test"
+  }
 }
 ```
 
@@ -81,44 +78,44 @@ packages/contract/package.jsonにhardhatが追加されていることを確認�
 次に必要なツールをインストールします。先ほどと同様に、プロジェクトのルートで下記のコマンドを実行してください。
 
 ```
-yarn workspace contract add @openzeppelin/contracts@^4.8.2 && yarn workspace contract add --dev @nomicfoundation/hardhat-chai-matchers@^1.0.0 @nomicfoundation/hardhat-network-helpers@^1.0.8 @nomicfoundation/hardhat-toolbox@^2.0.1 @nomiclabs/hardhat-ethers@^2.0.0 @nomiclabs/hardhat-etherscan@^3.0.0 @typechain/ethers-v5@^10.1.0 @typechain/hardhat@^6.1.2 @types/chai@^4.2.0 @types/mocha@^9.1.0 chai@^4.3.7 hardhat-gas-reporter@^1.0.8 solidity-coverage@^0.8.1 ts-node@^8.0.0 typechain@^8.1.0 typescript@^4.5.0
+yarn workspace contract add @openzeppelin/contracts@^5.0.0 && yarn workspace contract add --dev @nomicfoundation/hardhat-chai-matchers@^1.0.0 @nomicfoundation/hardhat-network-helpers@^1.0.8 @nomicfoundation/hardhat-toolbox@^2.0.1 @nomiclabs/hardhat-ethers@^2.0.0 @nomiclabs/hardhat-etherscan@^3.0.0 @typechain/ethers-v5@^10.1.0 @typechain/hardhat@^6.1.2 @types/chai@^4.2.0 @types/mocha@^9.1.0 chai@^4.3.7 hardhat-gas-reporter@^1.0.8 solidity-coverage@^0.8.1 ts-node@^8.0.0 typechain@^8.1.0 typescript@^4.5.0
 ```
 
 ここまでで、packages/contract/package.jsonは下記のようになっているはずです。
 
 ```json
 {
-    "name": "contract",
-    "version": "1.0.0",
-    "private": true,
-    "devDependencies": {
-        "@nomicfoundation/hardhat-chai-matchers": "^1.0.0",
-        "@nomicfoundation/hardhat-network-helpers": "^1.0.8",
-        "@nomicfoundation/hardhat-toolbox": "^2.0.1",
-        "@nomiclabs/hardhat-ethers": "^2.0.0",
-        "@nomiclabs/hardhat-etherscan": "^3.0.0",
-        "@typechain/ethers-v5": "^10.1.0",
-        "@typechain/hardhat": "^6.1.2",
-        "@types/chai": "^4.2.0",
-        "@types/mocha": "^9.1.0",
-        "chai": "^4.3.7",
-        "hardhat": "^2.14.0",
-        "hardhat-gas-reporter": "^1.0.8",
-        "solidity-coverage": "^0.8.1",
-        "ts-node": "^8.0.0",
-        "typechain": "^8.1.0",
-        "typescript": "^4.5.0"
-    },
-    "dependencies": {
-        "@openzeppelin/contracts": "^4.8.2"
-    }
+  "name": "contract",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "@nomicfoundation/hardhat-chai-matchers": "^1.0.0",
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.8",
+    "@nomicfoundation/hardhat-toolbox": "^2.0.1",
+    "@nomiclabs/hardhat-ethers": "^2.0.0",
+    "@nomiclabs/hardhat-etherscan": "^3.0.0",
+    "@typechain/ethers-v5": "^10.1.0",
+    "@typechain/hardhat": "^6.1.2",
+    "@types/chai": "^4.2.0",
+    "@types/mocha": "^9.1.0",
+    "chai": "^4.3.7",
+    "hardhat": "^2.14.0",
+    "hardhat-gas-reporter": "^1.0.8",
+    "solidity-coverage": "^0.8.1",
+    "ts-node": "^8.0.0",
+    "typechain": "^8.1.0",
+    "typescript": "^4.5.0"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.8.2"
+  }
 }
 ```
 
 それでは、Hardhatを使用してプロジェクトを生成しましょう。packages/contract/下に移動して、下記のコマンドを実行してください。
 
 ```
-npx hardhat
+npx hardhat init
 ```
 
 下記のようにプロジェクトの設定を行いましょう。
@@ -133,32 +130,30 @@ npx hardhat
 
 プロジェクトの生成に成功した場合、現時点でこのような構成となっていることを確認しましょう。
 
-![](/public/images/Polygon-Whitelist-NFT/section-5/5_1_7.png)
+![](/images/Polygon-Whitelist-NFT/section-5/5_1_7.png)
 
 それでは、`packages/contract`フォルダ内のファイルを更新していきましょう。
 
 まずは、プロジェクトのルートにあるcontractsフォルダを`packages/contract`フォルダ内に移動しましょう。下記のコマンドは、プロジェクトのルートで実行してください。
 
 ```
-rm -r ./packages/contract/contracts/ && mv ./cont
-contracts/ ./packages/contract/
+rm -r ./packages/contract/contracts/ && mv ./contracts/ ./packages/contract/
 ```
 
 次に、`hardhat.config.ts`を下記のように更新しましょう。
 
-```typescript
-import { HardhatUserConfig } from 'hardhat/config';
-import '@nomicfoundation/hardhat-toolbox';
+```ts
+import { HardhatUserConfig } from "hardhat/config";
+import "@nomicfoundation/hardhat-toolbox";
 
 const config: HardhatUserConfig = {
-  solidity: '0.8.4',
+  solidity: "0.8.20",
   paths: {
-    artifacts: '../client/artifacts',
+    artifacts: "../client/artifacts",
   },
 };
 
 export default config;
-
 ```
 
 solidityのコンパイラバージョンを修正し、ABIが格納される`artifacts`フォルダの生成先を設定しました。

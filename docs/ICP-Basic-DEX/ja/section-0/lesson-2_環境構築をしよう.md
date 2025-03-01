@@ -38,7 +38,7 @@ Motokoは、DFINITY財団が開発中の新しいソフトウェア言語で、�
 
 **Motoko**
 
-![](/public/images/ICP-Basic-DEX/section-0/0_2_1.png)
+![](/images/ICP-Basic-DEX/section-0/0_2_1.png)
 
 ### ✨ Node.js の確認をする
 
@@ -59,7 +59,7 @@ dfx new icp_basic_dex
 `dfx new`コマンドは、プロジェクトディレクトリ、テンプレートファイル、および新しいGitリポジトリを作成します。
 プロジェクトが作成されると、このように出力されます。
 
-![](/public/images/ICP-Basic-DEX/section-0/0_2_2.png)
+![](/images/ICP-Basic-DEX/section-0/0_2_2.png)
 
 作成されたプロジェクトが以下のような構成になっていることを確認してください。
 
@@ -148,9 +148,9 @@ Committing batch.
 Deployed canisters.
 URLs:
   Frontend canister via browser
-    icp_basic_dex_frontend: http://127.0.0.1:4943/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai
+    icp_basic_dex_frontend: http://127.0.0.1:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai
   Backend canister via Candid interface:
-    icp_basic_dex_backend: http://127.0.0.1:4943/?canisterId=r7inp-6aaaa-aaaaa-aaabq-cai&id=rrkah-fqaaa-aaaaa-aaaaq-cai
+    icp_basic_dex_backend: http://127.0.0.1:8000/?canisterId=r7inp-6aaaa-aaaaa-aaabq-cai&id=rrkah-fqaaa-aaaaa-aaaaq-cai
 ```
 
 フロントエンドをテストしてみましょう。
@@ -163,7 +163,7 @@ npm start
 
 ブラウザからアクセスできることを確認してみます。ターミナル上に出力されたURLにアクセスしてみましょう。以下のようなサンプルプロジェクトのUIが表示されます。
 
-![](/public/images/ICP-Basic-DEX/section-0/0_2_3.png)
+![](/images/ICP-Basic-DEX/section-0/0_2_3.png)
 
 これで、準備は完了です！ バックグラウンドで実行されているキャニスター実行環境を、一度止めておきましょう。最初にwebpackが起動しているターミナル上で`Control + C`を押すなどして、サーバーを停止します。
 

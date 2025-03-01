@@ -8,11 +8,11 @@ GitHubのアカウントをお持ちの方は、下記の手順に沿ってプ�
 
 1. [こちら](https://github.com/unchain-tech/ETH-NFT-Maker)からunchain-tech/ETH-NFT-Makerリポジトリにアクセスをして、ページ右上の`Fork`ボタンをクリックします。
 
-![](/public/images/ETH-NFT-Maker/section-1/1_2_1.png)
+![](/images/ETH-NFT-Maker/section-1/1_2_1.png)
 
 2. Create a new forkページが開くので、「Copy the `main` branch only」という項目に**チェックが入っていることを確認します**。
 
-![](/public/images/ETH-NFT-Maker/section-1/1_2_2.png)
+![](/images/ETH-NFT-Maker/section-1/1_2_2.png)
 
 設定が完了したら`Create fork`ボタンをクリックします。あなたのGitHubアカウントに`ETH-NFT-Maker`リポジトリのフォークが作成されたことを確認してください。
 
@@ -20,7 +20,7 @@ GitHubのアカウントをお持ちの方は、下記の手順に沿ってプ�
 
 まず、下図のように、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
 
-![](/public/images/ETH-NFT-Maker/section-1/1_2_3.png)
+![](/images/ETH-NFT-Maker/section-1/1_2_3.png)
 
 ターミナル上で作業を行う任意のディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
 
@@ -88,7 +88,7 @@ yarn client start
 
 例)ローカル環境で表示されているWebサイト
 
-![](/public/images/ETH-NFT-Maker/section-3/3_1_1.png)
+![](/images/ETH-NFT-Maker/section-3/3_1_1.png)
 
 上記のような形でフロントエンドが確認できれば成功です。
 
@@ -106,7 +106,7 @@ yarn client start
 `packages/contract`ディレクトリにいることを確認し、次のコマンドを実行します。
 
 ```
-npx hardhat
+npx hardhat init
 ```
 
 `hardhat`がターミナル上で立ち上がったら、それぞれの質問を以下のように答えていきます。
@@ -118,8 +118,9 @@ npx hardhat
 ```
 
 （例）
+
 ```
-$ npx hardhat
+$ npx hardhat init
 
 888    888                      888 888               888
 888    888                      888 888               888
@@ -242,7 +243,6 @@ artifacts         contracts         node_modules      scripts
 2. `Lock.js`を削除: `rm Lock.js`
 
 次に、上記の手順を参考にして`contracts`の下の`Lock.sol`を削除してください。実際のフォルダは削除しないように注意しましょう。
-
 
 ### ☀️ Hardhat の機能について
 

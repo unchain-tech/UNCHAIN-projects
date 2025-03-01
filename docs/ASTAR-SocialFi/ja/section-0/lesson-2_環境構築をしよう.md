@@ -38,6 +38,7 @@ rustup install 1.68.0
 ```
 
 その後指定したバージョンがインストールされているか、下のコマンドをターミナルで実行することで確認します。
+
 ```
 rustup toolchain list
 ```
@@ -46,12 +47,11 @@ rustup toolchain list
 
 赤字で囲っているところがインストールしたrustのコンパイラーのバージョンを示すものです。こちらをコピーしましょう。
 
-![](/public/images/ASTAR-SocialFi/section-0/0_2_16.png)
+![](/images/ASTAR-SocialFi/section-0/0_2_16.png)
 
 では下のコマンドをターミナルで実行することでrustのコンパイラーとして1.68.0のものを使用できるようにしましょう。
 
 `rustup component add rust-src --toolchain`に続く部分は先ほどコピーしたものと入れ替えてください。筆者はmacを使用しているので`1.68.0-aarch64-apple-darwin`となっています。
-
 
 ```
 rustup override set 1.68.0
@@ -111,9 +111,7 @@ ASTAR-SocialFi
   "description": "ASTAR SNS dApp",
   "private": true,
   "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
+    "packages": ["packages/*"]
   },
   "scripts": {
     "contract": "yarn workspace contract",
@@ -243,7 +241,7 @@ brew install wget
 
 次に行うコマンドを行う時に、最新のバージョンのものをインストールするために[こちら](https://github.com/AstarNetwork/Astar/releases)を確認して最新のものを最後の部分（`v4.24.0/astar-collator-4.24.0-macOS-x86_64.tar.gz`）と入れ替えて下さい
 
-![](/public/images/ASTAR-SocialFi/section-0/0_2_1.png)
+![](/images/ASTAR-SocialFi/section-0/0_2_1.png)
 
 ```
 wget https://github.com/AstarNetwork/Astar/releases/download/v4.24.0/astar-collator-v4.24.0-macOS-x86_64.tar.gz
@@ -284,32 +282,32 @@ tar xvf astar-collator-v4.24.0-macOS-x86_64.tar.gz
 （4）左上の`Switch`をクリック
 
 下の画像を参考に行なってください。
-![](/public/images/ASTAR-SocialFi/section-0/0_2_2.png)
-![](/public/images/ASTAR-SocialFi/section-0/0_2_3.png)
-![](/public/images/ASTAR-SocialFi/section-0/0_2_4.png)
-![](/public/images/ASTAR-SocialFi/section-0/0_2_5.png)
+![](/images/ASTAR-SocialFi/section-0/0_2_2.png)
+![](/images/ASTAR-SocialFi/section-0/0_2_3.png)
+![](/images/ASTAR-SocialFi/section-0/0_2_4.png)
+![](/images/ASTAR-SocialFi/section-0/0_2_5.png)
 
 すると下のような画面が出てくるはずです。
 
 ※`Brave`を使用している方で想定した動きにならない場合、`Google Chrome`を用いて開いてください。
 
-![](/public/images/ASTAR-SocialFi/section-0/0_2_6.png)
+![](/images/ASTAR-SocialFi/section-0/0_2_6.png)
 この画面ではすでにデプロイがされているので`recent block`という部分にblockのハッシュ値がありますが、みなさんの画面には何もないかもしれません。
 
 ではヘッダーにある`Developer`直下の`contract`をクリックしてみましょう。
-![](/public/images/ASTAR-SocialFi/section-0/0_2_7.png)
+![](/images/ASTAR-SocialFi/section-0/0_2_7.png)
 
 すると下のような画面が出てくるので`Upload & deploy code`をクリックしてみましょう。
-![](/public/images/ASTAR-SocialFi/section-0/0_2_8.png)
+![](/images/ASTAR-SocialFi/section-0/0_2_8.png)
 
 これで下のようなモーダルが出てくるはずなのでそこにさきほどデプロイした際に取得したmetadata.jsonと.wasmファイルをアップロードします。これらは`astar-sns-contract/contracts/astar_sns/target/ink`直下に生成されています。
-![](/public/images/ASTAR-SocialFi/section-0/0_2_9.png)
+![](/images/ASTAR-SocialFi/section-0/0_2_9.png)
 
 その後モーダルの中の入力欄が増えるので`astar_sns_constract.wasm`を追加しましょう。
-![](/public/images/ASTAR-SocialFi/section-0/0_2_10.png)
+![](/images/ASTAR-SocialFi/section-0/0_2_10.png)
 
 するとデプロイされたコントラクトのところに`ASTAR-SNS-CONTRACT`というのが見えると思います。
-![](/public/images/ASTAR-SocialFi/section-0/0_2_11.png)
+![](/images/ASTAR-SocialFi/section-0/0_2_11.png)
 
 では下のようにデプロイしたコントラクトの`Messages`という部分をクリックしてexecを押してみましょう。
 
@@ -318,14 +316,14 @@ tar xvf astar-collator-v4.24.0-macOS-x86_64.tar.gz
 `current value`という部分は初期値の`false`になっているはずです。
 
 その後右下に現れる`Execute`, `Sign and Submit`というボタンを押すと下のようにコントラクト内の状態変数が`true`に変わっていることがわかると思います！
-![](/public/images/ASTAR-SocialFi/section-0/0_2_12.png)
+![](/images/ASTAR-SocialFi/section-0/0_2_12.png)
 
 これでコントラクトがきちんと機能していてかつpolkadot.jsから操作できることが確認できたのでバックエンドの環境構築は終了となります！
 
 開発する上でRustでの開発を行うときにエラーや候補を表示してくれる拡張機能があるととても便利です！
 
 なのでvscodeを使っている方はぜひ下の画像の拡張機能`rust-analyzer`を入れることをおすすめします。
-![](/public/images/ASTAR-SocialFi/section-0/0_2_13.png)
+![](/images/ASTAR-SocialFi/section-0/0_2_13.png)
 
 お疲れ様でした 💥
 
@@ -370,7 +368,6 @@ npx tailwindcss init -p
 [`tailwind.config.js`]
 
 ```js
-/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx}",
@@ -384,7 +381,7 @@ module.exports = {
     extend: {},
   },
   plugins: [],
-}
+};
 ```
 
 次に`style/globals.css`を下のように書き換えましょう。
@@ -412,7 +409,7 @@ event - compiled client and server successfully in 806 ms (150 modules)
 ```
 
 下のように見えていればOKです。
-![](/public/images/ASTAR-SocialFi/section-0/0_2_14.png)
+![](/images/ASTAR-SocialFi/section-0/0_2_14.png)
 
 では`index.tsx`の7行目の`className`を少し改良してきちんとTailwind CSSが機能しているかを確認してみましょう。
 
@@ -425,14 +422,14 @@ event - compiled client and server successfully in 806 ms (150 modules)
 次に変更内容を保存してみましょう。自動的に変更内容が反映されるはずです。
 
 下のように背景色が変更されていれば成功です！
-![](/public/images/ASTAR-SocialFi/section-0/0_2_15.png)
+![](/images/ASTAR-SocialFi/section-0/0_2_15.png)
 
 ここまで完了すればフロントエンドの環境構築は成功です！
 お疲れ様でした 🤞
 
 ### 🙋‍♂️ 質問する
 
-わからないことがあれば、Discordの`#astar-network`でsection ・ Lesson名とともに質問をしてください 👋
+わからないことがあれば、Discordの`#astar`でsection ・ Lesson名とともに質問をしてください 👋
 
 ---
 

@@ -16,11 +16,11 @@
 
 [こちら](https://anv4y-qiaaa-aaaal-qaqxq-cai.ic0.app/)にアクセスをして、`REQUEST CYCLES`ボタンを押し、 `DFINITY DEV OFFICIAL`というDiscordサーバー に接続をしましょう。
 
-![](/public/images/ICP-Static-Site/section-1/1_1_1.png)
+![](/images/ICP-Static-Site/section-1/1_1_1.png)
 
 次に、`#cycles-faucet`チャンネルで他のユーザーを参考に申請のメッセージを送信します。
 
-![](/public/images/ICP-Static-Site/section-1/1_1_2.png)
+![](/images/ICP-Static-Site/section-1/1_1_2.png)
 
 これで申請は完了です！
 

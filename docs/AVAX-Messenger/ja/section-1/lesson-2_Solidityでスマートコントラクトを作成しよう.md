@@ -142,12 +142,12 @@ classの概念については、[こちら](https://aiacademy.jp/media/?p=131) �
 `Messenger.ts`に以下のコードを記述してください。
 
 ```ts
-import { expect } from 'chai';
-import hre from 'hardhat';
+import { expect } from "chai";
+import hre from "hardhat";
 
-describe('Messenger', function () {
-  it('construct', async function () {
-    const Messenger = await hre.ethers.getContractFactory('Messenger');
+describe("Messenger", function () {
+  it("construct", async function () {
+    const Messenger = await hre.ethers.getContractFactory("Messenger");
     const messenger = await Messenger.deploy();
 
     expect(await messenger.state()).to.equal(1);
@@ -158,15 +158,15 @@ describe('Messenger', function () {
 中身を見ていきましょう。
 
 ```ts
-import { expect } from 'chai';
-import hre from 'hardhat';
+import { expect } from "chai";
+import hre from "hardhat";
 ```
 
 テストに必要なライブラリをimportしています。
 
 ```ts
-describe('Messenger', function () {
-  it('construct', async function () {
+describe("Messenger", function () {
+  it("construct", async function () {
     // テストコード
   });
 });
@@ -180,8 +180,8 @@ describe('Messenger', function () {
 さらに複数の`it`関数を`describe`の引数（の関数）内に渡すことで、個々のテストを1つの`describe`でグループ化します。
 
 ```ts
-it('construct', async function () {
-  const Messenger = await hre.ethers.getContractFactory('Messenger');
+it("construct", async function () {
+  const Messenger = await hre.ethers.getContractFactory("Messenger");
   const messenger = await Messenger.deploy();
 
   expect(await messenger.state()).to.equal(1);
@@ -229,7 +229,7 @@ yarn test
 実行したテスト名とそのテストがパスしたことがわかります。
 また、コンストラクタの出力結果なども確認できます。
 
-![](/public/images/AVAX-Messenger/section-1/1_2_1.png)
+![](/images/AVAX-Messenger/section-1/1_2_1.png)
 
 ### 🙋‍♂️ 質問する
 

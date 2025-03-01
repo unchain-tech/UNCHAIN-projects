@@ -30,7 +30,7 @@ touch FILE_NAME
 ```
 
 （2）下のようにワークスペース上でファイルを作るディレクトリを右クリックしてファイル名を記入
-![](/public/images/NEAR-Election-dApp/section-1/1_1_1.png)
+![](/images/NEAR-Election-dApp/section-1/1_1_1.png)
 
 個人的には（2）の方が楽なのでこちらの方法でやることが多いです。このどちらかの方法を用いてコントラクトのディレクトリ(ここでは`contract`)に以下のようなファイル構造を作成してみましょう。
 

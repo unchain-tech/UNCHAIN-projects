@@ -4,7 +4,7 @@ Update your file structure to a monorepo structure. Monorepo is a way to manage 
 
 Create a `package.json` in the root of your project.
 
-![](/public/images/Polygon-Whitelist-NFT/section-5/5_1_1.png)
+![](/images/Polygon-Whitelist-NFT/section-5/5_1_1.png)
 
 Write the following in the package.json you created.
 
@@ -15,9 +15,7 @@ Write the following in the package.json you created.
   "license": "MIT",
   "private": true,
   "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
+    "packages": ["packages/*"]
   },
   "scripts": {
     "contract": "yarn workspace contract",
@@ -25,22 +23,21 @@ Write the following in the package.json you created.
     "test": "yarn contract test"
   }
 }
-
 ```
 
 Next, let's configure the `workspaces`. Create a `packages` folder in the root of your project.
 
-![](/public/images/Polygon-Whitelist-NFT/section-5/5_1_2.png)
+![](/images/Polygon-Whitelist-NFT/section-5/5_1_2.png)
 
 #### client
 
 Move the `client` folder into the `packages` folder.。
 
-![](/public/images/Polygon-Whitelist-NFT/section-5/5_1_3.png)
+![](/images/Polygon-Whitelist-NFT/section-5/5_1_3.png)
 
 Delete the `yarn.lock` file in the client folder. If you use a monorepo configuration, the yarn.lock files in each workspace will no longer be needed, as they will be centrally managed in the project root.
 
-![](/public/images/Polygon-Whitelist-NFT/section-5/5_1_4.png)
+![](/images/Polygon-Whitelist-NFT/section-5/5_1_4.png)
 
 #### contract
 
@@ -48,25 +45,25 @@ We would like to configure the `packages/contract` folder using [hardhat](https:
 
 Create a `contract` folder in your `packages` folder.
 
-![](/public/images/Polygon-Whitelist-NFT/section-5/5_1_5.png)
+![](/images/Polygon-Whitelist-NFT/section-5/5_1_5.png)
 
 Create a `package.json` file in the contract folder.
 
-![](/public/images/Polygon-Whitelist-NFT/section-5/5_1_6.png)
+![](/images/Polygon-Whitelist-NFT/section-5/5_1_6.png)
 
 In the package.json file you created, please include the following
 
 ```json
 {
-    "name": "contract",
-    "version": "1.0.0",
-    "private": true,
-    "scripts": {
-      "clean": "npx hardhat clean",
-      "compile": "hardhat compile",
-      "coverage": "hardhat coverage",
-      "test": "hardhat test"
-    }
+  "name": "contract",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "clean": "npx hardhat clean",
+    "compile": "hardhat compile",
+    "coverage": "hardhat coverage",
+    "test": "hardhat test"
+  }
 }
 ```
 
@@ -81,44 +78,44 @@ Verify that hardhat has been added to packages/contract/package.json. If the ins
 Next, install the necessary tools. As before, run the following command in the root of the project.
 
 ```
-yarn workspace contract add @openzeppelin/contracts@^4.8.2 && yarn workspace contract add --dev @nomicfoundation/hardhat-chai-matchers@^1.0.0 @nomicfoundation/hardhat-network-helpers@^1.0.8 @nomicfoundation/hardhat-toolbox@^2.0.1 @nomiclabs/hardhat-ethers@^2.0.0 @nomiclabs/hardhat-etherscan@^3.0.0 @typechain/ethers-v5@^10.1.0 @typechain/hardhat@^6.1.2 @types/chai@^4.2.0 @types/mocha@^9.1.0 chai@^4.3.7 hardhat-gas-reporter@^1.0.8 solidity-coverage@^0.8.1 ts-node@^8.0.0 typechain@^8.1.0 typescript@^4.5.0
+yarn workspace contract add @openzeppelin/contracts@^5.0.0 && yarn workspace contract add --dev @nomicfoundation/hardhat-chai-matchers@^1.0.0 @nomicfoundation/hardhat-network-helpers@^1.0.8 @nomicfoundation/hardhat-toolbox@^2.0.1 @nomiclabs/hardhat-ethers@^2.0.0 @nomiclabs/hardhat-etherscan@^3.0.0 @typechain/ethers-v5@^10.1.0 @typechain/hardhat@^6.1.2 @types/chai@^4.2.0 @types/mocha@^9.1.0 chai@^4.3.7 hardhat-gas-reporter@^1.0.8 solidity-coverage@^0.8.1 ts-node@^8.0.0 typechain@^8.1.0 typescript@^4.5.0
 ```
 
 At this point, packages/contract/package.json should look like the following.
 
 ```json
 {
-    "name": "contract",
-    "version": "1.0.0",
-    "private": true,
-    "devDependencies": {
-        "@nomicfoundation/hardhat-chai-matchers": "^1.0.0",
-        "@nomicfoundation/hardhat-network-helpers": "^1.0.8",
-        "@nomicfoundation/hardhat-toolbox": "^2.0.1",
-        "@nomiclabs/hardhat-ethers": "^2.0.0",
-        "@nomiclabs/hardhat-etherscan": "^3.0.0",
-        "@typechain/ethers-v5": "^10.1.0",
-        "@typechain/hardhat": "^6.1.2",
-        "@types/chai": "^4.2.0",
-        "@types/mocha": "^9.1.0",
-        "chai": "^4.3.7",
-        "hardhat": "^2.14.0",
-        "hardhat-gas-reporter": "^1.0.8",
-        "solidity-coverage": "^0.8.1",
-        "ts-node": "^8.0.0",
-        "typechain": "^8.1.0",
-        "typescript": "^4.5.0"
-    },
-    "dependencies": {
-        "@openzeppelin/contracts": "^4.8.2"
-    }
+  "name": "contract",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "@nomicfoundation/hardhat-chai-matchers": "^1.0.0",
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.8",
+    "@nomicfoundation/hardhat-toolbox": "^2.0.1",
+    "@nomiclabs/hardhat-ethers": "^2.0.0",
+    "@nomiclabs/hardhat-etherscan": "^3.0.0",
+    "@typechain/ethers-v5": "^10.1.0",
+    "@typechain/hardhat": "^6.1.2",
+    "@types/chai": "^4.2.0",
+    "@types/mocha": "^9.1.0",
+    "chai": "^4.3.7",
+    "hardhat": "^2.14.0",
+    "hardhat-gas-reporter": "^1.0.8",
+    "solidity-coverage": "^0.8.1",
+    "ts-node": "^8.0.0",
+    "typechain": "^8.1.0",
+    "typescript": "^4.5.0"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.8.2"
+  }
 }
 ```
 
 Now let's generate a project using Hardhat, go under packages/contract/ and execute the following command。
 
 ```
-npx hardhat
+npx hardhat init
 ```
 
 Set up your project as follows.
@@ -133,32 +130,30 @@ Set up your project as follows.
 
 If you have successfully generated a project, make sure that it looks like this at this point.
 
-![](/public/images/Polygon-Whitelist-NFT/section-5/5_1_7.png)
+![](/images/Polygon-Whitelist-NFT/section-5/5_1_7.png)
 
 Now let's update the files in the `packages/contract` folder.
 
 First, let's move the contracts folder in the root of the project into the `packages/contract` folder. The following command should be executed in the root of the project.
 
 ```
-rm -r ./packages/contract/contracts/ && mv ./cont
-contracts/ ./packages/contract/
+rm -r ./packages/contract/contracts/ && mv ./contracts/ ./packages/contract/
 ```
 
 Next, update `hardhat.config.ts` as follows
 
-```typescript
-import { HardhatUserConfig } from 'hardhat/config';
-import '@nomicfoundation/hardhat-toolbox';
+```ts
+import { HardhatUserConfig } from "hardhat/config";
+import "@nomicfoundation/hardhat-toolbox";
 
 const config: HardhatUserConfig = {
-  solidity: '0.8.4',
+  solidity: "0.8.20",
   paths: {
-    artifacts: '../client/artifacts',
+    artifacts: "../client/artifacts",
   },
 };
 
 export default config;
-
 ```
 
 We have modified the compiler version of solidity and set the generated destination for the `artifacts` folder where the ABI will be stored.

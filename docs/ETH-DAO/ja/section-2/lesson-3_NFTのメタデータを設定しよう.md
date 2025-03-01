@@ -10,13 +10,13 @@
 
 ※ あなたのメンバーシップNFT用の画像を設定することを忘れないでください！
 
-```typescript
-import { readFileSync } from 'fs';
+```ts
+import { readFileSync } from "fs";
 
-import sdk from './1-initialize-sdk';
-import { editionDropAddress } from './module';
+import sdk from "./1-initialize-sdk";
+import { editionDropAddress } from "./module";
 
-const editionDrop = sdk.getContract(editionDropAddress, 'edition-drop');
+const editionDrop = sdk.getContract(editionDropAddress, "edition-drop");
 
 (async () => {
   try {
@@ -26,13 +26,13 @@ const editionDrop = sdk.getContract(editionDropAddress, 'edition-drop');
       {
         name: "Member's symbol",
         description:
-          'Japan Crack Organization にアクセスすることができる限定アイテムです',
-        image: readFileSync('src/scripts/assets/NFT.png'),
+          "Japan Crack Organization にアクセスすることができる限定アイテムです",
+        image: readFileSync("src/scripts/assets/NFT.png"),
       },
     ]);
-    console.log('✅ Successfully created a new NFT in the drop!');
+    console.log("✅ Successfully created a new NFT in the drop!");
   } catch (error) {
-    console.error('failed to create the new NFT', error);
+    console.error("failed to create the new NFT", error);
   }
 })();
 ```
@@ -45,7 +45,7 @@ const editionDrop = sdk.getContract(editionDropAddress, 'edition-drop');
 
 忘れてしまった場合は、[thirdweb のダッシュボード](https://thirdweb.com/dashboard)からも参照することができます。
 
-![](/public/images/ETH-DAO/section-2/2_3_1.png)
+![](/images/ETH-DAO/section-2/2_3_1.png)
 
 ここでは、`createBatch`を使ってコントラクトに実際のNFTを作成します。
 
@@ -77,7 +77,6 @@ SDK initialized by address: 0x8cB688A30D5Fd6f2e5025d8915eD95e770832933
 Done in 30.57s.
 ```
 
-
 ### 😼 NFT の請求条件を設定する
 
 あとは、実際に「請求条件」を設定する必要があります。
@@ -89,13 +88,13 @@ Done in 30.57s.
 
 `src/scripts/4-set-claim-condition.ts`を作成し、下記のコードを追加しましょう。
 
-```typescript
-import { MaxUint256 } from '@ethersproject/constants';
+```ts
+import { MaxUint256 } from "@ethersproject/constants";
 
-import sdk from './1-initialize-sdk';
-import { editionDropAddress } from './module';
+import sdk from "./1-initialize-sdk";
+import { editionDropAddress } from "./module";
 
-const editionDrop = sdk.getContract(editionDropAddress, 'edition-drop');
+const editionDrop = sdk.getContract(editionDropAddress, "edition-drop");
 
 (async () => {
   try {
@@ -117,13 +116,12 @@ const editionDrop = sdk.getContract(editionDropAddress, 'edition-drop');
         waitInSeconds: MaxUint256,
       },
     ];
-    await (await editionDrop).claimConditions.set('0', claimConditions);
-    console.log('✅ Successfully set claim condition!');
+    await (await editionDrop).claimConditions.set("0", claimConditions);
+    console.log("✅ Successfully set claim condition!");
   } catch (error) {
-    console.error('Failed to set claim condition', error);
+    console.error("Failed to set claim condition", error);
   }
 })();
-
 ```
 
 `startTime`は、ユーザーがNFTのミントを開始することができる時間なので、この日付/時間を現在時刻に設定するだけですぐにミントを開始することができます。
@@ -170,8 +168,7 @@ Done in 27.07s.
 
 ターミナルに出力されたアドレスを[Etherscan](https://sepolia.etherscan.io/)で検索すれば、私たちがコントラクトとやり取りしているのが分かるはずです。
 
-![](/public/images/ETH-DAO/section-2/2_3_2.png)
-
+![](/images/ETH-DAO/section-2/2_3_2.png)
 
 ### 🙋‍♂️ 質問する
 

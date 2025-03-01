@@ -5,7 +5,7 @@
 [testnet wallet](https://wallet.testnet.near.org/)から新しいアカウントを作成します。
 ここでは`bike_account.testnet`としました。
 
-![](/public/images/NEAR-BikeShare/section-4/4_2_1.png)
+![](/images/NEAR-BikeShare/section-4/4_2_1.png)
 
 新アカウントにログインしましょう。
 
@@ -13,7 +13,7 @@
 $ near login
 ```
 
-![](/public/images/NEAR-BikeShare/section-4/4_2_2.png)
+![](/images/NEAR-BikeShare/section-4/4_2_2.png)
 
 それではターミナルからデプロイまでの一連の流れを実行しましょう！
 前回までのレッスンでコンパイル済みの`out/main.wasm`が存在することが前提です。
@@ -68,7 +68,7 @@ $ yarn parcel frontend/index.html
 
 実行結果
 
-![](/public/images/NEAR-BikeShare/section-4/4_2_3.png)
+![](/images/NEAR-BikeShare/section-4/4_2_3.png)
 
 上記のような表示がされたら`ctrl + c`で抜けましょう。
 `./dist`ディレクトリにコンパイルされたソースコードが出力されています。
@@ -146,7 +146,7 @@ Website URL:       https://near-bikeshare-dapp.netlify.app
 
 `Website URL:`欄にあるURLをブラウザに貼り付けてアプリを確認しましょう！
 
-![](/public/images/NEAR-BikeShare/section-4/4_2_4.png)
+![](/images/NEAR-BikeShare/section-4/4_2_4.png)
 
 ### ⭐ 好きな機能を追加しよう
 
@@ -181,7 +181,7 @@ NFTを取得する条件は、以下のようになります。
 
 3. このページの最後にリンクされているProject Completion Formに記入する
 
-4. Discordの`🔥｜post-your-project`チャンネルに、あなたのWebサイトをシェアしてください 😉🎉 。Discordへ投稿する際に、追加実装した機能とその概要も教えていただけると幸いです！
+4. Discordの`🔥｜completed-projects`チャンネルに、あなたのWebサイトをシェアしてください 😉🎉 。Discordへ投稿する際に、追加実装した機能とその概要も教えていただけると幸いです！
 
 プロジェクトを完成させていただいた方には、NFTをお送りします。
 

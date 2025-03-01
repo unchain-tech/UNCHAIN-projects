@@ -31,7 +31,7 @@ Internet Identityは、ICPがサポートするユーザー認証のフレーム
 
 さて、ここからUIの作成を行なっていきましょう。まずは以下のようなヘッダーを作成します。ボタンを押したときに先ほど設定をしたInternet IdentityキャニスターにアクセスをしてユーザーのIDが取得できるようにします。
 
-![](/public/images/ICP-Basic-DEX/section-3/3_2_1.png)
+![](/images/ICP-Basic-DEX/section-3/3_2_1.png)
 
 ここで実装する機能は、2つあります。
 
@@ -60,10 +60,10 @@ mkdir ./src/icp_basic_dex_frontend/src/components && touch ./src/icp_basic_dex_f
 
 [Header.jsx]
 
-```javascript
-import { canisterId as IICanisterID } from '../../../declarations/internet_identity_div';
-import { HttpAgent } from '@dfinity/agent';
-import { AuthClient } from '@dfinity/auth-client';
+```js
+import { canisterId as IICanisterID } from "../../../declarations/internet_identity_div";
+import { HttpAgent } from "@dfinity/agent";
+import { AuthClient } from "@dfinity/auth-client";
 
 export const Header = (props) => {
   const { setUserPrincipal } = props;
@@ -84,7 +84,7 @@ export const Header = (props) => {
     // ユーザー認証に使用するInternet IdentityのURLを決定する
     let iiUrl;
     if (process.env.DFX_NETWORK === "local") {
-      iiUrl = `http://localhost:4943/?canisterId=${IICanisterID}`;
+      iiUrl = `http://localhost:8000/?canisterId=${IICanisterID}`;
     } else if (process.env.DFX_NETWORK === "ic") {
       iiUrl = "https://identity.ic0.app/#authorize";
     } else {
@@ -128,7 +128,7 @@ URLを設定したら、`AuthClient`の関数を実行していきます。こ�
 
 [App.jsx]
 
-```javascript
+```js
 import "./App.css";
 import { useState } from "react";
 import { Header } from "./components/Header";
@@ -217,48 +217,48 @@ bash ./scripts/deploy_local.sh
 Deployed canisters.
 URLs:
   Frontend canister via browser
-    icp_basic_dex_frontend: http://127.0.0.1:4943/?canisterId=rdmx6-jaaaa-aaaaa-aaadq-cai
+    icp_basic_dex_frontend: http://127.0.0.1:8000/?canisterId=rdmx6-jaaaa-aaaaa-aaadq-cai
   Backend canister via Candid interface:
-    GoldDIP20: http://127.0.0.1:4943/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai&id=rrkah-fqaaa-aaaaa-aaaaq-cai
-    SilverDIP20: http://127.0.0.1:4943/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai&id=r7inp-6aaaa-aaaaa-aaabq-cai
-    faucet: http://127.0.0.1:4943/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai&id=rno2w-sqaaa-aaaaa-aaacq-cai
-    icp_basic_dex_backend: http://127.0.0.1:4943/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai&id=renrk-eyaaa-aaaaa-aaada-cai
-    internet_identity_div: http://127.0.0.1:4943/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai&id=rkp4c-7iaaa-aaaaa-aaaca-cai
+    GoldDIP20: http://127.0.0.1:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai&id=rrkah-fqaaa-aaaaa-aaaaq-cai
+    SilverDIP20: http://127.0.0.1:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai&id=r7inp-6aaaa-aaaaa-aaabq-cai
+    faucet: http://127.0.0.1:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai&id=rno2w-sqaaa-aaaaa-aaacq-cai
+    icp_basic_dex_backend: http://127.0.0.1:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai&id=renrk-eyaaa-aaaaa-aaada-cai
+    internet_identity_div: http://127.0.0.1:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai&id=rkp4c-7iaaa-aaaaa-aaaca-cai
 ```
 
 一番上に表示されている`icp_basic_dex_frontend:`のURLにアクセスしてみましょう。
 
-![](/public/images/ICP-Basic-DEX/section-3/3_2_2.png)
+![](/images/ICP-Basic-DEX/section-3/3_2_2.png)
 
 ヘッダーとメッセージが確認できたらコンソールを立ち上げておき、右上のログインボタンを押してみましょう。
 
-![](/public/images/ICP-Basic-DEX/section-3/3_2_3.png)
+![](/images/ICP-Basic-DEX/section-3/3_2_3.png)
 
 このレッスンの最初で設定をしたInternet Identityキャニスターに接続され、自動でInternet Identityと表示された画面が立ち上がります。それでは、認証を行なっていきたいと思います。
 
 `Create Anchor`をクリックしましょう。
 
-![](/public/images/ICP-Basic-DEX/section-3/3_2_4.png)
+![](/images/ICP-Basic-DEX/section-3/3_2_4.png)
 
 任意のデバイス名を入力し、`Create`ボタンを押します。
 
-![](/public/images/ICP-Basic-DEX/section-3/3_2_5.png)
+![](/images/ICP-Basic-DEX/section-3/3_2_5.png)
 
 数秒待つと、表示された文字を入力するように要求されます。入力後`Confirm`ボタンを押して次に進みます。
 
-![](/public/images/ICP-Basic-DEX/section-3/3_2_6.png)
+![](/images/ICP-Basic-DEX/section-3/3_2_6.png)
 
 新しい`Identity Anchor`の作成が完了したと表示されます。それでは、`Continue`ボタンを押して次に進みましょう。
 
-![](/public/images/ICP-Basic-DEX/section-3/3_2_7.png)
+![](/images/ICP-Basic-DEX/section-3/3_2_7.png)
 
 リカバリー方法の選択画面が表示されます。作成された`Anchor`に紐づくデバイスを無くしてしまった時の復元方法を選択する画面になります。`Seed Phrase`を選択します。
 
-![](/public/images/ICP-Basic-DEX/section-3/3_2_8.png)
+![](/images/ICP-Basic-DEX/section-3/3_2_8.png)
 
 画面が切り替わり、`Seed Phrase`が表示されます。下のチェックボックスにマークをして、`Continue`ボタンを押します。
 
-![](/public/images/ICP-Basic-DEX/section-3/3_2_9.png)
+![](/images/ICP-Basic-DEX/section-3/3_2_9.png)
 
 ボタンを押すと自動でブラウザの画面がDEXアプリケーションに切り替わります。メッセージが消えていることと`console.log()`の結果を確認してみましょう。
 以下のようなログが確認できたら、ユーザー IDの取得成功です！
@@ -267,7 +267,7 @@ URLs:
 User Principal: 42iew-bwtbo-6ug3n-k7vur-fzjgy-b33z5-ctdd7-kcqby-3lwee-hsd2s-rqe
 ```
 
-![](/public/images/ICP-Basic-DEX/section-3/3_2_10.png)
+![](/images/ICP-Basic-DEX/section-3/3_2_10.png)
 
 このレッスンで、ユーザー認証機能が実装できました！
 

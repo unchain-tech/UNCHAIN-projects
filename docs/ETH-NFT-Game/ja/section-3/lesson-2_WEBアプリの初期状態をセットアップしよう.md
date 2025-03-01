@@ -44,7 +44,7 @@ touch index.js
 
 VS Codeで`index.js`を開いて、下記のコードをは貼り付けましょう。
 
-```javascript
+```js
 import React, { useEffect, useState } from "react";
 import "./SelectCharacter.css";
 // setCharacterNFTについては、あとで詳しく説明します。
@@ -66,7 +66,7 @@ export default SelectCharacter;
 
 `import './App.css';`の直下に下記を追加してください。
 
-```javascript
+```js
 // SelectCharacter に入っているファイルをインポートします。
 import SelectCharacter from "./Components/SelectCharacter";
 ```
@@ -75,7 +75,7 @@ import SelectCharacter from "./Components/SelectCharacter";
 
 次に、下記のコードを` const [currentAccount, setCurrentAccount] = useState(null)`の直下に追加しましょう。
 
-```javascript
+```js
 // characterNFT と setCharacterNFT を初期化します。
 const [characterNFT, setCharacterNFT] = useState(null);
 ```
@@ -100,7 +100,7 @@ const [characterNFT, setCharacterNFT] = useState(null);
 
 `checkIfWalletIsConnected`を宣言したコードブロックの直下に下記を追加しましょう。
 
-```javascript
+```js
 // レンダリングメソッド
 const renderContent = () => {
   // シナリオ1.
@@ -129,7 +129,7 @@ const renderContent = () => {
 
 `App.js`の中にあるHTMLの部分(`return()`で囲まれている部分)を下記のように書き換えてください。
 
-```javascript
+```js
 return (
   <div className="App">
     <div className="container">
@@ -170,20 +170,19 @@ yarn client start
 ローカルサーバーでWebサイトを立ち上げたら、ブラウザのMetaMaskのプラグインをクリックし、あなたのウォレットアドレスの接続状況を確認しましょう。
 
 もし、下図のように`Connected`と表示されている場合は、`Connected`の文字をクリックします。
-![](/public/images/ETH-NFT-Game/section-3/3_3_1.png)
+![](/images/ETH-NFT-Game/section-3/3_3_1.png)
 
 そこで、Webサイトとあなたのウォレットアドレスの接続を一度解除します。
 
 - `Disconnect this account`を選択してください。
 
-![](/public/images/ETH-NFT-Game/section-3/3_3_2.png)
+![](/images/ETH-NFT-Game/section-3/3_3_2.png)
 
 ページをリフレッシュして、Webアプリケーションがどのように表示されるか見てみましょう。
 
 下記のように、`Connect Wallet to Get Started`ボタンが画面の中央に表示されていれば、シナリオ1のテストは成功です。
 
-![](/public/images/ETH-NFT-Game/section-3/3_3_3.png)
-
+![](/images/ETH-NFT-Game/section-3/3_3_3.png)
 
 次に、シナリオ2をテストしていきます。
 
@@ -193,16 +192,16 @@ yarn client start
 
 Webアプリケーション上で、`Connect Wallet to Get Started`ボタンを押すと、下記のように、MetaMaskのポップアップが表示されます。
 
-![](/public/images/ETH-NFT-Game/section-3/3_3_4.png)
+![](/images/ETH-NFT-Game/section-3/3_3_4.png)
 
 `Next`ボタン、`Confirm`ボタンを押して、ログイン作業を行いましょう。
 
 下記のような画面がWebアプリケーションに表示されていることを確認してください。
-![](/public/images/ETH-NFT-Game/section-3/3_3_5.png)
+![](/images/ETH-NFT-Game/section-3/3_3_5.png)
 
 さらに、Webアプリケーション上で右クリックを行い、`Inspect`をクリックしたら、Consoleに向かいましょう。
 
-![](/public/images/ETH-NFT-Game/section-3/3_3_6.png)
+![](/images/ETH-NFT-Game/section-3/3_3_6.png)
 
 Consoleに下記のような結果が表示されていたら、シナリオ2のテストは成功です。
 

@@ -18,7 +18,7 @@
 
 まずは、エアドロップの実装に必要なメソッドをインポートし、これまでに作成したコンポーネント同様`Home`コンポーネントが保持しているデータのうち、実装に必要なデータを引数として受け取るようにします。
 
-```javascript
+```js
 import { Connection, LAMPORTS_PER_SOL } from '@solana/web3.js';
 
 export default function Airdrop({ account, network, refreshBalance }) {
@@ -26,10 +26,9 @@ export default function Airdrop({ account, network, refreshBalance }) {
 
 次に、`handleAirdrop`関数を定義していきましょう。`export default function Airdrop({ account, network, refreshBalance }) {`の直下に、下記のコードを追加してください。
 
-```javascript
+```js
 const handleAirdrop = async () => {
   try {
-
   } catch (error) {
     console.error(error);
   }
@@ -38,8 +37,8 @@ const handleAirdrop = async () => {
 
 それでは、`handleAirdrop`関数の内部を実装していきましょう。`try-catch`文の`try{}`内にコードを追加していきます。
 
-```javascript
-const connection = new Connection(network, 'confirmed');
+```js
+const connection = new Connection(network, "confirmed");
 
 // console.log(connection);
 // > Connection {_commitment: 'confirmed', _confirmTransactionInitialTimeout: undefined, _rpcEndpoint: 'https://api.devnet.solana.com', _rpcWsEndpoint: 'wss://api.devnet.solana.com/', _rpcClient: ClientBrowser, …}
@@ -49,12 +48,12 @@ const connection = new Connection(network, 'confirmed');
 
 驚いたことに、`Connection`クラスには`requestAirdrop`メソッドがあり、これは期待できそうです。これは2つのプロパティを受け取ります。 `to: PublicKey`と`lamports: number`です。
 
-![](/public/images/Solana-Wallet/section-3/3_1_1.png)
+![](/images/Solana-Wallet/section-3/3_1_1.png)
 
-```javascript
+```js
 const signature = await connection.requestAirdrop(
   account.publicKey,
-  1 * LAMPORTS_PER_SOL,
+  1 * LAMPORTS_PER_SOL
 );
 ```
 
@@ -68,17 +67,17 @@ const signature = await connection.requestAirdrop(
 
 このことを念頭に置いて、残高を更新する前にエアドロップが確認されるのを待つ必要があります。もう一度ドキュメントを検索すると、`Connection`クラスに`confirmTransaction`メソッドがあり、2つの引数を受け取り、トランザクションがネットワークによって確認されると解決するプロミスを返していることがわかります。
 
-![](./public/images/Solana-Wallet/section-3/3_1_2.png)
+![](/images/Solana-Wallet/section-3/3_1_2.png)
 
 [`TransactionConfirmationStrategy`](https://solana-labs.github.io/solana-web3.js/types/TransactionConfirmationStrategy.html)については、定義に「すべてのトランザクション確認戦略を表す型」とあります。Solanaでは、トランザクションを確認するための方法が複数用意されており、これらをひとまとめに表す型名としてTransactionConfirmationStrategyが用意されています。リンク先を確認すると、トランザクションが有効である最後のブロックの高さを用いて確認する方法と、Nonceを用いて確認する方法が用意されていることがわかります。今回は、一般的なアプローチとしてブロックの高さを用いて確認する方法を選択します。
 
 では、最新のブロックについてのデータを取得するにはどうすればよいでしょうか。再度ドキュメントを検索すると、`Connection`クラスには、`getLatestBlockhash`メソッドがあり、最新のブロックのハッシュと、そのブロックの高さを返すことがわかります。
 
-![](./public/images/Solana-Wallet/section-3/3_1_3.png)
+![](/images/Solana-Wallet/section-3/3_1_3.png)
 
 それでは、ドキュメントを参考に`confirmTransaction`メソッドを呼び出しましょう。トランザクションの成功を確認するためには、`confirmTransaction`メソッドが返すプロミスの`value`プロパティを確認する必要があります。`value`プロパティは、`signature`プロパティと`err`プロパティを持つオブジェクトを返します。`err`プロパティが`null`であれば、トランザクションは成功しています。
 
-```javascript
+```js
 const latestBlockHash = await connection.getLatestBlockhash();
 await connection
   .confirmTransaction(
@@ -87,12 +86,12 @@ await connection
       blockhash: latestBlockHash.blockhash,
       lastValidBlockHeight: latestBlockHash.lastValidBlockHeight,
     },
-    'confirmed',
+    "confirmed"
   )
   .then((response) => {
     const signatureResult = response.value;
     if (signatureResult.err) {
-      console.error('Transaction failed: ', signatureResult.err);
+      console.error("Transaction failed: ", signatureResult.err);
     }
   });
 ```
@@ -101,13 +100,13 @@ await connection
 
 下記のコードをtry{}内の最後に追加します。
 
-```javascript
+```js
 await refreshBalance();
 ```
 
 最後に、 `Airdrop`ボタンを実装しましょう！ return文を下記のコードで更新してください。
 
-```javascript
+```js
 return (
   <button
     className="p-2 my-6 text-white bg-indigo-500 focus:ring focus:ring-indigo-300 rounded-lg cursor-pointer"
@@ -132,13 +131,13 @@ Test Suites: 1 failed, 4 passed, 5 total
 
 インポート文を追加します。
 
-```javascript
-import Airdrop from '../components/Airdrop';
+```js
+import Airdrop from "../components/Airdrop";
 ```
 
 `Airdrop`コンポーネントを呼び出すコードを追加して、ボタンをレンダリングします。
 
-```javascript
+```js
 <div>
   <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">
     STEP4: エアドロップ機能を実装する
@@ -164,17 +163,17 @@ import Airdrop from '../components/Airdrop';
 
 - `components/Airdrop/index.js`
 
-```javascript
-import { Connection, LAMPORTS_PER_SOL } from '@solana/web3.js';
+```js
+import { Connection, LAMPORTS_PER_SOL } from "@solana/web3.js";
 
 export default function Airdrop({ account, network, refreshBalance }) {
   const handleAirdrop = async () => {
     try {
-      const connection = new Connection(network, 'confirmed');
+      const connection = new Connection(network, "confirmed");
       const publicKey = account.publicKey;
       const signature = await connection.requestAirdrop(
         publicKey,
-        1 * LAMPORTS_PER_SOL,
+        1 * LAMPORTS_PER_SOL
       );
 
       const latestBlockHash = await connection.getLatestBlockhash();
@@ -185,12 +184,12 @@ export default function Airdrop({ account, network, refreshBalance }) {
             blockhash: latestBlockHash.blockhash,
             lastValidBlockHeight: latestBlockHash.lastValidBlockHeight,
           },
-          'confirmed',
+          "confirmed"
         )
         .then((response) => {
           const signatureResult = response.value;
           if (signatureResult.err) {
-            console.error('Transaction failed: ', signatureResult.err);
+            console.error("Transaction failed: ", signatureResult.err);
           }
         });
 
@@ -275,7 +274,8 @@ export default function Home() {
 3. エラー文をコピー&ペースト
 4. エラー画面のスクリーンショット
 ```
+
 ---
 
-おめでとうございます✨エアドロップ機能が完成しました!
-次のレッスンに進んで、送金機能を実装していきましょう😊
+おめでとうございます ✨ エアドロップ機能が完成しました!
+次のレッスンに進んで、送金機能を実装していきましょう 😊

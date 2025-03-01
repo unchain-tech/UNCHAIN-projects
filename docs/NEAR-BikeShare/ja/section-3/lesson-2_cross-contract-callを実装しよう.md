@@ -624,11 +624,11 @@ $ yarn dev
 
 点検前
 
-![](/public/images/NEAR-BikeShare/section-3/3_2_1.png)
+![](/images/NEAR-BikeShare/section-3/3_2_1.png)
 
 点検後
 
-![](/public/images/NEAR-BikeShare/section-3/3_2_2.png)
+![](/images/NEAR-BikeShare/section-3/3_2_2.png)
 
 ### 🙋‍♂️ 質問する
 

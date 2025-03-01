@@ -1,10 +1,10 @@
-### 🤖 IPFSを使用したNFTメタデータのアップロード
+### 🤖 IPFS を使用した NFT メタデータのアップロード
 
-#### IPFSとは
+#### IPFS とは
 
 前述のとおり、メタデータは中央集権的に保存することもでき、例えば`AWS S3`に保存される場合、ゲームタイプのNFTがメタデータ内のコンテンツを簡単に拡張するのに便利です。一方、メタデータは`IPFS`や`Ar`のような分散型ストレージに保存することもでき、これによりメタデータの不変性が強化されます。このレッスンでは、`IPFS`上で必要なメタデータを生成する方法を学びます。
 
-![pngVGb7Gkv](/public/images/Polygon-Whitelist-NFT/section-3/3_1_1.png)
+![pngVGb7Gkv](/images/Polygon-Whitelist-NFT/section-3/3_1_1.png)
 
 IPFSは**InterPlanetary** File Systemの略で、ファイル、ウェブサイト、アプリケーションなどの保存と共有に使用される分散型ピアツーピアネットワークです。2015年に初めてリリースされ、[Protocol Labs](https://protocol.ai/)によって開発されました。
 
@@ -25,7 +25,7 @@ https://cloudflare-ipfs.com/ipfs/+CID
 
 https://cloudflare-ipfs.com/ipfs/QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/
 
-![image-20230223094941448](/public/images/Polygon-Whitelist-NFT/section-3/3_1_2.png)
+![image-20230223094941448](/images/Polygon-Whitelist-NFT/section-3/3_1_2.png)
 
 しかし、IPFSにファイルをアップロードするにはノードが必要であり、自分のIPFSノードを実行するのは難しいと思われるかもしれません。
 
@@ -37,22 +37,22 @@ https://cloudflare-ipfs.com/ipfs/QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/
 
 ```json
 {
-    "title": "Asset Metadata",
-    "type": "object",
-    "properties": {
-        "name": {
-            "type": "string",
-            "description": "Identifies the asset to which this NFT represents"
-        },
-        "description": {
-            "type": "string",
-            "description": "Describes the asset to which this NFT represents"
-        },
-        "image": {
-            "type": "string",
-            "description": "A URI pointing to a resource with mime type image/* representing the asset to which this NFT represents. Consider making any images at a width between 320 and 1080 pixels and aspect ratio between 1.91:1 and 4:5 inclusive."
-        }
+  "title": "Asset Metadata",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Identifies the asset to which this NFT represents"
+    },
+    "description": {
+      "type": "string",
+      "description": "Describes the asset to which this NFT represents"
+    },
+    "image": {
+      "type": "string",
+      "description": "A URI pointing to a resource with mime type image/* representing the asset to which this NFT represents. Consider making any images at a width between 320 and 1080 pixels and aspect ratio between 1.91:1 and 4:5 inclusive."
     }
+  }
 }
 ```
 
@@ -60,28 +60,36 @@ https://cloudflare-ipfs.com/ipfs/QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/
 
 ```json
 {
-    "image": "ipfs://QmRRPWG96cmgTn2qSzjwr2qvfNEuhunv6FNeMFGa9bx6mQ",
-    "attributes": [{
-        "trait_type": "Earring",
-        "value": "Silver Hoop"
-    }, {
-        "trait_type": "Background",
-        "value": "Orange"
-    }, {
-        "trait_type": "Fur",
-        "value": "Robot"
-    }, {
-        "trait_type": "Clothes",
-        "value": "Striped Tee"
-    }, {
-        "trait_type": "Mouth",
-        "value": "Discomfort"
-    }, {
-        "trait_type": "Eyes",
-        "value": "X Eyes"
-    }]
+  "image": "ipfs://QmRRPWG96cmgTn2qSzjwr2qvfNEuhunv6FNeMFGa9bx6mQ",
+  "attributes": [
+    {
+      "trait_type": "Earring",
+      "value": "Silver Hoop"
+    },
+    {
+      "trait_type": "Background",
+      "value": "Orange"
+    },
+    {
+      "trait_type": "Fur",
+      "value": "Robot"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Striped Tee"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Discomfort"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "X Eyes"
+    }
+  ]
 }
 ```
 
 ### 🙋‍♂️ 質問する
+
 ここまで何かわからないことがある場合は、Discordの`#polygon`で質問をしてください。

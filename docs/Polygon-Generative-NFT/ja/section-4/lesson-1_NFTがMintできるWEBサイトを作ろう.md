@@ -35,17 +35,19 @@
 </html>
 ```
 
-次に、`client/src`フォルダに移動して、`App.test.js` , `logo.svg` , `setupTests.js`ファイルを削除してください。
+次に、`packages/client/src`フォルダに移動して、`App.test.js` , `logo.svg` , `setupTests.js`ファイルを削除してください。
 
 このレッスンでは、これらのファイルは必要ありません。
 
 次に、`src`フォルダの中にある`App.js`ファイルを開き、内容を、以下の定型文に置き換えます。
 
-```javascript
+```js
 import "./App.css";
+
 function App() {
   return <h1>Hello World</h1>;
 }
+
 export default App;
 ```
 
@@ -71,15 +73,15 @@ ABI（またはApplication Binary Interface）は、コントラクトのコン�
 
 これがまさにABIファイルの役割です。
 
-`/contract/artifacts/contracts/NFTCollectible.sol/NFTCollectible.json`をVS Codeで開き中身を確認してみましょう。
+`packages/contract/artifacts/contracts/NFTCollectible.sol/NFTCollectible.json`をVS Codeで開き中身を確認してみましょう。
 
-![](/public/images/Polygon-Generative-NFT/section-4/4_1_2.png)
+![](/images/Polygon-Generative-NFT/section-4/4_1_2.png)
 
 `NFTCollectible.json`に記載されているすべてのコードが、ABIファイルです。
 
 まず、JSONファイルをReactプロジェクトにコピーする必要があります。
 
-`client/src`フォルダに`contracts`という新しいフォルダを作成し、`NFTCollectible.json`ファイルをコピーして貼り付けましょう。
+`packages/client/src`フォルダに`contracts`という新しいフォルダを作成し、`NFTCollectible.json`ファイルをコピーして貼り付けましょう。
 
 次に、前回のレッスンでPolygonテストネットにデプロイしたスマートコントラクトのアドレスを取得してください。
 
@@ -89,7 +91,7 @@ ABI（またはApplication Binary Interface）は、コントラクトのコン�
 
 それでは、コントラクトABIをインポートして、`App.js`ファイルにコントラクトアドレスを定義していきましょう。
 
-```javascript
+```js
 import "./App.css";
 import contract from "./contracts/NFTCollectible.json";
 
@@ -100,6 +102,7 @@ const abi = contract.abi;
 function App() {
   return <h1>Hello World</h1>;
 }
+
 export default App;
 ```
 
@@ -117,8 +120,9 @@ export default App;
 
 以下の内容を、`App.js`ファイルにコピーしてください。
 
-```javascript
+```js
 import { useEffect } from "react";
+
 import "./App.css";
 import contract from "./contracts/NFTCollectible.json";
 
@@ -168,7 +172,7 @@ export default App;
 
 `App.js`の5行目であなたのコントラクトアドレスを設定してください。
 
-```javascript
+```js
 const contractAddress = "あなたのコントラクトアドレスを貼り付けましょう";
 ```
 
@@ -179,34 +183,33 @@ const contractAddress = "あなたのコントラクトアドレスを貼り付�
 以下を`App.css`ファイルにコピーしてください。
 
 ```css
-// App.css
 .main-app {
-    text-align: center;
-    margin: 100px;
+  text-align: center;
+  margin: 100px;
 }
 
 .cta-button {
-    padding: 15px;
-    border: none;
-    border-radius: 12px;
-    min-width: 250px;
-    color: white;
-    font-size: 18px;
-    cursor: pointer;
+  padding: 15px;
+  border: none;
+  border-radius: 12px;
+  min-width: 250px;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
 }
 
 .connect-wallet-button {
-    background: rgb(32, 129, 226);
+  background: rgb(32, 129, 226);
 }
 
 .mint-nft-button {
-    background: orange;
+  background: orange;
 }
 ```
 
 あなたのWebサイトは、このように表示されるはずです。
 
-![](/public/images/Polygon-Generative-NFT/section-4/4_1_3.png)
+![](/images/Polygon-Generative-NFT/section-4/4_1_3.png)
 
 CSSスタイルや静的要素（画像、ヘッダ、フッタ、ソーシャルメディアリンクなど）を追加して、Webサイトの外観を自由にカスタマイズしてください。
 
@@ -228,7 +231,7 @@ CSSスタイルや静的要素（画像、ヘッダ、フッタ、ソーシャ�
 
 MetaMaskウォレットが存在するかどうかを確認するロジックを、`checkWalletIsConnected`関数に入力しましょう。
 
-```javascript
+```js
 const checkWalletIsConnected = async () => {
   const { ethereum } = window;
 
@@ -249,7 +252,7 @@ const checkWalletIsConnected = async () => {
 
 MetaMaskがインストールされていれば、`Wallet exists! We’re ready to go!`というメッセージがConsoleに表示されているはずです。
 
-![](/public/images/Polygon-Generative-NFT/section-4/4_1_4.png)
+![](/images/Polygon-Generative-NFT/section-4/4_1_4.png)
 
 MetaMaskエクステンションをインストールしたからといって、アクセスしたすべてのWebサイトにMetaMaskが自動的に接続されるわけではありません。
 
@@ -267,13 +270,13 @@ MetaMaskは`window.ethereum.request`メソッドでこのプロセスシンプ�
 
 まず、Reactから`useState`をインポートするために、`App.js`ファイルの1行目`import from 'react'`の中身を下記のように更新してください。
 
-```javascript
+```js
 import { useEffect, useState } from "react";
 ```
 
 それから、下記を`checkWalletIsConnected`関数の真上に追加してください。
 
-```javascript
+```js
 const [currentAccount, setCurrentAccount] = useState(null);
 ```
 
@@ -285,7 +288,7 @@ const [currentAccount, setCurrentAccount] = useState(null);
 
 次に、`connectWalletHandler`関数を定義しましょう。
 
-```javascript
+```js
 const connectWalletHandler = async () => {
   const { ethereum } = window;
 
@@ -309,7 +312,7 @@ const connectWalletHandler = async () => {
 
 インストールされていない場合は、MetaMaskのインストールを促すポップアップが表示されます。
 
-```javascript
+```js
 const { ethereum } = window;
 
 if (!ethereum) {
@@ -319,20 +322,20 @@ if (!ethereum) {
 
 MetaMaskにユーザーのウォレット接続を促し、アドレスの取得を試みます。
 
-```javascript
+```js
 const accounts = await ethereum.request({ method: "eth_requestAccounts" });
 console.log("Found an account! Address: ", accounts[0]);
 ```
 
 ユーザーがWebサイトとの接続に同意すると、最初に利用可能なウォレットアドレスを取得し、それを`currentAccount`変数の値として設定します。
 
-```javascript
+```js
 setCurrentAccount(accounts[0]);
 ```
 
 何か問題が発生した場合（ユーザーが接続を拒否したなど）、処理を中断してコンソールにエラーメッセージが表示されます。
 
-```javascript
+```js
 } catch (err) {
 	console.log(err)
 }
@@ -344,13 +347,13 @@ setCurrentAccount(accounts[0]);
 
 もし、下図のように`Connected`と表示されている場合は、`Connected`の文字をクリックします。
 
-![](/public/images/Polygon-Generative-NFT/section-4/4_1_5.png)
+![](/images/Polygon-Generative-NFT/section-4/4_1_5.png)
 
 そこで、Webサイトとあなたのウォレットアドレスの接続を一度解除します。
 
 - `Disconnect this account`を選択してください。
 
-![](/public/images/Polygon-Generative-NFT/section-4/4_1_6.png)
+![](/images/Polygon-Generative-NFT/section-4/4_1_6.png)
 
 次にローカルサーバーにホストされているあなたのWebサイトをリフレッシュして、`Connect Wallet`ボタンを押してください。
 
@@ -358,7 +361,7 @@ MetaMaskがWebサイトとの接続を促してきますので、同意しまし
 
 下記のように、Consoleにあなたのパブリックウォレットアドレスが出力されていれば、ウォレット接続のテストは成功です。
 
-![](/public/images/Polygon-Generative-NFT/section-4/4_1_7.png)
+![](/images/Polygon-Generative-NFT/section-4/4_1_7.png)
 
 ウォレットが接続されたら、`Connect Wallet`ボタンを`Mint NFT`ボタンに置き換えていきましょう。
 
@@ -366,7 +369,7 @@ MetaMaskがWebサイトとの接続を促してきますので、同意しまし
 
 `return ()`の中身を下記のように変更してください。
 
-```javascript
+```js
 return (
   <div className="main-app">
     <h1>Scrappy Squirrels Tutorial</h1>
@@ -377,13 +380,13 @@ return (
 
 これで、私たちのWebサイトはこのようになります。
 
-![](/public/images/Polygon-Generative-NFT/section-4/4_1_8.png)
+![](/images/Polygon-Generative-NFT/section-4/4_1_8.png)
 
 ページを更新して、MetaMaskエクステンションを確認してみましょう。
 
 MetaMaskはまだWebサイトに接続されていることを伝えていますが、WebサイトにはまだConnect Walletボタンが表示されていることがわかります。
 
-![](/public/images/Polygon-Generative-NFT/section-4/4_1_9.png)
+![](/images/Polygon-Generative-NFT/section-4/4_1_9.png)
 
 Reactに慣れている人なら、なぜこのようなことが起こるのかお分かりでしょう。
 
@@ -395,7 +398,7 @@ Reactに慣れている人なら、なぜこのようなことが起こるのか
 
 下記のように、`checkWalletIsConnected`関数を更新してください。
 
-```javascript
+```js
 const checkWalletIsConnected = async () => {
   const { ethereum } = window;
 
@@ -424,8 +427,7 @@ const checkWalletIsConnected = async () => {
 
 - MetaMaskがインストールされているかどうかをチェックし、結果をコンソールに出力します。
 
-  ```javascript
-
+  ```js
   if (!ethereum) {
     console.log("Make sure you have MetaMask installed!");
     return;
@@ -436,29 +438,29 @@ const checkWalletIsConnected = async () => {
 
 - Webサイトに接続中のアカウントに対してMetaMaskのリクエストを試みます。
 
-```javascript
+```js
 const accounts = await ethereum.request({ method: "eth_accounts" });
 ```
 
 - MetaMaskがすでにWebサイトに接続されている場合は、この関数にアカウントのリストを渡して要求を出します。
 
-```javascript
+```js
 if (accounts.length !== 0) {
   const account = accounts[0];
-  console.log("Found an authorized account: ", account);
+  console.log('Found an authorized account: ', account);
 ```
 
 - リストが空でない場合、`checkWalletIsConnected`関数はMetaMaskから取得した最初のアカウントアドレスを選び、それを`currentAccount`に設定します。
 
-```javascript
+```js
 setCurrentAccount(account);
 ```
 
 - リストが空の場合は、空のリストが返され、結果をコンソールに出力します。
 
-```javascript
+```js
 } else {
-  console.log("No authorized account found");
+  console.log('No authorized account found');
 }
 ```
 
@@ -480,15 +482,15 @@ setCurrentAccount(account);
 
 次に、`App.js`で`ethers`ライブラリをインポートしましょう。
 
-`import contract from './contracts/NFTCollectible.json';`の直下に、下記を追加してください。
+`import { useEffect, useState } from 'react';`の上に、下記を追加してください。
 
-```javascript
+```js
 import { ethers } from "ethers";
 ```
 
 最後に、下記のように`mintNftHandler`関数を更新しましょう。
 
-```javascript
+```js
 const mintNftHandler = async () => {
   try {
     const { ethereum } = window;
@@ -522,14 +524,14 @@ const mintNftHandler = async () => {
 
 1\. MetaMaskから投入された`ethereum`オブジェクトにアクセスしようとします。
 
-```javascript
+```js
 const { ethereum } = window;
 ```
 
 2\. `ethereum`が存在する場合、MetaMaskをRPCプロバイダとして設定します。
 これは、MetaMaskのウォレットを使ってマイナーにリクエストを発行することを意味します。
 
-```javascript
+```js
   if (ethereum) {
     const provider = new ethers.providers.Web3Provider(ethereum);
 	:
@@ -537,20 +539,20 @@ const { ethereum } = window;
 
 3\. リクエストを発行するためには、ユーザーは自分の秘密鍵を使ってトランザクションに署名する必要があります。このために`signer`にアクセスします。
 
-```javascript
+```js
 const signer = provider.getSigner();
 ```
 
 4\. 次に、デプロイされたコントラクトのアドレス、コントラクトABI、および`signer`を使用して、`ethers`のコントラクトインスタンスを開始します。
 
-```javascript
+```js
 const nftContract = new ethers.Contract(contractAddress, abi, signer);
 console.log("Initialize payment");
 ```
 
 5\. これで、前述のコントラクトオブジェクトを通じてコントラクト上の関数を呼び出すことができます。`mintNFT`関数を呼び出し、MetaMaskに`0.01 ETH`（これはNFTに設定した価格）を送信するよう依頼します。
 
-```javascript
+```js
 let nftTxn = await nftContract.mintNFTs(1, {
   value: ethers.utils.parseEther("0.01"),
 });
@@ -559,7 +561,7 @@ console.log("Mining... please wait");
 
 6\. トランザクションが処理されるのを待ち、処理が完了したら、トランザクションのハッシュをコンソールに出力します。
 
-```javascript
+```js
 await nftTxn.wait();
 console.log(`Mined, see transaction: ${nftTxn.hash}`);
 ```
@@ -570,7 +572,7 @@ console.log(`Mined, see transaction: ${nftTxn.hash}`);
 
 <!-- textlint-enable -->
 
-```javascript
+```js
   } catch (err) {
     console.log(err);
   }
@@ -582,14 +584,14 @@ console.log(`Mined, see transaction: ${nftTxn.hash}`);
 
 `App.js`の最終盤はこちらです。
 
-```javascript
-
+```js
+import { ethers } from "ethers";
 import { useEffect, useState } from "react";
+
 import "./App.css";
 import contract from "./contracts/NFTCollectible.json";
-import { ethers } from "ethers";
 
-const contractAddress = "0x7aDBc3497BE70a903c5b17BEf184782dD0A7eFAa";
+const contractAddress = "0xF899DeB963208560a7c667FA78376ecaFF684b8E";
 const abi = contract.abi;
 
 function App() {
@@ -704,7 +706,7 @@ MetaMaskが0.01 ETH + ガス代を支払うよう促すので、同意してく�
 
 処理が完了したら、MetaMaskのポップアップとコンソール出力の両方でトランザクションが確認できます。
 
-![](/public/images/Polygon-Generative-NFT/section-4/4_1_10.png)
+![](/images/Polygon-Generative-NFT/section-4/4_1_10.png)
 
 > ⚠️: 2022 年 4 月 1 日より、Mint ボタンすると下記のようなエラーが発生しています。
 >
@@ -723,7 +725,7 @@ Polygonがほかのサイドチェーンと異なる最大の利点は、世界�
 
 MintされたNFTがコレレクションとしてアップロードされているのがわかるでしょう。
 
-![](/public/images/Polygon-Generative-NFT/section-4/4_1_11.png)
+![](/images/Polygon-Generative-NFT/section-4/4_1_11.png)
 
 ### 🙋‍♂️ 質問する
 

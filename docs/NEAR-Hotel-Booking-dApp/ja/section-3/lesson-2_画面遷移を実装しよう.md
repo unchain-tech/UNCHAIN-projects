@@ -38,17 +38,17 @@ yarn add --dev react-bootstrap bootstrap bootstrap-icons react-router-dom　
 
 `frontend/index.js`
 
-```javascript
-import 'bootstrap';
-import 'bootstrap-icons/font/bootstrap-icons.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+```js
+import "bootstrap";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
 
-import App from './App';
-import { initContract } from './assets/js/near/utils';
+import App from "./App";
+import { initContract } from "./assets/js/near/utils";
 
-const container = document.querySelector('#root');
+const container = document.querySelector("#root");
 const root = createRoot(container);
 
 window.nearInitPromise = initContract()
@@ -59,31 +59,30 @@ window.nearInitPromise = initContract()
     root.render(<App tab="home" />);
   })
   .catch(console.error);
-
 ```
 
 画面遷移を実行するためのライブラリと、フレームワークをインポートしています。
 
-```javascript
-import 'bootstrap';
-import 'bootstrap-icons/font/bootstrap-icons.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+```js
+import "bootstrap";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
 ```
 
 次に、`frontend/App.js`を以下のように書き換えます。
 `frontend/App.js`
 
-```javascript
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+```js
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import NavBar from './assets/js/components/NavBar';
-import GuestBookedList from './assets/js/pages/GuestBookedList';
-import Home from './assets/js/pages/Home';
-import ManageBookings from './assets/js/pages/ManageBookings';
-import ManageRooms from './assets/js/pages/ManageRooms';
-import Search from './assets/js/pages/Search';
+import NavBar from "./assets/js/components/NavBar";
+import GuestBookedList from "./assets/js/pages/GuestBookedList";
+import Home from "./assets/js/pages/Home";
+import ManageBookings from "./assets/js/pages/ManageBookings";
+import ManageRooms from "./assets/js/pages/ManageRooms";
+import Search from "./assets/js/pages/Search";
 
 const App = () => {
   return (
@@ -101,7 +100,6 @@ const App = () => {
 };
 
 export default App;
-
 ```
 
 return文の中で、ナビゲーションバーを実装する`<NavBar />`を呼び出しています。各ルートの設定の前に呼び出すことで、どのページに遷移しても必ずナビゲーションバーが表示されるようになります。
@@ -109,7 +107,7 @@ return文の中で、ナビゲーションバーを実装する`<NavBar />`を�
 次に、画面遷移のための詳細な設定を行なっています。
 遷移時に使用するデータを、`path`と`element`で設定します。
 
-```javascript
+```js
 <Routes>
   <Route path="/" element={<Home />} />
   <Route path="/search/:date" element={<Search />} />
@@ -126,20 +124,20 @@ return文の中で、ナビゲーションバーを実装する`<NavBar />`を�
 
 `frontend/assets/js/components/NavBar.js`
 
-```javascript
-import { useEffect, useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import { useNavigate } from 'react-router-dom';
+```js
+import { useEffect, useState } from "react";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import { useNavigate } from "react-router-dom";
 
-import { accountBalance, login, logout } from '../near/utils';
+import { accountBalance, login, logout } from "../near/utils";
 
 const NavBar = () => {
   const navigate = useNavigate();
-  const [balance, setBalance] = useState('0');
+  const [balance, setBalance] = useState("0");
 
   const getBalance = async () => {
     if (window.accountId) {
@@ -222,20 +220,19 @@ const NavBar = () => {
 };
 
 export default NavBar;
-
 ```
 
 内容を見ていきましょう。
 
 NEAR Walletへの接続や残高を取得する関数をインポートします。
 
-```javascript
-import { accountBalance, login, logout } from '../near/utils';
+```js
+import { accountBalance, login, logout } from "../near/utils";
 ```
 
 NEAR Walletに接続をすると、`window.accountId`にアカウントIDが設定されます。ここでは、if文でチェックをして設定されていたらアカウントの残高を取得しています。
 
-```javascript
+```js
 // ログインしたアカウントのNEAR残高を取得
 const getBalance = async () => {
   if (window.accountId) {
@@ -248,15 +245,15 @@ returnの中では、表示するナビゲーションバーの設定をして�
 
 接続されていない時
 
-![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_2_1.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-3/3_2_1.png)
 
 接続されている時
 
-![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_2_2.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-3/3_2_2.png)
 
 画面への遷移はメニューをクリックした時に実行されます。`navigate()`の中に遷移したいパスを設定します。設定するパスは、`App.js`内で`path=`に指定したものになります。
 
-```javascript
+```js
 <NavDropdown.Item onClick={() => navigate(`/booked-list`)}>
   Booked List
 </NavDropdown.Item>
@@ -266,16 +263,16 @@ returnの中では、表示するナビゲーションバーの設定をして�
 
 `frontend/assets/js/pages/GuestBookedList.js`
 
-```javascript
+```js
 import React from "react";
 
 const GuestBookedList = () => {
-    return (
-        <div>
-            <h1>GuestBookedList</h1>
-        </div>
-    )
-}
+  return (
+    <div>
+      <h1>GuestBookedList</h1>
+    </div>
+  );
+};
 
 export default GuestBookedList;
 ```
@@ -286,12 +283,12 @@ export default GuestBookedList;
 import React from "react";
 
 const Home = () => {
-    return (
-        <div>
-            <h1>Home</h1>
-        </div>
-    )
-}
+  return (
+    <div>
+      <h1>Home</h1>
+    </div>
+  );
+};
 
 export default Home;
 ```
@@ -302,12 +299,12 @@ export default Home;
 import React from "react";
 
 const ManageBookings = () => {
-    return (
-        <div>
-            <h1>ManageBookings</h1>
-        </div>
-    )
-}
+  return (
+    <div>
+      <h1>ManageBookings</h1>
+    </div>
+  );
+};
 
 export default ManageBookings;
 ```
@@ -318,12 +315,12 @@ export default ManageBookings;
 import React from "react";
 
 const ManageRooms = () => {
-    return (
-        <div>
-            <h1>ManageRooms</h1>
-        </div>
-    )
-}
+  return (
+    <div>
+      <h1>ManageRooms</h1>
+    </div>
+  );
+};
 
 export default ManageRooms;
 ```
@@ -334,12 +331,12 @@ export default ManageRooms;
 import React from "react";
 
 const Search = () => {
-    return (
-        <div>
-            <h1>Search</h1>
-        </div>
-    )
-}
+  return (
+    <div>
+      <h1>Search</h1>
+    </div>
+  );
+};
 
 export default Search;
 ```
@@ -356,13 +353,13 @@ yarn dev
 
 最初に`Home`が表示されます。
 
-![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_2_3.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-3/3_2_3.png)
 右上のボタンから、NEAR Walletに接続してみましょう。アカウントは任意のもので大丈夫です。
 
 ナビゲーションバーの表示が変わったら、メニューから画面遷移を確認してみましょう！
-![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_2_4.png)
-![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_2_5.png)
-![](/public/images/NEAR-Hotel-Booking-dApp/section-3/3_2_6.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-3/3_2_4.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-3/3_2_5.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-3/3_2_6.png)
 
 このように画面がきちんと遷移していれば成功です！
 

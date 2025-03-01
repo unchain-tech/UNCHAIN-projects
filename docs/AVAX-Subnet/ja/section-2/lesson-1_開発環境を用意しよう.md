@@ -47,9 +47,7 @@ AVAX-Subnetディレクトリ内に、package.jsonファイルが生成されま
   "description": "AVAX Subnet",
   "private": true,
   "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
+    "packages": ["packages/*"]
   },
   "scripts": {
     "contract": "yarn workspace contract",
@@ -58,6 +56,7 @@ AVAX-Subnetディレクトリ内に、package.jsonファイルが生成されま
   }
 }
 ```
+
 `package.json`ファイルの内容を確認してみましょう。
 
 このプロジェクトはモノレポ構成となるようにフォルダを構成してきます。モノレポとは、コントラクトとクライアント（またはその他構成要素）の全コードをまとめて1つのリポジトリで管理する方法です。
@@ -183,7 +182,7 @@ yarn add dotenv@^16.0.3 @openzeppelin/contracts@^4.8.0
 `packages/contract`ディレクトリにいることを確認し、次のコマンドを実行します。
 
 ```
-npx hardhat
+npx hardhat init
 ```
 
 実行すると対話形式で指示を求められるので、それぞれを以下のように答えていきます。
@@ -202,7 +201,7 @@ npx hardhat
 （例）
 
 ```
-$npx hardhat
+$npx hardhat init
 
 888    888                      888 888               888
 888    888                      888 888               888
@@ -321,7 +320,7 @@ yarn test
 
 次のように表示されたら成功です! 🎉
 
-![](/public/images/AVAX-Subnet/section-2/1_1_1.png)
+![](/images/AVAX-Subnet/section-2/1_1_1.png)
 
 ここまできたら,フォルダーの中身を整理しましょう。
 
@@ -353,7 +352,6 @@ contract
 
 > [こちら](https://github.com/unchain-dev/AVAX-Subnet)に本プロジェクトの完成形のレポジトリがあります。
 > 期待通り動かない場合は参考にしてみてください。
-
 
 ### 🙋‍♂️ 質問する
 

@@ -25,38 +25,37 @@ encrypted_notes_frontend/
 作成したkeyStorage.tsに下記のコードを記述しましょう。ここで実装する機能は、データベースの作成、データの保存、データの取得、データの削除の4つです。
 
 ```ts
-import { DBSchema, openDB } from 'idb'
+import { DBSchema, openDB } from "idb";
 
 // データベースの型を定義します。
 interface KeyStorage extends DBSchema {
-  'keys': {
+  keys: {
     key: string;
     value: CryptoKey;
   };
 }
 
 // データベースを開きます
-const db = openDB<KeyStorage>('crypto-store', 1, {
+const db = openDB<KeyStorage>("crypto-store", 1, {
   upgrade(db) {
-    db.createObjectStore('keys');
+    db.createObjectStore("keys");
   },
 });
 
 // 'keys'ストアに値を保存します
 export async function storeKey(key: string, value: CryptoKey) {
-  return (await db).put('keys', value, key)
+  return (await db).put("keys", value, key);
 }
 
 // 値を'keys'ストアから取得します
 export async function loadKey(key: string) {
-  return (await db).get('keys', key)
+  return (await db).get("keys", key);
 }
 
 // 'keys'ストアから値を削除します
 export async function clearKeys() {
-  return (await db).clear('keys')
+  return (await db).clear("keys");
 }
-
 ```
 
 ### 🔑 公開鍵・秘密鍵を生成しよう
@@ -66,7 +65,7 @@ export async function clearKeys() {
 先ほど作成した`keyStorage.ts`をインポートします。
 
 ```ts
-import { clearKeys, loadKey, storeKey } from './keyStorage';
+import { clearKeys, loadKey, storeKey } from "./keyStorage";
 ```
 
 鍵の生成（または取得）を行う`init`関数を更新します。下記を参考に、`/** STEP6: 公開鍵・秘密鍵を生成します。 */`の部分にコードを追加しましょう。
@@ -103,8 +102,8 @@ import { clearKeys, loadKey, storeKey } from './keyStorage';
 最初に、`loadKey`関数を使用してデータベースから公開鍵・秘密鍵を取得します。
 
 ```ts
-    this.publicKey = await loadKey('publicKey');
-    this.privateKey = await loadKey('privateKey');
+this.publicKey = await loadKey("publicKey");
+this.privateKey = await loadKey("privateKey");
 ```
 
 データベースに鍵が存在しない場合は、`generateKeyPair`関数を呼び出して鍵を生成します。
@@ -138,11 +137,12 @@ generateKeyPair関数は、private関数としてあらかじめクラス内に�
 
 この関数は、`window.crypto.subtle.generateKey`を使用して、公開鍵・秘密鍵のペアを生成します。[crypto.subtle](https://developer.mozilla.org/ja/docs/Web/API/Crypto/subtle)は暗号に関する様々なメソッドを提供する[SubtleCrypto](https://developer.mozilla.org/ja/docs/Web/API/SubtleCrypto)オブジェクトを返します。[`generateKey`](https://developer.mozilla.org/ja/docs/Web/API/SubtleCrypto/generateKey)メソッドは、引数に与えられた条件に一致する鍵を含むオブジェクトを返します。
 
-```javascript
+```js
 generateKey(algorithm, extractable, keyUsages);
 ```
 
 引数は3つ受け取ります。
+
 1. algorithm: 生成する鍵の種類を指定します。今回は公開鍵・秘密鍵の鍵ペアを生成するため、`RSA-OAEP`を指定します。`RSA-OAEP`は、RSA暗号を使用して鍵を生成するためのアルゴリズムです。
 
 2. extractable: 鍵を取り出すことができるかどうかをbooleanで指定します。鍵を取り出すとは、CryptoKeyオブジェクトを別のフォーマットに変換することを指します。変換することにより、例えばRustで構築されたバックエンドキャニスターなど別の場所で鍵を扱うことができます。
@@ -152,41 +152,41 @@ generateKey(algorithm, extractable, keyUsages);
 最終的に、generateKeyPair関数は、公開鍵・秘密鍵のペア（[CryptoKeyPair](https://developer.mozilla.org/ja/docs/Web/API/CryptoKeyPair)オブジェクト）を返します。CryptoKeyPairオブジェクトは、プロパティとしてpublicKeyとprivateKeyを持つので、`keyPair.publicKey`・`keyPair.privateKey`下記のようにして公開鍵・秘密鍵を取得することができます。生成した鍵はデータベースとクラスのメンバーに保存します。
 
 ```ts
-      // 生成した鍵をデータベースに保存します。
-      await storeKey('publicKey', keyPair.publicKey);
-      await storeKey('privateKey', keyPair.privateKey);
+// 生成した鍵をデータベースに保存します。
+await storeKey("publicKey", keyPair.publicKey);
+await storeKey("privateKey", keyPair.privateKey);
 
-      this.publicKey = keyPair.publicKey;
-      this.privateKey = keyPair.privateKey;
+this.publicKey = keyPair.publicKey;
+this.privateKey = keyPair.privateKey;
 ```
 
 最後にinit関数は`true`を返します。今はtrueを返すだけとなっていますがこのままにしておきます。以降のレッスンで更新していきます。
 
 ```ts
-    return true;
+return true;
 ```
 
 それでは、init関数を呼び出してみましょう。`hooks/authContext.ts`内のある`/** STEP7: デバイスデータの設定を行います。 */`の部分に下記のコードを追加しましょう。
 
 ```ts
-    /** STEP7: デバイスデータの設定を行います。 */
-    const initialized = await cryptoService.init();
-    console.log(`initialized: ${initialized}`);
+/** STEP7: デバイスデータの設定を行います。 */
+const initialized = await cryptoService.init();
+console.log(`initialized: ${initialized}`);
 ```
 
 ### ✅ 動作確認をしよう
 
 ブラウザに戻り、再度ログインボタンを押しましょう。前回のレッスンでIdentityの生成を済ませているので、そこから再デプロイを行なっていない限り、生成したidentityを選択して進みます。
 
-![](/public/images/ICP-Encrypted-Notes/section-2/2_4_1.png)
+![](/images/ICP-Encrypted-Notes/section-2/2_4_1.png)
 
 開発環境下での動作確認なので、「Remind me later」を選択していただいて大丈夫です。
 
-![](/public/images/ICP-Encrypted-Notes/section-2/2_4_2.png)
+![](/images/ICP-Encrypted-Notes/section-2/2_4_2.png)
 
 認証が完了したら、ストレージを見てみましょう。`crypto-store`というデータベースが作成され、中に公開鍵と秘密鍵が保存されていること確認しましょう。
 
-![](/public/images/ICP-Encrypted-Notes/section-2/2_4_3.png)
+![](/images/ICP-Encrypted-Notes/section-2/2_4_3.png)
 
 ### 📝 このレッスンで追加したコード
 

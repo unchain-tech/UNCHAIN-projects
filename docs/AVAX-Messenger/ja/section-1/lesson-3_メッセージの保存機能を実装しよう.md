@@ -135,7 +135,7 @@ contract Messenger {
 > Solidity の`mapping`は、ほかの言語におけるハッシュテーブルや辞書のような役割を果たします。
 > これらは、下記のように`_Key`と`_Value`のペアの形式でデータを格納するために使用されます。
 >
-> ```javascript
+> ```js
 > mapping（_Key => _Value）public mappingName
 > ```
 
@@ -302,7 +302,7 @@ _messagesAtAddress[_receiver].push(
 
 以下に、Solidityのアクセス修飾子とアクセス権限についてまとめています。
 
-![](/public/images/AVAX-Messenger/section-1/1_3_2.png)
+![](/images/AVAX-Messenger/section-1/1_3_2.png)
 
 📡 関数の状態に関連する修飾子
 
@@ -315,7 +315,7 @@ Solidity開発ではこれらの修飾子を意識しておかないとデータ
 
 以下に、Solidityの関数修飾子`pure`と`view`についてまとめています。
 
-![](/public/images/AVAX-Messenger/section-1/1_3_3.png)
+![](/images/AVAX-Messenger/section-1/1_3_3.png)
 
 ここで重要なのは、`pure`や`view`関数を使用すれば、**ガス代を削減できる**ということです。
 
@@ -339,19 +339,19 @@ testディレクトリの中の`Messenger.ts`ファイルを以下のように�
 - 変更すると環境によって赤の波線が表示される箇所があるかもしれませんが、テストを実行すると消えますので、一旦気にせず進めてください。
 
 ```ts
-import { loadFixture } from '@nomicfoundation/hardhat-network-helpers';
-import { expect } from 'chai';
-import { Overrides } from 'ethers';
-import hre, { ethers } from 'hardhat';
+import { loadFixture } from "@nomicfoundation/hardhat-network-helpers";
+import { expect } from "chai";
+import { Overrides } from "ethers";
+import hre, { ethers } from "hardhat";
 
-describe('Messenger', function () {
+describe("Messenger", function () {
   async function deployContract() {
     // 初めのアドレスはコントラクトのデプロイに使用されます。
     const [owner, otherAccount] = await ethers.getSigners();
 
     const funds = 100;
 
-    const Messenger = await hre.ethers.getContractFactory('Messenger');
+    const Messenger = await hre.ethers.getContractFactory("Messenger");
     const messenger = await Messenger.deploy({
       value: funds,
     } as Overrides);
@@ -359,8 +359,8 @@ describe('Messenger', function () {
     return { messenger, funds, owner, otherAccount };
   }
 
-  describe('Post', function () {
-    it('Should send the correct amount of tokens', async function () {
+  describe("Post", function () {
+    it("Should send the correct amount of tokens", async function () {
       const { messenger, owner, otherAccount } = await loadFixture(
         deployContract
       );
@@ -368,7 +368,7 @@ describe('Messenger', function () {
 
       // メッセージをpostした場合は、送り主(owner)からコントラクト(messenger)へ送金されます。
       await expect(
-        messenger.post('text', otherAccount.address, {
+        messenger.post("text", otherAccount.address, {
           value: test_deposit,
         })
       ).to.changeEtherBalances(
@@ -377,12 +377,12 @@ describe('Messenger', function () {
       );
     });
 
-    it('Should set the right Message', async function () {
+    it("Should set the right Message", async function () {
       const { messenger, owner, otherAccount } = await loadFixture(
         deployContract
       );
       const test_deposit = 1;
-      const test_text = 'text';
+      const test_text = "text";
 
       await messenger.post(test_text, otherAccount.address, {
         value: test_deposit,
@@ -412,7 +412,7 @@ async function deployContract() {
 
   const funds = 100;
 
-  const Messenger = await hre.ethers.getContractFactory('Messenger');
+  const Messenger = await hre.ethers.getContractFactory("Messenger");
   const messenger = await Messenger.deploy({
     value: funds,
   } as Overrides);
@@ -448,8 +448,8 @@ const messenger = await Messenger.deploy({
 続いてテスト内の1つ目の関数を確認しましょう。
 
 ```ts
-describe('Post', function () {
-  it('Should send the correct amount of tokens', async function () {
+describe("Post", function () {
+  it("Should send the correct amount of tokens", async function () {
     const { messenger, owner, otherAccount } = await loadFixture(
       deployContract
     );
@@ -457,7 +457,7 @@ describe('Post', function () {
 
     // メッセージをpostした場合は、送り主(owner)からコントラクト(messenger)へ送金されます。
     await expect(
-      messenger.post('text', otherAccount.address, {
+      messenger.post("text", otherAccount.address, {
         value: test_deposit,
       })
     ).to.changeEtherBalances([owner, messenger], [-test_deposit, test_deposit]);
@@ -492,15 +492,15 @@ describe('Post', function () {
 最後にもう1つのテスト内容を確認しましょう。
 
 ```ts
-describe('Post', function () {
+describe("Post", function () {
   // ...
 
-  it('Should set the right Message', async function () {
+  it("Should set the right Message", async function () {
     const { messenger, owner, otherAccount } = await loadFixture(
       deployContract
     );
     const test_deposit = 1;
-    const test_text = 'text';
+    const test_text = "text";
 
     await messenger.post(test_text, otherAccount.address, {
       value: test_deposit,
@@ -529,7 +529,7 @@ yarn test
 
 以下のような表示がされたらテスト成功です！
 
-![](/public/images/AVAX-Messenger/section-1/1_3_1.png)
+![](/images/AVAX-Messenger/section-1/1_3_1.png)
 
 ### 🙋‍♂️ 質問する
 

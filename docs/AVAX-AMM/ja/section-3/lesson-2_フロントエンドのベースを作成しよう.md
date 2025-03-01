@@ -120,13 +120,13 @@ client
 
 `Next.js`はルートディレクトリ直下の`public`ディレクトリを静的なリソース（画像やテキストデータなど）の配置場所と認識します。
 そのためソースコード内で画像のURLを`/image.png`と指定した場合、
-`Next.js`は自動的に`public`ディレクトリをルートとした`プロジェクトルート/public/image.png`を参照してくれます。
+`Next.js`は自動的に`public`ディレクトリをルートとした`プロジェクトルート/image.png`を参照してくれます。
 
 ディレクトリ内の`favicon.ico`以外のファイルを全て削除してください。
 そして新たに画像を追加します。
 
 以下の画像をダウンロードするか、あなたのお好きな画像を`bird.png`（または別の名前）という名前で`public`ディレクトリ内に保存してください。
-![](/public/images/AVAX-AMM/section-3/3_2_2.png)
+![](/images/AVAX-AMM/section-3/3_2_2.png)
 
 また、`favicon.ico`を別の画像にすると、あなたのwebアプリケーションのファビコンが変わるので自由に変更してみてください。
 
@@ -155,7 +155,7 @@ client
 `ethereum.ts`の中に以下のコードを記述してください。
 
 ```ts
-import { MetaMaskInpageProvider } from '@metamask/providers';
+import { MetaMaskInpageProvider } from "@metamask/providers";
 
 // window に ethereum を追加します。
 declare global {
@@ -165,7 +165,7 @@ declare global {
 }
 
 export const getEthereum = (): MetaMaskInpageProvider | null => {
-  if (typeof window !== 'undefined' && typeof window.ethereum !== 'undefined') {
+  if (typeof window !== "undefined" && typeof window.ethereum !== "undefined") {
     const { ethereum } = window;
     return ethereum;
   }
@@ -187,7 +187,7 @@ typescriptで`window.ethereum`を使用するためには、`window`に`ethereum
 `format.ts`の中に以下のコードを記述してください。
 
 ```ts
-import { BigNumber } from 'ethers';
+import { BigNumber } from "ethers";
 
 // PRECISIONありのshareに変換します。
 export const formatWithPrecision = (
@@ -221,7 +221,7 @@ shareについては一度離れていた部分なので、再確認したい方
 const regValidNumber = /^[0-9]+[.]?[0-9]*$/;
 
 export const validAmount = (amount: string): boolean => {
-  if (amount === '') {
+  if (amount === "") {
     return false;
   }
   if (!regValidNumber.test(amount)) {
@@ -241,9 +241,9 @@ export const validAmount = (amount: string): boolean => {
 `hooks`ディレクトリ内に`useWallet.ts`というファイルを作成し、以下のコードを記述してください。
 
 ```ts
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-import { getEthereum } from '../utils/ethereum';
+import { getEthereum } from "../utils/ethereum";
 
 type ReturnUseWallet = {
   currentAccount: string | undefined;
@@ -257,14 +257,14 @@ export const useWallet = (): ReturnUseWallet => {
   const connectWallet = async () => {
     try {
       if (!ethereum) {
-        alert('Get Wallet!');
+        alert("Get Wallet!");
         return;
       }
       const accounts = await ethereum.request({
-        method: 'eth_requestAccounts',
+        method: "eth_requestAccounts",
       });
       if (!Array.isArray(accounts)) return;
-      console.log('Connected: ', accounts[0]);
+      console.log("Connected: ", accounts[0]);
       setCurrentAccount(accounts[0]); // 簡易実装のため、配列の初めのアドレスを使用します。
     } catch (error) {
       console.log(error);
@@ -274,19 +274,19 @@ export const useWallet = (): ReturnUseWallet => {
   const checkIfWalletIsConnected = useCallback(async () => {
     try {
       if (!ethereum) {
-        console.log('Make sure you have Wallet!');
+        console.log("Make sure you have Wallet!");
         return;
       } else {
-        console.log('We have the ethereum object', ethereum);
+        console.log("We have the ethereum object", ethereum);
       }
-      const accounts = await ethereum.request({ method: 'eth_accounts' });
+      const accounts = await ethereum.request({ method: "eth_accounts" });
       if (!Array.isArray(accounts)) return;
       if (accounts.length !== 0) {
         const account = accounts[0];
-        console.log('Found an authorized account:', account);
+        console.log("Found an authorized account:", account);
         setCurrentAccount(account);
       } else {
-        console.log('No authorized account found');
+        console.log("No authorized account found");
       }
     } catch (error) {
       console.log(error);
@@ -392,16 +392,16 @@ client
 `Container.tsx`内に以下のコードを記述してください。
 
 ```tsx
-import { useState } from 'react';
+import { useState } from "react";
 
-import styles from './Container.module.css';
+import styles from "./Container.module.css";
 
 type Props = {
   currentAccount: string | undefined;
 };
 
 export default function Container({ currentAccount }: Props) {
-  const [activeTab, setActiveTab] = useState('Swap');
+  const [activeTab, setActiveTab] = useState("Swap");
 
   const changeTab = (tab: string) => {
     setActiveTab(tab);
@@ -414,49 +414,49 @@ export default function Container({ currentAccount }: Props) {
           <div
             className={
               styles.tabStyle +
-              ' ' +
-              (activeTab === 'Swap' ? styles.activeTab : '')
+              " " +
+              (activeTab === "Swap" ? styles.activeTab : "")
             }
-            onClick={() => changeTab('Swap')}
+            onClick={() => changeTab("Swap")}
           >
             Swap
           </div>
           <div
             className={
               styles.tabStyle +
-              ' ' +
-              (activeTab === 'Provide' ? styles.activeTab : '')
+              " " +
+              (activeTab === "Provide" ? styles.activeTab : "")
             }
-            onClick={() => changeTab('Provide')}
+            onClick={() => changeTab("Provide")}
           >
             Provide
           </div>
           <div
             className={
               styles.tabStyle +
-              ' ' +
-              (activeTab === 'Withdraw' ? styles.activeTab : '')
+              " " +
+              (activeTab === "Withdraw" ? styles.activeTab : "")
             }
-            onClick={() => changeTab('Withdraw')}
+            onClick={() => changeTab("Withdraw")}
           >
             Withdraw
           </div>
           <div
             className={
               styles.tabStyle +
-              ' ' +
-              (activeTab === 'Faucet' ? styles.activeTab : '')
+              " " +
+              (activeTab === "Faucet" ? styles.activeTab : "")
             }
-            onClick={() => changeTab('Faucet')}
+            onClick={() => changeTab("Faucet")}
           >
             Faucet
           </div>
         </div>
 
-        {activeTab === 'Swap' && <div>swap</div>}
-        {activeTab === 'Provide' && <div>provide</div>}
-        {activeTab === 'Withdraw' && <div>withdraw</div>}
-        {activeTab === 'Faucet' && <div>faucet</div>}
+        {activeTab === "Swap" && <div>swap</div>}
+        {activeTab === "Provide" && <div>provide</div>}
+        {activeTab === "Withdraw" && <div>withdraw</div>}
+        {activeTab === "Faucet" && <div>faucet</div>}
       </div>
       details
     </div>
@@ -532,9 +532,9 @@ export default function Container({ currentAccount }: Props) {
 `InputNumberBox.tsx`内に以下のコードを記述してください。
 
 ```tsx
-import { ChangeEvent } from 'react';
+import { ChangeEvent } from "react";
 
-import styles from './InputNumberBox.module.css';
+import styles from "./InputNumberBox.module.css";
 
 type Props = {
   leftHeader: string;
@@ -559,7 +559,7 @@ export default function InputNumberBox({
             type="number"
             value={value}
             onChange={(e) => onChange(e)}
-            placeholder={'Enter amount'}
+            placeholder={"Enter amount"}
           />
         </div>
         <div className={styles.rightContent}>{right}</div>
@@ -594,9 +594,9 @@ client
 ※初期設定のままなので編集箇所がない場合があります。
 
 ```tsx
-import type { AppProps } from 'next/app';
+import type { AppProps } from "next/app";
 
-import '../styles/globals.css';
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />;
@@ -612,12 +612,12 @@ export default MyApp;
 `index.tsx`内に以下のコードを記述してください。
 
 ```tsx
-import type { NextPage } from 'next';
-import Image from 'next/image';
+import type { NextPage } from "next";
+import Image from "next/image";
 
-import Container from '../components/Container/Container';
-import { useWallet } from '../hooks/useWallet';
-import styles from '../styles/Home.module.css';
+import Container from "../components/Container/Container";
+import { useWallet } from "../hooks/useWallet";
+import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   const { currentAccount, connectWallet } = useWallet();
@@ -631,13 +631,13 @@ const Home: NextPage = () => {
         </div>
         {currentAccount === undefined ? (
           <div className={styles.connectBtn} onClick={connectWallet}>
-            {' '}
-            Connect to wallet{' '}
+            {" "}
+            Connect to wallet{" "}
           </div>
         ) : (
           <div className={styles.connected}>
-            {' '}
-            {'Connected to ' + currentAccount}{' '}
+            {" "}
+            {"Connected to " + currentAccount}{" "}
           </div>
         )}
       </div>
@@ -678,14 +678,14 @@ yarn client dev
 以下のような画面が表示されれば成功です！
 `swap`などのタブを切り替えると各tabの名前が表示されるはずです。
 
-![](/public/images/AVAX-AMM/section-3/3_2_1.png)
+![](/images/AVAX-AMM/section-3/3_2_1.png)
 
 画面右上の`Connect to wallet`ボタンを押下するとウォレットと接続することができます。
 ⚠️ この先ウォレットを接続する場合は、ネットワークに`Fuji`を選択した状態で行ってください。
 
 MetaMaskの承認が終わると、`Connect to wallet`ボタンの部分があなたの接続しているウォレットのアドレスの表示に変更されます。
 
-![](/public/images/AVAX-AMM/section-3/3_2_3.png)
+![](/images/AVAX-AMM/section-3/3_2_3.png)
 
 ### 🌔 参考リンク
 

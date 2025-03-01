@@ -30,17 +30,17 @@ SepoliaにデプロイされたコントラクトのEtherscanページに移動�
 
 - `Create: NFTCollectible`と表記されているのコントラクトを確認してください。
 
-![](/public/images/Polygon-Generative-NFT/section-3/3_1_1.png)
+![](/images/Polygon-Generative-NFT/section-3/3_1_1.png)
 
 次に、コントラクトの作成に関連付けられている`Txn Hash`ハッシュをクリックしてください。
 
 トランザクションページに進んだら、`Click to see More`をクリックしましょう。
 
-![](/public/images/Polygon-Generative-NFT/section-3/3_1_2.png)
+![](/images/Polygon-Generative-NFT/section-3/3_1_2.png)
 
 `Gas limit & Usage by Txn`を確認してください。
 
-![](/public/images/Polygon-Generative-NFT/section-3/3_1_3.png)
+![](/images/Polygon-Generative-NFT/section-3/3_1_3.png)
 
 `Gas limit & Usage by Txn`の値は、コントラクトのデプロイに使用されたガスの量です。
 
@@ -68,7 +68,7 @@ SepoliaにデプロイされたコントラクトのEtherscanページに移動�
 
 これは、私がコントラクトをデプロイした際のETHのガス価格です。
 
-![](/public/images/Polygon-Generative-NFT/section-3/3_1_4.png)
+![](/images/Polygon-Generative-NFT/section-3/3_1_4.png)
 
 上図からわかるように、**イーサリアムメインネットのガス価格は 約 40 Gwei であり、Sepolia で消費されたガス価格よりも大幅に高くなっています。**
 
@@ -96,7 +96,7 @@ SepoliaにデプロイされたコントラクトのEtherscanページに移動�
 
 もう一度、あなたのコントラクトアドレスをEtherscanで呼び出し、`Mint NFTs`と書かれているトランザクションの中身を見ていきましょう。
 
-![](/public/images/Polygon-Generative-NFT/section-3/3_1_5.png)
+![](/images/Polygon-Generative-NFT/section-3/3_1_5.png)
 
 イーサリアムメインネット上で私のコントラクトからNFTを1つMintする際のコストの計算式は以下になります。
 
@@ -126,7 +126,7 @@ NFTを0.01 ETHで販売した場合、ユーザーは追加で実際のNFTの約
 
 2022年2月現在、ガス料金は3 Gwei程度です。
 
-![](/public/images/Polygon-Generative-NFT/section-3/3_1_6.png)
+![](/images/Polygon-Generative-NFT/section-3/3_1_6.png)
 
 これをベースに、Polygonのサイドチェーンでコントラクトをデプロイするコストを計算してみましょう。
 

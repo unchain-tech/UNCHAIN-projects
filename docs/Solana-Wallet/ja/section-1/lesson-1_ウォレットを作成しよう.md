@@ -1,4 +1,4 @@
-### 👛 HDウォレットについて
+### 👛 HD ウォレットについて
 
 このセクションでは、HDウォレットと呼ばれる種類のウォレットを構築します。HDとは階層的決定性（Hierarchy Deterministic）の略です。
 
@@ -8,11 +8,10 @@
 
 シードは覚えにくい文字列ですので、シードから「シードフレーズ」や「リカバリーフレーズ」などと呼ばれる、12個から24個の単語に変換して記録しておく方法が使われています。
 
-参考: [暗号資産におけるウォレットとは② 〜HDウォレット編〜
+参考: [暗号資産におけるウォレットとは ② 〜HD ウォレット編〜
 ](https://zelos.co.jp/crypto-asset-wallet-02-hd-wallet)
 
-
-### ⏬ BIP39ライブラリを追加する
+### ⏬ BIP39 ライブラリを追加する
 
 ここからは、`components/GenerateWallet/index.js`ファイルを更新してGenerateWalletコンポーネントを作成していきます。
 
@@ -32,15 +31,15 @@ npm install bip39@^3.1.0
 
 ライブラリのインストールが完了したら、 ファイルの先頭でライブラリを読み込みましょう。
 
-```javascript
-import * as bip39 from 'bip39';
+```js
+import * as bip39 from "bip39";
 ```
 
 ### 🏭 ニーモニックフレーズを生成する
 
 `BIP39`にはニーモニックフレーズを生成するためのメソッド`generateMnemonic`があります。これを呼び出し、変数に格納してみましょう。
 
-```javascript
+```js
 const generatedMnemonic = bip39.generateMnemonic();
 ```
 
@@ -58,7 +57,7 @@ const generatedMnemonic = bip39.generateMnemonic();
 
 `BIP39`ライブラリに戻ると、`mnemonicToSeedSync(mnemonic)`というメソッドがあり、16進数のリストのような`Buffer`オブジェクトが返されます。このメソッドを実行し、生成したニーモニックを渡すことで、テストすることができます。
 
-```javascript
+```js
 const seed = bip39.mnemonicToSeedSync(generatedMnemonic);
 
 console.log(seed);
@@ -69,7 +68,7 @@ console.log(seed);
 
 `Keypair`クラスは32バイトの`Uint8Array`を必要としますが、現在は64バイトの`Uint8Array`を取得しています。シードをsliceして、最初の32バイトだけを保持するようにしましょう。
 
-```javascript
+```js
 const seed = bip39.mnemonicToSeedSync(generatedMnemonic).slice(0, 32);
 
 console.log(seed);
@@ -78,10 +77,10 @@ console.log(seed);
 
 正しい形式のシードがあれば、`Keypair`の`fromSeed`メソッドを使って、アカウントのキーペアを生成することができます。
 
-```javascript
+```js
 const newAccount = Keypair.fromSeed(new Uint8Array(seed));
 
-console.log('newAccount', newAccount.publicKey.toString());
+console.log("newAccount", newAccount.publicKey.toString());
 // > ランダムな文字列
 ```
 
@@ -91,14 +90,14 @@ console.log('newAccount', newAccount.publicKey.toString());
 
 まずは、下記のインポート文を追加します。
 
-```javascript
-import { Keypair } from '@solana/web3.js';
-import { useState } from 'react';
+```js
+import { Keypair } from "@solana/web3.js";
+import { useState } from "react";
 ```
 
 次に、`export default function GenerateWallet() {`の下に下記のコードを追加します。
 
-```javascript
+```js
 const generateWallet = () => {
   const generatedMnemonic = bip39.generateMnemonic();
   // ニーモニックフレーズを使用して、シードを生成します。
@@ -117,7 +116,7 @@ const generateWallet = () => {
 
 GenerateWalletコンポーネントの引数に`setAccount`を記述し、`export default function GenerateWallet() {`の直下に、`mnemonic`を保持する状態変数を定義しましょう。
 
-```javascript
+```js
 // `{ setAccount }`を引数に追加
 export default function GenerateWallet({ setAccount }) {
   // 下記を追加
@@ -128,7 +127,7 @@ export default function GenerateWallet({ setAccount }) {
 
 さきほど定義した`generateWallet`関数を呼び出すためのボタンを用意しましょう。return文を下記のコードで更新してください。
 
-```javascript
+```js
 return (
   <>
     <button
@@ -161,16 +160,16 @@ return (
 
 - 期待するボタンがレンダリングされるか
 
-```javascript
+```js
 /** テスト内容 */
-it('should exist generate wallet button', () => {
+it("should exist generate wallet button", () => {
   /** 準備 */
   /** コンポーネントをレンダリングする */
   render(<GenerateWallet />);
 
   /** 実行 */
   /** 「ウォレットを生成」ボタン要素を取得する */
-  const btnElement = screen.getByRole('button', {
+  const btnElement = screen.getByRole("button", {
     name: /ウォレットを生成/i,
   });
 
@@ -182,18 +181,18 @@ it('should exist generate wallet button', () => {
 
 - ボタンを押したときに適切な関数が実行されるか
 
-```javascript
-it('should implement generate wallet flow', async () => {
+```js
+it("should implement generate wallet flow", async () => {
   /** 準備 */
   /** GenerateWalletコンポーネントに渡すモック関数を作成する */
   const mockedSetAccount = jest.fn();
   /** 「ウォレットを生成」ボタンを押したときに実行される関数の戻り値にダミーの値を設定する */
   bip39.generateMnemonic.mockImplementation(() => dummyMnemonic);
   bip39.mnemonicToSeedSync.mockImplementation(() => dummySeed);
-  jest.spyOn(Keypair, 'fromSeed').mockImplementation(() => dummyAccount);
+  jest.spyOn(Keypair, "fromSeed").mockImplementation(() => dummyAccount);
 
   render(<GenerateWallet setAccount={mockedSetAccount} />);
-  const btnElement = screen.getByRole('button', {
+  const btnElement = screen.getByRole("button", {
     name: /ウォレットを生成/i,
   });
 
@@ -225,7 +224,7 @@ npm run test
 
 components/GenerateWallet/index.test.jsが`PASS`していることを確認できたらOKです！
 
-![](/public/images/Solana-Wallet/section-1/1_1_1.png)
+![](/images/Solana-Wallet/section-1/1_1_1.png)
 
 ### 🖥 生成したウォレットアドレスを表示する
 
@@ -233,13 +232,13 @@ components/GenerateWallet/index.test.jsが`PASS`していることを確認で�
 
 まずは、`GenerateWallet`コンポーネントをインポートしましょう。
 
-```javascript
-import GenerateWallet from '../components/GenerateWallet';
+```js
+import GenerateWallet from "../components/GenerateWallet";
 ```
 
 `useState`のインポート文を追加し、`export default function Home() {`の直下に、アカウントを保時する状態変数を定義しましょう。
 
-```javascript
+```js
 // `useState`のインポート文を追加
 import { useState } from 'react';
 
@@ -250,7 +249,7 @@ export default function Home() {
 
 `GenerateWallet`コンポーネントを呼び出すコードを追加しましょう。
 
-```javascript
+```js
 <div>
   <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">
     STEP1: ウォレットを新規作成する
@@ -262,19 +261,21 @@ export default function Home() {
 
 最後に、`My Wallet`の下に生成したウォレットのアドレスを表示するコードを追加しましょう。
 
-```javascript
-<h3 className="p-2 border-dotted border-l-8 border-l-indigo-600">
-  My Wallet
-</h3>
-{/* 下記を追加 */}
-{account && (
-  <>
-    <div className="my-6 text-indigo-600 font-bold">
-      <span>アドレス: </span>
-      {account.publicKey.toString()}
-    </div>
-  </>
-)}
+```js
+<h3 className="p-2 border-dotted border-l-8 border-l-indigo-600">My Wallet</h3>;
+{
+  /* 下記を追加 */
+}
+{
+  account && (
+    <>
+      <div className="my-6 text-indigo-600 font-bold">
+        <span>アドレス: </span>
+        {account.publicKey.toString()}
+      </div>
+    </>
+  );
+}
 ```
 
 ### ✅ 動作確認
@@ -292,10 +293,10 @@ export default function Home() {
 
 - `components/GenerateWallet/index.js`
 
-```javascript
-import * as bip39 from 'bip39';
-import { Keypair } from '@solana/web3.js';
-import { useState } from 'react';
+```js
+import * as bip39 from "bip39";
+import { Keypair } from "@solana/web3.js";
+import { useState } from "react";
 
 export default function GenerateWallet({ setAccount }) {
   const [mnemonic, setMnemonic] = useState(null);
@@ -413,7 +414,7 @@ export default function Home() {
 
 ### ☕️ 豆知識
 
-ニーモニック（Mnemonic）は、日本語で`記憶を助ける短い語句`ということを意味するそうですよ🥭
+ニーモニック（Mnemonic）は、日本語で`記憶を助ける短い語句`ということを意味するそうですよ 🥭
 
 ### 🙋‍♂️ 質問する
 
@@ -430,4 +431,4 @@ export default function Home() {
 
 ---
 
-ウォレットが完成しました!次のレッスンに進んで、アプリにウォレットを連携させていきましょう✨
+ウォレットが完成しました!次のレッスンに進んで、アプリにウォレットを連携させていきましょう ✨

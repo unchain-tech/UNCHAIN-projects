@@ -33,7 +33,7 @@ CSSや文章を変更したり、画像や動画を自分のWebアプリケー�
 
 まず、`App.js`の中にある下記のコードを確認します。
 
-```javascript
+```js
 /* ABIを参照 */
 const wavePortalContract = new ethers.Contract(
   contractAddress,
@@ -46,8 +46,8 @@ console.log("Retrieved total wave count...", count.toNumber());
 
 このコードの直下に下記を追加しましょう。
 
-```javascript
-let contractBalance = await provider.getBalance(wavePortalContract.address);
+```js
+const contractBalance = await provider.getBalance(wavePortalContract.address);
 console.log("Contract balance:", ethers.utils.formatEther(contractBalance));
 ```
 
@@ -57,7 +57,7 @@ console.log("Contract balance:", ethers.utils.formatEther(contractBalance));
 
 次に、`App.js`の中にある下記のコードを確認します。
 
-```javascript
+```js
 /* コントラクトに👋（wave）を書き込む */
 const waveTxn = await wavePortalContract.wave(messageValue, {
   gasLimit: 300000,
@@ -71,14 +71,12 @@ console.log("Retrieved total wave count...", count.toNumber());
 
 このコードの直下に下記を追加しましょう。
 
-```javascript
-let contractBalance = await provider.getBalance(wavePortalContract.address);
-let contractBalance_post = await provider.getBalance(
+```js
+const contractBalancePost = await provider.getBalance(
   wavePortalContract.address
 );
-console.log("Contract balance:", ethers.utils.formatEther(contractBalance));
 /* コントラクトの残高が減っていることを確認 */
-if (contractBalance_post.lt(contractBalance)) {
+if (contractBalancePost.lt(contractBalance)) {
   /* 減っていたら下記を出力 */
   console.log("User won ETH!");
 } else {
@@ -86,7 +84,7 @@ if (contractBalance_post.lt(contractBalance)) {
 }
 console.log(
   "Contract balance after wave:",
-  ethers.utils.formatEther(contractBalance_post)
+  ethers.utils.formatEther(contractBalancePost)
 );
 ```
 
@@ -94,7 +92,7 @@ console.log(
 
 Webアプリケーションを`Inspect`して、下記のような結果がConsoleに出力されているか確認しましょう。
 
-![](/public/images/ETH-dApp/section-4/4_2_1.png)
+![](/images/ETH-dApp/section-4/4_2_1.png)
 
 ここでは、ユーザーがETHを獲得したこと、コントラクトの資金が`0.000996`から`0.000995`に減少したことがわかります。
 
@@ -105,10 +103,10 @@ Sepolia Etherscanにコントラクトのアドレスを貼り付けて、発生
 それでは、上記で実行した最新のトランザクションを見ていきましょう。
 
 下図のように、確認したい`Txn Hash`を選択します。
-![](/public/images/ETH-dApp/section-4/4_2_2.png)
+![](/images/ETH-dApp/section-4/4_2_2.png)
 
 トランザクションの情報が、確認できます。
-![](/public/images/ETH-dApp/section-4/4_2_3.png)
+![](/images/ETH-dApp/section-4/4_2_3.png)
 枠で囲った部分に、先程のトランザクションの結果が表示されています。
 
 少額のETHをコントラクトアドレスからユーザーアドレスに転送したことがわかります。
@@ -139,15 +137,15 @@ Vercelのアカウントを取得したら、下記を実行しましょう。
 
 1\. `Dashboard`へ進んで、`New Project`を選択してください。
 
-![](/public/images/ETH-dApp/section-4/4_2_4.png)
+![](/images/ETH-dApp/section-4/4_2_4.png)
 
 2\. `Import Git Repository`で自分のGitHubアカウントを接続したら、`ETH-dApp`を選択し、`Import`してください。
 
-![](/public/images/ETH-dApp/section-4/4_2_5.png)
+![](/images/ETH-dApp/section-4/4_2_5.png)
 
 3\. プロジェクトを作成します。`Root Directory`が「packages/client」となっていることを確認してください。
 
-![](/public/images/ETH-NFT-Collection/section-4/4_2_9.png)
+![](/images/ETH-dApp/section-4/4_2_6.png)
 
 4\. `Deploy`ボタンを推しましょう。
 
@@ -156,7 +154,7 @@ VercelはGitHubと連動しているので、GitHubが更新されるたびに�
 下記のように、`Building`ログが出力されます。
 基本的に`warning`は無視して問題ありません。
 
-![](/public/images/ETH-dApp/section-4/4_2_7.png)
+![](/images/ETH-dApp/section-4/4_2_7.png)
 
 こちらが、今回のプロジェクトで作成されるWebアプリケーションのデモは、[こちら](https://eth-dapp-three.vercel.app/) です。
 
@@ -166,18 +164,17 @@ VercelはGitHubと連動しているので、GitHubが更新されるたびに�
 
 ### 🙉 GitHub に関するメモ
 
-**※今回は`ETH-dApp`のみをアップロードするため、以下の作業は必要ありません**
 **GitHub にコントラクト( `contract`)のコードをアップロードする際は、秘密鍵を含むハードハット構成ファイルをリポジトリにアップロードしないよう注意しましょう**
 
-秘密鍵などのファイルを隠すために、ターミナルで`contract`に移動して、下記を実行してください。
+秘密鍵などのファイルを隠すために、ターミナルで`ETH-dApp`にいることを確認して、下記を実行してください。
 
 ```
-yarn add --dev dotenv
+yarn workspace contract add --dev dotenv
 ```
 
 `dotenv`モジュールに関する詳しい説明は、[こちら](https://maku77.github.io/nodejs/env/dotenv.html)を参照してください。
 
-`dotenv`をインストールしたら、`.env`ファイルを更新します。
+`dotenv`をインストールしたら、`packages/contract`ディレクトリ内に`.env`ファイルを更新します。
 
 ファイルの先頭に`.`がついているファイルは、「不可視ファイル」です。
 
@@ -185,7 +182,7 @@ yarn add --dev dotenv
 
 操作されては困るファイルについては、このように「不可視」の属性を持たせて、一般の人が触れられないようにします。
 
-ターミナル上で`contract`ディレクトリにいることを確認し、下記を実行しましょう。VS Codeから`.env`ファイルを開きます。
+ターミナル上で`packages/contract`ディレクトリにいることを確認し、下記を実行しましょう。VS Codeから`.env`ファイルを開きます。
 
 ```
 code .env
@@ -201,8 +198,7 @@ PROD_ALCHEMY_KEY = メインネットにデプロイする際に使用するAlch
 
 `.env`を更新したら、 `hardhat.config.js`ファイルを次のように更新してください。
 
-```javascript
-// hardhat.config.js
+```js
 require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
 
@@ -249,7 +245,7 @@ NFTを取得する条件は、以下のようになります。
 
 3. このページの最後にリンクされているProject Completion Formに記入する
 
-4. Discordの`🔥｜post-your-projects`チャンネルに、あなたのWebサイトをシェアしてください 😉🎉 Discordに投稿する際に、追加実装した機能とその概要も教えていただけると幸いです!
+4. Discordの`🔥｜completed-projects`チャンネルに、あなたのWebサイトをシェアしてください 😉🎉 Discordに投稿する際に、追加実装した機能とその概要も教えていただけると幸いです!
 
 プロジェクトを完成させていただいた方には、NFTをお送りします。
 

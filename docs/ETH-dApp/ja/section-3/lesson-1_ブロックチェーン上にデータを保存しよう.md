@@ -15,13 +15,17 @@
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
+
 import "hardhat/console.sol";
+
 contract WavePortal {
     uint256 private _totalWaves;
+
     /*
     * NewWaveイベントの作成
     */
     event NewWave(address indexed from, uint256 timestamp, string message);
+
     /*
     * Waveという構造体を作成。
     * 構造体の中身は、カスタマイズすることができます。
@@ -30,15 +34,18 @@ contract WavePortal {
         address waver; //「👋（wave）」を送ったユーザーのアドレス
         string message; // ユーザーが送ったメッセージ
         uint256 timestamp; // ユーザーが「👋（wave）」を送った瞬間のタイムスタンプ
+
     }
     /*
     * 構造体の配列を格納するための変数wavesを宣言。
     * これで、ユーザーが送ってきたすべての「👋（wave）」を保持することができます。
     */
     Wave[] private _waves;
+
     constructor() {
         console.log("WavePortal - Smart Contract!");
     }
+
     /*
     * _messageという文字列を要求するようにwave関数を更新。
     * _messageは、ユーザーがフロントエンドから送信するメッセージです。
@@ -46,15 +53,18 @@ contract WavePortal {
     function wave(string memory _message) public {
         _totalWaves += 1;
         console.log("%s waved w/ message %s", msg.sender, _message);
+
         /*
          * 「👋（wave）」とメッセージを配列に格納。
          */
         _waves.push(Wave(msg.sender, _message, block.timestamp));
+
         /*
          * コントラクト側でemitされたイベントに関する通知をフロントエンドで取得できるようにする。
          */
         emit NewWave(msg.sender, block.timestamp, _message);
     }
+
     /*
      * 構造体配列のwavesを返してくれるgetAllWavesという関数を追加。
      * これで、私たちのWEBアプリからwavesを取得することができます。
@@ -62,6 +72,7 @@ contract WavePortal {
     function getAllWaves() public view returns (Wave[] memory) {
         return _waves;
     }
+
     function getTotalWaves() public view returns (uint256) {
         // コントラクトが出力する値をコンソールログで表示する。
         console.log("We have %d total waves!", _totalWaves);
@@ -101,7 +112,7 @@ emit NewWave(msg.sender, block.timestamp, _message);
 
 `const contractABI = abi.abi;`の直下に下記を追加しましょう。
 
-```javascript
+```js
 /* すべてのwavesを保存する状態変数を定義 */
 const [allWaves, setAllWaves] = useState([]);
 
@@ -168,6 +179,7 @@ useEffect(() => {
     );
     wavePortalContract.on("NewWave", onNewWave);
   }
+
   /*メモリリークを防ぐために、NewWaveのイベントを解除します*/
   return () => {
     if (wavePortalContract) {
@@ -181,7 +193,7 @@ useEffect(() => {
 
 `getAllWaves`関数は、`waves`関数とほぼ同じ仕様をしています。
 
-```javascript
+```js
 const getAllWaves = async () => {
   const { ethereum } = window;
 
@@ -218,7 +230,7 @@ const getAllWaves = async () => {
 
 まずは下記のコードを見ていきましょう。
 
-```javascript
+```js
 const provider = new ethers.providers.Web3Provider(ethereum);
 ```
 
@@ -226,7 +238,7 @@ const provider = new ethers.providers.Web3Provider(ethereum);
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```js
 const signer = provider.getSigner();
 ```
 
@@ -234,7 +246,7 @@ const signer = provider.getSigner();
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```js
 const wavePortalContract = new ethers.Contract(
   contractAddress,
   contractABI,
@@ -253,7 +265,7 @@ const wavePortalContract = new ethers.Contract(
 
 最後に、下記のコードを見ていきましょう。
 
-```javascript
+```js
 const wavesCleaned = waves.map((wave) => {
   return {
     address: wave.waver,
@@ -271,7 +283,7 @@ const wavesCleaned = waves.map((wave) => {
 
 それでは、`onNewWave`関数を見ていきましょう。
 
-```javascript
+```js
 const onNewWave = (from, timestamp, message) => {
   console.log("NewWave", from, timestamp, message);
   setAllWaves((prevState) => [
@@ -307,7 +319,7 @@ const onNewWave = (from, timestamp, message) => {
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```js
 if (window.ethereum) {
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
@@ -322,19 +334,19 @@ if (window.ethereum) {
 }
 ```
 
-`wavePortalContract.on("NewWave", onNewWave)`により、上記で定義した`onNewWave`が呼び出されます。
+`wavePortalContract.on('NewWave', onNewWave)`により、上記で定義した`onNewWave`が呼び出されます。
 
-`wavePortalContract.on("NewWave", onNewWave)`により、フロントエンドは、`NewWave`イベントがコントラクトから発信されたときに、情報を受け取ります。これにより、情報がフロントエンドに反映されます。
+`wavePortalContract.on('NewWave', onNewWave)`により、フロントエンドは、`NewWave`イベントがコントラクトから発信されたときに、情報を受け取ります。これにより、情報がフロントエンドに反映されます。
 
 このことを、**コンポーネント（情報）がマウント（フロントエンドに反映）される**と言います。
 
 最後に下記のコードを見ていきましょう。
 
-```javascript
+```js
   return () => {
     if (wavePortalContract) {
     /* ここに注目 */
-    wavePortalContract.off("NewWave", onNewWave);
+    wavePortalContract.off('NewWave', onNewWave);
     }
   };
 }, []);
@@ -342,7 +354,7 @@ if (window.ethereum) {
 
 コンポーネントがマウントされる状態をそのままにしておくと、メモリリーク（コンピュータを動作させている内に、使用可能なメモリの容量が減っていってしまう現象）が発生する可能性があります。
 
-メモリリークを防ぐために、`wavePortalContract.off("NewWave", onNewWave)`では、`onNewWave`関数の稼働をやめています。これは、イベントリスナをやめることを意味しています。
+メモリリークを防ぐために、`wavePortalContract.off('NewWave', onNewWave)`では、`onNewWave`関数の稼働をやめています。これは、イベントリスナをやめることを意味しています。
 
 ### 🧐 テストを実行する
 
@@ -350,25 +362,30 @@ if (window.ethereum) {
 
 下記のように`run.js`を更新してください。
 
-```javascript
+```js
 const main = async () => {
   const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
   const waveContract = await waveContractFactory.deploy();
   console.log("Contract added to:", waveContract.address);
+
   let waveCount;
   waveCount = await waveContract.getTotalWaves();
   console.log(waveCount.toNumber());
+
   /**
    * 「👋（wave）」を送る
    */
   let waveTxn = await waveContract.wave("A message!");
   await waveTxn.wait(); // トランザクションが承認されるのを待つ（テスト:1回目）
+
   const [_, randomPerson] = await hre.ethers.getSigners();
   waveTxn = await waveContract.connect(randomPerson).wave("Another message!");
   await waveTxn.wait(); // トランザクションが承認されるのを待つ（テスト:2回目）
+
   let allWaves = await waveContract.getAllWaves();
   console.log(allWaves);
 };
+
 const runMain = async () => {
   try {
     await main();
@@ -378,6 +395,7 @@ const runMain = async () => {
     process.exit(1);
   }
 };
+
 runMain();
 ```
 
@@ -465,7 +483,7 @@ Contract deployed to:  0x8B1D31bFBf34dBF12c73034215752261e55b443c
 Contract deployed to: 0x... ← あなたのコントラクトアドレスをコピー
 ```
 
-コピーしたアドレスを`App.js`の`const contractAddress = "こちら"`に貼り付けましょう。
+コピーしたアドレスを`App.js`の`const contractAddress = 'こちら'`に貼り付けましょう。
 
 **3 \. 以前と同じように`artifacts`から ABI ファイルを取得します。下記のステップを実行してください。**
 
@@ -495,11 +513,13 @@ Contract deployed to: 0x... ← あなたのコントラクトアドレスをコ
 
 3. Webサイトにそのデータを表示する。
 
-```javascript
-import React, { useEffect, useState } from "react";
-import "./App.css";
+```js
 /* ethers 変数を使えるようにする*/
 import { ethers } from "ethers";
+import React, { useEffect, useState } from "react";
+
+import "./App.css";
+
 /* ABIファイルを含むWavePortal.jsonファイルをインポートする*/
 import abi from "./utils/WavePortal.json";
 
@@ -611,6 +631,7 @@ const App = () => {
       console.log(error);
     }
   };
+
   /* connectWalletメソッドを実装 */
   const connectWallet = async () => {
     try {
@@ -628,6 +649,7 @@ const App = () => {
       console.log(error);
     }
   };
+
   /* waveの回数をカウントする関数を実装 */
   const wave = async () => {
     try {
@@ -736,6 +758,7 @@ const App = () => {
     </div>
   );
 };
+
 export default App;
 ```
 
@@ -747,7 +770,7 @@ export default App;
 
 下記をReactNodeを返す関数型`App`の中に実装しました。
 
-```javascript
+```js
 /* ユーザーのパブリックウォレットアドレスを保存するために使用する状態変数を定義 */
 const [currentAccount, setCurrentAccount] = useState("");
 /* ユーザーのメッセージを保存するために使用する状態変数を定義 */
@@ -758,21 +781,21 @@ const [allWaves, setAllWaves] = useState([]);
 
 ここでは、ユーザーの情報を保存するために使用する変数と関数を定義し、初期化しています。
 
-```javascript
+```js
 const [currentAccount, setCurrentAccount] = useState("");
 ```
 
 - ユーザーのパブリックウォレットを格納する変数(＝ `currentAccount`)
 - ユーザーのパブリックウォレットを更新する関数(＝ `setCurrentAccount`)
 
-```javascript
+```js
 const [messageValue, setMessageValue] = useState("");
 ```
 
 - ユーザーのメッセージを格納する変数(＝ `messageValue`)
 - ユーザーのメッセージを更新する関数(＝ `setMessageValue`)
 
-```javascript
+```js
 const [allWaves, setAllWaves] = useState([]);
 ```
 
@@ -783,7 +806,7 @@ const [allWaves, setAllWaves] = useState([]);
 
 詳しく見ていきましょう。
 
-> ```javascript
+> ```js
 > const wavesCleaned = waves.map((wave) => {
 >   return {
 >     address: wave.waver,
@@ -806,7 +829,7 @@ const [allWaves, setAllWaves] = useState([]);
 >
 > 最後に、`AllWaves`の状態を更新しています。
 >
-> ```javascript
+> ```js
 > setAllWaves(wavesCleaned);
 > ```
 >
@@ -816,7 +839,7 @@ const [allWaves, setAllWaves] = useState([]);
 
 > 下記を実装して、トランザクションに使用できるガス代（＝`gasLimit`）に制限を設けています。
 >
-> ```javascript
+> ```js
 > wavePortalContract.wave(messageValue, { gasLimit: 300000 });
 > ```
 >
@@ -841,7 +864,7 @@ const [allWaves, setAllWaves] = useState([]);
 > 基本的な**1Gas 当たりの価格**は 「**21 `Gwei`**」 で送金されます。
 >
 > ガス価格の単位として使われている「 **`wei`** 」は、イーサリアムの単位で 1ETH とのレートは下図のようになっています。
-> ![](/public/images/ETH-dApp/section-3/3_1_1.png)
+> ![](/images/ETH-dApp/section-3/3_1_1.png)
 >
 > **`G`** はギガのことで、`1Gwei = 0.000000001ETH`です。
 >
@@ -853,7 +876,7 @@ const [allWaves, setAllWaves] = useState([]);
 
 下記をフロントエンドに実装しました。
 
-```javascript
+```js
 {
   currentAccount && (
     <textarea
@@ -872,7 +895,7 @@ const [allWaves, setAllWaves] = useState([]);
 
 3 \. 送られてきたメッセージをフロントエンドに表示する
 
-```javascript
+```js
 {
   allWaves
     .slice(0)
@@ -905,7 +928,7 @@ const [allWaves, setAllWaves] = useState([]);
 
 こちらが、フロントエンドの実装結果の例になります。
 
-![](/public/images/ETH-dApp/section-3/3_1_2.png)
+![](/images/ETH-dApp/section-3/3_1_2.png)
 
 ターミナルを閉じるときは、以下のコマンドが使えます ✍️
 

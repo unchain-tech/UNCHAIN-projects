@@ -268,13 +268,13 @@ describe('Messenger', function () {
 `Accept`のテストケースに関して注目して1つずつテストを見てきます。
 
 ```ts
-describe('Accept', function () {
-  it('isPending must be changed', async function () {
+describe("Accept", function () {
+  it("isPending must be changed", async function () {
     const { messenger, otherAccount } = await loadFixture(deployContract);
     const first_index = 0;
 
     // ownerがotherAccount.addressを受取人にしてメッセージをpost
-    await messenger.post('text', otherAccount.address);
+    await messenger.post("text", otherAccount.address);
     let messages = await messenger.connect(otherAccount).getOwnMessages();
     // post直後のメッセージは保留中なのでisPendingはtrueです。
     expect(messages[0].isPending).to.equal(true);
@@ -294,14 +294,14 @@ describe('Accept', function () {
 `otherAccount`が自分宛のメッセージに対して`accept`をした後、メッセージの`isPending`の内容が正しく変更されているかを確認しています。
 
 ```ts
-describe('Accept', function () {
+describe("Accept", function () {
   // ...
 
-  it('Should send the correct amount of tokens', async function () {
+  it("Should send the correct amount of tokens", async function () {
     const { messenger, otherAccount } = await loadFixture(deployContract);
     const test_deposit = 10;
 
-    await messenger.post('text', otherAccount.address, {
+    await messenger.post("text", otherAccount.address, {
       value: test_deposit,
     });
 
@@ -323,16 +323,16 @@ describe('Accept', function () {
 `otherAccount`がメッセージを`accept`した後にメッセージトークンが正しく送信されているかを確認しています。
 
 ```ts
-describe('Accept', function () {
+describe("Accept", function () {
   // ...
 
-  it('Should revert with the right error if called in duplicate', async function () {
+  it("Should revert with the right error if called in duplicate", async function () {
     const { messenger, otherAccount } = await loadFixture(deployContract);
 
-    await messenger.post('text', otherAccount.address, { value: 1 });
+    await messenger.post("text", otherAccount.address, { value: 1 });
     await messenger.connect(otherAccount).accept(0);
     await expect(messenger.connect(otherAccount).accept(0)).to.be.revertedWith(
-      'This message has already been confirmed'
+      "This message has already been confirmed"
     );
   });
 });
@@ -344,7 +344,7 @@ describe('Accept', function () {
 このテストは`Messenger`コントラクトの`_confirmMessage`関数内の`require`が正しく機能しているかを確認しています。
 
 ```ts
-await expect(関数呼び出し).to.be.revertedWith('リバート時のメッセージ');
+await expect(関数呼び出し).to.be.revertedWith("リバート時のメッセージ");
 ```
 
 とすることでトランザクションがキャンセルされた際のメッセージも検証することができます。
@@ -362,7 +362,7 @@ yarn test
 
 以下のような表示がされたらテスト成功です！
 
-![](/public/images/AVAX-Messenger/section-1/1_4_1.png)
+![](/images/AVAX-Messenger/section-1/1_4_1.png)
 
 ### 🙋‍♂️ 質問する
 

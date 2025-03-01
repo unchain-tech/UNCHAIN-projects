@@ -11,28 +11,32 @@
 `WavePortal.sol`の`wave`関数を下記のように更新していきます。
 
 ```solidity
-function wave(string memory _message) public {
-	totalWaves += 1;
-	console.log("%s waved w/ message %s", msg.sender, _message);
-	/*
-	* 「👋（wave）」とメッセージを配列に格納。
-	*/
-	_waves.push(Wave(msg.sender, _message, block.timestamp));
-	/*
-	* コントラクト側でemitされたイベントに関する通知をフロントエンドで取得できるようにする。
-	*/
-	emit NewWave(msg.sender, block.timestamp, _message);
-	/*
-	* 「👋（wave）」を送ってくれたユーザーに0.0001ETHを送る
-	*/
-	uint256 prizeAmount = 0.0001 ether;
-	require(
-		prizeAmount <= address(this).balance,
-		"Trying to withdraw more money than the contract has."
-	);
-	(bool success, ) = (msg.sender).call{value: prizeAmount}("");
-	require(success, "Failed to withdraw money from contract.");
-}
+    function wave(string memory _message) public {
+        _totalWaves += 1;
+        console.log("%s waved w/ message %s", msg.sender, _message);
+
+        /*
+        * 「👋（wave）」とメッセージを配列に格納。
+        */
+        _waves.push(Wave(msg.sender, _message, block.timestamp));
+
+        /*
+        * コントラクト側でemitされたイベントに関する通知をフロントエンドで取得できるようにする。
+        */
+        emit NewWave(msg.sender, block.timestamp, _message);
+
+        /*
+        * 「👋（wave）」を送ってくれたユーザーに0.0001ETHを送る
+        */
+        uint256 prizeAmount = 0.0001 ether;
+        require(
+            prizeAmount <= address(this).balance,
+            "Trying to withdraw more money than the contract has."
+        );
+
+        (bool success, ) = (msg.sender).call{value: prizeAmount}("");
+        require(success, "Failed to withdraw money from contract.");
+    }
 ```
 
 コードを見ていきましょう。
@@ -47,8 +51,8 @@ function wave(string memory _message) public {
 >
 > ```solidity
 > require(
-> 	prizeAmount <= address(this).balance,
-> 	"Trying to withdraw more money than the contract has."
+>     prizeAmount <= address(this).balance,
+>     "Trying to withdraw more money than the contract has."
 > );
 > ```
 >
@@ -77,7 +81,7 @@ function wave(string memory _message) public {
 
 ```solidity
 constructor() payable {
-  console.log("We have been constructed!");
+    console.log("We have been constructed!");
 }
 ```
 
@@ -92,7 +96,7 @@ constructor() payable {
 
 - `run.js`はコントラクトのコア機能のテストを行うためのスクリプトです。
 
-```javascript
+```js
 const main = async () => {
   const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
   /*
@@ -151,7 +155,7 @@ runMain();
 
 **1 \. 0.1ETH をコントラクトに提供する**
 
-```javascript
+```js
 const waveContract = await waveContractFactory.deploy({
   value: hre.ethers.utils.parseEther("0.1"),
 });
@@ -159,7 +163,7 @@ const waveContract = await waveContractFactory.deploy({
 
 `hre.ethers.utils.parseEther("0.1")`によって、コントラクトがデプロイされた際に、コントラクトに0.1 ETHの資金を提供することを宣言しています。
 
-```javascript
+```js
 let contractBalance = await hre.ethers.provider.getBalance(
   waveContract.address
 );
@@ -171,7 +175,7 @@ let contractBalance = await hre.ethers.provider.getBalance(
 
 **2 \. コントラクトの資金を確認する**
 
-```javascript
+```js
 console.log("Contract balance:", hre.ethers.utils.formatEther(contractBalance));
 ```
 
@@ -179,7 +183,7 @@ console.log("Contract balance:", hre.ethers.utils.formatEther(contractBalance));
 
 **3 \. `wave`したあとのコントラクトの残高を確認する**
 
-```javascript
+```js
 /*
  * Wave
  */
@@ -228,7 +232,7 @@ Contract balance: 0.0999
 
 本番環境でコントラクトに資金を提供するため、下記のように`deploy.js`を更新します。
 
-```javascript
+```js
 const main = async () => {
   const [deployer] = await hre.ethers.getSigners();
   const accountBalance = await deployer.getBalance();
@@ -262,7 +266,7 @@ runMain();
 
 更新したコードは下記です。
 
-```javascript
+```js
 const waveContract = await waveContractFactory.deploy({
   value: hre.ethers.utils.parseEther("0.001"),
 });
@@ -308,7 +312,7 @@ WavePortal address:  0x550925E923Cb1734de73B3a843A21b871fe2a673
 
 下記のように、`Balance`が`0.001 Ether`となっていることを確認してください。
 
-![](/public/images/ETH-dApp/section-3/3_2_1.png)
+![](/images/ETH-dApp/section-3/3_2_1.png)
 
 これで、テストネットにコントラクトがデプロイされました 🎉
 
@@ -316,7 +320,7 @@ WavePortal address:  0x550925E923Cb1734de73B3a843A21b871fe2a673
 
 ターミナルに出力されたコントラクト(`WavePortal address`)のアドレス(`0x..`)をコピーしましょう。
 
-- コピーしたアドレスを`App.js`の`const contractAddress = "こちら"`に貼り付けましょう。
+- コピーしたアドレスを`App.js`の`const contractAddress = 'こちら'`に貼り付けましょう。
 
 3 \. 以前と同じように`artifacts`からABIファイルを取得します。下記のステップを実行してください。
 
@@ -346,13 +350,13 @@ WavePortal address:  0x550925E923Cb1734de73B3a843A21b871fe2a673
 
 例)このような結果がWebアプリケーションに反映されていること確認してください。コントラクトを新しくしたので、既存の`wave`はリセットされています。
 
-> ![](/public/images/ETH-dApp/section-3/3_2_2.png)
+> ![](/images/ETH-dApp/section-3/3_2_2.png)
 
 3\. [Etherscan](https://sepolia.etherscan.io/) にアクセスして、コントラクトアドレスを貼り付ける。
 
 > 下記のように、`Balance`が`0.0009 Ether`となっていることを確認してください。
 >
-> ![](/public/images/ETH-dApp/section-3/3_2_3.png)
+> ![](/images/ETH-dApp/section-3/3_2_3.png)
 >
 > WEB アプリで`wave`を送ったユーザーに 0.0001ETH を送ったので、残高が`0.001-0.0001=0.0009 ETH`になっています。
 

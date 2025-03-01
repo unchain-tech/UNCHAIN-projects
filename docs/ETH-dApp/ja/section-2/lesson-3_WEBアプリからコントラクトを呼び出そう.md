@@ -13,15 +13,18 @@
 
 `App.js`を以下のように更新して、フロントエンドから`getTotalWaves`関数へアクセスできるようにします。
 
-```javascript
-import React, { useEffect, useState } from "react";
-import "./App.css";
+```js
 /* ethers 変数を使えるようにする*/
 import { ethers } from "ethers";
+import React, { useEffect, useState } from "react";
+
+import "./App.css";
+
 const App = () => {
   // ユーザーのパブリックウォレットを保存するために使用する状態変数を定義します。
   const [currentAccount, setCurrentAccount] = useState("");
   console.log("currentAccount: ", currentAccount);
+
   // window.ethereumにアクセスできることを確認します。
   const checkIfWalletIsConnected = async () => {
     try {
@@ -45,6 +48,7 @@ const App = () => {
       console.log(error);
     }
   };
+
   // connectWalletメソッドを実装
   const connectWallet = async () => {
     try {
@@ -62,6 +66,7 @@ const App = () => {
       console.log(error);
     }
   };
+
   // waveの回数をカウントする関数を実装
   const wave = async () => {
     try {
@@ -84,6 +89,7 @@ const App = () => {
       console.log(error);
     }
   };
+
   // WEBページがロードされたときに下記の関数を実行します。
   useEffect(() => {
     checkIfWalletIsConnected();
@@ -126,6 +132,7 @@ const App = () => {
     </div>
   );
 };
+
 export default App;
 ```
 
@@ -133,7 +140,7 @@ export default App;
 
 **1 \. ethers 変数を使えるようにする**
 
-```javascript
+```js
 import { ethers } from "ethers";
 ```
 
@@ -141,7 +148,7 @@ import { ethers } from "ethers";
 
 **2 \. wave の回数をカウントする関数を実装する**
 
-```javascript
+```js
 const wave = async () => {
   try {
     // ユーザーがMetaMaskを持っているか確認
@@ -170,7 +177,7 @@ const wave = async () => {
 
 **I\. `provider`**
 
-> ```javascript
+> ```js
 > const provider = new ethers.providers.Web3Provider(ethereum);
 > ```
 >
@@ -182,7 +189,7 @@ const wave = async () => {
 
 **II\. `signer`**
 
-> ```javascript
+> ```js
 > const signer = provider.getSigner();
 > ```
 >
@@ -194,7 +201,7 @@ const wave = async () => {
 
 **III\. コントラクトインスタンス**
 
-> ```javascript
+> ```js
 > const wavePortalContract = new ethers.Contract(
 >   contractAddress,
 >   contractABI,
@@ -221,7 +228,7 @@ const wave = async () => {
 **3 \. wave ボタンに wave 関数を連動させる**
 
 ```html
-<button className="waveButton" onClick={wave}>Wave at Me</button>
+<button className="waveButton" onClick="{wave}">Wave at Me</button>
 ```
 
 `onClick`プロップを`null`から`wave`に更新して、`wave()`関数を`waveButton`に接続しています。
@@ -235,7 +242,7 @@ const wave = async () => {
 ローカルサーバーを介して表示されているWebアプリケーションから右クリック → `Inspect`を選択し、Consoleの出力結果を確認してみましょう。
 
 下記のようなエラーが表示されていれば、テストは成功です。
-![](/public/images/ETH-dApp/section-2/2_4_1.png)
+![](/images/ETH-dApp/section-2/2_3_1.png)
 
 これから`contractAddress`と`contractABI`を設定していきます。
 
@@ -261,9 +268,9 @@ yarn contract deploy
 
 コントラクトのデプロイ先のアドレスを取得できたら、`App.js`に`contractAddress`という新規の変数を追加しましょう。`Contract deployed to`の出力結果(`0x..`)を設定していきます。
 
-`const [currentAccount, setCurrentAccount] = useState("")`の直下に`contractAddress`を作成しましょう。以下のようになります。
+`const [currentAccount, setCurrentAccount] = useState('')`の直下に`contractAddress`を作成しましょう。以下のようになります。
 
-```javascript
+```js
 const [currentAccount, setCurrentAccount] = useState("");
 /*
  * デプロイされたコントラクトのアドレスを保持する変数を作成
@@ -274,7 +281,7 @@ const contractAddress = "あなたの WavePortal の address を貼り付けて�
 `App.js`を更新したら、ローカルサーバーにホストされているWebアプリケーションからConsoleを確認してみましょう。
 
 `contractAddress`に関するエラーが消えていれば、成功です。
-![](/public/images/ETH-dApp/section-2/2_4_2.png)
+![](/images/ETH-dApp/section-2/2_3_2.png)
 
 ### 📂 ABI ファイルを取得する
 
@@ -290,7 +297,7 @@ Webアプリケーションがコントラクトと通信するために必要�
 
 ABIファイルは、コントラクトがコンパイルされた時に生成され、`artifacts`ディレクトリに自動的に格納されます。
 
-ターミナルで`contract`ディレクトリに移動し、`ls`を実行しましょう。
+ターミナルで`packages/contract`ディレクトリに移動し、`ls`を実行しましょう。
 
 `artifacts`ディレクトリの存在を確認してください。
 
@@ -298,7 +305,7 @@ ABIファイルの中身は、`WavePortal.json`というファイルに格納さ
 
 下記を実行して、ABIファイルをコピーしましょう。
 
-1. ターミナル上で`contract`にいることを確認する（もしくは移動する）。
+1. ターミナル上で`packages/contract`にいることを確認する（もしくは移動する）。
 
 2. ターミナル上で下記を実行し、`WavePortal.json`を開きましょう。※ ファインダーから直接開くことも可能です。
 
@@ -312,25 +319,35 @@ ABIファイルの中身は、`WavePortal.json`というファイルに格納さ
 
 1. ターミナル上で`client/src`に移動する。
 
-2. 下記を実行して、`WavePortal.json`ファイルをVS Codeで開く。
+2. srcディレクトリの中に`utils`ディレクトリを作成して、その中に`WavePortal.json`ファイルを作成する。
 
-> ```
-> code client/src/utils/WavePortal.json
-> ```
+   > ```
+   > mkdir utils
+   > touch utils/WavePortal.json
+   > ```
 
-3. **先ほどコピーした`contract/artifacts/contracts/WavePortal.sol/WavePortal.json`の中身を新しく作成した`client/src/utils/WavePortal.json`の中に貼り付けてください。**
+3. 下記を実行して、`WavePortal.json`ファイルをVS Codeで開く。
+
+   > ```
+   > code client/src/utils/WavePortal.json
+   > ```
+
+4. **先ほどコピーした`contract/artifacts/contracts/WavePortal.sol/WavePortal.json`の中身を新しく作成した`client/src/utils/WavePortal.json`の中に貼り付けてください。**
 
 ABIファイルの準備ができたので、`App.js`にインポートしましょう。
 
 下記のように`App.js`を更新します。
 
-```javascript
-import React, { useEffect, useState } from "react";
-import "./App.css";
+```js
 /* ethers 変数を使えるようにする*/
 import { ethers } from "ethers";
+import React, { useEffect, useState } from "react";
+
+import "./App.css";
+
 /* ABIファイルを含むWavePortal.jsonファイルをインポートする*/
 import abi from "./utils/WavePortal.json";
+
 const App = () => {
   /*
    * ユーザーのパブリックウォレットを保存するために使用する状態変数を定義します。
@@ -373,6 +390,7 @@ const App = () => {
       console.log(error);
     }
   };
+
   /*
    * connectWalletメソッドを実装
    */
@@ -392,6 +410,7 @@ const App = () => {
       console.log(error);
     }
   };
+
   /*
    * waveの回数をカウントする関数を実装
    */
@@ -434,6 +453,7 @@ const App = () => {
   useEffect(() => {
     checkIfWalletIsConnected();
   }, []);
+
   return (
     <div className="mainContainer">
       <div className="dataContainer">
@@ -476,12 +496,13 @@ const App = () => {
     </div>
   );
 };
+
 export default App;
 ```
 
 コントラクトアドレスをご自身のものに更新するのをお忘れなく!
 
-```javascript
+```js
 const contractAddress = "あなたのコントラクトアドレスを貼り付けてください";
 ```
 
@@ -489,19 +510,19 @@ const contractAddress = "あなたのコントラクトアドレスを貼り付�
 
 **1 \. ABI ファイルを含む WavePortal.json ファイルをインポートする**
 
-```javascript
+```js
 import abi from "./utils/WavePortal.json";
 ```
 
 **2 \. ABI の内容を参照する変数を作成**
 
-```javascript
+```js
 const contractABI = abi.abi;
 ```
 
 ABIの参照先を確認しましょう。`wave`関数の中に実装されています。
 
-```javascript
+```js
 const wave = async () => {
   try {
     const { ethereum } = window;
@@ -533,7 +554,7 @@ ABIファイルを`App.js`に追加すると、フロントエンドで`Wave`ボ
 
 コントラクトにデータを書き込むためのコードを実装しました。
 
-```javascript
+```js
 const wave = async () => {
   try {
     const { ethereum } = window;
@@ -589,9 +610,9 @@ yarn client start
 
 いつものようにローカルサーバーにホストされているWebアプリケーションを`Inspect`し、Consoleを確認しましょう。
 
-例)`Wave at Me`ボタンを2回押した際に出力された  Consoleの結果。
+例)`Wave at Me`ボタンを2回押した際に出力されたConsoleの結果。
 
-![](/public/images/ETH-dApp/section-2/2_4_3.png)
+![](/images/ETH-dApp/section-2/2_3_3.png)
 
 それぞれの`Wave`がカウントされ、承認されていることが確認できたら、次のステップに進みましょう。
 

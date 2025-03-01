@@ -6,15 +6,15 @@
 
 1 \. ホーム画面
 
-![](/public/images/AVAX-Messenger/section-2/2_2_2.png)
+![](/images/AVAX-Messenger/section-2/2_2_2.png)
 
 2 \. メッセージ送信画面
 
-![](/public/images/AVAX-Messenger/section-2/2_2_3.png)
+![](/images/AVAX-Messenger/section-2/2_2_3.png)
 
 3 \. メッセージ確認画面
 
-![](/public/images/AVAX-Messenger/section-2/2_2_4.png)
+![](/images/AVAX-Messenger/section-2/2_2_4.png)
 
 ここでは初期設定で存在すると想定されるファイルを削除・編集することがあります。
 もし削除するファイルがあなたのフォルダ構成の中に無かった場合は、無視してください。
@@ -130,13 +130,13 @@ client
 
 `Next.js`はルートディレクトリ直下の`public`ディレクトリを静的なリソース（画像やテキストデータなど）の配置場所と認識します。
 そのためソースコード内で画像のURLを`/image.png`と指定した場合、
-`Next.js`は自動的に`public`ディレクトリをルートとした`プロジェクトルート/public/image.png`を参照してくれます。
+`Next.js`は自動的に`public`ディレクトリをルートとした`プロジェクトルート/image.png`を参照してくれます。
 
 ディレクトリ内画像を全て削除してください。
 そして新たに画像を追加します。
 
 以下の画像をダウンロードするか、あなたのお好きな画像を`favicon.png`という名前で`public`ディレクトリ内に保存してください。
-![](/public/images/AVAX-Messenger/section-2/2_2_1.png)
+![](/images/AVAX-Messenger/section-2/2_2_1.png)
 
 この画像はあなたのwebアプリケーションのファビコンとなります！ 🙆‍♂️
 
@@ -156,7 +156,7 @@ client
 まだ具体的な実装はしませんが、`useMessengerContract.ts`という名前のファイルを作成し、以下のコードを記述してください。
 
 ```ts
-import { BigNumber } from 'ethers';
+import { BigNumber } from "ethers";
 
 export type Message = {
   sender: string;
@@ -232,10 +232,10 @@ p.text {
 `MessageCard.tsx`内に以下のコードを記述してください。
 
 ```tsx
-import { ethers } from 'ethers';
+import { ethers } from "ethers";
 
-import { Message } from '../../hooks/useMessengerContract';
-import styles from './MessageCard.module.css';
+import { Message } from "../../hooks/useMessengerContract";
+import styles from "./MessageCard.module.css";
 
 type Props = {
   message: Message;
@@ -372,18 +372,18 @@ solidityでは小数点を扱わないのでトークンの量は`Wei`を使用�
 `SendMessageForm.tsx`内に以下のコードを記述してください。
 
 ```tsx
-import { useState } from 'react';
+import { useState } from "react";
 
-import styles from './Form.module.css';
+import styles from "./Form.module.css";
 
 type Props = {
   sendMessage: (text: string, receiver: string, tokenInEther: string) => void;
 };
 
 export default function SendMessageForm({ sendMessage }: Props) {
-  const [textValue, setTextValue] = useState('');
-  const [receiverAccountValue, setReceiverAccountValue] = useState('');
-  const [tokenValue, setTokenValue] = useState('0');
+  const [textValue, setTextValue] = useState("");
+  const [receiverAccountValue, setReceiverAccountValue] = useState("");
+  const [tokenValue, setTokenValue] = useState("0");
 
   return (
     <div className={styles.container}>
@@ -421,7 +421,7 @@ export default function SendMessageForm({ sendMessage }: Props) {
               sendMessage(textValue, receiverAccountValue, tokenValue);
             }}
           >
-            send{' '}
+            send{" "}
           </button>
         </div>
       </div>
@@ -468,10 +468,10 @@ export default function SendMessageForm({ sendMessage }: Props) {
 `Layout.tsx`内に以下のコードを記述してください。
 
 ```tsx
-import Head from 'next/head';
-import Link from 'next/link';
+import Head from "next/head";
+import Link from "next/link";
 
-import styles from './Layout.module.css';
+import styles from "./Layout.module.css";
 
 type Props = {
   children: React.ReactNode;
@@ -550,8 +550,8 @@ Next.jsでは、pagesディレクトリのファイルからエクスポート�
 `SendMessagePage.tsx`内に以下のコードを記述してください。
 
 ```tsx
-import SendMessageForm from '../../components/form/SendMessageForm';
-import Layout from '../../components/layout/Layout';
+import SendMessageForm from "../../components/form/SendMessageForm";
+import Layout from "../../components/layout/Layout";
 
 export default function SendMessagePage() {
   return (
@@ -575,20 +575,20 @@ export default function SendMessagePage() {
 `ConfirmMessagePage.tsx`内に以下のコードを記述してください。
 
 ```tsx
-import { BigNumber } from 'ethers';
+import { BigNumber } from "ethers";
 
-import MessageCard from '../../components/card/MessageCard';
-import Layout from '../../components/layout/Layout';
-import { Message } from '../../hooks/useMessengerContract';
+import MessageCard from "../../components/card/MessageCard";
+import Layout from "../../components/layout/Layout";
+import { Message } from "../../hooks/useMessengerContract";
 
 export default function ConfirmMessagePage() {
   const message: Message = {
-    depositInWei: BigNumber.from('1000000000000000000'),
+    depositInWei: BigNumber.from("1000000000000000000"),
     timestamp: new Date(1),
-    text: 'message',
+    text: "message",
     isPending: true,
-    sender: '0x~',
-    receiver: '0x~',
+    sender: "0x~",
+    receiver: "0x~",
   };
   let ownMessages: Message[] = [message, message];
 
@@ -627,9 +627,9 @@ export default function ConfirmMessagePage() {
 ※初期設定のままなので編集箇所がない場合があります。
 
 ```tsx
-import type { AppProps } from 'next/app';
+import type { AppProps } from "next/app";
 
-import '../styles/globals.css';
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />;
@@ -645,11 +645,11 @@ export default MyApp;
 `index.tsx`内に以下のコードを記述してください。
 
 ```tsx
-import type { NextPage } from 'next';
-import Link from 'next/link';
+import type { NextPage } from "next";
+import Link from "next/link";
 
-import Layout from '../components/layout/Layout';
-import styles from '../styles/Home.module.css';
+import Layout from "../components/layout/Layout";
+import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   return (
@@ -708,7 +708,6 @@ yarn client dev
 > [こちら](https://github.com/unchain-tech/AVAX-Messenger)に本プロジェクトの完成形のレポジトリがあります。
 >
 > 期待通り動かない場合は参考にしてみてください。
-
 
 ### 🙋‍♂️ 質問する
 

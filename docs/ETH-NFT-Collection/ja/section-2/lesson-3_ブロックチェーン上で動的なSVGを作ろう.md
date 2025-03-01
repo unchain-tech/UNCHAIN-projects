@@ -274,12 +274,12 @@ packages/
 
 続いて、作成した`MyEpicNFT.js`に以下のコードを書き込みます。
 
-```javascript
-const { loadFixture } = require('@nomicfoundation/hardhat-network-helpers');
-const { ethers } = require('hardhat');
-const { expect } = require('chai');
+```js
+const { loadFixture } = require("@nomicfoundation/hardhat-network-helpers");
+const { ethers } = require("hardhat");
+const { expect } = require("chai");
 
-describe('MyEpicNFT', function () {
+describe("MyEpicNFT", function () {
   // 各テストの前に呼び出す関数です。テストで使用する変数やコントラクトのデプロイを行います。
   async function deployMyEpicNFTFixture() {
     // テストアカウントを取得します。
@@ -287,35 +287,35 @@ describe('MyEpicNFT', function () {
 
     // コントラクト内で使用する単語の配列を定義します。
     const firstWords = [
-      'Epic',
-      'Fantastic',
-      'Crude',
-      'Crazy',
-      'Hysterical',
-      'Grand',
+      "Epic",
+      "Fantastic",
+      "Crude",
+      "Crazy",
+      "Hysterical",
+      "Grand",
     ];
-    const secondWords = ['Meta', 'Live', 'Pop', 'Cute', 'Sweet', 'Hot'];
+    const secondWords = ["Meta", "Live", "Pop", "Cute", "Sweet", "Hot"];
     const thirdWords = [
-      'Kitten',
-      'Puppy',
-      'Monkey',
-      'Bird',
-      'Panda',
-      'Elephant',
+      "Kitten",
+      "Puppy",
+      "Monkey",
+      "Bird",
+      "Panda",
+      "Elephant",
     ];
 
     // コントラクトのインスタンスを生成し、デプロイを行います。
-    const MyEpicNFTFactory = await ethers.getContractFactory('MyEpicNFT');
+    const MyEpicNFTFactory = await ethers.getContractFactory("MyEpicNFT");
     const MyEpicNFT = await MyEpicNFTFactory.deploy();
 
     return { MyEpicNFT, owner, firstWords, secondWords, thirdWords };
   }
 
-  describe('pickRandomFirstWord', function () {
-    it('should get strings in firstWords', async function () {
+  describe("pickRandomFirstWord", function () {
+    it("should get strings in firstWords", async function () {
       // テストの準備を行います。
       const { MyEpicNFT, firstWords } = await loadFixture(
-        deployMyEpicNFTFixture,
+        deployMyEpicNFTFixture
       );
 
       // テストを行う関数を呼び出し、結果を確認します。
@@ -323,20 +323,20 @@ describe('MyEpicNFT', function () {
     });
   });
 
-  describe('pickRandomSecondWord', function () {
-    it('should get strings in secondWords', async function () {
+  describe("pickRandomSecondWord", function () {
+    it("should get strings in secondWords", async function () {
       const { MyEpicNFT, secondWords } = await loadFixture(
-        deployMyEpicNFTFixture,
+        deployMyEpicNFTFixture
       );
 
       expect(secondWords).to.include(await MyEpicNFT.pickRandomSecondWord(0));
     });
   });
 
-  describe('pickRandomThirdWord', function () {
-    it('should get strings in thirdWords', async function () {
+  describe("pickRandomThirdWord", function () {
+    it("should get strings in thirdWords", async function () {
       const { MyEpicNFT, thirdWords } = await loadFixture(
-        deployMyEpicNFTFixture,
+        deployMyEpicNFTFixture
       );
 
       expect(thirdWords).to.include(await MyEpicNFT.pickRandomThirdWord(0));
@@ -351,36 +351,27 @@ describe('MyEpicNFT', function () {
 
 その中で定義している文字列の配列は、ご自身が`MyEpicNFT`コントラクト内で定義したものと一致するように適宜変更してください。
 
-```javascript
+```js
 // コントラクト内で使用する単語の配列を定義します。
 const firstWords = [
-  'Epic',
-  'Fantastic',
-  'Crude',
-  'Crazy',
-  'Hysterical',
-  'Grand',
+  "Epic",
+  "Fantastic",
+  "Crude",
+  "Crazy",
+  "Hysterical",
+  "Grand",
 ];
-const secondWords = ['Meta', 'Live', 'Pop', 'Cute', 'Sweet', 'Hot'];
-const thirdWords = [
-  'Kitten',
-  'Puppy',
-  'Monkey',
-  'Bird',
-  'Panda',
-  'Elephant',
-];
+const secondWords = ["Meta", "Live", "Pop", "Cute", "Sweet", "Hot"];
+const thirdWords = ["Kitten", "Puppy", "Monkey", "Bird", "Panda", "Elephant"];
 ```
 
 `deployMyEpicNFTFixture`関数の後に続く3つの`describe`ブロックが、実際に`MyEpicNFT`コントラクト内の各関数を呼び出してテストを行なっている部分になります。
 
-```javascript
-describe('pickRandomFirstWord', function () {
-  it('should get strings in firstWords', async function () {
+```js
+describe("pickRandomFirstWord", function () {
+  it("should get strings in firstWords", async function () {
     // テストの準備を行います。
-    const { MyEpicNFT, firstWords } = await loadFixture(
-      deployMyEpicNFTFixture,
-    );
+    const { MyEpicNFT, firstWords } = await loadFixture(deployMyEpicNFTFixture);
     // テストを行う関数を呼び出し、結果を確認します。
     expect(firstWords).to.include(await MyEpicNFT.pickRandomFirstWord(0));
   });
@@ -455,7 +446,7 @@ An NFT w/ ID 2 has been minted to 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
 ターミナルに出力されたSVGの1つをコピーして、[ここ](https://www.svgviewer.dev/)に貼り付け、中身を確認してみましょう。
 
 下記のような結果が表示されていればテストは成功です。
-![](/public/images/ETH-NFT-Collection/section-2/2_3_1.png)
+![](/images/ETH-NFT-Collection/section-2/2_3_1.png)
 
 ### 👩‍💻 メタデータを動的に生成する
 
@@ -814,7 +805,7 @@ NFT Previewを使用すれば、テストネットにデプロイしなくても
 
 下記のように`Token URI`が画像として確認できれば、テストは成功です。
 
-![](/public/images/ETH-NFT-Collection/section-2/2_3_2.png)
+![](/images/ETH-NFT-Collection/section-2/2_3_2.png)
 
 ### 🚀 Sepolia Test Network にデプロイする
 
@@ -824,29 +815,28 @@ NFT Previewを使用すれば、テストネットにデプロイしなくても
 
 - 変更点は、2つ目のNFT発行を削除しているだけです。
 
-```javascript
+```js
 // deploy.js
 async function main() {
   // コントラクトがコンパイルします
   // コントラクトを扱うために必要なファイルが `artifacts` ディレクトリの直下に生成されます。
-  const nftContractFactory = await hre.ethers.getContractFactory('MyEpicNFT');
+  const nftContractFactory = await hre.ethers.getContractFactory("MyEpicNFT");
   // Hardhat がローカルの Ethereum ネットワークを作成します。
   const nftContract = await nftContractFactory.deploy();
   // コントラクトが Mint され、ローカルのブロックチェーンにデプロイされるまで待ちます。
   await nftContract.deployed();
-  console.log('Contract deployed to:', nftContract.address);
+  console.log("Contract deployed to:", nftContract.address);
   // makeAnEpicNFT 関数を呼び出す。NFT が Mint される。
   const txn = await nftContract.makeAnEpicNFT();
   // Minting が仮想マイナーにより、承認されるのを待ちます。
   await txn.wait();
-  console.log('Minted NFT #1');
+  console.log("Minted NFT #1");
 }
 
 main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
 });
-
 ```
 
 続いて、デプロイコマンドを実行します。
@@ -865,9 +855,9 @@ Minted NFT #1
 最後に、[gemcase](https://gemcase.vercel.app/) へアクセスをして、ミントされたNFTを確認してみましょう。
 
 下記のように、あなたのSquareNFTがgemcaseで確認できたでしょうか？
-![](/public/images/ETH-NFT-Collection/section-2/2_3_3.png)
+![](/images/ETH-NFT-Collection/section-2/2_3_3.png)
 
-![](/public/images/ETH-NFT-Collection/section-2/2_3_4.png)
+![](/images/ETH-NFT-Collection/section-2/2_3_4.png)
 
 ### 🙋‍♂️ 質問する
 

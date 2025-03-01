@@ -35,16 +35,12 @@ NEARはブロックチェーンの1つで、Ethereumに取って替わるとも�
 - 投票
 - 投票結果の開示
 
-完成した`投票dApp`は以下のような見た目になります💪
-
-<ログイン画面>
+完成した`投票dApp`は以下のような見た目になります 💪
 
 NEARのwalletと接続することでログインする画面になります！
 
 `Sign in`ボタンを押すことでNEARが用意しているwallet接続画面に移動することでwallet接続してホーム画面に移動します。
-![](/public/images/NEAR-Election-dApp/section-0/0_1_1.png)
-
-<ホーム画面>
+![](/images/NEAR-Election-dApp/section-0/0_1_1.png)
 
 追加された候補者情報と、得票数が表示されます。
 
@@ -53,21 +49,16 @@ NEARのwalletと接続することでログインする画面になります！
 また、コントラクトをdeployしたウォレットでログインした場合に限り下の画像のような`Close Election`ボタンが表示されることになります。
 
 このボタンを押すことによって投票を締め切ることができます。
-![](/public/images/NEAR-Election-dApp/section-0/0_1_4.png)
-
-<候補者追加画面>
+![](/images/NEAR-Election-dApp/section-0/0_1_4.png)
 
 一番上の入力欄にはIPFSのURIを入れ、その下には候補者の名前を、一番下には政策を入れることになります。
 
 そしてAddボタンを押すと候補者NFTを発行できることになります。
-![](/public/images/NEAR-Election-dApp/section-0/0_1_2.png)
-
-<投票者追加画面>
+![](/images/NEAR-Election-dApp/section-0/0_1_2.png)
 
 ここには追加する投票者のアドレスを入れることで、そのwalletに投票券を送ることができます。ただし、この操作はコントラクトをdeployした人しかできないようになっています。
 
-![](/public/images/NEAR-Election-dApp/section-0/0_1_3.png)
-
+![](/images/NEAR-Election-dApp/section-0/0_1_3.png)
 
 ### 🌍 プロジェクトをアップグレードする
 

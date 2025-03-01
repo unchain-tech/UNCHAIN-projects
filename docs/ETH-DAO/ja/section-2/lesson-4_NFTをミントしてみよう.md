@@ -12,29 +12,29 @@
 
 ※ あなたのコントラクトアドレスを設定することを忘れないでください！
 
-```typescript
-import { Sepolia } from '@thirdweb-dev/chains';
+```ts
+import { Sepolia } from "@thirdweb-dev/chains";
 import {
   ConnectWallet,
   useAddress,
   useChain,
   useContract,
-} from '@thirdweb-dev/react';
-import type { NextPage } from 'next';
-import { useEffect, useState } from 'react';
+} from "@thirdweb-dev/react";
+import type { NextPage } from "next";
+import { useEffect, useState } from "react";
 
-import styles from '../styles/Home.module.css';
+import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   const address = useAddress();
-  console.log('👋Wallet Address: ', address);
+  console.log("👋Wallet Address: ", address);
 
   const chain = useChain();
 
   // editionDrop コントラクトを初期化
   const editionDrop = useContract(
-    'INSERT_EDITION_DROP_ADDRESS',
-    'edition-drop',
+    "INSERT_EDITION_DROP_ADDRESS",
+    "edition-drop"
   ).contract;
 
   // ユーザーがメンバーシップ NFT を持っているかどうかを知るためのステートを定義
@@ -51,14 +51,14 @@ const Home: NextPage = () => {
         const balance = await editionDrop!.balanceOf(address, 0);
         if (balance.gt(0)) {
           setHasClaimedNFT(true);
-          console.log('🌟 this user has a membership NFT!');
+          console.log("🌟 this user has a membership NFT!");
         } else {
           setHasClaimedNFT(false);
           console.log("😭 this user doesn't have a membership NFT.");
         }
       } catch (error) {
         setHasClaimedNFT(false);
-        console.error('Failed to get balance', error);
+        console.error("Failed to get balance", error);
       }
     };
 
@@ -68,8 +68,8 @@ const Home: NextPage = () => {
 
   // テストネットが Sepolia ではなかった場合に警告を表示
   if (chain && chain.chainId !== Sepolia.chainId) {
-    console.log('wallet address: ', address);
-    console.log('chain name: ', chain.name);
+    console.log("wallet address: ", address);
+    console.log("chain name: ", chain.name);
 
     return (
       <div className={styles.container}>
@@ -84,9 +84,7 @@ const Home: NextPage = () => {
     return (
       <div className={styles.container}>
         <main className={styles.main}>
-          <h1 className={styles.title}>
-            Welcome to Tokyo Sauna Collective !!
-          </h1>
+          <h1 className={styles.title}>Welcome to Tokyo Sauna Collective !!</h1>
           <div className={styles.connect}>
             <ConnectWallet />
           </div>
@@ -113,10 +111,9 @@ export default Home;
 
 このページを更新すると、このように表示されるはずです。
 
-![](/public/images/ETH-DAO/section-2/2_4_1.png)
+![](/images/ETH-DAO/section-2/2_4_1.png)
 
 今の段階ではメンバーシップNFTを持っていないため、`😭 this user doesn't have a membership NFT.`と表示されます。
-
 
 ### ✨ "Mint NFT" ボタンをつくろう
 
@@ -126,29 +123,29 @@ export default Home;
 
 ※ あなたのコントラクトアドレスを設定することを忘れないでください！
 
-```typescript
-import { Sepolia } from '@thirdweb-dev/chains';
+```ts
+import { Sepolia } from "@thirdweb-dev/chains";
 import {
   ConnectWallet,
   useAddress,
   useChain,
   useContract,
-} from '@thirdweb-dev/react';
-import type { NextPage } from 'next';
-import { useEffect, useState } from 'react';
+} from "@thirdweb-dev/react";
+import type { NextPage } from "next";
+import { useEffect, useState } from "react";
 
-import styles from '../styles/Home.module.css';
+import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   const address = useAddress();
-  console.log('👋Wallet Address: ', address);
+  console.log("👋Wallet Address: ", address);
 
   const chain = useChain();
 
   // editionDrop コントラクトを初期化
   const editionDrop = useContract(
-    'INSERT_EDITION_DROP_ADDRESS',
-    'edition-drop',
+    "INSERT_EDITION_DROP_ADDRESS",
+    "edition-drop"
   ).contract;
 
   // ユーザーがメンバーシップ NFT を持っているかどうかを知るためのステートを定義
@@ -168,14 +165,14 @@ const Home: NextPage = () => {
         const balance = await editionDrop!.balanceOf(address, 0);
         if (balance.gt(0)) {
           setHasClaimedNFT(true);
-          console.log('🌟 this user has a membership NFT!');
+          console.log("🌟 this user has a membership NFT!");
         } else {
           setHasClaimedNFT(false);
           console.log("😭 this user doesn't have a membership NFT.");
         }
       } catch (error) {
         setHasClaimedNFT(false);
-        console.error('Failed to get balance', error);
+        console.error("Failed to get balance", error);
       }
     };
     // 関数を実行
@@ -185,14 +182,14 @@ const Home: NextPage = () => {
   const mintNft = async () => {
     try {
       setIsClaiming(true);
-      await editionDrop!.claim('0', 1);
+      await editionDrop!.claim("0", 1);
       console.log(
         `🌊 Successfully Minted! Check it out on etherscan: https://sepolia.etherscan.io/address/${editionDrop!.getAddress()}`
       );
       setHasClaimedNFT(true);
     } catch (error) {
       setHasClaimedNFT(false);
-      console.error('Failed to mint NFT', error);
+      console.error("Failed to mint NFT", error);
     } finally {
       setIsClaiming(false);
     }
@@ -203,9 +200,7 @@ const Home: NextPage = () => {
     return (
       <div className={styles.container}>
         <main className={styles.main}>
-          <h1 className={styles.title}>
-            Welcome to Tokyo Sauna Collective !!
-          </h1>
+          <h1 className={styles.title}>Welcome to Tokyo Sauna Collective !!</h1>
           <div className={styles.connect}>
             <ConnectWallet />
           </div>
@@ -215,8 +210,8 @@ const Home: NextPage = () => {
   }
   // テストネットが Sepolia ではなかった場合に警告を表示
   else if (chain && chain.chainId !== Sepolia.chainId) {
-    console.log('wallet address: ', address);
-    console.log('chain name: ', chain.name);
+    console.log("wallet address: ", address);
+    console.log("chain name: ", chain.name);
 
     return (
       <div className={styles.container}>
@@ -235,7 +230,7 @@ const Home: NextPage = () => {
         <main className={styles.main}>
           <h1 className={styles.title}>Mint your free 🍪DAO Membership NFT</h1>
           <button disabled={isClaiming} onClick={mintNft}>
-            {isClaiming ? 'Minting...' : 'Mint your nft (FREE)'}
+            {isClaiming ? "Minting..." : "Mint your nft (FREE)"}
           </button>
         </main>
       </div>
@@ -262,7 +257,7 @@ export default Home;
 
 それでは実際に`Mint your nft (FREE)`ボタンを押下してNFTをミントしてみましょう。
 
-![](/public/images/ETH-DAO/section-2/2_4_2.png)
+![](/images/ETH-DAO/section-2/2_4_2.png)
 
 MetaMaskのポップアップが表示され、ガスを支払うことでNFTがMintされます。
 
@@ -274,11 +269,11 @@ NFTのミントが完了すると、以下のとおりコンソールにEthersca
 
 リンクにアクセスすると、このように表示されます。
 
-![](/public/images/ETH-DAO/section-2/2_4_3.png)
+![](/images/ETH-DAO/section-2/2_4_3.png)
 
 一番最新のトランザクションにアクセスするとしたのようにERC-1155がclaimできていることがわかります。
 
-![](/public/images/ETH-DAO/section-2/2_4_8.png)
+![](/images/ETH-DAO/section-2/2_4_8.png)
 
 このメンバーシップNFTはERC-1155なので、誰もが同じNFTの持ち主です。
 
@@ -289,7 +284,6 @@ NFTのミントが完了すると、以下のとおりコンソールにEthersca
 それは、誰もが同じNFTデータを共有しているからです。
 
 ユーザーごとに新しいデータをコピーする必要がないのです。
-
 
 ### 🛑 メンバーシップ NFT を持っていたらダッシュボードを表示してみよう
 
@@ -306,62 +300,59 @@ NFTのミント画面を描画する前に、以下のコメント`DAO ダッシ
 
 `src/pages/index.tsx`に移動し、コードの一部を以下のとおり変更します。
 
-```typescript
-  // ウォレットと接続していなかったら接続を促す
-  if (!address) {
-    return (
-      <div className={styles.container}>
-        <main className={styles.main}>
-          <h1 className={styles.title}>
-            Welcome to Tokyo Sauna Collective !!
-          </h1>
-          <div className={styles.connect}>
-            <ConnectWallet />
-          </div>
-        </main>
-      </div>
-    );
-  }
-  // テストネットが Sepolia ではなかった場合に警告を表示
-  else if (chain && chain.chainId !== Sepolia.chainId) {
-    console.log('wallet address: ', address);
-    console.log('chain name: ', chain.name);
+```ts
+// ウォレットと接続していなかったら接続を促す
+if (!address) {
+  return (
+    <div className={styles.container}>
+      <main className={styles.main}>
+        <h1 className={styles.title}>Welcome to Tokyo Sauna Collective !!</h1>
+        <div className={styles.connect}>
+          <ConnectWallet />
+        </div>
+      </main>
+    </div>
+  );
+}
+// テストネットが Sepolia ではなかった場合に警告を表示
+else if (chain && chain.chainId !== Sepolia.chainId) {
+  console.log("wallet address: ", address);
+  console.log("chain name: ", chain.name);
 
-
-    return (
-      <div className={styles.container}>
-        <main className={styles.main}>
-          <h1 className={styles.title}>Sepolia に切り替えてください⚠️</h1>
-          <p>この dApp は Sepolia テストネットのみで動作します。</p>
-          <p>ウォレットから接続中のネットワークを切り替えてください。</p>
-        </main>
-      </div>
-    );
-  }
-  // DAO ダッシュボード画面を表示
-  else if (hasClaimedNFT){
-    return (
-      <div className={styles.container}>
+  return (
+    <div className={styles.container}>
+      <main className={styles.main}>
+        <h1 className={styles.title}>Sepolia に切り替えてください⚠️</h1>
+        <p>この dApp は Sepolia テストネットのみで動作します。</p>
+        <p>ウォレットから接続中のネットワークを切り替えてください。</p>
+      </main>
+    </div>
+  );
+}
+// DAO ダッシュボード画面を表示
+else if (hasClaimedNFT) {
+  return (
+    <div className={styles.container}>
       <main className={styles.main}>
         <h1 className={styles.title}>🍪DAO Member Page</h1>
         <p>Congratulations on being a member</p>
       </main>
     </div>
-    );
-  }
-  // ウォレットと接続されていたら Mint ボタンを表示
-  else {
-    return (
-      <div className={styles.container}>
-        <main className={styles.main}>
-          <h1 className={styles.title}>Mint your free 🍪DAO Membership NFT</h1>
-          <button disabled={isClaiming} onClick={mintNft}>
-            {isClaiming ? 'Minting...' : 'Mint your nft (FREE)'}
-          </button>
-        </main>
-      </div>
-    );
-  }
+  );
+}
+// ウォレットと接続されていたら Mint ボタンを表示
+else {
+  return (
+    <div className={styles.container}>
+      <main className={styles.main}>
+        <h1 className={styles.title}>Mint your free 🍪DAO Membership NFT</h1>
+        <button disabled={isClaiming} onClick={mintNft}>
+          {isClaiming ? "Minting..." : "Mint your nft (FREE)"}
+        </button>
+      </main>
+    </div>
+  );
+}
 ```
 
 これで完了です。
@@ -383,14 +374,13 @@ MetaMaskはいくつでもアカウントを持つことができます。
 3つのケースをすべてテストするようにしてください。
 
 1. ウォレットの接続がされていないとき:
-![](/public/images/ETH-DAO/section-2/2_4_5.png)
+   ![](/images/ETH-DAO/section-2/2_4_5.png)
 
 2. ウォレットは接続されているが、メンバーシップNFTを所有していないとき:
-![](/public/images/ETH-DAO/section-2/2_4_6.png)
+   ![](/images/ETH-DAO/section-2/2_4_6.png)
 
 3. ウォレットが接続されており、メンバーシップNFTを所有しているとき:
-![](/public/images/ETH-DAO/section-2/2_4_7.png)
-
+   ![](/images/ETH-DAO/section-2/2_4_7.png)
 
 ### 🙋‍♂️ 質問する
 

@@ -49,9 +49,7 @@ AVAX-Asset-Tokenization
   "description": "Asset tokenization",
   "private": true,
   "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
+    "packages": ["packages/*"]
   },
   "scripts": {
     "contract": "yarn workspace contract",
@@ -186,7 +184,7 @@ yarn add dotenv @openzeppelin/contracts@^4.7.3 @chainlink/contracts@^0.5.1
 `packages/contract`ディレクトリにいることを確認し、次のコマンドを実行します。
 
 ```
-npx hardhat
+npx hardhat init
 ```
 
 実行すると対話形式で指示を求められるので、それぞれを以下のように答えていきます。
@@ -208,7 +206,7 @@ npx hardhat
 （例）
 
 ```
-$npx hardhat
+$npx hardhat init
 
 888    888                      888 888               888
 888    888                      888 888               888
@@ -256,7 +254,6 @@ AVAX-Asset-Tokenization
 +│       └── tsconfig.json
  └── tsconfig.json
 ```
-
 
 それでは、`contract`ディレクトリ内に生成された`package.json`ファイルを以下を参考に更新をしましょう。
 
@@ -339,7 +336,7 @@ yarn test
 
 次のように表示されたら成功です! 🎉
 
-![](/public/images/AVAX-Asset-Tokenization/section-1/1_1_1.png)
+![](/images/AVAX-Asset-Tokenization/section-1/1_1_1.png)
 
 これからテストを行う際は、`AVAX-Asset-Tokenization/`直下で`yarn test`を実行します。
 

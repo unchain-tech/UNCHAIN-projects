@@ -4,14 +4,14 @@
 
 `addGif`関数を呼び出し、`getGifList`関数を呼び出すことで、Webアプリケーションをリフレッシュして最新のGIF画像を表示しましょう。
 
-```javascript
+```js
 const sendGif = async () => {
   if (inputValue.length === 0) {
-    console.log("No gif link given!")
-    return
+    console.log("No gif link given!");
+    return;
   }
-  setInputValue('');
-  console.log('Gif link:', inputValue);
+  setInputValue("");
+  console.log("Gif link:", inputValue);
   try {
     const provider = getProvider();
     const program = new Program(idl, programID, provider);
@@ -22,17 +22,16 @@ const sendGif = async () => {
         user: provider.wallet.publicKey,
       },
     });
-    console.log("GIF successfully sent to program", inputValue)
+    console.log("GIF successfully sent to program", inputValue);
 
     await getGifList();
   } catch (error) {
-    console.log("Error sending GIF:", error)
+    console.log("Error sending GIF:", error);
   }
 };
 ```
 
 GIFリンクを送信し、Phantom Wallet経由でトランザクションを承認すると、Webアプリケーションに送信したGIFが表示されるようになります。
-
 
 ### 🙈 アカウントが持続しない問題を解決する
 
@@ -40,7 +39,7 @@ GIFリンクを送信し、Phantom Wallet経由でトランザクションを承
 
 問題は次の行で起こっています。
 
-```javascript
+```js
 let baseAccount = Keypair.generate();
 ```
 
@@ -50,13 +49,13 @@ let baseAccount = Keypair.generate();
 
 そのために、`src`ディレクトリの下に`createKeyPair.js`という名前のファイルを作成し、以下のコードを貼り付けてください。
 
-```javascript
-const fs = require('fs')
-const anchor = require("@project-serum/anchor")
+```js
+const fs = require("fs");
+const anchor = require("@project-serum/anchor");
 
-const account = anchor.web3.Keypair.generate()
+const account = anchor.web3.Keypair.generate();
 
-fs.writeFileSync('./keypair.json', JSON.stringify(account))
+fs.writeFileSync("./keypair.json", JSON.stringify(account));
 ```
 
 このスクリプトは、キーペアを直接ファイルシステムに書き込んでいます。
@@ -78,16 +77,16 @@ node createKeyPair.js
 
 `App.js`の上部で以下のように`keypair.json`を`import`しましょう。
 
-```javascript
-import kp from './keypair.json'
+```js
+import kp from "./keypair.json";
 ```
 
 続いて、`let baseAccount = Keypair.generate();`を以下のように修正しましょう。
 
-```javascript
-const arr = Object.values(kp._keypair.secretKey)
-const secret = new Uint8Array(arr)
-const baseAccount = web3.Keypair.fromSecretKey(secret)
+```js
+const arr = Object.values(kp._keypair.secretKey);
+const secret = new Uint8Array(arr);
+const baseAccount = web3.Keypair.fromSecretKey(secret);
 ```
 
 これで永久的なキーペアができました!
@@ -104,7 +103,6 @@ Webアプリケーションをリフレッシュしても同じアカウント�
 
 これでSolanaプログラムと連携するWebアプリケーション（MVP）が完成しました!!
 
-
 ### 🙋‍♂️ 質問する
 
 ここまでの作業で何かわからないことがある場合は、Discordの`#solana`で質問をしてください。
@@ -119,7 +117,6 @@ Webアプリケーションをリフレッシュしても同じアカウント�
 ```
 
 ---
-
 
 おめでとうございます!
 

@@ -14,7 +14,7 @@ MetaMaskを設定できたら、Avalancheのテストネットワークを追加
 
 MetaMaskの上部のネットワークタブを開き、`Add Network`をクリックします。
 
-![](/public/images/AVAX-Messenger/section-2/2_3_2.png)
+![](/images/AVAX-Messenger/section-2/2_3_2.png)
 
 開いた設定ページ内で以下の情報を入力して保存をクリックしましょう。
 
@@ -26,11 +26,11 @@ Symbol: AVAX
 Explorer: https://testnet.snowtrace.io/
 ```
 
-![](/public/images/AVAX-Messenger/section-2/2_3_3.png)
+![](/images/AVAX-Messenger/section-2/2_3_3.png)
 
 登録が成功したらAvalancheのテストネットである`Avalanche Fuji C-Chain`が選択できるはずです。
 
-![](/public/images/AVAX-Messenger/section-2/2_3_4.png)
+![](/images/AVAX-Messenger/section-2/2_3_4.png)
 
 ### 🚰 `Faucet`を利用して`AVAX`をもらう
 
@@ -66,7 +66,7 @@ client
 `ethereum.ts`の中に以下のコードを記述してください。
 
 ```ts
-import { MetaMaskInpageProvider } from '@metamask/providers';
+import { MetaMaskInpageProvider } from "@metamask/providers";
 
 // window に ethereum を追加します。
 declare global {
@@ -76,7 +76,7 @@ declare global {
 }
 
 export const getEthereum = (): MetaMaskInpageProvider | null => {
-  if (typeof window !== 'undefined' && typeof window.ethereum !== 'undefined') {
+  if (typeof window !== "undefined" && typeof window.ethereum !== "undefined") {
     const { ethereum } = window;
     return ethereum;
   }
@@ -105,9 +105,9 @@ declare global {
 既に作成している`hooks`ディレクトリ内に`useWallet.ts`というファイルを作成し、以下のコードを記述してください。
 
 ```ts
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-import { getEthereum } from '../utils/ethereum';
+import { getEthereum } from "../utils/ethereum";
 
 // useWalletの返すオブジェクトの型定義です。
 type ReturnUseWallet = {
@@ -125,17 +125,17 @@ export const useWallet = (): ReturnUseWallet => {
   const connectWallet = async () => {
     try {
       if (!ethereum) {
-        alert('Get MetaMask!');
+        alert("Get MetaMask!");
         return;
       }
       // ユーザーに対してウォレットへのアクセス許可を求めます。
       // eth_requestAccounts 関数を使用することで、MetaMask からユーザーにウォレットへのアクセスを許可するよう呼びかけることができます。
       const accounts = await ethereum.request({
-        method: 'eth_requestAccounts',
+        method: "eth_requestAccounts",
       });
       if (!Array.isArray(accounts)) return;
       // 許可されれば、ユーザーの最初のウォレットアドレスを currentAccount に格納します。
-      console.log('Connected: ', accounts[0]);
+      console.log("Connected: ", accounts[0]);
       setCurrentAccount(accounts[0]);
     } catch (error) {
       console.log(error);
@@ -146,20 +146,20 @@ export const useWallet = (): ReturnUseWallet => {
   const checkIfWalletIsConnected = async () => {
     try {
       if (!ethereum) {
-        console.log('Make sure you have MetaMask!');
+        console.log("Make sure you have MetaMask!");
         return;
       } else {
-        console.log('We have the ethereum object', ethereum);
+        console.log("We have the ethereum object", ethereum);
       }
       // ユーザーのウォレットへアクセスが許可されているかどうかを確認します。
-      const accounts = await ethereum.request({ method: 'eth_accounts' });
+      const accounts = await ethereum.request({ method: "eth_accounts" });
       if (!Array.isArray(accounts)) return;
       if (accounts.length !== 0) {
         const account = accounts[0];
-        console.log('Found an authorized account:', account);
+        console.log("Found an authorized account:", account);
         setCurrentAccount(account);
       } else {
-        console.log('No authorized account found');
+        console.log("No authorized account found");
       }
     } catch (error) {
       console.log(error);
@@ -254,7 +254,7 @@ return {
 `RequireWallet.tsx`の中に以下のコードを記述してください。
 
 ```ts
-import styles from './RequireWallet.module.css';
+import styles from "./RequireWallet.module.css";
 
 type Props = {
   children: React.ReactNode;
@@ -299,13 +299,13 @@ export default function RequireWallet({
 `index.tsx`
 
 ```ts
-import type { NextPage } from 'next';
-import Link from 'next/link';
+import type { NextPage } from "next";
+import Link from "next/link";
 
-import Layout from '../components/layout/Layout';
-import RequireWallet from '../components/layout/RequireWallet';
-import { useWallet } from '../hooks/useWallet';
-import styles from '../styles/Home.module.css';
+import Layout from "../components/layout/Layout";
+import RequireWallet from "../components/layout/RequireWallet";
+import { useWallet } from "../hooks/useWallet";
+import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   const { currentAccount, connectWallet } = useWallet();
@@ -345,24 +345,24 @@ export default Home;
 `ConfirmMessagePage.tsx`
 
 ```ts
-import { BigNumber } from 'ethers';
+import { BigNumber } from "ethers";
 
-import MessageCard from '../../components/card/MessageCard';
-import Layout from '../../components/layout/Layout';
-import RequireWallet from '../../components/layout/RequireWallet';
-import { Message } from '../../hooks/useMessengerContract';
-import { useWallet } from '../../hooks/useWallet';
+import MessageCard from "../../components/card/MessageCard";
+import Layout from "../../components/layout/Layout";
+import RequireWallet from "../../components/layout/RequireWallet";
+import { Message } from "../../hooks/useMessengerContract";
+import { useWallet } from "../../hooks/useWallet";
 
 export default function ConfirmMessagePage() {
   const { currentAccount, connectWallet } = useWallet();
 
   const message: Message = {
-    depositInWei: BigNumber.from('1000000000000000000'),
+    depositInWei: BigNumber.from("1000000000000000000"),
     timestamp: new Date(1),
-    text: 'message',
+    text: "message",
     isPending: true,
-    sender: '0x~',
-    receiver: '0x~',
+    sender: "0x~",
+    receiver: "0x~",
   };
   let ownMessages: Message[] = [message, message];
 
@@ -392,10 +392,10 @@ export default function ConfirmMessagePage() {
 `SendMessagePage.tsx`
 
 ```ts
-import SendMessageForm from '../../components/form/SendMessageForm';
-import Layout from '../../components/layout/Layout';
-import RequireWallet from '../../components/layout/RequireWallet';
-import { useWallet } from '../../hooks/useWallet';
+import SendMessageForm from "../../components/form/SendMessageForm";
+import Layout from "../../components/layout/Layout";
+import RequireWallet from "../../components/layout/RequireWallet";
+import { useWallet } from "../../hooks/useWallet";
 
 export default function SendMessagePage() {
   const { currentAccount, connectWallet } = useWallet();
@@ -434,25 +434,24 @@ yarn client dev
 
 ウォレットを接続していない状態では以下のような画面が表示されるはずです。
 
-![](/public/images/AVAX-Messenger/section-2/2_3_1.png)
+![](/images/AVAX-Messenger/section-2/2_3_1.png)
 
 `Connect Wallet`ボタンをクリックし、MetaMaskを接続してください。
 ⚠️ ネットワークに`Fuji`を選択した状態で行ってください。
 
 下図のようにMetaMaskからウォレット接続を求められますので、承認してください。
 
-![](/public/images/AVAX-Messenger/section-2/2_3_5.png)
+![](/images/AVAX-Messenger/section-2/2_3_5.png)
 
 MetaMaskの承認が終わると、画面が切り替わり、画面上部にあなたの接続しているウォレットのアドレスが表示されます。
 
-![](/public/images/AVAX-Messenger/section-2/2_3_6.png)
+![](/images/AVAX-Messenger/section-2/2_3_6.png)
 
 ### 🌔 参考リンク
 
 > [こちら](https://github.com/unchain-tech/AVAX-Messenger)に本プロジェクトの完成形のレポジトリがあります。
 >
 > 期待通り動かない場合は参考にしてみてください。
-
 
 ### 🙋‍♂️ 質問する
 

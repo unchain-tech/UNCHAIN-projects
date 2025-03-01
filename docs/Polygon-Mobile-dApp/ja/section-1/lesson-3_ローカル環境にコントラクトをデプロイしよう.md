@@ -4,7 +4,7 @@
 
 ### 🦊 MetaMask に Polygon Network を追加する
 
-MetaMaskウォレットにMatic MainnetとPolygon Mumbai-Testnetを追加してみましょう。
+MetaMaskウォレットにMatic MainnetとPolygon Amoy-Testnetを追加してみましょう。
 
 **1 \. Matic Mainnet を MetaMask に接続する**
 
@@ -12,21 +12,21 @@ Matic MainnetをMetaMaskに追加するには、次の手順に従ってくだ�
 
 まず、[Polygonscan](https://polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Polygon Network`ボタンをクリックします。
 
-![](/public/images/Polygon-Mobile-dApp/section-3/3_1_1.png)
+![](/images/Polygon-Mobile-dApp/section-3/3_1_1.png)
 
 下記のようなポップアップが立ち上がったら、`Switch Network`をクリックしましょう。
 
-![](/public/images/Polygon-Mobile-dApp/section-3/3_1_2.png)
+![](/images/Polygon-Mobile-dApp/section-3/3_1_2.png)
 
 `Matic Mainnet`があなたのMetaMaskにセットアップされました。
 
-![](/public/images/Polygon-Mobile-dApp/section-3/3_1_3.png)
+![](/images/Polygon-Mobile-dApp/section-3/3_1_3.png)
 
-**2 \. Polygon Mumbai-Testnet を MetaMask に接続する**
+**2 \. Polygon Amoy-Testnet を MetaMask に接続する**
 
-Polygon Mumbai-TestnetをMetaMaskに追加するには、次の手順に従ってください。
+Polygon Amoy-TestnetをMetaMaskに追加するには、次の手順に従ってください。
 
-まず、[mumbai.polygonscan.com](https://mumbai.polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Mumbai Network`ボタンをクリックします。
+まず、[amoy.polygonscan.com](https://amoy.polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Amoy Network`ボタンをクリックします。
 
 `Matic Mainnet`を設定した時と同じ要領で`Polygon Testnet`をあなたのMetaMaskに設定してください。
 
@@ -36,7 +36,7 @@ MetaMaskでPolygonネットワークの設定が完了したら、偽のMATICを
 
 [こちら](https://faucet.polygon.technology/) にアクセスして、下記のように偽MATICをリクエストしてください。
 
-![](/public/images/Polygon-Mobile-dApp/section-3/3_1_4.png)
+![](/images/Polygon-Mobile-dApp/section-3/3_1_4.png)
 
 Sepoliaとは異なり、これらのトークンの取得にそれほど問題はないはずです。
 
@@ -75,11 +75,11 @@ Sepoliaとは異なり、これらのトークンの取得にそれほど問題�
 
 これがあなたが本番環境のネットワークに接続する際に使用する`API Key`になります。
 
-### ✨ スマートコントラクトを Mumbai testnet に公開する
+### ✨ スマートコントラクトを Amoy testnet に公開する
 
 それでは、実際にコントラクトをデプロイしてみましょう。まずは、`scripts`ディレクトリの中にある`deploy.js`を以下の内容で上書きしてください。
 
-```javascript
+```js
 const hre = require('hardhat');
 const main = async () => {
   const [deployer] = await hre.ethers.getSigners();
@@ -116,18 +116,19 @@ runMain();
 solidityのバージョンはあなたが使用しているものに合わせて変更してください。
 
 ```js
-require('@nomicfoundation/hardhat-toolbox');
-require('dotenv').config();
+//hardhat.config.js
+require("@nomicfoundation/hardhat-toolbox");
+require("dotenv").config();
 
 const { PRIVATE_KEY, STAGING_ALCHEMY_KEY } = process.env;
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
-  solidity: '0.8.19',
+  solidity: "0.8.19",
   networks: {
-    mumbai: {
-      url: STAGING_ALCHEMY_KEY || '',
-      accounts: PRIVATE_KEY ? [PRIVATE_KEY] : ['0'.repeat(64)],
+    amoy: {
+      url: STAGING_ALCHEMY_KEY || "",
+      accounts: PRIVATE_KEY ? [PRIVATE_KEY] : ["0".repeat(64)],
     },
   },
 };
@@ -156,7 +157,7 @@ Account balance:  287212753772831574
 TodoContract address:  0x14479CaB58EB7B2AF847FCb2DbFD5F7e1bB17A08
 ```
 
-- **TodoContractのアドレスは後ほど必要になるので、PC 上のわかりやすいところに保存しておきましょう。**
+- **TodoContract のアドレスは後ほど必要になるので、PC 上のわかりやすいところに保存しておきましょう。**
 
 次は、Flutterアプリケーションへ接続していきましょう。
 
@@ -174,6 +175,7 @@ TodoContract address:  0x14479CaB58EB7B2AF847FCb2DbFD5F7e1bB17A08
 ```
 
 ---
+
 ターミナルの出力結果をDiscordの`#polygon`に投稿して、コミュニティにシェアしてください!
 
 次のセクションに進んで、Flutterアプリケーションへの接続を開始しましょう 🎉

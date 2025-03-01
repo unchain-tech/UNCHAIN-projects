@@ -34,7 +34,7 @@ ENSチームは、ネットワークの初期サポーターに報酬を与え�
 
 これが彼らのやり方でした。
 
-![](/public/images/ETH-DAO/section-3/3_1_1.png)
+![](/images/ETH-DAO/section-3/3_1_1.png)
 
 ここで強調しておきたいのは、これは独自の手法だということです。
 
@@ -44,7 +44,6 @@ ENSチームは、ネットワークの初期サポーターに報酬を与え�
 
 すべてはあなた次第なのです。
 
-
 ### 🥵 トークンをデプロイしよう
 
 トークン用のスマートコントラクトを作成し、デプロイしていきましょう。
@@ -52,28 +51,28 @@ ENSチームは、ネットワークの初期サポーターに報酬を与え�
 `src/scripts/5-deploy-token.ts`を作成し、以下を追加します。
 
 ```tsx
-import { AddressZero } from '@ethersproject/constants';
+import { AddressZero } from "@ethersproject/constants";
 
-import sdk from './1-initialize-sdk';
+import sdk from "./1-initialize-sdk";
 
 (async () => {
   try {
     // 標準的なERC-20のコントラクトをデプロイする
     const tokenAddress = await sdk.deployer.deployToken({
       // トークン名 Ex. 'Ethereum'
-      name: 'Tokyo Sauna Collective Governance Token',
+      name: "Tokyo Sauna Collective Governance Token",
       // トークンシンボル Ex. 'ETH'
-      symbol: 'TSC',
+      symbol: "TSC",
       // これは、トークンを売却する場合の受け取り先の設定
       // 今回は販売しないので、再び AddressZero に設定
       primary_sale_recipient: AddressZero,
     });
     console.log(
-      '✅ Successfully deployed token module, address:',
+      "✅ Successfully deployed token module, address:",
       tokenAddress
     );
   } catch (error) {
-    console.error('failed to deploy token module', error);
+    console.error("failed to deploy token module", error);
   }
 })();
 ```
@@ -112,24 +111,23 @@ Done in 40.70s.
 
 ここでも、**あなたのウォレット**からデプロイされたことがわかるので、**あなたがそれを所有している**ことがわかります。
 
-![](/public/images/ETH-DAO/section-3/3_1_2.png)
+![](/images/ETH-DAO/section-3/3_1_2.png)
 
 作成したトークンをカスタムトークンとしてMetaMaskに追加することも可能です。
 
 MetaMask"Import Token" をクリックするだけです。
 
-![](/public/images/ETH-DAO/section-3/3_1_3.png)
+![](/images/ETH-DAO/section-3/3_1_3.png)
 
 あなたのERC-20コントラクトのアドレスを貼り付けると、MetaMaskが魔法のように自動的にトークン・シンボルを追加してくれます。
 
-![](/public/images/ETH-DAO/section-3/3_1_4.png)
+![](/images/ETH-DAO/section-3/3_1_4.png)
 
 そして、ウォレットに戻りスクロールすると追加されているのが確認できます。
 
-![](/public/images/ETH-DAO/section-3/3_1_5.png)
+![](/images/ETH-DAO/section-3/3_1_5.png)
 
 さて、これで正式に自分のトークンを持つことができましたね！
-
 
 ### 💸 トークンを供給する
 
@@ -139,12 +137,12 @@ MetaMask"Import Token" をクリックするだけです。
 
 `src/scripts/6-print-money.ts`を作成し、下記コードを追加しましょう。
 
-```typescript
-import sdk from './1-initialize-sdk';
-import { ERCTokenAddress } from './module';
+```ts
+import sdk from "./1-initialize-sdk";
+import { ERCTokenAddress } from "./module";
 
 // これは、前のステップで取得した私たちの ERC-20 コントラクトのアドレスです。
-const token = sdk.getContract(ERCTokenAddress, 'token');
+const token = sdk.getContract(ERCTokenAddress, "token");
 
 (async () => {
   try {
@@ -156,15 +154,14 @@ const token = sdk.getContract(ERCTokenAddress, 'token');
 
     // 今、私たちのトークンがどれだけあるかを表示
     console.log(
-      '✅ There now is',
+      "✅ There now is",
       totalSupply.displayValue,
-      '$TSC in circulation',
+      "$TSC in circulation"
     );
   } catch (error) {
-    console.error('Failed to print money', error);
+    console.error("Failed to print money", error);
   }
 })();
-
 ```
 
 間違ったアドレスを入力すると、`UNPREDICTABLE_GAS_LIMIT`のようなエラーが表示されることがあります。
@@ -173,7 +170,7 @@ const token = sdk.getContract(ERCTokenAddress, 'token');
 
 これで、トークンコントラクトが出来上がったことが確認できると思います。
 
-![](/public/images/ETH-DAO/section-3/3_1_6.png)
+![](/images/ETH-DAO/section-3/3_1_6.png)
 
 ここでは、実際にトークン供給をミントし、 `amount`を設定し、トークンの最大供給量として設定しています。
 
@@ -193,20 +190,19 @@ Done in 32.95s.
 
 [Etherscan](https://sepolia.etherscan.io/) でERC-20コントラクトの画面を表示し、`More Info`から`Token Tracker`のリンクを表示させます。
 
-![](/public/images/ETH-DAO/section-3/3_1_7.png)
+![](/images/ETH-DAO/section-3/3_1_7.png)
 
 すると、すべての供給情報とトークン保持者、トークンの移動履歴、移動したトークン量などが表示されます。
 
 また、ここでは「最大総供給量」も表示されます。
 
-![](/public/images/ETH-DAO/section-3/3_1_8.png)
+![](/images/ETH-DAO/section-3/3_1_8.png)
 
 これをすべて、数行のTypeScriptで実現しました。
 
 これはとてもすごいことです。
 
 やろうと思えば、文字通りこの時点で次のミームコインを作ることもできますね（笑）。
-
 
 ### ✈️ エアドロップしよう
 
@@ -216,15 +212,15 @@ Done in 32.95s.
 
 `src/scripts/7-airdrop-token.ts`を作成し、以下のコードを追加してください。
 
-```typescript
-import sdk from './1-initialize-sdk';
-import { editionDropAddress, ERCTokenAddress } from './module';
+```ts
+import sdk from "./1-initialize-sdk";
+import { editionDropAddress, ERCTokenAddress } from "./module";
 
 // ERC-1155 メンバーシップの NFT コントラクトアドレス
-const editionDrop = sdk.getContract(editionDropAddress, 'edition-drop');
+const editionDrop = sdk.getContract(editionDropAddress, "edition-drop");
 
 // ERC-20 トークンコントラクトのアドレス
-const token = sdk.getContract(ERCTokenAddress, 'token');
+const token = sdk.getContract(ERCTokenAddress, "token");
 
 (async () => {
   try {
@@ -236,7 +232,7 @@ const token = sdk.getContract(ERCTokenAddress, 'token');
 
     if (walletAddresses.length === 0) {
       console.log(
-        'No NFTs have been claimed yet, maybe get some friends to claim your free NFTs!',
+        "No NFTs have been claimed yet, maybe get some friends to claim your free NFTs!"
       );
     }
 
@@ -244,9 +240,9 @@ const token = sdk.getContract(ERCTokenAddress, 'token');
     const airdropTargets = walletAddresses.map((address) => {
       // 1000 から 10000 の間でランダムな数を取得
       const randomAmount = Math.floor(
-        Math.random() * (10000 - 1000 + 1) + 1000,
+        Math.random() * (10000 - 1000 + 1) + 1000
       );
-      console.log('✅ Going to airdrop', randomAmount, 'tokens to', address);
+      console.log("✅ Going to airdrop", randomAmount, "tokens to", address);
 
       // ターゲットを設定
       const airdropTarget = {
@@ -258,13 +254,13 @@ const token = sdk.getContract(ERCTokenAddress, 'token');
     });
 
     // 全てのエアドロップ先で transferBatch を呼び出す
-    console.log('🌈 Starting airdrop...');
+    console.log("🌈 Starting airdrop...");
     await (await token).transferBatch(airdropTargets);
     console.log(
-      '✅ Successfully airdropped tokens to all the holders of the NFT!',
+      "✅ Successfully airdropped tokens to all the holders of the NFT!"
     );
   } catch (err) {
-    console.error('Failed to airdrop tokens', err);
+    console.error("Failed to airdrop tokens", err);
   }
 })();
 ```
@@ -330,8 +326,7 @@ Done in 33.52s.
 
 ちなみに、EtherscanのERC-20コントラクトに戻ると、新しいトークンホルダーと、彼らが所有する`$TSC`の量がわかります。
 
-![](/public/images/ETH-DAO/section-3/3_1_9.png)
-
+![](/images/ETH-DAO/section-3/3_1_9.png)
 
 ### 🙋‍♂️ 質問する
 

@@ -4,7 +4,7 @@
 
 手順はほかのイーサリアムのサイドチェーン(例：[Plasma](https://aire-voice.com/blockchain/4479/))とほぼ同じです。
 
-まず、`contract`ディレクトリに向かい、下記を修正していきましょう。
+まず、`packages/contract`ディレクトリに向かい、下記を修正していきましょう。
 
 1 \. `.env`ファイルを下記のように修正してください。
 
@@ -23,7 +23,7 @@ POLYGON_URL = ""
 
 2 \. `hardhat.config.js`を開き、コードを下記のように更新しましょう。
 
-```javascript
+```js
 require("@nomicfoundation/hardhat-toolbox");
 require("@nomiclabs/hardhat-etherscan");
 require("dotenv").config();
@@ -33,7 +33,7 @@ const { API_URL, PRIVATE_KEY, ETHERSCAN_API, POLYGON_URL } = process.env;
 module.exports = {
   solidity: "0.8.17",
   networks: {
-    mumbai: {
+    amoy: {
       url: POLYGON_URL,
       accounts: [PRIVATE_KEY],
     },
@@ -52,31 +52,33 @@ yarn contract run:script
 
 ターミナル上で、上記がエラーなく実行されれば、Polygonネットワークにコントラクトをデプロイする準備は完了です。
 
-
 ### 🧙‍♂️ テストを作成・実行する
 
 ここまでの作業でコントラクトには基本機能として以下の機能が追加されました。
-* NFTをmintする機能
-* nftをコントラクト所有者にためにキープする機能
-* コントラクトにETHを送金できる機能
+
+- NFTをmintする機能
+- nftをコントラクト所有者にためにキープする機能
+- コントラクトにETHを送金できる機能
+
 これらの基本機能をテストスクリプトとして記述していきましょう。
 ではpackages/contract/testに`test.js`という名前でファイルを作成して、以下のように記述しましょう。
-```js
-const hre = require('hardhat');
-const { expect } = require('chai');
 
-describe('Generative-NFT', () => {
-  it('mint is successed', async () => {
+```js
+const hre = require("hardhat");
+const { expect } = require("chai");
+
+describe("Generative-NFT", () => {
+  it("mint is successed", async () => {
     // あなたのコレクションの Base Token URI（JSON の CID）に差し替えてください
     const baseTokenURI =
-      'ipfs.io/ipfs/QmZbWNKJPAjxXuNFSEaksCJVd1M6DaKQViJBYPK2BdpDEP/';
+      "ipfs.io/ipfs/QmZbWNKJPAjxXuNFSEaksCJVd1M6DaKQViJBYPK2BdpDEP/";
 
     // オーナー/デプロイヤーのウォレットアドレスを取得する
     const [owner] = await hre.ethers.getSigners();
 
     // デプロイしたいコントラクトを取得
     const contractFactory = await hre.ethers.getContractFactory(
-      'NFTCollectible',
+      "NFTCollectible"
     );
 
     // 正しいコンストラクタ引数（baseTokenURI）でコントラクトをデプロイします。
@@ -93,7 +95,7 @@ describe('Generative-NFT', () => {
 
     // 0.03 ETH を送信して3つ NFT を mint できるかチェック
     txn = await contract.mintNFTs(3, {
-      value: hre.ethers.utils.parseEther('0.03'),
+      value: hre.ethers.utils.parseEther("0.03"),
     });
     await txn.wait();
     tokens = await contract.tokensOfOwner(owner.address);
@@ -166,7 +168,7 @@ uint public constant PRICE = 17 ether;
 
 - Solidityにとって、`17 ether`は下記と同じです。
 
-  ```javascript
+  ```js
   // 17 * 10¹⁸
   1700000000000000;
   ```
@@ -186,7 +188,7 @@ Polygonでは、`10¹⁸ Wei`が`1 MATIC`です。
 
 **異なるネットワークにコントラクトを移行する場合は、常に価格の修正を正しく行うようにしましょう。**
 
-このレッスンでは、Polygon Mumbai-Testnetを使用するので、NFTの価格を`0.01 MATIC`にします。
+このレッスンでは、Polygon Amoy-Testnetを使用するので、NFTの価格を`0.01 MATIC`にします。
 
 そこで、NFTの価格を元通りにリセットすることにします。
 
@@ -202,7 +204,7 @@ uint public constant PRICE = 0.01 ether;
 
 ### 🦊 MetaMask と Hardhat に Polygon Network を追加する
 
-MetaMaskウォレットにMatic MainnetとPolygon Mumbai-Testnetを追加してみましょう。
+MetaMaskウォレットにMatic MainnetとPolygon Amoy-Testnetを追加してみましょう。
 
 **1 \. Matic Mainnet を MetaMask に接続する**
 
@@ -210,21 +212,21 @@ Matic MainnetをMetaMaskに追加するには、次の手順に従ってくだ�
 
 まず、[Polygonscan](https://polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Polygon Network`ボタンをクリックします。
 
-![](/public/images/Polygon-Generative-NFT/section-3/3_2_1.png)
+![](/images/Polygon-Generative-NFT/section-3/3_2_1.png)
 
 下記のようなポップアップが立ち上がったら、`Switch Network`をクリックしましょう。
 
-![](/public/images/Polygon-Generative-NFT/section-3/3_2_2.png)
+![](/images/Polygon-Generative-NFT/section-3/3_2_2.png)
 
 `Matic Mainnet`があなたのMetaMaskにセットアップされました。
 
-![](/public/images/Polygon-Generative-NFT/section-3/3_2_3.png)
+![](/images/Polygon-Generative-NFT/section-3/3_2_3.png)
 
-**2 \. Polygon Mumbai-Testnet を MetaMask に接続する**
+**2 \. Polygon Amoy-Testnet を MetaMask に接続する**
 
-Polygon Mumbai-TestnetをMetaMaskに追加するには、次の手順に従ってください。
+Polygon Amoy-TestnetをMetaMaskに追加するには、次の手順に従ってください。
 
-まず、[mumbai.polygonscan.com](https://mumbai.polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Mumbai Network`ボタンをクリックします。
+まず、[amoy.polygonscan.com](https://amoy.polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Amoy Network`ボタンをクリックします。
 
 `Matic Mainnet`を設定した時と同じ要領で`Polygon Testnet`をあなたのMetaMaskに設定してください。
 
@@ -232,19 +234,19 @@ Hardhatを使用する場合、AlchemyのカスタムRPC URLが必要です。
 
 [alchemy.com](https://www.alchemy.com/) に再度ログインして、`Create App`を選択し、下記のように設定してください。
 
-![](/public/images/Polygon-Generative-NFT/section-3/3_2_4.png)
+![](/images/Polygon-Generative-NFT/section-3/3_2_4.png)
 
 次に、下図のように、新しく作成した`Polygon NFT`アプリケーションの`VIEW DETAILS`をクリックしましょう。
 
-![](/public/images/Polygon-Generative-NFT/section-3/3_2_5.png)
+![](/images/Polygon-Generative-NFT/section-3/3_2_5.png)
 
 次に、アプリケーションの`VIEW KEY`をクリックし、`HTTP` URLをコピーしてください。
 
-![](/public/images/Polygon-Generative-NFT/section-3/3_2_6.png)
+![](/images/Polygon-Generative-NFT/section-3/3_2_6.png)
 
-それでは、`contract/.env`ファイルを開き、コピーした`HTTP` URLを下記の`Alchemy Polygon URL`の部分に貼り付けていきます。
+それでは、`packages/contract/.env`ファイルを開き、コピーした`HTTP` URLを下記の`Alchemy Polygon URL`の部分に貼り付けていきます。
 
-```javascript
+```js
 POLYGON_URL = "Alchemy Polygon URL";
 ```
 
@@ -254,7 +256,7 @@ MetaMaskとHardhatの両方でPolygonネットワークの設定が完了した�
 
 [こちら](https://faucet.polygon.technology/) にアクセスして、下記のように偽MATICをリクエストしてください。
 
-![](/public/images/Polygon-Generative-NFT/section-3/3_2_7.png)
+![](/images/Polygon-Generative-NFT/section-3/3_2_7.png)
 
 Sepoliaとは異なり、これらのトークンの取得にそれほど問題はないはずです。
 
@@ -276,9 +278,9 @@ Sepoliaとは異なり、これらのトークンの取得にそれほど問題�
 
 準備完了です!
 
-`contract/scripts`に向かい、`deploy.js`を下記のように更新してください。
+`packages/contract/scripts`に向かい、`deploy.js`を下記のように更新してください。
 
-```javascript
+```js
 async function main() {
   // あなたのコレクションの Base Token URI（JSON の CID）に差し替えてください
   // 注: 十分な NFT を確保するために、下記のサンプル Token URI を使用しても問題ありません。
@@ -315,19 +317,18 @@ main()
 まずは、`packages/contract/package.json`の`script`部分を以下のように編集してください。
 
 ```json
-"scripts": {
-    "run:script":"npx hardhat run scripts/run.js",
-    "test": "npx hardhat test",
+  "scripts": {
+    "run:script": "npx hardhat run scripts/run.js",
     "deploy:sepolia": "npx hardhat run scripts/deploy.js --network sepolia",
-    "deploy:mumbai": "npx hardhat run scripts/deploy.js --network mumbai",
-    "start":"npx hardhat node",
+    "deploy:amoy": "npx hardhat run scripts/deploy.js --network amoy",
+    "test": "npx hardhat test"
   },
 ```
 
 ターミナル上で下記を実行してみましょう。
 
 ```
-yarn contract deploy:mumbai
+yarn contract deploy:amoy
 ```
 
 下記のような結果がターミナルに出力されていることを確認してください。
@@ -337,9 +338,9 @@ Contract deployed to: 0xF899DeB963208560a7c667FA78376ecaFF684b8E
 Owner has tokens:  []
 ```
 
-次に、[mumbai.polygonscan.com](https://mumbai.polygonscan.com/) に向かい、コントラクトアドレス(`Contract deployed to`に続く`0x..`)を検索して、コントラクトがデプロイされたことを確認しましょう。
+次に、[amoy.polygonscan.com](https://amoy.polygonscan.com/) に向かい、コントラクトアドレス(`Contract deployed to`に続く`0x..`)を検索して、コントラクトがデプロイされたことを確認しましょう。
 
-![](/public/images/Polygon-Generative-NFT/section-3/3_2_8.png)
+![](/images/Polygon-Generative-NFT/section-3/3_2_8.png)
 
 ### 📝 Polygonscan を使ってコントラクトを verify（検証）する
 
@@ -349,20 +350,20 @@ Owner has tokens:  []
 
 次に、APIの作成に進みます。下図のように、`API-Keys`のタブを選択し、`+ Add`ボタンを押してください。
 
-![](/public/images/Polygon-Generative-NFT/section-3/3_2_9.png)
+![](/images/Polygon-Generative-NFT/section-3/3_2_9.png)
 
 ポップアップが開くので、APIに任意の名前をつけて、保存しましょう。
 
 APIを作成したら、そのAPIの`Edit`ボタンをクリックしてください。
-![](/public/images/Polygon-Generative-NFT/section-3/3_2_10.png)
+![](/images/Polygon-Generative-NFT/section-3/3_2_10.png)
 
 下記の画面に遷移するので、`Polygon-API-Key`をコピーしましょう。
 
-![](/public/images/Polygon-Generative-NFT/section-3/3_2_11.png)
+![](/images/Polygon-Generative-NFT/section-3/3_2_11.png)
 
-最後にもう一度`contract/.env`ファイルを開き、下記にコピーした`Polygon-API-Key`の値を貼り付けます。
+最後にもう一度`packages/contract/.env`ファイルを開き、下記にコピーした`Polygon-API-Key`の値を貼り付けます。
 
-```javascript
+```js
 ETHERSCAN_API = "Polygonscan-API-key";
 ```
 
@@ -373,7 +374,7 @@ PolygonscanはEtherscanを搭載しているため、`ETHERSCAN_API`という変
 ```
 npx hardhat clean
 
-npx hardhat verify --network mumbai DEPLOYED_CONTRACT_ADDRESS "BASE_TOKEN_URI"
+npx hardhat verify --network amoy DEPLOYED_CONTRACT_ADDRESS "BASE_TOKEN_URI"
 ```
 
 - `DEPLOYED_CONTRACT_ADDRESS`はあなたのコントラクトアドレスです。
@@ -383,7 +384,7 @@ npx hardhat verify --network mumbai DEPLOYED_CONTRACT_ADDRESS "BASE_TOKEN_URI"
 私のコマンドは下記のようになります。
 
 ```
-npx hardhat verify --network mumbai 0xF899DeB963208560a7c667FA78376ecaFF684b8E "ipfs://QmSvw119ALMN9SkP89Xj37jvqJik8jZrSjU5c1vgBhkhz8/"
+npx hardhat verify --network amoy 0xF899DeB963208560a7c667FA78376ecaFF684b8E "ipfs://QmSvw119ALMN9SkP89Xj37jvqJik8jZrSjU5c1vgBhkhz8/"
 ```
 
 下記のような結果がターミナルに出力されていることを確認してください。
@@ -397,11 +398,11 @@ contracts/NFTCollectible.sol:NFTCollectible at 0xF899DeB963208560a7c667FA78376ec
 for verification on the block explorer. Waiting for verification result...
 
 Successfully verified contract NFTCollectible on Etherscan.
-https://mumbai.polygonscan.com/address/0xF899DeB963208560a7c667FA78376ecaFF684b8E#code
+https://amoy.polygonscan.com/address/0xF899DeB963208560a7c667FA78376ecaFF684b8E#code
 
 ```
 
-出力された`https://mumbai.polygonscan.com/address/0x...`のリンクをブラウザで開いてコントラクトの中身がオンラインで読み込めるか検証してみましょう。
+出力された`https://amoy.polygonscan.com/address/0x...`のリンクをブラウザで開いてコントラクトの中身がオンラインで読み込めるか検証してみましょう。
 
 無事コントラクトの中身がPolygonscanに表示されていたでしょうか？
 

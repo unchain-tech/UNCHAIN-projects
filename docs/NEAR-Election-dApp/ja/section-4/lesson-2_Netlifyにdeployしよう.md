@@ -87,7 +87,7 @@ Website URL:       https://near-election-dapp.netlify.app
 ここで`Website URL: `URLをコピーして自分が使用しているブラウザに貼り付けてみましょう。
 
 成功すれば以下のようにブラウザ上で自分の作成したdAppが使えるようになるはずです！
-![](/public/images/NEAR-Election-dApp/section-4/4_2_1.png)
+![](/images/NEAR-Election-dApp/section-4/4_2_1.png)
 
 ぜひデプロイされたWebアプリケーションを自分の目で確認してみてください！ ！
 
@@ -114,7 +114,7 @@ NFTを取得する条件は、以下のようになります。
 
 3. このページの最後にリンクされているProject Completion Formに記入する
 
-4. Discordの`🔥｜post-your-projects`チャンネルに、あなたのWebサイトをシェアしてください 😉🎉 。Discordへ投稿する際に、追加実装した機能とその概要も教えていただけると幸いです！
+4. Discordの`🔥｜completed-projects`チャンネルに、あなたのWebサイトをシェアしてください 😉🎉 。Discordへ投稿する際に、追加実装した機能とその概要も教えていただけると幸いです！
 
 プロジェクトを完成させていただいた方には、NFTをお送りします。
 

@@ -10,7 +10,7 @@ _当レッスンは、もし各自の学習状況により以前のプロジェ�
 
 一度私たちがウォレットをウェブサイトと接続するとウェブサイトは私たちの代わりにスマートコントラクトとやりとりします。私たちが**許可したこと**を行ってくれます。
 
-`src`フォルダの中の`App.js`に向かいましょう。
+`packages/client/src`フォルダの中の`App.js`に向かいましょう。
 ここがフロントエンドの基点となります。
 
 メタマスクにログインすると、自動的に`ethereum`というオブジェクトがウィンドウにインジェクトされます。
@@ -19,13 +19,13 @@ _当レッスンは、もし各自の学習状況により以前のプロジェ�
 
 **注意：メタマスクのチェーン選択で自分の本来の目的のブロックチェーン以外のチェーンを選択している状態でも`ethereum`オブジェクトはインジェクトされます。後でそれも実感できるでしょう。**
 
-```javascript
+```js
 import React, { useEffect } from "react";
 import "./styles/App.css";
 import twitterLogo from "./assets/twitter-logo.svg";
 
-// コントラクト
-const TWITTER_HANDLE = "_UNCHAIN";
+// 定数
+const TWITTER_HANDLE = "UNCHAIN_tech";
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const App = () => {
@@ -95,11 +95,11 @@ export default App;
 ```
 
 これでメタマスク拡張機能がインストールされているかのロジックを作成しました。
-ページを更新するとブラウザのDevコンソールには`We have the Ethereum object`と表示されるでしょう（メタマスクがインストール済みの場合）。
+ページを更新するとブラウザのDevコンソールには`We have the ethereum object`と表示されるでしょう（メタマスクがインストール済みの場合）。
 
 ページを好みに合わせてカスタマイズしてみてください。[GIF の参考サイト](https://giphy.com/)です。
 
-![](/public/images/Polygon-ENS-Domain/section-2/2_2_1.png)
+![](/images/Polygon-ENS-Domain/section-2/2_2_1.png)
 
 ### 🔒 ユーザーのウォレットにアクセス可能か確認する
 
@@ -111,13 +111,13 @@ MetaMaskは、私たちが許可するウェブサイトにのみ権限を与え
 
 変更したものについてコメントを付します。
 
-```javascript
+```js
 // useStateを追加でインポートしています。
 import React, { useEffect, useState } from "react";
 import "./styles/App.css";
 import twitterLogo from "./assets/twitter-logo.svg";
 
-const TWITTER_HANDLE = "_UNCHAIN";
+const TWITTER_HANDLE = "UNCHAIN_tech";
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const App = () => {
@@ -203,13 +203,13 @@ export default App;
 
 web3の世界では、ウォレットの接続はいわばユーザーの「ログイン」ボタンです。MetaMaskにリクエストを送信して、ユーザーのウォレットへの読み取り専用アクセスを許可します。
 
-```javascript
+```js
 import React, { useEffect, useState } from "react";
 import "./styles/App.css";
 import twitterLogo from "./assets/twitter-logo.svg";
 
-// コントラクト
-const TWITTER_HANDLE = "_UNCHAIN";
+// 定数
+const TWITTER_HANDLE = "UNCHAIN_tech";
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const App = () => {
@@ -338,4 +338,4 @@ export default App;
 
 ---
 
-おめでとうございます!ウォレットコネクトボタンが完成しました!! 次のレッスンでは、ドメインをMintする機能を実装していきます✨
+おめでとうございます!ウォレットコネクトボタンが完成しました!! 次のレッスンでは、ドメインをMintする機能を実装していきます ✨

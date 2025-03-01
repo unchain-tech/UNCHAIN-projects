@@ -12,11 +12,11 @@ ICの重要な特徴の1つに、従来のデータベースを使わずにキ�
 
 ここで、永続化を行なっていない現在のDEXでは何が起こるかを確認しておきたいと思います。DEX内にトークンを入金している、かつオーダーを作成している状態を作ります（確認ができれば良いので、以下の画像と全く同じ状況を作り出す必要はありません）。
 
-![](/public/images/ICP-Basic-DEX/section-4/4_2_1.png)
+![](/images/ICP-Basic-DEX/section-4/4_2_1.png)
 
 このようにDEX内にデータが格納されている状態で、`main.mo`を更新してみたいと思います。`main.mo`ファイルに定義した`last_id`変数の初期値を修正して再デプロイを行います。
 
-```javascript
+```js
 private var last_id : Nat32 = 100; // TODO: 後で初期値0に戻す
 ```
 
@@ -26,7 +26,7 @@ dfx deploy icp_basic_dex_backend
 
 ブラウザをリロードしてみると、DEXに預けたトークンとオーダーの情報が取得できていない（リセットされた）ことが確認できます。ただし、預けていないトークンの情報は保持されています。これは、DIP20が永続化を行なっているためです。コードを覗いてみるとわかりますが、`stable`変数が定義されています。
 
-![](/public/images/ICP-Basic-DEX/section-4/4_2_2.png)
+![](/images/ICP-Basic-DEX/section-4/4_2_2.png)
 
 それでは、大切なデータが失われないように永続化を行うためのコードを追加していきましょう。
 
@@ -194,11 +194,11 @@ dfx deploy faucet && dfx deploy icp_basic_dex_backend
 
 改めて、DEX内にトークンを入金している、かつオーダーを作成している状態を作ります。
 
-![](/public/images/ICP-Basic-DEX/section-4/4_2_3.png)
+![](/images/ICP-Basic-DEX/section-4/4_2_3.png)
 
 この状態のまま、icp_basic_dex_backendのコードを編集して再デプロイを行います。`main.mo`ファイルに定義した`last_id`変数の初期値を`0`に戻しましょう。
 
-```javascript
+```js
 private stable var last_id : Nat32 = 0;
 ```
 

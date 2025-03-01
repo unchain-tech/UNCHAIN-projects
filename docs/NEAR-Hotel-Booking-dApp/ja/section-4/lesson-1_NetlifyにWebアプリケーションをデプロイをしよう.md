@@ -84,7 +84,7 @@ Website URL:       https://near-hotel-booking-dapp.netlify.app
 
 ブラウザ上で自分の作成したWebアプリケーションが使えたらデプロイ成功です！
 
-![](/public/images/NEAR-Hotel-Booking-dApp/section-4/4_1_1.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-4/4_1_1.png)
 
 ぜひ、デプロイされたWebアプリケーションを自分の目で確認してみてください ✨
 
@@ -111,7 +111,7 @@ NFTを取得する条件は、以下のようになります。
 
 3. このページの最後にリンクされているProject Completion Formに記入する
 
-4. Discordの`🔥｜post-your-projects`チャンネルに、あなたのWebサイトをシェアしてください 😉 🎉 。Discordへ投稿する際に、追加実装した機能とその概要も教えていただけると幸いです！
+4. Discordの`🔥｜completed-projects`チャンネルに、あなたのWebサイトをシェアしてください 😉 🎉 。Discordへ投稿する際に、追加実装した機能とその概要も教えていただけると幸いです！
 
 プロジェクトを完成させていただいた方には、NFTをお送りします。
 

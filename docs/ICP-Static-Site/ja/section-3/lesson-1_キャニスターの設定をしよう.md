@@ -46,6 +46,7 @@ dfx deploy
 ```
 
 （出力例）
+
 ```
 Deploying all canisters.
 Creating a wallet canister on the local network.
@@ -77,7 +78,7 @@ Deployed canisters.
 
 デプロイが完了し、プロジェクト内に`.dfx/local`フォルダ、`dist`フォルダが生成したことを確認しましょう。
 
-.dfxフォルダには、実際にキャニスター内へコピーされるコンパイルされたソースコードや、キャニスターIDを定義したファイルなどが格納されます。
+.dfxフォルダには、実際にキャニスター内へコピーされるコンパイルされたソースコードや、キャニスター IDを定義したファイルなどが格納されます。
 
 それでは、ブラウザ上で確認をしてみましょう。デプロイされたキャニスターのIDが必要なので、`.dfx/local/canister_ids.json内の"website:"`の値、または下記のコマンドを実行して取得しましょう。
 
@@ -88,12 +89,12 @@ dfx canister id website
 キャニスターIDをコピーして、下記のようにURLを指定してブラウザで表示します。
 
 ```
-http://127.0.0.1:4943?canisterId=YOUR_CANISTER_ID
+http://127.0.0.1:8000?canisterId=YOUR_CANISTER_ID
 ```
 
 （実行例）
 
-![](/public/images/ICP-Static-Site/section-3/3_1_1.png)
+![](/images/ICP-Static-Site/section-3/3_1_1.png)
 
 作成したサイトが問題なく表示されることを確認します。
 

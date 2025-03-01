@@ -19,9 +19,9 @@
 7. 送金先のホーム画面（送金後）
 
 完成したものはこのようなスライドになります！
-![](/public/images/NEAR-MulPay/section-3/3_2_1.gif)
+![](/images/NEAR-MulPay/section-3/3_2_1.gif)
 
-こちらをpayment-dAppのチャンネルで共有して作ったアプリを共有しましょう！
+こちらを`🔥｜completed-projects`チャンネルで共有して作ったアプリを共有しましょう！
 
 ### 🙋‍♂️ 質問する
 

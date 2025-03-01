@@ -6,7 +6,7 @@ jobs:
     env:
       PATH_REGEX: ^.+\/docs\/.+\/(ja|en)\/section\-[0-9]\/lesson\-[0-9]_.+\.md$
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: grep invalid filename
         run: |
           ! find ./docs/**/* -maxdepth 3 -type f | grep -Ev $PATH_REGEX

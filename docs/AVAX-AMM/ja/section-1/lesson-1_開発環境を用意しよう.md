@@ -50,9 +50,7 @@ AVAX-AMM
   "description": "AMM dApp",
   "private": true,
   "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
+    "packages": ["packages/*"]
   },
   "scripts": {
     "contract": "yarn workspace contract",
@@ -187,7 +185,7 @@ yarn add dotenv@^16.0.2 @openzeppelin/contracts@^4.7.3
 `packages/contract`ディレクトリにいることを確認し、次のコマンドを実行します。
 
 ```
-npx hardhat
+npx hardhat init
 ```
 
 `hardhat`がターミナル上で立ち上がったら、それぞれの質問を以下のように答えていきます。
@@ -200,8 +198,9 @@ npx hardhat
 ```
 
 （例）
+
 ```
-$ npx hardhat
+$ npx hardhat init
 
 888    888                      888 888               888
 888    888                      888 888               888
@@ -306,7 +305,7 @@ yarn test
 
 次のように表示されます。
 
-![](/public/images/AVAX-AMM/section-1/1_2_2.png)
+![](/images/AVAX-AMM/section-1/1_2_2.png)
 
 これからテストの実行を行う際は、`AVAX-AMM/`直下で`yarn test`を実行します。
 

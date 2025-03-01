@@ -20,7 +20,7 @@
 
 `run.js`の中身に、以下を記入しましょう。
 
-```javascript
+```js
 const main = async () => {
   const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
   const waveContract = await waveContractFactory.deploy();
@@ -44,7 +44,7 @@ runMain();
 
 それでは、1行ずつコードの理解を深めましょう。
 
-```javascript
+```js
 const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
 ```
 
@@ -64,11 +64,11 @@ const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
 >
 > これを使うと、`await`が先頭についている処理が終わるまで、`main`関数の他の処理は行われません。
 >
-> つまり、`hre.ethers.getContractFactory("WavePortal")`の処理が終わるまで、`main`関数の中に記載されている他の処理は実行されないということです。
+> つまり、`hre.ethers.getContractFactory('WavePortal')`の処理が終わるまで、`main`関数の中に記載されている他の処理は実行されないということです。
 
 次に、下記の処理を見ていきましょう。
 
-```javascript
+```js
 const waveContract = await waveContractFactory.deploy();
 ```
 
@@ -82,7 +82,7 @@ HardhatがローカルのEthereumネットワークを、コントラクトの�
 
 次に下記の処理を見ていきましょう。
 
-```javascript
+```js
 const wavePortal = await waveContract.deployed();
 ```
 
@@ -94,7 +94,7 @@ Hardhatは実際にあなたのマシン上に「マイナー」を作成し、�
 
 最後に、下記の処理を見ていきましょう。
 
-```javascript
+```js
 console.log("WavePortal address:", wavePortal.address);
 ```
 
@@ -113,12 +113,13 @@ console.log("WavePortal address:", wavePortal.address);
 `packages/contract/package.json`の`script`部分を以下のように編集してください。
 
 ```json
-"scripts": {
-    "run:script":"npx hardhat run scripts/run.js",
+  "scripts": {
+    "run:script": "npx hardhat run scripts/run.js",
     "test": "npx hardhat test",
     "deploy": "npx hardhat run scripts/deploy.js --network sepolia"
   },
 ```
+
 その後ルートディレクトリにいることを確認して、ターミナル上で下記を実行してみましょう。
 
 ```

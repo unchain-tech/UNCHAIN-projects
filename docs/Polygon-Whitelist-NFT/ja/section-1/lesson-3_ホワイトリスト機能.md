@@ -6,12 +6,12 @@
 
 ```solidity
 //SPDX-License-Identifier: Unlicense
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.20;
 
 contract Whitelist {
     // The address that can operate addAddressToWhitelist function
     address public owner;
-    
+
     // Create a mapping of whitelistedAddresses
     // if an address is whitelisted, we would set it to true, it is false by default for all other addresses.
     mapping(address => bool) private _isWhitelisted;
@@ -55,7 +55,7 @@ contract Whitelist {
     function removeFromWhitelist(address _address) public {
         // Check if the user is the owner
         require(owner == msg.sender, "Caller is not the owner");
-        // Check if the user has not already been whitelisted    
+        // Check if the user has not already been whitelisted
         require(_isWhitelisted[_address], "Address not in whitelist");
         // Remove the address which called the function to the whitelistedAddress array
         _isWhitelisted[_address] = false;
@@ -154,7 +154,7 @@ contract Whitelist {
     function removeFromWhitelist(address _address) public {
         // Check if the user is the owner
         require(owner == msg.sender, "Caller is not the owner");
-        // Check if the user has not already been whitelisted    
+        // Check if the user has not already been whitelisted
         require(_isWhitelisted[_address], "Address not in whitelist");
         // Remove the address which called the function to the whitelistedAddress array
         _isWhitelisted[_address] = false;
@@ -182,17 +182,17 @@ contract Whitelist {
 
 さて、次にJS VMを使ってこのコントラクトをコンパイルし、デプロイしてみましょう。
 
-![image-20230222180958479](/public/images/Polygon-Whitelist-NFT/section-1/1_3_1.png)
+![image-20230222180958479](/images/Polygon-Whitelist-NFT/section-1/1_3_1.png)
 
 ここでは、アドレスの配列を入力する必要があります。これは下記のJS VMアカウントから取得できます。必要に応じてアカウントを切り替えてください。
 
 例：`["0x5B38Da6a701c568545dCfcB03FcB875f56beddC4","0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2"]`
 
-![image-20230222180944652](/public/images/Polygon-Whitelist-NFT/section-1/1_3_2.png)
+![image-20230222180944652](/images/Polygon-Whitelist-NFT/section-1/1_3_2.png)
 
 デプロイが完了したら、コントラクトを呼び出すことができます。テストのためにいくつかのアドレスを入力してみてください。
 
-![image-20230222181353308](/public/images/Polygon-Whitelist-NFT/section-1/1_3_3.png)
+![image-20230222181353308](/images/Polygon-Whitelist-NFT/section-1/1_3_3.png)
 
 さて、これでホワイトリストのコントラクトは完成しました。次は、NFT（Non-Fungible Token）部分のスマートコントラクト作成モジュールに移ります。
 

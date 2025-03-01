@@ -8,7 +8,7 @@
 
 ここまでのテキストと同じようにしていたなら下のように残高は全て0でしょう。
 
-![](/public/images/NEAR-MulPay/section-3/3_1_1.png)
+![](/images/NEAR-MulPay/section-3/3_1_1.png)
 
 ではwallet画面からDisconnectボタンを押して、送金用のウォレットと接続しましょう。
 
@@ -23,13 +23,13 @@
 するとmetamaskへ移動して、２回許可のボタン押しましょう。１回目の許可はコントラクトが接続しているウォレットのトークンを操作できるためのもので、２回目の許可はトランザクションを起こすためのガス代の消費のためのものです。
 
 下のような画面になるでしょう。
-![](/public/images/NEAR-MulPay/section-3/3_1_2.png)
+![](/images/NEAR-MulPay/section-3/3_1_2.png)
 
 [`送金側のホーム画面`]
-![](/public/images/NEAR-MulPay/section-3/3_1_3.png)
+![](/images/NEAR-MulPay/section-3/3_1_3.png)
 
 [`受け取り側のホーム画面`]
-![](/public/images/NEAR-MulPay/section-3/3_1_4.png)
+![](/images/NEAR-MulPay/section-3/3_1_4.png)
 
 これでswap機能を搭載した送金機能の動作確認ができましたね！
 

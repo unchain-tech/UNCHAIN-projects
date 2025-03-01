@@ -15,9 +15,9 @@ $ npm -v
 9.6.7
 ```
 
-### 🦀 Rustの環境構築をする
+### 🦀 Rust の環境構築をする
 
-[Rustインストール手順](https://doc.rust-lang.org/book/ch01-01-installation.html)を参考に、RustとCargoのインストールを行いましょう。
+[Rust インストール手順](https://doc.rust-lang.org/book/ch01-01-installation.html)を参考に、RustとCargoのインストールを行いましょう。
 
 ```
 curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
@@ -29,11 +29,11 @@ curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
 rustup target add wasm32-unknown-unknown
 ```
 
-### 🧰 IC SDKをインストールする
+### 🧰 IC SDK をインストールする
 
 IC SDKは、Internet Computerブロックチェーン上でキャニスタースマートコントラクトを作成・管理するためのソフトウェア開発キットです。
 
-[IC SDKのインストール](https://internetcomputer.org/docs/current/developer-docs/setup/install/)を参考に、IC SDKをインストールをしましょう。下記のように、バージョン`0.14.1`を指定してください。
+[IC SDK のインストール](https://internetcomputer.org/docs/current/developer-docs/setup/install/)を参考に、IC SDKをインストールをしましょう。下記のように、バージョン`0.14.1`を指定してください。
 
 ```
 DFX_VERSION=0.14.1 sh -ci "$(curl -sSL https://internetcomputer.org/install.sh)"
@@ -54,11 +54,11 @@ GitHubのアカウントをお持ちの方は、下記の手順に沿ってプ�
 
 1\. [ICP-Encrypted-Notes](https://github.com/unchain-tech/ICP-Encrypted-Notes)にアクセスをして、ページ右上の`Fork`ボタンをクリックします。
 
-![](/public/images/ICP-Encrypted-Notes/section-0/0_2_1.png)
+![](/images/ICP-Encrypted-Notes/section-0/0_2_1.png)
 
 2\. Create a new forkページが開くので、「Copy the `main` branch only」という項目に**チェックが入っていることを確認します**。
 
-![](/public/images/ICP-Encrypted-Notes/section-0/0_2_2.png)
+![](/images/ICP-Encrypted-Notes/section-0/0_2_2.png)
 
 設定が完了したら`Create fork`ボタンをクリックします。あなたのGitHubアカウントに`ICP-Encrypted-Notes`リポジトリのフォークが作成されたことを確認してください。
 
@@ -66,7 +66,7 @@ GitHubのアカウントをお持ちの方は、下記の手順に沿ってプ�
 
 まず、下図のように、`Code`ボタンをクリックして`SSH`を選択し、Gitリンクをコピーしましょう。
 
-![](/public/images/ICP-Encrypted-Notes/section-0/0_2_3.png)
+![](/images/ICP-Encrypted-Notes/section-0/0_2_3.png)
 
 ターミナル上で作業を行う任意のディレクトリに移動し、先ほどコピーしたリンクを用いて下記を実行してください。
 

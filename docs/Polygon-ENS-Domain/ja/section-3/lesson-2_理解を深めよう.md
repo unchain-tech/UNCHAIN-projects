@@ -10,18 +10,16 @@
 
 ```solidity
 // コントラクトの最初に付け加えてください（他のマッピングに続けて）。
-mapping (uint => string) public names;
+mapping(uint => string) public names;
 
 // コントラクトのどこかに付け加えてください。
 function getAllNames() public view returns (string[] memory) {
-  console.log("Getting all names from contract");
-  string[] memory allNames = new string[](_tokenIds.current());
-  for (uint i = 0; i < _tokenIds.current(); i++) {
-    allNames[i] = names[i];
-    console.log("Name for token %d is %s", i, allNames[i]);
-  }
+    string[] memory allNames = new string[](_tokenIds.current());
+    for (uint i = 0; i < _tokenIds.current(); i++) {
+        allNames[i] = names[i];
+    }
 
-  return allNames;
+    return allNames;
 }
 ```
 
@@ -47,7 +45,7 @@ names[newRecordId] = name;
 
 復習です🔥
 
-Section-2のLesson-3を参照くださいね👋
+Section-2のLesson-2を参照くださいね👋
 
 ---
 ### 💔 コントラクトのドメインの有効性を確認
@@ -61,8 +59,8 @@ Section-2のLesson-3を参照くださいね👋
 下のように加えてみましょう。
 
 ```solidity
-function valid(string calldata name) public pure returns(bool) {
-  return StringUtils.strlen(name) >= 3 && StringUtils.strlen(name) <= 10;
+function valid(string calldata name) public pure returns (bool) {
+    return StringUtils.strlen(name) >= 3 && StringUtils.strlen(name) <= 10;
 }
 ```
 
@@ -84,15 +82,15 @@ error InvalidName(string name);
 
 ```solidity
 function setRecord(string calldata name, string calldata record) public {
-  if (msg.sender != domains[name]) revert Unauthorized();
-  records[name] = record;
+    if (msg.sender != domains[name]) revert Unauthorized();
+    records[name] = record;
 }
 
 function register(string calldata name) public payable {
-  if (domains[name] != address(0)) revert AlreadyRegistered();
-  if (!valid(name)) revert InvalidName(name);
+    if (domains[name] != address(0)) revert AlreadyRegistered();
+    if (!valid(name)) revert InvalidName(name);
 
-  // register関数のその他の部分はそのまま残しておきます。
+    // register関数のその他の部分はそのまま残しておきます。
 }
 ```
 
@@ -169,18 +167,13 @@ describe('ENS-Domain', () => {
       deployTextFixture,
     );
 
-    let txn;
-
     const ownerBeforeBalance = await hre.ethers.provider.getBalance(
       owner.address,
     );
-    // スーパーコーダーとしてコントラクトから資金を奪おうとします。
-    try {
-      txn = await domainContract.connect(superCoder).withdraw();
-      await txn.wait();
-    } catch (error) {
-      console.log('robber could not withdraw token');
-    }
+
+    await expect(
+      domainContract.connect(superCoder).withdraw(),
+    ).to.be.revertedWith("You aren't the owner");
 
     const ownerAfterBalance = await hre.ethers.provider.getBalance(
       owner.address,
@@ -225,6 +218,41 @@ describe('ENS-Domain', () => {
 
 ```
 
+次に、`Domains`コントラクト内で定義していた`console.log`を削除しましょう。
+
+import文を削除します。
+
+```solidity
+// === 下記を削除 ===
+import "hardhat/console.sol";
+```
+
+constructor関数内の`console.log`を削除します。
+
+```solidity
+    // === 下記を削除 ===
+    console.log('%s name service deployed', _tld);
+```
+
+`register`関数内の`console.log`を削除します。
+
+```solidity
+    // === 下記を削除 ===
+    console.log(
+      'Registering %s.%s on the contract with tokenID %d',
+      name,
+      tld,
+      newRecordId
+    );
+```
+
+```solidity
+    // === 下記を削除 ===
+    console.log('\n--------------------------------------------------------');
+    console.log('Final tokenURI', finalTokenUri);
+    console.log('--------------------------------------------------------\n');
+```
+
 では下のコマンドを実行することでコントラクトのテストをしていきましょう！
 
 ```
@@ -234,16 +262,18 @@ yarn test
 最後に下のような結果がでいれば成功です！
 
 ```
-    ✔ Token amount contract has is correct! (4986ms)
-robber could not withdraw token
-    ✔ someone not owenr cannot withdraw token (68ms)
+Compiled 1 Solidity file successfully
+
+
+  ENS-Domain
+    ✔ Token amount contract has is correct! (1417ms)
+    ✔ someone not owenr cannot withdraw token
     ✔ contract owner can withdrawl token from conteract!
-    ✔ Domain value is depend on how long it is (38ms)
+    ✔ Domain value is depend on how long it is
 
 
-  4 passing (5s)
+  4 passing (1s)
 
-✨  Done in 8.83s.
 ```
 
 ### 🙋‍♂️ 質問する

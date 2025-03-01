@@ -22,7 +22,7 @@ yarn client start
 
 例)ローカル環境で表示されているWebサイト
 
-![](/public/images/ETH-NFT-Collection/section-3/3_1_2.png)
+![](/images/ETH-NFT-Collection/section-3/3_1_2.png)
 
 上記のような形でフロントエンドが確認できれば成功です。
 

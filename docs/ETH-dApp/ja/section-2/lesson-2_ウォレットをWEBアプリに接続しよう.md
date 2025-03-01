@@ -10,9 +10,11 @@ Webアプリケーション上で、ユーザーがイーサリアムネット�
 
 - `App.js`はあなたのWebアプリケーションのフロントエンド機能を果たします。
 
-```javascript
+```js
 import React, { useEffect } from "react";
+
 import "./App.css";
+
 const App = () => {
   const checkIfWalletIsConnected = () => {
     /*
@@ -25,12 +27,14 @@ const App = () => {
       console.log("We have the ethereum object", ethereum);
     }
   };
+
   /*
    * WEBページがロードされたときに下記の関数を実行します。
    */
   useEffect(() => {
     checkIfWalletIsConnected();
   }, []);
+
   return (
     <div className="mainContainer">
       <div className="dataContainer">
@@ -57,6 +61,7 @@ const App = () => {
     </div>
   );
 };
+
 export default App;
 ```
 
@@ -72,11 +77,11 @@ yarn client start
 
 ローカルサーバーでWebサイトを立ち上げたら、サイトの上で右クリックを行い、`Inspect`を選択します。
 
-![](/public/images/ETH-dApp/section-2/2_3_1.png)
+![](/images/ETH-dApp/section-2/2_2_1.png)
 
 次に、Consoleを選択し、出力結果を確認してみましょう。
 
-![](/public/images/ETH-dApp/section-2/2_3_2.png)
+![](/images/ETH-dApp/section-2/2_2_2.png)
 
 Consoleに`We have the ethereum object`と表示されているでしょうか？
 
@@ -90,13 +95,16 @@ Consoleに`We have the ethereum object`と表示されているでしょうか�
 
 下記のように、`App.js`の中身を更新します。
 
-```javascript
+```js
 import React, { useEffect, useState } from "react";
+
 import "./App.css";
+
 const App = () => {
   /* ユーザーのパブリックウォレットを保存するために使用する状態変数を定義します */
   const [currentAccount, setCurrentAccount] = useState("");
   console.log("currentAccount: ", currentAccount);
+
   /* window.ethereumにアクセスできることを確認します */
   const checkIfWalletIsConnected = async () => {
     try {
@@ -120,10 +128,12 @@ const App = () => {
       console.log(error);
     }
   };
+
   /* WEBページがロードされたときに下記の関数を実行します */
   useEffect(() => {
     checkIfWalletIsConnected();
   }, []);
+
   return (
     <div className="mainContainer">
       <div className="dataContainer">
@@ -150,12 +160,13 @@ const App = () => {
     </div>
   );
 };
+
 export default App;
 ```
 
 新しく追加したコードを見ていきます。
 
-```javascript
+```js
 /* ユーザーのウォレットへのアクセスが許可されているかどうかを確認します */
 const accounts = await ethereum.request({ method: "eth_accounts" });
 if (accounts.length !== 0) {
@@ -179,16 +190,16 @@ yarn client start
 
 ローカルサーバーでWebサイトを立ち上げたら、サイトの上で右クリックを行い、`Inspect`を選択します。
 
-![](/public/images/ETH-dApp/section-2/2_3_3.png)
+![](/images/ETH-dApp/section-2/2_2_3.png)
 
 次に、Consoleを選択し、出力結果を確認してみましょう。
 
-![](/public/images/ETH-dApp/section-2/2_3_4.png)
+![](/images/ETH-dApp/section-2/2_2_4.png)
 
-> ✍️:  Console の結果を見てわかること
+> ✍️: Console の結果を見てわかること
 > `App.js`に記載されているコードは上から順を追って走っているので、最初に`currentAccount`の状態変数を定義したときには、中身が空であることがわかります。
 
-> ```javascript
+> ```js
 > // App.js
 > const [currentAccount, setCurrentAccount] = useState("");
 > /*この段階でcurrentAccountの中身は空*/
@@ -201,17 +212,17 @@ yarn client start
 
 > ```
 > // accountsにWEBサイトを訪れたユーザーのウォレットアカウントを格納する（複数持っている場合も加味、よって account's' と変数を定義している）
-> const accounts = await ethereum.request({ method: "eth_accounts" });
+> const accounts = await ethereum.request({ method: 'eth_accounts' });
 > // もしアカウントが一つでも存在したら、以下を実行。
 > if (accounts.length !== 0) {
 >   // accountという変数にユーザーの1つ目（=Javascriptでいう0番目）のアドレスを格納
 >   const account = accounts[0];
->   console.log("Found an authorized account:", account);
+>   console.log('Found an authorized account:', account);
 >   // currentAccountにユーザーのアカウントアドレスを格納
 >   setCurrentAccount(account);
 > } else {
 >   // アカウントが存在しない場合は、エラーを出力。
->   console.log("No authorized account found");
+>   console.log('No authorized account found');
 > }
 > ```
 >
@@ -227,13 +238,16 @@ yarn client start
 
 `connectWallet`ボタンを作成していきます。
 
-```javascript
+```js
 import React, { useEffect, useState } from "react";
+
 import "./App.css";
+
 const App = () => {
   // ユーザーのパブリックウォレットを保存するために使用する状態変数を定義します。
   const [currentAccount, setCurrentAccount] = useState("");
   console.log("currentAccount: ", currentAccount);
+
   // window.ethereumにアクセスできることを確認します。
   const checkIfWalletIsConnected = async () => {
     try {
@@ -257,6 +271,7 @@ const App = () => {
       console.log(error);
     }
   };
+
   // connectWalletメソッドを実装
   const connectWallet = async () => {
     try {
@@ -274,6 +289,7 @@ const App = () => {
       console.log(error);
     }
   };
+
   // WEBページがロードされたときに下記の関数を実行します。
   useEffect(() => {
     checkIfWalletIsConnected();
@@ -315,6 +331,7 @@ const App = () => {
     </div>
   );
 };
+
 export default App;
 ```
 
@@ -322,7 +339,7 @@ export default App;
 
 **1 \. `connectWallet`メソッドを実装**
 
-```javascript
+```js
 const connectWallet = async () => {
   try {
     // ユーザーが認証可能なウォレットアドレスを持っているか確認
@@ -345,7 +362,7 @@ const connectWallet = async () => {
 
 **2 \. ウォレットコネクトのボタンを実装**
 
-```javascript
+```js
 // currentAccountが存在しない場合は、「Connect Wallet」ボタンを実装
 {
   !currentAccount && (
@@ -374,34 +391,34 @@ yarn client start
 
 ローカルサーバーでWebサイトを立ち上げたら、MetaMaskのプラグインをクリックし、あなたのウォレットアドレスの接続状況を確認しましょう。
 
-もし、下図のように`Connected`と表示されている場合は、`Connected`の文字をクリックします。
+もし、下図のように`connected`となっている場合は、赤枠のアイコンをクリックします。
 
-![](/public/images/ETH-dApp/section-2/2_3_5.png)
+![](/images/ETH-dApp/section-2/2_2_5.png)
 
 そこで、Webサイトとあなたのウォレットアドレスの接続を一度解除します。
 
 - `Disconnect this account`を選択してください。
 
-![](/public/images/ETH-dApp/section-2/2_3_6.png)
+![](/images/ETH-dApp/section-2/2_2_6.png)
 
 次にローカルサーバーにホストされているあなたのWebサイトをリフレッシュしてボタンの表示を確認してください。
 
 - ウォレット接続用のボタンが、`Connect Wallet`と表示されていれば成功です。
 
-![](/public/images/ETH-dApp/section-2/2_3_7.png)
+![](/images/ETH-dApp/section-2/2_2_7.png)
 
 次に、右クリック → `Inspect`を選択し、Consoleを立ち上げましょう。下図のように、`No authorized account found`と出力されていれば成功です。
 
-![](/public/images/ETH-dApp/section-2/2_3_8.png)
+![](/images/ETH-dApp/section-2/2_2_8.png)
 
 では、`Connect Wallet`ボタンを押してみましょう。
 下図のようにMetaMaskからウォレット接続を求められますので、承認してください。
 
-![](/public/images/ETH-dApp/section-2/2_3_9.png)
+![](/images/ETH-dApp/section-2/2_2_9.png)
 
 MetaMaskの承認が終わると、ウォレット接続ボタンの表示が`Wallet Connected`に変更されているはずです。Consoleにも、接続されたウォレットアドレスが、`currentAccount`として出力されていることを確認してください。
 
-![](/public/images/ETH-dApp/section-2/2_3_10.png)
+![](/images/ETH-dApp/section-2/2_2_10.png)
 
 ### 🙋‍♂️ 質問する
 

@@ -32,7 +32,7 @@ Motokoでは、モジュール間で共通して使用したいユーザー定�
 
 [types.mo]
 
-```javascript
+```js
 module {
 
   // ===== DIP20 TOKEN INTERFACE =====
@@ -77,7 +77,7 @@ module {
 
 `[ 関数名 ] : [ (引数) ] -> [ 戻り値 ]`という形式で記述します。
 
-```javascript
+```js
 public type DIPInterface = actor {
   balanceOf : (who : Principal) -> async Nat;
   transfer : (to : Principal, value : Nat) -> async TxReceipt;
@@ -90,7 +90,7 @@ public type DIPInterface = actor {
 
 [main.mo]
 
-```javascript
+```js
 import Array "mo:base/Array";
 import Buffer "mo:base/Buffer";
 import HashMap "mo:base/HashMap";
@@ -121,7 +121,7 @@ shared (msg) actor class Faucet() = this {
 
 最後のインポート文は、先ほど実装した`types.mo`を`faucet.mo`内で使用するためのものです。
 
-```javascript
+```js
 import Array "mo:base/Array";
 import Buffer "mo:base/Buffer";
 import HashMap "mo:base/HashMap";
@@ -134,20 +134,20 @@ import T "types";
 
 最初に、内部で使用する型を定義しています。`Principal`型は先ほど紹介したように、ユーザーだけではなくキャニスターにも割り振られます。そのため、コード内でユーザーとDIP20キャニスター（トークンキャニスター）を区別しやすいように`Token`という別名をつけています。
 
-```javascript
+```js
 shared (msg) actor class Faucet() = this {
   private type Token = Principal;
 ```
 
 次に、ユーザー一人に渡すトークンの量を定義しています。Motokoでは、`let`キーワードが不変（イミュータブル）、`var`キーワードが可変（ミュータブル）の変数を定義します。
 
-```javascript
+```js
 private let FAUCET_AMOUNT : Nat = 1_000;
 ```
 
 次に、トークンを受け取ったユーザーとそのトークンを記録する`faucet_book`変数を定義しています。`Principal`型として受け取るのがユーザー ID、`[Token]`は配列になっており、複数のトークンをユーザに紐づけて保存できるようにしています。
 
-```javascript
+```js
 // ユーザーとトークンをマッピング
 // トークンは、複数を想定して配列にする
 var faucet_book = HashMap.HashMap<Principal, [Token]>(
@@ -257,13 +257,13 @@ shared (msg) actor class Faucet() = this {
 
 最初の関数は、ユーザーがトークンを受け取るためにコールする関数です。引数にトークンキャニスターのPrincipal（ID）を受け取り、戻り値は`types.mo`で定義した`FaucetReceipt`を返します。
 
-```javascript
+```js
 public shared (msg) func getToken(token : Token) : async FaucetReceipt
 ```
 
 内部では、最初に配布可能かどうかの確認を行います。後述する内部関数`checkDistribution`からエラーが返ってきたらその時点で`return`をして終了します。
 
-```javascript
+```js
 let faucet_receipt = await checkDistribution(msg.caller, token);
   switch (faucet_receipt) {
     case (#Err e) return #Err(e);
@@ -277,7 +277,7 @@ let faucet_receipt = await checkDistribution(msg.caller, token);
 
 インスタンスが生成されたら、実際に`transfer`をコールします。`msg.caller`には、`getToken`関数を呼び出したユーザーのPrincipalが格納されています。`transfer`からエラーが返ってきたら`return`をして終了します。
 
-```javascript
+```js
 // DIP20のインスタンスを生成
   let dip20 = actor (Principal.toText(token)) : T.DIPInterface;
 
@@ -291,7 +291,7 @@ let faucet_receipt = await checkDistribution(msg.caller, token);
 
 `transfer`に成功した場合、トークンを付与したことを記録するためにユーザー Principalとトークンをデータ(`faucet_book`)に保存します。
 
-```javascript
+```js
 // 転送に成功したら、`faucet_book`に保存する
 addUser(msg.caller, token);
 return #Ok(FAUCET_AMOUNT);
@@ -305,7 +305,7 @@ return #Ok(FAUCET_AMOUNT);
 
 残高が配布する量より少ない場合は、エラーを返して終了します。
 
-```javascript
+```js
 // `Token` PrincipalでDIP20アクターのインスタンスを生成
 let dip20 = actor (Principal.toText(token)) : T.DIPInterface;
 let balance = await dip20.balanceOf(Principal.fromActor(this));
@@ -317,7 +317,7 @@ if (balance < FAUCET_AMOUNT) {
 
 次に、ユーザーがトークンをまだ受け取っていないかを確認します。ポイントは2つ目の`switch`文です。トークンの有無を`Array.find`関数を使用して検索しています。HashMapの初期化に`key`に対して行う処理の関数を渡す必要がありましたが、`Array.find`にも比較を行う関数を渡す必要があります。HashMapとの違いは内部で扱う型にあります。`Array.find`では、扱う型がユーザー定義型`Token`の配列です。そのため、比較関数を自分で定義して渡す必要があります。
 
-```javascript
+```js
 // ユーザーのデータがあるか
 switch (faucet_book.get(user)) {
   case null return #Ok(FAUCET_AMOUNT);
@@ -335,7 +335,7 @@ switch (faucet_book.get(user)) {
 
 ユーザー自体のデータがない場合は、新しく配列を生成して`faucet_book`変数に追加します。
 
-```javascript
+```js
 case null {
   let new_data = Array.make<Token>(token);
   faucet_book.put(user, new_data);
@@ -344,7 +344,7 @@ case null {
 
 ユーザーのデータが存在する場合は、今回配布したトークンのデータを[Token]配列に追加します。ここで使用している`Buffer`とは、任意の要素数まで拡張可能な汎用・可変なものになります。そのため、初期化時にサイズが決定し変更不可能な`Array`（配列）を補完してくれます。
 
-```javascript
+```js
 case (?tokens) {
   let buff = Buffer.Buffer<Token>(2);
   for (token in tokens.vals()) {

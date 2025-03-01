@@ -8,7 +8,7 @@
 
 一方で、重要な要素があります。それは、あなたが実際にその暗号通貨の所有者であり、送金を承認していることをネットワークに証明しなければならないということです。
 
-![](/public/images/Solana-Wallet/section-3/3_2_4.png)
+![](/images/Solana-Wallet/section-3/3_2_4.png)
 
 大家さんへ家賃の支払いに使うような、伝統的な紙の小切手で考えてみるとわかりやすいかもしれませんね。
 
@@ -29,7 +29,7 @@
 
 トランザクションを送信したあと、さらに **残高を更新するために確認を要求したい** ので、２つ目を試してみるのが良さそうです。
 
-![](/public/images/Solana-Wallet/section-3/3_2_1.png)
+![](/images/Solana-Wallet/section-3/3_2_1.png)
 
 この関数の仕様を読むと、
 
@@ -41,12 +41,12 @@
 
 まずはこの関数をインポートし、次に関数呼び出しに必要な引数を用意していきましょう。
 
-```javascript
+```js
 // ファイルの先頭で sendAndConfirmTransaction 関数を読み込む
 import { sendAndConfirmTransaction } from "@solana/web3.js";
 
 // これまでと同じように connection インスタンスを作成する
-const connection = new Connection(network, 'confirmed');
+const connection = new Connection(network, "confirmed");
 
 // sendAndConfirmTransaction 関数を呼び出す
 // connection はすでに用意しているので、transaction と signers をこれから用意していきます
@@ -61,9 +61,9 @@ const confirmation = await sendAndConfirmTransaction(
 
 すでに`connection`はできているので、次に`transaction`を作成していきましょう。
 
-ドキュメントにある[Transactionクラスへのリンク](https://solana-labs.github.io/solana-web3.js/classes/Transaction.html)をたどると、`Transaction`オブジェクトを作成するには、そのコンストラクタを使用することができるようです。
+ドキュメントにある[Transaction クラスへのリンク](https://solana-labs.github.io/solana-web3.js/classes/Transaction.html)をたどると、`Transaction`オブジェクトを作成するには、そのコンストラクタを使用することができるようです。
 
-```javascript
+```js
 // サンプルコード
 const transaction = new Transaction();
 
@@ -75,9 +75,9 @@ console.log(transaction);
 
 それぞれを調査することもできますが、手始めとして有望だと思われる`instructions`プロパティを調べてみましょう。
 
-ドキュメントには直感的な進め方が書かれていないのが残念ですが、[`SystemProgram`](https://solana-labs.github.io/solana-web3.js/classes/SystemProgram.html) という便利そうなクラスに`transfer`メソッドがあり、 **「ある口座から別の口座にlamportsを移す取引命令を生成する」** と書かれています。これはまさに今必要としているメソッドのようですね!
+ドキュメントには直感的な進め方が書かれていないのが残念ですが、[`SystemProgram`](https://solana-labs.github.io/solana-web3.js/classes/SystemProgram.html) という便利そうなクラスに`transfer`メソッドがあり、 **「ある口座から別の口座に lamports を移す取引命令を生成する」** と書かれています。これはまさに今必要としているメソッドのようですね!
 
-![](/public/images/Solana-Wallet/section-3/3_2_2.png)
+![](/images/Solana-Wallet/section-3/3_2_2.png)
 
 ### Transfer
 
@@ -91,27 +91,27 @@ console.log(transaction);
 
 この3つで構成されています。
 
-![](/public/images/Solana-Wallet/section-3/3_2_5.png)
+![](/images/Solana-Wallet/section-3/3_2_5.png)
 
 これは私たちが取引に使いたいデータと一致していますね!
 
 ですので、 `instructions`は次のように組み立てることができます。
 
-```javascript
+```js
 // サンプルコード
 const params = {
   fromPubkey: account.publicKey,
   lamports: 0.5 * LAMPORTS_PER_SOL,
   toPubkey: toAddress,
 };
-SystemProgram.transfer(params)
+SystemProgram.transfer(params);
 ```
 
 受信者のアドレスは`Html Form`から文字列で受け取ることを想定していますが、`toPubkey`プロパティでは`PublicKey`型を想定しているため、受信者用の`PublicKey`をインスタンス化しなければなりません。
 
 これらを`Transaction`に組み込むには、addメソッドを使用します。
 
-```javascript
+```js
 transaction.add(SystemProgram.transfer(params));
 ```
 
@@ -121,11 +121,11 @@ transaction.add(SystemProgram.transfer(params));
 
 次に、`signers`の配列が必要です。この関数の仕様から、`signers`は少なくとも1つの`Signer`オブジェクトを含む配列になることが分かっています。[ドキュメント](https://solana-labs.github.io/solana-web3.js/interfaces/Signer.html)で`Signer`の型を確認すると、`publicKey`と`secretKey`という2つのプロパティを持つオブジェクトのようです。
 
-![](/public/images/Solana-Wallet/section-3/3_2_3.png)
+![](/images/Solana-Wallet/section-3/3_2_3.png)
 
 `account`から両方を取得できるので、`signers`の配列を作成することができます。
 
-```javascript
+```js
 const signers = [
   {
     publicKey: account.publicKey,
@@ -138,17 +138,17 @@ const signers = [
 
 これで3つのパラメータがすべて完了したので、最後に`sendAndConfirmTransaction`を呼び出して、その確認を待つことができるようになりました。
 
-```javascript
+```js
 const transactionSignature = await sendAndConfirmTransaction(
   connection,
   transaction,
-  signers,
+  signers
 );
 ```
 
 これで、`Solana`アカウント間で暗号通貨を移動することができる機能が完成しました。この機能を完成させるには、送金後にアカウントの残高を更新するために`refreshBalance`関数を呼び出す必要があります。
 
-```javascript
+```js
 await refreshBalance();
 ```
 
@@ -158,20 +158,20 @@ await refreshBalance();
 
 まず、必要な関数やクラスをインポートします。
 
-```javascript
+```js
 import {
   Connection,
   LAMPORTS_PER_SOL,
   sendAndConfirmTransaction,
   SystemProgram,
   Transaction,
-} from '@solana/web3.js';
-import { useState } from 'react';
+} from "@solana/web3.js";
+import { useState } from "react";
 ```
 
 これまで同様、実装に必要なデータを`Home`コンポーネントから引数として受け取るようにします。そして、トランザクションの結果を保存しておくステートと、フォームに入力された送信先アドレスを保存しておくステートを定義します。
 
-```javascript
+```js
 // `Transfer()`に引数を追加
 export default function Transfer({ account, network, refreshBalance }) {
   // 下記を追加
@@ -181,50 +181,50 @@ export default function Transfer({ account, network, refreshBalance }) {
 
 送金処理を行う`handleTransfer`関数を定義し、中身を書いていきましょう。
 
-```javascript
-  const handleTransfer = async (e) => {
-    e.preventDefault();
+```js
+const handleTransfer = async (e) => {
+  e.preventDefault();
 
-    try {
-      setTransactionSig('');
+  try {
+    setTransactionSig("");
 
-      const connection = new Connection(network, 'confirmed');
-      const params = {
-        fromPubkey: account.publicKey,
-        lamports: 0.5 * LAMPORTS_PER_SOL,
-        toPubkey: toAddress,
-      };
-      const signers = [
-        {
-          publicKey: account.publicKey,
-          secretKey: account.secretKey,
-        },
-      ];
+    const connection = new Connection(network, "confirmed");
+    const params = {
+      fromPubkey: account.publicKey,
+      lamports: 0.5 * LAMPORTS_PER_SOL,
+      toPubkey: toAddress,
+    };
+    const signers = [
+      {
+        publicKey: account.publicKey,
+        secretKey: account.secretKey,
+      },
+    ];
 
-      // Transactionインスタンスを生成し、`transfer`の指示を追加します。
-      const transaction = new Transaction();
-      transaction.add(SystemProgram.transfer(params));
-      // トランザクションに署名を行い、送信します。
-      const transactionSignature = await sendAndConfirmTransaction(
-        connection,
-        transaction,
-        signers,
-      );
+    // Transactionインスタンスを生成し、`transfer`の指示を追加します。
+    const transaction = new Transaction();
+    transaction.add(SystemProgram.transfer(params));
+    // トランザクションに署名を行い、送信します。
+    const transactionSignature = await sendAndConfirmTransaction(
+      connection,
+      transaction,
+      signers
+    );
 
-      setTransactionSig(transactionSignature);
+    setTransactionSig(transactionSignature);
 
-      // アカウントの残高を更新します。
-      await refreshBalance();
-    } catch (error) {
-      console.error(error);
-    }
-  };
+    // アカウントの残高を更新します。
+    await refreshBalance();
+  } catch (error) {
+    console.error(error);
+  }
+};
 ```
 
 そして、受信者アドレスを入力するフォームと、送金ボタンを実装します。
 ついでに、実際のトランザクションをあとで確認できるように、送金完了したら`Solana Explorer`へのリンクを表示してあげると良さそうです!
 
-```javascript
+```js
 return (
   <>
     <form onSubmit={handleTransfer} className="my-6">
@@ -265,19 +265,19 @@ return (
 
 components/Transfer/index.test.jsが`PASS`し、以下のようになっていたらOKです！
 
-![](/public/images/Solana-Wallet/section-3/3_2_6.png)
+![](/images/Solana-Wallet/section-3/3_2_6.png)
 
 それでは、`Transfer`コンポーネントを`Home`コンポーネントに組み込んで送信フォームを表示しましょう。`pages/index.js`を更新していきます。
 
 インポート文を追加します。
 
-```javascript
-import Transfer from '../components/Transfer';
+```js
+import Transfer from "../components/Transfer";
 ```
 
 `Transfer`コンポーネントを呼び出すコードを追加して、フォームをレンダリングします。
 
-```javascript
+```js
 <div>
   <h2 className="p-2 border-dotted border-l-4 border-l-indigo-400">
     STEP5: 送金機能を実装する
@@ -303,33 +303,33 @@ import Transfer from '../components/Transfer';
 
 そうすると、別のポートでアプリケーションが起動されますので、そちらでウォレットの作成をし、アドレスをコピーして１つ目のウォレットから送金を試してみる方法がおすすめです!
 
-※今回の実装では、送金するSOLは`0.5 SOL`で固定となっていますが、送金する際にガス代と呼ばれる手数料が必要になるため、残高がちょうど`0.5 SOL`だと、送金が失敗します。そういったエラーが発生することも確かめつつ、残高を`1 SOL`などにしてから送金を試してみてくださいね🥭
+※今回の実装では、送金するSOLは`0.5 SOL`で固定となっていますが、送金する際にガス代と呼ばれる手数料が必要になるため、残高がちょうど`0.5 SOL`だと、送金が失敗します。そういったエラーが発生することも確かめつつ、残高を`1 SOL`などにしてから送金を試してみてくださいね 🥭
 
 ### 📝 このセクションで追加したコード
 
 - components/Transfer/index.js
 
-```javascript
+```js
 import {
   Connection,
   LAMPORTS_PER_SOL,
   sendAndConfirmTransaction,
   SystemProgram,
   Transaction,
-} from '@solana/web3.js';
-import { useState } from 'react';
+} from "@solana/web3.js";
+import { useState } from "react";
 
 export default function Transfer({ account, network, refreshBalance }) {
-  const [transactionSig, setTransactionSig] = useState('');
+  const [transactionSig, setTransactionSig] = useState("");
   const [toAddress, setToAddress] = useState(null);
 
   const handleTransfer = async (e) => {
     e.preventDefault();
 
     try {
-      setTransactionSig('');
+      setTransactionSig("");
 
-      const connection = new Connection(network, 'confirmed');
+      const connection = new Connection(network, "confirmed");
       const params = {
         fromPubkey: account.publicKey,
         lamports: 0.5 * LAMPORTS_PER_SOL,
@@ -349,7 +349,7 @@ export default function Transfer({ account, network, refreshBalance }) {
       const transactionSignature = await sendAndConfirmTransaction(
         connection,
         transaction,
-        signers,
+        signers
       );
 
       setTransactionSig(transactionSignature);
@@ -451,7 +451,7 @@ export default function Home() {
 
 ### ☕️ 豆知識
 
-Solana Explorerでは、特定のブロック、アカウント、トランザクション、コントラクト、トークンをネットワーク単位で検索することができます。イーサリアムでは`Ethersacn`, BSCは`BscScan`が有名ですね🥭
+Solana Explorerでは、特定のブロック、アカウント、トランザクション、コントラクト、トークンをネットワーク単位で検索することができます。イーサリアムでは`Ethersacn`, BSCは`BscScan`が有名ですね 🥭
 
 ### 🙋‍♂️ 質問する
 
@@ -466,6 +466,5 @@ Solana Explorerでは、特定のブロック、アカウント、トランザ�
 4. エラー画面のスクリーンショット
 ```
 
-
-おめでとうございます✨送金機能が完成しました!
-次のレッスンでは、VercelにWebアプリをデプロイしていきます💪
+おめでとうございます ✨ 送金機能が完成しました!
+次のレッスンでは、VercelにWebアプリをデプロイしていきます 💪

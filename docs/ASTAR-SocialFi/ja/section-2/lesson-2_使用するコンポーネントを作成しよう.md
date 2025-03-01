@@ -10,7 +10,7 @@
 
 [`appLogo.tsx`]
 
-![](/public/images/ASTAR-SocialFi/section-2/2_2_1.png)
+![](/images/ASTAR-SocialFi/section-2/2_2_1.png)
 
 UNCHAINとASTARのロゴが ✖️ マークの両端に横並びに配置されているロゴを作成します。
 
@@ -55,7 +55,7 @@ export default AppLogo;
 
 `UNI`の部分はトークンのsymbolとなる部分で変更していただいて構いません。
 
-![](/public/images/ASTAR-SocialFi/section-2/2_2_30.png)
+![](/images/ASTAR-SocialFi/section-2/2_2_30.png)
 
 ```ts
 import { FC } from "react";
@@ -71,7 +71,7 @@ export const Balance: FC<Props> = (props: Props) => {
 
 [`biggerProfileIcon.tsx`]
 
-![](/public/images/ASTAR-SocialFi/section-2/2_2_2.png)
+![](/images/ASTAR-SocialFi/section-2/2_2_2.png)
 
 ※画像はそれぞれのユーザーの設定したものによって異なります。
 
@@ -101,7 +101,7 @@ export const BiggerProfileIcon: FC<Props> = (props: Props) => {
 
 [`bigInput.tsx`]
 
-![](/public/images/ASTAR-SocialFi/section-2/2_2_3.png)
+![](/images/ASTAR-SocialFi/section-2/2_2_3.png)
 
 こちらは投稿をする時に、投稿内容を記述するための欄です。
 
@@ -130,7 +130,7 @@ export const BigInput: FC<Props> = (props: Props) => {
 
 [`bottomLogo.tsx`]
 
-![](/public/images/ASTAR-SocialFi/section-2/2_2_4.png)
+![](/images/ASTAR-SocialFi/section-2/2_2_4.png)
 
 こちらは画面下に表示するナビゲーションバーで使用するアイコンです。ホーム画面、プロフィール画面、メッセージ画面それぞれに違うアイコンを使用するのでpropsから受け取るようになております。
 
@@ -177,7 +177,7 @@ export default BottomLogo;
 
 [`closeButton.tsx`]
 
-![](/public/images/ASTAR-SocialFi/section-2/2_2_5.png)
+![](/images/ASTAR-SocialFi/section-2/2_2_5.png)
 
 投稿、プロフィールのモーダルを閉じるためのボタンです。
 
@@ -202,7 +202,7 @@ export const CloseButton: FC<Props> = (props: Props) => {
 
 [`disconnectButton.tsx`]
 
-![](/public/images/ASTAR-SocialFi/section-2/2_2_6.png)
+![](/images/ASTAR-SocialFi/section-2/2_2_6.png)
 
 ホーム画面に戻るためのボタンです。
 
@@ -229,7 +229,7 @@ export default DisconnectButton;
 
 [`inputBox.tsx`]
 
-![](/public/images/ASTAR-SocialFi/section-2/2_2_7.png)
+![](/images/ASTAR-SocialFi/section-2/2_2_7.png)
 
 投稿、プロフィール画面で画像URLを設定するための入力欄です。
 
@@ -250,7 +250,7 @@ export const InputBox: FC = () => {
 
 [`postButton.tsx`]
 
-![](/public/images/ASTAR-SocialFi/section-2/2_2_8.png)
+![](/images/ASTAR-SocialFi/section-2/2_2_8.png)
 
 投稿画面で投稿するためのボタンです。
 
@@ -278,7 +278,7 @@ export const PostButton: FC<Props> = (props: Props) => {
 
 [`profileTitle.tsx`]
 
-![](/public/images/ASTAR-SocialFi/section-2/2_2_9.png)
+![](/images/ASTAR-SocialFi/section-2/2_2_9.png)
 
 プロフィールのタイトルとなる部分です。
 
@@ -306,7 +306,7 @@ export const ProfileTitle: FC<Props> = (props: Props) => {
 
 [`sendButton.tsx`]
 
-![](/public/images/ASTAR-SocialFi/section-2/2_2_10.png)
+![](/images/ASTAR-SocialFi/section-2/2_2_10.png)
 
 メッセージ画面の入力欄の送信ボタンです。
 
@@ -325,7 +325,7 @@ export const SendButton: FC = () => {
 
 [`smallerProfileIcon.tsx`]
 
-![](/public/images/ASTAR-SocialFi/section-2/2_2_11.png)
+![](/images/ASTAR-SocialFi/section-2/2_2_11.png)
 
 投稿やメッセージ画面のメッセージ相手の欄に使うためのアイコンです。
 
@@ -370,7 +370,7 @@ export const SmallerProfileIcon: FC<Props> = (props: Props) => {
 
 [`smallInput.tsx`]
 
-![](/public/images/ASTAR-SocialFi/section-2/2_2_12.png)
+![](/images/ASTAR-SocialFi/section-2/2_2_12.png)
 
 メッセージ画面の送信欄です。
 
@@ -399,7 +399,7 @@ export const SmallInput: FC<Props> = (props: Props) => {
 
 [`submitButton.tsx`]
 
-![](/public/images/ASTAR-SocialFi/section-2/2_2_13.png)
+![](/images/ASTAR-SocialFi/section-2/2_2_13.png)
 
 プロフィール画面で画像URLと名前を設定するためのボタンです。
 
@@ -424,7 +424,7 @@ export const SubmitButton: FC<Props> = (props: Props) => {
 
 [`walletAddressSelection.tsx`]
 
-![](/public/images/ASTAR-SocialFi/section-2/2_2_14.png)
+![](/images/ASTAR-SocialFi/section-2/2_2_14.png)
 
 ウォレットアドレスを選択できるパーツです。
 
@@ -481,7 +481,7 @@ export const WalletAddressSelection: FC<Props> = (props: Props) => {
 
 [`formBox.tsx`]
 
-![](/public/images/ASTAR-SocialFi/section-2/2_2_15.png)
+![](/images/ASTAR-SocialFi/section-2/2_2_15.png)
 
 メッセージ画面のメッセージ送信欄のパーツです。
 
@@ -512,7 +512,7 @@ export const FormBox: FC<Props> = (props: Props) => {
 
 [`headerProfile.tsx`]
 
-![](/public/images/ASTAR-SocialFi/section-2/2_2_16.png)
+![](/images/ASTAR-SocialFi/section-2/2_2_16.png)
 
 プロフィール画面のサブヘッダーとなる部分のパーツです。
 
@@ -570,7 +570,7 @@ export default HeaderProfile;
 
 プロフィール部分のアイコン右にある情報が書かれている部分です。
 
-![](/public/images/ASTAR-SocialFi/section-2/2_2_17.png)
+![](/images/ASTAR-SocialFi/section-2/2_2_17.png)
 
 ```ts
 import { ApiPromise } from "@polkadot/api";
@@ -620,7 +620,7 @@ export const ProfileList: FC<Props> = (props: Props) => {
 [`footer.tsx`]
 
 画面下にあるナビゲーションバーです。
-![](/public/images/ASTAR-SocialFi/section-2/2_2_18.png)
+![](/images/ASTAR-SocialFi/section-2/2_2_18.png)
 
 ```ts
 import React, { Dispatch, FC } from "react";
@@ -663,7 +663,7 @@ export default Footer;
 
 [`header.tsx`]
 
-![](/public/images/ASTAR-SocialFi/section-2/2_2_19.png)
+![](/images/ASTAR-SocialFi/section-2/2_2_19.png)
 
 それぞれの画面の上にあるヘッダーです。プロフィール画面に遷移した時は`Disconnect`ボタンが表示されるようになっています。
 
@@ -710,7 +710,7 @@ export default Header;
 [`inputGroup.tsx`]
 
 投稿画面で出てくるモーダルの入力欄のグループです。
-![](/public/images/ASTAR-SocialFi/section-2/2_2_20.png)
+![](/images/ASTAR-SocialFi/section-2/2_2_20.png)
 
 ```ts
 import type { Dispatch, FC } from "react";
@@ -747,7 +747,7 @@ export const InputGroup: FC<Props> = (props: Props) => {
 [`messageBar.tsx`]
 
 メッセージ画面のヘッダーです。
-![](/public/images/ASTAR-SocialFi/section-2/2_2_21.png)
+![](/images/ASTAR-SocialFi/section-2/2_2_21.png)
 
 ```ts
 import Image from "next/image";
@@ -793,7 +793,7 @@ export const MessageBar: FC<Props> = (props: Props) => {
 
 [`bottomNavigation.tsx`]
 
-![](/public/images/ASTAR-SocialFi/section-2/2_2_18.png)
+![](/images/ASTAR-SocialFi/section-2/2_2_18.png)
 
 画面下のナビゲーションバーです。
 
@@ -817,7 +817,7 @@ export default function BottomNavigation(props: any) {
 
 [`message_member.tsx`]
 
-![](/public/images/ASTAR-SocialFi/section-2/2_2_22.png)
+![](/images/ASTAR-SocialFi/section-2/2_2_22.png)
 
 メッセージ画面でメッセージ相手の名前、画像、最後のメッセージが載せてあるリストです。
 
@@ -858,7 +858,7 @@ export default function MessageMember(props: any) {
 
 [`message.tsx`]
 
-![](/public/images/ASTAR-SocialFi/section-2/2_2_23.png)
+![](/images/ASTAR-SocialFi/section-2/2_2_23.png)
 
 メッセージルームで表示される1つのメッセージです。自分か相手のメッセージかで右側と左側どちらに表示されるかが切り替わるようになっています。
 
@@ -924,7 +924,7 @@ export default function Message(props: any) {
 
 [`messageRoom.tsx`]
 
-![](/public/images/ASTAR-SocialFi/section-2/2_2_24.png)
+![](/images/ASTAR-SocialFi/section-2/2_2_24.png)
 
 メッセージルームでメッセージが表示されるパーツです。
 
@@ -1001,7 +1001,7 @@ export default function MessageRoom(props: Props) {
 
 [`post.tsx`]
 
-![](/public/images/ASTAR-SocialFi/section-2/2_2_25.png)
+![](/images/ASTAR-SocialFi/section-2/2_2_25.png)
 
 投稿内容が表示されるパーツです。投稿内容や作成日時が表示されることになります。
 
@@ -1059,7 +1059,7 @@ export default function Post(props: any) {
 
 [`postModal.tsx`]
 
-![](/public/images/ASTAR-SocialFi/section-2/2_2_26.png)
+![](/images/ASTAR-SocialFi/section-2/2_2_26.png)
 
 投稿画面で表示される投稿作成モーダルです。
 
@@ -1110,7 +1110,7 @@ export default function PostModal(props: Props) {
 
 [`profileSettingModal.tsx`]
 
-![](/public/images/ASTAR-SocialFi/section-2/2_2_27.png)
+![](/images/ASTAR-SocialFi/section-2/2_2_27.png)
 
 プロフィール画面で画像URLと名前を設定するモーダルです。
 
@@ -1197,7 +1197,7 @@ export default function ProfileSettingModal(props: Props) {
 
 [`profileSubTopBar.tsx`]
 
-![](/public/images/ASTAR-SocialFi/section-2/2_2_28.png)
+![](/images/ASTAR-SocialFi/section-2/2_2_28.png)
 
 プロフィール画面のサブヘッダーです。
 
@@ -1246,7 +1246,7 @@ export default function ProfileSubTopBar(props: Props) {
 
 [`topBar.tsx`]
 
-![](/public/images/ASTAR-SocialFi/section-2/2_2_19.png)
+![](/images/ASTAR-SocialFi/section-2/2_2_19.png)
 
 それぞれの画面で表示されるヘッダーです。
 
@@ -1273,7 +1273,7 @@ export default function TopBar(props: any) {
 
 これで間接的に使用するパーツの作成は完了しました！
 
-わからないことがあれば、Discordの`#astar-network`でsection・Lesson名とともに質問をしてください 👋
+わからないことがあれば、Discordの`#astar`でsection・Lesson名とともに質問をしてください 👋
 
 ### 🙋‍♂️ 質問する
 

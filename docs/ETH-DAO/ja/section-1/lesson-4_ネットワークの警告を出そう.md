@@ -6,17 +6,17 @@
 
 `src/pages/index.tsx`のコードを以下のとおり更新しましょう。
 
-```typescript
-import { Sepolia } from '@thirdweb-dev/chains';
+```ts
+import { Sepolia } from "@thirdweb-dev/chains";
 import {
   ConnectWallet,
   useAddress,
   useChain,
   useContract,
-} from '@thirdweb-dev/react';
-import type { NextPage } from 'next';
+} from "@thirdweb-dev/react";
+import type { NextPage } from "next";
 
-import styles from '../styles/Home.module.css';
+import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   const address = useAddress();
@@ -24,8 +24,8 @@ const Home: NextPage = () => {
 
   // テストネットが Sepolia ではなかった場合に警告を表示
   if (chain && chain.chainId !== Sepolia.chainId) {
-    console.log('wallet address: ', address);
-    console.log('chain name: ', chain.name);
+    console.log("wallet address: ", address);
+    console.log("chain name: ", chain.name);
     return (
       <div className={styles.container}>
         <main className={styles.main}>
@@ -39,9 +39,7 @@ const Home: NextPage = () => {
     return (
       <div className={styles.container}>
         <main className={styles.main}>
-          <h1 className={styles.title}>
-            Welcome to Tokyo Sauna Collective !!
-          </h1>
+          <h1 className={styles.title}>Welcome to Tokyo Sauna Collective !!</h1>
           <div className={styles.connect}>
             <ConnectWallet />
           </div>
@@ -60,8 +58,7 @@ export default Home;
 
 試しに、MetaMaskでネットワークを変えて警告のメッセージが表示されているか試してみましょう。
 
-![](/public/images/ETH-DAO/section-1/1_4_1.png)
-
+![](/images/ETH-DAO/section-1/1_4_1.png)
 
 ### 🙋‍♂️ 質問する
 

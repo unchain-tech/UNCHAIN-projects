@@ -10,22 +10,22 @@ Solanaでは、トランザクションの中に命令をひとまとめにし�
 
 TransactionBuilderクラスには`add`というメソッドがあり、これにより命令をトランザクションに追加することができます。
 
-```javascript
+```js
 const transaction = transactionBuilder()
   .add(/* トランザクションに追加したい命令 */)
   .add(/* ... */)
-  .add(/* ... */)
+  .add(/* ... */);
 ```
 
 ここで追加する命令は2つあります。1つはミントの実行、もう1つは計算ユニット（Compute unit）の上限設定です。
 
 Solanaは現在、計算ユニットのデフォルト値を200k（200,000）と設定しています（[参照](https://docs.solana.com/developing/programming-model/runtime#prioritization-fees)）。しかし、NFTのミントのような複雑なトランザクションでは許容されたリソースを超えてしまう可能性があります。試しに計算ユニットの上限設定を行わずにミントを実行すると、下記のようなエラーが発生すると思います。後ほど試してみてください。
 
-**[Phantom Walletの表示]**
+**[Phantom Wallet の表示]**
 
-![無題](/public/images/Solana-NFT-Drop/section-3/3_2_4.png)
+![無題](/images/Solana-NFT-Drop/section-3/3_2_4.png)
 
-**[Approve後のコンソール出力]**
+**[Approve 後のコンソール出力]**
 
 ```
 Error: failed to send transaction: Transaction simulation failed: Error processing Instruction 0: Computational budget exceeded
@@ -35,30 +35,31 @@ Error: failed to send transaction: Transaction simulation failed: Error processi
 
 今回は`600_000`と設定したいと思います。
 
-```javascript
-const transaction = transactionBuilder()
-        .add(setComputeUnitLimit(umi, { units: 600_000 }))
+```js
+const transaction = transactionBuilder().add(
+  setComputeUnitLimit(umi, { units: 600_000 })
+);
 ```
 
 続いて、ミントの実行を追加しましょう。再度Metaplexの公式ドキュメントを確認してみると、[`mintV2`](https://mpl-candy-machine-js-docs.vercel.app/functions/mintV2.html)というメソッドが使用されています。`mpl-candy-machine`ライブラリが提供するメソッドで、Candy Machineのデータを用いてミントを行います。
 
 mintV2メソッドの引数を確認すると、`MintV2InstructionAccounts`というオブジェクトを受け取ることがわかります。オブジェクトの中にはたくさんのプロパティが定義されていますが、ここでは必須のものとCandy Guardの設定を指定したいと思います。
 
-```javascript
+```js
 const transaction = transactionBuilder()
-        .add(setComputeUnitLimit(umi, { units: 600_000 }))
-        .add(
-          mintV2(umi, {
-            candyGuard: candyGuard.publicKey,
-            candyMachine: candyMachine.publicKey,
-            collectionMint: candyMachine.collectionMint,
-            collectionUpdateAuthority: candyMachine.authority,
-            mintArgs: {
-              solPayment: some({ destination: destination }),
-            },
-            nftMint: nftSigner,
-          }),
-        );
+  .add(setComputeUnitLimit(umi, { units: 600_000 }))
+  .add(
+    mintV2(umi, {
+      candyGuard: candyGuard.publicKey,
+      candyMachine: candyMachine.publicKey,
+      collectionMint: candyMachine.collectionMint,
+      collectionUpdateAuthority: candyMachine.authority,
+      mintArgs: {
+        solPayment: some({ destination: destination }),
+      },
+      nftMint: nftSigner,
+    })
+  );
 ```
 
 `solPayment`は、Candy GuardにNFTの価格とその受け取るアドレスを設定した場合に必須の設定となります。
@@ -67,13 +68,13 @@ const transaction = transactionBuilder()
 
 再度[`TransactionBuilder`](https://umi-docs.vercel.app/classes/umi.TransactionBuilder.html)クラスのメソッドを見てみます。すると、`sendAndConfirm`というメソッドが提供されていることが確認できます。このメソッドを使ってトランザクションの送信と結果の確認を行うのが良さそうです。
 
-```javascript
+```js
 await transaction.sendAndConfirm(umi).then((response) => {
   const transactionResult = response.result.value;
   if (transactionResult.err) {
     throw new Error(`Failed mint: ${transactionResult.err}`);
   }
-})
+});
 ```
 
 戻り値の定義を見てみると、Promiseで2つの値が返ってくることがわかります。そのうち`result`の方を確認してみると、トランザクションで何かしらエラーが発生した場合は`string`型のデータが返ってくるようです。そのため、sendAndConfirmメソッドの戻り値を取得してエラーチェックを行うようにします。
@@ -84,14 +85,14 @@ await transaction.sendAndConfirm(umi).then((response) => {
 // CandyMachine/index.tsx
 const mintToken = async (
   candyMachine: CandyMachineType,
-  candyGuard: CandyGuardType,
+  candyGuard: CandyGuardType
 ) => {
   try {
     if (umi === undefined) {
-      throw new Error('Umi context was not initialized.');
+      throw new Error("Umi context was not initialized.");
     }
-    if (candyGuard.guards.solPayment.__option === 'None') {
-      throw new Error('Destination of solPayment is not set.');
+    if (candyGuard.guards.solPayment.__option === "None") {
+      throw new Error("Destination of solPayment is not set.");
     }
 
     const nftSigner = generateSigner(umi);
@@ -110,7 +111,7 @@ const mintToken = async (
             solPayment: some({ destination: destination }),
           },
           nftMint: nftSigner,
-        }),
+        })
       );
 
     // トランザクションを送信して、ネットワークによる確認を待ちます。
@@ -119,7 +120,7 @@ const mintToken = async (
       if (transactionResult.err) {
         console.error(`Failed mint: ${transactionResult.err}`);
       }
-    })
+    });
   } catch (error) {
     console.error(error);
   }
@@ -145,14 +146,13 @@ const CandyMachine = (props: CandyMachineProps) => {
 ```jsx
 const mintToken = async (
   candyMachine: CandyMachineType,
-  candyGuard: CandyGuardType,
+  candyGuard: CandyGuardType
 ) => {
   // 関数実行中なので`true`を設定します。
   setIsMinting(true);
   try {
-
   } catch (error) {
-      console.error(error);
+    console.error(error);
   } finally {
     // 関数が終了するので`false`を設定します。
     setIsMinting(false);
@@ -187,7 +187,7 @@ return candyMachine && candyGuard ? (
 
 まず、Phantom Walletのパブリックアドレスを取得します。
 
-![無題](/public/images/Solana-NFT-Drop/section-3/3_2_1.png)
+![無題](/images/Solana-NFT-Drop/section-3/3_2_1.png)
 
 次に、Devnetでトークンを得るためにターミナルで次のコマンドを実行します。
 
@@ -197,7 +197,7 @@ solana airdrop 2 INSERT_YOUR_PHANTOM_WALLET_ADDRESS
 
 トークンが取得できたら、ブラウザを操作してみましょう。`Mint NFT`をクリックすると、次のようなポップアップが表示されます。
 
-![無題](/public/images/Solana-NFT-Drop/section-3/3_2_2.png)
+![無題](/images/Solana-NFT-Drop/section-3/3_2_2.png)
 
 [承認]をクリックして取引手数料を支払うと、Candy MachineにNFTを作成するように指示されます。
 
@@ -207,7 +207,7 @@ Phantom Walletを開き、所有NFT一覧に表示されるかどうかを確認
 
 Phantom Walletの左から2つ目のタブに切り替えてみましょう 👀
 
-![無題](/public/images/Solana-NFT-Drop/section-3/3_2_3.png)
+![無題](/images/Solana-NFT-Drop/section-3/3_2_3.png)
 
 ### 🙋‍♂️ 質問する
 

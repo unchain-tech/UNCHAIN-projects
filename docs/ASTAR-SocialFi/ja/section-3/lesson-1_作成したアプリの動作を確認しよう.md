@@ -28,7 +28,7 @@
 
 これでデプロイができたら下の画像のようにデプロイしたコントラクトの名前がでてくると思います
 
-![](/public/images/ASTAR-SocialFi/section-2/2_1_8.png)
+![](/images/ASTAR-SocialFi/section-2/2_1_8.png)
 
 polkadot.jsでは新しくデプロイしたものほど下にくるので、一番下のコントラクトが先ほどデプロイしたものとなります。
 
@@ -46,8 +46,8 @@ Messagesにはpolkadot.js上から呼べる関数の一覧が載っていて、�
 
 これをしないとトランザクションで使用するトークンが不足してきちんと関数が動きません。
 
-![](/public/images/ASTAR-SocialFi/section-3/3_1_1.png)
-![](/public/images/ASTAR-SocialFi/section-3/3_1_2.png)
+![](/images/ASTAR-SocialFi/section-3/3_1_1.png)
+![](/images/ASTAR-SocialFi/section-3/3_1_2.png)
 
 これでコントラクトとフロントの接続をする準備のために後1つやることがあります。それはフロントエンドのコードの`.env`にコントラクトのアドレスを代入することです！
 
@@ -60,11 +60,11 @@ NEXT_PUBLIC_CONTRACT_ADDRESS=WCpkcJenKkFZwk2tot1yhyvZuwFXD2xdzb7dyn2WMebKtC6
 NEXT_PUBLIC_UNKNOWN_IMAGE_URL="https://images.unsplash.com/..."
 ```
 
-![](/public/images/ASTAR-SocialFi/section-3/3_1_18.png)
+![](/images/ASTAR-SocialFi/section-3/3_1_18.png)
 
-![](/public/images/ASTAR-SocialFi/section-3/3_1_19.png)
+![](/images/ASTAR-SocialFi/section-3/3_1_19.png)
 
-では早速ローカルで立てたノードが作った[サイト](`http://localhost:3000/`)を開いてみましょう！
+では早速ローカルで立てたノードが作った[サイト](http://localhost:3000/)を開いてみましょう！
 
 ※設計上、画面遷移するごとにリロードしないときちんと動きません。UX的に悪く申し訳ないです 🙇
 
@@ -89,8 +89,8 @@ NEXT_PUBLIC_UNKNOWN_IMAGE_URL="https://images.unsplash.com/..."
 
 [unsplash](https://unsplash.com/)上から画像を探してURLをコピーして貼り付けましょう。その後名前を設定して`set`ボタンを押してみましょう！
 
-![](/public/images/ASTAR-SocialFi/section-3/3_1_14.png)
-![](/public/images/ASTAR-SocialFi/section-3/3_1_4.png)
+![](/images/ASTAR-SocialFi/section-3/3_1_14.png)
+![](/images/ASTAR-SocialFi/section-3/3_1_4.png)
 
 同じように2つ目, 3つ目のアカウントも作成しておきましょう。
 
@@ -100,45 +100,45 @@ NEXT_PUBLIC_UNKNOWN_IMAGE_URL="https://images.unsplash.com/..."
 
 きちんとできていれば下のようになっているはずです。
 
-![](/public/images/ASTAR-SocialFi/section-3/3_1_15.png)
-![](/public/images/ASTAR-SocialFi/section-3/3_1_16.png)
+![](/images/ASTAR-SocialFi/section-3/3_1_15.png)
+![](/images/ASTAR-SocialFi/section-3/3_1_16.png)
 
 では次に右下のボタンを押してみましょう。投稿モーダルが出てくるはずです。
 
 次にモーダル内でURL、投稿内容を設定して投稿してみましょう。
 
-![](/public/images/ASTAR-SocialFi/section-3/3_1_6.png)
+![](/images/ASTAR-SocialFi/section-3/3_1_6.png)
 
-![](/public/images/ASTAR-SocialFi/section-3/3_1_7.png)
+![](/images/ASTAR-SocialFi/section-3/3_1_7.png)
 
 では次に他のアカウントのアイコンをクリックしてフォローしてみましょう。
 
 プロフィール画面に戻ると下のようにフォロー数とフォロワー数が増えているはずです。また、そのアカウントで投稿したものがみれるはずです。
 
-![](/public/images/ASTAR-SocialFi/section-3/3_1_17.png)
+![](/images/ASTAR-SocialFi/section-3/3_1_17.png)
 
 では次にメッセージ画面に移動してみましょう！
 
 この画面には下のようにフォローした、またはフォローされたアカウントとのメッセージ欄があるはずです。
 
-![](/public/images/ASTAR-SocialFi/section-3/3_1_8.png)
+![](/images/ASTAR-SocialFi/section-3/3_1_8.png)
 
 ではこのメッセージ欄をクリックして遷移先でメッセージを入力してみましょう。
 
-![](/public/images/ASTAR-SocialFi/section-3/3_1_9.png)
+![](/images/ASTAR-SocialFi/section-3/3_1_9.png)
 
 ※設計上、メッセージを送信後一度前の画面に戻ってから再びそのメッセージルームに入らないとメッセージが更新されなくなっています 🙇
 
 下の画像のようになっていればOKです！
 
-![](/public/images/ASTAR-SocialFi/section-3/3_1_10.png)
-![](/public/images/ASTAR-SocialFi/section-3/3_1_11.png)
+![](/images/ASTAR-SocialFi/section-3/3_1_10.png)
+![](/images/ASTAR-SocialFi/section-3/3_1_11.png)
 
 これで期待している挙動は確認できましたね！ テストは成功です！
 
 ### 🙋‍♂️ 質問する
 
-わからないことがあれば、Discordの`#astar-network`でsection・Lesson名とともに質問をしてください 👋
+わからないことがあれば、Discordの`#astar`でsection・Lesson名とともに質問をしてください 👋
 
 ---
 

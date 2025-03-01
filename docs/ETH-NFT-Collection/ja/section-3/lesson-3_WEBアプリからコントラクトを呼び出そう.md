@@ -8,7 +8,7 @@
 
 まず、`App.js`の1行目に、下記のコードを追加してください。
 
-```javascript
+```js
 // App.js
 import { ethers } from "ethers";
 ```
@@ -19,7 +19,7 @@ import { ethers } from "ethers";
 
 - フロントエンドに実装する`askContractToMintNft`関数が、コントラクトとWebサイトを連動させ、`makeAnEpicNFT`関数を呼び出します。
 
-```javascript
+```js
 // App.js
 const askContractToMintNft = async () => {
   const CONTRACT_ADDRESS =
@@ -53,7 +53,7 @@ const askContractToMintNft = async () => {
 
 1行ずつ、コードを見ていきましょう。
 
-```javascript
+```js
 // App.js
 const CONTRACT_ADDRESS =
   "ここに Sepolia Test Network にデプロイしたコントラクトのアドレスを貼り付けてください";
@@ -79,7 +79,7 @@ Contract deployed to: 0x88a0e9c2F3939598c402eccb7Ae1612e45448C04
 
 I\. `provider`
 
-> ```javascript
+> ```js
 > // App.js
 > const provider = new ethers.providers.Web3Provider(ethereum);
 > ```
@@ -91,7 +91,7 @@ I\. `provider`
 
 II\. `signer`
 
-> ```javascript
+> ```js
 > // App.js
 > const signer = provider.getSigner();
 > ```
@@ -104,7 +104,7 @@ II\. `signer`
 
 III\. コントラクトインスタンス
 
-> ```javascript
+> ```js
 > // App.js
 > const connectedContract = new ethers.Contract(
 >   CONTRACT_ADDRESS,
@@ -133,7 +133,7 @@ III\. コントラクトインスタンス
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```js
 // App.js
 console.log("Going to pop wallet now to pay gas...");
 ```
@@ -142,7 +142,7 @@ console.log("Going to pop wallet now to pay gas...");
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```js
 // App.js
 let nftTxn = await connectedContract.makeAnEpicNFT();
 console.log("Mining...please wait.");
@@ -154,7 +154,7 @@ console.log("Mining...please wait.");
 
 次に、下記のコードを見ていきましょう。
 
-```javascript
+```js
 // App.js
 await nftTxn.wait();
 console.log(
@@ -168,7 +168,7 @@ console.log(
 
 ユーザーが`Mint NFT`ボタンをクリックしたときに、`askContractToMintNft`関数を呼び出すコードを見ていきましょう。
 
-```javascript
+```js
 // App.js
 return (
   {currentAccount === ""
@@ -189,7 +189,7 @@ return (
 
 条件付きレンダリングは、下記のように実行されます。
 
-```javascript
+```js
 { currentAccount === "" ? ( currentAccount にアドレスが紐づいてなければ、A を実行 ) : ( currentAccount にアドレスが紐づいれば B を実行 )}
 ```
 
@@ -278,7 +278,7 @@ ABIファイルの準備ができたので、`App.js`にインポートしまし
 
 下記を`App.js`の1行目に追加しましょう。
 
-```javascript
+```js
 // App.js
 import myEpicNft from "./utils/MyEpicNFT.json";
 ```
@@ -295,7 +295,7 @@ yarn client start
 
 Webアプリケーションの`Mint NFT`ボタンを押して、下記のようなポップアップが立ち上がったら、`Confirm`を押してください。
 
-![](/public/images/ETH-NFT-Collection/section-3/3_3_1.png)
+![](/images/ETH-NFT-Collection/section-3/3_3_1.png)
 
 ここで請求される少量のETHは、通称**ガス代**と呼ばれます。
 
@@ -320,26 +320,27 @@ Going to pop wallet now to pay gas...
 Mining...please wait.
 Mined, see transaction: https://sepolia.etherscan.io/tx/0x5a08f3e66852b5c1833f3a20fc292816bc2ec5a25eee1e8c83c3755000aa773a
 ```
+
 Consoleに出力された`https://sepolia.etherscan.io/...`のアドレスをクリックしてみましょう。
 
 - あなたのSepolia Test Network上のトランザクションの履歴が参照できます。
 
-![](/public/images/ETH-NFT-Collection/section-3/3_3_2.png)
+![](/images/ETH-NFT-Collection/section-3/3_3_2.png)
 
 次に、MintしたNFTがあなたのSepolia Test Networkのアドレスに紐づいているか確認してみましょう。上記画像の赤枠で囲まれている部分が、トークンの転送情報です。転送先のアドレス（`To xxx...`）があなたのウォレットアドレスになっていたら大丈夫です。
 
 それでは、[gemcase](https://gemcase.vercel.app/)にアクセスをして確認をしてみましょう。これまでは`Address`にデプロイをしたコントラクトのアドレスを入力していましたが、今度はあなたのウォレットアドレスを入力して`View`をクリックしてみましょう。
 
-![](/public/images/ETH-NFT-Collection/section-3/3_3_3.png)
+![](/images/ETH-NFT-Collection/section-3/3_3_3.png)
 
 これまでにあなたのアドレスへミントされたNFTの一覧が取得できます。
 
 ステップ通りに進んできた場合は、一番左上のNFTがアプリケーション上の`Mint NFT`をクリックしてミントされたNFTとなります。NFTをクリックして詳細を確認すると、NFTをミントしたアドレスがApp.jsファイルの
 `const CONTRACT_ADDRESS`に設定したコントラクトのアドレスとなっているはずです！
 
-![](/public/images/ETH-NFT-Collection/section-3/3_3_4.png)
+![](/images/ETH-NFT-Collection/section-3/3_3_4.png)
 
-![](/public/images/ETH-NFT-Collection/section-3/3_3_5.png)
+![](/images/ETH-NFT-Collection/section-3/3_3_5.png)
 
 ### 🚨 コントラクトを再びデプロイする際の注意点
 
