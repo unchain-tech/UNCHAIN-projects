@@ -6,14 +6,24 @@ on:
       - main
 
 jobs:
+  check-filename:
+    uses: ./.github/workflows/filename-check.yml
+
+  check-metadata:
+    uses: ./.github/workflows/metadata-check.yml
+
+  check-textlint:
+    uses: ./.github/workflows/textlint.yml
+
   test-deploy:
     name: Test deployment
     runs-on: ubuntu-latest
+    needs: [check-filename, check-metadata, check-textlint]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           cache: yarn
 
       - name: Install dependencies

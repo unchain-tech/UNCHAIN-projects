@@ -54,7 +54,7 @@ Sepoliaとは異なり、これらのトークンの取得にそれほど問題�
 >
 > Polygon のようなサイドチェーンの場合、`2`の方が簡単で安く済みます。
 
-### ✨ スマートコントラクトを Amoy testnet に公開する
+### 💎 Alchemy でネットワークを作成
 
 [こちら](https://www.alchemy.com/) からAlchemyのアカウントを作成してください。アカウントを作成したら、Appsページの`+ Create new app`ボタンを押してください。
 
@@ -65,7 +65,7 @@ Sepoliaとは異なり、これらのトークンの取得にそれほど問題�
 ![](/images/Polygon-Mobile-dApp/section-1/1_3_2.png)
 
 - `Chain`: `Polygon PoS`を選択
-- `Network`: `Polygon Amoy`を選択
+- `Network`: `Polygon Mumbai`を選択
 - `Name`: プロジェクトの名前(例: `Polygon Mobile dApp`)
 - `Description`: プロジェクトの概要
 
@@ -80,23 +80,23 @@ Sepoliaとは異なり、これらのトークンの取得にそれほど問題�
 それでは、実際にコントラクトをデプロイしてみましょう。まずは、`scripts`ディレクトリの中にある`deploy.js`を以下の内容で上書きしてください。
 
 ```js
-const hre = require("hardhat");
+const hre = require('hardhat');
 const main = async () => {
   const [deployer] = await hre.ethers.getSigners();
   const accountBalance = await deployer.getBalance();
 
-  console.log("Deploying contracts with account: ", deployer.address);
-  console.log("Account balance: ", accountBalance.toString());
+  console.log('Deploying contracts with account: ', deployer.address);
+  console.log('Account balance: ', accountBalance.toString());
 
   const todoContractFactory = await hre.ethers.getContractFactory(
-    "TodoContract"
+    'TodoContract',
   );
   /* コントラクトに資金を提供できるようにする */
   const todoContract = await todoContractFactory.deploy();
 
   await todoContract.deployed();
 
-  console.log("TodoContract address: ", todoContract.address);
+  console.log('TodoContract address: ', todoContract.address);
 };
 
 const runMain = async () => {
@@ -104,7 +104,7 @@ const runMain = async () => {
     await main();
   } catch (error) {
     console.error(error);
-    throw new Error("there is error!");
+    throw new Error('there is error!');
   }
 };
 
@@ -141,7 +141,9 @@ STAGING_ALCHEMY_KEY=YOUR_ALCHEMY_KEY
 PRIVATE_KEY=YOUR_PRIVATE_KEY
 ```
 
-では早速デプロイ作業に移りましょう。ターミナルで以下のコマンドを実行します。
+`YOUR_ALCHEMY_KEY`にはAlchemyで作成したAPI Key（HTTPSの値）を、`YOUR_PRIVATE_KEY`にはMetaMaskで作成したウォレットのプライベートキーを代入しましょう（取得方法は[こちら](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key)のドキュメントを参照してください）。
+
+では早速デプロイ作業に移りましょう。プロジェクトのルートで、以下のコマンドを実行します。
 
 ```
 yarn contract deploy

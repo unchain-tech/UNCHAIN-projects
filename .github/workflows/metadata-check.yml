@@ -1,5 +1,7 @@
 name: metadata check
-on: [pull_request]
+
+on: workflow_call
+
 jobs:
   metadata-check:
     runs-on: ubuntu-latest

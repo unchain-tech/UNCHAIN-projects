@@ -1,5 +1,7 @@
 name: filename check
-on: [pull_request]
+
+on: workflow_call
+
 jobs:
   filename-check:
     runs-on: ubuntu-latest
