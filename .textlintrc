@@ -32,7 +32,8 @@
         "max": 300
       },
       "max-comma": {
-        "max": 6
+        "max": 8,
+        "strict": false
       },
       "max-ten": {
         "max": 6,
