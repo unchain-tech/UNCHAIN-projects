@@ -31,7 +31,7 @@ yarn init -w
 
 package.jsonファイルが更新され、新たにpackagesというディレクトリが作成されます。
 
-![](/public/images/Polygon-Mobile-dApp/section-1/1_1_1.png)
+![](/images/Polygon-Mobile-dApp/section-1/1_1_1.png)
 
 それでは、`package.json`ファイルを更新します。以下のように`"scripts"`を追加してください。ワークスペース内の各パッケージにアクセスするためのコマンドを定義します。
 

@@ -58,11 +58,11 @@ Sepoliaとは異なり、これらのトークンの取得にそれほど問題�
 
 [こちら](https://www.alchemy.com/) からAlchemyのアカウントを作成してください。アカウントを作成したら、Appsページの`+ Create new app`ボタンを押してください。
 
-![](/public/images/Polygon-Mobile-dApp/section-1/1_3_1.png)
+![](/images/Polygon-Mobile-dApp/section-1/1_3_1.png)
 
 次に、下記の項目を埋めていきます。下図を参考にしてください。
 
-![](/public/images/Polygon-Mobile-dApp/section-1/1_3_2.png)
+![](/images/Polygon-Mobile-dApp/section-1/1_3_2.png)
 
 - `Chain`: `Polygon PoS`を選択
 - `Network`: `Polygon Mumbai`を選択
@@ -71,7 +71,7 @@ Sepoliaとは異なり、これらのトークンの取得にそれほど問題�
 
 `Create app`ボタンを押すと、プロジェクトが作成されます。`API Key`をクリックすると、表示されたポップアップからKeyを取得することができます（今回のプロジェクトで使用するのは、`HTTPS`に表示されているものになります）。
 
-![](/public/images/Polygon-Mobile-dApp/section-1/1_3_3.png)
+![](/images/Polygon-Mobile-dApp/section-1/1_3_3.png)
 
 これがあなたが本番環境のネットワークに接続する際に使用する`API Key`になります。
 
