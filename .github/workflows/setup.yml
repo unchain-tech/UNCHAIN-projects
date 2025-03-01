@@ -23,7 +23,6 @@ jobs:
         run: |
           for dir in docs/*/ja/
           do
-
             CONTENT="$(echo $dir | cut -d'/' -f2)"
 
             MDSECTIONCOUNT=$(jq -c '.total_sections' < public/metadata/$CONTENT/description.json)
@@ -43,9 +42,9 @@ jobs:
             fi
 
             echo "$CONTENT: $FSSECTIONCOUNT sections / $FSLESSONCOUNT lessons"
+          done  
 
   textlint:
-    name: runner / textlint
     runs-on: ubuntu-latest
     needs: [filename-check, metadata-check]
     env:

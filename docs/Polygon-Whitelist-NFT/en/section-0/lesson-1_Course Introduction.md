@@ -6,7 +6,7 @@ Hi everyone, I'm your teacher WTOM. In this tutorial, I will show you guys how t
 
 ### 🎓 What is ChainIDE?
 
-[ChainIDE](https://chainide.com/) is a cloud-based IDE for developing decentralized applications, supporting various blockchains such as Ethereum, BNB Chain, Polygon, Conflux, Nervos, Dfinity, Flow, Aptos, etc.
+[ChainIDE](https://chainide.com/) is a cloud-based IDE for developing decentralized applications supporting various blockchains such as Ethereum, BNB Chain, Polygon, Conflux, Nervos, Dfinity, Flow, Aptos, etc.
 
 It comes pre-populated with the necessary plug-ins for development, as well as modules for writing, compiling, debugging, testing, and deployingスマートコントラクト. Therefore, you can start coding right away without having to build a complex environment.
 
