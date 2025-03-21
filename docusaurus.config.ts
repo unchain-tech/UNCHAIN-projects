@@ -86,12 +86,12 @@ const config: Config = {
           title: "Learn",
           items: [
             {
-              label: "Buidl tutorials",
-              href: "https://github.com/unchain-tech/UNCHAIN-projects",
+              label: "Buidl Tutorials",
+              href: "https://buidl.unchain.tech/",
             },
            {
               label: "EIP Encyclopedia",
-              href: "https://github.com/unchain-tech/",
+              href: "https://eips.unchain.tech/",
             },
           ],
         },
