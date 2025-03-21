@@ -78,7 +78,20 @@ const config: Config = {
             },
             {
               label: "GitHub",
-              href: "https://github.com/unchain-tech/UNCHAIN-projects",
+              href: "https://github.com/unchain-tech/",
+            },
+          ],
+        },
+        {
+          title: "Learn",
+          items: [
+            {
+              label: "Buidl Tutorials",
+              href: "https://buidl.unchain.tech/",
+            },
+           {
+              label: "EIP Encyclopedia",
+              href: "https://eips.unchain.tech/",
             },
           ],
         },
