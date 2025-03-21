@@ -93,6 +93,10 @@ const config: Config = {
               label: "EIP Encyclopedia",
               href: "https://eips.unchain.tech/",
             },
+            {
+              label: "Auditing resources",
+              href: "https://bughunt.unchain.tech/",
+            },
           ],
         },
         {
