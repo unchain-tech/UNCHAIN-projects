@@ -106,7 +106,7 @@ pub struct StartStuffOff {}
 そのために、`tests/myepicproject.js`を以下のとおり変更します。
 
 ```js
-const anchor = require("@project-serum/anchor");
+const anchor = require("@coral-xyz/anchor");
 
 const main = async () => {
   console.log("🚀 Starting test...");

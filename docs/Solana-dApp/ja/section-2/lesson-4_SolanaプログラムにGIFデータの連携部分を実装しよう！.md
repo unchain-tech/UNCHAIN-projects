@@ -108,7 +108,7 @@ pub struct ItemStruct {
 では、テストを行う前に`myepicproject.js`を以下のとおり更新しておきましょう。
 
 ```js
-const anchor = require("@project-serum/anchor");
+const anchor = require("@coral-xyz/anchor");
 const { SystemProgram } = anchor.web3;
 
 const main = async () => {

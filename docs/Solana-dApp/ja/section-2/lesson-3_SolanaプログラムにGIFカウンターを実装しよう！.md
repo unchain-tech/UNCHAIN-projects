@@ -127,7 +127,7 @@ pub fn start_stuff_off(ctx: Context<StartStuffOff>) -> Result <()> {
 JavaScriptの世界でもアカウントデータを取得できるようになったので、`myepicproject.js`を以下のとおり更新しましょう。
 
 ```js
-const anchor = require("@project-serum/anchor");
+const anchor = require("@coral-xyz/anchor");
 
 // 以下の処理に必要なSystemProgramモジュールを用意します。
 const { SystemProgram } = anchor.web3;
@@ -280,7 +280,7 @@ pub fn add_gif(ctx: Context<AddGif>) -> Result <()> {
 `myepicproject.js`を以下のとおり更新して`add_gif`を呼び出してみましょう。
 
 ```js
-const anchor = require("@project-serum/anchor");
+const anchor = require("@coral-xyz/anchor");
 const { SystemProgram } = anchor.web3;
 
 const main = async () => {

@@ -108,7 +108,7 @@ Anchorプロジェクトでもインストールしていますが、同じも�
 ルートディレクトリで以下のコマンドを実行します。
 
 ```
-npm install @project-serum/anchor @solana/web3.js@1
+npm install @coral-xyz/anchor @solana/web3.js@1
 ```
 
 インストールしたパッケージをWebアプリケーションにインポートしましょう。
@@ -117,7 +117,7 @@ npm install @project-serum/anchor @solana/web3.js@1
 
 ```js
 import { Connection, PublicKey, clusterApiUrl } from "@solana/web3.js";
-import { Program, Provider, web3 } from "@project-serum/anchor";
+import { Program, Provider, web3 } from "@coral-xyz/anchor";
 ```
 
 続いて、`getProvider`関数を作成しましょう。
@@ -157,7 +157,7 @@ import React, { useEffect, useState } from "react";
 import twitterLogo from "./assets/twitter-logo.svg";
 import "./App.css";
 import { Connection, PublicKey, clusterApiUrl } from "@solana/web3.js";
-import { Program, Provider, web3 } from "@project-serum/anchor";
+import { Program, Provider, web3 } from "@coral-xyz/anchor";
 
 import idl from "./idl.json";
 
