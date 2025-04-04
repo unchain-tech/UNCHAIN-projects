@@ -151,7 +151,7 @@ npm install -g yarn
 次に、以下のコマンドを実行してAnchor CLIをインストールします。
 
 ```
-npm i -g @project-serum/anchor-cli
+npm i -g @coral-xyz/anchor
 ```
 
 続いて、以下のコマンドを実行してAnchorのバージョン情報を出力しましょう。
