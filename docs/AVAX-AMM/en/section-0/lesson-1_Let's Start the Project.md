@@ -7,8 +7,8 @@ The following technologies are required for this project:
 * Basic Terminal operations
 * Solidity
 * HTML/CSS
-* [TypeScript](https://typescriptbook.jp/overview/features)
-* [React.js](https://ja.reactjs.org/)
+* [TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html)
+* [React.js](https://react.dev/learn)
 
 You don’t need to fully understand everything right now.
 If you encounter something you don’t know, feel free to search the internet or ask questions in the community as you move forward with the project!
@@ -24,7 +24,7 @@ We’ll be building a **decentralized web application (dApp)** called `Miniswap`
 We’ll use `Solidity` for the smart contract,
 and `TypeScript` + `React.js` + `Next.js` for the frontend.
 
-The completed smart contract will be deployed to [FUJI C-Chain](https://docs.avax.network/quickstart/fuji-workflow).
+The completed smart contract will be deployed to [FUJI C-Chain](https://build.avax.network/docs/quick-start/networks/fuji-testnet).
 
 For an overview of Avalanche and the C-Chain, please refer to [this link](https://app.unchain.tech/learn/AVAX-Messenger/ja/0/1/).
 
