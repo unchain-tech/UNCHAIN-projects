@@ -14,9 +14,7 @@ Don’t worry if you’re not familiar with all of these yet. You can always sea
 
 If you're new to developing on `Avalanche` or haven't written smart contract tests with `hardhat` before, we recommend checking out the [AVAX-Messenger](https://buidl.unchain.tech/AVAX-Messenger/ja/section-0/lesson-1_Avalanche) project first. It provides more detailed explanations and is a good starting point.
 
----
-
-## 🛠 What Will You Build?
+# 🛠 What Will You Build?
 
 You will build a **decentralized web application (dApp)** called `Miniswap`.
 
@@ -32,11 +30,9 @@ The contracts will be deployed to the **FUJI C-Chain** on Avalanche.
 
 For more on Avalanche and the C-Chain, see the linked resources in the project.
 
----
+# 🪙 About DeFi, DEX, and AMM
 
-## 🪙 About DeFi, DEX, and AMM
-
-### 🐦 What is DeFi (Decentralized Finance)?
+🐦 What is DeFi (Decentralized Finance)?
 
 DeFi refers to financial systems built on blockchain networks without central intermediaries.  
 Key benefits of DeFi include:
@@ -51,9 +47,7 @@ In theory, if cryptocurrencies function well as money, DeFi can offer open, low-
 - High transaction fees can occur  
 - Users bear full responsibility for managing their own assets
 
----
-
-### 🦏 What is a DEX (Decentralized Exchange)?
+🦏 What is a DEX (Decentralized Exchange)?
 
 A DEX lets anyone trade cryptocurrency tokens (like AVAX-USDC) directly on the blockchain — it’s a type of DeFi.
 
@@ -64,17 +58,13 @@ Unlike centralized exchanges (CEX) like Binance, which use order books and match
 - Lower maintenance
 - Typically lower trading fees than centralized exchanges
 
----
-
-### 🐅 What is an AMM (Automated Market Maker)?
+🐅 What is an AMM (Automated Market Maker)?
 
 AMMs are formula-based systems that automate trading. Most DEXs use this model.
 
 We’ll follow the widely adopted model used by **Uniswap** as a reference for building our AMM in this project.
 
----
-
-## 🚀 Avalanche and DeFi
+# 🚀 Avalanche and DeFi
 
 DeFi is rapidly growing, but high fees can be a problem for users.  
 Avalanche offers several advantages:
@@ -84,9 +74,7 @@ Avalanche offers several advantages:
 
 (Adapted from the Medium article: *Avalanche: A New DeFi Blockchain*)
 
----
-
-## 🌍 Upgrading the Project Together
+# 🌍 Upgrading the Project Together
 
 UNCHAIN projects operate under the **UNCHAIN License**.
 
@@ -101,9 +89,7 @@ You can also **fork the project** to your GitHub account, make changes, and then
 
 We welcome all contributions 🎉
 
----
-
-## ⚡️ Create an Issue
+# ⚡️ Create an Issue
 
 If you have feedback but it's not enough for a PR, feel free to [create an Issue].
 
@@ -111,19 +97,16 @@ Creating Issues and PRs is an important skill when working on real development t
 
 Let’s make UNCHAIN projects even better together ✨
 
----
-
-### 🪟 For Windows Users
+🪟 For Windows Users
 
 If you're using Windows:
-
 - Download **Git for Windows**
 - Use **Git Bash**, which is included
 - This project uses some UNIX-specific commands — **WSL (Windows Subsystem for Linux)** is also a good option.
 
 ---
 
-## ⏭ Let’s Move On!
-
 Time to move on to the next lesson and set up your programming environment 🎉
+
+---
 
