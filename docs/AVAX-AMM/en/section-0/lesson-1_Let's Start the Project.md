@@ -69,11 +69,9 @@ Building DeFi on Avalanche offers several advantages:
 
 The following is quoted from [Avalanche: The New DeFi Blockchain Explained](https://insights.glassnode.com/avalanche-the-new-defi-blockchain-explained/)
 
-Accessibility — Low transaction costs on Avalanche mean that small transactions are financially viable, making the DeFi ecosystem more accessible to small players and entry-level investors.
-Although user experience remains complex and poses a barrier to newcomers, improvements in this area could drive broader participation in DeFi.
+Accessibility - The low cost of transactions on Avalanche means that smaller trades are more financially viable, opening up the DeFi ecosystem to smaller players and entry-level investors. While the user experience is still complex and represents a significant barrier to entry, improvements in this area could lead to a wider range of participants in the world of DeFi.  
 
-Low Slippage — Ethereum's slower speed causes significant slippage and failed transactions when trading on-chain.
-Avalanche’s fast transaction rates and high throughput minimize price slippage and enable instant trades, bringing the DEX experience closer to that of centralized exchanges.
+Low slippage - The slow speed of the Ethereum blockchain often leads to significant slippage and failed transactions when conducting on-chain trades. The faster transaction rate and higher throughput of the Avalanche network opens the door to minimal price slippage and instant trades, bringing the experience of trading on DEXs closer to that of their centralized counterparts.
 
 ### 🌍 Upgrade the Project
 
