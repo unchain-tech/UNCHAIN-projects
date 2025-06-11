@@ -200,14 +200,34 @@ When prompted in the terminal, respond as follows:
 
 ```
 $ npx hardhat init
-...
+
+888    888                      888 888               888
+888    888                      888 888               888
+888    888                      888 888               888
+8888888888  8888b.  888d888 .d88888 88888b.   8888b.  888888
+888    888     "88b 888P"  d88" 888 888 "88b     "88b 888
+888    888 .d888888 888    888  888 888  888 .d888888 888
+888    888 888  888 888    Y88b 888 888  888 888  888 Y88b.
+888    888 "Y888888 888     "Y88888 888  888 "Y888888  "Y888
+
+👷 Welcome to Hardhat v2.13.0 👷‍
+
 ✔ What do you want to do? · Create a TypeScript project
-✔ Hardhat project root: · /your/path/AVAX-AMM/packages/contract
-✔ Do you want to add a .gitignore? · y
-✔ Do you want to install with npm? · n
+✔ Hardhat project root: · /any-directory/AVAX-AMM/packages/contract
+✔ Do you want to add a .gitignore? (Y/n) · y
+✔ Do you want to install this sample project's dependencies with npm (hardhat @nomicfoundation/hardhat-toolbox)? (Y/n) · n
+
+
+You need to install these dependencies to run the sample project:
+  npm install --save-dev "hardhat@^2.12.6" "@nomicfoundation/hardhat-toolbox@^2.0.0"
 
 ✨ Project created ✨
-...
+
+See the README.md file for some example tasks you can run
+
+Give Hardhat a star on Github if you're enjoying it! 💞✨
+
+     https://github.com/NomicFoundation/hardhat
 ```
 
 > ⚠️: Note #1
@@ -243,7 +263,20 @@ Let’s update the `package.json` inside the `contract` directory as follows:
 -  "license": "MIT",
   "private": true,
   "devDependencies": {
-    ...
+    "@nomicfoundation/hardhat-chai-matchers": "^1.0.0",
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.0",
+    "@nomicfoundation/hardhat-toolbox": "^2.0.0",
+    "@nomiclabs/hardhat-ethers": "^2.0.0",
+    "@nomiclabs/hardhat-etherscan": "^3.0.0",
+    "@typechain/ethers-v5": "^10.1.0",
+    "@typechain/hardhat": "^6.1.2",
+    "@types/chai": "^4.2.0",
+    "@types/mocha": ">=9.1.0",
+    "hardhat": "^2.11.2",
+    "hardhat-gas-reporter": "^1.0.8",
+    "solidity-coverage": "^0.8.1",
+    "ts-node": "^10.9.1",
+    "typechain": "^8.1.0"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.7.3",
@@ -313,9 +346,9 @@ Upload the entire **AVAX-AMM** folder.
 
 This will be useful for future development as well, so let’s review the upload process now.
 
-If you don’t yet have a GitHub account, create one using [this guide](https://qiita.com/okumurakengo/items/848f7177765cf25fcde0).
+If you don’t yet have a `GitHub` account, create one using [this guide](https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github).
 
-If you’ve never uploaded to GitHub before, use [this guide](https://docs.github.com/ja/get-started/quickstart/create-a-repo) to create a new repository (name it anything),
+If you’ve never uploaded to `GitHub` before, use [this guide](https://docs.github.com/en/repositories/creating-and-managing-repositories/quickstart-for-repositories) to create a new repository (name it anything),
 then follow the instructions to upload via terminal.
 The following is a sample of commands to run from the `AVAX-AMM/` root:
 
@@ -338,7 +371,7 @@ $ git push -u origin main
 >
 > The private key must be kept secret, while the public key is shared.
 >
-> For SSH setup on GitHub, see [this guide](https://docs.github.com/ja/authentication/connecting-to-github-with-ssh).
+> For SSH setup on GitHub, see [this guide](https://docs.github.com/en/authentication/connecting-to-github-with-ssh).
 
 ### 🙋‍♂️ Ask Questions
 
