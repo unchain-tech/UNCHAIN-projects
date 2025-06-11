@@ -13,7 +13,7 @@ The following technologies are required for this project:
 You don’t need to fully understand everything right now.
 If you encounter something you don’t know, feel free to search the internet or ask questions in the community as you move forward with the project!
 
-If you're new to development on `Avalanche` or have no experience writing smart contract tests with `hardhat`, [AVAX-Messenger](https://app.unchain.tech/learn/AVAX-Messenger) offers a more detailed explanation, so starting there may help things go more smoothly.
+If you're new to development on `Avalanche` or have no experience writing smart contract tests with `hardhat`, [AVAX-Messenger](https://buidl.unchain.tech/AVAX-Messenger/ja/section-0/lesson-1_Avalanche%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E4%B8%8A%E3%81%A7WEB%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E6%A7%8B%E7%AF%89%E3%81%97%E3%82%88%E3%81%86/) offers a more detailed explanation, so starting there may help things go more smoothly.
 
 ### 🛠 What Will We Build?
 
@@ -26,7 +26,7 @@ and `TypeScript` + `React.js` + `Next.js` for the frontend.
 
 The completed smart contract will be deployed to [FUJI C-Chain](https://build.avax.network/docs/quick-start/networks/fuji-testnet).
 
-For an overview of Avalanche and the C-Chain, please refer to [this link](https://app.unchain.tech/learn/AVAX-Messenger/ja/0/1/).
+For an overview of Avalanche and the C-Chain, please refer to [this link]([https://app.unchain.tech/learn/AVAX-Messenger/ja/0/1/](https://buidl.unchain.tech/AVAX-Messenger/ja/section-0/lesson-1_Avalanche%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E4%B8%8A%E3%81%A7WEB%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E6%A7%8B%E7%AF%89%E3%81%97%E3%82%88%E3%81%86/)).
 
 ### 🪙 Defi, DEX, and AMM
 
@@ -41,7 +41,7 @@ the openness and low cost of DeFi can also benefit low-income individuals who cu
 
 On the other hand, rising fees and the need for users to manage their own assets can be considered drawbacks.
 
-[Reference Article](https://academy.binance.com/ja/articles/the-complete-beginners-guide-to-decentralized-finance-defi)
+[Reference Article](https://academy.binance.com/en/articles/the-complete-beginners-guide-to-decentralized-finance-defi)
 
 🦏 DEX (Decentralized Exchange)
 
@@ -67,7 +67,7 @@ While DeFi is a rapidly growing field, high transaction fees have been a problem
 
 Building DeFi on Avalanche offers several advantages:
 
-The following is quoted from [medium Avalanche: Explanation of the New DeFi Blockchain](https://medium.com/ava-labs-jp/avalanche-%E6%96%B0%E3%81%97%E3%81%84defi%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF%E3%83%81%E3%82%A7%E3%83%BC%E3%83%B3%E3%82%92%E8%A7%A3%E8%AA%AC-fdf231906e4d)
+The following is quoted from [Avalanche: The New DeFi Blockchain Explained](https://insights.glassnode.com/avalanche-the-new-defi-blockchain-explained/)
 
 Accessibility — Low transaction costs on Avalanche mean that small transactions are financially viable, making the DeFi ecosystem more accessible to small players and entry-level investors.
 Although user experience remains complex and poses a barrier to newcomers, improvements in this area could drive broader participation in DeFi.
@@ -82,14 +82,14 @@ Projects on [UNCHAIN](https://unchain.tech/) are maintained under the [UNCHAIN L
 If you're participating in the project and think, “This could be clearer!” or “This is incorrect!”
 Feel free to send a `pull request`.
 
-To edit the code directly on GitHub and send a `pull request`, refer to [this guide](https://docs.github.com/ja/repositories/working-with-files/managing-files/editing-files#editing-files-in-another-users-repository).
+To edit the code directly on GitHub and send a `pull request`, refer to [this guide](https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files).
 
 All kinds of requests are welcome 🎉
 
 You can also `Fork` the project to your own GitHub account, edit it there, and send a `pull request`.
 
-* To `Fork` a project, see [this guide](https://docs.github.com/ja/get-started/quickstart/fork-a-repo)
-* To create a `pull request` from a `Fork`, see [this guide](https://docs.github.com/ja/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)
+* To `Fork` a project, see [this guide](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)
+* To create a `pull request` from a `Fork`, see [this guide](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)
 
 **👋 Send a `pull request` to `UNCHAIN-projects`! ⏩ Access [UNCHAIN’s GitHub](https://github.com/unchain-tech/UNCHAIN-projects)!**
 
@@ -98,7 +98,7 @@ You can also `Fork` the project to your own GitHub account, edit it there, and s
 If it’s not quite worth a `pull request` but you still want to leave a suggestion,
 create an `Issue` [here](https://github.com/unchain-tech/UNCHAIN-projects/issues).
 
-For how to create an `Issue`, refer to [this guide](https://docs.github.com/ja/issues/tracking-your-work-with-issues/creating-an-issue).
+For how to create an `Issue`, refer to [this guide](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/creating-an-issue).
 
 Creating `pull requests` or `issues` is a key part of real-world team development, so be sure to give it a try!
 
