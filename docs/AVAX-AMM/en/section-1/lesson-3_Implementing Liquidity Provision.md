@@ -109,7 +109,7 @@ To solve for y', we rearrange the equation as follows:
 
 This is exactly what the function does—given one token and its amount, it calculates the equivalent value of the paired token.
 
-Now let’s implement the actual liquidity provision function. Add the following to the **end of the contract**:
+Now let’s implement the actual liquidity provision function. Add the following to the end of the contract:
 
 ```solidity
     // Provide liquidity to the pool.
@@ -278,7 +278,6 @@ because we also want to handle both the token transfer and internal processing (
 ### 🧪 Add Tests
 
 Now let’s test the new functionality.
-
 In `test/AMM.ts`, replace the existing `init` test with this `provide` test:
 
 * Red squiggly lines may appear but will go away after running tests.
@@ -340,6 +339,16 @@ await amm.provide(
 );
 ```
 
+Finally, the balances after executing `provide` are verified.
+
+For example, the following part checks that the owner's `token0` balance has decreased by the amount of `token0` provided (`amountProvide0`) from the balance before executing `provide` (`ownerBalance0Before`):
+
+```ts
+expect(await token0.balanceOf(owner.address)).to.eql(
+  ownerBalance0Before.sub(amountProvide0)
+);
+```
+
 Next, add the following code after the `provide` test.
 
 ```ts
@@ -387,7 +396,7 @@ async function deployContractWithLiquidity() {
   };
 }
 
-// deployContractWithLiquidity 後の初期値のチェックをします。
+// deployContractWithLiquidity Check the initial values afterward.
 describe("Deploy with liquidity", function () {
   it("Should set the right number of amm details", async function () {
     const {
@@ -403,8 +412,8 @@ describe("Deploy with liquidity", function () {
     } = await loadFixture(deployContractWithLiquidity);
 
     const precision = await amm.PRECISION();
-    const BN100 = BigNumber.from("100"); // ownerのシェア: 最初の流動性提供者なので100
-    const BN10 = BigNumber.from("10"); // otherAccountのシェア: ownerに比べて10分の1だけ提供しているので10
+    const BN100 = BigNumber.from("100"); // owner's share: since they are the first liquidity provider, it's 100
+    const BN10 = BigNumber.from("10"); // otherAccount's share: since they provided one-tenth of the owner's amount, it's 10
 
     expect(await amm.totalShare()).to.equal(BN100.add(BN10).mul(precision));
     expect(await amm.share(owner.address)).to.equal(BN100.mul(precision));
@@ -419,35 +428,56 @@ describe("Deploy with liquidity", function () {
 });
 ```
 
-We reuse a pre-filled pool for testing.
-Both `owner` and `otherAccount` provide liquidity, and their values are returned.
-The test checks the `AMM` state afterward.
+To reuse an AMM with tokens already in the pool within the test,
+we use `deployContractWithLiquidity` as a function that goes from deploying each contract to setting up the AMM pool with tokens.
+The mechanism is the same as the `provide` we executed earlier, but in addition to the owner, `otherAccount` also provides liquidity.
+The amount of tokens provided by each account is included in the function’s return value.
+
+In the `Deploy with liquidity` test that follows,
+we verify the initial values of the state variables inside the AMM contract after running `deployContractWithLiquidity`.
 
 ---
 
 📓 About PRECISION
 
-From the test:
+From the previous test:
 
 ```ts
 expect(await amm.share(owner.address)).to.equal(BN100.mul(precision));
 ```
 
-Since share values are scaled by `PRECISION`, we multiply 100 by `precision`.
+The share retrieved from the AMM for the owner is larger by the value of `PRECISION`,
+so we compare the value of 100 (the owner's share) multiplied by `precision`.
 
 ---
 
-Finally, **after the `Deploy with liquidity` test**, add:
+Finally, after the `Deploy with liquidity` test, add:
 
 ```ts
 describe("getEquivalentToken", function () {
-  ...
+  it("Should get the right number of equivalent token", async function () {
+    const { amm, token0, token1 } = await loadFixture(
+      deployContractWithLiquidity
+    );
+
+    const totalToken0 = await amm.totalAmount(token0.address);
+    const totalToken1 = await amm.totalAmount(token1.address);
+    const amountProvide0 = ethers.utils.parseEther("10");
+    // totalToken0 : totalToken1 = amountProvide0 : equivalentToken1
+    const equivalentToken1 = amountProvide0.mul(totalToken1).div(totalToken0);
+
+    expect(
+      await amm.getEquivalentToken(token0.address, amountProvide0)
+    ).to.equal(equivalentToken1);
+  });
 });
 ```
 
-This ensures the `getEquivalentToken` calculation works.
+Here, we are testing whether the calculation of the `getEquivalentToken` function is correct.
 
-It compares the result to a manually computed value using the same formula.
+We check if the amount of `token1` equivalent to 10 ether worth of `token0` (`amountProvide0`)—which is `equivalentToken1`—matches the return value of the function.
+
+The formula itself follows the same logic as implemented in the `getEquivalentToken` function of the AMM contract.
 
 ### ⭐ Run the Test
 
