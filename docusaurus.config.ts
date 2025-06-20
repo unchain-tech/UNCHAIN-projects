@@ -6,7 +6,7 @@ const config: Config = {
   title: "UNCHAIN BUIDL",
   staticDirectories: ["public", "static"],
   tagline: "build in web3",
-  favicon: "https://www.unchain.tech/favicon.ico",
+  favicon: "/favicon/favicon.ico",
 
   // site production url
   url: "https://unchain-tech.github.io/",
@@ -44,13 +44,13 @@ const config: Config = {
   ],
 
   themeConfig: {
-    image: "images/thumbnail/unchain-banner.png",
+    image: "/thumbnail/unchain-banner.png",
     navbar: {
       title: "BUIDL",
       logo: {
         alt: "UNCHAIN",
-        src: "images/logo/unchain.png",
-        srcDark: "images/logo/unchain.dark.png",
+        src: "/logo/unchain.png",
+        srcDark: "/logo/unchain.dark.png",
       },
       items: [
         // {
@@ -120,7 +120,7 @@ const config: Config = {
       darkTheme: prismThemes.dracula,
       additionalLanguages: ['solidity'],
     },
-  } satisfies Preset.ThemeConfig,
+  } satisfies Preset.ThemeConfig
 };
 
 export default config;
