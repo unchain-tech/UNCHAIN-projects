@@ -44,13 +44,13 @@ const config: Config = {
   ],
 
   themeConfig: {
-    image: "images/README/unchain-banner.png",
+    image: "images/thumbnail/unchain-banner.png",
     navbar: {
       title: "BUIDL",
       logo: {
         alt: "UNCHAIN",
-        src: "https://www.unchain.tech/logo/UNCHAIN_logo.png",
-        srcDark: "https://www.unchain.tech/logo/UNCHAIN_logo_ondark.png",
+        src: "images/logo/unchain.png",
+        srcDark: "images/logo/unchain.dark.png",
       },
       items: [
         // {
