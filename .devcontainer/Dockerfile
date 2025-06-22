@@ -4,7 +4,7 @@
 # https://code.visualstudio.com/remote/advancedcontainers/add-nonroot-user
 ARG REMOTE_USER
 
-FROM node:${NODE_VERSION:-24.2.0}-slim
+FROM node:${NODE_VERSION:-22.16.0}-slim
 ARG REMOTE_USER REMOTE_GROUP=$REMOTE_USER
 
 # Install Development Tools

@@ -5,7 +5,7 @@
         "context": "..",
         "args": {
             "REMOTE_USER": "${localEnv:USER}",
-            "NODE_VERSION": "24.2.0"
+            "NODE_VERSION": "22.16.0"
         }
     },
     "mounts": [   "source=./,target=/home/${localEnv:USER}/unchain-project,type=bind,consistency=cached" ],
