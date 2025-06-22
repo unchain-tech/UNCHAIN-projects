@@ -1,6 +1,7 @@
 import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
+import type { SidebarsConfig } from "@docusaurus/plugin-content-docs";
 
 const config: Config = {
   title: "UNCHAIN BUIDL",
@@ -22,7 +23,17 @@ const config: Config = {
 
   i18n: {
     defaultLocale: "ja",
-    locales: ["ja"],
+    locales: ["ja", "en"],
+    localeConfigs: {
+      ja: {
+        htmlLang: 'ja-JP',
+        label: "日本語",
+      },
+      en: {
+        htmlLang: 'en-GB',
+        label: "English",
+      },
+    },
   },
 
   presets: [
@@ -53,17 +64,26 @@ const config: Config = {
         srcDark: "/logo/unchain.dark.png",
       },
       items: [
-        // {
-        //   type: "docSidebar",
-        //   sidebarId: "tutorialSidebar",
-        //   position: "left",
-        //   label: "Tutorial",
-        // },
+        // Right
         {
           href: "https://github.com/unchain-tech/UNCHAIN-Projects",
-          label: "GitHub",
           position: "right",
+          label: "GitHub",
         },
+        {
+          type: 'localeDropdown',
+          position: 'right',
+          dropdownItemsAfter: [
+            {
+              type: 'html',
+              value: '<hr style="margin: 0.3rem 0;">',
+            },
+            {
+              href: 'https://github.com/unchain-tech/UNCHAIN-Projects/issues/3526',
+              label: 'Help Us Translate',
+            },
+          ],
+        }
       ],
     },
     footer: {
