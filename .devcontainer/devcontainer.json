@@ -1,0 +1,29 @@
+{
+    "name": "Dev Container",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": "..",
+        "args": {
+            "REMOTE_USER": "${localEnv:USER}",
+            "NODE_VERSION": "22.16.0"
+        }
+    },
+    "mounts": [   "source=./,target=/home/${localEnv:USER}/unchain-project,type=bind,consistency=cached" ],
+    "workspaceFolder": "/home/${localEnv:USER}/unchain-project",
+    "forwardPorts": [3000],
+    "containerUser": "${localEnv:USER}",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-ceintl.vscode-language-pack-ja",
+                "mhutchie.git-graph",
+                "waderyan.gitblame",
+                "GitLab.gitlab-workflow",
+                "ms-vscode.vscode-typescript-next",
+                "github.vscode-codeql",
+                "3w36zj6.textlint",
+                "streetsidesoftware.code-spell-checker"
+            ]
+        }
+    }
+}

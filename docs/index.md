@@ -7,7 +7,7 @@ pagination_prev:
 
 # 💎 **UNCHAIN Developer Community へようこそ** 👋
 
-![](/images/README/unchain-banner.png)
+![](/thumbnail/unchain-banner.png)
 
 ## 🌍 **プロジェクトのアップデートについて**
 
