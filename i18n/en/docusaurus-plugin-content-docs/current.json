@@ -1,0 +1,150 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.ASTAR-SocialFi": {
+    "message": "ASTAR-SocialFi",
+    "description": "The label for category ASTAR-SocialFi in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.ja": {
+    "message": "ja",
+    "description": "The label for category ja in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.section-0": {
+    "message": "section-0",
+    "description": "The label for category section-0 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.section-1": {
+    "message": "section-1",
+    "description": "The label for category section-1 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.section-2": {
+    "message": "section-2",
+    "description": "The label for category section-2 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.section-3": {
+    "message": "section-3",
+    "description": "The label for category section-3 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.AVAX-AMM": {
+    "message": "AVAX-AMM",
+    "description": "The label for category AVAX-AMM in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.section-4": {
+    "message": "section-4",
+    "description": "The label for category section-4 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.AVAX-Asset-Tokenization": {
+    "message": "AVAX-Asset-Tokenization",
+    "description": "The label for category AVAX-Asset-Tokenization in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.AVAX-Messenger": {
+    "message": "AVAX-Messenger",
+    "description": "The label for category AVAX-Messenger in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.AVAX-Subnet": {
+    "message": "AVAX-Subnet",
+    "description": "The label for category AVAX-Subnet in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.ETH-DAO": {
+    "message": "ETH-DAO",
+    "description": "The label for category ETH-DAO in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.ETH-NFT-Collection": {
+    "message": "ETH-NFT-Collection",
+    "description": "The label for category ETH-NFT-Collection in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.ETH-NFT-Game": {
+    "message": "ETH-NFT-Game",
+    "description": "The label for category ETH-NFT-Game in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.ETH-NFT-Maker": {
+    "message": "ETH-NFT-Maker",
+    "description": "The label for category ETH-NFT-Maker in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.ETH-Yield-Farm": {
+    "message": "ETH-Yield-Farm",
+    "description": "The label for category ETH-Yield-Farm in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.ETH-dApp": {
+    "message": "ETH-dApp",
+    "description": "The label for category ETH-dApp in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.ICP-Basic-DEX": {
+    "message": "ICP-Basic-DEX",
+    "description": "The label for category ICP-Basic-DEX in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.ICP-Encrypted-Notes": {
+    "message": "ICP-Encrypted-Notes",
+    "description": "The label for category ICP-Encrypted-Notes in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.ICP-Static-Site": {
+    "message": "ICP-Static-Site",
+    "description": "The label for category ICP-Static-Site in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.NEAR-BikeShare": {
+    "message": "NEAR-BikeShare",
+    "description": "The label for category NEAR-BikeShare in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.NEAR-Election-dApp": {
+    "message": "NEAR-Election-dApp",
+    "description": "The label for category NEAR-Election-dApp in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.NEAR-Hotel-Booking-dApp": {
+    "message": "NEAR-Hotel-Booking-dApp",
+    "description": "The label for category NEAR-Hotel-Booking-dApp in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.NEAR-MulPay": {
+    "message": "NEAR-MulPay",
+    "description": "The label for category NEAR-MulPay in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Polygon-ENS-Domain": {
+    "message": "Polygon-ENS-Domain",
+    "description": "The label for category Polygon-ENS-Domain in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Polygon-Generative-NFT": {
+    "message": "Polygon-Generative-NFT",
+    "description": "The label for category Polygon-Generative-NFT in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Polygon-Mobile-dApp": {
+    "message": "Polygon-Mobile-dApp",
+    "description": "The label for category Polygon-Mobile-dApp in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Polygon-Whitelist-NFT": {
+    "message": "Polygon-Whitelist-NFT",
+    "description": "The label for category Polygon-Whitelist-NFT in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.en": {
+    "message": "en",
+    "description": "The label for category en in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.section-5": {
+    "message": "section-5",
+    "description": "The label for category section-5 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Solana-NFT-Drop": {
+    "message": "Solana-NFT-Drop",
+    "description": "The label for category Solana-NFT-Drop in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Solana-Online-Store": {
+    "message": "Solana-Online-Store",
+    "description": "The label for category Solana-Online-Store in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Solana-Wallet": {
+    "message": "Solana-Wallet",
+    "description": "The label for category Solana-Wallet in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Solana-dApp": {
+    "message": "Solana-dApp",
+    "description": "The label for category Solana-dApp in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.TheGraph-ScaffoldEth2": {
+    "message": "TheGraph-ScaffoldEth2",
+    "description": "The label for category TheGraph-ScaffoldEth2 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.XRPL-NFT-Maker": {
+    "message": "XRPL-NFT-Maker",
+    "description": "The label for category XRPL-NFT-Maker in sidebar tutorialSidebar"
+  }
+}

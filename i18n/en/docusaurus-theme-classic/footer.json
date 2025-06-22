@@ -1,0 +1,46 @@
+{
+  "link.title.About us": {
+    "message": "About us",
+    "description": "The title of the footer links column with title=About us in the footer"
+  },
+  "link.title.Learn": {
+    "message": "Learn",
+    "description": "The title of the footer links column with title=Learn in the footer"
+  },
+  "link.title.Community": {
+    "message": "Community",
+    "description": "The title of the footer links column with title=Community in the footer"
+  },
+  "link.item.label.Website": {
+    "message": "Website",
+    "description": "The label of footer link with label=Website linking to https://www.unchain.tech/"
+  },
+  "link.item.label.GitHub": {
+    "message": "GitHub",
+    "description": "The label of footer link with label=GitHub linking to https://github.com/unchain-tech/"
+  },
+  "link.item.label.Buidl Tutorials": {
+    "message": "Buidl Tutorials",
+    "description": "The label of footer link with label=Buidl Tutorials linking to https://buidl.unchain.tech/"
+  },
+  "link.item.label.EIP Encyclopedia": {
+    "message": "EIP Encyclopedia",
+    "description": "The label of footer link with label=EIP Encyclopedia linking to https://eips.unchain.tech/"
+  },
+  "link.item.label.Auditing resources": {
+    "message": "Auditing resources",
+    "description": "The label of footer link with label=Auditing resources linking to https://bughunt.unchain.tech/"
+  },
+  "link.item.label.Discord": {
+    "message": "Discord",
+    "description": "The label of footer link with label=Discord linking to https://discord.gg/invite/w3AyyvKypT"
+  },
+  "link.item.label.Twitter": {
+    "message": "Twitter",
+    "description": "The label of footer link with label=Twitter linking to https://x.com/UNCHAIN_tech"
+  },
+  "copyright": {
+    "message": "MIT license © 2025 UNCHAIN. Built with Docusaurus.",
+    "description": "The footer copyright"
+  }
+}
