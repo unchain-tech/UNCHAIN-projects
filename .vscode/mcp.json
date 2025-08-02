@@ -8,6 +8,11 @@
     },
     "deepwiki": {
       "url": "https://mcp.deepwiki.com/sse"
+    },
+    "figma-developer-mcp": {
+      "command": "npx",
+      "args": ["-y", "figma-developer-mcp", "--stdio"],
+      "envFile": "${workspaceFolder}/mcp/.env"
     }
   },
 }
