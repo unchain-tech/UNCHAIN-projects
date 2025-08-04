@@ -49,7 +49,7 @@ contract Web3Mint is ERC721URIStorage {
 }
 ```
 
-これは[ETH-NFT-Collection](/docs/ETH-NFT-Collection/ja/section-1/lesson-4_NFTを発行するスマートコントラクトを作ろう.md)と同様の構成になっています。復習も兼ねて是非一度戻ってみることをおすすめします。
+これは[ETH-NFT-Collection](/Ethereum/ETH-NFT-Collection/ja/section-1/lesson-4_NFTを発行するスマートコントラクトを作ろう)と同様の構成になっています。復習も兼ねて是非一度戻ってみることをおすすめします。
 
 ```solidity
 // Web3Mint.sol
