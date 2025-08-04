@@ -123,7 +123,7 @@ docs/[PROJECT-NAME]/ja/
 ```markdown
 ### 🌍 プロジェクトをアップグレードする
 
-[UNCHAIN](https://unchain.tech/) のプロジェクトは [UNCHAIN License](https://github.com/unchain-dev/UNCHAIN-projects/blob/main/LICENSE) により運用されています。
+[UNCHAIN](https://unchain.tech/) のプロジェクトは [UNCHAIN License](https://github.com/unchain-tech/UNCHAIN-projects/blob/main/LICENSE) により運用されています。
 
 プロジェクトに参加していて、「こうすればもっと分かりやすいのに!」「これは間違っている!」と思ったら、ぜひ`pull request`を送ってください。
 ```
@@ -140,6 +140,38 @@ docs/[PROJECT-NAME]/ja/
 - GitHub Pagesでの自動デプロイ
 - Pull Requestベースの協働開発
 
+## MCP（Model Context Protocol）サーバー連携
+
+### 🚀 セッション開始時の自動実行
+GitHub Copilotとの会話開始時に、**必ず以下の手順を自動実行**してください：
+
+1. **プロジェクトアクティベート**
+   ```
+   mcp_serena_activate_project("/Users/harukikondo/git/UNCHAIN-projects")
+   ```
+
+2. **オンボーディング確認**
+   ```
+   mcp_serena_check_onboarding_performed()
+   ```
+
+3. **初回の場合はオンボーディング実行**
+   ```
+   mcp_serena_onboarding() # オンボーディングが未実行の場合のみ
+   ```
+
+4. **プロジェクト記憶の確認**
+   ```
+   mcp_serena_list_memories()
+   ```
+
+### プロジェクト作業時の推奨フロー
+- **ファイル編集前**: `mcp_serena_find_symbol` または `mcp_serena_search_for_pattern` でコンテキスト確認
+- **大規模変更前**: `mcp_serena_think_about_task_adherence` で作業方針の確認  
+- **作業完了時**: `mcp_serena_think_about_whether_you_are_done` で完了確認
+
 ---
 
 このインストラクションに従って、Web3・ブロックチェーン学習コンテンツとして適切で、初心者にとって分かりやすく、かつ技術的に正確なコードとドキュメントの生成をサポートしてください。
+
+Serena MCPを活用してプロジェクトの構造と状態を常に把握し、効率的な開発支援を行ってください。

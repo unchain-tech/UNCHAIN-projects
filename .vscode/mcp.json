@@ -13,6 +13,17 @@
       "command": "npx",
       "args": ["-y", "figma-developer-mcp", "--stdio"],
       "envFile": "${workspaceFolder}/mcp/.env"
+    },
+    "serena": {
+      "command": "uvx",
+      "args": [
+        "--from",
+        "git+https://github.com/oraios/serena",
+        "serena",
+        "start-mcp-server",
+        "--context",
+        "ide-assistant"
+      ]
     }
   },
 }
