@@ -6,13 +6,16 @@ title: "🛠️ 環境構築"
 
 ## 必要なツール
 
-開発を始める前に、お使いのコンピュータに以下のツールがインストールされていることを確認してください。これらは、モダンなWeb開発、特にweb3プロジェクトに不可欠なものです。
+開発を始める前に、お使いのコンピュータに以下のツールがインストールされていることを確認してください。これらは、モダンなWeb開発に不可欠なものです。
 
-- ****Node.js****: v22以上。JavaScriptの実行環境です。
-- ****pnpm****: 高速で効率的なパッケージマネージャーです。
-- ****Git****: ソースコードのバージョンを管理するための必須ツールです。
+- ****Node.js****:   
+    v22以上。JavaScriptの実行環境です。
+- ****pnpm****:    
+    高速で効率的なパッケージマネージャーです。
+- ****Git****:   
+    ソースコードのバージョンを管理するための必須ツールです。
 
-もしpnpmがインストールされていない場合は、以下のコマンドで簡単にインストールできます。
+もしpnpmがインストールされていない場合は以下のコマンドで簡単にインストールできます！
 
 ```bash
 npm install -g pnpm
@@ -22,22 +25,24 @@ npm install -g pnpm
 
 準備が整ったら、早速プロジェクトのソースコードを手元に持ってきましょう。
 
-1.  **リポジトリのクローン 📥**:
+1.  **リポジトリのクローン 📥**:  
     ターミナルを開き、作業したいディレクトリで以下のコマンドを実行して、プロジェクトのテンプレートをクローンします。
 
     ```bash
-    git clone https://github.com/mashharuki/serverless_zk_nft_app.git
+    git clone https://github.com/unchain-tech/Base-serverless-zk-nft-app.git
     ```
 
-2.  **ディレクトリへ移動 ➡️**:
-    クローンしたプロジェクトのディレクトリに移動します。ここが私たちの開発の拠点となります。
+2.  **ディレクトリへ移動 ➡️**:  
+    クローンしたプロジェクトのディレクトリに移動します。  
+    ここが私たちの開発の拠点となります。
 
     ```bash
-    cd serverless_zk_nft_app
+    cd Base-serverless-zk-nft-app
     ```
 
-3.  **依存関係のインストール 📦**:
-    `pnpm`を使って、プロジェクト全体の依存関係をインストールします。これには、`circuit`、`backend`、`frontend`の各コンポーネントで必要なライブラリがすべて含まれます。
+3.  **依存関係のインストール 📦**:    
+    `pnpm`を使って、プロジェクト全体の依存関係をインストールします。
+    これには、`circuit`、`backend`、`frontend`の各コンポーネントで必要なライブラリがすべて含まれます。
 
     ```bash
     pnpm i
@@ -47,11 +52,13 @@ npm install -g pnpm
 
 ## 🔑 環境変数の設定
 
-次に、プロジェクトを動かすために必要な「鍵」となる環境変数を設定します。`.env.example`ファイルが各パッケージに用意されているので、それを参考に`.env`または`.env.local`ファイルを作成していきましょう。
+次に、プロジェクトを動かすために必要な「鍵」となる環境変数を設定します。
+
+`.env.example`ファイルが各パッケージに用意されているので、それを参考に`.env`または`.env.local`ファイルを作成していきましょう。
 
 ****環境変数****は、APIキーや秘密鍵など、ソースコードに直接書き込みたくない大切な情報を安全に管理するための仕組みです。
 
-### Backend (`pkgs/backend`)
+### Backend (`pkgs/backend`)の環境変数の設定
 
 `pkgs/backend`ディレクトリに`.env`ファイルを作成し、以下の内容を記述します。
 
@@ -61,11 +68,22 @@ ALCHMEY_API_KEY="YOUR_ALCHEMY_API_KEY"
 BASESCAN_API_KEY="YOUR_BASESCAN_API_KEY"
 ```
 
-- ****`PRIVATE_KEY`****: スマートコントラクトをデプロイするウォレットの秘密鍵です。**⚠️ 必ず開発・テスト用のウォレットを使用し、メインの資産を保管しているウォレットの秘密鍵は絶対に使用しないでください。**
-- ****`ALCHMEY_API_KEY`****: [Alchemy](https://www.alchemy.com/)のAPIキーです。Alchemyは、私たちが開発するアプリケーションを`Base Sepolia`テストネットに接続するための中継役（RPCプロバイダー）です。
-- ****`BASESCAN_API_KEY`****: [Basescan](https://basescan.org/)のAPIキーです。デプロイしたスマートコントラクトのソースコードを自動で認証・公開するために使用します。
+- ****`PRIVATE_KEY`****:   
+    スマートコントラクトをデプロイするウォレットの秘密鍵です。 
 
-### Frontend (`pkgs/frontend`)
+    **⚠️ 必ず開発用のウォレットを使用し、メインの資産を保管しているウォレットの秘密鍵は絶対に使用しないでください。**
+
+- ****`ALCHMEY_API_KEY`****:  
+    [Alchemy](https://www.alchemy.com/)のAPIキーです。 
+
+     Alchemyは、私たちが開発するアプリケーションを`Base Sepolia`テストネットに接続するための中継役（RPCプロバイダー）等を提供するweb3インフラプロバイダーです。
+
+- ****`BASESCAN_API_KEY`****:  
+    Base用のブロックチェーンエクスプローラーである[Basescan](https://basescan.org/)のAPIキーです。  
+    
+    デプロイしたスマートコントラクトのソースコードを自動で認証・公開するために使用します。
+
+### Frontend (`pkgs/frontend`)の環境変数の設定
 
 `pkgs/frontend`ディレクトリに`.env.local`ファイルを作成し、以下の内容を記述します。
 
@@ -76,13 +94,24 @@ NEXT_PUBLIC_BICONOMY_PAYMASTER_API_KEY="YOUR_BICONOMY_PAYMASTER_API_KEY"
 PASSWORD_HASH="YOUR_PASSWORD_HASH"
 ```
 
-- ****`NEXT_PUBLIC_PRIVY_APP_ID`****: [Privy](https://www.privy.io/)のApp IDです。Eメールやソーシャルアカウントでのログイン機能をアプリケーションに組み込むために使用します。
-- ****`NEXT_PUBLIC_BICONOMY_BUNDLER_API_KEY`**** & ****`NEXT_PUBLIC_BICONOMY_PAYMASTER_API_KEY`****: [Biconomy](https://www.biconomy.io/)のAPIキーです。これらを使うことで、ユーザーがガス代（手数料）を支払うことなくNFTをミントできる、いわゆる「ガスレス」な体験を実現します。
-- ****`PASSWORD_HASH`****: ZK証明を生成するための「秘密の合言葉」のハッシュ値です。この値は後のセクションで一緒に生成するので、**現時点では空のままで問題ありません。**
+- ****`NEXT_PUBLIC_PRIVY_APP_ID`****:  
+    web3ウォレットプロバイダー[Privy](https://www.privy.io/)のApp IDです。  
+
+    Eメールやソーシャルアカウントでのログイン機能をアプリケーションに組み込むために使用します。
+
+- ****`NEXT_PUBLIC_BICONOMY_BUNDLER_API_KEY`**** & ****`NEXT_PUBLIC_BICONOMY_PAYMASTER_API_KEY`****:   
+    [Biconomy](https://www.biconomy.io/)のAPIキーです。  
+
+    これらを使うことで、ユーザーがガス代（手数料）を支払うことなくNFTをミントできる、いわゆる「ガスレス」な体験を実現します。
+
+- ****`PASSWORD_HASH`****:   
+    ゼロ知識証明用のProofを生成するための「秘密の合言葉」のハッシュ値です。  
+    この値は後のセクションで生成するので、**現時点では空のままで問題ありません。**
 
 ## ✅ セットアップの確認
 
-お疲れ様でした！ 以上で基本的な環境構築は完了です。これで、ゼロ知識証明を使ったdAppを開発する準備が整いました。
+お疲れ様でした！ 以上で基本的な環境構築は完了です。  
+これで、ゼロ知識証明を使ったdAppを開発する準備が整いました。
 
 次のセクションから、いよいよ各コンポーネントのコードに触れていきます。
 
