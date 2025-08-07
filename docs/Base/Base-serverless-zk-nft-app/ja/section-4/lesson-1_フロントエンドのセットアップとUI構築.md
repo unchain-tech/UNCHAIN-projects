@@ -1,37 +1,39 @@
 ---
-title: "フロントエンドのセットアップとUI構築"
+title: "🖥️ フロントエンドのセットアップとUI構築"
 ---
 
-このセクションから、ユーザーが実際に操作するフロントエンドアプリケーションを構築していきます。このプロジェクトのフロントエンドは、**Next.js** をベースに、**TypeScript**、**Tailwind CSS**、そしてUIコンポーネントライブラリの **shadcn/ui** を使用して構築されています。
+このセクションから、ユーザーが実際に操作する**フロントエンドアプリケーション**を構築していきます。バックエンドで準備したスマートコントラクトやゼロ知識証明の仕組みを、ユーザーが直感的に使えるように繋ぎこむ、非常に重要なパートです。
 
-最初のレッスンでは、フロントエンドプロジェクトの全体像を把握し、基本的なUIをセットアップします。
+このプロジェクトのフロントエンドは、**Next.js** をベースに、**TypeScript**、**Tailwind CSS**、そしてUIコンポーネントライブラリの **shadcn/ui** を使用して、モダンで洗練されたUIを効率的に構築します。
+
+最初のレッスンでは、フロントエンドプロジェクトの全体像を把握し、基本的なUIコンポーネントがどのように配置されているかを確認します。
 
 ## 📂 フロントエンドの構造
 
-まず、`pkgs/frontend`ディレクトリの構造を見てみましょう。
+まず、`pkgs/frontend`ディレクトリの構造を見て、どこに何が書かれているかを理解しましょう。
 
 ```
 pkgs/frontend
-├── public/              # 画像などの静的ファイル
+├── public/              # 画像などの静的アセット
 ├── src/
-│   ├── app/             # Next.jsのApp Router
-│   │   ├── layout.tsx   # 全ページ共通のレイアウト
-│   │   └── page.tsx     # メインページのUI
-│   ├── components/      # 再利用可能なUIコンポーネント
-│   └── lib/             # 補助的な関数や設定
-├── package.json         # 依存関係とスクリプト
+│   ├── app/             # Next.jsのApp Router。URLとコンポーネントのマッピングを管理
+│   │   ├── layout.tsx   # 全ページ共通のレイアウト（ヘッダー、フッターなど）
+│   │   └── page.tsx     # アプリケーションのメインページ（"/"）のUI
+│   ├── components/      # 再利用可能なUIコンポーネント（ボタン、ダイアログなど）
+│   └── lib/             # 補助的な関数や設定ファイル
+├── package.json         # プロジェクトの依存関係と実行スクリプト
 └── ...
 ```
 
-- **`app/layout.tsx`**: アプリケーション全体のレイアウトを定義します。ヘッダー、フッター、フォント設定、そして後ほど追加する各種プロバイダー（Privy, Biconomyなど）はここに配置されます。
-- **`app/page.tsx`**: アプリケーションのメインページ（`/`）のコンテンツを定義する中心的なファイルです。ここにNFTのミントボタンやUI要素を配置します。
-- **`components/`**: `shadcn/ui`を使って作成したボタンやダイアログなどのUIコンポーネントが格納されます。
+- **`app/layout.tsx`**: アプリケーション全体の「骨格」となるファイルです。ヘッダー、フッター、フォント設定、そして後ほど追加する**web3関連のプロバイダー（Privy, Biconomyなど）**はここに配置され、すべてのページで共通して利用されます。
+- **`app/page.tsx`**: アプリケーションの「顔」となるメインページ（`https://.../`）のコンテンツを定義する中心的なファイルです。ここにNFTのミントボタンやパスワード入力フィールドなどのUI要素を配置していきます。
+- **`components/`**: `shadcn/ui`を使って作成したボタンやダイアログなどのUI部品が格納されます。一貫性のあるデザインを保ちながら、効率的に開発を進めるための重要なフォルダです。
 
 ## 🎨 UIコンポーネントの構築
 
-このプロジェクトでは、`shadcn/ui`を利用して、モダンで美しいUIを効率的に構築します。`shadcn/ui`は、コピー&ペーストでプロジェクトに追加できる、再利用可能でアクセシブルなコンポーネント集です。
+このプロジェクトでは、`shadcn/ui`を利用して、モダンで美しいUIを効率的に構築します。`shadcn/ui`は、単なるライブラリではなく、**コピー&ペーストでプロジェクトに直接追加できる、カスタマイズ性の高いコンポーネント集**です。
 
-メインページである`src/app/page.tsx`を見て、UIがどのように構築されているかを確認しましょう。
+メインページである`src/app/page.tsx`を開いて、UIがどのように構築されているかを確認しましょう。
 
 ```tsx
 // pkgs/frontend/src/app/page.tsx
@@ -43,17 +45,12 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 
 export default function Home() {
+  // ユーザーが入力したパスワードを保持するための状態変数
   const [password, setPassword] = useState<string>("");
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        {/* ログインボタンやユーザー情報をここに表示 */}
-      </div>
+      {/* ... ヘッダー部分のコード ... */}
 
       <div className="relative z-[-1] flex place-items-center">
         <h1 className="text-5xl font-bold text-center">
@@ -64,9 +61,12 @@ export default function Home() {
       <div className="mb-32 mt-16 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
         <div className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
           <h2 className="mb-3 text-2xl font-semibold">
-            Mint ZK NFT
+            Mint ZK NFT 🔑
           </h2>
-          <div className="flex w-full max-w-sm items-center space-x-2">
+          <p className="m-0 max-w-[30ch] text-sm opacity-50">
+            秘密のパスワードを入力して、特別なNFTをミントしよう！
+          </p>
+          <div className="flex w-full max-w-sm items-center space-x-2 mt-4">
             <Input
               type="password"
               placeholder="Password"
@@ -82,22 +82,22 @@ export default function Home() {
 }
 ```
 
-### コード解説
+### 🔍 コード解説
 
-- **`"use client"`**: このファイルがクライアントコンポーネントであることを示します。`useState`などのReactフックを使用するために必要です。
-- **`useState`**: `password`という状態変数を定義し、ユーザーがインプットフィールドに入力した値を保持します。
-- **`<Input />`**: `shadcn/ui`のインプットコンポーネントです。ユーザーが秘密のパスワードを入力するために使用します。
-- **`<Button />`**: `shadcn/ui`のボタンコンポーネントです。ユーザーがNFTのミントを開始するためのトリガーとなります。
+- **`"use client"`**: このディレクティブは、このファイルが**クライアントコンポーネント**であることをNext.jsに伝えます。ユーザーのブラウザ上で動作し、`useState`や`useEffect`といったReactのフック（インタラクティブな機能）を使用するために不可欠です。
+- **`useState`**: `password`という**状態変数**を定義しています。これにより、ユーザーがインプットフィールドに入力した値をリアルタイムで保持し、UIに反映させることができます。
+- **`<Input />`**: `shadcn/ui`から提供されるインプットコンポーネントです。`type="password"`とすることで、入力内容が隠されるようになっています。ユーザーが秘密のパスワードを入力するための重要なUIです。
+- **`<Button />`**: これも`shadcn/ui`のボタンコンポーネントです。ユーザーがNFTのミントを開始するためのアクションの起点（トリガー）となります。
 
-この時点では、UIは表示されるだけで、ボタンをクリックしても何も起こりません。
-次のレッスンから、以下の機能を段階的に実装していきます。
+この時点では、UIは表示されるだけで、ボタンをクリックしてもまだ何も起こりません。しかし、アプリケーションの骨格はすでに完成しています。
 
-1.  **ユーザー認証**: Privyを使って、ユーザーがウォレットでログインできるようにします。
-2.  **ZK証明の生成**: ユーザーが入力したパスワードから、クライアントサイドでZK証明を生成します。
-3.  **ガスレスミント**: Biconomyを使って、ユーザーがガス代を支払うことなくNFTをミントできるようにします。
+次のレッスンから、このUIに命を吹き込んでいきます。以下の機能を段階的に実装していきましょう。
+
+1.  **ユーザー認証 👤**: Privyを使って、ユーザーがEメールやソーシャルアカウントで簡単にログインし、ウォレットを扱えるようにします。
+2.  **ZK証明の生成 🧠**: ユーザーが入力したパスワードから、ユーザーのブラウザ上で（クライアントサイドで）ゼロ知識証明を生成します。
+3.  **ガスレスミント ⛽️**: Biconomyを使って、ユーザーがガス代を一切支払うことなくNFTをミントできる、魔法のような体験を実現します。
 
 ---
-
 次のレッスンでは、最初のステップとして、Privyを導入してユーザー認証機能を実装します。
 
 ### 🙋‍♂️ 質問する

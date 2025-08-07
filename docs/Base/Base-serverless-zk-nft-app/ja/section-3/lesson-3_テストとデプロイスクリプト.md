@@ -1,51 +1,54 @@
 ---
-title: "テストとデプロイスクリプト"
+title: "🧪 テストとデプロイスクリプト"
 ---
 
-このレッスンでは、実装した`ZKNFT.sol`コントラクトが正しく動作するかを確認するためのテストを作成し、テストネットにデプロイするためのスクリプトとタスクを準備します。
+このレッスンでは、実装した`ZKNFT.sol`コントラクトが正しく動作するかを保証するための**テスト**を作成し、実際にブロックチェーン（Base Sepoliaテストネット）に公開（**デプロイ**）するためのスクリプトとタスクを準備します。
 
-## 🧪 テストの作成
+## テストの作成
 
-Hardhat環境でのテストは、コントラクトの堅牢性を保証するために不可欠です。`pkgs/backend/test/ZKNFT.ts`ファイルを作成し、以下のテストコードを記述します。
+スマートコントラクト開発において、テストは非常に重要です。Hardhatが提供するテスト環境を利用して、コントラクトの堅牢性を保証し、予期せぬバグを防ぎましょう。
+
+`pkgs/backend/test/ZKNFT.ts`ファイルを作成し、以下のテストコードを記述します。
 
 ```typescript
 // pkgs/backend/test/ZKNFT.ts
 import { loadFixture } from "@nomicfoundation/hardhat-toolbox/network-helpers";
 import { expect } from "chai";
-import { ethers }s from "hardhat";
+import { ethers } from "hardhat";
 import { ZKNFT } from "../typechain-types";
-// ZK証明のテストデータをインポート
+// `section-2`で生成したZK証明のテストデータをインポート
 import { calldata } from "../../../circuit/data/calldata.json";
 
 describe("ZKNFT", function () {
+    // テスト環境を初期化するためのfixture関数
     async function deployZKNFTFixture() {
-        // アカウントを取得
+        // テスト用のアカウントを取得
         const [owner, otherAccount] = await ethers.getSigners();
 
-        // PasswordHashVerifierモックをデプロイ
+        // `PasswordHashVerifier`コントラクトをデプロイ
         const Verifier = await ethers.getContractFactory("PasswordHashVerifier");
         const verifier = await Verifier.deploy();
 
-        // ZKNFTコントラクトをデプロイ
+        // `ZKNFT`コントラクトをデプロイし、検証コントラクトのアドレスを渡す
         const ZKNFT = await ethers.getContractFactory("ZKNFT");
         const zknft: ZKNFT = await ZKNFT.deploy(await verifier.getAddress());
 
-        return { zknft, owner, otherAccount };
+        return { zknft, owner, otherAccount, verifier };
     }
 
     describe("Deployment", function () {
-        it("Should set the right verifier", async function () {
-            const { zknft } = await loadFixture(deployZKNFTFixture);
-            // PasswordHashVerifierモックが正しく設定されているかテスト
-            expect(await zknft.verifier()).to.not.equal(ethers.ZeroAddress);
+        it("Should set the right verifier address", async function () {
+            const { zknft, verifier } = await loadFixture(deployZKNFTFixture);
+            // ZKNFTコントラクトに保存されているverifierのアドレスが正しいかテスト
+            expect(await zknft.verifier()).to.equal(await verifier.getAddress());
         });
     });
 
     describe("Minting", function () {
-        it("Should mint a new token for the owner", async function () {
+        it("Should mint a new token for the owner with a valid proof", async function () {
             const { zknft, owner } = await loadFixture(deployZKNFTFixture);
 
-            // ZK証明を使ってNFTをミント
+            // 正しいZK証明データを使ってNFTをミント
             await zknft.safeMint(
                 owner.address,
                 calldata.pA,
@@ -58,11 +61,12 @@ describe("ZKNFT", function () {
             expect(await zknft.balanceOf(owner.address)).to.equal(1);
         });
 
-        it("Should fail to mint with invalid proof", async function () {
+        it("Should fail to mint with an invalid proof", async function () {
             const { zknft, owner } = await loadFixture(deployZKNFTFixture);
 
-            // 不正な公開情報でミントを試みる
+            // 不正な公開情報（ハッシュ値）でミントを試みる
             const invalidPubSignals = ["0"];
+            // トランザクションが"ZKNFT: Invalid proof"というエラーでリバートされることを期待
             await expect(
                 zknft.safeMint(
                     owner.address,
@@ -71,32 +75,34 @@ describe("ZKNFT", function () {
                     calldata.pC,
                     invalidPubSignals
                 )
-            ).to.be.revertedWith("Invalid proof");
+            ).to.be.revertedWith("ZKNFT: Invalid proof");
         });
     });
 });
 ```
 
-### テストコード解説
-- `deployZKNFTFixture`: テストの前にクリーンな状態でコントラクトをデプロイするための`fixture`関数です。`PasswordHashVerifier`と`ZKNFT`の両方をデプロイします。
-- `import { calldata } ...`: `section-2`で生成した証明データ（`calldata.json`）をインポートして、テストに使用します。
-- `Deployment`テスト: `ZKNFT`コントラクトがデプロイされた際に、`verifier`アドレスが正しく設定されているかを確認します。
-- `Minting`テスト:
-    - 正しい証明データを使って`safeMint`を呼び出し、NFTが正常にミントされることを確認します。
-    - 意図的に不正な公開情報（`invalidPubSignals`）を使って`safeMint`を呼び出し、`"Invalid proof"`というエラーでトランザクションがリバート（失敗）することを確認します。
+### 🔍 テストコード解説
+- `deployZKNFTFixture`: テストを実行する前に、毎回クリーンな状態でコントラクトをデプロイするための**`fixture`関数**です。`PasswordHashVerifier`と`ZKNFT`の両方をデプロイし、テストに必要なオブジェクトを返します。
+- `import { calldata } ...`: `section-2`で生成した証明データ（`calldata.json`）をインポートし、実際の証明を使ったテストを可能にします。
+- **`Deployment`テスト**: `ZKNFT`コントラクトがデプロイされた際に、コンストラクタに渡した`verifier`のアドレスが正しく設定されているかを確認します。
+- **`Minting`テスト**:
+    - **成功ケース**: 正しい証明データを使って`safeMint`を呼び出し、NFTが正常にミントされることを確認します。
+    - **失敗ケース**: 意図的に不正な公開情報（`invalidPubSignals`）を使って`safeMint`を呼び出し、コントラクトに設定したエラーメッセージ`"ZKNFT: Invalid proof"`でトランザクションが正しく失敗（リバート）することを確認します。
 
 ### テストの実行
-ターミナルで以下のコマンドを実行して、テストを実行します。
+ターミナルで以下のコマンドを実行して、テストを開始します。
 
 ```bash
 pnpm backend test
 ```
 
-すべてのテストがパスすれば、コントラクトは期待通りに動作しています。
+すべてのテストが緑のチェックマークでパスすれば、あなたのコントラクトは期待通りに動作している証拠です！ ✅
 
 ## 🚀 デプロイスクリプトの作成
 
-次に、コントラクトを`Base Sepolia`テストネットにデプロイするためのスクリプトを作成します。`pkgs/backend/scripts/deploy.ts`ファイルを作成し、以下のコードを記述します。
+テストが成功したので、いよいよコントラクトを`Base Sepolia`テストネットにデプロイします。そのためのスクリプトを作成しましょう。
+
+`pkgs/backend/scripts/deploy.ts`ファイルを作成し、以下のコードを記述します。
 
 ```typescript
 // pkgs/backend/scripts/deploy.ts
