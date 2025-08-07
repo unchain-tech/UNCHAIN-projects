@@ -68,6 +68,7 @@ docs/[PROJECT-NAME]/ja/
 - **ICP**: Motoko、Internet Computer
 - **Astar**: Polkadot Parachain
 - **XRPL**: XRP Ledger
+- **Base**
 
 ### 開発ツール・フレームワーク
 - **スマートコントラクト**: Solidity、Rust、Motoko
@@ -134,6 +135,7 @@ docs/[PROJECT-NAME]/ja/
 2. **アクセシビリティ**: 初心者でも理解できる段階的な説明
 3. **実用性**: 実際のdApp開発で使える技術・パターンを重視
 4. **継続性**: プロジェクト間での一貫性とプログレッション
+5. **ルール遵守**: Textlintのルールに違反しないようにコンテンツを作成してください。
 
 ## ブランチ・開発フロー
 - メインブランチ: `main`
