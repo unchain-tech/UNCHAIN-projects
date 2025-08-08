@@ -2,15 +2,26 @@
 title: "👤 Privyによるユーザー認証の実装"
 ---
 
-このレッスンでは、**Privy**を導入して、ユーザーがEメールやソーシャルアカウントで簡単にログインできるようにし、各ユーザーに専用のウォレット（**Embedded Wallet**）を自動的に提供する機能を実装します。これにより、web3に馴染みのないユーザーでも、まるで普段使っているWebサービスのように、シームレスに私たちのdAppを利用開始できるようになります。
+このレッスンでは、**Privy** を導入して、ユーザーがEメールやソーシャルアカウントで簡単にログインできるようにし、各ユーザーに専用のウォレット（**Embedded Wallet**）を自動的に提供する機能を実装します！
+
+これにより、web3に馴染みのないユーザーでも、まるで普段使っているWebサービスのように、シームレスに私たちのdAppを利用開始できるようになります！
 
 ## 🔑 Privyとは？
 
-[Privy](https://www.privy.io/)は、web3アプリケーションの**オンボーディング（新規ユーザー登録・利用開始プロセス）**を劇的に簡単にするための強力なツールキットです。主な機能は以下の通りです。
+[Privy](https://www.privy.io/)は、web3アプリケーションの **オンボーディング（新規ユーザー登録・利用開始プロセス）** を劇的に簡単にするための強力なツールキットです。主な機能は以下の通りです。
 
-- **柔軟な認証方法**: Eメール、SMS、Google、X（旧Twitter）などの**ソーシャルログイン**を提供し、ユーザーが好きな方法で認証できるようにします。
-- **Embedded Wallets**: ユーザーがログインすると、バックグラウンドで自動的に**スマートコントラクトウォレット**が作成・管理されます。ユーザーは**秘密鍵やシードフレーズを意識する必要が一切ありません**。これがweb3のマスアダプション（大衆化）への鍵となります。
-- **外部ウォレット連携**: もちろん、MetaMaskやPhantomなど、ユーザーがすでに持っている既存のウォレットを接続することもサポートしています。
+- **柔軟な認証方法**:   
+  Eメール、SMS、Google、X（旧Twitter）などの**ソーシャルログイン**を提供し、ユーザーが好きな方法で認証できるようにします。
+
+- **Embedded Wallets**:   
+  ユーザーがログインすると、バックグラウンドで自動的に**スマートコントラクトウォレット**が作成・管理されます。  
+  
+  ユーザーは**秘密鍵やシードフレーズを意識する必要が一切ありません**。  
+  
+  これがweb3のマスアダプション（大衆化）への鍵となります。
+
+- **外部ウォレット連携**:   
+  もちろん、MetaMaskやPhantomなど、ユーザーがすでに持っている既存のウォレットを接続することもサポートしています。
 
 このプロジェクトでは、Privyを使ってユーザー認証とウォレット管理を驚くほどシンプルに実装します。
 
@@ -23,7 +34,7 @@ cd pkgs/frontend
 pnpm install @privy-io/react-auth @privy-io/export-wallets
 ```
 
-次に、Privyの管理画面であなたのアプリケーションを登録し、**App ID**を取得する必要があります。
+次に、Privyの管理画面であなたのアプリケーションを登録し、**App ID** を取得する必要があります。
 
 1.  [Privyの公式サイト](https://www.privy.io/)にアクセスし、サインアップまたはログインします。
 2.  ダッシュボードで新しいアプリケーションを作成します。
@@ -38,7 +49,9 @@ NEXT_PUBLIC_PRIVY_APP_ID="YOUR_PRIVY_APP_ID"
 
 ## 🔌 PrivyProviderの組み込み
 
-Privyの機能をアプリケーション全体で利用できるようにするため、ルートコンポーネントを`PrivyProvider`でラップします。この設定はクライアントサイドでのみ有効にする必要があるため、専用のプロバイダーコンポーネントを作成するのがベストプラクティスです。
+Privyの機能をアプリケーション全体で利用できるようにするため、ルートコンポーネントを`PrivyProvider`でラップします。
+
+この設定はクライアントサイドでのみ有効にする必要があるため、専用のプロバイダーコンポーネントを作成するのがベストプラクティスです。
 
 `pkgs/frontend/src/app/providers.tsx`というファイルを作成し、以下のコードを記述します。
 
@@ -68,15 +81,28 @@ export function Providers({ children }: { children: React.ReactNode }) {
 ```
 
 ### 🔍 コード解説
-- `PrivyProvider`: このコンポーネントでアプリケーション全体をラップすることで、どのコンポーネントからでも`usePrivy`という便利なフックを使って、ユーザーの認証情報やウォレットの状態にアクセスできるようになります。
-- `appId`: 環境変数ファイル（`.env.local`）から先ほど設定したApp IDを安全に読み込みます。`!`は、この値が必ず存在することをTypeScriptに伝えています。
-- `config`: ログインモーダルの詳細設定です。
-    - `loginMethods`: ユーザーに提示するログイン方法を配列で指定します。ここではEメールと外部ウォレットでのログインを許可しています。
-    - `embeddedWallets`: ウォレットを持っていないユーザー（例：Eメールでログインしたユーザー）には、ログイン時に自動でEmbedded Walletを作成するように設定しています。
+
+- `PrivyProvider`:   
+  このコンポーネントでアプリケーション全体をラップすることで、どのコンポーネントからでも`usePrivy`という便利なフックを使って、ユーザーの認証情報やウォレットの状態にアクセスできるようになります。
+
+- `appId`:   
+  環境変数ファイル（`.env.local`）から先ほど設定したApp IDを安全に読み込みます。`!`は、この値が必ず存在することをTypeScriptに伝えています。
+
+- `config`:   
+  ログインモーダルの詳細設定です。
+
+    - `loginMethods`:   
+      ユーザーに提示するログイン方法を配列で指定します。  
+      ここではEメールと外部ウォレットでのログインを許可しています。
+
+    - `embeddedWallets`:   
+      ウォレットを持っていないユーザー（例：Eメールでログインしたユーザー）には、ログイン時に自動でEmbedded Walletを作成するように設定しています。
 
 ## 🌐 アプリケーションへの適用
 
-作成した`Providers`コンポーネントを、アプリケーションのルートレイアウトに適用します。これにより、すべてのページでPrivyの機能が有効になります。
+作成した`Providers`コンポーネントを、アプリケーションのルートレイアウトに適用します。
+
+これにより、すべてのページでPrivyの機能が有効になります。
 
 `pkgs/frontend/src/app/layout.tsx`を以下のように修正してください。
 
@@ -186,10 +212,22 @@ export default function Home() {
 ```
 
 ### 🔍 コード解説
-- `usePrivy()`: Privyの魔法のフックです。これ1つで、`login`関数、`logout`関数、ユーザーの認証状態（`authenticated`）、ユーザー情報（`user`）などを簡単に取得できます。
-- `if (!ready)`: `usePrivy`がユーザー情報を読み込んでいる間は`ready`が`false`になるため、その間はローディング表示を出すことで、UIのチラつきを防ぎます。
-- `authenticated ? <Button onClick={logout}>Logout</Button> : <Button onClick={login}>Login</Button>`: **条件レンダリング**を使い、ユーザーがログインしているかどうかに応じて、表示するボタンを動的に切り替えています。
-- `{authenticated && user && ...}`: ユーザーがログインしている場合にのみ、NFTのミントセクションを表示するようにしています。`user.wallet?.address`で、Privyが管理しているユーザーのウォレットアドレスを表示できます。
+
+- `usePrivy()`:   
+
+  Privyの魔法のフックです。
+  
+  これ1つで、`login`関数、`logout`関数、ユーザーの認証状態（`authenticated`）、ユーザー情報（`user`）などを簡単に取得できます。
+
+- `if (!ready)`:   
+  `usePrivy`がユーザー情報を読み込んでいる間は`ready`が`false`になるため、その間はローディング表示を出すことで、UIのチラつきを防ぎます。
+
+- `authenticated ? <Button onClick={logout}>Logout</Button> : <Button onClick={login}>Login</Button>`:   
+  **条件レンダリング**を使い、ユーザーがログインしているかどうかに応じて、表示するボタンを動的に切り替えています。
+
+- `{authenticated && user && ...}`:   
+  ユーザーがログインしている場合にのみ、NFTのミントセクションを表示するようにしています。  
+  `user.wallet?.address`で、Privyが管理しているユーザーのウォレットアドレスを表示できます。
 
 ---
 
@@ -201,91 +239,8 @@ export default function Home() {
 pnpm frontend run dev
 ```
 
-次のレッスンでは、いよいよこのフロントエンドで**ゼロ知識証明を生成する**ロジックを実装していきます。
+次のレッスンでは、いよいよこのフロントエンドで **ゼロ知識証明を生成する** ロジックを実装していきます。
 
-## 👤 ログイン/ログアウトボタンの追加
-
-`page.tsx`を更新して、Privyの`usePrivy`フックを使い、ユーザーの認証状態に応じてUIを変化させ、ログイン・ログアウト機能を実装します。
-
-`pkgs/frontend/src/app/page.tsx`を以下のように更新します。
-
-```tsx
-//
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { usePrivy } from "@privy-io/react-auth"; // 👈 usePrivyフックをインポート
-import { useState } from "react";
-
-export default function Home() {
-  const [password, setPassword] = useState<string>("");
-  // usePrivyフックから認証情報を取得
-  const { ready, authenticated, user, login, logout } = usePrivy();
-
-  // Privyが初期化されるまでローディング表示
-  if (!ready) {
-    return <p>Loading...</p>;
-  }
-
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Welcome to UNCHAIN ZK NFT App
-        </p>
-        {/* 認証状態でボタンを切り替え */}
-        {authenticated ? (
-          <Button onClick={logout}>Logout</Button>
-        ) : (
-          <Button onClick={login}>Login</Button>
-        )}
-      </div>
-
-      <div className="relative z-[-1] flex place-items-center">
-        <h1 className="text-5xl font-bold text-center">
-          Serverless ZK NFT App
-        </h1>
-      </div>
-
-      {/* 認証済みの場合のみミントUIを表示 */}
-      {authenticated && user?.wallet && (
-        <>
-          <p className="mt-4">
-            Your wallet address: {user.wallet.address}
-          </p>
-          <div className="mb-32 mt-8 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-            <div className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
-              <h2 className="mb-3 text-2xl font-semibold">
-                Mint ZK NFT
-              </h2>
-              <div className="flex w-full max-w-sm items-center space-x-2">
-                <Input
-                  type="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                <Button type="submit">Mint</Button>
-              </div>
-            </div>
-          </div>
-        </>
-      )}
-    </main>
-  );
-}
-```
-
-### コード解説
-- `usePrivy()`: Privyのフックを呼び出し、認証状態(`ready`, `authenticated`)、ユーザー情報(`user`)、そしてログイン・ログアウト関数(`login`, `logout`)を取得します。
-- `if (!ready)`: Privyが初期化されるまではローディング画面を表示し、エラーを防ぎます。
-- `authenticated ? <Button onClick={logout}>Logout</Button> : <Button onClick={login}>Login</Button>`: ユーザーが認証済みかどうかで、表示するボタンを「Logout」と「Login」で切り替えます。
-- `{authenticated && user?.wallet && ...}`: ユーザーが認証済みで、かつウォレット情報が存在する場合にのみ、ウォレットアドレスとNFTのミント用UIを表示します。
-
-これで、アプリケーションに基本的な認証フローが実装できました。アプリケーションを起動して、右上の「Login」ボタンから実際にログインできることを確認してみてください。
-
----
-
-次のレッスンでは、いよいよこのプロジェクトの核心である「クライアントサイドでのZK証明生成」を実装していきます。
 
 ### 🙋‍♂️ 質問する
 

@@ -25,6 +25,7 @@
         "ide-assistant"
       ]
     },
+    /*
     "github": {
       "command": "docker",
       "args": [
@@ -37,5 +38,6 @@
       ],
       "envFile": "${workspaceFolder}/mcp/.env"
     }
+    */
   },
 }
