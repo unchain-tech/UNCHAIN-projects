@@ -6,7 +6,9 @@ title: "🧪 テストとデプロイスクリプト"
 
 ## テストの作成
 
-スマートコントラクト開発において、テストは非常に重要です。Hardhatが提供するテスト環境を利用して、コントラクトの堅牢性を保証し、予期せぬバグを防ぎましょう。
+スマートコントラクト開発において、テストは非常に重要です。  
+
+Hardhatが提供するテスト環境を利用して、コントラクトの堅牢性を保証し、予期せぬバグを防ぎましょう。
 
 `pkgs/backend/test/ZKNFT.ts`ファイルを作成し、以下のテストコードを記述します。
 
@@ -82,14 +84,24 @@ describe("ZKNFT", function () {
 ```
 
 ### 🔍 テストコード解説
-- `deployZKNFTFixture`: テストを実行する前に、毎回クリーンな状態でコントラクトをデプロイするための**`fixture`関数**です。`PasswordHashVerifier`と`ZKNFT`の両方をデプロイし、テストに必要なオブジェクトを返します。
-- `import { calldata } ...`: `section-2`で生成した証明データ（`calldata.json`）をインポートし、実際の証明を使ったテストを可能にします。
-- **`Deployment`テスト**: `ZKNFT`コントラクトがデプロイされた際に、コンストラクタに渡した`verifier`のアドレスが正しく設定されているかを確認します。
-- **`Minting`テスト**:
-    - **成功ケース**: 正しい証明データを使って`safeMint`を呼び出し、NFTが正常にミントされることを確認します。
-    - **失敗ケース**: 意図的に不正な公開情報（`invalidPubSignals`）を使って`safeMint`を呼び出し、コントラクトに設定したエラーメッセージ`"ZKNFT: Invalid proof"`でトランザクションが正しく失敗（リバート）することを確認します。
+
+- `deployZKNFTFixture`:   
+    テストを実行する前に、毎回クリーンな状態でコントラクトをデプロイするための **`fixture`関数** です。  `PasswordHashVerifier`と`ZKNFT`の両方をデプロイし、テストに必要なオブジェクトを返します。
+
+- `import { calldata } ...`:  
+    `section-2`で生成した証明データ（`calldata.json`）をインポートし、実際の証明を使ったテストを可能にします。
+
+- **`Deployment`テスト**:   
+    `ZKNFT`コントラクトがデプロイされた際に、コンストラクタに渡した`verifier`のアドレスが正しく設定されているかを確認します。
+
+- **`Minting`テスト**:  
+    - **成功ケース**: 
+        正しい証明データを使って`safeMint`を呼び出し、NFTが正常にミントされることを確認します。
+    - **失敗ケース**:   
+        意図的に不正な公開情報（`invalidPubSignals`）を使って`safeMint`を呼び出し、コントラクトに設定したエラーメッセージ`"ZKNFT: Invalid proof"`でトランザクションが正しく失敗（リバート）することを確認します。
 
 ### テストの実行
+
 ターミナルで以下のコマンドを実行して、テストを開始します。
 
 ```bash
@@ -130,7 +142,9 @@ main().catch((error) => {
 
 ## タスクの定義
 
-最後に、デプロイやNFTのミントを簡単に行うためのHardhatタスクを定義します。`pkgs/backend/tasks/zknft/write.ts`ファイルを作成します。
+最後に、デプロイやNFTのミントを簡単に行うためのHardhatタスクを定義します。  
+
+`pkgs/backend/tasks/zknft/write.ts`ファイルを作成します。
 
 ```typescript
 // pkgs/backend/tasks/zknft/write.ts
@@ -169,12 +183,21 @@ task("mint", "Mints a new ZKNFT").setAction(async (_, { ethers }) => {
 ```
 
 ### タスク解説
-- `task("mint", ...)`: `mint`という名前の新しいHardhatタスクを定義します。
-- `process.env.ZKNFT_CONTRACT_ADDRESS`: 環境変数からデプロイ済みの`ZKNFT`コントラクトのアドレスを取得します。
-- `ethers.getContractAt(...)`: デプロイ済みコントラクトのインスタンスを取得します。
-- `zknft.safeMint(...)`: `calldata.json`の証明データを使って、`safeMint`関数を呼び出します。
+
+- `task("mint", ...)`:   
+    `mint`という名前の新しいHardhatタスクを定義します。
+
+- `process.env.ZKNFT_CONTRACT_ADDRESS`:   
+    環境変数からデプロイ済みの`ZKNFT`コントラクトのアドレスを取得します。
+
+- `ethers.getContractAt(...)`:   
+    デプロイ済みコントラクトのインスタンスを取得します。
+
+- `zknft.safeMint(...)`:   
+    `calldata.json`の証明データを使って、`safeMint`関数を呼び出します。
 
 ### タスクのインポート
+
 この新しいタスクをHardhatが認識できるように、`hardhat.config.ts`にインポート文を追加します。
 
 ```typescript
@@ -188,15 +211,21 @@ const config: HardhatUserConfig = {
 
 ## 🚀 デプロイの実行
 
-すべての準備が整いました。以下のコマンドで、コントラクトを`Base Sepolia`テストネットにデプロイしましょう。
+すべての準備が整いました。  
+
+以下のコマンドで、コントラクトを`Base Sepolia`テストネットにデプロイしましょう。
 
 ```bash
 pnpm backend run deploy --network base_sepolia
 ```
 
-デプロイが成功すると、ターミナルに`PasswordHashVerifier`と`ZKNFT`のコントラクトアドレスが出力されます。`ZKNFT`のアドレスをコピーし、`pkgs/backend/.env`ファイルの`ZKNFT_CONTRACT_ADDRESS`に設定してください。
+デプロイが成功すると、ターミナルに`PasswordHashVerifier`と`ZKNFT`のコントラクトアドレスが出力されます。  
 
-これで、スマートコントラクトの開発、テスト、デプロイが完了しました。次のセクションでは、いよいよフロントエンドを構築し、ユーザーが実際にNFTをミントできるWebアプリケーションを作成します。
+`ZKNFT`のアドレスをコピーし、`pkgs/backend/.env`ファイルの`ZKNFT_CONTRACT_ADDRESS`に設定してください。
+
+これで、スマートコントラクトの開発、テスト、デプロイが完了しました。  
+
+次のセクションでは、いよいよフロントエンドを構築し、ユーザーが実際にNFTをミントできるWebアプリケーションを作成します。
 
 ### 🙋‍♂️ 質問する
 

@@ -2,7 +2,9 @@
 title: "🖼️ ZKNFTコントラクトの実装"
 ---
 
-このレッスンでは、前のレッスンで定義した`IPasswordHashVerifier`インタフェースを利用して、メインとなる`ZKNFT.sol`コントラクトをステップバイステップで実装します。ゼロ知識証明の検証とNFTの発行という、2つの重要な要素を組み合わせた魔法のようなコントラクトを一緒に作り上げましょう！
+このレッスンでは、前のレッスンで定義した`IPasswordHashVerifier`インタフェースを利用して、メインとなる`ZKNFT.sol`コントラクトをステップバイステップで実装します。
+
+ゼロ知識証明の検証とNFTの発行という、2つの重要な要素を組み合わせた魔法のようなコントラクトを一緒に作り上げましょう！
 
 ## 🏗️ 骨格となるコードの作成
 
@@ -28,10 +30,20 @@ contract ZKNFT is ERC721 {
 ```
 
 ### 🔍 コード解説
-- `import "@openzeppelin/contracts/token/ERC721/ERC721.sol"`: NFTの標準規格である**ERC721**を簡単に実装するための、OpenZeppelinライブラリの優れものです。NFTの所有権管理や転送機能などがすでに組み込まれています。
-- `import "base64-sol/base64.sol"`: NFTのメタデータ（名前、説明、画像など）を、外部サーバーに頼らず**オンチェーン**で直接生成するために、Base64エンコーディングライブラリをインポートします。これにより、完全に自律したNFTが実現できます。
-- `import "./interface/IPasswordHashVerifier.sol"`: 前のレッスンで作成した、検証コントラクトとの「約束事」であるインタフェースをインポートします。
-- `contract ZKNFT is ERC721`: `ERC721`コントラクトを**継承**して、`ZKNFT`コントラクトを定義します。これにより、`ZKNFT`は`ERC721`のすべての機能を引き継ぎます。
+- `import "@openzeppelin/contracts/token/ERC721/ERC721.sol"`:   
+    NFTの標準規格である**ERC721**を簡単に実装するための、OpenZeppelinライブラリの優れものです。  
+    
+    NFTの所有権管理や転送機能などがすでに組み込まれています。
+
+- `import "base64-sol/base64.sol"`:   
+    NFTのメタデータ（名前、説明、画像など）を、外部サーバーに頼らず**オンチェーン**で直接生成するために、Base64エンコーディングライブラリをインポートします。これにより、完全に自律したNFTが実現できます。
+
+- `import "./interface/IPasswordHashVerifier.sol"`:  
+    前のレッスンで作成した、検証コントラクトとの「約束事」であるインタフェースをインポートします。
+
+- `contract ZKNFT is ERC721`:   
+    `ERC721`コントラクトを**継承**して、`ZKNFT`コントラクトを定義します。  
+    これにより、`ZKNFT`は`ERC721`のすべての機能を引き継ぎます。
 
 ## 📦 状態変数とコンストラクタの定義
 
@@ -70,13 +82,23 @@ contract ZKNFT is ERC721 {
 ```
 
 ### 🔍 コード解説
-- `IPasswordHashVerifier public immutable verifier`: `immutable`キーワードは、変数が**コンストラクタ内でのみ設定可能**で、その後は変更できないことを意味します。これにより、検証コントラクトのアドレスが後から悪意を持って変更されることを防ぎ、セキュリティを高めます。
-- `uint256 private _nextTokenId`: ミントされるNFTのIDを管理します。`private`なので、このコントラクト内部からしかアクセスできません。
-- `constructor(address _verifier) ERC721("ZK NFT", "ZNFT")`: コンストラクタはデプロイ時に`_verifier`（検証コントラクトのアドレス）を受け取ります。同時に、`ERC721`のコンストラクタを呼び出して、このNFTコレクションの名前（"ZK NFT"）とシンボル（"ZNFT"）を設定しています。
+- `IPasswordHashVerifier public immutable verifier`:   
+    `immutable`キーワードは、変数が**コンストラクタ内でのみ設定可能**で、その後は変更できないことを意味します。
+    
+    これにより、検証コントラクトのアドレスが後から悪意を持って変更されることを防ぎ、セキュリティを高めます。
+
+- `uint256 private _nextTokenId`:   
+    ミントされるNFTのIDを管理します。`private`なので、このコントラクト内部からしかアクセスできません。
+
+- `constructor(address _verifier) ERC721("ZK NFT", "ZNFT")`:   
+    コンストラクタはデプロイ時に`_verifier`（検証コントラクトのアドレス）を受け取ります。
+    
+    同時に、`ERC721`のコンストラクタを呼び出して、このNFTコレクションの名前（"ZK NFT"）とシンボル（"ZNFT"）を設定しています。
 
 ## 🔐 NFTミント関数の実装
 
-いよいよ、このコントラクトの核心機能である`safeMint`関数を実装します。この関数が、ゼロ知識証明の検証とNFTのミントを結びつけます。
+いよいよ、このコントラクトの核心機能である`safeMint`関数を実装します。  
+この関数が、ゼロ知識証明の検証とNFTのミントを結びつけます。
 
 ```solidity
 // ... 状態変数とコンストラクタ ...
@@ -117,13 +139,22 @@ contract ZKNFT is ERC721 {
 ```
 
 ### 🔍 コード解説
-- `require(verifier.verifyProof(...), "ZKNFT: Invalid proof")`: **ここが最重要ポイントです！** `verifier`コントラクトに証明データ（`a`, `b`, `c`, `_publicSignals`）を渡し、`verifyProof`関数を呼び出します。この関数が`false`を返した場合（＝証明が無効な場合）、`require`文が失敗し、トランザクションはここで停止します。エラーメッセージ "ZKNFT: Invalid proof" が返され、NFTはミントされません。
-- `_nextTokenId++`: ミントが成功するたびに、次のトークンIDを1つ増やします。
-- `_safeMint(_to, tokenId)`: OpenZeppelinの`ERC721`が提供する内部関数です。`_to`で指定されたアドレスに、`tokenId`を持つ新しいNFTを安全に発行します。
+- `require(verifier.verifyProof(...), "ZKNFT: Invalid proof")`:  
+     **ここが最重要ポイントです！** 
+     
+     `verifier`コントラクトに証明データ（`a`, `b`, `c`, `_publicSignals`）を渡し、`verifyProof`関数を呼び出します。この関数が`false`を返した場合（＝証明が無効な場合）、`require`文が失敗し、トランザクションはここで停止します。エラーメッセージ "ZKNFT: Invalid proof" が返され、NFTはミントされません。
+
+- `_nextTokenId++`:   
+    ミントが成功するたびに、次のトークンIDを1つ増やします。
+
+- `_safeMint(_to, tokenId)`:  
+    OpenZeppelinの`ERC721`が提供する内部関数です。  
+    `_to`で指定されたアドレスに、`tokenId`を持つ新しいNFTを安全に発行します。
 
 ## 🎨 オンチェーンメタデータ関数の実装
 
-最後に、各NFTのメタデータを返す`tokenURI`関数を実装します。これにより、OpenSeaなどのマーケットプレイスがNFTの情報を表示できるようになります。
+最後に、各NFTのメタデータを返す`tokenURI`関数を実装します。  
+これにより、OpenSeaなどのマーケットプレイスがNFTの情報を表示できるようになります。
 
 ```solidity
 // ... safeMint関数の実装 ...
@@ -160,175 +191,21 @@ contract ZKNFT is ERC721 {
 }
 ```
 ### 🔍 コード解説
-- `override`: この関数は、親コントラクトである`ERC721`にすでに定義されている`tokenURI`関数を**上書き**していることを示します。
-- `Base64.encode(...)`: `nftName`, `description`, `nftImage`といった定数を使ってJSON文字列を組み立て、それをBase64形式にエンコードします。
-- `string(abi.encodePacked("data:application/json;base64,", json))`: 標準的な**Data URI**形式の文字列を返します。これにより、外部のサーバーに依存することなく、すべての情報がブロックチェーン上で完結します。
+
+- `override`:   
+    この関数は、親コントラクトである`ERC721`にすでに定義されている`tokenURI`関数を**上書き**していることを示します。
+
+- `Base64.encode(...)`:  
+    `nftName`, `description`, `nftImage`といった定数を使ってJSON文字列を組み立て、それをBase64形式にエンコードします。
+
+- `string(abi.encodePacked("data:application/json;base64,", json))`:   
+    標準的な**Data URI**形式の文字列を返します。これにより、外部のサーバーに依存することなく、すべての情報がブロックチェーン上で完結します。
 
 ---
 
 お疲れ様でした！ これで`ZKNFT.sol`のすべての実装が完了しました。スマートコントラクトがゼロ知識証明を検証し、その結果に基づいてNFTを発行するという、非常に強力な仕組みをコードに落とし込むことができました。
 
-次のレッスンでは、このコントラクトが意図通りに動作するかを確認するための**テスト**を作成し、そして実際にブロックチェーンに**デプロイ**するスクリプトを作成します。
-    }
-
-    // ... 関数の実装 ...
-}
-```
-
-### コード解説
-- `IPasswordHashVerifier public immutable verifier`: 検証コントラクトのアドレスを保持する変数です。`immutable`キーワードにより、コンストラクタで一度だけ設定され、その後は変更できなくなります。これにより、ガス代を節約し、セキュリティを向上させます。
-- `_nextTokenId`: ミントされるNFTのIDを管理するためのプライベート変数です。
-- `nftName`, `description`, `nftImage`: NFTのメタデータとしてオンチェーンで保存される情報です。
-- `constructor(address _verifier)`: コントラクトがデプロイされるときに、検証コントラクトのアドレス（`_verifier`）を受け取ります。`ERC721("ZK NFT", "ZNFT")`の部分で、NFTの名前とシンボルを初期化しています。
-
-## 🔐 NFTミント関数の実装
-
-プロジェクトの核心機能である`safeMint`関数を実装します。この関数は、ゼロ知識証明を検証し、検証が成功した場合にのみNFTをミントします。
-
-```solidity
-// ... 状態変数とコンストラクタ ...
-
-    function safeMint(
-        address to,
-        uint256[2] calldata _pA,
-        uint256[2][2] calldata _pB,
-        uint256[2] calldata _pC,
-        uint256[1] calldata _pubSignals
-    ) public {
-        // ZK証明を検証
-        require(verifier.verifyProof(_pA, _pB, _pC, _pubSignals), "Invalid proof");
-
-        // 次のトークンIDを取得
-        uint256 tokenId = _nextTokenId++;
-        // NFTをミント
-        _safeMint(to, tokenId);
-    }
-
-// ... tokenURI関数の実装 ...
-```
-
-### コード解説
-- `function safeMint(...)`: フロントエンドから呼び出される関数です。引数として、ミント先の`to`アドレスと、証明データ（`_pA`, `_pB`, `_pC`, `_pubSignals`）を受け取ります。
-- `require(verifier.verifyProof(...), "Invalid proof")`: `verifier`インスタンスの`verifyProof`関数を呼び出し、証明を検証します。もし`verifyProof`が`false`を返した場合、トランザクションは`"Invalid proof"`というエラーメッセージと共に失敗します。
-- `_nextTokenId++`: 証明が有効な場合、トークンIDをインクリメントします。
-- `_safeMint(to, tokenId)`: OpenZeppelinの`ERC721`コントラクトが提供する内部関数を呼び出し、新しいNFTを指定された`to`アドレスにミントします。
-
-## 🖼️ オンチェーンメタデータ生成関数の実装
-
-最後に、NFTのメタデータを返す`tokenURI`関数を実装します。このプロジェクトでは、外部のストレージ（IPFSなど）を使わず、すべての情報をオンチェーンで生成します。
-
-```solidity
-// ... safeMint関数の実装 ...
-
-    function totalSupply() public view returns (uint256) {
-        return _nextTokenId;
-    }
-
-    function tokenURI(
-        uint256 _tokenId
-    ) public pure override returns (string memory) {
-        require(_tokenId == 0, "nonexistent token");
-
-        string memory json = Base64.encode(
-            bytes(
-                string.concat(
-                    '{"name": "',
-                    nftName,
-                    '", "description": "',
-                    description,
-                    '", "image": "',
-                    nftImage,
-                    '"}'
-                )
-            )
-        );
-        return string(abi.encodePacked("data:application/json;base64,", json));
-    }
-}
-```
-
-### コード解説
-- `totalSupply()`: これまでにミントされたNFTの総数を返すシンプルな関数です。
-- `function tokenURI(...)`: `ERC721`標準で定められている関数で、特定の`_tokenId`に対するメタデータURIを返します。`override`キーワードは、親コントラクト（`ERC721`）の関数を上書きしていることを示します。
-- `require(_tokenId == 0, "nonexistent token")`: このプロジェクトでは、簡単化のため、各ユーザーは1つのNFTしかミントできない仕様にしています。そのため、`tokenId`が`0`以外の場合はエラーとします。
-- `string.concat(...)`: NFTの名前、説明、画像URLを含むJSON文字列を組み立てます。
-- `Base64.encode(...)`: 組み立てたJSON文字列をBase64形式にエンコードします。
-- `string(abi.encodePacked("data:application/json;base64,", json))`: エンコードした文字列を、標準的なデータURI形式にして返します。
-
-## ✅ 完成版コード
-
-ここまでの実装をまとめた、`pkgs/backend/contracts/ZKNFT.sol`の最終的なコードは以下のようになります。
-
-```solidity
-// pkgs/backend/contracts/ZKNFT.sol
-// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.19;
-
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "base64-sol/base64.sol";
-import "./interface/IPasswordHashVerifier.sol";
-
-contract ZKNFT is ERC721 {
-    // 検証コントラクトのインスタンスを格納する不変変数
-    IPasswordHashVerifier public immutable verifier;
-
-    // 次にミントされるNFTのIDを追跡するカウンター
-    uint256 private _nextTokenId;
-
-    // NFTメタデータ用の定数
-    string private constant nftName = "UNCHAIN ZK NFT";
-    string private constant description = "This is a ZK NFT issued by UNCHAIN.";
-    string private constant nftImage = "https://unchain.tech/images/UNCHAIN-logo-seal.png";
-
-    // コンストラクタ
-    constructor(address _verifier) ERC721("ZK NFT", "ZNFT") {
-        verifier = IPasswordHashVerifier(_verifier);
-    }
-
-    function safeMint(
-        address to,
-        uint256[2] calldata _pA,
-        uint256[2][2] calldata _pB,
-        uint256[2] calldata _pC,
-        uint256[1] calldata _pubSignals
-    ) public {
-        // ZK証明を検証
-        require(verifier.verifyProof(_pA, _pB, _pC, _pubSignals), "Invalid proof");
-
-        // 次のトークンIDを取得
-        uint256 tokenId = _nextTokenId++;
-        // NFTをミント
-        _safeMint(to, tokenId);
-    }
-
-    function totalSupply() public view returns (uint256) {
-        return _nextTokenId;
-    }
-
-    function tokenURI(
-        uint256 _tokenId
-    ) public pure override returns (string memory) {
-        require(_tokenId == 0, "nonexistent token");
-
-        string memory json = Base64.encode(
-            bytes(
-                string.concat(
-                    '{"name": "',
-                    nftName,
-                    '", "description": "',
-                    description,
-                    '", "image": "',
-                    nftImage,
-                    '"}'
-                )
-            )
-        );
-        return string(abi.encodePacked("data:application/json;base64,", json));
-    }
-}
-```
-
-これで`ZKNFT.sol`のすべての実装が完了しました。次のレッスンでは、このコントラクトをテストし、デプロイするスクリプトを作成します。
+次のレッスンでは、このコントラクトをテストし、デプロイするスクリプトを作成します。
 
 ### 🙋‍♂️ 質問する
 
