@@ -53,31 +53,47 @@ Privyの機能をアプリケーション全体で利用できるようにする
 
 この設定はクライアントサイドでのみ有効にする必要があるため、専用のプロバイダーコンポーネントを作成するのがベストプラクティスです。
 
-`pkgs/frontend/src/app/providers.tsx`というファイルを作成し、以下のコードを記述します。
+`pkgs/frontend/app/providers.tsx`というファイルを作成し、以下のコードを記述します。
 
 ```tsx
-// pkgs/frontend/src/app/providers.tsx
+// pkgs/frontend/app/providers.tsx
 "use client";
 
 import { PrivyProvider } from "@privy-io/react-auth";
+import type React from "react";
 
-export function Providers({ children }: { children: React.ReactNode }) {
+interface PrivyProvidersProps {
+  children: React.ReactNode;
+}
+
+/**
+ * Privyプロバイダーのラッパーコンポーネント
+ */
+export const PrivyProviders: React.FC<PrivyProvidersProps> = ({ children }) => {
+  // 環境変数からPrivy設定を取得
+  const privyAppId = process.env.NEXT_PUBLIC_PRIVY_APP_ID || "test-app-id";
+
   return (
     <PrivyProvider
-      appId={process.env.NEXT_PUBLIC_PRIVY_APP_ID!}
+      appId={privyAppId}
       config={{
-        // 表示するログイン方法を設定
-        loginMethods: ["email", "wallet"],
-        // 表示するウォレットの種類を設定
+        // ログイン方法の設定
+        loginMethods: ["email", "wallet", "google"],
+        // 外観の設定
+        appearance: {
+          theme: "dark",
+          accentColor: "#3B82F6",
+        },
+        // エンベデッドウォレットの設定
         embeddedWallets: {
-          createOnLogin: "users-without-wallets", // ウォレットを持っていないユーザーには自動で作成
+          createOnLogin: "users-without-wallets",
         },
       }}
     >
       {children}
     </PrivyProvider>
   );
-}
+};
 ```
 
 ### 🔍 コード解説
@@ -104,14 +120,14 @@ export function Providers({ children }: { children: React.ReactNode }) {
 
 これにより、すべてのページでPrivyの機能が有効になります。
 
-`pkgs/frontend/src/app/layout.tsx`を以下のように修正してください。
+`pkgs/frontend/app/layout.tsx`を以下のように修正してください。
 
 ```tsx
-// pkgs/frontend/src/app/layout.tsx
+// pkgs/frontend/app/layout.tsx
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Providers } from "./providers"; // 👈 インポート
+import { Providers } from "./../providers"; // 👈 インポート
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -139,10 +155,10 @@ export default function RootLayout({
 
 最後に、`page.tsx`を更新して、実際にログイン・ログアウトボタンとユーザー情報を表示するUIを追加します。
 
-`pkgs/frontend/src/app/page.tsx`を以下のように修正します。
+`pkgs/frontend/app/page.tsx`を以下のように修正します。
 
 ```tsx
-// pkgs/frontend/src/app/page.tsx
+// pkgs/frontend/app/page.tsx
 "use client";
 
 import { Button } from "@/components/ui/button";
