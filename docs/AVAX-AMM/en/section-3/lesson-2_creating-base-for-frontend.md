@@ -177,8 +177,8 @@ export const getEthereum = (): MetaMaskInpageProvider | null => {
 In TypeScript, to use `window.ethereum`, you need to explicitly declare that the `window` object has an `ethereum` property.
 `MetaMaskInpageProvider` is the type definition for `ethereum` that you obtained from `@metamask/providers` when setting up your environment.
 
-> 📓 What is `window.ethereum`?
-> In order for a web application to communicate with a blockchain network, it needs to obtain the user’s wallet information.
+> 📓 `window.ethereum`
+> is in order for a web application to communicate with a blockchain network, it needs to obtain the user’s wallet information.
 > 
 > `window.ethereum` is an object and API that MetaMask makes available directly under `window` (the global variable that exists by default in JavaScript).
 > Using this API, a website can request the user’s Ethereum account, read data from the blockchain the user is connected to, and prompt the user to sign messages or transactions.
