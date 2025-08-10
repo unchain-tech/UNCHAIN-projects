@@ -10,7 +10,7 @@ title: "🧪 テストとデプロイスクリプト"
 
 Hardhatが提供するテスト環境を利用して、コントラクトの堅牢性を保証し、予期せぬバグを防ぎましょう。
 
-`pkgs/backend/test/ZKNFT.ts`ファイルを作成し、以下のテストコードを記述します。
+`pkgs/backend/test/ZKNFT.test.ts`ファイルを作成し、以下のテストコードを記述します。
 
 ```typescript
 // pkgs/backend/test/ZKNFT.ts
@@ -108,34 +108,80 @@ describe("ZKNFT", function () {
 pnpm backend test
 ```
 
-すべてのテストが緑のチェックマークでパスすれば、あなたのコントラクトは期待通りに動作している証拠です！ ✅
+以下のようにすべてのテストが緑のチェックマークでパスすれば、あなたのコントラクトは期待通りに動作している証拠です！ ✅
+
+```bash
+  ZKNFT
+    Deployment
+      ✔ Should set the right name and symbol (248ms)
+      ✔ Should set the right verifier address
+      ✔ Should initialize totalSupply to 0
+      ✔ Should set the correct constants
+      ✔ Should deploy verifier without errors
+    Contract Interface
+      ✔ Should have correct safeMint function signature
+      ✔ Should reject calls with invalid parameters
+    Token URI
+      ✔ Should return correct token URI format for any token ID
+      ✔ Should return same token URI for different token IDs
+    Edge Cases
+      ✔ Should handle zero address correctly
+      ✔ Should query non-existent token
+    ZK Proof Integration (requires valid proof)
+      ✔ Should successfully mint with valid proof data
+
+
+  12 passing (297ms)
+
+··············································································································
+|  Solidity and Network Configuration                                                                        │
+·························|··················|···············|················|································
+|  Solidity: 0.8.28      ·  Optim: false    ·  Runs: 200    ·  viaIR: true   ·     Block: 30,000,000 gas     │
+·························|··················|···············|················|································
+|  Methods                                                                                                   │
+·························|··················|···············|················|················|···············
+|  Contracts / Methods   ·  Min             ·  Max          ·  Avg           ·  # calls       ·  usd (avg)   │
+·························|··················|···············|················|················|···············
+|  Deployments                              ·                                ·  % of limit    ·              │
+·························|··················|···············|················|················|···············
+|  PasswordHashVerifier  ·               -  ·            -  ·     1,879,190  ·         6.3 %  ·           -  │
+·························|··················|···············|················|················|···············
+|  ZKNFT                 ·               -  ·            -  ·     2,099,006  ·           7 %  ·           -  │
+·························|··················|···············|················|················|···············
+|  Key                                                                                                       │
+··············································································································
+|  ◯  Execution gas for this method does not include intrinsic gas overhead                                  │
+··············································································································
+|  △  Cost was non-zero but below the precision setting for the currency display (see options)               │
+··············································································································
+|  Toolchain:  hardhat                                                                                       │
+··············································································································
+```
 
 ## 🚀 デプロイスクリプトの作成
 
 テストが成功したので、いよいよコントラクトを`Base Sepolia`テストネットにデプロイします。そのためのスクリプトを作成しましょう。
 
-`pkgs/backend/scripts/deploy.ts`ファイルを作成し、以下のコードを記述します。
+`pkgs/backend/ignition/modules/ZKNFT.ts`ファイルを作成し、以下のコードを記述します。
 
 ```typescript
-// pkgs/backend/scripts/deploy.ts
-import { ethers } from "hardhat";
+// pkgs/backend/ignition/modules/ZKNFT.ts
+import { buildModule } from "@nomicfoundation/hardhat-ignition/modules";
 
-async function main() {
-    // PasswordHashVerifierをデプロイ
-    const verifier = await ethers.deployContract("PasswordHashVerifier");
-    await verifier.waitForDeployment();
-    console.log(`PasswordHashVerifier deployed to ${await verifier.getAddress()}`);
+const ZKNFTModule = buildModule("ZKNFTModule", (m) => {
+  // First deploy the PasswordHashVerifier contract
+  const passwordHashVerifier = m.contract("PasswordHashVerifier", []);
 
-    // ZKNFTをデプロイ（Verifierのアドレスを渡す）
-    const zknft = await ethers.deployContract("ZKNFT", [await verifier.getAddress()]);
-    await zknft.waitForDeployment();
-    console.log(`ZKNFT deployed to ${await zknft.getAddress()}`);
-}
+  // Then deploy the ZKNFT contract with the verifier address
+  const zknft = m.contract("ZKNFT", [passwordHashVerifier]);
 
-main().catch((error) => {
-    console.error(error);
-    process.exitCode = 1;
+  return {
+    passwordHashVerifier,
+    zknft,
+  };
 });
+
+export default ZKNFTModule;
 ```
 
 このスクリプトは、`PasswordHashVerifier`と`ZKNFT`の両方をデプロイし、それぞれのアドレスをコンソールに出力します。
@@ -149,37 +195,67 @@ main().catch((error) => {
 ```typescript
 // pkgs/backend/tasks/zknft/write.ts
 import { task } from "hardhat/config";
-import { ZKNFT } from "../../typechain-types";
-import { calldata } from "../../../circuit/data/calldata.json";
+import type { HardhatRuntimeEnvironment } from "hardhat/types";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { getContractAddress } from "../../helpers/contractJsonHelper";
 
-// `mint`タスクを定義
-task("mint", "Mints a new ZKNFT").setAction(async (_, { ethers }) => {
-    const { ZKNFT_CONTRACT_ADDRESS } = process.env;
-    if (!ZKNFT_CONTRACT_ADDRESS) {
-        throw new Error("ZKNFT_CONTRACT_ADDRESS is not set");
-    }
-
-    const zknft: ZKNFT = await ethers.getContractAt(
-        "ZKNFT",
-        ZKNFT_CONTRACT_ADDRESS
+/**
+ * 【Task】call mint method of ZKNFT contract
+ */
+task("mint", "call mint method of ZKNFT contract").setAction(
+  async (taskArgs, hre: HardhatRuntimeEnvironment) => {
+    console.log(
+      "################################### [START] ###################################",
     );
 
-    const [signer] = await ethers.getSigners();
-    console.log(`Minting a new ZKNFT for ${signer.address}...`);
+    // get public client
+    const publicClient = await hre.viem.getPublicClient();
+    // get chain ID
+    const chainId = (await publicClient.getChainId()).toString();
+    // get wallet client
+    const [signer] = await hre.viem.getWalletClients();
+    // get contract name
+    const contractName = "ZKNFTModule#ZKNFT";
+    // get contract address
+    const contractAddress = getContractAddress(chainId, contractName);
 
-    // safeMintを呼び出す
-    const tx = await zknft.safeMint(
-        signer.address,
-        calldata.pA,
-        calldata.pB,
-        calldata.pC,
-        calldata.pubSignals
+    // create contract instance
+    const zkNFT = await hre.viem.getContractAt("ZKNFT", contractAddress, {
+      client: signer,
+    });
+
+    // calldataファイルを読み込んで解析
+    const calldataPath = join(__dirname, "../../../circuit/data/calldata.json");
+    const calldataContent = readFileSync(calldataPath, "utf8");
+    // JSONの解析（配列形式）
+    const callData = JSON.parse(`[${calldataContent}]`);
+
+    // calldataから証明パラメータを抽出
+    const pA = [BigInt(callData[0][0]), BigInt(callData[0][1])];
+    const pB = [
+      [BigInt(callData[1][0][0]), BigInt(callData[1][0][1])],
+      [BigInt(callData[1][1][0]), BigInt(callData[1][1][1])],
+    ];
+    const pC = [BigInt(callData[2][0]), BigInt(callData[2][1])];
+    const pubSignals = [BigInt(callData[3][0])];
+
+    // call safeMint method
+    const hash = await zkNFT.write.safeMint([
+      signer.account.address,
+      pA,
+      pB,
+      pC,
+      pubSignals,
+    ]);
+
+    console.log(`hash: ${hash}`);
+
+    console.log(
+      "################################### [END] ###################################",
     );
-
-    console.log(`Transaction hash: ${tx.hash}`);
-    await tx.wait();
-    console.log("Minted a new ZKNFT");
-});
+  },
+);
 ```
 
 ### タスク解説
@@ -216,12 +292,10 @@ const config: HardhatUserConfig = {
 以下のコマンドで、コントラクトを`Base Sepolia`テストネットにデプロイしましょう。
 
 ```bash
-pnpm backend run deploy --network base_sepolia
+pnpm backend run deploy:ZKNFT --network base-sepolia
 ```
 
 デプロイが成功すると、ターミナルに`PasswordHashVerifier`と`ZKNFT`のコントラクトアドレスが出力されます。  
-
-`ZKNFT`のアドレスをコピーし、`pkgs/backend/.env`ファイルの`ZKNFT_CONTRACT_ADDRESS`に設定してください。
 
 これで、スマートコントラクトの開発、テスト、デプロイが完了しました。  
 
