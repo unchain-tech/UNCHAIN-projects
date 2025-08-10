@@ -108,7 +108,7 @@ Update `Home.module.css` with the given code.
 }
 ```
 
-`styles`に関するフォルダ構成はこのようになります。
+The folder structure related to `styles` is as follows. 
 
 ```
 client
@@ -131,7 +131,7 @@ You can either download the provided image or save any image you like as `bird.p
 
 You can also change the `favicon.ico` to customize your web application’s favicon.
 
-`public`に関するフォルダ構成はこのようになります。
+The folder structure related to `public` is as follows. 
 
 ```
 client
@@ -140,14 +140,10 @@ client
     └── favicon.png
 ```
 
----
-
 ### 📁 `utils` Directory
 
 Inside `client`, create a `utils` directory.
 In it, create three files: `ethereum.ts`, `format.ts`, and `validAmount.ts`.
-
-**Folder structure for `utils`:**
 
 ```
 client
@@ -157,19 +153,93 @@ client
     └── validAmount.ts
 ```
 
-In `ethereum.ts`, we add a helper function to retrieve the `ethereum` object from `window` if MetaMask is installed.
-`MetaMaskInpageProvider` is the type definition for the `ethereum` object provided by the `@metamask/providers` package.
+Please write the following code inside `ethereum.ts`.
 
-In `format.ts`, we provide utility functions to convert share values between “with PRECISION” and “without PRECISION” formats.
+```ts
+import { MetaMaskInpageProvider } from "@metamask/providers";
 
-In `validAmount.ts`, we define a function to validate the user’s input amount using a regular expression.
+// Add ethereum to the window object. 
+declare global {
+  interface Window {
+    ethereum?: MetaMaskInpageProvider;
+  }
+}
+
+export const getEthereum = (): MetaMaskInpageProvider | null => {
+  if (typeof window !== "undefined" && typeof window.ethereum !== "undefined") {
+    const { ethereum } = window;
+    return ethereum;
+  }
+  return null;
+};
+```
+
+In TypeScript, to use `window.ethereum`, you need to explicitly declare that the `window` object has an `ethereum` property.
+`MetaMaskInpageProvider` is the type definition for `ethereum` that you obtained from `@metamask/providers` when setting up your environment.
+
+> 📓 What is `window.ethereum`?
+> In order for a web application to communicate with a blockchain network, it needs to obtain the user’s wallet information.
+> 
+> `window.ethereum` is an object and API that MetaMask makes available directly under `window` (the global variable that exists by default in JavaScript).
+> Using this API, a website can request the user’s Ethereum account, read data from the blockchain the user is connected to, and prompt the user to sign messages or transactions.
+
+Also, by calling the `getEthereum` function, you can retrieve the `ethereum` object from `window`.
+
+Please write the following code inside `format.ts`.
+
+```ts
+import { BigNumber } from "ethers";
+
+// Converts to a share with PRECISION.
+export const formatWithPrecision = (
+  share: string,
+  precision: BigNumber
+): BigNumber => {
+  return BigNumber.from(share).mul(precision);
+};
+
+// Converts to a share without PRECISION.
+export const formatWithoutPrecision = (
+  share: BigNumber,
+  precision: BigNumber
+): string => {
+  return share.div(precision).toString();
+};
+```
+
+Here we provide utility functions used when sending and receiving information about the contract and shares.
+
+If you’d like to review shares again (since we stepped away from them for a bit), please visit the `About Shares` section in [section-1/lesson-2](/docs/AVAX-AMM/ja/section-1/lesson-2_Solidity%E3%81%A7%E3%82%B9%E3%83%9E%E3%83%BC%E3%83%88%E3%82%B3%E3%83%B3%E3%83%88%E3%83%A9%E3%82%AF%E3%83%88%E3%82%92%E4%BD%9C%E6%88%90%E3%81%97%E3%82%88%E3%81%86.md). (It is not yet supported in English.)
+
+As a rule, the frontend keeps shares as strings without PRECISION.
+
+Frontend → Contract:** When sending a share to the contract, use `formatWithPrecision`.
+Contract → Frontend:** When a share is returned from the contract, use `formatWithoutPrecision` to convert it.
+
+Please write the following code inside `validAmount.ts`.
+
+```ts
+const regValidNumber = /^[0-9]+[.]?[0-9]*$/;
+
+export const validAmount = (amount: string): boolean => {
+  if (amount === "") {
+    return false;
+  }
+  if (!regValidNumber.test(amount)) {
+    return false;
+  }
+  return true;
+};
+```
+
+Here we provide functions to validate user input.
 
 ### 📁 `hooks` Directory
 
 Inside `client`, create a `hooks` directory.
-This will contain custom hooks(独自で作った[フック](https://ja.reactjs.org/docs/hooks-overview.html)) to handle wallet or contract state.
+This will contain custom hooks(custom[hooks](https://ja.reactjs.org/docs/hooks-overview.html)) to handle wallet or contract state.
 
-`hooks`ディレクトリ内に`useWallet.ts`というファイルを作成し、以下のコードを記述してください。
+Create a file named `useWallet.ts` inside the `hooks` directory and write the following code in it.
 
 ```ts
 import { useEffect, useState } from "react";
@@ -196,7 +266,7 @@ export const useWallet = (): ReturnUseWallet => {
       });
       if (!Array.isArray(accounts)) return;
       console.log("Connected: ", accounts[0]);
-      setCurrentAccount(accounts[0]); // 簡易実装のため、配列の初めのアドレスを使用します。
+      setCurrentAccount(accounts[0]); // For simplicity, use the first address in the array.
     } catch (error) {
       console.log(error);
     }
@@ -235,18 +305,15 @@ export const useWallet = (): ReturnUseWallet => {
 };
 ```
 
-ここでは、ユーザがMetamaskを持っていることの確認とウォレットへの接続機能を実装します。
+Here, we implement two things: checking whether the user has MetaMask and providing the ability to connect to their wallet.
 
-`connectWallet`はwebアプリがユーザのウォレットにアクセスすることを求める関数で、
-この後の実装でUIにユーザのウォレット接続ボタンを用意し、そのボタンとこの関数を連携します。
-そのため外部で使用できるように返り値の中に含めています。
+`connectWallet` is a function that requests the web app’s access to the user’s wallet. In the next steps, we’ll add a “connect wallet” button in the UI and wire that button up to this function. For that reason, the function is included in the return value so it can be used externally.
 
-`checkIfWalletIsConnected`は既にユーザのウォレットとwebアプリが接続しているかを確認する関数で、
+`checkIfWalletIsConnected` is a function that checks whether the user’s wallet is already connected to the web app.
 
-また、それぞれの関数内で使用している`eth_requestAccounts`と`eth_accounts`は、空の配列または単一のアカウントアドレスを含む配列を返す特別なメソッドです。
-ユーザーがウォレットに複数のアカウントを持っている場合を考慮して、プログラムはユーザーの1つ目のアカウントアドレスを取得することにしています。
+Also, the methods `eth_requestAccounts` and `eth_accounts` used inside each function are special methods that return either an empty array or an array containing a single account address. To account for users who have multiple accounts in their wallet, the program retrieves the user’s first account address.
 
-`hooks`に関するフォルダ構成はこのようになります。
+The folder structure related to `hooks` is as follows.
 
 ```
 client
@@ -256,20 +323,20 @@ client
 
 ### 📁 `components`Directory
 
-`client`ディレクトリ直下に`components`という名前のディレクトリを作成してください。
-こちらにはコンポーネントを実装したファイルを保存していきます。
+Create a directory named `components` directly under the `client` directory.
+This is where we will save files that implement components.
 
-> 📓 コンポーネントとは
-> UI（ユーザーインターフェイス）を形成する一つの部品のことです。
-> コンポーネントはボタンのような小さなものから、ページ全体のような大きなものまであります。
-> レゴブロックのようにコンポーネントのブロックで UI を作ることで、機能の追加・削除などの変更を容易にすることができます。
+> 📓 What is a component?
+> A component is a single building block that forms part of the UI (User Interface).
+> Components can be as small as a button or as large as an entire page.
+> By building the UI out of component “blocks” like LEGO bricks, it becomes easier to make changes such as adding or removing features.
 
-📁 `Container`ディレクトリ
+📁 `Container` Directory
 
-まず`components`ディレクトリ内に`Container`というディレクトリを作成し、
-その中に`Container.module.css`と`Container.tsx`という名前のファイルを作成してください。
+First, create a directory named `Container` inside the `components` directory.
+Inside it, create two files named `Container.module.css` and `Container.tsx`.
 
-`Container.module.css`内に以下のコードを記述してください。
+Please write the following code inside `Container.module.css`.
 
 ```css
 .centerContent {
@@ -318,9 +385,9 @@ client
 }
 ```
 
-`Container.tsx`で使用するcssになります。
+This will be the CSS used in `Container.tsx`.
 
-`Container.tsx`内に以下のコードを記述してください。
+Please write the following code inside `Container.tsx`.
 
 ```tsx
 import { useState } from "react";
@@ -395,24 +462,24 @@ export default function Container({ currentAccount }: Props) {
 }
 ```
 
-ここでは今回作るUIのベースとなるものが記載されています。
-`activeTab`を変更することで表示する内容が変更できるようになっております。
+Here, we have the base for the UI we’re creating this time.
+By changing `activeTab`, you can change the content that is displayed.
 
-レッスンの最後で確認するUIと照らし合わせると、内容がわかりやすいと思います。
+If you compare this with the UI we’ll check at the end of the lesson, it would be easier to understand.
 
-> 📓 `~.module.css`とは
-> `module.css`を css ファイルの語尾に付けることで、`CSSモジュール`という`Next.js`の仕組みを利用することができます。
-> `CSSモジュール`はファイル内のクラス名を元にユニークなクラス名を生成してくれます。
-> 内部で自動的に行ってくれるので私たちがユニークなクラス名を直接使用することがありませんが、
-> クラス名の衝突を気にする必要がなくなります。
-> 異なるファイルで同じ CSS クラス名を使用することができます。
-> 詳しくは[こちら](https://nextjs.org/docs/basic-features/built-in-css-support)をご覧ください。
+> 📓 What is `~.module.css`?
+> By adding `module.css` to the end of a CSS file name, you can use `CSS Modules`, a feature of `Next.js`.
+> `CSS Modules` automatically generate unique class names based on the class names inside the file.
+> This is done automatically under the hood, so we never directly work with the unique class names ourselves,
+> but it means we no longer have to worry about class name collisions.
+> You can use the same CSS class names in different files without issues.
+> For more details, see [here](https://nextjs.org/docs/basic-features/built-in-css-support).
 
 📁 `InputBox` Directory
 Inside `components`, create an `InputBox` directory, and
 create file `InputNumberBox.module.css` and `InputNumberBox.tsx`.
 
-`InputNumberBox.module.css`内に以下のコードを記述してください。
+Please write the following code inside `InputNumberBox.module.css`.
 
 ```css
 .boxTemplate {
@@ -459,7 +526,7 @@ create file `InputNumberBox.module.css` and `InputNumberBox.tsx`.
 }
 ```
 
-`InputNumberBox.tsx`内に以下のコードを記述してください。
+Please write the following code inside `InputNumberBox.tsx`.
 
 ```tsx
 import { ChangeEvent } from "react";
@@ -499,9 +566,9 @@ export default function InputNumberBox({
 }
 ```
 
-ユーザが数値を入力するUIでこのコンポーネントを使用します。
+This component is used in the UI where the user enters numeric values.
 
-`components`に関するフォルダ構成はこのようになります。
+The folder structure related to `components` is as follows.
 
 ```
 client
@@ -520,8 +587,8 @@ Finally, we edit the `pages` directory inside `client`.
 
 First, delete the `api` directory since we won’t be using it.
 
-`_app.tsx`内に以下のコードを記述してください。
-※初期設定のままなので編集箇所がない場合があります。
+Please write the following code inside `_app.tsx`.
+※Since this is the default setup, there may be nothing to edit.
 
 ```tsx
 import type { AppProps } from "next/app";
@@ -535,11 +602,10 @@ function MyApp({ Component, pageProps }: AppProps) {
 export default MyApp;
 ```
 
-`_app.tsx`ファイルは標準で、全てのページの親コンポーネントとなります。
-今回は`globals.css`の利用のみ行いますが、
-全てのページで使用したい`context`やレイアウトがある場合に`_app.tsx`ファイル内で使用すると便利です。
+The `_app.tsx` file is, by default, the parent component for all pages.
+This time we’ll only use `globals.css`, but if you have any `context` or layouts you want to use across all pages, it’s convenient to set them up inside `_app.tsx`.
 
-`index.tsx`内に以下のコードを記述してください。
+Please write the following code inside `index.tsx`.
 
 ```tsx
 import type { NextPage } from "next";
@@ -579,14 +645,14 @@ const Home: NextPage = () => {
 export default Home;
 ```
 
-ここでは先ほど作成した`useWallet`を使用していて、`currentAccount`の存在有無で
-walletへの接続を求めるか、接続している`currentAccount`の値を表示するかを条件分岐しています。
+Here, we’re using the `useWallet` hook we created earlier.
+Based on whether `currentAccount` exists, we conditionally decide whether to prompt the user to connect their wallet or to display the value of the connected `currentAccount`.
 
-[Image タグ](https://nextjs.org/docs/basic-features/image-optimization) はNext.jsに用意されたタグで画像描画について最適化されます。
+The [Image tag](https://nextjs.org/docs/basic-features/image-optimization) is provided by Next.js and optimizes how images are rendered.
 
-先ほど作成した`Container`コンポーネントも使用しています。
+We’re also using the `Container` component we made earlier.
 
-`pages`に関するフォルダ構成はこのようになります。
+The folder structure related to `pages` is as follows.
 
 ```
 client
