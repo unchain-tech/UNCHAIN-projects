@@ -135,7 +135,7 @@ Explorer: https://testnet.snowtrace.io/
 
 ![](/images/AVAX-AMM/section-3/3_1_3.png)
 
-If successful, you should now see `Avalanche Fuji C-Chain` in your network list.
+If successful, you will now see `Avalanche Fuji C-Chain` in your network list.
 
 ![](/images/AVAX-AMM/section-3/3_1_4.png)
 
