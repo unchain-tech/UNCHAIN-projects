@@ -16,13 +16,12 @@ title: "🖥️ フロントエンドのセットアップとUI構築"
 
 ```
 pkgs/frontend
-├── public/              # 画像などの静的アセット
-├── src/
-│   ├── app/             # Next.jsのApp Router。URLとコンポーネントのマッピングを管理
-│   │   ├── layout.tsx   # 全ページ共通のレイアウト（ヘッダー、フッターなど）
-│   │   └── page.tsx     # アプリケーションのメインページ（"/"）のUI
-│   ├── components/      # 再利用可能なUIコンポーネント（ボタン、ダイアログなど）
-│   └── lib/             # 補助的な関数や設定ファイル
+├── public/          # 画像などの静的アセット
+├── app/             # Next.jsのApp Router。URLとコンポーネントのマッピングを管理
+│   ├── layout.tsx   # 全ページ共通のレイアウト（ヘッダー、フッターなど）
+│   └── page.tsx     # アプリケーションのメインページ（"/"）のUI
+├── components/      # 再利用可能なUIコンポーネント（ボタン、ダイアログなど）
+├── lib/             # 補助的な関数や設定ファイル
 ├── package.json         # プロジェクトの依存関係と実行スクリプト
 └── ...
 ```
@@ -48,10 +47,10 @@ pkgs/frontend
 
 `shadcn/ui`は、単なるライブラリではなく、**コピー&ペーストでプロジェクトに直接追加できる、カスタマイズ性の高いコンポーネント集** です。
 
-メインページである`src/app/page.tsx`を開いて、UIがどのように構築されているかを確認しましょう。
+メインページである`app/page.tsx`を開いて、UIがどのように構築されているかを確認しましょう。
 
 ```tsx
-// pkgs/frontend/src/app/page.tsx
+// pkgs/frontend/app/page.tsx
 
 "use client";
 
