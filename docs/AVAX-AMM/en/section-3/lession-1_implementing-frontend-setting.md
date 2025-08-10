@@ -11,8 +11,6 @@ This time, we’ll use `TypeScript` + `React` + `Next.js` for frontend developme
 For an overview of each, please refer to [this link](https://app.unchain.tech/learn/AVAX-Messenger/ja/2/1/).
 If this is your first time using them, you might find it helpful 💁 (The English version hasn’t been released yet.)
 
----
-
 ### 🛠️ Let’s Set Up the Frontend
 
 Navigate to the `AVAX-AMM/packages` directory and run:
@@ -103,8 +101,6 @@ client
 └── tsconfig.json
 ```
 
----
-
 ### 🦊 Download MetaMask
 
 We’ll need a wallet to connect to our web application.
@@ -143,8 +139,6 @@ If successful, you should now see `Avalanche Fuji C-Chain` in your network list.
 
 ![](/images/AVAX-AMM/section-3/3_1_4.png)
 
----
-
 ### 🚰 Get `AVAX` Using the Faucet
 
 Next, go to the [Avalanche Faucet](https://faucet.avax.network/) to get some `AVAX`.
@@ -153,8 +147,6 @@ This is fake `AVAX` that can only be used on the testnet.
 
 Enter your wallet address in the form and request the tokens.
 💁 You can copy your wallet address by clicking your account name at the top of MetaMask.
-
----
 
 ### 🙋‍♂️ Ask Questions
 
