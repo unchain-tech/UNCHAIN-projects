@@ -95,7 +95,7 @@ circom ./src/${CIRCUIT}.circom --r1cs --wasm --sym --c
 
 そして、`pkgs/circuit/build`ディレクトリ内に`PasswordHash.r1cs`と`PasswordHash_js/PasswordHash.wasm`という2つの重要なファイルを出力します。
 
-最終的に以下のような出力結果になっていればOKです！！
+最終的に以下のような出力結果になっていればOKです！ ！
 
 ```bash
 template instances: 71
@@ -281,7 +281,7 @@ echo "----- Generate and print parameters of call -----"
 snarkjs generatecall data/public.json data/proof.json | tee ./data/calldata.json
 ```
 
-以下のような出力結果が出ていればOKです！！
+以下のような出力結果が出ていればOKです！ ！
 
 ```bash
 ----- Export the verification key -----
@@ -312,7 +312,11 @@ snarkjs generatecall data/public.json data/proof.json | tee ./data/calldata.json
     `verification_key.json`という検証キーを生成します。  
     これは、証明を検証する際に必要となります。
 
-4.  **Solidity Verifierの生成**:   
+5.  **証明データの生成**:  
+    `proof.json`（証明データ）と`public.json`（公開シグナル）を生成します。  
+    さらに、Solidityコントラクトでの検証に使用できる形式の`calldata.json`も出力します。
+
+6.  **Solidity Verifierの生成**:   
     `PasswordHashVerifier.sol`という、オンチェーンで証明を検証するためのスマートコントラクトを生成します。
 
 ## 🧾 Witnessの計算
@@ -347,7 +351,7 @@ circom ./src/${CIRCUIT}.circom --r1cs --wasm --sym --c
 node ${CIRCUIT}_js/generate_witness.js ${CIRCUIT}_js/${CIRCUIT}.wasm ./data/input.json ${CIRCUIT}_js/witness.wtns
 ```
 
-以下のような出力結果が出ていればOKです！！
+以下のような出力結果が出ていればOKです！ ！
 
 ```bash
 template instances: 71
@@ -423,7 +427,7 @@ run().then(() => {
 pnpm circuit run test
 ```
 
-ターミナルに以下のような内容が出力されていればOKです！！
+ターミナルに以下のような内容が出力されていればOKです！ ！
 
 ```bash
 Verification OK

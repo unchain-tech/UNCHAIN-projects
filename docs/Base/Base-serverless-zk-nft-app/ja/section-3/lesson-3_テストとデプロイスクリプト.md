@@ -30,36 +30,44 @@ describe("ZKNFT", () => {
   let hasValidProofData = false;
 
   before(() => {
-    // calldataファイルを読み込んで解析
-    const calldataPath = join(
+    // proof.jsonとpublic.jsonファイルを読み込んで解析
+    const proofPath = join(
       __dirname,
-      "../../../pkgs/circuit/data/calldata.json",
+      "../../../circuit/data/proof.json",
+    );
+    const publicPath = join(
+      __dirname,
+      "../../../circuit/data/public.json",
     );
 
-    if (existsSync(calldataPath)) {
+    if (existsSync(proofPath) && existsSync(publicPath)) {
       try {
-        const calldataContent = readFileSync(calldataPath, "utf8");
-        // JSONの解析（配列形式）
-        const callData = JSON.parse(`[${calldataContent}]`);
+        // proof.jsonから証明データを読み込み
+        const proofContent = readFileSync(proofPath, "utf8");
+        const proof = JSON.parse(proofContent);
 
-        // calldataから証明パラメータを抽出
-        pA = [BigInt(callData[0][0]), BigInt(callData[0][1])];
+        // public.jsonから公開シグナルを読み込み
+        const publicContent = readFileSync(publicPath, "utf8");
+        const publicSignals = JSON.parse(publicContent);
+
+        // Groth16プルーフからパラメータを抽出
+        pA = [BigInt(proof.pi_a[0]), BigInt(proof.pi_a[1])];
         pB = [
-          [BigInt(callData[1][0][0]), BigInt(callData[1][0][1])],
-          [BigInt(callData[1][1][0]), BigInt(callData[1][1][1])],
+          [BigInt(proof.pi_b[0][1]), BigInt(proof.pi_b[0][0])],
+          [BigInt(proof.pi_b[1][1]), BigInt(proof.pi_b[1][0])],
         ];
-        pC = [BigInt(callData[2][0]), BigInt(callData[2][1])];
-        pubSignals = [BigInt(callData[3][0])];
+        pC = [BigInt(proof.pi_c[0]), BigInt(proof.pi_c[1])];
+        pubSignals = [BigInt(publicSignals[0])];
 
         hasValidProofData = true;
       } catch (error: unknown) {
         const errorMessage =
           error instanceof Error ? error.message : String(error);
-        console.warn("❌ Error loading calldata file:", errorMessage);
+        console.warn("❌ Error loading proof files:", errorMessage);
         setupFallbackData();
       }
     } else {
-      console.warn("❌ Calldata file not found, using fallback data");
+      console.warn("❌ Proof files not found, using fallback data");
       setupFallbackData();
     }
   });
@@ -294,8 +302,8 @@ describe("ZKNFT", () => {
 - `deployZKNFTFixture`:   
     テストを実行する前に、毎回クリーンな状態でコントラクトをデプロイするための **`fixture`関数** です。  `PasswordHashVerifier`と`ZKNFT`の両方をデプロイし、テストに必要なオブジェクトを返します。
 
-- `import { calldata } ...`:  
-    `section-2`で生成した証明データ（`calldata.json`）をインポートし、実際の証明を使ったテストを可能にします。
+- `import { proof, publicSignals } ...`:  
+    `section-2`で生成した証明データ（`proof.json`と`public.json`）をインポートし、実際の証明を使ったテストを可能にします。正しいGroth16形式の証明データを使用することで、スマートコントラクトの検証機能が期待通りに動作することを確認できます。
 
 - **`Deployment`テスト**:   
     `ZKNFT`コントラクトがデプロイされた際に、コンストラクタに渡した`verifier`のアドレスが正しく設定されているかを確認します。
@@ -431,20 +439,24 @@ task("mint", "call mint method of ZKNFT contract").setAction(
       client: signer,
     });
 
-    // calldataファイルを読み込んで解析
-    const calldataPath = join(__dirname, "../../../circuit/data/calldata.json");
-    const calldataContent = readFileSync(calldataPath, "utf8");
-    // JSONの解析（配列形式）
-    const callData = JSON.parse(`[${calldataContent}]`);
+    // proof.jsonとpublic.jsonファイルを読み込んで解析
+    const proofPath = join(__dirname, "../../../circuit/data/proof.json");
+    const publicPath = join(__dirname, "../../../circuit/data/public.json");
+    
+    const proofContent = readFileSync(proofPath, "utf8");
+    const publicContent = readFileSync(publicPath, "utf8");
+    
+    const proof = JSON.parse(proofContent);
+    const publicSignals = JSON.parse(publicContent);
 
-    // calldataから証明パラメータを抽出
-    const pA = [BigInt(callData[0][0]), BigInt(callData[0][1])];
+    // Groth16証明データを適切な形式に変換
+    const pA = [BigInt(proof.pi_a[0]), BigInt(proof.pi_a[1])];
     const pB = [
-      [BigInt(callData[1][0][0]), BigInt(callData[1][0][1])],
-      [BigInt(callData[1][1][0]), BigInt(callData[1][1][1])],
+      [BigInt(proof.pi_b[0][1]), BigInt(proof.pi_b[0][0])],
+      [BigInt(proof.pi_b[1][1]), BigInt(proof.pi_b[1][0])],
     ];
-    const pC = [BigInt(callData[2][0]), BigInt(callData[2][1])];
-    const pubSignals = [BigInt(callData[3][0])];
+    const pC = [BigInt(proof.pi_c[0]), BigInt(proof.pi_c[1])];
+    const pubSignals = publicSignals.map((signal: string) => BigInt(signal));
 
     // call safeMint method
     const hash = await zkNFT.write.safeMint([
@@ -469,14 +481,14 @@ task("mint", "call mint method of ZKNFT contract").setAction(
 - `task("mint", ...)`:   
     `mint`という名前の新しいHardhatタスクを定義します。
 
-- `process.env.ZKNFT_CONTRACT_ADDRESS`:   
-    環境変数からデプロイ済みの`ZKNFT`コントラクトのアドレスを取得します。
+- `getContractAddress(chainId, contractName)`:   
+    ヘルパー関数を使用してデプロイ済みの`ZKNFT`コントラクトのアドレスを取得します。
 
-- `ethers.getContractAt(...)`:   
-    デプロイ済みコントラクトのインスタンスを取得します。
+- `hre.viem.getContractAt(...)`:   
+    Viemを使用してデプロイ済みコントラクトのインスタンスを取得します。
 
-- `zknft.safeMint(...)`:   
-    `calldata.json`の証明データを使って、`safeMint`関数を呼び出します。
+- `zknft.write.safeMint(...)`:   
+    `proof.json`と`public.json`の証明データを使って、`safeMint`関数を呼び出します。
 
 ### タスクのインポート
 
@@ -491,7 +503,7 @@ const config: HardhatUserConfig = {
 // ...
 ```
 
-## 🚀 デプロイの実行
+## 🚀 デプロイとタスクの実行
 
 すべての準備が整いました。  
 
@@ -501,11 +513,24 @@ const config: HardhatUserConfig = {
 pnpm backend run deploy:ZKNFT --network base-sepolia
 ```
 
-デプロイが成功すると、ターミナルに`PasswordHashVerifier`と`ZKNFT`のコントラクトアドレスが出力されます。  
+デプロイが成功すると、ターミナルに`PasswordHashVerifier`と`ZKNFT`のコントラクトアドレスが出力されます。 
+
+タスクの実行も試してみましょう！ ！
+
+以下のコマンドでゼロ知識証明用のproofの生成〜NFTのミントまでを試してみます。
+
+```bash
+pnpm contract mint --network base-sepolia
+```
+
+うまくいけば以下のようにNFTがミントされるはずです！ ！
+
+[Base Sepolia - 0x6d676a517cd72534782e96be054f975834147816c4ebea320e1647afcf4f6573](https://sepolia.basescan.org/tx/0x6d676a517cd72534782e96be054f975834147816c4ebea320e1647afcf4f6573)
 
 これで、スマートコントラクトの開発、テスト、デプロイが完了しました。  
 
 次のセクションでは、いよいよフロントエンドを構築し、ユーザーが実際にNFTをミントできるWebアプリケーションを作成します。
+
 
 ### 🙋‍♂️ 質問する
 

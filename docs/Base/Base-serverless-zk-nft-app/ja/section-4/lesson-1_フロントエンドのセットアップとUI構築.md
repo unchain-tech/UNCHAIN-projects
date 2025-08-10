@@ -16,32 +16,80 @@ title: "🖥️ フロントエンドのセットアップとUI構築"
 
 ```
 pkgs/frontend
-├── public/          # 画像などの静的アセット
-├── app/             # Next.jsのApp Router。URLとコンポーネントのマッピングを管理
-│   ├── layout.tsx   # 全ページ共通のレイアウト（ヘッダー、フッターなど）
-│   └── page.tsx     # アプリケーションのメインページ（"/"）のUI
-├── components/      # 再利用可能なUIコンポーネント（ボタン、ダイアログなど）
-├── lib/             # 補助的な関数や設定ファイル
-├── providers/       # Providerコンポーネントを格納するフォルダ
-├── utils/           # ユーティリティ関数を格納するフォルダ
-├── package.json     # プロジェクトの依存関係と実行スクリプト
-└── ...
+├── public/              # 静的アセット
+│   ├── logo.png         # アプリケーションロゴ
+│   └── zk/              # ゼロ知識証明関連ファイル
+│       ├── PasswordHash.wasm      # コンパイルされた回路
+│       └── PasswordHash_final.zkey # 証明鍵
+├── app/                 # Next.js App Router - URLルーティングとページの定義
+│   ├── api/             # API Routes
+│   │   ├── generateProof/    # ZK証明生成API
+│   │   │   └── route.ts
+│   │   └── hash-password/    # パスワードハッシュAPI
+│   │       └── route.ts
+│   ├── dashboard/       # ダッシュボードページ（"/dashboard"）
+│   │   └── page.tsx     # ダッシュボードのメインコンポーネント
+│   ├── layout.tsx       # アプリケーション全体のレイアウト
+│   ├── page.tsx         # ルートページ（"/"）のコンポーネント
+│   └── globals.css      # グローバルスタイルとTailwind CSSのインポート
+├── components/          # 再利用可能なUIコンポーネント
+│   ├── ui/              # shadcn/uiの基本コンポーネント
+│   │   ├── button.tsx   # ボタンコンポーネント
+│   │   ├── card.tsx     # カードコンポーネント
+│   │   ├── input.tsx    # インプットコンポーネント
+│   │   ├── label.tsx    # ラベルコンポーネント
+│   │   └── loading.tsx  # ローディングコンポーネント
+│   └── layout/          # レイアウト関連コンポーネント
+│       └── header.tsx   # ヘッダーコンポーネント
+├── providers/           # React Context Providers
+│   ├── privy-providers.tsx    # Privyプロバイダー
+│   └── toaster-provider.tsx   # トーストプロバイダー
+├── hooks/               # カスタムReactフック
+│   └── useBiconomy.ts   # Biconomyフック
+├── lib/                 # ユーティリティ関数とライブラリ設定
+│   ├── utils.ts         # 汎用ユーティリティ関数
+│   ├── abi.ts           # スマートコントラクトABI
+│   └── zk-utils.ts      # ゼロ知識証明関連のユーティリティ
+├── types/               # TypeScript型定義ファイル
+│   └── snarkjs.d.ts     # snarkjs型定義
+├── components.json      # shadcn/ui設定ファイル
+├── package.json         # プロジェクトの依存関係と実行スクリプト
+├── next.config.js       # Next.js設定ファイル
+├── postcss.config.js    # PostCSS設定
+├── tailwind.config.js   # Tailwind CSS設定
+├── tsconfig.json        # TypeScript設定
+└── next-env.d.ts        # Next.js型定義
 ```
 
 - **`app/layout.tsx`**:   
   アプリケーション全体の「骨格」となるファイルです。  
   
-  ヘッダー、フッター、フォント設定、そして後ほど追加する **web3関連のプロバイダー（Privy, Biconomyなど）** はここに配置され、すべてのページで共通して利用されます。
+  全ページで共通するレイアウト、メタデータ、そして **web3関連のプロバイダー（Privy, Biconomyなど）** はここに配置され、すべてのページで利用されます。
 
 - **`app/page.tsx`**:   
-  アプリケーションの「顔」となるメインページ（`https://.../`）のコンテンツを定義する中心的なファイルです。  
+  アプリケーションのランディングページ（`/`）のコンテンツを定義します。  
+  
+  ユーザーがアプリケーションに初めてアクセスした際の認証とメイン機能への導線を提供します。
+
+- **`app/dashboard/page.tsx`**:   
+  認証後のメインダッシュボードページ（`/dashboard`）です。  
   
   ここにNFTのミントボタンやパスワード入力フィールドなどのUI要素を配置していきます。
 
 - **`components/`**:   
-  `shadcn/ui`を使って作成したボタンやダイアログなどのUI部品が格納されます。  
+  `shadcn/ui`を使って作成したボタンやカードなどのUI部品が格納されます。
+  
+  `ui/`フォルダには基本的なUIコンポーネント、`layout/`フォルダにはヘッダーなどのレイアウトコンポーネントを配置します。
 
-  一貫性のあるデザインを保ちながら、効率的に開発を進めるための重要なフォルダです。
+- **`providers/`**:   
+  React Context Providersを配置するフォルダです。
+  
+  Privyによる認証プロバイダーや、トースト通知のプロバイダーなどを管理します。
+
+- **`hooks/`**:   
+  カスタムReactフックを配置するフォルダです。
+  
+  Biconomyとの連携など、複雑なロジックを再利用可能な形でカプセル化します。
 
 ## 🎨 UIコンポーネントの構築
 
@@ -49,7 +97,7 @@ pkgs/frontend
 
 `shadcn/ui`は、単なるライブラリではなく、**コピー&ペーストでプロジェクトに直接追加できる、カスタマイズ性の高いコンポーネント集** です。
 
-メインページである`app/page.tsx`を開いて、UIがどのように構築されているかを確認しましょう。
+メインページである`app/page.tsx`を開いて、ランディングページがどのように構築されているかを確認しましょう。
 
 ```tsx
 // pkgs/frontend/app/page.tsx
@@ -57,41 +105,138 @@ pkgs/frontend
 "use client";
 
 import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
+export default function LandingPage() {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 flex items-center justify-center p-4">
+      <div className="w-full max-w-md">
+        {/* メインのランディングカード */}
+        <Card className="glass-effect border-white/20 shadow-2xl">
+          <CardHeader className="text-center space-y-4">
+            <div className="mx-auto w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+              <div className="text-3xl font-bold text-white">ZK</div>
+            </div>
+            <CardTitle className="text-2xl font-bold text-white">
+              Welcome to ZK NFT App
+            </CardTitle>
+            <CardDescription className="text-gray-300">
+              秘密のパスワードでゼロ知識証明を生成し、特別なNFTをミントしよう！
+            </CardDescription>
+          </CardHeader>
+
+          <CardContent className="space-y-6">
+            {/* 次のレッスンで認証機能を追加します */}
+            <Button
+              className="w-full h-12 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-300"
+              size="lg"
+              disabled
+            >
+              Coming Soon: Connect Wallet & Login
+            </Button>
+
+            {/* 機能説明 */}
+            <div className="text-center space-y-3">
+              <div className="text-sm text-gray-400">
+                次のレッスンで実装予定:
+              </div>
+              <div className="flex justify-center space-x-4 text-xs text-gray-500">
+                <span>• Email認証</span>
+                <span>• ウォレット連携</span>
+                <span>• ZK証明生成</span>
+              </div>
+            </div>
+
+            {/* セキュリティ情報 */}
+            <div className="bg-blue-900/30 rounded-lg p-4 border border-blue-500/30">
+              <div className="text-sm text-blue-200">
+                <div className="font-semibold mb-1">🔒 Secure & Private</div>
+                <div className="text-xs">
+                  Powered by Zero-Knowledge Technology
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+}
+```
+
+次に、認証後のメイン機能を提供する`app/dashboard/page.tsx`を確認しましょう。
+
+```tsx
+// pkgs/frontend/app/dashboard/page.tsx
+
+"use client";
+
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { usePrivy } from "@privy-io/react-auth";
 import { useState } from "react";
 
-export default function Home() {
-  // ユーザーが入力したパスワードを保持するための状態変数
+export default function Dashboard() {
+  const { user, logout } = usePrivy();
   const [password, setPassword] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleMint = async () => {
+    if (!password) return;
+    
+    setIsLoading(true);
+    try {
+      // ZK証明生成とNFTミントのロジックは後のレッスンで実装
+      console.log("Minting NFT with password:", password);
+    } catch (error) {
+      console.error("Mint failed:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      {/* ... ヘッダー部分のコード ... */}
-
-      <div className="relative z-[-1] flex place-items-center">
-        <h1 className="text-5xl font-bold text-center">
-          Serverless ZK NFT App
-        </h1>
-      </div>
-
-      <div className="mb-32 mt-16 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <div className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
-          <h2 className="mb-3 text-2xl font-semibold">
-            Mint ZK NFT 🔑
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            秘密のパスワードを入力して、特別なNFTをミントしよう！
-          </p>
-          <div className="flex w-full max-w-sm items-center space-x-2 mt-4">
-            <Input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <Button type="submit">Mint</Button>
-          </div>
+      <div className="w-full max-w-md">
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-3xl font-bold">Dashboard</h1>
+          <Button variant="outline" onClick={logout}>
+            Logout
+          </Button>
         </div>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Mint ZK NFT 🔑</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-gray-600 mb-4">
+              秘密のパスワードを入力して、特別なNFTをミントしよう！
+            </p>
+            <div className="flex w-full items-center space-x-2">
+              <Input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                disabled={isLoading}
+              />
+              <Button 
+                onClick={handleMint}
+                disabled={!password || isLoading}
+              >
+                {isLoading ? "Minting..." : "Mint"}
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </main>
   );
@@ -100,16 +245,31 @@ export default function Home() {
 
 ### 🔍 コード解説
 
+#### ランディングページ（`app/page.tsx`）
+
+- **`usePrivy`**:   
+  Privyが提供するReactフックで、認証状態や認証関連の関数にアクセスできます。
+  
+- **`useRouter`**:   
+  Next.js App Routerのナビゲーション機能を提供し、プログラムでページ遷移を制御できます。
+
+- **認証ガード**:   
+  `useEffect`を使って、認証済みユーザーを自動的にダッシュボードにリダイレクトする実装です。
+
+#### ダッシュボードページ（`app/dashboard/page.tsx`）
+
 - **`"use client"`**:   
   このディレクティブは、このファイルが**クライアントコンポーネント**であることをNext.jsに伝えます。
   
   ユーザーのブラウザ上で動作し、`useState`や`useEffect`といったReactのフック（インタラクティブな機能）を使用するために不可欠です。
 
-
 - **`useState`**:   
-  `password`という**状態変数**を定義しています。  
+  `password`と`isLoading`という**状態変数**を定義しています。  
   
-  これにより、ユーザーがインプットフィールドに入力した値をリアルタイムで保持し、UIに反映させることができます。
+  これにより、ユーザーがインプットフィールドに入力した値とローディング状態をリアルタイムで保持し、UIに反映させることができます。
+
+- **`<Card />`コンポーネント**:    
+  `shadcn/ui`から提供されるカードコンポーネントで、関連するUIを美しくグループ化します。
 
 - **`<Input />`**:    
   `shadcn/ui`から提供されるインプットコンポーネントです。  
@@ -119,11 +279,42 @@ export default function Home() {
 - **`<Button />`**:   
   これも`shadcn/ui`のボタンコンポーネントです。  
 
-  ユーザーがNFTのミントを開始するためのアクションの起点（トリガー）となります。
+  `disabled`プロパティを使って、適切な条件でのみボタンが押せるようになっています。
 
 この時点では、UIは表示されるだけで、ボタンをクリックしてもまだ何も起こりません。
 
 しかし、アプリケーションの骨格はすでに完成しています。
+
+### 🔧 プロバイダー設定の重要性
+
+実際のアプリケーションでは、`app/layout.tsx`で以下のプロバイダーが設定されている必要があります：
+
+```tsx
+// pkgs/frontend/app/layout.tsx (概要)
+
+import { PrivyClientProvider } from '@/providers/privy-providers';
+import { ToasterProvider } from '@/providers/toaster-provider';
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="ja">
+      <body>
+        <PrivyClientProvider>
+          <ToasterProvider>
+            {children}
+          </ToasterProvider>
+        </PrivyClientProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+これらのプロバイダーにより、アプリケーション全体でweb3認証、トースト通知、ガスレス取引の機能が利用可能になります。
 
 次のレッスンから、このUIに命を吹き込んでいきます。以下の機能を段階的に実装していきましょう。
 

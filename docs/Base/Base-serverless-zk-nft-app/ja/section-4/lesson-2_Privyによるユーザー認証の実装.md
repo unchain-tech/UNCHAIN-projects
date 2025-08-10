@@ -53,10 +53,10 @@ Privyの機能をアプリケーション全体で利用できるようにする
 
 この設定はクライアントサイドでのみ有効にする必要があるため、専用のプロバイダーコンポーネントを作成するのがベストプラクティスです。
 
-`pkgs/frontend/app/providers/privy-providers.tsx";`というファイルを作成し、以下のコードを記述します。
+`providers/privy-providers.tsx`というファイルを作成し、以下のコードを記述します。
 
 ```tsx
-// pkgs/frontend/app/providers/privy-providers.tsx";
+// pkgs/frontend/providers/privy-providers.tsx
 "use client";
 
 import { PrivyProvider } from "@privy-io/react-auth";
@@ -98,11 +98,12 @@ export const PrivyProviders: React.FC<PrivyProvidersProps> = ({ children }) => {
 
 ## React Hot Toastの組み込み
 
-ここでもう一つアプリ全体で Toasterを使えるようにするためのProviderコンポーネントを追加します。
+ここでもう1つアプリ全体でToasterを使えるようにするためのProviderコンポーネントを追加します。
 
-`pkgs/frontend/app/providers/toaster-provider.tsx";`というファイルを作成し、以下のコードを記述します。
+`providers/toaster-provider.tsx`というファイルを作成し、以下のコードを記述します。
 
 ```ts
+// pkgs/frontend/providers/toaster-provider.tsx
 import type React from "react";
 import { Toaster } from "react-hot-toast";
 
@@ -208,15 +209,15 @@ export const ToasterProvider: React.FC<ToasterProviderProps> = ({
 
 これにより、すべてのページでPrivyの機能が有効になります。
 
-`pkgs/frontend/app/layout.tsx`を以下のように修正してください。
+`app/layout.tsx`を以下のように修正してください。
 
 ```tsx
 // pkgs/frontend/app/layout.tsx
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { PrivyProviders } from "./../providers/privy-providers";   // 👈 インポート
-import { ToasterProvider } from "./../providers/toaster-provider"; // 👈 インポート
+import { PrivyProviders } from "@/providers/privy-providers";   // 👈 インポート
+import { ToasterProvider } from "@/providers/toaster-provider"; // 👈 インポート
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -251,74 +252,124 @@ export default function RootLayout({
 
 最後に、`page.tsx`を更新して、実際にログイン・ログアウトボタンとユーザー情報を表示するUIを追加します。
 
-`pkgs/frontend/app/page.tsx`を以下のように修正します。
+`app/page.tsx`を以下のように修正します。
 
 ```tsx
 // pkgs/frontend/app/page.tsx
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { usePrivy } from "@privy-io/react-auth"; // 👈 インポート
-import { useState } from "react";
+import { usePrivy } from "@privy-io/react-auth";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { Button } from "../components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../components/ui/card";
 
-export default function Home() {
-  const [password, setPassword] = useState<string>("");
-  // Privyフックを使って認証情報を取得
-  const {
-    ready,
-    authenticated,
-    user,
-    login,
-    logout,
-  } = usePrivy();
+/**
+ * ログイン画面コンポーネント
+ */
+export default function LoginPage() {
+  const router = useRouter();
+  const { ready, authenticated, login } = usePrivy();
 
-  // Privyが初期化されるまでローディング表示
+  // 認証済みの場合はダッシュボードにリダイレクト
+  useEffect(() => {
+    if (ready && authenticated) {
+      router.push("/dashboard");
+    }
+  }, [ready, authenticated, router]);
+
+  // Privyが初期化中の場合はローディング表示
   if (!ready) {
-    return <p>Loading...</p>;
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 flex items-center justify-center">
+        <div className="text-white text-lg">Loading...</div>
+      </div>
+    );
   }
 
+  // 既に認証済みの場合は何も表示しない（リダイレクト中）
+  if (authenticated) {
+    return null;
+  }
+
+  /**
+   * ログインメソッド
+   */
+  const handleLogin = async () => {
+    try {
+      // ログイン
+      await login();
+    } catch (error) {
+      console.error("Login error:", error);
+    }
+  };
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          UNCHAIN Serverless ZK NFT
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          {/* 認証状態でボタンを切り替え */}
-          {authenticated ? (
-            <Button onClick={logout}>Logout</Button>
-          ) : (
-            <Button onClick={login}>Login</Button>
-          )}
+    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 flex items-center justify-center p-4">
+      <div className="w-full max-w-md">
+        {/* メインのログインカード */}
+        <Card className="glass-effect border-white/20 shadow-2xl">
+          <CardHeader className="text-center space-y-4">
+            <div className="mx-auto w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+              <div className="text-3xl font-bold text-white">ZK</div>
+            </div>
+            <CardTitle className="text-2xl font-bold text-white">
+              Welcome to ZK NFT App
+            </CardTitle>
+            <CardDescription className="text-gray-300">
+              Connect your wallet or create an account to start minting
+              ZK-powered NFTs
+            </CardDescription>
+          </CardHeader>
+
+          <CardContent className="space-y-6">
+            {/* ログインボタン */}
+            <Button
+              onClick={handleLogin}
+              className="w-full h-12 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-lg neon-glow transition-all duration-300"
+              size="lg"
+            >
+              Connect Wallet & Login
+            </Button>
+
+            {/* 機能説明 */}
+            <div className="text-center space-y-3">
+              <div className="text-sm text-gray-400">
+                Supported login methods:
+              </div>
+              <div className="flex justify-center space-x-4 text-xs text-gray-500">
+                <span>• Email</span>
+                <span>• Wallet</span>
+                <span>• Google</span>
+                <span>• Twitter</span>
+              </div>
+            </div>
+
+            {/* セキュリティ情報 */}
+            <div className="bg-blue-900/30 rounded-lg p-4 border border-blue-500/30">
+              <div className="text-sm text-blue-200">
+                <div className="font-semibold mb-1">🔒 Secure & Private</div>
+                <div className="text-xs">
+                  Your credentials are secured by Privy&apos;s industry-leading
+                  authentication system
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* フッター */}
+        <div className="text-center mt-8 text-gray-400 text-sm">
+          <p>Powered by Zero-Knowledge Technology</p>
         </div>
       </div>
-
-      {/* ... 中央のタイトル部分 ... */}
-
-      <div className="mb-32 mt-16 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        {/* ログインしている場合のみミントUIを表示 */}
-        {authenticated && user && (
-          <div className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
-            <h2 className="mb-3 text-2xl font-semibold">
-              Mint ZK NFT 🔑
-            </h2>
-            <p className="m-0 max-w-[30ch] text-sm opacity-50">
-              Your wallet: {user.wallet?.address}
-            </p>
-            <div className="flex w-full max-w-sm items-center space-x-2 mt-4">
-              <Input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <Button type="submit">Mint</Button>
-            </div>
-          </div>
-        )}
-      </div>
-    </main>
+    </div>
   );
 }
 ```
