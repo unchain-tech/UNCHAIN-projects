@@ -467,8 +467,8 @@ By changing `activeTab`, you can change the content that is displayed.
 
 If you compare this with the UI we’ll check at the end of the lesson, it would be easier to understand.
 
-> 📓 What is `~.module.css`?
-> By adding `module.css` to the end of a CSS file name, you can use `CSS Modules`, a feature of `Next.js`.
+> 📓 `~.module.css` is
+> by adding `module.css` to the end of a CSS file name, you can use `CSS Modules`, a feature of `Next.js`.
 > `CSS Modules` automatically generate unique class names based on the class names inside the file.
 > This is done automatically under the hood, so we never directly work with the unique class names ourselves,
 > but it means we no longer have to worry about class name collisions.
