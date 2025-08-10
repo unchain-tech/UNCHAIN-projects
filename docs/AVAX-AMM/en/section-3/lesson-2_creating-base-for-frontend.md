@@ -326,8 +326,8 @@ client
 Create a directory named `components` directly under the `client` directory.
 This is where we will save files that implement components.
 
-> 📓 What is a component?
-> A component is a single building block that forms part of the UI (User Interface).
+> 📓 A component
+> is a single building block that forms part of the UI (User Interface).
 > Components can be as small as a button or as large as an entire page.
 > By building the UI out of component “blocks” like LEGO bricks, it becomes easier to make changes such as adding or removing features.
 
