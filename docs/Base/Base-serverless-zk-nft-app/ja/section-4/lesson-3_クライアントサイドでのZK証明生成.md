@@ -19,13 +19,13 @@ mkdir -p pkgs/frontend/public/zk
 次に、`circuit`パッケージの`build`ディレクトリから、生成されたファイルをコピーします。
 
 ```bash
-cp pkgs/circuit/build/circuit.wasm pkgs/frontend/public/zk/
-cp pkgs/circuit/build/circuit.zkey pkgs/frontend/public/zk/
+cp pkgs/circuit/zkey/PasswordHash_final.wasm pkgs/frontend/public/zk/
+cp pkgs/circuit/zkey/PasswordHash.zkey pkgs/frontend/public/zk/
 ```
 
 `public`ディレクトリに置かれたファイルは、Webサーバーのルートパスとして扱われます。
 
-これにより、フロントエンドのコードから`/zk/circuit.wasm`や`/zk/circuit.zkey`といったURLでこれらのファイルに直接アクセスできるようになります。
+これにより、フロントエンドのコードから`/zkey/PasswordHash_final.wasm`や`/zkey/PasswordHash.zkey`といったURLでこれらのファイルに直接アクセスできるようになります。
 
 ## 🧠 証明生成ロジックの実装
 
@@ -33,10 +33,10 @@ cp pkgs/circuit/build/circuit.zkey pkgs/frontend/public/zk/
 
 これにより、メインのUIコンポーネントをクリーンに保つことができます。
 
-`pkgs/frontend/src/hooks/useZKNFT.ts`というファイルを作成し、以下のコードを記述します。
+`pkgs/frontend/hooks/useZKNFT.ts`というファイルを作成し、以下のコードを記述します。
 
 ```typescript
-// pkgs/frontend/src/hooks/useZKNFT.ts
+// pkgs/frontend/hooks/useZKNFT.ts
 import { useState } from "react";
 import { buildPoseidon } from "circomlibjs";
 // snarkjsはブラウザ環境でグローバルに読み込まれるため、型定義がない場合はanyとして扱う
