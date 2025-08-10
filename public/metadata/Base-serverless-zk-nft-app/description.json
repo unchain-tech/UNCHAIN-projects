@@ -4,6 +4,6 @@
   "difficulty": "advanced",
   "chain": "Base",
   "description": "👉 Baseとゼロ知識証明とAccount Abstractionを使ってフルスタックなサーバーレスWeb3アプリケーションを作ろう！",
-  "total_sections": 5,
+  "total_sections": 6,
   "total_lessons": 11
 }
