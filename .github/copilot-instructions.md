@@ -149,7 +149,7 @@ GitHub Copilotとの会話開始時に、**必ず以下の手順を自動実行*
 
 1. **プロジェクトアクティベート**
    ```
-   mcp_serena_activate_project("/Users/harukikondo/git/UNCHAIN-projects")
+   mcp_serena_activate_project
    ```
 
 2. **オンボーディング確認**
