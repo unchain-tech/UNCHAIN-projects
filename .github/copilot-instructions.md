@@ -68,7 +68,7 @@ docs/[PROJECT-NAME]/ja/
 - **ICP**: Motoko、Internet Computer
 - **Astar**: Polkadot Parachain
 - **XRPL**: XRP Ledger
-- **Base**
+- **Base**: Base
 
 ### 開発ツール・フレームワーク
 - **スマートコントラクト**: Solidity、Rust、Motoko
