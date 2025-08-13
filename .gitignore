@@ -25,3 +25,6 @@ yarn-error.log*
 
 # MCPサーバー用の環境変数ファイル
 mcp/.env
+
+# Serena MCP
+.serena/
