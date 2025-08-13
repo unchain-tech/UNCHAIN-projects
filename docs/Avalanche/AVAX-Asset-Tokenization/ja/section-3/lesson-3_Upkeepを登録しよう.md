@@ -24,7 +24,7 @@ Metamaskで特定の(`LINK`を取得するつもりの)アカウントが表示�
 
 ### 🦆 コントラクトを再デプロイしましょう。
 
-[section-2/lesson-3](/docs/AVAX-Asset-Tokenization/ja/section-2/lesson-3_%E3%82%B3%E3%83%B3%E3%83%88%E3%83%A9%E3%82%AF%E3%83%88%E3%81%A8%E6%8E%A5%E7%B6%9A%E3%81%97%E3%82%88%E3%81%86.md)で行なったコントラクトのデプロイとフロントエンドへの反映の流れを参考に、
+[section-2/lesson-3](/Avalanche/AVAX-Asset-Tokenization/ja/section-2/lesson-3_コントラクトと接続しよう)で行なったコントラクトのデプロイとフロントエンドへの反映の流れを参考に、
 新しく実装したコントラクトの再デプロイと、 ついでにフロントエンドへの反映もここで行いましょう。
 
 まず`AVAX-Asset-Tokenization/`直下で下記のコマンドを実行してデプロイします！
