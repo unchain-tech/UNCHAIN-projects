@@ -1,1 +1,0 @@
-# NEAR-Election-dApp
