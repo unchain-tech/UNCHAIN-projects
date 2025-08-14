@@ -211,7 +211,7 @@ export const formatWithoutPrecision = (
 
 ここではコントラクトとshareの情報をやり取りする際に使用するutil関数を用意しています。
 
-shareについては一度離れていた部分なので、再確認したい方は[section-1/lesson-2](/AVAX-AMM/section-1/lesson-2.md)の`シェアについて`部分を読み返してください。
+shareについては一度離れていた部分なので、再確認したい方は[section-1/lesson-2](/Avalanche/AVAX-AMM/section-1/lesson-2.md)の`シェアについて`部分を読み返してください。
 
 基本的にフロントエンドでは、shareをPRECISIONなしでstring型で保持します。
 

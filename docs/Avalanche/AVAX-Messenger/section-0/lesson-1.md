@@ -21,7 +21,7 @@ title: Avalancheネットワーク上でWEBアプリを構築しよう
 一度に扱う情報量が多すぎないようにするためです。
 
 また基礎知識として
-ブロックチェーン、スマートコントラクト、dappの説明に関しては[こちら](/ETH-dApp/section-0/lesson-1.md)をご覧ください。
+ブロックチェーン、スマートコントラクト、dappの説明に関しては[こちら](/Ethereum/ETH-dApp/section-0/lesson-1.md)をご覧ください。
 
 ### ⛄ `Avalanche`とは何か
 

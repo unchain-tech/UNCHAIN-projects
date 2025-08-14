@@ -13,7 +13,7 @@ title: イーサリアムネットワーク上でDAOを立ち上げよう
 - [React.js](https://ja.reactjs.org/)
 - [NEXT.js](https://nextjs.org/docs)
 - [Thirdweb](https://portal.thirdweb.com/)
-- [NFT に関する基礎知識](/ETH-NFT-Collection/section-1/lesson-1.md)
+- [NFT に関する基礎知識](/Ethereum/ETH-NFT-Collection/section-1/lesson-1.md)
 
 ※ 開発初心者の方は、まず`ETH-dApp`のプロジェクトから始めることをお勧めします ☺️
 
