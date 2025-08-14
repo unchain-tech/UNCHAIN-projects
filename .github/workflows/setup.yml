@@ -6,7 +6,7 @@ jobs:
   filename-check:
     runs-on: ubuntu-latest
     env:
-      PATH_REGEX: ^.+\/docs\/.+\/.+\/(((ja|en)\/section\-[0-9]\/lesson\-[0-9]_.+)|index)\.md$
+      PATH_REGEX: ^.+\/docs\/.+\/(section\-[0-9]\/lesson\-[0-9]|index)\.md$
     steps:
       - uses: actions/checkout@v4
       - name: grep invalid filename
@@ -17,13 +17,13 @@ jobs:
 
   metadata-check:
     runs-on: ubuntu-latest
-    env:
-      PATH_REGEX: ^.+\/docs\/.+\/.+\/(ja|en)\/section\-[0-9]\/lesson\-[0-9]_.+\.md$
+    # env:
+    #   PATH_REGEX: ^.+\/docs\/.+\/.+\/(ja|en)\/section\-[0-9]\/lesson\-[0-9]_.+\.md$
     steps:
       - uses: actions/checkout@v4
       - name: check lesson count
         run: |
-          for dir in docs/*/*/ja/
+          for dir in docs/*/*/
           do
             CONTENT="$(echo $dir | cut -d'/' -f3)"
 
@@ -36,7 +36,7 @@ jobs:
             fi
 
             MDLESSONCOUNT=$(jq -c '.total_lessons' < public/metadata/$CONTENT/description.json)
-            FSLESSONCOUNT=$(find $dir -type f ! -iname '.*' | wc -l)
+            FSLESSONCOUNT=$(find $dir -type f -regex '.*/lesson-[0-9].md' | wc -l)
             if (( $MDLESSONCOUNT != $FSLESSONCOUNT ))
             then
               echo "Update lesson count to $FSLESSONCOUNT in public/metadata/$CONTENT/description.json (currently $MDLESSONCOUNT)"
