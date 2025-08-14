@@ -21,7 +21,7 @@ title: 環境構築をする
 
 今回のレッスンでは環境構築をした後、CryptopunksやBAYCのような希少性を備えたGenerative ArtのNFTコレクションを作成する方法を学びます。
 
-✍️: NFTに関する詳しい説明は、[こちら](https://github.com/unchain-dev/UNCHAIN-projects/blob/main/docs/Polygon-Generative-NFT/ja/section-1/lesson-1_NFT%E3%81%A8%E3%81%AF%E4%BD%95%E3%81%8B%EF%BC%9F.md) をご覧ください。
+✍️: NFTに関する詳しい説明は、[こちら](/Polygon-Generative-NFT/section-1/lesson-1.md) をご覧ください。
 
 ### 💻 Python と pip をインストールする
 

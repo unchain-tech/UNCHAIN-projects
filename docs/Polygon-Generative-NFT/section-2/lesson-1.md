@@ -122,7 +122,7 @@ string public baseTokenURI;
 コントラクトの所有者（またはデプロイ先）が必要に応じてBase Token URIを変更できるように、これから`baseTokenURI`のセッタ関数を記述していきます。
 
 > ✍️: `public`は Solidity の**アクセス修飾子**です。
-> Solidity のアクセス修飾子に関しては、[こちら](https://github.com/shiftbase-xyz/UNCHAIN-projects/blob/main/docs/102-ETH-NFT-Collection/ja/section-2/lesson-4_Solidity%E3%81%AE%E6%9B%B8%E3%81%8D%E6%96%B9%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E5%AD%A6%E3%81%BC%E3%81%86.md) をご覧ください。
+> Solidity のアクセス修飾子に関しては、[こちら](/ETH-NFT-Collection/section-2/lesson-4.md) をご覧ください。
 >
 > `public`を含む、他のアクセス修飾子について詳しく説明しています。
 
