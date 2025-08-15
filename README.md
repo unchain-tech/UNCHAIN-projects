@@ -1,14 +1,34 @@
 # UNCHAIN-projects
 
-The project is in fact a simple markdown filesystem that is deployed as a static website using docusaurus.
+This builder's book for web3 developers is a simple markdown filesystem that is deployed as a static website using docusaurus. Generally, you do not need to install this project to use it, as it is already [publically accessible on the web](https://buidl.unchain.tech/). 
+
+However, as this book is open for anyone to edit and add new pages to, below are steps for anyone who wish to contribute.
 
 ## Local Development
 
+Fetch book source.
 ```
-$ yarn start
+git clone https://github.com/unchain-tech/UNCHAIN-projects.git
+```
+Install dependencies. Since the project itself is mostly a collection of markdown file documentation, this is minimal and is mostly automated proofreading related stuff.
+```
+yarn install 
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+Set precommit hooks. Ensures that basic proofreading check runs before each commit.
+```
+npx simple-git-hooks
+```
+
+Launch book locally. Most changes are reflected live without having to restart the server.
+```
+yarn start
+```
+
+Generates static content into the `build` directory. This output can be served using any static contents hosting service.
+```
+$ yarn build
+```
 
 ### ✅ textlint について
 
@@ -18,13 +38,7 @@ This command starts a local development server and opens up a browser window. Mo
   - see: https://github.com/prh/prh
 - textlint のルール定義： `.textlintrc`
 
-## Build
 
-```
-$ yarn build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
 # Contributors
 
