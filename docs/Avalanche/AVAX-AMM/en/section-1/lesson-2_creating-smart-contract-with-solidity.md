@@ -7,7 +7,7 @@ We will build a smart contract implementing AMM functionality.
 Users will be able to use our smart contract to swap tokens.
 
 Specifically, if our smart contract supports swapping between USDC and JOE tokens,
-users can connect to the smart contract and exchange USDC for JOE tokens (or JOE for USDC).
+users can connect to the smart contract and exchange USDC for JOE tokens（or JOE for USDC）.
 
 Here are the three key terms essential for implementing an AMM:
 
@@ -19,13 +19,13 @@ If the smart contract contains a USDC and JOE pool, users will be able to trade 
 
 🦒 Liquidity Provision
 
-A market with a low amount of tokens in the pool (i.e., large price fluctuations during trades) is said to have low liquidity.
-Conversely, when there’s a large amount of tokens (i.e., smaller price fluctuations), the market is said to have high liquidity.
+A market with a low amount of tokens in the pool（i.e., large price fluctuations during trades）is said to have low liquidity.
+Conversely, when there’s a large amount of tokens（i.e., smaller price fluctuations）, the market is said to have high liquidity.
 
 Many AMMs include a mechanism where token holders can deposit their tokens into the pool to improve liquidity—this is called liquidity provision.
 
 For example, if there’s a USDC and JOE pool, people who own USDC and JOE tokens can deposit both into the pool.
-(Depending on the DEX, you may or may not be required to provide both tokens.)
+（Depending on the DEX, you may or may not be required to provide both tokens.）
 
 Liquidity providers are often rewarded.
 In this project, we will implement rewards by collecting a fee during swaps and distributing it to liquidity providers.
@@ -175,7 +175,7 @@ These two objects represent the contract addresses for the token pair that our A
 In this project, we’ll pass the addresses of `USDCToken` and `JOEToken` to operate the AMM.
 
 [IERC20](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/IERC20.sol) is the interface of `ERC20`,
-meaning it only defines the function signatures (i.e., how ERC20 behaves).
+meaning it only defines the function signatures（i.e., how ERC20 behaves）.
 
 The `AMM contract` does not need to know which exact contract `tokenX` and `tokenY` are.
 As long as the contracts implement the `ERC20` functions, we can interact with them via the interface.

@@ -13,7 +13,7 @@ Here is the overall structure of this project:
 * People from all over the world will be able to access your smart contract.
 * **The blockchain acts as a server.**
 
-3\. **Build the Web Application (dApp)**
+3\. **Build the Web Application （dApp）**
 
 * Users will be able to interact with your deployed smart contract via a website.
 * Smart contract implementation + frontend user interface = Let’s complete the dApp 🎉
@@ -64,7 +64,7 @@ Let’s review the contents of the `package.json` file.
 
 To create a monorepo, we’re using the [Workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/) feature of the package manager.
 
-This allows all packages (contract and client in this case) to be installed in one go with a single `yarn install`.
+This allows all packages（contract and client in this case）to be installed in one go with a single `yarn install`.
 
 The **workspaces** section looks like this:
 
@@ -145,7 +145,7 @@ Now the monorepo skeleton is complete!
 
 ### ✨ Install Hardhat
 
-To quickly compile smart contracts and run tests locally, we’ll use a tool called **Hardhat**.
+To quickly compileスマートコントラクトand run tests locally, we’ll use a tool called **Hardhat**.
 
 * Hardhat lets you easily start a local Ethereum network for testing.
 * Except that the “server” is the blockchain, Hardhat works like a local server.
@@ -196,7 +196,7 @@ When prompted in the terminal, respond as follows:
 ・Do you want to install this sample project's dependencies with npm? → n
 ```
 
-(Example)
+（Example）
 
 ```
 $ npx hardhat init
@@ -322,7 +322,7 @@ Be careful not to delete the entire folder.
 
 Hardhat performs the following steps:
 
-1\. **Compiles smart contracts written in Solidity to bytecode**
+1\. **Compiles スマートコントラクト written in Solidity to bytecode**
 
 * Bytecode is code that can be interpreted by machines.
 
@@ -348,7 +348,7 @@ This will be useful for future development as well, so let’s review the upload
 
 If you don’t yet have a `GitHub` account, create one using [this guide](https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github).
 
-If you’ve never uploaded to `GitHub` before, use [this guide](https://docs.github.com/en/repositories/creating-and-managing-repositories/quickstart-for-repositories) to create a new repository (name it anything),
+If you’ve never uploaded to `GitHub` before, use [this guide](https://docs.github.com/en/repositories/creating-and-managing-repositories/quickstart-for-repositories) to create a new repository（name it anything）,
 then follow the instructions to upload via terminal.
 The following is a sample of commands to run from the `AVAX-AMM/` root:
 

@@ -67,8 +67,8 @@ To make the help process smoother, please include the following in your error re
 
 The conditions for receiving an NFT are as follows:
 
-1. All MVP features are implemented (Implementation OK)
-2. The MVP features run without issues in the web application (Testing OK)
+1. All MVP features are implemented（Implementation OK）
+2. The MVP features run without issues in the web application（Testing OK）
 3. Fill out the Project Completion Form linked at the end of this page
 4. Share your website in the Discord `🔥｜completed-projects` channel
 

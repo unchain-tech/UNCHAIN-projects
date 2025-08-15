@@ -228,7 +228,7 @@ Click the `Faucet` tab and you should see a screen like this:
 ![](/images/AVAX-AMM/section-3/3_4_1.png)
 
 Enter `10` in the input field and click `Fund`.
-After signing the transaction and waiting a moment (after the popup appears and you click OK), the USDC value under `Your Details` on the right should increase by 10.
+After signing the transaction and waiting a moment（after the popup appears and you click OK）, the USDC value under `Your Details` on the right should increase by 10.
 
 ![](/images/AVAX-AMM/section-3/3_4_2.png)
 
@@ -285,7 +285,7 @@ async function onClickFund() {
   This switches between USDC and JOE.
 - `onChangeAmountOfFunds`: Set the user’s input value to `amountOfFunds`.
 - `onClickFund`: When the `Fund` button is clicked, call the `faucet` function of the token at `currentTokenIndex`.
-  Run `updateDetails()` (passed as a prop to this component) to refresh the details.
+  Run `updateDetails()`（passed as a prop to this component）to refresh the details.
 
 🦜 Provide
 
@@ -526,7 +526,7 @@ First, the MetaMask signing screen will appear twice in succession.
 Sign both, wait a moment, and then you’ll be prompted for the final `provide` signature—sign that as well.
 🙌 If anyone can help improve this UI flow, please share with UNCHAIN!
 
-After a short wait (once the popup appears and you click OK), the `Your Details` panel on the right will update!
+After a short wait（once the popup appears and you click OK）, the `Your Details` panel on the right will update!
 
 ![](/images/AVAX-AMM/section-3/3_4_4.png)
 
@@ -541,7 +541,7 @@ const [amountOfToken1, setAmountOfToken1] = useState(""); // Holds the amount of
 const [activePool, setActivePool] = useState(true); // Holds a flag indicating whether the pool currently has liquidity.
 ```
 
-The following two functions are needed to display the required amount of the other token when the user enters a value in one of the input fields (USDC or JOE).
+The following two functions are needed to display the required amount of the other token when the user enters a value in one of the input fields（USDC or JOE）.
 ※ In the earlier behavior check, this couldn’t be confirmed because it was the initial liquidity provision. If you enter a value again in the `Provide` tab, you should be able to verify this feature!
 
 ```ts
@@ -579,7 +579,7 @@ const onChangeAmount = (
 ```
 
 `getProvideEstimate` internally calls the AMM’s `getEquivalentToken`, passing the specified token and its amount as arguments.
-It then sets the return value (the amount of the paired token that is of equivalent value) via `setPairTokenAmount`.
+It then sets the return value（the amount of the paired token that is of equivalent value）via `setPairTokenAmount`.
 
 `onChangeAmount` is triggered when the user enters a number in an input field.
 Its purpose is to update the state variable for the entered token amount and, by calling `getProvideEstimate`, update the state variable for the equivalent amount of the paired token.
@@ -820,7 +820,7 @@ Here’s what’s happening, as illustrated below:
 
 ![](/images/AVAX-AMM/section-3/swap.drawio.png)
 
-After a short wait (once the popup appears and you click OK), the `Your Details` panel on the right will update!
+After a short wait（once the popup appears and you click OK）, the `Your Details` panel on the right will update!
 
 ![](/images/AVAX-AMM/section-3/3_4_6.png)
 
@@ -864,7 +864,7 @@ Other functions call the AMM contract’s functions and store the return values 
 
 Key points are as follows:
 
-- When the input value of the source token (USDC in the earlier behavior check) changes, `onChangeIn` runs `getSwapEstimateOut` to update the displayed amount of the destination token (JOE in the earlier behavior check).
+- When the input value of the source token（USDC in the earlier behavior check）changes, `onChangeIn` runs `getSwapEstimateOut` to update the displayed amount of the destination token（JOE in the earlier behavior check）.
 - When the input value of the destination token changes, `onChangeOut` runs `getSwapEstimateIn` to update the displayed amount of the source token.
 
 🐃 Withdraw
@@ -1107,7 +1107,7 @@ Click the `Withdraw` tab, and you will see a display like this:
 When you click the `Max` button, the number of shares you hold will be set as the input value, and the amount of tokens you can withdraw will be displayed below.
 Click `Withdraw`.
 
-Sign the transaction, and after waiting a short while (once the popup appears and you press OK), the `Your Details` section on the right will be updated!
+Sign the transaction, and after waiting a short while（once the popup appears and you press OK）, the `Your Details` section on the right will be updated!
 
 ![](/images/AVAX-AMM/section-3/3_4_8.png)
 

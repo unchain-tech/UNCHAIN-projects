@@ -260,7 +260,7 @@ If steps 1 and 2 are executed independently in order, several issues can arise:
 * If the transaction in step 2 fails for some reason, a refund for step 1 would be necessary
 * From the AMM’s perspective, it cannot know whether step 1 was meant as a liquidity provision by A
 
-In short, steps 1 and 2 must be executed atomically (at the same time).
+In short, steps 1 and 2 must be executed atomically（at the same time）.
 
 That’s where approve and transferFrom come into play.
 
@@ -273,7 +273,7 @@ Let’s outline the actual process:
    * It updates internal state variables such as shares
 
 We’ll use the same approach later when implementing `swap`,
-because we also want to handle both the token transfer and internal processing (like rate calculation) in a single transaction—so we use `approve`/`transferFrom`.
+because we also want to handle both the token transfer and internal processing（like rate calculation）in a single transaction—so we use `approve`/`transferFrom`.
 
 ### 🧪 Add Tests
 
@@ -447,7 +447,7 @@ expect(await amm.share(owner.address)).to.equal(BN100.mul(precision));
 ```
 
 The share retrieved from the AMM for the owner is larger by the value of `PRECISION`,
-so we compare the value of 100 (the owner's share) multiplied by `precision`.
+so we compare the value of 100（the owner's share）multiplied by `precision`.
 
 ---
 

@@ -17,7 +17,7 @@ If you're new to development on `Avalanche` or have no experience writing smart 
 
 ### 🛠 What Will We Build?
 
-We’ll be building a **decentralized web application (dApp)** called `Miniswap`.
+We’ll be building a **decentralized web application （dApp）** called `Miniswap`.
 
 `Miniswap` consists of a smart contract that has `AMM` functionality, and a frontend codebase that acts as an interface for users to interact with the smart contract.
 
@@ -30,7 +30,7 @@ For an overview of Avalanche and the C-Chain, please refer to [this link]([https
 
 ### 🪙 Defi, DEX, and AMM
 
-🐦 Defi (Decentralized Finance)
+🐦 Defi（Decentralized Finance）
 
 This is a financial ecosystem built on blockchain networks, without a central administrator.
 
@@ -43,19 +43,19 @@ On the other hand, rising fees and the need for users to manage their own assets
 
 [Reference Article](https://academy.binance.com/en/articles/the-complete-beginners-guide-to-decentralized-finance-defi)
 
-🦏 DEX (Decentralized Exchange)
+🦏 DEX（Decentralized Exchange）
 
 A DEX is an exchange that allows anyone to swap cryptocurrency tokens on the blockchain, such as an AVAX-USDC pair.
 It is a type of DeFi.
 
-Centralized exchanges (CEX) like Binance use order books to match buyers and sellers on an online trading platform,
+Centralized exchanges（CEX）like Binance use order books to match buyers and sellers on an online trading platform,
 similar to online brokerage accounts, which are popular among investors.
 
-Decentralized exchanges (DEX) like PancakeSwap and Uniswap are self-contained financial protocols powered by smart contracts that allow crypto traders to convert their assets.
+Decentralized exchanges（DEX）like PancakeSwap and Uniswap are self-contained financial protocols powered byスマートコントラクトthat allow crypto traders to convert their assets.
 
 Since DEXs reduce the need for maintenance, their transaction fees are generally cheaper than centralized exchanges.
 
-🐅 AMM (Automated Market Maker)
+🐅 AMM（Automated Market Maker）
 
 An AMM is an automated trading system based on mathematical formulas, and is used by many DEXs.
 
@@ -113,6 +113,6 @@ Let’s move on to the next lesson and set up your programming environment 🎉
 
 ---
 
-Documentation created by [ryojiroakiyama](https://github.com/ryojiroakiyama) (UNCHAIN Discord ID: rakiyama#8051)
+Documentation created by [ryojiroakiyama](https://github.com/ryojiroakiyama)（UNCHAIN Discord ID: rakiyama#8051）
 
 ---

@@ -51,7 +51,7 @@ Let’s derive the formula for the following situation:
 
 Suppose the pool contains x of token X and y of token Y.
 
-A user provides token X and receives token Y (a swap from X to Y).
+A user provides token X and receives token Y（a swap from X to Y）.
 
 Let x' be the amount of token X added, and y' be the amount of token Y received.
 

@@ -8,7 +8,7 @@ Key point:
 
 The token amount a user sends to the pool during a swap is slightly discounted internally within the AMM before the swap calculation is performed.
 
-In this example, we apply a 0.3% fee (i.e., we calculate using 99.7% of the provided amount).
+In this example, we apply a 0.3％ fee（i.e., we calculate using 99.7％ of the provided amount）.
 
 Let’s walk through a concrete example.
 
@@ -18,7 +18,7 @@ Suppose the pool contains `10,000` tokens each of Token X and Token Y.
 
 User A wants to perform a swap of `1,000` Token X to Token Y.
 
-Using the formula derived in the previous lesson (Situation 1):
+Using the formula derived in the previous lesson（Situation 1）:
 
 ![](/images/AVAX-AMM/section-2/2_2_1.png)
 
@@ -39,7 +39,7 @@ The new token amounts in the pool become `11,000` for X and `9,091` for Y.
 🐿️ With Fee Consideration
 
 The user specifies 1,000 Token X for the swap,
-but internally the AMM calculates with 997 after subtracting 0.3% (3 tokens).
+but internally the AMM calculates with 997 after subtracting 0.3％（3 tokens）.
 
 ![](/images/AVAX-AMM/section-2/2_2_3.png)
 
@@ -72,9 +72,9 @@ Original formula:
 
 ![](/images/AVAX-AMM/section-2/2_2_1.png)
 
-To account for a 0.3% fee, we use 0.997x' instead of x'.
+To account for a 0.3％ fee, we use 0.997x' instead of x'.
 
-Since Solidity cannot handle decimals, we scale everything by 1,000 (3 digits up):
+Since Solidity cannot handle decimals, we scale everything by 1,000（3 digits up）:
 
 ![](/images/AVAX-AMM/section-2/2_2_4.png)
 
@@ -88,7 +88,7 @@ Original formula:
 
 ![](/images/AVAX-AMM/section-2/2_2_6.png)
 
-Again, reduce x' by 0.3% and scale by 1,000:
+Again, reduce x' by 0.3％ and scale by 1,000:
 
 ![](/images/AVAX-AMM/section-2/2_2_7.png)
 
