@@ -11,7 +11,7 @@ pagination_prev:
 
 ## 🌍 **プロジェクトのアップデートについて**
 
-[UNCHAIN](https://www.unchain.tech) のプロジェクトは全て[オープンソース](https://github.com/unchain-dev/UNCHAIN-projects/blob/main/LICENSE)で運用されています。
+[UNCHAIN](https://www.unchain.tech) のプロジェクトは全て[オープンソース](https://github.com/unchain-tech/UNCHAIN-projects/blob/main/LICENSE)で運用されています。
 
 プロジェクトに参加していて、「こうすればもっと分かりやすいのに!」「これは間違っている!」と思ったら、直接`pull request`を送ってくださると幸いです ✨
 
@@ -27,6 +27,6 @@ Githubから直接コードを編集して直接`pull request`を送る方法は
 
 ## 🐝 **コードの中にバグを発見した!**
 
-プロジェクトの中にバグを発見した場合は、[こちら](https://github.com/unchain-dev/UNCHAIN-projects/issues)で`Issue`を作成していただけますと幸いです。
+プロジェクトの中にバグを発見した場合は、[こちら](https://github.com/unchain-tech/UNCHAIN-projects/issues)で`Issue`を作成していただけますと幸いです。
 
 `Issue`の作成方法に関しては、[こちら](https://docs.github.com/ja/issues/tracking-your-work-with-issues/creating-an-issue)を参照してください。

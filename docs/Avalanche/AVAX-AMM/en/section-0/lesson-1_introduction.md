@@ -26,7 +26,7 @@ and `TypeScript` + `React.js` + `Next.js` for the frontend.
 
 The completed smart contract will be deployed to [FUJI C-Chain](https://build.avax.network/docs/quick-start/networks/fuji-testnet).
 
-For an overview of Avalanche and the C-Chain, please refer to [this link]([https://app.unchain.tech/learn/AVAX-Messenger/ja/0/1/](https://buidl.unchain.tech/AVAX-Messenger/ja/section-0/lesson-1_Avalanche%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E4%B8%8A%E3%81%A7WEB%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E6%A7%8B%E7%AF%89%E3%81%97%E3%82%88%E3%81%86/)).
+For an overview of Avalanche and the C-Chain, please refer to [this link](https://buidl.unchain.tech/Avalanche/AVAX-Messenger).
 
 ### 🪙 Defi, DEX, and AMM
 
@@ -75,7 +75,7 @@ Low slippage - The slow speed of the Ethereum blockchain often leads to signific
 
 ### 🌍 Upgrade the Project
 
-Projects on [UNCHAIN](https://unchain.tech/) are maintained under the [UNCHAIN License](https://github.com/unchain-dev/UNCHAIN-projects/blob/main/LICENSE).
+Projects on [UNCHAIN](https://unchain.tech/) are maintained under the [UNCHAIN License](https://github.com/unchain-tech/UNCHAIN-projects/blob/main/LICENSE).
 
 If you're participating in the project and think, “This could be clearer!” or “This is incorrect!”
 Feel free to send a `pull request`.

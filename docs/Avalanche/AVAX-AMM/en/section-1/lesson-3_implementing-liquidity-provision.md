@@ -493,7 +493,7 @@ If you see the following, the tests passed!
 
 ### 🌔 Reference Link
 
-> The completed version of this project is available [here](https://github.com/unchain-dev/avalanche-amm-dapp).
+> The completed version of this project is available [here](https://github.com/unchain-tech/avalanche-amm-dapp).
 >
 > If something doesn't work as expected, use it for reference.
 

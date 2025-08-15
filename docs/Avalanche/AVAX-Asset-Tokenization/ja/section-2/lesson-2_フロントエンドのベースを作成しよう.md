@@ -346,10 +346,10 @@ export default MyApp;
 
 📁 `Button`ディレクトリ
 
-ここでは貼り付けるコード量が多いので、 [本プロジェクトの packages/client/components](https://github.com/unchain-dev/AVAX-Asset-Tokenization/tree/main/packages/client/components)を参照します。
+ここでは貼り付けるコード量が多いので、 [本プロジェクトの packages/client/components](https://github.com/unchain-tech/AVAX-Asset-Tokenization/tree/main/packages/client/components)を参照します。
 
 `components`ディレクトリ内から`Button`ディレクトリをそのままコピーして貼り付けてください。
-[本レポジトリ](https://github.com/unchain-dev/AVAX-Asset-Tokenization/tree/main)自体をローカルにクローンしてからコピーしたほうがやりやすいかもしれません。
+[本レポジトリ](https://github.com/unchain-tech/AVAX-Asset-Tokenization/tree/main)自体をローカルにクローンしてからコピーしたほうがやりやすいかもしれません。
 
 `Button`に関するフォルダ構成はこのようになります。
 
@@ -379,7 +379,7 @@ client
 
 📁 `Container`ディレクトリ
 
-同じく[本プロジェクトの packages/client/components](https://github.com/unchain-dev/AVAX-Asset-Tokenization/tree/main/packages/client/components)を参照します。
+同じく[本プロジェクトの packages/client/components](https://github.com/unchain-tech/AVAX-Asset-Tokenization/tree/main/packages/client/components)を参照します。
 
 `components`ディレクトリ内から`Container`ディレクトリをそのままコピーして貼り付けてください。
 
@@ -404,7 +404,7 @@ client
 
 📁 `Layout`ディレクトリ
 
-同じく[本プロジェクトの packages/client/components](https://github.com/unchain-dev/AVAX-Asset-Tokenization/tree/main/packages/client/components)を参照します。
+同じく[本プロジェクトの packages/client/components](https://github.com/unchain-tech/AVAX-Asset-Tokenization/tree/main/packages/client/components)を参照します。
 
 `components`ディレクトリ内から`Layout`ディレクトリをそのままコピーして貼り付けてください。
 
@@ -536,7 +536,7 @@ MetaMaskの承認が終わると、 `Connect to wallet`ボタンの部分があ�
 
 ### 🌔 参考リンク
 
-> [こちら](https://github.com/unchain-dev/AVAX-Asset-Tokenization)に本プロジェクトの完成形のレポジトリがあります。
+> [こちら](https://github.com/unchain-tech/AVAX-Asset-Tokenization)に本プロジェクトの完成形のレポジトリがあります。
 > 期待通り動かない場合は参考にしてみてください。
 
 ### 🙋‍♂️ 質問する

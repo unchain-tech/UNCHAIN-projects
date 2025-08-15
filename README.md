@@ -28,6 +28,6 @@ This command generates static content into the `build` directory and can be serv
 
 # Contributors
 
-<a href="https://github.com/unchain-dev/UNCHAIN-projects/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=unchain-dev/UNCHAIN-projects" />
+<a href="https://github.com/unchain-tech/UNCHAIN-projects/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=unchain-tech/UNCHAIN-projects" />
 </a>

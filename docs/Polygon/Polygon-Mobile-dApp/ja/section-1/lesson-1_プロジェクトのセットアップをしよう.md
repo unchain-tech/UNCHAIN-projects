@@ -23,7 +23,7 @@ corepack enable
 yarn set version 3.6.4
 ```
 
-次に、以下のコマンドを実行して[Workspaces](https://yarnpkg.com/features/workspaces)を設定します。これは、プロジェクトをモノレポ構成にするためです。モノレポに関しては「[ETH dApp Section 1 - Lesson 1 🔍 フォルダ構成を確認する](https://app.unchain.tech/learn/ETH-dApp/ja/1/1/)」を参照して下さい。
+次に、以下のコマンドを実行して[Workspaces](https://yarnpkg.com/features/workspaces)を設定します。これは、プロジェクトをモノレポ構成にするためです。モノレポに関しては「[ETH dApp Section 1 - Lesson 1 🔍 フォルダ構成を確認する](https://buidl.unchain.tech/Ethereum/ETH-dApp/ja/section-1/lesson-1_%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E7%92%B0%E5%A2%83%E3%81%A7%E3%82%A4%E3%83%BC%E3%82%B5%E3%83%AA%E3%82%A2%E3%83%A0%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%92%E7%AB%8B%E3%81%A1%E4%B8%8A%E3%81%92%E3%82%88%E3%81%86#-%E3%83%95%E3%82%A9%E3%83%AB%E3%83%80%E6%A7%8B%E6%88%90%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B)」を参照して下さい。
 
 ```
 yarn init -w
