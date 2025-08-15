@@ -263,7 +263,7 @@ contract Bank {
 
 テストコードは詳細な説明を挟まないですが、コード自体は量が多いのでこちらに載せずにGit hub上からコピーして頂こうかと思います。
 
-`test`ディレクトリの下に`Bank.ts`を作成し、[こちら](https://github.com/unchain-dev/AVAX-Subnet/blob/main/contract/test/Bank.ts)のファイル内のコードをコピーして貼り付けてください。
+`test`ディレクトリの下に`Bank.ts`を作成し、[こちら](https://github.com/unchain-tech/AVAX-Subnet/blob/main/contract/test/Bank.ts)のファイル内のコードをコピーして貼り付けてください。
 
 また、先に参考文献を紹介しますのでこの先の説明でわからない時は参考にしてください。
 
@@ -534,7 +534,7 @@ yarn test
 
 ### 🌔 参考リンク
 
-> [こちら](https://github.com/unchain-dev/AVAX-Subnet)に本プロジェクトの完成形のレポジトリがあります。
+> [こちら](https://github.com/unchain-tech/AVAX-Subnet)に本プロジェクトの完成形のレポジトリがあります。
 > 期待通り動かない場合は参考にしてみてください。
 
 ### 🙋‍♂️ 質問する

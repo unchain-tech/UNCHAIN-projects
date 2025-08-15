@@ -21,7 +21,7 @@ title: Avalancheネットワーク上でWEBアプリを構築しよう
 一度に扱う情報量が多すぎないようにするためです。
 
 また基礎知識として
-ブロックチェーン、スマートコントラクト、dappの説明に関しては[こちら](/Ethereum/ETH-dApp/section-0/lesson-1.md)をご覧ください。
+ブロックチェーン、スマートコントラクト、dappの説明に関しては[こちら](/Ethereum/ETH-dApp)をご覧ください。
 
 ### ⛄ `Avalanche`とは何か
 
@@ -71,7 +71,7 @@ Ethereumはとても大きなプラットフォームですから、多くのブ
 
 ### 🌍 プロジェクトをアップグレードする
 
-[UNCHAIN](https://unchain.tech/) のプロジェクトは [UNCHAIN License](https://github.com/unchain-dev/UNCHAIN-projects/blob/main/LICENSE) により運用されています。
+[UNCHAIN](https://www.unchain.tech/) のプロジェクトは [UNCHAIN License](https://github.com/unchain-tech/UNCHAIN-projects/blob/main/LICENSE) により運用されています。
 
 プロジェクトに参加していて、「こうすればもっと分かりやすいのに!」「これは間違っている!」と思ったら、ぜひ`pull request`を送ってください。
 

@@ -16,7 +16,7 @@ title: プロジェクトを開始しよう
 いますべてを理解している必要はありません。  
 わからないことがあったらインターネットで検索したり、 コミュニティで質問しながらプロジェクトを進めていきましょう!
 
-`Avalanche`での開発が初めての方や、 `hardhat`でスマートコントラクトのテストを書いたご経験の無い方は [AVAX-Messenger](https://app.unchain.tech/learn/AVAX-Messenger) により詳しく解説がありますので先にそちらを進めるとスムーズかと思います。
+`Avalanche`での開発が初めての方や、 `hardhat`でスマートコントラクトのテストを書いたご経験の無い方は [AVAX-Messenger](https://buidl.unchain.tech/Avalanche/AVAX-Messenger) により詳しく解説がありますので先にそちらを進めるとスムーズかと思います。
 
 また`NFT`に関して実装が初めての方は`ETH NFT Collection`により詳しく解説があります。
 
@@ -42,7 +42,7 @@ title: プロジェクトを開始しよう
 
 今回は作成したスマートコントラクトを、 [FUJI C-Chain](https://docs.avax.network/quickstart/fuji-workflow)へデプロイします。
 
-AvalancheとC-Chainに関する概要は[こちら](https://app.unchain.tech/learn/AVAX-Messenger/ja/0/1/)をご覧ください。 
+AvalancheとC-Chainに関する概要は[こちら](https://buidl.unchain.tech/Avalanche/AVAX-Messenger/)をご覧ください。 
 
 ### 🚀 Avalanche と Tokenization
 
@@ -56,7 +56,7 @@ Avalancheはそのコンセンサスアルゴリズムやサブネット（独�
 
 ### 🌍 プロジェクトをアップグレードする
 
-[UNCHAIN](https://unchain.tech/) のプロジェクトは [UNCHAIN License](https://github.com/unchain-dev/UNCHAIN-projects/blob/main/LICENSE) により運用されています。
+[UNCHAIN](https://unchain.tech/) のプロジェクトは [UNCHAIN License](https://github.com/unchain-tech/UNCHAIN-projects/blob/main/LICENSE) により運用されています。
 
 プロジェクトに参加していて、「こうすればもっと分かりやすいのに!」「これは間違っている!」と思ったら、ぜひ`pull request`を送ってください。
 

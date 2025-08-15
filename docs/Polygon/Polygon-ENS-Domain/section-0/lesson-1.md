@@ -72,7 +72,7 @@ Solidityでバックエンドを実装し、Reactでフロントエンドを構�
 
 ### 🌍 プロジェクトをアップグレードする
 
-この学習コンテンツは、[Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/) © 2022 buildspaceのライセンス及び [UNCHAIN License](https://github.com/unchain-dev/UNCHAIN-projects/blob/main/LICENSE) のもとで運用されています。
+この学習コンテンツは、[Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/) © 2022 buildspaceのライセンス及び [UNCHAIN License](https://github.com/unchain-tech/UNCHAIN-projects/blob/main/LICENSE) のもとで運用されています。
 
 プロジェクトに参加していて、「こうすればもっと分かりやすいのに!」「これは間違っている!」と思ったら、ぜひ`pull request`を送ってください。
 

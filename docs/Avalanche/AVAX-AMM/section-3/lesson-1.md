@@ -11,7 +11,7 @@ title: フロントエンドをセットアップしよう
 - `React.js`: ライブラリ
 - `Next.js`: `React.js`のフレームワーク
 
-それぞれの概要については[こちら](https://app.unchain.tech/learn/AVAX-Messenger/ja/2/1/)に説明を載せていますので、
+それぞれの概要については[こちら](https://buidl.unchain.tech/Avalanche/AVAX-Messenger/)に説明を載せていますので、
 初めて触れる方はご参照ください 💁
 
 ### 🛠️ 　フロントエンドのセットアップをしよう

@@ -293,7 +293,7 @@ openseaなどのNFTマーケットサービスは、 このtokenURI関数のデ�
 
 テストコードは詳細な説明を省きますが、 コード自体は量が多いのでGit hub上からコピーして頂きたいです。
 
-`test`ディレクトの下に`FarmNft.ts`を作成し、 [こちら](https://github.com/unchain-dev/AVAX-Asset-Tokenization/blob/main/packages/contract/test/FarmNft.ts)のファイル内のコードをコピーして貼り付けてください。
+`test`ディレクトの下に`FarmNft.ts`を作成し、 [こちら](https://github.com/unchain-tech/AVAX-Asset-Tokenization/blob/main/packages/contract/test/FarmNft.ts)のファイル内のコードをコピーして貼り付けてください。
 
 また、 ここでテストに関わる参考文献を紹介しますのでこの先の説明でわからない時は参考にしてください。
 
@@ -377,7 +377,7 @@ yarn test
 
 ### 🌔 参考リンク
 
-> [こちら](https://github.com/unchain-dev/AVAX-Asset-Tokenization)に本プロジェクトの完成形のレポジトリがあります。
+> [こちら](https://github.com/unchain-tech/AVAX-Asset-Tokenization)に本プロジェクトの完成形のレポジトリがあります。
 > 期待通り動かない場合は参考にしてみてください。
 
 ### 🙋‍♂️ 質問する

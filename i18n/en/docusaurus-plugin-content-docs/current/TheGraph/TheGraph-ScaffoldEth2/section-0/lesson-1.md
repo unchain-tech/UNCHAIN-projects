@@ -52,7 +52,7 @@ https://sendmessage-tau.vercel.app
 
 ### 🌍 Upgrading this project
 
-This learning content is operated under[UNCHAIN License](https://github.com/unchain-dev/UNCHAIN-projects/blob/main/LICENSE).
+This learning content is operated under[UNCHAIN License](https://github.com/unchain-tech/UNCHAIN-projects/blob/main/LICENSE).
 
 If you're participating in the project and think, 'This could be clearer if done this way!' or 'This is incorrect!', please feel free to send a `pull request`.
 

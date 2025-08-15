@@ -564,7 +564,7 @@ $ git push -u origin main
 
 ### 🌔 参考リンク
 
-> [こちら](https://github.com/unchain-dev/AVAX-Subnet)に本プロジェクトの完成形のレポジトリがあります。
+> [こちら](https://github.com/unchain-tech/AVAX-Subnet)に本プロジェクトの完成形のレポジトリがあります。
 > 期待通り動かない場合は参考にしてみてください。
 
 ### 🙋‍♂️ 質問する

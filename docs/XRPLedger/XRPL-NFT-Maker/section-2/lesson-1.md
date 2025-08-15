@@ -30,7 +30,7 @@ XRP LedgerのクライアントライブラリはJavaScriptやPythonなどに対
    `api-key`と`api-secret`はlesson-2でXumm Developer Consoleから取得したものに置き換えてください。
    URIにはIPFSのURIを指定します。メタデータのJSONファイルであることが望ましいですが、ここでは画像のURIで構いません。
 
-   IPFSについては[IPFSってなんだろう](https://app.unchain.tech/learn/ETH-NFT-Maker/ja/2/1/)、IPFSに画像をアップロードする方法については[IPFSを使ってみよう！](https://app.unchain.tech/learn/ETH-NFT-Maker/ja/2/2/)をご覧ください！
+   IPFSについては[IPFSってなんだろう](https://buidl.unchain.tech/Ethereum/ETH-NFT-Maker/ja/section-2/lesson-1_IPFS%E3%81%A3%E3%81%A6%E3%81%AA%E3%82%93%E3%81%A0%E3%82%8D%E3%81%86)、IPFSに画像をアップロードする方法については[IPFSを使ってみよう！](https://buidl.unchain.tech/Ethereum/ETH-NFT-Maker/ja/section-2/lesson-2_IPFS%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%88%E3%81%86%EF%BC%81)をご覧ください！
 
 ```js
 const { Xumm } = require('xumm');

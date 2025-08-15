@@ -17,7 +17,7 @@ yarn client dev
 
 📁 `Form`ディレクトリ
 
-ここでは貼り付けるコード量が多いので、 [本プロジェクトの packages/client/components](https://github.com/unchain-dev/AVAX-Asset-Tokenization/tree/main/packages/client/components)を参照します。
+ここでは貼り付けるコード量が多いので、 [本プロジェクトの packages/client/components](https://github.com/unchain-tech/AVAX-Asset-Tokenization/tree/main/packages/client/components)を参照します。
 
 `components/Form`ディレクトリのファイルの内容をコピーしてください。
 既にあるファイルの場合は上書きしてください。
@@ -117,7 +117,7 @@ yarn client dev
 
 ### 🌔 参考リンク
 
-> [こちら](https://github.com/unchain-dev/AVAX-Asset-Tokenization)に本プロジェクトの完成形のレポジトリがあります。
+> [こちら](https://github.com/unchain-tech/AVAX-Asset-Tokenization)に本プロジェクトの完成形のレポジトリがあります。
 > 期待通り動かない場合は参考にしてみてください。
 
 ### 🙋‍♂️ 質問する
