@@ -1,0 +1,34 @@
+name: textlint-fix
+
+on:
+  workflow_dispatch:
+    inputs:
+      scope:
+        description: "Glob of files to fix"
+        required: false
+        default: "docs/Avalanche/AVAX-AMM/en/**/*.md"
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: corepack enable && yarn --frozen-lockfile
+      # 乾行（dry-run）で差分だけ先に確認したい場合は次の行を有効化：
+      # - run: npx textlint --fix-dry-run --format pretty "${{ github.event.inputs.scope }}"
+      - run: npx textlint --fix "${{ github.event.inputs.scope }}"
+      - name: Commit changes
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "chore(textlint): auto-fix (${GITHUB_REF_NAME})" || echo "No changes to commit"
+          git push
