@@ -1,3 +1,6 @@
+---
+title: Connect to the Contract
+---
 Up to this point, we have prepared the UI for the frontend and successfully connected to the wallet!
 
 In this lesson, you will deploy your smart contract and connect it to the frontend.

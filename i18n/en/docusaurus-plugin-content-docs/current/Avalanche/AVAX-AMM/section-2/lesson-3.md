@@ -1,3 +1,6 @@
+---
+title: Implementing Swap
+---
 ### 🔥 Let's Implement `swap`
 
 In the previous lesson, we learned how to calculate the amount of tokens to be transferred to the user when performing a token swap.

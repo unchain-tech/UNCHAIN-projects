@@ -1,3 +1,6 @@
+---
+title: Implementing Liquidity Provision
+---
 ### 🔥 Let’s Implement Liquidity Provision
 
 In this lesson, we’ll implement a function in the contract that is triggered when a token-holding user provides liquidity.

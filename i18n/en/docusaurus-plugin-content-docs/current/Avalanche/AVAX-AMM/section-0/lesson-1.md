@@ -1,3 +1,6 @@
+---
+title: Introduction
+---
 ### 👋 Welcome to the dApp Development Project!
 
 In this project, we will implement a smart contract on `Avalanche` and build a custom web application that interacts with the smart contract.

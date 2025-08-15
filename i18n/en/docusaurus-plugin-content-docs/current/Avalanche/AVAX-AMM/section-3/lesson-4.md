@@ -1,3 +1,6 @@
+---
+title: Complete the Frontend
+---
 ### Let’s Add a Component
 
 The frontend is getting close to completion!

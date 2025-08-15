@@ -1,3 +1,6 @@
+---
+title: Development Environment Setting
+---
 ### ✅ Set Up Your Development Environment
 
 Here is the overall structure of this project:

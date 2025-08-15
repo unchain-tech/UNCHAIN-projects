@@ -1,3 +1,6 @@
+---
+title: Implementing Token Withdrawal
+---
 ### 🔥 Let's Implement Token Withdrawal Functionality
 
 In the previous lesson, we implemented the token providing functionality.

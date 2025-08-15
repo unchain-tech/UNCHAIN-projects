@@ -1,3 +1,6 @@
+---
+title: Understanding Swap
+---
 ### 🐣 Let's Understand How Swap Works
 
 In AMMs, the amount of tokens that can be swapped is determined according to an algorithm.

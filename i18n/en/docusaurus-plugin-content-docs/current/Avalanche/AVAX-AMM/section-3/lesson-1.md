@@ -1,3 +1,6 @@
+---
+title: Implementing Frontend Setting
+---
 ### 🍽 Let’s Create the Frontend
 
 In this section, we will build a frontend that interacts with our smart contract.

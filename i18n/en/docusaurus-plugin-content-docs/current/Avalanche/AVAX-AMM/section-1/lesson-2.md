@@ -1,3 +1,6 @@
+---
+title: Creating Smart Contract with Solidity
+---
 From this point onward in section 1, we will be working with files inside the `AVAX-AMM/packages/contract` directory. 🙌
 
 ### 👩‍💻 Review of What We'll Implement

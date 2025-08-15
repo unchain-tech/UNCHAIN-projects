@@ -1,3 +1,6 @@
+---
+title: Deploy the Web App
+---
 ### 🌍 Let’s Host on a Server
 
 Finally, let’s host your web application on [Vercel](https://vercel.com/).

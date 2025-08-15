@@ -1,3 +1,6 @@
+---
+title: Creating Base for Frontend
+---
 So now, let’s actually start writing code to create the foundation of the frontend.
 From here on, we’ll be working with the files inside the `AVAX-AMM/packages/client` directory. 🙌
 

@@ -1,3 +1,6 @@
+---
+title: Understanding Swap Fees
+---
 ### 🐣 Understand How Fees Work During Swap
 
 In the previous lesson, we looked at how token amounts in the pool increase and decrease during a swap based on a specific calculation.
