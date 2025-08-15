@@ -11,7 +11,7 @@ This time, we’ll use `TypeScript` + `React` + `Next.js` for frontend developme
 * `React.js`: Library
 * `Next.js`: Framework for `React.js`
 
-For an overview of each, please refer to [this link](https://buidl.unchain.tech/Avalanche/AVAX-Messenger/ja/section-2/lesson-1_%E3%83%95%E3%83%AD%E3%83%B3%E3%83%88%E3%82%A8%E3%83%B3%E3%83%89%E3%82%92%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97%E3%81%97%E3%82%88%E3%81%86/).
+For an overview of each, please refer to [this link](/Avalanche/AVAX-Messenger/section-2/lesson-1.md).
 If this is your first time using them, you might find it helpful 💁（The English version hasn’t been released yet.）
 
 ### 🛠️ Let’s Set Up the Frontend

@@ -82,7 +82,7 @@ Git Manager上に、Commit & Push画面が表示されます。GitHubへプッ�
 
 ### 🤟 Vercel に Web アプリケーションをデプロイする
 
-Vercelにアプリケーションをデプロイする場合は、[Vercel で Web アプリケーションをデプロイする](https://buidl.unchain.tech/Solana/Solana-NFT-Drop/ja/section-4/lesson-2_WEB%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E5%AE%8C%E6%88%90%E3%81%95%E3%81%9B%E3%82%88%E3%81%86)を参考にしてみてください。
+Vercelにアプリケーションをデプロイする場合は、[Vercel で Web アプリケーションをデプロイする](/Solana/Solana-NFT-Drop/section-4/lesson-2)を参考にしてみてください。
 
 ### 🎊 やったね！
 

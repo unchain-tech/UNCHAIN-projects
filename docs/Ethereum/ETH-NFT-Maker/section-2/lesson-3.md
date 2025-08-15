@@ -80,7 +80,7 @@ import "./libraries/Base64.sol";
 ```
 
 `tokenURI`には、NFTデータをJSON形式で渡さなければいけません。
-Base64のやり方は、[ETH-NFT-Game](https://buidl.unchain.tech/Ethereum/ETH-NFT-Game/ja/section-1/lesson-5_%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E7%92%B0%E5%A2%83%E3%81%A7NFT%E3%82%92mint%E3%81%97%E3%82%88%E3%81%86) のやり方を参考にしています。
+Base64のやり方は、[ETH-NFT-Game](/Ethereum/ETH-NFT-Game/section-1/lesson-5) のやり方を参考にしています。
 
 なぜ、Base64で渡す必要があるのかを調べてみてください!
 

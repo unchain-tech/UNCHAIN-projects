@@ -82,7 +82,7 @@ Go to your GitHub account and make sure the files have been uploaded to the Poly
 
 ### 🤟 Deploying a Web Application to Vercel
 
-To deploy an application to Vercel, please refer to [Deploying a Web Application in Vercel](https://buidl.unchain.tech/Solana/Solana-NFT-Drop/ja/section-4/lesson-2_WEB%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E5%AE%8C%E6%88%90%E3%81%95%E3%81%9B%E3%82%88%E3%81%86)
+To deploy an application to Vercel, please refer to [Deploying a Web Application in Vercel](/Solana/Solana-NFT-Drop/section-4/lesson-2)
 
 ### 🎊 You did it!
 

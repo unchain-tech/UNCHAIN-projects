@@ -16,7 +16,7 @@ The following technologies are required for this project:
 You don’t need to fully understand everything right now.
 If you encounter something you don’t know, feel free to search the internet or ask questions in the community as you move forward with the project!
 
-If you're new to development on `Avalanche` or have no experience writing smart contract tests with `hardhat`, [AVAX-Messenger](https://buidl.unchain.tech/AVAX-Messenger/ja/section-0/lesson-1_Avalanche%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E4%B8%8A%E3%81%A7WEB%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E6%A7%8B%E7%AF%89%E3%81%97%E3%82%88%E3%81%86/) offers a more detailed explanation, so starting there may help things go more smoothly.
+If you're new to development on `Avalanche` or have no experience writing smart contract tests with `hardhat`, [AVAX-Messenger](/Avalanche/AVAX-Messenger/section-0/lesson-1) offers a more detailed explanation, so starting there may help things go more smoothly.
 
 ### 🛠 What Will We Build?
 
