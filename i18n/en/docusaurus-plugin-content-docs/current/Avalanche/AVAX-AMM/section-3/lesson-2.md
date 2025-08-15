@@ -212,7 +212,7 @@ export const formatWithoutPrecision = (
 
 Here we provide utility functions used when sending and receiving information about the contract and shares.
 
-If you’d like to review shares again（since we stepped away from them for a bit）, please visit the `About Shares` section in [section-1/lesson-2](/Avalanche/AVAX-AMM/section-1/lesson-2.md).（It is not yet supported in English.）
+If you’d like to review shares again（since we stepped away from them for a bit）, please visit the `About Shares` section in [section-1/lesson-2](/Avalanche/AVAX-AMM/section-1/lesson-2).（It is not yet supported in English.）
 
 As a rule, the frontend keeps shares as strings without PRECISION.
 
