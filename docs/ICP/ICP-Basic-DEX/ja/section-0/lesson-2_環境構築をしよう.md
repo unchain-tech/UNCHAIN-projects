@@ -1,6 +1,6 @@
 ### 🔥 サイクル取得の申請をしよう
 
-[ICP-Static-Site サイクル取得の申請をしよう](https://app.unchain.tech/learn/ICP-Static-Site/section-1_lesson-1)を参照して、無料でサイクルを取得するためのコードを受け取りましょう。
+[ICP-Static-Site サイクル取得の申請をしよう](https://buidl.unchain.tech/ICP/ICP-Static-Site/ja/section-1/lesson-1_%E3%82%B5%E3%82%A4%E3%82%AF%E3%83%AB%E5%8F%96%E5%BE%97%E3%81%AE%E7%94%B3%E8%AB%8B%E3%82%92%E3%81%97%E3%82%88%E3%81%86)を参照して、無料でサイクルを取得するためのコードを受け取りましょう。
 
 ※ 実際にサイクルを使用するのは、本コンテンツのセクション4になります。申請後は、返答を待つ間次に進んでいただいて大丈夫です！
 

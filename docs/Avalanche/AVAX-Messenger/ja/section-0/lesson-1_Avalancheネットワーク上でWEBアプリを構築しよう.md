@@ -18,7 +18,7 @@
 一度に扱う情報量が多すぎないようにするためです。
 
 また基礎知識として
-ブロックチェーン、スマートコントラクト、dappの説明に関しては[こちら](https://app.unchain.tech/learn/ETH-dApp/ja/0/1/)をご覧ください。
+ブロックチェーン、スマートコントラクト、dappの説明に関しては[こちら](https://buidl.unchain.tech/Ethereum/ETH-dApp/)をご覧ください。
 
 ### ⛄ `Avalanche`とは何か
 
@@ -68,7 +68,7 @@ Ethereumはとても大きなプラットフォームですから、多くのブ
 
 ### 🌍 プロジェクトをアップグレードする
 
-[UNCHAIN](https://unchain.tech/) のプロジェクトは [UNCHAIN License](https://github.com/unchain-dev/UNCHAIN-projects/blob/main/LICENSE) により運用されています。
+[UNCHAIN](https://www.unchain.tech/) のプロジェクトは [UNCHAIN License](https://github.com/unchain-tech/UNCHAIN-projects/blob/main/LICENSE) により運用されています。
 
 プロジェクトに参加していて、「こうすればもっと分かりやすいのに!」「これは間違っている!」と思ったら、ぜひ`pull request`を送ってください。
 
