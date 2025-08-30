@@ -24,7 +24,7 @@ yarn-error.log*
 .env.production.local
 
 # MCPサーバー用の環境変数ファイル
-mcp/.env
+.vscode/config/.env
 
 # Serena MCP
 .serena/
