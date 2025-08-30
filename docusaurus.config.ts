@@ -1,7 +1,6 @@
-import { themes as prismThemes } from "prism-react-renderer";
-import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
-import type { SidebarsConfig } from "@docusaurus/plugin-content-docs";
+import type { Config } from "@docusaurus/types";
+import { themes as prismThemes } from "prism-react-renderer";
 
 const config: Config = {
   title: "UNCHAIN BUIDL",
@@ -127,7 +126,7 @@ const config: Config = {
               href: "https://discord.gg/invite/w3AyyvKypT",
             },
             {
-              label: "Twitter",
+              label: "X",
               href: "https://x.com/UNCHAIN_tech",
             },
           ],
