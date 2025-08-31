@@ -6,13 +6,17 @@
       "command": "npx",
       "args": ["-y", "@upstash/context7-mcp@latest"]
     },
-    "deepwiki": {
-      "url": "https://mcp.deepwiki.com/sse"
+    "sequential-thinking": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ]
     },
     "figma-developer-mcp": {
       "command": "npx",
       "args": ["-y", "figma-developer-mcp", "--stdio"],
-      "envFile": "${workspaceFolder}/mcp/.env"
+      "envFile": "${workspaceFolder}/.vscode/config/.env"
     },
     "serena": {
       "command": "uvx",
@@ -35,7 +39,7 @@
         "GITHUB_PERSONAL_ACCESS_TOKEN",
         "ghcr.io/github/github-mcp-server"
       ],
-      "envFile": "${workspaceFolder}/mcp/.env"
+      "envFile": "${workspaceFolder}/.vscode/config/.env"
     }
   },
 }
