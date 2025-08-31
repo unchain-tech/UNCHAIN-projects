@@ -4,6 +4,6 @@
   "difficulty": "intermediate",
   "chain": "Solana",
   "description": "👉 React + Next.js + TailwindCSS を使い、Solana 上で資金の確認、エアドロップ、送金ができる WEB ウォレットを構築します。",
-  "total_sections": 4,
-  "total_lessons": 8
+  "total_sections": 3,
+  "total_lessons": 7
 }

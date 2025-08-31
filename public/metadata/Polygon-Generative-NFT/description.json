@@ -4,6 +4,6 @@
   "difficulty": "intermediate",
   "chain": "Polygon",
   "description": "👉 Polygon 上で希少性を備えた NFT を発行し、React でコレクションを販売する WEB サイトを構築します。",
-  "total_sections": 5,
+  "total_sections": 4,
   "total_lessons": 11
 }
