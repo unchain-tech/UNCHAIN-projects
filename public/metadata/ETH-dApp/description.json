@@ -4,6 +4,6 @@
   "difficulty": "beginner",
   "chain": "Ethereum",
   "description": "👉 Solidity によるコントラクトの作成と React による掲示板アプリケーションの構築を通して、Web3 開発の基礎を学びます。",
-  "total_sections": 5,
+  "total_sections": 4,
   "total_lessons": 13
 }
