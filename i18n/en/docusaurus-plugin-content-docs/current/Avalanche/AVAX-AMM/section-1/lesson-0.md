@@ -16,7 +16,7 @@ The following technologies are required for this project:
 You don’t need to fully understand everything right now.
 If you encounter something you don’t know, feel free to search the internet or ask questions in the community as you move forward with the project!
 
-If you're new to development on `Avalanche` or have no experience writing smart contract tests with `hardhat`, [AVAX-Messenger](/Avalanche/AVAX-Messenger/section-0/lesson-1) offers a more detailed explanation, so starting there may help things go more smoothly.
+If you're new to development on `Avalanche` or have no experience writing smart contract tests with `hardhat`, [AVAX-Messenger](/Avalanche/AVAX-Messenger/section-1/lesson-0) offers a more detailed explanation, so starting there may help things go more smoothly.
 
 ### 🛠 What Will We Build?
 
@@ -77,45 +77,3 @@ Accessibility - The low cost of transactions on Avalanche means that smaller tra
 Low slippage - The slow speed of the Ethereum blockchain often leads to significant slippage and failed transactions when conducting on-chain trades. The faster transaction rate and higher throughput of the Avalanche network opens the door to minimal price slippage and instant trades, bringing the experience of trading on DEXs closer to that of their centralized counterparts.
 
 ### 🌍 Upgrade the Project
-
-Projects on [UNCHAIN](https://unchain.tech/) are maintained under the [UNCHAIN License](https://github.com/unchain-tech/UNCHAIN-projects/blob/main/LICENSE).
-
-If you're participating in the project and think, “This could be clearer!” or “This is incorrect!”
-Feel free to send a `pull request`.
-
-To edit the code directly on GitHub and send a `pull request`, refer to [this guide](https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files).
-
-All kinds of requests are welcome 🎉
-
-You can also `Fork` the project to your own GitHub account, edit it there, and send a `pull request`.
-
-* To `Fork` a project, see [this guide](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)
-* To create a `pull request` from a `Fork`, see [this guide](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)
-
-**👋 Send a `pull request` to `UNCHAIN-projects`! ⏩ Access [UNCHAIN’s GitHub](https://github.com/unchain-tech/UNCHAIN-projects)!**
-
-### ⚡️ Create an `Issue`
-
-If it’s not quite worth a `pull request` but you still want to leave a suggestion,
-create an `Issue` [here](https://github.com/unchain-tech/UNCHAIN-projects/issues).
-
-For how to create an `Issue`, refer to [this guide](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/creating-an-issue).
-
-Creating `pull requests` or `issues` is a key part of real-world team development, so be sure to give it a try!
-
-Let’s work together to make UNCHAIN’s projects even better ✨
-
-> For Windows users
-> If you're using Windows, we recommend downloading [Git for Windows](https://gitforwindows.org/) and using the included Git Bash.
-> This guide supports UNIX-specific commands.
-> [Windows Subsystem for Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/install) is also an option.
-
----
-
-Let’s move on to the next lesson and set up your programming environment 🎉
-
----
-
-Documentation created by [ryojiroakiyama](https://github.com/ryojiroakiyama)（UNCHAIN Discord ID: rakiyama#8051）
-
----
