@@ -16,7 +16,7 @@ The following technologies are required for this project:
 You don’t need to fully understand everything right now.
 If you encounter something you don’t know, feel free to search the internet or ask questions in the community as you move forward with the project!
 
-If you're new to development on `Avalanche` or have no experience writing smart contract tests with `hardhat`, [AVAX-Messenger](/Avalanche/AVAX-Messenger/section-0/lesson-1) offers a more detailed explanation, so starting there may help things go more smoothly.
+If you're new to development on `Avalanche` or have no experience writing smart contract tests with `hardhat`, [AVAX-Messenger](/Avalanche/AVAX-Messenger/section-1/lesson-0) offers a more detailed explanation, so starting there may help things go more smoothly.
 
 ### 🛠 What Will We Build?
 
@@ -77,4 +77,3 @@ Accessibility - The low cost of transactions on Avalanche means that smaller tra
 Low slippage - The slow speed of the Ethereum blockchain often leads to significant slippage and failed transactions when conducting on-chain trades. The faster transaction rate and higher throughput of the Avalanche network opens the door to minimal price slippage and instant trades, bringing the experience of trading on DEXs closer to that of their centralized counterparts.
 
 ### 🌍 Upgrade the Project
-
