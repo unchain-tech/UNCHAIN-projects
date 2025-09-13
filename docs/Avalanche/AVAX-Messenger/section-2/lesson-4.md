@@ -29,16 +29,16 @@ TEST_ACCOUNT_PRIVATE_KEY="YOUR_PRIVATE_KEY"
 >
 > 2.  それから、`Account details`を選択してください。
 >
-> ![](/images/AVAX-Messenger/section-2/2_4_2.png)
+> ![](/images/AVAX-AMM/section-3/3_3_2.png)
 >
 > 3.  `Account details`から`Export Private Key`をクリックしてください。
 >
-> ![](/images/AVAX-Messenger/section-2/2_4_3.png)
+> ![](/images/AVAX-AMM/section-3/3_3_3.png)
 >
 > 4.  MetaMask のパスワードを求められるので、入力したら`Confirm`を押します。
 >     あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
 >
-> ![](/images/AVAX-Messenger/section-2/2_4_4.png)
+> ![](/images/AVAX-AMM/section-3/3_3_4.png)
 
 > - `.env`の`YOUR_PRIVATE_KEY`の部分をここで取得した秘密鍵とを入れ替えます。
 

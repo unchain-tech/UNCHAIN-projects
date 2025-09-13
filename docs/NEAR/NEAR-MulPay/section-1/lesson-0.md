@@ -44,8 +44,8 @@ NEARの特徴としては、独自の`シャーディング技術`によって�
 
 完成した`Multiple Payment dApp`は以下のような見た目になります 💪
 
-![](/images/NEAR-MulPay/section-0/0_1_1.png)
-![](/images/NEAR-MulPay/section-0/0_1_2.png)
+![](/images/NEAR-MulPay/section-0/0_1_1.jpg)
+![](/images/NEAR-MulPay/section-2/2_2_2.png)
 ![](/images/NEAR-MulPay/section-0/0_1_3.png)
 ![](/images/NEAR-MulPay/section-0/0_1_4.png)
 
@@ -103,7 +103,7 @@ Androidのデバイスがない方は、デバッグで使うエミュレータ�
 エミュレータの方はmetamaskをインストールできないエラーにあうかもしれません。その時は[こちら](https://www.youtube.com/watch?v=oZlO1SxJmg8)の動画を参考にしてみてください。
 
 エミュレータはこのようになります！
-![](/images/NEAR-MulPay/section-0/0_2_1.png)
+![](/images/NEAR-MulPay/section-0/0_2_1.jpg)
 
 metamaskのセットアップではアカウントを２つ（受信用・送金用）作成して、Aurora Testnetを追加しましょう。[こちら](https://docs.alchemy.com/docs/how-to-add-near-aurora-to-metamask)を参考にするとスムーズにAurora Testnetを追加できます！
 追加できたらこのようになります。

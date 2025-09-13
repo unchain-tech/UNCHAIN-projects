@@ -15,7 +15,7 @@ title: Graph CLI
 curl -LS https://cli.thegraph.com/install.sh | sudo sh
 ```
 
-![](/images/TheGraph-ScaffoldEth2/section-2/2_5_2.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_5_2.jpg)
 
 #### ✅ サブグラフの初期化
 

@@ -43,7 +43,7 @@ Alchemyのアカウントを作成したら、Dashboardの`CREATE APP`ボタン�
 
 それから、作成したAppの`VIEW DETAILS`をクリックします。
 
-![](/images/Polygon-ENS-Domain/section-1/1_5_3.png)
+![](/images/Polygon-ENS-Domain/section-1/1_5_3.jpg)
 
 プロジェクトを開いたら、`VIEW KEY`ボタンをクリックします。
 
@@ -69,7 +69,7 @@ Matic MainnetをMetaMaskに追加するには、次の手順に従ってくだ�
 
 まず、[Polygonscan](https://polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Polygon Network`ボタンをクリックします。
 
-![](/images/Polygon-ENS-Domain/section-1/1_5_4.png)
+![](/images/Polygon-ENS-Domain/section-1/1_5_4.jpg)
 
 下記のようなポップアップが立ち上がったら、`Switch Network`をクリックしましょう。
 

@@ -142,15 +142,15 @@ PRIVATE_KEY="YOUR_PRIVATE_SEPOLIA_ACCOUNT_KEY"
 > ![](/images/Polygon-Generative-NFT/section-2/2_2_8.png)
 >
 > 2\. それから、`Account details`を選択してください。
-> ![](/images/Polygon-Generative-NFT/section-2/2_2_10.png)
+> ![](/images/ETH-NFT-Game/section-1/1_5_9.png)
 >
 > 3\. `Account details`から`Export Private Key`をクリックしてください。
 >
-> ![](/images/Polygon-Generative-NFT/section-2/2_2_11.png)
+> ![](/images/ETH-NFT-Game/section-1/1_5_10.png)
 >
 > 4\. MetaMask のパスワードを求められるので、入力したら`Confirm`を推します。
 >
-> ![](/images/Polygon-Generative-NFT/section-2/2_2_12.png)
+> ![](/images/ETH-NFT-Game/section-1/1_5_11.png)
 >
 > 5\. あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
 >

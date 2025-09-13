@@ -17,7 +17,7 @@ title: デプロイヤーアカウントの作成
 yarn run generate
 ```
 
-![](/images/TheGraph-ScaffoldEth2/section-2/2_2_1.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_2_1.jpg)
 
 hardhatの環境変数ファイルに以下のように保存されるはずです：
 

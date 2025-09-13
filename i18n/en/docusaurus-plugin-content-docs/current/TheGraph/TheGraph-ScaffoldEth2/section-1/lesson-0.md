@@ -203,7 +203,7 @@ Next we will ship our subgraph! You will need to give your subgraph a version af
 yarn local-ship
 ```
 
-![](/images/TheGraph-ScaffoldEth2/section-0/0_5_2.png)
+![](/images/TheGraph-ScaffoldEth2/section-0/0_5_2.jpg)
 
 > This command does the following all in one… 🚀🚀🚀
 

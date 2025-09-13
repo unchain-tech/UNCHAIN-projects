@@ -681,14 +681,14 @@ yarn client dev
 以下のような画面が表示されれば成功です！
 `swap`などのタブを切り替えると各tabの名前が表示されるはずです。
 
-![](/images/AVAX-AMM/section-3/3_2_1.png)
+![](/images/AVAX-AMM/section-3/3_2_1.jpg)
 
 画面右上の`Connect to wallet`ボタンを押下するとウォレットと接続することができます。
 ⚠️ この先ウォレットを接続する場合は、ネットワークに`Fuji`を選択した状態で行ってください。
 
 MetaMaskの承認が終わると、`Connect to wallet`ボタンの部分があなたの接続しているウォレットのアドレスの表示に変更されます。
 
-![](/images/AVAX-AMM/section-3/3_2_3.png)
+![](/images/AVAX-AMM/section-3/3_2_3.jpg)
 
 ### 🌔 参考リンク
 

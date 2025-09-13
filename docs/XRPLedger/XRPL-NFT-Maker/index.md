@@ -1,3 +1,3 @@
 # XRPL-NFT-Maker
 
-![](/metadata/XRPL-NFT-Maker/learn-banner.png)
+![](/metadata/XRPL-NFT-Maker/learn-banner.jpg)

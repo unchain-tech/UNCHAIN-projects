@@ -350,13 +350,13 @@ setCurrentAccount(accounts[0]);
 
 もし、下図のように`Connected`と表示されている場合は、`Connected`の文字をクリックします。
 
-![](/images/Polygon-Generative-NFT/section-4/4_1_5.png)
+![](/images/ETH-NFT-Maker/section-3/3_2_2.png)
 
 そこで、Webサイトとあなたのウォレットアドレスの接続を一度解除します。
 
 - `Disconnect this account`を選択してください。
 
-![](/images/Polygon-Generative-NFT/section-4/4_1_6.png)
+![](/images/ETH-NFT-Maker/section-3/3_2_3.png)
 
 次にローカルサーバーにホストされているあなたのWebサイトをリフレッシュして、`Connect Wallet`ボタンを押してください。
 

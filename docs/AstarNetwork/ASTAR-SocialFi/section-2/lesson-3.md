@@ -128,7 +128,7 @@ export default Home;
 
 [`home.tsx`]
 
-![](/images/ASTAR-SocialFi/section-2/2_3_2.png)
+![](/images/ASTAR-SocialFi/section-3/3_1_7.jpg)
 
 ホーム画面です。
 
@@ -258,7 +258,7 @@ export default function home() {
 
 [`profile.tsx`]
 
-![](/images/ASTAR-SocialFi/section-2/2_3_3.png)
+![](/images/ASTAR-SocialFi/section-3/3_1_6.jpg)
 
 プロフィール画面です。useEffect内で動いている関数はホーム画面のものとほぼ同じで、全体の投稿リストか特定のアカウントの投稿リストを取得するかの違いです。
 

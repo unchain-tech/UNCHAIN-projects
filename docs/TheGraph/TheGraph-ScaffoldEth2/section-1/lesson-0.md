@@ -217,7 +217,7 @@ yarn local-create
 yarn local-ship
 ```
 
-![](/images/TheGraph-ScaffoldEth2/section-0/0_5_2.png)
+![](/images/TheGraph-ScaffoldEth2/section-0/0_5_2.jpg)
 
 > このコマンドは、以下のことを一度に行います... 🚀🚀🚀
 

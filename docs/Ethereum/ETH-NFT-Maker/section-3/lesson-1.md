@@ -456,7 +456,7 @@ yarn client start
 
 次に、右クリック → `Inspect`を選択し、Consoleを立ち上げましょう。下図のように、`No authorized account found`と出力されていれば成功です。
 
-![](/images/ETH-NFT-Maker/section-3/3_2_4.png)
+![](/images/ETH-dApp/section-2/2_2_8.png)
 
 では、`Connect Wallet`ボタンを押してみましょう。
 

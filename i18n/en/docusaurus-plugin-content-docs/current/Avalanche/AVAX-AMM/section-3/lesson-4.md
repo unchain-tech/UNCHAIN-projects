@@ -1105,7 +1105,7 @@ Access `http://localhost:3000` in your browser.
 
 Click the `Withdraw` tab, and you will see a display like this:
 
-![](/images/AVAX-AMM/section-3/3_4_7.png)
+![](/images/AVAX-AMM/section-3/3_4_7.jpg)
 
 When you click the `Max` button, the number of shares you hold will be set as the input value, and the amount of tokens you can withdraw will be displayed below.
 Click `Withdraw`.

@@ -315,7 +315,7 @@ Hardhatは段階的に下記を実行しています。
 Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押してください。
 ![](/images/ETH-Yield-Farm/section-1/1_1_6.png)
 次に、下記の項目を埋めていきます。下図を参考にしてください。
-![](/images/ETH-Yield-Farm/section-1/1_1_7.png)
+![](/images/ETH-NFT-Game/section-1/1_5_2.png)
 
 - `NAME` : プロジェクトの名前(例: `Yield-Farm`)
 - `DESCRIPTION` : プロジェクトの概要（任意）

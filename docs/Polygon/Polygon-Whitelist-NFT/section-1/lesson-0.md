@@ -25,7 +25,7 @@ title: コースの紹介
 
 これが完成後のOpenSeaでの様子です：
 
-![image-20230223163620536](/images/Polygon-Whitelist-NFT/section-0/0_1_2.png)
+![image-20230223163620536](/images/Polygon-Whitelist-NFT/section-4/4_3_4.png)
 
 ### 🌍 プロジェクトをアップグレードする
 

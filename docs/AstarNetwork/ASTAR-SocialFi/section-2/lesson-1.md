@@ -46,7 +46,7 @@ NEXT_PUBLIC_UNKNOWN_IMAGE_URL=unknown_image
 
 次にさきほどコントラクトを実装して後に更新した`metadata.json`を一番上の階層(`pages`と同じ階層)に加えましょう。
 
-![](/images/ASTAR-SocialFi/section-2/2_1_9.png)
+![](/images/ASTAR-SocialFi/section-2/2_1_9.jpg)
 
 次に`linter`の設定をしましょう。linterをきちんと設定しないと無駄な部分にエラーが発生してアプリのデプロイ時に問題があるように写りデプロイができないようになります。
 
@@ -184,7 +184,7 @@ hooks/
 
 [`unchain_logo.png`]
 
-![](/images/ASTAR-SocialFi/section-2/2_1_5.png)
+![](/images/NEAR-MulPay/section-2/2_1_11.png)
 
 次にNext.jsではURLの画像を参照するためには`next.config.js`に参照したいURLの頭の部分を登録する必要があるので下のように書き換えましょう。
 

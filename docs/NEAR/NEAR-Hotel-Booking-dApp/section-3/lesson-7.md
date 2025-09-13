@@ -10,7 +10,7 @@ title: 画面から任意の画像をIPFSにアップロードできるように
 IPFSへのファイルアップロードについては、デスクトップアプリをダウンロードして、手動でも行うことができるのですが、もし画面からボタンを押すだけでアップロードすることができたら使いやすくて便利ですよね！ このレッスンではそのための画面を作成していきます！
 
 今回は、IPFSにアクセスするためのAPIを提供している[Pinata](https://www.pinata.cloud/)を利用します！
-![](/images/NEAR-Hotel-Booking-dApp/section-4/4_7_1.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-4/4_7_1.jpg)
 もしアカウントを作成していない場合は、[Pinata](https://www.pinata.cloud/)にアクセスしてアカウントを作成してください！
 
 アカウントを作成したらいよいよ開発に移ります！
@@ -67,7 +67,7 @@ frontend/
 
 事前にアカウントを作成して[https://www.pinata.cloud/](https://www.pinata.cloud/)にアクセスしましょう！
 
-![](/images/NEAR-Hotel-Booking-dApp/section-4/4_7_1.png)
+![](/images/NEAR-Hotel-Booking-dApp/section-4/4_7_1.jpg)
 
 #### 2. API クレデンシャル情報を作成する。
 

@@ -15,7 +15,7 @@ title: Phantom Walletを連携しよう
 
 2\. Create a new forkページが開くので、「Copy the `main` branch only」という項目に**チェックが入っていることを確認します**。
 
-![](/images/Solana-NFT-Drop/section-1/1_2_2.png)
+![](/images/Solana-Wallet/section-0/0_2_3.png)
 
 3\. 設定が完了したら`Create fork`ボタンをクリックします。あなたのGitHubアカウントに`Solana-NFT-Drop`リポジトリのフォークが作成されたことを確認してください。
 
@@ -231,7 +231,7 @@ const TWITTER_HANDLE = "あなたのTwitterハンドル";
 
 Webアプリケーションのコンソールに`Phantom Wallet found!`という行が表示されるはずです。
 
-![無題](/images/Solana-NFT-Drop/section-1/1_2_5.png)
+![無題](/images/Solana-dApp/section-1/1_1_3.png)
 
 次に、ユーザーのウォレットにアクセスすることが**許可**されているか確認する必要があります。アクセスが許可されていると、Solanaプログラムの関数にアクセスできます。
 

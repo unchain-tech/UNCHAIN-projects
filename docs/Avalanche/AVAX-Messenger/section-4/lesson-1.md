@@ -51,7 +51,7 @@ Vercelのアカウントを取得したら、下記を実行しましょう。
 
 1\. `Dashboard`へ進んで、`New Project`を選択してください。
 
-![](/images/AVAX-Messenger/section-4/4_1_1.png)
+![](/images/AVAX-AMM/section-4/4_1_1.png)
 
 2\. `Import Git Repository`で自分のGitHubアカウントを接続したら、当リポジトリを選択し`Import`してください。
 

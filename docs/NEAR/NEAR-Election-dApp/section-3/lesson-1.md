@@ -28,7 +28,7 @@ title: フロントエンドの基礎を実装しよう
 
 `unchain_logo.png`
 
-![](/images/NEAR-Election-dApp/section-3/3_1_4.png)
+![](/images/NEAR-MulPay/section-2/2_1_11.png)
 
 最終的に以下のようなファイル構造になっていればOKです！
 

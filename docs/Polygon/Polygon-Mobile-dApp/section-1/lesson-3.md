@@ -15,15 +15,15 @@ Matic MainnetをMetaMaskに追加するには、次の手順に従ってくだ�
 
 まず、[Polygonscan](https://polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Polygon Network`ボタンをクリックします。
 
-![](/images/Polygon-Mobile-dApp/section-3/3_1_1.png)
+![](/images/Polygon-ENS-Domain/section-1/1_5_4.jpg)
 
 下記のようなポップアップが立ち上がったら、`Switch Network`をクリックしましょう。
 
-![](/images/Polygon-Mobile-dApp/section-3/3_1_2.png)
+![](/images/Polygon-ENS-Domain/section-1/1_5_5.png)
 
 `Matic Mainnet`があなたのMetaMaskにセットアップされました。
 
-![](/images/Polygon-Mobile-dApp/section-3/3_1_3.png)
+![](/images/Polygon-ENS-Domain/section-1/1_5_6.png)
 
 **2 \. Polygon Amoy-Testnet を MetaMask に接続する**
 
@@ -39,7 +39,7 @@ MetaMaskでPolygonネットワークの設定が完了したら、偽のMATICを
 
 [こちら](https://faucet.polygon.technology/) にアクセスして、下記のように偽MATICをリクエストしてください。
 
-![](/images/Polygon-Mobile-dApp/section-3/3_1_4.png)
+![](/images/Polygon-ENS-Domain/section-1/1_5_7.png)
 
 Sepoliaとは異なり、これらのトークンの取得にそれほど問題はないはずです。
 
@@ -61,7 +61,7 @@ Sepoliaとは異なり、これらのトークンの取得にそれほど問題�
 
 [こちら](https://www.alchemy.com/) からAlchemyのアカウントを作成してください。アカウントを作成したら、Appsページの`+ Create new app`ボタンを押してください。
 
-![](/images/Polygon-Mobile-dApp/section-1/1_3_1.png)
+![](/images/ETH-dApp/section-2/2_1_1.png)
 
 次に、下記の項目を埋めていきます。下図を参考にしてください。
 

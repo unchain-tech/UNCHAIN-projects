@@ -68,7 +68,7 @@ entities:
 yarn abi-copy && yarn codegen
 ```
 
-![](/images/TheGraph-ScaffoldEth2/section-1/1_2_3.png)
+![](/images/TheGraph-ScaffoldEth2/section-1/1_2_3.jpg)
 
 #### ✅ マッピングスクリプトの更新
 

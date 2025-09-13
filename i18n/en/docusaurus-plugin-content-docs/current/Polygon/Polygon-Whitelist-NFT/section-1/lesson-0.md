@@ -25,7 +25,7 @@ This is the mint page：
 
 This is how it looks like on OpenSea once we finished:
 
-![image-20230223163620536](/images/Polygon-Whitelist-NFT/section-0/0_1_2.png)
+![image-20230223163620536](/images/Polygon-Whitelist-NFT/section-4/4_3_4.png)
 
 ### 🌍 Upgrading this project
 

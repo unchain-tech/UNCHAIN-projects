@@ -1,3 +1,3 @@
 # ETH-Yield-Farm
 
-![](/metadata/ETH-Yield-Farm/learn-banner.png)
+![](/metadata/ETH-Yield-Farm/learn-banner.jpg)

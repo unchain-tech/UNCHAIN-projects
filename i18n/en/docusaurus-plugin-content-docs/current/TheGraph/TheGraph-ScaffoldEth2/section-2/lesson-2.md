@@ -17,7 +17,7 @@ Next we want to take our smart contract and deploy it to a testnet! At the time 
 yarn run generate
 ```
 
-![](/images/TheGraph-ScaffoldEth2/section-2/2_2_1.png)
+![](/images/TheGraph-ScaffoldEth2/section-2/2_2_1.jpg)
 
 You should see the following saved to your hardhats environment variable file
 

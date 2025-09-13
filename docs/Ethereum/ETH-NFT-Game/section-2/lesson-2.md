@@ -92,7 +92,7 @@ https://gemcase.vercel.app/view/evm/sepolia/1INSERT_DEPLOY_CONTRACT_ADDRESS_HERE
 ```
 
 gemcaseでNFTを確認したら、`Refresh Metadata`をクリックしてみてください。
-![](/images/ETH-NFT-Game/section-2/2_2_1.png)
+![](/images/ETH-NFT-Game/section-2/2_2_1.jpg)
 
 `Health Points`が`200`に更新されていれば、成功です。
 

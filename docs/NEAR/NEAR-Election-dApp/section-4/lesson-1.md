@@ -26,7 +26,7 @@ title: 作成したdAppを使ってみよう
 下のように追加した候補者の情報が追加されていれば成功です！
 ![](/images/NEAR-Election-dApp/section-4/4_1_3.png)
 ![](/images/NEAR-Election-dApp/section-4/4_1_4.png)
-![](/images/NEAR-Election-dApp/section-4/4_1_5.png)
+![](/images/NEAR-Election-dApp/section-4/4_1_5.jpg)
 
 では次に投票をしてみましょう。
 
@@ -46,11 +46,11 @@ title: 作成したdAppを使ってみよう
 
 下のように得票数が変化していれば成功です！
 
-![](/images/NEAR-Election-dApp/section-4/4_1_7.png)
+![](/images/NEAR-Election-dApp/section-4/4_1_7.jpg)
 
 また、もう一度`Voteボタン`を押してみましょう。次のようにすでに投票していることがメッセージで来ていたら成功です！
 
-![](/images/NEAR-Election-dApp/section-4/4_1_8.png)
+![](/images/NEAR-Election-dApp/section-4/4_1_8.jpg)
 
 ### 🙋‍♂️ 質問する
 

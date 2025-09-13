@@ -15,7 +15,7 @@ Vercelのアカウントをお持ちでない方は、上記のリンクにア�
 
 2 \. Vercelのダッシュボードから、`Add New...`をクリックし、`Project`を選択します。
 
-![無題](/images/Solana-NFT-Drop/section-4/4_2_1.png)
+![無題](/images/Solana-Wallet/section-3/3_3_1.png)
 
 3 \. Webアプリケーションのリポジトリを`Import`してください。
 

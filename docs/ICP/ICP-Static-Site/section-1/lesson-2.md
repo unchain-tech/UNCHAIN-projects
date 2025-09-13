@@ -44,7 +44,7 @@ dfx 0.11.1
 
 **Tailwind CSS IntelliSense**
 
-![](/images/ICP-Static-Site/section-1/1_2_2.png)
+![](/images/ICP-Static-Site/section-1/1_2_2.jpg)
 
 ### ✨ Node.js の確認をする
 

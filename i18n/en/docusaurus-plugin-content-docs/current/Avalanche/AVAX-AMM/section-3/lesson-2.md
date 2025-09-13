@@ -677,14 +677,14 @@ Then open your browser and go to `http://localhost:3000`.
 You should see a screen similar to the example image.
 Switching between tabs (`Swap`, `Provide`, etc.) should change the displayed label.
 
-![](/images/AVAX-AMM/section-3/3_2_1.png)
+![](/images/AVAX-AMM/section-3/3_2_1.jpg)
 
 Clicking the `Connect to wallet` button should prompt MetaMask to connect.
 ⚠️ Make sure your MetaMask network is set to `Fuji` before connecting.
 
 After MetaMask approval, the `Connect to wallet` button will display your connected wallet address.
 
-![](/images/AVAX-AMM/section-3/3_2_3.png)
+![](/images/AVAX-AMM/section-3/3_2_3.jpg)
 
 ### 🌔 Reference Link
 

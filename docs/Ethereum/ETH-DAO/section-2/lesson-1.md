@@ -77,7 +77,7 @@ APIキーに任意の名前をつけて、「Next」をクリックします。
 
 次に、APIキーの設定を行います。下記画像のようにサービス有効化とアクセス制限の設定を行い、最後に「Create」をクリックします。
 
-![](/images/ETH-DAO/section-2/2_1_4.png)
+![](/images/ETH-DAO/section-2/2_1_4.jpg)
 
 画面上に作成したAPIキーの`Client ID`と`Secret Key`が表示されます。これらの値をコピーして、`.env.local`の`YOUR_CLIENT_ID`と`YOUR_SECRET_KEY`にそれぞれ設定しましょう。注意書きにもありますが、Secret Keyは表示されている画面を閉じると二度と取得することはできないので、大切に保管してください。設定と保管が完了したら、「I have stored the Secret Key securely」をクリックして画面を閉じます。
 

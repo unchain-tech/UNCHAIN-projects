@@ -1,3 +1,3 @@
 # NEAR-MulPay
 
-![](/metadata/NEAR-MulPay/learn-banner.png)
+![](/metadata/NEAR-MulPay/learn-banner.jpg)

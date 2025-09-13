@@ -52,7 +52,7 @@ NEARのwalletと接続することでログインする画面になります！
 また、コントラクトをdeployしたウォレットでログインした場合に限り下の画像のような`Close Election`ボタンが表示されることになります。
 
 このボタンを押すことによって投票を締め切ることができます。
-![](/images/NEAR-Election-dApp/section-0/0_1_4.png)
+![](/images/NEAR-Election-dApp/section-0/0_1_4.jpg)
 
 一番上の入力欄にはIPFSのURIを入れ、その下には候補者の名前を、一番下には政策を入れることになります。
 

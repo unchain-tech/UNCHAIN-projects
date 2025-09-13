@@ -1,3 +1,3 @@
 # Sui-zklogin
 
-![](/metadata/Sui-zklogin/learn-banner.png)
+![](/metadata/Sui-zklogin/learn-banner.jpg)

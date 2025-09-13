@@ -1,3 +1,3 @@
 # ICP-Encrypted-Notes
 
-![](/metadata/ICP-Encrypted-Notes/learn-banner.png)
+![](/metadata/ICP-Encrypted-Notes/learn-banner.jpg)

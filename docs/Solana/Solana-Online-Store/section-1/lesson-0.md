@@ -22,7 +22,7 @@ title: Solana上にデータショップを作ろう
 
 以下は作成するWebアプリケーションのイメージです。
 
-![web application](/images/Solana-Online-Store/section-0/0_1_1.jpg)
+![web application](/images/Solana-Online-Store/section-1/1_1_5.jpg)
 
 本プロジェクトは以下の3つのステップに分かれています。
 
