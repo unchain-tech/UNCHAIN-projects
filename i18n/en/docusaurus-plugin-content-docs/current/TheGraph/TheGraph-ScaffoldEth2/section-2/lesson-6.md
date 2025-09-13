@@ -172,7 +172,7 @@ Then, update the table to display the message as follows.
 
 This will look a lot nicer than those long strings! :D
 
-![](/images/TheGraph-ScaffoldEth2/section-2/2_6_14.png)
+![](/images/TheGraph-ScaffoldEth2/section-0/0_1_5.png)
 
 > Note: If you want to see the full complete file you can do so [here](https://gist.github.com/kmjones1979/26ef9633b61b17f237e88eb41bb688de)!
 

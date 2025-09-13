@@ -1,3 +1,3 @@
 # ETH-NFT-Maker
 
-![](/metadata/ETH-NFT-Maker/learn-banner.png)
+![](/metadata/ETH-NFT-Maker/learn-banner.jpg)

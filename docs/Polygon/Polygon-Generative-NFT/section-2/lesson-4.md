@@ -13,11 +13,11 @@ title: NFTをgemcaseで確認しよう
 
 私のコレクションはこのような形で表示されます。
 
-![](/images/Polygon-Generative-NFT/section-2/2_4_8.png)
+![](/images/Polygon-Generative-NFT/section-2/2_4_8.jpg)
 
 下にスクロールすると他のコレクションが見れるので`View`ボタンをクリックしてみましょう。
 
-![](/images/Polygon-Generative-NFT/section-2/2_4_9.png)
+![](/images/Polygon-Generative-NFT/section-2/2_4_9.jpg)
 
 `deploy.js`で、10個のNFTを自分用にキープしてから、3個NFTをMintしました。
 
@@ -37,11 +37,11 @@ title: NFTをgemcaseで確認しよう
 
 アカウントが作成できたら、`My Profile`画面に移動してください。
 
-![](/images/Polygon-Generative-NFT/section-2/2_4_2.png)
+![](/images/ETH-NFT-Collection/section-4/4_2_1.png)
 
 `API Keys`タブを選択し、`+ Add`ボタンを押したら、`Create API Key`のポップアップが表示されるので、あなたのAPIに任意の名前をつけましょう。
 
-![](/images/Polygon-Generative-NFT/section-2/2_4_3.png)
+![](/images/ETH-NFT-Collection/section-4/4_2_4.png)
 
 次に、あなたが作成したAPIの横の`Edit`ボタンを選択してください。ポップアップが表示されるので、`apiKey`を取得しましょう。
 
@@ -53,7 +53,7 @@ Etherscanでverificationを行うために必要なツールをインストー�
 yarn add --dev @nomiclabs/hardhat-etherscan@^3.1.7
 ```
 
-![](/images/Polygon-Generative-NFT/section-2/2_4_4.png)
+![](/images/ETH-NFT-Collection/section-4/4_2_5.png)
 
 次に、`packages/contract`ディレクトリにある`.env`を開きます。
 

@@ -204,7 +204,7 @@ Webアプリケーション上で、`Connect Wallet to Get Started`ボタンを�
 
 さらに、Webアプリケーション上で右クリックを行い、`Inspect`をクリックしたら、Consoleに向かいましょう。
 
-![](/images/ETH-NFT-Game/section-3/3_3_6.png)
+![](/images/ETH-NFT-Game/section-3/3_4_4.png)
 
 Consoleに下記のような結果が表示されていたら、シナリオ2のテストは成功です。
 

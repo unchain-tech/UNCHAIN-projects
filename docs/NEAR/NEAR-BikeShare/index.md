@@ -1,3 +1,3 @@
 # NEAR-BikeShare
 
-![](/metadata/NEAR-BikeShare/learn-banner.png)
+![](/metadata/NEAR-BikeShare/learn-banner.jpg)

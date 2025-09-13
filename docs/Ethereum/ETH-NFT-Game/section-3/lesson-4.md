@@ -551,7 +551,7 @@ https://gemcase.vercel.app/view/evm/sepolia/CONTRACT_ADDRES/TOKEN_ID
 
 下記のように、オンライン上でもあなたのNFTキャラクターが表示されることを確認しましょう（画像は学習コンテンツ制作時に利用したRarible rinkeby testnetのものになります）。
 
-![](/images/ETH-NFT-Game/section-3/3_5_2.png)
+![](/images/ETH-NFT-Game/section-3/3_5_2.jpg)
 
 ### 🪄 おまけ
 

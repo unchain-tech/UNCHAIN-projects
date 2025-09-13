@@ -1062,7 +1062,7 @@ export default function Post(props: any) {
 
 [`postModal.tsx`]
 
-![](/images/ASTAR-SocialFi/section-2/2_2_26.png)
+![](/images/ASTAR-SocialFi/section-2/2_2_20.png)
 
 投稿画面で表示される投稿作成モーダルです。
 

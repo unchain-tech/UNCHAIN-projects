@@ -27,7 +27,7 @@ Chromeの方は[こちら](https://chrome.google.com/webstore/detail/phantom/bfn
 
 - 「設定」→「ネットワークの変更」→「Devnet」から変更できます。
 
-![phantom wallet settings](/images/Solana-Online-Store/section-1/1_1_1.png)
+![phantom wallet settings](/images/Solana-dApp/section-1/1_1_2.png)
 
 ※ 本プロジェクトではBraveとChromeでのみ動作が確認できます。
 
@@ -45,7 +45,7 @@ Chromeの方は[こちら](https://chrome.google.com/webstore/detail/phantom/bfn
 
 2\. Create a new forkページが開くので、「Copy the `main` branch only」という項目に**チェックが入っていることを確認します**。
 
-![](/images/Solana-Online-Store/section-1/1_1_3.png)
+![](/images/Solana-Wallet/section-0/0_2_3.png)
 
 3\. 設定が完了したら`Create fork`ボタンをクリックします。あなたのGitHubアカウントに`Solana-Online-Store`リポジトリのフォークが作成されたことを確認してください。
 

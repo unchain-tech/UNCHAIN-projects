@@ -239,7 +239,7 @@ NFTが発行された後、`_tokenIds.increment()`（＝ OpenZeppelinが提供�
 
 下記にImgurで画像をアップロードした際に選択する`Direct Link`の取得方法を示します。
 
-![](/images/ETH-NFT-Maker/section-1/1_4_2.png)
+![](/images/ETH-NFT-Maker/section-1/1_4_2.jpg)
 ぜひ自分のお気に入りの画像を使って、自分だけのメタデータを作成してみましょう。
 
 ### 🐈 `Web3Mint.sol`を更新する
@@ -341,7 +341,7 @@ Alchemyは、世界中のトランザクションを一元化し、マイナー�
 Alchemyのアカウントを作成したら、`CREATE APP`ボタンを押してください。
 ![](/images/ETH-NFT-Maker/section-1/1_4_3.png)
 次に、下記の項目を埋めていきます。下図を参考にしてください。
-![](/images/ETH-NFT-Maker/section-1/1_4_4.png)
+![](/images/ETH-NFT-Game/section-1/1_5_2.png)
 
 - `NAME` : プロジェクトの名前(例: `Web3NFT`)
 - `DESCRIPTION` : プロジェクトの概要（任意）
@@ -483,15 +483,15 @@ module.exports = {
 >
 > 2\. それから、`Account details`を選択してください。
 >
-> ![](/images/ETH-NFT-Maker/section-1/1_4_12.png)
+> ![](/images/ETH-NFT-Game/section-1/1_5_9.png)
 >
 > 3\. `Account details`から`Export Private Key`をクリックしてください。
 >
-> ![](/images/ETH-NFT-Maker/section-1/1_4_13.png)
+> ![](/images/ETH-NFT-Game/section-1/1_5_10.png)
 >
 > 4\. MetaMask のパスワードを求められるので、入力したら`Confirm`を推します。
 >
-> ![](/images/ETH-NFT-Maker/section-1/1_4_14.png)
+> ![](/images/ETH-NFT-Game/section-1/1_5_11.png)
 >
 > 5\. あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
 >
@@ -535,7 +535,7 @@ hardhat.config.js
 > 「ログイン」には下記の情報が必要となります。
 >
 > - ユーザー名: 公開アドレス
->   ![](/images/ETH-NFT-Maker/section-1/1_4_16.png)
+>   ![](/images/ETH-dApp/section-2/2_1_12.png)
 >
 > - パスワード: 秘密鍵
 >   ![](/images/ETH-NFT-Maker/section-1/1_4_17.png)
@@ -577,9 +577,9 @@ _表示されるまでに約 1 分かかる場合があります。_
 続いて、ターミナルに出力された`Contract deployed to`に続くアドレスを検索してみましょう。
 ![](/images/ETH-NFT-Collection/section-1/1_4_18.png)
 `TanyaNFT`をクリックしてみましょう。
-![](/images/ETH-NFT-Collection/section-1/1_4_19.png)
+![](/images/ETH-NFT-Collection/section-1/1_4_19.jpg)
 コレクションがgemcaseに表示されているのを確認してください。
-![](/images/ETH-NFT-Collection/section-1/1_4_20.png)
+![](/images/ETH-NFT-Collection/section-1/1_4_20.jpg)
 私が作成したTanyaコレクションの`tokenID` 1番のリンクは[こちら]https://gemcase.vercel.app/view/evm/sepolia/0x677fcCF5F8be725ad8A9C23622ba6B738A2DED27/1になります（リンク先は、学習コンテンツ制作時に使用したRinkebyになっていますが、Rinkebyの箇所がSEPOLIAでも同様に表示されます）。
 リンクの内容は以下のようになります。
 

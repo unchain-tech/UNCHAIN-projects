@@ -172,7 +172,7 @@ import { Address } from "~~/components/scaffold-eth";
 
 これにより、長い文字列よりもはるかに見栄えがよくなります！ :D
 
-![](/images/TheGraph-ScaffoldEth2/section-2/2_6_14.png)
+![](/images/TheGraph-ScaffoldEth2/section-0/0_1_5.png)
 
 > 注：完全なファイルをご覧になりたい場合は、[こちら](https://gist.github.com/kmjones1979/26ef9633b61b17f237e88eb41bb688de)をご覧ください！
 

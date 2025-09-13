@@ -108,7 +108,7 @@ VITE_SUPABASE_ANON_KEY=
 
 - [Google Cloud](https://cloud.google.com)でアカウントを持っていない場合は新規作成すること。
 
-  ![](/images/Sui-zklogin/section-1/1_4.png)
+  ![](/images/Sui-zklogin/section-1/1_4.jpg)
 
 - [Google Cloud コンソール - APIとサービス 認証情報](https://console.cloud.google.com/apis/credentials)にアクセスする
 

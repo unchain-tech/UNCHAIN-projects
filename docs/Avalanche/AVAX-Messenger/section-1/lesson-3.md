@@ -305,7 +305,7 @@ _messagesAtAddress[_receiver].push(
 
 以下に、Solidityのアクセス修飾子とアクセス権限についてまとめています。
 
-![](/images/AVAX-Messenger/section-1/1_3_2.png)
+![](/images/ETH-dApp/section-1/1_4_1.png)
 
 📡 関数の状態に関連する修飾子
 
@@ -318,7 +318,7 @@ Solidity開発ではこれらの修飾子を意識しておかないとデータ
 
 以下に、Solidityの関数修飾子`pure`と`view`についてまとめています。
 
-![](/images/AVAX-Messenger/section-1/1_3_3.png)
+![](/images/ETH-dApp/section-1/1_4_2.png)
 
 ここで重要なのは、`pure`や`view`関数を使用すれば、**ガス代を削減できる**ということです。
 

@@ -215,15 +215,15 @@ Matic MainnetをMetaMaskに追加するには、次の手順に従ってくだ�
 
 まず、[Polygonscan](https://polygonscan.com/) に向かい、ページの一番下までスクロールして、`Add Polygon Network`ボタンをクリックします。
 
-![](/images/Polygon-Generative-NFT/section-3/3_2_1.png)
+![](/images/Polygon-ENS-Domain/section-1/1_5_4.jpg)
 
 下記のようなポップアップが立ち上がったら、`Switch Network`をクリックしましょう。
 
-![](/images/Polygon-Generative-NFT/section-3/3_2_2.png)
+![](/images/Polygon-ENS-Domain/section-1/1_5_5.png)
 
 `Matic Mainnet`があなたのMetaMaskにセットアップされました。
 
-![](/images/Polygon-Generative-NFT/section-3/3_2_3.png)
+![](/images/Polygon-ENS-Domain/section-1/1_5_6.png)
 
 **2 \. Polygon Amoy-Testnet を MetaMask に接続する**
 
@@ -259,7 +259,7 @@ MetaMaskとHardhatの両方でPolygonネットワークの設定が完了した�
 
 [こちら](https://faucet.polygon.technology/) にアクセスして、下記のように偽MATICをリクエストしてください。
 
-![](/images/Polygon-Generative-NFT/section-3/3_2_7.png)
+![](/images/Polygon-ENS-Domain/section-1/1_5_7.png)
 
 Sepoliaとは異なり、これらのトークンの取得にそれほど問題はないはずです。
 

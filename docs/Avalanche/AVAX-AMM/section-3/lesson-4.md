@@ -1104,7 +1104,7 @@ export default function Container({ currentAccount }: Props) {
 
 `Withdraw`タブをクリックすると以下のような表示がされます。
 
-![](/images/AVAX-AMM/section-3/3_4_7.png)
+![](/images/AVAX-AMM/section-3/3_4_7.jpg)
 
 `Max`ボタンをクリックするとユーザの保有するシェアが入力値となり、引き出すことのできるトークンの量がそれぞれ下に表示されます。
 `Withdraw`をクリックします。

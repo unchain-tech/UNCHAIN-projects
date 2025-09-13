@@ -411,10 +411,10 @@ yarn client flutter:run
 ```
 
 エミュレータであれば下のような画面が表示されていれば成功です。
-![](/images/NEAR-MulPay/section-2/2_2_1.png)
+![](/images/NEAR-MulPay/section-2/2_2_1.jpg)
 
 デスクトップ版であれば下のような画面が表示されていれば成功です。
-![](/images/NEAR-MulPay/section-2/2_2_6.png)
+![](/images/NEAR-MulPay/section-2/2_2_6.jpg)
 
 **👀 Wallet 接続時のトラブルシューティング**
 

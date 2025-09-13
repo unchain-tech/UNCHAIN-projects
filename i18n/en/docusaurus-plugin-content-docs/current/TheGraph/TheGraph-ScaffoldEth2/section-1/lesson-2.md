@@ -65,7 +65,7 @@ If you are following along, next you will need to copy over your new abi and reg
 yarn abi-copy && yarn codegen
 ```
 
-![](/images/TheGraph-ScaffoldEth2/section-1/1_2_3.png)
+![](/images/TheGraph-ScaffoldEth2/section-1/1_2_3.jpg)
 
 #### ✅ Update the mapping script
 

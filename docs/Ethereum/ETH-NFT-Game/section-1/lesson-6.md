@@ -279,7 +279,7 @@ hardhat.config.js
 >
 > 「ログイン」には下記の情報が必要となります。
 >
-> - ユーザー名: 公開アドレス ![](/images/ETH-NFT-Game/section-1/1_5_13.png)
+> - ユーザー名: 公開アドレス ![](/images/ETH-dApp/section-2/2_1_12.png)
 > - パスワード: 秘密鍵
 >   ![](/images/ETH-NFT-Game/section-1/1_5_14.png)
 >
@@ -337,11 +337,11 @@ Sepolia Etherscanはデプロイを追跡する最も簡単な方法であり、
 
 私のコレクションはこのような形で表示されます。
 
-![](/images/ETH-NFT-Game/section-1/1_5_19.png)
+![](/images/ETH-NFT-Game/section-1/1_5_19.jpg)
 
 下にスクロールすると他のコレクションが見れるのでV`View`ボタンをクリックしてみましょう。
 
-![](/images/ETH-NFT-Game/section-1/1_5_20.png)
+![](/images/ETH-NFT-Game/section-1/1_5_20.jpg)
 ![](/images/ETH-NFT-Game/section-1/1_5_21.png)
 
 OpenSeaなどのNFTマーケットプレイスはキャラクター属性を適切にレンダリングしてくれます 😊

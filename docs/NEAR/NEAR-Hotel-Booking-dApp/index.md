@@ -1,3 +1,3 @@
 # NEAR-Hotel-Booking-dApp
 
-![](/metadata/NEAR-Hotel-Booking-dApp/learn-banner.png)
+![](/metadata/NEAR-Hotel-Booking-dApp/learn-banner.jpg)

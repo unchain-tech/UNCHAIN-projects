@@ -915,7 +915,7 @@ yarn client dev
 
 下のように表示されていたら成功です！
 section-2でコントラクト内から`nft_add_likes_to_candidate関数`を走らせたのでどれか1つの候補者の得票数が`1`になっているはずです。
-![](/images/NEAR-Election-dApp/section-3/3_3_1.png)
+![](/images/NEAR-Election-dApp/section-3/3_3_1.jpg)
 ![](/images/NEAR-Election-dApp/section-3/3_3_2.png)
 ![](/images/NEAR-Election-dApp/section-3/3_3_3.png)
 ![](/images/NEAR-Election-dApp/section-3/3_3_4.png)

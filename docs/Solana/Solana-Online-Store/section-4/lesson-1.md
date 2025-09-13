@@ -91,11 +91,11 @@ git push
 
 1\. Vercelのダッシュボードから、`Add New...`をクリックし、`Project`を選択します。
 
-![new project](/images/Solana-Online-Store/section-4/4_1_1.png)
+![new project](/images/Solana-Wallet/section-3/3_3_1.png)
 
 2\. `Import Git Repository`で自分のGitHubアカウントを接続したら、Webアプリケーションのリポジトリを`Import`してください。
 
-![Import](/images/Solana-Online-Store/section-4/4_1_2.png)
+![Import](/images/Solana-NFT-Drop/section-4/4_2_2.png)
 
 3\. プロジェクトの設定では、**FRAMEWORK PRESET** に`Next.js`、**ROOT DIRECTORY** に`./`を入力してください。
 

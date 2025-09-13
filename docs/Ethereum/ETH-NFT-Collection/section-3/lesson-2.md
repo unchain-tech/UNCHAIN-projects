@@ -439,13 +439,13 @@ yarn client start
 ローカルサーバーでWebサイトを立ち上げたら、MetaMaskのプラグインをクリックし、あなたのウォレットアドレスの接続状況を確認しましょう。
 もし、下図のように`Connected`と表示されている場合は、`Connected`の文字をクリックします。
 
-![](/images/ETH-NFT-Collection/section-3/3_2_3.png)
+![](/images/ETH-NFT-Maker/section-3/3_2_2.png)
 
 そこで、Webサイトとあなたのウォレットアドレスの接続を一度解除します。
 
 - `Disconnect this account`を選択してください。
 
-![](/images/ETH-NFT-Collection/section-3/3_2_4.png)
+![](/images/ETH-NFT-Maker/section-3/3_2_3.png)
 
 次にローカルサーバーにホストされているあなたのWebサイトをリフレッシュしてボタンの表示を確認してください。
 
@@ -453,13 +453,13 @@ yarn client start
 
 次に、右クリック → `Inspect`を選択し、Consoleを立ち上げましょう。下図のように、`No authorized account found`と出力されていれば成功です。
 
-![](/images/ETH-NFT-Collection/section-3/3_2_5.png)
+![](/images/ETH-dApp/section-2/2_2_8.png)
 
 では、`Connect Wallet`ボタンを押してみましょう。
 
 下図のようにMetaMaskからウォレット接続を求められますので、承認してください。
 
-![](/images/ETH-NFT-Collection/section-3/3_2_6.png)
+![](/images/ETH-NFT-Maker/section-3/3_2_5.png)
 
 MetaMaskの承認が終わると、ウォレット接続ボタンの表示が`Mint NFT`に変更されているはずです。
 

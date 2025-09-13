@@ -53,6 +53,19 @@ const config: Config = {
     ],
   ],
 
+  plugins: [
+    [
+      "@docusaurus/plugin-ideal-image",
+      {
+        quality: 70,
+        max: 1030, // max resized image's width/height
+        min: 640, // min resized image's width/height
+        steps: 2, // number of sizes between min and max (inclusive)
+        disableInDev: false,
+      },
+    ],
+  ],
+
   themeConfig: {
     image: "/thumbnail/unchain-banner.png",
     navbar: {

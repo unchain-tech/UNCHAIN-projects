@@ -339,7 +339,7 @@ yarn test
 
 次のように表示されたら成功です! 🎉
 
-![](/images/AVAX-Asset-Tokenization/section-1/1_1_1.png)
+![](/images/AVAX-AMM/section-1/1_1_1.png)
 
 これからテストを行う際は、`AVAX-Asset-Tokenization/`直下で`yarn test`を実行します。
 

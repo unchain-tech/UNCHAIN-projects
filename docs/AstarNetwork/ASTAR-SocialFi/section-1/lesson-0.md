@@ -51,7 +51,7 @@ ASTARが用意してくれている基礎的なシステムをしようすれば
 この画面の`Connect`ボタンを押すことでウォレットを接続できるようになっています。
 
 うまく接続が完了すれば次にホーム画面へ飛ぶようにできています。
-![](/images/ASTAR-SocialFi/section-0/0_1_1.png)
+![](/images/ASTAR-SocialFi/section-2/2_3_1.png)
 
 [`ホーム画面`]
 
@@ -63,7 +63,7 @@ ASTARが用意してくれている基礎的なシステムをしようすれば
 
 加えて、いいねの数に従ってトークンを獲得できる機能も備えておりロゴとプロフィールアイコンの間に残高が表示されます。
 
-![](/images/ASTAR-SocialFi/section-0/0_1_2.png)
+![](/images/ASTAR-SocialFi/section-0/0_1_2.jpg)
 
 [`プロフィール画面`]
 

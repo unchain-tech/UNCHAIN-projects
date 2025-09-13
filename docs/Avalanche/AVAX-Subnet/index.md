@@ -1,3 +1,3 @@
 # AVAX-Subnet
 
-![](/metadata/AVAX-Subnet/learn-banner.png)
+![](/metadata/AVAX-Subnet/learn-banner.jpg)

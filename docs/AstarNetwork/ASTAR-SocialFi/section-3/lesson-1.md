@@ -110,21 +110,21 @@ NEXT_PUBLIC_UNKNOWN_IMAGE_URL="https://images.unsplash.com/..."
 
 次にモーダル内でURL、投稿内容を設定して投稿してみましょう。
 
-![](/images/ASTAR-SocialFi/section-3/3_1_6.png)
+![](/images/ASTAR-SocialFi/section-3/3_1_6.jpg)
 
-![](/images/ASTAR-SocialFi/section-3/3_1_7.png)
+![](/images/ASTAR-SocialFi/section-3/3_1_7.jpg)
 
 では次に他のアカウントのアイコンをクリックしてフォローしてみましょう。
 
 プロフィール画面に戻ると下のようにフォロー数とフォロワー数が増えているはずです。また、そのアカウントで投稿したものがみれるはずです。
 
-![](/images/ASTAR-SocialFi/section-3/3_1_17.png)
+![](/images/ASTAR-SocialFi/section-0/0_1_3.png)
 
 では次にメッセージ画面に移動してみましょう！
 
 この画面には下のようにフォローした、またはフォローされたアカウントとのメッセージ欄があるはずです。
 
-![](/images/ASTAR-SocialFi/section-3/3_1_8.png)
+![](/images/ASTAR-SocialFi/section-3/3_1_8.jpg)
 
 ではこのメッセージ欄をクリックして遷移先でメッセージを入力してみましょう。
 

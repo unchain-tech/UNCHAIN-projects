@@ -40,7 +40,7 @@ title: DEXを操作してみよう
 
 右：[ユーザー SLV]
 
-![](/images/ICP-Basic-DEX/section-4/4_1_4.png)
+![](/images/ICP-Basic-DEX/section-4/4_1_4.jpg)
 
 認証後、トークン`TSLV`をFaucetから取得します。残高が更新されたら、トークン`TSLV`をDEXに入金します。
 
@@ -52,7 +52,7 @@ title: DEXを操作してみよう
 
 今度は、オーダーが購入された画像左（ユーザー GLD）の残高が更新されているかを確認してみます。ユーザーボードを更新するために、画面のリロードを行いましょう。オーダーを購入したユーザーと同じPrincipalが表示されてしまうので、再度ログインをし直します。アンカーを入力して、**Authorize**ボタンを押します。
 
-![](/images/ICP-Basic-DEX/section-4/4_1_7.png)
+![](/images/ICP-Basic-DEX/section-4/4_1_7.jpg)
 
 再ログイン後、ユーザーボードを確認してトークン量が更新されていることを確認しましょう。
 

@@ -206,7 +206,7 @@ Owner has tokens:  [
 
 下記のような結果が、Sepolia Etherscan上で確認できれば、テストネットへのデプロイは成功です。
 
-![](/images/Polygon-Generative-NFT/section-2/2_2_14.png)
+![](/images/ETH-NFT-Game/section-1/1_5_15.png)
 
 **デプロイのデバッグに Sepolia Etherscan 使うことに慣れましょう。**
 

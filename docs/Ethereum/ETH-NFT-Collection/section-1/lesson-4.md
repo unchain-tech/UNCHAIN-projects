@@ -268,7 +268,7 @@ console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
 
 下記にImgurで画像をアップロードした際に選択する`Direct Link`の取得方法を示します。
 
-![](/images/ETH-NFT-Collection/section-1/1_4_2.png)
+![](/images/ETH-NFT-Maker/section-1/1_4_2.jpg)
 
 ぜひ自分のお気に入りの画像を使って、自分だけのメタデータを作成してみましょう。
 
@@ -490,19 +490,19 @@ module.exports = {
 
 > 1\. お使いのブラウザから、MetaMask プラグインをクリックして、ネットワークを`Sepolia Test Network`に変更します。
 >
-> ![](/images/ETH-NFT-Collection/section-1/1_4_11.png)
+> ![](/images/ETH-NFT-Collection/section-1/1_4_10.png)
 >
 > 2\. それから、`Account details`を選択してください。
 >
-> ![](/images/ETH-NFT-Collection/section-1/1_4_12.png)
+> ![](/images/ETH-NFT-Game/section-1/1_5_9.png)
 >
 > 3\. `Account details`から`Export Private Key`をクリックしてください。
 >
-> ![](/images/ETH-NFT-Collection/section-1/1_4_13.png)
+> ![](/images/ETH-NFT-Game/section-1/1_5_10.png)
 >
 > 4\. MetaMask のパスワードを求められるので、入力したら`Confirm`を推します。
 >
-> ![](/images/ETH-NFT-Collection/section-1/1_4_14.png)
+> ![](/images/ETH-NFT-Game/section-1/1_5_11.png)
 >
 > 5\. あなたの秘密鍵（＝ `Private Key` ）が表示されるので、クリックしてコピーします。
 >
@@ -549,7 +549,7 @@ hardhat.config.js
 > 「ログイン」には下記の情報が必要となります。
 >
 > - ユーザー名: 公開アドレス
->   ![](/images/ETH-NFT-Collection/section-1/1_4_16.png)
+>   ![](/images/ETH-dApp/section-2/2_1_12.png)
 >
 > - パスワード: 秘密鍵
 >   ![](/images/ETH-NFT-Collection/section-1/1_4_17.png)
@@ -602,11 +602,11 @@ _表示されるまでに約 1 分かかり場合があります。_
 
 ミントをしたNFTの情報が表示されます。
 
-![](/images/ETH-NFT-Collection/section-1/1_4_19.png)
+![](/images/ETH-NFT-Collection/section-1/1_4_19.jpg)
 
 画面を下にスクロールをすると、現在ミントされているNFT一覧が確認できます。ここでは、2つのNFT画像が表示されています。デプロイ時に2回ミントを行ったため、Token ID 1と2のNFT画像が確認できます。
 
-![](/images/ETH-NFT-Collection/section-1/1_4_20.png)
+![](/images/ETH-NFT-Collection/section-1/1_4_20.jpg)
 
 私が作成したTanyaコレクションの`tokenID` 1番のリンクは[こちら](https://gemcase.vercel.app/view/evm/sepolia/0x8f561c94cc0c6c2771052d10980937804cd53cd6/1)になります。
 

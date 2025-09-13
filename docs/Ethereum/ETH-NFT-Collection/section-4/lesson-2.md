@@ -122,11 +122,11 @@ Etherscanの **コントラクトの Verification（検証）** を行いまし�
 
 `API Keys`タブを選択し、`+ Add`ボタンを押したら、`Create API Key`のポップアップが表示されるので、あなたのAPIに任意の名前をつけましょう。
 
-![](/images/ETH-NFT-Collection/section-4/4_2_2.png)
+![](/images/ETH-NFT-Collection/section-4/4_2_4.png)
 
 次に、あなたが作成したAPIの横の`Edit`ボタンを選択してください。ポップアップが表示されるので、`apiKey`を取得しましょう。
 
-![](/images/ETH-NFT-Collection/section-4/4_2_3.png)
+![](/images/ETH-NFT-Collection/section-4/4_2_5.png)
 
 ⚠️：Ethereum API keyは誰にも教えてはいけません!
 

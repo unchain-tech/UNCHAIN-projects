@@ -95,7 +95,7 @@ VercelはGitHubと連動しているので、GitHubが更新されるたびに�
 下記のように、`Building`ログが出力されます。
 基本的に`warning`は無視して問題ありません。
 
-![](/images/ASTAR-SocialFi/section-3/3_2_16.png)
+![](/images/ASTAR-SocialFi/section-2/2_3_1.png)
 
 これでデプロイは成功しました！
 
@@ -111,11 +111,11 @@ VercelはGitHubと連動しているので、GitHubが更新されるたびに�
 
 の5つをdiscordの`🔥｜completed-projects`チャンネルで共有しましょう！
 
-![](/images/ASTAR-SocialFi/section-3/3_2_10.png)
-![](/images/ASTAR-SocialFi/section-3/3_2_11.png)
-![](/images/ASTAR-SocialFi/section-3/3_2_12.png)
-![](/images/ASTAR-SocialFi/section-3/3_2_13.png)
-![](/images/ASTAR-SocialFi/section-3/3_2_14.png)
+![](/images/ASTAR-SocialFi/section-2/2_3_1.png)
+![](/images/ASTAR-SocialFi/section-3/3_1_7.jpg)
+![](/images/ASTAR-SocialFi/section-3/3_2_12.jpg)
+![](/images/ASTAR-SocialFi/section-3/3_1_9.png)
+![](/images/ASTAR-SocialFi/section-2/2_3_4.png)
 
 ---
 

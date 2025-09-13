@@ -8,7 +8,7 @@ Subnetは独自のルールを定義することができるブロックチェ�
 Avalancheには3つのビルトインブロックチェーン（P-Chain、C-Chain、X-Chain）があり、プライマリネットネットワークと呼ばれます。
 このビルトインブロックチェーンに加え、Subnetによるブロックチェーンをいくつも増やしていくことができます。
 
-![](/images/AVAX-Subnet/section-1/1_1_2.png)
+![](/images/AVAX-Subnet/section-1/1_1_2.jpg)
 [Subnet Overview](https://docs.avax.network/subnets)より引用
 
 ブロックチェーンの作成には最低1台のバリデータとなるコンピュータとVMが必要になります。

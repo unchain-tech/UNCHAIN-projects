@@ -15,7 +15,7 @@ title: Webサイトを完成させよう
 
 `unchain_logo.png`
 
-![](/images/ICP-Static-Site/section-2/2_4_1.png)
+![](/images/NEAR-MulPay/section-2/2_1_11.png)
 
 準備した画像を、`./src/assets/`フォルダに入れます。
 

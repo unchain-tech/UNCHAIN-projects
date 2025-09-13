@@ -52,7 +52,7 @@ yarn client dev
 
 例)ローカル環境で表示されているWebサイト
 
-![](/images/AVAX-Asset-Tokenization/section-2/3_1_1.png)
+![](/images/AVAX-AMM/section-3/3_1_1.png)
 
 上記のような形でフロントエンドが確認できれば成功です。
 
@@ -118,7 +118,7 @@ MetaMaskを設定できたら、Avalancheのテストネットワークを追加
 
 MetaMaskの上部のネットワークタブを開き、`Add Network`をクリックします。
 
-![](/images/AVAX-Asset-Tokenization/section-2/3_1_2.png)
+![](/images/AVAX-AMM/section-3/3_1_2.png)
 
 開いた設定ページ内で以下の情報を入力して保存をクリックしましょう。
 
@@ -130,7 +130,7 @@ Symbol: AVAX
 Explorer: https://testnet.snowtrace.io/
 ```
 
-![](/images/AVAX-Asset-Tokenization/section-2/3_1_3.png)
+![](/images/AVAX-AMM/section-3/3_1_3.png)
 
 登録が成功したらAvalancheのテストネットである`Avalanche Fuji C-Chain`が選択できるはずです。
 
