@@ -92,13 +92,13 @@ VITE_SUPABASE_ANON_KEY=
 
 - 環境変数の取得
 
-  - `VITE_SUPABASE_URL`の取得
+  - `VITE_SUPABASE_ANON_KEY`の取得
 
     `Project Settings`から`API Keys`ページに遷移して`Publishable key`の値をコピー&ペーストする
 
     ![](/images/Sui-zklogin/section-1/1_2.png)
 
-  - `VITE_SUPABASE_ANON_KEY`の取得
+  - `VITE_SUPABASE_URL`の取得
 
     `Project Settings`から`Data API`ページに遷移して`Project URL`の値をコピー&ペーストする
 
