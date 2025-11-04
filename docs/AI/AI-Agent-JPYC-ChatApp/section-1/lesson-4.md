@@ -6,7 +6,7 @@ title: MCPについて
 
 MCP（Model Context Protocol）は、**AI Agentとツールやデータソースをつなぐための標準化されたプロトコル**です。
 
-Anthropic社によって開発され、AI Agentが外部のツールやサービスを簡単に利用できるようにします。
+Anthropic社によって開発され、AI Agentが外部のツールやサービスを統一的な方法で利用できるようにします。
 
 ### 🤔 なぜ MCP が必要なのか？
 
@@ -17,7 +17,7 @@ AI Agentを開発する際、以下のような課題がありました：
 各ツールやAPIごとに異なる実装方法を学ぶ必要がありました。
 
 ```typescript
-// それぞれのツールで異なる実装が必要
+// それぞれのツールで異なる実装が必要だった
 await weatherAPI.getCurrentWeather(location);
 await databaseClient.query(sql);
 await blockchainRPC.sendTransaction(tx);
@@ -33,187 +33,94 @@ AI Agentとツール間のインタフェースに統一性がなく、開発者
 
 ### ✨ MCP が解決すること
 
-MCPは、これらの課題を以下のように解決します：
+MCPは**統一されたインタフェース**を提供し、すべてのツールが同じプロトコルで通信できるようにします。
 
-**1. 統一されたインタフェース**
-
-すべてのツールが同じプロトコルで通信します。
-
-```typescript
-// MCPを使えば、すべてのツールが同じ方法で使える
-await mcpServer.callTool('get_weather', { location });
-await mcpServer.callTool('query_database', { sql });
-await mcpServer.callTool('send_jpyc', { to, amount });
-```
-
-**2. プラグアンドプレイ**
-
-一度作成したMCPサーバーは、どのAI Agentフレームワークでも使用できます。
-
-**3. セキュリティと制御**
-
-MCPは、ツールへのアクセス制御や権限管理を標準化します。
+これにより：
+- 一度作成したツールを複数のAI Agentで再利用できる
+- 新しいツールを追加する際の学習コストが低い
+- AI Agentフレームワーク間でツールを共有できる
 
 ### 🏗 MCP のアーキテクチャ
 
-MCPは、以下のコンポーネントで構成されます：
+MCPは、**サーバー**と**クライアント**の2つのコンポーネントで構成されます：
 
-**MCPサーバー**
+#### MCPサーバー（Server）
 
-ツールやデータソースをホストする側です。
+ツールやデータソースを提供する側です。
 
-```typescript
-// MCPサーバーの例
-const server = new MCPServer({
-  name: 'jpyc-tools',
-  version: '1.0.0',
-  tools: [
-    {
-      name: 'get_balance',
-      description: 'JPYC残高を取得する',
-      inputSchema: {
-        type: 'object',
-        properties: {
-          address: { type: 'string' }
-        }
-      },
-      handler: async ({ address }) => {
-        // 残高取得の実装
-      }
-    }
-  ]
-});
-```
+**役割：**
+- ツールの定義と実装
+- ツールのメタデータ（名前、説明、パラメータ）の公開
+- ツールの実行と結果の返却
 
-**MCPクライアント**
+#### MCPクライアント（Client）
 
-AI AgentがMCPサーバーと通信するための部分です。
+AI Agentからツールを利用する側です。
 
-```typescript
-// MCPクライアントの使用例
-const client = new MCPClient({
-  serverUrl: 'http://localhost:3000'
-});
-
-// ツールの呼び出し
-const result = await client.callTool('get_balance', {
-  address: '0x123...'
-});
-```
-
-**プロトコル**
-
-サーバーとクライアント間の通信ルールです。JSON-RPCベースの標準化されたメッセージフォーマットを使用します。
+**役割：**
+- MCPサーバーへの接続
+- 利用可能なツールの取得
+- ツールの呼び出しリクエスト送信
+- 実行結果の受け取り
 
 ### 📡 MCP の通信フロー
 
 MCPの典型的な通信フローは以下の通りです：
 
 ```
-1. AI Agent: ユーザーから「残高を教えて」という指示を受ける
+1. ユーザー → AI Agent
+   「残高を教えて」
 
-2. AI Agent → MCP Client: 適切なツールを選択
-   "get_balance ツールを使う"
+2. AI Agent → MCP Client
+   適切なツールを選択
 
-3. MCP Client → MCP Server: ツール呼び出しリクエスト
+3. MCP Client → MCP Server
+   ツール呼び出しリクエスト
    {
-     "tool": "get_balance",
-     "parameters": {
-       "address": "0x123..."
-     }
+     "tool": "jpyc_balance",
+     "parameters": { "address": "0x123..." }
    }
 
-4. MCP Server: ツールを実行
-   - JPYC SDKを使って残高を取得
-   - 結果をフォーマット
-
-5. MCP Server → MCP Client: 実行結果を返す
+4. MCP Server
+   ツールを実行して結果を返す
    {
-     "success": true,
-     "data": {
-       "balance": "1000",
-       "symbol": "JPYC"
-     }
+     "balance": "1000",
+     "chainName": "Ethereum Sepolia"
    }
 
-6. MCP Client → AI Agent: 結果を渡す
-
-7. AI Agent → User: 結果を自然言語で報告
-   "あなたの残高は1,000 JPYCです"
+5. AI Agent → ユーザー
+   「Ethereum Sepoliaチェーンの残高は1,000 JPYCです」
 ```
 
-### 🛠 MCP サーバーの構造
+### 🛠 ツールの構成要素
 
-MCPサーバーは、以下の要素を定義します：
+MCPのツールは、以下の要素で構成されます：
 
-**1. ツール（Tools）**
+**1. 識別子（ID）**
+- ツールを一意に識別する名前
+- 例：`jpyc_balance`、`jpyc_transfer`
 
-AI Agentが実行できる具体的な機能です。
+**2. 説明（Description）**
+- AI Agentがツールの用途を理解するための説明文
+- 例：「指定したアドレスのJPYC残高を照会します」
 
-```typescript
-{
-  name: 'send_jpyc',
-  description: 'JPYCを送金する',
-  inputSchema: {
-    type: 'object',
-    properties: {
-      to: {
-        type: 'string',
-        description: '送金先アドレス'
-      },
-      amount: {
-        type: 'string',
-        description: '送金額'
-      }
-    },
-    required: ['to', 'amount']
-  },
-  handler: async ({ to, amount }) => {
-    // 送金処理の実装
-  }
-}
-```
+**3. 入力スキーマ（Input Schema）**
+- ツールが受け取るパラメータの定義
+- データ型、必須/任意、説明などを含む
 
-**2. リソース（Resources）**
+**4. 実行ロジック（Execute）**
+- 実際の処理を行う関数
+- パラメータを受け取り、結果を返す
 
-AI Agentがアクセスできるデータです。
-
-```typescript
-{
-  uri: 'jpyc://transactions/history',
-  name: 'Transaction History',
-  description: 'JPYC取引履歴',
-  mimeType: 'application/json'
-}
-```
-
-**3. プロンプト（Prompts）**
-
-AI Agentに提供するコンテキスト情報です。
-
-```typescript
-{
-  name: 'jpyc_context',
-  description: 'JPYC操作のためのコンテキスト',
-  arguments: [
-    {
-      name: 'userAddress',
-      description: 'ユーザーのウォレットアドレス',
-      required: true
-    }
-  ]
-}
-```
-
-### 🎯 MCP の利点
+### 💡 MCP の利点
 
 **開発者にとって**
-- ツールの実装が簡単になる
-- 既存のツールを再利用できる
-- 標準化されたテストとデバッグが可能
+- ツールを一度実装すれば、複数のプロジェクトで再利用できる
+- 標準化されたインタフェースで開発が容易
+- テストとデバッグがしやすい
 
 **AI Agentにとって**
-- 多様なツールに一貫した方法でアクセスできる
+- 多様なツールに統一的な方法でアクセスできる
 - ツールの機能を自動的に理解できる
 - エラーハンドリングが統一される
 
@@ -221,67 +128,38 @@ AI Agentに提供するコンテキスト情報です。
 - より多機能なAI Agentを利用できる
 - 信頼性の高いサービスを受けられる
 
-### 🔐 MCP のセキュリティ
-
-MCPは、以下のセキュリティ機能を提供します：
-
-**認証と認可**
-```typescript
-const server = new MCPServer({
-  auth: {
-    type: 'bearer',
-    token: process.env.MCP_AUTH_TOKEN
-  }
-});
-```
-
-**入力検証**
-```typescript
-inputSchema: {
-  type: 'object',
-  properties: {
-    amount: {
-      type: 'string',
-      pattern: '^[0-9]+(\.[0-9]+)?$',  // 数値のみ許可
-      maximum: '10000'                  // 最大値の制限
-    }
-  }
-}
-```
-
-**レート制限**
-```typescript
-const server = new MCPServer({
-  rateLimit: {
-    windowMs: 60000,  // 1分
-    maxRequests: 10    // 最大10リクエスト
-  }
-});
-```
-
 ### 🌐 MCP のエコシステム
 
-MCPは、様々なフレームワークやツールと統合できます：
+MCPは、様々なAI Agentフレームワークで利用できます：
 
-- **AI Agentフレームワーク**：LangChain、Mastra、AutoGPTなど
-- **LLMプロバイダー**：Claude、GPT-4、Geminiなど
-- **開発ツール**：VS Code拡張、デバッガーなど
+- **Mastra**: TypeScriptベースのモダンなフレームワーク
+- **LangChain**: Python/TypeScriptの人気フレームワーク
+- **AutoGPT**: 自律型Agentフレームワーク
 
-### 💡 このプロジェクトでの MCP の役割
+また、様々なLLMプロバイダーと組み合わせて使用できます：
+- Claude（Anthropic）
+- GPT-4（OpenAI）
+- Gemini（Google）
 
-このプロジェクトでは、以下のようにMCPを使用します：
+### 📝 このプロジェクトでの MCP
 
-1. **MCPサーバーの実装**（セクション3）
-   - JPYC操作のためのツールを定義
-   - JPYC SDKと連携する実装
+このプロジェクトでは、以下のような構成でMCPを活用します：
 
-2. **Mastraとの統合**（セクション4）
-   - MastraフレームワークにMCPサーバーを接続
-   - AI AgentからJPYCツールを利用可能にする
+**MCPサーバー**
+- JPYC操作のためのツールを提供
+- HTTP/SSEで通信
+- ポート3001で起動
 
-3. **フロントエンドからの利用**（セクション5）
-   - Next.jsアプリからMastra経由でMCPを呼び出し
-   - ユーザーインタフェースの実装
+**MCPクライアント**（Mastraのレッスンで実装）
+- Mastraフレームワーク経由でMCPサーバーに接続
+- AI Agentにツールを提供
+
+**提供するツール：**
+1. `jpyc_balance` - 残高照会
+2. `jpyc_transfer` - 送金
+3. `jpyc_switch_chain` - チェーン切り替え
+4. `jpyc_get_current_chain` - 現在のチェーン取得
+5. `jpyc_total_supply` - 総供給量照会
 
 ### 🙋‍♂️ 質問する
 

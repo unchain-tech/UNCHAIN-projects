@@ -4,366 +4,275 @@ title: Mastraについて
 
 ### 🎭 Mastra とは？
 
-Mastraは、**AI Agentを簡単に構築できるモダンなTypeScriptフレームワーク**です。
+Mastraは、**AI Agentを簡単に構築できるTypeScriptフレームワーク**です。
 
-複雑なAI Agentのロジックを抽象化し、開発者が本質的な機能の実装に集中できるようにします。
+前のレッスンで学んだMCPプロトコルをネイティブサポートし、開発者が本質的な機能の実装に集中できるようにします。
 
 ### ✨ Mastra の特徴
 
 **1. シンプルなAPI**
 
-Mastraは、直感的で使いやすいAPIを提供します。
-
-```typescript
-import { Mastra } from '@mastra/core';
-
-const mastra = new Mastra({
-  agents: [myAgent],
-  tools: [myTool],
-});
-```
+直感的で使いやすいAPIでAI Agentを作成できます。
 
 **2. TypeScript完全対応**
 
 型安全な開発が可能で、エディタの補完機能をフル活用できます。
 
-**3. 柔軟な統合**
+**3. MCP統合**
 
-様々なLLMプロバイダー（Claude、OpenAI、Geminiなど）をサポートします。
+前のレッスンで学んだMCPサーバーと簡単に接続できます。
 
-**4. MCP対応**
+**4. 複数のLLMに対応**
 
-MCPプロトコルをネイティブサポートし、外部ツールを簡単に統合できます。
+Claude、OpenAI、Geminiなど、様々なLLMプロバイダーをサポートします。
 
-### 🏗 Mastra のアーキテクチャ
+### 🔌 MCP との関係
 
-Mastraは、以下の主要コンポーネントで構成されます：
+Mastraは、MCPプロトコルを実装する**AI Agentフレームワーク**です：
 
-**Agentモジュール**
-
-AI Agentの振る舞いを定義します。
-
-```typescript
-import { Agent } from '@mastra/core';
-
-const jpycAgent = new Agent({
-  name: 'JPYC Agent',
-  instructions: `
-    あなたはJPYC操作を支援するAIアシスタントです。
-    ユーザーの指示に従って、送金や残高確認を行います。
-  `,
-  model: {
-    provider: 'anthropic',
-    name: 'claude-3-5-sonnet',
-    toolChoice: 'auto',
-  },
-});
 ```
-
-**Toolモジュール**
-
-AI Agentが使用できるツールを定義します。
-
-```typescript
-import { createTool } from '@mastra/core';
-
-const getBalanceTool = createTool({
-  id: 'get_balance',
-  description: 'JPYC残高を取得する',
-  inputSchema: z.object({
-    address: z.string().describe('ウォレットアドレス'),
-  }),
-  execute: async ({ context }) => {
-    const { address } = context;
-    // 残高取得の実装
-  },
-});
-```
-
-**Workflowモジュール**
-
-複数のステップからなる複雑な処理を定義します。
-
-```typescript
-import { createWorkflow } from '@mastra/core';
-
-const sendJPYCWorkflow = createWorkflow({
-  name: 'send_jpyc',
-  triggerSchema: z.object({
-    to: z.string(),
-    amount: z.string(),
-  }),
-})
-  .step('check_balance')
-  .step('validate_address')
-  .step('execute_transfer')
-  .commit();
+[ユーザー]
+    ↓
+[Mastra Agent] ← AI Agentフレームワーク
+    ↓
+[Mastra MCP Client] ← MCPクライアントの実装
+    ↓
+[MCP Server] ← 前のレッスンで学んだMCPサーバー
+    ↓
+[JPYC SDK]
 ```
 
 ### 🤖 Agent の作成
 
-Mastraでは、Agentを簡単に作成できます：
+Mastraでは、`Agent`クラスを使ってAI Agentを作成します：
 
 ```typescript
-import { Agent } from '@mastra/core';
+import { Agent } from '@mastra/core/agent';
 
-const agent = new Agent({
+const jpycAgent = new Agent({
   name: 'JPYC Assistant',
+  model: gpt4oMiniModel,
+  tools: async () => {
+    // MCPサーバーからツールを取得
+    const tools = await jpycMCPClient.getTools();
+    return tools;
+  },
   instructions: `
-    あなたはJPYC（日本円ステーブルコイン）の操作を
-    支援するAIアシスタントです。
-
-    以下の操作をサポートします：
-    - 残高確認
-    - 送金処理
-    - 取引履歴の表示
-
-    ユーザーに対して親切で分かりやすい説明を心がけてください。
+    あなたはJPYC操作をサポートするAIアシスタントです。
+    ...
   `,
-  model: {
-    provider: 'anthropic',
-    name: 'claude-3-5-sonnet',
-    toolChoice: 'auto',
-  },
-  tools: {
-    getBalance,
-    sendJPYC,
-    getHistory,
-  },
 });
 ```
 
-### 🛠 Tool の作成
+**主要な設定項目：**
 
-Toolは、AI Agentが実行できる具体的な機能です：
+- `name`: Agentの名前
+- `model`: 使用するLLMモデル
+- `tools`: 利用可能なツール（関数で動的に取得）
+- `instructions`: Agentへのシステムプロンプト
+
+### 📝 Instructions の役割
+
+`instructions`は、AI Agentの振る舞いを定義する重要な要素です：
 
 ```typescript
-import { createTool } from '@mastra/core';
-import { z } from 'zod';
+instructions: `
+  あなたはJPYC操作をサポートするAIアシスタントです。
 
-const sendJPYCTool = createTool({
-  id: 'send_jpyc',
-  description: '指定したアドレスにJPYCを送金する',
-  inputSchema: z.object({
-    to: z.string().describe('送金先のウォレットアドレス'),
-    amount: z.string().describe('送金額（JPYC単位）'),
-  }),
-  execute: async ({ context }) => {
-    const { to, amount } = context;
+  対応テストネット: Ethereum Sepolia, Avalanche Fuji
 
-    try {
-      // JPYC送金処理
-      const tx = await jpycClient.transfer(to, amount);
+  以下の操作が可能です：
+  - 残高照会
+  - 送金処理
+  - チェーン切り替え
 
-      return {
-        success: true,
-        message: `${amount} JPYCを${to}に送金しました`,
-        txHash: tx.hash,
-      };
-    } catch (error) {
-      return {
-        success: false,
-        message: `送金に失敗しました: ${error.message}`,
-      };
-    }
+  ## 回答スタイル:
+  - カジュアルで親しみやすい会話調
+  - 絵文字は使わない
+`
+```
+
+### 🔗 MCP クライアントの作成
+
+MastraでMCPサーバーに接続するには、`MCPClient`を使用します：
+
+```typescript
+import { MCPClient } from '@mastra/mcp';
+
+// MCPサーバーに接続
+const jpycMCPClient = new MCPClient({
+  name: 'jpyc-sdk',
+  url: 'http://localhost:3001',  // MCPサーバーのURL
+});
+
+// ツールを取得
+const tools = await jpycMCPClient.getTools();
+```
+
+### 🔄 動的ツール取得
+
+Agentにツールを提供する際、**関数形式**で動的に取得します：
+
+```typescript
+const jpycAgent = new Agent({
+  name: 'JPYC Assistant',
+  model: gpt4oMiniModel,
+
+  // ツールを動的に取得する関数
+  tools: async () => {
+    const { jpycMCPClient } = await import('@/lib/mastra/mcp/client');
+    const tools = await jpycMCPClient.getTools();
+    return tools;
   },
 });
 ```
 
 ### 💬 Agent の実行
 
-作成したAgentを実行するのは簡単です：
+#### 通常実行（generate）
 
 ```typescript
-// テキスト入力で実行
-const response = await agent.generate('残高を教えて');
-console.log(response.text);
+const response = await jpycAgent.generate(
+  '残高を教えて',
+  { threadId: 'unique-thread-id' }
+);
 
-// ストリーミング実行
-const stream = await agent.stream('100 JPYC送って');
+console.log(response.text);
+// → "Ethereum Sepoliaチェーンの残高は1,000 JPYCです"
+```
+
+#### ストリーミング実行（stream）
+
+```typescript
+const stream = await jpycAgent.stream(
+  '太郎に100JPYC送って',
+  { threadId: 'unique-thread-id' }
+);
+
 for await (const chunk of stream) {
-  console.log(chunk.text);
+  if (chunk.type === 'text') {
+    process.stdout.write(chunk.text);
+  }
 }
 ```
 
-### 🔄 Workflow の活用
+### 🔄 このプロジェクトでの処理フロー
 
-Workflowを使うと、複数のステップを順序立てて実行できます：
+実際のアプリケーションでの全体的な流れ：
 
-```typescript
-import { createWorkflow } from '@mastra/core';
-import { z } from 'zod';
-
-const transferWorkflow = createWorkflow({
-  name: 'jpyc_transfer',
-  triggerSchema: z.object({
-    recipientAddress: z.string(),
-    amount: z.string(),
-  }),
-})
-  .step('validate_inputs', async ({ context }) => {
-    // 入力値の検証
-    const { recipientAddress, amount } = context.machineContext;
-
-    if (!ethers.isAddress(recipientAddress)) {
-      throw new Error('無効なアドレスです');
-    }
-
-    return { valid: true };
-  })
-  .step('check_balance', async ({ context }) => {
-    // 残高確認
-    const balance = await jpycClient.getBalance(userAddress);
-    const required = ethers.parseUnits(context.machineContext.amount, 18);
-
-    if (balance < required) {
-      throw new Error('残高不足です');
-    }
-
-    return { sufficient: true };
-  })
-  .step('execute_transfer', async ({ context }) => {
-    // 送金実行
-    const { recipientAddress, amount } = context.machineContext;
-    const tx = await jpycClient.transfer(recipientAddress, amount);
-
-    return {
-      txHash: tx.hash,
-      status: 'success',
-    };
-  })
-  .commit();
-
-// Workflowの実行
-const result = await transferWorkflow.execute({
-  triggerData: {
-    recipientAddress: '0x123...',
-    amount: '100',
-  },
-});
+```
+1. ユーザー入力
+   ↓
+2. Next.js API Route (/api/chat)
+   ↓
+3. Mastra Agent (jpycAgent.stream())
+   ↓
+4. Mastra MCP Client (getTools())
+   ↓
+5. MCP Server (http://localhost:3001)
+   ↓
+6. JPYC SDK → Blockchain
+   ↓
+7. 結果を逆順で返す
+   ↓
+8. フロントエンドに表示
 ```
 
-### 🔌 MCP との統合
-
-MastraはMCPをネイティブサポートしています：
+**API Route の実装例：**
 
 ```typescript
-import { Mastra } from '@mastra/core';
-import { MCPClient } from '@mastra/mcp';
+// src/app/api/chat/route.ts
+import { jpycAgent } from '@/lib/mastra/agent';
 
-// MCPクライアントを作成
-const mcpClient = new MCPClient({
-  serverUrl: 'http://localhost:3000',
-});
+export async function POST(req: Request) {
+  const { message, threadId } = await req.json();
 
-// Mastraインスタンスを作成
-const mastra = new Mastra({
-  agents: [jpycAgent],
-  mcpServers: {
-    jpycServer: mcpClient,
-  },
-});
+  // Agentをストリーミングモードで実行
+  const stream = await jpycAgent.stream(message, { threadId });
 
-// MCPサーバーのツールが自動的にAgentで利用可能になる
+  return new Response(stream, {
+    headers: { 'Content-Type': 'text/event-stream' },
+  });
+}
 ```
 
-### 📊 コンテキスト管理
+### 📊 スレッド管理
 
-Mastraは、会話のコンテキストを自動的に管理します：
+Mastraは会話のコンテキストを「スレッド」として管理します：
 
 ```typescript
-// 会話の開始
-const thread = await agent.createThread();
+// 新しいスレッドを作成
+const threadId = crypto.randomUUID();
 
-// メッセージの送信（コンテキストを保持）
-await agent.generate('私の残高は？', { threadId: thread.id });
+// 最初のメッセージ
+await jpycAgent.generate('私の残高は？', { threadId });
 // → "1,000 JPYCです"
 
-await agent.generate('半分を太郎さんに送って', { threadId: thread.id });
-// → 太郎さんに500 JPYCを送金します（コンテキストから金額を推測）
+// 同じスレッドで続けて会話（コンテキストを保持）
+await jpycAgent.generate('半分を太郎さんに送って', { threadId });
+// → コンテキストから「500 JPYC」と推測して送金
 ```
 
-### 🎨 カスタマイズ
+### 🎯 モデルの設定
 
-Mastraは、様々な側面でカスタマイズ可能です：
+Mastraは複数のLLMプロバイダーをサポートします：
 
-**モデルのカスタマイズ**
 ```typescript
-const agent = new Agent({
-  model: {
-    provider: 'anthropic',
-    name: 'claude-3-5-sonnet',
-    toolChoice: 'auto',
-    temperature: 0.7,
-    maxTokens: 1000,
-  },
+// OpenAI GPT-4o-mini
+import { createOpenAI } from '@ai-sdk/openai';
+
+const openai = createOpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+export const gpt4oMiniModel = openai('gpt-4o-mini');
+```
+
+```typescript
+// Anthropic Claude
+import { createAnthropic } from '@ai-sdk/anthropic';
+
+const anthropic = createAnthropic({
+  apiKey: process.env.ANTHROPIC_API_KEY,
+});
+
+export const claude = anthropic('claude-3-5-sonnet-20241022');
+```
+
+### 🚀 このプロジェクトでの構成
+
+**1. MCPクライアント**（`src/lib/mastra/mcp/client.ts`）
+```typescript
+import { MCPClient } from '@mastra/mcp';
+
+export const jpycMCPClient = new MCPClient({
+  name: 'jpyc-sdk',
+  url: 'http://localhost:3001',
 });
 ```
 
-**エラーハンドリング**
+**2. Agent**（`src/lib/mastra/agent.ts`）
 ```typescript
-const agent = new Agent({
-  onError: async (error, context) => {
-    console.error('Agent error:', error);
-    // カスタムエラー処理
+import { Agent } from '@mastra/core/agent';
+
+export const jpycAgent = new Agent({
+  name: 'JPYC Assistant',
+  model: gpt4oMiniModel,
+  tools: async () => {
+    const tools = await jpycMCPClient.getTools();
+    return tools;
   },
+  instructions: '...',
 });
 ```
 
-**ログ記録**
+**3. API Route**（`src/app/api/chat/route.ts`）
 ```typescript
-const mastra = new Mastra({
-  logger: {
-    level: 'debug',
-    transport: customLogger,
-  },
-});
+export async function POST(req: Request) {
+  const stream = await jpycAgent.stream(message, { threadId });
+  return new Response(stream);
+}
 ```
-
-### 🚀 パフォーマンス最適化
-
-Mastraは、以下のパフォーマンス最適化機能を提供します：
-
-**キャッシング**
-```typescript
-const agent = new Agent({
-  cache: {
-    enabled: true,
-    ttl: 300, // 5分
-  },
-});
-```
-
-**並列実行**
-```typescript
-// 複数のツールを並列実行
-const results = await Promise.all([
-  agent.executeTool('get_balance', { address: addr1 }),
-  agent.executeTool('get_balance', { address: addr2 }),
-  agent.executeTool('get_balance', { address: addr3 }),
-]);
-```
-
-### 💡 このプロジェクトでの Mastra の役割
-
-このプロジェクトでは、Mastraを以下のように活用します：
-
-1. **Agentの定義**
-   - JPYC操作を支援するAgentを作成
-   - 適切な指示とモデル設定
-
-2. **Toolの実装**
-   - JPYC残高確認ツール
-   - JPYC送金ツール
-   - 取引履歴取得ツール
-
-3. **MCPとの統合**
-   - セクション3で作成するMCPサーバーを接続
-   - AI Agentから自動的にMCPツールを利用
-
-4. **API提供**
-   - Next.jsのAPI Routeから利用
-   - フロントエンドとのインタフェース
 
 ### 🙋‍♂️ 質問する
 
