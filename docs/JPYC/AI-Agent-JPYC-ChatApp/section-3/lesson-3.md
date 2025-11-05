@@ -266,7 +266,7 @@ pnpm mcp:dev
 
 MCPサーバーを停止するには、ターミナルで`Ctrl+C`を押します。
 
-```
+```bash
 SIGINT signal received: closing HTTP server
 HTTP server closed
 ```

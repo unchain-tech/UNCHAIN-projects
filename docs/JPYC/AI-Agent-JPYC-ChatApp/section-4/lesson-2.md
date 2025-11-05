@@ -32,7 +32,9 @@ export const jpycMCPClient = new MCPClient({
 
 ### 💡 コードの解説
 
-このファイルは非常にシンプルですが、重要な役割を果たします。主要なポイントを見ていきましょう。
+このファイルは非常にシンプルですが、重要な役割を果たします。
+
+主要なポイントを見ていきましょう。
 
 #### 1. MCPClientのインポート
 
@@ -40,7 +42,8 @@ export const jpycMCPClient = new MCPClient({
 import { MCPClient } from "@mastra/mcp";
 ```
 
-MastraのMCPクライアントをインポートします。このクライアントは、MCPプロトコルを使用してサーバーと通信します。
+MastraのMCPクライアントをインポートします。  
+このクライアントは、MCPプロトコルを使用してサーバーと通信します。
 
 #### 2. MCPClientインスタンスの作成
 
@@ -56,7 +59,8 @@ export const jpycMCPClient = new MCPClient({
 });
 ```
 
-`MCPClient`は、複数のMCPサーバーに接続できるように設計されています。`servers`オブジェクトで、各サーバーの名前とURLを定義します。
+`MCPClient`は、複数のMCPサーバーに接続できるように設計されています。  
+`servers`オブジェクトで、各サーバーの名前とURLを定義します。
 
 **主要なパラメータ：**
 
@@ -79,7 +83,8 @@ process.env.JPYC_MCP_SERVER_URL || "http://localhost:3001/sse"
 "http://localhost:3001/sse"
 ```
 
-Section 3で作成したMCPサーバーのSSEエンドポイントに接続します。このエンドポイントは、サーバーからクライアントへのイベント送信に使用されます。
+Section 3で作成したMCPサーバーのSSEエンドポイントに接続します。  
+このエンドポイントは、サーバーからクライアントへのイベント送信に使用されます。
 
 ### 🔄 MCPクライアントの動作
 
@@ -103,7 +108,8 @@ MCPクライアントは、AI Agentから以下のような流れで使用され
 
 ### 🌐 複数サーバーへの対応
 
-MCPClientは、複数のMCPサーバーに同時に接続できます。例えば、JPYC操作用のサーバーと、天気情報用のサーバーを同時に使用する場合：
+MCPClientは、複数のMCPサーバーに同時に接続できます。  
+例えば、JPYC操作用のサーバーと、天気情報用のサーバーを同時に使用する場合：
 
 ```typescript
 export const multiServerClient = new MCPClient({

@@ -6,9 +6,11 @@ title: MCPについて
 
 MCP（Model Context Protocol）は、**AI Agentとツールやデータソースをつなぐための標準化されたプロトコル**です。
 
-Anthropic社によって開発され、AI Agentが外部のツールやサービスを統一的な方法で利用できるようにします。
+Anthropic社によって発表され、AI Agentが外部のツールやサービスを統一的な方法で利用できるようにします。  
 
-### 🤔 なぜ MCP が必要なのか？
+その後、Google CloudがAgent 2 Agentプロトコルを発表したこともあり、デファクトスタンダードとなりました。
+
+### 🤔 なぜMCPが必要なのか？
 
 AI Agentを開発する際、以下のような課題がありました：
 
@@ -31,14 +33,18 @@ await blockchainRPC.sendTransaction(tx);
 
 AI Agentとツール間のインタフェースに統一性がなく、開発者ごとに異なる実装がされていました。
 
-### ✨ MCP が解決すること
+### ✨ MCPが解決すること
 
 MCPは**統一されたインタフェース**を提供し、すべてのツールが同じプロトコルで通信できるようにします。
 
 これにより：
-- 一度作成したツールを複数のAI Agentで再利用できる
-- 新しいツールを追加する際の学習コストが低い
-- AI Agentフレームワーク間でツールを共有できる
+
+- **一度作成したツールを複数のAI Agentで再利用できる**
+- **新しいツールを追加する際の学習コストが低い**
+- **AI Agentフレームワーク間でツールを共有できる**
+   - Mastraで利用
+   - Agent Development Kitで利用
+   - Strands Agentで利用
 
 ### 🏗 MCP のアーキテクチャ
 
@@ -49,7 +55,7 @@ MCPは、**サーバー**と**クライアント**の2つのコンポーネン�
 ツールやデータソースを提供する側です。
 
 **役割：**
-- ツールの定義と実装
+- ツールの定義と実装（具体的な処理内容）
 - ツールのメタデータ（名前、説明、パラメータ）の公開
 - ツールの実行と結果の返却
 
@@ -67,7 +73,7 @@ AI Agentからツールを利用する側です。
 
 MCPの典型的な通信フローは以下の通りです：
 
-```
+```bash
 1. ユーザー → AI Agent
    「残高を教えて」
 
@@ -132,9 +138,16 @@ MCPのツールは、以下の要素で構成されます：
 
 MCPは、様々なAI Agentフレームワークで利用できます：
 
-- **Mastra**: TypeScriptベースのモダンなフレームワーク
-- **LangChain**: Python/TypeScriptの人気フレームワーク
-- **AutoGPT**: 自律型Agentフレームワーク
+- **Mastra**:   
+   TypeScriptベースのモダンなフレームワーク
+- **LangChain**:   
+   Python/TypeScriptの人気フレームワーク
+- **Agent Development Kit**:   
+   Google製のマルチAI Agentに対応したフレームワーク
+- **Strands Agent**:   
+   AWS製のフレームワーク
+- **AutoGPT**:   
+   自律型Agentフレームワーク
 
 また、様々なLLMプロバイダーと組み合わせて使用できます：
 - Claude（Anthropic）

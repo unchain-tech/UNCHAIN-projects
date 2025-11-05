@@ -174,7 +174,9 @@ instructions: `
 `,
 ```
 
-`instructions`は、AI Agentの振る舞いを定義する**システムプロンプト**です。ここでは以下を指定しています：
+`instructions`は、AI Agentの振る舞いを定義する**システムプロンプト**です。  
+
+ここでは以下を指定しています：
 
 **Agentの役割**
 - JPYC操作のサポート
