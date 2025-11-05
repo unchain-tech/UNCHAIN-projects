@@ -28,16 +28,16 @@ const balance = await jpyc.balanceOf(address);
 console.log(`残高: ${balance} JPYC`);
 ```
 
-**3. 送金処理**
+**3. 送信処理**
 
-指定したアドレスにJPYCを送金します。
+指定したアドレスにJPYCを送信します。
 
 ```typescript
 const tx = await jpyc.transfer(
   recipientAddress,
   amount
 );
-console.log(`送金完了: ${tx.hash}`);
+console.log(`送信完了: ${tx.hash}`);
 ```
 
 ### 📦 JPYC SDK のインストール

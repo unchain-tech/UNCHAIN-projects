@@ -156,7 +156,7 @@ MCPは、様々なAI Agentフレームワークで利用できます：
 
 **提供するツール：**
 1. `jpyc_balance` - 残高照会
-2. `jpyc_transfer` - 送金
+2. `jpyc_transfer` - 送信
 3. `jpyc_switch_chain` - チェーン切り替え
 4. `jpyc_get_current_chain` - 現在のチェーン取得
 5. `jpyc_total_supply` - 総供給量照会

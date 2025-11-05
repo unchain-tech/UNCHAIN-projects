@@ -88,16 +88,16 @@ export const jpycBalanceTool = createTool({
 });
 
 /**
- * JPYC送金ツール
- * JPYCトークンを指定したアドレスに送金します（現在選択されているテストネット）
+ * JPYC送信ツール
+ * JPYCトークンを指定したアドレスに送信します（現在選択されているテストネット）
  */
 export const jpycTransferTool = createTool({
 	id: "jpyc_transfer",
 	description:
-		"JPYCトークンを指定したアドレスに送金します（現在選択されているテストネット）。例: 10 JPYCを0x123...に送る",
+		"JPYCトークンを指定したアドレスに送信します（現在選択されているテストネット）。例: 10 JPYCを0x123...に送る",
 	inputSchema: z.object({
 		to: z.string().describe("送信先のEthereumアドレス (0xから始まる42文字)"),
-		amount: z.number().describe("送金額（JPYC単位、例: 10）"),
+		amount: z.number().describe("送信額（JPYC単位、例: 10）"),
 	}),
 	execute: async ({ context }) => {
 		try {
@@ -106,7 +106,7 @@ export const jpycTransferTool = createTool({
 			const currentChain = getCurrentChain();
 			const chainName = getChainName(currentChain);
 
-			// SDKのtransferメソッドを呼び出してJPYCを送金する
+			// SDKのtransferメソッドを呼び出してJPYCを送信する
 			const txHash = await jpyc.transfer({
 				to: to as `0x${string}`,
 				value: amount,
@@ -116,7 +116,7 @@ export const jpycTransferTool = createTool({
 
 			return {
 				success: true,
-				message: `✅ ${amount} JPYCを ${to} に送金しました（${chainName}）`,
+				message: `✅ ${amount} JPYCを ${to} に送信しました（${chainName}）`,
 				transactionHash: txHash,
 				explorerUrl: `${explorerUrl}${txHash}`,
 				chain: currentChain,
@@ -270,7 +270,7 @@ createTool({
 ```typescript
 inputSchema: z.object({
 	to: z.string().describe("送信先のEthereumアドレス (0xから始まる42文字)"),
-	amount: z.number().describe("送金額（JPYC単位、例: 10）"),
+	amount: z.number().describe("送信額（JPYC単位、例: 10）"),
 }),
 ```
 
@@ -282,13 +282,13 @@ Zodは、TypeScriptの型検証ライブラリです。`inputSchema`で定義し
 
 ```typescript
 description:
-	"JPYCトークンを指定したアドレスに送金します（現在選択されているテストネット）。例: 10 JPYCを0x123...に送る",
+	"JPYCトークンを指定したアドレスに送信します（現在選択されているテストネット）。例: 10 JPYCを0x123...に送る",
 ```
 
 `description`は、AI Agentがこのツールをいつ使うべきかを判断するための重要な情報です。
 
 例えば、ユーザーが「太郎に100JPYC送って」と言った場合、AIは：
-1. この`description`を読んで「送金する」ツールであることを理解
+1. この`description`を読んで「送信する」ツールであることを理解
 2. `inputSchema`を参照して、`to`（送信先）と`amount`（金額）が必要だと認識
 3. 適切なパラメータを抽出して`execute`を呼び出す
 
@@ -306,7 +306,7 @@ const balanceString = await jpyc.balanceOf({
 
 アドレスが指定されていない場合は、自分のアドレスの残高を返します。前のレッスンで作成したWrapperの`jpyc.balanceOf()`を呼び出します。
 
-**jpyc_transfer（送金）**
+**jpyc_transfer（送信）**
 ```typescript
 const txHash = await jpyc.transfer({
 	to: to as `0x${string}`,
@@ -314,7 +314,7 @@ const txHash = await jpyc.transfer({
 });
 ```
 
-JPYCを送金し、トランザクションハッシュを返します。ブロックチェーンエクスプローラーのURLも生成して返すことで、ユーザーがトランザクションを確認できるようにします。
+JPYCを送信し、トランザクションハッシュを返します。ブロックチェーンエクスプローラーのURLも生成して返すことで、ユーザーがトランザクションを確認できるようにします。
 
 **jpyc_switch_chain（チェーン切り替え）**
 ```typescript

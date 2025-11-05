@@ -96,7 +96,7 @@ httpServer.listen(PORT, () => {
 ║                                                            ║
 ║  Available Tools:                                          ║
 ║    - jpyc_balance           (残高照会)                     ║
-║    - jpyc_transfer          (送金)                         ║
+║    - jpyc_transfer          (送信)                         ║
 ║    - jpyc_switch_chain      (チェーン切り替え)             ║
 ║    - jpyc_get_current_chain (現在のチェーン取得)           ║
 ║    - jpyc_total_supply      (総供給量照会)                 ║
@@ -241,7 +241,7 @@ pnpm mcp:dev
 ║                                                            ║
 ║  Available Tools:                                          ║
 ║    - jpyc_balance           (残高照会)                     ║
-║    - jpyc_transfer          (送金)                         ║
+║    - jpyc_transfer          (送信)                         ║
 ║    - jpyc_switch_chain      (チェーン切り替え)             ║
 ║    - jpyc_get_current_chain (現在のチェーン取得)           ║
 ║    - jpyc_total_supply      (総供給量照会)                 ║

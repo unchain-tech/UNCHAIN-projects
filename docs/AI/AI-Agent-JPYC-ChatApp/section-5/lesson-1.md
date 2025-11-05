@@ -250,7 +250,7 @@ catch (error) {
 5. jpyc_transfer ツールを呼び出し
    { to: "0x...", amount: 100 }
    ↓
-6. MCPサーバー経由でJPYC SDKが送金実行
+6. MCPサーバー経由でJPYC SDKが送信実行
    ↓
 7. トランザクションハッシュを取得
    ↓

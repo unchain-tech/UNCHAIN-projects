@@ -204,7 +204,7 @@ export const jpyc = {
 	},
 
 	/**
-	 * JPYCを送金するメソッド
+	 * JPYCを送信するメソッド
 	 * @param params
 	 * @returns
 	 */
@@ -316,7 +316,7 @@ export const jpyc = {
 
 - **totalSupply()**: JPYCの総供給量を取得
 - **balanceOf()**: 指定したアドレスの残高を取得
-- **transfer()**: JPYCを送金
+- **transfer()**: JPYCを送信
 
 これらのメソッドは、内部でJPYC SDKを呼び出し、結果を適切な形式で返します。
 
