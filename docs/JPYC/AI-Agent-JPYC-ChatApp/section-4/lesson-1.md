@@ -6,7 +6,9 @@ title: LLMモデルの設定
 
 このレッスンでは、AI Agentが使用するLLM（大規模言語モデル）を設定します。
 
-このプロジェクトでは、Claude、OpenAI、Geminiの3つのLLMプロバイダーをサポートします。環境変数に応じて、いずれかのモデルを選択できるようになっています。
+このプロジェクトでは、Claude、OpenAI、Geminiの3つのLLMプロバイダーをサポートします。
+
+環境変数に応じて、いずれかのモデルを選択できるようになっています。
 
 ### 📝 実装するファイル
 
@@ -34,7 +36,9 @@ export { claude, gemini, gpt4oMiniModel };
 
 ### 💡 コードの解説
 
-このファイルは、AI Agentが使用するLLMモデルを設定します。主要なポイントを見ていきましょう。
+このファイルは、AI Agentが使用するLLMモデルを設定します。  
+
+主要なポイントを見ていきましょう。
 
 #### 1. ai-sdkパッケージ
 
@@ -44,7 +48,8 @@ import { google } from "@ai-sdk/google";
 import { createOpenAI } from "@ai-sdk/openai";
 ```
 
-`ai-sdk`は、Vercel社が開発した統一LLM APIライブラリです。複数のLLMプロバイダー（Claude、OpenAI、Geminiなど）を同じインタフェースで扱えるようにします。
+`ai-sdk`は、Vercel社が開発した統一LLM APIライブラリです。  
+複数のLLMプロバイダー（Claude、OpenAI、Geminiなど）を同じインタフェースで扱えるようにします。
 
 Mastraは、内部で`ai-sdk`を使用してLLMと通信します。
 
@@ -54,7 +59,8 @@ Mastraは、内部で`ai-sdk`を使用してLLMと通信します。
 const claude = anthropic("claude-sonnet-4-0");
 ```
 
-Anthropic社のClaude 3.5 Sonnetモデルを使用します。このプロジェクトでは、Claudeを推奨モデルとして設定しています。
+Anthropic社のClaude Sonnet 4.0モデルを使用します。  
+**このプロジェクトでは、Claudeを推奨モデルとして設定しています。**
 
 #### 3. OpenAI GPT-4o-mini
 
@@ -82,7 +88,9 @@ Google社のGemini 2.5 Proモデルを使用します。
 export { claude, gemini, gpt4oMiniModel };
 ```
 
-3つのモデルをエクスポートすることで、次のレッスンでAI Agentを作成する際に、好きなモデルを選択できるようにします。
+3つのモデルをエクスポートすることで、次のレッスンでAI Agentを作成する際に好きなモデルを選択できるようにします。
+
+**※このプロジェクトでは、Claudeを推奨モデルとして設定しています。**
 
 ### 🔑 環境変数の設定
 
@@ -95,7 +103,9 @@ OPENAI_API_KEY=sk-proj-...
 GOOGLE_GENERATIVE_AI_API_KEY=...
 ```
 
-**重要：** 環境変数は、Next.jsアプリケーションの起動時に読み込まれます。環境変数を変更した場合は、アプリケーションを再起動してください。
+> **重要：** 環境変数は、Next.jsアプリケーションの起動時に読み込まれます。
+> 
+> 環境変数を変更した場合は、アプリケーションを再起動してください。
 
 このプロジェクトでは、次のレッスンでAI Agentを作成する際に、`claude`を使用します。
 

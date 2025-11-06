@@ -6,7 +6,9 @@ title: JPYC SDKについて
 
 JPYC SDK（`@jpyc/sdk-core`）は、JPYCコントラクトと簡単にやり取りできるNodeJS向けのインタフェースです。
 
-ブロックチェーンの複雑な処理を抽象化し、開発者が簡単にJPYC機能を実装できるようになっています。このSDKは[JPYC v2コントラクト](https://github.com/jcam1/JPYCv2)に対応しており、複数のブロックチェーンネットワークをサポートしています。
+ブロックチェーンの複雑な処理を抽象化し、開発者が簡単にJPYC機能を実装できるようになっています。
+
+このSDKは[JPYC v2コントラクト](https://github.com/jcam1/JPYCv2)に対応しており、複数のブロックチェーンネットワークをサポートしています。
 
 ### ✨ JPYC SDK の今回のプロジェクトでの使用例
 
@@ -93,12 +95,15 @@ const jpyc = new JPYC({
 ### 🌐 サポートするネットワーク
 
 JPYC SDKは、JPYCが発行されている3つのチェーンとテストネットでサポートされています。
-- Ethereum Mainnet
-- Ethereum Sepolia Testnet
-- Polygon PoS Mainnet
-- Polygon Amoy Testnet
-- Avalanche Mainnet
-- Avalanche Fuji Testnet
+
+- **メインネット**
+  - Ethereum Mainnet
+  - Polygon PoS Mainnet
+  - Avalanche Mainnet
+- **テストネット**
+  - Ethereum Sepolia Testnet
+  - Polygon Amoy Testnet
+  - Avalanche Fuji Testnet
 
 このプロジェクトでは、**各テストネット**を使用します。
 

@@ -6,7 +6,7 @@ title: チャットAPIの実装
 
 このレッスンでは、フロントエンドからAI Agentを呼び出すためのAPIエンドポイントを実装します。
 
-このAPIは、ユーザーのメッセージを受け取り、Section 4で作成したAI Agentに渡し、レスポンスを返します。
+このAPIはユーザーのメッセージを受け取り、Section 4で作成したAI Agentに渡しレスポンスを返します。
 
 ### 📝 実装するファイル
 
@@ -100,7 +100,9 @@ export async function POST(req: NextRequest) {
 
 ### 💡 コードの解説
 
-このファイルは、Next.js 15のApp Router API Routeとして実装されています。主要なポイントを見ていきましょう。
+このファイルは、Next.js 15のApp Router API Routeとして実装されています。
+
+主要なポイントを見ていきましょう。
 
 #### 1. POSTメソッドの定義
 
@@ -177,7 +179,7 @@ if (profile || (friends && friends.length > 0)) {
 - 次郎: 0x9abc...
 ```
 
-AI Agentは、Section 4で定義した`instructions`に従って、このコンテキストを解釈し、適切なツールを呼び出します。
+AI Agentは、Section 4で定義した`instructions`に従って、このコンテキストを解釈し適切なツールを呼び出します。
 
 #### 5. AI Agentの呼び出し
 
@@ -193,7 +195,7 @@ Section 4で作成した`jpycAgent`の`generate()`メソッドを呼び出しま
 - **contextMessage**: ユーザーのメッセージ（コンテキスト付き）
 - **conversationId**: 会話IDがある場合は渡す
 
-`conversationId`を渡すことで、Mastraは同じ会話の文脈を保持し、前のメッセージを参照できるようになります。
+`conversationId`を渡すことで、Mastraは同じ会話の文脈を保持し前のメッセージを参照できるようになります。
 
 #### 6. レスポンスの返却
 
