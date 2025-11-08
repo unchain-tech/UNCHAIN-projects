@@ -4,8 +4,10 @@ const buildTextLintCommand = (filenames) => {
   // Filter out files that should be ignored
   const filtered = filenames.filter(f => {
     const relative = path.relative(process.cwd(), f);
-    // Exclude TRANSLATION_GUIDE.md and English translations
-    return !relative.includes('TRANSLATION_GUIDE.md') && !relative.includes('i18n/en/');
+    // Exclude translation-related English docs and English translations
+    return !relative.includes('TRANSLATION_GUIDE.md') && 
+           !relative.includes('TRANSLATION_STATUS.md') && 
+           !relative.includes('i18n/en/');
   });
   
   if (filtered.length === 0) return 'echo "No files to lint"';
