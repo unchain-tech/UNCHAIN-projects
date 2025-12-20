@@ -12,6 +12,16 @@ title: JPYC SDK Wrapperの実装
 
 `external/mcp/src/jpyc/sdk.ts`ファイルを作成し、以下のコードを記述します。
 
+まず、ファイルを作成します：
+
+```bash
+cd jpyc-ai-agent
+
+touch external/mcp/src/jpyc/sdk.ts
+```
+
+以下のコードを記述します：
+
 ```typescript
 import { JPYC, type IJPYC, SdkClient, type ISdkClient } from "@jpyc/sdk-core";
 import type { Hex } from "viem";
