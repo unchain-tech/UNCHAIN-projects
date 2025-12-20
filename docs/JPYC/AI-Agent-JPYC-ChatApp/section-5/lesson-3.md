@@ -11,7 +11,17 @@ title: チャットインターフェース（前半）
 
 ### 📝 実装するファイル（前半部分）
 
-`src/components/ChatInterface.tsx`ファイルを作成し、以下のコードを記述します：
+`src/components/ChatInterface.tsx`ファイルを作成し、以下のコードを記述します。
+
+まず、ファイルを作成します：
+
+```bash
+cd jpyc-ai-agent
+
+touch src/components/ChatInterface.tsx
+```
+
+以下のコードを記述します：
 
 ```typescript
 "use client";

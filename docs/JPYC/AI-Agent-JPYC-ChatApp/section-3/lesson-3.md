@@ -12,6 +12,16 @@ MCPサーバーは、HTTP/SSE（Server-Sent Events）プロトコルを使用し
 
 `external/mcp/src/index.ts`ファイルを作成し、以下のコードを記述します。
 
+まず、ファイルを作成します：
+
+```bash
+cd jpyc-ai-agent
+
+touch external/mcp/src/tools.ts
+```
+
+以下のコードを記述します：
+
 ```typescript
 /**
  * JPYC MCP Server - Standalone MCP Server

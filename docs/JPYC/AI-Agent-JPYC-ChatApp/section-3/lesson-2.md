@@ -12,6 +12,15 @@ MCPツールは、AI Agentが実行できる「関数」として機能します
 
 `external/mcp/src/tools.ts`ファイルを作成し、以下のコードを記述します。
 
+まず、ファイルを作成します：
+
+```bash
+cd jpyc-ai-agent
+
+touch external/mcp/src/tools.ts
+```
+以下のコードを記述します：
+
 ```typescript
 /**
  * JPYC Tools for Mastra

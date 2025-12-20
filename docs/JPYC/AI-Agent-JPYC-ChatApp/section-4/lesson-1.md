@@ -14,6 +14,16 @@ title: LLMモデルの設定
 
 `src/lib/mastra/model/index.ts`ファイルを作成し、以下のコードを記述します。
 
+まず、ファイルを作成します：
+
+```bash
+cd jpyc-ai-agent
+
+touch src/lib/mastra/model/index.ts
+```
+
+以下のコードを記述します：
+
 ```typescript
 import { anthropic } from "@ai-sdk/anthropic";
 import { google } from "@ai-sdk/google";
