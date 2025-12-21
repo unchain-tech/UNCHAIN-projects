@@ -17,6 +17,7 @@ title: チャットAPIの実装
 ```bash
 cd jpyc-ai-agent
 
+mkdir -p src/app/api/chat
 touch src/app/api/chat/route.ts
 ```
 

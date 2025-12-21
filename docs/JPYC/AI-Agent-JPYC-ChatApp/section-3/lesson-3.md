@@ -17,6 +17,7 @@ MCPサーバーは、HTTP/SSE（Server-Sent Events）プロトコルを使用し
 ```bash
 cd jpyc-ai-agent
 
+mkdir -p external/mcp/src
 touch external/mcp/src/index.ts
 ```
 
