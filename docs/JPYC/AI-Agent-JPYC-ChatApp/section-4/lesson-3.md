@@ -17,6 +17,7 @@ AI Agentは、ユーザーの自然言語の指示を理解し、適切なMCPツ
 ```bash
 cd jpyc-ai-agent
 
+mkdir -p src/lib/mastra
 touch src/lib/mastra/agent.ts
 ```
 

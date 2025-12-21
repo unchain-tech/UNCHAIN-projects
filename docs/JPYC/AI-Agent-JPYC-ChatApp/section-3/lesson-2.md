@@ -17,6 +17,7 @@ MCPツールは、AI Agentが実行できる「関数」として機能します
 ```bash
 cd jpyc-ai-agent
 
+mkdir -p external/mcp/src
 touch external/mcp/src/tools.ts
 ```
 以下のコードを記述します：

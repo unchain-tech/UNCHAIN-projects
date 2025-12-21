@@ -17,6 +17,7 @@ title: JPYC SDK Wrapperの実装
 ```bash
 cd jpyc-ai-agent
 
+mkdir -p external/mcp/src/jpyc
 touch external/mcp/src/jpyc/sdk.ts
 ```
 

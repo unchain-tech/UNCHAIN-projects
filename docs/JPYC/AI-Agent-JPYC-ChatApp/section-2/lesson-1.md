@@ -18,11 +18,15 @@ title: プロジェクトのセットアップ
 
 まず、スターターリポジトリをクローンしてきます。
 
+スターターリポジトリは以下のリンクからアクセスできます：
+
+**https://github.com/unchain-tech/jpyc-ai-agent**
+
 **自分のGitHubアカウントにフォークしていない場合は、まずフォークしてきましょう！**
 
 ```bash
 git clone https://github.com/<your_github_account_name>/jpyc-ai-agent
-cd ai-agent-jpyc-chat
+cd jpyc-ai-agent
 ```
 
 ### 📦 依存関係のインストールとコンパイル
@@ -41,7 +45,7 @@ pnpm run compile
 
 ### 📁 プロジェクト構造の作成
 
-`ai-agent-jpyc-chat`以下のディレクトリ構造が以下のようになっているかを確認します。
+`jpyc-ai-agent`以下のディレクトリ構造が以下のようになっているかを確認します。
 
 ```
 ai-agent-jpyc-chat/
@@ -106,8 +110,29 @@ ANTHROPIC_API_KEY=
 JPYC_MCP_SERVER_URL="http://localhost:3001/sse"
 ```
 
+次に、MCPサーバー用の環境変数ファイルも作成します。MCPサーバーは**独立したプロセス**として動作するため、`external/mcp`ディレクトリに`.env`ファイルを作成する必要があります。
+
+```bash
+# external/mcpディレクトリに移動
+cd external/mcp
+
+# .env.exampleをコピーして.envを作成（.env.exampleが存在する場合）
+# 存在しない場合は直接.envファイルを作成してください
+cp .env.example .env
+touch .env
+```
+
+`external/mcp/.env`ファイルに環境変数を設定します：
+
+```.env
+# MCPサーバー用の環境変数
+PRIVATE_KEY=0x... # ウォレットの秘密鍵（.env.localと同じ値を使用）
+```
+
 **重要**：
 - `.env.local`は`.gitignore`に含まれていることを確認してください
+- `external/mcp/.env`も`.gitignore`に含まれていることを確認してください
+- ルートディレクトリの`.env.local`とは別に、`external/mcp/.env`も必要です
 - 本番環境では、秘密鍵を環境変数として安全に管理してください
 
 ### 🙋‍♂️ 質問する

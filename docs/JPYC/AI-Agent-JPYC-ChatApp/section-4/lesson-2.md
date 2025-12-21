@@ -17,6 +17,7 @@ MCPクライアントは、AI AgentからMCPサーバーに接続し、ツール
 ```bash
 cd jpyc-ai-agent
 
+mkdir -p src/lib/mastra/mcp
 touch src/lib/mastra/mcp/client.ts
 ```
 

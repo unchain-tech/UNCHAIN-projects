@@ -18,6 +18,7 @@ title: チャットインターフェース（前半）
 ```bash
 cd jpyc-ai-agent
 
+mkdir -p src/components
 touch src/components/ChatInterface.tsx
 ```
 

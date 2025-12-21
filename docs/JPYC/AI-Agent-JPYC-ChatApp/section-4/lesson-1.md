@@ -19,6 +19,7 @@ title: LLMモデルの設定
 ```bash
 cd jpyc-ai-agent
 
+mkdir -p src/lib/mastra/model
 touch src/lib/mastra/model/index.ts
 ```
 
