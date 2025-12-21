@@ -226,6 +226,26 @@ process.on("SIGTERM", () => {
 
 `SIGTERM`や`SIGINT`（Ctrl+C）シグナルを受信したとき、サーバーを適切に終了します。これにより、リクエスト処理中にサーバーが強制終了されることを防ぎます。
 
+### 🔑 環境変数の設定
+
+MCPサーバーは**独立したプロセス**として動作するため、`external/mcp`ディレクトリに`.env`ファイルを作成する必要があります。
+
+```bash
+# external/mcpディレクトリに移動
+cd external/mcp
+
+# .env.exampleをコピーして.envを作成
+cp .env.example .env
+```
+
+`.env`ファイルに環境変数を設定します：
+
+```.env
+PRIVATE_KEY=0x... # ウォレットの秘密鍵
+```
+
+**重要：** ルートディレクトリの`.env.local`とは別に、`external/mcp/.env`も必要です。
+
 ### 🧪 動作確認
 
 MCPサーバーを起動して、動作を確認しましょう。
