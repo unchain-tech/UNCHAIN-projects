@@ -12,6 +12,16 @@ AI Agentは、ユーザーの自然言語の指示を理解し、適切なMCPツ
 
 `src/lib/mastra/agent.ts`ファイルを作成し、以下のコードを記述します。
 
+まず、ファイルを作成します：
+
+```bash
+cd jpyc-ai-agent
+
+touch src/lib/mastra/agent.ts
+```
+
+以下のコードを記述します：
+
 ```typescript
 import { Agent } from "@mastra/core/agent";
 import { claude } from "./model";

@@ -11,7 +11,17 @@ title: チャットインターフェース（前半）
 
 ### 📝 実装するファイル（前半部分）
 
-`src/components/ChatInterface.tsx`ファイルを作成し、以下のコードを記述します：
+`src/components/ChatInterface.tsx`ファイルを作成し、以下のコードを記述します。
+
+まず、ファイルを作成します：
+
+```bash
+cd jpyc-ai-agent
+
+touch src/components/ChatInterface.tsx
+```
+
+以下のコードを記述します：
 
 ```typescript
 "use client";
@@ -166,6 +176,67 @@ export default function ChatInterface() {
 			]);
 		} finally {
 			setLoading(false);
+		}
+	};
+
+	// プロフィール保存処理
+	const handleSaveProfile = async () => {
+		if (!profileName.trim()) {
+			alert("名前を入力してください");
+			return;
+		}
+
+		try {
+			// サーバーサイドからアドレスを取得
+			const response = await fetch("/api/address");
+			const data = await response.json();
+
+			if (!data.success) {
+				throw new Error(data.error);
+			}
+
+			const newProfile = setProfile(profileName, data.address);
+			setProfileState(newProfile);
+			setProfileName("");
+			alert("プロフィールを保存しました");
+		} catch (error: any) {
+			alert(`エラー: ${error.message}`);
+		}
+	};
+
+	// プロフィール削除処理
+	const handleDeleteProfile = () => {
+		if (confirm("プロフィールを削除しますか？")) {
+			deleteProfile();
+			setProfileState(null);
+			alert("プロフィールを削除しました");
+		}
+	};
+
+	// 友達追加処理
+	const handleAddFriend = () => {
+		if (!friendName.trim() || !friendAddress.trim()) {
+			alert("名前とアドレスを入力してください");
+			return;
+		}
+
+		try {
+			const newFriend = addFriend(friendName, friendAddress as `0x${string}`);
+			setFriendsState(getFriends());
+			setFriendName("");
+			setFriendAddress("");
+			alert(`${newFriend.name}を友達リストに追加しました`);
+		} catch (error: any) {
+			alert(`エラー: ${error.message}`);
+		}
+	};
+
+	// 友達削除処理
+	const handleDeleteFriend = (id: string, name: string) => {
+		if (confirm(`${name}を友達リストから削除しますか？`)) {
+			deleteFriend(id);
+			setFriendsState(getFriends());
+			alert(`${name}を削除しました`);
 		}
 	};
 
@@ -388,7 +459,67 @@ if (reader) {
 4. ユーザーはAI Agentの回答がリアルタイムで表示されるのを見ることができる
 
 
-#### 7. UIレンダリング
+#### 7. プロフィール管理
+
+```typescript
+const handleSaveProfile = async () => {
+	if (!profileName.trim()) {
+		alert("名前を入力してください");
+		return;
+	}
+
+	try {
+		// サーバーサイドからアドレスを取得
+		const response = await fetch("/api/address");
+		const data = await response.json();
+
+		if (!data.success) {
+			throw new Error(data.error);
+		}
+
+		const newProfile = setProfile(profileName, data.address);
+		setProfileState(newProfile);
+		setProfileName("");
+		alert("プロフィールを保存しました");
+	} catch (error: any) {
+		alert(`エラー: ${error.message}`);
+	}
+};
+```
+
+**重要な変更点：**
+
+以前のバージョンではユーザーが手動でアドレスを入力していましたが、最新版では**サーバーサイド（`/api/address`）からアドレスを自動取得**します。
+
+これにより：
+- ユーザーはアドレスを知らなくてもプロフィールを設定できる
+- プライベートキーから自動的にアドレスが導出される
+- 入力ミスを防げる
+
+#### 8. 友達管理
+
+```typescript
+const handleAddFriend = () => {
+	if (!friendName.trim() || !friendAddress.trim()) {
+		alert("名前とアドレスを入力してください");
+		return;
+	}
+
+	try {
+		const newFriend = addFriend(friendName, friendAddress as `0x${string}`);
+		setFriendsState(getFriends());
+		setFriendName("");
+		setFriendAddress("");
+		alert(`${newFriend.name}を友達リストに追加しました`);
+	} catch (error: any) {
+		alert(`エラー: ${error.message}`);
+	}
+};
+```
+
+友達の追加・削除処理を関数として分離することで、コードの可読性と保守性が向上します。
+
+#### 9. UIレンダリング
 
 ```typescript
 <div className="flex flex-col h-screen bg-gray-50">

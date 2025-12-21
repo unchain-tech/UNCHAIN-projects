@@ -12,6 +12,16 @@ MCPクライアントは、AI AgentからMCPサーバーに接続し、ツール
 
 `src/lib/mastra/mcp/client.ts`ファイルを作成し、以下のコードを記述します。
 
+まず、ファイルを作成します：
+
+```bash
+cd jpyc-ai-agent
+
+touch src/lib/mastra/mcp/client.ts
+```
+
+以下のコードを記述します：
+
 ```typescript
 import { MCPClient } from "@mastra/mcp";
 

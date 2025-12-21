@@ -12,6 +12,15 @@ MCPツールは、AI Agentが実行できる「関数」として機能します
 
 `external/mcp/src/tools.ts`ファイルを作成し、以下のコードを記述します。
 
+まず、ファイルを作成します：
+
+```bash
+cd jpyc-ai-agent
+
+touch external/mcp/src/tools.ts
+```
+以下のコードを記述します：
+
 ```typescript
 /**
  * JPYC Tools for Mastra
@@ -88,16 +97,16 @@ export const jpycBalanceTool = createTool({
 });
 
 /**
- * JPYC送信ツール
- * JPYCトークンを指定したアドレスに送信します（現在選択されているテストネット）
+ * JPYC送金ツール
+ * JPYCトークンを指定したアドレスに送金します（現在選択されているテストネット）
  */
 export const jpycTransferTool = createTool({
 	id: "jpyc_transfer",
 	description:
-		"JPYCトークンを指定したアドレスに送信します（現在選択されているテストネット）。例: 10 JPYCを0x123...に送る",
+		"JPYCトークンを指定したアドレスに送金します（現在選択されているテストネット）。例: 10 JPYCを0x123...に送る",
 	inputSchema: z.object({
 		to: z.string().describe("送信先のEthereumアドレス (0xから始まる42文字)"),
-		amount: z.number().describe("送信額（JPYC単位、例: 10）"),
+		amount: z.number().describe("送金額（JPYC単位、例: 10）"),
 	}),
 	execute: async ({ context }) => {
 		try {
@@ -106,7 +115,7 @@ export const jpycTransferTool = createTool({
 			const currentChain = getCurrentChain();
 			const chainName = getChainName(currentChain);
 
-			// SDKのtransferメソッドを呼び出してJPYCを送信する
+			// SDKのtransferメソッドを呼び出してJPYCを送金する
 			const txHash = await jpyc.transfer({
 				to: to as `0x${string}`,
 				value: amount,
@@ -116,7 +125,7 @@ export const jpycTransferTool = createTool({
 
 			return {
 				success: true,
-				message: `✅ ${amount} JPYCを ${to} に送信しました（${chainName}）`,
+				message: `✅ ${amount} JPYCを ${to} に送金しました（${chainName}）`,
 				transactionHash: txHash,
 				explorerUrl: `${explorerUrl}${txHash}`,
 				chain: currentChain,
@@ -181,12 +190,16 @@ export const jpycGetCurrentChainTool = createTool({
 	id: "jpyc_get_current_chain",
 	description:
 		"現在選択されているテストネットを取得します。ユーザーが「今どのチェーン？」「現在のネットワークは？」などと聞いた場合に使用します。",
-	inputSchema: z.object({}),
-	execute: async () => {
+	inputSchema: z.object({
+		_dummy: z.string().optional().describe("ダミーパラメータ（使用しません）"),
+	}),
+	execute: async ({ context }) => {
 		try {
 			// 現在接続中のチェーン情報を取得
 			const currentChain = getCurrentChain();
 			const chainName = getChainName(currentChain);
+
+			console.log(`jpyc_get_current_chain: chain=${currentChain}`);
 
 			return {
 				success: true,
@@ -195,6 +208,7 @@ export const jpycGetCurrentChainTool = createTool({
 				address: getCurrentAddress(),
 			};
 		} catch (error: unknown) {
+			console.error(`jpyc_get_current_chain error:`, error);
 			return {
 				success: false,
 				error: error instanceof Error ? error.message : String(error),
@@ -211,14 +225,20 @@ export const jpycTotalSupplyTool = createTool({
 	id: "jpyc_total_supply",
 	description:
 		"現在選択されているテストネットでのJPYCの総供給量を照会します。ユーザーが「総供給量は？」「流通量を教えて」などと聞いた場合に使用します。",
-	inputSchema: z.object({}),
-	execute: async () => {
+	inputSchema: z.object({
+		_dummy: z.string().optional().describe("ダミーパラメータ（使用しません）"),
+	}),
+	execute: async ({ context }) => {
 		try {
 			// 現在接続中のチェーン情報を取得
 			const currentChain = getCurrentChain();
 			const chainName = getChainName(currentChain);
 			// SDKのtotalSupplyメソッドを呼び出して総供給量を取得する
 			const totalSupply = await jpyc.totalSupply();
+
+			console.log(
+				`jpyc_total_supply: totalSupply=${totalSupply} JPYC, chain=${currentChain}`,
+			);
 
 			return {
 				success: true,
@@ -228,6 +248,7 @@ export const jpycTotalSupplyTool = createTool({
 				chainName: chainName,
 			};
 		} catch (error: unknown) {
+			console.error(`jpyc_total_supply error:`, error);
 			return {
 				success: false,
 				error: error instanceof Error ? error.message : String(error),
@@ -246,6 +267,7 @@ export const jpycTools = {
 	jpyc_get_current_chain: jpycGetCurrentChainTool,
 	jpyc_total_supply: jpycTotalSupplyTool,
 };
+
 ```
 
 ### 💡 コードの解説

@@ -12,6 +12,16 @@ title: チャットAPIの実装
 
 `src/app/api/chat/route.ts`ファイルを作成し、以下のコードを記述します。
 
+まず、ファイルを作成します：
+
+```bash
+cd jpyc-ai-agent
+
+touch src/app/api/chat/route.ts
+```
+
+以下のコードを記述します：
+
 ```typescript
 import { jpycAgent } from "@/lib/mastra/agent";
 import type { NextRequest } from "next/server";

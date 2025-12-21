@@ -25,13 +25,19 @@ git clone https://github.com/<your_github_account_name>/jpyc-ai-agent
 cd ai-agent-jpyc-chat
 ```
 
-### 📦 依存関係のインストール
+### 📦 依存関係のインストールとコンパイル
 
 必要なパッケージをインストールします：
 
 ```bash
 pnpm install
+
+# JPYC SDK Coreパッケージをコンパイル
+cd external/jpyc-sdk/packages/core
+pnpm run compile
 ```
+
+これで`external/jpyc-sdk/packages/core/dist`フォルダが作成され、TypeScriptの型定義とコンパイル済みのコードが生成されます。
 
 ### 📁 プロジェクト構造の作成
 
@@ -72,7 +78,7 @@ mkdir -p src/components
 `.env.local`ファイルを作成し、必要な環境変数を設定します：
 
 ```bash
-cp .env.local .env.local.example
+cp .env.local.example .env.local
 ```
 
 以下の値を設定します。
