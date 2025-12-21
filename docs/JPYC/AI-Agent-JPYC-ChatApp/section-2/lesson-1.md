@@ -78,7 +78,7 @@ mkdir -p src/components
 `.env.local`ファイルを作成し、必要な環境変数を設定します：
 
 ```bash
-cp .env.local .env.local.example
+cp .env.local.example .env.local
 ```
 
 以下の値を設定します。
