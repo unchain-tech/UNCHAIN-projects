@@ -91,7 +91,7 @@ const config: Config = {
               value: '<hr style="margin: 0.3rem 0;">',
             },
             {
-              href: 'https://github.com/unchain-tech/UNCHAIN-Projects/issues/3526',
+              href: 'https://github.com/unchain-tech/UNCHAIN-Projects/issues/502',
               label: 'Help Us Translate',
             },
           ],
