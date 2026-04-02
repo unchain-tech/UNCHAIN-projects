@@ -10,6 +10,8 @@
     "prepare": "simple-git-hooks",
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
+    "sync-docs-sidebar-keys": "node scripts/sync-docs-sidebar-keys.mjs",
+    "prebuild": "node scripts/sync-docs-sidebar-keys.mjs",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
