@@ -16,10 +16,13 @@ const config: Config = {
   organizationName: "unchain-tech",
   projectName: "UNCHAIN-projects",
   deploymentBranch: "main",
-
   onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "warn",
 
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: "warn",
+    }
+  },
   i18n: {
     defaultLocale: "ja",
     locales: ["ja", "en"],

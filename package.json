@@ -10,6 +10,8 @@
     "prepare": "simple-git-hooks",
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
+    "sync-docs-sidebar-keys": "node scripts/sync-docs-sidebar-keys.mjs",
+    "prebuild": "node scripts/sync-docs-sidebar-keys.mjs",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
@@ -38,10 +40,10 @@
     "pre-commit": "npx lint-staged"
   },
   "dependencies": {
-    "@docusaurus/core": "3.8.1",
+    "@docusaurus/core": "^3.8.1",
     "@docusaurus/faster": "^3.8.1",
     "@docusaurus/plugin-ideal-image": "^3.8.1",
-    "@docusaurus/preset-classic": "3.8.1",
+    "@docusaurus/preset-classic": "^3.8.1",
     "@mdx-js/react": "^3.0.0",
     "clsx": "^2.0.0",
     "prism-react-renderer": "^2.3.0",
@@ -49,12 +51,12 @@
     "react-dom": "^18.0.0"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.8.1",
-    "@docusaurus/tsconfig": "3.8.1",
-    "@docusaurus/types": "3.8.1",
+    "@docusaurus/module-type-aliases": "^3.8.1",
+    "@docusaurus/tsconfig": "^3.8.1",
+    "@docusaurus/types": "^3.8.1",
     "lint-staged": "^12.3.7",
     "simple-git-hooks": "^2.7.0",
-    "textlint": "^12.1.1",
+    "textlint": "^15.5.1",
     "textlint-filter-rule-allowlist": "^4.0.0",
     "textlint-filter-rule-comments": "^1.2.2",
     "textlint-rule-ja-no-mixed-period": "^2.1.1",
